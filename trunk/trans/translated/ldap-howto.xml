@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/ldap-howto.xml,v 1.1 2005/02/20 22:00:21 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/ldap-howto.xml,v 1.2 2005/02/21 00:03:52 sekretarz Exp $ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.16 -->
+<!-- Orig revision: 1.17 -->
 <!-- Translator: ShadoWW <damian@lezajsk.info> -->
 <!-- Title: Praca z LDAP -->
 <!-- Status: Release -->
@@ -36,8 +36,8 @@ OpenLDAP w celu autoryzacji pomiędzy grupami "paczek" Gentoo.
 
 <license/>
 
-<version>0.10</version>
-<date>2004-11-28</date>
+<version>0.11</version>
+<date>2005-01-22</date>
 
 <chapter>
 <title>Początki z OpenLDAP.</title>
@@ -139,13 +139,7 @@ Najpierw zemergujmy wszystkie potrzebne komponenty na nasz serwer:
 </p>
 
 <pre caption="Instalacja OpenLDAP">
-# <i>emerge openldap pam_ldap nss_ldap</i>
-
-<comment>Potrzebujemy migrationtools-64, które w momencie pisania tego howto,
-dostępne są jedynie w środowisku ~arch.</comment>
-# <i>mkdir /etc/portage</i>
-# <i>echo "net-nds/migrationtools" &gt;&gt; /etc/portage/package.keywords</i>
-# <i>emerge migrationtools</i>
+# <i>emerge openldap pam_ldap nss_ldap migrationtools</i>
  
 # <i>chown ldap:ldap /var/lib/openldap-ldbm /var/lib/openldap-data /var/lib/openldap-slurp</i>
 </pre>
