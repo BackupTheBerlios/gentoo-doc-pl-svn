@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.27 -->
+<!-- Orig revision: 1.28 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Jądra -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.12 2004/01/13 13:29:46 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.13 2004/01/17 14:46:47 lcs Exp $ -->
 
 <sections>
 <section>
@@ -763,12 +763,15 @@ No więc, do dzieła. Zacznijmy od instalacji naszego skryptu:
 </pre>
 
 <p>
-Teraz go uruchommy. Zwróć uwagę, iż <c>genkernel</c> aktywuje
+Jeśli zainstalowałeś go za pomocą GRP, uruchom po prostu <c>genkernel</c>,
+natomiast jeżeli posiadasz aktualny, ściągnięty z Internetu 
+pakiet, wpisz <c>genkernel all</c>. Zwróć uwagę, iż <c>genkernel</c> aktywuje
 wsparcie niemal dla całego obsługiwanego sprzętu. Wobec tego kompilacja
 może trwać dosyć długo!
 </p>
 
 <pre caption="Uruchamianie genkernel">
+<comment>(Przykład ten dotyczy genkernela z GRP)</comment>
 # <i>genkernel</i>
 Gentoo Linux genkernel, version 1.4
 Copyright 2003 Gentoo Technologies, Inc., Bob Johnson, Daniel Robbins
