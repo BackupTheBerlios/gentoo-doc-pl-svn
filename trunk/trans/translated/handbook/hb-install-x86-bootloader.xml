@@ -3,41 +3,48 @@
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
 <!-- Orig revision: 1.22 -->
+
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
-<!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-bootloader.xml,v 1.6 2004/11/29 23:01:15 sekretarz Exp $ -->
+<!-- Status: Release -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-bootloader.xml,v 1.7 2004/12/15 23:09:24 rane Exp $ -->
 
 <sections>
 <version>1.19</version>
 <date>2004-10-20</date>
 
 <section>
-<title>Podejmowanie decyzji</title>
+<title>Podejmowanie decyzji.</title>
 <subsection>
-<title>Wprowadzenie</title>
+<title>Wprowadzenie.</title>
 <body>
 
 <p>
-Gdy skonfigurowałeś jądro i zmodyfikowałeś odpowiednio niezbędne systemowe
-pliki konfiguracyjne, nadeszła pora zainstalowania programu, który uruchomi jądro
-w momencie startu systemu. Taki program nazywa się <e>bootloader</e>. Dla architektury x86 Gentoo Linux używa dwóch takich programów: <uri link="#grub">GRUB</uri> i <uri link="#lilo">LILO</uri>. Zanim zainstalujesz którykolwiek z nich nauczymy Cię jednak jak się konfiguruje framebuffer - zakładając oczywiście, że go chcesz.
+Gdy skonfigurowałeś jądro i zmodyfikowałeś odpowiednio niezbędne systemowe pliki
+konfiguracyjne nadeszła pora zainstalowania programu, który uruchomi jądro w
+momencie startu systemu. Taki program nazywa się <e>bootloader</e>. Dla
+architektury x86 Gentoo Linux używa dwóch takich programów: <uri
+link="#grub">GRUB</uri> i <uri link="#lilo">LILO</uri>. Zanim zainstalujesz
+którykolwiek z nich nauczymy Cię jednak jak się konfiguruje framebuffer -
+zakładając oczywiście, że go chcesz.
 </p>
 
 
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Framebuffer</title>
+<title>Opcjonalnie: Framebuffer.</title>
 <body>
 
 <p>
-<e>Gdy</e> skonfigurowałeś jądro z obsługa bufora ramki i chcesz to wykorzystać,
-musisz dodać parametr <c>vga</c> do konfiguracji bootloadera.
-Kolejna tabela prezentuje wartości, które <c>vga</c> może przyjąć.
-W przykładowych plikach konfiguracyjnych używamy
-<e>800x600 @ 16bpp</e>, czyli <e>788</e>.
+<e>Gdy</e> skonfigurowałeś jądro z obsługą bufora ramki i chcesz ją wykorzystywać
+musisz dodać parametr <c>vga</c> w odpowiednin miejscu pliku konfiguracyjnego
+bootloadera. Kolejna tabela prezentuje wartości, które <c>vga</c> może przyjąć.
+W przykładowych plikach konfiguracyjnych używamy <e>800x600 @ 16bpp</e>, czyli
+<e>788</e>.
 </p>
 
 <p>
@@ -60,11 +67,15 @@ Dla <c>vga</c>-wartość:
 </table>
 
 <p>
-Jeśli masz kernel z serii 2.6 i wybrałeś vesafb-tng musisz zamiast tego użyć opcji <c>video</c>-wartość. Składnia wygląda wtedy następująco: &lt;szerokość&gt;x&lt;długość&gt;-&lt;głębia&gt;@&lt;częstotliwość odświeżania&gt;, np. <c>1024x768-16@60</c>.
+Jeśli masz kernel z serii 2.6 i wybrałeś vesafb-tng musisz zamiast tego użyć
+opcji <c>video</c>-wartość. Składnia wygląda wtedy następująco:
+&lt;szerokość&gt;x&lt;długość&gt;-&lt;głębia&gt;@&lt;częstotliwość
+odświeżania&gt;, np. <c>1024x768-16@60</c>.
 </p>
 
 <p>
-Więcej informacji znajdziesz w dokumencie <path>/usr/src/linux/Documentation/fb/vesafb.txt</path>
+Więcej informacji znajdziesz w dokumencie
+<path>/usr/src/linux/Documentation/fb/vesafb.txt</path>
 </p>
 
 <p>
@@ -80,23 +91,23 @@ link="#lilo">LILO</uri>.
 </subsection>
 </section>
 <section id="grub">
-<title>Domyślnie: Użycie programu GRUB</title>
+<title>Domyślnie: Użycie programu GRUB.</title>
 <subsection>
-<title>Wyjaśnienie terminologii GRUBa</title>
+<title>Wyjaśnienie terminologii GRUBa.</title>
 <body>
 
 <p>
 Najważniejszym czynnikiem prowadzącym do zrozumienia programu
 GRUB jest pojęcie jego sposobu odnoszenia się do dysków i partycji.
 Twoja linuksowa partycja <path>/dev/hda1</path> jest określana
-przez GRUBa jako <path>(hd0,0)</path>.
+przez GRUB jako <path>(hd0,0)</path>.
 Zauważ nawiasy po obu stronach <path>hd0,0</path> - ich użycie jest wymagane.
 </p>
 
 <p>
 Dyski twarde są liczone od zera, a nie od "a", partycje także zaczynają
 się od zera, a nie od jedynki. Bądź świadom także tego, że w grupie
-urządzeń pamięci masowej, tylko twarde dyski są liczone, nie ma to
+urządzeń pamięci masowej tylko twarde dyski są liczone, nie ma to
 natomiast miejsca  w przypadku napędów ATAPI-IDE takich jak cdromy
 i nagrywarki. Ta sama sytuacja ma miejsce w przypadku dysków SCSI.
 (Normalnie otrzymują one wyższe numery niż dyski IDE za wyjątkiem
@@ -122,22 +133,25 @@ Już wiesz, co Cię czeka, nadeszła pora zainstalować GRUB'a.
 </body>
 </subsection>
 <subsection>
-<title>Instalowanie GRUBa</title>
+<title>Instalowanie GRUBa.</title>
 <body>
 
 <p>
 Aby zainstalować program GRUB, używamy komendy emerge.
 </p>
 
-<pre caption = "Instalowanie GRUBa">
+<pre caption="Instalowanie GRUBa">
 # <i>emerge grub</i>
 </pre>
 
 <p>
-GRUB został zainstalowany, teraz należy go jeszcze skonfigurować i umieścić w MBR, tak by automaycznie uruchamiał nowo zainstalowane kernele. Najpierw przy pomocy nano, lub dowolnego innego edytora utwórz plik <path>/boot/grub/grub.conf</path>:
+GRUB został zainstalowany, teraz należy go jeszcze skonfigurować i umieścić w
+MBR, tak by automaycznie uruchamiał nowo zainstalowane kernele. Najpierw przy
+pomocy nano, lub dowolnego innego edytora utwórz plik
+<path>/boot/grub/grub.conf</path>:
 </p>
 
-<pre caption = "Tworzenie /boot/grub/grub.conf">
+<pre caption="Tworzenie /boot/grub/grub.conf">
 # <i>nano -w /boot/grub/grub.conf</i>
 </pre>
 
@@ -150,12 +164,14 @@ tylko pierwszy <path>grub.conf</path>.
 </p>
 
 <ul>
-<li>Pierwszy <path>grub.conf</path> jest dla osób, które nie wykorzystały programu <c>genkernel</c> do budowania jądra. </li>
-<li>Drugi <path>grub.conf</path> jest dla tych, którzy użyli programu <c>genkernel</c> do zbudowania jądra.</li>
+<li>Pierwszy <path>grub.conf</path> jest dla osób, które nie wykorzystały
+programu <c>genkernel</c> do budowania jądra. </li>
+<li>Drugi <path>grub.conf</path> jest dla tych, którzy użyli programu
+<c>genkernel</c> do zbudowania jądra.</li>
 </ul>
 			
-<pre caption = "grub.conf dla nie używających genkernela">
-<comment># Która pozycja ma być uruchamiana domyślnie. 0 oznacza pierwszą, 1 drugą itd</comment>
+<pre caption="grub.conf dla nie używających genkernela">
+<comment># Która pozycja ma być uruchamiana domyślnie. 0 oznacza pierwszą, 1 drugą itd.</comment>
 default 0
 <comment># Ile sekund oczekiwać przed uruchomieniem pozycji domyślnej.</comment>
 timeout 30
@@ -168,14 +184,14 @@ title=Gentoo Linux 2.4.24
 root (hd0,0)
 kernel /kernel-2.4.24 root=/dev/hda3
 
-<comment># Następne trzy linie są potrzebne tylko, gdy chcesz uruchamiać także Windows.</comment>
+<comment># Następne trzy linie są potrzebne tylko gdy chcesz uruchamiać także Windows.</comment>
 <comment># W tym przypadku, Windows mieści się na /dev/hda6.</comment>
 title=Windows XP
 rootnoverify (hd0,5)
 chainloader +1
 </pre>
 
-<pre caption = "grub.conf dla użytkowników genkernela">
+<pre caption="grub.conf dla użytkowników genkernela">
 default 0
 timeout 30
 splashimage=(hd0,0)/grub/splash.xpm.gz
@@ -193,7 +209,7 @@ chainloader +1
 
 <note>
 Jeśli partycjonowanie wykonałeś inaczej i/lub używasz innego obrazu jądra,
-dokonaj niezbędnych poprawek. Ważne jest, by wszystko, co dotyczy urządzenia
+dokonaj niezbędnych poprawek. Ważne jest, by wszystko co dotyczy urządzenia
 z GRUBem (np. <path>(hd0,0)</path>) było względne w stosunku do punktu
 montowania, a nie partycji root. Innymi słowy, <path>(hd0,0)/grub/splash.xpm.gz</path>
 w rzeczywistości znaczy <path>/boot/grub/splash.xpm.gz</path>, gdyż <path>(hd0,0)</path>
@@ -201,11 +217,11 @@ to partycja <path>/boot</path>.
 </note>
 
 <p>
-Jeśli chcesz przekazać jakieś dodatkowe opcje do jądra na starcie, po prostu
+Jeśli chcesz przekazać przy starcie jakieś dodatkowe opcje do jądra, po prostu
 dopisz je na końcu polecenia kernel. W tym momencie już dodaliśmy jeden
 parametr (<c>root=/dev/hda3</c> lub <c>real_root=/dev/hda3</c>),
-ale bez problemu możesz wzbogacić polecenie o kolejne. Przykładowo
-posłużymy się opcją <c>vga</c> dotyczącą bufora ramki, którą
+bez problemu możesz wzbogacić polecenie o kolejne. Przykładowo
+posłużymy się opcją <c>vga</c>, dotyczącą bufora ramki, którą
 przedyskutowaliśmy uprzednio:
 </p>
 
@@ -216,13 +232,15 @@ title=Gentoo Linux
 </pre>
 
 <p>
-Jeśli używasz kernela 2.6.7, lub nowszego i przy pomocy jumpera ograniczyłeś maksymalny rozmiar swojego twardego dysku, ponieważ Twój BIOS nie obsługuje tak dużych napędów powinieneś dodatkowo dopisać do append <c>hdx=stroke</c>.
+Jeśli używasz kernela 2.6.7, lub nowszego i przy pomocy jumpera ograniczyłeś
+maksymalny rozmiar swojego twardego dysku, ponieważ Twój BIOS nie obsługuje tak
+dużych napędów powinieneś dodatkowo dopisać do append <c>hdx=stroke</c>.
 </p>
 
 <p>
 Użytkownicy programu <c>genkernel</c> powinni wiedzieć, że jądra, które zbudowali,
-używają tych samych opcji bootowania co LiveCD. Na przykład, jeśli masz urządzenia
-SCSI, powinieneś dodać parametr <c>doscsi</c>.
+używają tych samych opcji bootowania co LiveCD. Na przykład jeśli masz urządzenia
+SCSI powinieneś dodać parametr <c>doscsi</c>.
 </p>
 
 <p>
@@ -232,21 +250,29 @@ Instalacji Niezbędnych Narzędzi Systemowych</uri>.
 </p>
 
 <p>
-Developerzy GRUBa zalecają używanie <c>grub-install</c>. Jednak z jakich powodów <c>grub-install</c> czasem odmawia współpracy, wtedy masz jeszcze do dyspozycji ręczną metodę instalacji gruba.
+Developerzy GRUBa zalecają używanie <c>grub-install</c>. Jednak z nieznanych powodów
+<c>grub-install</c> czasem odmawia współpracy. W takich wypadkach masz jeszcze do dyspozycji
+ręczną metodę instalacji gruba.
 </p>
 
 <p>
-Przejdź do <uri link="#grub-install-auto">Domyślnie: Instalacja GRUBa przy pomocy grub-install</uri> lub <uri link="#grub-install-manual">Alternatywna metoda: Ręczna instalacja GRUBa</uri>
+Przejdź do <uri link="#grub-install-auto">Domyślnie: Instalacja GRUBa przy
+pomocy grub-install</uri> lub <uri link="#grub-install-manual">Alternatywna
+metoda: Ręczna instalacja GRUBa</uri>.
 </p>
 
 </body>
 </subsection>
 <subsection id="grub-install-auto">
-<title>Domyślnie: Instalacja GRUBa przy pomocy grub-install</title>
+<title>Domyślnie: Instalacja GRUBa przy pomocy grub-install.</title>
 <body>
 
 <p>
-Żeby zainstalować GRUBa wpisz komendę <c>grub-install</c>. Nie zadziała to jednak bez pewnych zmian, w związku z tym, że wciąż działamy w chrootowanym środowisku. Będziemy musieli uaktualnić plik <path>/etc/mtab</path> (plik z informacjami nt. zamontowanych napędów). Na szczęśćie jest prosta metoda na dokonanie tego, wystarczy nadpisać ten plik plikiem <path>/proc/mounts</path>.
+Żeby zainstalować GRUBa wpisz komendę <c>grub-install</c>. Nie zadziała to
+jednak bez pewnych zmian, w związku z tym, że wciąż działamy w chrootowanym
+środowisku. Będziemy musieli uaktualnić plik <path>/etc/mtab</path> (plik z
+informacjami nt. zamontowanych napędów). Na szczęście jest prosta metoda na
+dokonanie tego, wystarczy nadpisać ten plik plikiem <path>/proc/mounts</path>.
 </p> 
 
 <pre caption="Uaktualnianie /etc/mtab">
@@ -262,8 +288,9 @@ Następnie instalujemy GRUB przy pomocy <c>grub-install</c>:
 </pre>
 
 <p>
-Więcej informacji o GRUBie znajdziesz pod adresami:
-<uri link="http://www.gnu.org/software/grub/grub-faq.html">GRUB FAQ</uri> i <uri link="http://www.gnu.org/software/grub/manual/">GRUB Manual</uri>.
+Więcej informacji o GRUBie znajdziesz w dokumentach:
+<uri link="http://www.gnu.org/software/grub/grub-faq.html">GRUB FAQ</uri> i <uri
+link="http://www.gnu.org/software/grub/manual/">GRUB Manual</uri>.
 </p>
 
 <p>
@@ -273,11 +300,13 @@ Następnie przejdź do części <uri link="#reboot">Ponowne uruchamianie systemu
 </body>
 </subsection>
 <subsection id="grub-install-manual">
-<title>Alternatywna metoda: Ręczna instalacja GRUBa</title>
+<title>Alternatnie: Ręczna instalacja GRUBa.</title>
 <body>
 
 <p>
-Aby zacząć wpisz <c>grub</c>. Prompt zmieni się na taki: <path>grub&gt;</path>. Teraz wpisujesz serię odpowiednich komend, aby nagrać GRUB na swój dysk.
+Aby zacząć wpisz <c>grub</c>. Znak zachęty zmieni się na taki:
+<path>grub&gt;</path>. Teraz wpisujesz serię odpowiednich komend, aby nagrać
+GRUB na swój dysk.
 </p>
 
 <pre caption="Uruchamianie powłoki GRUB">
@@ -285,11 +314,16 @@ Aby zacząć wpisz <c>grub</c>. Prompt zmieni się na taki: <path>grub&gt;</path
 </pre>
 
 <note>
-Jeśli nie masz stacji dyskietek dodaj opcję <c>--no-floppy</c> do powyższego polecenia, aby GRUB nie marnował czasu na poszukiwanie nieistniejącego napędu.
+Jeśli nie masz stacji dyskietek dodaj opcję <c>--no-floppy</c> do powyższego
+polecenia, aby GRUB nie marnował czasu na poszukiwanie nieistniejącego napędu.
 </note>
 
 <p>
-Wyobraźmy sobie, że chcemy zainstalować GRUB, tak aby odczytywał informacje z bootowalnej partycji <path>/dev/hda1</path> i instalował swój boot record w MBR twardego dysku, tak żeby pierwszą rzeczą jaką zobaczymy po uruchomieniu komputera był prompt GRUBa. Oczywiście powinieneś odpowiednio dostosować wszystkie opcje do swojej konfiguracji.
+Wyobraźmy sobie, że chcemy zainstalować GRUB tak aby odczytywał informacje z
+bootowalnej partycji <path>/dev/hda1</path> i instalował swój boot record w MBR
+twardego dysku, tak żeby pierwszą rzeczą jaką zobaczymy po uruchomieniu
+komputera był znak zachęty GRUBa. Oczywiście powinieneś odpowiednio dostosować
+wszystkie opcje do swojej konfiguracji.
 </p>
 
 <p>
