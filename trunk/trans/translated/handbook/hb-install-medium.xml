@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
-<!-- Orig revision: 1.55 -->
+<!-- Orig revision: 1.59 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Wybór Właściwego Medium Instalacyjnego -->
 <!-- Status: Ukończono -->
+<!-- Update from 1.55 to 1.59: aye <aye@gentoo.pl> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.22 2004/12/02 22:38:55 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.23 2004/12/02 22:55:23 aye Exp $ -->
 
 <sections>
 <section>
@@ -106,7 +107,7 @@ Omówimy następujące media instalacyjne:
 <ul>
 <li>Gentoo Minimal LiveCD</li>
 <li>Gentoo Universal LiveCD</li>
-<li>Gentoo KDE/GNOME LiveCD</li>
+
 <li>Uruchamianie z Sieci</li>
 </ul>
 
@@ -319,23 +320,19 @@ dostępne są dla Twojej architektury:
   <th>Architektura</th>
   <th>Minimal LiveCD</th>
   <th>Universal LiveCD</th>
-  <th>KDE/Gnome LiveCD</th>
 </tr>
 <tr>
   <ti>x86</ti>
   <ti>+</ti>
   <ti>+</ti>
-  <ti></ti>
 </tr>
 <tr>
   <ti>sparc</ti>
   <ti>+</ti>
   <ti>+</ti>
-  <ti></ti>
 </tr>
 <tr>
   <ti>ppc</ti>
-  <ti>+</ti>
   <ti>+</ti>
   <ti>+</ti>
 </tr>
@@ -343,12 +340,10 @@ dostępne są dla Twojej architektury:
   <ti>hppa</ti>
   <ti>+</ti>
   <ti></ti>
-  <ti></ti>
 </tr>
 <tr>
   <ti>alpha</ti>
   <ti>+</ti>
-  <ti></ti>
   <ti></ti>
 </tr>
 <tr>
@@ -464,6 +459,7 @@ konkretnej architektury, jak i zoptymalizowane dla różnych podarchitektur.
 
 </body>
 </subsection>
+<!--
 <subsection>
 <title>Gentoo KDE/Gnome LiveCD</title>
 <body>
@@ -502,6 +498,7 @@ sieci i doświadcz mocy rozproszonej kompilacji. Na CD nie ma GRP, kodów
 
 </body>
 </subsection>
+-->
 <subsection>
 <title>Uruchamianie z Sieci</title>
 <body>
@@ -688,7 +685,8 @@ zanim rozpoczniesz instalację, gdyż później może nie być do tego okazji.
 </impo>
 
 <p>
-Po nagraniu płyt instalacyjnych nadszedł czas na ich uruchomienie. Zrestartuj
+Po nagraniu płyt instalacyjnych nadszedł czas na ich uruchomienie. 
+Usuń wszystkie płyty z napędów cdrom, zrestartuj
 komputer i wejdź do ustawień BIOSu. Zazwyczaj służą do tego klawisze Del,
 F1 lub ESC, w zależności od jego producenta. Następnie musisz zmienić
 kolejność uruchamiania, aby CD-ROM znalazł się przed twardym dyskiem.
@@ -886,8 +884,12 @@ się na <uri link="http://dev.gentoo.org/~taviso/milo/">stronie taviso</uri>.
 </p>
 
 <pre caption="Uruchamianie płyty przy pomocy SRM">
-<comment>(Zamień dqa0 na urządzenie swojego napędu CD-ROM)</comment>
-&gt;&gt;&gt; <i>boot dqa0 -flags 0</i>
+<comment>(Wyświetl dostępne napędy fizyczne)</comment>
+&gt;&gt;&gt; <i>show device</i>	
+ dkb0.0.1.4.0        DKB0       TOSHIBA CDROM
+<comment>(...)</comment>
+<comment>(Zamień dkb0 na urządzenie swojego napędu CD-ROM)</comment>
+&gt;&gt;&gt; <i>boot dkb0 -flags 0</i>
 </pre>
 
 <pre caption="Uruchamianie płyty przy pomocy MILO">
