@@ -53,7 +53,7 @@ sieci.
 <body>
 
 <p>
-Użytkownicy Knoppix'a (a także ci, którzy instalują Gentoo z innego medium instalacyjnego
+Użytkownicy Knoppiksa (a także ci, którzy instalują Gentoo z innego medium instalacyjnego,
 nie używającego DevFS) powinni teraz podmontować strukturę <path>/dev</path>.
 Jeśli wykorzystujesz jedno z naszych LiveCD, ten krok możesz pominąć.
 </p>
@@ -70,11 +70,11 @@ Jeśli wykorzystujesz jedno z naszych LiveCD, ten krok możesz pominąć.
 <body>
 
 <p>
-Teraz gdy wszystkie partycje są już założone i podstawowe środowisko
+Teraz, gdy wszystkie partycje są już założone i podstawowe środowisko
 zainstalowane, nadszedł czas wkroczenia w nie
 poprzez <e>chroot</e>. Oznacza to przejście
 z systemu źródła instalacyjnego (LiveCD albo innego)
-do systemu instalowanego (mianowicie na założone partycje).
+do systemu instalowanego (czyli na założone partycje).
 </p>
 
 <p>
@@ -93,7 +93,7 @@ Regenerating /etc/ld.so.cache...
 </pre>
 
 <p>
-Gratulacje! Teraz jesteś wewnątrz twojego nowego systemu Gentoo Linux.
+Gratulacje! Teraz jesteś wewnątrz Twojego nowego systemu Gentoo Linux.
 Oczywiście do końca jeszcze daleko i to jest powód, dla którego zostało
 jeszcze kilka rozdziałów podręcznika instalacji :-)
 </p>
@@ -126,16 +126,16 @@ aktualizacji, możesz je zignorować. Portage zostanie zaktualizowane nieco pó�
 <body>
 
 <p>
-<c>USE</c> to jedna z najbardziej znaczących w skutkach zmiennych dostępnych użytkownikom Gentoo.
+<c>USE</c> to jedna z najbardziej znaczących zmiennych dostępnych użytkownikom Gentoo.
 Pewne programy mogą być kompilowane z lub bez dodatkowej obsługi niektórych
-pozycji. Na przykład, dopuszczalne jest budowanie ze wsparciem dla gtk lub qt.
-Niektóre potrafimy z kolei wyposażyć w obsługę SSL, bądź też jej pozbawić. Jeszcze inne
+pozycji. Na przykład dopuszczalne jest budowanie ze wsparciem dla gtk lub qt.
+Niektóre możemy z kolei wyposażyć w obsługę SSL, bądź też jej pozbawić. Jeszcze inne
 mogą być kompilowane ze wsparciem bufora ramki (svgalib) zamiast X11.
 (X-server).
 </p>
 
 <p>
-Większość dystrybucji kompiluje swoje pakiety ze wsparciem tak wielu elementów jak to tylko możliwe,
+Większość dystrybucji kompiluje swoje pakiety ze wsparciem tak wielu elementów, jak to tylko możliwe,
 powiększając rozmiar programów i czas ich uruchamiania, nie wspominając o olbrzymiej ilości
 zależności. Dzięki Gentoo możesz definiować, z którymi opcjami dany pakiet powinien
 być budowany. I to właśnie jest moment, kiedy <c>USE</c> wkracza do gry.
@@ -163,8 +163,8 @@ zostałoby to nadpisane przy aktualizacji Portage!
 
 <p>
 Pełny opis dotyczący <c>USE</c> znajduje się w drugiej części Podręcznika Gentoo,
-<uri link="?part=2&amp;chap=1">Rozdział 1: flagi USE</uri>. Jako przykład
-przedstawimy flagi <c>USE</c> dla systemu bazującego na KDE z wsparciem
+<uri link="?part=2&amp;chap=1">Rozdział 1: Flagi USE</uri>. Jako przykład
+przedstawimy flagi <c>USE</c> dla systemu bazującego na KDE ze wsparciem
 dla DVD, ALSA i nagrywania CD:
 </p>
 
@@ -230,17 +230,17 @@ określa on kolejne działania.
 <body>
 
 <p>
-Widzę, że masz ochotę kompilować wszystko od podstaw ? Nie ma sprawy :-)
+Widzę, że masz ochotę kompilować wszystko od podstaw? Nie ma sprawy :-)
 </p>
 
 <p>
-W tym etapie, wykonamy <e>bootstrap</e> twojego Gentoo. To potrwa
+W tym etapie, wykonamy <e>bootstrap</e> Twojego Gentoo. To potrwa
 dosyć długo, ale wynikowy system będzie dogłębnie zoptymalizowany
-do twojego sprzętu i specyficznych wymagań.
+do Twojego sprzętu i specyficznych wymagań.
 </p>
 
 <p>
-<e>Proces bootstrap</e> oznacza budowanie biblioteki GNU C, zestawy
+<e>Proces bootstrap</e> oznacza budowanie biblioteki GNU C, zestawu
 kompilatorów GNU i kilku innych kluczowych programów. Kompilatory
 muszą być budowane dwa razy: za pierwszym razem standardowym kompilatorem, który
 my dostarczyliśmy, za drugim tym, który sam zbudowałeś.
@@ -277,7 +277,7 @@ odpalisz skrypt instalacyjny.
 </pre>
 
 <p>
-Nie zapomnij usunąć zmiennej zanim wykonasz bootstrap:
+Nie zapomnij usunąć zmiennej po tym, jak wykonasz bootstrap:
 </p>
 
 <pre caption="Usuwanie zmiennej USE">
@@ -294,7 +294,7 @@ Nie zapomnij usunąć zmiennej zanim wykonasz bootstrap:
 Jeśli nie przekopiowałeś uprzednio kodu źródłowego, skrypt bootstrap
 pobierze wszystkie potrzebne pliki. Chyba nie trzeba przypominać, że
 do tego wymagane jest działające połączenie sieciowe ;) Jeśli chcesz
-najpierw ściągnąć źródła a potem wykonać bootstrap systemu (np dlatego,
+najpierw ściągnąć źródła a potem wykonać bootstrap systemu (np. dlatego,
 że nie chcesz mieć otwartego połaczenia z siecią podczas kompilacji)
 użyj przełącznika <e>-f</e> skryptu bootstrap, co spowoduje pobranie
 wszystkich niezbędnych plików.
@@ -312,7 +312,7 @@ wszystkich niezbędnych plików.
 <body>
 
 <p>
-W porządku, zatem chwytaj klawiaturę i wstukuj następne polecenia, zaczynamy
+W porządku, zatem chwytaj klawiaturę i wstukuj następne polecenia - zaczynamy
 bootstrap. A potem idź poszukać rozrywki przy czymś innym (na przykład przy
 nękaniu developerów Gentoo na #gentoo), ponieważ ten etap zajmie trochę
 czasu zanim się zakończy.
@@ -353,9 +353,9 @@ Nadszedł czas zbudować pakiety należące do systemu.
 </p>
 
 <p>
-Budujemy <e>wszystkie</e> pakiety systemowe ? Nie, nie wszystkie.
+Budujemy <e>wszystkie</e> pakiety systemowe? Nie, nie wszystkie.
 W tym etapie budujemy te paczki, co do których nie mamy wyboru.
-Niektóre z nich mają kilka alternatyw (choćby loggery systemowe)
+Niektóre z nich mają kilka alternatyw (choćby loggery systemowe),
 a ponieważ w Gentoo o wszystkim możesz decydować, nie będziemy Cię
 do niczego zmuszać.
 </p>
@@ -384,9 +384,9 @@ w rodzaju <c>less</c> lub <c>more</c> aby poruszać się w górę i w dół.
 <body>
 
 <p>
-Jeśli chcesz, by <c>emerge</c> pobrał źródła zanim kontynuujemy
+Jeśli chcesz, by <c>emerge</c> pobrał źródła zanim będziemy kontynuować
 (na przykład dlatego, że nie chcesz mieć otwartego połączenia z internetem
-podczas budowania wszystkich pakietów) możesz użyć opcji
+podczas budowania wszystkich pakietów), możesz użyć opcji
 <e>--fetchonly</e> programu <c>emerge</c>, co spowoduje ściągnięcie
 potrzebnych plików.
 </p>
