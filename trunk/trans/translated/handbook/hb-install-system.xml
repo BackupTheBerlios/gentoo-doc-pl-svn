@@ -10,7 +10,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.22 2004/12/23 21:35:37 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.23 2004/12/23 21:51:18 rane Exp $ -->
 
 <sections>
 
@@ -220,7 +220,8 @@ USE="-gtk -gnome qt kde dvd alsa cdr"
 Najprawdopodobniej będziesz używał tylko jedej albo dwóch lokalizacji na swoim systemie.
 Po kompilacji <c>glibc</c> dostępne są wszystkie lokalizacje jakie zostały stworzone.
 Możesz teraz aktywować flagę USE <c>userlocales</c> i zdecydować w pliku
-<path>/etc/locales.build</path>, których lokali będziesz tak naprawdę potrzebował. 
+<path>/etc/locales.build</path>, których lokali będziesz tak naprawdę
+potrzebował. Rób to tylko wtedy, gdy dokładnie wiesz co wybrać!
 </p>
 
 <pre caption="Aktywacja flagi userlocales specjalnie dla glibc">
@@ -233,7 +234,8 @@ Teraz zdecyduj, których lokali będziesz używał:
 </p>
 
 <p>
-Poniższe lokale są przykładem wyboru lokali angielskich (Ameryka) oraz polskich wraz z kodowaniami zapisu znaków (jak UTF-8)
+Poniższe lokale są przykładem wyboru lokali angielskich (Ameryka) oraz polskich
+wraz z kodowaniami zapisu znaków (jak UTF-8).
 </p>
 
 <pre caption="nano -w /etc/locales.build">
