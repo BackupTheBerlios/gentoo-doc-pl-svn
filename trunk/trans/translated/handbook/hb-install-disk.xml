@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.9 2004/01/09 13:42:24 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.10 2004/01/13 13:27:35 lcs Exp $ -->
 
 <sections>
 <section>
@@ -85,6 +85,7 @@ Partycje umieszczone i opisane wewnątrz rozszerzonych nazywamy <e>logicznymi</e
 
 </body>
 </subsection>
+<!-- TODO rewrite with LVM2 instructions when appropriate
 <subsection>
 <title>Woluminy Logiczne</title>
 <body>
@@ -92,7 +93,7 @@ Partycje umieszczone i opisane wewnątrz rozszerzonych nazywamy <e>logicznymi</e
 <p>
 Niektórym użytkownikom ograniczenia partycji i plastrów wydadzą się zbyt
 surowe. Jeśli jesteś jednym z nich, powinieneś zwrócić uwagę na LVM
--- <e>Menadżer Woluminów Logicznych</e>.
+- <e>Menadżer Woluminów Logicznych</e>.
 </p>
 
 <p>
@@ -142,6 +143,7 @@ główny system plików nie musi być duży (zazwyczaj wystarcza 150MB).
 
 </body>
 </subsection>
+-->
 </section>
 <section>
 <title>Projektowanie Schematu Podziału</title>
@@ -257,14 +259,14 @@ Dla Sparc:
   <ti>Partycja root</ti>
 </tr>
 </table>
-
+<!-- TODO rewrite with LVM2 instructions when appropriate
 <p>
 Jeżeli wolisz LVM, powinieneś utworzyć niedużą partycję
 root, pominąć swap i resztę dysku przeznaczyć na jedną wielką partycję,
 którą dzielił będziesz w przyszłości, podczas definiowania woluminów logicznych. 
 Nadaj jej typ "Linux LVM" lub "LVM" (8e).
 </p>
-
+-->
 <p>
 Użytkownicy instalujący Gentoo Linux z zainstalowanej dystrybucji, powinni
 najpierw zmniejszyć istniejące partycje (oczywiście o ile nie pozostawili
@@ -307,7 +309,7 @@ W przeciwnym wypadku przejdź od razu do podziału dysku:
 <body>
 
 <p>
-Ilość partycji (lub woluminów logicznych) ściśle zależy od danego
+Ilość partycji ściśle zależy od danego
 środowiska. Na przykład, jeśli administrujesz systemem mającym
 wielu użytkowników, prawdopodobnie uznasz za stosowne
 oddzielenie <path>/home</path> aby poprawić bezpieczeństwo
@@ -348,8 +350,8 @@ lub woluminów ma wiele zalet:
 </ul>
 
 <p>
-Niestety zbyt rozbudowany podział niesie z sobą spore niebezpieczeństwo
-(chyba, że używasz LVM): źle zaplanowany zaowocuje pustkami na zbyt dużych
+Niestety zbyt rozbudowany podział niesie z sobą spore niebezpieczeństwo: 
+źle zaplanowany zaowocuje pustkami na zbyt dużych
 i ciasnotą na zbyt małych partycjach.
 </p>
 
@@ -423,7 +425,7 @@ i <e>amd64</e>.
 
 <p>
 W kolejnych podsekcjach pokażemy jak utworzyć partycje takie
-jak w zaprezentowanym wcześniej schemacie (nie dotyczy LVM):
+jak w zaprezentowanym wcześniej schemacie:
 </p>
 
 <table>
@@ -670,9 +672,10 @@ Command (m for help): <i>w</i>
 </pre>
 
 <p>
-Twoje partycje są już gotowe, jeśli nie zdecydowałeś się skorzystać z LVM to 
-możesz teraz przejść do <uri link="#filesystems">Zakładania Systemów Plików</uri>.
-W przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używanie LVM</uri>.
+Twoje partycje są już gotowe, 
+<!-- jeśli nie zdecydowałeś się skorzystać z LVM to 
+--> możesz teraz przejść do <uri link="#filesystems">Zakładania Systemów Plików</uri>.
+<!-- W przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używanie LVM</uri>. -->
 </p>
 
 </body>
@@ -898,9 +901,10 @@ Command (m for help): <i>w</i>
 </pre>
 
 <p>
-Twoje plastry są już gotowe, jeśli nie zdecydowałeś się skorzystać z LVM to 
-możesz teraz przejść do <uri link="#filesystems">Zakładania Systemów Plików</uri>.
-W przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używanie LVM</uri>.
+Twoj plastry są już gotowe, 
+<!-- jeśli nie zdecydowałeś się skorzystać z LVM to 
+--> możesz teraz przejść do <uri link="#filesystems">Zakładania Systemów Plików</uri>.
+<!-- W przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używanie LVM</uri>. -->
 </p>
 
 
@@ -1180,9 +1184,10 @@ Aby zachować zmiany i opuścić <c>fdisk</c> wpisz <c>w</c>:
 Command (m for help): <i>w</i>
 </pre>
 <p>
-Twoje partycje są już gotowe, jeśli nie zdecydowałeś się skorzystać z LVM to 
+Twoje partycje są już gotowe,
+<!--, jeśli nie zdecydowałeś się skorzystać z LVM to  -->
 możesz teraz przejść do <uri link="#filesystems">Zakładania Systemów Plików</uri>.
-W przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używanie LVM</uri>.
+<!--W przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używanie LVM</uri>.-->
 </p>
 
 </body>
@@ -1233,9 +1238,9 @@ oraz <c>q</c>.
 i</p>
 
 <p>
-Teraz, jeśli nie zdecydowałeś się skorzystać z LVM,
+Teraz<!--, jeśli nie zdecydowałeś się skorzystać z LVM, -->
 możesz przejść do <uri link="#filesystems">Zakładania Systemów Plików</uri>.
-W przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używanie LVM</uri>.
+<!-- przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używanie LVM</uri>. -->
 </p>
 
 
@@ -1269,9 +1274,9 @@ w pierwszych 2GB. PALO nie może korzystać z dalszych obszarów.
 </p>
 
 <p>
-Po utworzeniu partycji, jeśli nie zdecydowałeś się skorzystać z LVM,
+Po utworzeniu partycji <!--jeśli nie zdecydowałeś się skorzystać z LVM, -->
 możesz przejść do <uri link="#filesystems">Zakładania Systemów Plików</uri>.
-W przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używanie LVM</uri>.
+<!--W przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używanie LVM</uri>.-->
 </p>
 
 </body>
@@ -1443,12 +1448,12 @@ W przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używan
 </body>
 </subsection>
 </section>
+<!-- TODO rewrite with LVM2 instructions when appropriate
 <section id="lvm">
 <title>Opcjonalnie: Używanie LVM</title>
 <subsection>
 <title>Inicjalizacja Partycji</title>
 <body>
-
 <p>
 Aby skorzystać z LVM, najpierw musisz go aktywować i zainicjalizować stworzone
 partycje. Służą do tego programy <c>vgscan</c> (aktywacja LVM) oraz <c>pvcreate</c>
@@ -1525,6 +1530,7 @@ home     opt      swap     tmp     usr      var
 </body>
 </subsection>
 </section>
+-->
 <section id="filesystems">
 <title>Tworzenie Systemów Plików</title>
 <subsection>
@@ -1532,7 +1538,7 @@ home     opt      swap     tmp     usr      var
 <body>
 
 <p>
-Po stworzeniu partycji (lub logicznych woluminów), nadszedł czas na
+Po stworzeniu partycji <!--(lub logicznych woluminów)--> nadszedł czas na
 założenie na nich systemów plików. Jeśli nie obchodzi Cię
 jakie wybierzesz i jesteś zadowolony z domyślnych ustawień w podręczniku,
 przejdź do
