@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.26 -->
+<!-- Orig revision: 1.27 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Jądra -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.11 2004/01/10 08:44:33 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.12 2004/01/13 13:29:46 lcs Exp $ -->
 
 <sections>
 <section>
@@ -227,16 +227,17 @@ również wymagane. Podobnie jak <c>PPP over Ethernet</c>, przydatna  tylko
 wówczas, kiedy do pracy w trybie jądra PPPoE zostanie skonfigurowany
 <c>rp-pppoe</c>.
 </p>
-
+<!-- TODO reactivate when LVM2 instructions are boarded
 <p>
 Użytkownicy LVM, powinni go włączyć:
 </p>
 
 <pre caption="Aktywacja wsparcia dla LVM">
-Multi-device support (RAID and LVM) ---&gt;
+Multi-device support (RAID and LVM) -&gt;
   [*] Multiple devices driver support (RAID and LVM)
   &lt;*&gt;  Logical volume manager (LVM) support
 </pre>
+-->
 <note>
 W jądrach 2.6, wymienione opcje znajdują się w sekcji <c>Device Drivers</c>.
 </note>
