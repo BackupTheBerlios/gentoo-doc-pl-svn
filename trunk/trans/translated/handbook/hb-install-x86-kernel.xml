@@ -6,7 +6,7 @@
 <!-- Title: Instalacja jądra dla x86 -->
 <!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.10 2004/12/09 16:48:40 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.11 2004/12/09 18:20:59 rane Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
@@ -21,7 +21,7 @@
 <body>
 
 <p>
-Po pierwsze musisz ustawić swoją strefę czasową, żeby system wiedział gdzie się znajduje.
+Po pierwsze musisz ustawić swoją strefę czasową żeby system wiedział gdzie się znajduje.
 Znajdź swoją strefę czasową w <path>/usr/share/zoneinfo</path> i zrób dowiązanie
 do <path>/etc/localtime</path> używając <c>ln</c>:
 </p>
@@ -43,16 +43,16 @@ do <path>/etc/localtime</path> używając <c>ln</c>:
 <p>
 Sercem każdej dystrybucji jest jądro Linuksa, które jest pośrednikiem pomiędzy
 programami i sprzętem. Gentoo udostępnia swoim użytkownikom kilka
-źródeł kernela. Ich pełną listę wraz z opisami znalejdziesz w <uri
+źródeł kernela. Ich pełną listę wraz z opisami znajdziesz w <uri
 link="/doc/en/gentoo-kernel.xml">Podręczniku kerneli Linuksa.</uri>.
 </p>
 
 <p>
 Dla architektury x86 udostępniamy między innymi: <c>vanilla-sources</c> 
 (standardowe źródła jądra serii 2.4 rozwijane przez programistów Linuksa),
-<c>gentoo-sources</c> (źródła jądra z serii 2.4 z łatkami poprawiającymi
-wydajność), <c>gentoo-dev-sources</c> (jądro z serii 2.6 z łatkami
-poprawiającymi wydajość), <c>development-sources</c> (standardowe źródła jądra z
+<c>gentoo-sources</c> (źródła jądra serii 2.4 z łatkami poprawiającymi
+wydajność), <c>gentoo-dev-sources</c> (jądro serii 2.6 z łatkami
+poprawiającymi wydajość), <c>development-sources</c> (standardowe źródła jądra
 serii 2.6), ...
 </p>
 
@@ -77,9 +77,11 @@ Wybierz źródła jądra i zainstaluj je.
 </pre>
 
 <p>
+############ sekcja do przeróbki
+
 Teraz w katalogu <path>/usr/src</path> powinieneś stworzyć dowiązanie
 symboliczne o nazwie <path>linux</path> wskazujące na źródła Twojego jądra.
-W przykładzie mają one nazwę <c>gentoo-sources-2.4.26-r6</c>:
+Najpierw sprawdź czy to dowiązanie nie zostało już utworzone.
 </p>
 
 <pre caption="Podgląd dowiązania symbolicznego do źródeł jądra">
@@ -88,8 +90,8 @@ lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; lin
 </pre>
 
 <p>
-Jeżeli nie jest on poprawny (np. dowiązanie wskazuje na źródła innego jądra),
-zmień je przed kontynuacją:
+Jeżeli ustawienie nie jest poprawne (np. dowiązanie wskazuje na źródła innego jądra),
+musisz je odpowiednio poprawić zanim przejdziesz dalej.
 </p>
 
 <pre caption="Zmiana dowiązania do źródeł jądra">
@@ -115,49 +117,51 @@ powinieneś przeczytać <uri link="#genkernel">Alternatywnie: Używanie genkerne
 </subsection>
 </section>
 <section id="manual">
-<title>Domyślnie: Ręczna konfiguracja</title>
+<title>Domyślnie: Ręczna konfiguracja.</title>
 <subsection>
-<title>Wstęp</title>
+<title>Wprowadzenie.</title>
 <body>
 
 <p>
-Ręczna konfiguracja jądra jest często uważana za najtrudnieją rzecz, przez którą musi
-przejść użytkownik Linuxa. Nic bardziej mylnego -- po skonfigurowaniu kilku jąder
-nie bedziesz pamietał jakie to było trudne ;)
+Ręczna konfiguracja jądra jest często uznawana za najtrudniejszą czynność jakiej
+musi dokonać każdy użytkownik Linuksa. Nic bardziej mylnego. Po skonfigurowaniu i
+skompilowaniu kilku jąder będziecie się wstydzić, że uważaliście tą czynność za
+trudną ;]
 </p>
 
 <p>
-Jednak, jadno <e>jest</e> prawdą: musisz dobrze znać swój system zanim 
-zaczniesz ręczną konfigurację jądra. Wiekszość informacji możesz zdobyć czytając
-zawartość <path>/proc/pci</path> (albo używając <c>lspci</c> jeżeli jest dostępne).
-Możesz także uruchomić <c>lsmod</c>, aby zobaczyć jakich modułów używa LiveCD (jest to dobrą podpowiedzią co należy włączyć).
+Jednak jedno jest pewne. Zanim zaczniesz ręczną konfigurację kernela musisz dość
+dobrze znać swój komputer. Większość potrzebnych informacji uzyskasz
+przeglądając <path>/proc/pci</path> (lub przy pomocy polecenia <c>lspci</c> -
+jeśli działa). Dodatkowo warto również uruchomić <c>lsmod</c>, aby sprawdzić
+jakich modułów używa LiveCD. 
 </p>
 
 <p>
-Teraz przejdź do katalogu, w którym znajdują się źródła jądra i wykonaj <c>make menuconfig</c>. Odpali
-się menu konfiguracyjne oparte na ncurses.
+Teraz przejdź do katalogu, w którym znajdują się źródła jądra i wpisz polecenie
+<c>make menuconfig</c>. Uruchomi się menu konfiguracyjne oparte na bibliotece ncurses.
 </p>
 
-<pre caption="Wywołanie menuconfiga">
+<pre caption="Wywoływanie menuconfig">
 # <i>cd /usr/src/linux</i>
 # <i>make menuconfig</i>
 </pre>
 
 <p>
-Zostaniesz przywitany kilkoma sekcjami konfiguracyjnymi. Wymienimy najpierw opcje,
-które musisz aktywować (w innym przypadku Gentoo nie zadziała, albo będzie działać
-niepoprawnie bez dodatkowych udogodnień).
+Twoim oczom ukaże się szereg opcji konfiguracyjnych. Zacznijmy od omówienia tych
+ustawień, które są niezbędne dla poprawnego działania Gentoo.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Aktywacja potrzebych opcji</title>
+<title>Aktywacja niezbędnych opcji.</title>
 <body>
 
 <p>
-Na początku, musisz uaktywnić używanie rozwijanego oraz eksperymentalnego kodu/sterowników,
-aby niektóre bardzo ważne sterowniki pokazały się w menu: 
+Zacznijmy od auktywnienia możliwości wkompilowania eksperymentalnych i dopiero
+rozwijanych sterownikówu, dzięki czemu w menu pokaże się kilka
+potrzebnych nam opcji:
 </p>
 
 <pre caption="Wybór eksperymentalnego kodu/sterowników">
@@ -176,10 +180,10 @@ Processor type and features ---&gt;
 </pre>
 
 <p>
-Teraz idź do <c>File Systems</c> i wybierz wsparcie dla systemów plików, których używasz.
-<e>Nie</e> kompiluj ich jako modułów, inaczej Gentoo nie będzie mogło zamontować Twoich partycji.
-Wybierz także <c>Virtual memory</c>, <c>/proc file system</c>, 
-<c>/dev file system</c> + <c>Automatically mount at boot</c>:
+Teraz przejdź do <c>File Systems</c> i wybierz wsparcie dla systemów plików, których używasz.
+<e>Nie</e> kompiluj ich jako modułów, bo Gentoo nie będzie mogło zamontować Twoich partycji.
+Zaznacz też <c>Virtual memory</c>, <c>/proc file system</c>, <c>/dev file
+system</c> + <c>Automatically mount at boot</c>:
 </p>
 
 <pre caption="Wybór potrzebnych systemów plików">
@@ -208,8 +212,9 @@ File systems ---&gt;
 </pre>
 
 <p>
-Jeżeli Twój BIOS nie wspomaga dużych dysków, a dysk przekracza limit wielkości, aby 
-uzyskać dostęp do całego dysku twardego musisz uaktywnić następujące opcje:
+Czasem zdarza się, że BIOS nie ma wsparcia dla dużych dysków, a dysk przekracza
+limit wielkości. Aby mieć w takiej sytuacji dostęp do całego napędu należy uaktywnić
+następujące opcje:
 </p>
   
 <pre caption="Selecting autogeometry resizing support">
