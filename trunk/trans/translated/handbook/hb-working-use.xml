@@ -4,24 +4,22 @@
 <!-- Orig revision: 1.24 -->
 <!-- Translator: Sharak <sharak@rybnet.pl> -->
 <!-- Title: Flagi USE -->
-<!-- Status: Ukończono -->
-<!-- Update from 1.11 to 1.24: sekretarz <sekretarz@dukato.net> -->
+<!-- Status: Release -->
 
-<!-- The content of this document is licensed under the CC-BY-SA license 
--->
+<!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.11 2004/11/27 18:14:42 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.12 2004/12/08 12:10:23 rane Exp $ -->
 
 <sections>
 
-<version>1.21</version>
-<date>2004-10-21</date>
+<version>1.24</version>
+<date>2004-12-08</date>
 
 <section>
 <title>Czym są flagi USE?</title>
 <subsection>
-<title>Idea flag USE</title>
+<title>Idea flag USE.</title>
 <body>
 
 <p>
@@ -34,48 +32,47 @@ roboczej. Stacja dla gracza różni się od stacji do obróbki grafiki 3D.
 <p>
 Nie jest tak tylko w przypadku pakietów, które wybierasz przy instalacji, 
 ale także dla cech, które dany pakiet powinien posiadać. Jeżeli nie 
-potrzebujesz obsługi OpenGL, dlaczego powinieneś instalować OpenGL oraz 
+potrzebujesz obsługi OpenGL, dlaczego miałbyś instalować OpenGL oraz 
 jego obsługę w większości Twoich pakietów? Jeżeli nie chcesz używać KDE, 
 dlaczego miałbyś budować pakiety ze wsparciem dla KDE, jeżeli te pakiety 
 pracują bez problemów bez KDE?
 </p>
 
 <p>
-Aby pomóc użytkownikom w decyzji co instalować/aktywować a co nie, 
-postanowiliśmy stworzyć środowisko, które użytkownik mógłby dostosować w 
-łatwy sposób. Umożliwia to użytkownikowi wybranie tego, co naprawdę 
-potrzebuje. Cały proces ułatwiamy dzięki Portage, naszemu systemowi 
-zarządzania pakietami, który pomaga dokonać słusznych decyzji.
+Aby ułatwić użytkownikom decydowanie o tym co chcą, a czego nie chcą
+instalować/aktywować stworzyliśmy dla nich specjalne środowisko. Dzięki niemu
+użytkownik może zdecydować co jest mu potrzebne, a Portage może ułatwić cały
+proces wyboru najlepszych ustawień.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Definicja flag USE</title>
+<title>Definicja flag USE.</title>
 <body>
 
 <p>
 Każda flaga jest słowem kluczowym, które reprezentuje wspierane funkcje 
 oraz informacje o zależnościach dla wybranego wątku. Jeżeli zdefiniujesz 
-daną flagę USE, Portage będzie wiedział, że potrzebujesz wsparcia funkcji
+daną flagę USE, Portage będzie wiedziało, że potrzebujesz wsparcia funkcji
 przypisanej danemu słowu kluczowemu. Oczywiście uwzględnione zostaną 
 także pakiety zależne.
 </p>
 
 <p>
-Przyjrzyjmy się zatem przykładowi: słowo kluczowe <c>kde</c>. Jeżeli nie 
+Przyjrzyjmy się zatem przykładowi: słowu kluczowemu <c>kde</c>. Jeżeli nie 
 posiadasz go wśród zmiennych <c>USE</c>, wszystkie pakiety, które 
 posiadają <e>opcjonalną</e> obsługę KDE, zostaną skompilowane 
 <e>bez</e> obsługi KDE. Wszystkie pakiety, które będą 
 <e>opcjonalnie</e> zależne od KDE, zostaną zainstalowane <e>bez</e> 
-bibliotek KDE (jako zależności). Jeżeli zdefiniujesz słowo kluczowe 
-<c>kde</c>, wtedy te pakiety zostaną skompilowane <e>z</e> obsługą
+bibliotek KDE jako zależności. Jeżeli zdefiniujesz słowo kluczowe 
+<c>kde</c>, to te pakiety zostaną skompilowane <e>z</e> obsługą
 KDE oraz biblioteki KDE zostaną zainstalowane jako pakiety zależne.
 </p>
 
 <p>
-Poprzez poprawne dobranie słów kluczowych otrzymasz system dokładnie 
-dostosowany do Twoich potrzeb.
+Dzięki dobremu doborowi słów kluczowych otrzymasz system dokładnie 
+dostosowany do swoich potrzeb.
 </p>
 
 </body>
@@ -89,21 +86,21 @@ Wyróżniamy dwa typy flag USE: <e>globalne</e> oraz <e>lokalne</e>.
 </p>
 
 <ul>
-  <li>
-    <e>Globalne</e> flagi USE są używane dla większej ilości pakietów,
+<li>
+<e>Globalne</e> flagi USE są używane dla większej ilości pakietów,
 są ogólnosystemowe. Większość ludzi postrzega je właśnie jako flagi USE.
-  </li>
-  <li>
-    <e>Lokalne</e> flagi USE są używane przez pojedynczy pakiet w celu 
-dokonania dezycji specyficznych dla danego pakietu.
-  </li>
+</li>
+<li>
+<e>Lokalne</e> flagi USE są używane przez pojedynczy pakiet w celu 
+dokonania decyzji specyficznych dla danego pakietu.
+</li>
 </ul>
 
 <p>
 Lista dostępnych globalnych flag USE jest dostępna <uri
-link="/dyn/use-index.xml">online</uri> lub też lokalnie w pliku
+link="/dyn/use-index.xml">w Internecie</uri> lub też lokalnie w pliku
 <path>/usr/portage/profiles/use.desc</path>. Krótki (<e>bardzo</e> 
-niekompletny) fragment:
+niekompletny) fragment tego:
 </p>
 
 <pre caption="Krótki fragment dostępnych flag USE">
@@ -125,20 +122,20 @@ Lista dostępnych lokalnych flag USE znajduje się w pliku
 </subsection>
 </section>
 <section>
-<title>Używanie flag USE</title>
+<title>Używanie flag USE.</title>
 <subsection>
-<title>Deklarowanie trwałych flag USE</title>
+<title>Deklarowanie stałych flag USE.</title>
 <body>
 
 <p>
-W nadziei, że przekonałeś się jak ważne są flagi USE, postaramy się 
-teraz wytłumaczyć Ci jak je deklarować.
+Kiedy już przekonaliśmy Cię jak ważny jest właściwy dobór flag USE możemy
+przystąpić do tłumaczenia jak się je deklaruje.
 </p>
 
 <p>
-Jak poprzednio wspomnieliśmy, wszystkie flagi <c>USE</c> są deklarowane 
+Jak już wcześniej wspominaliśmy, wszystkie flagi <c>USE</c> są deklarowane 
 wewnątrz zmiennej USE. Aby ułatwić użytkownikom szukanie oraz wybór flag 
-USE, dostarczamy dobrany przez nas <e>domyślny</e> zestaw. Zestaw ten 
+USE dostarczamy dobrany przez nas <e>domyślny</e> zestaw. Zestaw ten 
 jest kolekcją flag USE, które według nas są najczęściej używane przez 
 użytkowników Gentoo. Domyślny zestaw jest zdeklarowany w pliku 
 <path>/etc/make.profile/make.defaults</path>. Rzućmy okiem na te 
@@ -146,33 +143,31 @@ domyślne ustawienia:
 </p>
 
 <pre caption="Ustawienia zmiennej /etc/make.profile/make.defaults na architekturze x86">
-USE="x86 oss apm arts avi berkdb crypt cups encode foomaticdb gdbm gif 
-gpm 
-     gtk gtk2 imlib jpeg kde gnome libg++ libwww mad mikmod motif mpeg 
-ncurses 
-     nls oggvorbis opengl pam pdflib png python qt quicktime readline sdl 
-     slang spell ssl svga tcpd truetype X xml2 xmms xv zlib"
+USE="x86 oss apm arts avi berkdb crypt cups encode foomaticdb gdbm gif gpm gtk
+gtk2 imlib jpeg kde gnome libg++ libwww mad mikmod motif mpeg ncurses nls
+oggvorbis opengl pam pdflib png python qt quicktime readline sdl slang spell ssl
+svga tcpd truetype X xml2 xmms xv zlib"
 </pre>
 
 <p>
-Jak możesz zauważyć, domyślny zestaw zawiera już dość dużo słów
+Jak łatwo zauważyć domyślny zestaw zawiera dość dużo słów
 kluczowych. Pamiętaj, <b>nie</b> dokonuj zmian w pliku 
-<path>/etc/make.profile/make.defaults</path> aby dostosować zmienną 
-<c>USE</c> do Twoich potrzeb: zmiany te zostaną cofnięte podczas 
+<path>/etc/make.profile/make.defaults</path>, aby dostosować zmienną 
+<c>USE</c> do swoich potrzeb: zmiany te zostaną usunięte przy najbliższej
 aktualizacji Portage!
 </p>
 
 <p>
-Aby zmienić domyślne ustawienia, musisz dodać lub usunąć słowa kluczowie 
-do zmiennej <c>USE</c>. Dokonuje się tego globalnie definiując zmienną 
-<c>USE</c> w pliku <path>/etc/make.conf</path>. W tej zmiennej możesz 
+Aby zmienić domyślne ustawienia, musisz dodać (lub usunąć) słowa kluczowe 
+do zmiennej <c>USE</c>. Dokonuje się tego definiując globalnie zmienną 
+<c>USE</c> w pliku <path>/etc/make.conf</path>. Do tej zmiennej możesz 
 dodać flagi, które są Ci potrzebne, lub też usunać te, których 
-nie potrzebujesz. Usunięcie flagi dokonuje się poprzez wstawienie znaku 
+nie potrzebujesz. Usunięcia flagi dokonuje się poprzez wstawienie znaku 
 minus ("-") przed wybraną flagą.
 </p>
 
 <p>
-Na przykład, aby usunąć obsługę KDE i QT ale dodać obsługę ldap, zmienna 
+Na przykład, aby usunąć obsługę KDE i QT oraz dodać obsługę ldap, zmienna 
 <c>USE</c> w pliku <path>/etc/make.conf</path> powinna wyglądać następująco:
 </p>
 
@@ -183,14 +178,13 @@ USE="-kde -qt ldap"
 </body>
 </subsection>
 <subsection>
-<title>Deklaracja flag USE dla oddzielnego pakietu</title>
+<title>Deklaracja flag USE tylko dla wybranego pakietu.</title>
 <body>
-				   	
 
 <p>
-Czasami chcesz zadeklarować wybraną flagę USE dla jednego (lub kilku) aplikacji,
-ale nie dla całego systemu. Aby tego dokonać, aby tego dokonać, będziesz
-musiał utworzyć katalog  <path>/etc/portage</path> (jeżeli jeszcze nie istnieje)
+Czasami chcesz zadeklarować wybraną flagę USE dla jednej (czasem kilku) aplikacji,
+ale nie dla całego systemu. Aby tego dokonać, będziesz
+musiał utworzyć katalog <path>/etc/portage</path> (jeżeli już nie istnieje)
 i wyedytować <path>/etc/portage/package.use</path>.
 </p>
 
@@ -211,19 +205,20 @@ Na przykład, jeżeli nie chcesz obsługi <c>javy</c> w PHP:
 <pre caption="2 przykład /etc/portage/package.use">
 dev-php/php -java
 </pre>
+
 </body>
 </subsection>
 <subsection>
-<title>Deklaracja tymczasowych flag USE</title>
+<title>Deklaracja tymczasowych flag USE.</title>
 <body>
 
 <p>
 Czasami zachodzi potrzeba użycia flagi USE tylko jeden raz. Zamiast 
-edytować plik <path>/etc/make.conf</path> dwa razy (aby dokonać oraz 
-przywrócić zmiany w zmiennej USE), możesz po prostu zadeklarować zmienną 
-USE jako zmienną środowiska. Pamiętaj, jeżeli ponownie zainstalujesz lub
+edytować plik <path>/etc/make.conf</path> dwa razy (aby zmienić, a potem
+cofnąć zmiany w USE), możesz po prostu zadeklarować flagę 
+USE jako zmienną środowiskową. Pamiętaj, że jeżeli ponownie zainstalujesz lub
 zaktualizujesz tą aplikację (przypadkowo lub przy aktualizacji systemu)
-Twoje zmiany zostana utracone!
+to Twoje zmiany zostaną pominięte.
 </p>
 
 <p>
@@ -237,12 +232,12 @@ Jako przykład usuniemy obsługę javy na czas instalacji mozilli.
 </body>
 </subsection>
 <subsection>
-<title>Dziedziczenie flag USE</title>
+<title>Dziedziczenie flag USE.</title>
 <body>
 
 <p>
-Niektóre pakiety nie tylko używają flag USE, ale także je dostarczają. 
-Kiedy instalujesz taki pakiet, flagi USE, które on dostarcza są dodawane 
+Niektóre pakiety nie tylko używają flag USE, ale także ich dostarczają. 
+Kiedy instalujesz taki pakiet flagi USE, których on dostarcza są dodawane 
 do już istniejących flag. Aby przejrzeć listę pakietów, które 
 dostarczają flagi USE, zajrzyj do pliku 
 <path>/etc/make.profile/use.defaults</path>:
@@ -259,43 +254,42 @@ motif           x11-libs/openmotif
 </body>
 </subsection>
 <subsection>
-<title>Pierwszeństwo</title>
+<title>Pierwszeństwo.</title>
 <body>
 
 <p>
 Oczywiście istnieje pierwszeństwo w przydzielaniu priorytetów konkretnym 
 flagom USE. Nie ma sensu deklarować zmiennej <c>USE="-java"</c> tylko po 
-to, aby zobaczyć, że <c>java</c> i tak zostanie użyta. Pierwszeństwo 
-dla flag USE jest ustalone przez odpowiedni priorytet (pierwszy ma 
-najniższy priorytet):
+to, aby zobaczyć, że <c>java</c> i tak zostanie użyta. Hierarchia flag USE
+prezentuje się następujące (pierwsze mają najniższy priorytet):
 </p>
 
 <ol>
-  <li>
-    Domyślne ustawienia zmiennej USE znajdujące się w pliku 
+<li>
+Domyślne ustawienia zmiennej USE znajdujące się w pliku 
 <path>/etc/make.profile/make.defaults</path>
-  </li>
-  <li>
-    Dziedziczne ustawienia USE, jeżeli zainstalowany został pakiet 
+</li>
+<li>
+Dziedziczne ustawienia USE, jeżeli zainstalowany został pakiet 
 znajdujący się w pliku <path>/etc/make.profile/use.defaults</path>
-  </li>
-  <li>
-    Zdefiniowana przez użytkownika zmienna USE znajdująca się w pliku 
+</li>
+<li>
+Zdefiniowana przez użytkownika zmienna USE znajdująca się w pliku 
 <path>/etc/make.conf</path>
-  </li>
-  <li>
-    Zdefiniowana przez użytkownika zmienna USE w pliku
- <path>/etc/portage/package.use</path>
-  </li>
-  <li>
-    Zmienna USE zdefiniowana przez użytkownika jako zmienna 
+</li>
+<li>
+Zdefiniowana przez użytkownika zmienna USE w pliku
+<path>/etc/portage/package.use</path>
+</li>
+<li>
+Zmienna USE zdefiniowana przez użytkownika jako zmienna 
 środowiskowa.
-  </li>
+</li>
 </ol>
 
 <p>
-Aby sprawdzić finalne ustawienia zmiennej <c>USE</c> widziane przez 
-Portage, wykonaj polecenie <c>emerge info</c>.
+Aby sprawdzić ostateczne ustawienia zmiennej <c>USE</c> widziane przez 
+Portage wpisz polecenie <c>emerge info</c>.
 Polecenie to ukaże wszystkie istotne zmienne (włączając zmienną 
 <c>USE</c>) z wartościami użytymi przez Portage.
 </p>
@@ -307,11 +301,11 @@ Polecenie to ukaże wszystkie istotne zmienne (włączając zmienną
 </body>
 </subsection>
 <subsection>
-<title>Adaptacja systemu do nowych flag USE</title>
+<title>Adaptacja systemu do nowych flag USE.</title>
 <body>
 
 <p>
-Jeżeli zmodyfikowałeś swoje flagi USE i chcesz teraz uaktualnić swój system, 
+Jeżeli zmodyfikowałeś swoje flagi USE i chcesz teraz uaktualnić swój system, tak
 aby pakiety używały nowych flag USE, wywołaj <c>emerge</c> z opcją <c>--newuse</c>
 </p>
 
@@ -324,14 +318,14 @@ Po pierwsze, przekompiluj swój system używając nowych flag USE:
 </pre>   
  
 <p>
-Następnie trzeba uruchomić Portage depclean, aby usunąć niepotrzebne zależności, które 
-zostały zemergowane na "starym" systemie, ale są zdezaktualizowane z nowymi flagami USE. 
+Następnie uruchom depclean, aby usunąć niepotrzebne zależności, które 
+zostały zemergowane na "starym" systemie, ale są nieaktualne z nowymi flagami USE. 
 </p>
 
 <warn>
 Uruchomienie <e>emerge depclean</e> jest niebezpieczną operacją i powinno być wykonywane
-z zachowaniem pełnej ostrożności. Sprawdź podwójnie listę "zdezaktualizowanych" pakietów i upewnij
-się, że Portage nie chce usunąć pakietów, których potrzebujesz. W poniższym przykładzie
+z zachowaniem pełnej ostrożności. Sprawdź podwójnie listę "nieaktualnych" pakietów i upewnij
+się, że Portage nie chce usunąć czegoś, czego potrzebujesz. W poniższym przykładzie
 dodajemy opcję <c>-p</c>, aby zobaczyć tylko listę pakietów, bez usuwania ich.
 </warn>
 
@@ -340,8 +334,9 @@ dodajemy opcję <c>-p</c>, aby zobaczyć tylko listę pakietów, bez usuwania ic
 </pre>
      
 <p>
-Kiedy depclean zakończy się, uruchom <c>revdep-rebuild</c> aby przebudować aplikacje, które mogą być
-połączone dynamicznie z bibliotekami, które zostały usunięte. <c>revdep-rebuild</c> jest częscią pakietu <c>gentoolkit</c>.
+Po zakończeniu depclean'a uruchom <c>revdep-rebuild</c> aby przebudować
+aplikacje, które mogą być połączone dynamicznie z bibliotekami, które zostały
+usunięte. <c>revdep-rebuild</c> jest częścią pakietu <c>gentoolkit</c>.
 </p>
 
 <pre caption="Uruchomienie revdep-rebuild">
@@ -349,23 +344,23 @@ połączone dynamicznie z bibliotekami, które zostały usunięte. <c>revdep-reb
 </pre>
 		   	 
 <p>
-Kiedy to wszystko zostanie zakończone, Twój system używa już nowych ustawień flag USE.
+Po zakończeniu tych wszystkich czynności Twój system będzie używał nowych
+ustawień flag USE.
 </p>         
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Zmienne USE specyficzne dla pakietów</title>
+<title>Zmienne USE specyficzne dla pakietów.</title>
 <subsection>
-<title>Przeglądanie dostępnych flag USE</title>
+<title>Przeglądanie dostępnych flag USE.</title>
 <body>
 
 <p>
-Weźmy na przykład <c>mozillę</c>: których flag USE ona używa? Aby się 
-tego dowiedzieć, użyjemy polecenia <c>emerge</c> z parametrami 
-<c>--pretend</c> oraz <c>--verbose</c> 
-(pokazuje więcej informacji):
+Weźmy na przykład <c>mozillę</c> i dowiedzmy się których flag USE ona używa. Aby
+się tego dowiedzieć, użyjemy polecenia <c>emerge</c> z parametrami
+<c>--pretend</c> oraz <c>--verbose</c>:
 </p>
 
 <pre caption="Przeglądanie używanych flag USE:">
@@ -380,10 +375,9 @@ Calculating dependencies ...done!
 </pre>
 
 <p>
-<c>emerge</c> nie jest jedynym narzędziem wykorzystywanym w tym celu. Tak 
-naprawdę mamy narzędzie przeznaczone do przeglądania informacji o 
-pakietach zwane <c>etcat</c>. Znajduje się ono w pakiecie 
-<c>gentoolkit</c>. Najpierw zainstaluj <c>gentoolkit</c>:
+<c>emerge</c> nie jest jedynym narzędziem wykorzystywanym w celu przeglądania informacji o 
+pakietach. Do dyspozycji mamy jeszcze program <c>etcat</c>, znajdujący się w pakiecie 
+<c>gentoolkit</c>. Zacznijmy od zainstalowania <c>gentoolkit</c>:
 </p>
 
 <pre caption="Instalacja gentoolkit">
@@ -391,7 +385,7 @@ pakietach zwane <c>etcat</c>. Znajduje się ono w pakiecie
 </pre>
 
 <p>
-Teraz uruchom <c>etcat</c> z argumentem <c>uses</c> aby przejrzeć flagi 
+Następnie uruchamiamy <c>etcat</c> z argumentem <c>uses</c> aby przejrzeć flagi 
 USE dla konkretnego pakietu. Dla przykładu sprawdźmy pakiet 
 <c>gnumeric</c>:
 </p>
