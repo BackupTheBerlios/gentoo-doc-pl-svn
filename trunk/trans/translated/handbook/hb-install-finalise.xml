@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.36 -->
+<!-- Orig revision: 1.38 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Zakończenie Instalacji -->
 <!-- Status: Ukończono -->
-<!-- Update from 1.23 to 1.36: sekretarz <sekretarz@dukato.net> -->
+<!-- Update from 1.23 to 1.38: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.22 2004/11/27 18:14:42 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.23 2004/12/12 23:34:02 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.33</version>
-<date>2004-11-02</date>
+<version>1.34</version>
+<date>2004-12-07</date>
 
 <section>
 <title>Administracja Użytkownikami</title>
@@ -30,6 +30,47 @@ zadań zwykłego użytkownika.
 </p>
 
 <p>
+Grupy do których należy użytkownik definiują czynności, które mogą być przez niego wykonywane. Oto lista ważnych grup których możesz używać:
+</p>
+
+<table>
+<tr>
+    <th>Grupa</th>
+    <th>Opis</th>
+</tr>
+<tr>
+  <ti>audio</ti>
+  <ti>Dostęp do urządzeń audio</ti>
+</tr>
+<tr>
+   <ti>cdrom</ti>
+   <ti>bezpośredni dostęp do cdromów</ti>
+</tr>
+<tr>
+    <ti>floppy</ti>
+    <ti>bezpośredni dostęp do urządzeń dyskietek</ti>
+</tr>
+<tr>
+    <ti>games</ti>
+    <ti>możliwość grania w gry</ti>
+</tr>
+<tr>
+    <ti>usb</ti>
+    <ti>dostęp do urządzeń USB</ti>
+</tr>
+<tr>
+    <ti>video</ti>
+    <ti>
+	możliwość dostępu do urządzeń wideo oraz pracy z akceleracją sprzętową
+    </ti>
+</tr>
+<tr>
+    <ti>wheel</ti>
+    <ti>możliwość używania <c>su</c></ti>
+</tr>
+</table>
+		  
+<p>
 Na przykład, aby dodać użytkownika <c>john</c> i dopisać go do grup
 <c>wheel</c> (aby mógł korzystając z <c>su</c> logować się jako root),
 <c>users</c> (domyślna dla wszystkich użytkowników) oraz <c>audio</c>
@@ -41,7 +82,7 @@ roota (tylko root może tworzyć nowych użytkowników):
 Login: <i>root</i>
 Password: <comment>(Twoje hasło)</comment>
 
-# <i>useradd john -m -G users,wheel,audio,tty -s /bin/bash</i>
+# <i>useradd john -m -G users,wheel,audio -s /bin/bash</i>
 # <i>passwd john</i>
 Password: <comment>(Podaj hasło johna)</comment>
 Re-enter password: <comment>(Ponownie podaj hasło johna)</comment>
