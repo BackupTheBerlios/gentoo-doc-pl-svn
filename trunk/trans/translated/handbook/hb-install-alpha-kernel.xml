@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-kernel.xml,v 1.5 2004/12/10 14:50:22 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-kernel.xml,v 1.6 2004/12/10 18:50:47 rane Exp $ -->
 
 <sections>
 
@@ -95,8 +95,8 @@ do dalszych części tego dokumentu.
 Pora na skonfigurowanie i skompilowanie źródeł jądra. Możesz użyć do tego
 programu <c>genkernel</c>, który zbuduje uniwersalne jądro, takie jak np.
 to używane przez LiveCD. Możesz też przeprowadzić cały proces ręcznie i lepiej
-dostostosować kernel do swoich potrzeb. Zaczniemy od omówienia tej drugiej
-metody.
+dostostosować kernel do swoich potrzeb. Zaczniemy od omówienia tej drugiej,
+znacznie lepszej metody.
 </p>
 
 <p>
@@ -159,7 +159,7 @@ fragmentów kodu jądra. Jeśli tego nie zrobisz to nawet nie zobaczysz kilku ba
 ważnych opcji.
 </p>
 
-<pre caption="Selecting experimental code/drivers">
+<pre caption="Wybieranie opcji experimental code/drivers">
 Code maturity level options ---&gt;
   [*] Prompt for development and/or incomplete code/drivers
 </pre>
@@ -346,7 +346,7 @@ osobnych modułów jądra</uri>.
 </subsection>
 </section>
 <section id="genkernel">
-<title>Alternatywnie: Genkernel.</title>
+<title>Alternatywnie: Użycie genkernel.</title>
 <body>
 
 <p>
@@ -366,8 +366,8 @@ samodzielnym kompilowaniu jądra.
 </p>
 
 <p>
-Zanim jednak zdradzimy wreszcie jak używa się tego cudownego programu musimy wytłumaczyć jak go
-zainstlować:
+Zanim jednak zdradzimy jak używa się tego cudownego programu musimy wytłumaczyć jak go
+zainstalować:
 </p>
 
 <pre caption="Emergowanie genkernela">
@@ -443,7 +443,7 @@ będzie wykrywał wszystko inne. Aby zemergować i uaktywnić <c>coldplug</c> wp
 <section id="kernel_modules">
 <title>Instalacja osobnych modułów jądra.</title>
 <subsection>
-<title>Sterowniki z Portage.</title>
+<title>Dodatkowe moduły.</title>
 <body>
 
 <p>
@@ -513,11 +513,11 @@ nazwę tego modułu.
 </p>
 
 <pre caption="Edycja /etc/modules.autoload.d/kernel-2.4">
-<comment>(Example for 2.4 kernels)</comment>
+<comment>(przykład dla kerneli 2.4)</comment>
 # <i>nano -w /etc/modules.autoload.d/kernel-2.4</i>
 </pre>
 
-<pre caption="/etc/modules.autoload.d/kernel-2.4 or kernel-2.6">
+<pre caption="/etc/modules.autoload.d/kernel-2.4 lub kernel-2.6">
 3c59x
 </pre>
 
