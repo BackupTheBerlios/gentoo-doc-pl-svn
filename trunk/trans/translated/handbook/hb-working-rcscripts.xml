@@ -6,7 +6,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-rcscripts.xml,v 1.1 2004/01/12 21:11:52 gooroo Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-rcscripts.xml,v 1.2 2004/01/13 22:51:31 swierszczu Exp $ -->
 
 <sections>
 <section>
@@ -17,7 +17,7 @@
 
 <p>
 Podczas uruchamiania systemu operacyjnego na ekranie pojawia się
-dużo, nie zawsze zrozumiałego tekstu. Jeśli przyjrzysz się dokładniej, zauważysz
+dużo nie zawsze zrozumiałego tekstu. Jeśli przyjrzysz się dokładniej, zauważysz
 że tekst ten jest za każdym razem taki sam. Cały ten proces nazywamy <e>sekwencją
 startową</e>, która (w większym lub mniejszym stopniu) jest skonfigurowana statycznie.   
 </p>
@@ -25,7 +25,7 @@ startową</e>, która (w większym lub mniejszym stopniu) jest skonfigurowana st
 <p>
 Najpierw <e>boot loader</e> ładuje obraz jądra systemu do pamięci i zleca
 procesorowi jego wykonanie. W chwili kiedy jądro zostanie załadowane i wykonane,
-uruchamiane są specyficzne zadania, związane ściśle z jądrem po czym uruchamiany
+uruchamiane są specyficzne zadania, ściśle związane z jądrem, po czym uruchamiany
 jest proces <c>init</c>.
 </p>
 
@@ -39,7 +39,7 @@ niezbędne do poprawnego uruchomienia systemu.
 
 <p>
 Na koniec, kiedy wszystkie skrypty zostaną wykonane, <c>init</c> aktywuje terminale
-(w większości przypadków są to poprostu wirtualne konsole, między którymi można
+(w większości przypadków są to po prostu wirtualne konsole, między którymi można
 się przełączać za pomocą kombinacji klawiszy <c>Alt-F1</c>, <c>Alt-F2</c> itd.)
 przy pomocy służącego do tego procesu zwanego <c>agetty</c>. (???) 
 Sprawdza on czy użytkownik może się zalogować na dany terminal, uruchamiając <c>login</c>. (???)
@@ -54,13 +54,13 @@ Sprawdza on czy użytkownik może się zalogować na dany terminal, uruchamiają
 <p>
 Skrypty umieszczone w katalogu <path>/etc/init.d</path> nie są uruchamiane
 przez <c>init</c> w przypadkowej kolejności. 
-Co więcej, nie są uruchamiane wszystkie na raz lecz tylko te, które mają 
+Co więcej, nie są uruchamiane wszystkie na raz, lecz tylko te, które mają 
 zostać uruchomione w danym momencie. Informacje na ten temat pobierane są 
 z katalogu <path>/etc/runlevels</path>.
 </p>
 
 <p>
-Na samym początku <c>init</c> inicjuje te skrypty, do których dowiązania 
+Na samym początku <c>init</c> uruchamia te skrypty, do których dowiązania 
 symboliczne znajdują się w katalogu <path>/etc/runlevels/boot</path>.
 Zazwyczaj skrypty te uruchamiane są w kolejności alfabetycznej, lecz niektóre
 z nich posiadają informacje o zależnościach mówiących o tym, że do prawidłowego
@@ -70,9 +70,9 @@ działania danego serwisu musi wcześniej zostać uruchomiony inny.
 <p>
 Kiedy skrypty mające dowiązanie w <path>/etc/runlevels/boot</path> zostaną
 uruchomione, <c>init</c> kontynuuje uruchamianie tych, do których dowiązania
-znajdują się w katalogu <path>/etc/runlevels/default</path>. Podobnie jak poprzednim
-przypadku, są one uruchamiane są w kolejności alfabetycznej. Wyjątek stanowią
-tylko przypadki gdzie muszą zostać spełnione zależności niezbędne do poprawnego
+znajdują się w katalogu <path>/etc/runlevels/default</path>. Podobnie jak w poprzednim
+przypadku, są one uruchamiane w kolejności alfabetycznej. Wyjątek stanowią
+tylko skrypty, dla których muszą zostać spełnione zależności niezbędne do poprawnego
 przeprowadzenia procesu startowego. 
 </p>
 
@@ -95,7 +95,7 @@ zamontowane poprawnie. Definicja tego zadania w <path>/etc/inittab</path> wyglą
 następująco:
 </p>
 
-<pre caption="inicjacja systemu w /etc/inittab">
+<pre caption="Inicjacja systemu w /etc/inittab">
 si::sysinit:/sbin/rc sysinit
 </pre>
 
@@ -134,7 +134,7 @@ id:3:initdefault:
 
 <p>
 W tym przypadku jest to poziom działania (<e>runlevel</e>) o numerze 3.  
-Dzięki tej informacji <c>init</c> sprawdza co musi zostać uruchomione 
+Dzięki tej informacji <c>init</c> sprawdza co musi zostać uruchomione, 
 aby system zaczął działać w trzecim poziomie (<e>rulevelu 3</e>).
 </p>
 
@@ -149,7 +149,7 @@ l6:6:wait:/sbin/rc reboot
 <p>
 W linii, która definiuje trzeci poziom, podobnie jak w przypadku poprzednich,
 jest odwołanie do skryptu <c>rc</c>. Tym razem jest on uruchamiany z argumentem 
-<e>default</e>. Argument ten brzmi tak samo jak nazwa jednego z podkatalogów w
+<e>default</e>. Argument ten brzmi tak samo, jak nazwa jednego z podkatalogów w
 <path>/etc/runlevels</path>.
 </p>
 
@@ -185,7 +185,7 @@ które muszą być uruchomione podczas wchodzenia lub wychodzenia z danego pozio
 <p>
 Gentoo posiada siedem zdefiniowanych poziomów: trzy wewnętrzne i cztery definiowane
 przez użytkownika. Wewnętrzne nazywają się <e>sysinit</e>, <e>shutdown</e> i <e>reboot</e>.
-Jak nie trudno się domyślić służą one kolejno do inicjacji, wyłączania oraz
+Jak nie trudno się domyślić, służą one kolejno do inicjacji, wyłączania oraz
 restartu systemu. 
 </p>
 
@@ -196,8 +196,8 @@ i <path>single</path>. W poziomie <path>boot</path> uruchamiane są wszystkie ni
 serwisy systemowe, używane w później pozostałych poziomach.   
 Pozostałe trzy różnią się rodzajem uruchamianych serwisów: 
 <path>default</path> służy do uruchamiania "standardowych" operacji, <path>nonetwork</path>
-wykorzystywany jest w przypadkach kiedy do uruchomienia danego serwisu nie jest wymagane 
-połączenie z siecią, zaś <path>single</path> używany jest tylko wtedy, gdy system
+wykorzystywany jest w przypadkach, kiedy do uruchomienia danego serwisu nie jest wymagane 
+połączenie z siecią, a <path>single</path> używany jest tylko wtedy, gdy system
 wymaga naprawy.  
 </p>
 
@@ -248,7 +248,7 @@ Aby zobaczyć jaki status ma aktualnie serwis (włączony, wyłączony...)
 użyj argumentu <c>status</c>:
 </p>
 
-<pre caption="Informacje o statusie postfixa">
+<pre caption="Informacje o statusie Postfixa">
 # <i>/etc/init.d/postfix status</i>
 </pre>
 
@@ -258,7 +258,7 @@ faktycznie będzie inaczej, użyj argumentu <c>zap</c> w celu uaktualnienia info
 o statusie.
 </p>
 
-<pre caption="Uaktualnienie informacji o statusie postfixa">
+<pre caption="Uaktualnienie informacji o statusie Postfixa">
 # <i>/etc/init.d/postfix zap</i>
 </pre>
 
@@ -275,7 +275,7 @@ niezbędne do jego uruchomienia i poprawnego funkcjonowania.
 </pre>
 
 <p>
-Podobnie, można zapytać które z serwisów wymagają danego serwisu (<c>needsme</c>) lub 
+Podobnie można zapytać, które z serwisów wymagają danego serwisu (<c>needsme</c>) lub 
 mogą lecz nie muszą go używać (<c>usesme</c>):
 </p>
 
@@ -304,9 +304,9 @@ z listy wymaganych serwisów.
 <p>
 W celu ustalenia poprawnej kolejności uruchamianych serwisów, system init w Gentoo
 korzysta z drzewa zależności. Utrzymanie i zarządzanie takim drzewem, bez użycia
-dodatkowych narzędzi było by za pewne dość nudnym i niełatwym zadaniem.  
+dodatkowych narzędzi, było by zapewne dość nudnym i niełatwym zadaniem.  
 Na szczęście w Gentoo są już gotowe narzędzia, które znacznie ułatwiają 
-zarządzanie poziomami działania oraz init skryptami.
+zarządzanie poziomami działania oraz skryptami init.
 </p>
 
 <p>
@@ -331,7 +331,7 @@ podania argumentu określającego akcję (co rc-update ma zrobić): <e>add</e>,
 </p>
 
 <p>
-Zatem w celu dodania lub usunięcia init skryptu, wykonaj polecenie <c>rc-update</c> 
+Zatem, w celu dodania lub usunięcia skryptu init, wykonaj polecenie <c>rc-update</c> 
 wraz z argumentami <c>add</c> lub <c>del</c>, podając dalej nazwę skryptu oraz 
 poziomu. Na przykład: 
 </p>
@@ -341,11 +341,11 @@ poziomu. Na przykład:
 </pre>
 
 <p>
-Polecenie <c>rc-update</c> pokazuje listę wszystkich dostępnych init skryptów wraz
-z informacją w którym poziomów działania są one uruchamiane:
+Polecenie <c>rc-update</c> pokazuje listę wszystkich dostępnych skryptów init wraz
+z informacją, w którym a poziomów działania są one uruchamiane:
 </p>
 
-<pre caption="Informacje o dostępnych init skryptach">
+<pre caption="Informacje o dostępnych skryptach init">
 # <i>rc-update show</i>
 </pre>
 
@@ -363,11 +363,11 @@ Skrypty Init mogą być niekiedy dość skomplikowane. Dlatego część użytkow
 nie jest zbytnio zainteresowana edytowaniem i modyfikacją skryptów, z uwagi na możliwość 
 popełnienia błędów.
 Jednak czasami możliwość zmiany konfiguracji serwisu jest bardzo ważna. Na przykład 
-w momencie kiedy zaistnieje potrzeba samodzielnego dodania opcji. 
+w momencie, kiedy zaistnieje potrzeba samodzielnego dodania opcji. 
 </p>
 
 <p>
-Drugim powodem, dla którego ingerencja w skrypty init może okazać się pomocna
+Drugim powodem, dla którego ingerencja w skrypty init może okazać się pomocna,
 jest możliwość uaktualnienia skryptów bez obawy przed tym, że dokonane zmiany
 nie zostaną zastosowane. 
 </p>
@@ -380,7 +380,7 @@ nie zostaną zastosowane.
 
 <p>
 Gentoo umożliwia bardzo prosty sposób konfiguracji poszczególnych serwisów. Każdy
-skrypt init może być skonfigurowana za pomocą stosownego pliku w katalogu
+skrypt init może być skonfigurowany za pomocą stosownego pliku w katalogu
 <path>/etc/conf.d</path>. Na przykład skrypt apache2 (<path>/etc/init.d/apache2</path>)
 posiada swój plik konfiguracyjny. Jest nim <path>/etc/conf.d/apache2</path>, w którym
 można umieścić wszelkie opcje potrzebne do uruchomienia serwera Apache 2: 
@@ -406,9 +406,9 @@ informacji na temat zmiennych (jako komentarz).
 <body>
 
 <p>
-Nie. Zwykle umiejętność pisania skryptów dla inita nie jest wymaganą umiejętnością
+Nie. Zwykle umiejętność pisania skryptów dla inita nie jest wymaganą umiejętnością,
 ponieważ wraz z dystrybucją Gentoo dostarczane są wszystkie niezbędne skrypty,
-które pozwalają na uruchamianie serwisów. Aczkolwiek umiejętność ta może okazać
+które pozwalają na uruchamianie serwisów. Aczkolwiek, umiejętność ta może okazać
 się przydatna, kiedy zainstalujesz w systemie serwis nie używając do tego Portage.
 Wówczas będziesz musiał napisać skrypt samodzielnie.  
 </p>
@@ -467,13 +467,13 @@ od których zależny będzie Twój serwis. Możesz też zdefiniować zależnośc
 </p>
 
 <p>
-Zależności <e>wirtualne</e> to takie zależności, w których nie określą się
-ściśle konkretnego serwisu. Przykładowo init skrypt wymaga działającego
+Zależności <e>wirtualne</e> to takie zależności, w których nie określa się
+ściśle konkretnego serwisu. Przykładowo skrypt init wymaga działającego
 w systemie systemu logowania, lecz nie jest jasno określone jakiego. 
 W Gentoo dostępnych jest kilka systemów logowania (metalogd, syslog-ng,
-sysklogd, ...). Zdefiniowanie każdego z nich (zainstalowanie i uruchomienie 
+sysklogd...). Zdefiniowanie każdego z nich (zainstalowanie i uruchomienie 
 wszystkich wymienionych wyżej systemów logowania nie wydaje się być najlepszym
-pomysłem) nie było by dobrym rozwiązaniem. Jak można się jednak przekonać
+pomysłem), nie było by dobrym rozwiązaniem. Jak można się jednak przekonać,
 wszystkie z tych serwisów są akceptowane dzięki wirtualnym zależnościom. 		(???)
 </p>
 
@@ -490,7 +490,7 @@ depend() {
 </pre>
 
 <p>
-Jak widać, postfix:
+Jak widać postfix:
 </p>
 
 <ul>
@@ -557,7 +557,7 @@ depend() {
 <body>
 
 <p>
-Do tego aby funkcja <c>depend()</c> spełniała swoje zadanie, potrzebna
+Do tego, aby funkcja <c>depend()</c> spełniała swoje zadanie, potrzebna
 jest poprawna definicja funkcji <c>start()</c>. Funkcja ta zawiera 
 polecenia niezbędne do uruchomienia serwisu. Wskazane jest użycie
 opcji <c>ebegin</c> i <c>eend</c>, dzięki którym można poinformować 
@@ -585,8 +585,8 @@ dokumentację, która dostępna jest w formacie podręcznika systemowego:
 
 <p>
 Pozostałe funkcje jakie możesz definiować to: <c>stop()</c> i <c>restart()</c>.
-Nie są one jednak konieczne! System init jest dostatecznie inteligętny aby
-poradzć sobie z ich brakiem, potrafi je zastąpić <c>start-stop-daemon</c>.
+Nie są one jednak konieczne! System init jest dostatecznie inteligentny, aby
+poradzić sobie z ich brakiem, potrafi je zastąpić <c>start-stop-daemon</c>.
 </p>
 
 </body>
@@ -596,7 +596,7 @@ poradzć sobie z ich brakiem, potrafi je zastąpić <c>start-stop-daemon</c>.
 <body>
 
 <p>
-Jeśli chcesz aby init posiadał więcej opcji niżeli te dotychczas omówione,
+Jeśli chcesz, aby init posiadał więcej opcji niż te dotychczas omówione,
 powinieneś dodać nową opcję do zmiennej <c>opts</c>, i stworzyć funkcję o takiej 
 samej nazwie. Na przykład, aby utworzyć opcję o nazwie <c>restartdelay</c>:
 </p>
@@ -619,13 +619,13 @@ restartdelay() {
 
 <p>
 Aby skrypt uruchamiający dany serwis sięgał do plików konfiguracyjnych, 
-zlokalizowanych w <path>/etc/conf.d</path> nie musisz praktycznie robić niczego.
+zlokalizowanych w <path>/etc/conf.d</path>, nie musisz praktycznie robić niczego.
 W chwili kiedy skrypt zostanie uruchomiony, przetworzone zostaną  
 następujące pliki:
 </p>
 
 <ul>
-  <li><path>/etc/conf.d/&lt;twój skrypt init&gt;</path></li>
+  <li><path>/etc/conf.d/&lt;Twój skrypt init&gt;</path></li>
   <li><path>/etc/conf.d/basic</path></li>
   <li><path>/etc/rc.conf</path></li>
 </ul>
