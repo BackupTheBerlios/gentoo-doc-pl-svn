@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.43 -->
+<!-- Orig revision: 1.45 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Wybór Właściwego Medium Instalacyjnego -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.13 2004/02/12 19:13:23 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.14 2004/03/01 15:16:09 lcs Exp $ -->
 
 <sections>
 <section>
@@ -124,8 +124,8 @@ Jeśli chcesz przeprowadzić samodzielnie bootstrap i zbudować cały system
 od podstaw, skorzystaj ze <e>stage1</e>. W <e>stage2</e> będziesz musiał 
 skompilować system ze stanu po gotowym bootstrapie. Prekompilowany podstawowy 
 system Gentoo znajduje się w <e>stage3</e>. Naszą dystrybucję można
-zainstalować bez żadnych kompilacji, nawet jądra. W takim przypadku odpowiedni
-jest <e>stage3</e> oraz LiveCD zawierające prekompilowane pakiety.
+zainstalować bez żadnych kompilacji, z wyjątkiem jądra i kilku opcjonalnych
+programów. W takim przypadku odpowiedni jest <e>stage3</e>.
 </p>
 
 <p>
@@ -267,7 +267,8 @@ Teraz rzućmy okiem na dostępne media instalacyjne:
 <e>Gentoo LiveCD</e> to uruchamialne płyty zawierające działające środowisko
 Gentoo. Pozwalają na uruchomienie Linuksa prosto z CD. W czasie startu wykrywany
 jest sprzęt i ładowane są odpowiednie sterowniki. Płyty te dostępne są
-dla wszystkich wspieranych architektur. Co więcej, występują w różnych odmianach.
+dla wszystkich wspieranych architektur (x86, alpha, sparc, ppc, hppa,
+amd64). Co więcej, występują w różnych odmianach.
 </p>
 
 <p>
@@ -277,12 +278,6 @@ się dodatkowo kody źródłowe oraz prekompilowane pakiety pozwalające na inst
 bez dostępu do sieci.
 </p>
 
-<p>
-&quot;Co? Prekompilowane pakiety?&quot; Słyszę krzyki niedowierzania. Tak, chcemy
-dać użytkownikom możliwość szybkiej instalacji. Kolekcja prekompilowanych
-pakietów nazywa się <e>Gentoo Reference Platform</e> (GRP). Omówimy ją
-szerzej w kolejnych rozdziałach.
-</p>
 
 <p>
 Dostarczamy kilka rodzajów LiveCD. Następująca tabela prezentuje, jakie odmiany
@@ -386,13 +381,20 @@ ani pakietów GRP.
 <body>
 
 <p>
-Pierwsza, uruchamialna płyta zawiera wszystkie stage dla konkretnej
-podarchitektury (jak AthlonXP, G4 itd.) razem z kodami źródłowymi
-i prekompilowanymi pakietami. Na drugiej znajdują się tylko pakiety
-GRP. Nie jest ona konieczna, ale zawiera prekompilowaną Mozillę, OO,
-KDE, GNOME itd.
+Pierwsza, uruchamialna płyta może posłużyć do instalacji Gentoo
+bez dostępu do sieci. Zawiera stage1, kilka odmian stage3
+(zoptymalizowanych dla różnych podarchitektur) oraz kody źródłowe,
+umożliwiające instalację od stage1 bez dostępu do sieci. Dla
+części architektur, na CD1 dostarczamy także stage2 oraz 
+zbiór prekompilowanych pakietów.
 </p>
-
+<p>
+Na drugiej płycie znajdują się wyłącznie prekompilowane pakiety. Można
+ją wykorzystać do instalacji oprogramowania już po zakończeniu 
+stawiania systemu. Do instalacji systemu podstawowego wystarczy
+CD1, jednakże jeśli nie chcesz samodzielnie kompilować
+OpenOffice.org, Mozilli, KDE, GNOME itd., potrzebujesz także CD2.
+</p>
 <p>
 Dostarczamy zarówno "domyślne" zestawy LiveCD, uruchamialne na wszystkich odmianach
 konkretnej architektury, jak i zoptymalizowane dla różnych podarchitektur.
@@ -569,11 +571,11 @@ Gentoo na każdym z naszych <uri link="/main/en/mirrors.xml">mirrorów</uri>.
 </tr>
 <tr>
   <ti>x86</ti>
-  <ti><path>releases/x86/1.4/livecd</path></ti>
+  <ti><path>releases/x86/2004.0/livecd</path></ti>
 </tr>
 <tr>
   <ti>sparc</ti>
-  <ti><path>experimental/sparc/livecd</path></ti>
+  <ti><path>releases/sparc/2004.0/livecd</path></ti>
 </tr>
 <tr>
   <ti>ppc</ti>
@@ -589,7 +591,7 @@ Gentoo na każdym z naszych <uri link="/main/en/mirrors.xml">mirrorów</uri>.
 </tr>
 <tr>
   <ti>amd64</ti>
-  <ti><path>experimental/amd64/livecd</path></ti>
+  <ti><path>releases/amd64/2004.0/livecd</path></ti>
 </tr>
 </table>
 
@@ -598,14 +600,14 @@ Odwiedź jeden z <uri
 link="/main/en/mirrors.xml">serwerów lustrzanych</uri> i przejdź do
 wybranego katalogu. Wewnątrz znajdziesz odpowiednio nazwane pliki.
 Są to pełne obrazy płyt, gotowe do nagrania na CD-R. Jeśli znajdziesz
-kilka, różniących się tylko datą w nazwie (np. <path>livecd-x86-cd1-20031029.iso</path>),
- weź ten najnowszy.
+kilka, różniących się tylko datą w nazwie (np.
+<path>gentoo-2004.0-x86-20040121.iso</path>), weź ten najnowszy.
 </p>
 
 <p>
 Jeśli zastanawiasz się czy pobrane pliki są prawidłowe, czy też uszkodzone,
 możesz porównać ich sumę kontrolną MD5 z tą, którą dostarczamy razem z iso
-(na przykład <path>livecd-x86-cd1-20031029.iso.md5</path>). Do sprawdzania
+(na przykład <path>gentoo-2004.0-x86-20040121.iso.md5</path>). Do sprawdzania
 sumy MD5 pod Linuksem/Uniksem służy program <c>md5sum</c>, natomiast
 pod Windowsem <uri link="http://www.md5summer.org">md5summer</uri>.
 </p>
@@ -704,8 +706,8 @@ te opcje zmienić, wybierając jądro i podając odpowiednie parametry.
 <p>
 Wybór jądra? Tak, dostarczamy kilka kerneli na naszych LiveCD. Domyślnym
 jest <c>gentoo</c>. Oprócz niego dostępne są <c>smp</c>, aktywujący
-wsparcie dla maszyn wieloprocesorowych oraz <c>memtest</c>, kontrolujący
-pamięć RAM (nie można za jego pomocą instalować Gentoo). 
+wsparcie dla maszyn wieloprocesorowych oraz <c>nofb</c>, z wyłączonym
+framebufferem. 
 </p>
 
 <p>
@@ -726,9 +728,14 @@ Poniżej przedstawiamy przegląd dostępnych jąder:
   <ti>Jądro ze wsparciem dla maszyn wieloprocesorowych</ti>
 </tr>
 <tr>
-  <ti>memtest</ti>
-  <ti>Służący do testowania pamięci</ti>
+  <ti>gentoo-nofb</ti>
+  <ti>To samo co <c>gentoo</c>, lecz bez obsługi framebuffera</ti>
 </tr>
+<tr>
+  <ti>smp-nofb</ti>
+  <ti>To samo co <c>smp</c>, lecz bez obsługi framebuffera</ti>
+</tr>
+
 </table>
 
 <note>
@@ -785,10 +792,6 @@ ustawienia. Poniższa tabela przestawia ich listę.
 <tr>
   <ti>noevms</ti>
   <ti>Deaktywuje wsparcie dla EVMS</ti>
-</tr>
-<tr>
-  <ti>nofb</ti>
-  <ti>Deaktywuje wsparcie dla Framebuffera</ti>
 </tr>
 <tr>
   <ti>nohotplug</ti>
@@ -1237,16 +1240,11 @@ z polecenia <c>su</c>:
 <title>Opcjonalnie: Uruchamianie Serwera SSH</title>
 <body>
 
-<impo>
-Możliwość uruchomienia demona ssh w czasie instalacji dostępna jest tylko
-dla architektur x86, amd64, alpha, sparc oraz ppc.
-</impo>
-
 <p>
 Jeśli chcesz dać dostęp do środowiska instalacyjnego innym użytkownikom
-(na przykład, żeby pomogli Ci w instalacji lub nawet przeprowadzili ją
-za Ciebie), musisz stworzyć odpowiednie konta lub im podać hasło root (<e>tylko w przypadku
-pełnego zaufania</e>). 
+(na przykład, żeby pomogli Ci w instalacji albo nawet przeprowadzili ją
+za Ciebie), musisz stworzyć odpowiednie konta lub nawet podać im hasło root
+(<e>tylko w przypadku pełnego zaufania</e>). 
 </p>
 
 <p>
@@ -1344,6 +1342,12 @@ się jako root, aby zmiany zostały zatwierdzone.
 # <i>exit</i>
 $ <i>su -</i>
 Password: <comment>(Podaj hasło roota)</comment>
+</pre>
+<p>
+Stwórzmy teraz katalog <path>/mnt/gentoo</path>.
+</p>
+<pre caption="Zakładanie katalogu /mnt/gentoo">
+# <i>mkdir -p /mnt/gentoo</i>
 </pre>
 <p>
 Następnie przejdź do kolejnego rozdziału, o <uri 
