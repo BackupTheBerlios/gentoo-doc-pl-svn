@@ -5,7 +5,7 @@
 <!-- Translator: Squeeze <squeeze@tvk.wroc.pl> -->
 <!-- Title: Przewodnik po LTSP -->
 <!-- Status: Do korekty -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/ltsp.xml,v 1.1 2005/03/09 22:43:21 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/ltsp.xml,v 1.2 2005/03/10 18:10:31 sekretarz Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
@@ -36,11 +36,11 @@ Ten przewodnik pokazuje jak zainstalować i skonfigurować serwer LTSP na system
 <title>Co to jest LTSP</title>
 <body>
 <p>
-LTSP jest skrótem od "Linux Terminal Server Project. Zainstalowany na
+LTSP jest skrótem od "Linux Terminal Server Project". Zainstalowany na
 serwerze może wyposażyć wiele stacji roboczych (tzw. "chudych klientów")
 w identyczne środowiska pracy. Wszystkie aplikacje są uruchamiane na serwerze,
-dlatego też jako stacji roboczych można używać starych komputerów. Obniża to
-koszty i czas poświęcony jego ewentualnej konserwacji, w sczególności, gdy
+dlatego też w roli stacji roboczych można używać starych komputerów. Obniża to
+koszty i czas poświęcony jego ewentualnej konserwacji, w szczególności, gdy
 musimy mieć jednolitą przestrzeń pracy na każdym komputerze, na którym się logujemy
 np. w szkołach bądź firmach.
 </p>
@@ -54,7 +54,7 @@ np. w szkołach bądź firmach.
 <body>
 <p>
 Wszystkie przykłady w tym dokumencie zakładają, że IP twojego serwera to 192.168.0.254,
-nazwa twojej domeny to twojadomena.pl a twoja sieć to 192.168.0.0/24.
+nazwa twojej domeny to twojadomena.pl, a twoja sieć to 192.168.0.0/24.
 </p>
 </body>
 </section>
@@ -77,7 +77,7 @@ Zacznijmy więc od najprostszego kroku, czyli instalacji pakietu ltsp:
 </pre>
 
 <p>
-To polecenie zainstaluje ltsp, oraz następujące pakiety przez niego wymagane:
+To polecenie zainstaluje ltsp oraz następujące pakiety przez niego wymagane:
 </p>
 
 <ul>
@@ -85,7 +85,7 @@ To polecenie zainstaluje ltsp, oraz następujące pakiety przez niego wymagane:
 <li><b>DHCP</b>: DHCP jest protokołem służącym do automatycznej konfiguracji
 komputerów używających TCP/IP. Używany przez ltsp do dostarczenia adresów IP
 do stacji roboczych</li>
-<li><b>NFS</b>: NFS jest prokołem pozwalającym na dostęp do twardych dysków
+<li><b>NFS</b>: NFS jest protokołem pozwalającym na dostęp do twardych dysków
 poprzez sieć. Używany przez ltsp do zamontowania podstawowego systemu
 dla stacji roboczych.</li>
 <li><b>TFTP</b>: TFTP jest prostym programem protokołu FTP. Używany przez ltsp
@@ -95,7 +95,7 @@ wiele zaawansowanych funkcji. Używany przez ltsp do uruchomienia TFTP.</li>
 </ul>
 
 <note>
-Jeśli masz ustawioną flagę USE dla kde/gnome, zainstaluje także w pełni kompletny system kde bądź gnome.
+Jeśli masz ustawioną flagę USE dla kde/gnome, emerge zainstaluje także w pełni kompletne środowisko kde bądź gnome.
 </note>
 
 </body>
@@ -107,7 +107,7 @@ Jeśli masz ustawioną flagę USE dla kde/gnome, zainstaluje także w pełni kom
 <body>
 
 <p>
-Kiedy proces instalacji zakończy się, wszystkie usługi muszą zostać skonfigurowane:
+Kiedy proces instalacji dobiegnie końca, wszystkie te usługi muszą zostać skonfigurowane:
 </p>
 
 </body>
@@ -117,7 +117,11 @@ Kiedy proces instalacji zakończy się, wszystkie usługi muszą zostać skonfig
 <body>
 
 <p>
-Aby łatwiej analizować problemy, logger systemowy musi być skonfigurowany na akceptowanie zdalnych połączeń. Przeczytaj dokumentację twojego loggera systemowego w celu uzyskania odpowiednich informacji. Jeżeli, np. używasz sysklogd, jedyne co musisz zrobić, to otworzyć plik <path>/etc/conf.d/sysklogd</path> i dodać "-r" do linii SYSLOGD:
+Aby łatwiej analizować problemy, logger systemowy musi być skonfigurowany na 
+akceptowanie zdalnych połączeń. Przeczytaj dokumentację twojego loggera 
+systemowego w celu uzyskania odpowiednich informacji. Jeżeli, np. używasz 
+sysklogd, jedyne co musisz zrobić, to otworzyć plik 
+<path>/etc/conf.d/sysklogd</path> i dodać "-r" do linii SYSLOGD:
 </p>
 
 <pre caption="/etc/conf.d/sysklogd">
@@ -132,7 +136,9 @@ KLOGD="-c 3 -2"
 <body>
 
 <p>
-Następnym krokiem jest wyedytowanie pliku <path>/etc/exports</path> w celu pozwolenia stacji roboczej na montowanie głównego systemu plików. Powinny tam znajdować się conajmniej dwie linie:
+Następnym krokiem jest wyedytowanie pliku <path>/etc/exports</path> w celu 
+pozwolenia stacji roboczej na montowanie głównego systemu plików. Powinny tam 
+znajdować się conajmniej dwie linie:
 </p>
 
 <pre caption="/etc/exports">
@@ -169,12 +175,16 @@ INTFTPD_OPTS="-s ${INTFTPD_PATH}"
 </pre>
 
 <p> 
-Flaga "-s" nakazuje TFTP aby uruchamiał się w bezpiecznym, chroot'owanym środowisku.  To znaczy, że nie będziesz musiał załączać <path>/tftpboot</path> np. w konfiguracji DHCP
+Flaga "-s" nakazuje TFTP aby uruchamiał się w bezpiecznym, chroot'owanym 
+środowisku.  To znaczy, że nie będziesz musiał załączać <path>/tftpboot</path> 
+np. w konfiguracji DHCP
 </p>
 
 <p>
-Następnie, skonfiguruj xinetd tak aby uruchamiał TFTP i zezwalał na zdalne połączenia. 
-Domyślnie TFTP nie będzie uruchaminy przez xinetd, więc otwórz <path>/etc/xinetd.d/tftp</path> i zmień <c>disable=yes</c> na <c>disable=no</c>. Jeśli plik nie istnieje, nie przejmuj się, po prostu stwórz go i wypełnij poniższą zawartością.
+Następnie, skonfiguruj xinetd tak aby uruchamiał TFTP i zezwalał na zdalne połączenia. Domyślnie TFTP nie będzie uruchaminy przez xinetd, więc otwórz 
+<path>/etc/xinetd.d/tftp</path> i zmień <c>disable=yes</c> na <c>disable=no</c>.
+Jeśli plik nie istnieje, nie przejmuj się, po prostu stwórz go i wypełnij 
+poniższą zawartością.
 </p>
 
 <pre caption="/etc/xinetd.d/tftp">
@@ -191,7 +201,8 @@ service tftp
 </pre>
 
 <p>
-A teraz otwórz <path>/etc/xinetd.conf</path> i postaw znak komentarza przed linią <c>only_from = localhost </c>, poprzedzając ją <c>#</c> i uruchom xinetd.
+A teraz otwórz <path>/etc/xinetd.conf</path> i postaw znak komentarza przed 
+linią <c>only_from = localhost </c>, poprzedzając ją <c>#</c> i uruchom xinetd.
 </p>
 
 <pre caption="Uruchamianie Xinetd">
@@ -202,15 +213,20 @@ A teraz otwórz <path>/etc/xinetd.conf</path> i postaw znak komentarza przed lin
 </body>
 </section>
 <section>
-<title>Rozwiązywanie nazw</title>
+<title>DNS</title>
 <body>
 
 <p>
-Aby stacja robocza mogła osiągnąc wszystkie źródła, musi mieć ustawioną odpowiednią nazwe rozwiązywania (ang. name resolving). Jest kilka sposobów, żeby to zrobić. Jeden z nich to skonfigurowanie serwera DNS dla sieci lokalnej. Inny sposób, zdecydowanie prostszy, to posiadanie identycznych plików <path>/etc/hosts</path> na każdym systemie. Użyjemy tego drugiego:
+Aby stacja robocza mogła osiągnąc wszystkie źródła, musi mieć ustawioną 
+odpowiednią nazwe rozwiązywania (ang. name resolving). Jest kilka sposobów, 
+żeby to zrobić. Jeden z nich to skonfigurowanie serwera DNS dla sieci lokalnej.
+Inny sposób, zdecydowanie prostszy, to posiadanie identycznych plików 
+<path>/etc/hosts</path> na każdym systemie. Użyjemy tego drugiego:
 </p>
 
 <p>
-Wszystkie stacje robocze muszą być wypisane w <path>/etc/hosts</path>. Spójrz na przykład:
+Wszystkie stacje robocze muszą być wypisane w <path>/etc/hosts</path>. 
+Spójrz na przykład:
 </p>
 
 <pre caption="/etc/hosts">
@@ -273,7 +289,12 @@ shared-network WORKSTATIONS {
 </pre>
 
 <p>
-Jeśli twoja stacja robocza posiada wsparcie dla PXE, powinieneś wypisać każdą z nich tak samo jak zrobiliśmy z <e>host ws001</e> (nie zapomnij usunąc znaku komentarza). Nie dawaj im adresu z dynamicznej puli, może to doprowadzić do tego, że dwie stacje będą miały to samo IP co będzię stwarzać problemy. Pamiętaj, jeśli skopiujesz i wkleisz poniższy przykład, zmień każde "//" na "##", w przeciwnym razie dhcp nie uruchomi się.
+Jeśli twoja stacja robocza posiada wsparcie dla PXE, powinieneś wypisać każdą 
+z nich tak samo jak zrobiliśmy z <e>host ws001</e> (nie zapomnij usunąc znaku 
+komentarza). Nie dawaj im adresu z dynamicznej puli, może to doprowadzić do 
+tego, że dwie stacje będą miały to samo IP co będzię stwarzać problemy. 
+Pamiętaj, jeśli skopiujesz i wkleisz poniższy przykład, zmień każde "//" na 
+"##", w przeciwnym razie dhcp nie uruchomi się.
 </p>
 
 <p>
@@ -291,7 +312,8 @@ A teraz uruchom DHCP tak samo jak uruchomiłeś xinetd oraz nfs
 </pre>
 
 <note>
-DHCPD potrzebuje aktywowanych CONFIG_PACKET i CONFIG_FILTER w jądrze systemu, do poprawnego działania.
+Do poprawnego działania DHCPD potrzebuje aktywowania opcji CONFIG_PACKET i 
+CONFIG_FILTER w jądrze systemu.
 </note>
 
 </body>
@@ -302,12 +324,18 @@ DHCPD potrzebuje aktywowanych CONFIG_PACKET i CONFIG_FILTER w jądrze systemu, d
 <body>
 
 <p>
-Istnieje wiele opcji skonfigurowania stacji roboczych, odwiedź <uri>http://www.ltsp.org/documentation/ltsp-3.0-4-en.html#AEN903</uri> aby uzyskać więcej informacji. <path>/opt/ltsp/i386/etc/lts.conf</path>
+Istnieje wiele opcji aby skonfigurować odpowiednio twoją stację roboczą, 
+odwiedź stronę <uri>http://www.ltsp.org/documentation/ltsp-3.0-4-en.html#AEN903</uri> 
+aby uzyskać więcej informacji na temat pliku 
+<path>/opt/ltsp/i386/etc/lts.conf</path>.
 </p>
 
 <p>
-Jeśli można, zasugerujemy kilka rzeczy. Na początek skopiuj <path>/opt/ltsp/i386/etc/lts.conf.example</path> do <path>/opt/ltsp/i386/etc/lts.conf</path> i wyedytuj go stamtąd. Powinieneś też zmienić opcje <c>SCREEN_01</c> na 
-<c>SCREEN_01 = startx</c>. Aby używać myszki USB na zdalnym kliencie, dodaj poniższe linię modułów, i zmień X_MOUSE_* w ten sposób:
+Jeśli można, zasugerujemy kilka rzeczy. Na początek skopiuj plik 
+<path>/opt/ltsp/i386/etc/lts.conf.example</path> do <path>/opt/ltsp/i386/etc/lts.conf</path>
+i wyedytuj go stamtąd. Powinieneś też zmienić opcje <c>SCREEN_01</c> na 
+<c>SCREEN_01 = startx</c>. Aby używać myszki USB na zdalnym kliencie, 
+dodaj poniższe linie z modułami, i zmień X_MOUSE_* w ten sposób:
 </p>
 
 <pre caption="/opt/ltsp/i386/etc/lts.conf">
@@ -326,15 +354,17 @@ X_MOUSE_DEVICE     = "/dev/input/mice"
 <body>
 
 <p>
-Teraz musisz odpowiednio ustawić swoją konfiguracje menedżera wyświetlania aby akceptował zdalne połączenia.
+Teraz musisz odpowiednio ustawić swoją konfiguracje menedżera wyświetlania 
+aby akceptował zdalne połączenia.
 </p>
 
 <p>
-Na początek, otwórz plik <path>/etc/X11/xdm/Xaccess</path> i usuń znak komentarza sprzed następującej linii:
+Na początek, otwórz plik <path>/etc/X11/xdm/Xaccess</path> i usuń znak 
+komentarza sprzed następującej linii:
 </p>
 
 <pre caption="/etc/X11/xdm/Xaccess">
-#*                   #każdy host może uzyskać okno logowania
+#*                   #any host can get a login window(każdy host może uzyskać okno logowania)
 </pre>
 
 <p>
@@ -342,13 +372,13 @@ A teraz zmień konfigurację menedżera wyświetlania.
 </p>
 
 <p>
-<b>XDM</b>: W <path>/etc/X11/xdm/xdm-config</path> usuń znak komentarza sprzed <c>DisplayManager.requestPort: 0</c>
+<b>XDM</b>: W <path>/etc/X11/xdm/xdm-config</path> usuń znak komentarza 
+sprzed <c>DisplayManager.requestPort: 0</c>
 </p>
 
 <p>
 <b>KDM</b>: W <path>/usr/kde/3.1/share/config/kdm/kdmrc</path> poszukaj 
-sekcji <c>[Xdmcp]</c> i zmień <c>Enable = false</c> na 
-<c>Enable = true</c>.
+sekcji <c>[Xdmcp]</c> i zmień <c>Enable = false</c> na <c>Enable = true</c>.
 </p>
 
 <p>
@@ -367,11 +397,14 @@ Następnie uruchom menedżer wyświetlania
 </pre>
 
 <warn>
-Pojawiają się pewne problemy z XDM i GDM. Autor użył KDM aby je rozwiązać.
+Z menedżerami XDM i GDM mogą pojawiać się pewne problemy. Autor użył KDM aby 
+ominąć ten problem.
 </warn>
 
 <p>
-Pamiętaj, jeśli twój menedżer wyświetlania jest aktualnie uruchomiony, restartowanie serwera X poprzez CTRL-ALT-BACKSPACE nie restartuje menedżera wyświetlania.
+Pamiętaj, jeśli twój menedżer wyświetlania jest aktualnie uruchomiony, 
+restartowanie serwera X poprzez CTRL-ALT-BACKSPACE nie restartuje menedżera 
+wyświetlania.
 </p>
 
 </body>
@@ -382,7 +415,11 @@ Pamiętaj, jeśli twój menedżer wyświetlania jest aktualnie uruchomiony, rest
 <body>
 
 <p>
-Jeśli twoje stacje robocze nie posiadają wsparcia dla bootowania PXE, możesz utworzyć bootowalną dyskietkę, która będzie używana do uruchomienia stacji roboczych oraz połączenia ich z terminalem serwera. Idź do <uri>http://www.rom-o-matic.net</uri>, wybierz najnowszą wersję, wybierz swój NIC, wciśnij <e>Get ROM</e> i zapisz obraz na dyskietkę:
+Jeśli twoje stacje robocze nie posiadają wsparcia dla bootowania PXE, możesz 
+utworzyć bootowalną dyskietkę, która będzie używana do uruchomienia stacji 
+roboczych oraz połączenia ich z terminalem serwera. Przejdź do 
+<uri>http://www.rom-o-matic.net</uri>, wybierz najnowszą wersję, wybierz model
+swojej karty sieciowej, wciśnij <e>Get ROM</e> i zapisz obraz na dyskietkę:
 </p>
 
 <pre caption="Zapisywanie obrazu dyskietki">
@@ -399,17 +436,18 @@ Jeśli twoje stacje robocze nie posiadają wsparcia dla bootowania PXE, możesz 
 <body>
 
 <p>
-Istnieje wiele rzeczy, które moga sprawiać problemy, ale istnieje też wiele źródeł, które mogą Ci pomóc w ich rozwiązywaniu:
+Istnieje wiele rzeczy, które moga sprawiać problemy, ale istnieje też wiele 
+źródeł, które mogą ci pomóc w ich rozwiązywaniu:
 </p>
 
 <ul>
 <li>Oficjalna dokumentacja: 
-<uri>http://www.ltsp.org/documentation/</uri>, w sczególności sekcja
+<uri>http://www.ltsp.org/documentation/</uri>, w szczególności sekcja
 "Troubleshooting".</li>
 <li>Kanał IRC Gentoo: irc.freenode.org #gentoo</li>
 <li>Kanał IRC ltsp: irc.freenode.org #ltsp</li>
 <li>Lista dyskusyjna ltsp<uri>http://ltsp.org/mailinglists.php</uri> 
-pełna obszernej, przydatnej wiedzy</li>
+pełna obszernej i przydatnej wiedzy</li>
 </ul>
 </body>
 </section>
@@ -432,7 +470,7 @@ pełna obszernej, przydatnej wiedzy</li>
 </p>
 
 <p>
-<b>A:</b> Wiele sugestii na ten temat można znaleźć na 
+<b>A:</b> Wiele sugestii na ten temat można znaleźć na stronie
 <uri>http://ltsp.org/documentation/server_suggestions.html</uri>.
 </p>
 
@@ -461,10 +499,10 @@ and <uri>http://ltsp.org/documentation/pxe.howto.html</uri>.
 
 <p>
 <b>A:</b> Musisz skonfigurować XFontServer, dodaj <c>USE_XFS=Y</c> do twojego 
-<path>lts.conf</path>, otwórz <path>/etc/X11/fs/config</path> i usuń znak komentarza sprzed 
+<path>lts.conf</path>, otwórz plik <path>/etc/X11/fs/config</path> i usuń znak komentarza sprzed 
 <c>no-listen: tcp</c>, zamień <c>XFS_PORT="-1"</c> na 
-<c>XFS_PORT="7100"</c> w <path>/etc/conf.d/xfs</path> i uruchom xfs: 
-<c>/etc/init.d/xfs start</c>. Sprawdż czy
+<c>XFS_PORT="7100"</c> w pliku <path>/etc/conf.d/xfs</path> i uruchom xfs: 
+<c>/etc/init.d/xfs start</c>. Sprawdż czy plik
 <path>/etc/X11/XF86Config</path> (albo <path>/etc/X11/xorg.conf</path>) zawiera
 <c>FontPath "unix/:7100"</c> w sekcji Files.
 </p>
@@ -474,7 +512,7 @@ and <uri>http://ltsp.org/documentation/pxe.howto.html</uri>.
 </p>
 
 <p>
-<b>A: </b> Istnieje pakiet ltsp-sound w Gentoo, więcej informacji znajdziesz w pliku <path>README</path> 
+<b>A: </b> W Gentoo istnieje pakiet ltsp-sound, więcej informacji znajdziesz w pliku <path>README</path> 
 </p>
 
 </body>
@@ -488,12 +526,17 @@ and <uri>http://ltsp.org/documentation/pxe.howto.html</uri>.
 
 <p>
 <b><uri link="http://www.ltsp.org">LTSP</uri></b>
-"LTSP to prosty sposób na niskie koszty eksploatacji stacji roboczych, zarówno w środowisku graficznym oraz na tekstowych terminalach serwera pracującego w środowisku GNU/Linux."
+"LTSP to prosty sposób na niskie koszty eksploatacji stacji roboczych, zarówno 
+w środowisku graficznym oraz na tekstowych terminalach serwera pracującego w 
+środowisku GNU/Linux."
 </p>
 
 <p>
 <b><uri link="http://www.webopedia.com/TERM/P/PXE.html">PXE</uri></b>
-"Krótko na temat systemu "Pre-Boot Execution Environment". Wymawiany "piksi", PXE jest jednym z komponentów Intelowskiego WfM. Pozwala stacji roboczej na zabootowanie z serwera znajdujacego się w sieci, zamiast bootowanie z lokalnego dysku. Połączenie utrzymuje się nawet wtedy kiedy komputer jest wyłączony."
+"Krótko na temat systemu "Pre-Boot Execution Environment". Wymawiany "piksi", 
+PXE jest jednym z komponentów Intelowskiego WfM. Pozwala stacji roboczej na 
+zabootowanie z serwera znajdujacego się w sieci, zamiast bootowanie z lokalnego
+dysku. Połączenie utrzymuje się nawet wtedy kiedy komputer jest wyłączony."
 </p>
 
 </body>
