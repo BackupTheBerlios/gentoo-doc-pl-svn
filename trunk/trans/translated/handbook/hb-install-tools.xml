@@ -4,14 +4,14 @@
 <!-- Orig revision: 1.29 -->
 <!-- Translator: aye <aye@gentoo.pl> -->
 <!-- Title: Instalacja dodatkowych narzędzi -->
-<!-- Status: Ukończono -->
+<!-- Status: Release -->
 <!-- Update from 1.14 to 1.19: sekretarz <sekretarz@dukato.net> -->
 <!-- Update from 1.27 to 1.29: sekretarz <sekretarz@gentoo.org> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-tools.xml,v 1.16 2004/12/02 22:36:20 aye Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-tools.xml,v 1.17 2004/12/12 13:12:02 rane Exp $ -->
 
 <sections>
 
@@ -19,22 +19,22 @@
 <date>2004-10-09</date>
 
 <section>
-<title>Program logujący</title>
+<title>Program logujący.</title>
 <body>
 
 <p>
 Gdy wspominaliśmy czym jest <e>stage3</e> powiedzieliśmy, że zawiera on
 wszystkie niezbędne narzędzia systemowe, dla których nie możemy
-zaoferować użytkownikowi żadnego wyboru. Powiedzieliśmy również, że w
+zaoferować użytkownikowi żadnej alternatywy. Powiedzieliśmy również, że w
 późniejszej fazie instalacji systemu dodamy kolejne narzędzia. Oto ten
 etap :)
 </p>
 
 <p>
-Pierwszym narzędziem, przy którym musisz dokonać wyboru, jest program
+Pierwszym narzędziem przy którym musisz dokonać wyboru, jest program do
 obsługi systemu logowania. Unix i Linux posiadają bogatą historię w tym
 zakresie. Jeżeli chcesz, możesz logować do plików wszystko, co dzieje się 
-w Twoim systemie. Mechanizmem tym zarządza <e>program logujący</e>.
+w Twoim systemie. Mechanizmem tym zarządza właśnie <e>program logujący</e>.
 </p>
 
 <p>
@@ -50,9 +50,9 @@ Jeżeli planujesz używanie <c>sysklogd</c> lub <c>syslog-ng</c> dobrym pomysłe
 programu <c>logrotate</c>, ponieważ te programy logujące nie są zaopatrzone w żaden mechanizm rotacyjny
 dla logów.
 </p>
-			   	 
+
 <p>
-Jeżeli nie potrafisz zdecydować, wybierz <c>metalog</c>, który ma
+Jeżeli nie potrafisz zdecydować się na żaden to wybierz <c>metalog</c>, który ma
 ogromne możliwości oraz bardzo dobrą domyślną konfigurację.
 </p>
 
@@ -71,12 +71,12 @@ programu <c>metalog</c>:
 </body>
 </section>
 <section>
-<title>Opcjonalnie: Cron Daemon</title>
+<title>Opcjonalnie: Demon Cron.</title>
 <body>
 
 <p>
 Następnym programem jest demon Cron. Pomimo, że jest on opcjonalny i
-nie wymagany do poprawnej pracy systemu, zalecane jest jego
+niewymagany do poprawnej pracy systemu, zalecane jest jego
 zainstalowanie. Czym jest demon Cron? Jest to program służący do
 wykonywania zaplanowanych poleceń w określonym czasie. Jest on bardzo 
 przydatny, gdy wykonujesz pewne czynności regularnie (na przykład 
@@ -93,8 +93,8 @@ programu użyć, wybierz <c>vixie-cron</c>.
 </p>
 
 <p>
-My dostarczamy tylko <c>vixie-cron</c> dla instalacji bez sieci. 
-Jeżeli chcesz używać innego demona crona musisz poczekać i zainstalować
+Dla instalacji bez sieci dostarczamy tylko <c>vixie-cron</c>. 
+Jeżeli chcesz używać innego demona cron musisz poczekać i zainstalować
 go później.
 </p>
 
@@ -108,10 +108,11 @@ go później.
 </section>
 <section>
 
-<title>Opcjonalnie: Indeksowanie plików</title>	
-<body>	
-<p>	
-Jeżeli chcesz indeksować pliki w twoim systemie, aby móc je szybko wyszukiwać za pomocą narzędzia
+<title>Opcjonalnie: Indeksowanie plików.</title>	
+<body>
+
+<p>
+Jeżeli chcesz indeksować pliki w systemie, aby móc je szybko wyszukiwać za pomocą narzędzia
 <c>locate</c>, powinieneś zainstalować <c>sys-apps/slocate</c>.
 </p>	
  	 	
@@ -122,9 +123,7 @@ Jeżeli chcesz indeksować pliki w twoim systemie, aby móc je szybko wyszukiwa�
 </body>	
 </section>	
 <section>
-
-
-<title>Narzędzia obsługi systemu plików</title>
+<title>Narzędzia obsługi systemu plików.</title>
 <body>
 
 <p>
@@ -171,22 +170,23 @@ Jeżeli korzystasz z LVM, powinieneś również zainstalować <c>lvm-user</c>:
 # <i>emerge - -usepkg lvm-user</i>
 </pre>
 -->
+
 <p>
 Jeżeli nie potrzebujesz żadnych dodatkowych narzędzi sieciowych (takich, jak <c>rp-pppoe</c> lub klient dhcp)
-przejdź do  <uri link="?part=1&amp;chap=10">Konfiguracji Bootloadera</uri>
+przejdź do  <uri link="?part=1&amp;chap=10">Konfiguracji bootloadera</uri>.
 </p>
 
 </body>
 </section>
 <section>
 
-<title>Narzędzia sieciowe</title>
+<title>Narzędzia sieciowe.</title>
 <subsection>	
-<title>Opcjonalnie: Installacja klienta DHCP </title>	
+<title>Opcjonalnie: Instalowanie klienta DHCP.</title>	
 <body>
 
 <p>	
-Jeżeli chcesz, aby Gentoo automatycznie uzyskiwał adres IP twojej karty sieciowej, musisz zainstalować 
+Jeżeli chcesz, aby Gentoo automatycznie uzyskiwał adres IP Twojej karty sieciowej, musisz zainstalować 
 <c>dhcpcd</c> (lub jakiegokolwiek innego klienta DHCP).
 Jeżeli nie zrobisz tego teraz, możesz nie być w stanie połączyć sie z internetem po zakończeniu instalacji!
 </p>	
@@ -199,7 +199,7 @@ Jeżeli nie zrobisz tego teraz, możesz nie być w stanie połączyć sie z inte
 </subsection>	
 <subsection>
 
-<title>Opcjonalnie: Instalacja klienta PPPoE</title>
+<title>Opcjonalnie: Instalacja klienta PPPoE.</title>
 <body>
 
 <pre>
