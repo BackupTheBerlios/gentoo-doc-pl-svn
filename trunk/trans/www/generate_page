@@ -1,12 +1,7 @@
 #/bin/sh
 
 
-# Zalogujmy siê
-export CVSROOT=":pserver:anonymous@cvs.gentoo-doc-pl.berlios.de:/cvsroot/gentoo-doc-pl"
-
-cd ~lcs
-cvs get trans
-cd trans/www
+cd ~lcs/trans/www
 
 
 # Teraz zrobimy tablicê z dokumentami
@@ -16,7 +11,7 @@ do
    echo "<tr>" >> doctable.xml
    echo "<ti><uri link=\"http://cvs.berlios.de/cgi-bin/viewcvs.cgi/gentoo-doc-pl/trans/trans/$file?rev=HEAD&amp;content-type=
 text/vnd.viewcvs-markup\">" >> doctable.xml
-   grep '^<!-- Title:' $file | sed -e 's/<!-- Title: \(.*\) -->$/\1<\/uri><\/ti>/' >> doctable.xml
+   echo $file | sed -e 's:.*/\(.*\)\.xml:\1</uri></ti>:' >> doctable.xml
    grep '^<!-- Orig revision:' $file | sed -e 's/<!-- Orig revision: \(.*\) -->$/<ti>\1<\/ti>/' >> doctable.xml
    grep 'Header: /cvsroot/' $file|
    awk '/Header: \/cvsroot/ {
