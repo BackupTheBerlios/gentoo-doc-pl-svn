@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.68 -->
+<!-- Orig revision: 1.69 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Instalacja systemu podstawowego -->
 <!-- Status: Release -->
@@ -10,12 +10,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.26 2004/12/27 23:14:19 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.27 2005/02/20 11:50:37 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.63</version>
-<date>2004-12-26</date>
+<version>1.64</version>
+<date>2005-01-04</date>
 
 <section>
 <title>Praca w chroot.</title>
@@ -124,11 +124,8 @@ jeszcze kilka rozdziałów Podręcznika. :]
 <body>
 
 <p>
-Następnie należy pobrać najnowszą wersję drzewa Portage z Internetu, o ile
-oczywiście wcześniej nie zainstalowano jego snapshota.
-Dokonujemy tego poleceniem <c>emerge --sync</c>. Użytkownicy z zainstalowanym
-drzewem powinni pominąć ten paragraf i przejść od razu do <uri
-link="#configure_USE">Konfiguracji flag USE</uri>.
+Powinneś teraz uaktualnić drzewo Portage. Dokonujemy tego poleceniem 
+<c>emerge --sync</c>. 
 </p>
 
 <pre caption="Aktualizowanie drzewa Portage">
@@ -220,6 +217,12 @@ dla DVD, ALSA i nagrywania CD:
 USE="-gtk -gnome qt kde dvd alsa cdr"
 </pre>
 
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Lokalizacje GLIBC</title>
+<body>
+
 <p>
 Zwykle w systemie używa się tylko jednej, góra dwóch lokalizacji.
 Po skompilowaniu <c>glibc</c> dostępne są wszystkie jakie kiedykolwiek zostały stworzone.
@@ -251,20 +254,6 @@ pl_PL.UTF-8/UTF-8
 
 </body>
 </subsection>
-<subsection>
-<title>Opcjonalnie: Użycie kompilacji rozproszonej.</title>
-<body>
-
-<p>
-Jeśli jesteś zainteresowany wykorzystaniem zbioru komputerów do pomocy w kompilowaniu
-systemu zapoznaj się z naszym <uri
-link="/doc/en/distcc.xml">Przewodnikiem DistCC</uri>. Dzięki <c>distcc</c> możesz
-wykorzystać moc obliczeniową kilku maszyn i znacznie przyspieszyć cały proces
-instalowania Gentoo.
-</p>
-
-</body>
-</subsection>
 </section>
 <section>
 <title>Różnice między Stage1, Stage2 i Stage3.</title>
@@ -289,7 +278,7 @@ ma on wpływ na nasze działania.
   ze Stage2 do Stage3</uri>).
 </li>
 <li>
-  Jeżeli zaczynasz od <e>stage3</e> (z, lub bez GRP), możesz pominąć
+  Jeżeli zaczynasz od <e>stage3</e>, możesz pominąć
   obydwa kroki i przejść do następnego rozdziału, czyli
   <uri link="?part=1&amp;chap=7">Konfiguracji jądra</uri>.
 </li>
@@ -332,9 +321,8 @@ link="#bootstrap">Bootstrap systemu</uri>.
 
 <p>
 Jeśli wcześniej nie przekopiowano kodu źródłowego skrypt bootstrap
-pobierze wszystkie potrzebne pliki. Chyba nie trzeba przypominać, że
-niezbędne do tego jest działające połączenie sieciowe?  Jeśli zamierzamy
-najpierw ściągnąć źródła, a dopiero potem wykonać bootstrap systemu (np. dlatego,
+pobierze wszystkie potrzebne pliki. Jeśli zamierzamy najpierw ściągnąć 
+źródła, a dopiero potem wykonać bootstrap systemu (np. dlatego,
 że nie chcemy mieć otwartego połaczenia z Internetem podczas kompilowania)
 używamy przełącznika <e>-f</e> skryptu bootstrap, co spowoduje pobranie
 wszystkich niezbędnych plików.
