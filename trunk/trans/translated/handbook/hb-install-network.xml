@@ -3,14 +3,13 @@
 
 <!-- Orig revision: 1.39 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
-<!-- Title: Konfiguracja Sieci -->
-<!-- Status: Ukończono -->
-<!-- Update from 1.29 to 1.39: sekretarz <sekretarz@dukato.net> -->
+<!-- Title: Konfiguracja sieci -->
+<!-- Status: Release -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-network.xml,v 1.20 2004/11/27 18:14:42 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-network.xml,v 1.21 2004/12/11 13:28:22 rane Exp $ -->
 
 <sections>
 
@@ -52,27 +51,27 @@ lub nie chcą instalować systemu na komputerze podłączonym do Internetu.
 <p>
 Jeśli znajdujesz się w takiej właśnie sytuacji, będziesz musiał
 skorzystać z Gentoo Universal LiveCD. Zawierają one kody
-źródłowe, migawkę Drzewa Portage oraz wszystkie, niezbędne do 
-instalacji systemu podstawowego, narzędzia. Korzystając z nich
-uzyskasz nie w pełni aktualny system, ale także nie przestarzały.
+źródłowe, snapshot drzewa Portage oraz wszystkie niezbędne do 
+instalacji systemu podstawowego narzędzia. Korzystając z nich
+uzyskasz nie w pełni aktualny system, ale także nieprzestarzały.
 </p>
 
 <p>
 Jeżeli zdecydowałeś się na tę metodę instalacji, musisz
 skorzystać z Universal LiveCD. Możesz od razu przejść do <uri 
-link="?part=1&amp;chap=4">Przygotowywania Dysków</uri>.
+link="?part=1&amp;chap=4">Przygotowywania dysków</uri>.
 W przeciwnym wypadku, przeczytaj kolejne sekcje tego rozdziału.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Konfiguracja Proxy</title>
+<title>Opcjonalnie: Konfiguracja proxy.</title>
 <body>
 
 <p>
-Jeśli korzystasz z proxy, będziesz mógł skonfigurować je w czasie instalacji.
-To bardzo proste: musisz tylko zdefiniować odpowiednią zmienną z informacjami
+Jeśli korzystasz z proxy, powinieneś skonfigurować je w czasie instalacji.
+To bardzo proste: wystarczy zdefiniować odpowiednią zmienną z informacjami
 o serwerze proxy.
 </p>
 
@@ -92,7 +91,7 @@ i portu 8080.
 </pre>
 
 <p>
-Jeżeli Twoje proxy wymaga podania nazwy użytkownika i hasła, powinieneś
+Jeżeli Twoje proxy wymaga podania nazwy użytkownika i hasła powinieneś
 użyć następującej składni:
 </p>
 
@@ -113,7 +112,7 @@ będzie to:
 </subsection>
 </section>
 <section>
-<title>Automatyczne Wykrywanie Sieci</title>
+<title>Automatyczne wykrywanie sieci.</title>
 <subsection>
 <title>Może to już działa?</title>
 <body>
@@ -123,7 +122,7 @@ Jeśli Twój komputer podłączony jest do sieci Ethernet z serwerem
 DHCP, to bardzo prawdopodobne, że została ona skonfigurowana automatycznie.
 W takim razie możesz już skorzystać z wielu narzędzi sieciowych dostępnych
 na LiveCD, takich jak <c>ssh</c>, <c>scp</c>, <c>ping</c>, <c>irssi</c>,
-<c>wget</c> oraz <c>links</c> i innych.
+<c>wget</c> czy <c>links</c>.
 </p>
 
 <p>
@@ -148,7 +147,7 @@ eth0      Link encap:Ethernet  HWaddr 00:50:BA:8F:61:7A
 </body>
 </subsection>
 <subsection>
-<title>Testowanie Sieci</title>
+<title>Testowanie sieci.</title>
 <body>
 
 <p>
@@ -163,54 +162,55 @@ serwer nazw działa prawidłowo itd...
 
 <p>
 Działa? Jeśli tak, to pomiń resztę tego rozdziału i przejdź do
-<uri link="?part=1&amp;chap=4">Przygotowywania Dysków</uri>.
-Jeśli nie, to pech, będzie nieco trudniej :)
+<uri link="?part=1&amp;chap=4">Przygotowywania dysków</uri>.
+Jeśli nie, to masz pecha i będzie nieco trudniej ;]
 </p>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Automatyczna Konfiguracja Sieci</title>
+<title>Automatyczna konfiguracja sieci.</title>
 <subsection>
 <body>
 
 <p>
-Jeśli sieć nie zadziałała od razu, niektóre media instalacyjne 
-pozwalają na korzystanie z <c>net-setup</c> (dla typowych lub bezprzewodowych sieci)
-lub <c>asdl-setup</c> (dla użytkowników ASDL) albo <c>pptp</c> (dla użytkowników PPTP - dostępne tylko dla architektury x86). <!-- lub <c>pptp</c> (dla użytkowników
-PPTP).-->
+Jeśli sieć nie zadziałała od razu niektóre media instalacyjne pozwalają na
+skorzystanie z <c>net-setup</c> (dla typowych lub bezprzewodowych sieci),
+<c>asdl-setup</c> (dla użytkowników ASDL) albo <c>pptp</c> (dla użytkowników
+PPTP - dostępne tylko dla architektury x86). <!-- lub <c>pptp</c> (dla
+użytkowników PPTP).-->
 </p>
 
 <p>
 W przypadku, gdy Twój nośnik instalacyjny nie zawiera żadnego z wymienionych
 narzędzi, lub sieć wciąż nie funkcjonuje prawidłowo, przejdź do 
-<uri link="#doc_chap4">Ręcznej Konfiguracji Sieci</uri>.
+<uri link="#doc_chap4">Ręcznej konfiguracji sieci</uri>.
 </p>
 
 <ul>
   <li>
-	 Użytkownicy typowych sieci Ethernet powinni przejść do
-    <uri link="#net-setup">Domyślnie: Używanie net-setup</uri>
+Użytkownicy typowych sieci Ethernet powinni przejść do
+<uri link="#net-setup">Domyślnie: Używanie net-setup</uri>
   </li>
   <li>
-    Użytkownicy ASDL powinni przejść do <uri link="#rp-pppoe">Alternatywnie:
-    Używanie RP-PPPoE</uri>
+Użytkownicy ASDL powinni przejść do <uri link="#rp-pppoe">Alternatywnie:
+Używanie RP-PPPoE</uri>
   </li>
   <li>
-    Użytkownicy PPTP powinni przejść do <uri link="#pptp">Alternatywnie:
-    Używanie PPTP</uri>
+Użytkownicy PPTP powinni przejść do <uri link="#pptp">Alternatywnie:
+Używanie PPTP</uri>
   </li>
 </ul>
 
 </body>
 </subsection>
 <subsection id="net-setup">
-<title>Domyślnie: Używanie net-setup</title>
+<title>Domyślnie: Używanie net-setup.</title>
 <body>
 
 <p>
-Najprostszą metodą konfiguracji sieci poza automatyczną
+Najprostszą metodą konfiguracji sieci (poza automatyczną)
 jest skorzystanie ze skryptu <c>net-setup</c>:
 </p>
 
@@ -220,31 +220,31 @@ jest skorzystanie ze skryptu <c>net-setup</c>:
 
 <p>
 Zada on kilka pytań dotyczących parametrów sieci. Kiedy
-skończy, wszystko powinno być skonfigurowane. Sprawdź
-połączenie jak opisano wyżej. Jeśli wszystko działa,
-gratulacje! Jesteś gotowy na instalację Gentoo. Pomiń
-resztę tego rozdziału i przejdź do
-<uri link="?part=1&amp;chap=4">Przygotowywania Dysków</uri>.
+skończy wszystko powinno być skonfigurowane. Sprawdź
+połączenie tak jak opisano to wyżej. Jeśli wszystko działa to gratulujemy,
+jesteś gotowy na instalację Gentoo. Pomiń resztę tego rozdziału i przejdź od
+razu do <uri link="?part=1&amp;chap=4">Przygotowywania dysków</uri>.
 </p>
 
 <p>
 Jeśli sieć wciąż nie działa, przejdź do <uri link="#doc_chap4">Ręcznej
-Konfiguracji Sieci</uri>.
+konfiguracji sieci</uri>.
 </p>
 
 
 </body>
 </subsection>
 <subsection id="rp-pppoe">
-<title>Alternatywnie: Używanie RP-PPPoE</title>
+<title>Alternatywnie: Używanie RP-PPPoE.</title>
 <body>
 
 <p>
-Zakładając, że do połączenia z Internetem możesz potrzebować PPPoE,
-na naszych LiveCD umieściliśmy <c>rp-ppoe</c>. Skorzystaj
-ze skryptu <c>asdl-setup</c> aby skonfigurować połączenie. Zostaniesz
+Jeśli do połączenia z Internetem potrzebujesz PPPoE, użyj 
+<c>rp-ppoe</c> nagranego na nasze LiveCD. Skorzystaj
+ze skryptu <c>asdl-setup</c>, aby skonfigurować połączenie. Zostaniesz
 zapytany o urządzenie sieciowe podłączone do modemu asdl, nazwę
-użytkownika i hasło, IP serwerów DNS oraz czy potrzebujesz podstawowego firewalla.
+użytkownika i hasło, oraz o IP serwerów DNS i to czy potrzebujesz podstawowego
+firewalla.
 </p>
 
 <pre caption="Używanie rp-pppoe">
@@ -253,27 +253,27 @@ użytkownika i hasło, IP serwerów DNS oraz czy potrzebujesz podstawowego firew
 </pre>
 
 <p>
-Jeśli coś pójdzie nie tak, sprawdź w <path>/etc/ppp/pap-secrets</path>
-lub <path>/etc/ppp/chap-secrets</path> czy podałeś prawidłową nazwę użytkownika
+Jeśli coś pójdzie nie tak sprawdź czy w <path>/etc/ppp/pap-secrets</path>
+lub <path>/etc/ppp/chap-secrets</path> podałeś prawidłową nazwę użytkownika
 i hasło oraz upewnij się, że wybrałeś właściwe urządzenie sieciowe.
 Jeśli nie zostało ono wykryte, będziesz musiał załadować odpowiednie sterowniki
-Przejdź w takim wypadku do 
-<uri link="#doc_chap4">Ręcznej Konfiguracji Sieci</uri> gdzie szerzej to omówimy.
+Przejdź w takim wypadku do <uri link="#doc_chap4">Ręcznej konfiguracji
+sieci</uri>, gdzie szerzej to omówimy.
 </p>
 
 <p>
-Jeżeli wszystko zadziałało, przejdź do <uri link="?part=1&amp;chap=4">Konfiguracji
-Dysków</uri>.
+Jeżeli wszystko zadziałało przejdź do <uri link="?part=1&amp;chap=4">Konfiguracji
+dysków</uri>.
 </p>
 
 </body>
 </subsection>
 <subsection id="pptp">
-<title>Alternatywnie: Używanie PPTP</title>
+<title>Alternatywnie: Używanie PPTP.</title>
 <body>
 
 <p>
-Jeśli potrzebujesz obsługi PPTP, możesz skorzystać z <c>pptpclient</c>, zamieszczonego
+Jeśli potrzebujesz obsługi PPTP, możesz skorzystać z <c>pptpclient</c> zamieszczonego
 na LiveCD. Najpierw jednak wpisz prawidłową nazwę użytkownika i hasło
 do <path>/etc/ppp/pap-secrets</path> lub <path>/etc/ppp/chap-secrets</path>:
 </p>
@@ -291,7 +291,7 @@ Następnie prawidłowo skonfiguruj <path>/etc/ppp/options.pptp</path>:
 </pre>
 
 <p>
-Kiedy skończysz, uruchom po prostu <c>pptp</c> (razem z niemożliwymi
+Kiedy skończysz uruchom po prostu <c>pptp</c> (razem z niemożliwymi
 do ustawienia w <path>options.pptp</path> opcjami) aby połączyć się z serwerem:
 </p>
 
@@ -301,32 +301,32 @@ do ustawienia w <path>options.pptp</path> opcjami) aby połączyć się z serwer
 
 <p>
 Następnie przejdź do 
-<uri link="?part=1&amp;chap=4">Przygotowywania Dysków</uri>.
+<uri link="?part=1&amp;chap=4">Przygotowywania dysków</uri>.
 </p>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Ręczna Konfiguracja Sieci</title>
+<title>Ręczna konfiguracja sieci.</title>
 <subsection>
-<title>Ładowanie Odpowiednich Modułów Sieciowych</title>
+<title>Ładowanie odpowiednich modułów sieciowych.</title>
 <body>
 
 <p>
-W czasie uruchamiania LiveCD, system próbuje wykryć Twój sprzęt i załadować
-odpowiednie sterowniki. W większości przypadków detekcja przebiega prawidłowo,
+W czasie uruchamiania LiveCD system spróbuje wykryć Twój sprzęt i załadować
+odpowiednie sterowniki. W większości przypadków wykrywanie przebiega prawidłowo,
 czasem jednak musisz skorygować ustawienia ręcznie. 
 </p>
 
 <p>
 Jeśli zawiódł <c>net-setup</c> lub <c>asdl-setup</c>, możliwe
 że nie została wykryta Twoja karta sieciowa. Oznacza to, że
-odpowiedni sterownik musisz załadować ręcznie.
+musisz załadować ręcznie odpowiedni sterownik.
 </p>
 
 <p>
-Aby wyświetlić listę modułów kernela ze wsparciem dla sieci, użyj <c>ls</c>:
+Aby wyświetlić listę modułów kernela ze wsparciem dla sieci użyj <c>ls</c>:
 </p>
 
 <pre caption="Szukanie modułów">
@@ -334,8 +334,8 @@ Aby wyświetlić listę modułów kernela ze wsparciem dla sieci, użyj <c>ls</c
 </pre>
 
 <p>
-Gdy znajdziesz sterownik do swojej karty sieciowej, użyj do jego
-załadowania <c>modprobe</c>:
+Gdy znajdziesz sterownik do swojej karty sieciowej załaduj go przy pomocy
+polecenia <c>modprobe</c>:
 </p>
 
 <pre caption="Ładowanie modułów kernela za pmocą modprobe">
@@ -344,7 +344,7 @@ załadowania <c>modprobe</c>:
 </pre>
 
 <p>
-Żeby sprawdzić czy karta została wykryta, skorzystaj z <c>ifconfig</c>.
+Żeby sprawdzić czy karta została wykryta, skorzystaj z polecenia <c>ifconfig</c>.
 Prawidłowy rezultat powinien wyglądać mniej więcej tak:
 </p>
 
@@ -368,55 +368,47 @@ eth0: error fetching interface information: Device not found
 </pre>
 
 <p>
-Jeżeli masz wiele kart sieciowych są one nazywane kolejno <e>eth0</e>, <e>eth1</e>, itp.
-Upewnij się, czy karta sieciowa której chcesz używać działa poprawnie i pamietaj o używaniu
-poprawnego nazewnictwa kontynuując czytanie tego dokumentu. My zakładamy, że Twoja karta
-sieciowa nazywa się <e>eth0</e>.
+Jeżeli masz wiele kart sieciowych mają one nazwy (kolejno) <e>eth0</e>, <e>eth1</e>, itp.
+Upewnij się czy karta sieciowa której chcesz używać działa poprawnie i pamiętaj o używaniu
+poprawnego nazewnictwa przy wykonywaniu czynności opisanych w dalszej części
+tego dokumentu. My zakładamy, że Twoja karta sieciowa nazywa się <e>eth0</e>.
 </p>
          
 <p>
 Zakładając, że karta została prawidłowo wykryta, możesz
 powtórzyć <c>net-setup</c> lub <c>asdl-setup</c> (tym razem
-powinien zadziałać), ale dla odważnych ludzi, takich jak Ty,
-wyjaśnimy jak skonfigurować sieć ręcznie.
+powinien zadziałać), lub, jeśli jesteś prawdziwym twardzielem skorzystaj z
+poniższych instrukcji, aby połączenie skonfigurować ręcznie.
 </p>
 
 <p>
-Wybierz jedną z wymienionych sekcji dotyczących sieci.
+Następnie przejdź do jednej z sekcji dotyczących sieci:
 </p>
 <ul>
-  <li><uri link="#dhcp">Używanie DHCP</uri> w celu otrzymywania IP</li>
-  <li>
-    <uri link="#wireless">Przygotowywanie do Bezprzewodowego Dostępu</uri> jeśli
-    posiadasz kartę wireless
-  </li>
-  <li>
-    <uri link="#network_term">Terminologia Sieciowa</uri> wyjaśnia
-    co powinieneś wiedzieć o działaniu sieci
-  </li>
-  <li>
-    <uri link="#ifconfig_route">Używanie ifconfig i route</uri> prezentuje
-    ręczną konfigurację sieci
-  </li>
+  <li><uri link="#dhcp">Używanie DHCP</uri> - w celu uzyskania IP.</li>
+  <li><uri link="#wireless">Przygotowywanie do bezprzewodowego dostępu</uri> - jeśli posiadasz kartę wireless.</li>
+  <li><uri link="#network_term">Terminologia sieciowa</uri>, czyli (niemal) wszystko co powinieneś wiedzieć o działaniu sieci.</li>
+  <li><uri link="#ifconfig_route">Używanie ifconfig i route</uri> - czyli opis
+  ręcznej konfiguracji sieci.</li>
 </ul>
 
 </body>
 </subsection>
 <subsection id="dhcp">
-<title>Używanie DHCP</title>
+<title>Używanie DHCP.</title>
 <body>
 
 <p>
 DHCP (Dynamic Host Configuration Protocol) umożliwia automatyczne
 otrzymywanie parametrów sieci (adresu IP, maski sieciowej,
-adresów broadcast, bramy, serwerów nazw itd.). Działa on tylko,
-gdzy w sieci pracuje serwer DHCP (lub Twój ISP dostarcza taką usługę).
+adresów broadcast, bramy, serwerów nazw itd.). Niestety Działa tylko wtedy,
+gdy w sieci pracuje serwer DHCP (lub gdy Twój ISP udostępnia taką usługę).
 Aby automatycznie skonfigurować parametry sieci skorzystaj z <c>dhcpd</c>:
 </p>
 
 <pre caption="Używanie dhcpcd">
 # <i>dhcpcd eth0</i>
-<comment>Część administratorów wymaga używania Some network admins require that you use the</comment>
+<comment>Część administratorów wymaga używania</comment>
 <comment>nazwy hosta i domeny dostarczanej przez serwer DHCP.</comment>
 <comment>W tym przypadku użyj</comment>
 # <i>dhcpcd -HD eth0</i>
@@ -425,22 +417,23 @@ Aby automatycznie skonfigurować parametry sieci skorzystaj z <c>dhcpd</c>:
 <p>
 Jeśli to zadziała (sprawdź pingując jakiś serwer internetowy, np <uri
 link="http://www.google.com">Google</uri>), to wszystko jest gotowe
-i możesz pominąć resztę tego rozdziału, przechodząc do 
-<uri link="?part=1&amp;chap=4">Przygotowywania Dysków</uri>.
+i możesz pominąć resztę tego rozdziału i przejść bezpośrednio do 
+<uri link="?part=1&amp;chap=4">Przygotowywania dysków</uri>.
 </p>
 
 </body>
 </subsection>
 <subsection id="wireless">
-<title>Przygotowanie do Bezprzewodowego Dostępu</title>
+<title>Przygotowanie do bezprzewodowego dostępu.</title>
 <body>
+
 <note>
 Część LiveCD nie zawiera programu <c>iwconfig</c>. Ich użytkownicy
 mogą mimo wszystko z niego skorzystać. Szczegółowe informacje znajdują się
-w <uri
-link="ftp://ftp.linux-wlan.org/pub/linux-wlan-ng/README">README
+w <uri link="ftp://ftp.linux-wlan.org/pub/linux-wlan-ng/README">README
 projektu linux-wlan-ng</uri>.
 </note>
+
 <p>
 Jeśli używasz karty wireless (802.11), powinieneś ją skonfigurować
 zanim przejdziesz dalej. Aby zobaczyć aktualne ustawienia, skorzystaj
@@ -460,12 +453,12 @@ eth0      IEEE 802.11-DS  ESSID:"GentooNode"
 </pre>
 
 <note>
-Nazwą urządzenia części kart wireless zamiast <c>eth0</c>, może
+Nazwą urządzenia części kart wireless, zamiast <c>eth0</c> może
 być <c>wlan0</c>.
 </note>
 
 <p>
-Dla większości użytkowników, istnieją wyłącznie dwie opcje warte modyfikacji,
+Dla większości użytkowników istnieją wyłącznie dwie opcje warte modyfikacji,
 ESSID (czyli nazwa sieci wireless) oraz klucz WEP. Jeśli wyświetlone ESSID i
 Access Point są prawidłowe dla twojego punktu dostępu, a Ty nie korzystasz
 z WEP, to twoja sieć już działa. Jeżeli musisz zmodyfikowaś ESSID lub
@@ -487,14 +480,14 @@ dodać klucz WEP, skorzystaj z następujących poleceń:
 Możesz potwierdzić te ustawienia ponownie wykonując <c>iwconfig</c>.
 Jeżeli sieć już działa, możesz przejść do konfiguracji opcji
 na poziomie IP, opisanych w kolejnej sekcji (<uri
-link="#network_term">Understanding Network Terminology</uri>) lub
+link="#network_term">Terminologia sieciowa</uri>) lub
 wykorzystać omówiony wcześniej program <c>net-setup</c>.
 </p>
 
 </body>
 </subsection>
 <subsection id="network_term">
-<title>Terminologia Sieciowa</title>
+<title>Terminologia sieciowa.</title>
 <body>
 
 <note>
@@ -512,7 +505,7 @@ jak ustala się adres <e>broadcast</e> i do czego potrzebujesz <e>serwerów nazw
 </p>
 
 <p>
-W sieci, komputery identyfikowane są na podstawie <e>adresów IP</e>
+Komputery w sieci są identyfikowane na podstawie <e>adresów IP</e>
 (Internet Protocol adress). Każdy z nich jest kombinacją czterech
 liczb od 0 do 255. Cóż, przynajmniej tak to widzimy. W rzeczywistości
 jest to ciąg 32 bitów (zer i jedynek). Pokażemy to na przykładzie:
@@ -526,13 +519,13 @@ Adres IP (bity):     11000000 10101000 00000000 00000010
 </pre>
 
 <p>
-Adres IP musi być unikalny dla każdego komputera, przynajmniej w obrębie sieci.
-Aby oddzielić maszyny w sieci i poza nią, IP podzielono na dwie części:
+Adres IP musi być unikalny dla każdego komputera, przynajmniej w obrębie jednej sieci.
+Aby oddzielić maszyny w sieci i poza nią IP podzielono na dwie części:
 część <e>sieci</e> oraz część <e>hosta</e>.
 </p>
 
 <p>
-Podział zapisany jest za pomocą <e>maski sieciowej</e>, zbioru
+Podział zapisany jest za pomocą <e>maski sieciowej</e>, czyli zbioru
 zer poprzedzonego zbiorem jedynek. Ta część adresu, którą można
 odwzorować w jedynkach jest częścią sieci, reszta to część hosta.
 Zazwyczaj maskę zapisujemy jak zwykły adres IP.
@@ -555,7 +548,7 @@ ale 192.168.1.2 już nie.
 <p>
 Adres <e>broadcast</e> składa się z części sieci takiej samej
 jak reszta komputerów oraz samych jedynek w części hosta. Każdy
-komputer nasłuchuje jego adresu IP, gdzyż służy on do pakietów
+komputer nasłuchuje jego adresu IP, gdzyż służy on do nadawania pakietów
 rozgłaszających.
 </p>
 
@@ -576,19 +569,19 @@ To zwyczajna maszyna ze zwyczajnym adresem IP (np. 172.168.0.1).
 
 <p>
 Poprzednio napisaliśmy, że każdy komputer ma własny adres IP.
-Aby móc się z nim połączyć za pomocą nazwy, potrzebujesz
-usługi tłumaczącej domeny (jak <e>dev.gentoo.org</e>) na adresy IP
-(jak <e>64.5.62.82</e>). Nazywa się ona serwerem nazw.
-Aby z niego skorzystać, dodaj go do <path>/etc/resolv.conf</path>.
+Aby móc się z nim połączyć za pomocą nazwy potrzebujesz
+usługi tłumaczącej domeny (czyli na przykład <e>dev.gentoo.org</e>) na adresy IP
+(np. <e>64.5.62.82</e>). Nazywa się ona serwerem nazw.
+Aby z niej skorzystać dodaj ją do <path>/etc/resolv.conf</path>.
 </p>
 
 <p>
-Czasami, Twoja brama może służyć również jako serwer nazw. Jeśli 
+Czasami Twoja brama może służyć również jako serwer nazw. Jeśli 
 nie, to musisz wpisać adresy DNSów dostarczanych przez ISP.
 </p>
 
 <p>
-Podsumowując, potrzebujesz następujących informacji:
+Podsumowując potrzebujesz następujących informacji:
 </p>
 
 <table>
@@ -621,18 +614,18 @@ Podsumowując, potrzebujesz następujących informacji:
 </body>
 </subsection>
 <subsection id="ifconfig_route"> 
-<title>Używanie ifconfig i route</title>
+<title>Używanie ifconfig i route.</title>
 <body>
 
 <p>
 Konfiguracja sieci składa się z trzech etapów. Najpierw
-przypisujemy sobie adres IP, za pomocą <c>ifconfig</c>. Potem
+przypisujemy sobie adres IP za pomocą <c>ifconfig</c>. Potem
 konfigurujemy bramę programem <c>route</c>. Na końcu wpisujemy
 adresy serwerów nazw do <path>/etc/resolv.conf</path>.
 </p>
 
 <p>
-Aby przypisać sobie adres IP, musisz oprócz niego znać broadcast
+Aby przypisać sobie adres IP musisz oprócz niego znać również broadcast
 i maskę. Następnie wykonaj następujące polecenie, zastępując
 <c>${IP_ADDR}</c> swoim IP, <c>${BROADCAST}</c> swoim adresem
 broadcast i <c>${NETMASK}</c> maską:
@@ -672,11 +665,11 @@ nameserver ${NAMESERVER2}
 </pre>
 
 <p>
-Teraz przetestuj sieć pingując jakiś serwer Internetowy (
+Teraz przetestuj sieć pingując jakiś serwer internetowy (
 na przykład
 <uri link="http://www.google.com">Google</uri>). Jeśli wszystko działa,
 gratulacje. Jesteś gotów na instalację Gentoo, przejdź do
-<uri link="?part=1&amp;chap=4">Przygotowywania Dysków</uri>.
+<uri link="?part=1&amp;chap=4">Przygotowywania dysków</uri>.
 </p>
 
 </body>
