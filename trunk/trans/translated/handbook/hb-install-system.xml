@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.66 -->
+<!-- Orig revision: 1.67 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Instalacja systemu podstawowego -->
 <!-- Status: Release -->
@@ -10,12 +10,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.21 2004/12/22 14:36:56 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.22 2004/12/23 21:35:37 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.60</version>
-<date>2004-12-16</date>
+<version>1.62</version>
+<date>2004-12-22</date>
 
 <section>
 <title>Praca w chroot.</title>
@@ -220,7 +220,7 @@ USE="-gtk -gnome qt kde dvd alsa cdr"
 Najprawdopodobniej będziesz używał tylko jedej albo dwóch lokalizacji na swoim systemie.
 Po kompilacji <c>glibc</c> dostępne są wszystkie lokalizacje jakie zostały stworzone.
 Możesz teraz aktywować flagę USE <c>userlocales</c> i zdecydować w pliku
-<path>/etc/locales.build</path>, których lokali będziesz tak naprawdę potrzebował.
+<path>/etc/locales.build</path>, których lokali będziesz tak naprawdę potrzebował. 
 </p>
 
 <pre caption="Aktywacja flagi userlocales specjalnie dla glibc">
@@ -230,6 +230,10 @@ Możesz teraz aktywować flagę USE <c>userlocales</c> i zdecydować w pliku
 
 <p>
 Teraz zdecyduj, których lokali będziesz używał:
+</p>
+
+<p>
+Poniższe lokale są przykładem wyboru lokali angielskich (Ameryka) oraz polskich wraz z kodowaniami zapisu znaków (jak UTF-8)
 </p>
 
 <pre caption="nano -w /etc/locales.build">
