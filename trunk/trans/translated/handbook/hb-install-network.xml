@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.27 -->
+<!-- Orig revision: 1.28 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Sieci -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-network.xml,v 1.14 2004/03/13 07:27:52 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-network.xml,v 1.15 2004/03/19 06:06:32 lcs Exp $ -->
 
 <sections>
 <section>
@@ -171,9 +171,9 @@ Jeśli nie, to pech, będzie nieco trudniej :)
 
 <p>
 Jeśli sieć nie zadziałała od razu, niektóre media instalacyjne 
-pozwalają na korzystanie z <c>net-setup</c> (dla typowych sieci),
-<c>asdl-setup</c> (dla użytkowników ASDL) lub <c>pptp</c> (dla użytkowników
-PPTP).
+pozwalają na korzystanie z <c>net-setup</c> (dla typowych sieci)
+lub <c>asdl-setup</c> (dla użytkowników ASDL). <!-- lub <c>pptp</c> (dla użytkowników
+PPTP).-->
 </p>
 
 <p>
@@ -185,21 +185,21 @@ narzędzi, lub sieć wciąż nie funkcjonuje prawidłowo, przejdź do
 <ul>
   <li>
 	 Użytkownicy typowych sieci Ethernet powinni przejść do
-    <uri link="#doc_chap3_sect2">Domyślnie: Używanie net-setup</uri>
+    <uri link="#net-setup">Domyślnie: Używanie net-setup</uri>
   </li>
   <li>
-    Użytkownicy ASDL powinni przejść do <uri link="#doc_chap3_sect3">Alternatywnie:
+    Użytkownicy ASDL powinni przejść do <uri link="#rp-pppoe">Alternatywnie:
     Używanie RP-PPPoE</uri>
   </li>
-  <li>
-    Użytkownicy PPTP powinni przejść do <uri link="#doc_chap3_sect4">Alternatywnie:
+<!--  <li>
+    Użytkownicy PPTP powinni przejść do <uri link="#pptp">Alternatywnie:
     Używanie PPTP</uri>
-  </li>
+  </li>-->
 </ul>
 
 </body>
 </subsection>
-<subsection>
+<subsection id="net-setup">
 <title>Domyślnie: Używanie net-setup</title>
 <body>
 
@@ -229,7 +229,7 @@ Konfiguracji Sieci</uri>.
 
 </body>
 </subsection>
-<subsection>
+<subsection id="rp-pppoe">
 <title>Alternatywnie: Używanie RP-PPPoE</title>
 <body>
 
@@ -262,7 +262,7 @@ Dysków</uri>.
 
 </body>
 </subsection>
-<subsection>
+<!--<subsection id="pptp">
 <title>Alternatywnie: Używanie PPTP</title>
 <body>
 
@@ -300,6 +300,7 @@ Następnie przejdź do
 
 </body>
 </subsection>
+-->
 </section>
 <section>
 <title>Ręczna Konfiguracja Sieci</title>
