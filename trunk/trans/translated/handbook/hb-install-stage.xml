@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.36 -->
+<!-- Orig revision: 1.37 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Przygotowanie Plików Instalacyjnych Gentoo -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.6 2004/03/09 10:56:02 veng Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.7 2004/03/16 10:07:39 veng Exp $ -->
 
 <sections>
 <section>
@@ -20,8 +20,8 @@
 
 <p>
 W następnym kroku powinieneś wykonać instalację wybranego tarballa <e>stage</e>.
-Możesz go pobrać z Internetu lub, jeśli działasz z jednego z naszych LiveCD,
-przekopiować go z CD.
+Możesz go pobrać z Internetu lub, jeśli działasz spod którejś płytki 
+Gentoo Universal LiveCD, przekopiować go z CD.
 </p>
 
 <ul>
@@ -186,9 +186,9 @@ Gdy stage zostanie zainstalowany, przejdź do
 Jeśli nie masz działającego połączenia internetowego, będziesz musiał 
 zainstalować dostarczoną na jednym z naszych LiveCD migawkę portage.
 Jeżeli chcesz później używać spreparowanych paczek, by przyspieszyć 
-instalację, <e>musisz</e> użyć tej migawki, dostępnej na LiveCD
-czy też na jednym z naszych mirrorów. Inni użytkownicy pobiorą w pełni 
-aktualne drzewo Portage dzięki <c>emerge</c> nieco dalej.
+instalację, <e>musisz</e> użyć migawki dostępnej na LiveCD. 
+Inni użytkownicy pobiorą w pełni aktualne drzewo Portage dzięki 
+<c>emerge</c> nieco dalej.
 </p>
  
 <p>
@@ -200,10 +200,6 @@ Kontynuujemy poprzez odpowiednią część:
 <uri link="#installing_from_LiveCD">Instalacja migawki Portage i kodu 
 źródłowego z LiveCD</uri> (dla instalacji bez użycia sieci lub 
 z wykorzystaniem GRP)
-</li>
-<li>
-<uri link="#installing_from_Internet">Instalacja migawki Portage z serwera
-zwierciadlanego Gentoo</uri> (dla instalacji GRP)
 </li>
 <li>
 <uri link="#compile_options">Konfiguracja opcji kompilacji</uri>
@@ -218,8 +214,9 @@ zwierciadlanego Gentoo</uri> (dla instalacji GRP)
 <body>
 
 <p>
-Na LiveCD znajduje się migawka Portage. Skoro czytasz ten tekst, możemy bezpiecznie założyć,
-że używasz tej płyty. Przejrzyj katalog <path>/mnt/cdrom/snapshots/</path> i zobacz,
+Na płytkach Universal LiveCD znajduje się migawka Portage. Skoro czytasz 
+ten tekst, możemy bezpiecznie założyć, że używasz takiej płyty. 
+Przejrzyj katalog <path>/mnt/cdrom/snapshots/</path> i zobacz,
 co tam dla Ciebie przygotowaliśmy:
 </p>
 
@@ -255,43 +252,8 @@ link="#compile_options">Konfiguracji opcji kompilacji</uri>.
 
 </body>
 </subsection>
-<subsection id="installing_from_Internet">
-<title>Instalacja migawki Portage z serwera zwierciadlanego </title>
-<body>
-
-<p>
-By instalacja z użyciem GRP zakończyła się sukcesem, musisz pobrać odpowiednią
-migawkę Portage. Przejdź za pomocą programu <c>lynx</c> (lub <c>links2</c>)
-do jednego z naszych <uri link="/main/en/mirrors.xml">mirrorów</uri>
-i ściągnij plik z katalogu <path>snapshots</path>. 
-Upewnij się, iż znajdujesz się w <path>/mnt/gentoo</path> by został on 
-zapisany na dysk.
-</p>
-
-<pre caption="Pobieranie migawki Portage">
-# <i>cd /mnt/gentoo</i>
-# <i>lynx http://www.gentoo.org/main/en/mirrors.xml</i>
-</pre>
-
-<p>
-A teraz rozpakuj migawkę wykorzystując podane polecenie.
-Ponownie musisz upewnić się, że używasz właściwych opcji polecenia
-<c>tar</c>. Zwróć uwagę na to, że <c>-C</c> występuje z wielką <c>C</c>,
-a nie z <c>c</c>. W następnym przykładzie nazwą naszej migawki jest <path>portage-20031011.tar.bz2</path>. Dopasuj i ją odpowiednio.
-</p>
- 
-<pre caption="Rozpakowanie migawki Portage">
-# <i>tar -xvjf /mnt/gentoo/portage-20031011.tar.bz2 -C /mnt/gentoo/usr</i>
-</pre>
- 
-<p>
-Gdy zainstalujesz migawkę Portage, przejdź do <uri
-link="#compile_options">Konfiguracji opcji kompilacji</uri>.
-</p>
-
-</body>
-</subsection>
 </section>
+
 <section id="compile_options">
 <title>Konfiguracja opcji kompilacji</title>
 <subsection>
