@@ -1,0 +1,498 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- Orig revision: 1.4 -->
+<!-- Translator: sekretarz <sekretarz@dukato.net> -->
+<!-- Title: Instalacja jądra dla alpha -->
+<!-- Status: Ukończono -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-kernel.xml,v 1.1 2004/07/13 08:10:54 sekretarz Exp $ -->
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<sections>
+<section>
+<title>Strefa czasowa</title>
+<body>
+
+<p>
+Musisz najpierw ustawić swoją strefę czasową, żeby system wiedział gdzie się znajduje.
+Znajdz swoją strefę czasową w <path>/usr/share/zoneinfo</path> i zrób dowiązanie
+do <path>/etc/localtime</path> używając <c>ln</c>:
+</p>
+
+<pre caption="Ustawienie informacji o strefie czasowej">
+# <i>ls /usr/share/zoneinfo</i>
+<comment>(Przypuśćmy, że chcesz używać strefy czasowej GMT)</comment>
+# <i>ln -sf /usr/share/zoneinfo/GMT /etc/localtime</i>
+</pre>
+
+</body>
+</section>
+<section>
+<title>Instalacja Źródeł</title>
+<subsection>
+<title>Wybór Jądra</title>
+<body>
+
+<p>
+Sercem każdej dystrybucji jest jądro Linuxa. Jest ono powłoką pomiedzy programami użytkownika i sprzętem. 
+Gentoo udostępnia swoim użytkownikom kilka źródeł jąder. Ich pełną listę wraz z opisem możesz znaleźć w
+<uri link="/doc/en/gentoo-kernel.xml">Podręczniku Jąder Linuxa</uri>
+</p>
+
+<p>
+Dla architektury alpha przygotowaliśmy kilka rodzajów jąder: <c>vanilla-sources</c> (standartowe jądro
+rozwijane przez programistów linuxa), <c>alpha-sources</c> (źródła jądra z optymilizacjami dla użytkowników alpha),
+i <c>compaq-sources</c> (jądro używane przez RedHata dla architektury Alpha, zarządzane przez Compaq).
+</p>
+
+<p>
+Wybierz jądro i zainstaluj je.
+</p>
+
+<p>
+W następnym przykładzie zainstalujemy jądro <c>vanilla-sources</c>.
+Możesz je zastąpić jakim chcesz z wymienionych powyżej jąder:
+</p>
+
+<pre caption="Instalacja źródeł jądra">
+# <i>emerge vanilla-sources</i>
+</pre>
+
+<p>
+Jeżeli wejdziesz do <path>/usr/src</path> powinneś zobaczyć dowiązanie symboliczne nazwane 
+<path>linux</path> wskazujące na źródła Twojego jądra:
+</p>
+
+<pre caption="Podgląd dowiązania symbolicznego do źródeł jądra">
+# <i>ls -l /usr/src/linux</i>
+lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.4.24
+</pre>
+
+<p>
+Jeżeli nie jest on poprawny (np. dowiązanie wskazuje na źródła innego jądra),
+zmień je przed kontynuacją:
+</p>
+
+<pre caption="Zmiana dowiązania do źródeł jądra">
+# <i>rm /usr/src/linux</i>
+# <i>cd /usr/src</i>
+# <i>ln -s linux-2.4.24 linux</i>
+</pre>
+
+<p>
+Teraz przyszedł czas na konfigurację i kompilację źródeł Twojego jądra.
+Do tego celu możesz użyć <c>genkernela</c>, który zbuduje podstawowe jądro, takie
+jakie używa LiveCD. Najpierw jednak wytłumaczymy ręczną konfigurację, ponieważ
+jest to najlepszy sposób na optymilizację swojego środowiska.
+</p>
+
+<p>
+Jeżeli chcesz ręcznie skonfigurować jądro, przejdź do <uri
+link="#manual">Domyślnie: Ręczna konfiguracja</uri>. Jeżeli chcesz skorzystać z <c>genkernela</c>
+powinneś przeczytać <uri link="#genkernel">Alternatywa: Używanie genkernela</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+<section id="manual">
+<title>Domyślnie: Ręczna konfiguracja</title>
+<subsection>
+<title>Wstęp</title>
+<body>
+
+<p>
+Ręczna konfiguracja jądra jest często uważana za najtrudnieją rzecz, przez którą musi
+przejść użytkownik Linuxa. Nic bardziej mylnego -- po skonfigurowaniu kilku jąder
+nie bedziesz pamietał jakie to było trudne ;)
+</p>
+
+<p>
+Jednak, jadno <e>jest</e> prawdą: musisz dobrze znać swój system zanim 
+zaczniesz ręczną konfigurację jądra. Wiekszość informacji możesz zdobyć czytając
+zawartość <path>/proc/pci</path> (albo używając <c>lspci</c> jeżeli jest dostępne).
+Możesz także uruchomić <c>lsmod</c>, aby zobaczyć jakich modułów używa LiveCD (jest to dobrą podpowiedzią co należy włączyć).
+</p>
+
+<p>
+Teraz przejdź do katalogu, w którym znajdują się źródła jądra i wykonaj <c>make menuconfig</c>. Odpali
+się menu konfiguracyjne oparte na ncurses.
+</p>
+
+<pre caption="Wywołanie menuconfiga">
+# <i>cd /usr/src/linux</i>
+# <i>make menuconfig</i>
+</pre>
+
+<p>
+Zostaniesz przywitany kilkoma sekcjami konfiguracyjnymi. Wymienimy najpierw opcje,
+które musisz aktywować (w innym przypadku Gentoo nie zadziała, albo będzie działać
+niepoprawnie bez dodatkowych udogodnień).
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Aktywacja potrzebych opcji</title>
+<body>
+
+<p>
+Na początku, musisz uaktywnić używanie rozwijanego oraz eksperymentalnego kodu/sterowników,
+aby niektóre bardzo ważne sterowniki pokazały się w menu: 
+</p>
+
+<pre caption="Wybór eksperymentalnego kodu/sterowników">
+Code maturity level options ---&gt;
+  [*] Prompt for development and/or incomplete code/drivers
+</pre>
+
+<p>
+Teraz idź do <c>File Systems</c> i wybierz wsparcie dla systemów plików, których używasz.
+<e>Nie</e> kompiluj ich jako modułów, inaczej Gentoo nie będzie mogło zamontować Twoich partycji.
+Wybierz także <c>Virtual memory</c>, <c>/proc file system</c>, 
+<c>/dev file system</c> + <c>Automatically mount at boot</c>:
+</p>
+
+<pre caption="Wybór potrzebnych systemów plików">
+<comment>(W jądrach z serii 2.4.x)</comment>
+File systems ---&gt;
+  [*] Virtual memory file system support (former shm fs)
+  [*] /proc file system support
+  [*] /dev file system support (EXPERIMENTAL)
+  [*]   Automatically mount at boot
+  [ ] /dev/pts file system for Unix98 PTYs
+
+<comment>(W jądrach z serii 2.6.x)</comment>
+File systems ---&gt;
+  Pseudo Filesystems ---&gt;
+    [*] /proc file system support
+    [*] /dev file system support (OBSOLETE)
+    [*]   Automatically mount at boot
+    [*] /dev/pts file system for Unix98 PTYs
+    [*] Virtual memory file system support (former shm fs)
+
+<comment>(Wybierz jedną lub więcej z poniższych opcji potrzebnych Twojemu systemowi)</comment>
+  &lt;*&gt; Reiserfs support
+  &lt;*&gt; Ext3 journalling file system support
+  &lt;*&gt; JFS filesystem support
+  &lt;*&gt; Second extended fs support
+  &lt;*&gt; XFS filesystem support
+</pre>
+
+<p>
+Jeżeli używasz PPPoE do połączenia się z Internetem albo używasz modemu dial-up,
+musisz zaznaczyć te opcje w jądrze:
+</p>
+
+<pre caption="Wybór potrzebych sterowników PPPoE">
+<comment>(W jądrach z serii 2.4.x)</comment>
+Network device support ---&gt;
+  &lt;*&gt; PPP (point-to-point protocol) support
+  &lt;*&gt;   PPP support for async serial ports
+  &lt;*&gt;   PPP support for sync tty ports
+
+<comment>(W jądrach z serii 2.6.x)</comment>
+Device Drivers ---&gt;
+  Networking support ---&gt;
+    &lt;*&gt; PPP (point-to-point protocol) support
+    &lt;*&gt;   PPP support for async serial ports
+    &lt;*&gt;   PPP support for sync tty ports
+</pre>
+
+<p>
+Dwie opcje do kompresji nie zaszkodzą, ale nie są one również wymagane. Podobnie jak <c>PPP over Ethernet</c>,
+przydatna tylko wówczas, kiedy do pracy w trybie jądra PPPoE zostanie skonfigurowany <c>rp-pppoe</c>.
+</p>
+
+<p>
+Nie zapomnij też o włączeniu obsługi Twojej karty sieciowej w jądrze.
+</p>
+
+<p>
+Następujące opcje są rekomendowana do użycia z architekturą alpha:
+</p>
+
+<pre caption="Opcje specyficzne dla alpha">
+General setup ---&gt;
+  &lt;*&gt; SRM environment through procfs
+  &lt;*&gt; Configure uac policy via sysctl
+  
+Plug and Play configuration ---&gt;
+  &lt;*&gt; Plug and Play support 
+  &lt;M&gt;   ISA Plug and Play support
+  
+SCSI support ---&gt;
+  SCSI low-level drivers ---&gt;
+     &lt;*&gt; SYM53C8XX Version 2 SCSI support (NEW)
+     &lt;*&gt; Qlogic ISP SCSI support
+     
+Network device support ---&gt;
+  Ethernet (10 or 100 Mbit) ---&gt;
+    &lt;M&gt; DECchip Tulip (dc21x4x) PCI support
+    &lt;M&gt; Generic DECchip &amp; DIGITAL EtherWORKS PCI/EISA
+    &lt;M&gt; EtherExpressPro/100 support (eepro100)
+    &lt;M&gt; EtherExpressPro/100 support (e100)
+  Ethernet (1000 Mbit) ---&gt;
+    &lt;M&gt; Alteon AceNIC
+      [*] Omit support for old Tigon I
+    &lt;M&gt; Broadcom Tigon3
+  [*] FDDI driver support
+  &lt;M&gt; Digital DEFEA and DEFPA
+  &lt;*&gt; PPP support
+    &lt;*&gt; PPP Deflate compression
+    
+Character devices ---&gt; 
+  [*] Support for console on serial port
+  [*] Direct Rendering Manager
+
+File systems ---&gt;
+  &lt;*&gt; Kernel automounter version 4 support
+  Network File Systems ---&gt;
+    &lt;*&gt; NFS
+      [*] NFSv3 client
+      &lt;*&gt; NFS server
+      [*] NFSv3 server
+  Partition Types ---&gt;
+    [*] Advanced partition selection
+    [*] Alpha OSF partition support
+  Native Language Support
+    &lt;*&gt; NLS ISO 8859-1
+
+Sound ---&gt;
+  &lt;M&gt; Sound card support
+    &lt;M&gt; OSS sound modules
+      [*] Verbose initialisation
+      [*] Persistent DMA buffers
+      &lt;M&gt; 100% Sound Blaster compatibles
+</pre>
+
+<p>
+Przejdź teraz do <uri
+link="#compiling">Kompilacji i Instalacji</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection id="compiling">
+<title>Kompilacja i Instalacja</title>
+<body>
+
+<p>
+Teraz, kiedy Twóje jądro jest skonfigurowane, przyszedł czas na jego kompilację i instlację. Wyjdź
+z menu konfiguracji i uruchom <c>make dep &amp;&amp; make vmlinux modules 
+modules_install</c>:
+</p>
+
+<pre caption="Kompilacja jądra">
+<comment>(Dla jąder z serii 2.4)</comment>
+# <i>make dep &amp;&amp; make vmlinux modules modules_install</i>
+
+<comment>(Dla jąder z serii 2.6)</comment>
+# <i>make &amp;&amp; make modules_install</i>
+</pre>
+
+<p>
+Kiedy kompilacja zakończy się, skopiuj obraz jądra do <path>/boot</path>.
+W następnym przykładzie akładamy, że instalujesz <c>vanilla-sources-2.4.24</c>:
+</p>
+
+<pre caption="Instalacja jądra">
+# <i>cp vmlinux /boot/kernel-2.4.24</i>
+# <i>cp System.map /boot/System.map-2.4.24</i>
+</pre>
+
+<p>
+Na wszelki wypadek, dobrze jest też skopiować plik konfiguracyjny jądra do <path>/boot</path> :)
+</p>
+
+<pre caption="Archiwizacja pliku konfiguracyjnego">
+# <i>cp .config /boot/config-2.4.24</i>
+</pre>
+
+<p>
+Teraz kontynuuj z <uri link="#kernel_modules">Instalacja Dodatkowych Modułów Jądra</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+<section id="genkernel">
+<title>Alternatywa: Używanie genkernela</title>
+<body>
+
+<p>
+Skoro czytasz tą sekcję, zapewnie zdecydowałeś się skorzystać ze 
+skryptu <c>genkernel</c> do automatycznej konfiguracji jądra.
+</p>
+
+<p>
+Po zainstalowaniu źródeł jądra, nadszedł czas na ich kompilację używając skryptu <c>genkernel</c>, który
+automatycznie skompiluje za Ciebie jądro. <c>Genkernel</c> dokonuje podobnej konfiguracji
+z jakiej korzysta LiveCD. Oznacza to, że jeżeli go użyjesz, Twój system będzie automatycznie wykrywał sprzęt
+podczas startu systemu. Ponieważ genkernel nie wymaga żadnej ręcznej ingerencji w konfigurację jądra,
+jest on idealnym rozwiązaniem dla użytkowników, którzy nie lubią samodzielnej kompilacji jądra.
+</p>
+
+<p>
+Zatem, do dzieła. Zacznijmy od instalacji naszego skryptu:
+</p>
+
+<pre caption="Instalacja genkernela">
+# <i>emerge genkernel</i>
+</pre>
+
+<p>
+Teraz skompiluj swoje jądro poleceniem <c>genkernel all</c>.
+Zwróć uwagę, iż <c>genkernel</c> aktywuje wsparcie dla niemal całego
+obsługiwanego sprzętu, wobec czego kompilacja może trwać dosyć długo!
+</p>
+
+<p>
+Zauważ, że jeżeli Twoja partycja boot nie korzysta z systemu plików ext2 lub ext3, musisz ręcznie 
+skonfigurować jądro poleceniem <c>genkernel --menuconfig all</c> i włączyć wsparcie dla odpowiedniego
+systemu plików (<e>Nie</e> jako moduł).
+</p>
+
+<pre caption="Uruchamianie genkernela">
+# <i>genkernel all</i>
+GenKernel v3.0.1_beta10
+* ARCH: Alpha
+* KERNEL VER: 2.4.24
+* kernel: configuring source
+* kernel: running mrproper
+<comment>(Output removed to increase readability)</comment>
+* Kernel compiled successfully!
+* Required Kernel Params:
+*   : root=/dev/ram0 init=/linuxrc real_root=/dev/$ROOT
+*     where $ROOT is the devicenode for your root partition as
+*     you should have specified in /etc/fstab
+*
+* You MUST tell your bootloader to use the generated initrd
+*
+* Recommended Kernel Params:
+*   : vga=0x317 splash=verbose
+*                                                                                                                                                            
+* Do NOT report kernel bugs (configs included) as genkernel bugs.
+* Make sure you have the latest genkernel before reporting bugs
+*
+* For more info see /usr/share/genkernel/README
+</pre>
+
+<p>
+Gdy proces dobiegnie końca,gotowe będzie jądro, pełen zestaw modułów oraz <e>dysk startowy</e> (initrd).
+Będziemy używać jądra oraz initrd kiedy będziemy konfigurować menedżer uruchamiania. Zapisz sobie ich nazwy, aby
+wiedzieć co wpisać w jego pliku konfiguracyjnym. Initrd zostanie załadowany od razu po starcie systemu i 
+przeprowadzi automatyczne wykrywanie sprzętu (tak jak na LiveCD).
+</p>
+
+<pre caption="Sprawdzenie nazwy obrazy jądra i initrd">
+# <i>ls /boot/kernel* /boot/initrd*</i>
+</pre>
+
+<p>
+Teraz, wykonajmy kolejny krok aby upodobnić nasz system do LiveCD -- zainstalujmy <c>hotplug</c>.
+Podczas, gdy initrd wykrywa sprzęt potrzeby do startu systemu, <c>hotplug</c> wykryje całą resztę.
+Aby zainstalować i włączyc <c>hotplug</c>, wydaj następujące polecenia:
+</p>
+
+<pre caption="Instlacja i aktywacja hotplug">
+# <i>emerge hotplug</i>
+# <i>rc-update add hotplug default</i>
+</pre>
+
+</body>
+</section>
+<section id="kernel_modules">
+<title>Instalacja Dodatkowych Modułów Jądra</title>
+<subsection>
+<title>Instalacja Dodatkowych Modułów</title>
+<body>
+
+<p>
+Standartowe jądro nie obsługuje wszystkich dostępnych urządzeń, które znajdują się
+w Twoim systemie. Oto lista ebuildów, które instalują dodatkowe moduły jądra:
+</p>
+
+<table>                                                                        
+<tcolumn width="1in"/>                                                         
+<tcolumn width="4in"/>                                                         
+<tcolumn width="2in"/>                                                         
+<tr>                                                                           
+  <th>Ebuild</th>                                                              
+  <th>Urządzenie</th>                                                             
+  <th>Polecenie</th>                                                             
+</tr>                                                                          
+<tr>                                                                           
+  <ti>xfree-drm</ti>                                                           
+  <ti>                                                                         
+    Wspierający akcelerację grafiki dla ATI Radeona aż do wersji 9200, Rage128, Matroxa,
+    Voodoo i innych kart graficznych dla XFree86. Sprawdź zmienną <c>IUSE_VIDEO_CARDS</c>
+    w ebuildzie <path>/usr/portage/x11-base/xfree-drm</path>, aby zobaczyć jak należy
+    ją wypełnić dla <c>Twojej karty</c>
+  </ti>                                                                        
+  <ti><c>VIDEO_CARDS="Twoja karta graficzna" emerge xfree-drm</c></ti>                      
+</tr>                                                                          
+</table>                   
+
+<p>
+Część z wymienionych pakietów posiada spore zależności. Aby zobaczyć pełną listę wymagań
+danego ebuilda, skorzystaj z <c>emerge --pretend</c>. Dla przykładu pokażemy listę zależności
+dla <c>xfree-drm</c>:
+</p>
+
+<pre caption="Wyświetlanie pełnej listy instalowanych pakietów">
+# <i>emerge --pretend xfree-drm</i>
+</pre>
+</body>
+</subsection>
+<subsection>
+<title>Konfiguracja modułów</title>
+<body>
+
+<p>
+Powinneś wpisać listę modułów do <path>/etc/modules.autoload.d/kernel-2.4</path> (albo <path>kernel-2.6</path>), które mają być ładowane automatycznie
+podczas startu. Jeżeli chcesz możesz także dodać dodatkowe opcje do modułów.
+</p>
+
+<p>
+Aby zobaczyć listę dostępnych modułów, uruchom polecenie <c>find</c>. Nie zapomnij o
+zmianie "&lt;wersji jądra&gt;" wersją, którą przed chwilą skompilowałeś:
+</p>
+
+<pre caption="Wyświetlanie listy dostępnych modułów">
+# <i>find /lib/modules/&lt;kernel version&gt;/ -type f -iname '*.o' -or -iname '*.ko'</i>
+</pre>
+
+<p>
+Na przykład, aby automatycznie załadować moduł <c>c59x.o</c>, wpisz jego nazwę do pliku
+<path>kernel-2.4</path> albo <path>kernel-2.6</path>
+</p>
+
+<pre caption="Edycja/etc/modules.autoload.d/kernel-2.4">
+<comment>(Przykład dla jąder z serii 2.4)</comment>
+# <i>nano -w /etc/modules.autoload.d/kernel-2.4</i>
+</pre>
+
+<pre caption="/etc/modules.autoload.d/kernel-2.4 albo kernel-2.6">
+3c59x
+</pre>
+
+<p>
+Teraz uruchom <c>modules-update</c> aby zaktualizować plik <path>/etc/modules.conf</path>:
+</p>
+
+<pre caption="Uruchomienie modules-update">
+# <i>modules-update</i>
+</pre>
+
+<p>
+Przejdź teraz do <uri link="?part=1&amp;chap=8">Konfiguracji Systemu</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+</sections>
