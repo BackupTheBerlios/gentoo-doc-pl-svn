@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.22 -->
+<!-- Orig revision: 1.26 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Sieci -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-network.xml,v 1.12 2004/02/22 09:45:55 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-network.xml,v 1.13 2004/03/10 07:14:36 lcs Exp $ -->
 
 <sections>
 <section>
@@ -27,19 +27,9 @@ myślach =)
 <p>
 Zasadniczo powinieneś skonfigurować sieć (oraz Internet),
 aczkolwiek Gentoo umożliwia przeprowadzenie instalacji
-bez aktywnego połączenia. Wyjątek ten dotyczy następujących
-nośników instalacyjnych:
+bez aktywnego połączenia. Wyjątek ten dotyczy wyłącznie
+Gentoo Universal LiveCD.
 </p>
-
-<ul>
-  <li>
-    Gentoo x86 2-CD Installation LiveCD Set (włączając x86, i686, pentium3, 
-    pentium4 oraz athlon-xp)
-  </li>
-  <li>
-    Gentoo PPC 2-CD Installation LiveCD Set (włączając G3 oraz G4)
-  </li>
-</ul>
 
 </body>
 </subsection>
@@ -56,14 +46,15 @@ lub nie chcą instalować systemu na komputerze podłączonym do Internetu.
 
 <p>
 Jeśli znajdujesz się w takiej właśnie sytuacji, będziesz musiał
-skorzystać z naszych dwupłytowych zestawów. Zawierają one kody
+skorzystać z Gentoo Universal LiveCD. Zawierają one kody
 źródłowe, migawkę drzewa portage oraz wszystkie, niezbędne do 
 instalacji systemu podstawowego, narzędzia. Korzystając z nich
 uzyskasz nie w pełni aktualny system, ale także nie przestarzały.
 </p>
 
 <p>
-Jeżeli zdecydowałeś się na tę metodę instalacji, możesz przejść do <uri 
+Jeżeli zdecydowałeś się na tę metodę instalacji, musisz
+skorzystać z Universal LiveCD. Możesz od razu przejść do <uri 
 link="?part=1&amp;chap=4">Przygotowywania Dysków</uri>.
 W przeciwnym wypadku, przeczytaj kolejne sekcje tego rozdziału.
 </p>
@@ -125,8 +116,8 @@ dla użytkowników Gentoo LiveCD. Oczywiście możesz korzystać
 również z innych mediów instalacyjnych. W takim przypadku, po prostu
 skonfiguruj sieć ich metodami i upewnij się, że działa prawidłowo
 (być może przydatne okażą się informacje z sekcji <uri
-link="#doc_chap4_sect2">Używanie DHCP</uri> oraz <uri
-link="#doc_chap4_sect3">Terminologia Sieciowa</uri>).
+link="#dhcp">Używanie DHCP</uri> oraz <uri
+link="#network_term">Terminologia Sieciowa</uri>).
 Następnie przejdź do 
 <uri link="?part=1&amp;chap=4">Przygotowywania Dysków</uri>.
 </p>
@@ -205,7 +196,7 @@ PPTP).
 
 <p>
 W przypadku, gdy Twój nośnik instalacyjny nie zawiera żadnego z wymienionych
-narzędzi, przejdź do 
+narzędzi, lub sieć wciąż nie funkcjonuje prawidłowo, przejdź do 
 <uri link="#doc_chap4">Ręcznej Konfiguracji Sieci</uri>.
 </p>
 
@@ -341,8 +332,8 @@ czasem jednak musisz skorygować ustawienia ręcznie.
 </p>
 
 <p>
-Jeśli zawiódł <c>net-setup</c> lub <c>asdl-setup</c>, możesz
-przypuszczać, że nie została wykryta karta sieciowa. Oznacza to, że
+Jeśli zawiódł <c>net-setup</c> lub <c>asdl-setup</c>, możliwe
+że nie została wykryta Twoja karta sieciowa. Oznacza to, że
 odpowiedni sterownik musisz załadować ręcznie.
 </p>
 
@@ -396,14 +387,27 @@ wyjaśnimy jak skonfigurować sieć ręcznie.
 </p>
 
 <p>
-Jestnieją tu dwie możliwości. Albo skorzystasz z DHCP (automatycznego
-przydzielania IP), albo skonfigurujesz sieć ręcznie, za pomocą
-programów <c>ifconfig</c> i <c>route</c>.
+Wybierz jedną z wymienionych sekcji dotyczących sieci.
 </p>
+<ul>
+  <li><uri link="#dhcp">Używanie DHCP</uri> w celu otrzymywania IP</li>
+  <li>
+    <uri link="#wireless">Przygotowywanie do Bezprzewodowego Dostępu</uri> jeśli
+    posiadasz kartę wireless
+  </li>
+  <li>
+    <uri link="#network_term">Terminologia Sieciowa</uri> wyjaśnia
+    co powinieneś wiedzieć o działaniu sieci
+  </li>
+  <li>
+    <uri link="#ifconfig_route">Używanie ifconfig i route</uri> prezentuje
+    ręczną konfigurację sieci
+  </li>
+</ul>
 
 </body>
 </subsection>
-<subsection>
+<subsection id="dhcp">
 <title>Używanie DHCP</title>
 <body>
 
@@ -428,14 +432,70 @@ i możesz pominąć resztę tego rozdziału, przechodząc do
 
 </body>
 </subsection>
-<subsection>
+<subsection id="wireless">
+<title>Przygotowanie do Bezprzewodowego Dostępu</title>
+<body>
+
+<p>
+Jeśli używasz karty wireless (802.11), powinieneś ją skonfigurować
+zanim przejdziesz dalej. Aby zobaczyć aktualne ustawienia, skorzystaj
+z <c>ifconfig</c>. Rezultat wykonania go może być podobny do tego:
+</p>
+
+<pre caption="Wyświetlanie aktualnych ustawień wireless">
+# <i>iwconfig eth0</i>
+eth0      IEEE 802.11-DS  ESSID:"GentooNode"
+          Mode:Managed  Frequency:2.442GHz  Access Point: 00:09:5B:11:CC:F2
+          Bit Rate:11Mb/s   Tx-Power=20 dBm   Sensitivity=0/65535
+          Retry limit:16   RTS thr:off   Fragment thr:off
+          Power Management:off
+          Link Quality:25/10  Signal level:-51 dBm  Noise level:-102 dBm
+          Rx invalid nwid:5901 Rx invalid crypt:0 Rx invalid frag:0 Tx
+          excessive retries:237 Invalid misc:350282 Missed beacon:84
+</pre>
+
+<note>
+Nazwą urządzenia części kart wireless zamiast <c>eth0</c>, może
+być <c>wlan0</c>.
+</note>
+
+<p>
+Dla większości użytkowników, istnieją wyłącznie dwie opcje warte modyfikacji,
+ESSID (czyli nazwa sieci wireless) oraz klucz WEP. Jeśli wyświetlone ESSID i
+Access Point są prawidłowe dla twojego punktu dostępu, a Ty nie korzystasz
+z WEP, to twoja sieć już działa. Jeżeli musisz zmodyfikowaś ESSID lub
+dodać klucz WEP, skorzystaj z następujących poleceń:
+</p>
+
+<pre caption="Modyfikacja ESSID i/lub dodawanie klucza WEP">
+<comment>(Polecenie zmieniające nazwę sieci na "GentooNode")</comment>
+# <i>iwconfig eth0 essid GentooNode</i>
+
+<comment>(Polecenie ustawiające heksadecymalny klucz WEPT)</comment>
+# <i>iwconfig eth0 key 1234123412341234abcd</i>
+
+<comment>(Polecenie ustawiające klucz ASCII - poprzedzony "s:")</comment>
+# <i>iwconfig eth0 key s:some-password</i>
+</pre>
+
+<p>
+Możesz potwierdzić te ustawienia ponownie wykonując <c>iwconfig</c>.
+Jeżeli sieć już działa, możesz przejść do konfiguracji opcji
+na poziomie IP, opisanych w kolejnej sekcji (<uri
+link="#network_term">Understanding Network Terminology</uri>) lub
+wykorzystać omówiony wcześniej program <c>net-setup</c>.
+</p>
+
+</body>
+</subsection>
+<subsection id="network_term">
 <title>Terminologia Sieciowa</title>
 <body>
 
 <note>
 Jeśli znasz swój adres IP, broadcast, maskę sieciową i serwery nazw,
 możesz pominąć tą podsekcję oraz przejść do
-<uri link="#doc_chap4_sect4">Używania ifconfig i route</uri>.
+<uri link="#ifconfig_route">Używania ifconfig i route</uri>.
 </note>
 
 <p>
@@ -555,7 +615,7 @@ Podsumowując, potrzebujesz następujących informacji:
 
 </body>
 </subsection>
-<subsection>
+<subsection id="ifconfig_route"> 
 <title>Używanie ifconfig i route</title>
 <body>
 
