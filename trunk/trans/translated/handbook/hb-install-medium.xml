@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.40 -->
+<!-- Orig revision: 1.43 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Wybór Właściwego Medium Instalacyjnego -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.12 2004/01/30 17:37:48 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.13 2004/02/12 19:13:23 lcs Exp $ -->
 
 <sections>
 <section>
@@ -624,17 +624,17 @@ najpopularniejszych.
 
 <ul>
   <li>
-    	W EasyCD Creator wybierz <c>File</c>, <c>Record CD from CD image</c>.
-		Ustaw typ pliku na <c>ISO image file</c>. Następnie zaznacz ściągnięty
-		plik i kliknij <c>Open</c>. Nagrywanie rozpocznie się po wciśnięciu
-		<c>Start recording</c>.
+    W EasyCD Creator wybierz <c>File</c>, <c>Record CD from CD image</c>.
+    Ustaw typ pliku na <c>ISO image file</c>. Następnie zaznacz ściągnięty
+    plik i kliknij <c>Open</c>. Nagrywanie rozpocznie się po wciśnięciu
+    <c>Start recording</c>.
   </li>
   <li>
-		W Nero Burning ROM wybierz <c>File</c>, <c>Burn CD image</c>. Ustaw
-		typ pliku na <c>*.*</c> i zaznacz ściągnięte ISO. Starsze wersje mogą 
-		ostrzegać o nierozpoznaniu typu pliku, ale nie martw się tym - one rozpoznają,
-		tylko jeszcze o tym nie wiedzą :) W następnym okienku dialogowym ustaw następujące
-		parametry:
+    W Nero Burning ROM wybierz <c>File</c>, <c>Burn CD image</c>. Ustaw
+    typ pliku na <c>*.*</c> i zaznacz ściągnięte ISO. Starsze wersje mogą 
+    ostrzegać o nierozpoznaniu typu pliku, ale nie martw się tym - one rozpoznają,
+    tylko jeszcze o tym nie wiedzą :) W następnym okienku dialogowym ustaw następujące
+    parametry:
     <ul>
       <li>Type of image: <c>Data Mode 1</c></li>
       <li>Block size: <c>2048 bytes</c></li>
@@ -642,18 +642,23 @@ najpopularniejszych.
       <li>Scrambled: <c>no</c></li>
       <li>Swapped: <c>no</c></li>
     </ul>
-    	Aby ostatecznie nagrać płytę kliknij <c>OK</c> i <c>Burn</c> (the CD-R).
+      Aby ostatecznie nagrać płytę kliknij <c>OK</c> i <c>Burn</c> (the CD-R).
   </li>
   <li>
-		Jeśli używasz cdrecord, wpisz po prostu <c>cdrecord dev=/dev/hdc</c> (zamieniając
-		<path>/dev/hdc</path> swoim urządzeniem nagrywarki) i ścieżkę do pobranego
-		ISO jako parametr.
+    Jeśli używasz cdrecord, wpisz po prostu <c>cdrecord dev=/dev/hdc</c> (zamieniając
+    <path>/dev/hdc</path> swoim urządzeniem nagrywarki) i ścieżkę do pobranego
+    ISO jako parametr.
   </li>
-   <li>
-      W Mac Os X z <path>Applications/Utilities</path> wybierz <c>Disk Copy</c>,
-      następnie w menu <c>File</c> kliknij <c>Burn image</c>, zaznacz ISO
-      i wciśnij przycisk <c>Burn</c>.
-   </li>
+  <li>
+    W Mac OS X Panther, z <path>Applications/Utilities</path> wybierz <c>Disk 
+    Utility</c>, następnie w menu <c>Images</c> kliknij <c>Open</c>, zaznacz ISO
+    i wciśnij przycisk <c>Burn</c>.
+  </li>
+  <li>
+    W Mac OS X Jaguar, z <path>Applications/Utilities</path> wybierz <c>Disk 
+    Copy</c>, następnie w menu <c>File</c> kliknij <c>Open</c>, zaznacz ISO
+    i wciśnij przycisk <c>Burn</c>.
+  </li>
 </ul>
 
 <p>
@@ -1192,8 +1197,9 @@ urządzeniem odpowiednim dla swojego dysku.
 
 <p>
 Jeśli planujesz dać dostęp do środowiska instalacyjnego
-innym użytkownikom, musisz stworzyć dla nich odpowiednie konta
-i zmienić hasło roota.
+innym użytkownikom, lub korzystać z <c>irssi</c> bez uprawnień
+administratora (ze względów bezpieczeństwa), musisz stworzyć 
+odpowiednie konta i zmienić hasło roota.
 </p>
 
 <p>
@@ -1218,7 +1224,13 @@ W przykładzie, stworzymy użytkownika &quot;john&quot;.
 New password: <comment>(Podaj hasło johna)</comment>
 Re-enter password: <comment>(Podaj hasło johna jeszcze raz)</comment>
 </pre>
-
+<p>
+Aby zmienić id użytkownika z roota na nowo utworzone konto, skorzystaj
+z polecenia <c>su</c>:
+</p>
+<pre caption="Zmiana id użytkownika">
+# <i>su john -</i>
+</pre>
 </body>
 </subsection>
 <subsection>
