@@ -10,7 +10,7 @@
 <!-- Title: Konfiguracja bootloadera dla AMD64 -->
 <!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-amd64-bootloader.xml,v 1.8 2004/12/21 15:28:08 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-amd64-bootloader.xml,v 1.9 2004/12/21 15:32:52 rane Exp $ -->
 
 
 <sections>
@@ -33,28 +33,28 @@ momencie startu systemu. Taki program nazywa się <e>bootloader</e>.
 </body>
 </subsection>
 <subsection>
-<title>Optional: Framebuffer</title>
+<title>Opcjonalnie: Framebuffer.</title>
 <body>
 
 <p>
-<e>If</e> you have configured your kernel with framebuffer support, you
-have to add a <c>video</c>-statement to your bootloader configuration
-file if you require framebuffer.
+<e>Jeżeli</e> skonfigurowałeś jądro z obsługą bufora ramki i chcesz ją
+wykorzystywać musisz dodać parametr <c>video</c>-wartość w odpowiednim miejscu pliku
+konfiguracyjnego bootloadera.
 </p>
 
 <p>
-For the <c>video</c>-statement, a simplified syntax is used. Most of the time
-it's sufficient to use <c>video=vesafb</c>. 
+W większości sytuacji obowiązuje uproszczony zapis <c>video</c>-wartość. Zwykle
+wystarcza wpis  <c>video=vesafb</c>.
 </p>
 
 <p>
-More information can be found in 
+Więcej informacji znajdziesz w dokumencie
 <path>/usr/src/linux/Documentation/fb/vesafb.txt</path>.
 </p>
 
 
 <p>
-Remember (or write down) your value; you will need it shortly.
+Zapamiętaj (albo zapisz) wybraną wartość; niedługo Ci się ona przyda.
 </p>
 
 </body>
