@@ -10,7 +10,7 @@
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.15 2004/01/17 11:35:41 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.16 2004/01/18 22:20:38 swierszczu Exp $ -->
 
 <sections>
 <section>
@@ -383,7 +383,7 @@ Należy zwrócić uwagę, że Gentoo kompiluje wszystkie pakiety
 wewnątrz <path>/var/tmp/portage</path>. Powinien mieć
 wobec tego przynajmniej 1GB wolnej przestrzeni, jeśli nie zamierzasz
 kompilować większych programów, lub nawet 3GB - gdy
-jednoczesna instalacja KDE i OpenOffice.org nie stanowi dla ciebie
+jednoczesna instalacja KDE i OpenOffice.org nie stanowi dla Ciebie
 problemu.
 </p>
 
@@ -525,12 +525,12 @@ Partition number (1-4): <i>1</i>
 Nasza partycja została oznaczona do usunięcia. Nie będzie więcej pojawiać się
 po wydaniu polecenia <c>p</c>, ale dopóki zmiany nie zostaną zapisane
 fizycznie, pozostanie nie naruszona. Jeśli popełnisz błąd i zechcesz
-anulować wszelkie zmiany, wpisz natychmiast <c>q</c> i wciśnij enter.
+anulować wszelkie zmiany, wpisz natychmiast <c>q</c> i wciśnij Enter.
 Twoje modyfikacje pójdą w niepamięć.
 </p>
 
 <p>
-Zakładając, iż chcesz pozbyć się wszystkich istniejących partycji,
+Zakładając, że chcesz pozbyć się wszystkich istniejących partycji,
 na przemian wykonuj <c>p</c> aby wyświetlić ich listing i
 po kolei kasuj je poleceniem <c>d</c> z odpowiednim numerem. Po ukończeniu,
 <c>p</c> powinno dać następujący rezultat:
@@ -563,7 +563,7 @@ modyfikacje prezentowanych poleceń.
 Rozpoczniemy od utworzenia niewielkiej partycji boot. Wpisz <c>n</c> aby
 ją założyć, następnie <c>p</c> aby nadać jej typ podstawowy i <c>1</c>,
 ponieważ będzie to pierwsza taka partycja. Zapytany o pierwszy cylinder
-wciśnij enter, natomiast zapytany o ostatni, wpisz <c>+32M</c>, żeby nadać
+wciśnij Enter, natomiast zapytany o ostatni, wpisz <c>+32M</c>, żeby nadać
 jej rozmiar 32MB.
 </p>
 
@@ -609,7 +609,7 @@ z polecenia <c>a</c>. Na kolejnych wydrukach podziału, w kolumnie
 <p>
 Nadszedł czas na utworzenie partycji wymiany. Ponownie skorzystaj z polecenia
 <c>n</c>, następnie podaj <c>p</c> gdyż ma to być partycja podstawowa i <c>2</c>,
-ponieważ będzie ona drugą tego typu. Zapytany o pierwszy cylinder wciśnij enter,
+ponieważ będzie ona drugą tego typu. Zapytany o pierwszy cylinder wciśnij Enter,
 natomiast na pytanie o ostatni wpisz <c>+512M</c>, żeby nadać partycji
 rozmiar 512MB. Po ukończeniu wykonaj <c>t</c>, aby zmienić jej typ,
 <c>2</c>, aby wybrać tę, którą właśnie stworzyłeś i <c>82</c>, żeby oznaczyć
@@ -639,7 +639,7 @@ Device Boot    Start       End    Blocks   Id  System
 Na koniec, utworzymy partycję root. Jeszcze raz posłużymy się w tym celu poleceniem
 <c>n</c>. Zapytany o rodzaj wpisz <c>p</c>, ponieważ chcemy by była podstawowa,
 następnie <c>3</c>, gdyż będzie już trzecią tego typu, czyli w naszym przypadku
-<path>/dev/hda3</path>. Na pytanie o pierwszy i ostatni cylinder wciśnij enter,
+<path>/dev/hda3</path>. Na pytanie o pierwszy i ostatni cylinder wciśnij Enter,
 dzięki temu zajmie ona całą pozostałą wolną przestrzeń. Teraz polecenie
 <c>p</c> powinno pokazać następujący wydruk:
 </p>
@@ -688,7 +688,7 @@ Twoje partycje są już gotowe,
 <body>
 
 <impo>
-Sekcja ta przeznaczona jest wyłącznie dla użytkowników architektury <e>alpha</e>.
+Sekcja ta przeznaczona jest wyłącznie dla użytkowników architektury <e>Alpha</e>.
 </impo>
 
 <p>
@@ -738,7 +738,7 @@ Aby rozejrzeć się w dostępnych dyskach, skorzystaj z następujących poleceń
 <p>
 Na podstawie rezultatu powinieneś wywnioskować, które dyski zostały
 wykryte i jakie urządzenia w <path>/dev</path> je reprezentują. W kolejnych
-podsekcjach zakładamy iż korzystasz z pierwszego dysku SCSI (<path>/dev/sda</path>).
+podsekcjach zakładamy, iż korzystasz z pierwszego dysku SCSI (<path>/dev/sda</path>).
 </p>
 
 <p>
@@ -995,7 +995,7 @@ Device Flag    Start       End    Blocks   Id  System
 
 <p>
 Zwróć uwagę na <c>Sun disk label</c>. Jeśli go brakuje, oznacza to że 
-dysk korzysta z partycji DOS. W takim razie aby stworzyć
+dysk korzysta z partycji DOS. W takim razie, aby stworzyć
 tablicę partycji Sun, wpisz <c>s</c>.
 </p>
 
@@ -1006,8 +1006,8 @@ tablicę partycji Sun, wpisz <c>s</c>.
 <body>
 
 <p>
-Nadszedł czas na pozbycie się istniejących partycji.  Do usuwania
-służy polecenie <c>d</c>. Wpisz je i naciśnij enter. Zostaniesz zapytany
+Nadszedł czas na pozbycie się istniejących partycji. Do usuwania
+służy polecenie <c>d</c>. Wpisz je i naciśnij Enter. Zostaniesz zapytany
 o numer partycji. Jeśli ma to być <path>/dev/hda1</path>, wpisz:
 </p>
 
@@ -1020,7 +1020,7 @@ Partition number (1-4): <i>1</i>
 Aby skasować wszystkie istniejące partycje, na przemian wpisuj <c>p</c>
 aby zobaczyć jakie są dostępne i <c>d</c>, żeby je kasoawć.
 Jeśli popełnisz błąd, natychmiast wpisz <c>q</c> -- <c>fdisk</c>
-przeprowadza wszelkie zmiany w pamięci i możesz w ten sposób je anulować.
+przeprowadza wszelkie zmiany w pamięci i możesz je w ten sposób anulować.
 Do zachowywania zmian służy polecenie <c>w</c>.
 </p>
 
@@ -1048,7 +1048,7 @@ Device Flag    Start       End    Blocks   Id  System
 Kiedy pozbędziesz się wszystkich partycji, możesz utworzyć Sun Disk Label.
 W tym celu wpisz <c>n</c> aby rozpocząć zakładanie, następnie <c>3</c>
 aby wybrać trzecią partycję. Zarówno zapytany o pierwszy jak i ostatni
-cylinder wciśnij enter. Następnie wpisz <c>t</c> aby zmodyfikować
+cylinder wciśnij Enter. Następnie wpisz <c>t</c> aby zmodyfikować
 typ partycji i <c>5</c> aby ustawić go na "Whole disk".
 </p>
 
@@ -1087,7 +1087,7 @@ Device Flag    Start       End    Blocks   Id  System
 <p>
 Jesteśmy gotowi na założenie partycji boot. W tym celu skorzystaj z polecenia
 <c>n</c> aby rozpocząć tworzenie, następnie wpisz <c>1</c> aby wybrać pierwszą
-partycję. Zapytany o pierwszy cylinder wciśnij enter, natomiast na pytanie 
+partycję. Zapytany o pierwszy cylinder wciśnij Enter, natomiast na pytanie 
 o ostatni wpisz <c>+32M</c>, żeby nadać jej rozmiar <c>32MB</c>. Upewnij się,
 że mieści się w całości w pierwszych 2GB dysku. Rezultaty powyższych
 czynności prezentujemy w przykładzie:
@@ -1125,7 +1125,7 @@ Device Flag    Start       End    Blocks   Id  System
 Stwórz teraz partycję wymiany. W tym celu skorzystaj z polecenia <c>n</c> aby
 rozpocząć proces zakładania, następnie wpisz <c>2</c> aby wybrać drugą
 partycję, w naszym przypadku <path>/dev/hda2</path>. Zapytany o pierwszy
-cylinder wciśnij enter, natomiast na pytanie o ostatni wpisz <c>+512M</c>
+cylinder wciśnij Enter, natomiast na pytanie o ostatni wpisz <c>+512M</c>
 aby ustalić jej rozmiar na 512MB. Następnie wpisz <c>t</c> aby zmienić
 typ partycji i wpisz <c>82</c> żeby ustawić go na "Linux Swap". Po ukończeniu
 listing partycji powinien wyglądać następująco:
@@ -1151,10 +1151,10 @@ Device Flag    Start       End    Blocks   Id  System
 
 <p>
 W końcu, stwórzmy partycję root. W tym celu ponownie skorzystaj
-z polecenia <c>n</c>, aby rozpocząć zakładanie.  Następnie wpisz
+z polecenia <c>n</c>, aby rozpocząć zakładanie. Następnie wpisz
 <c>4</c>, żeby wybrać czwartą partycję - w naszym przypadku
 <path>/dev/hda4</path>. Zapytany o pierwszy i ostatni cylinder wciśnij
-enter. Dzięki temu nasza partycja zajmie całą pozostałą przestrzeń.
+<S-Del>Enter. Dzięki temu nasza partycja zajmie całą pozostałą przestrzeń.
 Po ukończeniu, polecenie <c>p</c> powinno dać następujący rezultat:
 </p>
 
@@ -1228,7 +1228,7 @@ na pytanie o nazwę, wpisz <c>swap</c> (koniecznie).
 
 <p>
 Żeby założyć partycję root, wpisz <c>c</c>, następnie <c>5p</c> aby wybrać
-blok od którego ma się zaczynać. Na pytanie o rozmiar ponownie wpisz <c>5p</c>,
+blok, od którego ma się zaczynać. Na pytanie o rozmiar ponownie wpisz <c>5p</c>,
 <c>mac-fdisk</c> zinterpretuje to jako życzenie zajęcia całej wolnej przestrzeni.
 Koniecznie podaj nazwę <c>root</c>.
 </p>
@@ -1270,7 +1270,7 @@ Jeśli nie utworzysz tej partycji, system przestanie Cię kochać i się nie uru
 </impo>
 
 <p>
-Jeżeli twój dysk ma ponad 2GB wielkości, upewnij się iż partycja boot znajduje się
+Jeżeli Twój dysk ma ponad 2GB wielkości, upewnij się czy partycja boot znajduje się
 w pierwszych 2GB. PALO nie może korzystać z dalszych obszarów.
 </p>
 
@@ -1556,7 +1556,7 @@ W przeciwnym wypadku czytaj dalej aby dowiedzieć się co nieco na ich temat.
 <p>
 Dostępne są różne systemy plików. Część z nich działa stabilnie
 na wszystkich platformach, część tylko na niektórych. Poniższa tabela
-prezentuje które są dostępne i na jakich architekturach działają.
+prezentuje te, które są dostępne i na jakich architekturach działają.
 Jeśli architektura oznaczona jest przez "(...)" to znaczy, iż
 system plików powinien działać, ale nie został dostatecznie przetestowany.
 </p>
@@ -1645,7 +1645,7 @@ systemu do utraty danych.
 </p>
 
 <p>
-<b>JFS</b> to bardzo wydajny system plików z księgowaniem IBM'a.
+<b>JFS</b> to bardzo wydajny system plików z księgowaniem IBMa.
 Dopiero niedawno został uznany za stabilny i nie ma na swoim
 koncie dostatecznych osiągnięć aby można było mówić
 źle lub dobrze o jego stabilności.
