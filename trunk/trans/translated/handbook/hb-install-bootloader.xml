@@ -3,11 +3,11 @@
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
-<!-- Orig revision: 1.27 -->
-<!-- Translator: veng <veng@wp.pl> -->
+<!-- Orig revision: 1.28 -->
+<!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.6 2004/03/01 20:55:00 veng Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.7 2004/03/09 10:50:13 veng Exp $ -->
 
 <sections>
 <section>
@@ -258,7 +258,7 @@ by GRUB automatycznie bootował dopiero co stworzone jądro. Za pomocą <c>nano<
 Teraz zamierzamy zredagować <path>grub.conf</path>. Poniżej
 znajdziesz trzy propozycje pliku <path>grub.conf</path> odpowiadające
 schematowi partycjonowania użytemu w tym przewodniku, z obrazem jądra
-o nazwie <path>kernel-2.4.22</path>. Wyczerpująco opatrzymy komentarzami
+o nazwie <path>kernel-2.4.24</path>. Wyczerpująco opatrzymy komentarzami
 tylko pierwszy <path>grub.conf</path>.
 </p>
 
@@ -286,10 +286,10 @@ timeout 30
 <comment># Ładniutki, tłuściutki obrazek na zaostrzenie apetytu :)</comment>
 splashimage=(hd0,0)/grub/splash.xpm.gz
 
-title=Gentoo Linux 2.4.22
+title=Gentoo Linux 2.4.24
 <comment># Partycja na której znajduje się obraz jądra (lub system operacyjny) </comment>
 root (hd0,0)
-kernel (hd0,0)/kernel-2.4.22 root=/dev/hda3
+kernel (hd0,0)/kernel-2.4.24 root=/dev/hda3
 
 <comment># Następne trzy linie są potrzebne tylko, gdy chcesz uruchamiać także Windows.</comment>
 <comment># W tym przypadku, Windows mieści się na /dev/hda6.</comment>
@@ -303,10 +303,10 @@ default 0
 timeout 30
 splashimage=(hd0,0)/grub/splash.xpm.gz
 
-title=Gentoo Linux 2.4.22
+title=Gentoo Linux 2.4.24
 root (hd0,0)
-kernel (hd0,0)/kernel-2.4.22 root=/dev/hda3
-initrd (hd0,0)/initrd-2.4.22
+kernel (hd0,0)/kernel-2.4.24 root=/dev/hda3
+initrd (hd0,0)/initrd-2.4.24
 
 <comment># Tylko jeśli chcesz uruchamiać dwa systemy</comment>
 title=Windows XP
@@ -319,10 +319,10 @@ default 0
 timeout 30
 splashimage=(hd0,0)/grub/splash.xpm.gz
 
-title=Gentoo Linux 2.4.22
+title=Gentoo Linux 2.4.24
 root (hd0,0)
-kernel (hd0,0)/kernel-2.4.22 root=/dev/ram0 init=/linuxrc real_root=/dev/hda3
-initrd (hd0,0)/initrd-2.4.22
+kernel (hd0,0)/kernel-2.4.24 root=/dev/ram0 init=/linuxrc real_root=/dev/hda3
+initrd (hd0,0)/initrd-2.4.24
 
 <comment># Tylko, gdy chcesz uruchamiać dwa systemy</comment>
 title=Windows XP
@@ -352,7 +352,7 @@ przedyskutowaliśmy uprzednio:
 <pre caption = "Dodawanie parametru vga jako parametru startowego dla jądra">
 title=Gentoo Linux
   root (hd0,0)
-  kernel (hd0,0)/kernel-2.4.22 root=/dev/hda3 vga=788
+  kernel (hd0,0)/kernel-2.4.24 root=/dev/hda3 vga=788
 </pre>
 
 <p>
@@ -417,7 +417,7 @@ i stwórz plik.
 <p>
 Kilka paragrafów temu prosiliśmy Cię o zapamiętanie nazwy utworzonego obrazu jądra.
 W naszym przykładowym <path>lilo.conf</path> zakładamy, że nazwą obrazu jest
-<path>kernel-2.4.22</path>. Użyjemy w tym przykładzie uprzednio zaprezentowanego
+<path>kernel-2.4.24</path>. Użyjemy w tym przykładzie uprzednio zaprezentowanego
 schematu partycjonowania. Wyróżniamy trzy części:
 </p>
 
@@ -442,25 +442,25 @@ default=gentoo            <comment># Kiedy oczekiwanie się zakończy, uruchamia
 vga=788                   <comment># Ustawienia framebuffera. Dopasuj wedle uznania.</comment>
 
 <comment># Dla nie korzystajacych z genkernela</comment>
-image=/boot/kernel-2.4.22
+image=/boot/kernel-2.4.24
   label=gentoo            <comment># Nazwa, jaką mianujemy tę pozycję</comment>
   read-only               <comment># Zaczynamy z partycja root tylko do odczytu. Nie zmieniać!</comment>
   root=/dev/hda3          <comment># Umiejscowienie głównego systemu plików</comment>
 
 <comment># Dla użytkowników genkernela z GRP</comment>
-image=/boot/kernel-2.4.22
+image=/boot/kernel-2.4.24
   label=gentoo
   read-only
   root=/dev/hda3
-  initrd=/boot/initrd-2.4.22
+  initrd=/boot/initrd-2.4.24
 
 <comment># Dla posiadaczy ostatniej wersji genkernela</comment>
-image=/boot/kernel-2.4.22
+image=/boot/kernel-2.4.24
   label=gentoo
   read-only
   root=/dev/ram0
   append="init=/linuxrc real_root=/dev/hda3"
-  initrd=/boot/initrd-2.4.22
+  initrd=/boot/initrd-2.4.24
 
 <comment># Następne dwie linie są podane na wypadek, gdybyś chciał uruchamiać Windows.</comment>
 <comment># W tym przypadku, Windows mieści się na /dev/hda6.</comment>
@@ -480,7 +480,7 @@ do wyłączenia obsługi ACPI:
 </p>
 
 <pre caption = "Użycie append do podawania parametrów startowych">
-image=/boot/kernel-2.4.22
+image=/boot/kernel-2.4.24
   label=gentoo
   read-only
   root=/dev/hda3
@@ -664,7 +664,7 @@ i utwórz <path>/etc/silo.conf</path>.
 Poniżej znajdziesz przykładowy plik <path>silo.conf</path>.
 Używa on schematu partycjonowania, który występuje
 wielokrotnie w tym podręczniku oraz obrazu jądra
-<path>kernel-2.4.22</path>.
+<path>kernel-2.4.24</path>.
 </p>
 
 <pre caption = "Przykładowy /etc/silo.conf">
@@ -672,7 +672,7 @@ partition = 1         <comment># Partycja startowa</comment>
 root = /dev/hda4      <comment># Partycja root</comment>
 timeout = 15          <comment># Odczekaj 15 sekund przed uruchomieniem domyślnej sekcji</comment>
 
-image = /boot/kernel-2.4.22
+image = /boot/kernel-2.4.24
   label = linux
 </pre>
 
@@ -771,9 +771,9 @@ Są dwa sposoby konfiguracji yaBoot. Możesz wykonać konfigurację
 yaboot automatycznie za pomocą nowego i poprawionego narzędzia
 <c>yabootconfig</c> zawartego w wersji <path>yaboot-1.3.8-r1</path>
 i późniejszych. Jeśli z jakiegoś powodu nie chcesz uruchamiać
-<c>yabootconfig</c> i tworzyć <path>/etc/yaboot.conf</path>
-automatycznie, możesz najzwyczajniej wyedytować wzorcowy plik
-już zainstalowany w systemie.
+<c>yabootconfig</c> do automatycznego tworzenia <path>/etc/yaboot.conf</path>
+lub instalujesz Gentoo na G5 (na którym <c>yabootconfig</c> nie zawsze chce działać),
+możesz najzwyczajniej wyedytować wzorcowy plik już zainstalowany w systemie.
 </p>
 
 <ul>
@@ -847,7 +847,9 @@ Po pierwsze upewnij się, że masz zainstalowaną aktualną wersję
 
 <p>
 Poniżej znajdziesz kompletny plik <path>yaboot.conf</path>.
-Dopasuj go wedle życzenia:
+Dopasuj go wedle życzenia. Posiadacze G5 niech mają świadomość, że ich 
+dyski są w standardzie Serial ATA, przez co jądro Linux widzi je jako dyski
+SCSI (a więc zamień <path>/dev/hda</path> na <path>/dev/sda</path>).
 </p>
 
 <pre caption = "/etc/yaboot.conf">
@@ -863,11 +865,19 @@ Dopasuj go wedle życzenia:
 
 boot=/dev/hda9
 
+<comment>## ofboot w openfirmware służy do specyfikowania partycji startowej.
+## Jeśli tego parametru nie będzie, yaboot nie zadziała na G5
+## (dopóki nie przekażesz odpowiednich opcji do programu mkofboot/ybin).
+## hd:X oznacza /dev/sdaX (lub /dev/hdaX).
+##
+## Posiadacze G5 powinni odkomentować tę linię !!
+
+#ofboot=hd:9</comment>
+
 <comment>##hd: w terminologii open firmware oznacza hda</comment>
 device=hd:
 partition=11
 
-root=/dev/hda11
 delay=5
 defaultos=macosx
 timeout=30
@@ -880,9 +890,15 @@ magicboot=/usr/lib/yaboot/ofboot
 #################</comment>
 image=/boot/vmlinux
   label=Linux
+  root=/dev/hda11
   sysmap=/boot/System.map
   read-only
 <comment>##################</comment>
+
+<comment>## Posiadacze G5 powinni ustawić
+##   macos=hd:13
+##   macosx=hd:12
+## zamiast wartości przykładowych.</comment>
 
 macos=/dev/hda13
 macosx=/dev/hda12
