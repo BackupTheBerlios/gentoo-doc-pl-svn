@@ -10,7 +10,7 @@
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-bootloader.xml,v 1.7 2004/12/15 23:09:24 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-bootloader.xml,v 1.8 2004/12/15 23:48:38 rane Exp $ -->
 
 <sections>
 <version>1.19</version>
@@ -327,7 +327,11 @@ wszystkie opcje do swojej konfiguracji.
 </p>
 
 <p>
-Mechanizm uzupełniania składni jest bardzo pomocny przy konfigurowaniu GRUBa. Na przykład wpisując "<c>root (</c>" i wciskając TAB możemy zobaczyć wszystkie urządzenia (np. <path>hd0</path>). Jeśli wpiszemy "<c>root (hd0,</c>" i wciśniemy TAB zobaczymy listę wszystkich dostępnych partycji na urządzeniu (np. <path>hd0,0</path>).
+Mechanizm uzupełniania składni jest bardzo pomocny przy konfigurowaniu GRUBa. Na
+przykład wpisując "<c>root (</c>" i wciskając TAB możemy zobaczyć wszystkie
+urządzenia (np. <path>hd0</path>). Jeśli wpiszemy "<c>root (hd0,</c>" i
+wciśniemy TAB zobaczymy listę wszystkich dostępnych partycji na urządzeniu (np.
+<path>hd0,0</path>).
 </p>
 
 <p>
@@ -341,11 +345,16 @@ grub&gt; <i>quit</i>                  <comment>(Opuszczenie powłoki GRUB)</comm
 </pre>
 
 <note>
-Jeśli chcesz mieć GRUB nie w MBR, a na jakieś wybranej partycji musisz odpowiednio zmienić komendę <c>setup</c>, tak by wskazywała na odpowiednie urządzenie. Na przykład dla GRUBa zainstalowanego w <path>/dev/hda3</path> będzie to <c>setup (hd0,2)</c>.
+Jeśli chcesz mieć GRUB nie w MBR, a na jakieś wybranej partycji musisz
+odpowiednio zmienić komendę <c>setup</c> tak by wskazywała na odpowiednie
+urządzenie. Na przykład dla GRUBa zainstalowanego w <path>/dev/hda3</path>
+będzie to <c>setup (hd0,2)</c>.
 </note>
 
 <p>
-Jeśli chcesz dowiedzieć się więcej poczytaj informacje na stronach: <uri link="http://www.gnu.org/software/grub/grub-faq.html">GRUB FAQ</uri> i <uri link="http://www.gnu.org/software/grub/manual/">GRUB Manual</uri>.
+Jeśli chcesz dowiedzieć się więcej poczytaj informacje na stronach: <uri
+link="http://www.gnu.org/software/grub/grub-faq.html">GRUB FAQ</uri> i <uri
+link="http://www.gnu.org/software/grub/manual/">GRUB Manual</uri>.
 </p>
 
 <p>
@@ -356,9 +365,9 @@ Następnie możesz przejść do sekcji <uri link="#reboot">Ponowne uruchamianie 
 </subsection>
 </section>
 <section>
-<title>Alternatywnie: Używanie LILO</title>
+<title>Alternatywnie: Używanie LILO.</title>
 <subsection>
-<title>Instalowanie LILO</title>
+<title>Instalowanie LILO.</title>
 <body>
 
 <impo>
@@ -366,17 +375,18 @@ LILO może być użyte tylko dla architektury x86!
 </impo>
 
 <p> 
-LILO, czyli LInuxLOader, jest programem wypróbowanym i prawdziwym koniem pociągowym
-wśród bootloaderów. Mimo to, brakuje mu niektórych cech posiadanych przez
-program GRUB (co jest także powodem rosnącej popularności GRUBa).
+LILO, czyli LInuxLOader to program naprawdę wypróbowany i używany od bardzo
+dawna przez bardzo wielu użytkowników. Brakuje mu jednak niektórych cech posiadanych przez
+program GRUB, co jest, między innymi, powodem rosnącej popularności tego drugiego.
 Fakt, że na niektórych systemach LILO działa, a GRUB nie, powoduje,
 iż LILO jest ciągle w użyciu. Oczywiście nie jest to jedyny powód - niektórzy
-po prostu znają LILO i chcą sie go trzymać. Tak czy inaczej, Gentoo obsługuje
-obydwa, a Ty właśnie wybrałeś LILO.
+po prostu lepiej znają LILO i wolą przy nim pozostać, zamiast uczyć się obsługi
+całkiem nowego programu. My jak zawsze wybór pozostawiamy użytkownikom, Gentoo
+obsługuje obydwa, a Ty właśnie wybrałeś LILO.
 </p>
 
 <p>
-Instalacja LILO to pikuś; po prostu użyj <c>emerge</c>.
+Instalacja LILO jest prosta, używamy do tego polecenia <c>emerge</c>.
 </p>
 
 
@@ -391,9 +401,9 @@ Instalacja LILO to pikuś; po prostu użyj <c>emerge</c>.
 <body>
 
 <p>
-Aby skonfigurować LILO, musisz utworzyć <path>/etc/lilo.conf</path>. Odpal
-ulubiony edytor (w tym przewodniku konsekwentnie używamy <c>nano</c>)
-i stwórz plik.
+Aby skonfigurować LILO musisz utworzyć plik <path>/etc/lilo.conf</path>. Uruchom
+ulubiony edytor (w tym Podręczniku konsekwentnie używamy <c>nano</c>)
+i stwórz ten plik.
 </p>
 
 <pre caption = "Tworzenie /etc/lilo.conf">
@@ -401,10 +411,10 @@ i stwórz plik.
 </pre>
 
 <p>
-Kilka paragrafów temu prosiliśmy Cię o zapamiętanie nazwy utworzonego obrazu jądra.
+Kilka rozdziałów temu prosiliśmy Cię o zapamiętanie nazwy utworzonego obrazu jądra.
 W naszym przykładowym <path>lilo.conf</path> zakładamy, że nazwą obrazu jest
 <path>kernel-2.4.24</path>. Użyjemy w tym przykładzie uprzednio zaprezentowanego
-schematu partycjonowania. Wyróżniamy trzy części:
+schematu partycjonowania. Przygotowaliśmy dwie części:
 </p>
 
 <ul>
@@ -424,7 +434,7 @@ default=gentoo            <comment># Kiedy oczekiwanie się zakończy, uruchamia
 <comment># Tylko jeśli używasz bufora ramki. W przeciwnym wypadku usuń następującą linię:</comment>
 vga=788                   <comment># Ustawienia framebuffera. Dopasuj wedle uznania.</comment>
 
-<comment># Dla nie korzystajacych z genkernela</comment>
+<comment># Dla niekorzystajacych z genkernela</comment>
 image=/boot/kernel-2.4.24
 label=gentoo            <comment># Nazwa, jaką mianujemy tę pozycję</comment>
 read-only               <comment># Zaczynamy z partycją root tylko do odczytu. Nie zmieniać!</comment>
@@ -464,20 +474,22 @@ image=/boot/kernel-2.4.26-gentoo-r6
 </pre>
 
 <p>
-Jeśli używasz kernela 2.6.7, lub nowszego i przy pomocy jumperów ograniczyłeś rozmiar swojego twardego dysku, bo Twój BIOS nie obsługuje tak dużych napędów dopisz do linii append polecenie <c>hdx=stroke</c>.
+Jeśli używasz kernela 2.6.7, lub nowszego i przy pomocy jumperów ograniczyłeś
+rozmiar swojego twardego dysku, bo Twój BIOS nie obsługuje tak dużych napędów
+dopisz do linii append polecenie <c>hdx=stroke</c>.
 </p>
 
 <p>
 Użytkownicy programu <c>genkernel</c> powinni wiedzieć, że jądra, które zbudowali,
-używają tych samych opcji bootowania co LiveCD. Na przykład, jeśli masz urządzenia
-SCSI, powinieneś dodać parametr <c>doscsi</c>.
+używają tych samych opcji bootowania co LiveCD. Na przykład jeśli masz urządzenia
+SCSI powinieneś dodać parametr <c>doscsi</c>.
 </p>
 
 <p>
-A teraz zapisz plik i opuść edytor. By zakończyć, musisz uruchomić
-<c>/sbin/lilo</c> a wtedy LILO zastosuje ustawienia z <path>/etc/lilo.conf</path>
-do Twojego systemu (tzn. zainstaluje się na dysk). Przyjmij do wiadomości, że będziesz
-musiał ponownie wykonać polecenie <c>/sbin/lilo</c> za każdym razem gdy instalujesz
+Kiedy skończysz konfigurowanie zapisz plik i opuść edytor. By zakończyć musisz uruchomić program
+<c>/sbin/lilo</c>, LILO zastosuje ustawienia z <path>/etc/lilo.conf</path>
+do Twojego systemu (tzn. zainstaluje się na dysk). Zapamiętaj, że będziesz
+musiał ponownie wykonać polecenie <c>/sbin/lilo</c> za każdym razem gdy zainstalujesz
 nowe jądro!
 </p>
 
@@ -486,8 +498,8 @@ nowe jądro!
 </pre>
 
 <p>
-Możesz juz przejść do <uri link="?part=1&amp;chap=10">Instalacji Niezbędnych
-Narzędzi Systemowych</uri>.
+Kiedy skończysz przejdź do rozdziału <uri link="?part=1&amp;chap=10">Instalacja
+niezbędnych narzędzi systemowych</uri>.
 </p>
 
 </body>
