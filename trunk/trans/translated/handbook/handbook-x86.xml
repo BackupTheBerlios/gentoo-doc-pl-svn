@@ -6,7 +6,7 @@
 <!-- Title: Podręcznik Gentoo Linux/x86 -->
 <!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/handbook-x86.xml,v 1.10 2004/12/18 21:37:39 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/handbook-x86.xml,v 1.11 2004/12/22 18:23:49 sekretarz Exp $ -->
 
 <book link="handbook-x86.xml">
 <title>Gentoo Linux 2004.3 x86 Handbook</title>
@@ -145,7 +145,7 @@ Wybierz w jaki sposób chcesz zainstalować Gentoo.
 <chapter>
 <title>Konfiguracja sieci</title>
 <abstract>
-Jeżeli chcesz zainstalować Gentoo wprost z Internetu, musisz ustawić sieć.
+Jeżeli chcesz zainstalować Gentoo bezpośrednio z Internetu musisz najpierw skonfigurować połączenie sieciowe.
 </abstract>
   <include href="hb-install-network.xml"/>
 </chapter>
@@ -153,7 +153,7 @@ Jeżeli chcesz zainstalować Gentoo wprost z Internetu, musisz ustawić sieć.
 <chapter>
 <title>Przygotowanie dysków</title>
 <abstract>
-Aby umożliwić instalację Gentoo, musisz utworzyć odpowiednie partycje.
+Aby instalacja Gentoo była możliwa musisz najpierw utworzyć odpowiednie partycje.
 </abstract>
   <include href="hb-install-x86-disk.xml"/>
 </chapter>
@@ -170,7 +170,7 @@ jak wypakować pliki stage i skonfigurować Portage.
 <chapter>
 <title>Instalacja systemu podstawowego</title>
 <abstract>
-Niezależnie od wybranego stage'a, musisz zainstalować system podstawowy.
+Niezależnie od wybranego stage'a zawsze musisz zainstalować system podstawowy.
 </abstract>
   <include href="hb-install-system.xml"/>
 </chapter>
@@ -179,7 +179,7 @@ Niezależnie od wybranego stage'a, musisz zainstalować system podstawowy.
 <title>Konfiguracja jądra</title>
 <abstract>
 Jądro Linuxa jest rdzeniem każdej dystrybucji. W tym rozdziale wytłumaczymy Tobie,
-jak skonfigurować jądro.
+jak je skonfigurować.
 </abstract>
   <include href="hb-install-x86-kernel.xml"/>
 </chapter>
@@ -203,8 +203,7 @@ W tym rozdziale pomożemy Ci wybrać i zainstalować najważniejsze narzędzia p
 <chapter>
 <title>Konfiguracja bootloadera</title>
 <abstract>
-Na platformie x86 dostępnych jest wiele bootloaderów. Decyzja należy do Ciebie,
-wybierz jeden, a my przeprowadzimy Cię przez proces konfiguracji.
+Na platformie x86 dostępnych jest wiele bootloaderów. Decyzja należy do Ciebie - wybierz jeden, a my przeprowadzimy Cię przez proces jego konfiguracji.
 </abstract>
   <include href="hb-install-x86-bootloader.xml"/>
 </chapter>
@@ -229,14 +228,14 @@ Teraz masz już zainstalowany system Gentoo, ale co dalej?
 <part>
 <title>Praca z Gentoo</title>
 <abstract>
-Naucz się pracować z Gentoo: instalowanie programów, modyfikacja zmiennych, zmiana
+Naucz się pracować z Gentoo: instalowania programów, modyfikacji zmiennych, zmiany
 zachowania Portage, itp.
 </abstract>
 
 <chapter>
 <title>Wstęp do Portage</title>
 <abstract>
-Wszytko to co musisz wiedzieć na temat Portage, aby zarządzać systemem.
+Wszytko to co musisz wiedzieć na temat Portage, aby móc skutecznie zarządzać systemem.
 </abstract>
   <include href="hb-working-portage.xml"/>
 </chapter>
@@ -279,8 +278,8 @@ W Gentoo możesz łatwo zarządzać zmiennymi środowiskowymi. W tym rozdziale o
 <part>
 <title>Praca z Portage</title>
 <abstract>
-Rozdział ten odkryje przed Tobą wnętrze Portage, Narzedzia do Zarządzania
-Programami Gentoo.
+Rozdział ten odkryje przed Tobą wnętrze Portage, omówimy w nim narzedzia do zarządzania
+programami Gentoo.
 </abstract>
 
 <chapter>
@@ -294,7 +293,7 @@ Musisz wiedzieć gdzie przechowywane są pliki Portage, aby poznać je "od kuchn
 <chapter>
 <title>Konfiguracja Portage</title>
 <abstract>
-Chcesz dostosować Portage pod swoje wymagania. Nic łatwiejszego, do tego posłużą Ci pliki konfiguracyjne oraz zmienne środowiskowe.
+Chcesz dostosować Portage pod swoje wymagania? Nic łatwiejszego, do tego posłużą Ci pliki konfiguracyjne oraz zmienne środowiskowe.
 </abstract>
   <include href="hb-portage-configuration.xml"/>
 </chapter>
@@ -320,8 +319,8 @@ Przeczytaj ten rozdział, żeby dowiedzieć się jak używać dispatch-conf oraz
 <chapter>
 <title>Pozostawiając oficjalne Drzewo Portage</title>
 <abstract>
-Rozdział ten pokazuje pare sztuczek, jak używać swojego własnego drzewa Portage,
-synchronizować tylko te kategorie, które chesz, injektować pakiety oraz wiele wiecej.
+Rozdział ten pokazuje kilka sztuczek związanych z codzienną pracą w Gentoo, m.in. jak używać swojego własnego drzewa Portage,
+synchronizować tylko te kategorie, które cheszmy, aby były synchronizowane, czy injektować pakiety.
 </abstract>
      <include href="hb-portage-diverttree.xml"/>
 </chapter>
