@@ -3,11 +3,11 @@
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
-<!-- Orig revision: 1.30 -->
+<!-- Orig revision: 1.32 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.8 2004/03/16 09:58:33 veng Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.9 2004/03/23 11:20:31 veng Exp $ -->
 
 <sections>
 <section>
@@ -294,7 +294,7 @@ kernel /kernel-2.4.24 root=/dev/hda3
 <comment># Następne trzy linie są potrzebne tylko, gdy chcesz uruchamiać także Windows.</comment>
 <comment># W tym przypadku, Windows mieści się na /dev/hda6.</comment>
 title=Windows XP
-root (hd0,5)
+rootnoverify (hd0,5)
 chainloader +1
 </pre>
 
@@ -310,7 +310,7 @@ initrd /initrd-2.4.24
 
 <comment># Tylko jeśli chcesz uruchamiać dwa systemy</comment>
 title=Windows XP
-root (hd0,5)
+rootnoverify (hd0,5)
 chainloader +1
 </pre>
 
@@ -326,7 +326,7 @@ initrd /initrd-2.4.24
 
 <comment># Tylko, gdy chcesz uruchamiać dwa systemy</comment>
 title=Windows XP
-root (hd0,5)
+rootnoverify (hd0,5)
 chainloader +1
 </pre>
 
@@ -436,7 +436,7 @@ schematu partycjonowania. Wyróżniamy trzy części:
 <pre caption = "Przykładowy /etc/lilo.conf">
 boot=/dev/hda             <comment># Instalacja LILO w MBR</comment>
 prompt                    <comment># Dajemy użytkownikowi możliwość wyboru innej pozycji</comment>
-delay=50                <comment># Czekamy 5 sekund przed uruchomieniem domyślnej pozycji</comment>
+timeout=50                <comment># Czekamy 5 sekund przed uruchomieniem domyślnej pozycji</comment>
 default=gentoo            <comment># Kiedy oczekiwanie się zakończy, uruchamiamy pozycję "gentoo"</comment>
 <comment># Tylko jeśli używasz bufora ramki. W przeciwnym wypadku usuń następującą linię:</comment>
 vga=788                   <comment># Ustawienia framebuffera. Dopasuj wedle uznania.</comment>
@@ -444,7 +444,7 @@ vga=788                   <comment># Ustawienia framebuffera. Dopasuj wedle uzna
 <comment># Dla nie korzystajacych z genkernela</comment>
 image=/boot/kernel-2.4.24
   label=gentoo            <comment># Nazwa, jaką mianujemy tę pozycję</comment>
-  read-only               <comment># Zaczynamy z partycja root tylko do odczytu. Nie zmieniać!</comment>
+  read-only               <comment># Zaczynamy z partycją root tylko do odczytu. Nie zmieniać!</comment>
   root=/dev/hda3          <comment># Umiejscowienie głównego systemu plików</comment>
 
 <comment># Dla użytkowników genkernela z GRP</comment>
