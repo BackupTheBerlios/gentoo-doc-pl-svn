@@ -10,7 +10,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.24 2004/12/12 23:51:13 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.25 2004/12/13 14:24:07 rane Exp $ -->
 
 <sections>
 
@@ -18,19 +18,20 @@
 <date>2004-12-07</date>
 
 <section>
-<title>Administracja Użytkownikami</title>
+<title>Administracja użytkownikami.</title>
 <subsection>
-<title>Dodawanie Użytkownika do Codziennej Pracy</title>
+<title>Dodawanie konta użytkownika do codziennej pracy.</title>
 <body>
 
 <p>
 Praca w systemie Unix/Linux jako root jest <e>niebezpieczna</e> i należy
-jej unikać jak to tylko możliwe. Usilnie <e>zalecamy</e> stworzyć do codziennych
-zadań zwykłego użytkownika.
+jej unikać tak często jak to tylko możliwe. Usilnie <e>zalecamy</e> stworzyć do
+codziennej pracy konto zwykłego użytkownika.
 </p>
 
 <p>
-Grupy do których należy użytkownik definiują czynności, które mogą być przez niego wykonywane. Oto lista ważnych grup, których możesz używać:
+Grupy do których należy użytkownik definiują czynności, które mogą być przez
+niego wykonywane. Oto lista ważnych grup, których możesz używać:
 </p>
 
 <table>
@@ -61,7 +62,7 @@ Grupy do których należy użytkownik definiują czynności, które mogą być p
 <tr>
     <ti>video</ti>
     <ti>
-	możliwość dostępu do urządzeń wideo oraz pracy z akceleracją sprzętową
+     możliwość dostępu do urządzeń wideo oraz pracy z akceleracją sprzętową
     </ti>
 </tr>
 <tr>
@@ -71,10 +72,10 @@ Grupy do których należy użytkownik definiują czynności, które mogą być p
 </table>
 		  
 <p>
-Na przykład, aby dodać użytkownika <c>john</c> i dopisać go do grup
+Na przykład, aby dodać użytkownika <c>aye</c> i dopisać go do grup
 <c>wheel</c> (aby mógł korzystając z <c>su</c> logować się jako root),
 <c>users</c> (domyślna dla wszystkich użytkowników) oraz <c>audio</c>
-(aby mógł korzystać z urządzeń dźwiękowych), wejdź na konto 
+(aby mógł korzystać z urządzeń dźwiękowych) wejdź na konto 
 roota (tylko root może tworzyć nowych użytkowników):
 </p>
 
@@ -82,31 +83,31 @@ roota (tylko root może tworzyć nowych użytkowników):
 Login: <i>root</i>
 Password: <comment>(Twoje hasło)</comment>
 
-# <i>useradd john -m -G users,wheel,audio -s /bin/bash</i>
-# <i>passwd john</i>
-Password: <comment>(Podaj hasło johna)</comment>
-Re-enter password: <comment>(Ponownie podaj hasło johna)</comment>
+# <i>useradd aye -m -G users,wheel,audio -s /bin/bash</i>
+# <i>passwd aye</i>
+Password: <comment>(Podaj hasło aye'go)</comment>
+Re-enter password: <comment>(Ponownie podaj hasło aye'go)</comment>
 </pre>
 
 <p>
-Jeśli użytkownik ten kiedykolwiek zechce wykonać pewne czynności
-jako root, może korzystając z <c>su -</c>, aby tymczasowo otrzymać
+Jeśli użytkownik ten kiedykolwiek zechce wykonać jakiekolwiek czynności
+jako root powinien użyć polecenia <c>su -</c>, aby tymczasowo otrzymać
 uprawnienia superużytkownika. Alternatywnie może skorzystać z pakietu
-<c>sudo</c>, charakteryzującego się wysokim poziomem bezpieczeństwa
-jeśli zostanie prawidłowo skonfigurowany.
+<c>sudo</c> charakteryzującego się wysokim poziomem bezpieczeństwa 
+(o ile zostanie prawidłowo skonfigurowany).
 </p>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Opcjonalnie: Instalacja Pakietów GRP</title>
+<title>Opcjonalnie: Instalacja pakietów GRP.</title>
 <body>
 
 <impo>
 Ta podsekcja przeznaczona jest wyłącznie dla użytkowników GRP. Pozostali
 powinni ją pominąć i przejść do rozdziału
-<uri link="?part=1&amp;chap=12">Co Dalej?</uri>.
+<uri link="?part=1&amp;chap=12">Co dalej?</uri>.
 </impo>
 
 <p>
@@ -134,7 +135,7 @@ pakiety z Packages CD. Zacznijmy od zamontowania tej płyty.
 Teraz skonfiguruj Portage aby szukało pakietów GRP w <path>/mnt/cdrom</path>.
 </p>
 
-<pre caption="Configuring Portage to use /mnt/cdrom">
+<pre caption="Konfigurowanie Portage, aby używało /mnt/cdrom">
 # <i>ls /mnt/cdrom</i>
 <comment>(Jeśli istnieje katalog /mnt/cdrom/packages:)</comment>
 # <i>export PKGDIR="/mnt/cdrom/packages"</i>
@@ -154,7 +155,7 @@ programów, na przykład KDE:
 <p>
 Przed rozpoczęciem instalacji musisz się upewnić czy system skorzysta
 z GRP. Podczas wykonywania <c>emerge sync</c> w celu aktualizacji Portage
-(o czym dowiesz się z kolejnych rozdziałów podręcznika), prekompilowane
+(o czym dowiesz się z kolejnych rozdziałów podręcznika) prekompilowane
 pakiety mogą okazać się starsze niż dostępne ebuildy. Możesz wymusić
 korzystanie z nich za pomocą polecenia <c>emerge --usepkgonly</c> zamiast
 <c>emerge --usepkg</c>.
