@@ -2,58 +2,62 @@
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
 <!-- Orig revision: 1.4 -->
-<!-- Translator: arachnist <arachnist@gmail.com> -->
-<!-- Title: Obsługa drzewa Portage -->
-<!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-portage-diverttree.xml,v 1.4 2004/11/27 18:14:42 sekretarz Exp $ -->
+<!-- Translator: arachnist <arachnist@gmail.pl> -->
+<!-- Title: Przygotowanie dysków dla MIPS -->
+<!-- Status: Release -->
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-portage-diverttree.xml,v 1.5 2004/12/08 10:59:32 rane Exp $ -->
 
 <sections>
 
-<version>1.1</version>
-<date>2004-10-21</date>
+<version>1.4</version>
+<date>2004-12-08</date>
 
 <section>
-<title>Używanie podzestawów drzewa Portage</title>
+<title>Używanie podzestawów drzewa Portage.</title>
 <subsection>
-<title>Pomijanie Pakietów/Kategorii</title>
+<title>Pomijanie kategorii/pakietów.</title>
 <body>
 
 <p>
-Możesz selektywnie uaktualniać poszczególne kategorie/pakiety i zignorować
+Możesz selektywnie uaktualniać poszczególne kategorie/pakiety oraz zignorować
 pozostałe kategorie/pakiety. Osiągamy to zmuszając <c>rsync</c> do pominięcia
 kategorii/pakietów podczas wykonywania <c>emerge --sync</c>.
 </p>
 
 <p>
 Domyślnie <c>rsync</c> sprawdzi zawartość
-<path>/etc/portage/rsync_excludes</path> (jeśli plik istnieje) który zawiera
+<path>/etc/portage/rsync_excludes</path> (jeśli plik istnieje), który zawiera
 kategorie lub pakiety których <e>nie</e> chcesz by <c>rsync</c> uaktualniał.
 </p>
 
 <p>
-Zwróc uwagę że możę to doprowadzić do problemów z zależnościami gdyż nowe,
-nie pominięte pakiety mogą zależeć od nowych lecz pominiętych pakietów.
+Zwróć uwagę że może to doprowadzić do problemów z zależnościami, gdyż nowe,
+niepominięte pakiety mogą zależeć od nowych lecz pominiętych pakietów.
 </p>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Dodawanie Nieoficialnych Ebuildów</title>
+<title>Dodawanie nieoficialnych ebuildów.</title>
 <subsection>
-<title>Definiowanie Katalogu Nakładki na Portage</title>
+<title>Definiowanie katalogu-nakładki na Portage.</title>
 <body>
 
 <p>
-Możesz zmusić Portage, aby używała ebuildów, które nie są dostępne w oficjalnym drzewie Portage.
+Możesz zmusić Portage, aby używało ebuildów, które nie są dostępne w oficjalnym drzewie.
 Utwórz nowy katalog (na przykład <path>/usr/local/portage</path>) w którym będą
-znajdować się dodatkowe ebuildy. Pamiętaj o zachowaniu struktury katalogów, tak
-jak w oficjalnym drzewie Portage.
+znajdować się dodatkowe ebuildy. Pamiętaj o zachowaniu struktury katalogów
+takiej jak w oficjalnym drzewie Portage.
 </p>
 
 <p>
-Następnie zdefiniuj PORTDIR_OVERLAY w <path>/etc/make.conf</path> tak żeby wskazywała
-na poprzednio utworzony katalog. Możesz teraz używać tych ebuildów bez obawy, że
+Następnie zdefiniuj zmienną PORTDIR_OVERLAY w pliku <path>/etc/make.conf</path> tak żeby wskazywała
+na właśnie utworzony katalog. Możesz teraz używać tych ebuildów bez obawy, że
 zostaną one usunięte/nadpisane przy następnym uruchomieniu <c>emerge --sync</c>
 </p>
 
@@ -61,16 +65,16 @@ zostaną one usunięte/nadpisane przy następnym uruchomieniu <c>emerge --sync</
 </subsection>
 </section>
 <section>
-<title>Programy, które nie są utrzymywane w Portage</title>
+<title>Programy spoza Portage.</title>
 <subsection>
-<title>Portage z programami utrzymywanymi przez siebie</title>
+<title>Portage kontra własnoręcznie zarządzane pakiety.</title>
 <body>
 
 <p>
 W niektórych przypadkach możesz chcieć konfigurować, instalować i zarządzać
-programami samodzielnie bez pomocy Portage w automatyzacji tego procesu, nawet
+programami samodzielnie, bez pomocy Portage w automatyzacji tego procesu, nawet
 jeśli Portage zawiera te programy. Najczęściej są to źródła jądra i 
-sterowniki nvidii. Możesz zkonfigurować Portage tak by myślało, że dany pakiet
+sterowniki nvidii. Możesz skonfigurować Portage tak by myślało, że dany pakiet
 jest zainstalowany w systemie. Ten proces nazywany jest
 <e>wstrzykiwaniem</e> i jest obsługiwany przez Portage dzięki plikowi
 <path>/etc/portage/profile/package.provided</path>.
