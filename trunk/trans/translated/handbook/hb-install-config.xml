@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.18 -->
+<!-- Orig revision: 1.19 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Systemu -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.11 2004/01/09 13:40:40 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.12 2004/01/10 08:47:57 lcs Exp $ -->
 
 <sections>
 <section>
@@ -382,11 +382,11 @@ Jeśli korzystasz z PCMCIA, zainstaluj pakiet <c>pcmcia-cs</c>:
 </pre>
 
 <p>
-Następnie  dodaj do poziomu uruchamiania <e>boot</e> skrypt <c>pcmcia</c>:
+Następnie dodaj do domyślnego poziomu uruchamiania skrypt <c>pcmcia</c>:
 </p>
 
-<pre caption="Dodawanie do poziomu uruchamiania boot skryptu pcmcia">
-# <i>rc-update add pcmcia boot</i>
+<pre caption="Dodawanie do domyślnego poziomu uruchamiania skryptu pcmcia">
+# <i>rc-update add pcmcia default</i>
 </pre>
 
 </body>
