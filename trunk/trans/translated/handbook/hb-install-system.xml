@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.32 -->
+<!-- Orig revision: 1.38 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Instalacja Systemu Podstawowego -->
 <!-- Status: Ukończono -->
+<!-- Update from 1.32 to 1.38: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.12 2004/03/30 09:58:13 veng Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.13 2004/07/11 14:52:56 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -26,7 +27,7 @@ połączenie sieciowe):
 </p>
 
 <pre caption="Wybieranie najszybszych serwerów">
-# <i>mirrorselect -a -s4 -o &gt;&gt; /mnt/gentoo/etc/make.conf</i>
+# <i>mirrorselect -a -s4 -o | grep -ve '^Netselect' &gt;&gt; /mnt/gentoo/etc/make.conf</i>
 </pre>
 
 <p>
@@ -49,7 +50,8 @@ sieci.
 </p>
 
 <pre caption="Skopiowanie informacji o DNS">
-# <i>cp /etc/resolv.conf /mnt/gentoo/etc/resolv.conf</i>
+<comment>(Opcja "-L" jest potrzebna, aby mieć pewność, że nie zostanie skopiowane dowiązanie symboliczne)</comment>
+# <i>cp -L /etc/resolv.conf /mnt/gentoo/etc/resolv.conf</i>
 </pre>
 
 </body>
@@ -104,8 +106,15 @@ pominąć tą sekcję i przejść do
 
 <pre caption="Aktualizowanie Portage">
 # <i>emerge sync</i>
-<comment>(Gdy nie możesz użyć rsync, skorzystaj z programu "emerge-webrsync",
-który ściągnie i zainstaluje migawkę portage)</comment>
+</pre>
+
+<p>
+Portage używa protokołu RSYNC uaktualniające drzewo Portage. Jeżeli powyższe
+polecenie zakończy się niepowodzeniem przez firewalla, użyj <c>emerge-websync</c>, który
+ściąga i instaluje migawke portage i używa do tego celu protokołu HTTP.
+</p>
+
+<pre caption="Updating Portage with emerge-webrsync">
 # <i>emerge-webrsync</i>
 </pre>
 
@@ -316,8 +325,7 @@ wszystkich niezbędnych plików.
 
 <p>
 W porządku, zatem chwytaj klawiaturę i wstukuj następne polecenia - zaczynamy
-bootstrap. A potem idź poszukać rozrywki przy czymś innym (na przykład przy
-nękaniu developerów Gentoo na #gentoo), ponieważ ten etap zajmie trochę
+bootstrap. A potem idź poszukać rozrywki przy czymś innym, ponieważ ten etap zajmie trochę
 czasu zanim się zakończy.
 </p>
 
