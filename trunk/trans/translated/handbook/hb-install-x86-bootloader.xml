@@ -10,7 +10,7 @@
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-bootloader.xml,v 1.10 2004/12/21 15:28:08 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-bootloader.xml,v 1.11 2004/12/22 12:20:38 rane Exp $ -->
 
 <sections>
 <version>1.19</version>
@@ -225,41 +225,33 @@ posłużymy się opcją <c>vga</c>, dotyczącą bufora ramki, którą
 przedyskutowaliśmy kilka paragrafów wcześniej:
 </p>
 
-<pre caption = "Dodawanie opcji vga jako parametru startowego dla jądra">
+<pre caption = "Dodawanie vga jako parametru startowego dla jądra">
 title=Gentoo Linux
-	root (hd0,0)
-	 kernel /kernel-2.4.24 root=/dev/hda3 vga=788
-</pre>
+  root (hd0,0)
+    kernel /kernel-2.6.5 root=/dev/hda3 video=vesafb
+    </pre>
 
 <p>
-Jeśli używasz kernela 2.6.7 lub nowszego i przy pomocy jumpera ograniczyłeś
-maksymalny rozmiar swojego twardego dysku (ponieważ Twój BIOS nie obsługuje tak
-dużych napędów) powinieneś dodatkowo dopisać do append <c>hdx=stroke</c>.
+Użytkownicy programu <c>genkernel</c> powinni wiedzieć, że jądra, które
+zbudowali używają tych samych opcji bootowania co LiveCD. Na przykład jeśli masz
+urządzenia SCSI, powinieneś dodać parametr <c>doscsi</c>.
 </p>
 
 <p>
-Użytkownicy programu <c>genkernel</c> powinni wiedzieć, że jądra, które zbudowali,
-używają tych samych opcji bootowania co LiveCD. Na przykład jeśli masz urządzenia
-SCSI powinieneś dodać parametr <c>doscsi</c>.
+Następnie zapisz plik <path>grub.conf</path> i opuść edytor. Kolejnym krokiem
+będzie dopisanie GRUB'a do MBR.
 </p>
 
 <p>
-Kiedy skończysz zapisz plik <path>grub.conf</path> i opuść edytor. W tej chwili
-GRUB jest już w pełni skonfigurowany i możesz przejść rozdziału <uri
-link="?part=1&amp;chap=10"> Instalacja niezbędnych narzędzi
-systemowych</uri>.
+Twórcy GRUB'a zalecają użycie <c>grub-install</c>. Czasem jednak program ten z
+jakiegoś powodu odmówi współpracy wciąż pozostanie Ci możliwość ręcznego
+zainstalowania GRUB'a.
 </p>
 
 <p>
-Developerzy GRUB'a zalecają używanie <c>grub-install</c>. Czasem jednak, z
-nieznanych powodów, <c>grub-install</c> odmawia współpracy. W takim wypadku masz
-jeszcze do dyspozycji ręczną metodę instalacji gruba.
-</p>
-
-<p>
-Przejdź do paragrafu <uri link="#grub-install-auto">Domyślnie: Instalacja GRUB'a przy
-pomocy grub-install</uri> lub <uri link="#grub-install-manual">Alternatywnie:
-Ręczna instalacja GRUB'a</uri>.
+Teraz przejdź do paragrafu <uri link="#grub-install-auto">Domyślnie: Instalowanie
+GRUB'a przy pomocy grub-install</uri> lub <uri link="#grub-install-manual">
+Alternatywnie: Ręczne instalowanie GRUB'a</uri>.
 </p>
 
 </body>
@@ -529,7 +521,7 @@ znów Ci się zabootuje livecd.
 </p>
 
 <p>
-Następnie zakończ proces instalacji zgodnie ze wskazówkami w rozdziale <uri
+Następnie zakończ proces instalacji zgodnie ze wskazówkami spisanymi w rozdziale <uri
 link="?part=1&amp;chap=11">Finalizowanie instalacji Gentoo</uri>.
 </p>
 
