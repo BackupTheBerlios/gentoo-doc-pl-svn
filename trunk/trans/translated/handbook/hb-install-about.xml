@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.19 -->
+<!-- Orig revision: 1.23 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Ukończono -->
-
+<!-- Update from 1.19 to 1.23: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-about.xml,v 1.15 2004/03/19 12:30:37 swierszczu Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-about.xml,v 1.16 2004/07/11 12:27:16 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -123,7 +123,7 @@ instalacyjnych). Istnieje także możliwość przeprowadzenia
 tego procesu przy użyciu już zainstalowanej dystrybucji, innej
 uruchamialnej płyty (na przykład Knoppiksa), środowiska uruchamianego
 z sieci (netboot), dyskietki ratunkowej itd. Niniejszy dokument prezentuje
-jedynie metody z użyciem LiveCD oraz środowiskiem netboot. 
+jedynie metody z użyciem LiveCD oraz w pewnym wypdaku, NetBootem (ang. NetBooting). 
 Opis pozostałych możliwości znajduje się w <uri 
 link="/doc/en/altinstall.xml">Przewodniku po Alternatywnych Metodach Instalacji</uri>
 </p>
@@ -144,15 +144,21 @@ wszystkiego, lecz zacząć od częściowo przygotowanego systemu.
 
 <p>
 Jeśli spotkasz się z jakimś problemem w trakcie instalacji
-(lub w dokumentacji), sprawdź <uri 
-link="/proj/en/releng/release/2004.0/x86/x86-release-notes.xml#doc_chap2_sect2">
-korektę wydania</uri>, odwiedź naszą <uri
+(lub w dokumentacji), sprawdź korekty naszego <uri link="/proj/en/releng/">Gentoo Release Engineering Project</uri>, odwiedź naszą <uri
 link="http://bugs.gentoo.org">bugzillę</uri> i sprawdź
 czy jest on znany. Nie obawiaj się o to, który z developerów
 zostanie do niego przypisany - oni zazwyczaj nie gryzą.
 </p>
 
 <p>
+Mimo, że dokument, który własnie czytasz jest specyficzny dla danej architektury, zawiera
+on także odnośniki do innych architektur. Wynika to z tego, że duża część Podręcznia Gentoo
+używa kodu wspólnego dla wszystkich architektur (robimy to aby uniknąć powtarzania wysiłków i ze względu na brak programistów).
+Spróbujemy zrobić to unikając  chaos.
+</p>
+	         
+<p>
+
 Jeśli nie jesteś pewien czy kłopot leży po stronie systemu
 (pewne rzeczy mogą nie być dostatecznie przetestowane) czy po Twojej
 (czasami może wyniknąć z nieuważnego czytania opisu), odwiedź
@@ -236,10 +242,16 @@ W tej chwili GRP dostępne jest dla następujących architektur:
     Architektura <b>amd64</b> (amd64)
   </li>
   <li>
-    Architektura <b>sparc</b> (sparc64)
+    Architektura <b>sparc</b> (sparc32, sparc64)
   </li>
   <li>
-    Architektura <b>ppc</b> (ppc, G3, G4)
+    Architektura <b>ppc</b> (G3, G4, G5)
+  </li>
+  <li>
+    Architektura <b>alpha</b> (alpha, alphaev5, alphaev56, alphaev6)
+  </li>
+  <li>
+    Architektura <b>mips</b>
   </li>
 </ul>
 
