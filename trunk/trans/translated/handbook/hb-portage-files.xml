@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- Orig revision: 1.7 -->
+<!-- Translator: sekretarz <sekretarz@dukato.net> -->
+<!-- Title: Pliki portage -->
+<!-- Status: Ukończono -->
+
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-portage-files.xml,v 1.1 2004/11/27 18:22:56 sekretarz Exp $ -->
+
+<sections>
+
+<version>1.4</version>
+<date>2004-10-23</date>
+
+<section>
+<title>Pliki Portage</title>
+<subsection>
+<title>Dyrektywy konfiguracji</title>
+<body>
+
+<p>
+Domyślna konfiguracja Portage znajduje się w pliku 
+<path>/etc/make.globals</path>. Gdy spojrzysz na niego, zauważysz, że
+cała konfiguracja Portage jest zapamiętywana w zmiennych. Które zmienne
+w portage czego się tyczą i co oznaczają zostało opisane później.
+</p>
+
+<p>
+Od kiedy wiele dyrektyw konfiguracji różni się w odrębnych architekturach, Portage 
+również ma domyślny plik konfiguracyjny wewnątrz Twojego profilu:
+<path>/etc/make.profile/make.defaults</path>. Wyjaśnimy więcej o profilach
+i katalogu <path>/etc/make.profile</path> później.
+</p>
+
+<p>
+Jeśli chcesz zmienić konfigurację zmiennej, <e>nie</e> edytuj
+<path>/etc/make.globals</path> ani <path>/etc/make.profile/make.defaults</path>. 
+Zamiast, skorzystaj z <path>/etc/make.conf</path>, który ma pierwszeństwo nad
+w/w plikami. Możesz również obejrzeć plik /etc/make.conf.example. Jak sama nazwa
+wskazuje, jest to przykładowy plik - Portage nie korzysta z niego.
+</p>
+
+<p>
+Masz również możliwość zdefiniowania konfiguracyjnej zmiennej Portage jako zmiennej środowiskowej,
+ale nie polecamy tego.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Specyficzne informacje dotyczące profilu</title>
+<body>
+
+<p>
+Już zdążyliśmy napotkać katalog <path>/etc/make.profile</path>. Prawdę mowiąc
+nie jest to katalog ale dowiązanie do domyślnego profilu wewnątrz <path>/usr/portage/profiles</path>.
+Aczkolwiek możesz tworzyć własne profile, gdziekolwiek zechcesz. System korzysta z profilu
+wskazywanego przez to dowiązanie.
+</p>
+
+<p>
+Profil zawiera specyficzne informacje na temat architektury dla Portage,
+jak np. lista pakietów, która należy do systemu korzystającego z tego profilu,
+lista pakietów, które nie działają (bądź są zamaskowane) dla danego profilu, etc.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Specyficzna konfiguracja użytkownika</title>
+<body>
+
+<p>
+Gdy potrzebujesz przekroczyć standardowe zachowania programu instalacyjnego
+Portage, zakończysz edycję plików wewnątrz <path>/etc/portage</path>. <e>Zaleca 
+się</e> używanie plików wewnątrz /etc/portage i </e>zniechęca</e> do przekraczania
+standardowych zachowań poprzez zmienne środowiskowe.
+</p>
+
+<p>
+Wewnątrz <path>/etc/portage</path> możesz stworzyć następujące pliki:
+</p>
+
+<ul>
+  <li>
+   <path>package.mask</path> gdzie listowane są pakiety, których nigdy nie chcesz
+    instalować
+  </li>
+  <li>
+    <path>package.unmask</path> gdzie listowane są pakiety, które chcesz móc
+    instalować nawet mimo wszelkim przeciwskazaniom deweloperów
+  </li>
+  <li>
+    <path>package.keywords</path> gdzie są listowane pakiety, które chcesz móc
+    instalować nawet mimo faktu, że nie są do końca kompatybilne z Twoim systemem
+    bądź architekturą (jeszcze)
+  </li>
+  <li>
+    <path>package.use</path> gdzie listowane są flagi USE, które chcesz
+    używać dla pewnych pakietów nie używających ustawionych w systemie
+    flag USE.
+  </li>
+</ul>
+
+<p>
+Więcej informacji o katalogu <path>/etc/portage</path> oraz pełna lista plików, które
+możesz stworzyć są dostępne na stronie man dotyczącego Portage:
+</p>
+
+<pre caption="Czytanie strony man dla Portage">
+$ <i>man portage</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Zmiana pliku Portage &amp; Lokalizacje katalogów</title>
+<body>
+
+<p>
+Wcześniej nadmienione pliki konfiguracyjne nie mogą zostać zapisane
+gdziekolwiek - Portage będzie zawsze szukać ich w konkretnych lokalizacjach.
+Jakkolwiek, Portage używa wielu lokalizacji dla różnych celów: katalog
+"budowy", zapisywanie kodu źródłowego, lokalizacja drzewa Portage, ...
+</p>
+
+<p>
+Wszystkie te cele mają dobrze znane domyślne lokalizacje, ale mogą być zmieniane
+według Twojego własnego gustu w <path>/etc/make.conf</path>. Reszta tego rozdziału
+wyjaśnia jak używane są specjalne lokalizacje przez Portage i jak można zmieniac
+ich położenie w Twoim systemie plików.
+</p>
+
+<p>
+Ten dokument nie może być używany jako pewne źródło informacji,
+Jeśli potrzebujesz 100% pewności, skorzystaj z Portage, pliku
+<path>make.conf</path> oraz stron man:
+</p>
+
+<pre caption="Czytanie stron man Portage i pliku make.conf">
+$ <i>man portage</i>
+$ <i>man make.conf</i>
+</pre>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Zapisywanie plików</title>
+<subsection>
+<title>Drzewo Portage</title>
+<body>
+
+<p>
+Domyślną lokalizacją dla drzewa Portage jest katalog <path>/usr/portage</path>. Zdefiniowana
+jest ona w zmiennej PORTDIR. Gdy gdziekolwiek zapisujesz drzewo Portage (przez
+modyfikację tej zmiennej), nie zapomnij zmienić odpowiednio pliku <path>/etc/make.profile</path>.
+</p>
+
+<p>
+Jeśli modyfikujesz zmienną PORTDIR, możesz chcieć również zmienić kolejne
+zmienne, ponieważ nie "zauważą" one zmiany PORTDIR. Powodem tego jest sposób
+zarządzania przez Portage zmiennymi: PKGDIR, DISTDIR, RPMDIR.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Wcześniej zbudowane binaria</title>
+<body>
+
+<p>
+Nawet pomimo faktu, iż Portage nie używane wcześniej skompilowanych binarii domyślnie,
+posiada dla nich obszerne wsparcie. Gdy wymuszasz na Portage pracę z owymi binariami,
+będziesz ich szukać w <path>/usr/portage/packages</path>. Ta lokalizacja zdefiniowana jest
+w zmiennej PKGDIR.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Kod źródłowy</title>
+<body>
+
+<p>
+Kod źródłowy aplikacji domyślnie zapisywany jest w <path>/usr/portage/distfiles</path>.
+Ta lokalizacja jest zdefiniowana w zmiennej DISTDIR.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>pliki RPM</title>
+<body>
+
+<p>
+Mimo iż Portage nie umie korzystać z plików RPM, możliwe jest wygenerowanie
+ich używając komendy <c>ebuild</c> (zobacz <uri link="?part=3&amp;chap=6">
+Aplikacja Ebuild</uri>). Domyślną lokalizacją, gdzie Portage zapisuje pliki
+RPM jest katalog <path>/usr/portage/rpm</path> i jest on zdefiniowany
+w zmiennej RPMDIR.
+</p>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Budowanie oprogramowania</title>
+<subsection>
+<title>Tymczasowe pliki Portage</title>
+<body>
+
+<p>
+Tymczasowe pliki portage zapisywane są domyślnie w <path>/var/tmp</path>.
+Ta ścieżka zdefiniowana jest w zmiennej PORTAGE_TMPDIR.
+</p>
+
+<p>
+Jeśli modyfikujesz zmienną PORTAGE_TMPDIR, możesz chcieć również zmienić
+kolejne zmienne, gdyż nie "zauważą" one zmiany PORTAGE_TMPDIR. Powodem tego
+jest sposób zarządzania zmiennymi: BUILD_PREFIX przez Portage.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Tworzenie katalogów</title>
+<body>
+
+<p>
+Portage tworzy specyficzne katalogi do budowy dla każdego pakietu, który pojawi
+się wewnątrz <path>/var/tmp/portage</path>. Ta lokalizacja zdefiniowana jest w
+zmiennej BUILD_PREFIX.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Lokalizacja systemu plików</title>
+<body>
+
+<p>
+Domyślnie portage instaluje wszystkie pliki w bierzącym systemie
+plików (<path>/</path>), ale możesz zmienić to ustawiając zmienną
+środowiskową ROOT. Jest to użyteczne, gdy chcesz tworzyć nowe
+obrazy budowy.
+</p>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Logowanie zdarzeń</title>
+<subsection>
+<title>Logowanie Ebuild</title>
+<body>
+
+<p>
+Portage może tworzyć pliki z logami ebuild, ale tylko, gdy zmienna
+PORT_LOGDIR jest ustawiona na lokalizację zapisywalną przez portage
+(użytkownika "dla" Portage). Domyślnie zmienna ta jest nieustawiona.
+</p>
+
+</body>
+</subsection>
+</section>
+</sections>
