@@ -3,13 +3,13 @@
 
 <!-- Orig revision: 1.14 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
-<!-- Title: Konfiguracja Jądra dla PPC -->
-<!-- Status: Ukończono -->
+<!-- Title: Konfiguracja jądra dla PPC -->
+<!-- Status: Release -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc-kernel.xml,v 1.3 2004/12/02 23:01:51 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc-kernel.xml,v 1.4 2004/12/09 20:08:24 rane Exp $ -->
 
 <sections>
 
@@ -17,14 +17,13 @@
 <date>2004-12-02</date>
 
 <section>
-<title>Strefa czasowa</title>
+<title>Strefa czasowa.</title>
 <body>
 
-
 <p>
-Aby system wiedział gdzie się znajdujesz, powinieneś najpierw wybrać swoją
+Aby system wiedział gdzie się znajdujesz powinieneś najpierw wybrać swoją
 strefę czasową. Odszukaj ją w <path>/usr/share/zoneinfo</path>, a następnie
-za pomocą <c>ln</c>, utwórz do niej symlinka <path>/etc/localtime</path>.
+za pomocą <c>ln</c> utwórz do niej symlinka <path>/etc/localtime</path>.
 </p>
 
 <pre caption="Konfiguracja strefy czasowej">
@@ -36,20 +35,24 @@ za pomocą <c>ln</c>, utwórz do niej symlinka <path>/etc/localtime</path>.
 </body>
 </section>
 <section>
-<title>Instalacja Źródeł</title>
+<title>Instalacja źródeł.</title>
 <subsection>
-<title>Wybór Jądra</title>
+<title>Wybór jądra.</title>
 <body>
 
 <p>
 Sercem każdej dystrybucji jest jądro Linux. Stanowi ono interfejs pomiędzy
-programami użytkownika a sprzętem. Gentoo dostarcza użytkownikom
+programami użytkownika, a sprzętem. Gentoo dostarcza użytkownikom
 różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
 <uri link="/doc/en/gentoo-kernel.xml">Przewodniku Jąder Gentoo</uri>.
 </p>
 
 <p>
-Dla architektury PPC mamy do wyboru dwa kernele: <c>development-sources</c> i <c>gentoo-dev-sources</c> (oba serii 2.6). Drugi jest dostępny dla instalacji bez dostępu do sieci. Poza tym istnieje też specjalny patchset dla Pegasosa - <c>pegasos-dev-sources</c> (również serii 2.6). Wybierzmy zatem któryś kernel i zainstalujmy go:
+Dla architektury PPC mamy do wyboru dwa kernele: <c>development-sources</c> i
+<c>gentoo-dev-sources</c> (oba serii 2.6). Drugie są dostępny dla instalacji
+bez dostępu do sieci. Poza tym istnieje też specjalny patchset dla Pegasosa -
+<c>pegasos-dev-sources</c> (również serii 2.6). Wybierzmy zatem któryś kernel i
+zainstalujmy go:
 </p>
 
 <pre caption="Instalacja źródeł kernela">
@@ -57,7 +60,8 @@ Dla architektury PPC mamy do wyboru dwa kernele: <c>development-sources</c> i <c
 </pre>
 
 <p>
-W katalogu <path>/usr/src</path> powinieneś utworzyć symlink o nazwie <c>linux</c> wskazujący na katalog ze źródłami kernela:
+W katalogu <path>/usr/src</path> powinieneś utworzyć symlink o nazwie
+<c>linux</c> wskazujący na katalog ze źródłami kernela:
 </p>
 
 <pre caption="Jak powinien wyglądać symlink do źródeł kernela">
@@ -66,7 +70,8 @@ lrwxrwxrwx    1 root     root           12 Jul 10 10:55 /usr/src/linux -&gt; lin
 </pre>
 
 <p>
-Jeśli powyższe informacje nie są prawidłowe (np. symlink wskazuje na inne źródła kernela) musisz go poprawić:
+Jeśli powyższe informacje nie są prawidłowe (np. symlink wskazuje na inne źródła
+kernela) musisz go poprawić:
 </p>
 
 <pre caption="Poprawa symlinka do źródeł kernela">
@@ -93,15 +98,22 @@ Przejdź do paragrafu <uri link="#manual">Ręczna konfiguracja</uri>.
 <body>
 
 <p>
-Ręczna konfiguracja jądra często postrzegana jest jako najtrudniejsza rzecz, przez którą przejść musi każdy użytkownik Linuksa. Nic bardziej mylnego - po konfiguracji kilku kerneli zapomnisz, że miałeś z tym jakiekolwiek problemy ;)
+Ręczna konfiguracja jądra często postrzegana jest jako najtrudniejsza rzecz,
+przez którą przejść musi każdy użytkownik Linuksa. Nic bardziej mylnego - po
+konfiguracji kilku kerneli zapomnisz, że miałeś z tym jakiekolwiek problemy ;)
 </p>
 
 <p>
-Jednemu <e>nie można</e> zaprzeczyć: musisz dobrze znać swój komputer zanim rozpoczniesz ręczną konfigurację. Większość informacji zdobędziesz przeglądając zawartość <path>/proc/pci</path> (lub używając <c>lspci</c> jeśli jest dostępne). Aby przejrzeć listę modułów, których używa LiveCD skorzystaj z <c>lsmod</c> (to dobra wskazówka dotycząca rzeczy wartych włączenia).
+Jednemu <e>nie można</e> zaprzeczyć: musisz dobrze znać swój komputer zanim
+rozpoczniesz ręczną konfigurację. Większość informacji zdobędziesz przeglądając
+zawartość <path>/proc/pci</path> (lub używając <c>lspci</c> jeśli jest
+dostępne). Aby przejrzeć listę modułów, których używa LiveCD skorzystaj z
+<c>lsmod</c> (to dobra wskazówka dotycząca rzeczy wartych włączenia).
 </p>
 
 <p>
-Teraz przejdź do katalogu ze źródłami i uruchom <c>make menuconfig</c>. Uruchomi się narzędzie konfiguracyjne oparte na ncurses.
+Teraz przejdź do katalogu ze źródłami i wpisz polecenie <c>make menuconfig</c>. Uruchomi
+się narzędzie konfiguracyjne oparte na ncurses.
 </p>
 
 <pre caption="Uruchamianie menuconfig">
@@ -110,17 +122,21 @@ Teraz przejdź do katalogu ze źródłami i uruchom <c>make menuconfig</c>. Uruc
 </pre>
 
 <p>
-Twoim oczom ukaże się kilkanaście sekcji. Zacznijmy od pokazania tych opcji, które musisz aktywować (w przeciwnym wypadku Gentoo nie zadziała, lub zadziała nieprawidłowo).
+Twoim oczom ukaże się kilkanaście sekcji. Zacznijmy od omówienia opcji,
+które musisz aktywować, bow przeciwnym wypadku Gentoo nie zadziała, lub będzie
+działać nieprawidłowo.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Aktywacja Niezbędnych Opcji</title>
+<title>Aktywacja niezbędnych opcji.</title>
 <body>
 
 <p>
-Przede wszystkim, włącz możliwość korzystania z kodu/sterowników rozwojowych i eksperymentalnych. Jeśli tego nie zrobisz, nie będziesz mógł włączyć wielu ważnych opcji: 
+Przede wszystkim włącz możliwość korzystania z kodu/sterowników rozwojowych i
+eksperymentalnych. Jeśli tego nie zrobisz, nie będziesz miał możliwości
+włączenia wielu ważnych opcji:
 </p>
 
 <pre caption="Aktywacja eksperymentalnego kodu/sterowników">
@@ -131,7 +147,7 @@ Code maturity level options ---&gt;
 <p>
 Następnie przejdź do <c>File Systems</c> i zaznacz wsparcie dla wykorzystywanych
 systemów plików. <e>Nie</e> kompiluj ich jako moduły, gdyż Gentoo nie będzie
-mogło zamontować partycji. Dodatkowo włącz <c>Virtual memory</c>, <c>/proc
+mogło zamontować partycji. Przy okazji włącz też <c>Virtual memory</c>, <c>/proc
 file system</c>, oraz <c>/dev file system</c> + <c>Automatically mount at boot</c>:
 </p>
 
@@ -166,15 +182,18 @@ Network device support ---&gt;
 </pre>
 
 <p>
-Dwie kolejne opcje, dotyczące kompresji nie zaszkodzą, jakkolwiek nie są również wymagane. Podobnie jak <c>PPP over Ethernet</c>, przydatna  tylko wówczas, kiedy do pracy w trybie jądra PPPoE zostanie skonfigurowany <c>rp-pppoe</c>.
+Dwie kolejne opcje związane z kompresją nie zaszkodzą, chociaż nie są również
+niezbędne. Podobnie jest z opcją <c>PPP over Ethernet</c>, przydatna tylką wówczas, kiedy
+do pracy w trybie jądra PPPoE zostanie skonfigurowany <c>rp-pppoe</c>.
 </p>
 
 <p>
-Jeśli taką posiadasz, nie zapomnij o wkompilowaniu wsparcia dla swojej karty sieciowej.
+Nie zapomnij o wkompilowaniu wsparcia dla swojej karty sieciowej (jeśli jakąś
+masz). 
 </p>
 
 <p>
-Przede wszystkim, wyłącz wsparcie dla kodów klawiszy ADB:
+Wyłącz wsparcie dla kodów klawiszy ADB:
 </p>
 
 <pre caption="Wyłączanie wsparcia dla kodów klawiszy ADB">
@@ -183,7 +202,7 @@ Macintosh Device Drivers ---&gt;
 </pre>
   
 <p>
-Wybierz również prawidłową obsługę RTC (<e>wyłącz</e> opcję <c>Enhaced RTC</c>):
+Wybierz prawidłową obsługę RTC (<e>wyłącz</e> opcję <c>Enhaced RTC</c>):
 </p>
 
 <pre caption="Aktywacja prawidłowej obsługi RTC">
@@ -195,7 +214,7 @@ Character devices ---&gt;
 </pre>
     
 <p>
-Użytkownicy sprzętu OldWorld prawdopodobnie zechcą obsługi HFS, aby mogli
+Użytkownicy sprzętu OldWorld prawdopodobnie zechcą obsługę HFS, aby mogli
 skopiować gotowe jądra na partycję MacOS.
 </p>
 
@@ -206,13 +225,13 @@ File Systems ---&gt;
 
 <p>
 Po ukończeniu konfiguracji jądra, przejdź do <uri
-link="#compiling">Kompilacji i Instalacji</uri>.
+link="#compiling">Kompilacji i instalacji</uri>.
 </p>
 
 </body>
 </subsection>
 <subsection id="compiling">
-<title>Kompilacja i Instalacja</title>
+<title>Kompilacja i Instalacja.</title>
 <body>
 
 <p>
@@ -242,7 +261,7 @@ Nie zapomnij też o skopiowaniu pliku system.map:
 </pre>
 
 <p>
-Na wszelki wypadek, warto skopiować do <path>/boot</path> także plik konfiguracyjny.
+Na wszelki wypadek skopiujemy do <path>/boot</path> również plik konfiguracyjny.
 </p>
 
 <pre caption="Archiwizacja pliku konfiguracyjnego">
@@ -250,16 +269,17 @@ Na wszelki wypadek, warto skopiować do <path>/boot</path> także plik konfigura
 </pre>
 
 <p>
-Następnie przejdź do paragrafu <uri link="#kernel_modules">Instalacja osobnych modułów kernela</uri>.
+Następnie przejdź do paragrafu <uri link="#kernel_modules">Instalacja osobnych
+modułów kernela.</uri>.
 </p>
 
 </body>
 </subsection>
 </section>
 <section id="kernel_modules">
-<title>Instalacja osobnych modułów kernela</title>
+<title>Instalacja osobnych modułów kernela.</title>
 <subsection>
-<title>Konfiguracja modułów</title>
+<title>Konfiguracja modułów.</title>
 <body>
 
 <p>
@@ -276,11 +296,11 @@ parametrami. Nie zapomnij zamienić "&lt;wersja jądra&gt;" wersją
 </p>
 
 <pre caption="Wyświetlanie dostępnych modułów">
-# <i>find /lib/modules/&lt;kernel version&gt;/ -type f -iname '*.o' -or -iname '*.ko'</i>
+# <i>find /lib/modules/&lt;wersja jądra&gt;/ -type f -iname '*.o' -or -iname '*.ko'</i>
 </pre>
 
 <p>
-Na przykład, aby automatycznie podczas startu ładować moduł <c>3c59x.o</c>,
+Na przykład: aby automatycznie podczas startu ładować moduł <c>3c59x.o</c>,
 wpisz jego nazwę do pliku <path>kernel-2.4</path> lub <path>kernel-2.6</path>.
 </p>
 
