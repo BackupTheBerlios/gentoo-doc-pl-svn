@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.18 -->
+<!-- Orig revision: 1.19 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Zakończenie Instalacji -->
 <!-- Status: Ukończono -->
@@ -10,7 +10,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.13 2004/02/28 15:21:35 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.14 2004/03/01 14:46:45 lcs Exp $ -->
 
 <sections>
 <section>
@@ -105,6 +105,8 @@ link="#doc_chap2_sect2">Opcjonalnie: Konfiguracja BootX</uri>. Użytkownicy MIPS
 będą musieli wprowadzić kilka poprawek do MIPS PROM aby umożliwić
 Gentoo działanie. Dla nich przeznaczona jest sekcja
 <uri link="#doc_chap2_sect3">Opcjonalnie: Zmuszanie Gentoo/MIPS do Poprawnej Pracy</uri>.
+</p>
+<p>
 Użytkownicy GRP powinni przeczytać <uri link="#doc_chap2_sect4">Opcjonalnie:
 Instalacja Dodatkowych Pakietów</uri>. Cała reszta może zakończyć lekturę podręcznika
 rozdziałem <uri 
@@ -198,7 +200,7 @@ Możesz teraz podziwiać Gentoo!
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Instalacja Dodatkowych Pakietów</title>
+<title>Opcjonalnie: Instalacja Pakietów GRP</title>
 <body>
 
 <impo>
@@ -243,8 +245,14 @@ KDE:
 </p>
 
 <pre caption="Instalacja KDE">
-# <i>emerge --usepkg kde</i>
+# <i>USE="bindist" emerge --usepkg kde</i>
 </pre>
+
+<p>
+<c>USE="bindist"</c> jest potrzebne do instalacji XFree (zarówno
+bezpośredniej jak i jako zależność). Zapobiega to pobieraniu
+czcionek Microsoft'u (których nie możemy rozprowadzać na LiveCD).
+</p>
 
 <p>
 Przed rozpoczęciem instalacji musisz się upewnić czy system skorzysta
