@@ -7,7 +7,7 @@
 <!-- Translator: veng <veng@wp.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.2 2004/01/17 23:25:44 veng Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.3 2004/01/18 20:28:45 swierszczu Exp $ -->
 
 <sections>
 <section>
@@ -30,7 +30,7 @@ obsługuje Twoją architekturę.
 </p>
 
 <p>
-Następująca tabela zawiera architektury i bootloadery, które je wspierają.
+Tabela poniżej zawiera architektury i bootloadery, które je wspierają.
 Wybierz odpowiedni dla swojej platformy. Na przykład, jeśli posiadasz
 Pentium IV, wtedy Twoją architekturą jest <e>x86</e>. Możesz wybierać
 między programami GRUB (co jest zalecane) oraz LILO.
@@ -85,12 +85,12 @@ między programami GRUB (co jest zalecane) oraz LILO.
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Bufor ramki</title>
+<title>Opcjonalnie: Obsługa framebuffera</title>
 <body>
 
 <note>
 Ta część ma zastosowanie tylko w przypadku wykorzystania wsparcia dla bufora ramki
-przez jądro przez użytkownika platformy x86, AMD64 lub PPC . To dotyczy także
+przez jądro przez użytkownika platformy x86, AMD64 lub PPC. To dotyczy także
 użytkowników programu <c>genkernel</c>.
 </note>
 
@@ -131,18 +131,18 @@ Teraz wybierz bootloader z tabeli powyżej.
 <section>
 <title>Domyślnie: Użycie programu GRUB</title>
 <subsection>
-<title>Wyjaśnienie terminologii GRUB'a</title>
+<title>Wyjaśnienie terminologii GRUBa</title>
 <body>
 
 <impo>
-GRUB działa tylko na platformach x86 i AMD64 !
+GRUB działa tylko na platformach x86 i AMD64!
 </impo>
 
 <p>
 Najważniejszym czynnikiem prowadzącym do zrozumienia programu
 GRUB jest pojęcie jego sposobu odnoszenia się do dysków i partycji.
 Twoja linuksowa partycja <path>/dev/hda1</path> jest określana
-przez GRUB'a jako <path>(hd0,0)</path>.
+przez GRUBa jako <path>(hd0,0)</path>.
 Zauważ nawiasy po obu stronach <path>hd0,0</path> - ich użycie jest wymagane.
 </p>
 
@@ -150,10 +150,10 @@ Zauważ nawiasy po obu stronach <path>hd0,0</path> - ich użycie jest wymagane.
 Dyski twarde są liczone od zera, a nie od "a", partycje także zaczynają
 się od zera, a nie od jedynki. Bądź świadom także tego, że w grupie
 urządzeń pamięci masowej, tylko twarde dyski są liczone, nie ma to
-natomiast miejsca  w przypadku napędów atapi-ide takich jak cdrom'y
-i nagrywarki. Ta sama sytuacja ma miejsce w przypadku dysków scsi.
-(Normalnie otrzymują one wyższe numery niż dyski ide za wyjątkiem
-sytuacji, gdy bios jest ustawiony na start systemu z urządzenia scsi.)
+natomiast miejsca  w przypadku napędów ATAPI-IDE takich jak cdromy
+i nagrywarki. Ta sama sytuacja ma miejsce w przypadku dysków SCSI.
+(Normalnie otrzymują one wyższe numery niż dyski IDE za wyjątkiem
+sytuacji, gdy BIOS jest ustawiony na start systemu z urządzenia SCSI.)
 </p>
 
 <p>
@@ -161,10 +161,10 @@ Zakładając, że masz dysk twardy oznaczony jako <path>/dev/hda</path>,
 odtwarzacz cdrom <path>/dev/hdb</path>, nagrywarkę <path>/dev/hdc</path>,
 drugi dysk twardy <path>/dev/hdd</path> i nie posiadasz dysku SCSI,
 urządzenie <path>/dev/hdd7</path> jest rozumiane jako <path>(hd1,6)</path>.
-To może brzmi pokrętnie i w rzeczywistości jest pokrętne, lecz, jak się
+To może brzmi pokrętnie i w rzeczywistości takie jest, lecz, jak się
 niedługo przekonamy, GRUB oferuje mechanizm uzupełniania wiersza polecenia
-klawiszem tab, co z pewnością jest wybawieniem dla tych, którzy mają
-dużo dysków twardych, partycji i gubią się nieco w sposobie numeracji
+klawiszem TAB, co z pewnością jest wybawieniem dla tych, którzy mają
+dużo dysków twardych i partycji, a gubią się nieco w sposobie numeracji
 używanym przez program GRUB.
 </p>
 
@@ -175,7 +175,7 @@ Już wiesz, co Cię czeka, nadeszła pora zainstalować GRUB'a.
 </body>
 </subsection>
 <subsection>
-<title>Instalowanie GRUB'a</title>
+<title>Instalowanie GRUBa</title>
 <body>
 
 <p>
@@ -183,7 +183,7 @@ Aby zainstalować program GRUB, używamy emerge. Użytkownicy architektury
 x86 wybierają <c>grub</c>, dla AMD64 mamy <c>grub-static</c>:
 </p>
 
-<pre caption = "Instalowanie GRUB'a">
+<pre caption = "Instalowanie GRUBa">
 <comment>(Dla architektury x86:)</comment>
 # <i>emerge --usepkg grub</i>
 
@@ -193,53 +193,53 @@ x86 wybierają <c>grub</c>, dla AMD64 mamy <c>grub-static</c>:
 </pre>
 
 <p>
-Aby zacząć konfigurować GRUB'a, piszemy <c>grub</c>. Zobaczysz prompt
+Aby zacząć konfigurować GRUBa, piszemy <c>grub</c>. Zobaczysz prompt
 <path>grub&gt;</path> oznaczający tryb poleceń. Teraz trzeba podawać
-odpowiednie komendy by umieścić boot rekord GRUB'a na dysku twardym.
+odpowiednie komendy, by umieścić boot rekord GRUBa na dysku twardym.
 </p>
 
-<pre caption = "Uruchomienie powłoki GRUB'a">
+<pre caption = "Uruchomienie powłoki GRUBa">
 # <i>grub</i>
 </pre>
 
 <p>
-W przykładowej konfiguracji planujemy zainstalować GRUB'a w taki sposób,
+W przykładowej konfiguracji planujemy zainstalować GRUBa w taki sposób,
 by czytał dalsze informacje z partycji startowej <path>/dev/hda1</path>,
 a jego boot rekord znajdował się w MBR (master boot rekord), co spowoduje,
 że pierwszą rzeczą jaką zobaczymy po uruchomieniu komputera będzie prompt
-programu GRUB. Oczywiście jeśli nie naśladujesz wzorcowych ustawień, które
+programu GRUB. Oczywiście, jeśli nie naśladujesz wzorcowych ustawień, które
 podajemy od początku przewodnika, odpowiednio zmodyfikuj ustawienia.
 </p>
 
 <p>
 Funkcję kompletowania klawiszem tab wykorzystuje się z poziomu
-powłoki GRUB'a. Na przykład, jeśli napiszesz "<c>root (</c>" i następnie wciśniesz
+powłoki GRUBa. Na przykład, jeśli napiszesz "<c>root (</c>" i następnie wciśniesz
 TAB, zobaczysz listę urządzeń (np <path>hd0</path>). Gdy wpiszesz
 "<c>root (hd0,</c>" i użyjesz TAB, otrzymasz spis dostępnych do wyboru partycji
 (np <path>hd0,0</path>).
 </p>
 
 <p>
-Z pomocą uzupełniania klawiszem tab, ustawienie programu GRUB nie powinno
-być już takie trudne. To co, zabieramy się za konfigurowanie GRUB'a ? :-)
+Z pomocą uzupełniania klawiszem TAB, ustawienie programu GRUB nie powinno
+być już takie trudne. To co, zabieramy się za konfigurowanie GRUBa? :-)
 </p>
 
-<pre caption = "Instalowanie GRUB'a w MBR">
+<pre caption = "Instalowanie GRUBa w MBR">
 grub&gt; <i>root (hd0,0)</i>	<comment>(Podanie umiejscowienia partycji /boot)</comment>
-grub&gt; <i>setup (hd0)</i>	<comment>(Instalacja GRUB'a w MBR)</comment>
-grub&gt; <i>quit</i>			<comment>(Wyjście z powłoki GRUB'a)</comment>
+grub&gt; <i>setup (hd0)</i>	<comment>(Instalacja GRUBa w MBR)</comment>
+grub&gt; <i>quit</i>			<comment>(Wyjście z powłoki GRUBa)</comment>
 </pre>
 
 <note>
-Jeżeli chcesz zainstalować GRUB'a na którejś z partycji zamiast w MBR,
+Jeżeli chcesz zainstalować GRUBa na którejś z partycji zamiast w MBR,
 zastąp polecenie <c>setup</c> w taki sposób, by poprowadziło do właściwego
-urządzenia. Na przykłąd, jeśli chcemy zainstalować GRUB'a na <path>/dev/hda3</path>,
+urządzenia. Na przykład, jeśli chcemy zainstalować GRUBa na <path>/dev/hda3</path>,
 wtedy nasze polecenie zamienia się w <c>setup (hd0,2)</c>.
 Zapewne niewiele osób zechce z tego skorzystać.
 </note>
 
 <p>
-Choć program GRUB został zainstalowany, potrzeba jeszcze napisać plik konfiguracyjny,
+Choć program GRUB został zainstalowany, trzeba jeszcze napisać plik konfiguracyjny,
 by GRUB automatycznie bootował dopiero co stworzone jądro. Za pomocą <c>nano</c>
  (lub innego edytora) utwórz <path>/boot/grub/grub.conf</path>:
 </p>
@@ -249,7 +249,7 @@ by GRUB automatycznie bootował dopiero co stworzone jądro. Za pomocą <c>nano<
 </pre>
 
 <p>
-Teraz zamierzamy wyredagować <path>grub.conf</path>. Poniżej
+Teraz zamierzamy zredagować <path>grub.conf</path>. Poniżej
 znajdziesz trzy propozycje pliku <path>grub.conf</path> odpowiadające
 schematowi partycjonowania użytemu w tym przewodniku, z obrazem jądra
 o nazwie <path>kernel-2.4.22</path>. Wyczerpująco opatrzymy komentarzami
@@ -328,7 +328,7 @@ chainloader +1
 <note>
 Jeśli partycjonowanie wykonałeś inaczej i/lub używasz innego obrazu jądra,
 dokonaj niezbędnych poprawek. Ważne jest, by wszystko, co dotyczy urządzenia
-z GRUB'em (np. <path>(hd0,0)</path>) było względne w stosunku do punktu
+z GRUBem (np. <path>(hd0,0)</path>) było względne w stosunku do punktu
 montowania, a nie partycji root. Innymi słowy, <path>(hd0,0)/grub/splash.xpm.gz</path>
 w rzeczywistości znaczy <path>/boot/grub/splash.xpm.gz</path>, gdyż <path>(hd0,0)</path>
 to partycja <path>/boot</path>.
@@ -371,17 +371,17 @@ Instalacji Niezbędnych Narzędzi Systemowych</uri>.
 <body>
 
 <impo>
-LILO może być użyte tylko dla architektury x86 !
+LILO może być użyte tylko dla architektury x86!
 </impo>
 
 <p>
 LILO, czyli LInuxLOader, jest programem wypróbowanym i prawdziwym koniem pociągowym
 wśród bootloaderów. Mimo to, brakuje mu niektórych cech posiadanych przez
-program GRUB (co jest także powodem rosnącej popularności GRUB'a).
+program GRUB (co jest także powodem rosnącej popularności GRUBa).
 Fakt, że na niektórych systemach LILO działa, a GRUB nie, powoduje,
 iż LILO jest ciągle w użyciu. Oczywiście nie jest to jedyny powód - niektórzy
 po prostu znają LILO i chcą sie go trzymać. Tak czy inaczej, Gentoo obsługuje
-obydwa a Ty właśnie wybrałeś LILO.
+obydwa, a Ty właśnie wybrałeś LILO.
 </p>
 
 <p>
@@ -420,7 +420,7 @@ schematu partycjonowania. Wyróżniamy trzy części:
     Jedną dla tych, którzy nie skorzystali z programu <c>genkernel</c> przy budowaniu jądra
   </li>
   <li>
-    Inną dla użytkowników <c>genkernel'a</c> z GRP
+    Inną dla użytkowników <c>genkernela</c> z GRP
   </li>
   <li>
     Ostatnią dla tych, którzy użyli najnowszej, pobranej z sieci wersji programu <c>genkernel</c>
@@ -510,11 +510,11 @@ Narzędzi Systemowych</uri>.
 <body>
 
 <impo>
-aboot działa tylko na platformie alpha!
+aboot działa tylko na platformie Alpha!
 </impo>
 
 <p>
-Najpierw zainstalujemy program w systemie. Rzecz jasna, korzystamy z <c>emerge</c> :
+Najpierw zainstalujemy program w systemie. Rzecz jasna, korzystamy z <c>emerge</c>:
 </p>
 
 <pre caption = "Instalowanie programu aboot">
@@ -575,7 +575,7 @@ Aboot jest już skonfigurowany i gotowy do uzytku. Przejdź do
 <body>
 
 <impo>
-MILO działa tylko na platformie alpha!
+MILO działa tylko na platformie Alpha!
 </impo>
 
 <p>
@@ -615,13 +615,13 @@ dla Twojej architektury Alpha.
 <p>
 Twoja dyskietka startowa MILO jest już przygotowana do uruchomienia
 Gentoo Linuksa. Być może musisz ustawić zmienne środowiskowe
-ARCS Firmware by MILO się uruchamiało; wyjaśnienie znajdziesz pod adresem
+ARCS Firmware, by MILO się uruchamiało; wyjaśnienie znajdziesz pod adresem
 <uri link="http://tldp.org/HOWTO/MILO-HOWTO/">MILO-HOWTO</uri> wraz z kilkoma przykładami
 popularniejszych systemów i niektórymi komendami do zastosowania w trybie interaktywnym.
 </p>
 
 <p>
-Pominiecie <uri link="http://tldp.org/HOWTO/MILO-HOWTO/">MILO-HOWTO</uri>
+Pominięcie <uri link="http://tldp.org/HOWTO/MILO-HOWTO/">MILO-HOWTO</uri>
 byłoby <e>złym</e> pomysłem.
 </p>
 
@@ -691,7 +691,7 @@ Jeśli Twój katalog <path>/boot</path> znajduje się na partycji root,
 musisz tylko uruchomić <c>/sbin/silo</c>:
 </p>
 
-<pre caption = "Uruchomienie silo">
+<pre caption = "Uruchomienie SILO">
 # <i>/sbin/silo</i>
 /etc/silo.conf appears to be valid
 </pre>
@@ -795,7 +795,7 @@ oraz odpowiednie wpisy dotyczące partycji Linuksa w <path>/etc/fstab</path>.
 Obydwa warunki powinny być już spełnione w poprzednich krokach.
 Upewnij się, że masz zainstalowaną najnowszą wersję yaboot wykonując
 polecenie <c>emerge --update yaboot</c>. Jest to wymagane, gdyż aktualna
-wersja bedzie dostępna via Portage, ale może jej jeszcze nie być w plikach
+wersja bedzie dostępna poprzez Portage, ale może jej jeszcze nie być w plikach
 stage.
 </p>
 
