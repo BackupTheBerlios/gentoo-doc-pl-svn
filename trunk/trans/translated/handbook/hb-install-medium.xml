@@ -1,4 +1,4 @@
-<!-- Orig revision: 1.31 -->
+<!-- Orig revision: 1.32 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Wybór Właściwego Medium Instalacyjnego -->
 <!-- Status: Ukończono -->
@@ -6,7 +6,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.4 2003/12/23 22:22:21 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.5 2004/01/03 10:22:17 lcs Exp $ -->
 
 <sections>
 <section>
@@ -28,10 +28,11 @@ to oczywiście od docelowej architektury.
 <body>
 
 <p>
-Oficjalnie, Gentoo Linux dostępny jest dla sześciu architektur: <b>x86</b> (łącznie
+Oficjalnie, Gentoo Linux dostępny jest dla siedmiu architektur: <b>x86</b> (łącznie
 ze wszystkimi podarchitekturami, jak Pentium, Athlon itd.), <b>sparc</b> (zarówno
-Sparc32 jak i Sparc64), <b>ppc</b> (PowerPC), <b>hppa</b>, <b>alpha</b> oraz <b>mips</b>. 
-Dodatkowo, eksperymentalnie wspierane są dwie kolejne: <b>amd64</b> oraz <b>ia64</b>.
+Sparc32 jak i Sparc64), <b>ppc</b> (PowerPC), <b>hppa</b>, <b>alpha</b>, <b>mips</b>
+oraz <b>amd64</b>.
+Dodatkowo, eksperymentalnie wspierana jest <b>ia64</b>.
 </p>
 
 <p>
@@ -70,7 +71,11 @@ wymogi:
   Dla <e>architektury MIPS</e>, sprawdź dokument <uri
 link="/doc/en/mips-requirements.xml">MIPS Hardware Requirements</uri>.
 </ul>
-
+<li>
+  Dla <e>architektury AMD64</e>, sprawdź <uri
+  link="http://dev.gentoo.org/~brad_mssw/amd64-tech-notes.html">AMD64 Tech
+  Notes</uri>
+</li>
 </body>
 </subsection>
 </section>
@@ -310,6 +315,12 @@ dostępne są dla twojej architektury:
 </tr>
 <tr>
   <ti>alpha</ti>
+  <ti>+</ti>
+  <ti></ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>amd64</ti>
   <ti>+</ti>
   <ti></ti>
   <ti></ti>
@@ -569,6 +580,10 @@ Gentoo na każdym z naszych <uri link="/main/en/mirrors.xml">mirrorów</uri>.
   <ti>alpha</ti>
   <ti><path>experimental/alpha/livecd</path></ti>
 </tr>
+<tr>
+  <ti>amd64</ti>
+  <ti><path>experimental/amd64/livecd</path></ti>
+</tr>
 </table>
 
 <p>
@@ -631,7 +646,7 @@ Upewnij się, że przeszedłeś do odpowiedniej dla swojej platformy.
 </p>
 
 <ul>
-<li><uri link="#doc_chap3_sect2">Uruchamianie LiveCD dla x86</uri></li>
+<li><uri link="#doc_chap3_sect2">Uruchamianie LiveCD dla x86 lub AMD64</uri></li>
 <li><uri link="#doc_chap3_sect3">Uruchamianie LiveCD dla Alpha</uri></li>
 <li><uri link="#doc_chap3_sect4">Uruchamianie LiveCD dla HPPA</uri></li>
 <li><uri link="#doc_chap3_sect5">Uruchamianie LiveCD dla SPARC</uri></li>
@@ -641,11 +656,11 @@ Upewnij się, że przeszedłeś do odpowiedniej dla swojej platformy.
 </body>
 </subsection>
 <subsection>
-<title>Uruchamianie LiveCD dla x86</title>
+<title>Uruchamianie LiveCD dla x86 lub AMD64</title>
 <body>
 
 <impo>
-Ta posekcja przeznaczona jest <e>tylko</e> dla platformy x86. Przeczytaj ją do końca
+Ta posekcja przeznaczona jest <e>tylko</e> dla platform x86 oraz amd64. Przeczytaj ją do końca
 zanim rozpoczniesz instalację, gdyż później może nie być do tego okazji.
 </impo>
 
@@ -1196,7 +1211,7 @@ Re-enter password: <comment>(Podaj hasło john'a jeszcze raz)</comment>
 
 <impo>
 Możliwość uruchomienia demona ssh w czasie instalacji dostępna jest tylko
-dla architektur x86, alpha, sparc oraz ppc.
+dla architektur x86, amd64, alpha, sparc oraz ppc.
 </impo>
 
 <p>
