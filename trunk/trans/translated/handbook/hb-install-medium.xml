@@ -1,0 +1,1263 @@
+<!-- Based on 1.29 revision -->
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.1 2003/12/22 15:16:18 lcs Exp $ -->
+
+<sections>
+<section>
+<title>Wymagania Sprzętowe</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<p>
+Zanim zaczniemy, musimy ustalić jakie wymagania sprzętowe powinien
+spełniać twój komputer aby pomyślnie zainstalować na nim Gentoo. Zależy
+to oczywiście od docelowej architektury.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Architektury</title>
+<body>
+
+<p>
+Oficjalnie, Gentoo Linux dostępny jest dla pięciu architektur: <b>x86</b> (łącznie
+ze wszystkimi podarchitekturami, jak Pentium, Athlon itd.), <b>sparc</b> (zarówno
+Sparc32 jak i Sparc64), <b>ppc</b> (PowerPC), <b>hppa</b> oraz <b>alpha</b>. 
+Dodatkowo, eksperymentalnie wspierane są trzy kolejne: <b>amd64</b>, <b>ia64</b>
+oraz <b>mips</b>.
+</p>
+
+<p>
+Zakładając, że znasz już swoją platformę, upewnij się, że spełnia ona następujące
+wymogi:
+</p>
+<ul>
+<li>
+  Conajmniej 1GB wolnej przestrzeni dyskowej
+</li>
+<li>
+  Jeśli nie planujesz korzystać z prekompilowanych pakietów potrzebujesz conajmniej
+  300MB pamięci (RAM + swap)
+</li>
+<li>
+  Dla <e>architektury x86</e>, potrzebujesz procesora 486 lub lepszego oraz
+  przynajmniej 64 megabajty pamięci
+</li>
+<li>
+  Dla <e>architektury Alpha</e>, sprawdź <uri
+  link="http://www.alphalinux.org/faq/FAQ-5.html">Alpha/Linux FAQ</uri>
+</li>
+<li>
+  Dla <e>architektury hppa</e>, sprawdź <uri 
+  link="http://www.pateam.org">PA Team website</uri>
+</li>
+<li>
+  Dla <e>architektury PowerPC</e>, potrzebujesz iMac'a lub Pegasos'a
+</li>
+<li>
+  Dla <e>architektury SPARC</e>, sprawdź <uri
+  link="http://www.ultralinux.org/faq.html#s_2">UltraLinux FAQ</uri>
+</li>
+</ul>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Podejmij Decyzję</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<p>
+Ciągle zainteresowany Gentoo? Cóż, nadszedł czas na wygranie medium
+instalacyjnego. Tak, masz wybór, nie, nie wszystkie metody są identyczne
+i tak, rezultatem zawsze jest podstawowy system Gentoo.
+</p>
+
+<p>
+Omówimy następujące media instalacyjne:
+</p>
+
+<ul>
+<li>Gentoo LiveCD</li>
+<li>Knoppix</li>
+<li>Inna Dystrybucja</li>
+</ul>
+
+<p>
+Każde z nich ma swoje wady i zalety. Przedstawimy je abyś mógł
+podjąć odpowiednią decyzję. Najpierw jednak wyjaśnimy na czym
+polega instalacja trzy-etapowa.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Trzy Etapy (Stage)</title>
+<body>
+
+<p>
+Gentoo Linux może zostać zainstalowany przy pomocy jednego z trzech tarballi.
+Jeśli chcesz przeprowadzić samodzielnie bootstrap i zbudować cały system
+od podstaw, skorzystaj ze <e>stage1</e>. W <e>stage2</e> będziesz musiał 
+skompilować system ze stanu po gotowym bootstrapie. Prekompilowany podstawowy 
+system Gentoo znajduje się w <e>stage3</e>. Naszą dystrybucję można
+zainstalować bez żadnych kompilacji, nawet jądra. W takim przypadku odpowiedni
+jest <e>stage3</e>.
+</p>
+
+<p>
+Więc który stage wybrać?
+</p>
+
+<p>
+Rozpoczęcie od <e>stage1</e> pozwala na pełną kontrolę optymalizacji i funkcjonalności.
+Przeznaczony jest on zwłaszcza dla użytkowników, którzy wiedzą co robią. Poza tym stwarza
+świetną okazję do głębszego poznania mechanizmów Gentoo.
+</p>
+
+
+<table>
+<tr>
+  <th>Stage1</th>
+  <th>Plusy i Minusy</th>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>
+		Pozwala na pełną kontrolę optymalizacji i funkcjonalności systemu
+  </ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Odpowiedni dla użytkowników, którzy wiedzą co robią</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Pozwala na głębsze poznanie mechanizmów Gentoo</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Instalacja zabiera dużo czasu</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>
+		Jeśli nie planujesz poprawiania ustawień, prawdopodobnie okaże się stratą czasu
+  </ti>
+</tr>
+</table>
+
+<p>
+W <e>stage2</e> bootstrap przeprowadziliśmy za ciebie. Jeśli jesteś
+zadowolony z wybranych przez nas ustawień, użyj właśnie jego.
+</p>
+
+<table>
+<tr>
+  <th>Stage2</th>
+  <th>Plusy i Minusy</th>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Nie musisz przeprowadzać bootstrapu</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Instalacja zajmuje mniej czasu niż w przypadku stage1</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Wciąż możesz poprawić dużo ustawień</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Nie możesz poprawić tak dużo jak w przypadku stage1</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Nie jest najszybszą metodą instalacji Gentoo</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Musisz zaakceptować wybrane przez nas optymalizacje i ustawienia</ti>
+</tr>
+</table>
+
+<p>
+Najszybszą instalację Gentoo Linux umożliwia <e>stage3</e>. Skompilowano
+w nim z dobrymi ustawieniami optymalizacji, łączącymi wysoką wydajność ze 
+stabilnością, cały podstawowy system.
+</p>
+
+<table>
+<tr>
+  <th>Stage3</th>
+  <th>Plusy i Minusy</th>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Najszybsza metoda instalacji Gentoo</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Nie można poprawiać systemu podstawowego - jest prekompilowany</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Nie możesz przechwalać się używaniem stage1 lub stage2</ti>
+</tr>
+</table>
+
+<p>
+Zapisz sobie (lub zapamiętaj), który stage wybrałeś. Będzie ci to potrzebne
+przy wybieraniu odpowiedniego LiveCD. Z pewnością zainteresuje cię także
+możliwość rekompilacji całego systemu w przyszłości, gdy zdecydujesz się
+na inne ustawienia optymalizacji już po zakończeniu instalacji.
+</p>
+
+<p>
+Teraz rzućmy okiem na dostępne media instalacyjne:
+</p>
+
+<ul>
+<li>
+  <uri link="#doc_chap2_sect3">Gentoo LiveCD</uri>
+  <ul>
+  <li><uri link="#doc_chap2_sect4">Gentoo basic LiveCD</uri></li>
+  <li><uri link="#doc_chap2_sect5">Gentoo 2-CD LiveCD Set</uri></li>
+  <li><uri link="#doc_chap2_sect6">Gentoo KDE/Gnome LiveCD</uri></li>
+  </ul>
+</li>
+<li><uri link="#doc_chap2_sect7">Knoppix</uri></li>
+<li><uri link="#doc_chap2_sect8">Inna Dystrybucja</uri></li>
+</ul>
+
+</body>
+</subsection>
+<subsection>
+<title>Gentoo LiveCD</title>
+<body>
+
+<p>
+<e>Gentoo LiveCD</e> to uruchamialne płyty zawierające działające środowisko
+Gentoo. Pozwalają na uruchomienie Linux'a prosto z CD. W czasie startu wykrywany
+jest sprzęt i ładowane są odpowiednie sterowniki. Płyty te dostępne są
+dla wszystkich wspieranych architektur. Co więcej, występują w różnych odmianach.
+</p>
+
+<p>
+Wszystkie LiveCD pozwalają na uruchomienie, konfigurację sieci, zainicjalizowanie
+parycji i rozpoczęcie instalacji Gentoo przez Internet. Na niektórych znajdują
+się dodatkowo kody źródłowe oraz prekompilowane pakiety pozwalające na instalację
+bez dostępu do sieci.
+</p>
+
+<p>
+&quot;Co? Prekompilowane pakiety?&quot; Słyszę krzyki niedowierzania. Tak, chcemy
+dać użytkownikom możliwość szybkiej instalacji. Kolekcja prekompilowanych
+pakietów nazywa się <e>Gentoo Reference Platform</e> (GRP).
+</p>
+
+<p>
+Dostarczamy kilka rodzajów LiveCD. Następująca tabela prezentuje, jakie odmiany
+dostępne są dla twojej architektury:
+</p>
+
+<table>
+<tr>
+  <th>Architektura</th>
+  <th>basic LiveCD</th>
+  <th>2-CD LiveCD Set</th>
+  <th>KDE/Gnome LiveCD</th>
+</tr>
+<tr>
+  <ti>x86</ti>
+  <ti>+</ti>
+  <ti>+</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>sparc</ti>
+  <ti>+</ti>
+  <ti>+</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>ppc</ti>
+  <ti>+</ti>
+  <ti>+</ti>
+  <ti>+</ti>
+</tr>
+<tr>
+  <ti>hppa</ti>
+  <ti>+</ti>
+  <ti></ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>alpha</ti>
+  <ti>+</ti>
+  <ti></ti>
+  <ti></ti>
+</tr>
+</table>
+
+<p>
+Więc co one zawierają?
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Gentoo basic LiveCD</title>
+<body>
+
+<p>
+Są to małe, uruchamialne płyty zawierające wszystko co potrzebne do
+przeprowadzenia instalacji przez Internet. Nie zawierają żadnych stage
+(lub, w niektórych przypadkach zawierają stage1), kodów źródłowych
+ani pakietów GRP.
+</p>
+
+<table>
+<tr>
+  <th>Basic LiveCD</th>
+  <th>Plusy i Minusy</th>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Mały rozmiar</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Odpowiednie dla całej architektury</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>
+		Możesz skorzystać ze stage1, stage2 lub stage3 pobierając je z sieci.
+  </ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>
+		Nie zawierają stage, migawek portage, pakietów GRP, więc nie nadają się
+		do instalacji bez dostępu do sieci ani korzystania z prekompilowanych pakietów.
+  </ti>
+</tr>
+</table>
+
+</body>
+</subsection>
+<subsection>
+<title>Gentoo 2-CD LiveCD Set</title>
+<body>
+
+<p>
+Pierwsza, uruchamialna płyta zawiera wszystkie stage dla konkretnej
+podarchitektury (jak AthlonXP, G4 itd.) razem z kodami źródłowymi
+i prekompilowanymi pakietami. Na drugiej znajdują się tylko pakiety
+GRP. Nie jest ona konieczna, ale zawiera prekompilowaną Mozillę, OO,
+KDE, GNOME itd.
+</p>
+
+<p>
+Dostarczamy zarówno "domyślne" zestawy LiveCD, uruchamialne na wszystkich odmianach
+konkretnej architektury, jak i zoptymalizowane dla różnych podarchitektur.
+</p>
+
+<table>
+<tr>
+  <th>2-CD LiveCD Set</th>
+  <th>Plusy i Minusy</th>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Zoptymalizowane dla twojej architektury i podarchitektury</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Dostarczają prekompilowane pakiety do szybkiej instalacji</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>
+    Zawierają wszystko czego potrzebujesz do instalacji nawet bez dostępu do sieci.
+  </ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Duży rozmiar</ti>
+</tr>
+</table>
+
+</body>
+</subsection>
+<subsection>
+<title>Gentoo KDE/Gnome LiveCD</title>
+<body>
+
+<p>
+Płyty te zawierają "żywe" środowisko Gentoo Linux z pulpitami KDE i GNOME,
+serwerem Apache, przeglądarkami WWW, klientami IRC, narzędziami dla
+firewalli/routerów, narzędzia sieciowe oraz wiele programów konsolowych.
+Mogą służyć do naprawy uszkodzonego systemu plików. Zawierają całe
+gcc (razem z distcc i ccache). Uruchom z nich wszystkie komputery w swojej
+sieci i doświadcz mocy rozproszonej kompilacji. Na CD nie ma GRP, kodów
+źródłowych, stage, ani migawek portage. Mimo to nadają się do instalacji Gentoo.
+</p>
+
+<table>
+<tr>
+  <th>KDE/Gnome LiveCD</th>
+  <th>Plusy i Minusy</th>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Możesz pracować w Gentoo bez instalacji na twardym dysku</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Możesz je wykorzystać do instalacji Gentoo</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>
+		Duży rozmiar, pomimo że nie zawierają migawek portage, stage, prekompilowanych
+		pakietów ani kodów źródłowych.
+  </ti>
+</tr>
+</table>
+
+</body>
+</subsection>
+<subsection>
+<title>Knoppix</title>
+<body>
+
+<p>
+<e>Knoppix</e> to dobrze znana, "bootowalna" dystrybucja. Umożliwia
+uruchomienie prosto z płyty, bez korzystania z twardego dysku.
+Pozwala na korzystanie a aplikacji biurowych i narzędzi systemowych.
+W naszym przypadku może służyć do instalacji Gentoo. 
+</p>
+
+<p>
+Pobrać ją możesz ze <uri
+link="http://www.knoppix.com">strony WWW</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Inna Dystrybucja</title>
+<body>
+
+<p>
+Jeśli rozpoczniesz instalację Gentoo Linux z innej, zainstalowanej już
+dystrybucji, będziesz mógł skorzystać ze wszystkich dostępnych w niej narzędzi
+oraz pomijając dalszą część rozdziału, przejść do 
+<uri link="?part=1&amp;chap=3">Konfiguracji Sieci</uri>.
+</p>
+
+<p>
+Nadszedł czas na wybór medium instalacyjnego i przejście do odpowiedniej sekcji.
+W kolejnych rozdziałach, domyślnie opisywać będziemy instalację z LiveCD, ale
+zamieścimy również odpowiednie adnotacje o innych metodach.
+</p>
+
+<ul>
+<li>
+  <uri link="#doc_chap3">Domyślnie: Pobierz, Nagraj i Uruchom Gentoo LiveCD</uri>
+</li>
+<li>
+  <uri link="#doc_chap4">Alternatywnie: Pobierz, Nagraj i Uruchom Knoppix'a</uri>
+</li>
+</ul>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Domyślnie: Pobierz, Nagraj i Uruchom Gentoo LiveCD</title>
+<subsection>
+<title>Pobieranie i Nagrywanie LiveCD</title>
+<body>
+
+<p>
+Zdecydowałeś się skorzystać z Gentoo LiveCD (jeśli nie to czytasz złą sekcję).
+Zaczniemy od ich ściągnięcia na dysk i nagrania na płyty. Omówiliśmy już różne odmiany, ale
+gdzie je znaleźć?
+</p>
+
+<p>
+Poniższa tabela przestawia ścieżki do obrazów ISO. Odnoszą się one do głównego katalogu
+Gentoo na każdym z naszych <uri link="/main/en/mirrors.xml">mirrorów</uri>.
+</p>
+
+<table>
+<tr>
+  <th>Architektura</th>
+  <th>Ścieżka</th>
+</tr>
+<tr>
+  <ti>x86</ti>
+  <ti><path>releases/x86/1.4/livecd</path></ti>
+</tr>
+<tr>
+  <ti>sparc</ti>
+  <ti><path>experimental/sparc/livecd</path></ti>
+</tr>
+<tr>
+  <ti>ppc</ti>
+  <ti><path>releases/ppc/1.4/livecd</path></ti>
+</tr>
+<tr>
+  <ti>hppa</ti>
+  <ti><path>experimental/hppa/livecd</path></ti>
+</tr>
+<tr>
+  <ti>alpha</ti>
+  <ti><path>experimental/alpha/livecd</path></ti>
+</tr>
+</table>
+
+<p>
+Odwiedź jeden z <uri
+link="/main/en/mirrors.xml">serwerów lustrzanych</uri> i przejdź do
+wybranego katalogu. Wewnątrz znajdziesz odpowiednio nazwane pliki.
+Są to pełne obrazy płyt, gotowe do nagrania na CD-R. Jeśli znajdziesz
+kilka, różniących się datą w nazwie (np. <path>livecd-x86-cd1-20031029.iso</path>),
+ weź ten najnowszy.
+</p>
+
+<note>
+  Sprawdź opis w <uri link="http://store.gentoo.org">Sklepie Gentoo</uri> aby 
+  upewnić się, którego LiveCD (lub stage) powinieneś użyć.
+  Typowym błędem jest wybór LiveCD (lub stage) dla nowszego procesora niż posiadany
+  (jak "athlon-xp" dla zwykłego AMD Athlon'a).
+</note>
+
+<p>
+Aby nagrać pobrane obrazy, musisz wybrać w programie do nagrywania
+tryb RAW. Sposób zależy od używanego narzędzia. Omówimy niżej kilka
+najpopularniejszych.
+</p>
+
+<ul>
+  <li>
+    	W EasyCD Creator, wybierz <c>File</c>, <c>Record CD from CD image</c>.
+		Ustaw typ pliku na <c>ISO image file</c>. Zaznacz następnie ściągnięty
+		plik i kliknij <c>Open</c>. Nagrywanie rozpocznie się po wciśnięciu
+		<c>Start recording</c>.
+  </li>
+  <li>
+		W Nero Burning ROM, wybierz <c>File</c>, <c>Burn CD image</c>. Ustaw
+		typ pliku na <c>*.*</c> i zaznacz ściągnięte ISO. Starsze wersje mogą 
+		ostrzegać o nierozpoznaniu typu pliku, ale nie martw się tym -- one rozpoznają,
+		tylko jeszcze o tym nie wiedzą :) W następnym okienku dialogowym ustaw następujące
+		parametry:
+    <ul>
+      <li>Type of image: <c>Data Mode 1</c></li>
+      <li>Block size: <c>2048 bytes</c></li>
+      <li>File precursor and length of the image trailer: <c>0 bytes</c></li>
+      <li>Scrambled: <c>no</c></li>
+      <li>Swapped: <c>no</c></li>
+    </ul>
+    	Aby ostatecznie nagrać płytę kliknij <c>OK</c> i <c>Burn</c> (the CD-R).
+  </li>
+  <li>
+		Jeśli używasz cdrecord, wpisz po prostu <c>cdrecord dev=/dev/hdc</c> (zamieniając
+		<path>/dev/hdc</path> swoim urządzeniem nagrywarki) i ścieżkę do pobranego
+		ISO jako parametr.
+  </li>
+</ul>
+
+<p>
+W następnych podsekcjach wyjaśnimy jak uruchomić LiveCD na różnych architekturach.
+Upewnij się, że przeszedłeś do odpowiedniej dla swojej platformy.
+</p>
+
+<ul>
+<li><uri link="#doc_chap3_sect2">Uruchamianie LiveCD dla x86</uri></li>
+<li><uri link="#doc_chap3_sect3">Uruchamianie LiveCD dla Alpha</uri></li>
+<li><uri link="#doc_chap3_sect4">Uruchamianie LiveCD dla HPPA</uri></li>
+<li><uri link="#doc_chap3_sect5">Uruchamianie LiveCD dla SPARC</uri></li>
+<li><uri link="#doc_chap3_sect6">Uruchamianie LiveCD dla PPC</uri></li>
+</ul>
+
+</body>
+</subsection>
+<subsection>
+<title>Uruchamianie LiveCD dla x86</title>
+<body>
+
+<impo>
+Ta posekcja przeznaczona jest <e>tylko</e> dla platformy x86. Przeczytaj ją do końca
+zanim rozpoczniesz instalację, gdyż później może nie być do tego okazji.
+</impo>
+
+<p>
+Po nagraniu płyt instalacyjnych, nadszedł czas na ich uruchomienie. Zrestartuj
+komputer i wejdź do ustawień BIOS'u. Zazwyczaj służą do tego klawisze Del,
+F1 lub ESC, w zależności od jego producenta. Następnie musisz zmienić
+kolejność uruchamiania aby CD-ROM znalazł się przed twardym dyskiem.
+Przeważnie kryje się ona w "CMOS Setup". Jeśli tego nie zrobisz, system
+uruchomi się z twardego dysku, a nie z płyty.
+</p>
+
+<p>
+Teraz umieść płytę instalacyjną w czytniku i ponownie zrestartuj komputer.
+Powinieneś ujrzeć ładny ekran startowy z logiem Gentoo Linux. Możesz po prostu
+wcisnąć Enter aby rozpocząć proces uruchamiania z domyślnymi opcjami, lub
+te opcje zmienić, wybierając jądro i podając odpowiednie parametry.
+</p>
+
+<p>
+Wybór jądra? Tak, dostarczamy kilka kerneli na naszych LiveCD. Domyślnym
+jest <c>gentoo</c>. Oprócz niego dostępne są <c>smp</c>, aktywujący
+wsparcie dla maszyn wieloprocesorowych oraz <c>memtest</c>, kontrolujący
+pamięć RAM (nie można za jego pomocą instalować Gentoo). 
+</p>
+
+<p>
+Poniżej przedstawiamy przegląd dostępnych jąder:
+</p>
+
+<table>
+<tr>
+  <th>Jądro</th>
+  <th>Opis</th>
+</tr>
+<tr>
+  <ti>gentoo</ti>
+  <ti>Domyślne jądro ze wsparciem dla framebuffer'a</ti>
+</tr>
+<tr>
+  <ti>smp</ti>
+  <ti>Jądro ze wsparciem dla maszyn wieloprocesorowych</ti>
+</tr>
+<tr>
+  <ti>memtest</ti>
+  <ti>Służący do testowania pamięci</ti>
+</tr>
+</table>
+
+<note>
+Na niektórych LiveCD zamieszczono nie wszystkie, lub dodatkowe, nie opisane
+tu jądra. Aby wyświetlić listę wszystkich dostępnych na ekranie startowym, wciśnij F1.
+</note>
+
+<p>
+Możesz również podać opcje kernela. Kontrolują one opcjonalne
+ustawienia. Poniższa tabela przestawia ich listę.
+</p>
+
+<table>
+<tr>
+  <th>Opcja jądra</th>
+  <th>Opis</th>
+</tr>
+<tr>
+  <ti>acpi</ti>
+  <ti>Aktywuje wsparcie dla ACPI</ti>
+</tr>
+<tr>
+  <ti>doataraid</ti>
+  <ti>Aktywuje wsparcie dla urządzeń ATA RAID</ti>
+</tr>
+<tr>
+  <ti>dofirewire</ti>
+  <ti>Aktywuje wsparcie dla urządzeń FireWire</ti>
+</tr>
+<tr>
+  <ti>dokeymap</ti>
+  <ti>Pyta użytkownika o ustawienia klawiatury (domyślnie: us)</ti>
+</tr>
+<tr>
+  <ti>dopcmcia</ti>
+  <ti>Aktywuje wsparcie dla PCMCIA</ti>
+</tr>
+<tr>
+  <ti>doscsi</ti>
+  <ti>Aktywuje wsparcie dla urządzeń SCSI</ti>
+</tr>
+<tr>
+  <ti>noapm</ti>
+  <ti>Deaktywuje wsparcie dla APM</ti>
+</tr>
+<tr>
+  <ti>nodetect</ti>
+  <ti>Deaktywuje wykrywanie sprzętu (kudzu/hotplug)</ti>
+</tr>
+<tr>
+  <ti>nodhcp</ti>
+  <ti>Nie używa DHCP do ustalenia adresu IP</ti>
+</tr>
+<tr>
+  <ti>noevms</ti>
+  <ti>Deaktywuje wsparcie dla EVMS</ti>
+</tr>
+<tr>
+  <ti>nofb</ti>
+  <ti>Deaktywuje wsparcie dla Framebuffer'a</ti>
+</tr>
+<tr>
+  <ti>nohotplug</ti>
+  <ti>Deaktywuje hotplug</ti>
+</tr>
+<tr>
+  <ti>nousb</ti>
+  <ti>Deaktywuje wsparcie dla USB</ti>
+</tr>
+<tr>
+  <ti>ide=nodma</ti>
+  <ti>Deaktywuje wsparcie dla DMA</ti>
+</tr>
+<tr>
+  <ti>cdcache</ti>
+  <ti>
+		Zapisuje część CD w pamięci, pozwalając na jej odmontowanie
+		i korzystanie w czasie instalacji z innej.
+  </ti>
+</tr>
+</table>
+
+<note>
+Na niektórych LiveCD nie zamieszczono wszystkich, lub dodano opcje
+nie opisane w podręczniku. Aby wyświetlić na ekranie startowym listę
+wszystkich dostępnych wciśnij F2.
+</note>
+
+<p>
+Teraz uruchom swoją płytę, wybierz jądro (jeśli domyślne <c>gentoo</c>
+cię nie zadowala) oraz odpowiednie opcje. W przykładzie pokażemy jak
+uruchomić kernel <c>gentoo</c> z parametrami <c>dopcmcia cdcache</c>.
+</p>
+
+<pre caption="Uruchamianie LiveCD">
+boot: <i>gentoo dopcmcia cdcache</i>
+</pre>
+
+<p>
+Następnie wyświetli się kolejny ekran startowy oraz pasek postępu.
+Po zakończeniu procesu uruchamiania zostaniesz zalogowany do
+systemu Gentoo Linux jako &quot;root&quot;. Powinieneś zobaczyć
+na aktywnej konsoli prompt superużytkownika (&quot;#&quot;). Dostępne 
+będą również inne konsole, można się między nimi przełączać naciskając
+Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
+</p>
+
+<p>
+Teraz przejdź do <uri link="#doc_chap3_sect7">Konfiguracji Dodatkowego Sprzętu</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Uruchamianie LiveCD dla Alpha</title>
+<body>
+
+<impo>
+Ta posekcja przeznaczona jest <e>tylko</e> dla platformy alpha. Przeczytaj ją do końca
+zanim rozpoczniesz instalację, gdyż później może nie być do tego okazji.
+</impo>
+
+<p>
+Po włączeniu Alphy, pierwszą uruchamianą rzeczą jest firmware - odpowiednik
+PC'towego BIOS'u. Istnieją jego dwa rodzaje: SRM (<e>Systems Reference
+Manual</e>) oraz ARC (<e>Advanced Risc Console</e>).
+</p>
+
+<p>
+SRM oparty jest na specyfikacji Alpha Console Subsystem, dostarczającej
+środowisko operacyjne systemom OpenVMS, Tru64 UNIX oraz Linux. ARM
+oparty jest na specyfikacji Advanced RISC Computing (ARC), dostarczającej
+środowisko operacyjne systemowi Windows NT.
+</p>
+
+<p>
+Jeśli twoja Alpha wspiera zarówno SRC jak i ARC (ARC, AlphaBIOS, ARCSBIOS),
+przeczytaj <uri link="http://www.alphalinux.org/faq/x31.html">opis
+przełączania na SRM</uri>. Jeśli SRM jest już aktywne, to wszystko jest
+w porządku. Jeśli twój komputer wspiera tylko ARC (Ruffian, nautilus, xl itd.)
+będziesz musiał wybrać <c>MILO</c>, gdy mówić będziemy o bootloaderach.
+</p>
+
+<p>
+Żeby uruchomić LiveCD dla Alpha, umieść płytę w czytniku i zrestartuj system.
+Do startu możesz użyć SRM lub MILO. Prekompilowane obrazy <c>MILO</c> znajdują
+się na <uri link="http://dev.gentoo.org/~taviso/milo/">stronie taviso</uri>.
+</p>
+
+<pre caption="Uruchamianie płyty przy pomocy SRM">
+<comment>(Zamień dqa0 na urządzenie swojego napędu CD-ROM)</comment>
+&gt;&gt;&gt; <i>boot dqa0 -flags 0</i>
+</pre>
+
+<pre caption="Uruchamianie płyty przy pomocy MILO">
+<comment>(Zamień hdb na urządzenie swojego napędu CD-ROM)</comment>
+MILO&gt; <i>boot hdb:boot/vmlinuz initrd=initrd.img root=/dev/ram0 init=/linuxrc</i>
+</pre>
+
+<p>
+Powinieneś zobaczyć na aktywnej konsoli prompt superużytkownika (&quot;#&quot;). 
+Dostępne  będą również inne konsole, można się między nimi przełączać naciskając
+Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
+</p>
+
+<p>
+Teraz przejdź do <uri link="#doc_chap3_sect7">Konfiguracji Dodatkowego
+Sprzętu</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Uruchamianie LiveCD dla HPPA</title>
+<body>
+
+<impo>
+Ta posekcja przeznaczona jest <e>tylko</e> dla platformy HPPA. Przeczytaj ją do końca
+zanim rozpoczniesz instalację, gdyż później może nie być do tego okazji.
+</impo>
+
+
+
+<p>
+Uruchom swój HPPA. W czasie startu powinieneś ujrzeć podobny komunikat:
+</p>
+
+<pre caption="Komunikat startowy HPPA">
+Searching for Potential Boot Devices.
+To terminate search, press and hold the ESCAPE key.
+</pre>
+
+<p>
+Kiedy się pojawi, przytrzymaj wciśnięty klawisz ESC aż do pojawienia się
+menu opcji. Może to chwilę zająć, więc bądź cierpliwy. Domyślnie
+powinieneś otworzyć konsolę BOOT_ADMIN. Jeśli zobaczysz menu opcji, wybierz
+<c>Enter Boot Administration mode</c> aby do niej przejść. Powinieneś zobaczyć
+prompt '&gt;'.
+</p>
+
+<p>
+Umieść LiveCD w czytniku. Jeśli nie znasz SCSI ID swojego napędu CD-ROM,
+znajdź go poleceniem <c>search</c>.
+</p>
+
+<pre caption="Szukanie SCSI ID">
+&gt; <i>search</i>
+Searching for Devices with Bootable Media.
+To terminate search, please press and hold the ESCAPE key.
+</pre>
+
+<p>
+Oto przykładowy rezultat tego polecenia:
+</p>
+
+<pre caption="Dostępne media uruchamiające">
+Device Selection      Device Path             Device Type and Utilities
+---------------------------------------------------------------------------
+
+P0                    scsi.5.0                TOSHIBA CD-ROM XM-3301TA
+                                                  IPL
+P1                    scsi.2.0                COMPAQ ST32550N
+                                                  IPL
+P2                    lan.0010a7-06d1b6.3.6   server
+                                                  IPL
+</pre>
+
+<p>
+Aby uruchomić komputer z CD-ROM'u musisz posiadać odpowiednią Device Path.
+Dla przykładu, jeśli chcesz uruchomić z CD-ROM'u TOSHIBA, wpisz:
+</p>
+
+<pre caption="Uruchamianie z CD-ROM'u">
+&gt; <i>boot scsi.5.0 ipl</i>
+
+Trying scsi.5.0
+</pre>
+
+<p>
+Parametr <c>ipl</c> (Initial Program Loader) włącza w palo (PA-RISC boot LOader)
+tryb interaktywny, pozwalający na przykład na podanie parametrów jądra.
+</p>
+
+<p>
+Po pomyślnym uruchomieniu, palo powinien włączyć się w trybie interaktywnym:
+</p>
+
+<pre caption="Tryb interaktywny PALO">
+Boot path initialized.
+Attempting to load IPL.
+
+
+Hard booted.
+palo ipl 1.2 root@b180l.da-kot Tue Apr  8 12:43:07 CEST 2003
+
+Boot image contains:
+    0/vmlinux32 4028015 bytes @ 0x1520000
+    0/ramdisk 834748 bytes @ 0xf800
+Current command line:
+0/vmlinux initrd=initrd.gz TERM=linux console=tty root=/dev/ram0 init=/linuxrc
+  0: 0/vmlinux
+  1: initrd=initrd.gz
+  2: TERM=linux
+  3: console=tty
+  4: root=/dev/ram0
+  5: init=/linuxrc
+
+Edit which field?
+(or 'b' to boot with this command line)? 
+</pre>
+
+<p>
+Parametry te będą odpowiednie w większości sytuacji.
+</p>
+
+<p>
+Dodatkowe parametry możesz podać po spacji w ostatnim polu. W tej chwili
+jedyną zaimplementowaną opcją jest <c>cdcache</c>. Służy ona do 
+przeniesienia LiveCD do pamięci, dzięki czemu można odmontować CD
+i skorzystać w czasie instalacji z innej płyty.
+</p>
+
+<pre caption="Dodawanie opcji cdcache">
+(or 'b' to boot with this command line)? <i>5</i>
+init=/linuxrc <i>cdcache</i>
+</pre>
+
+<p>
+Kiedy ustawiłeś już parametry jądra, uruchom je.
+</p>
+
+<pre caption="Uruchamianie jądra">
+(or 'b' to boot with this command line)? <i>b</i>
+</pre>
+
+<p>
+Powinieneś zobaczyć na aktywnej konsoli prompt superużytkownika (&quot;#&quot;). 
+Dostępne  będą również inne konsole, można się między nimi przełączać naciskając
+Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
+</p>
+
+<p>
+Teraz przejdź do <uri link="#doc_chap3_sect7">Konfiguracji Dodatkowego
+Sprzętu</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Uruchamianie LiveCD dla SPARC</title>
+<body>
+
+<impo>
+Ta posekcja przeznaczona jest <e>tylko</e> dla platformy SPARC. Przeczytaj ją do końca
+zanim rozpoczniesz instalację, gdyż później może nie być do tego okazji.
+</impo>
+
+<p>
+Umieść LiveCD w czytniku i uruchom komputer. W czasie startu wciśnij Stop-A
+aby wejść do OpenBootPROM (OBP). Następnie wybierz uruchamianie z CD-ROM'u.
+</p>
+
+<pre caption="Uruchamianie LiveCD">
+ok <i>boot cdrom</i>
+</pre>
+
+<p>
+Pojawi się menadżer uruchamiania SILO. Wpisz <c>gentoo</c> (jeśli
+posiadasz jeden procesor) lub <c>smp</c> (jeśli posiadasz kilka procesorów)
+i wciśnij enter aby kontynuować start. W poniższym przykładzie uruchomimy
+kernel <c>gentoo</c>.
+</p>
+
+<pre caption="Kontynuacja uruchamiania LiveCD">
+boot: <i>gentoo</i>
+</pre>
+
+<p>
+Po uruchomieniu zaloguj się jako <c>root</c>. Nie ma hasła, więc gdy zostaniesz
+o nie zapytany, wciśnij Enter.
+</p>
+
+<pre caption="Logowanie do LiveCD">
+login: <i>root</i>
+password: <comment>(Wciśnij Enter)</comment>
+</pre>
+<p>
+Powinieneś zobaczyć na aktywnej konsoli prompt superużytkownika (&quot;#&quot;). 
+Dostępne  będą również inne konsole, można się między nimi przełączać naciskając
+Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
+</p>
+
+<p>
+Teraz przejdź do <uri link="#doc_chap3_sect7">Konfiguracji Dodatkowego
+Sprzętu</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Uruchamianie LiveCD dla PPC</title>
+<body>
+
+<p>
+Umieść LiveCD w czytniku i zrestartuj komputer. W czasie uruchamiania przytrzymaj 
+wciśnięty klawisz 'C' (lub uruchom bootloader OldWorld, jak BootX lub quik).
+Wyświetli się wiadomośc powitalna i prompt <e>boot:</e> na dole ekranu.
+</p>
+
+<p>
+Środowisko Gentoo Linux załaduje się z płyty po wciśnięciu Enter.
+Jeśli pojawią się jakieś problemy, dodaj przy starcie opcję <c>-safe</c>.
+Ustawia ona dodatkowe parametry kernela: <c>append="video=ofonly nol3 init=/linuxrc"</c>.
+</p>
+
+<p>
+Po uruchomieniu zaloguj się jako <c>root</c>. Nie ma hasła, więc gdy zostaniesz
+o nie zapytany, wciśnij Enter.
+</p>
+
+<pre caption="Logowanie do LiveCD">
+login: <i>root</i>
+password: <comment>(Wciśnij Enter)</comment>
+</pre>
+<p>
+Powinieneś zobaczyć na aktywnej konsoli prompt superużytkownika (&quot;#&quot;). 
+Dostępne  będą również inne konsole, można się między nimi przełączać naciskając
+Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
+</p>
+
+
+<p>
+Jeśli używasz klawiatury innej niż amerykańska, skorzystaj
+z <c>loadkeys</c> aby załadować odpowiednią mapę klawiszy.
+Żeby wyświetlić listę dostępnych uruchom
+<c>ls /usr/share/keymaps</c>.
+</p>
+
+<pre caption="Wyświetlanie dostępnych map klawiszy">
+# <i>ls /usr/share/keymaps</i>
+</pre>
+
+<pre caption="Ładowanie mapy klawiszy">
+# <i>loadkeys be2-latin1</i>
+</pre>
+
+<p>
+Teraz przejdź do <uri link="#doc_chap3_sect7">Konfiguracji Dodatkowego
+Sprzętu</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Konfiguracja Dodatkowego Sprzętu</title>
+<body>
+
+<p>
+W czasie uruchamiania LiveCD, system próbuje wykryć sprzęt i załadować odpowiednie
+sterowniki. Zazwyczaj czyni to prawidłowo, ale czasami mogą zdarzyć się problemy.
+Gdy zawiedzie detekcja PCI, możesz załadować odpowiednie moduły ręcznie.
+</p>
+
+<p>
+W poniższym przykładzie spróbujemy załadować moduł <c>8139too</c> (wsparcie
+dla różnych rodzajów urządzeń sieciowych):
+</p>
+
+<pre caption="Ładowanie modułów jądra">
+# <i>modprobe 8139too</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Poprawianie Wydajności Twardego Dysku</title>
+<body>
+
+<p>
+Jeśli jesteś zaawansowanym użytkownikiem, być może zainteresuje cię
+możliwość zwiększenia wydajności dysku IDE za pomocą <c>hdparm</c>.
+Przetestować ją można za pomocą parametrów <c>-tT</c> (wykonanie 
+tego kilka razy zwiększa precyzję pomiaru):
+</p>
+
+<pre caption="Testowanie wydajności dysku">
+# <i>hdparm -tT /dev/hda</i>
+</pre>
+
+<p>
+Aby coś poprawić, możesz wykorzystać któryś z poniższych przykładów
+(lub poeksperymentować samodzielnie). Zastąp <path>/dev/hda</path>
+urządzeniem odpowiednim dla swojego dysku.
+</p>
+
+<pre caption="Poprawianie wydajności dysku">
+<comment>Aktywacja DMA:</comment>                                       # <i>hdparm -d 1 /dev/hda</i>
+<comment>Aktywacja DMA + Bezpieczne opcje poprawiające wydajność:</comment>  # <i>hdparm -d 1 -A 1 -m 16 -u 1 -a 64 /dev/hda</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Konta Użytkowników</title>
+<body>
+
+<p>
+Jeśli planujesz dać dostęp do środowiska instalacyjnego
+innym użytkownikom, musisz stworzyć dla nich odpowiednie konta
+i zmienić hasło root'a.
+</p>
+
+<p>
+Aby zmienić hasło root'a, skorzystaj z narzędzia <c>passwd</c>:
+</p>
+
+<pre caption="Zmiana hasła root'a">
+# <i>passwd</i>
+New password: <comment>(Podaj nowe hasło)</comment>
+Re-enter password: <comment>(Podaj nowe hasło jeszcze raz)</comment>
+</pre>
+
+<p>
+Aby stworzyć konto użytkownika, najpierw podamy jego ustawienia, a
+potem ustawimy hasło. Skorzystamy przy tym z <c>useradd</c> oraz <c>passwd</c>.
+W przykładzie, stworzymy użytkownika &quot;john&quot;.
+</p>
+
+<pre caption="Tworzenie konta użytkownika">
+# <i>useradd john</i>
+# <i>passwd john</i>
+New password: <comment>(Podaj hasło john'a)</comment>
+Re-enter password: <comment>(Podaj hasło john'a jeszcze raz)</comment>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Uruchamianie Serwera SSH</title>
+<body>
+
+<impo>
+Możliwość uruchomienia demona ssh w czasie instalacji dostępna jest tylko
+dla architektur x86, alpha, sparc oraz ppc.
+</impo>
+
+<p>
+Jeśli chcesz dać dostęp do środowiska instalacyjnego innym użytkownikom
+(na przykład, żeby pomogli ci w instalacji lub nawet przeprowadzili ją
+za ciebie), musisz stworzyć konta lub podać hasło root (<e>tylko w przypadku
+pełnego zaufania</e>). 
+</p>
+
+<p>
+Aby uruchomić serwer SSH, wykonaj nastepujące polecenie:
+</p>
+
+<pre caption="Uruchamianie serwera SSH">
+# <i>/etc/init.d/sshd start</i>
+</pre>
+
+<p>
+Teraz przejdź do kolejnego rozdziału, o <uri 
+link="?part=1&amp;chap=3">Konfiguracji Sieci</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Alternatywnie: Pobierz, Nagraj i Uruchom Knoppix'a</title>
+<body>
+
+<impo>
+Z Knoppix'a możesz skorzystać tylko na platformie x86.
+</impo>
+
+<p>
+Knoppix'a możesz pobrać z jego <uri
+link="http://www.knoppix.com">strony domowej</uri>. Jest on
+dostępny w postaci zwykłych plików ISO. Po ściągnięciu, musisz go nagrać
+na płytę CD-R. Powinieneś do tego wybrać w programie do nagrywania
+tryb RAW. Sposób zależy od używanego narzędzia. Omówimy niżej kilka
+najpopularniejszych.
+</p>
+
+<ul>
+  <li>
+    	W EasyCD Creator, wybierz <c>File</c>, <c>Record CD from CD image</c>.
+		Ustaw typ pliku na <c>ISO image file</c>. Zaznacz następnie ściągnięty
+		plik i kliknij <c>Open</c>. Nagrywanie rozpocznie się po wciśnięciu
+		<c>Start recording</c>.
+  </li>
+  <li>
+		W Nero Burning ROM, wybierz <c>File</c>, <c>Burn CD image</c>. Ustaw
+		typ pliku na <c>*.*</c> i zaznacz ściągnięte ISO. Starsze wersje mogą 
+		ostrzegać o nierozpoznaniu typu pliku, ale nie martw się tym -- one rozpoznają,
+		tylko jeszcze o tym nie wiedzą :) W następnym okienku dialogowym ustaw następujące
+		parametry:
+    <ul>
+      <li>Type of image: <c>Data Mode 1</c></li>
+      <li>Block size: <c>2048 bytes</c></li>
+      <li>File precursor and length of the image trailer: <c>0 bytes</c></li>
+      <li>Scrambled: <c>no</c></li>
+      <li>Swapped: <c>no</c></li>
+    </ul>
+    	Aby ostatecznie nagrać płytę kliknij <c>OK</c> i <c>Burn</c> (the CD-R).
+  </li>
+  <li>
+		Jeśli używasz cdrecord, wpisz po prostu <c>cdrecord dev=/dev/hdc</c> (zamieniając
+		<path>/dev/hdc</path> swoim urządzeniem nagrywarki) i ścieżkę do pobranego
+		ISO jako parametr.
+  </li>
+</ul>
+
+<p>
+Domyślnie, Knoppix uruchamia środowisko KDE 3.0. Pierwszą rzeczą,
+którą musisz zrobić jest ustawienie hasła root'a. Otwórz konsole
+i wpisz następujące polecenie:
+</p>
+
+<pre caption="Ustawianie hasła root'a w Knoppix'ie">
+$ <i>sudo passwd root</i>
+Password: <comment>(Podaj hasło)</comment>
+Re-enter password: <comment>(Podaj hasło jeszcze raz)</comment>
+</pre>
+
+<p>
+Następnie, zaloguj się jako root (<c>su</c>) i ustaw katalog domowy
+na <path>/root</path>. Jeśli tego nie zrobisz otrzymasz błędy
+podczas emergowania: &quot;/home/root: not found&quot;.
+</p>
+
+<pre caption="Zmiana katalogu domowego root'a">
+$ <i>su -</i>
+Password: <comment>(Podaj hasło root'a)</comment>
+# <i>usermod -d /root -m root</i>
+</pre>
+
+<p>
+Teraz wyjdź z aktualnej powłoki wpisując <c>exit</c> i ponownie zaloguj
+się jako root, aby zmiany zostały zatwierdzone.
+</p>
+
+<pre caption="Zatwierdzanie zmian">
+# <i>exit</i>
+$ <i>su -</i>
+Password: <comment>(Podaj hasło root'a)</comment>
+</pre>
+
+</body>
+</section>
+</sections>

@@ -1,0 +1,409 @@
+<!-- Orig revision: 1.13 -->
+<!-- Translator: Łukasz Strzygowski <lucass@gentoo.pl> -->
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.1 2003/12/22 15:16:18 lcs Exp $ -->
+
+<sections>
+<section>
+<title>Strefa czasowa</title>
+<body>
+
+<p>
+Aby system wiedział gdzie się znajdujesz, powinieneś wybrać swoją strefę czasową.
+Odszukaj ją w <path>/usr/share/zoneinfo</path>, a następnie za pomocą <c>ln</c>, utwórz 
+do niej symlinka <path>/etc/localtime</path>.
+</p>
+
+<pre caption="Konfiguracja strefy czasowej">
+# <i>ls /usr/share/zoneinfo</i>
+<comment>(Jeśli chcesz wybrać GMT:)</comment>
+# <i>ln -sf /usr/share/zoneinfo/GMT /etc/localtime</i>
+</pre>
+
+</body>
+</section>
+<section>
+<title>Informacje o Systemach Plików</title>
+<subsection>
+<title>Co to jest fstab?</title>
+<body>
+
+<p>
+W Linuxie, wszystkie używane przez system partycje powinny być
+wpisane do <path>/etc/fstab</path>. Plik ten zawiera informacje o tym gdzie
+(w strukturze katalogów), jak (z jakimi opcjami) i kiedy (automatycznie czy nie, 
+przez zwykłych użytkowników czy nie itd.) mają zostać zamontowane.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Tworzenie /etc/fstab</title>
+<body>
+
+<p>
+<path>/etc/fstab</path> używa specyficznej składni. Wszystkie wiersze składają
+się z sześciu pól, oddzielonych spacjami lub/i tabulatorami. Każde z nich pełni
+jakąś funkcję:
+</p>
+
+<ul>
+<li>
+  Pierwsze pole definiuje <b>partycję</b> (ścieżkę do odpowiadającego jej urządzenia)
+</li>
+<li>
+  Drugie pole kontroluje <b>punkt montowania</b>.
+</li>
+<li>
+  Trzecie pole opisuje używany przez partycję <b>system plików</b>
+</li>
+<li>
+  W czwartym polu podane są <b>opcje montowania</b> używane przez <c>mount</c>.
+  Każdy system plików posiada własne ustawienia, pełna lista znajduje się
+  w podręczniku mount'a (<c>man mount</c>). Wszystkie opcje oddzielają
+  przecinki.
+</li>
+<li>
+  Piąte pole używane jest przez <c>dump</c> do ustalenia czy dana partycja
+  ma być <b>dump</b>'owana czy nie. Zazwyczaj powinieneś wpisać tu <c>0</c> (zero).
+</li>
+<li>
+  Z szóstego pola korzysta <c>fsck</c> do ustalenia czy dana partycja
+  powinna zostać sprawdzona po nieprawidłowym wyłączeniu systemu. Dla głównego
+  systemu plików powinieneś wpisać <c>1</c>, natomiast dla pozostałych <c>2</c>
+  (lub <c>0</c> jeśli kontrola nie jest konieczna)
+</li>
+</ul>
+
+<p>
+Aby utworzyć <path>/etc/fstab</path> uruchom <c>nano</c> (lub swój ulubiony 
+edytor):
+</p>
+
+<pre caption="Tworzenie /etc/fstab">
+# <i>nano -w /etc/fstab</i>
+</pre>
+
+<p>
+Spójrzmy jak zapisać opcje partycji <path>/boot</path>. To tylko przykład, nie musisz
+go przepisywać jeśli jej nie posiadasz.
+</p>
+
+<p>
+W naszym domyślnym przykładzie dla x86, <path>/boot</path> znajduje się
+na <path>/dev/hda1</path> i używa systemu plików <c>ext2</c>. Nie powinna być
+automatycznie montowana (<c>noauto</c>) ale wymaga kontroli. A więc
+wpiszmy:
+</p>
+
+<pre caption="Przykładowy wpis do /etc/fstab dla /boot">
+/dev/hda1   /boot     ext2    noauto        1 2
+</pre>
+
+<p>
+Aby poprawić wydajność, większość użytkowników zapewne zechce dodać
+opcję <c>noatime</c>. Dzięki niej nie są rejestrowane czasy dostępów
+(których zazwyczaj nie potrzebujesz):
+</p>
+
+<pre caption="Poprawiony wpis /boot do /etc/fstab">
+/dev/hda1   /boot     ext2    noauto,noatime    1 2
+</pre>
+
+<p>
+W podobny sposób dodajmy kolejne partycje. Rezultatem będą następujące
+trzy wiersze (dla partycji <path>/boot</path>, <path>/</path> oraz swap):
+</p>
+
+<pre caption="Trzy wpisy do /etc/fstab">
+/dev/hda1   /boot     ext2    noauto,noatime    1 2
+/dev/hda2   none      swap    sw                0 0
+/dev/hda3   /         ext3    noatime           0 1
+</pre>
+
+<p>
+Na koniec, powinieneś jeszcze dodać linijki dla <path>/proc</path>,
+<c>tmpfs</c> oraz swojego CD-ROMu (i oczywiście, jeżeli takowe posiadasz,
+ do wszystkich pozostałych partycji i napędów).
+</p>
+
+<pre caption="Przykład kompletnego /etc/fstab">
+/dev/hda1   /boot     ext2    noauto,noatime    1 2
+/dev/hda2   none      swap    sw                0 0
+/dev/hda3   /         ext3    noatime           0 1
+
+none        /proc     proc    defaults          0 0
+none        /dev/shm  tmpfs   defaults          0 0
+
+/dev/cdroms/cdrom0    /mnt/cdrom    auto      noauto,user    0 0
+</pre>
+
+<p>
+<c>auto</c> powoduje, że <c>mount</c> sam próbuje wykryć system plików
+(zalecane dla wymienialnych nośników, jako że mogą posiadać różne). <c>user</c>
+umożliwia montowanie zwykłym użytkownikom.
+</p>
+
+<p>
+Skorzystaj z powyższego przykładu do utworzenia własnego <path>/etc/fstab</path>.
+Jeśli jesteś użytkownikiem SPARC'a, powinieneś jeszcze dodać do niego następujące
+linijki:
+</p>
+
+<pre caption="Dodawanie do /etc/fstab systemu plików openprom">
+none        /proc/openprom  openpromfs    defaults      0 0
+</pre>
+
+<p>
+Jeśli korzystasz z <c>usbfs</c>, dodaj następujący wpis:
+</p>
+
+<pre caption="Dodawanie do /etc/fstab systemu plików usbfs">
+none        /proc/bus/usb   usbfs         defaults      0 0
+</pre>
+
+<p>
+Przejrzyj jeszcze raz <path>/etc/fstab</path>, zapisz zmiany i zamknij edytor.
+</p>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Konfiguracja Sieci</title>
+<subsection>
+<title>Hostname, Domainname itd.</title>
+<body>
+
+<p>
+Każdy użytkownik powinien nadać swojemu komputerowi jakąś nazwę. Wydaje się
+to proste, ale <e>wielu</e> ma z tym spore trudności. Pamiętaj, że zawsze możesz
+tę nazwę zmienić. Dla spójności wybraliśmy <c>tux</c>, oraz domenę <c>homenetwork</c>.
+</p>
+
+<p>
+Skorzystamy z tych ustawień w kolejnych przykładach. Zacznijmy od ustalenia
+nazwy hosta:
+</p>
+
+<pre caption="Konfiguracja nazwy hosta">
+# <i>echo tux &gt; /etc/hostname</i>
+</pre>
+
+<p>
+Teraz skonfigurujmy domenę:
+</p>
+
+<pre caption="Konfiguracja nazwy domeny">
+# <i>echo homenetwork &gt; /etc/dnsdomainname</i>
+</pre>
+
+<p>
+Jeśli jesteś posiadaczem domeny NIS (jeżeli nie wiesz co to jest,
+prawdopodobnie jej nie masz), powinieneś ustawić także ją:
+</p>
+
+<pre caption="Konfiguracja nazwy domeny NIS">
+# <i>echo nis.homenetwork &gt; /etc/nisdomainname</i>
+</pre>
+
+<p>
+Następnie dodaj skrypt <c>domainname</c> do domyślnego poziomu
+uruchamiania:
+</p>
+
+<pre caption="Dodawanie domainname do domyślnego poziomu uruchamiania">
+# <i>rc-update add domainname default</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Konfiguracja Sieci</title>
+<body>
+
+<p>
+Zanim powiesz "Hej, przecież już to zrobiliśmy!", pamiętaj że
+to co ustawiałeś na początku instalacji jest przeznaczone tylko na jej potrzeby. 
+Teraz ostatecznie skonfigurujemy sieć dla twojego nowego systemu Gentoo.
+</p>
+
+<p>
+Wszystkie ustawienia dotyczące sieci znajdują się w <path>/etc/conf.d/net</path>.
+Mają prostą, ale niekoniecznie intuicyjną składnię. Nie obawiaj się, wszystko
+wyjaśnimy :)
+</p>
+
+<p>
+Zacznij od otwarcia w swoim ulubionym edytorze (w przykładzie użyjemy
+<c>nano</c>) pliku <path>/etc/conf.d/net</path>:
+</p>
+
+<pre caption="Otwieranie /etc/conf.d/net do edycji">
+# <i>nano -w /etc/conf.d/net</i>
+</pre>
+
+<p>
+Pierwszą umieszczoną w nim zmienną jest <c>iface_eth0</c>. Ma ona następującą składnię:
+</p>
+
+<pre caption="Składnia iface_eth0">
+iface_eth0="<i>&lt;twój adres ip&gt;</i> broadcast <i>&lt;twój adres broadcast&gt;</i> netmask <i>&lt;twoja maska sieciowa&gt;</i>"
+</pre>
+
+<p>
+Jeśli korzystasz z DHCP (automatycznego przydzielania IP), powinieneś
+ustawić <c>iface_eth0</c> na <c>dhcp</c>. Aczkolwiek, jeśli musisz
+konfigurować sieć ręcznie i nie zapoznałeś się jeszcze z wymienionymi
+wyżej pojęciami, przeczytaj sekcję <uri
+link="?part=1&amp;chap=3#doc_chap4_sect3">Terminologia Sieciowa
+</uri>.
+</p>
+
+<p>
+Podamy dwa przykłady; w pierwszym korzystamy z DHCP, w drugim mamy stałe IP
+(192.168.0.2) z maską sieciową 255.255.255.0, adresem broadcast 192.168.0.255
+i bramą 192.168.0.1:
+</p>
+
+<pre caption="Przykładowe /etc/conf.d/net">
+<comment>(Dla DHCP:)</comment>
+iface_eth0="dhcp"
+
+<comment>(Dla stałego IP:)</comment>
+iface_eth0="192.168.0.2 broadcast 192.168.0.255 netmask 255.255.255.0"
+gateway="eth0/192.168.0.1"
+</pre>
+
+<p>
+Jeśli korzystasz z kilku urządzeń sieciowych, stwórz dodatkowe zmienne
+<c>iface_eth</c>, jak <c>iface_eth1</c>, <c>iface_eth2</c> itd. Nie powinieneś
+powtarzać <c>gateway</c>, gdyż dla danego komputera może mieć tylko jedną wartość.
+</p>
+
+<p>
+Zapisz teraz swoją konfigurację i zamknij edytor.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Automatyczny Start Sieci podczas Uruchamiania</title>
+<body>
+
+<p>
+Aby urządzenia sieciowe były aktywowane podczas startu, musisz je dodać
+do domyślnego poziomu uruchamiania. Jeżeli jesteś posiadaczem urządzeń PCMCIA możesz
+pominąć te czynności, gdyż są one inicjowane przez własny skrypt startowy.
+</p>
+
+<pre caption="Dodawanie do domyślnego poziomu uruchamiania net.eth0">
+# <i>rc-update add net.eth0 default</i>
+</pre>
+
+<p>
+Jeśli posiadasz kilka urządzeń sieciowych, musisz utworzyć odpowiednie skrypty
+startowe, np. <path>net.eth1</path>, <path>net.eth2</path> itd. Możesz w tym
+celu skorzystać z <c>ln</c>:
+</p>
+
+<pre caption="Tworzenie dodatkowych skryptów startowych">
+# <i>cd /etc/init.d</i>
+# <i>ln -s net.eth0 net.eth1</i>
+# <i>rc-update add net.eth1 default</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Zapisywanie Informacji o Sieci</title>
+<body>
+
+<p>
+Powinieneś teraz poinformować swój system o lokalnej sieci. Służy do tego
+plik <path>/etc/hosts</path>. Zapisz w nich nazwy hostów i odpowiadające
+im adresy IP których nie może ustalić twój serwer nazw. Na przykład,
+jeśli wewnętrzna sieć składa się z trzech komputerów: <c>jenny</c>
+(192.168.0.5), <c>benny</c> (192.168.0.6) oraz <c>tux</c> (na którym pracujesz),
+powinieneś dodać do <path>/etc/hosts</path> następujące linijki:
+</p>
+
+<pre caption="Otwieranie /etc/hosts">
+# <i>nano -w /etc/hosts</i>
+</pre>
+
+<pre caption="Wpisywanie informacji o sieci">
+127.0.0.1     tux.homenetwork localhost
+192.168.0.5   jenny
+192.168.0.56  benny
+</pre>
+
+<p>
+Jeśli nie posiadasz wewnętrznej sieci (lub serwer nazw obejmuje
+także umieszczone w niej komputery) wystarczy pojedynczy wpis:
+</p>
+
+<pre caption="/etc/hosts dla samotnych lub w pełni zintegrowanych maszyn">
+127.0.0.1     localhost   tux
+</pre>
+
+<p>
+Zapisz zmiany i zamknij edytor.
+</p>
+
+<p>
+Jeśli nie posiadasz PCMCIA, możesz od razu przejść do sekcji <uri
+link="#doc_chap4">Konfiguracja Systemu</uri>. W przeciwnym wypadku
+czytaj dalej.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Konfiguracja PCMCIA</title>
+<body>
+
+<p>
+Jeśli korzystasz z PCMCIA, zainstaluj pakiet <c>pcmcia-cs</c>:
+</p>
+
+<pre caption="Instalacja pcmcia-cs">
+# <i>emerge --usepkg pcmcia-cs</i>
+</pre>
+
+<p>
+Następnie  dodaj do poziomu uruchamiania <e>boot</e> skrypt <c>pcmcia</c>:
+</p>
+
+<pre caption="Dodawanie do poziomu uruchamiania boot skryptu pcmcia">
+# <i>rc-update add pcmcia boot</i>
+</pre>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Konfiguracja Systemu</title>
+<body>
+
+<p>
+Do zasadniczych ustawień, Gentoo używa pliku <path>/etc/rc.conf</path>.
+Otwórz go i zapoznaj się z umieszczonymi w nim komentarzami :)
+</p>
+
+<pre caption="Otwieranie /etc/rc.conf">
+# <i>nano -w /etc/rc.conf</i>
+</pre>
+
+<p>
+Jak widzisz, plik ten jest dobrze okomentowany. Dzięki temu powinieneś
+poradzić sobie z umieszczonymi w nim zmiennymi bez problemów. Po ukończeniu
+edycji, zapisz zmiany i zamknij edytor.
+</p>
+
+</body>
+</section>
+</sections>

@@ -1,0 +1,261 @@
+<!-- Orig revision: 1.11 -->
+<!-- Translator: Łukasz 'lucass' Strzygowski -->
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.1 2003/12/22 15:16:18 lcs Exp $ -->
+
+<sections>
+<section>
+<title>Administracja Użytkownikami</title>
+<subsection>
+<title>Ustawianie Hasła root'a</title>
+<body>
+
+<p>
+Zanim zapomnisz, ustaw hasło root'a poleceniem:
+</p>
+
+<pre caption="Ustawianie hasła root'a">
+# <i>passwd</i>
+</pre>
+
+<p>
+Jeżeli chcesz pozwolić superużytkownikowi na logowanie się za pomocą
+konsoli szeregowej, dopisz do <path>/etc/securetty</path> <c>ttyS0</c>.
+</p>
+
+<pre caption="Dopisywanie ttyS0 do /etc/securetty">
+# <i>echo "ttyS0" &gt;&gt; /etc/securetty</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Dodawanie Użytkownika do Codziennej Pracy</title>
+<body>
+
+<p>
+Praca w systemie Unix/Linux jako root jest <e>niebezpieczna</e> i należy
+jej unikać jak to tylko możliwe. Usilnie <e>zalecamy</e> stworzyć do codziennych
+zadań zwykłego użytkownika.
+</p>
+
+<p>
+Na przykład, aby dodać użytkownika <c>john</c> i dopisać go do grup
+<c>wheel</c> (aby mógł korzystając z <c>su</c> logować się jako root),
+<c>users</c> (domyślna dla wszystkich użytkowników) oraz <c>audio</c>
+(aby mógł korzystać z urządzeń dźwiękowych):
+</p>
+
+<pre caption="Dodawanie użytkownika do codziennej pracy">
+# <i>useradd john -m -G users,wheel,audio -s /bin/bash</i>
+# <i>passwd john</i>
+Password: <comment>(Podaj hasło john'a)</comment>
+Re-enter password: <comment>(Ponownie podaj hasło john'a)</comment>
+</pre>
+
+<p>
+Jeśli użytkownik ten kiedykolwiek zechce wykonać pewne czynności
+jako root, może korzystając z <c>su -</c> tymczasowo otrzymać
+uprawnienia superużytkownika. Alternatywnie może skorzystać z pakietu
+<c>sudo</c>, charakteryzującego się wysokim poziomem bezpieczeństwa
+jeśli zostanie prawidłowo skonfigurowany.
+</p>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Zrestartuj i Podziwiaj</title>
+<subsection>
+<title>Restartowanie</title>
+<body>
+
+<p>
+Gratulacje! Twój świeży system Gentoo jest już gotowy. Aby zaktualizować
+pliki konfiguracyjne wykonaj jeszcze polecenie <c>etc-update</c>. Następnie
+opuść środowisko chroot, odmontuj wszystkie partycje i wreszcie uruchom
+magiczny program, na który tak czekałeś: <c>reboot</c>.
+</p>
+
+<pre caption="Restartowanie systemu">
+# <i>etc-update</i>
+# <i>exit</i>
+# <i>cd /</i>
+# <i>umount /mnt/gentoo/boot /mnt/gentoo/proc /mnt/gentoo</i>
+# <i>reboot</i>
+</pre>
+
+<p>
+Oczywiście nie zapomnij wyjąć z czytnika LiveCD, w przeciwnym wypadku
+uruchomi się on ponownie, zamiast twojego systemu.
+</p>
+
+<p>
+Użytkownicy OldWorld PPC uruchomią MacOS, gdyż ich bootloader nie został
+jeszcze zainstalowani. Powinni oni przeczytać <uri
+link="#doc_chap2_sect2">Opcjonalnie: Konfiguracja BootX</uri>. Użytkownicy MIPS
+będą musieli wprowadzić kilka poprawek do MIPS PROM aby umożliwić
+Gentoo działanie. Dla nich przeznaczona jest sekcja
+<uri link="#doc_chap2_sect3">Opcjonalnie: Zmuszanie Gentoo/MIPS do Poprawnej Pracy</uri>.
+Użytkownicy GRP powinni przeczytać <uri link="#doc_chap2_sect4">Opcjonalnie:
+Instalacja Dodatkowych Pakietów</uri>. Cała reszta może zakończyć lekturę podręcznika
+rozdziałem <uri 
+link="?part=1&amp;chap=12">Co Dalej?</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Konfiguracja BootX</title>
+<body>
+
+<impo>
+Podsekcja ta przeznaczona jest <e>wyłącznie</e> dla użytkowników PPC,
+którzy chcą skorzystać z menadżera uruchamiania BootX. Wszyscy
+inni powinni ją pominąć.
+</impo>
+
+<p>
+Kiedy uruchomi się MacOS, otwórz panel sterowania BootX.
+Wybierz <c>Options</c> i odznacz <c>Used specified RAM disk</c>.
+Po powrocie do głównego ekranu, podaj w odpowiednich
+opcjach swój dysk i partycję root. 
+</p>
+
+<p>
+BootX może zostać skonfigurowany do uruchamiania Linuxa zaraz po starcie.
+Jeśli to zrobisz, najpierw zacznie ładować się MacOS, następnie BootX
+uruchomi Linuxa. Więcej informacji znajdziesz na
+<uri link="http://penguinppc.org/projects/bootx/">stronie domowej</uri> tego
+bootloadera.
+</p>
+
+<p>
+Jeśli zamierzasz korzystać z GRP, przejdź do <uri
+link="#doc_chap2_sect3">Opcjonalnie: Instalacja Dodatkowych Pakietów</uri>, w przeciwnym
+wypadku przeczytaj rozdział <uri link="?part=1&amp;chap=12">Co Dalej?</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Zmuszanie Gentoo/MIPS do Poprawnej Pracy</title>
+<body>
+
+<p>
+Po restarcie, przejdź do <e>System Maintenance Menu</e> i zaznacz
+<e>Enter Command Monitor</e> (<c>5</c>). Jeśli chcesz przetestować
+swoją nową instalację Gentoo możesz po prostu wykonać <c>boot -f &lt;nazwa
+jądra&gt;</c>. Aby skonfigurować maszynę do automatycznego uruchamiania
+Linuxa, musisz ustawić w MIPS PROM kilka opcji:
+</p>
+
+<pre caption="Konfiguracja PROM do Uruchamiania Gentoo">
+1) Start System
+2) Install System Software
+3) Run Diagnostics
+4) Recover System
+5) Enter Command Monitor
+
+Option? <i>5</i>
+Command Monitor.  Type "exit" to return to the menu.
+
+<comment>(&lt;root device&gt; = Partycja root, np. /dev/sda3)</comment>
+&gt;&gt; <i>setenv OSLoadPartition &lt;root device&gt;</i>
+
+<comment>(Aby wyświetlić listę dostępnych jąder wpisz "ls")</comment>
+&gt;&gt; <i>setenv OSLoader &lt;nazwa jądra&gt;</i>
+&gt;&gt; <i>setenv OSLoadFilename &lt;nazwa jądra&gt;</i>
+
+<comment>(Podaj tu wszelkie parametry kernela)</comment>
+&gt;&gt; <i>setenv OSLoadOptions &lt;parametry jądra&gt;</i>
+
+<comment>(Podaj lokację nagłówka woluminu)</comment>
+&gt;&gt; <i>setenv SystemPartition scsi(0)disk(1)rdisk(0)partition(8)</i>
+
+<comment>(Automatycznie uruchamiaj Gentoo)</comment>
+&gt;&gt; <i>setenv AutoLoad Yes</i>
+
+<comment>(Wybierz strefę czasową)</comment>
+&gt;&gt; <i>setenv TimeZone EST5EDT</i>
+
+<comment>(Korzystaj z konsoli szeregowej - użytkownicy adapterów graficznych powinni zamiast "d1" podać "g")</comment>
+&gt;&gt; <i>setenv console d1</i>
+</pre>
+
+<p>
+Możesz teraz podziwiać Gentoo!
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Instalacja Dodatkowych Pakietów</title>
+<body>
+
+<impo>
+Ta podsekcja przeznaczona jest wyłącznie dla użytkowników GRP. Pozostali
+powinni ją pominąć i przejść do rozdziału
+<uri link="?part=1&amp;chap=12">Co Dalej?</uri>.
+</impo>
+
+<p>
+Po uruchomieniu systemu zaloguj się na stworzone konto użytkownika
+(na przykład <c>john</c> i wykonaj <c>su -</c> aby otrzymać
+uprawnienia root'a:
+</p>
+
+<pre caption="Otrzymywanie uprawnień root'a">
+$ <i>su -</i>
+Password: <comment>(Podaj hasło root'a)</comment>
+</pre>
+
+<p>
+Jeśli posiadasz drugą płytę instalacyjną (CD-2), powinieneś teraz skopiować
+dostępne na niej prekompilowane pakiety. Zacznij od jej zamontowania:
+</p>
+
+<pre caption="Montowanie CD-2">
+<comment>(Umieść CD-2 w czytniku CD-ROM)</comment>
+# <i>mount /mnt/cdrom</i>
+</pre>
+
+<p>
+Następnie przekopiujemy wszystkie pakiety GRP do <path>/usr/portage/packages</path>:
+</p>
+
+<pre caption="Kopiowane prekompilowanych pakietów">
+# <i>cp -a /mnt/cdrom/packages/* /usr/portage/packages/</i>
+</pre>
+
+<p>
+Teraz możemy je instalować. CD-2 zawiera wiele ciekawych programów, na przykład
+KDE:
+</p>
+
+<pre caption="Instalacja KDE">
+# <i>emerge --usepkg kde</i>
+</pre>
+
+<p>
+Przed rozpoczęciem instalacji musisz się upewnić czy system skorzysta
+z GRP. Podczas robienia <c>emerge sync</c> w celu aktualizacji Portage
+(o czym dowiesz się z kolejnych rozdziałów podręcznika), prekompilowane
+pakiety mogą okazać się starsze niż dostępne ebuildy. Możesz wymusić
+korzystanie z nich za pomocą <c>emerge --usepkgonly</c> w miejscu
+<c>emerge --usepkg</c>.
+</p>
+
+<p>
+Gratulacje, twój system jest już w pełni wyposażony! Przejdź do rozdziału
+<uri link="?part=1&amp;chap=12">Co Dalej?</uri> aby dowiedzieć się jakie
+masz teraz możliwości.
+</p>
+
+</body>
+</subsection>
+</section>
+</sections>

@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE book SYSTEM "/dtd/book.dtd">
+
+<!-- Orig revision: 1.35 -->
+<!-- Translator: Łukasz Strzygowski <lucass@gentoo.pl> -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/handbook.xml,v 1.1 2003/12/22 15:16:18 lcs Exp $ -->
+
+<book link="handbook.xml">
+<title>Podręcznik Gentoo</title>
+
+<author title="Chief Architect">
+    <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
+</author>
+<author title="Author">
+  <mail link="swift@gentoo.org">Sven Vermeulen</mail>
+</author>
+<author title="Author">
+  <mail link="chouser@gentoo.org">Chris Houser</mail>
+</author>
+<author title="Author">
+  <mail link="jerry@gentoo.org">Jerry Alexandratos</mail>
+</author>
+<author title="Gentoo x86 Developer">
+  <mail link="seemant@gentoo.org">Seemant Kulleen</mail>
+</author>
+<author title="Gentoo Alpha Developer">
+  <mail link="taviso@gentoo.org">Tavis Ormandy</mail>
+</author>
+<author title="Gentoo Alpha Developer">
+  <mail link="agriffis@gentoo.org">Aron Griffis</mail>
+</author>
+<author title="Gentoo HPPA developer">
+  <mail link="gmsoft@gentoo.org">Guy Martin</mail>
+</author>
+<author title="Gentoo PPC developer">
+   <mail link="pvdabeel@gentoo.org">Pieter Van den Abeele</mail>
+</author>
+<author title="Gentoo SPARC developer">
+  <mail link="blademan@gentoo.org">Joe Kallar</mail>
+</author>
+<author title="Editor">
+    <mail link="zhen@gentoo.org">John P. Davis</mail>
+</author>
+<author title="Editor">
+    <mail link="Pierre-Henri.Jondot@wanadoo.fr">Pierre-Henri Jondot</mail>
+</author>
+<author title="Editor">
+    <mail link="stocke2@gentoo.org">Eric Stockbridge</mail>
+</author>
+<author title="Editor">
+    <mail link="rajiv@gentoo.org">Rajiv Manglani</mail>
+</author>
+<author title="Editor">
+    <mail link="seo@gentoo.org">Jungmin Seo</mail>
+</author>
+<author title="Editor">
+    <mail link="zhware@gentoo.org">Stoyan Zhekov</mail>
+</author>
+<author title="Editor">
+    <mail link="jhhudso@gentoo.org">Jared Hudson</mail>
+</author>
+<author title="Editor">
+    <mail link="peitolm@gentoo.org">Colin Morey</mail>
+</author>
+<author title="Editor">
+    <mail link="peesh@gentoo.org">Jorge Paulo</mail>
+</author>
+<author title="Editor">
+    <mail link="carl@gentoo.org">Carl Anderson</mail>
+</author>
+<author title="Editor">
+    <mail link="avenj@gentoo.org">Jon Portnoy</mail>
+</author>
+<author title="Editor">
+    <mail link="klasikahl@gentoo.org">Zack Gilburd</mail>
+</author>
+<author title="Editor">
+    <mail link="jmorgan@gentoo.org">Jack Morgan</mail>
+</author>
+<author title="Editor">
+    <mail link="bennyc@gentoo.org">Benny Chuang</mail>
+</author>
+<author title="Editor">
+    <mail link="erwin@gentoo.org">Erwin</mail>
+</author>
+<author title="Editor">
+    <mail link="kumba@gentoo.org">Joshua Kinard</mail>
+</author>
+<author title="Reviewer">
+    <mail link="g2boojum@gentoo.org">Grant Goodyear</mail>
+</author>
+<author title="Reviewer">
+    <mail link="gerrynjr@gentoo.org">Gerald J. Normandin Jr.</mail>
+</author>
+<author title="Reviewer">
+    <mail link="spyderous@gentoo.org">Donnie Berkholz</mail>
+</author>
+<author title="Reviewer">
+    <mail link="antifa@gentoo.org">Ken Nowack</mail>
+</author>
+<author title="Contributor">
+   <mail link="pylon@gentoo.org">Lars Weiler</mail>
+</author>
+<author title="Polish Translator">
+   <mail link="lucass@gentoo.pl">Łukasz Strzygowski</mail>
+</author>
+
+
+<abstract>
+Podręcznik Gentoo to próba centralizacji dokumentacji do Gentoo/Linux.
+</abstract>
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<license/>
+
+<version>0.25</version>
+<date>17 grudnia 2003</date>
+
+<part>
+<title>Instalacja Gentoo</title>
+<abstract>
+W tej części dowiesz się jak zainstalować Gentoo na swoim komputerze.
+</abstract>
+
+<chapter>
+<title>O Instalacji Gentoo Linux</title>
+<abstract>
+Użytkownicy nie zaznajomieni z Gentoo nie zawsze wiedzą, że to <e>możliwość wyboru</e>
+jest jego główną cechą.
+</abstract>
+  <include href="hb-install-about.xml"/>
+</chapter>
+
+<chapter>
+<title>Wybór Właściwego Medium Instalacyjnego</title>
+<abstract>
+Gentoo możesz zainstalować na wiele sposobów. Możesz skorzystać z
+LiveCD, innej dystrybucji itd.
+</abstract>
+  <include href="hb-install-medium.xml"/>
+</chapter>
+
+<chapter>
+<title>Konfiguracja Sieci</title>
+<abstract>
+Jeśli chcesz zainstalować Gentoo przez Internet, musisz skonfigurować
+połączenie.
+</abstract>
+  <include href="hb-install-network.xml"/>
+</chapter>
+
+<chapter>
+<title>Przygotowanie Dysków</title>
+<abstract>
+Aby móc zainstalować Gentoo, powinieneś stworzyć niezbędne partycje.
+Rozdział ten opisuje jak prawidłowo podzielić dysk.
+</abstract>
+  <include href="hb-install-disk.xml"/>
+</chapter>
+
+<chapter>
+<title>Przygotowanie Plików Instalacyjnych Gentoo</title>
+<abstract>
+Instalacja Gentoo korzysta z plików stage. W tym rozdziale opisujemy
+jak je rozpakować i skonfigurować Portage.
+</abstract>
+  <include href="hb-install-stage.xml"/>
+</chapter>
+
+<chapter>
+<title>Instalacja Systemu Podstawowego</title>
+<abstract>
+Niezależnie od stage którego wybrałeś, ostatecznym rezultatem
+jest podstawowy system Gentoo. Rozdział ten opisuje jak to osiągnąć.
+</abstract>
+  <include href="hb-install-system.xml"/>
+</chapter>
+
+<chapter>
+<title>Konfiguracja Jądra</title>
+<abstract>
+Jądro Linuksa jest sercem każdej dystrybucji. Rozdział ten opisuje
+jego konfigurację.
+</abstract>
+  <include href="hb-install-kernel.xml"/>
+</chapter>
+
+<chapter>
+<title>Konfiguracja Systemu</title>
+<abstract>
+Musisz wyedytować kilka ważnych plików konfiguracyjnych. W tym rozdziale
+znajdziesz ich opis.
+</abstract>
+  <include href="hb-install-config.xml"/>
+</chapter>
+
+<chapter>
+<title>Konfiguracja Bootloader'a</title>
+<abstract>
+Istnieją różne bootloader'y. W tym rozdziale opiszemy wszystkie możliwości 
+i krok po kroku przeprowadzimy cię przez proces ich konfiguracji.
+</abstract>
+  <include href="hb-install-bootloader.xml"/>
+</chapter>
+
+<chapter>
+<title>Instalacja Niezbędnych Narzędzi Systemowych</title>
+<abstract>
+Jak wcześniej wspomniałem, siła Gentoo leży w wyborze. W tym rozdziale
+pokażemy Ci jak zainstalować różne odmiany ważnych programów.
+</abstract>
+  <include href="hb-install-tools.xml"/>
+</chapter>
+
+<chapter>
+<title>Zakończenie Instalacji</title>
+<abstract>
+Prawie ukończyłeś instalację. Teraz stworzymy jednego lub więcej
+użytkowników i uruchomimy świeży system.
+</abstract>
+  <include href="hb-install-finalise.xml"/>
+</chapter>
+
+<chapter>
+<title>Co Dalej?</title>
+<abstract>
+Posiadasz już swój system Gentoo. Co teraz?
+</abstract>
+  <include href="hb-install-next.xml"/>
+</chapter>
+</part>
+</book>
