@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.12 -->
+<!-- Orig revision: 1.15 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Ukończono -->
@@ -10,7 +10,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-about.xml,v 1.10 2004/01/18 20:26:45 swierszczu Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-about.xml,v 1.11 2004/03/01 14:29:05 lcs Exp $ -->
 
 <sections>
 <section>
@@ -133,13 +133,6 @@ są także rozwiązania mieszane, dzięki którym nie musisz kompilować
 wszystkiego, lecz zacząć od częściowo przygotowanego systemu.
 </p>
 
-<p>
-Jeżeli planujesz przeprowadzić instalację Gentoo za pomocą prekompilowanych
-pakietów, wybór medium ogranicza się do wykorzystania jednego z LiveCD,
-które je zawierają. Jakkolwiek nowsze wydania naszej dystrybucji umożliwią
-pobieranie ich z Internetu.
-</p>
-
 </body>
 </subsection>
 <subsection>
@@ -171,6 +164,103 @@ link="http://forums.gentoo.org/viewforum.php?f=40">FAQ</uri> na naszym
 <uri link="http://forums.gentoo.org">forum</uri>. Jeśli nie możesz
 znaleźć odpowiedzi, zapytaj na kanale #gentoo w sieci irc.freenode.net.
 Tak, niektórzy z nas są maniakami przesiadującymi na IRCu :-)
+</p>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Kompilować Samemu czy Skorzystać z Pakietów Prekompilowanych?</title>
+<subsection>
+<title>Czym jest Gentoo Reference Platform?</title>
+<body>
+<p>
+Gentoo Reference Platform, w skrócie GRP, jest migawką
+prekompilowanych pakietów, które użytkownicy (czyli
+także Ty!) mogą wykorzystać do skrócenia procesu
+instalacji Gentoo. GRP zawiera wszystkie programy potrzebne
+w pełni sprawnym systemie Gentoo. Oprócz pakietów
+niezbędnych do skrócenia instalacji podstawowej, dostarczamy
+także te większe, takie jak KDE, XFree, GNOME, OpenOffice
+czy Mozilla.
+</p>
+<p>
+Jednakże, pakiety prekompilowane nie są na bieżąco aktualizowane,
+są tylko migawkami wydawanymi razem z każdą wersją Gentoo, pozwalającymi
+na skrócenie procesu jej instalacji. Następnie
+możesz uaktualnić te pakiety w tle, nie odrywając się od pracy
+w środowisku Gentoo Linux.
+</p>
+</body>
+</subsection>
+<subsection>
+<title>W Jaki Sposób Portage Obsługuje GRP?</title>
+<body>
+<p>
+Aby Portage mogło skorzystać z prekompilowanych pakietów,
+muszą się one znajdować w katalogu <path>/usr/portage/packages/All</path>.
+Jeżeli instalujesz Gentoo przy użyciu LiveCD zawierającego GRP
+i zamierzasz go użyć, o sposobie jego
+instalacji dowiesz się w trakcie dalszej lektury podręcznika.
+</p>
+<p>
+Samo posiadanie GRP nie wystarczy, twoje drzewo Portage, czyli
+kolekcja <e>ebuildów</e> (plików zawierających informacje
+o pakiecie, takie jak opis, strona domowa, URL kodów źródłowych,
+opis kompilacji, zależności itd.), musi być z nimi zsynchronizowane:
+wersje dostępnych ebuildów i odpowiadających im prekompilowanych
+pakietów muszą się pokrywać.
+</p>
+<p>
+Z tego powodu, jeśli zamierzasz korzystać z GRP, zamiast
+aktualizować drzewo portage, musisz zainstalować jego migawkę.
+</p>
+</body>
+</subsection>
+<subsection>
+<title>Czy GRP Jest Dostępne?</title>
+<body>
+<p>
+Dla niektórych architektur nie dostarczamy GRP. Nie oznacza to
+że go nie obsługują, po prostu nie mamy odpowiedniego sprzętu
+do tworzenia i testowania prekompilowanych pakietów.
+</p>
+
+<p>
+W tej chwili, GRP dostępne jest dla następujących architektur:
+</p>
+<ul>
+  <li>
+    Architektura <b>x86</b> (x86, i686, pentium3, pentium4, athlon-xp) oraz
+    jej specjalny profil - <uri link="http://hardened.gentoo.org">Gentoo
+    Hardened</uri>.
+  </li>
+  <li>
+    Architektura <b>amd64</b> (amd64)
+  </li>
+  <li>
+    Architektura <b>sparc</b> (sparc64)
+  </li>
+  <li>
+    Architektura <b>ppc</b> (ppc, G3, G4)
+  </li>
+</ul>
+
+<p>
+Projekt <uri link="http://hardened.gentoo.org">Gentoo Hardened</uri> 
+oferuje własny zestaw GRP (oraz stage), ukierunkowany na tworzenie
+aktywnie zabezpieczonego systemu. Wszyscy zamierzający stworzyć
+serwer na architekturze x86 powinni zainteresować się tym rozwiązaniem.
+</p>
+
+<p>
+Jeśli na tej liście nie została wymieniona twoja architektura (lub
+podarchitektura), nie możesz skorzystać z GRP.
+</p>
+
+<p>
+Oto koniec niniejszego wprowadzenia, przejdź teraz do <uri
+link="?part=1&amp;chap=2">Wyboru Właściwego Medium Instalacyjnego</uri>.
 </p>
 
 </body>
