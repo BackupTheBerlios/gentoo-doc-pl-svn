@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.11 -->
+<!-- Orig revision: 1.12 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Konfiguracja jądra dla MIPS -->
 <!-- Status: Release -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-mips-kernel.xml,v 1.6 2005/03/04 22:54:38 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-mips-kernel.xml,v 1.7 2005/03/05 07:51:06 sekretarz Exp $ -->
 
 <sections>
 
@@ -57,18 +57,20 @@ Wybierzmy któreś z dostępnych źródeł i zainstalujmy je przy pomocy
 </p>
 
 <note>
-Serwery Cobalt wymagają specjalnych łatek, aby jądro działalo na nich. Możesz
-ściągnąć źródła za pomocą polecenia <c>USE=cobalt export mips-sources</c> -- 
-to polecenie powinno ściągnąć wszystkie potrzebne łatki oraz nałożyć je na
-źródła jądra.
+Serwery Cobalt wymagają specjalnych łatek, aby jądro działalo na nich. 
+Musisz włączyć flagę USE <c>cobalt</c>, aby ściągnąć źródła jądra wraz z
+odpowiednimi łatkami.
 </note>
   	
 
 <pre caption="Instalacja źródeł kernela">
 <comment>(Dla maszyn SGI)</comment>
 # <i>emerge mips-sources</i>
+
 <comment>(Dla maszyn Cobalt)</comment>
-# <i>USE=cobalt emerge mips-sources</i>
+# <i>mkdir -p /etc/portage</i>
+# <i>echo "sys-kernel/mips-sources cobalt" &gt;&gt; /etc/portage/package.use</i>
+# <i>emerge mips-sources</i>
 </pre>
 
 <p>
