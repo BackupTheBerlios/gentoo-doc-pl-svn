@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.31 -->
+<!-- Orig revision: 1.33 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Jądra -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.17 2004/01/21 09:23:04 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.18 2004/02/12 19:02:13 lcs Exp $ -->
 
 <sections>
 <section>
@@ -902,7 +902,9 @@ instalujących dodatkowe moduły:
   <ti>xfree-drm</ti>
   <ti>
     Sterowniki dla XFree86 do kart graficznych ATI Radeon aż do 9200, Rage128,
-    Matrox, Voodoo oraz innych.
+    Matrox, Voodoo oraz innych. Sprawdź w ebuildach 
+    <path>/usr/portage/x11-base/xfree-drm</path> wartość zmiennej
+    <c>IUSE_VIDEO_CARDS</c>, aby wpisać ją zamiast <c>twoja karta</c>.
   </ti>
   <ti><c>VIDEO_CARDS="twoja karta" emerge xfree-drm</c></ti>
 </tr>
@@ -969,7 +971,7 @@ parametrami. Nie zapomnij zamienić "&lt;wersja jądra&gt;" wersją
 </p>
 
 <pre caption="Wyświetlanie dostępnych modułów">
-# <i>find /lib/modules/&lt;wersja jądra&gt;/ -type f -iname '*.o'</i>
+# <i>find /lib/modules/&lt;kernel version&gt;/ -type f -iname '*.o' -or -iname '*.ko'</i>
 </pre>
 
 <p>
