@@ -1,4 +1,4 @@
-<!-- Orig revision: 1.13 -->
+<!-- Orig revision: 1.14 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Systemu -->
 <!-- Status: Ukończono -->
@@ -6,7 +6,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.3 2003/12/22 20:13:36 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.4 2003/12/23 21:34:31 lcs Exp $ -->
 
 <sections>
 <section>
@@ -329,7 +329,7 @@ Powinieneś teraz poinformować swój system o lokalnej sieci. Służy do tego
 plik <path>/etc/hosts</path>. Zapisz w nich nazwy hostów i odpowiadające
 im adresy IP których nie może ustalić twój serwer nazw. Na przykład,
 jeśli wewnętrzna sieć składa się z trzech komputerów: <c>jenny</c>
-(192.168.0.5), <c>benny</c> (192.168.0.6) oraz <c>tux</c> (na którym pracujesz),
+(192.168.0.5), <c>benny</c> (192.168.0.6) oraz <c>tux</c> (192.168.0.7 - na którym pracujesz),
 powinieneś dodać do <path>/etc/hosts</path> następujące linijki:
 </p>
 
@@ -338,9 +338,11 @@ powinieneś dodać do <path>/etc/hosts</path> następujące linijki:
 </pre>
 
 <pre caption="Wpisywanie informacji o sieci">
-127.0.0.1     tux.homenetwork localhost
+127.0.0.1     localhost
 192.168.0.5   jenny
-192.168.0.56  benny
+192.168.0.6   benny
+192.168.0.7   tux
+
 </pre>
 
 <p>
