@@ -6,7 +6,7 @@
 <!-- Title: Zabezpieczanie Gentoo  -->
 <!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-security.xml,v 1.3 2004/12/23 12:06:34 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-security.xml,v 1.4 2004/12/23 14:29:19 rane Exp $ -->
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 
 <guide link = "/doc/en/gentoo-security.xml">
@@ -1249,23 +1249,24 @@ bity SUID i SGID.
 </pre>
 
 <p>
-By default Gentoo Linux does not have a lot of SUID files (though this depends
-on what you installed), but you might get a list like the one above. Most of the
-commands should not be used by normal users, only root. Switch off the SUID bit
-on <c>ping</c>, <c>mount</c>, <c>umount</c>, <c>chfn</c>, <c>chsh</c>, <c>newgrp</c>, <c>suidperl</c>, <c>pt_chown</c>
-and <c>traceroute</c> by executing <c>chmod -s</c> on every file. Don't
-remove the bit on <c>su</c>, <c>qmail-queue</c> or <c>unix_chkpwd</c>. Removing
-setuid from those files will prevent you from <c>su</c>'ing and receiving
-mail. By removing the bit (where it is safe to do so) you remove the possibility
-of a normal user (or an attacker) gaining root access through any of these
-files.
+Domyślnie Linux Gentoo nie zawiera wielu plików SUID (chociaż ich ilość zależy
+również od tego jakie programy są zainstalowane), ale jest możliwość, że
+otrzymasz listę taką jak ta wyżej. Większość komend nie powinna być uruchamiana
+przez zwykłych użytkowników, a jedynie przez roota. Zdejmij bity SUID z
+programów  <c>ping</c>, <c>mount</c>, <c>umount</c>, <c>chfn</c>, <c>chsh</c>,
+<c>newgrp</c>, <c>suidperl</c>, <c>pt_chown</c> i <c>traceroute</c> przy pomocy
+polecenia <c>chmod -s</c>. Nie usuwaj tego bitu z <c>su</c>, <c>qmail-queue</c>
+czy <c>unix_chkpwd</c>. Usunięcie setuid z tych plików sprawi, że stracisz
+możliwość przełączania się na konto superużytkownika czy otrzymywania poczty.
+Usuwając SUID odbierasz zwykłemu użytkownikowi (lub włamywaczowi) możliwość
+uzyskania dostępu do konta roota przez któryś z tych plików.
 </p>
 
 <p>
-The only SUID files that I have on my system are <c>su</c>, <c>passwd</c>,
-<c>gpasswd</c>, <c>qmail-queue</c>, <c>unix_chkpwd</c> and <c>pwdb_chkpwd</c>.
-But if you are running X, you might have some more, since X needs the elevated
-access afforded by SUID.
+Jedynymi plikami z SUID w moim systemie są <c>su</c>, <c>passwd</c>,
+<c>gpasswd</c>, <c>qmail-queue</c>, <c>unix_chkpwd</c> i <c>pwdb_chkpwd</c>.
+Jeśli używasz serwera X możesz potrzebować jeszcze kilku, ponieważ potrzebuje on
+czasem większego dostępu, oferowanego przez bity SUID.
 </p>
 
 </body>
@@ -1273,18 +1274,18 @@ access afforded by SUID.
 </chapter>
 
 <chapter>
-<title>PAM (Pluggable Authentication Modules)</title>
+<title>PAM (Pluggable Authentication Modules).</title>
 <section>
 <body>
 
 <p>
-PAM is a suite of shared libraries that provide an alternative way providing
-user authentication in programs. The <c>pam</c> USE flag is turned on by
-default. Thus the PAM settings on Gentoo Linux are pretty reasonable, but there
-is always room for improvement. First install cracklib.
+PAM jest zestawem bibliotek, które dostarczają różnych metod autoryzacji dla
+programów i użytkowników. Flaga USE <c>pam</c> jest włączana domyślnie.
+Domyślne ustawienia PAM w Gentoo są stosunkowo dobre, zawsze jednak można je
+nieco ulepszyć. Po pierwsze warto zainstalować sobie cracklib. 
 </p>
 
-<pre caption="Installing cracklib">
+<pre caption="Instalowanie cracklib">
 # <i>emerge cracklib</i>
 </pre>
 
@@ -1297,12 +1298,12 @@ session	 required pam_unix.so
 </pre>
 
 <p>
-This will add the cracklib which will ensure that the user passwords are at
-least 8 characters and contain a minimum of 2 digits, 2 other characters, and
-are more than 3 characters different from the last password. This forces the
-user to choose a good password (password policy). Check the <uri
-link="http://www.kernel.org/pub/linux/libs/pam/Linux-PAM-html/pam-6.html#ss6.3">PAM</uri>
-documentation for more options.
+Takie ustawienie wymusi na użytkownikach co najmniej ośmioliterowe hasła,
+zawierające co najmniej dwie cyfry i co najmniej 2 inne znaki, oraz co najmniej
+3 znaki różne w stosunku do tych z poprzedniego hasła. Dzięki temu będziesz
+pewien, że wszyscy użytkownicy będą mieli ustawione dobre hasła. Więcej opcji
+znajdziesz w dokumentacji <uri
+link="http://www.kernel.org/pub/linux/libs/pam/Linux-PAM-html/pam-6.html#ss6.3">PAM</uri>.
 </p>
 
 <pre caption="/etc/pam.d/sshd">
@@ -1318,13 +1319,14 @@ session	 required pam_limits.so
 </pre>
 
 <p>
-Every service not configured with a PAM file in <path>/etc/pam.d</path> will use
-the rules in <path>/etc/pam.d/other</path>. The defaults are set to <c>deny</c>,
-as they should be. But I like to have a lot of logs, which is why I
-added <c>pam_warn.so</c>. The last configuration is <c>pam_limits</c>, which is
-controlled by <path>/etc/security/limits.conf</path>. See <uri link =
-"#limits_conf">/etc/security/limits.conf section</uri> for more on these
-settings.
+Każda usługa, której nie skonfigurujesz w pliku <path>/etc/pam.d</path>
+zostanie potraktowana zgodnie z zasadami z pliku  <path>/etc/pam.d/other</path>.
+Domyślnie jest to ustawienie <c>deny</c>, tak jak powinno to być zresztą
+ustawione. Lubię mieć dużą ilość logów, w związku z czym dodałem
+<c>pam_warn.so</c>. Ostatnim ustawieniem jest <c>pam_limits</c>, które jest
+konfigurowane w pliku <path>/etc/security/limits.conf</path>. Więcej informacji
+o tych ustawieniach znajdziesz w <uri link="#limits_conf">Sekcji
+/etc/security/limits.conf</uri>.
 </p>
 
 <pre caption="/etc/pam.d/other">
@@ -1343,18 +1345,19 @@ session  required pam_warn.so
 </chapter>
 
 <chapter>
-<title>TCP Wrappers</title>
+<title>TCP Wrappers.</title>
 <section>
 <body>
 
 <p>
-This is a way of controlling access to services normally run by inetd (which
-Gentoo does not have), but it can also be used by xinetd and other services.
+Jest to metoda kontrolowania dostępu do usług normalnie uruchamianych przez
+inetd (którego nie ma Gentoo), ale może również być używana przez xinetd i inne
+usługi.
 </p>
 
 <note>
-The service should be executing tcpd in its server argument (in xinetd). See the
-chapter on xinetd for more information.
+Usługa powinna być uruchamiana z argumentem serwera tcpd (w xinetd). Więcej informacji
+znajdziesz w paragrafie dotyczącym xinetd.
 </note>
 
 <pre caption="/etc/hosts.deny">
@@ -1367,13 +1370,14 @@ time: LOCAL, .gentoo.org
 </pre>
 
 <p>
-As you can see the format is very similar to the one
-in <path>/etc/login.access</path>. Tcpd supports a specific service; it does not
-overlap with <path>/etc/login.access</path>. These settings only apply to
-services using tcp wrappers.
+Jak widzisz format tego pliku jest bardzo podobny do tego z pliku
+<path>/etc/login.access</path>. Tcpd posiada wsparcie dla określonych usług, nie
+nakłada się z <path>/etc/login.access</path>. Te ustawienie nie będą miały
+wpływu na usługi używające tcp wrappers.
 </p>
 
 <p>
+############
 It is also possible to execute commands when a service is accessed (this can be
 used when activating relaying for dial-in users) but it is not recommended,
 since people tend to create more problems than they are trying to solve. An
@@ -1381,6 +1385,7 @@ example could be that you configure a script to send an e-mail every time
 someone hits the deny rule, but then an attacker could launch a DoS attack by
 keep hitting the deny rule. This will create a lot of I/O and e-mails so
 don't do it!. Read the <c>man 5 hosts_access</c> for more information.
+############
 </p>
 
 </body>
@@ -1388,55 +1393,66 @@ don't do it!. Read the <c>man 5 hosts_access</c> for more information.
 </chapter>
 
 <chapter>
-<title>Kernel security</title>
+<title>Ochrona kernela.</title>
 <section>
-<title>Removing functionality</title>
+<title>Usuwanie zbędnych funkcji.</title>
 <body>
 
 <p>
-The basic rule when configuring the kernel is to remove everything that you do
-not need. This will not only create a small kernel but also remove the
-vulnerabilities that may lie inside drivers and other features.
+Podstawową zasadą przy tworzeniu kernela jest to by usuwać wszystko czego się
+nie potrzebuje. Dzięki temu stworzymy nie tylko mały, ale i mniej podatny na
+potencjalne błędy kernel.
 </p>
 
 <p>
-Also consider turning off loadable module support. Even though it is possible to
-add root kits without this features, it does make it harder for normal attackers
-to install root kits via kernel modules.
+Ponadto warto rozważyć wyłączenie opcji 'loadable module support'. Nie
+uniemożliwi to zainstalowania rootkitu przez moduły jądra, ale na pewno znacznie to
+utrudni - zwłaszcza mniej wyedukowanym włamywaczom. 
 </p>
 
 </body>
 </section>
 <section>
-<title>The proc filesystem</title>
+<title>System plików proc.</title>
 <body>
 
 <p>
-Many kernel parameters can be altered through the <path>/proc</path> file system
-or by using <c>sysctl</c>.
+Wiele parametrów jądra można skonfigurować poprzez system plików
+<path>/proc</path> lub przy pomocy <c>sysctl</c>.
 </p>
 
 <p>
-To dynamically change kernel parameters and variables on the fly, you need
-<c>CONFIG_SYSCTL</c> defined in your kernel. This is on by default in
-a standard 2.4 kernel. 
+Możliwość zmiany tych parametrów 'w locie' umożliwia zaznaczenie opcji
+<c>CONFIG_SYSCTL</c> w konfiguracji jądra. Jest ona standardowo zaznaczona w
+kernelach serii 2.4. 
 </p>
 
-<pre caption="Deactivate IP forwarding">
+<pre caption="Wyłączanie przekazywania IP">
 # <i>/bin/echo "0" &gt; /proc/sys/net/ipv4/ip_forward</i>
 </pre>
 
 <p>
-Make sure that IP forwarding is turned off. We only want this for a
-multi-homed host. It's advised to set or unset this flag before all other flags
-since it enabled/disables other flags as well.
+Upewnij się, że przekazywanie (forwardowanie) IP jest wyłączone. Będzie nam to
+potrzebne jedynie w przypadku stacji roboczych czy węzłów sieciowych o wielu
+podłączeniach. Radzimy wyłączyć tą flagę na samym początku, ponieważ zmienia ona
+wartość kilku innych poruszonych tu opcji.
 </p>
 
-<pre caption="Drop ping packets">
+<pre caption="Upuszczanie pakietów ping">
 # <i>/bin/echo "1" > /proc/sys/net/ipv4/icmp_echo_ignore_all</i>
 </pre>
 
 <p>
+Opcja ta spowoduje, że kernel po prostu zignoruje wszystkie wiadomości typu ping
+(znane również jako wiadomości ICMP typu 0). Powodem takiej decyzji jest to, że
+pakiet IP przenoszący wiadomość ICMP może przenosić ładunek inny niż możnaby się
+po nim spodziewać.
+Administratorzy często używają ping jako narzędzia diagnostycznego i narzekają
+jeśli jest wyłączony, ale są również powody dla których warto zabronić
+pingowania serwera ludziom z zewnątrz. Czasem również ktoś z wewnątrz będzie
+chciał użyć ping, dlatego warto wyłączyć ten typ pakietów w firewallu i
+umożliwić jednocześnie używania tego narzędzia administratorom w sieci lokalnej. 
+
 This will cause the kernel to simply ignore all ping messages (also known as
 ICMP type 0 messages). The reason for this is that an IP packet carrying an ICMP
 message can contain a payload with information other than you think.
