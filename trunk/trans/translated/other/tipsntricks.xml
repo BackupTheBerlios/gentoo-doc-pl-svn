@@ -1,30 +1,34 @@
 <?xml version='1.0' encoding="UTF-8"?>
 
 <!-- Translator: lucass <lucass@gentoo.pl> -->
-<!-- Orig revision: 1.1 -->
+<!-- Orig revision: 1.7 -->
 <!-- Title: Sztuczki i Kruczki Projektu Dokumentacji -->
 <!-- Status: Ukończono -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/other/tipsntricks.xml,v 1.8 2004/01/10 22:17:03 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/other/tipsntricks.xml,v 1.9 2004/03/03 14:28:00 lcs Exp $ -->
 
 
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
 <guide link="/proj/en/gdp/tipsntricks.xml">
 <title>Sztuczki i Kruczki Projektu Dokumentacji</title>
-<author title="Author">
+<author title="Autor">
     <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
+<author title="Tłumacz">
+    <mail link="lucass@gentoo.pl">Łukasz Strzygowski</mail>
+</author>
+
 
 <abstract>
 Niektóre sztuczki i kruczki mogą uprościć życie developera Gentoo (lub je utrudnić :)
 </abstract>
 
-<version>0.1</version>
-
-<date>3 grudnia 2003</date>
-
 <license/>
+
+<version>0.6</version>
+<date>24 lutego 2004</date>
+
 <chapter>
 <title>Konfiguracja środowiska pracy</title>
 <section>
@@ -111,11 +115,11 @@ gdzie będziesz przechowywał lokalną kopię CVS:
 <pre caption="Pobieranie migawki CVS">
 # <i>mkdir cvs; cd cvs/</i>
 # <i>export CVSROOT=</i><comment>&lt;twój nick&gt;</comment><i>@cvs.gentoo.org:/home/cvsroot</i>
-# <i>cvs co htdocs</i>
+# <i>cvs co doc</i>
 </pre>
 
 <p>
-Aby ją zaktualizować, wykonaj w katalogu <path>cvs/htdocs</path>
+Aby ją zaktualizować, wykonaj w katalogu <path>cvs/doc</path>
 polecenie <c>cvs update -dP</c>.
 </p>
 
@@ -135,15 +139,17 @@ i kilka obrazków:
 </p>
 
 <pre caption="Tworzenie środowiska do testów">
-# <i>mkdir test; cd test/</i>
+# <i>mkdir test</i>
+# <i>cd test</i>
 # <i>mkdir dtd css images</i>
-# <i>cd dtd; wget http://www.gentoo.org/dtd/guide.dtd; cd ..</i>
-# <i>cd css; wget http://www.gentoo.org/css/main.css; cd ..</i>
-# <i>cd images; wget http://www.gentoo.org/images/gbot-s.gif \
+# <i>wget -P dtd/ http://www.gentoo.org/dtd/guide.dtd</i>
+# <i>wget -P dtd/ http://www.gentoo.org/dtd/book.dtd</i>
+# <i>wget -P css/ http://www.gentoo.org/css/main.css</i>
+# <i>wget -P images/ http://www.gentoo.org/images/gbot-s.gif \
   http://www.gentoo.org/images/gridtest.gif \
   http://www.gentoo.org/images/gtop-s.jpg \
   http://www.gentoo.org/images/line.gif \
-  http://www.gentoo.org/images/netraverse-gentoo.gif; cd ..</i>
+  http://www.gentoo.org/images/netraverse-gentoo.gif</i>
 </pre>
 
 <p>
@@ -157,6 +163,19 @@ Przeznaczona jest ona do konwersji GuideXML do HTML na lokalnych maszynach.
 # <i>wget http://dev.gentoo.org/~swift/local/guide.xsl</i>
 </pre>
 
+<p>
+Do pliku <path>/etc/xml/catalog</path> dodaj następującą linię:
+</p>
+
+<pre caption="/etc/xml/catalog">
+&lt;rewriteURI uriStartString="/dtd" rewritePrefix="<i>/path/to/dtddir</i>"/&gt;
+</pre>
+
+<p>
+Oczywiście zastępując <c>/path/to/dtddir</c> prawidłową lokacją
+pobranych <path>guide.dtd</path> oraz <path>book.dtd</path>.
+</p>
+
 </body>
 </section>
 <section>
@@ -169,11 +188,11 @@ składnię XML:
 </p>
 
 <pre caption="Weryfikacja składni XML za pomocą xmllint">
-# <i>xmllint alsa-guide.xml</i>
+# <i>xmllint --valid --noout alsa-guide.xml</i>
 </pre>
 
 <p>
-Jeśli <c>xmllint</c> zwróci zawartość pliku, to nie ma w nim żadnych błędów
+Jeśli <c>xmllint</c> nie wyświetli żadnych komunikatów, to nie ma w nim żadnych błędów
 składni XML. Następnie musisz skonwertować go do HTML za pomocą <c>xsltproc</c>:
 </p>
 
@@ -205,8 +224,8 @@ wydać następujące polecenia:
 </p>
 
 <pre caption="Konwersja hb-install-about.xml">
-# <i>xmllint handbook.xml</i>
-# <i>xmllint hb-install-about.xml</i>
+# <i>xmllint --valid --noout handbook.xml</i>
+# <i>xmllint --valid --noout hb-install-about.xml</i>
 # <i>xsltproc --stringparam part 1 --stringparam chap 1 test/guide.xsl handbook.xml &gt; test/hb-install-about.html</i>
 </pre>
 
