@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.14 2004/01/18 16:07:56 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.15 2004/01/18 22:53:11 swierszczu Exp $ -->
 
 <sections>
 <section>
@@ -27,7 +27,7 @@ różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
 
 <p>
 Dla platformy x86 udostępniamy między innymi <c>vanilla-sources</c>
-(standardowe jądro, rozwijane przez developerów linuksa),
+(standardowe jądro, rozwijane przez developerów Linuksa),
 <c>gentoo-sources</c> (jądro wzbogacone o łatki poprawiające
 wydajność), <c>gentoo-dev-sources</c> (jądro z serii 2.6
 z łatkami poprawiającymi wydajność, stabilność oraz funkcjonalność),
@@ -47,7 +47,7 @@ jądro, rozwijane przez developerów Linuksa), <c>alpha-sources</c>
 
 <p>
 Dla platformy SPARC udostępniamy <c>vanilla-sources</c> (standardowe
-jądro, rozwijane przez developerów linuksa) oraz
+jądro, rozwijane przez developerów Linuksa) oraz
 <c>sparc-sources</c> (jądro zoptymalizowane dla użytkowników SPARC).
 </p>
 <p>
@@ -695,7 +695,7 @@ Opóść program konfiguracyjny i wykonaj polecenie
 Następnie skopiuj obraz kernela do <path>/boot</path>. W kolejnym 
 przykładzie założyliśmy, iż zdecydowałeś się skorzystać z 
 <c>vanilla-sources-2.4.22</c> (co nie zawsze jest właściwym
-rozwiązaniem dla twojej architektury!):
+rozwiązaniem dla Twojej architektury!):
 </p>
 
 <pre caption="Instalacja jądra">
@@ -755,7 +755,7 @@ kompilacji.
 </p>
 
 <p>
-No więc, do dzieła. Zacznijmy od instalacji naszego skryptu:
+Zatem, do dzieła. Zacznijmy od instalacji naszego skryptu:
 </p>
 
 <pre caption="Instalacja genkernel">
@@ -805,7 +805,7 @@ initrd config: (default) /etc/kernels/settings
 Gdy proces dobiegnie końca, gotowe będą jądro, pełny zestaw modułów
 oraz <e>dysk startowy</e> (initrd). Informacji o kernelu i initrd
 potrzebować będziemy podczas konfiguracji menadżera uruchamiania.
-Zapisz sobie ich nazwy abyś wiedział co wpisać w jego pliku konfiguracyjnym.
+Zapisz sobie ich nazwy, abyś wiedział co wpisać w jego pliku konfiguracyjnym.
 initrd zostanie załadowane natychmiast po uruchomieniu systemu i przeprowadzi
 automatyczne wykrywanie sprzętu (tak jak na LiveCD) zanim włączy się
 "prawdziwy" Gentoo Linux.
