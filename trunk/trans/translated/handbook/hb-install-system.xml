@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.29 -->
+<!-- Orig revision: 1.31 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Instalacja Systemu Podstawowego -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.10 2004/03/03 07:14:20 veng Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.11 2004/03/09 11:08:43 veng Exp $ -->
 
 <sections>
 <section>
@@ -221,9 +221,7 @@ określa on kolejne działania.
 </li>
 <li>
   Jeżeli jednak wytypowałeś <e>stage3</e> (z lub bez GRP), możesz pominąć
-  obydwa kroki. Jeśli chcesz wykorzystać GRP, zobacz 
-  <uri link="#preparing_grp">Opcjonalnie: Przygotowanie GRP</uri>.
-  W przeciwnym wypadku przejdź do następnego rozdziału: 
+  obydwa kroki i przejść do następnego rozdziału: 
   <uri link="?part=1&amp;chap=7">Konfiguracja jądra</uri>
 </li>
 </ul>
@@ -419,130 +417,15 @@ naprawdę czasochłonny.
 </pre>
 
 <p>
-Kiedy operacja się zakończy, przejdź do <uri
-link="?part=1&amp;chap=7">Konfiguracji jądra</uri>.
-</p>
-
-</body>
-</subsection>
-</section>
-<section id="preparing_grp">
-<title>Opcjonalnie: Przygotowanie GRP</title>
-<subsection>
-<title>Wprowadzenie</title>
-<body>
- 
-<p>
-Jeśli wystartowałeś z pierwszej płytki LiveCD dla x86 lub ppc
-możesz się zrelaksować i przejść do 
-<uri link="?part=1&amp;chap=7">Konfiguracji jądra</uri> gdyż instalacja
-prekompilowanych pakietów występuje na samym końcu procesu instalacji.
-</p>
- 
-<p>
-W przypadku, gdy start uruchomiłeś LiveCD dla innej architektury
-i chcesz wykorzystać pakiety prekompilowane dostarczone na LiveCD,
-przejdź do
-<uri link="#copying_from_livecd">Kopiowania pakietów GRP</uri>.
+Póki co możesz bezpiecznie zignorować ostrzeżenia o zaktualizowanych plikach
+konfiguracyjnych (i potrzebie uruchomienia <c>etc-update</c>). Kiedy Twoje Gentoo
+zostanie zainstalowane i uruchomione, przeczytaj naszą dokumentację dotyczącą
+<uri link="?part=2&amp;chap=4#doc_chap1">Ochrony plików konfiguracyjnych</uri>.
 </p>
 
 <p>
-Jeżeli chcesz użyć pakietów znajdujązych się na którymś z serwerów zwierciadlanych,
-przejdź do
-<uri link="#grp_downloads">Przygotowania Portage do pobierania GRP</uri>.
-</p>
- 
-</body>
-</subsection>
-<subsection id="copying_from_livecd">
-<title>Kopiowanie pakietów GRP</title>
-<body>
- 
-<p>
-Teraz powinieneś skopiować pakiety w obręb systemu plików by Portage 
-było w stanie z nich skorzystać. Przede wszystkim, otwórz drugi terminal
-naciskając <c>Alt-F2</c>. Trzeba to zrobić, gdyż teraz musimy pracować
-na LiveCD, a nie w środowisku chroot w którym jesteśmy obecnie.
-</p>
-
-<p>
-Powinien Cię przywitać prompt roota (<c>#</c>). Przekopiuj pakiety
-używając następujących poleceń:
-</p>
-
-<pre caption="Przekopiowanie prekompilowanych pakietów">
-# <i>mkdir -p /mnt/gentoo/usr/portage/packages/All</i>
-# <i>cp /mnt/cdrom/packages/All/* /mnt/gentoo/usr/portage/packages/All/</i>
-</pre>
-
-<p>
-Gdy ten krok będziesz już miał za sobą, wróć do środowiska chroot naciskając
-<c>Alt-F1</c>.
-</p>
-
-<p>
-A teraz skup się! Migawka Portage jest już na miejscu i pakiety GRP są gotowe
-do użycia. Mimo to, Portage nie użyje ich automagicznie póki mu tego nie powiesz.
-Szczęśliwie nie jest to zadaniem zbyt trudnym: za każdym razem gdy jesteś proszony
-o instalację pakietu używając <c>emerge</c>, musisz dodać <c>--usepkg</c> jako
-opcję:
-</p>
- 
-<pre caption="Przykład instalacji pakietu z GRP">
-<comment>(Przykład bez GRP)</comment>
-# <i>emerge vanilla-sources</i>
-
-<comment>(Przykład z GRP)</comment>
-# <i>emerge --usepkg vanilla-sources</i>
-</pre>
-
-<p>
-To wszystko co trzeba zrobić. Po prostu nie zapomnij dodać <c>--usepkg</c>. 
-Teraz przejdź do <uri link="?part=1&amp;chap=7">Konfiguracji jądra</uri>.
-</p>
-
-</body>
-</subsection>
-<subsection id="grp_downloads">
-<title>Przygotowanie Portage do pobierania GRP</title>
-<body>
-
-<p>
-Przede wszystkim, musisz wyedytować <path>/etc/make.conf</path> 
-i określić zmienną <c>PORTAGE_BINHOST</c> tak, by wskazywała na serwer
-z którego chcesz pobierać pakiety GRP. Sprawdź proszę naszą <uri
-link="/main/en/mirrors.xml">listę mirrorów</uri> w celu wybrania 
-jednego z dostępnych serwerów.
-</p>
-
-<pre caption="Edycja /mnt/gentoo/etc/make.conf">
-# <i>nano -w /etc/make.conf</i>
-</pre>
-
-<pre caption="Ustawianie zmiennej PORTAGE_BINHOST">
-PORTAGE_BINHOST="ftp://some.mirror.com/pub/gentoo/grp/2004/athlon-xp"
-</pre>
-
-<p>
-Zapisz i wyjdź (naciskając Ctrl-X i potwierdzając). Gdy wpis jest 
-na miejscu, musisz pamiętać o jednej rzeczy. Portage nie pobierze
-automagicznie pakietów GRP jeśli go nie poinstruujesz, co chcesz zrobić.
-Nie jest to wcale trudne; za każdym razem, gdy jesteś proszony 
-o instalację pakietu przy użyciu <c>emerge</c>, musisz dodać opcję
-<c>--getbinpkg</c> :
-</p>
-
-<pre caption="Przykład pobierania pakietów GRP">
-<comment>(Przykład bez pobierania GRP)</comment>
-# <i>emerge vanilla-sources</i>
-
-<comment>(Przykład z pobieraniem GRP)</comment>
-# <i>emerge --getbinpkg vanilla-sources</i>
-</pre>
-
-<p>
-To wszystko co trzeba zrobić. Po prostu nie zapomnij dodać <c>--getbinpkg</c>.
-Teraz przejdź do <uri link="?part=1&amp;chap=7">Konfiguracji jądra</uri>.
+Kiedy proces budowania się zakończy, przejdź do 
+<uri link="?part=1&amp;chap=7">Konfiguracji jądra</uri>.
 </p>
 
 </body>
