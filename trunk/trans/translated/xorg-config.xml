@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/xorg-config.xml,v 1.3 2005/02/20 22:00:21 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/xorg-config.xml,v 1.4 2005/02/20 22:35:23 sekretarz Exp $ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
 <!-- Orig revision: 1.7 -->
 <!-- Translator: volt3r <volt3r@pf.pl> -->
 <!-- Title: Przewodnik po konfiguracji serwera X. -->
 <!-- Status: Do korekty -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/xorg-config.xml,v 1.3 2005/02/20 22:00:21 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/xorg-config.xml,v 1.4 2005/02/20 22:35:23 sekretarz Exp $ -->
 
 <guide link="xorg-config.xml">
 
@@ -39,7 +39,7 @@ go zainstalować i jakie są różne warianty jego konfiguracji.
 Przeciętny użytkownik może być przestraszony wizją wpisywania różnych komend.
 Dlaczego nie miałby tylko wskazać i kliknąć ? Więc *duży uśmiech*, jesteśmy w
 stanie zrobić, aby właśnie tak było :-) Linux oferuje szeroką gamę środowisk
-graficznych, które możesz zainstalować na swoim obecnym systemie.
+graficznych, które możesz zainstalować na swoim systemie.
 </p>
 
 <p>
@@ -83,9 +83,9 @@ infrastruktura o otwartym kodzie źródłowym bazująca na systemie X11.
 </p>
 
 <p>
-Xorg udostępnia interfejs pomiędzy Twoim sprzętem oraz graficznym
+Xorg udostępnia interfejs pomiędzy twoim sprzętem oraz graficznym
 oprogramowaniem, które możesz chcieć wykorzystywać. Ponadto, Xorg jest w pełni
-gotowy do pracy w sieci, to znaczy pozwala Ci na uruchamianie aplikacji na
+gotowy do pracy w sieci, to znaczy pozwala ci na uruchamianie aplikacji na
 jednym z systemów, oglądając wyniki jej pracy na zupełnie innym.
 </p>
 
@@ -111,8 +111,8 @@ trochę potrwać, więc najlepiej jak pójdziesz coś przegryźć w tym czasie.
 <p>
 Kiedy instalacja zostanie zakończona, może być konieczne przeładowanie zmiennych
 środowiskowych zanim będziemy mogli kontynuować. Poprostu uruchom
-<c>env-update</c> poprzedzające <c>source /etc/profile</c> i już wszystko będzie
-gotowe. Nie musisz się obawiać, to w żaden sposób nie uszkodzi Twojego systemu.
+<c>env-update</c>, a następnie <c>source /etc/profile</c> i już wszystko będzie
+gotowe. Nie musisz się obawiać, to w żaden sposób nie uszkodzi twojego systemu.
 </p>
 
 <pre caption="Przeładowanie zmiennych środowiskowych">
@@ -154,9 +154,9 @@ sprawdzając jak możemy stworzyć taki plik konfiguracyjny automatycznie.
 <body>
 
 <p>
-Xorg jest w stanie samodzielnie odgadnąć większość parametrów Twojego 
+Xorg jest w stanie samodzielnie odgadnąć większość parametrów twojego 
 komputera i w większości przypadków, potrzebna będzie jednynie zmiana kilku 
-linijek w celu ustawienia żądanej rozdzielczości. Jeżeli zainteresuje Cię 
+linijek w celu ustawienia rządanej rozdzielczości. Jeżeli zainteresuje cię 
 poznanie bardziej dogłębnych ustawień, sprawdź jakie istnieją inne zasoby 
 dokumentacji podane na końcu tego przewodnika. Lecz najpierw, zajmijmy się 
 wygenerowaniem (miejmy nadzieję działającego) pliku konfiguracyjnego Xorg.
@@ -229,7 +229,7 @@ odpowienio plik <path>xorg.conf</path>.
 <p>
 Na początek nadpiszmy naszym nowym plikiem <path>xorg.conf.new</path> plik 
 <path>/etc/X11/xorg.conf</path>, tak abyśmy nie musieli ciągle wpisywać <c>Xorg 
--config</c> -- proste <c>startx</c> jest dużo prosze :)
+-config</c> -- <c>startx</c> jest dużo prostsze :)
 </p>
 
 <pre caption="Nadpisywanie pliku xorg.conf">
@@ -301,7 +301,7 @@ EndSection
 </pre>
 
 <p>
-Załącz serwer X (<c>startx</c>), aby odkryć że używa on dokładnie tej
+Włącz serwer X (<c>startx</c>), aby odkryć że używa on dokładnie tej
 rozdzielczości, którą właśnie ustawiliśmy :)
 </p>
 
@@ -315,8 +315,7 @@ rozdzielczości, którą właśnie ustawiliśmy :)
 Aby skonfigurować serwer X do używania odpowiedniego układu klawiatury, odszukaj
 sekcję <e>InputDevice</e>, która odpowiada za konfigurację klawiatury i dodaj
 opcję <c>XkbLayout</c>, która będzie mówiła jaki układ klawiatury ma być użyty.
-W przykładzie poniżej, pokazujemy jak ustawić belgijski, prosta zmiana kodu 
-belgii na kod Twojego kraju załatwi sprawę:
+W przykładzie poniżej, pokazujemy jak ustawić polski:
 </p>
 
 <pre caption="Zmiana układu klawiatury">
@@ -326,7 +325,7 @@ Section "InputDevice"
   Option    "CoreKeyboard"
   Option    "XkbRules"  "xorg"
   Option    "XkbModel"  "pc105"
-  <i>Option    "XkbLayout" "be"</i>
+  <i>Option    "XkbLayout" "pl"</i>
 EndSection
 </pre>
 
@@ -337,11 +336,11 @@ EndSection
 <body>
 
 <p>
-Jeżeli Twoja mysz nie działa, po pierwsze konieczne będzie sprawdzenie czy jest
+Jeżeli twoja mysz nie działa, po pierwsze konieczne będzie sprawdzenie czy jest
 ona wykrywana przez jądro. Myszy PS/2 są (w pojęciu urządzeń linuksa)
 widziane jako <path>/dev/psaux</path>. Pozostałe (jak np. USB) jako
 <path>/dev/input</path> (lub <path>/dev/input/mice</path>). Możesz teraz
-sprawdzić czy wyjście pliku odpowiadające Twojemu urządzeniu coś pokazuje w
+sprawdzić czy wyjście pliku odpowiadające twojemu urządzeniu coś pokazuje w
 momencie ruchu myszą. Aby zakończyć naciśnij <c>Ctrl-C</c>.
 </p>
 
@@ -351,12 +350,12 @@ momencie ruchu myszą. Aby zakończyć naciśnij <c>Ctrl-C</c>.
 </pre>
 
 <p>
-Jeżeli Twoja mysz nie została wykryta, sprawdź czy wszystkie potrzebne moduły
+Jeżeli twoja mysz nie została wykryta, sprawdź czy wszystkie potrzebne moduły
 jądra zostały załadowane.
 </p>
 
 <p>
-Jeżeli Twoja mysz została wykryta, wpisz odpowiednią nazwę pliku urządzenia do
+Jeżeli twoja mysz została wykryta, wpisz odpowiednią nazwę pliku urządzenia do
 sekcji <e>InputDevice</e>. W poniższym przykładzie zobaczysz, że wpiszemy także
 dwie inne opcje: <c>Protocol</c> (która podaje, jakiego protokołu będzie używała
 nasza mysz - większość użytkowników używa PS/2 lub IMPS/2), oraz
@@ -394,7 +393,7 @@ jakiegoś wartego uwagi jak np. KDE lub GNOME, ale to temat na inny poradnik :)
 <p>
 Po pierwsze, <c>man 5 xorg.conf</c> szybko udostępni nam kompletną dokumentację
 dotyczącą składni używanej w pliku konfiguracyjnym Xorg. Pamiętaj, aby mieć ją
-otwartą, gdy przyjdzie Ci dokonywać jakichkolwiek zmian w tym pliku.
+otwartą, gdy przyjdzie ci dokonywać jakichkolwiek zmian w tym pliku.
 </p>
 
 <p>
