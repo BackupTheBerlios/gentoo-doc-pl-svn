@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.39 -->
+<!-- Orig revision: 1.40 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja sieci -->
 <!-- Status: Release -->
@@ -9,12 +9,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-network.xml,v 1.23 2004/12/25 16:08:54 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-network.xml,v 1.24 2005/01/02 10:15:20 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.36</version>
-<date>2004-10-23</date>
+<version>1.37</version>
+<date>2004-12-30</date>
 
 <section>
 <title>Możesz to pominąć, ale...</title>
@@ -322,6 +322,13 @@ Jeśli zawiódł <c>net-setup</c> lub <c>asdl-setup</c>, możliwe.
 że nie została wykryta Twoja karta sieciowa. Oznacza to, że
 musisz ręcznie załadować odpowiedni sterownik.
 </p>
+
+<warn>
+Część płyt LiveCD zbudowana jest bez wspomagania dla modułów, czyli wszystkie
+sterowniki są 'załadowane'. Jeżeli karta sieciowa zainstalowana w systemie nie działa,
+możesz wypełnić bugreport, aby płyta LiveCD została uzupełniona o obsłygę tego
+urządzenia.
+</warn>
 
 <p>
 Do wyświetlenia listy modułów kernela ze sterownikami dla urządzeń sieciowych
