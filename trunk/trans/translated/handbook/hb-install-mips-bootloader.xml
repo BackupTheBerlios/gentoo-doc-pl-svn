@@ -3,10 +3,12 @@
 
 <!-- Orig revision: 1.8 -->
 <!-- The content of this document is licensed under the CC-BY-SA license -->
+
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
-<!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-mips-bootloader.xml,v 1.3 2004/11/29 23:05:17 sekretarz Exp $ -->
+
+<!-- Status: Release -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-mips-bootloader.xml,v 1.4 2004/12/22 13:30:17 rane Exp $ -->
 
 
 <sections>
@@ -15,7 +17,7 @@
 <date>2004-11-28</date>
 
 <section>
-<title>MIPS PROM</title>
+<title>MIPS PROM.</title>
 <subsection>
 <body>
 
@@ -36,9 +38,9 @@ jądra na SGI Volume Header.
 <p>
 Teraz przekopiuj kernel na SGI Volume Header. Domyślnie <c>dvhtool</c>
 zakłada obecność SGI Volume Header na <path>/dev/sda</path>. Jeśli w tym
-przypadku tak nie jest, (na przykład, gdy IRIX zainstalowany jest na
+przypadku tak nie jest (na przykład gdy IRIX jest zainstalowany na
 <path>/dev/sda</path> a Gentoo/MIPS na <path>/dev/sdb</path>),
-musisz o tym poinformować <c>dvhtool</c> używając <c>-d &lt;device&gt;</c>.
+musisz o tym poinformować <c>dvhtool</c> przy pomocy <c>-d &lt;urządzenie&gt;</c>.
 </p>
 
 <pre caption="Kopiowanie jądra na SGI Volume Header">
@@ -46,8 +48,8 @@ musisz o tym poinformować <c>dvhtool</c> używając <c>-d &lt;device&gt;</c>.
 </pre>
 
 <p>
-Jeśli chcesz obejrzeć wszystkie dostępne wpisy wolumenu,
-użyj <c>--print-volume-directory</c>:
+Jeśli chcesz obejrzeć wszystkie dostępne wpisy woluminu
+wpisz <c>--print-volume-directory</c>:
 </p>
 
 <pre caption="Oglądanie dostępnych wpisów wolumenu">
@@ -68,7 +70,7 @@ Następnie przejdź do rozdziału<uri link="#reboot">Ponowne uruchamianie system
 </subsection>
 </section>
 <section id="reboot">
-<title>Ponowne uruchamianie systemu</title>
+<title>Ponowne uruchamianie systemu.</title>
 <subsection>
 <body>
 
@@ -87,12 +89,16 @@ cdimage ~# <i>reboot</i>
 </subsection>
 </section>
 <section>
-<title>Dostosowywanie MIPS PROM</title>
+<title>Dostosowywanie MIPS PROM.</title>
 <subsection>
 <body>
 
 <p>
-Po ponownym uruchomieniu wejdź do <e>System Maintenance Menu</e> i wybierz <e>Enter Command Monitor</e> (<c>5</c>). Jeśli chcesz przetestować teraz swoje nowe Gentoo wpisz <c>boot -f &lt;kernel name&gt;</c>. Jeśli chcesz, żeby Gentoo było domyślnym systemem na stałe musisz wprowadzić jeszcze kilka zmian w MIPS PROM.
+Po ponownym uruchomieniu wejdź do <e>System Maintenance Menu</e> i wybierz
+<e>Enter Command Monitor</e> (<c>5</c>). Jeśli chcesz przetestować teraz swoje
+nowe Gentoo wpisz <c>boot -f &lt;nazwa jądra&gt;</c>. Jeśli chcesz żeby Gentoo
+było domyślnym systemem na stałe musisz wprowadzić jeszcze kilka zmian w MIPS
+PROM.
 </p>
 
 <pre caption="Konfigurowanie MIPS PROM do uruchamiania Gentoo">
@@ -105,31 +111,33 @@ Po ponownym uruchomieniu wejdź do <e>System Maintenance Menu</e> i wybierz <e>E
 Option? <i>5</i>
 Command Monitor.  Type "exit" to return to the menu.
 
-<comment>(&lt;root device&gt; = Gentoo's root partition, e.g. /dev/sda3)</comment>
+<comment>(&lt;root device&gt; = partycja root Gentoo, np. /dev/sda3)</comment>
 &gt;&gt; <i>setenv OSLoadPartition &lt;root device&gt;</i>
 
-<comment>(To list the available kernels, type "ls")</comment>
+<comment>(Żeby zobaczyć listę wszystkich dostępnych kerneli wpisz "ls")</comment>
 &gt;&gt; <i>setenv OSLoader &lt;kernel name&gt;</i>
 &gt;&gt; <i>setenv OSLoadFilename &lt;kernel name&gt;</i>
 
-<comment>(Declare the kernel parameters you want to pass)</comment>
+<comment>(Podaj parametry z jakimi chcesz uruchomić system)</comment>
 &gt;&gt; <i>setenv OSLoadOptions &lt;kernel parameters&gt;</i>
 
-<comment>(Provide the location of the Volume Header)</comment>
+<comment>(Dostarczanie lokalizacji Volume Header)</comment>
 &gt;&gt; <i>setenv SystemPartition scsi(0)disk(1)rdisk(0)partition(8)</i>
 
-<comment>(Automatically boot Gentoo)</comment>
+<comment>(Automatyczne uruchamianie Gentoo)</comment>
 &gt;&gt; <i>setenv AutoLoad Yes</i>
 
-<comment>(Set the timezone)</comment>
+<comment>(Ustawienie strefy czasowej)</comment>
 &gt;&gt; <i>setenv TimeZone EST5EDT</i>
 
-<comment>(Use the serial console - graphic adapter users should have "g" instead of "d1" (one))</comment>
+<comment>(Użycie konsoli szeregowej - użytkownica adaptera graficznego powinni
+wpisać tu "g" zamiast "d1" (jeden))</comment>
 &gt;&gt; <i>setenv console d1</i>
 </pre>
 
 <p>
-Uruchom teraz swoje nowiutkie Gentoo i dokończ konfigurację zgodnie ze wskazówkami pod adresem: <uri link="?part=1&amp;chap=11">Finalizowanie instalacji</uri>
+Następnie zakończ proces instalacji zgodnie ze wskazówkami spisanymi w rozdziale
+<uri link="?part=1&amp;chap=11">Finalizowanie instalacji Gentoo</uri>.
 </p>
 
 </body>
