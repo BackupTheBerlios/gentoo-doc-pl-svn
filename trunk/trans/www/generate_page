@@ -11,7 +11,7 @@ cd trans/www
 
 # Teraz zrobimy tablicê z dokumentami
 echo > doctable.xml
-for file in `find ../translated/ -name "*.xml"` 
+for file in `find ../translated/ ../non_translated -name "*.xml"` 
 do
    echo "<tr>" >> doctable.xml
    echo "<ti><uri link=\"http://cvs.berlios.de/cgi-bin/viewcvs.cgi/gentoo-doc-pl/trans/trans/$file?rev=HEAD&amp;content-type=
