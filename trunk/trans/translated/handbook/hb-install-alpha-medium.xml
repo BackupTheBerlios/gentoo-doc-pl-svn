@@ -1,0 +1,551 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-medium.xml,v 1.1 2004/11/27 21:38:02 sekretarz Exp $ -->
+
+<sections>
+
+<version>1.19</version>
+<date>2004-11-04</date>
+
+<section>
+<title>Wymagania Sprzętowe</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<p>
+Zanim zaczniemy, musimy ustalić jakie wymagania sprzętowe powinien
+spełniać Twój komputer, aby pomyślnie zainstalować na nim Gentoo. Zależy
+to oczywiście od docelowej architektury.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Architektura Alpha</title>
+<body>
+
+<p>
+Zanim przejdziesz do następnej częsci, sprawdź czy Twój sprzęt
+spełnia następujące wymagania:
+</p>
+
+<ul>
+<li>
+  1GB wolnego miejsca na dysku
+</li>
+<li>
+  Dla <e>architektury Alpha</e>, powinneś zajrzeć do <uri
+  link="http://www.alphalinux.org/faq/FAQ-5.html">Alpha/Linux FAQ</uri>.
+</li>
+</ul>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Podejmnij Decyzję</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<p>
+Ciągle zainteresowany Gentoo? Cóż, nadszedł czas na wybranie medium
+instalacyjnego. Tak, masz wybór, nie, nie wszystkie metody są identyczne
+i tak, rezultatem zawsze jest podstawowy system Gentoo.
+</p>
+
+<p>
+Omówimy następujące media instalacyjne:
+</p>
+
+<ul>
+<li>LiveCD Gentoo Alpha</li>
+</ul>
+
+<p>
+Zanim przejdziemy dalej, wyjaśnijmy naszą instalacje opierającą się na trzech stage'ach.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Trzy Stage'e (etapy)</title>
+<body>
+
+<p>
+Gentoo Linux może zostać zainstalowany przy pomocy jednego z trzech tarballi <e>stage</e>.
+Jeśli chcesz przeprowadzić samodzielnie bootstrap i zbudować cały system
+od podstaw, skorzystaj ze <e>stage1</e>. W <e>stage2</e> będziesz musiał
+skompilować system ze stanu po gotowym bootstrapie. Prekompilowany podstawowy
+system Gentoo znajduje się w <e>stage3</e>. Naszą dystrybucję można
+zainstalować bez żadnych kompilacji, z wyjątkiem jądra i kilku opcjonalnych
+programów. W takim przypadku odpowiedni jest <e>stage3</e>.
+</p>
+
+<p>
+Zatem który stage wybrać?
+</p>
+
+<p>
+Rozpoczęcie od <e>stage1</e> pozwala na pełną kontrolę optymalizacji i funkcjonalności.
+Przeznaczony jest on zwłaszcza dla użytkowników, którzy wiedzą co robią. Poza tym, stwarza
+świetną okazję do głębszego poznania mechanizmów Gentoo.
+</p>
+
+<p>
+Instalacja od <e>stage1</e> może być tylko wykonywana, gdy masz działające połączenie internetowe.
+</p>
+
+<table>
+<tr>
+  <th>Stage1</th>
+  <th>Zalety i wady</th>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>
+	Pozwala na pełną kontrolę optymalizacji i funkcjonalności systemu
+  </ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Odpowiedni dla użytkowników, którzy wiedzą co robią</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Pozwala nauczyć się więcej działaniu Gentoo</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Instalacja zabiera dużo czasu</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>
+   Jeśli nie planujesz poprawiania ustawień, prawdopodobnie okaże się stratą czasu
+  </ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>
+    Nie jest odpowiednia dla instalacji bez dostępu do internetu
+  </ti>
+</tr>
+</table>
+
+<p>
+W <e>stage2</e> bootstrap przeprowadziliśmy za Ciebie. Jeśli jesteś
+zadowolony z wybranych przez nas ustawień, użyj właśnie jego.
+</p>
+
+<p>
+Instalacja od <e>stage2</e> może być tylko wykonywana, gdy masz działające połączenie internetowe.
+</p>
+
+<table>
+<tr>
+  <th>Stage2</th>
+  <th>Zalety i wady</th>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Nie musisz przeprowadzać bootstrapu</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Instalacja trwa krócej niż w przypadku stage1</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Wciąż możesz poprawić dużo ustawień</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Nie możesz poprawić tak dużo jak w przypadku stage1</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Nie jest najszybszą metodą instalacji Gentoo</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Musisz zaakceptować wybrane przez nas optymalizacje i ustawienia</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>
+    Nie jest odpowiednia dla instalacji bez dostępu do internetu
+  </ti>
+</tr>
+</table>
+
+<p>
+Najszybszą instalację Gentoo Linux umożliwia <e>stage3</e>. Skompilowano
+w nim z dobrymi ustawieniami optymalizacji, łączącymi wysoką wydajność ze
+stabilnością, cały podstawowy system. Jest ono wymagane w przypadku instalacji
+za pomocą prekompilowanych pakietów lub bez dostępu do internetu.
+</p>
+
+<table>
+<tr>
+  <th>Stage3</th>
+  <th>Zalety i wady</th>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Najszybsza metoda instalacji Gentoo</ti>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Odpowiedni do instalacji bez dostępu do internetu</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Nie można poprawiać systemu podstawowego - jest prekompilowany</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Nie możesz przechwalać się używaniem stage1 lub stage2</ti>
+</tr>
+</table>
+
+<p>
+Zapisz sobie (lub zapamiętaj), który stage wybrałeś. Będzie Ci to potrzebne
+przy wybieraniu odpowiedniego LiveCD. Z pewnością zainteresuje Cię także
+możliwość rekompilacji całego systemu w przyszłości, gdy zdecydujesz się
+na inne ustawienia optymalizacji już po zakończeniu instalacji.
+</p>
+
+<p>
+Teraz rzućmy okiem na dostępne media instalacyjne:
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>LiveCD Gentoo Alpha</title>
+<body>
+
+<p>
+<e>LiveCD Gentoo Alpha</e> to uruchamialne płyty zawierające działające środowisko
+Gentoo. Pozwalają na uruchomienie Linuksa prosto z CD. W czasie startu wykrywany
+jest sprzęt i ładowane są odpowiednie sterowniki. Jego opiekunami są developerzy Gentoo.
+</p>
+
+<p>
+<e>LiveCD Gentoo Alpha</e> jest małą, bootowalną CD, której podstawowym zadaniem jest uruchomienie
+systemu, przygotowanie sieci (internetu) i kontynuacja instalacji Gentoo. Nie zawiera ona
+żadnych plików stage (lub, w niektórych przypadkach, pojedynczy plik stage1), pliki źródłowe lub prekompilowane
+pakiety. Przykładem LiveCD dla Alpha jest <c>gentoo-alpha-1.4rc1-test3.iso.bz2</c> znajdująca sie w podkatalogu
+<path>releases/1.4_rc1/alpha</path>.
+</p>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Pobieranie, Wypal i Uruchom LiveCD Gentoo</title>
+<subsection>
+<title>Pobieranie i Nagrywanie LiveCD Gentoo</title>
+<body>
+
+<p>
+Zdecydowałeś się skorzystać z Gentoo LiveCD (jeśli nie, to czytasz złą sekcję).
+Zaczniemy od ściągnięcia ich na dysk i nagrania na płyty. Omówiliśmy już różne odmiany, ale
+gdzie je znaleźć?
+</p>
+
+<p>
+Odwiedź jeden z <uri
+link="/main/en/mirrors.xml">serwerów lustrzanych</uri> i przejdź do
+wybranego katalogu. Wewnątrz znajdziesz odpowiednio nazwane pliki.
+Są to pełne obrazy płyt, gotowe do nagrania na CD-R.
+</p>
+
+<p>
+Jeśli zastanawiasz się czy pobrane pliki są prawidłowe, czy też uszkodzone,
+możesz porównać ich sumę kontrolną MD5 z tą, którą dostarczamy razem z iso
+(na przykład <path>gentoo-alpha-1.4rc1-test3.iso.bz2.md5sum</path>). Do sprawdzania
+sumy MD5 pod Linuksem/Uniksem służy program <c>md5sum</c>, natomiast
+pod Windowsem <uri link="http://www.etree.org/md5com.html">md5sum</uri>.
+
+In case you wonder if your downloaded file is corrupted or not, you can
+check its MD5 checksum and compare it with the MD5 checksum we provide (such as
+<path>gentoo-alpha-1.4rc1-test3.iso.bz2.md5sum</path>). You can check the MD5 
+checksum with the <c>md5sum</c> tool under Linux/Unix or <uri
+link="http://www.etree.org/md5com.html">md5sum</uri> for Windows.
+</p>
+
+<p>
+Po pobraniu, rozpakuj plik ISO (jest on skompresowany przy pomocy algorytmu kompresji tekstu Burrowsa-Wheelera) 
+używając <c>bunzip</c> (na systemach Linux/Unix):
+</p>
+
+<pre caption="Dekompresja pliku iso.bz2">
+# <i>bunzip2 gentoo-alpha-1.4rc1-test3.iso.bz2</i>
+</pre>
+
+<p>
+Innym sposobem na sprawdzenie poprawności sciągniętego pliku jest użycie GnuPG w celu
+zwerfikowania sygnatury pliku (do porównania uzyj  pliku kończącego się na <path>.asc</path>).
+Sciągnij plik ze sygnaturą która zawiera klucz publiczny:
+</p>
+
+<pre caption="Uzyskanie klucza publicznego">
+$ <i>gpg --keyserver pgp.mit.edu --recv-keys 17072058</i>
+</pre>
+
+<p>
+Teraz sprawdź sygnature:
+</p>
+
+<pre caption="Werfikacja sygnatury">
+$ <i>gpg --verify &lt;plik z sygnatura&gt; &lt;sciągnięty plik iso&gt;</i>
+</pre>
+
+<p>
+Aby nagrać ściągnięte pliki ISO, w programie do nagrywania musisz włączyć tryb RAW.
+Sposób zależy od używanego narzędzia. Poniżej omówimy <c>cdrecord</c> i <c>K3B</c>;
+więcej informacji można znaleźć w naszym <uri
+link="/doc/en/faq.xml#isoburning">Gentoo FAQ</uri>.
+</p>
+
+<ul>
+  <li>
+   Jeśli używasz cdrecord, wpisz po prostu <c>cdrecord dev=/dev/hdc</c> (zamieniając
+   <path>/dev/hdc</path> swoim urządzeniem nagrywarki) i ścieżkę do pobranego pliku 
+   ISO jako parametr.
+  </li>
+  <li>
+    W K3B wybierz <c>Narzędzia</c> &gt; <c>CD</c> &gt; <c>Nagraj Obraz</c>. Potem wskaź
+    lokacje pliku ISO i naciśnij przycisk <c>Start</c>.
+  </li>
+</ul>
+
+</body>
+</subsection>
+<subsection>
+<title>Uruchamianie LiveCD dla Alpha</title>
+<body>
+
+<p>
+Po włączeniu Alphy, pierwszą uruchamianą rzeczą jest firmware - odpowiednik
+PC-towego BIOSu. Istnieją jego dwa rodzaje: SRM (<e>Systems Reference
+Manual</e>) oraz ARC (<e>Advanced Risc Console</e>).
+</p>
+
+<p>
+SRM jest oparty na specyfikacji Alpha Console Subsystem, dostarczającej
+środowisko operacyjne systemom OpenVMS, Tru64 UNIX oraz Linux. ARM jest
+oparty na specyfikacji Advanced RISC Computing (ARC), dostarczającej
+środowisko operacyjne systemowi Windows NT. <uri link="http://www.alphalinux.org/faq/SRM-HOWTO/">
+Dokładny podręcznik</uri> używania SRM możesz znaleźć na stronach Alpha Linux.
+</p>
+
+<p>
+Jeżeli Twój system Alpha wspiera SRC i ARCs (ARC, AlphaBIOS, ARCSBIOS) powinneś 
+zajrzeć <uri link="http://www.alphalinux.org/faq/x31.html">do tych instrukcji</uri>
+aby zamienić na SRM. Jeżeli Twój system już używa SRM, wszystko jest ustawione.
+Jeżeli możesz użyć tylko ARCs (Ruffian, nautilus, xl, etc.) musisz wybrać później <c>MILO</c>
+kiedy będzie mowa o bootloaderach.
+</p>
+
+<p>
+Teraz uruchom LiveCD Alpha, włóż CD-ROM i uruchom ponownie system.
+Możesz użyć SRM do uruchomienia LiveCD. Jeżeli nie możesz tego zrobić, będziesz musiał
+użyć <c>MILO</c>. Jeżeli nie masz jeszcze zainstalowanego <c>MILO</c>, użyj jego prekompilowanej
+wersji dostępnej na <uri
+link="http://dev.gentoo.org/~taviso/milo/">taviso's homepage</uri>.
+</p>
+
+<pre caption="Uruchamianie CD-ROM używając SRM">
+<comment>(Lista dostępnych napędów)</comment>
+&gt;&gt;&gt; <i>show device</i>
+dkb0.0.1.4.0        DKB0       TOSHIBA CDROM
+<comment>(...)</comment>
+<comment>(Zastąp dkb0 Twoim napędem CD-ROM)</comment>
+&gt;&gt;&gt; <i>boot dkb0 -flags 0</i>
+</pre>
+
+<pre caption="Uruchamianie CD-ROM używając MILO">
+<comment>(Zamień hdb nazwa twojego napędu)</comment>
+MILO&gt; <i>boot hdb:boot/vmlinuz initrd=initrd.img root=/dev/ram0 init=/linuxrc</i>
+</pre>
+
+<p>
+Powinneś zobaczyć prompt roota ("#") na aktualnej konsoli. Możesz zmieniać na inne
+konsole naciskając Alt-F2, Alt-F3 i Alt-F4. Wróć do taj na której startowałeś naciskajac Alt-F1.
+</p>
+
+<p>
+Teraz przejdź do <uri link="#hardware">Konfiguracji Dodatkowego
+Sprzętu</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection id="hardware">
+<title>Konfiguracja Dodatkowego Sprzętu</title>
+<body>
+
+<p>
+W czasie uruchamiania LiveCD, system próbuje wykryć sprzęt i załadować odpowiednie
+sterowniki. Zazwyczaj czyni to prawidłowo, ale czasami mogą zdarzyć się problemy
+(LiveCD dla SPARC nawet nie próbuje) i nie wszystkie moduły zostaną aktywowane.
+Gdy zawiedzie detekcja PCI, możesz załadować odpowiednie moduły ręcznie.
+</p>
+
+<p>
+W poniższym przykładzie spróbujemy załadować moduł <c>8139too</c> (wsparcie
+dla różnych rodzajów urządzeń sieciowych):
+</p>
+
+<pre caption="Ładowanie modułów jądra">
+# <i>modprobe 8139too</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Poprawianie Wydajności Twardego Dysku</title>
+<body>
+
+<p>
+Jeśli jesteś zaawansowanym użytkownikiem, być może zainteresuje Cię
+możliwość zwiększenia wydajności dysku IDE za pomocą <c>hdparm</c>.
+Mozna ją przetestować za pomocą parametrów <c>-tT</c> (wykonanie
+tego kilka razy zwiększa precyzję pomiaru):
+</p>
+
+<pre caption="Testowanie wydajności dysku">
+# <i>hdparm -tT /dev/hda</i>
+</pre>
+
+<p>
+Aby coś poprawić, możesz wykorzystać któryś z poniższych przykładów
+(lub poeksperymentować samodzielnie). Zastąp <path>/dev/hda</path>
+urządzeniem odpowiednim dla swojego dysku.
+</p>
+
+<pre caption="Poprawianie wydajności dysku">
+<comment>Activate DMA:</comment>                                       # <i>hdparm -d 1 /dev/hda</i>
+<comment>Activate DMA + Bezpieczne opcje poprawiające wydajność:</comment>  # <i>hdparm -d 1 -A 1 -m 16 -u 1 -a 64 /dev/hda</i>
+</pre>
+
+</body>
+</subsection>
+<subsection id="useraccounts">
+<title>Opcjonalnie: Konta Użytkowników</title>
+<body>
+
+<p>
+Jeśli planujesz dać dostęp do środowiska instalacyjnego
+innym użytkownikom, lub korzystać z <c>irssi</c> bez uprawnień
+administratora (ze względów bezpieczeństwa), musisz stworzyć
+odpowiednie konta i zmienić hasło roota.
+</p>
+
+<p>
+Aby zmienić hasło roota, skorzystaj z narzędzia <c>passwd</c>:
+</p>
+
+<pre caption="Zmiana hasła roota">
+# <i>passwd</i>
+New password: <comment>(Podaj nowe hasło)</comment>
+Re-enter password: <comment>(Podaj nowe hasło jeszcze raz)</comment>
+</pre>
+
+<p>
+Aby stworzyć konto użytkownika, najpierw podamy jego login, a
+potem ustawimy hasło. Skorzystamy przy tym z <c>useradd</c> oraz <c>passwd</c>.
+W przykładzie, stworzymy użytkownika &quot;john&quot;.
+</p>
+
+<pre caption="Tworzenie konta użytkownika">
+# <i>useradd -m -G users john</i>
+# <i>passwd john</i>
+New password: <comment>(Podaj hasło johna)</comment>
+Re-enter password: <comment>(Podaj hasło johna jeszcze raz)</comment>
+</pre>
+
+<p>
+Aby zmienić id użytkownika z roota na nowo utworzone konto, skorzystaj
+z polecenia <c>su</c>:
+</p>
+
+<pre caption="Zmiana id użytkownika">
+# <i>su - john</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Przeglądanie dokumentacji podczas instalacji</title>
+<body>
+
+<p>
+Jeżeli chcesz przeglądać Podręcznik Gentoo (z CD lub bezpośrednio z internetu) podczas instalacji,
+upewnij się, że utworzyłeś konto użytkownika (zobacz <uri
+link="#useraccounts">Opcjonalnie: Konta użytkownika</uri>) Następnie naciśnij <c>Alt-F2</c>, aby przejść na nowy
+termial i zaloguj się.
+</p>
+
+<p>
+Jeżeli chcesz przejrzeć dokumentacje na CD możesz od razu uruchomić <c>lynx</c>
+aby ją przeczytać:
+</p>
+
+<pre caption="Przegladanie dokumentacji znajdującej się na CD">
+# <i>lynx /mnt/cdrom/docs/html/index.html</i>
+</pre>
+
+<p>
+Jednak najlepiej przegladać Podrecznik Gentoo znajdujący się w internecie, gdyż możliwe, że jest on 
+nowszy niż ten znajdujący się na CD. Możesz także użyć <c>lynx</c>, ale jedynie po przeczytaniu rozdziału <e>Konfiguracja Sieci</e>
+(inaczej nie bedziesz miał dostępu do internetu potrzebnego do zobaczenia dokumentu):
+</p>
+
+<pre caption="Oglądanie dokumentacji dostępnej w internecie">
+# <i>lynx http://www.gentoo.org/doc/en/handbook/handbook-alpha.xml</i>
+</pre>
+
+<p>
+Na pierwszy termial wrócisz naciskające <c>Alt-F1</c>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Uruchamianie Serwera SSH</title>
+<body>
+
+<p>
+Jeśli chcesz dać dostęp do środowiska instalacyjnego innym użytkownikom
+(na przykład, żeby pomogli Ci w instalacji albo nawet przeprowadzili ją
+za Ciebie), musisz stworzyć odpowiednie konta lub nawet podać im hasło root
+(<e>tylko w przypadku pełnego zaufania</e>).
+</p>
+
+<p>
+Aby uruchomić serwer SSH, wykonaj nastepujące polecenie:
+</p>
+
+<pre caption="Uruchamianie serwera SSH">
+# <i>/etc/init.d/sshd start</i>
+</pre>
+
+<p>
+Aby móc skorzystać z sshd, musisz skonfigurować połączenie. Przejdź do
+rozdziału o <uri 
+link="?part=1&amp;chap=3">Konfiguracji Sieci</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+</sections>
