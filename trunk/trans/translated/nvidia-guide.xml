@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- Orig revision: 1.6 -->
+<!-- Translator: rane <arachnist@gmail.com> -->
+<!-- Title: Poradnik konfiguracji i instalacji kart nVidia w Gentoo Linux -->
+<!-- Status: Ukończono -->
+<!-- $Header:  -->
+
+<guide link="/doc/en/nvidia-guide.xml">
+<title>Poradnik konfiguracji i instalacji kart nVidia w Gentoo Linux</title>
+
+<abstract>
+Wielu użytkowników Gentoo posiada karty nVidia. nVidia dostarcza specyficznych sterowników dla Linuksa by zwiększyć wydajność twojej karty. Ten poradnik pokazuje jak zainstalować i skonfigurować te sterowniki.
+</abstract>
+
+<license/>
+
+<version>1.6</version>
+
+<chapter>
+<title>Konfiguracja karty</title>
+<section>
+<title>Instalacja odpowiednich sterowników</title>
+<body>
+
+<p>
+Sterowniki nVidii zawierają moduły jądra, które musisz włączyć do swojego kernela. By tego dokonać twoje jądro musi obsługiwać ładowanie modułów. Jeśli użyłeś <c>genkernel</c>, aby skonfigurować jądro wszystko powinno być odpowiednio ustawione. Jeśli nie, sprawdź dwa razy swoją kofiguracje jadra by upewnić się, że masz tą obsługę włączoną:
+</p>
+
+<pre caption="Włączanie obsługi ładowania modułów jądra">
+Loadable module support ---&gt;
+  [*] Enable loadable module support
+</pre>
+
+<p>
+Musisz także włączyć wsparcie dla <e>Memory Type Range Register</e> w jądrze:
+</p>
+
+<pre caption="Włączanie MTRR">
+Processor and Features ---&gt;
+  [*] MTRR (Memory Type Range Register) support
+</pre>
+
+<p>
+Moduły i biblioteki nVidii składają się z dwóch pakietów: <c>nvidia-glx</c> i <c>nvidia-kernel</c>. Pierwszy to biblioteki GLX dla X11, a drugi to moduły jądra. Ponieważ <c>nvidia-glx</c> jest zależna od <c>nvidia-kernel</c> wystarczy instalacja <c>nvidia-glx</c>:
+</p>
+
+<pre caption="Instalacja modułów nVidii">
+# <i>emerge nvidia-glx</i>
+</pre>
+
+<p>
+Gdy instalacja się zakończy, wpisz <c>modprobe nvidia</c>, aby załadować moduł jądra do pamięci:
+</p>
+
+<pre caption="Ładowanie modułu jądra">
+# <i>modprobe nvidia</i>
+</pre>
+
+<p>
+Prawdopodonie chcesz by to się działo automatycznie przy każdym uruchomieniu systemu. Aby to osiągnąć wystarczy dodać linijkę <c>nvidia</c> do <path>/etc/modules.autoload.d/kernel-2.6</path> (lub <path>kernel-2.4</path>). Nie zapomnij po tym wykonać <c>modules-update</c>!
+</p>
+
+<pre caption="Uruchamianie modules-update">
+# <i>modules-update</i>
+</pre>
+
+</body>
+</section>
+<section>
+<title>Konfiguracja Serwera X</title>
+<body>
+
+<p>
+Po instalacji odpowiednich sterowników musisz skonfigurować swój serwer X (XFree86 lub Xorg), aby używał sterownika <c>nvidia</c> zamiast domyślnego <c>nv</c>.
+</p>
+
+<p>
+Otwórz <path>/etc/X11/XF86Config</path> (albo <path>/etc/X11/xorg.conf</path>) swoim ulubionym edytorem (np <c>nano</c> lub <c>vim</c>) i przejdź do sekcji <c>Device</c>. W tej sekcji odpowiedni odpowiednio zmień linię <c>Driver</c>:
+</p>
+
+<pre caption="Zamiana nv na nvidia w konfiguracji serwera X">
+Section "Device"
+  Identifier "nVidia Inc. GeForce2"
+  <i>Driver     "nvidia"</i>
+  VideoRam   65536
+EndSection
+</pre>
+
+<p>
+Potem przejdź do sekcji <c>Module</c> i upewnij się że moduł <c>glx</c> będzie się ładował i że moduł <c>dri</c> nie będzie wczytywany:
+</p>
+
+<pre caption="Uaktualnianie sekcji Module">
+Section "Module"
+  <comment>(...)</comment>
+  <i># Load  "dri"
+  Load  "glx"</i>
+  <comment>(...)</comment>
+EndSection
+</pre>
+
+<p>
+Uruchom <c>opengl-update</c>, aby serwer X używał bibliotek GLX nVidii:
+</p>
+
+<pre caption="Uruchamianie opengl-update">
+# <i>opengl-update nvidia</i>
+</pre>
+
+</body>
+</section>
+<section>
+<title>Sprawdzanie karty</title>
+<body>
+
+<p>
+By sprawdzic swoją kartę nVidia, uruchom serwer X i wpisz polecenie <c>glxinfo |grep direct</c>. Powinna pokazać się informacja, że bezpośrednie renderowanie (ang. direct rendering) jest włączone:
+</p>
+
+<pre caption="Sprawdzanie statusu bezpośredniego renderowania">
+$ <i>glxinfo |grep direct</i>
+direct rendering: Yes
+</pre>
+
+<p>
+Aby sprawdzić ilość FPS uruchom program <c>glxgears</c>. 
+</p>
+
+</body>
+</section>
+</chapter>
+
+<chapter>
+<title>Rozwiązywanie problemów</title>
+<section>
+<title>Co zrobić, aby działała grafika 2D na komputerach z 4GB (lub więcej) pamięci</title>
+<body>
+
+<p>
+Jeśli masz problemy z przyspieszeniem grafiki 2D prawdopodobnie nie możesz zestawić zakresu kombinacji zapisu (ang. write-combining ranges) z MTRR. Aby się upewnić, sprawdź zawartość <path>/proc/mtrr</path>:
+</p>
+
+<pre caption="Sprawdzanie, czy mamy włączone kombinacje zapisu">
+# <i>cat /proc/mtrr</i>
+</pre>
+
+<p>
+W każdej linii powinno być napisane "write-back" lub "write-combining". Jeśli tak nie jest będziesz musiał przestawić ustawienie w BIOSie aby to naprawić.
+</p>
+
+<p>
+Uruchom ponownie komputer i wejdź do BIOSu, znajdź ustawienia MTRR (prawdopodobnie w "Ustawieniach CPU"). Zmień ustawienie z "ciągłe" (ang. continuous) na "dyskretne" (and. discrete), zapisz i uruchom Linuksa. Zniknnie wpis "uncachable", a przyspieszenie 2D zacznie działać bez zarzutu.
+</p>
+
+</body>
+</section>
+<section>
+<title>Otrzymuję ostrzeżenia o nieobsługiwanym rozmiarze stosu (4K)</title>
+<body>
+
+<p>
+Pakiety <c>nvidia-kernel</c> w wersji starszej od 1.0.6106 posiadają obsługę tylko stosów o rozmiarze 8K. Nowsze jądra (wersje 2.6.6 i nowsze) posiadają także obsługę 4K rozmiaru stosu. Nie zaznaczaj 4K rozmiaru stosu w konfiguracji jądra jeśli używasz starszej wersji pakietu <c>nvidia-kernel</c>. Opcję tą można znaleźć w sekcji <c>Kernel Hacking</c>.
+</p>
+
+</body>
+</section>
+</chapter>
+</guide>
