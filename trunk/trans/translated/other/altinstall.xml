@@ -1,0 +1,524 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!--<?xml version='1.0' encoding="UTF-8"?>-->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/other/altinstall.xml,v 1.1 2004/07/11 09:08:33 sekretarz Exp $ -->
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+
+<!-- Orig revision: 0.42 -->
+<!-- Translator: sekretarz <sekretarz@dukato.net> -->
+<!-- Title: Alternatywne metody instalacji Gentoo Linux -->
+<!-- Status: Ukończono -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/other/altinstall.xml,v 1.1 2004/07/11 09:08:33 sekretarz Exp $ -->	  
+
+<guide link="/doc/en/altinstall.xml">
+<title>Alternatywne metody instalacji Gentoo Linux</title>
+<author title="Contributor"><mail link="gerrynjr@gentoo.org">Gerald Normandin Jr.</mail></author>
+<author title="Contributor"><mail link="lordviram@rebelpacket.net">Travis Tilley</mail></author>
+<author title="Contributor"><mail link="volontir@yahoo.com">Oleg Raisky</mail></author>
+<author title="Contributor"><mail link="luminousit@hotmail.com">Alex Garbutt</mail></author>
+<author title="Contributor"><mail link="alex@openvs.com">Alexandre Georges</mail></author>
+<author title="Contributor"><mail link="vargen@b0d.org">Magnus Backanda</mail></author>
+<author title="Contributor"><mail link="davoid@gentoo.org">Faust A. Tanasescu</mail></author>
+<author title="Contributor"><mail link="aliz@gentoo.org">Daniel Ahlberg</mail></author>
+<author title="Editor"><mail link="swift@gentoo.org">Sven Vermeulen</mail></author>
+<author title="Reviewer"><mail link="antifa@gentoo.org">Ken Nowack</mail></author>
+<author title="Editor"><mail link="blubber@gentoo.org">Tiemo Kieft</mail></author>
+<abstract>
+To HOWTO jest zbiorem alternatywnych metod instalacji Gentoo, dla 
+tych którzy nie posiadają CD-Roma albo komuputera, który nie może bootować CD-Romów.
+</abstract>
+
+<license/>
+
+<version>0.42</version>
+<date>June 24, 2004</date>
+
+<chapter>
+<title>O tym dokumencie</title>
+<section>
+<body>
+
+<p>
+Dokument ten jest zbiorem alternatywnych metod instalacji Gentoo, dla tych dla których standartowa instalacja z CD-Romu nie działa albo po prostu tego nie lubią.
+Może on być także opisem Twojej własnej metody. Jeżeli masz jakiś pomysł na przydatną metodę instalacji, która nie jest opisana w niniejszym dokumencie napisz
+coś o niej i <mail link="antifa@gentoo.org">wyślij do mnie</mail>.</p>
+
+</body>
+</section>
+</chapter>
+
+<chapter>
+<title>Bootowanie LiveCD Smart BootManager'em</title>
+<section>
+
+<body>
+<p>Ściągnij Smart BootManager'a z <uri link="http://btmgr.sourceforge.net/index.php3?body=download.html">http://btmgr.sourceforge.net/index.php3?body=download.html</uri>. Dostępnych jest wiele wersji tego programu w różnych wersjach językowych, źródła i binaria na linuxa, jak i .exe na windowsa. Jednak preferowaną metodą będzie używanie binarii, poznieważ źródła nie skompilują się na nowszych wersjach NASM'a.</p>
+
+<p>Możesz wybrać wiele opcji tworząc dyskietke startową:</p>
+
+<pre caption="Opcje Smart BootManager'a">
+<i>sbminst [-t theme] [-d drv] [-b backup_file] [-u backup_file]
+
+   -t theme     wybiera język, który ma być użyty:
+                  us = English theme       de = German theme 
+                  hu = Hungarian theme     zh = Chinese theme 
+                  ru = Russian theme       cz = Czech theme
+                  es = Spanish theme       fr = French theme 
+                  pt = Portuguese theme 
+
+                 
+  -d drv       ustawia dysk, na który ma być zainstalowany Smart BootManager:
+                dla Linuxa:
+                   /dev/fd0 jest pierwszą stacją dyskietek, 
+                   /dev/hda pierwszy dysk IDE.
+                   /dev/sda pierwszy dysk SCSI.
+                dla DOSa:
+                   0   jest pierwszą stacją dyskietek,
+                   128 jest pierwszym dyskiem twardym;
+
+   -c             wyłącza obsługę bootwania z CD-ROMu;
+
+   -b backup_file stwórz kopie zapasową danych, które będą nadpisane dla późniejszego odinstalowania
+
+   -u backup_file odinstaluj Smart BootManager'a, powinno być używane bez innych opcji;
+
+   -y             nie pytaj ani nie ostrzegaj mnie.</i>
+</pre>
+
+<pre caption="Używanie sbminst do budowania dyskietki startowej">
+# <i>sbminst -t us  -d /dev/fd0</i>
+</pre>
+<note> Zmien fd0 na właściwą nazwę Twojej stacji dyskietek. </note>
+<p>Włóż dyskietke do stacji dyskietek i LiveCD do CD-Romu, uruchom ponownie komputer</p>
+
+<p>Zostaniesz powitany linią poleceń Smart BootManager'a. Wybierz CD-ROM i naciśnij ENTER, aby zbootować komuter przy pomocy LiveCD. Potem kontynuuj standartowe instrukcje instalacji według Podręcznika Instalacji Gentoo.</p>
+
+<p>Dodatkowe infromacje o Smart BootManagerze możesz uzyskać na stronie <uri>http://btmgr.sourceforge.net/</uri></p>
+</body>
+</section>
+</chapter>
+
+
+<chapter>
+<title>Instalacja z Knoppix'a</title>
+<section>
+
+<body>
+<p>Bootowanie z płyty LiveCD <uri link="http://www.knoppix.org/">Knoppixa</uri> jest jednym ze sposobów na posiadanie pełnowartościowego systemu Linux, podczas kompilacji Gentoo. 
+Tux Racer na pewno pomoże Tobie w czekaniu na koniec bootstrapa. </p>
+
+<p>Uruchom knoppixa z CD. On wykona za Ciebie kawał dobrej roboty, wykryje sprzęt i załaduje odpowiednie moduły. Mimo to, będziesz musiał zmienić pewnie opcje. </p>
+
+<p>Domyślnie Knoppix używa KDE 3.0. Po pierwsze musisz otworzyć konsole i wpisać <c>sudo passwd root</c>. To umożliwi Ci ustawienie hasła roota dla Knoppixa.</p>
+
+<p>Następnie powinneś wpisać <c>usermod -d /root -m root</c>. To ustawi katalog superużytkownika z /home/root (w Knoppixie) na /root (w Gentoo).
+Jeżeli nie zrobisz tego, podczas emergowania będą pokazywać się błędy (np. /home/root: not found).</p>
+
+<p>Wtedy wpisujesz <c>exit</c> i <c>su</c>, aby zalogować się jako root. 
+To przeładuje zmiany zrobione usermod'em. Teraz utwórz punkt montowania <path>/mnt/gentoo</path> używając <c>mkdir</c>:</p>
+
+<pre caption="Tworzenie punktu montowania /mnt/gentoo">
+# <i>mkdir /mnt/gentoo</i>
+</pre>
+
+<p>Od tego momentu, możesz kontynuować standartową instalacje od <uri link="/doc/en/handbook/handbook-x86.xml?part=1&amp;chap=4">części 4</uri> Podręcznika Instalacji Gentoo. 
+Jednak, kiedy dojdziesz do momentu montowania systemu plików proc, wykonaj poniższe polecenie zamiast tego z podręcznika: </p>
+
+<pre caption = "Montowanie systemu plików proc">
+# <i>mount -o bind /proc /mnt/gentoo/proc</i>
+</pre>
+
+</body>
+</section>
+</chapter>
+
+<chapter>
+<title>Instalacja ze Stage1 bez dostępu do sieci</title>
+<section>
+<body>
+
+
+<p>Wypal obraz iso LiveCD Gentoo.</p>
+
+<p>Ściągnij ostatni snapshot portage z <uri>http://distro.ibiblio.org/pub/linux/distributions/gentoo/snapshots/</uri> (albo z twojego ulubionego <uri link="http://www.gentoo.org/main/en/mirrors.xml">mirrora</uri>). Zapisz tarballe na instniejącej partycji na komputerze albo wypal je na płyte CD.</p>
+
+<p>Podążaj zgodnie z instrukcjami Podręcznika Instalacji Gentoo, aż do <c>chroot /mnt/gentoo</c> w rozdziale 6. Jeżeli masz tylko jeden CD-ROM pamiętaj o użyciu opcji <c>cdcache</c> podczas bootowania, aby móc odmontować LiveCD i zamontować płytę CD ze snapshotem portage.</p>
+
+<p>Otwórz nową konsole (Alt-F2), aby kontynuować instalacje aż do uruchomienia skryptu bootstrap.sh.</p>
+
+<warn>Starsze wersje livecd wymagają zmiany hasła superużytkownika. Aby to zrobić wywołaj <c>passwd</c>.</warn>
+				   
+
+<p>Wróć na pierwszą konsole (Alt-F1, bez chroota) i zamontuj drugą CD do <path>/mnt/gentoo/mnt/cdrom2</path>. Skopiuj tarball portage z cdrom2 i wypakuj je do <path>/mnt/gentoo/usr/portage</path>.</p>
+
+<pre caption="Zamontowanie CD ze snapshot'em">
+# <i>umount /mnt/cdrom</i>
+# <i>mkdir /mnt/gentoo/mnt/cdrom2</i>
+# <i>mount /dev/cdroms/cdrom0 /mnt/gentoo/mnt/cdrom2</i>
+# <i>cp /mnt/gentoo/mnt/cdrom2/portage-$date.tar.bz2 /mnt/gentoo/usr/portage</i>
+# <i>cd /mnt/gentoo/usr/portage</i>
+# <i>tar xvjpf portage-$date.tar.bz2</i>
+</pre>
+
+<p>Przełącz się na drugą konsole. Jeżeli teraz spróbujesz uruchomić bootstrap.sh to wywali się on, ponieważ nie będzie mógł sciągnąć plików z internetu. Ściągniemy te pliki na innym komputerze i skopiujemy do /usr/portage/distfiles (na konsoli F2). </p>
+
+<p>Potrzebujesz jeszcze listy pakietów ze Stage1: glibc, baselayout, texinfo, gettext, zlib, binutils, gcc, ncurses i ich zależności. </p>
+
+<note>Potrzebujesz wersji pakietów zgodną z wersją w Twoim drzewie portage.</note>
+
+<pre caption="Pobieranie listy pakietów do ściągnięcia">
+<comment>(Nie zapominij o 2 przed &gt;)</comment>
+# <i>emerge -fp glibc baselayout texinfo gettext zlib binutils gcc ncurses 2&gt; stage1.list</i>
+# <i>mount -t vfat /dev/fd0 /mnt/floppy</i>
+# <i>cp /mnt/gentoo/stage1.list /mnt/floppy</i>
+# <i>umount /mnt/floppy</i>
+</pre>
+
+<p>
+Weź tą dyskietke na komputer, który ma szybki dostęp do internetu. Jeżeli otworzysz plik
+<path>stage1.list</path>, zobaczysz kilkanaście URLów do ściągnięcia. Tak naprawde ta lista 
+zawiera kilka możliwych URLów dla każdego pakietu, a to nie jest Tobie potrzebne.
+Wyciągnij po jednym URL dla każdego pakietu:
+</p>
+
+<pre caption="Wyciąganie URLów">
+<comment>(Ten skrypt opiera działanie na danych wyświetlanych przez emerge, które może ulec zmianie w przyszłości - używaj ostrożnie!)</comment>
+# <i>cut -f 1 -d ' ' stage1.list > stage1.download</i>
+</pre>
+
+<p>
+Teraz użyj <c>wget</c>, aby ściągnąć źródła pakietów:
+</p>
+
+<pre caption="Ściąganie źródeł pakietów">
+# <i>wget -N -i stage1.list</i>
+</pre>
+
+
+<p>Kiedy już będziesz miał wszystkie pliki, skopiuj je na komputer na którym instalujesz Gentoo do katalogu <path>/mnt/gentoo/usr/portage/distfiles</path>. Teraz już będziesz mógł uruchomić <c>bootstrap.sh</c>. Powtórz ten krok do stage2 i 3.</p>
+
+
+
+</body>
+</section>
+</chapter>
+
+<chapter><title>Instalacja z użyciem PXE boot na stacji bezdyskowej</title>
+
+<section><title>Wymagania</title>
+<body>
+<p>Będziesz potrzebował karty sieciowej na kliencie, który uzywa protokołu PXE do bootowania, jak wiele kart 3coma. Będziesz potrzebował także BIOSu, który obsługuje bootowanie z PXE.</p>
+</body></section>
+
+<section><title>Podstawowe ustawienia serwera</title>
+<body>
+ <p>Utwórz katalogi: Po pierwsze musisz utworzyć katalog, na którym bedzie zainstalowany system. Utwórz katalog <path>/diskless</path>, który będzie zawierał katalog dla każdego klienta. W dalszej częsci będziemy pracować na kliencie o nazwie 'eta'.</p>
+
+<pre caption="Katalogi">
+# <i>mkdir /diskless</i>
+# <i>mkdir /diskless/eta</i>
+# <i>mkdir /diskless/eta/boot</i>
+</pre>
+
+<p>Konfiguracja DHCP i TFTP: Klient pobierze informacje potrzebne do bootowania używając DHCP i ściągnie wszystke potrzebe pliki przez TFTP. 
+Wystarczy zainstalować DHCP i skonfigurować go do podstawowych potrzeb. Zajrzyj do pliku <path>/etc/dhcp/dhcpd.conf</path>.</p>
+
+<note>Ta konfiguracja zapewnia statycznie adres IP dla klienta i ścieżke do obrazu PXE. Musisz podmienić adres MAC karty sieciowej klienta i katalog gdzie będą znajdować się pliki klienta, których będziemy używać. </note>
+
+<pre caption="dhcp.conf">
+option option-150 code 150 = text ;
+host eta {
+hardware ethernet 00:00:00:00:00:00;
+fixed-address <i>ip.add.re.ss</i>;
+option option-150 "/eta/boot/grub.lst";
+filename "/eta/boot/pxegrub";
+}
+</pre>
+
+<p>Aby zainstalować TFTP, wykonaj emerge <c>app-admin/tftp-hpa</c>. Dodaj do pliku <path>/etc/conf.d/in.tftpd</path> następujące zmienne:</p>
+
+<pre caption="in.tftpd">
+INTFTPD_PATH="/diskless"
+INTFTPD_USER="nobody"
+INTFTPD_OPTS="-u ${INTFTPD_USER} -l -vvvvvv -p -c -s ${INTFTPD_PATH}"
+</pre>
+
+<p>Konfiguracja GRUB: Ja używam GRUBa, aby udostępnić bootowanie PXE. Musisz skompilować go, właczając opcje kompilacji obrazu PXE (PXE image compilation), jest to całkiem proste. Ściągniesz najpierw najnowsze źródła GRUB (<c>emerge -f grub</c> ściągnie tarballe do <path>/usr/portage/distfiles</path>). Skopiuj tarballa do <path>/diskless</path> i zbuduj go, aby uzyskać binaria pxe. Kiedy zbudujesz binaria, skopiuj je do katalogu klienta i edytuj plik konfiguracyjny grub.lst.</p>
+
+<pre caption="Konfiguracja gruba">
+# <i>tar zxvf grub-0.92.tar.gz</i>
+# <i>cd grub-0.92</i>
+# <i>./configure --help</i>
+<codenote>W opcjach najdziesz liste wspomaganych sterowników interfejsów sieciowych. </codenote>
+<codenote>Wybierz sterownik Twojej karty sieciowej. Herein poleca sterownik $nic</codenote>
+# <i>./configure --enable-diskless --enable-$nic</i>
+# <i>make</i>
+# <i>cd stage2</i>
+# <i>cp pxegrub /diskless/eta/boot/pxegrub</i>
+# <i>nano -w /diskless/eta/boot/grub.lst</i>
+</pre>
+
+<pre caption="grub.lst">
+default 0
+timeout 30
+
+title=Diskless Gentoo
+root (nd)
+kernel /eta/bzImage ip=dhcp root=/dev/nfs nfsroot=<i>ip.add.re.ss</i>:/diskless/eta
+
+<codenote>Dla opcji nfsroot, adres IP i katalog jest dla jednego serwera</codenote>
+<codenote>gdzie znajdują się pliki do bezdyskowego klienta (na serwerze).</codenote>
+</pre>
+
+<p>Konfiguracja NFS: NFS jest dość prosty w konfiguracji. Musisz tylko dodać jedną linie do pliku <path>/etc/exports</path>:</p>
+
+<pre caption="/etc/exports">
+# <i>nano -w /etc/exports</i>
+NFS file systems being exported. See exports(5).
+/diskless/eta eta(rw,sync,no_root_squash)
+</pre>
+
+<p>Uaktualnij swoje hosty: Najważniejszą rzeczą jest modyfikacja pliku <path>/etc/hosts</path>: </p>
+
+<pre caption="/etc/hosts">
+127.0.0.1 localhost
+
+192.168.1.10 eta.example.com eta
+192.168.1.20 sigma.example.com sigma
+</pre>
+</body>
+</section>
+
+<section><title>Utworzenie systemu na serwerze</title>
+
+<body>
+
+<p>Zrestartuj serwer na LiveCD Gentoo. Kieruj się instrukacjami zgodnie ze Standartowym Podręcznikem Instalacji ALE z następującymi różnicami. 
+Kiedy zamontujesz system plików (hdaX jest partycją, gdzie stworzyłeś katalog /diskless), nie potrzebujesz montować innych partycji, ponieważ
+wszystkie pliki przechowywane sa w katalogu <path>/diskless/eta</path>.</p>
+
+<pre caption="Montowanie partycji">
+#<i> mount /dev/hda3 /mnt/gentoo</i>
+</pre>
+
+<p>Tarballe Stage'y i chroot: Ten przykład używa tarballa stage3. Zamontuj <path>/proc</path> i chrootuj sie do niego, żeby kontynuować instalację. Następnie kieruj się instrukacjami z podręcznika instalacji aż do konfiguracji jądra. </p>
+
+<warn>Bądz ostrożny podczas wypakowywania tarballa starge'a, chyba nie chcesz wypakować go na istniejący system.</warn>
+
+<pre caption="Wypakowanie tarballa stage'a">
+# <i>cd /mnt/gentoo/diskless/eta/</i>
+# <i>tar -xvjpf  /mnt/cdrom/gentoo/stage3-*.tar.bz2</i>
+# <i>mount -t proc /proc /mnt/gentoo/diskless/eta/proc</i>
+# <i>cp /etc/resolv.conf /mnt/gentoo/diskless/eta/etc/resolv.conf</i>
+# <i>chroot /mnt/gentoo/diskless/eta/ /bin/bash</i>
+# <i>env-update</i>
+# <i>source /etc/profile</i>
+</pre>
+
+<p>Konfiguracja jądra: Kiedy wywołasz <c>make menuconfig</c>, nie zapomnij o włączeniu następujących opcji: </p>
+
+<pre caption="Opcje menuconfig">
+- Obsługi twojej karty sieciowej
+
+- W "Networking options" :
+
+[*] TCP/IP networking
+[*] IP: kernel level autoconfiguration
+[*] IP: DHCP support
+[*] IP: BOOTP support
+
+
+- W "File systems --> Network File Systems" :
+
+&lt;*&gt; NFS file system support
+[*] Provide NFSv3 client support
+[*] Root file system on NFS
+</pre>
+
+<p>Następnie skonfiguruj twojego bezdyskowego klienta, <path>/etc/fstab</path>.</p>
+
+<pre caption="/etc/fstab">
+# <i>nano -w /etc/fstab</i>
+/dev/cdroms/cdrom0 /mnt/cdrom iso9660 noauto,ro 0 0
+proc /proc proc defaults 0 0
+tmpfs /dev/shm tmpfs defaults 0 0
+</pre>
+
+<p>Bootloader: Nie instaluj innego bootloadera, ponieważ masz już jednego - pxegrub. Po prostu po zakończeniu instalacji zrestatartuj serwer. Wystartuj wszystkie usługi potrzebne do boota nowego klienta: DHCP, TFTPD, i NFS.</p>
+
+<pre caption="Uruchamianie usług">
+# <i>/etc/init.d/dhcp start</i>
+# <i>/etc/init.d/tftpd start</i>
+# <i>/etc/init.d/nfs start</i>
+</pre>
+
+</body></section>
+
+<section><title>Bootowanie nowego klienta</title>
+<body>
+<p>
+Aby każdy nowy klient startował poprawnie, musisz poprawnie skonfigurować BIOS i karte sieciową, aby używały PXE jako pierwszej metody rozruchowej - przed CD-ROMem albo stacją dyskietek.
+Jeżeli nie wiesz jak to zrobić, szukaj pomocy w podręcznikach do sprzętu lub na stronie producenta. Karta sieciowa powinna otrzymać adres IP poprzez DHCP i ściągnąc obraz GRUB PXE używając TFTP.
+Następnie powinneś ujrzeć ładne czarno-białe menu startowe GRUBa, gdzie możesz wybrać jądro i wystartować system. Jeżeli wszystko jest dobrze, jądro powinno się uruchomić,
+zamontuj partycje rootową poprzez NFS i zaloguj się. </p>
+</body></section>
+
+</chapter>
+
+
+
+<chapter> <title> Instalacja Gentoo z zainstalowanej dystrybucji Linuxa </title> 
+<section> <title> Wymagania </title> 
+<body>
+<p>
+Aby zainstalować Gentoo z istniejącej dystrybucji Linuxa musisz mieć zainstalowanego chroot'a
+i mieć kopie tarballa instalacjnego Gentoo albo ISO. Dobrym wyborem będzie połączenie sieciowe, 
+jeżeli pragniesz wiecej niż to co zostało dostarczone w tarballu. (nawiasem mówiąc, tarball to 
+plik kończący się na .tbz lub .tar.bz). Autor używał RedHat Linux 7.3 jako "gospodarza", ale to 
+nie jest ważne. Zaczynajmy! </p>
+
+</body>
+</section>
+
+<section> <title> Przegląd </title>
+<body>
+<p>
+Po pierwsze musisz znaleźć miejsce na Gentoo przez zmiane wielkości istniejącej partycji, zamountujemy partycje, wypakujemy tarball, chrootujemy się
+do pseudo systemu i zaczniemy kompilowanie. Kiedy zakończymy bootstarap, zrobimy pare końcowych ustawień w systemie i będziemy gotowi na reboot i używanie Gentoo. </p>
+</body>
+</section>
+
+<section> <title> Jak zrobić miejsce na dysku dla Gentoo? </title>
+<body>
+
+<p>
+Partycja root to partycja zamontowana w <path>/</path>. Polecenie <c>mount</c> pokaże o czym mówię. Możemy także użyć <c>df</c> (disk free), aby zobaczyć
+ile wolnego miejsca znajdziemy na partycjach. </p>
+
+
+<pre caption="Informacja o partycjach">
+# <i>mount</i>
+/dev/hdb2 on / type ext3 (rw) 
+none on /proc type proc (rw) 
+none on /dev/pts type devpts (rw,gid=5,mode=620) 
+none on /dev/shm type tmpfs (rw) 
+# <i>df -h </i>
+Filesystem           Size Used Avail Use% Mounted on 
+/dev/hdb2            4.0G 1.9G  2.4G  82% /
+none		      38M    0    38M   0% /dev/shm 
+</pre>
+
+<p>
+Jak widzimy, partycja zamontowana w <path>/</path> nazywa się <path>/dev/hdb2</path> ma 2,4 GB wolnego miejsca.
+W moim przypadku, myślę że zmniejszenie wielkości do 2,6 GB, przez co uzyskam 2 GB dla Gentoo.
+Wystarczy spokojnie na zainstalowanie paru programów. Jednak, sądzę że jeden gigabajt jest wystarczający dla wiekszości użytkowników. </p>
+
+</body>
+</section>
+
+<section>
+<title>Kompilacja parted, aby zmieniać wielkość partycji</title> 
+<body>
+
+<p>
+Parted jest narzędziem rozwijanym przez GNU fundation. Jest to jedno narzędzie, jednak bardzo użyteczne dla nas. Możemy go pobrać z <uri>http://www.gnu.org/software/parted/</uri>
+</p>
+
+<note>
+Są inne narzędzia do zmiany wielkości partycji, ale autor nie jest pewny/zainteresowany ani PartitionMagic(tm) ani innymi programami, podobnymi do parted.
+Jeżeli chcesz możesz przetestować inne narzędzia.
+</note>
+
+<p> 
+Spójrz jeszcze raz na system plików, który chcesz rozszerzać i zobaczy czy parted go obsługuje.
+Jeżeli nie, to nie masz dzisiaj szczęścia i będziesz musiał wymazać dane na partycji na której chcesz
+zrobić miejsce dla Gentoo i zainstalować ponownie. Jednak tutaj mamy inny problem, chcemy zmienić wielkość
+partycji rootowej, dlatego musimy wystartować z dyskietki podstawowy system Linux i użyć uprzednio skompilowany
+parted. Jednak jeżeli uda ci się odmontować partycje podczas działania Linuxa jesteś szczęściarzem i nie musisz
+korzystać z kolejnych kroków. Po prostu skompuluj parted i uruchom go na odmontowanej partycji, której wielkość
+chcesz zmieniać. Poniżej pokaże ci jak ja zrobiłem to na swoim systemie.
+</p>
+
+<impo>
+Upewnij się, że operacje które chcesz wykonać na swojej partycji są wspierane przez parted!
+</impo>
+
+<p>
+Ściągnij dysk boot/root tomsrbt z <uri>http://freshmeat.net/tomsrtbt </uri>, utwórz dyskietkie zgodnie z dokumentacją, która znajduje się w pakiecie i włóż nową
+dykietke do stacji dyskietek dla następnego kroku.
+</p>
+
+<note>
+Uwaga: pamiętaj, że Linux jest synonimem "Jeżeli możesz zrobić to w jeden sposób, są trzy inne drogi na zrobienie tego samego". 
+Twoim zadaniem jest uruchomienie programu parted na odmontowanej partycji, abyś mógł zmienić wielkość tej partycji. Możesz użyć
+innych dyskietek startowych albo nawet ominąć ten krok, wystarczy tylko odmontować partycję i uruchomić parted na niej. 
+</note>
+
+<pre caption="Narzędzie do tworzenia partycji">
+# <i>mkfs.minix /dev/fd0</i>
+480 inodes
+1440 blocks
+Firstdatazone=19 (19)
+Zonesize=1024
+Maxsize=268966912
+</pre>
+
+<p>
+Musimy teraz skompilować parted. Jeżeli jeszcze nie ściągnełeś go i nie wypakowałeś, zrób to teraz i wejdz do katalogu w którym się on znajduje.
+Teraz wykonaj nastepujące komendy, aby skompilować narzędzia i skopiować je na dyskietke.
+</p>
+
+<pre caption="Budowanie dyskietki">
+# <i> mkdir /floppy; mount -t minix /dev/fd0 /floppy &amp;&amp; 
+export CFLAGS="-O3 -pipe -fomit-frame-pointer -static" &amp;&amp; ./configure 
+&amp;&amp; make &amp;&amp; cp parted/parted /floppy &amp;&amp; umount /floppy </i>
+</pre>
+
+<p>
+Gratulacje, jesteś gotowy na restart i zmiane wielkości partycji, pamietaj jednak o
+przejrzeniu dokumentacji parted na stronach GNU. Zmiana wielkości powinna zająć mniej
+niż 30 minut na największych dyskach, bądź cierpliwy. Zrestartuj system przy pomocy
+dysku startowego tomsrtbt i kiedy się zalogujesz, zmień dysk w stacji, który własnie 
+utworzyłeś i wpisz <c>mount /dev/fd0 /floppy</c>. Wejdz do niego i uruchom parted, 
+będziesz mógł zmienić wielkość partycji. Kiedy zakończymy działanie parted, jesteśmy
+gotowi na prawdziwą zabawe, instalację Gentoo. Zrestartuj komputer spowrotem na starego
+Linuxa.</p>
+
+<pre caption="Komendy wykonywane po zalogowaniu sie na system tomsrtbt">
+# <i>mount /dev/fd0 /floppy </i>
+# <i>cd /floppy; ./parted [Dysk, na którym chcesz wykonać operacje]</i>
+(parted) <i> print </i>
+Disk geometry for /dev/hdb: 0.000-9787.148 megabytes
+Disk label type: msdos
+Minor    Start       End     Type      Filesystem  Flags
+1          0.031   2953.125  primary   ntfs        
+3       2953.125   3133.265  primary   linux-swap  
+2       3133.266   5633.085  primary   ext3        
+4       5633.086   9787.148  extended              
+5       5633.117   6633.210  logical               
+6       6633.242   9787.148  logical   ext3        
+(parted) <i> help resize </i>
+  resize MINOR START END        resize filesystem on partition MINOR
+
+        MINOR is the partition number used by Linux.  On msdos disk labels, the
+        primary partitions number from 1-4, and logical partitions are 5
+        onwards.
+        START and END are in megabytes
+(parted) <i> resize 2 3133.266 4000.000 </i>
+</pre>
+
+<impo> Bądź cierpliwy! Komputer pracuje! Ta operacja powinna zająć od 2 do 30 minut</impo>
+
+<p>
+Kiedy zmienisz wielkość partycji, wróć do starego linuxa. Potem zajrzyj do
+<uri link="/doc/en/handbook/handbook-x86.xml?part=1&amp;chap=4">The Gentoo Handbook: Przygotowanie dysków</uri> i kieruj się zgodnie z jej instrukcjami. 
+Kiedy będziesz się chrootował, użyj następujących komend, aby flushować środowisko:
+</p>
+
+<pre caption = "Flushowanie środowiska podczas chroota">
+# <i>env -i /usr/sbin/chroot /mnt/gentoo /bin/bash</i>
+</pre>
+
+</body>
+</section>
+</chapter>
+</guide>
