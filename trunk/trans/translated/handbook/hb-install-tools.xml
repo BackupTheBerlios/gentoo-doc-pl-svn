@@ -10,7 +10,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-tools.xml,v 1.9 2004/07/12 09:50:04 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-tools.xml,v 1.10 2004/11/04 00:17:09 aye Exp $ -->
 
 <sections>
 <section>
@@ -41,7 +41,7 @@ liczba naszych pakietów rośnie z każdym dniem.
 </p>
 
 <p>
-Jeżeli nie potrafisz zdecydować, wybierz <c>syslog-ng</c>, który ma
+Jeżeli nie potrafisz zdecydować, wybierz <c>metalog</c>, który ma
 ogromne możliwości oraz bardzo dobrą domyślną konfigurację.
 </p>
 
@@ -49,12 +49,23 @@ ogromne możliwości oraz bardzo dobrą domyślną konfigurację.
 Aby zainstalować program logujący, który wybrałeś, użyj polecenia <c>emerge</c>
 i dodaj go do domyślnego poziomu startowego (default runlevel) poprzez
 skrypt <c>rc-update</c>. Poniższy przykład przedstawia proces instalacji
-programu <c>syslog-ng</c>: 
+programu <c>metalog</c>: 
 </p>
 
+<warn>	
+Stage3 wydania 2004.2 omyłkowo zawiera program sysklogd. Bedziesz musiał go odinstalować przed przystąpieniem
+do instalacji innego.
+</warn>
+
+
 <pre caption="Instalacja programu logującego">
-# <i>emerge syslog-ng</i>
-# <i>rc-update add syslog-ng default</i>
+<comment>(Odinstaluj sysklogd, jeżeli używasz stage3)</comment>
+# <i>emerge unmerge sysklogd</i>
+<comment>(Dodatkowo musisz usunąć skrypty startowe programu sysklogd)</comment>
+# <i>rm /etc/init.d/sysklogd</i>
+<comment>(Teraz możesz zainstalować wybrany przez Ciebie program logujący)</comment>
+# <i>emerge metalog</i>
+# <i>rc-update add metalog default</i>
 </pre>
 
 </body>
@@ -96,6 +107,29 @@ go później.
 </body>
 </section>
 <section>
+
+<title>Opcjonalnie: Indeksowanie plików</title>	
+<body>	
+<p>	
+Jeżeli chcesz indeksować pliki w twoim systemie, aby móc je szybko wyszukiwać za pomocą narzędzia
+<c>locate</c>, powinieneś zainstalować <c>sys-apps/slocate</c>.
+</p>	
+ 	 	
+<note>	
+Jeżeli instalujesz Gentoo bez użycia profili kaskadowych, slocate jest już częscią twojego systemu.
+Profile kaskadowe nie są jeszcze używane domyślnie, więc jeżeli nie wiesz czym one są, możesz założyć, że ich
+nie używasz.
+</note>	
+ 	 	
+<pre caption="Instalacja slocate">	
+# <i>emerge slocate</i>	
+</pre>	
+ 	 	
+</body>	
+</section>	
+<section>
+
+
 <title>Narzędzia obsługi systemu plików</title>
 <body>
 
@@ -144,39 +178,57 @@ Jeżeli korzystasz z LVM, powinieneś również zainstalować <c>lvm-user</c>:
 </pre>
 -->
 <p>
-Jeżeli nie potrzebujesz <c>rp-pppoe</c> do połączenia z Internetem,
-przejdź do <uri link="?part=1&amp;chap=11">Zakończenie instalacji Gentoo
-</uri>, w przeciwnym wypadku wybierz <uri link="#doc_chap4">Opcjonalnie: Narzędzia sieciowe</uri>.
+Jeżeli nie potrzebujesz żadnych dodatkowych narzędzi sieciowych (takich, jak <c>rp-pppoe</c> lub klient dhcp)
+przejdź do  <uri link="?part=1&amp;chap=10">Konfiguracji Bootloadera</uri>
 </p>
 
 </body>
 </section>
 <section>
-<title>Opcjonalnie: Narzędzia sieciowe</title>
+
+<title>Narzędzia sieciowe</title>
+<subsection>	
+<title>Opcjonalnie: Installacja klienta DHCP </title>	
 <body>
 
-<p>
-Jeżeli potrzebujesz <c>rp-pppoe</c>, aby połączyć się z Internetem,
-będziesz musiał go zainstalować. 
-</p>
+<p>	
+Jeżeli chcesz, aby Gentoo automatycznie uzyskiwał adres IP twojej karty sieciowej, musisz zainstalować 
+<c>dhcpcd</c> (lub jakiegokolwiek innego klienta DHCP).
+Jeżeli nie zrobisz tego teraz, możesz nie być w stanie połączyć sie z internetem po zakończeniu instalacji!
+</p>	
+ 	 	
+<note>	
+Jeżeli instalujesz Gentoo bez użycia profili kaskadowych, dhcpcd jest już częścią twojego
+systemu. Profile kaskadowe nie są jeszcze używane domyślnie, więc jeżeli nie wiesz czym one są, możesz założyć, że ich nie używasz.
+</note>	
+ 	 	
+<pre caption="Instalacja dhcpcd">	
+# <i>emerge dhcpcd</i>	
+</pre>
 
-<pre caption="Instalacja rp-pppoe">
+</body>
+</subsection>	
+<subsection>
+
+<title>Opcjonalnie: Instalacja klienta PPPoE </title>
+
 # <i>USE="-X" emerge rp-pppoe</i>
 </pre>
 
 <p>
-Ustawienie <c>USE="-X"</c> zapobiegnie instalacji pakietu XFree poprzez
+Ustawienie <c>USE="-X"</c> zapobiegnie instalacji pakietu xorg-x11 poprzez
 zależności (<c>rp-pppoe</c> posiada narzędzia graficzne; jeżeli chcesz z
 nich korzystać, możesz przekompilować <c>rp-pppoe</c> po instacji
-serwera XFree lub zainstalować go teraz, jednak jego kompilacja zajmie
+serwera xorg-x11 lub zainstalować go teraz, jednak jego kompilacja zajmie
 dużo czasu).
 </p>
 
 <p>
 Teraz jesteś już gotowy do przejścia do <uri
-link="?part=1&amp;chap=11">Zakończenie instalacji Gentoo</uri>.
+link="?part=1&amp;chap=10">Konfiguracja Bootloadera</uri>.
 </p>
 
 </body>
+</subsection>
 </section>
 </sections>
