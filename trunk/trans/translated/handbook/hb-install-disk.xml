@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.37 -->
+<!-- Orig revision: 1.38 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Przygotowanie Dysków -->
 <!-- Status: Ukończono -->
@@ -10,7 +10,7 @@
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.21 2004/03/03 14:06:41 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.22 2004/03/06 18:33:15 lcs Exp $ -->
 
 <sections>
 <section>
@@ -1158,7 +1158,12 @@ Następnie, załóż partycję <e>Apple_bootstrap</e> za pomocą <c>b</c>.
 Zostaniez zapytany o początkowy blok. Jeśli poprzednio wybrałeś
 na ten cel trzecią partycję, wpisz <c>3p</c>.
 </p>
-
+<note>
+To <e>nie</e> jest partycja "boot". Nie jest nawt używana
+przez Linuxa; nie potrzebujesz na niej miejsca do założenia
+systemu plików, nie powinieneś jej nawet montować. Użytkownicy
+PPC nie potrzebują partycji boot.
+</note>
 <p>
 Teraz stwórz partycję wymiany za pomocą <c>c</c>. <c>mac-fdisk</c> ponownie
 zapyta o blok początkowy. Jako, że wcześniej skorzystaliśmy z <c>3</c>,
