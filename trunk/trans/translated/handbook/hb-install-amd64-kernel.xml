@@ -6,7 +6,7 @@
 <!-- Title: Instalacja jądra dla AMD64 -->
 <!-- Status: Ukończono -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-amd64-kernel.xml,v 1.7 2004/11/12 19:13:36 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-amd64-kernel.xml,v 1.8 2004/11/27 18:14:42 sekretarz Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
@@ -14,7 +14,7 @@
 <sections>
 
 <version>1.10</version>
-<date>October 20, 2004</date>
+<date>2004-11-26</date>
 
 <section>
 <title>Strefa czasowa</title>
@@ -306,14 +306,14 @@ przeprowadzi automatyczne wykrywanie sprzętu (tak jak na LiveCD).
 </pre>
 
 <p>
-Teraz, wykonajmy kolejny krok aby upodobnić nasz system do LiveCD -- zainstalujmy <c>hotplug</c>.
-Podczas, gdy initrd wykrywa sprzęt potrzeby do startu systemu, <c>hotplug</c> wykryje całą resztę.
-Aby zainstalować i włączyc <c>hotplug</c>, wydaj następujące polecenia:
+Teraz, wykonajmy kolejny krok aby upodobnić nasz system do LiveCD -- zainstalujmy <c>coldplug</c>.
+Podczas, gdy initrd wykrywa sprzęt potrzeby do startu systemu, <c>coldplug</c> wykryje całą resztę.
+Aby zainstalować i włączyc <c>coldplug</c>, wydaj następujące polecenia:
 </p>
 
-<pre caption="Instlacja i aktywacja hotplug">
-# <i>emerge hotplug</i>
-# <i>rc-update add hotplug default</i>
+<pre caption="Instlacja i aktywacja coldplug">
+# <i>emerge coldplug</i>
+# <i>rc-update add coldplug default</i>
 </pre>
 
 </body>

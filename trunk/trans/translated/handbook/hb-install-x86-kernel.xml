@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.24 -->
+<!-- Orig revision: 1.27 -->
 <!-- Translator: sekretarz <sekretarz@dukato.net> -->
 <!-- Title: Instalacja jądra dla x86 -->
 <!-- Status: Ukończono -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.6 2004/11/12 19:13:36 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.7 2004/11/27 18:14:42 sekretarz Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 <sections>
 
-<version>1.23</version>
-<date>October 11, 2004</date>
+<version>1.24</version>
+<date>2004-11-26</date>
 
 <section>
 <title>Strefa czasowa</title>
@@ -56,7 +56,7 @@ wydajościowymi), <c>development-sources</c> (standartowe źródła jądra z ser
 
 <p>
 Jeżeli wybrałeś instalacje bez dostępu do sieci, dostępna jest tylko część źródeł, które znajdują się na LiveCD.
-Dla wydania 2004.2 Należą do nich:
+Dla wydania 2004.3 Należą do nich:
 </p>
 
 <ul>
@@ -378,14 +378,14 @@ przeprowadzi automatyczne wykrywanie sprzętu (tak jak na LiveCD).
 </pre>
 
 <p>
-Teraz, wykonajmy kolejny krok aby upodobnić nasz system do LiveCD -- zainstalujmy <c>hotplug</c>.
-Podczas, gdy initrd wykrywa sprzęt potrzeby do startu systemu, <c>hotplug</c> wykryje całą resztę.
-Aby zainstalować i włączyc <c>hotplug</c>, wydaj następujące polecenia:
+Teraz, wykonajmy kolejny krok aby upodobnić nasz system do LiveCD -- zainstalujmy <c>coldplug</c>.
+Podczas, gdy initrd wykrywa sprzęt potrzeby do startu systemu, <c>coldplug</c> wykryje całą resztę.
+Aby zainstalować i włączyc <c>coldplug</c>, wydaj następujące polecenia:
 </p>
 
-<pre caption="Instlacja i aktywacja hotplug">
-# <i>emerge hotplug</i>
-# <i>rc-update add hotplug default</i>
+<pre caption="Instlacja i aktywacja coldplug">
+# <i>emerge coldplug</i>
+# <i>rc-update add coldplug default</i>
 </pre>
 
 </body>
@@ -439,11 +439,6 @@ w Twoim systemie. Oto lista ebuildów, które instalują dodatkowe moduły jądr
   <ti>ati-drivers</ti>
   <ti>Wspierający akcelerację sterownik dla kart graficznych ATI Radeon 8500+/FireGL dla xorg-x11</ti>
   <ti><c>emerge ati-drivers</c></ti>
-</tr>
-<tr>
-  <ti>ati-drivers-extra</ti>
-  <ti>Narzędzia graficzne ATI</ti>
-  <ti><c>emerge ati-drivers-extra</c></ti>
 </tr>
 </table>
 

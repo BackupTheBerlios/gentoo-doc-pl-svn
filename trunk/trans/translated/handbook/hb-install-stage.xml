@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.68 -->
+<!-- Orig revision: 1.70 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Przygotowanie Plików Instalacyjnych Gentoo -->
 <!-- Status: Ukończono -->
-<!-- Update from 1.37 to 1.68: sekretarz <sekretarz@dukato.net> -->
+<!-- Update from 1.37 to 1.70: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.12 2004/11/12 19:19:08 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.13 2004/11/27 18:14:42 sekretarz Exp $ -->
 
 <sections>
 
 <version>1.67</version>
-<date>November 9, 2004</date>
+<date>2004-11-09</date>
 
 <section>
 <title>Instalowanie tarballa Stage</title>
@@ -32,19 +32,19 @@ Niesychronizowany zegar może być przyczyną dziwnych błędów w przyszłości
 Aby zwerfikować aktualną datę/czas, uruchom <c>date</c>:
 </p>
 		         
-<pre caption="Werfikacja daty/czasu">
+<pre caption="Sprawdzenie daty/czasu">
 # <i>date</i>
-Sun Apr 25 16:21:18 CEST 2004
+Fri Oct 29 16:21:18 CEST 2004
 </pre>
 				         
 <p>
 Jeżeli wyświetlana data/czas są złe, uaktualij je używając <c>date MMDDggmmWWRR</c>
 (<b>M</b>iesiąc, <b>D</b>zień, <b>g</b>odzina, <b>m</b>inuta, <b>W</b>iek i <b>R</b>ok).
-Na przykład, aby ustawić datę 25 Kwietnia 2004 r, 16:21:
+Na przykład, aby ustawić datę 29 Października 2004 r, 16:21:
 </p>
 							         
 <pre caption="Ustawienie daty/czasu">
-# <i>date 042516212004</i>
+# <i>date 102916212004</i>
 </pre>
 	     
 </body>
@@ -94,7 +94,7 @@ i wybrać serwer, który znajduje się najbliżej Ciebie. Jeżeli nie masz progr
 
 <p>
 Wejdź do katalogu <path>releases/</path>, następnie katalogu twojej architektury (np. <path>x86/</path>)
-oraz wersji Gentoo (<path>2004.2/</path>) i na koniec do katalogu <path>stages/</path>.
+oraz wersji Gentoo (<path>2004.3/</path>) i na koniec do katalogu <path>stages/</path>.
 Powinneś zobaczyć tam dostępne pliki stage dla Twojej architektury (mogą one być umieszczone w
 podkatalogach, dla każdej podarchitektury). Wybierz jeden i naciśnij <c>D</c>, aby go ściągnąć.
 Kiedy skończyłysz ściąganie naciśnij <c>Q</c> aby wyjść z przegladarki.
@@ -111,8 +111,8 @@ wynik polecenia <c>md5sum</c> z sumami MD5 udostępnianymi na serwerze. Dla przy
 </p>
 
 <pre caption="Sprawdzanie integralności tarballa stage">
-# <i>md5sum -c stage1-x86-2004.2.tar.bz2.md5</i>
-stage1-x86-2004.2.tar.bz2: OK
+# <i>md5sum -c stage1-x86-2004.3.tar.bz2.md5</i>
+stage1-x86-2004.3.tar.bz2: OK
 </pre>
 
 </body>
@@ -127,7 +127,7 @@ GNU <c>tar</c> będzie najlepszym narzędziem:
 </p>
 
 <pre caption="Wypakowanie stage">
-# <i>tar -xvjpf stage3-&lt;subarch&gt;-2004.2.tar.bz2</i>
+# <i>tar -xvjpf stage3-&lt;subarch&gt;-2004.3.tar.bz2</i>
 </pre>        
 
 <p>
@@ -258,12 +258,12 @@ co tam dla Ciebie przygotowaliśmy:
 Teraz wypakuj migawkę używając polecenia o niżej podanej składni. Kolejny raz
 upewnij się, że przekazujesz właściwe opcje do programu <c>tar</c>. Zatem, <c>-C</c>
 występuje z wielką literą <c>C</c>, a nie <c>c</c>. W tym przykładzie nasz plik
-zwie się <path>portage-20040710.tar.bz2</path>. Zamiast tego wpisz nazwę pliku,
+zwie się <path>portage-20041022.tar.bz2</path>. Zamiast tego wpisz nazwę pliku,
 który posiadasz.
 </p>
 
 <pre caption="Rozpakowanie migawki Portage">
-# <i>tar -xvjf /mnt/cdrom/snapshots/portage-20040413.tar.bz2 -C /mnt/gentoo/usr</i>
+# <i>tar -xvjf /mnt/cdrom/snapshots/portage-20041022.tar.bz2 -C /mnt/gentoo/usr</i>
 </pre>
 
 <p>
@@ -319,6 +319,12 @@ ma charakterystyczną strukturę: linie z komentarzem rozpoczyna "#", linie zawi
 zmienne używają składni <c>ZMIENNA="zawartość"</c>. Takiej samej składni używa także plik <path>/etc/make.conf</path>.
 Kilka z tych zmiennych zostało przedyskutowanych poniżej.
 </p>
+
+<warn>
+Nie wprowadzaj zmian w zmiennej USE, jeżeli korzystasz ze stage3 z instalacją GRP.
+Będziesz mógł zmienić zmienną USE po instalacji pakietów. Twój system zostanie zaataowany
+przez gremliny, jeżeli zignorujesz to ostrzeżenie!
+</warn>
 
 </body>
 </subsection>
