@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.2 -->
+<!-- Orig revision: 1.3 -->
 <!-- Translator: rane <rane666@o2.pl> -->
 <!-- Title: Narzędzia ułatwiające pracę z portage -->
-<!-- Status: 100% -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-portage-tools.xml,v 1.3 2004/10/30 11:36:49 sekretarz Exp $ -->
+<!-- Status: Ukończono -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-portage-tools.xml,v 1.4 2004/10/30 13:33:00 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -13,14 +13,11 @@
 <body>
 
 <p>
-<c>etc-update</c> jest narzędziem, które służy do zastępowan
-ia plików konfiguracyjnych plikami <path>._cfg0000_&lt;nazwa&gt;</path>, 
-umożliwia ich interaktywną edycję, oraz pozwala automatyc
-znie dokonać drobnych zmian w owych plikach. Pliki <path>._cfg0000_&lt
-;nazwa&gt;</path> są generowane przez portage, gdy chce wrzucić j
-akiś plik do katalogu chronionego zmienną CONFIG_PROTECT.
+<c>etc-update</c> jest narzędziem, które służy do zastępowania plików konfiguracyjnych plikami 
+<path>._cfg0000_&lt;nazwa&gt;</path>, umożliwia ich interaktywną edycję, oraz pozwala 
+automatycznie dokonać drobnych zmian w owych plikach. Pliki <path>._cfg0000_&lt;nazwa&gt;</path> 
+są generowane przez portage, gdy chce wrzucić jakiś plik do katalogu chronionego zmienną CONFIG_PROTECT.
 </p>
-
 
 <p>
 Żeby uruchomić <c>etc-update</c> wpisz po prostu:
@@ -29,7 +26,6 @@ akiś plik do katalogu chronionego zmienną CONFIG_PROTECT.
 <pre caption="Running etc-update">
 # <i>etc-update</i>
 </pre>
-
 
 <p>
 Program automatycznie dokona drobnych zmian w plikach konfi
@@ -49,15 +45,12 @@ to-merge AND not use 'mv -i'):
 </pre>
 
 <p>
-Jeśli wpiszesz <c>-
-1</c>, <c>etc-update</c> zakończy działanie nie zmieniając 
-żadnego pliku.
-Po naciśnięciu <c>-3</c> lub <c>-5</c>, <e>
-wszystkie</e> znajdujące się na liście pliki konfiguracyjne 
+Jeśli wpiszesz <c>-1</c>, <c>etc-update</c> zakończy działanie 
+nie zmieniając żadnego pliku. Po naciśnięciu <c>-3</c> lub <c>-5</c>, <e>wszystkie</e> 
+znajdujące się na liście pliki konfiguracyjne 
 zostaną nadpisane nowszymi wersjami. Dobrym pomysłem jest zaznacz
 enie plików, których nie chcesz nadpisywać automatycznie. Ro
-bisz to po prostu wpisując liczbę znajdującą się n
-a lewo od danego pliku.
+bisz to po prostu wpisując liczbę znajdującą się na lewo od danego pliku.
 </p>
 
 <p>
@@ -68,62 +61,46 @@ i po wybraniu jego indeksu widzimy coś takiego:
 <pre caption="Updating a specific configuration file">
 Beginning of differences between /etc/pear.conf and /etc/._cfg0000_pear.conf
 <comment>[...]</comment>
-End of differences between /etc/pea
-r.conf and /etc/._cfg0000_pear.conf
+End of differences between /etc/pear.conf and /etc/._cfg0000_pear.conf
 1) Replace original with update
-2) 
-Delete update, keeping original as is
-3) Interactively merge original wit
-h update
+2) Delete update, keeping original as is
+3) Interactively merge original with update
 4) Show differences again
 </pre>
 
 <p>
-W ten sposób 
-można łatwo uzyskać informacje o różnicach pomi�
-�dzy oboma plikami. Jeśli jesteś pewien, że zastąpien
-ie starego pliku nowym to dobry pomysł naciskasz <c>1</c>. Może z
-darzyć się też tak, że nie będziesz chciał no
-wego pliku. Wtedy naciskasz <c>2</c> i zapominasz o tym, że była 
-nowsza wersja :) Jeśli chcesz bliżej zająć się tym
- plikiem (tzw. metoda interaktywna) wybierasz <c>3</c>.
+W ten sposób można łatwo uzyskać informacje o różnicach pomiędzy 
+oboma plikami. Jeśli jesteś pewien, że zastąpienie starego pliku nowym 
+to dobry pomysł naciskasz <c>1</c>. Może zdarzyć się też tak, że nie będziesz 
+chciał nowego pliku. Wtedy naciskasz <c>2</c> i zapominasz o tym, że była 
+nowsza wersja :) Jeśli chcesz bliżej zająć się tym plikiem (tzw. metoda interaktywna) wybierasz <c>3</c>.
 </p>
 
 <p>
-Nie ma sensu rozpisywać się na temat trzeciej metody - ograniczymy
- się jedynie do podania możliwych w tym trybie do wybrania komend
-. Generalnie wygląda to tak, że program pokazuje dwie linie - ory
-ginalną i proponowaną i czeka aż wpiszemy jeden z ciąg
-ów znaków:
+Nie ma sensu rozpisywać się na temat trzeciej metody - ograniczymy się 
+jedynie do podania możliwych w tym trybie do wybrania komend. Generalnie 
+wygląda to tak, że program pokazuje dwie linie - oryginalną i proponowaną 
+i czeka aż wpiszemy jeden z ciągów znaków:
 </p>
 
-<pre caption="Komendy dostępne podc
-zas interaktywnej edycji plików">
-ed:     Edytuj, a potem użyj 
-obu wersji - każdej z odpowiednim nagłówkiem.
-eb:     Edyt
-uj, a potem użyj obu wersji.
-el:     Edytuj, a potem użyj wersj
-i lewej.
+<pre caption="Komendy dostępne podczas interaktywnej edycji plików">
+ed:     Edytuj, a potem użyj obu wersji - każdej z odpowiednim nagłówkiem.
+eb:     Edytuj, a potem użyj obu wersji.
+el:     Edytuj, a potem użyj wersji lewej.
 er:     Edytuj, a potem użyj wersji prawej.
-e:      Edytu
-j nową wersję.
+e:      Edytuj nową wersję.
 l:      Użyj wersji lewej.
-r:      U�
-�yj wersji prawej.
+r:      Użyj wersji prawej.
 s:      Dołącz nowe linie - tryb cichy.
-
 v:      Dołącz nowe linie - z informacją o każdej z nic
 h.
 q:      Wyjście.
 </pre>
 
 <p>
-Kiedy już skończys
-z uaktualniać te najważniejsze pliki to nieinteresującą
- Cię resztę po prostu zamieniasz w trybie automatycznym. <c>etc-u
-pdate</c> wyłączy się kiedy już nie będzie mia�
-�o żadnych plików do uaktualnienia.
+Kiedy już skończysz uaktualniać te najważniejsze pliki to nieinteresującą Cię resztę 
+po prostu zamieniasz w trybie automatycznym. <c>etc-update</c> wyłączy się kiedy już 
+nie będzie miało żadnych plików do uaktualnienia.
 </p>
 
 </body>
@@ -133,42 +110,38 @@ pdate</c> wyłączy się kiedy już nie będzie mia�
 <body>
 
 <p>
-<c>dispatch-conf</c> to ciekawa alternatywa dla etc-update. Program posiada ws
-zystkie opcje swojego pierwowzoru, a ponadto jest w stanie zapamięta
-ć kolejne zmiany jakich dokonaliśmy w naszych plikach konfiguracy
-jnych, dzięki czemu w razie jakiejś katastrofy możemy ł
-atwo wrócić do poprzedniej wersji.
+<c>dispatch-conf</c> to ciekawa alternatywa dla etc-update. Program posiada wszystkie opcje 
+swojego pierwowzoru, a ponadto jest w stanie zapamiętać kolejne zmiany jakich dokonaliśmy w 
+naszych plikach konfiguracyjnych, dzięki czemu w razie jakiejś katastrofy możemy łatwo 
+wrócić do poprzedniej wersji.
 </p>
 
 <p>
-Tak jak w <c>etc-update</c>, możesz zażądać, aby program pozostawi
-ł dany plik bez zmian, zastąpić go nowym, edytować ooso
-biście obecny plik, lub użyć do tego celu trybu interaktywne
-go. Oprócz tego <c>dispatch-conf</c> ma jeszcze kilka ciekawych opcji:
+Tak jak w <c>etc-update</c>, możesz zażądać, aby program pozostawił dany plik bez zmian, 
+zastąpić go nowym, edytować osobiście obecny plik, lub użyć do tego celu trybu interaktywnego. 
+Oprócz tego <c>dispatch-conf</c> ma jeszcze kilka ciekawych opcji:
 </p>
 
 <ul>
-  <li>
-	Automatycznie zamienia stare pliki nowymi jeśli zmiany w nich 
-	dotyczą jedynie linii wykomentowanych.
-  </li>
-  <li>
-	Automatycznie zamienia pliki, gdy zmiany dotyczą jedy
-nie pustego miejsca (spacje, tabulatory, puste wiersze itp.)
-  </li>
+<li>
+Automatycznie zamienia stare pliki nowymi jeśli zmiany w nich 
+dotyczą jedynie linii wykomentowanych.
+</li>
+<li>
+Automatycznie zamienia pliki, gdy zmiany dotyczą jedynie pustego 
+miejsca (spacje, tabulatory, puste wiersze itp.)
+</li>
 </ul>
 
 <p>
-Pracę z programem trzeba zacząć od wprowadzen
-ia odpowiednich ustawień do pliku <path>/etc/dispatch-conf.conf</path>
-, w tym przede wszystkim zmiennej archive-dir, gdzie program będzie ar
-chiwizował nadpisywane pliki konfiguracyjne oraz utworzenia owego kata
-logu..
+Pracę z programem trzeba zacząć od wprowadzenia odpowiednich ustawień 
+do pliku <path>/etc/dispatch-conf.conf</path>, w tym przede wszystkim 
+zmiennej archive-dir, gdzie program będzie archiwizował nadpisywane 
+pliki konfiguracyjne oraz utworzenia owego katalogu..
 </p>
 
 <p>
-Więcej informacji o programie dostarczy manua
-l<c>dispatch-conf</c>:
+Więcej informacji o programie dostarczy manual<c>dispatch-conf</c>:
 </p>
 
 <pre caption="Reading the dispatch-conf man page">
@@ -176,17 +149,16 @@ $ <i>man dispatch-conf</i>
 </pre>
 
 </body>
-</section
->
+</section>
 <section>
 <title>quickpkg</title>
 <body>
 
 <p>
 Program <c>quickpkg</c> umożliwia spakowanie zainstalowanego programu do paczki, 
-z której następnie możemy go bez problemu i błyskawicznie o
-dtworzyć. Uruchamianie <c>quickpkg</c> jest proste: po prostu podajemy 
-nazwy programów do spakowania jako parametry i wciskamy enter.
+z której następnie możemy go bez problemu i błyskawicznie odtworzyć. Uruchamianie 
+<c>quickpkg</c> jest proste: po prostu podajemy nazwy programów do spakowania jako 
+parametry i wciskamy enter.
 </p>
 
 
@@ -199,8 +171,7 @@ Na przykład wybieramy do spakowania: <c>curl</c>, <c>arts</c> i <c>procps</c>:
 </pre>
 
 <p>
-Po zakończen
-iu całego procesu gotowe paczki znajdziemy w <path>/usr/portage/packages/All</path>.
+Po zakończeniu całego procesu gotowe paczki znajdziemy w <path>/usr/portage/packages/All</path>.
 Ponadto dla naszej wygody w <path>/usr/portage/packages/&lt;category&gt;</path> 
 będą się znajdowały symlinki do tych paczek.
 </p>
@@ -208,3 +179,4 @@ będą się znajdowały symlinki do tych paczek.
 </body>
 </section>
 </sections>
+
