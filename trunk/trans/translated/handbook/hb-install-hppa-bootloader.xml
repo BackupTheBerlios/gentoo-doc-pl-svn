@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- Orig revision: 1.5 -->
+<!-- Translator: sekretarz <sekretarz@gentoo.org> -->
+<!-- Title: O instalacji Gentoo Linux -->
+<!-- Status: Ukończono -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-hppa-bootloader.xml,v 1.1 2004/11/06 18:55:41 sekretarz Exp $ -->
+
+<sections>
+<section>
+<title>Instalacja PALO</title>
+<body>
+
+<p>
+Bootloader dla platformy PA-RISC nazywa się palo. Plik konfiguracyjny dla
+niego znajduje się w <path>/etc/palo.conf</path>. Oto przykładowa konfiguracja:
+</p>
+
+<pre caption = "Przykład /etc/palo.conf">
+--commandline=2/vmlinux root=/dev/sdb2 HOME=/
+--recoverykernel=/vmlinux.old
+--init-partitioned=/dev/sdb
+</pre>
+
+<p>
+Pierwsza linia przekazuje palo miejsce jądra i parametry których używasz podczas startu.
+Opcja <c>2/vmlinux</c> mówi, że jądro o nazwie  <c>/vmlinux</c> znajduje się na drugiej
+partycji. Uważaj, ścieżka do kernela jest względna zależnie od partycji, nie patycji rootowej.
+</p>
+
+<p>
+Druga linia wskazuje na zapasowe jądro, które ma być użyte w razie potrzeby. Jeżeli to Twoja
+pierwsza instalacja i nie masz jeszcze zapasowego jądra, możesz zakomentować tą linię.
+Trzecia linia wskazuje na dysk na którym znajduje się palo.
+</p>
+
+<p>
+Kiedy zakończysz konfigurację, wywołaj <c>palo</c>.
+</p>
+
+<pre caption = "Zaaplikowanie konfiguracji PALO">
+# <i>palo</i>
+</pre>
+
+<p>
+Teraz jesteś gotowy na <uri link="#reboot">Ponowne Uruchomienie Systemu</uri>.
+</p>
+
+</body>
+</section>
+<section id="reboot">
+<title>Ponowne Uruchomienie Systemu</title>
+<subsection>
+<body>
+
+<p>
+Wyjdź z środowiska chroot i odmontuj wszystkie zamontowane partycje. Potem wpisz to
+magiczne polecenie, na które tak długo czekałeś: <c>reboot</c>.
+</p>
+
+<pre caption="Wyjście z chroota, odmontowanie wszystkich zamontowanych partycji i ponowne uruchomienie">
+# <i>exit</i>
+cdimage ~# <i>cd</i>
+cdimage ~# <i>umount /mnt/gentoo/boot /mnt/gentoo/proc /mnt/gentoo</i>
+cdimage ~# <i>reboot</i>
+</pre>
+
+<p>
+Nie zapomnij o wyłożeniu rozruchowej płyty CD, by wystartować system Gentoo z dysku, a nie
+z płyty CD.
+</p>
+
+<p>
+Po ponownym uruchomieniu komputera, zakończ instalację z rozdziałem  <uri
+link="?part=1&amp;chap=11">Zakończenie instalacji Gentoo</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+</sections>
