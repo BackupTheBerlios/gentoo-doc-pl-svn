@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?> 
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.31 -->
+<!-- Orig revision: 1.34 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Konfiguracja jądra dla x86 -->
 <!-- Status: Release -->
@@ -9,13 +9,13 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.21 2004/12/27 11:35:04 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.22 2005/01/27 20:21:46 sekretarz Exp $ -->
 
 
 <sections>
 
-<version>1.26</version>
-<date>2004-12-22</date>
+<version>1.30</version>
+<date>2005-01-18</date>
 
 <section>
 <title>Strefa czasowa.</title>
@@ -56,19 +56,6 @@ wydajność), <c>gentoo-dev-sources</c> (kernel 2.6 z poprawkami zwiększającym
 wydajność), <c>development-sources</c> ("waniliowe" źródła kernela 2.6) ... i
 wiele innych.
 </p>
-
-<p>
-Jeśli przeprowadzasz instalację bez dostępu do sieci będziesz zmuszony
-ograniczyć swoje zainteresowanie tylko do źródeł nagranych na płytę. W wydaniu
-2004.3 są to:
-</p>
-
-<ul>
-  <li>gentoo-sources</li>
-  <li>vanilla-sources</li>
-  <li>gentoo-dev-sources</li>
-  <li>development-sources</li>
-</ul>
 
 <p>
 Wybierzmy któreś z dostępnych źródeł i zainstalujmy je przy pomocy
@@ -420,6 +407,16 @@ będzie wykrywał wszystko inne. Aby zemergować i uaktywnić <c>coldplug</c> wp
 <pre caption="Emergowanie i uruchamianie coldplug">
 # <i>emerge coldplug</i>
 # <i>rc-update add coldplug default</i>
+</pre>
+
+<p>
+Jeżeli chcesz, aby twój system reagował na zdarzenia hotpluga musisz zainstalować
+i ustawić program hotplug:
+</p>
+
+<pre caption="Emergowanie i uruchamianie hotplug">
+# <i>emerge hotplug</i>
+# <i>rc-update add hotplug default</i>
 </pre>
 
 </body>
