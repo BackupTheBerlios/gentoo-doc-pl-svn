@@ -13,27 +13,38 @@ mkdir tmp
 echo > doctable.xml
 for file in `find ../trans/translated/ ../trans/non_translated -name "*.xml" | sort` 
 do
+   # Taki myk zeby szybko sprawdzac czy jest z handbooka czy nie i latwo zastepowac
+   handbook=""
+
+   # Nazwa pliku
    bname="`basename $file`"
+
+   # Rewizja orginalnego dokumentu z cvs gentoo
+   rorig=""
+   
    echo "<tr>" >> doctable.xml
    echo "<ti><uri link=\"http://cvs.berlios.de/cgi-bin/viewcvs.cgi/gentoo-doc-pl/trans/trans/$file\">" >> doctable.xml
    echo $file | sed -e 's:.*/\(.*\)\.xml:\1</uri></ti>:' >> doctable.xml
 
    #sciagmy informacje z cvs gentoo
    if  expr match "$bname" "hb" || expr match "$bname" "handbook"; then
-     wget "http://www.gentoo.org/cgi-bin/viewcvs.cgi/en/handbook/$bname?root=doc" -O tmp/$bname -q; 
-   else
-     wget "http://www.gentoo.org/cgi-bin/viewcvs.cgi/en/$bname?root=doc" -O tmp/$bname -q;
+	handbook="handbook"
    fi
-   if [ `file tmp/$bname | awk '{print $2}'` != "empty" ]; then
-      grep Revision tmp/$bname | head -n 1 | awk '{print $2}' | sed -e 's/<b>\(.*\)<\/b>/<ti>\1<\/ti>/' >> doctable.xml
-   else
-      echo "<ti>0.00</ti>"  >> doctable.xml
-   fi
-   
-   
-   # wyciagamy wersje z ktorej tlumaczono
-   grep '^<!-- Orig revision:' $file | sed -e 's/<!-- Orig revision: \(.*\) -->$/<ti>\1<\/ti>/' >> doctable.xml
+   wget "http://www.gentoo.org/cgi-bin/viewcvs.cgi/en/$handbook/$bname?root=doc" -O tmp/$bname -q -N; 
 
+   # Dodajemy rewizje z cvs do tabeli
+   if [ `file tmp/$bname | awk '{print $2}'` != "empty" ]; then
+      rorig=`grep Revision tmp/$bname | head -n 1 | awk '{print $2}' | sed -e 's/<b>\(.*\)<\/b>/\1/'`
+   else
+      rorig="0.00"
+   fi
+   echo "<ti>$rorig</ti>" >> doctable.xml
+   
+
+   # wyciagamy wersje z ktorej tlumaczono
+   rtrans=`grep '^<!-- Orig revision:' $file | sed -e 's/<!-- Orig revision: \(.*\) -->$/\1/'`
+   echo "<ti><uri link=\"http://www.gentoo.org/cgi-bin/viewcvs.cgi/en/$handbook/$bname?r1=$rtrans&amp;r2=$rorig&amp;root=doc\">$rtrans</uri></ti>" >> doctable.xml
+   
    #wyciagamy date ostatniej modyfikacji
    grep 'Header: /cvsroot/' $file|
 	awk '/Header: \/cvsroot/ {
