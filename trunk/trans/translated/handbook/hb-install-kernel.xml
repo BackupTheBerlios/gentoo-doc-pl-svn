@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.39 -->
+<!-- Orig revision: 1.41 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Jądra -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.24 2004/03/10 06:58:17 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.25 2004/03/12 22:10:45 lcs Exp $ -->
 
 <sections>
 <section>
@@ -250,8 +250,8 @@ filesystems</c>, będącej częścią <c>File systems</c>.
 </note>
 
 <p>
-Jeśli do połączenia z Internetem używasz PPPoE, powinieneś wybrać następujące
-opcje:
+Jeśli do połączenia z Internetem używasz PPPoE lub modemu dial-up, 
+powinieneś wybrać następujące opcje:
 </p>
 
 <pre caption="Wybór niezbędnych sterowników PPPoE">
@@ -937,6 +937,13 @@ instalujących dodatkowe moduły:
 </table>
 
 <p>
+Jeśli otrzymasz błąd, brzmiący <c>masked by: -keyword</c> lub <c>masked
+by: ~keyword</c>, to moduł jądra, który zamierzasz zainstalować
+nie jest dostępny dla twojej architektury, lub nie został uznany za
+wystarczająco stabilny.
+</p>
+
+<p>
 Część wymienionych pakietów może posiadać spore zależności. Aby zobaczyć
 pełną listę wymagań danego ebuilda, skorzystaj z <c>emerge
 --pretend</c>. W przykładzie pokażemy <c>emu10k1</c>:
@@ -984,8 +991,8 @@ Jeśli rezutat Cię zadowala i chcesz w taki sposób zainstalować <c>emu10k1</c
 <body>
 
 <p>
-Jeśli nie korzystasz z <c>hotplug</c> powinieneś wpisać do
-<path>/etc/modules.autoload.d/kernel-2.4</path> (lub <path>kernel-2.6</path>)
+Powinieneś wpisać do <path>/etc/modules.autoload.d/kernel-2.4</path>
+(lub <path>kernel-2.6</path>)
 listę wszystkich modułów, które mają być ładowane podczas startu.
 Możesz również podać do nich dodatkowe opcje.
 </p>

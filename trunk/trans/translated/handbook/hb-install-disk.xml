@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.38 -->
+<!-- Orig revision: 1.41 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Przygotowanie Dysków -->
 <!-- Status: Ukończono -->
@@ -10,7 +10,7 @@
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.22 2004/03/06 18:33:15 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.23 2004/03/12 22:06:18 lcs Exp $ -->
 
 <sections>
 <section>
@@ -59,6 +59,9 @@ korzystająca z podobnych technik nazywa je <e>plastrami</e>.
 <subsection>
 <title>Partycje</title>
 <body>
+<note>
+To (teoretyczne) wyjaśnienie dotyczy jedynie architektury x86.
+</note>
 
 <p>
 Wyróżniamy trzy rodzaje partycji: <e>podstawowe</e>,
@@ -91,11 +94,12 @@ Partycje umieszczone i opisane wewnątrz rozszerzonych nazywamy <e>logicznymi</e
 <body>
 
 <p>
-Jeśli korzystasz z Gentoo LiveCD, to masz możliwość zwiększenia
-elastyczności podziału dysku za pomocą EVMS oraz LVM2.
-W dalszej części podręcznika skupimy się na tradycyjnych
-partycjach, jednak dobrze jest wiedzieć o obsłudze także nowocześniejszych
-rozwiązań.
+Niektóre architektury (w tym x86) posiadają wsparcie 
+dla EVMS oraz LVM2 o ile korzystasz z Gentoo LiveCD.
+Dzięki nim masz możliwość zwiększenia elastyczności swojego
+podziału dysku. W dalszej części podręcznika skupimy 
+się na tradycyjnych partycjach, jednak dobrze jest 
+wiedzieć o obsłudze także nowocześniejszych rozwiązań.
 </p>
 
 </body>
@@ -1444,7 +1448,7 @@ system plików powinien działać, ale nie został dostatecznie przetestowany.
 <tr>
   <ti>xfs</ti>
   <ti>tak</ti>
-  <ti>x86, alpha, amd64, (ppc)</ti> <!-- TODO when xfs is in mips-sources, add "(mips)" -->
+  <ti>x86, alpha, (ppc)</ti> <!-- TODO when xfs is in mips-sources, add "(mips)" -->
 </tr>
 <tr>
   <ti>jfs</ti>
@@ -1618,22 +1622,7 @@ w <path>/proc</path>. Zacznijmy od utworzenia odpowiedniego katalogu
 
 <pre caption="Tworzenie punktu montowania /mnt/gentoo/proc">
 # <i>mkdir /mnt/gentoo/proc</i>
-</pre>
-
-<p>
-Jeśli korzystasz z LiveCD, możesz go po prostu zamontować:
-</p>
-
-<pre caption="Montowanie proc">
 # <i>mount -t proc none /mnt/gentoo/proc</i>
-</pre>
-
-<p>
-Jeżeli nie, skorzystaj z opcji bind:
-</p>
-
-<pre caption="Bind-montowanie proc">
-# <i>mount -o bind /proc /mnt/gentoo/proc</i>
 </pre>
 
 <p>
