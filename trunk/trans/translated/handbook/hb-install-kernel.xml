@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.42 -->
+<!-- Orig revision: 1.44 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Jądra -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.26 2004/03/23 06:30:51 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.27 2004/03/27 21:11:29 lcs Exp $ -->
 
 <sections>
 <section>
@@ -64,7 +64,8 @@ jądro, rozwijane przez developerów Linuksa), <c>alpha-sources</c>
 
 <p>
 Dla platformy SPARC udostępniamy <c>vanilla-sources</c> (standardowe
-jądro, rozwijane przez developerów Linuksa) oraz
+jądro, rozwijane przez developerów Linuksa), <c>development-sources</c>
+(standardowe jądro 2.6) oraz
 <c>sparc-sources</c> (jądro zoptymalizowane dla użytkowników SPARC).
 </p>
 <p>
@@ -778,7 +779,9 @@ Modułów</uri>.
 <section>
 <title>Alternatywnie: Używanie genkernel</title>
 <body>
-
+<warn>
+Gentoo/SPARC nie wspiera genkernel.
+</warn>
 <p>
 Skoro czytasz tą sekcję, zapewne zdecydowałeś się skorzystać ze skryptu
 <c>genkernel</c> aby automatycznie skonfigurować swoje jądro. 
