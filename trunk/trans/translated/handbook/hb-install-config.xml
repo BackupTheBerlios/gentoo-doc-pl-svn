@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.30 -->
+<!-- Orig revision: 1.31 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Systemu -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.22 2004/03/21 13:25:06 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.23 2004/03/27 21:05:47 lcs Exp $ -->
 
 <sections>
 <section>
@@ -377,7 +377,9 @@ czytaj dalej.
 <subsection>
 <title>Opcjonalnie: Konfiguracja PCMCIA</title>
 <body>
-
+<note>
+pcmcia-cs jest dostępne wyłącznie na platformach x86, amd64 oraz ppc.
+</note>
 <p>
 Jeśli korzystasz z PCMCIA, zainstaluj pakiet <c>pcmcia-cs</c>.
 Aby pominąć opcjonalną zależność od XFree86, wpisz dodatkowo <c>USE="-X"</c>:
