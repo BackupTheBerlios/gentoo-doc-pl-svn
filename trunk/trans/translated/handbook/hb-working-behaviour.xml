@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>	
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
-<!-- Orig revision: 1.9 -->
+<!-- Orig revision: 1.13 -->
 <!-- Translator: Aye <aye@napisy.org> -->
 <!-- Title: Kontrola Zachowania Portage -->
 <!-- Status: Ukończono -->
+<!-- Update from 1.9 to 1.13: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-working-behaviour.xml,v 1.7 2004/01/09 21:48:04 aye Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-working-behaviour.xml,v 1.8 2004/07/11 13:45:29 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -195,15 +196,12 @@ poszczególnym zmiennym...
 <p>
 Zmienna <c>SYNC</c> zawiera listę mirrorów rsync, których będziesz
 używał. Na przykład aby używać
-<uri>rsync://rsync.namerica.gentoo.org/gentoo-portage</uri> jako mirrora
-głównego oraz
-<uri>rsync://rsync.samerica.gentoo.org/gentoo-portage</uri> jako mirrora
-drugiego, umieść w pliku <path>/etc/make.conf</path> deklarację:
+<uri>rsync://rsync.namerica.gentoo.org/gentoo-portage</uri> 
+umieść w pliku <path>/etc/make.conf</path> deklarację:
 </p>
 
 <pre caption="Definiowanie zmiennej SYNC w /etc/make.conf">
-SYNC="rsync://rsync.namerica.gentoo.org/gentoo-portage
-      rsync://rsync.samerica.gentoo.org/gentoo-portage"
+SYNC="rsync://rsync.namerica.gentoo.org/gentoo-portage"
 </pre>
 
 <p>
@@ -566,7 +564,7 @@ kompilacji i optymalizacji pakietów.
 
 <p>
 Więcej informacji na ten temat możesz znaleźć na stronach info
-<c>gcc</c> lub pod adresem <uri link="http://www.gnu.org/software/gcc/onlinedocs/">GCC Online Manuals</uri>
+<c>gcc</c> lub pod adresem <uri link="http://gcc.gnu.org/onlinedocs/">GCC Online Manuals</uri>
 </p>
 
 <pre caption="Zdobycie informacji o CHOST, CFLAGS i CXXFLAGS">
