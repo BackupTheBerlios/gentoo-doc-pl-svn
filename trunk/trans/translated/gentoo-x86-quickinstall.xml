@@ -4,13 +4,13 @@
 <!-- Orig revision: 1.29 -->
 <!-- Translator: Bartek Stalewski <ftpd@rpg.pl> -->
 <!-- Title: Szybka instalacja Gentoo -->
-<!-- Status: Release -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-x86-quickinstall.xml,v 1.2 2005/02/20 23:34:31 sekretarz Exp $ -->
+<!-- Status: Ukończono -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-x86-quickinstall.xml,v 1.3 2005/02/20 23:47:56 sekretarz Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-x86-quickinstall.xml,v 1.2 2005/02/20 23:34:31 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-x86-quickinstall.xml,v 1.3 2005/02/20 23:47:56 sekretarz Exp $ -->
 
 <guide link="/doc/en/gentoo-x86-quickinstall.xml">
 <title></title>
@@ -19,13 +19,12 @@
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
 <author title="Tłumacz">
-  <mail link="ftpd@rpg.pl">Bartek Stalewski</mail>
+  <mail link="ftpd@rpg.pl">Bartosz Stalewski</mail>
 </author>
 
 <abstract>
-Niniejszy dokument opisuje wszystkie stopnie procesu instalacji w sposób
-skrótowy. Użytkownicy powinni mieć pewne doświadczenie w instalacji Gentoo,
-jeżeli chcą posługiwać się tym przewodnikiem.
+Niniejszy dokument opisuje wszystkie kroki procesu instalacji w sposób
+skrótowy. Użytkownicy posługujący się tym przewodnikiem powinni mieć pewne doświadczenie w instalacji Gentoo.
 </abstract>
 
 <license/>
@@ -39,10 +38,11 @@ jeżeli chcą posługiwać się tym przewodnikiem.
 <body>
 
 <p>
-Obrazy instalacyjne są na <uri link="http://www.gentoo.org/main/en/mirrors.xml">
-serwerach lustrzaych Gentoo</uri>. Szczegółowe opisy różnych płyt są dostępne w
+Obrazy instalacyjne znajdują się na <uri 
+link="http://www.gentoo.org/main/en/mirrors.xml"> serwerach lustrzaych 
+Gentoo</uri>. Szczegółowe opisy różnych płyt dostępne są w
 <uri link="http://store.gentoo.org">sklepie Gentoo</uri>. Universal CD
-zawiera wszystko, czego potrzebujesz żeby zainstalować Gentoo szybko i bez
+zawiera wszystko, czego potrzebujesz aby zainstalować Gentoo szybko i bez
 połączenia z Internetem. Do wyboru jest też Package CD, które zawiera
 pre-kompilowane pakiety, takie jak KDE, GNOME, OpenOffice, Mozilla, Evolution
 itd.
@@ -50,7 +50,7 @@ itd.
 
 <p>
 Uruchom komputer z Universal CD. Naciśnij &lt;F1&gt; i/lub &lt;F2&gt;, żeby
-zobaczyć, jakie opcje bootowania są dostępne. Naciśnij &lt;ENTER&gt; w ekranie
+zobaczyć wszystkie dostępne opcje bootowania. Naciśnij &lt;ENTER&gt; na ekranie
 bootowania, by kontynuować ze standardowym kernelem. Po uruchomieniu systemu
 zobaczysz znak zachęty.
 </p>
@@ -75,7 +75,7 @@ Przygotuj swoje partycje używając <c>mke2fs</c> (Ext2), <c>mke2fs
 </p>
 
 <p>
-Kontynuuj montując parycje i rozpakowując odpowiedni plik stage.
+Kontynuuj montując partycje i rozpakowując odpowiedni plik stage.
 </p>
 
 <pre caption="Preparing the Installation">
@@ -205,7 +205,7 @@ Dokończ ustawianie swojego Gentoo:
                              # <i>nano -w /etc/rc.conf</i>
 </pre>
 
-<pre caption = "Set up Networking">
+<pre caption="Nawiązanie połączenia sieciowego">
 (Ustaw sieć; użytkownicy dhcp powinni ustawić iface_eth0="dhcp")
                               # <i>nano -w /etc/conf.d/net</i>
 (Wypisz moduły, które mają być ładowane przy starcie)
