@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.30 -->
+<!-- Orig revision: 1.31 -->
 <!-- Translator: aye <aye@gentoo.pl> -->
 <!-- Title: Instalacja dodatkowych narzędzi -->
 <!-- Status: Release -->
@@ -9,12 +9,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-tools.xml,v 1.19 2005/01/27 15:52:46 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-tools.xml,v 1.20 2005/02/20 11:41:53 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.26</version>
-<date>2004-10-09</date>
+<version>1.27</version>
+<date>2005-02-04</date>
 
 <section>
 <title>Program logujący.</title>
@@ -49,21 +49,24 @@ programu <c>logrotate</c>, ponieważ te programy logujące nie są zaopatrzone w
 dla logów.
 </p>
 
-<p>
-Jeżeli nie potrafisz zdecydować się na żaden to wybierz <c>metalog</c>, który ma
-ogromne możliwości oraz bardzo dobrą domyślną konfigurację.
-</p>
+<!--
+Even though syslog-ng does not rotate the logs, it does conform to the syslog
+RFC (http://www.faqs.org/rfcs/rfc3164.html) and is far more powerful than most
+other system loggers. That and some architectures really prefer syslog-ng
+above others (metalog for instance doesn't work nicely with sparc all
+the time).
+-->
 
 <p>
 Aby zainstalować program logujący, który wybrałeś, użyj polecenia <c>emerge</c>
 i dodaj go do domyślnego poziomu startowego (default runlevel) poprzez
 skrypt <c>rc-update</c>. Poniższy przykład przedstawia proces instalacji
-programu <c>metalog</c>: 
+programu <c>syslog-ng</c>: 
 </p>
 
 <pre caption="Instalacja programu logującego">
-# <i>emerge metalog</i>
-# <i>rc-update add metalog default</i>
+# <i>emerge syslog-ng</i>
+# <i>rc-update add syslog-ng default</i>
 </pre>
 
 </body>
