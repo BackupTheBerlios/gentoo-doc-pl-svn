@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.31 -->
+<!-- Orig revision: 1.36 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Systemu -->
 <!-- Status: Ukończono -->
+<!-- Update from 1.31 to 1.36: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.23 2004/03/27 21:05:47 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.24 2004/07/11 12:02:05 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -95,19 +96,23 @@ edytor):
 <p>
 Spójrzmy jak zapisać opcje partycji <path>/boot</path>. 
 To tylko przykład, nie musisz go przepisywać jeśli twoja
-architektura jej nie wymaga (np. PPC).
+architektura jej nie wymaga (np. <b>PPC</b>).
 </p>
 
 <p>
 W naszym domyślnym przykładzie dla x86, <path>/boot</path> znajduje się
-na <path>/dev/hda1</path> i używa systemu plików <c>ext2</c>. Nie powinna być
-automatycznie montowana (<c>noauto</c>) ale wymaga kontroli. A więc
-wpiszmy:
+na <path>/dev/hda1</path> i używa systemu plików <c>ext2</c>. 
+Musi ona być sprawdzana podczas rozruchu, wieć wpiszemy;
 </p>
 
 <pre caption="Przykładowy wpis do /etc/fstab dla /boot">
-/dev/hda1   /boot     ext2    noauto        1 2
+/dev/hda1   /boot     ext2    defaults        1 2
 </pre>
+
+Niektórzy użytkownicy nie chcą, aby partycja <path>/boot</path> była montowana 
+automatycznie. Powinni oni zastąpić opcję <c>defaults</c> opcją <c>noauto</c>.
+Oznacza to, że musisz ręcznie zamontować tą partycję za każdym razem kiedy chcesz
+jej użyć.
 
 <p>
 Aby poprawić wydajność, większość użytkowników zapewne zechce dodać
@@ -155,8 +160,8 @@ umożliwia montowanie zwykłym użytkownikom.
 
 <p>
 Skorzystaj z powyższego przykładu do utworzenia własnego <path>/etc/fstab</path>.
-Jeśli jesteś użytkownikiem SPARCa, powinieneś jeszcze dodać do niego następujące
-linijki:
+Jeśli jesteś użytkownikiem <b>SPARCa</b>, powinieneś jeszcze dodać do niego następujące
+linie:
 </p>
 
 <pre caption="Dodawanie do /etc/fstab systemu plików openprom">
@@ -172,7 +177,7 @@ none        /proc/bus/usb   usbfs         defaults      0 0
 </pre>
 
 <p>
-Przejrzyj jeszcze raz <path>/etc/fstab</path>, zapisz zmiany i zamknij edytor.
+Podwójnie sprawdź <path>/etc/fstab</path>, zapisz zmiany i zamknij plik.
 </p>
 
 </body>
@@ -279,6 +284,14 @@ i bramą 192.168.0.1, w kolejnym po prostu uaktywnimy interfejs do pracy z rp-pp
 <pre caption="Przykładowe /etc/conf.d/net">
 <comment>(Dla DHCP)</comment>
 iface_eth0="dhcp"
+<comment>Część administratorów sieci wymaga używania</comment>
+<comment>nazwy komputera oraz domeny dostarczanej przez serwer DHCP.</comment>
+<comment>W tym przypadku, dodaj nastepującą linię alby dhcpcd zaczął je używać.</comment>
+<comment>To nadpisze zdefiniowaną przez Ciebie nazwę komputera oraz nazwę domeny.</comment>
+dhcpcd_eth0="-HD"
+<comment>Jeżeli zamierzasz używać NTP, aby Twój komputer miał zawsze aktualną datę, użyj</comment>
+<comment>opcji -N, aby dhcpcd nie nadpisywało Twojego pliku /etc/ntp.conf</comment>
+dhcpcd_eth0="-N"
 
 <comment>(Dla stałego IP)</comment>
 iface_eth0="192.168.0.2 broadcast 192.168.0.255 netmask 255.255.255.0"
@@ -420,11 +433,11 @@ uwagę zwróć na opcję <c>KEYMAP</c>, gdyż źle ustawiona zaowocuje błędami
 podczas pisania.
 </p>
 <note>
-Użytkownicy SPARCów oraz ich klonów korzystających z USB powinni
+Użytkownicy <b>SPARCów</b> oraz ich klonów korzystających z USB powinni
 wybrać mapę klawiszy i386 (na przykład "us") zamiast "sunkeymap".
 </note>
 <p>
-PPC używa mapy klawiszy x86 na większości systemów. Użytkownicy
+<b>PPC</b> używa mapy klawiszy x86 na większości systemów. Użytkownicy
 chcący korzystać z mapy ADB podczas uruchamiania, powinni aktywować
 kody klawiszy ADB w jądrze i ustawić ją w <path>rc.conf</path>.
 </p>
