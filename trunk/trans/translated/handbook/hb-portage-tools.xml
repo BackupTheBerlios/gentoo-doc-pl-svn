@@ -4,22 +4,22 @@
 <!-- Translator: rane <rane666@o2.pl> -->
 <!-- Title: Narzędzia ułatwiające pracę z portage -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-portage-tools.xml,v 1.6 2004/10/31 17:32:35 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-portage-tools.xml,v 1.7 2004/10/31 21:42:20 rane Exp $ -->
 
 <sections>
 <section>
-<title>etc-update</title>
+<title>Etc-update</title>
 <body>
 
 <p>
-<c>etc-update</c> jest narzędziem, które służy do zastępowania plików konfiguracyjnych plikami 
+<c>Etc-update</c> jest narzędziem, które służy do zastępowania plików konfiguracyjnych plikami 
 <path>._cfg0000_&lt;nazwa&gt;</path>, umożliwia ich interaktywną edycję, oraz pozwala 
 automatycznie dokonać drobnych zmian w owych plikach. Pliki <path>._cfg0000_&lt;nazwa&gt;</path> 
 są generowane przez portage, gdy chce wrzucić jakiś plik do katalogu chronionego zmienną CONFIG_PROTECT.
 </p>
 
 <p>
-Żeby uruchomić <c>etc-update</c> wpisz po prostu:
+Aby uruchomić <c>etc-update</c> wpisz po prostu:
 </p>
 
 <pre caption="Running etc-update">
@@ -34,27 +34,20 @@ Program automatycznie dokona drobnych zmian w plikach konfiguracyjnych, a potem 
 <pre caption="etc-update options">
 Please select a file to
  edit by entering the corresponding number.
-              (-1 to exit) (-
-3 to auto merge all remaining files)
-                           (-5 to au
-to-merge AND not use 'mv -i'):
+              (-1 to exit) 
+	      (-3 to auto merge all remaining files)
+              (-5 to auto-merge AND not use 'mv -i'):
 </pre>
 
 <p>
-Jeśli wpiszesz <c>-1</c>, <c>etc-update</c> zakończy działanie 
-nie zmieniając żadnego pliku. Po naciśnięciu <c>-3</c> lub <c>-5</c>, <e>wszystkie</e> 
-znajdujące się na liście pliki konfiguracyjne 
-zostaną nadpisane nowszymi wersjami. Dobrym pomysłem jest zaznacz
-enie plików, których nie chcesz nadpisywać automatycznie. Ro
-bisz to po prostu wpisując liczbę znajdującą się na lewo od danego pliku.
+Jeśli wpiszesz <c>-1</c>, <c>etc-update</c> zakończy działanie nie zmieniając żadnego pliku. Po wybraniu <c>-3</c> lub <c>-5</c>, <e>wszystkie</e> znajdujące się na liście pliki konfiguracyjne zostaną nadpisane nowszymi wersjami. Dobrym pomysłem jest zaznaczenie plików, których nie chcesz nadpisywać automatycznie. Robisz to po prostu wpisując liczbę znajdującą się na lewo od danego pliku.
 </p>
 
 <p>
-Np. wybieramy sobie plik konfiguracyjny <path>/etc/pear.conf</path> 
-i po wybraniu jego indeksu widzimy coś takiego:
+Np. wybieramy sobie plik konfiguracyjny <path>/etc/pear.conf</path> i po wybraniu jego indeksu widzimy coś takiego:
 </p>
 
-<pre caption="Updating a specific configuration file">
+<pre caption="Oddzielne uaktualnienie wybranego pliku">
 Beginning of differences between /etc/pear.conf and /etc/._cfg0000_pear.conf
 <comment>[...]</comment>
 End of differences between /etc/pear.conf and /etc/._cfg0000_pear.conf
@@ -65,18 +58,11 @@ End of differences between /etc/pear.conf and /etc/._cfg0000_pear.conf
 </pre>
 
 <p>
-W ten sposób można łatwo uzyskać informacje o różnicach pomiędzy 
-oboma plikami. Jeśli jesteś pewien, że zastąpienie starego pliku nowym 
-to dobry pomysł naciskasz <c>1</c>. Może zdarzyć się też tak, że nie będziesz 
-chciał nowego pliku. Wtedy naciskasz <c>2</c> i zapominasz o tym, że była 
-nowsza wersja :) Jeśli chcesz bliżej zająć się tym plikiem (tzw. metoda interaktywna) wybierasz <c>3</c>.
+W ten sposób można łatwo uzyskać informacje o różnicach pomiędzy oboma plikami. Jeśli jesteś pewien, że zastąpienie starego pliku nowym to dobry pomysł naciskasz <c>1</c>. Może zdarzyć się też tak, że nie będziesz chciał nowego pliku. Wtedy naciskasz <c>2</c> i zapominasz o tym, że była nowsza wersja :) Jeśli chcesz bliżej zająć się tym plikiem (tzw. metoda interaktywna) wybierasz <c>3</c>.
 </p>
 
 <p>
-Nie ma sensu rozpisywać się na temat trzeciej metody - ograniczymy się 
-jedynie do podania możliwych w tym trybie do wybrania komend. Generalnie 
-wygląda to tak, że program pokazuje dwie linie - oryginalną i proponowaną 
-i czeka aż wpiszemy jeden z ciągów znaków:
+Nie ma sensu rozpisywać się na temat trzeciej metody - ograniczymy się jedynie do podania możliwych w tym trybie do wybrania komend. Generalnie wygląda to tak, że program pokazuje dwie linie - oryginalną i proponowaną i czeka aż wpiszemy jeden z ciągów znaków:
 </p>
 
 <pre caption="Komendy dostępne podczas interaktywnej edycji plików">
@@ -133,21 +119,21 @@ miejsca (spacje, tabulatory, puste wiersze itp.)
 Pracę z programem trzeba zacząć od wprowadzenia odpowiednich ustawień 
 do pliku <path>/etc/dispatch-conf.conf</path>, w tym przede wszystkim 
 zmiennej archive-dir, gdzie program będzie archiwizował nadpisywane 
-pliki konfiguracyjne oraz utworzenia owego katalogu..
+pliki konfiguracyjne oraz utworzenia owego katalogu.
 </p>
 
 <p>
 Więcej informacji o programie dostarczy manual<c>dispatch-conf</c>:
 </p>
 
-<pre caption="Reading the dispatch-conf man page">
+<pre caption="Czytanie manuala dispatch-conf">
 $ <i>man dispatch-conf</i>
 </pre>
 
 </body>
 </section>
 <section>
-<title>quickpkg</title>
+<title>Quickpkg</title>
 <body>
 
 <p>
