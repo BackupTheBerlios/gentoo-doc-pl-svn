@@ -7,7 +7,7 @@
 <!-- Translator: veng <veng@wp.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.3 2004/01/18 20:28:45 swierszczu Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.4 2004/01/18 21:25:35 veng Exp $ -->
 
 <sections>
 <section>
@@ -539,10 +539,10 @@ systemowego (<c>man 8 swriteboot</c> oraz <c>man 8 abootconf</c>).
 </note>
 
 <p>
-Dodatkowo, możesz ułatwić start Gentoo poprzez ustawienie pliku
+Dodatkowo, możesz uprościć start Gentoo poprzez ustawienie pliku
 konfiguracyjnego programu aboot i zmiennej SRM boot_osflags.
 Musisz upewnić się, że bootdef_dev jest także ustawiony poprawnie
-(łatwiej to zrobić przy konsoli niż spod Linuksa).
+(łatwiej to zrobić w konsoli SRM niż spod Linuksa).
 </p>
 
 <pre caption = "Optymalizowanie startu Gentoo">
@@ -606,7 +606,7 @@ dla Twojej architektury Alpha.
 # <i>mformat a:</i>
 # <i>mcopy /opt/milo/milo-2.2-18-gentoo-ruffian a:\milo</i>
 # <i>mcopy /opt/milo/linload.exe a:\lilnload.exe</i>
-<comment>(Tylko jeśli posiadasz Ruffian:</comment>
+<comment>(Dotyczy systemu typu Ruffian:</comment>
   # <i>mcopy /opt/milo/ldmilo.exe a:\ldmilo.exe</i>
 <comment>)</comment>
 # <i>echo -ne '\125\252' | dd of=/dev/fd0 bs=1 seek=510 count=2</i>
@@ -615,7 +615,7 @@ dla Twojej architektury Alpha.
 <p>
 Twoja dyskietka startowa MILO jest już przygotowana do uruchomienia
 Gentoo Linuksa. Być może musisz ustawić zmienne środowiskowe
-ARCS Firmware, by MILO się uruchamiało; wyjaśnienie znajdziesz pod adresem
+w ARCS Firmware, by MILO się uruchamiało; wyjaśnienie znajdziesz pod adresem
 <uri link="http://tldp.org/HOWTO/MILO-HOWTO/">MILO-HOWTO</uri> wraz z kilkoma przykładami
 popularniejszych systemów i niektórymi komendami do zastosowania w trybie interaktywnym.
 </p>
@@ -857,7 +857,7 @@ Dopasuj go wedle życzenia:
 
 boot=/dev/hda9
 
-<comment>##hd: jest równoważne hda</comment>
+<comment>##hd: w terminologii open firmware oznacza hda</comment>
 device=hd:
 partition=11
 
