@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.37 -->
+<!-- Orig revision: 1.38 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Jądra -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.22 2004/03/03 14:09:20 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.23 2004/03/08 07:02:41 lcs Exp $ -->
 
 <sections>
 <section>
@@ -82,17 +82,48 @@ Dostarczamy także jądra zoptymalizowane dla innych architektur:
 </p>
 
 <p>
+Jeżeli przeprowadzasz instalację bez dostępu do sieci
+to nie możesz wybrać dowolnego z dostępnych jąder, jako
+że nie do wszystkich dostarczamy źródła. Poniższa tabela
+prezentuje kernele dostępne przy tym rodzaju instalacji.
+</p>
+
+<table>
+  <tr>
+    <th>Architektura</th>
+    <th>Dostępne Źródła Jądra</th>
+  </tr>
+  <tr>
+    <ti>x86</ti>
+    <ti>vanilla-sources-2.4.24</ti>
+  </tr>
+  <tr>
+    <ti>ppc</ti>
+    <ti>ppc-sources-2.4.24-r2, ppc-development-sources-2.6.3-r2</ti>
+  </tr>
+  <tr>
+    <ti>sparc</ti>
+    <ti>sparc-sources</ti>
+  </tr>
+  <tr>
+    <ti>amd64</ti>
+    <ti>gentoo-dev-sources-2.6.3-r2</ti>
+  </tr>
+</table>
+ 
+
+<p>
 Za pomocą <c>emerge</c> zainstaluj wybrane źródła jądra. 
 </p>
 
 <p>
-W kolejnym przykładzie pokażemy jak zainstalować <c>vanilla-sources</c>
-(jako że <c>gentoo-sources</c> nie jest dostępne dla wszystkich
-architektur). Oczywiście powinieneś je zastąpić wybranym kernelem.
+W kolejnym przykładzie pokażemy jak zainstalować <c>vanilla-sources-2.4.24</c>
+(jako że jest dostępny w przypadku instalacji bez dostępu do sieci na platformie x86).
+Oczywiście powinieneś je zastąpić wybranym kernelem.
 </p>
 
 <pre caption="Instalacja źródeł jądra">
-# <i>emerge vanilla-sources</i>
+# <i>emerge vanilla-sources-2.4.24</i>
 </pre>
 
 <p>
@@ -102,7 +133,7 @@ na wybrane źródła jądra:
 
 <pre caption="Wyświetlanie symlinka do źródła jąder">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.4.25
+lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.4.24
 </pre>
 
 <p>
@@ -111,7 +142,7 @@ go podmienić:
 </p>
 
 <pre caption="Modyfikacja symlinka do źródła jąder">
-# <i>rm /usr/src/linux &amp;&amp; ln -s /usr/src/linux-2.4.25 /usr/src/linux</i>
+# <i>rm /usr/src/linux &amp;&amp; ln -s /usr/src/linux-2.4.24 /usr/src/linux</i>
 </pre>
 
 <p>
@@ -705,21 +736,21 @@ Opóść program konfiguracyjny i wykonaj polecenie
 <p>
 Następnie skopiuj obraz kernela do <path>/boot</path>. W kolejnym 
 przykładzie założyliśmy, iż zdecydowałeś się skorzystać z 
-<c>vanilla-sources-2.4.25</c> (co nie zawsze jest właściwym
+<c>vanilla-sources-2.4.24</c> (co nie zawsze jest właściwym
 rozwiązaniem dla Twojej architektury!):
 </p>
 
 <pre caption="Instalacja jądra">
 <comment>(Dotyczy platformy x86)</comment>
-# <i>cp arch/i386/boot/bzImage /boot/kernel-2.4.25</i>
-# <i>cp System.map /boot/System.map-2.4.25</i>
+# <i>cp arch/i386/boot/bzImage /boot/kernel-2.4.24</i>
+# <i>cp System.map /boot/System.map-2.4.24</i>
 
 <comment>(Dotyczy platformy amd64)</comment>
-# <i>cp arch/x86_64/boot/bzImage /boot/kernel-2.4.25</i>
+# <i>cp arch/x86_64/boot/bzImage /boot/kernel-2.4.24</i>
 
 <comment>(Dotyczy pozostałych platform)</comment>
-# <i>cp vmlinux /boot/kernel-2.4.25</i>
-# <i>cp System.map /boot/System.map-2.4.25</i>
+# <i>cp vmlinux /boot/kernel-2.4.24</i>
+# <i>cp System.map /boot/System.map-2.4.24</i>
 </pre>
 
 <p>
@@ -728,7 +759,7 @@ także plik konfiguracyjny.
 </p>
 
 <pre caption="Archiwizacja pliku konfiguracyjnego">
-# <i>cp .config /boot/config-2.4.25</i>
+# <i>cp .config /boot/config-2.4.24</i>
 </pre>
 <p>
 Jeśli jesteś użytkownikiem architektury MIPS, i Twój system nie potrafi
@@ -782,7 +813,7 @@ może trwać dosyć długo!
 # <i>genkernel all</i>
 GenKernel v3.0.1_beta10
 * ARCH: x86    
-* KERNEL VER: 2.4.25
+* KERNEL VER: 2.4.24
 * kernel: configuring source
 * kernel: running mrproper
 <comment>(Output removed to increase readability)</comment>
