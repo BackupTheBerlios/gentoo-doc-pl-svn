@@ -1,0 +1,258 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- Orig revision: 1.7 -->
+<!-- Translator: sekretarz <sekretarz@dukato.net> -->
+<!-- Title: Bootloader na PPC64 -->
+<!-- Status: Ukończono -->
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc64-bootloader.xml,v 1.1 2004/11/29 22:52:39 sekretarz Exp $ -->
+
+<sections>
+
+<version>1.4</version>
+<date>2004-10-23</date>
+
+<section>
+<title>Podejmowanie decyzji</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<p>
+Gdy skonfigurowałeś jądro i zmodyfikowałeś odpowiednio niezbędne systemowe
+pliki konfiguracyjne, nadeszła pora zainstalowania programu, który uruchomi jądro
+w momencie startu systemu. Taki program nazywa się <e>bootloader</e>.
+</p>
+
+<p>
+Na Linux/PPC64 jako bootloader istnieje tylko yaBoot. W przyszłości będzie także dostępny grub2.
+</p>
+
+</body>
+</subsection>
+</section>
+<section id="yaboot">
+<title>Używanie yaBoot</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<impo>
+Musisz używać yaboot-static zamiast yaboot, ponieważ nie skompiluje się on na PPC64.
+</impo>
+
+<p>
+Są dwa sposoby konfiguracji yaBoot. Możesz wykonać konfigurację
+yaboot automatycznie za pomocą nowego i poprawionego narzędzia
+<c>yabootconfig</c> zawartego w wersji <path>yaboot-1.3.8-r1</path>
+i późniejszych. Jeśli z jakiegoś powodu nie chcesz uruchamiać
+<c>yabootconfig</c> do automatycznego tworzenia <path>/etc/yaboot.conf</path>
+lub instalujesz Gentoo na G5 (na którym <c>yabootconfig</c> nie zawsze chce działać),
+możesz najzwyczajniej wyedytować wzorcowy plik już zainstalowany w systemie.
+</p>
+
+<impo>
+yabootconfig/ybin nie działa na IBM. Musisz go zainstalować w inny sposób:
+<uri link="#yaboot-ibm">Używanie yaboot na IBM</uri>
+</impo>
+
+<ul>
+  <li><uri link="#yabootconfig">Domyślnie: Użycie yabootconfig</uri></li>
+  <li>
+    <uri link="#manual_yaboot">Alternatywnie: Ręczna konfiguracja yaBoot</uri>
+  </li>
+</ul>
+
+</body>
+</subsection>
+<subsection id="yabootconfig">
+<title>Default: Using yabootconfig</title>
+<body>
+
+<p>
+<c>yabootconfig</c> automatycznie wykryje partycje na Twoim komputerze
+i umożliwi uruchamianie wybranego z dwóch lub trzech systemów, którymi mogą
+być Linux, Mac OS, and Mac OS X.
+</p>
+
+<p>
+Przed użyciem <c>yabootconfig</c>, musisz mieć na dysku partycję bootstrap
+oraz odpowiednie wpisy dotyczące partycji Linuksa w <path>/etc/fstab</path>.
+Obydwa warunki powinny być już spełnione w poprzednich krokach.
+Upewnij się, że masz zainstalowaną najnowszą wersję yaboot wykonując
+polecenie <c>emerge --update yaboot</c>. Jest to wymagane, gdyż aktualna
+wersja bedzie dostępna poprzez Portage, ale może jej jeszcze nie być w plikach
+stage.
+</p>
+
+<pre caption = "Instalacja yaboot-static">
+# <i>emerge --update yaboot-static</i>
+</pre>
+
+<p>
+Teraz wykonaj polecenie <c>yabootconfig</c>. Uruchomi się program
+i potwierdzi lokalizację partycji bootstrap. Wciśnij <c>Y</c> jeśli wszystko
+się zgadza. Jeśli jest inaczej, sprawdź dwa razy <path>/etc/fstab</path>.
+yabootconfig przeskanuje Twoje ustawienia, utworzy
+<path>/etc/yaboot.conf</path> i uruchomi <c>mkofboot</c>.
+<c>mkofboot</c> służy do formatowania partycji bootstrap i umieszczenia
+na niej pliku konfiguracyjnego yaboot.
+</p>
+
+<p>
+Zweryfikuj zawartość <path>/etc/yaboot.conf</path>. Jeśli zmienisz
+<path>/etc/yaboot.conf</path> (choćby ustawienia domyślnie startującego
+OS), uruchom <c>ybin -v</c> aby zmiany odniosły skutek na partycji bootstrap.
+</p>
+
+<p>
+Teraz przejdź do <uri link="#reboot">Ponownego uruchomienia Systemu</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection id="manual_yaboot">
+<title>Alternatywnie: Ręczna konfiguracja yaBoot</title>
+<body>
+
+<p>
+Po pierwsz upewnij się, że masz zainstalowaną aktualną wersję <c>yaboot-static</c>
+</p>
+
+<pre caption = "Instalacja yaboot">
+# <i>emerge --update yaboot-static</i>
+</pre>
+
+<p>
+Poniżej znajdziesz kompletny plik <path>yaboot.conf</path>.
+Dopasuj go wedle życzenia.
+</p>
+
+<pre caption = "/etc/yaboot.conf">
+<comment>## /etc/yaboot.conf
+##
+## uruchom: "man yaboot.conf" by poznać szczegóły. Nie zmieniaj nic, jeśli nie musisz!!
+## dodatkowe przykłady możesz obejrzeć w: /usr/share/doc/yaboot/examples
+##
+## W celu uruchamiania innych systemów, dodaj jedną lub więcej pozycji spośród:
+## bsd=/dev/hdaX, macos=/dev/hdaY, macosx=/dev/hdaZ
+
+## nasza partycja bootstrap:</comment>
+
+boot=/dev/sda2
+
+
+<comment>## ofboot w openfirmware służy do specyfikowania partycji startowej.
+## Jeśli tego parametru nie będzie, yaboot nie zadziała na G5
+## (dopóki nie przekażesz odpowiednich opcji do programu mkofboot/ybin).
+## hd:X oznacza /dev/sdaX (lub /dev/hdaX).
+##
+## Posiadacze G5 powinni odkomentować tę linię !!</comment>
+
+ofboot=hd:2
+
+<comment>##hd: w terminologii open firmware oznacza sda</comment>
+device=hd:
+partition=4
+
+delay=5
+defaultos=macosx
+timeout=30
+install=/usr/lib/yaboot/yaboot
+magicboot=/usr/lib/yaboot/ofboot
+
+<comment>#################
+## Ta część może być powielona, jeśli masz więcej niż jeden kernel lub zestaw
+## parametrów startowych
+#################</comment>
+image=/boot/kernel-2.6.7-gentoo-r8
+  label=Linux
+  root=/dev/sda4
+  sysmap=/boot/System.map-2.6.7
+  read-only
+<comment>##################</comment>
+
+macos=hd:5
+macosx=hd:6
+enablecdboot
+enableofboot
+</pre>
+
+<p>
+Gdy <path>yaboot.conf</path> jest ustawiony w sposób, który Cię zadowala,
+uruchom <c>mkofboot -v</c> by zmiany odniosły skutek na partycji bootstrap.
+<e>Nie zapomnij o tym!</e> Jeśli wszystko poszło po myśli i wprowadziłeś takie
+same opcje jak w przykładzie powyżej, po restarcie ujrzysz proste menu z pięcioma
+pozycjami. Dokonując w przyszlości poprawek uruchom tylko <c>ybin -v</c>
+by zaktualizować partycje bootstrap - <c>mkofboot</c> używa się tylko
+za pierwszym razem.
+</p>
+
+<p>
+Więcej informacji o programie yaboot, uzyskasz pod adresem
+<uri link="http://penguinppc.org/projects/yaboot">projektu yaboot</uri>.
+Tymczasem przejdź do <uri link="#reboot">Ponownego uruchomienia Systemu</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+<section id="yaboot-ibm">
+<title>Używanie yaboot na IBM</title>
+<body>
+
+<p>
+Na komputerach IBM nie możesz używać yabootconfig ani ybin. Musisz wykonać kilka następujących czynności
+</p>
+
+<ul>
+  <li>Zainstaluj yaboot-static</li>
+  <li>Uruchom 'dd if=/usr/lib/yaboot/yaboot.chrp of=/dev/sdXX' (Zamień XX
+  na nazwe Twojego dysku oraz partycji dla partycji RPeP; w naszym przykładzie był to /dev/sda1)</li>
+  <li>Następnie stwórz swóją wersję plik yaboot.conf i umieść go w /etc.
+  (Możesz pomoć sobie plikiem konfiguracyjnym przedstawionym powyżej lub spojrzeć na strone manuala yaboot.conf)</li>
+  <li>Zakładając, że Twóje urządzenie startowe w OF wskazuje na dysk, gdzie 
+  przygotowałeś partycję startową to wszystko powinno po prostu działać, inaczej 
+  w czasie IPL wejdź do menu multiboot i ustaw urządzenie startowe na to, gdzie 
+  znajduje się przygotowana przez Ciebie partycja startowa.</li>
+  <li>To Wszystko!</li>
+</ul>
+
+</body>
+</section>
+<section id="reboot">
+<title>Ponowne uruchomienie Systemu</title>
+<subsection>
+<body>
+
+<p>
+yjdź ze środowiska chroot i odmontuj wszytskie zamontowane partycje. Następnie wpisz to
+magiczne polecenie na które tak długo czekałeś: <c>reboot</c>
+</p>
+
+<pre caption="Wyjście z chroota, odmontowanie wszystkich zamontowanych partycji i ponowne uruchomienie">
+# <i>exit</i>
+cdimage ~# <i>cd</i>
+cdimage ~# <i>umount /mnt/gentoo/boot /mnt/gentoo/proc /mnt/gentoo</i>
+cdimage ~# <i>reboot</i>
+</pre>
+
+<p>
+Nie zapomnij o wyłożeniu rozruchowej płyty CD, by wystartować system Gentoo z dysku, a nie
+z płyty CD.
+</p>
+
+<p>
+Po ponownym uruchomieniu komputera, zakończ instalację z rozdziałem <uri 
+link="?part=1&amp;chap=11">Zakończenie instalacji Gentoo</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+
+</sections>
