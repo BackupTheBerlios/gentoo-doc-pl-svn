@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.28 -->
+<!-- Orig revision: 1.29 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Systemu -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.20 2004/03/08 06:55:26 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.21 2004/03/12 22:00:14 lcs Exp $ -->
 
 <sections>
 <section>
@@ -93,8 +93,9 @@ edytor):
 </pre>
 
 <p>
-Spójrzmy jak zapisać opcje partycji <path>/boot</path>. To tylko przykład, nie musisz
-go przepisywać jeśli jej nie posiadasz.
+Spójrzmy jak zapisać opcje partycji <path>/boot</path>. 
+To tylko przykład, nie musisz go przepisywać jeśli twoja
+architektura jej nie wymaga (np. PPC).
 </p>
 
 <p>
@@ -419,6 +420,12 @@ podczas pisania.
 Użytkownicy SPARCów oraz ich klonów korzystających z USB powinni
 wybrać mapę klawiszy i386 (na przykład "us") zamiast "sunkeymap".
 </note>
+<p>
+PPC używa mapy klawiszy x86 na większości systemów. Użytkownicy
+chcący korzystać z mapy ADB podczas uruchamiania, powinni aktywować
+kody klawiszy ADB w jądrze i ustawić ją w <path>rc.conf</path>.
+</p>
+
 <p>Po ukończeniu edycji zapisz zmiany i zamknij edytor. Następnie przejdź 
 do <uri link="?part=1&amp;chap=9">Konfiguracji Bootloadera</uri>.
 </p>
