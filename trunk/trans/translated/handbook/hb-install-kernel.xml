@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.38 -->
+<!-- Orig revision: 1.39 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Jądra -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.23 2004/03/08 07:02:41 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.24 2004/03/10 06:58:17 lcs Exp $ -->
 
 <sections>
 <section>
@@ -808,7 +808,12 @@ Zwróć uwagę, iż <c>genkernel</c> aktywuje
 wsparcie niemal dla całego obsługiwanego sprzętu. Wobec tego kompilacja
 może trwać dosyć długo!
 </p>
-
+<note>
+Zauważ, że jeśli Twoja partycja boot nie korzysta z systemu plików
+ext2 lub ext3, musisz ręcznie skonfigurować jądro poleceniem
+<c>genkernel --menuconfig all</c> i włączyć wsparcie dla odpowiedniego
+(koniecznie <e>nie</e> jako moduł).
+</note>
 <pre caption="Uruchamianie genkernel">
 # <i>genkernel all</i>
 GenKernel v3.0.1_beta10
