@@ -1,16 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.11 -->
+<!-- Orig revision: 1.16 -->
 <!-- Translator: Sharak <sharak@rybnet.pl> -->
 <!-- Title: Flagi USE -->
 <!-- Status: Ukończono -->
+<!-- Update from 1.11 to 1.16: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license 
 -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.5 2004/04/21 08:14:14 sharak Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.6 2004/07/11 10:45:08 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -138,14 +139,13 @@ użytkowników Gentoo. Domyślny zestaw jest zdeklarowany w pliku
 domyślne ustawienia:
 </p>
 
-<pre caption="Ustawienia zmiennej /etc/make.profile/make.defaults">
+<pre caption="Ustawienia zmiennej /etc/make.profile/make.defaults na architekturze x86">
 USE="x86 oss apm arts avi berkdb crypt cups encode foomaticdb gdbm gif 
-gpm gtk 
-     imlib jpeg kde gnome libg++ libwww mad mikmod motif mpeg ncurses 
-nls 
-     oggvorbis opengl pam pdflib png python qt quicktime readline sdl 
-slang 
-     spell ssl svga tcpd truetype X xml2 xmms xv zlib"
+gpm 
+     gtk gtk2 imlib jpeg kde gnome libg++ libwww mad mikmod motif mpeg 
+ncurses 
+     nls oggvorbis opengl pam pdflib png python qt quicktime readline sdl 
+     slang spell ssl svga tcpd truetype X xml2 xmms xv zlib"
 </pre>
 
 <p>
@@ -269,6 +269,47 @@ Polecenie to ukaże wszystkie istotne zmienne (włączając zmienną
 # <i>emerge info</i>
 </pre>
 
+</body>
+</subsection>
+<subsection>
+<title>Adaptacja systemu do nowych flag USE</title>
+<body>
+
+<p>
+Po zmodyfikowaniu swoich flag USE, jeżeli chcesz uaktualnić swój system, aby pakiety
+używały nowych flag USE, musisz wykonać pare czynności przedstawionych poniżej.
+Pamiętaj jednak, że czynności te są czasochłonne. Trwają prace nad dostosowaniem
+Portage, aby obsługiwał takie zachowania automatycznie i szybciej. 
+</p>
+
+<p>
+Po pierwsze, przekompiluj swój system używając nowych flag USE:
+</p>
+   
+<pre caption="Rekompilacja systemu">
+# <i>emerge --emptytree world</i>
+</pre>   
+ 
+<p>
+Następnie trzeba uruchomić Portage depclean, aby usunąć niepotrzebne zależności, które 
+zostały zaemergowane na "starym" systemie, ale są zdezaktalizowane z nowymi flagami USE. 
+</p>
+
+<warn>
+Uruchomienie <e>emerge depclean</c> jest niebezpieczną operacją i powinno być wykonywane
+z zachowaniem pełnej ostrożności. Sprawdź podwójnie listę "zdezaktualizowanych" pakietów i upewnij
+się, że Portage nie chce usunąć pakietów, których potrzebujesz. W poniższym przykładzie
+dodajemy opcję <c>-p</c>, aby zobaczyć tylko listę pakietów, bez usuwania ich.
+</warn>
+
+<pre caption="Usuwanie niepotrzebnych pakietów">
+# <i>emerge -p depclean</i>
+</pre>
+     
+<p>
+Kiedy depclean zakończy się, Twój system jest już gotowy do używania nowych flag USE.
+</p>
+         
 </body>
 </subsection>
 </section>
