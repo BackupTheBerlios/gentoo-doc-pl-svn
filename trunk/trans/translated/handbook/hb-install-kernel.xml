@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.30 2004/12/09 16:29:45 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.31 2004/12/09 16:50:57 rane Exp $ -->
 
 <sections>
 <section>
@@ -798,7 +798,7 @@ kompilacji.
 Zatem, do dzieła. Zacznijmy od instalacji naszego skryptu:
 </p>
 
-<pre caption="Instalacja genkernel"><F2>
+<pre caption="Instalacja genkernel">
 # <i>emerge genkernel</i>
 </pre>
 
@@ -808,12 +808,14 @@ Zwróć uwagę, iż <c>genkernel</c> aktywuje
 wsparcie niemal dla całego obsługiwanego sprzętu. Wobec tego kompilacja
 może trwać dosyć długo!
 </p>
+
 <note>
 Zauważ, że jeśli Twoja partycja boot nie korzysta z systemu plików
 ext2 lub ext3, musisz ręcznie skonfigurować jądro poleceniem
 <c>genkernel --menuconfig all</c> i włączyć wsparcie dla odpowiedniego
 (koniecznie <e>nie</e> jako moduł).
 </note>
+
 <pre caption="Uruchamianie genkernel">
 # <i>genkernel all</i>
 GenKernel v3.0.1_beta10
@@ -848,9 +850,11 @@ initrd zostanie załadowane natychmiast po uruchomieniu systemu i przeprowadzi
 automatyczne wykrywanie sprzętu (tak jak na LiveCD) zanim włączy się
 "prawdziwy" Gentoo Linux.
 </p>
+
 <pre caption="Wyświetlanie utworzonego obrazu jądra i initrd">
 # <i>ls /boot/kernel* /boot/initrd*</i>
 </pre>
+
 <p>
 Podczas gdy initrd wykrywa tylko sprzęt niezbędny do uruchomienia systemu,
 <c>hotplug</c> konfiguruje pozostałe urządzenia. Zainstalujmy go i uaktywnijmy,
