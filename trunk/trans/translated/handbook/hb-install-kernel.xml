@@ -1,4 +1,4 @@
-<!-- Orig revision: 1.21 -->
+<!-- Orig revision: 1.22 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Jądra -->
 <!-- Status: Ukończono -->
@@ -6,7 +6,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.4 2003/12/23 21:41:35 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.5 2003/12/26 09:38:21 lcs Exp $ -->
 
 <sections>
 <section>
@@ -191,6 +191,11 @@ File systems ---&gt;
   &lt;*&gt; XFS filesystem support
 </pre>
 
+<note>
+W jądrach 2.6, część z wymienionych opcji znajduje się w sekcji <c>Pseudo
+filesystems</c>, będącej częścią <c>File systems</c>.
+</note>
+
 <p>
 Jeśli do połączenia z Internetem używasz PPPoE, powinieneś wybrać następujące
 opcje:
@@ -203,7 +208,10 @@ Network device support ---&gt;
   &lt;*&gt;   PPP support for sync tty ports
 </pre>
 
-<p>
+<note>
+W jądrach 2.6,  wymienione opcje znajdują się w sekcji <c>Networking
+support</c>, będącej częścią <c>Device Drivers</c>.
+</note>
 Dwie kolejne opcje, dotyczące kompresji nie zaszkodzą, jakkolwiek nie są
 również wymagane. Podobnie jak <c>PPP over Ethernet</c>, przydatna  tylko
 wówczas, kiedy do pracy w trybie jądra PPPoE zostanie skonfigurowany
@@ -219,7 +227,9 @@ Multi-device support (RAID and LVM) ---&gt;
   [*] Multiple devices driver support (RAID and LVM)
   &lt;*&gt;  Logical volume manager (LVM) support
 </pre>
-
+<note>
+W jądrach 2.6, wymienione opcje znajdują się w sekcji <c>Device Drivers</c>.
+</note>
 <p>
 Jeśli taką posiadasz, nie zapomnij o wkompilowaniu wsparcia dla swojej karty sieciowej.
 </p>
