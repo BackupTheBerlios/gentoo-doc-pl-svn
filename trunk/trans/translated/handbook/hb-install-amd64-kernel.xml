@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.15 -->
+<!-- Orig revision: 1.20 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Konfiguracja jądra dla AMD64 -->
 <!-- Status: Release -->
@@ -9,12 +9,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-amd64-kernel.xml,v 1.13 2004/12/27 11:35:02 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-amd64-kernel.xml,v 1.14 2005/02/21 00:23:16 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.11</version>
-<date>2004-12-18</date>
+<version>1.14</version>
+<date>2005-01-31</date>
 
 <section>
 <title>Strefa czasowa.</title>
@@ -159,12 +159,17 @@ Code maturity level options ---&gt;
 </pre>
 
 <p>
+Teraz przejdz do <c>General Setup</c>. aby włączyć <c>obsługę dla urządzeń
+typu hot-plug</c> dla udev, gdyż jądro z serii 2.6 jest teraz domyślnym i
+jedynym wspomaganym na architekturze amd64.
+</p>
+
+<p>
 Następnie przejdź do <c>File Systems</c> i wybierz wsparcie dla systemów plików,
 których zamierzasz używać. Jeśli tego zaniedbasz Gentoo nie będzie w stanie
 zamontować partycji, a czasem nawet się nie uruchomi. Pamiętaj również, aby
 włączać te sterowniki na stałe do jądra, broń Boże nie kompiluj ich jako
-modułów. Przy okazji zaznacz też <c>Virtual memory</c>, <c>/proc file system</c>
-i <c>/dev file system</c> + <c>Automatically mount at boot</c>:
+modułów. Przy okazji zaznacz też <c>Virtual memory</c> i <c>/proc file system</c>:
 </p>
 
 <pre caption="Wybór potrzebnych systemów plików">
@@ -172,7 +177,7 @@ File systems ---&gt;
   Pseudo Filesystems ---&gt;
     [*] /proc file system support
     [*] /dev file system support (OBSOLETE)
-    [*]   Automatically mount at boot
+    [ ]   Automatically mount at boot
     [*] Virtual memory file system support (former shm fs)
 
 <comment>(Wybierz jedną lub kilka z tych opcji zależnie od używanych systemów
@@ -347,6 +352,16 @@ będzie wykrywał wszystko inne. Aby zemergować i uaktywnić <c>coldplug</c> wp
 <pre caption="Emergowanie i uruchamianie coldplug">
 # <i>emerge coldplug</i>
 # <i>rc-update add coldplug default</i>
+</pre>
+
+<p>
+Jeżeli chcesz, aby twój system reagował na zdarzenia hotplug musisz zainstalować
+i ustawić program hotplug:
+</p>
+
+<pre caption="Emergowanie i uruchamianie hotplug">
+ # <i>emerge hotplug</i>
+ # <i>rc-update add hotplug default</i>
 </pre>
 
 </body>
