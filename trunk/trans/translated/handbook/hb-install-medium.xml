@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.45 -->
+<!-- Orig revision: 1.46 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Wybór Właściwego Medium Instalacyjnego -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.14 2004/03/01 15:16:09 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.15 2004/03/03 14:17:23 lcs Exp $ -->
 
 <sections>
 <section>
@@ -343,7 +343,9 @@ Co one zawierają?
 Są to małe, uruchamialne płyty zawierające wszystko, co potrzebne do
 przeprowadzenia instalacji przez Internet. Nie zawierają żadnych stage
 (lub, w niektórych przypadkach, zawierają stage1), kodów źródłowych
-ani pakietów GRP.
+ani pakietów GRP. Wersję dla architektury x86 można odnaleźć
+w podkatalogu <path>universal</path>, w pliku o nazwie
+<c>install-x86-minimal-2004.0.iso</c>.
 </p>
 
 <table>
@@ -386,7 +388,10 @@ bez dostępu do sieci. Zawiera stage1, kilka odmian stage3
 (zoptymalizowanych dla różnych podarchitektur) oraz kody źródłowe,
 umożliwiające instalację od stage1 bez dostępu do sieci. Dla
 części architektur, na CD1 dostarczamy także stage2 oraz 
-zbiór prekompilowanych pakietów.
+zbiór prekompilowanych pakietów. Odmianę dla architektury
+x86 można znaleźć w podkatalogu <c>universal</c>,
+w pliku <c>install-x86-universal-2004.0.iso</c>.
+
 </p>
 <p>
 Na drugiej płycie znajdują się wyłącznie prekompilowane pakiety. Można
@@ -394,6 +399,8 @@ ją wykorzystać do instalacji oprogramowania już po zakończeniu
 stawiania systemu. Do instalacji systemu podstawowego wystarczy
 CD1, jednakże jeśli nie chcesz samodzielnie kompilować
 OpenOffice.org, Mozilli, KDE, GNOME itd., potrzebujesz także CD2.
+Odmianę dla podarchitektury Athlon-XP można odnaleźć w odpowiednim
+dla niej katalogu w pliku o nazwie <c>packages-athlon-xp-2004.0.iso</c>.
 </p>
 <p>
 Dostarczamy zarówno "domyślne" zestawy LiveCD, uruchamialne na wszystkich odmianach
@@ -599,15 +606,13 @@ Gentoo na każdym z naszych <uri link="/main/en/mirrors.xml">mirrorów</uri>.
 Odwiedź jeden z <uri
 link="/main/en/mirrors.xml">serwerów lustrzanych</uri> i przejdź do
 wybranego katalogu. Wewnątrz znajdziesz odpowiednio nazwane pliki.
-Są to pełne obrazy płyt, gotowe do nagrania na CD-R. Jeśli znajdziesz
-kilka, różniących się tylko datą w nazwie (np.
-<path>gentoo-2004.0-x86-20040121.iso</path>), weź ten najnowszy.
+Są to pełne obrazy płyt, gotowe do nagrania na CD-R. 
 </p>
 
 <p>
 Jeśli zastanawiasz się czy pobrane pliki są prawidłowe, czy też uszkodzone,
 możesz porównać ich sumę kontrolną MD5 z tą, którą dostarczamy razem z iso
-(na przykład <path>gentoo-2004.0-x86-20040121.iso.md5</path>). Do sprawdzania
+(na przykład <path>install-x86-minimal-2004.0.iso.md5</path>). Do sprawdzania
 sumy MD5 pod Linuksem/Uniksem służy program <c>md5sum</c>, natomiast
 pod Windowsem <uri link="http://www.md5summer.org">md5summer</uri>.
 </p>
