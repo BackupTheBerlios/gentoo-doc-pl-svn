@@ -6,7 +6,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.7 2004/01/03 10:17:27 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.8 2004/01/05 07:29:34 lcs Exp $ -->
 
 <sections>
 <section>
@@ -24,7 +24,7 @@ różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
 
 <p>
 Dla platformy x86 udostępniamy między innymi <c>vanilla-sources</c>
-(standardowe jądro, rozwijane przez developerów linuxa),
+(standardowe jądro, rozwijane przez developerów linuksa),
 <c>gentoo-sources</c> (jądro wzbogacone o łatki poprawiające
 wydajność), <c>gentoo-dev-sources</c> (jądro z serii 2.6
 z łatkami poprawiającymi wydajność, stabilność oraz funkcjonalność),
@@ -37,7 +37,7 @@ dla graczy), ...
 
 <p>
 Dla platformy Alpha udostępniamy <c>vanilla-sources</c> (standardowe
-jądro, rozwijane przez developerów linuxa), <c>alpha-sources</c>
+jądro, rozwijane przez developerów linuksa), <c>alpha-sources</c>
 (jądro zoptymalizowane dla użytkowników Alpha) oraz <c>compaq-sources</c>
 (jądro używane dla Alpha przez RedHat'a, rozwijane przez Compaq).
 </p>
@@ -491,7 +491,7 @@ Po ukończeniu budowania jądra, sprawdź jego rozmiar:
 <p>
 Jeśli (nieskompresowany) kernel zajmuje ponad 2.5Mb (dla Sparc32) lub 3.5Mb (dla
 Sparc64), będziesz musiał poprawić konfigurację aby go uszczuplić. Jednym
-ze sposobów nie-rezygnowania z funkcjonalności na korzyść rozmiarów jest
+ze sposobów nie rezygnowania z funkcjonalności na korzyść rozmiarów jest
 umieszczenie jej części w modułach. Zignorowanie tego ostrzeżenia może doprowadzić
 do stworzenia nie uruchamiającego się jądra.
 </p>
@@ -514,7 +514,7 @@ link="#compiling">Kompilacji i Instalacji</uri>.
 <title>Aktywacja opcji zalecanych dla MIPS</title>
 <body>
 <p>
-Jeśli twój system oparty jest na Indy/Indigo2, powinieneś włączyć dla niego wsparcie:
+Jeśli Twój system oparty jest na Indy/Indigo2, powinieneś włączyć dla niego wsparcie:
 </p>
 <pre caption="Aktywacja SGI IP22">
 Machine selection ---&gt;
@@ -646,7 +646,7 @@ link="#compiling">Kompilacji i Instalacji</uri>.
 <body>
 
 <p>
-Jeśli jesteś posiadaczem sprzętu wieloprocesorowego z Opteron'ami,
+Jeśli jesteś posiadaczem sprzętu wieloprocesorowego z Opteronami,
 powinieneś włączyć "Symmetric multi-processing support":
 </p>
 
@@ -715,7 +715,7 @@ także plik konfiguracyjny.
 # <i>cp .config /boot/config-2.4.22</i>
 </pre>
 <p>
-Jeśli jesteś użytkownikiem architektury MIPS, i twój system nie potrafi
+Jeśli jesteś użytkownikiem architektury MIPS, i Twój system nie potrafi
 korzystać z jąder ELF, skompiluj kernel poleceniem <c>make vmlinux.ecoff</c>
 zamiast <c>make vmlinux</c>. Obraz jądra zostanie zapisany nie jako
 <path>vmlinux</path>, ale <path>arch/mips/boot/vmlinux.ecoff</path>.
@@ -742,10 +742,10 @@ oznacza to także, że jesteś użytkownikiem platformy x86. Inne architektury
 <p>
 Po zainstalowaniu źródeł jądra, nadszedł czas na ich kompilację.
 <c>genkernel</c> dokonuje podobnej konfiguracji z jakiej korzysta LiveCD.
-Oznacza to, że jeśli go użyjesz to twój system będzie automatycznie wykrywał
+Oznacza to, że jeśli go użyjesz to Twój system będzie automatycznie wykrywał
 sprzęt w czasie startu. Ponieważ aby z niego korzystać, nie
 trzeba przeprowadzać żadnych ręcznych ustawień, jest on idealnym rozwiązaniem
-dla użytkowników z jakichś powodów nie chcący przeprowadzać samodzielnej
+dla użytkowników z jakichś powodów nie chcących przeprowadzać samodzielnej
 kompilacji.
 </p>
 
