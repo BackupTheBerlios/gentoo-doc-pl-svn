@@ -1,0 +1,189 @@
+<!-- Orig revision: 1.12 -->
+<!-- Translator: Aye <crytcheck@napisy.org> -->
+<!-- Title: Instalacja dodatkowych narzędzi -->
+<!-- Status: Ukończono -->
+
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-tools.xml,v 1.1 2003/12/23 22:13:13 aye Exp $ -->
+
+<sections>
+<section>
+<title>Program logujący</title>
+<body>
+
+<p>
+Gdy wspominaliśmy czym jest <e>stage3</e>, powiedzieliśmy że zawiera on
+wszystkie niezbędne narzędzia systemowe, dla których nie możemy
+zaoferować użytkownikowi żadnego wyboru. Powiedzieliśmy również, że w
+późniejszej fazie instalacji systemu dodamy kolejne narzędzia. Oto ten
+etap :)
+</p>
+
+<p>
+Pierwszym narzędziem, przy którym musisz dokonać wyboru jest program
+obsługi systemu logowania. Unix i Linux posiadają bogatą historię w tym
+zakresie. Jeżeli chcesz, możesz logować do plików wszystko, co dzieje się 
+w twoim systemie. Mechanizmem tym zarządza <e>program logujący</e>.
+</p>
+
+<p>
+Gentoo oferuje kilka róznych programów logujących: <c>sysklogd</c> -
+tradycyjny zestaw logujących deamonów, <c>msyslog</c> - elastyczny
+program o modułowej budowie, <c>syslog-ng</c> - zaawansowany program
+logujący oraz <c>metalog</c> charakteryzujący się dużą liczbą opcji
+konfiguracyjnych.
+</p>
+
+<p>
+Jeżeli nie potrafisz zdecydować, wybierz <c>syslog-ng</c>, który ma
+ogromne możliwości oraz bardzo dobrą domyślną konfigurację.
+</p>
+
+<p>
+Aby zainstalować program logujący, który wybrałeś, użyj polecenia <c>emerge</c>
+i dodaj go do domyślnego poziomu startowego (default runlevel) poprzez
+skrypt <c>rc-update</c>. Poniższy przykład przedstawia proces instalacji
+programu <c>syslog-ng</c>: 
+</p>
+
+<pre caption="Instalacja programu logującego">
+# <i>emerge --usepkg syslog-ng</i>
+# <i>rc-update add syslog-ng default</i>
+</pre>
+
+</body>
+</section>
+<section>
+<title>Opcjonalny: Cron Daemon</title>
+<body>
+
+<p>
+Następnym programem jest deamon Cron. Pomimo, że jest on opcjonalny i
+nie wymagany do poprawnej pracy systemu, zalecane jest jego
+zainstalowanie. Czym jest deamon Cron? Jest to program służący do
+wykonywania zaplanowanych poleceń w określonym czasie. Jest on bardzo 
+przydatny, gdy wykonujesz pewne czynności regularnie (na przykład 
+codziennie, co tydzień, co miesiąc).
+</p>
+
+<p>
+Gentoo oferuje trzy różne deamony crona: <c>dcron</c>, <c>fcron</c> oraz
+<c>vixie-cron</c>. Instalacja jednego z nich jest analogiczna do
+instalacji programu logującego, jednakże <c>dcron</c> i <c>frcon</c>
+wymagają dodatkowej konfiguracji (wykonywanej przez polecenie:
+<c>crontab /etc/crontab</c>). Jeżeli nie jesteś zdecydowany, którego
+programu użyć, wybierz <c>vixie-cron</c>.
+</p>
+
+<note>
+Jeżeli instalujesz Gentoo używając prekompilowanych pakietów, użyj
+<c>vcron</c> zamiast <c>vixie-cron</c>, ponieważ próba instalacji 
+<c>vixie-cron</c> zakończy się niepowodzeniem.
+</note>
+
+<pre caption="Instalacja deamona cron">
+# <i>emerge --usepkg vixie-cron</i>
+# <i>rc-update add vixie-cron default</i>
+<comment>(Jeżeli wybrałeś dcron lub fcron:)</comment> # <i>crontab /etc/crontab</i>
+</pre>
+
+</body>
+</section>
+<section>
+<title>Narzędzia obsługi systemu plików</title>
+<body>
+
+<p>
+W zależności od tego, jakiego systemu plików używasz, powinieneś
+zainstalować odpowiednie narzędzia do jego obsługi (do sprawdzania
+jego integralności, tworzenia dodatkowych systemów plików itp).
+<note> Od tłumacza: Jeżeli używasz różnych systemów plików na różnych
+partycjach, zainstaluj odpowiednie narzędzia dla każdego z nich</note>
+</p>
+
+<p>
+W poniższej tabeli przedstawiono narzędzia, których powinieneś użyć w
+zależności od systemu plików:
+</p>
+
+<table>
+<tr>
+  <th>System plików</th>
+  <th>Narzędzie</th>
+  <th>Polecenie instalujące</th>
+</tr>
+<tr>
+  <ti>XFS</ti>
+  <ti>xfsprogs</ti>
+  <ti><c>emerge --usepkg xfsprogs</c></ti>
+</tr>
+<tr>
+  <ti>ReiserFS</ti>
+  <ti>reiserfsprogs</ti>
+  <ti><c>emerge --usepkg reiserfsprogs</c></ti>
+</tr>
+<tr>
+  <ti>JFS</ti>
+  <ti>jfsutils</ti>
+  <ti><c>emerge --usepkg jfsutils</c></ti>
+</tr>
+</table>
+
+<p>
+Jeżeli korzystasz z LVM, powinieneś również zainstalować <c>lvm-user</c>:
+</p>
+
+<pre caption="Instalacja narzędzi LVM">
+# <i>emerge --usepkg lvm-user</i>
+</pre>
+
+<p>
+Jeżeli nie potrzebujesz <c>rp-pppoe</c> do połączenia z internetem,
+przejdź do <uri link="?part=1&amp;chap=11">Zakończenie instalacji Gentoo
+</uri>, w przeciwnym wypadku wybierz <uri link="#doc_chap4">Opcjonalnie: Narzędzia sieciowe</uri>.
+</p>
+
+</body>
+</section>
+<section>
+<title>Opcjonalnie: Narzędzia sieciowe</title>
+<body>
+
+<p>
+Jeżeli potrzebujesz <c>rp-pppoe</c>, aby połączyć się z internetem,
+będziesz musiał go zainstalować. Użytkownicy GRP (prekompilowanych
+pakietów) powinni wydać następujące polecenie:
+</p>
+
+<pre caption="Instalacja rp-pppoe dla użytkowników GRP">
+<comment>(Tylko użytkownicy GRP:)</comment>
+# <i>emerge --usepkgonly rp-pppoe</i>
+</pre>
+
+<p>
+Pozostali użytkownicy powinni posłużyć się poleceniem:
+</p>
+
+<pre caption="Instalacja rp-pppoe dla pozostałych użytkowników">
+# <i>USE="-X" emerge rp-pppoe</i>
+</pre>
+
+<p>
+Ustawienie <c>USE="-X"</c> zapobiegnie instalacji pakietu XFree poprzez
+zależności (<c>rp-pppoe</c> posiada narzędzia graficzne; jeżeli chcesz z
+nich korzystać, możesz przekompilować <c>rp-pppoe</c> po instacji
+serwera XFree lub zainstalować go teraz, jednak jego kompilacja zajmie
+dużo czasu).
+</p>
+
+<p>
+Teraz jesteś już gotowy do przejścia do <uri
+link="?part=1&amp;chap=11">Zakończenie instalacji Gentoo</uri>.
+</p>
+
+</body>
+</section>
+</sections>
