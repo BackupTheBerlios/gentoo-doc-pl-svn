@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE book SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.40 -->
+<!-- Orig revision: 1.104 -->
 <!-- Translator: sekretarz <sekretarz@dukato.net> -->
 <!-- Title: Podręcznik Gentoo Linux/HPPA -->
 <!-- Status: Ukończono -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/handbook-hppa.xml,v 1.3 2004/07/12 19:07:07 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/handbook-hppa.xml,v 1.4 2004/10/30 14:44:24 sekretarz Exp $ -->
 
 <book link="handbook-hppa.xml">
 <title>Podręcznik Gentoo Linux/HPPA</title>
 
-<author title="Chief Architect">
-    <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
-</author>
 <author title="Author">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
+</author>
+<author title="Chief Architect">
+    <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
 </author>
 <author title="Author">
   <mail link="chouser@gentoo.org">Chris Houser</mail>
@@ -33,7 +33,7 @@
   <mail link="agriffis@gentoo.org">Aron Griffis</mail>
 </author>
 <author title="Gentoo AMD64 Developer">
-  <mail link="brad_mssw@gentoo.org">Brad House</mail>
+ <mail link="jhuebel@gentoo.org">Jason Huebel</mail>
 </author>
 <author title="Gentoo HPPA developer">
   <mail link="gmsoft@gentoo.org">Guy Martin</mail>
@@ -90,6 +90,9 @@
 <author title="Editor">
   <mail link="kumba@gentoo.org">Joshua Kinard</mail>
 </author>
+<author title="Editor">
+  <mail link="dertobi123@gentoo.org">Tobias Scherbaum</mail>
+</author>
 <author title="Reviewer">
     <mail link="g2boojum@gentoo.org">Grant Goodyear</mail>
 </author>
@@ -111,11 +114,11 @@ To jest Podręcznik Gentoo, wysiłek zcentralizowania informacji o Gentoo/Linux.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.0 -->
 <license/>
 
-<version>2.38</version>
-<date>July 9, 2004</date>
+<version>3.2</version>
+<date>October 23, 2004</date>
 
 <part>
 <title>Instalacja Gentoo</title>
@@ -135,7 +138,7 @@ Użytkownicy, którzy nie spotkali się jeszcze z Gentoo, nie wiedzą pewnie, ż
 <title>Wybór odpowiedniego medium instalacyjnego</title>
 <abstract>
 Możesz zainstalować Gentoo na wiele różnych sposobów. Ten rozdział tłumaczy, jak zainstalować Gentoo
-używając jedną z naszych LiveCD.
+używając jednej z naszych LiveCD.
 </abstract>
   <include href="hb-install-hppa-medium.xml"/>
 </chapter>
@@ -216,7 +219,7 @@ zainstalować najważniejsze narzędzia.
 <title>Zakończenie instalacji Gentoo</title>
 <abstract>
 Już prawie wszystko skończone. Musimy jeszcze tylko utworzyć jednego (lub więcej) użytkowników
-dla Twojego systemu i opóścić instalację, żeby uruchomić nowy system Gentoo.
+dla Twojego systemu i (opcjonalnie) zainstalować prekompilowane pakiety. 
 </abstract>
   <include href="hb-install-finalise.xml"/>
 </chapter>
@@ -238,6 +241,14 @@ zachowania Portage, itp.
 </abstract>
 
 <chapter>
+<title>Wstęp do portage</title>
+<abstract>
+Wszytko to co musisz wiedzieć na temat Portage, aby zarzadzać systemem.
+</abstract>
+  <include href="hb-working-portage.xml"/>
+</chapter>
+
+<chapter>
 <title>Flagi USE</title>
 <abstract>
 Flagi USE są bardzo ważnym aspektem Gentoo. W tym rozdziale nauczysz się pracy
@@ -247,31 +258,11 @@ z nimi i zrozumiesz jak flagi te wpływają na Twój system.
 </chapter>
 
 <chapter>
-<title>Portage i programy</title>
+<title>Funkcjonalność Portage</title>
 <abstract>
-Podstawowym zadaniem Portage jest zarządzanie programami na Twoim systemie. W tym
-rozdziale nauczysz się pobierania informacji o pakietach, aktualizowania bazy danych
-pakietów, instalacji/usuwania/aktualizowania programów i wiele więcej...
-</abstract>
-  <include href="hb-working-portage.xml"/>
-</chapter>
-
-<chapter>
-<title>Cechy Portage</title>
-<abstract>
-Portage ma kilka cech, które polepszają jego działanie, jak na przykład szybkość kompilacji.
-Ten rozdział pokazuje te cechy.
+Odkryj funkcje, które posiada Portage.
 </abstract>
   <include href="hb-working-features.xml"/>
-</chapter>
-
-<chapter>
-<title>Kontrola Zachowania Portage</title>
-<abstract>
-Możesz dostosować Portage do własnych potrzeb/środowiska. Naucz się ochraniać swoich plików,
-wybierać mirrory, zmieniać lokalizację katalogów i wiecej.
-</abstract>
-  <include href="hb-working-behaviour.xml"/>
 </chapter>
 
 <chapter>
@@ -295,4 +286,67 @@ zmienne.
 </chapter>
 </part>
 
+<part>
+<title>Praca z Portage</title>
+<abstract>
+Rozdział ten odkryje przed Tobą wnętrze Portage, Narzedzia do Zarządzania
+Programami Gentoo.
+</abstract>
+
+<chapter>
+<title>Pliki i Katalogi</title>
+<abstract>
+Jeżeli chcesz poznać Portage "od kuchni" musisz wiedzieć gdzie przechowywane są jego pliki.
+</abstract>
+    <include href="hb-portage-files.xml"/>
+</chapter>
+
+<chapter>
+    <title>Konfiguracja Portage</title>
+<abstract>
+Portage pozwala na konfigurację poprzez różne zmienne, które możesz ustawiać w plikach
+konfiguracyjnych oraz poprzez zmienne środowiskowe.
+</abstract>
+     <include href="hb-portage-configuration.xml"/>
+</chapter>
+
+<chapter>
+<title>Mixing Software Branches</title>
+<abstract>
+Gentoo provides software separated in several branches, depending on stability
+and architectural support. "Mixing Software Branches" inform you how these
+branches can be configured and how you can override this separation
+individually.
+</abstract>
+ <include href="hb-portage-branches.xml"/>
+</chapter>
+	   
+<chapter>
+<title>Dodatkowe narzędzia Portage</title>
+<abstract>
+Portage zawiera sporo narzędzi, które są bardzo przydatne w życiu codziennym.
+Przeczytaj ten rozdział, żeby dowiedzieć się jak używać dispatch-conf oraz innych narzędzi.
+</abstract>
+  <include href="hb-portage-tools.xml"/>
+</chapter>
+
+<chapter>
+<title>Pozostawiając oficjalne Drzewo Portage</title>
+<abstract>
+Rozdział ten pokazuje pare sztuczek, jak używać swojego własnego drzewa Portage,
+synchronizować tylko te kategorie, które chesz, injetować pakiety oraz wiele wiecej.
+</abstract>
+     <include href="hb-portage-diverttree.xml"/>
+</chapter>
+
+<chapter>
+<title>Program Ebuild</title>
+<abstract>
+Rozdział "Program Ebuild" informuje cię jak Portage instaluje programy i jak możesz
+instalować pakiety "z palca" używając tego programu
+</abstract>
+     <include href="hb-portage-ebuild.xml"/>
+</chapter>
+</part>
+	       
 </book>
