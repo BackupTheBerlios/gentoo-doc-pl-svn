@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
-
-<!-- Orig revision: 1.46 -->
+<!-- Orig revision: 1.48 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Wybór Właściwego Medium Instalacyjnego -->
 <!-- Status: Ukończono -->
@@ -9,7 +8,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.15 2004/03/03 14:17:23 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.16 2004/03/06 09:39:41 lcs Exp $ -->
 
 <sections>
 <section>
@@ -586,7 +585,7 @@ Gentoo na każdym z naszych <uri link="/main/en/mirrors.xml">mirrorów</uri>.
 </tr>
 <tr>
   <ti>ppc</ti>
-  <ti><path>releases/ppc/1.4/livecd</path></ti>
+  <ti><path>releases/ppc/2004.0/livecd</path></ti>
 </tr>
 <tr>
   <ti>hppa</ti>
@@ -771,10 +770,6 @@ ustawienia. Poniższa tabela przestawia ich listę.
   <ti>Aktywuje wsparcie dla urządzeń FireWire</ti>
 </tr>
 <tr>
-  <ti>dokeymap</ti>
-  <ti>Pyta użytkownika o ustawienia klawiatury (domyślnie: us)</ti>
-</tr>
-<tr>
   <ti>dopcmcia</ti>
   <ti>Aktywuje wsparcie dla PCMCIA</ti>
 </tr>
@@ -843,6 +838,21 @@ powinieneś zobaczyć prompt superużytkownika (&quot;#&quot;). Dostępne
 będą również inne konsole, można się między nimi przełączać naciskając
 Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
 </p>
+
+<p>
+Jeśli używasz klawiatury innej niż amerykańska, skorzystaj
+z <c>loadkeys</c> aby załadować odpowiednią mapę klawiszy.
+Żeby wyświetlić listę dostępnych, uruchom
+<c>ls /usr/share/keymaps</c>.
+</p>
+
+<pre caption="Wyświetlanie dostępnych map klawiszy">
+# <i>ls /usr/share/keymaps</i>
+</pre>
+
+<pre caption="Ładowanie mapy klawiszy">
+# <i>loadkeys be2-latin1</i>
+</pre>
 
 <p>
 Teraz przejdź do <uri link="#doc_chap3_sect7">Konfiguracji Dodatkowego Sprzętu</uri>.
@@ -1138,7 +1148,9 @@ z <c>loadkeys</c> aby załadować odpowiednią mapę klawiszy.
 <pre caption="Wyświetlanie dostępnych map klawiszy">
 # <i>ls /usr/share/keymaps</i>
 </pre>
-
+<p>
+Następnie załaduj wybraną mapę klawiszy.
+</p>
 <pre caption="Ładowanie mapy klawiszy">
 # <i>loadkeys be2-latin1</i>
 </pre>
