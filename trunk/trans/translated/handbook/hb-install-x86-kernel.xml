@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?> 
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.29 -->
+<!-- Orig revision: 1.31 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Konfiguracja jądra dla x86 -->
 <!-- Status: Release -->
@@ -9,13 +9,13 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.19 2004/12/23 11:41:45 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.20 2004/12/23 21:41:04 rane Exp $ -->
 
 
 <sections>
 
-<version>1.25</version>
-<date>2004-12-02</date>
+<version>1.26</version>
+<date>2004-12-22</date>
 
 <section>
 <title>Strefa czasowa.</title>
@@ -86,7 +86,7 @@ nazwie <path>linux</path>, wskazujący na źródła Twojego aktualnego kernela:
 
 <pre caption="Podgląd symlinka do źródeł kernela">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.4.26-gentoo-r6
+lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux-&gt;linux-2.4.26-gentoo-r9
 </pre>
 
 <p>
@@ -98,7 +98,7 @@ do dalszych części tego dokumentu.
 <pre caption="Zmiana dowiązania symbolicznego do źródeł jądra">
 # <i>rm /usr/src/linux</i>
 # <i>cd /usr/src</i>
-# <i>ln -s linux-2.4.26-gentoo-r6 linux</i>
+# <i>ln -s linux-2.4.26-gentoo-r9 linux</i>
 </pre>
 
 <p>
@@ -328,8 +328,8 @@ przy konfiguracji bootloadera.
 </p>
 
 <pre caption="Instalowanie kernela">
-# <i>cp arch/i386/boot/bzImage /boot/kernel-2.4.26-gentoo-r6</i>
-# <i>cp System.map /boot/System.map-2.4.26-gentoo-r6</i>
+# <i>cp arch/i386/boot/bzImage /boot/kernel-2.4.26-gentoo-r9</i>
+# <i>cp System.map /boot/System.map-2.4.26-gentoo-r9</i>
 </pre>
 
 <p>
@@ -338,7 +338,7 @@ posłużył do zbudowania jądra.
 </p>
 
 <pre caption="Tworzenie kopii zapasowej konfiguracji jądra">
-# <i>cp .config /boot/config-2.4.26-gentoo-r6</i>
+# <i>cp .config /boot/config-2.4.26-gentoo-r9</i>
 </pre>
 
 <p>
