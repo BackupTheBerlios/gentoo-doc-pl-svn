@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- Orig revision: 1.45 -->
+<!-- Translator: rane <rane@gentoo.pl> -->
+<!-- Title: Konfiguracja Jądra dla PPC -->
+<!-- Status: Ukończono -->
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc-kernel.xml,v 1.1 2004/12/02 16:41:05 rane Exp $ -->
+
+<sections>
+
+<version>1.14</version>
+<date>2004-12-02</date>
+
+<section>
+<title>Strefa czasowa</title>
+<body>
+
+
+<p>
+Aby system wiedział gdzie się znajdujesz, powinieneś najpierw wybrać swoją
+strefę czasową. Odszukaj ją w <path>/usr/share/zoneinfo</path>, a następnie
+za pomocą <c>ln</c>, utwórz do niej symlinka <path>/etc/localtime</path>.
+</p>
+
+<pre caption="Konfiguracja strefy czasowej">
+# <i>ls /usr/share/zoneinfo</i>
+<comment>(Jeśli chcesz wybrać GMT)</comment>
+# <i>ln -sf /usr/share/zoneinfo/GMT /etc/localtime</i>
+</pre>
+
+</body>
+</section>
+<section>
+<title>Instalacja Źródeł</title>
+<subsection>
+<title>Wybór Jądra</title>
+<body>
+
+<p>
+Sercem każdej dystrybucji jest jądro Linux. Stanowi ono interfejs pomiędzy
+programami użytkownika a sprzętem. Gentoo dostarcza użytkownikom
+różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
+<uri link="/doc/en/gentoo-kernel.xml">Przewodniku Jąder Gentoo</uri>.
+</p>
+
+<p>
+Dla architektury PPC mamy do wyboru dwa kernele: <c>development-sources</c> i <c>gentoo-dev-sources</c> (oba serii 2.6). Drugi jest dostępny dla instalacji bez dostępu do sieci. Poza tym istnieje też specjalny patchset dla Pegasosa - <c>pegasos-dev-sources</c> (również serii 2.6). Wybierzmy zatem któryś kernel i zainstalujmy go:
+</p>
+
+<pre caption="Instalacja źródeł kernela">
+# <i>emerge gentoo-dev-sources</i>
+</pre>
+
+<p>
+W katalogu <path>/usr/src</path> powinieneś utworzyć symlink o nazwie <c>linux</c> wskazujący na katalog ze źródłami kernela:
+</p>
+
+<pre caption="Jak powinien wyglądać symlink do źródeł kernela">
+# <i>ls -l /usr/src/linux</i>
+lrwxrwxrwx    1 root     root           12 Jul 10 10:55 /usr/src/linux -&gt; linux-2.6.9
+</pre>
+
+<p>
+Jeśli powyższe informacje nie są prawidłowe (np. symlink wskazuje na inne źródła kernela) musisz go poprawić:
+</p>
+
+<pre caption="Poprawa symlinka do źródeł kernela">
+# <i>rm /usr/src/linux</i>
+# <i>cd /usr/src</i>
+# <i>ln -s linux-2.6.9 linux</i>
+</pre>
+
+<p>
+Nadeszła pora na ręczne skonfigurowanie i skompilowanie źródeł kernela.
+</p>
+
+<p>
+Przejdź do paragrafu <uri link="#manual">Ręczna konfiguracja</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+<section id="manual">
+<title>Ręczna konfiguracja</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<p>
+Ręczna konfiguracja jądra często postrzegana jest jako najtrudniejsza rzecz, przez którą przejść musi każdy użytkownik Linuksa. Nic bardziej mylnego - po konfiguracji kilku kerneli zapomnisz, że miałeś z tym jakiekolwiek problemy ;)
+</p>
+
+<p>
+Jednemu <e>nie można</e> zaprzeczyć: musisz dobrze znać swój komputer zanim rozpoczniesz ręczną konfigurację. Większość informacji zdobędziesz przeglądając zawartość <path>/proc/pci</path> (lub używając <c>lspci</c> jeśli jest dostępne). Aby przejrzeć listę modułów, których używa LiveCD skorzystaj z <c>lsmod</c> (to dobra wskazówka dotycząca rzeczy wartych włączenia).
+</p>
+
+<p>
+Teraz przejdź do katalogu ze źródłami i uruchom <c>make menuconfig</c>. Uruchomi się narzędzie konfiguracyjne oparte na ncurses.
+</p>
+
+<pre caption="Uruchamianie menuconfig">
+# <i>cd /usr/src/linux</i>
+# <i>make menuconfig</i>
+</pre>
+
+<p>
+Twoim oczom ukaże się kilkanaście sekcji. Zacznijmy od pokazania tych opcji, które musisz aktywować (w przeciwnym wypadku Gentoo nie zadziała, lub zadziała nieprawidłowo).
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Aktywacja Niezbędnych Opcji</title>
+<body>
+
+<p>
+Przede wszystkim, włącz możliwość korzystania z kodu/sterowników rozwojowych i eksperymentalnych. Jeśli tego nie zrobisz, nie będziesz mógł włączyć wielu ważnych opcji: 
+</p>
+
+<pre caption="Aktywacja eksperymentalnego kodu/sterowników">
+Code maturity level options ---&gt;
+  [*] Prompt for development and/or incomplete code/drivers 
+</pre>
+
+<p>
+Następnie przejdź do <c>File Systems</c> i zaznacz wsparcie dla wykorzystywanych
+systemów plików. <e>Nie</e> kompiluj ich jako moduły, gdyż Gentoo nie będzie
+mogło zamontować partycji. Dodatkowo włącz <c>Virtual memory</c>, <c>/proc
+file system</c>, oraz <c>/dev file system</c> + <c>Automatically mount at boot</c>:
+</p>
+
+<pre caption="Wybór niezbędnych systemów plików">
+File systems ---&gt;
+  [*] Virtual memory file system support (former shm fs)
+  [*] /proc file system support
+  [*] /dev file system support (EXPERIMENTAL)
+  [*]   Automatically mount at boot
+
+<comment>(Odznacz tę opcję jeśli nie posiadasz jądra 2.6)</comment>
+  [ ] /dev/pts file system for Unix98 PTYs
+
+<comment>(Wybierz jedno lub więcej z poniższych ustawień w zależności od wymagań)</comment>
+  &lt;*&gt; Reiserfs support
+  &lt;*&gt; Ext3 journalling file system support
+  &lt;*&gt; JFS filesystem support
+  &lt;*&gt; Second extended fs support
+  &lt;*&gt; XFS filesystem support
+</pre>
+		    
+
+<p>
+Jeśli do połączenia z Internetem używasz PPPoE lub modemu dial-up, powinieneś wybrać następujące opcje:
+</p>
+
+<pre caption="Wybór niezbędnych sterowników PPPoE">
+Network device support ---&gt;
+  &lt;*&gt; PPP (point-to-point protocol) support
+  &lt;*&gt;   PPP support for async serial ports
+  &lt;*&gt;   PPP support for sync tty ports
+</pre>
+
+<p>
+Dwie kolejne opcje, dotyczące kompresji nie zaszkodzą, jakkolwiek nie są również wymagane. Podobnie jak <c>PPP over Ethernet</c>, przydatna  tylko wówczas, kiedy do pracy w trybie jądra PPPoE zostanie skonfigurowany <c>rp-pppoe</c>.
+</p>
+
+<p>
+Jeśli taką posiadasz, nie zapomnij o wkompilowaniu wsparcia dla swojej karty sieciowej.
+</p>
+
+<p>
+Przede wszystkim, wyłącz wsparcie dla kodów klawiszy ADB:
+</p>
+
+<pre caption="Wyłączanie wsparcia dla kodów klawiszy ADB">
+Macintosh Device Drivers ---&gt;
+ [ ] Support for ADB raw keycodes
+</pre>
+  
+<p>
+Wybierz również prawidłową obsługę RTC (<e>wyłącz</e> opcję <c>Enhaced RTC</c>):
+</p>
+
+<pre caption="Aktywacja prawidłowej obsługi RTC">
+Character devices ---&gt;
+  [ ] Enhanced RTC
+
+  General setup ---&gt;
+  [*] Support for /dev/rtc
+</pre>
+    
+<p>
+Użytkownicy sprzętu OldWorld prawdopodobnie zechcą obsługi HFS, aby mogli
+skopiować gotowe jądra na partycję MacOS.
+</p>
+
+<pre caption="Aktywacja wsparcia dla HFS">
+File Systems ---&gt;
+  [*] HFS Support
+</pre>
+
+<p>
+Po ukończeniu konfiguracji jądra, przejdź do <uri
+link="#compiling">Kompilacji i Instalacji</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection id="compiling">
+<title>Kompilacja i Instalacja</title>
+<body>
+
+<p>
+Nadszedł czas na kompilację i instalację naszego jądra. Opuść program konfiguracyjny i wykonaj polecenie:
+</p>
+
+<pre caption="Kompilacja jądra">
+# <i>make all &amp;&amp; make modules_install</i>
+</pre>
+
+<p>
+Następnie skopiuj obraz kernela do <path>/boot</path>.
+</p>
+
+<pre caption="Instalacja jądra">
+<comment>zastąp 2.6.9 wersją swojego kernela</comment>
+(Apple/IBM)  # <i>cp vmlinux /boot/kernel-2.6.9</i>
+(Pegasos)    # <i>cp arch/ppc/boot/images/zImage.chrp /boot/kernel-2.6.9</i>
+</pre>
+
+<p>
+Nie zapomnij też o skopiowaniu pliku system.map:
+</p>
+
+<pre caption="Kopiowanie pliku system.map">
+# <i>cp System.map /boot/System.map-2.6.9</i>
+</pre>
+
+<p>
+Na wszelki wypadek, warto skopiować do <path>/boot</path> także plik konfiguracyjny.
+</p>
+
+<pre caption="Archiwizacja pliku konfiguracyjnego">
+# <i>cp .config /boot/config-2.6.9</i>
+</pre>
+
+<p>
+Następnie przejdź do paragrafu <uri link="#kernel_modules">Instalacja osobnych modułów kernela</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+<section id="kernel_modules">
+<title>Instalacja osobnych modułów kernela</title>
+<subsection>
+<title>Konfiguracja modułów</title>
+<body>
+
+<p>
+Powinieneś wpisać do <path>/etc/modules.autoload.d/kernel-2.4</path>
+(lub <path>kernel-2.6</path>)
+listę wszystkich modułów, które mają być ładowane podczas startu.
+Możesz również podać do nich dodatkowe opcje.
+</p>
+
+<p>
+Aby wyświetlić listę dostępnych modułów, uruchom <c>find</c> z podanymi
+parametrami. Nie zapomnij zamienić "&lt;wersja jądra&gt;" wersją
+świeżo skompilowanego kernela:
+</p>
+
+<pre caption="Wyświetlanie dostępnych modułów">
+# <i>find /lib/modules/&lt;kernel version&gt;/ -type f -iname '*.o' -or -iname '*.ko'</i>
+</pre>
+
+<p>
+Na przykład, aby automatycznie podczas startu ładować moduł <c>3c59x.o</c>,
+wpisz jego nazwę do pliku <path>kernel-2.4</path> lub <path>kernel-2.6</path>.
+</p>
+
+
+<pre caption="Edycja /etc/modules.autoload.d/kernel-2.6">
+# <i>nano -w /etc/modules.autoload.d/kernel-2.6</i>
+</pre>
+
+<pre caption="/etc/modules.autoload.d/kernel-2.6">
+3c59x
+</pre>
+
+<p>
+Następnie wykonaj <c>modules-update</c>, żeby zaktualizować
+<path>/etc/modules.conf</path>:
+</p>
+
+<pre caption="Uruchamianie modules-update">
+# <i>modules-update</i>
+</pre>
+
+<p>
+Przejdź teraz do <uri link="?part=1&amp;chap=8">Konfiguracji
+Systemu</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+</sections>
