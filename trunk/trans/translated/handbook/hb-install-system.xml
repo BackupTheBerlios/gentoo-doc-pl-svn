@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.38 -->
+<!-- Orig revision: 1.53 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Instalacja Systemu Podstawowego -->
 <!-- Status: Ukończono -->
-<!-- Update from 1.32 to 1.38: sekretarz <sekretarz@dukato.net> -->
+<!-- Update from 1.32 to 1.53: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.13 2004/07/11 14:52:56 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.14 2004/11/03 23:43:42 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -26,8 +26,14 @@ zarówno dla Portage, jak i do pobierania źródeł (oczywiście w przypadku gdy
 połączenie sieciowe):
 </p>
 
+<warn>
+Istnieje bład w programie mirrorslect, który może powodować dodanie śmieci po
+deklaracji GENTOO_MIRRORS. Otwórz plik <path>/mnt/gentoo/etc/make.conf</path>
+i sprawdz czy istnieją te śmieci, jeżeli tak, to usuń je.
+</warn>
+
 <pre caption="Wybieranie najszybszych serwerów">
-# <i>mirrorselect -a -s4 -o | grep -ve '^Netselect' &gt;&gt; /mnt/gentoo/etc/make.conf</i>
+# <i>mirrorselect -a -s4 -o | grep 'GENTOO_MIRRORS=' &gt;&gt; /mnt/gentoo/etc/make.conf</i>
 </pre>
 
 <p>
@@ -57,7 +63,21 @@ sieci.
 </body>
 </subsection>
 <subsection>
-
+<title>Montowanie systemu plików proc</title>
+<body>
+	   	 
+<p>
+Zamontuj system plików <path>/proc</path> do <path>/mnt/gentoo/proc</path>, aby umożliwić
+instalacji używania informacji dostarczanych przez jądro także w środowisku chrootowanym.
+</p>
+							   	 
+<pre caption="Montowanie /proc">
+ # <i>mount -t proc none /mnt/gentoo/proc</i>
+</pre>
+					   	 
+</body>
+</subsection>
+<subsection>
 <title>Zmiana środowiska</title>
 <body>
 
@@ -80,7 +100,7 @@ Ostatecznie, wczytujemy te zmienne do pamięci poleceniem <c>source</c>.
 <pre caption = "Zmiana środowiska poprzez chroot">
 # <i>chroot /mnt/gentoo /bin/bash</i>
 # <i>env-update</i>
-Regenerating /etc/ld.so.cache...
+* Caching service dependencies...
 # <i>source /etc/profile</i>
 </pre>
 
@@ -93,19 +113,19 @@ jeszcze kilka rozdziałów podręcznika instalacji :-)
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Aktualizacja Portage</title>
+<title>Opcjonalnie: Aktualizacja drzewa Portage</title>
 <body>
 
 <p>
 Jeśli nie zainstalowałeś w poprzednim rozdziale migawki Portage, 
 musisz pobrać ostatnią migawkę Portage z Internetu. 
-<c>emerge sync</c> zrobi to dla Ciebie. Inni użytkownicy powinni 
+<c>emerge --sync</c> zrobi to dla Ciebie. Inni użytkownicy powinni 
 pominąć tą sekcję i przejść do 
 <uri link="#configure_USE">Konfiguracji zmiennych USE</uri>.
 </p>
 
-<pre caption="Aktualizowanie Portage">
-# <i>emerge sync</i>
+<pre caption="Aktualizowanie drzewa Portage">
+# <i>emerge --sync</i>
 </pre>
 
 <p>
@@ -114,7 +134,7 @@ polecenie zakończy się niepowodzeniem przez firewalla, użyj <c>emerge-websync
 ściąga i instaluje migawke portage i używa do tego celu protokołu HTTP.
 </p>
 
-<pre caption="Updating Portage with emerge-webrsync">
+<pre caption="Aktualizacja drzewa Portage poprzez emerge-webrsync">
 # <i>emerge-webrsync</i>
 </pre>
 
@@ -167,18 +187,18 @@ zostałoby to nadpisane przy aktualizacji Portage!
 
 <p>
 Pełny opis dotyczący <c>USE</c> znajduje się w drugiej części Podręcznika Gentoo,
-<uri link="?part=2&amp;chap=1">Rozdział 1: Flagi USE</uri>.
+<uri link="?part=2&amp;chap=2">Flagi USE</uri>.
 Kompletną charakterystykę dostępnych flag USE posiadasz już w pliku
 <path>/usr/portage/profiles/use.desc</path>.
 </p>
 
 <pre caption="Przegląd dostępnych flag USE">
 # <i>less /usr/portage/profiles/use.desc</i>
+<comment>(Użyj strzałek aby przewijać plik, by wyjść naciśnij 'q')</comment>
 </pre>
 
 <p>
-Jako przykład
-przedstawimy flagi <c>USE</c> dla systemu bazującego na KDE ze wsparciem
+Jako przykład przedstawimy flagi <c>USE</c> dla systemu bazującego na KDE ze wsparciem
 dla DVD, ALSA i nagrywania CD:
 </p>
 
@@ -188,6 +208,28 @@ dla DVD, ALSA i nagrywania CD:
 
 <pre caption="Ustawienia USE">
 USE="-gtk -gnome qt kde dvd alsa cdr"
+</pre>
+
+<p>
+Najprawdopodobniej będziesz używał tylko jedej albo dwóch lokalizacji na swoim systemie.
+Po kompilacji <c>glibc</c> dostępne są wszystkie lokalizacje jakie zostały stworzone.
+Możesz teraz aktywować flagę USE <c>userlocales</c> i zdecydować w pliku <c>/etc/locales.build</path>, których lokali będziesz tak
+naprawde potrzebował.
+</p>
+
+<pre caption="Aktywacja flagi userlocales specjalnie dla glibc">
+echo "sys-libs/glibc userlocales" >> /etc/portage/package.use
+</pre>
+
+<p>
+Teraz zdecyduj, których lokali będziesz używał:
+</p>
+
+<pre caption="nano -w /etc/locales.build">
+en_US/ISO-8859-1
+en_US.UTF-8/UTF-8
+de_DE/ISO-8859-1
+de_DE@euro/ISO-8859-15
 </pre>
 
 </body>
@@ -261,40 +303,7 @@ kompilatorów GNU i kilku innych kluczowych programów.
 <p>
 Zanim rozpoczniemy bootstrap, wymienimy kilka opcji, które możesz wybrać
 lub odrzucić. Jeśli nie chcesz tego czytać, przejdź do <uri
-link="#doc_chap3_sect4">Bootstrap systemu</uri>.
-</p>
-
-</body>
-</subsection>
-<subsection>
-<title>Opcjonalnie: skrócenie czasu kompilacji</title>
-<body>
-
-<p>
-Jeśli chcesz przyspieszyć bootstrap, możesz tymczasowo odznaczyć
-flagę java. To oznacza, że biblioteka GNU C oraz zestaw kompilatorów GNU
-zostaną skompilowane bez obsługi języka java (co znacząco skróci czas kompilacji).
-Mimo, iż nie będziesz mieć kompilatora GNU Java (<c>gcj</c>), <e>nie</e> znaczy to,
-że Twój system nie będzie w stanie używać apletów javy oraz innych skojarzonych
-z javą rzeczy.
-</p>
-
-<p>
-Aby tymczasowo wyłączyć obsługę javy, ustaw <e>USE="-java"</e> zanim
-odpalisz skrypt instalacyjny.
-</p>
-
-<pre caption = "Wyłączenie wsparcia javy">
-# <i>export USE="-java"</i>
-</pre>
-
-<p>
-Nie zapomnij usunąć zmiennej po tym, jak wykonasz bootstrap:
-</p>
-
-<pre caption="Usuwanie zmiennej USE">
-# <i>unset USE</i>
-</pre>
+link="#bootstrap">Bootstrap systemu</uri>.
 
 </body>
 </subsection>
@@ -319,7 +328,7 @@ wszystkich niezbędnych plików.
 
 </body>
 </subsection>
-<subsection>
+<subsection id="bootstrap">
 <title>Bootstrap systemu</title>
 <body>
 
@@ -332,15 +341,6 @@ czasu zanim się zakończy.
 <pre caption = "Bootstrap systemu">
 # <i>cd /usr/portage</i>
 # <i>scripts/bootstrap.sh</i>
-</pre>
-
-<p>
-Jeśli zastąpiłeś poprzednio ustawienia <c>CHOST</c> w <path>/etc/make.conf</path>
-musisz odtworzyć kilka zmiennych, żeby <c>gcc</c> działał szybko:
-</p>
-
-<pre caption="Odnowienie zmiennych środowiskowych">
-# <i>source /etc/profile</i>
 </pre>
 
 <p>
@@ -426,7 +426,7 @@ naprawdę czasochłonny.
 Póki co możesz bezpiecznie zignorować ostrzeżenia o zaktualizowanych plikach
 konfiguracyjnych (i potrzebie uruchomienia <c>etc-update</c>). Kiedy Twoje Gentoo
 zostanie zainstalowane i uruchomione, przeczytaj naszą dokumentację dotyczącą
-<uri link="?part=2&amp;chap=4#doc_chap1">Ochrony plików konfiguracyjnych</uri>.
+<uri link="?part=3&amp;chap=2#doc_chap3">Ochrony plików konfiguracyjnych</uri>.
 </p>
 
 <p>
