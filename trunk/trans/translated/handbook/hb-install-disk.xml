@@ -6,7 +6,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.4 2004/01/03 10:05:49 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.5 2004/01/04 19:47:25 lcs Exp $ -->
 
 <sections>
 <section>
@@ -24,7 +24,7 @@ wykorzystać dostępną przestrzeń.
 
 <p>
 Zaczniemy od omówienia <e>urządzeń blokowych</e>. Najpopularniejszym z nich
-prawdopodobnie jest <path>/dev/hda</path>, reprezentujący w Linuxie pierwszy 
+prawdopodobnie jest <path>/dev/hda</path>, reprezentujący w Linuksie pierwszy 
 napęd IDE. Jeśli posiadasz urządzenia SCSI, pierwszym takim
 dyskiem jest <path>/dev/sda</path>.
 </p>
@@ -45,7 +45,7 @@ za jako ciąg 512-bajtowych bloków.
 <p>
 Jakkolwiek teoretycznie możliwe jest przeznaczenie na system całego dysku,
 zazwyczaj nie jest to rozwiązanie praktyczne. Zamiast tego, dzieli się
-napęd na mniejsze, łatwiejsze w zarządzaniu urządzenia blokowe.
+napęd na mniejsze, łatwiejsze w zarządzaniu, urządzenia blokowe.
 W większości platform nazywane są one <e>partycjami</e>. Część architektur,
 korzystająca z podobnych technik nazywa je <e>plastrami</e>.
 </p>
@@ -119,7 +119,7 @@ czymś w rodzaju wirtualnych partycji.
 
 <p>
 Woluminów logicznych używamy jak zwyczajnych partycji; jakkolwiek,
-jeśli na jednym z nich zabraknie miejsca możesz go rozszerzyć korzystając z wolnej
+jeśli na jednym z nich zabraknie miejsca, możesz go rozszerzyć korzystając z wolnej
 przestrzeni znajdującej się w grupie woluminów. Jeżeli grupa woluminów
 również okaże się zbyt mała, dodać do niej możesz więcej woluminów
 fizycznych. Wszystkie te czynności są całkowicie niewidoczne dla
@@ -271,7 +271,7 @@ link="http://www.gnu.org/software/parted">GNU/Parted</uri>.
 </p>
 
 <p>
-Jeśli interesują cię nasze rady dotyczące rozmiarów partycji
+Jeśli interesują Cię nasze rady dotyczące rozmiarów partycji
 (lub woluminów logicznych) oraz ich ilości, czytaj dalej.
 W przeciwnym wypadku przejdź od razu do podziału dysku:
 </p>
@@ -494,7 +494,7 @@ Command (m for help):
 </pre>
 
 <p>
-Na prezentowanym dysku znajduje się siedem linuxowych systemów plików
+Na prezentowanym dysku znajduje się siedem linuksowych systemów plików
 (każdy na odpowiadającej partycji, oznaczonej jako "Linux") oraz partycja
 wymiany (oznaczona jako "Linux swap").
 </p>
@@ -543,7 +543,7 @@ Command (m for help):
 <p>
 Kiedy nasza tymczasowa kopia tablicy partycji będzie pusta, możemy rozpocząć
 tworzenie nowego podziału. Pokażemy to na przykładzie domyślnego omawianego
-schematu. Oczywiście jeśli ci on nie odpowiada, musisz poczynić stosowne
+schematu. Oczywiście jeśli Ci on nie odpowiada, musisz poczynić stosowne
 modyfikacje prezentowanych poleceń.
 </p>
 
@@ -681,7 +681,7 @@ W przeciwnym przypadku przeczytaj najpierw <uri link="#lvm">Opcjonalnie: Używan
 <body>
 
 <impo>
-Sekcja ta przeznaczona jest wyłącznie dla użytkowników architektury <e>x86</e>.
+Sekcja ta przeznaczona jest wyłącznie dla użytkowników architektury <e>alpha</e>.
 </impo>
 
 <p>
@@ -1401,7 +1401,7 @@ Command (m for help): <i>n</i>
 Partition number (1-16): <i>1</i>
 First cylinder (5-8682, default 5): <i>51</i>
  Last cylinder (51-8682, default 8682): <i>101</i>
-<comment>(Zauważ, że fdisk pozwala na stworzenie pierwszej partycji conajmniej od piątego cylindra</comment>
+<comment>(Zauważ, że fdisk pozwala na stworzenie pierwszej partycji co najmniej od piątego cylindra</comment>
 <comment>(Jeśli próbowałeś już usunąć i stworzyć ponownie Nagłówek Woluminu SGI tą metodą, napewno
 spotkałeś się z takim zachowaniem)</comment>
 <comment>(W naszym przykładzie chcemy aby /boot miało 50MB, więc zaczniemy od cylindra 51 (pamiętaj,
@@ -1516,7 +1516,7 @@ home     opt      swap     tmp     usr      var
 </pre>
 
 <p>
-<e>Te</e> pliki są teraz twoimi "partycjami" (woluminami logicznymi).
+<e>Te</e> pliki są teraz Twoimi "partycjami" (woluminami logicznymi).
 </p>
 
 </body>
@@ -1530,7 +1530,7 @@ home     opt      swap     tmp     usr      var
 
 <p>
 Po stworzeniu partycji (lub logicznych woluminów), nadszedł czas na
-założenie na nich systemów plików. Jeśli nie obchodzi cię
+założenie na nich systemów plików. Jeśli nie obchodzi Cię
 jakie wybierzesz i jesteś zadowolony z domyślnych ustawień w podręczniku,
 przejdź do
 <uri link="#filesystems-apply">Zakładania na Partycji Systemu Plików</uri>.
@@ -1585,7 +1585,7 @@ system plików powinien działać, ale nie został dostatecznie przetestowany.
 </table>
 
 <p>
-<b>ext2</b> to sprawdzony i popularny linuxowy system plików, ale nie posiada
+<b>ext2</b> to sprawdzony i popularny linuksowy system plików, ale nie posiada
 księgowania. Powoduje to, iż jego regularne kontrole przy starcie systemu
 bywają długotrwałe. Obecnie istnieją nowoczesne systemy plików z księgowaniem,
 mogące być szybko sprawdzane i są zasadniczo zalecane. Księgowanie
@@ -1681,7 +1681,7 @@ dla każdego narzędzi:
 
 <p>
 Na przykład, aby założyć ext2 na partycji boot (w naszym przypadku <path>/dev/hda1</path>)
-oraz ext3 na partycji root (w naszym przypadku <path>/dev/hda3</path>) powinieneś
+oraz ext3 na partycji root (w naszym przypadku <path>/dev/hda3</path>), powinieneś
 wykonać następujące polecenia:
 </p>
 
@@ -1717,7 +1717,7 @@ Aby je aktywować skorzystaj ze <c>swapon</c>:
 </pre>
 
 <p>
-Teraz twoja kolej na inicjalizację i aktywację.
+Teraz Twoja kolej na inicjalizację i aktywację.
 </p>
 
 </body>
