@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.35 -->
+<!-- Orig revision: 1.36 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Jądra -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.20 2004/02/24 13:26:40 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.21 2004/03/01 14:56:50 lcs Exp $ -->
 
 <sections>
 <section>
@@ -22,7 +22,7 @@ za pomocą <c>ln</c>, utwórz do niej symlinka <path>/etc/localtime</path>.
 
 <pre caption="Konfiguracja strefy czasowej">
 # <i>ls /usr/share/zoneinfo</i>
-<comment>(Jeśli chcesz wybrać GMT:)</comment>
+<comment>(Jeśli chcesz wybrać GMT)</comment>
 # <i>ln -sf /usr/share/zoneinfo/GMT /etc/localtime</i>
 </pre>
 
@@ -51,7 +51,7 @@ z łatkami poprawiającymi wydajność, stabilność oraz funkcjonalność),
 <c>xfs-sources</c> (jądro z aktualnym sterownikiem do XFS),
 <c>gs-sources</c> (jądro z łatkami przeznaczonymi dla serwerów),
 <c>gaming-sources</c> (jądro wzbogacone poprawkami przeznaczonymi
-dla graczy), ...
+dla graczy), <c>development-sources</c> (standardowe źródła jąder 2.6),...
 </p>
 
 
@@ -82,11 +82,7 @@ Dostarczamy także jądra zoptymalizowane dla innych architektur:
 </p>
 
 <p>
-Za pomocą <c>emerge</c> zainstalujemy wybrane źródła jądra. Od tej pory
-będziemy używać <c>emerge --usepkg</c>, pobierającego i instalującego
-prekompilowane pakiety (dla użytkowników GRP). Opcję <c>--usepkg</c>
-można zastąpić skrótem <c>-k</c>. Jeśli nie zamierzasz korzystać
-z GRP, powinieneś ją pominąć.
+Za pomocą <c>emerge</c> zainstaluj wybrane źródła jądra. 
 </p>
 
 <p>
@@ -96,7 +92,7 @@ architektur). Oczywiście powinieneś je zastąpić wybranym kernelem.
 </p>
 
 <pre caption="Instalacja źródeł jądra">
-# <i>emerge --usepkg vanilla-sources</i>
+# <i>emerge vanilla-sources</i>
 </pre>
 
 <p>
@@ -106,7 +102,7 @@ na wybrane źródła jądra:
 
 <pre caption="Wyświetlanie symlinka do źródła jąder">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.4.22
+lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.4.25
 </pre>
 
 <p>
@@ -115,12 +111,12 @@ go podmienić:
 </p>
 
 <pre caption="Modyfikacja symlinka do źródła jąder">
-# <i>rm /usr/src/linux &amp;&amp; ln -s /usr/src/linux-2.4.22 /usr/src/linux</i>
+# <i>rm /usr/src/linux &amp;&amp; ln -s /usr/src/linux-2.4.25 /usr/src/linux</i>
 </pre>
 
 <p>
 Nadszedł czas na konfigurację i kompilację naszych źródeł. Użytkownicy
-platformy x86 i pochodnych mogą skorzystać z <c>genkernel</c>.
+wszystkich platform mogą skorzystać z <c>genkernel</c>.
 Zbuduje on standardowe jądro, takie jakie znajduje się na LiveCD.
 Najpierw wyjaśnimy jednak ręczną metodę konfiguracji, jako że
 umożliwia ona znacznie lepszą optymalizację.
@@ -129,7 +125,7 @@ umożliwia ona znacznie lepszą optymalizację.
 <p>
 Jeżeli chcesz ręcznie skonfigurować jądro, przejdź do <uri
 link="#doc_chap3">Domyślnie: Ręczna konfiguracja</uri>. Użytkownicy
-architektury x86 chcący skorzystać z <c>genkernel</c> powinni
+chcący skorzystać z <c>genkernel</c> powinni zamiast tego
 przeczytać <uri
 link="#doc_chap4">Alternatywnie: Używanie genkernel</uri>.
 </p>
@@ -244,17 +240,6 @@ również wymagane. Podobnie jak <c>PPP over Ethernet</c>, przydatna  tylko
 wówczas, kiedy do pracy w trybie jądra PPPoE zostanie skonfigurowany
 <c>rp-pppoe</c>.
 </p>
-<!-- TODO reactivate when LVM2 instructions are boarded
-<p>
-Użytkownicy LVM, powinni go włączyć:
-</p>
-
-<pre caption="Aktywacja wsparcia dla LVM">
-Multi-device support (RAID and LVM) -&gt;
-  [*] Multiple devices driver support (RAID and LVM)
-  &lt;*&gt;  Logical volume manager (LVM) support
-</pre>
--->
 <note>
 W jądrach 2.6, wymienione opcje znajdują się w sekcji <c>Device Drivers</c>.
 </note>
@@ -720,21 +705,21 @@ Opóść program konfiguracyjny i wykonaj polecenie
 <p>
 Następnie skopiuj obraz kernela do <path>/boot</path>. W kolejnym 
 przykładzie założyliśmy, iż zdecydowałeś się skorzystać z 
-<c>vanilla-sources-2.4.22</c> (co nie zawsze jest właściwym
+<c>vanilla-sources-2.4.25</c> (co nie zawsze jest właściwym
 rozwiązaniem dla Twojej architektury!):
 </p>
 
 <pre caption="Instalacja jądra">
 <comment>(Dotyczy platformy x86)</comment>
-# <i>cp arch/i386/boot/bzImage /boot/kernel-2.4.22</i>
-# <i>cp System.map /boot/System.map-2.4.22</i>
+# <i>cp arch/i386/boot/bzImage /boot/kernel-2.4.25</i>
+# <i>cp System.map /boot/System.map-2.4.25</i>
 
 <comment>(Dotyczy platformy amd64)</comment>
-# <i>cp arch/x86_64/boot/bzImage /boot/kernel-2.4.22</i>
+# <i>cp arch/x86_64/boot/bzImage /boot/kernel-2.4.25</i>
 
 <comment>(Dotyczy pozostałych platform)</comment>
-# <i>cp vmlinux /boot/kernel-2.4.22</i>
-# <i>cp System.map /boot/System.map-2.4.22</i>
+# <i>cp vmlinux /boot/kernel-2.4.25</i>
+# <i>cp System.map /boot/System.map-2.4.25</i>
 </pre>
 
 <p>
@@ -743,7 +728,7 @@ także plik konfiguracyjny.
 </p>
 
 <pre caption="Archiwizacja pliku konfiguracyjnego">
-# <i>cp .config /boot/config-2.4.22</i>
+# <i>cp .config /boot/config-2.4.25</i>
 </pre>
 <p>
 Jeśli jesteś użytkownikiem architektury MIPS, i Twój system nie potrafi
@@ -765,9 +750,7 @@ Modułów</uri>.
 
 <p>
 Skoro czytasz tą sekcję, zapewne zdecydowałeś się skorzystać ze skryptu
-<c>genkernel</c> aby automatycznie skonfigurować swoje jądro. Jakkolwiek
-oznacza to także, że jesteś użytkownikiem platformy x86. Inne architektury
-<e>nie są przez niego wspierane</e>. <!-- TODO: Add ppc as it should be available with the first 2004 release -->
+<c>genkernel</c> aby automatycznie skonfigurować swoje jądro. 
 </p>
 
 <p>
@@ -785,46 +768,39 @@ Zatem, do dzieła. Zacznijmy od instalacji naszego skryptu:
 </p>
 
 <pre caption="Instalacja genkernel">
-# <i>emerge --usepkg genkernel</i>
+# <i>emerge genkernel</i>
 </pre>
 
 <p>
-Jeśli zainstalowałeś go za pomocą GRP, uruchom po prostu <c>genkernel</c>,
-natomiast jeżeli posiadasz aktualny, ściągnięty z Internetu 
-pakiet, wpisz <c>genkernel all</c>. Zwróć uwagę, iż <c>genkernel</c> aktywuje
+Skompiluj teraz swoje jądro poleceniem <c>genkernel all</c>.
+Zwróć uwagę, iż <c>genkernel</c> aktywuje
 wsparcie niemal dla całego obsługiwanego sprzętu. Wobec tego kompilacja
 może trwać dosyć długo!
 </p>
 
 <pre caption="Uruchamianie genkernel">
-<comment>(Przykład ten dotyczy genkernela z GRP)</comment>
-# <i>genkernel</i>
-Gentoo Linux genkernel, version 1.4
-Copyright 2003 Gentoo Technologies, Inc., Bob Johnson, Daniel Robbins
-Distributed under the GNU General Public License version 2
-
-Settings:
-compile optimization: 1 processor(s)
-source tree: /usr/src/linux-2.4.22
-config: gentoo (customized)
-config loc: /etc/kernels/config-2.4.22
-initrd config: (default) /etc/kernels/settings
-
-* Running "make oldconfig"...                                                                     [ ok ]
-* Logging to /var/log/genkernel.log...                                                            [ ok ]
-* Starting 2.4.22 build...                                                                        [ ok ]
-* Running "make dep"...                                                                           [ ok ]
-* Running "make bzImage"...                                                                       [ ok ]
-* Running "make modules"...                                                                       [ ok ]
-* Running "make modules_install"...                                                               [ ok ]
-* Moving bzImage to /boot/kernel-2.4.22...                                                        [ ok ]
-* Building busybox...                                                                             [ ok ]
-* Creating initrd...                                                                              [ ok ]
-
-* Build completed successfully!
-
-* Please specify /boot/kernel-2.4.22 and /boot/initrd-2.4.22
-* when customizing your boot loader configuration files.
+# <i>genkernel all</i>
+GenKernel v3.0.1_beta10
+* ARCH: x86    
+* KERNEL VER: 2.4.25
+* kernel: configuring source
+* kernel: running mrproper
+<comment>(Output removed to increase readability)</comment>
+* Kernel compiled successfully!
+* Required Kernel Params:
+*   : root=/dev/ram0 init=/linuxrc real_root=/dev/$ROOT
+*     where $ROOT is the devicenode for your root partition as
+*     you should have specified in /etc/fstab
+*              
+* You MUST tell your bootloader to use the generated initrd
+*              
+* Recommended Kernel Params:
+*   : vga=0x317 splash=verbose
+*              
+* Do NOT report kernel bugs (configs included) as genkernel bugs.
+* Make sure you have the latest genkernel before reporting bugs
+*              
+* For more info see /usr/share/genkernel/README
 </pre>
 
 <p>
@@ -845,7 +821,7 @@ wydaj następujące polecenia:
 </p>
 
 <pre caption="Instalacja i aktywacja hotplug">
-# <i>emerge --usepkg hotplug</i>
+# <i>emerge hotplug</i>
 # <i>rc-update add hotplug default</i>
 </pre>
 
@@ -875,7 +851,7 @@ instalujących dodatkowe moduły:
 <tr>
   <ti>nvidia-kernel</ti>
   <ti>Sterownik dla XFree86 do kart graficznych NVIDIA, wspierający akcelerację</ti>
-  <ti><c>emerge --usepkg nvidia-kernel</c></ti>
+  <ti><c>emerge nvidia-kernel</c></ti>
 </tr>
 <tr>
   <ti>nforce-net</ti>
@@ -906,6 +882,11 @@ instalujących dodatkowe moduły:
   <ti>ati-drivers</ti>
   <ti>Sterownik dla XFree86 do kart graficznych ATI Radeon 8500+/FireGL, wspierający akcelerację</ti>
   <ti><c>emerge ati-drivers</c></ti>
+</tr>
+<tr>
+  <ti>ati-drivers-extra</ti>
+  <ti>Graficzne narzędzia ATI</ti>
+  <ti><c>emerge ati-drivers-extra</c></ti>
 </tr>
 <tr>
   <ti>xfree-drm</ti>
