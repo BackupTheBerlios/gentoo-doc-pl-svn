@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.13 -->
+<!-- Orig revision: 1.17 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Przygotowanie Dysków -->
 <!-- Status: Release -->
@@ -10,12 +10,12 @@
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-sparc-disk.xml,v 1.9 2004/12/27 11:35:03 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-sparc-disk.xml,v 1.10 2005/03/06 10:41:10 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.9</version>
-<date>2004-10-21</date>
+<version>1.11</version>
+<date>2005-02-20</date>
 
 <section>
 <title>Wprowadzenie do urządzeń blokowych.</title>
@@ -526,17 +526,6 @@ wydajność niemal we wszystkich sytuacjach. Krótko mówiąc, ext3
 jest świetny.
 </p>
 
-<p>
-<b>ReiserFS</b> to system plików oparty na drzewie B*, oferujący
-dużą wydajność. Przy wielu małych plikach (poniżej 4k) może
-być szybszy od ext3 nawet piętnastokrotnie. ReiserFS jest
-wysoce skalowalny i posiada księgowanie, a począwszy od jądra 2.4.18,
-charakteryzuje go niezawodność i użyteczność zarówno na partycjach ogólnego
-przeznaczenia jak i w ekstremalnych przypadkach, takich jak ogromne
-partycje, operacje na wielu bardzo małych, lub bardzo dużych plikach czy też
-operacje na katalogach zawierających dziesiątki tysięcy plików.
-</p>
-
 </body>
 </subsection>
 <subsection id="filesystems-apply">
@@ -564,10 +553,6 @@ odpowiedniego narzędzia:
 <tr>
   <ti>ext3 z indeksowaniem b-tree (dla kerneli 2.6)</ti>
   <ti><c>mke2fs -j -O dir_index</c></ti>
-</tr>
-<tr>
-  <ti>reiserfs</ti>
-  <ti><c>mkreiserfs</c></ti>
 </tr>
 </table>
 
@@ -609,7 +594,7 @@ Aby aktywować partycję wymiany użyj programu <c>swapon</c>:
 </pre>
 
 <p>
-Utwórz i aktywuj swoją partycję wymiany.
+Utwórz i aktywuj swoją partycję wymiany przy pomocy poleceń podanych powyżej.
 </p>
 
 </body>
