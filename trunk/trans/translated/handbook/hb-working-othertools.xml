@@ -1,0 +1,336 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- Original revision: 1.4 -->
+<!-- Translator: arab <arab@skorski.net> -->
+
+<!-- Title: Inne narzędzia -->
+<!-- Status: Uko�czone -->
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-working-othertools.xml,v 1.1 2004/01/09 16:42:43 arab Exp $ -->
+
+<sections>
+<section>
+<title>Gentoolkit</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<p>
+Pakiet <c>gentoolkit</c> jest kolekcją nieoficjalnych, jednakże bardzo przydatnych
+skryptów administracyjnych dla Gentoo. Kolekcja ta zawiera następujące narzędzia:
+</p>
+
+<ul>
+  <li><c>qpkg</c> by ułatwić przeszukiwanie bazy pakietów</li>
+  <li>
+    <c>dep-clean</c> by zarządzać osieroconymi pakietami i nieistniejącymi zależnościami.
+  </li>
+  <li>
+    <c>revdep-rebuild</c> przebudowuje zależności w przypadku globalnej zmiany flag.
+  </li>
+  <li>
+    <c>etcat</c> dostarcza znacznie więcej informacji <comment>(niż emerge)</comment>o
+    pakiecie, w tym informacje u użytych flagach USE, zależnościach, itp.
+  </li>
+  <li><c>euse</c> zarządza flagami USE</li>
+</ul>
+
+<p>
+Większość tych narzędzi posiada ładną stronę manuala; proszę jej użyć by zrozumieć
+pełny potencjał tych narzędzi. W następnych sekcjach skrótowo omówimy niektóre
+z możliwości tych narzędzi.
+</p>
+
+<p>
+By zainstalować <c>gentoolkit</c>, po prostu zrób emerge:
+</p>
+
+<pre caption="Instalacja gentoolkit">
+# <i>emerge gentoolkit</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>qpkg - Wyszukiwanie pakietów</title>
+<body>
+
+<p>
+<c>qpkg</c> posiada wiele funkcji wyszukujących. Możesz wyszukiwać pakiet
+do którego należy dany plik, wyświetlić zawartość pakietu, sprawdzić pliki
+zawarte w pakiecie, wyświetlić zainstalowane pakiety które polegają
+<comment>(depend)</comment> na danym pakiecie, itp.
+</p>
+
+<p>
+Weźmy kilka przykładów. Najpierw wyszukamy pakiet który zawiera plik
+<path>/usr/lib/libbonobo-2.so</path>.
+</p>
+
+<pre caption="Wyszukiwanie pakietu zawierającego dany plik">
+$ <i>qpkg --find-file /usr/lib/libbonobo-2.so</i>
+gnome-base/libbonobo *
+</pre>
+
+<p>
+Teraz, skoro znamy właściciela, spójrzmy na zawartość pakietu:
+</p>
+
+<pre caption="Oglądanie zawartości pakietu">
+$ <i>qpkg --list libbonobo</i>
+gnome-base/libbonoboui-2.4.0 *
+CONTENTS:
+/var
+/var/lib
+/usr
+/usr/lib
+/usr/lib/libbonoboui-2.so.0.0.0
+/usr/lib/libbonoboui-2.so.0 -> libbonoboui-2.so.0.0.0
+/usr/lib/libbonoboui-2.so -> libbonoboui-2.so.0.0.0
+<comment>(Reszta usunięta dla zachowania przejrzystości dokumentu)</comment>
+</pre>
+
+<p>
+By zweryfikować pliki dostarczone przez pakiet <c>libbonobo</c> (np. sprawdzić
+czas modyfikacji i sumy kontrolne) używamy argumentu <c>--check</c>:
+</p>
+
+<pre caption="Sprawdzanie pakietu libbonobo">
+# <i>qpkg --check libbonobo</i>
+gnome-base/libbonobo-2.4.0 *
+0/402
+</pre>
+
+<p>
+W poprzednim przykładzie, <c>libbonobo</c> zawiera 402 pliki z których żaden nie został
+zmodyfikowany od czasu instalacji. Teraz zobaczmy które z zainstalowanych pakietów
+wymagają <c>libbonobo<c> do poprawnego działania:
+</p>
+
+<pre caption="Sprawdzanie zależności">
+$ <i>qpkg --query-deps libbonobo</i>
+gnome-base/libbonobo-2.4.0 *
+DEPENDED ON BY:
+        gedit-2.4.0
+        gnome-panel-2.4.0-r1
+        gnome-vfs-2.4.0
+        libbonoboui-2.4.0
+        libgnome-2.4.0
+        libgnomeprint-1.116.1
+        libgnomeui-2.4.0.1
+        at-spi-1.1.8
+        bug-buddy-2.4.0
+        gnome-media-2.4.0
+        gnome-utils-2.4.0
+        libgsf-1.8.2
+        yelp-2.4.0
+        eog-2.4.0
+        evolution-1.4.5
+        gnome-cups-manager-0.17
+        epiphany-1.0
+</pre>
+
+<p>
+Więcej informacji o <c>qpkg</c> na stronie manuala:
+</p>
+
+<pre caption="Oglądanie manuala do qpkg">
+$ <i>man qpkg</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>dep-clean</title>
+<body>
+
+<p>
+Przy pomocy <c>dep-clean</c> możesz obejrzeć zależności, które nie są poprawne.
+Domyślnie <c>dep-clean</c> pokazuje:
+</p>
+
+<ul>
+  <li>(na czerwono: brakujące zależności</li>
+  <li>(na żółto): zainstalowane pakiety które zostały usunięte z Portage</li>
+  <li>
+    (na zielono): zainstalowane pakiety, których nie instalowałeś ręcznie a na których
+    nie polega żaden inny pakiet.
+  </li>
+</ul>
+
+<pre caption="Używanie dep-clean">
+$ <i>dep-clean</i>
+</pre>
+
+<p>
+Więcej informacji o <c>dep-clean</c> znajduje się w manualu:
+</p>
+
+<pre caption="Oglądanie strony dep-clean manuala">
+$ <i>man dep-clean</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>revdep-rebuild</title>
+<body>
+
+<p>
+Przy pomocy <c>revdep-rebuild</c> można przebudować pakiety które zostały uszkodzone
+podczas update'u biblioteki, która ma ABI <comment>(Application Binary Interface - 
+binarny interfejs aplikacji)</comment> niekompatybilne z jej poprzednią wersją.
+</p>
+
+<p>
+<brite>DO ZROBIENIA: Dodać więcej informacji -- Nic nie wiem na ten temat.</brite>
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>etcat - Narzędzie do pobierania informacji z Gentoo Portage</title>
+<body>
+
+<p>
+<c>etcat</c> pozwala użytkownikom i deweloperom na szybkie znalezienie informacji
+o konkretnych pakietach bez uciekania się do ręcznego przeszukiwania drzewa i bazy
+portage. Za pomocą <c>etcat</c> można - między innymi - wyświetlić flagi USE jakich
+pakiet używa, obejrzeć wpisy <path>ChangeLog</path>, obliczyć miejsce zajmowane przez
+pakiet, itp.
+</p>
+
+<p>
+Jeżeli, znowu dla przykładu użyjemy <c>libbonobo</c>, możemy dowiedzieć się
+jakie flagi zostały użyte za pomocą opcji <c>uses</c>:
+</p>
+
+<pre caption="Wyświetlanie użytych flag USE">
+$ <i>etcat uses libbonobo</i>
+
+</pre>
+
+<p>
+By wyświetlić wpisy <path>ChangeLog</path> powinieneś użyć opcji <c>changes</c>:
+</p>
+
+<pre caption="Wyświetlanie zawartości ChangeLog">
+$ <i>etcat changes libbonobo</i>
+
+</pre>
+
+<p>
+By obliczyć całkowite miejsce zajmowane przez <c>libbonobo</c> możemy użyć
+opcji <c>size</c>:
+</p>
+
+<pre caption="Obliczanie całkowitego miejsca">
+$ <i>etcat size libbonobo</i>
+
+</pre>
+
+<p>
+Po więcej informacji o <c>etcat</c> proszę skonsultować się z manualem.
+</p>
+
+<pre caption="Oglądanie manuala etcat">
+$ <i>man etcat</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>euse - Edytor flag USE Gentoo</title>
+<body>
+
+<p>
+Za pomocą <c>euse</c> można wyedytować zmienną USE w pliku <path>/etc/make.conf</path>.
+<c>euse</c> poinformuje cię co każda flaga oznacza tak, byś mógł podjąć decyzję,
+jakich flag użyć. Zaczniemy od wyświetlenia informacji o flagach:
+</p>
+
+<pre caption="Wyświetlanie informacji o flagach USE">
+$ <i>euse --info</i>
+<comment>(...)</comment>
+justify            [-] [ ] [L] [app-editors/nano] : Toggle the justify option
+                               ... god i hate that thing :)
+jython             [-] [ ] [L] [dev-java/ant] : Enable Jython support.
+kakasi             [-] [ ] [L] [app-text/namazu] : Enable kakasi support for
+                               namazu
+kde                [+] [D] [G] Adds support for kde-base/kde (K Desktop
+                               Enviroment)
+kerberos           [-] [ ] [G] Adds kerberos support
+<comment>(...)</comment>
+
+$ <i>euse --info gnome</i>
+gnome [+] [D] [G] Adds GNOME support
+</pre>
+
+<p>
+Wynik informuje cię o nazwie flagi, czy jest włączona (+) czy nie (-),
+gdzie została włączona (C dla <path>make.conf</path>, D dla <path>make.defaults</path>
+i E dla zmiennej środowiskowej), czy jest flagą globalną (G) czy lokalną dla konkretnego
+ebuild'a  i opis.
+</p>
+
+<p>
+By włączyć/wyłączyć flagę w <path>make.conf</path>, możesz użyć
+<c>--enable</c> i <c>--disable</c> <comment>(odpowiednio:
+włącz, wyłącz)</comment>:
+</p>
+
+<pre caption="Wyłączanie flagi gnome w /etc/make.conf">
+# <i>euse --disable gnome</i>
+</pre>
+
+<p>
+Więcej informacji o <c>euse</c> jest w manualu.
+</p>
+
+<pre caption="Wyświetlanie manuala">
+$ <i>man euse</i>
+</pre>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>epm - narzędzie podobne do RPM dla Gentoo</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<p>
+Niektórzy ludzie są przyzwyczajeni do pracy z <c>rpm</c>, <comment>(RedHat
+Package Manager - system zarządzania pakietami z RedHat'a)</comment>. By
+usprawnić pracę z Gentoo dostarczamy narzędzie nazwane <c>epm</c>.
+Jakkolwiek nie osiągnęło ono jeszcze pełnej funkcjonalności RPM'a, większość
+czynności powinna dać się wykonać przy pomocy <c>epm</c>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Wyszukiwanie pakietów</title>
+<body>
+
+</body>
+</subsection>
+<subsection>
+<title>Zarządzanie oprogramowaniem</title>
+<body>
+
+</body>
+</subsection>
+<subsection>
+<title>Inne właściwości</title>
+<body>
+
+</body>
+</subsection>
+</section>
+</sections>
