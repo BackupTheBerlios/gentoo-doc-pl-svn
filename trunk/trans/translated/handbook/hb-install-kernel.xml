@@ -1,4 +1,4 @@
-<!-- Orig revision: 1.24 -->
+<!-- Orig revision: 1.25 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Jądra -->
 <!-- Status: Ukończono -->
@@ -6,7 +6,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.6 2004/01/01 11:26:59 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.7 2004/01/03 10:17:27 lcs Exp $ -->
 
 <sections>
 <section>
@@ -26,7 +26,9 @@ różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
 Dla platformy x86 udostępniamy między innymi <c>vanilla-sources</c>
 (standardowe jądro, rozwijane przez developerów linuxa),
 <c>gentoo-sources</c> (jądro wzbogacone o łatki poprawiające
-wydajność), <c>xfs-sources</c> (jądro z aktualnym sterownikiem do XFS),
+wydajność), <c>gentoo-dev-sources</c> (jądro z serii 2.6
+z łatkami poprawiającymi wydajność, stabilność oraz funkcjonalność),
+<c>xfs-sources</c> (jądro z aktualnym sterownikiem do XFS),
 <c>gs-sources</c> (jądro z łatkami przeznaczonymi dla serwerów),
 <c>gaming-sources</c> (jądro wzbogacone poprawkami przeznaczonymi
 dla graczy), ...
@@ -49,6 +51,10 @@ jądro, rozwijane przez developerów linuksa) oraz
 Użytkownicy platformy MIPS mogą wybierać spośród <c>mips-sources</c> (domyśnego
 jądra dla tej architektury) oraz <c>mips-prepatch-sources</c> (rozwojowej wersji
 tego jądra).
+</p>
+<p>
+Dla architektury AMD64 udostępniamy <c>gentoo-dev-sources</c> (jądro z serii 2.6
+z łatkami poprawiającymi stabilność, wydajność oraz obsługę sprzętu dla amd64).
 </p>
 <p>
 Dostarczamy także jądra zoptymalizowane dla innych architektur:
@@ -245,6 +251,7 @@ Teraz pokażemy ważne ustawienia zależne od używanej architektury:
 <li><uri link="#doc_chap2_sect6">Aktywacja opcji zalecanych dla PPC</uri></li>
 <li><uri link="#doc_chap2_sect7">Aktywacja opcji zalecanych dla SPARC</uri></li>
 <li><uri link="#doc_chap2_sect7">Aktywacja opcji zalecanych dla MIPS</uri></li>
+<li><uri link="#doc_chap2_sect7">Aktywacja opcji zalecanych dla AMD64</uri></li>
 </ul>
 
 </body>
@@ -634,6 +641,27 @@ link="#compiling">Kompilacji i Instalacji</uri>.
 
 </body>
 </subsection>
+<subsection>
+<title>Aktywacja opcji zalecanych dla AMD64</title>
+<body>
+
+<p>
+Jeśli jesteś posiadaczem sprzętu wieloprocesorowego z Opteron'ami,
+powinieneś włączyć "Symmetric multi-processing support":
+</p>
+
+<pre caption="Aktywacja obsługi SMP">
+Processor type and features ---&gt;
+  [*] Symmetric multi-processing support
+</pre>
+
+<p>
+Po ukończeniu konfiguracji jądra, przejdź do <uri
+link="#compiling">Kompilacji i Instalacji</uri>.
+</p>
+
+</body>
+</subsection>
 <subsection id="compiling">
 <title>Kompilacja i Instalacja</title>
 <body>
@@ -651,20 +679,27 @@ Opóść program konfiguracyjny i wykonaj polecenie
 <comment>(Dotyczy jąder 2.4 dla pozostałych platform)</comment>
 # <i>make dep &amp;&amp; make vmlinux modules modules_install</i>
 
-<comment>(Dotyczy jąder 2.6)</comment>
+<comment>(Dotyczy jąder 2.6 dla platformy amd64</comment>
+# <i>make bzImage modules modules_install</i>
+
+<comment>(Dotyczy jąder 2.6 dla pozostałych architektur)</comment>
 # <i>make &amp;&amp; make modules_install</i>
 </pre>
 
 <p>
 Następnie skopiuj obraz kernela do <path>/boot</path>. W kolejnym 
 przykładzie założyliśmy, iż zdecydowałeś się skorzystać z 
-<c>vanilla-sources-2.4.22</c>:
+<c>vanilla-sources-2.4.22</c> (co nie zawsze jest właściwym
+rozwiązaniem dla twojej architektury!):
 </p>
 
 <pre caption="Instalacja jądra">
 <comment>(Dotyczy platformy x86)</comment>
 # <i>cp arch/i386/boot/bzImage /boot/kernel-2.4.22</i>
 # <i>cp System.map /boot/System.map-2.4.22</i>
+
+<comment>(Dotyczy platformy amd64)</comment>
+# <i>cp arch/x86_64/boot/bzImage /boot/kernel-2.4.22</i>
 
 <comment>(Dotyczy pozostałych platform)</comment>
 # <i>cp vmlinux /boot/kernel-2.4.22</i>
