@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.29 -->
+<!-- Orig revision: 1.30 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Jądra -->
 <!-- Status: Ukończono -->
@@ -9,9 +9,26 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.15 2004/01/18 22:53:11 swierszczu Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.16 2004/01/19 22:37:10 lcs Exp $ -->
 
 <sections>
+<section>
+<body>
+<p>
+Aby system wiedział gdzie się znajdujesz, powinieneś najpierw wybrać swoją
+strefę czasową. Odszukaj ją w <path>/usr/share/zoneinfo</path>, a następnie
+za pomocą <c>ln</c>, utwórz do niej symlinka <path>/etc/localtime</path>.
+</p>
+
+<pre caption="Konfiguracja strefy czasowej">
+# <i>ls /usr/share/zoneinfo</i>
+<comment>(Jeśli chcesz wybrać GMT:)</comment>
+# <i>ln -sf /usr/share/zoneinfo/GMT /etc/localtime</i>
+</pre>
+
+</body>
+
+</section>
 <section>
 <title>Instalacja Źródeł</title>
 <subsection>
@@ -111,10 +128,10 @@ umożliwia ona znacznie lepszą optymalizację.
 
 <p>
 Jeżeli chcesz ręcznie skonfigurować jądro, przejdź do <uri
-link="#doc_chap2">Domyślnie: Ręczna konfiguracja</uri>. Użytkownicy
+link="#doc_chap3">Domyślnie: Ręczna konfiguracja</uri>. Użytkownicy
 architektury x86 chcący skorzystać z <c>genkernel</c> powinni
 przeczytać <uri
-link="#doc_chap3">Alternatywnie: Używanie genkernel</uri>.
+link="#doc_chap4">Alternatywnie: Używanie genkernel</uri>.
 </p>
 
 </body>
@@ -250,13 +267,13 @@ Teraz pokażemy ważne ustawienia zależne od używanej architektury:
 </p>
 
 <ul>
-<li><uri link="#doc_chap2_sect3">Aktywacja opcji zalecanych dla x86</uri></li>
-<li><uri link="#doc_chap2_sect4">Aktywacja opcji zalecanych dla Alpha</uri></li>
-<li><uri link="#doc_chap2_sect5">Aktywacja opcji zalecanych dla HPPA</uri></li>
-<li><uri link="#doc_chap2_sect6">Aktywacja opcji zalecanych dla PPC</uri></li>
-<li><uri link="#doc_chap2_sect7">Aktywacja opcji zalecanych dla SPARC</uri></li>
-<li><uri link="#doc_chap2_sect7">Aktywacja opcji zalecanych dla MIPS</uri></li>
-<li><uri link="#doc_chap2_sect7">Aktywacja opcji zalecanych dla AMD64</uri></li>
+<li><uri link="#doc_chap3_sect3">Aktywacja opcji zalecanych dla x86</uri></li>
+<li><uri link="#doc_chap3_sect4">Aktywacja opcji zalecanych dla Alpha</uri></li>
+<li><uri link="#doc_chap3_sect5">Aktywacja opcji zalecanych dla HPPA</uri></li>
+<li><uri link="#doc_chap3_sect6">Aktywacja opcji zalecanych dla PPC</uri></li>
+<li><uri link="#doc_chap3_sect7">Aktywacja opcji zalecanych dla SPARC</uri></li>
+<li><uri link="#doc_chap3_sect7">Aktywacja opcji zalecanych dla MIPS</uri></li>
+<li><uri link="#doc_chap3_sect7">Aktywacja opcji zalecanych dla AMD64</uri></li>
 </ul>
 
 </body>
@@ -726,7 +743,7 @@ zamiast <c>make vmlinux</c>. Obraz jądra zostanie zapisany nie jako
 <path>vmlinux</path>, ale <path>arch/mips/boot/vmlinux.ecoff</path>.
 </p> 
 <p>
-Teraz przejdź do <uri link="#doc_chap4">Instalacji Oddzielnych
+Teraz przejdź do <uri link="#doc_chap5">Instalacji Oddzielnych
 Modułów</uri>.
 </p>
 
