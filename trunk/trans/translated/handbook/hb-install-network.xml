@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.29 -->
+<!-- Orig revision: 1.33 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Sieci -->
 <!-- Status: Ukończono -->
+<!-- Update from 1.29 to 1.33: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-network.xml,v 1.16 2004/03/25 18:38:05 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-network.xml,v 1.17 2004/07/11 09:59:32 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -172,7 +173,7 @@ Jeśli nie, to pech, będzie nieco trudniej :)
 <p>
 Jeśli sieć nie zadziałała od razu, niektóre media instalacyjne 
 pozwalają na korzystanie z <c>net-setup</c> (dla typowych sieci)
-lub <c>asdl-setup</c> (dla użytkowników ASDL). <!-- lub <c>pptp</c> (dla użytkowników
+lub <c>asdl-setup</c> (dla użytkowników ASDL) albo <c>pptp</c> (dla użytkowników PPTP - dostępne tylko dla architektury x86). <!-- lub <c>pptp</c> (dla użytkowników
 PPTP).-->
 </p>
 
@@ -191,10 +192,10 @@ narzędzi, lub sieć wciąż nie funkcjonuje prawidłowo, przejdź do
     Użytkownicy ASDL powinni przejść do <uri link="#rp-pppoe">Alternatywnie:
     Używanie RP-PPPoE</uri>
   </li>
-<!--  <li>
+  <li>
     Użytkownicy PPTP powinni przejść do <uri link="#pptp">Alternatywnie:
     Używanie PPTP</uri>
-  </li>-->
+  </li>
 </ul>
 
 </body>
@@ -262,7 +263,7 @@ Dysków</uri>.
 
 </body>
 </subsection>
-<!--<subsection id="pptp">
+<subsection id="pptp">
 <title>Alternatywnie: Używanie PPTP</title>
 <body>
 
@@ -300,7 +301,6 @@ Następnie przejdź do
 
 </body>
 </subsection>
--->
 </section>
 <section>
 <title>Ręczna Konfiguracja Sieci</title>
@@ -363,6 +363,13 @@ eth0: error fetching interface information: Device not found
 </pre>
 
 <p>
+Jeżeli masz wiele kart sieciowych są one nazywane kolejno <e>eth0</e>, <e>eth1</e>, itp.
+Upewnij się, czy karta sieciowa której chcesz używać działa poprawnie i pamietaj o używaniu
+poprawnego nazewnictwa kontynuując czytanie tego dokumentu. My zakładamy, że Twoja karta
+sieciowa nazywa się <e>eth0</e>.
+</p>
+         
+<p>
 Zakładając, że karta została prawidłowo wykryta, możesz
 powtórzyć <c>net-setup</c> lub <c>asdl-setup</c> (tym razem
 powinien zadziałać), ale dla odważnych ludzi, takich jak Ty,
@@ -404,6 +411,10 @@ Aby automatycznie skonfigurować parametry sieci skorzystaj z <c>dhcpd</c>:
 
 <pre caption="Używanie dhcpcd">
 # <i>dhcpcd eth0</i>
+<comment>Część administratorów wymaga używania Some network admins require that you use the</comment>
+<comment>nazwy hosta i domeny dostarczanej przez serwer DHCP.</comment>
+<comment>W tym przypadku użyj</comment>
+# <i>dhcpcd -HD eth0</i>
 </pre>
 
 <p>
@@ -418,13 +429,13 @@ i możesz pominąć resztę tego rozdziału, przechodząc do
 <subsection id="wireless">
 <title>Przygotowanie do Bezprzewodowego Dostępu</title>
 <body>
-<warn>
+<note>
 Część LiveCD nie zawiera programu <c>iwconfig</c>. Ich użytkownicy
 mogą mimo wszystko z niego skorzystać. Szczegółowe informacje znajdują się
 w <uri
 link="ftp://ftp.linux-wlan.org/pub/linux-wlan-ng/README">README
 projektu linux-wlan-ng</uri>.
-</warn>
+</note>
 <p>
 Jeśli używasz karty wireless (802.11), powinieneś ją skonfigurować
 zanim przejdziesz dalej. Aby zobaczyć aktualne ustawienia, skorzystaj
