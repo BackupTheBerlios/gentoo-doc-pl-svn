@@ -6,7 +6,7 @@
 <!-- Title: Instalacja jądra dla x86 -->
 <!-- Status: Ukończono -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.4 2004/07/13 07:41:14 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-hppa-kernel.xml,v 1.1 2004/07/13 07:41:14 sekretarz Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
@@ -43,28 +43,11 @@ Gentoo udostępnia swoim użytkownikom kilka źródeł jąder. Ich pełną list�
 </p>
 
 <p>
-Dla architektury x86 udostępniamy między innymi: <c>vanilla-sources</c> 
-(standartowe źródła jądra rozwijane przez programistów linuxa),
-<c>gentoo-sources</c> (źródła jądra łatane poprawkami
-wydajnościowymi), <c>gentoo-dev-sources</c> (jądro z serii 2.6 łatane poprawkami 
-wydajościowymi i ulepszeniach stabilność oraz funkcjonalność), <c>xfs-sources</c> 
-(źródła jądra z obsługą XFS), <c>gs-sources</c> (źródła jądra przygotowane pod 
-użycie na serwerach), <c>gaming-sources</c> (źródła jądra przygotowane pod optymalą wydajność
-gier), <c>development-sources</c> (czyste źródła jądra z serii 2.6), ...
-</p>
-
-<p>
-Jeżeli wybrałeś instalacje bez dostępu do sieci, dostępna jest tylko część źródeł.
-W tym przypadku jesteś ograniczony do używania <c>gentoo-sources</c>, <c>vanilla-sources</c>,
-<c>development-sources</c> albo <c>gentoo-dev-sources</c>.
-</p>
-
-<p>
-Wybierz źródła jądra i zainstaluj je.
+Dla architektury HPPA przygotowaliśmy jądro <c>hppa-sources</c>. Zainstaluj te źródła jadra:
 </p>
 
 <pre caption="Instalacja źródeł jądra">
-# <i>emerge gentoo-sources</i>
+# <i>emerge hppa-sources</i>
 </pre>
 
 <p>
@@ -74,7 +57,7 @@ Jeżeli wejdziesz do <path>/usr/src</path> powinneś zobaczyć dowiązanie symbo
 
 <pre caption="Podgląd dowiązania symbolicznego do źródeł jądra">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.4.25-gentoo
+lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.4.24
 </pre>
 
 <p>
@@ -85,7 +68,7 @@ zmień je przed kontynuacją:
 <pre caption="Zmiana dowiązania do źródeł jądra">
 # <i>rm /usr/src/linux</i>
 # <i>cd /usr/src</i>
-# <i>ln -s linux-2.4.25-gentoo linux</i>
+# <i>ln -s linux-2.4.24 linux</i>
 </pre>
 
 <p>
@@ -156,17 +139,6 @@ Code maturity level options ---&gt;
 </pre>
 
 <p>
-Upewnij się, że kompilujesz jądro na odpowienią rodzinę procesorów:
-</p>
-
-<pre caption="Wybór odpowiedniej rodziny procesorów">
-Processor type and features ---&gt;
-  Subarchitecture Type (<i>PC Compatible</i>) ---&gt;
-  <comment>(Zmień zgodnie z Twoim systemem)</comment>
-  Processor family (<i>Athlon/Duron/K7</i>) ---&gt;
-</pre>
-
-<p>
 Teraz idź do <c>File Systems</c> i wybierz wsparcie dla systemów plików, których używasz.
 <e>Nie</e> kompiluj ich jako modułów, inaczej Gentoo nie będzie mogło zamontować Twoich partycji.
 Wybierz także <c>Virtual memory</c>, <c>/proc file system</c>, 
@@ -229,14 +201,49 @@ Nie zapomnij też o włączeniu obsługi Twojej karty sieciowej w jądrze.
 </p>
 
 <p>
-Jeżeli masz procesor Intela, który wspomaga  HyperThreading (tm), albo masz
-wieloprocesorową jednostkę, powinneś uaktywnić "Symmetric multi-processing support":
+
+Jeżeli masz klawiature albo myszke z interfejsem HIL, nie zapomnij skompilować jego obsługi.
 </p>
 
-<pre caption="Aktywacja obsługi SMP">
-Processor type and features  ---&gt;
-  [*] Symmetric multi-processing support
+<pre caption="Aktywacja obsługi HIL"> 
+Input core support ---&gt; 
+  [*] Keyboard support
+  [*] Mouse support
+  [*] Event interface support
 </pre>
+
+<p>
+Jeżeli nie masz myszki podłączonej pod port HIL, włącz tylko podstawową obsługę:
+</p>
+
+<pre caption="Podstawowa obsługa HIL">
+HIL support ---&gt;
+  [*] HIL Keyboard (basic) support
+</pre> 
+
+<p>
+Jednak, jeżeli chcesz mieć <e>pełne</e> wspomaganie dla HIL, zaznacz następujące opcje:
+</p>
+
+<pre caption="Pełna obsługa HIL">
+HIL support ---&gt;
+  [*] HP System Device Controller i8042 Support
+  [*] HIL MLC Support 
+  [*] HIL Keyboard (full) support 
+  [*] HIL Mouse &amp; Pointer support
+</pre>
+
+<p>
+Dodaj też obsługę sterownika grafiki:
+</p>
+
+<pre caption="Sterownik grafiki">
+Graphics support ---&gt;
+  [*] Support for frame buffer devices
+      [*] HP STI frame buffer device support
+  Console display driver support ---&gt;  
+      [*] STI text console
+</pre>      
 
 <p>
 Przejdź teraz do <uri
@@ -251,13 +258,13 @@ link="#compiling">Kompilacji i Instalacji</uri>.
 
 <p>
 Teraz, kiedy Twóje jądro jest skonfigurowane, przyszedł czas na jego kompilację i instlację. Wyjdź
-z menu konfiguracji i uruchom <c>make dep &amp;&amp; make bzImage modules 
+z menu konfiguracji i uruchom <c>make dep &amp;&amp; make vmlinux modules 
 modules_install</c>:
 </p>
 
 <pre caption="Kompilacja jądra">
 <comment>(Dla jąder z serii 2.4)</comment>
-# <i>make dep &amp;&amp; make bzImage modules modules_install</i>
+# <i>make dep &amp;&amp; make vmlinux modules modules_install</i>
 
 <comment>(Dla jąder z serii 2.6)</comment>
 # <i>make &amp;&amp; make modules_install</i>
@@ -265,13 +272,13 @@ modules_install</c>:
 
 <p>
 Kiedy kompilacja zakończy się, skopiuj obraz jądra do <path>/boot</path>.
-Zakładamy, że instalujesz wersję 2.4.25 <c>gentoo-sources</c>. Użyj jakiej chcesz
-nazwy i zapamiętaj ją do późniejszej konfiguracji bootloadera.
+W następnym przykładzie akładamy, że instalujesz <c>vanilla-sources-2.4.24</c> (który może być niepoprawnym
+jądrem dla Twojej architektury!):
 </p>
 
 <pre caption="Instalacja jądra">
-# <i>cp arch/i386/boot/bzImage /boot/kernel-2.4.25-gentoo</i>
-# <i>cp System.map /boot/System.map-2.4.25-gentoo</i>
+# <i>cp vmlinux /boot/kernel-2.4.24</i>
+# <i>cp System.map /boot/System.map-2.4.24</i>
 </pre>
 
 <p>
@@ -279,11 +286,11 @@ Na wszelki wypadek, dobrze jest też skopiować plik konfiguracyjny jądra do <p
 </p>
 
 <pre caption="Archiwizacja pliku konfiguracyjnego">
-# <i>cp .config /boot/config-2.4.25-gentoo</i>
+# <i>cp .config /boot/config-2.4.24</i>
 </pre>
 
 <p>
-Teraz kontynuuj z <uri link="#kernel_modules">Instalacja Oddzielnych Modułów Jądra</uri>.
+Teraz kontynuuj z <uri link="#kernel_modules">Konfiguracja Modułów Jądra</uri>.
 </p>
 
 </body>
@@ -328,6 +335,27 @@ systemu plików (<e>Nie</e> jako moduł).
 
 <pre caption="Uruchamianie genkernela">
 # <i>genkernel all</i>
+GenKernel v3.0.1_beta10
+* ARCH: HPPA
+* KERNEL VER: 2.4.24
+* kernel: configuring source
+* kernel: running mrproper
+<comment>(Output removed to increase readability)</comment>
+* Kernel compiled successfully!
+* Required Kernel Params:
+*   : root=/dev/ram0 init=/linuxrc real_root=/dev/$ROOT
+*     where $ROOT is the devicenode for your root partition as
+*     you should have specified in /etc/fstab
+*
+* You MUST tell your bootloader to use the generated initrd
+*
+* Recommended Kernel Params:
+*   : vga=0x317 splash=verbose
+*                                                                                                                                                            
+* Do NOT report kernel bugs (configs included) as genkernel bugs.
+* Make sure you have the latest genkernel before reporting bugs
+*
+* For more info see /usr/share/genkernel/README
 </pre>
 
 <p>
@@ -355,107 +383,7 @@ Aby zainstalować i włączyc <c>hotplug</c>, wydaj następujące polecenia:
 </body>
 </section>
 <section id="kernel_modules">
-<title>Instalacja Dodatkowych Modułów Jądra</title>
-<subsection>
-<title>Instlacja Dodatkowych Modułów</title>
-<body>
-
-<p>
-Standartowe jądro nie obsługuje wszystkich dostępnych urządzeń, które znajdują się
-w Twoim systemie. Oto lista ebuildów, które instalują dodatkowe moduły jądra:
-</p>
-
-<table>
-<tcolumn width="1in"/>
-<tcolumn width="4in"/>
-<tcolumn width="2in"/>
-<tr>
-  <th>Ebuild</th>
-  <th>Urządzenie</th>
-  <th>Polecenie</th>
-</tr>
-<tr>
-  <ti>nvidia-kernel</ti>
-  <ti>Wspierający akcelerację sterownik kart graficznych NVIDIA dla XFree86</ti>
-  <ti><c>emerge nvidia-kernel</c></ti>
-</tr>
-<tr>
-  <ti>nforce-net</ti>
-  <ti>Zintegrowana karta sieciowa na płytach NVIDIA NForce(2)</ti>
-  <ti><c>emerge nforce-net</c></ti>
-</tr>
-<tr>
-  <ti>nforce-audio</ti>
-  <ti>Zintegrowana karta dźwiękowa na płytach NVIDIA NForce(2)</ti>
-  <ti><c>emerge nforce-audio</c></ti>
-</tr>
-<tr>
-  <ti>e100</ti>
-  <ti>Karty sieciowe Intel e100</ti>
-  <ti><c>emerge e100</c></ti>
-</tr>
-<tr>
-  <ti>e1000</ti>
-  <ti>Karty sieciowe Intel e1000</ti>
-  <ti><c>emerge e1000</c></ti>
-</tr>
-<tr>
-  <ti>emu10k1</ti>
-  <ti>Wsparcie dla Creative Sound Blaster Live!/Audigy</ti>
-  <ti><c>emerge emu10k1</c></ti>
-</tr>
-<tr>
-  <ti>ati-drivers</ti>
-  <ti>Wspierający akcelerację sterownik dla kart graficznych ATI Radeon 8500+/FireGL dla XFree86</ti>
-  <ti><c>emerge ati-drivers</c></ti>
-</tr>
-<tr>
-  <ti>ati-drivers-extra</ti>
-  <ti>Narzędzia graficzne ATI</ti>
-  <ti><c>emerge ati-drivers-extra</c></ti>
-</tr>
-</table>
-
-<p>
-Część z wymienionych pakietów posiada spore zależności. Aby zobaczyć pełną listę
-wymagań danego ebuilda, skorzystaj z <c>emerge --pretend</c>. Dla przykładu pokażemy listę zależności dla <c>emu10k1</c>:
-</p>
-
-<pre caption="Wyświetlanie pełnej listy instalowanych pakietów">
-# <i>emerge --pretend emu10k1</i>
-</pre>
-
-<p>
-Jeżeli nie chcesz instalować jakiegoś pakietu wymaganego przez sterownik, użyj 
-<c>emerge --pretend --verbose</c> aby zobaczyć jakie flagi USE wymuszają daną zależność:
-</p>
-
-<pre caption="Wyświetlanie używanych flag USE">
-# <i>emerge --pretend --verbose emu10k1</i>
-<comment>...</comment>
-[ebuild  N    ] media-sound/aumix-2.8  +gpm +nls +gtk +gnome +alsa -gtk2
-</pre>
-
-<p>
-W poprzednim przykładnie widzimy jedną z zależności <e>emu10k1</e> (<c>aumix</c>) użuuwającej
-flagi <c>gtk</c> i <c>gnome</c>, wymuszającej kompilację gtk (które z kolei wymaga XFree).
-</p>
-
-<p>
-Jeżeli nie chcesz instalować tego wsyztskiego, odznacz wszystkie flagi USE, na przykład:
-</p>
-
-<pre caption="Instalacja emu10k1 z wyłączonymi wszystkimi flagami USE">
-# <i>USE="-gpm -nls -gtk -gnome -alsa" emerge --pretend emu10k1</i>
-</pre>
-
-<p>
-Jeżeli rezultat Cię zadawala i chcesz w taki sposób zainstalować <c>emu10k1</c>,
-usuń opcję <c>--pretend</c>.
-</p>
-
-</body>
-</subsection>
+<title>Konfiguracja Modułów Jądra</title>
 <subsection>
 <title>Konfiguracja modułów</title>
 <body>
