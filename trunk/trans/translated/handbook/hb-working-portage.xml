@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.46 -->
+<!-- Orig revision: 1.47 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Praca z Portage -->
 <!-- Status: Release -->
@@ -10,12 +10,12 @@
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-portage.xml,v 1.12 2004/12/27 11:35:05 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-portage.xml,v 1.13 2005/01/28 21:18:42 grzesieq Exp $ -->
 
 <sections>
 
-<version>1.42</version>
-<date>2004-10-24</date>
+<version>1.43</version>
+<date>2005-01-22</date>
 
 <section>
 <title>Witamy w Portage.</title>
@@ -108,7 +108,7 @@ pobierze odpowiednie pliki i zainstaluje je w Twoim systemie.
 
 <p>
 Do wyszukiwania w drzewie Portage konkretnych programów możesz użyć funkcji
-wbudowanych w program emerge. Domyślnie <c>emerge search</c> wypisze wszystkie
+wbudowanych w program emerge. Domyślnie <c>emerge --search</c> wypisze wszystkie
 zawierające dane wyrażenie nazwy pakietów.
 </p>
 
@@ -117,7 +117,7 @@ Na przykład poszukajmy wszystkich pakietów zawierających literki "pdf" w nazw
 </p>
 
 <pre caption="Wyszukiwane pakietów z pdf w nazwie">
-$ <i>emerge search pdf</i>
+$ <i>emerge --search pdf</i>
 </pre>
 
 <p>
@@ -137,7 +137,7 @@ nie powinny przysporzyć nikomu problemów. Z tego względu nie będziemy ich tu
 szerzej omawiać.
 </p>
 
-<pre caption="Przykladowy wynik polecenia emerge search">
+<pre caption="Przykladowy wynik polecenia emerge --search">
 *  net-print/cups-pdf
       Latest version available: 1.5.2
       Latest version installed: [ Not Installed ]
@@ -196,7 +196,7 @@ komendy emerge:
 <body>
 
 <p>
-Do usuwania zainstalowanych programów służy polecenie <c>emerge unmerge</c>.
+Do usuwania zainstalowanych programów służy polecenie <c>emerge --unmerge</c>.
 Nakaże ono Portage usunięcie wszystkich plików dodanych w procesie instalacji
 programu, <c>z pominięciem</c> jednak tych plików, które od instalacji programu zostały
 zmienione. Najczęściej chodzi tu o pliki konfiguracyjne, a
@@ -212,13 +212,13 @@ chcesz skasować jest niezbędny do prawidłowego działania całego systemu.
 </p>
 
 <pre caption="Usuwanie gnumeric z systemu">
-# <i>emerge unmerge gnumeric</i>
+# <i>emerge --unmerge gnumeric</i>
 </pre>
 
 <p>
 Kiedy usuwasz program jego zależności nie są usuwane razem z nim, ale pozostają
 na dysku. Aby odszukać i usunąć niepotrzebne w systemie zależności używamy
-polecenia <c>emerge depclean</c>. Omówimy je dokładniej nieco później.
+polecenia <c>emerge --depclean</c>. Omówimy je dokładniej nieco później.
 </p>
 
 </body>
@@ -281,7 +281,7 @@ związane z KDE.
 <p>
 Jeśli kiedykolwiek zdarzy nam się posiadać taką paczkę zainstalowaną w systemie
 to będziemy mieli pewien problem z jej odinstalowaniem. Zwykłe wpisanie
-<c>emerge -C</c> poczyni stosunkowo małe spustoszenie w niepotrzebnych nam już
+<c>emerge --unmerge</c> poczyni stosunkowo małe spustoszenie w niepotrzebnych nam już
 plikach, ponieważ ogromna ilość zależności pozostanie w systemie.
 </p>
 
@@ -289,7 +289,7 @@ plikach, ponieważ ogromna ilość zależności pozostanie w systemie.
 Portage jest w stanie poradzić sobie z tego typu "osieroconymi" zależnościami,
 ale najpierw należy w pełni uaktualinić swój system, uwzględniając przy tym
 również zmiany we flagach USE. Następnie uruchamiamy wspomniane już wcześniej
-polecenie <c>emerge depclean</c>, żeby usunąć "osierocone" zależności, a kiedy
+polecenie <c>emerge --depclean</c>, żeby usunąć "osierocone" zależności, a kiedy
 już skończymy je odinstalowywać przebudowujemy wszystkie programy, które
 wcześniej były dynamicznie z nimi zlinkowane, a teraz już ich nie potrzebują.
 </p>
@@ -300,7 +300,7 @@ Cały proces sprowadza się do wpisania trzech prostych poleceń:
 
 <pre caption="Usuwanie osieroconych zeleżności">
 # <i>emerge --update --deep --newuse world</i>
-# <i>emerge depclean</i>
+# <i>emerge --depclean</i>
 # <i>revdep-rebuild</i>
 </pre>
 
