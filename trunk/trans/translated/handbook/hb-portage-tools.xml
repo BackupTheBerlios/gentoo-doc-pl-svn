@@ -4,7 +4,7 @@
 <!-- Translator: rane <rane666@o2.pl> -->
 <!-- Title: Narzędzia ułatwiające pracę z portage -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-portage-tools.xml,v 1.7 2004/10/31 21:42:20 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-portage-tools.xml,v 1.8 2004/10/31 21:47:51 rane Exp $ -->
 
 <sections>
 <section>
@@ -22,7 +22,7 @@ są generowane przez portage, gdy chce wrzucić jakiś plik do katalogu chronion
 Aby uruchomić <c>etc-update</c> wpisz po prostu:
 </p>
 
-<pre caption="Running etc-update">
+<pre caption="Uruchamianie etc-update">
 # <i>etc-update</i>
 </pre>
 
@@ -31,7 +31,7 @@ Program automatycznie dokona drobnych zmian w plikach konfiguracyjnych, a potem 
 
 </p>
 
-<pre caption="etc-update options">
+<pre caption="Opcje etc-update">
 Please select a file to
  edit by entering the corresponding number.
               (-1 to exit) 
@@ -66,60 +66,47 @@ Nie ma sensu rozpisywać się na temat trzeciej metody - ograniczymy się jedyni
 </p>
 
 <pre caption="Komendy dostępne podczas interaktywnej edycji plików">
-ed:     Edytuj, a potem użyj obu wersji - każdej z odpowiednim nagłówkiem.
-eb:     Edytuj, a potem użyj obu wersji.
-el:     Edytuj, a potem użyj wersji lewej.
-er:     Edytuj, a potem użyj wersji prawej.
-e:      Edytuj nową wersję.
-l:      Użyj wersji lewej.
-r:      Użyj wersji prawej.
-s:      Dołącz nowe linie - tryb cichy.
-v:      Dołącz nowe linie - z informacją o każdej z nic
-h.
-q:      Wyjście.
+ed:     Edycja i użycie obu wersji, każdej z nagłówkiem.
+eb:     Edycja i użycie obu wersji.
+el:     iUżycie wersji po lewej.
+er:     Edycja i użycie wersji po prawej.
+e:      Edycja nowej wersji.
+l:      Użycie wersji po lewej.
+r:      Użycie wersji po prawej.
+s:      Dołączenie wspólnych linii bez informoawania o tym.
+v:      Dołączenie wspólnych linii z podaniem informacji.
+q:      Zakończenie.
 </pre>
 
 <p>
-Kiedy już skończysz uaktualniać te najważniejsze pliki to nieinteresującą Cię resztę 
-po prostu zamieniasz w trybie automatycznym. <c>etc-update</c> wyłączy się kiedy już 
-nie będzie miało żadnych plików do uaktualnienia.
+Kiedy już skończysz uaktualniać te najważniejsze pliki to nieinteresującą Cię resztę po prostu zamieniasz w trybie automatycznym. <c>etc-update</c> wyłączy się kiedy już nie będzie miało żadnych plików do uaktualnienia.
 </p>
 
 </body>
 </section>
 <section>
-<title>dispatch-conf</title>
+<title>Dispatch-conf</title>
 <body>
 
 <p>
-<c>dispatch-conf</c> to ciekawa alternatywa dla etc-update. Program posiada wszystkie opcje 
-swojego pierwowzoru, a ponadto jest w stanie zapamiętać kolejne zmiany jakich dokonaliśmy w 
-naszych plikach konfiguracyjnych, dzięki czemu w razie jakiejś katastrofy możemy łatwo 
-wrócić do poprzedniej wersji.
+<c>Dispatch-conf</c> to ciekawa alternatywa dla etc-update. Program posiada wszystkie opcje swojego pierwowzoru, a ponadto jest w stanie zapamiętać kolejne zmiany jakich dokonaliśmy w naszych plikach konfiguracyjnych, dzięki czemu w razie jakiejś katastrofy możemy łatwo wrócić do poprzedniej wersji.
 </p>
 
 <p>
-Tak jak w <c>etc-update</c>, możesz zażądać, aby program pozostawił dany plik bez zmian, 
-zastąpić go nowym, edytować osobiście obecny plik, lub użyć do tego celu trybu interaktywnego. 
-Oprócz tego <c>dispatch-conf</c> ma jeszcze kilka ciekawych opcji:
+Tak jak w <c>etc-update</c>, możesz zażądać, aby program pozostawił dany plik bez zmian, zastąpić go nowym, edytować osobiście obecny plik, lub użyć do tego celu trybu interaktywnego. Oprócz tego <c>dispatch-conf</c> ma jeszcze kilka ciekawych opcji:
 </p>
 
 <ul>
 <li>
-Automatycznie zamienia stare pliki nowymi jeśli zmiany w nich 
-dotyczą jedynie linii wykomentowanych.
+Automatycznie zamienia stare pliki nowymi jeśli zmiany w nich dotyczą jedynie linii wykomentowanych.
 </li>
 <li>
-Automatycznie zamienia pliki, gdy zmiany dotyczą jedynie pustego 
-miejsca (spacje, tabulatory, puste wiersze itp.)
+Automatycznie zamienia pliki, gdy zmiany dotyczą jedynie pustego miejsca (spacje, tabulatory, puste wiersze itp.)
 </li>
 </ul>
 
 <p>
-Pracę z programem trzeba zacząć od wprowadzenia odpowiednich ustawień 
-do pliku <path>/etc/dispatch-conf.conf</path>, w tym przede wszystkim 
-zmiennej archive-dir, gdzie program będzie archiwizował nadpisywane 
-pliki konfiguracyjne oraz utworzenia owego katalogu.
+Pracę z programem trzeba zacząć od wprowadzenia odpowiednich ustawień do pliku <path>/etc/dispatch-conf.conf</path>, w tym przede wszystkim zmiennej archive-dir, gdzie program będzie archiwizował nadpisywane pliki konfiguracyjne oraz utworzenia owego katalogu.
 </p>
 
 <p>
@@ -148,7 +135,7 @@ parametry i wciskamy enter.
 Na przykład wybieramy do spakowania: <c>curl</c>, <c>arts</c> i <c>procps</c>:
 </p>
 
-<pre caption="Example quickpkg usage">
+<pre caption="Przykład użycia quickpkg">
 # <i>quickpkg curl arts procps</i>
 </pre>
 
