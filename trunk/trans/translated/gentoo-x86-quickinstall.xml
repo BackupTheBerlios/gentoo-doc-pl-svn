@@ -4,11 +4,13 @@
 <!-- Orig revision: 1.29 -->
 <!-- Translator: Bartek Stalewski <ftpd@rpg.pl> -->
 <!-- Title: Szybka instalacja Gentoo -->
-<!-- Status: Do Korekty -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-x86-quickinstall.xml,v 1.1 2005/02/20 23:32:04 sekretarz Exp $ -->
+<!-- Status: Release -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-x86-quickinstall.xml,v 1.2 2005/02/20 23:34:31 sekretarz Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-x86-quickinstall.xml,v 1.2 2005/02/20 23:34:31 sekretarz Exp $ -->
 
 <guide link="/doc/en/gentoo-x86-quickinstall.xml">
 <title></title>
@@ -16,14 +18,14 @@
 <author title="Editor">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
-<author title="TĹumacz">
+<author title="Tłumacz">
   <mail link="ftpd@rpg.pl">Bartek Stalewski</mail>
 </author>
 
 <abstract>
-Niniejszy dokument opisuje wszystkie stopnie procesu instalacji w sposĂłb
-skrĂłtowy. UĹźytkownicy powinni mieÄ pewne doĹwiadczenie w instalacji Gentoo,
-jeĹźeli chcÄ posĹugiwaÄ siÄ tym przewodnikiem.
+Niniejszy dokument opisuje wszystkie stopnie procesu instalacji w sposób
+skrótowy. Użytkownicy powinni mieć pewne doświadczenie w instalacji Gentoo,
+jeżeli chcą posługiwać się tym przewodnikiem.
 </abstract>
 
 <license/>
@@ -37,43 +39,43 @@ jeĹźeli chcÄ posĹugiwaÄ siÄ tym przewodnikiem.
 <body>
 
 <p>
-Obrazy instalacyjne sÄ na <uri link="http://www.gentoo.org/main/en/mirrors.xml">
-serwerach lustrzaych Gentoo</uri>. SzczegĂłĹowe opisy rĂłĹźnych pĹyt sÄ dostÄpne w
+Obrazy instalacyjne są na <uri link="http://www.gentoo.org/main/en/mirrors.xml">
+serwerach lustrzaych Gentoo</uri>. Szczegółowe opisy różnych płyt są dostępne w
 <uri link="http://store.gentoo.org">sklepie Gentoo</uri>. Universal CD
-zawiera wszystko, czego potrzebujesz Ĺźeby zainstalowaÄ Gentoo szybko i bez
-poĹÄczenia z Internetem. Do wyboru jest teĹź Package CD, ktĂłre zawiera
+zawiera wszystko, czego potrzebujesz żeby zainstalować Gentoo szybko i bez
+połączenia z Internetem. Do wyboru jest też Package CD, które zawiera
 pre-kompilowane pakiety, takie jak KDE, GNOME, OpenOffice, Mozilla, Evolution
 itd.
 </p>
 
 <p>
-Uruchom komputer z Universal CD. NaciĹnij &lt;F1&gt; i/lub &lt;F2&gt;, Ĺźeby
-zobaczyÄ, jakie opcje bootowania sÄ dostÄpne. NaciĹnij &lt;ENTER&gt; w ekranie
-bootowania, by kontynuowaÄ ze standardowym kernelem. Po uruchomieniu systemu
-zobaczysz znak zachÄty.
+Uruchom komputer z Universal CD. Naciśnij &lt;F1&gt; i/lub &lt;F2&gt;, żeby
+zobaczyć, jakie opcje bootowania są dostępne. Naciśnij &lt;ENTER&gt; w ekranie
+bootowania, by kontynuować ze standardowym kernelem. Po uruchomieniu systemu
+zobaczysz znak zachęty.
 </p>
 
-<pre caption="Ustawienia poczÄtkowe">
-# <i>date</i>  (Upewnij siÄ, Ĺźe godzina i data sÄ prawidĹowe. JeĹli nie, ustaw je przez <i>date MMDDhhmmCCYY</i> )
-# <i>modprobe module_name</i>  (Do wyboru - Ĺadowanie potrzebnych moduĹĂłw)
-# <i>net-setup eth0</i> (Skonfiguruj sieÄ)
-# <i>fdisk /dev/hda</i> (UtwĂłrz na dysku odpowiednie partycje)
+<pre caption="Ustawienia początkowe">
+# <i>date</i>  (Upewnij się, że godzina i data są prawidłowe. Jeśli nie, ustaw je przez <i>date MMDDhhmmCCYY</i> )
+# <i>modprobe module_name</i>  (Do wyboru - ładowanie potrzebnych modułów)
+# <i>net-setup eth0</i> (Skonfiguruj sieć)
+# <i>fdisk /dev/hda</i> (Utwórz na dysku odpowiednie partycje)
 </pre>
 
 <p>
-Polecanym ustawieniem jest partycja boot w ext2 (64MB), partycja wymiany rĂłwna
-podwĂłjnej iloĹci pamiÄci i reszta dysku na partycjÄ root, uĹźywajÄc ReiserFS.
+Polecanym ustawieniem jest partycja boot w ext2 (64MB), partycja wymiany równa
+podwójnej ilości pamięci i reszta dysku na partycję root, używając ReiserFS.
 </p>
 
 <p>
-Przygotuj swoje partycje uĹźywajÄc <c>mke2fs</c> (Ext2), <c>mke2fs
+Przygotuj swoje partycje używając <c>mke2fs</c> (Ext2), <c>mke2fs
 -j</c> (Ext3), <c>mkreiserfs</c> (ReiserFS), <c>mkfs.xfs</c> (XFS),
-<c>mkfs.jfs</c> (JFS) i <c>mkswap</c> (partycja wymiany). Na przykĹad:
+<c>mkfs.jfs</c> (JFS) i <c>mkswap</c> (partycja wymiany). Na przykład:
 <c>mke2fs -j /dev/hda3</c>.
 </p>
 
 <p>
-Kontynuuj montujÄc parycje i rozpakowujÄc odpowiedni plik stage.
+Kontynuuj montując parycje i rozpakowując odpowiedni plik stage.
 </p>
 
 <pre caption="Preparing the Installation">
@@ -81,23 +83,23 @@ Kontynuuj montujÄc parycje i rozpakowujÄc odpowiedni plik stage.
 (Montowanie partycji root)               # <i>mount /dev/hdax /mnt/gentoo</i>
 (Stworzenie punktu montowani dla boot)   # <i>mkdir /mnt/gentoo/boot</i>
 (Montowanie partycji boot)               # <i>mount /dev/hdax /mnt/gentoo/boot</i>
-(PrzejĹcie do zamontowanej partycji)     # <i>cd /mnt/gentoo</i>
-(Rozpakowanie pliku stage)               # <i>tar -xvjpf /mnt/cdrom/stages/stage&lt;twĂłj stage&gt;.tar.bz2</i>
-(<comment>lub</comment> ĹciÄgniÄcie najnowszego pliku ze stage...) 
+(Przejście do zamontowanej partycji)     # <i>cd /mnt/gentoo</i>
+(Rozpakowanie pliku stage)               # <i>tar -xvjpf /mnt/cdrom/stages/stage&lt;twój stage&gt;.tar.bz2</i>
+(<comment>lub</comment> ściągnięcie najnowszego pliku ze stage...) 
                                          # <i>links http://www.gentoo.org/main/en/mirrors.xml</i>
-(    ... i rozpakowanie go)              # <i>tar -xvjpf stage&lt;twĂłj stage&gt;.tar.bz2</i>
+(    ... i rozpakowanie go)              # <i>tar -xvjpf stage&lt;twój stage&gt;.tar.bz2</i>
 (Do wyboru: rozpakowanie portage)        # <i>tar -xvjf /mnt/cdrom/snapshots/portage-*.tar.bz2 \
                                            -C /mnt/gentoo/usr</i>
-(Optional: skopiowanie ĹşrĂłdeĹ)           # <i>cd /mnt/gentoo/usr/portage; mkdir distfiles;</i>
+(Optional: skopiowanie źródeł)           # <i>cd /mnt/gentoo/usr/portage; mkdir distfiles;</i>
                                          # <i>cp /mnt/cdrom/distfiles/* distfiles/</i>
 (Wybranie serwera lustrzanego)           # <i>mirrorselect -a -s4 -o | grep 'GENTOO_MIRRORS=' \
                                            &gt;&gt; /mnt/gentoo/etc/make.conf</i>
 (Skopiowanie informacji o nameserverze)
                                          # <i>cp -L /etc/resolv.conf /mnt/gentoo/etc/resolv.conf</i>
 (Montowanie proc'a)                      # <i>mount -t proc none /mnt/gentoo/proc</i>
-(Chroot do nowego Ĺrodowiska             # <i>chroot /mnt/gentoo /bin/bash</i>
-(ZaĹadowanie potrzebnych zmiennych)      # <i>env-update; source /etc/profile</i>
-(Tylko z obsĹugÄ sieci, bez GRP - aktualizacja portage)
+(Chroot do nowego środowiska             # <i>chroot /mnt/gentoo /bin/bash</i>
+(Załadowanie potrzebnych zmiennych)      # <i>env-update; source /etc/profile</i>
+(Tylko z obsługą sieci, bez GRP - aktualizacja portage)
                                  # <i>emerge --sync</i>
 </pre>
 
@@ -106,7 +108,7 @@ Teraz zainstalujemy Gentoo:
 </p>
 
 <pre caption = "Instalacja Gentoo">
-(Zmiana flag USE, CFLAGS i CXXFLAGS. UĹźytkownicy stage1 mogÄ teĹź zmieniÄ CHOST)
+(Zmiana flag USE, CFLAGS i CXXFLAGS. Użytkownicy stage1 mogą też zmienić CHOST)
                                   # <i>nano -w /etc/make.conf</i>
 (Tylko stage1: bootstrap systemu) # <i>cd /usr/portage; scripts/bootstrap.sh</i>
 (Tylko stage1 i stage2: instalacja systemu podstawowego)
@@ -114,17 +116,17 @@ Teraz zainstalujemy Gentoo:
 </pre>
 
 <p>
-Teraz uzupeĹnimy potrzebne informacje:
+Teraz uzupełnimy potrzebne informacje:
 </p>
 
-<pre caption = "Tworzenie plikĂłw konfiguracyjnych">
-(Ustawienie strefy czasowej) # <i>ln -sf /usr/share/zoneinfo/<comment>&lt;ĹcieĹźka do wlaĹciwego pliku&gt;</comment>
+<pre caption = "Tworzenie plików konfiguracyjnych">
+(Ustawienie strefy czasowej) # <i>ln -sf /usr/share/zoneinfo/<comment>&lt;ścieżka do wlaściwego pliku&gt;</comment>
                                /etc/localtime</i>
 (Edycja pliku fstab)         # <i>nano -w /etc/fstab</i>
 </pre>
 
 <p>
-UĹźywaj poniĹźszego jako <e>przykĹad</e> (nie kopiuj dokĹadnie) dla
+Używaj poniższego jako <e>przykład</e> (nie kopiuj dokładnie) dla
 <path>/etc/fstab</path>:
 </p>
 
@@ -139,16 +141,16 @@ none            /dev/shm        tmpfs           nodev,nosuid,noexec     0 0
 </pre>
 
 <p>
-Kontynuuj instalujÄc kernel Linuxa:
+Kontynuuj instalując kernel Linuxa:
 </p>
 
 <pre caption="Instalacja kernela">
-(Zainstaluj ĹşrĂłdĹa kernela)     # <i>emerge <comment>&lt;kernel-package-here&gt;</comment></i>
-(Skonfiguruj swĂłj kernel uĹźywajÄc genkernel...)
+(Zainstaluj źródła kernela)     # <i>emerge <comment>&lt;kernel-package-here&gt;</comment></i>
+(Skonfiguruj swój kernel używając genkernel...)
                                 # <i>emerge genkernel; genkernel --menuconfig all</i>
-(<comment>lub</comment> (1) rÄcznie zbuduj swĂłj kernel)
+(<comment>lub</comment> (1) ręcznie zbuduj swój kernel)
                                 # <i>cd /usr/src/linux; make menuconfig;</i>
-(   (2) PamiÄtaj o opcjach VM fs, /proc fs, /dev fs,  /dev fs auto mount at boot)
+(   (2) Pamiętaj o opcjach VM fs, /proc fs, /dev fs,  /dev fs auto mount at boot)
 (   (3) Skompiluj kernel)
            (dla kerneli 2.4)    # <i>make dep &amp;&amp; make clean bzImage modules modules_install</i>
            (dla kerneli 2.6)    # <i>make &amp;&amp; make modules_install</i>
@@ -156,45 +158,45 @@ Kontynuuj instalujÄc kernel Linuxa:
 </pre>
 
 <p>
-Teraz zainstaluj inne narzÄdzia, ktĂłrych moĹźesz potrzebowaÄ:
+Teraz zainstaluj inne narzędzia, których możesz potrzebować:
 </p>
 
-<pre caption = "Instalacja waĹźnych narzÄdzi systemowych">
-(Zainstaluj program logujÄcy - do wyboru: sysklogd, metalog, msyslog, syslog-ng) 
+<pre caption = "Instalacja ważnych narzędzi systemowych">
+(Zainstaluj program logujący - do wyboru: sysklogd, metalog, msyslog, syslog-ng) 
                                               # <i>emerge syslog-ng </i>
-(Ustaw program logujÄcy do automatycznego uruchamiania siÄ przy starcie)
+(Ustaw program logujący do automatycznego uruchamiania się przy starcie)
                                               # <i>rc-update add syslog-ng default</i>
 (Zainstaluj demona cron; do wyboru: vixie-cron, dcron, fcron)                
                                               # <i>emerge vixie-cron</i>
-(Ustaw demona cron do automatycznego uruchamiania siÄ przy starcie)
+(Ustaw demona cron do automatycznego uruchamiania się przy starcie)
                                               # <i>rc-update add vixie-cron default</i>   
-(UĹźytkownicy genkernel: instalacja hotplug)   # <i>emerge hotplug</i>
-(UĹźytkownicy genkernel: hotplug automatycznie przy starcie)
+(Użytkownicy genkernel: instalacja hotplug)   # <i>emerge hotplug</i>
+(Użytkownicy genkernel: hotplug automatycznie przy starcie)
                                               # <i>rc-update add hotplug default</i>
-(UĹźytkownicy innych niĹź ext2 i ext3 systemĂłw plikĂłw; do wyboru: reiserfsprogs, xfsprogs, jfsutils)
+(Użytkownicy innych niż ext2 i ext3 systemów plików; do wyboru: reiserfsprogs, xfsprogs, jfsutils)
                                               # <i>emerge reiserfsprogs</i>
 (Do wyboru: instalacja demona DHCPD)          # <i>emerge dhcpcd</i> 
 (Skrypt inicjalizujcy domainname)             # <i>rc-update add domainname default</i>
 </pre>
 
 <p>
-JeĹźeli potrzebujesz specjalnych ebuildĂłw do kernela, teraz jest dobry moment do ich instalacji:
+Jeżeli potrzebujesz specjalnych ebuildów do kernela, teraz jest dobry moment do ich instalacji:
 </p>
 
-<pre caption = "Instalacja specjalnych ebuildĂłw do kernel">
+<pre caption = "Instalacja specjalnych ebuildów do kernel">
 # <i>emerge pcmcia-cs</i> (or <i>nforce-net</i>, <i>nforce-audio</i>, <i>e100</i>, <i>e1000</i>, <i>ati-drivers</i>, <i>rp-pppoe</i>)
 # <i>VIDEO_CARDS="twoja karta" emerge x11-drm</i>   (dla ATI Radeon do wersji 9200, Rage128, 
                                             Matrox, Voodoo i innych kart
 </pre>
 
 <p>
-DokoĹcz ustawianie swojego Gentoo:
+Dokończ ustawianie swojego Gentoo:
 </p>
 
-<pre caption = "KoĹczenie ustawien">
-(Ustaw hasĹo roota)          # <i>passwd</i>
-(StwĂłrz uĹźytkownika)         # <i>useradd twĂłj_uĹźytkownik -m -G users,wheel,audio -s /bin/bash</i>
-(Ustaw mu hasĹo)             # <i>passwd twĂłj_uĹźytkownik</i>
+<pre caption = "Kończenie ustawien">
+(Ustaw hasło roota)          # <i>passwd</i>
+(Stwórz użytkownika)         # <i>useradd twój_użytkownik -m -G users,wheel,audio -s /bin/bash</i>
+(Ustaw mu hasło)             # <i>passwd twój_użytkownik</i>
 (Ustaw hostname)             # <i>echo mymachine &gt; /etc/hostname</i>
 (Ustaw domainname)           # <i>echo mydomain.com &gt; /etc/dnsdomainname</i>
 (Ustaw plik hosts, np. "127.0.0.1 localhost mymachine")  
@@ -204,18 +206,18 @@ DokoĹcz ustawianie swojego Gentoo:
 </pre>
 
 <pre caption = "Set up Networking">
-(Ustaw sieÄ; uĹźytkownicy dhcp powinni ustawiÄ iface_eth0="dhcp")
+(Ustaw sieć; użytkownicy dhcp powinni ustawić iface_eth0="dhcp")
                               # <i>nano -w /etc/conf.d/net</i>
-(Wypisz moduĹy, ktĂłre majÄ byÄ Ĺadowane przy starcie)
+(Wypisz moduły, które mają być ładowane przy starcie)
                               # <i>nano -w /etc/modules.autoload.d/kernel-<comment>&lt;wersja&gt;</comment></i>
-(Bez PCMCIA: uruchamiaj sieÄ przy starcie)
+(Bez PCMCIA: uruchamiaj sieć przy starcie)
                               # <i>rc-update add net.eth0 default</i>
-(Tylko gdy masz kilka interfejsĂłw sieciowych:)
-   (1) StwĂłrz skrypty dla kaĹźdego interfejsu)
+(Tylko gdy masz kilka interfejsów sieciowych:)
+   (1) Stwórz skrypty dla każdego interfejsu)
                               # <i>ln -s /etc/init.d/net.eth0 /etc/init.d/net.ethx</i>
    (2) Uruchamiaj przy starcie)
                               # <i>rc-update add net.ethx default</i>
-(UĹźytkownicy PCMCIA: wyedytuj /etc/conf.d/pcmcia i zaĹaduj PCMCIA przy starcie)
+(Użytkownicy PCMCIA: wyedytuj /etc/conf.d/pcmcia i załaduj PCMCIA przy starcie)
                               # <i>rc-update add pcmcia default</i>
 </pre>
 
@@ -254,28 +256,28 @@ default=gentoo
 image=/boot/kernel-<comment>&lt;kernel version&gt;</comment> 
   label=gentoo
   read-only
-  <comment># uĹźytkownicy genkernel:</comment>
+  <comment># użytkownicy genkernel:</comment>
   append="init=/linuxrc real_root=/dev/hda3 ramdisk=8192"
   root=/dev/ram0
   initrd=/boot/initrd-<comment>&lt;kernel version&gt;</comment>
-  <comment># nie uĹźywajÄcy genkernel:</comment>
+  <comment># nie używający genkernel:</comment>
   root=/dev/hda3
 
 # <i>/sbin/lilo</i>
 </pre>
 
 <p>
-Odmontuj wszystkie partycje i zresetuj swĂłj nowy system:
+Odmontuj wszystkie partycje i zresetuj swój nowy system:
 </p>
 
-<pre caption="KoĹczenie i instalacja GUI">
-(WyjĹcie z chroot)           # <i>exit; cd /</i>
+<pre caption="Kończenie i instalacja GUI">
+(Wyjście z chroot)           # <i>exit; cd /</i>
 (Odmontowanie partycji)      # <i>umount /mnt/gentoo/boot /mnt/gentoo/proc /mnt/gentoo</i>
-(Reset; wyjmij pĹytÄ)
+(Reset; wyjmij płytę)
                              # <i>reboot</i>
 (Po starcie:)
-(UĹźytkownicy ADSL)           # <i>adsl-setup</i>
-(UĹźytkownicy GRP)
+(Użytkownicy ADSL)           # <i>adsl-setup</i>
+(Użytkownicy GRP)
    (1) Zamontuj Package CD   # <i>mount /dev/cdrom /mnt/cdrom</i>  
    (2) Skopiuj pakiety       # <i>mkdir /usr/portage/packages</i>
                              # <i>cp -a /mnt/cdrom/* /usr/portage/packages/</i>
@@ -284,7 +286,7 @@ Odmontuj wszystkie partycje i zresetuj swĂłj nowy system:
 </pre>
 
 <p>
-WiÄcej informacji znajdziesz w <uri 
+Więcej informacji znajdziesz w <uri 
 link="http://www.gentoo.org/doc/en/index.xml">Dokumentacji Gentoo</uri>.
 </p>
 </body>
