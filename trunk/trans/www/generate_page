@@ -18,7 +18,7 @@ do
 text/vnd.viewcvs-markup\">" >> doctable.xml
    grep '^<!-- Title:' $file | sed -e 's/<!-- Title: \(.*\) -->$/\1<\/uri><\/ti>/' >> doctable.xml
    grep '^<!-- Orig revision:' $file | sed -e 's/<!-- Orig revision: \(.*\) -->$/<ti>\1<\/ti>/' >> doctable.xml
-   grep '^<!-- \$Header: /cvsroot/gentoo-doc-pl/trans/www/generate_page,v 1.3 2003/12/24 10:31:10 lcs Exp $file |
+   grep '^<!-- \$Header: /cvsroot/gentoo-doc-pl/trans/www/generate_page,v 1.4 2003/12/24 10:33:34 lcs Exp $file|
    awk '/^<!-- \$Header:/ {
          gsub(/\//,"-",$5)
          print "<ti>" $4 "</ti>\n<ti>" $5 "</ti>"}'  >> doctable.xml
