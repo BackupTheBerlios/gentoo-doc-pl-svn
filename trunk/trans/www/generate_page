@@ -9,7 +9,7 @@ echo > doctable.xml
 for file in `find ../translated/ ../non_translated -name "*.xml"` 
 do
    echo "<tr>" >> doctable.xml
-   echo "<ti><uri link=\"http://cvs.berlios.de/cgi-bin/viewcvs.cgi/gentoo-doc-pl/trans/trans/$file \">" >> doctable.xml
+   echo "<ti><uri link=\"http://cvs.berlios.de/cgi-bin/viewcvs.cgi/gentoo-doc-pl/trans/trans/$file\">" >> doctable.xml
    echo $file | sed -e 's:.*/\(.*\)\.xml:\1</uri></ti>:' >> doctable.xml
    grep '^<!-- Orig revision:' $file | sed -e 's/<!-- Orig revision: \(.*\) -->$/<ti>\1<\/ti>/' >> doctable.xml
    grep 'Header: /cvsroot/' $file|
