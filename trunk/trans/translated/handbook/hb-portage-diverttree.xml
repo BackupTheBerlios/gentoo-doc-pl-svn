@@ -5,7 +5,7 @@
 <!-- Translator: arachnist <arachnist@gmail.com> -->
 <!-- Title: Obsługa drzewa Portage -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-portage-diverttree.xml,v 1.1 2004/11/01 18:39:20 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-portage-diverttree.xml,v 1.2 2004/11/01 18:51:54 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -41,40 +41,39 @@ nie pominięte pakiety mogą zależeć od nowych lecz pominiętych pakietów.
 <body>
 
 <p>
-You can ask Portage to use ebuilds that are not officially available through the
-Portage tree. Create a new directory (for instance
-<path>/usr/local/portage</path>) in which you store the 3rd-party ebuilds. Use
-the same directory structure as the official Portage tree!
+Możesz zmusić Portage, aby używała ebuildów, które nie są dostępne w oficjalnym drzewie Portage.
+Utwórz nowy katalog (na przykład <path>/usr/local/portage</path>) w którym będą
+znajdować się dodatkowe ebuildy. Pamiętaj o zachowaniu struktury katalogów, tak
+jak w oficjalnym drzewie Portage.
 </p>
 
 <p>
-Then define PORTDIR_OVERLAY in <path>/etc/make.conf</path> and have it point to
-the previously defined directory. When you use Portage now, it will take those
-ebuilds into account as well without removing/overwriting those ebuilds the next
-time you run <c>emerge --sync</c>.
+Następnie zdefiniuj PORTDIR_OVERLAY w <path>/etc/make.conf</path> tak żeby wskazywała
+na poprzednio utworzony katalog. Możesz teraz używać tych ebuildów bez obawy, że
+zostaną one usunięte/nadpisane przy następnym uruchomieniu <c>emerge --sync</c>
 </p>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Non-Portage Maintained Software</title>
+<title>Programy, które nie są utrzymywane w Portage</title>
 <subsection>
-<title>Using Portage with Self-Maintained Software</title>
+<title>Portage z programami utrzymywanymi przez siebie</title>
 <body>
 
 <p>
 W niektórych przypadkach możesz chcieć konfigurować, instalować i zarządzać
 programami samodzielnie bez pomocy Portage w automatyzacji tego procesu, nawet
-jeśli Portage zawiera programy. Częstymi przypadkami są źródła jądra i 
-sterowniki nvidii. Możesz zkonfigurować Portage tak by myślało że dany pakiet
-jest ręcznie zainstalowany w systemie. Ten proces nazywany jest
+jeśli Portage zawiera te programy. Najczęściej są to źródła jądra i 
+sterowniki nvidii. Możesz zkonfigurować Portage tak by myślało, że dany pakiet
+jest zainstalowany w systemie. Ten proces nazywany jest
 <e>wstrzykiwaniem</e> i jest obsługiwany przez Portage dzięki plikowi
 <path>/etc/portage/profile/package.provided</path>.
 </p>
 
 <p>
-Dla przykładu jeśli chcesz poinformować Portage że ręcznie zainstalowałeś
+Dla przykładu, jeśli chcesz poinformować Portage, że ręcznie zainstalowałeś
 <c>development-sources-2.6.8.1</c> dodaj następującą linijkę do
 <path>/etc/portage/profile/package.provided</path>:
 </p>
