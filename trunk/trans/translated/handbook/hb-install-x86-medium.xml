@@ -4,8 +4,8 @@
 <!-- Orig revision: 1.27 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
-<!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-medium.xml,v 1.4 2004/12/04 12:05:17 rane Exp $ -->
+<!-- Status: Release -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-medium.xml,v 1.5 2004/12/07 14:03:54 rane Exp $ -->
 
 <sections>
 
@@ -29,14 +29,13 @@ od docelowej architektury.
 <title>Architektura x86.</title>
 <body>
 
-
 <ul>
 <li>
-Conajmniej 1GB wolnej przestrzeni dyskowej.
+Co najmniej 1GB wolnej przestrzeni dyskowej.
 </li>
 <li>
-Jeśli nie planujesz korzystać z prekompilowanych pakietów potrzebujesz
-conajmniej 300MB pamięci (RAM + swap).
+Jeśli nie będziesz samodzielnie kompilował programów wystarczy Ci 300 MB pamięci
+(RAM + swap).
 </li>
 <li>
 Dla <e>architektury x86</e> potrzebujesz procesora 486 lub lepszego i co
@@ -98,10 +97,9 @@ Który stage wybrać?
 </p>
 
 <p>
-Rozpoczęcie od <e>stage1</e> pozwala na pełną kontrolę optymalizacji i
-funkcjonalności. Przeznaczony jest on zwłaszcza dla użytkowników, którzy wiedzą
-co robią. Poza tym, stwarza świetną okazję do głębszego poznania mechanizmów
-działania Gentoo.
+Rozpoczęcie od <e>stage1</e> pozwala na pełną kontrolę nad konfiguracją i
+optymalizacją systemu. Przeznaczony jest on zwłaszcza dla doświadczonych użytkowników.
+Stwarza świetną okazję do głębszego poznania mechanizmów działania Gentoo.
 </p>
 
 <table>
@@ -111,11 +109,11 @@ działania Gentoo.
 </tr>
 <tr>
 <th>+</th>
-<ti>Pozwala na pełną kontrolę optymalizacji i funkcjonalności systemu.</ti>
+<ti>Pozwala na pełną kontrolę nad konfiguracją i optymalizacją systemu.</ti>
 </tr>
 <tr>
 <th>+</th>
-<ti>Odpowiedni dla użytkowników, którzy wiedzą co robią.</ti>
+<ti>Odpowiedni dla doświadczonych użytkowników.</ti>
 </tr>
 <tr>
 <th>+</th>
@@ -127,13 +125,13 @@ działania Gentoo.
 </tr>
 <tr>
 <th>-</th>
-<ti>Jeśli nie planujesz poprawiania ustawień, prawdopodobnie okaże się stratą czasu.</ti>
+<ti>Jeśli nie planujesz poprawiania ustawień prawdopodobnie okaże się stratą czasu.</ti>
 </tr>
 </table>
 
 <p>
 W <e>stage2</e> bootstrap przeprowadziliśmy za Ciebie. Jeśli jesteś zadowolony
-z wybranych przez nas ustawień, użyj właśnie jego.
+z wybranych przez nas ustawień użyj właśnie jego.
 </p>
 
 <p>
@@ -182,7 +180,7 @@ za pomocą prekompilowanych pakietów.
 <table>
 <tr>
 <th>Stage3</th>
-<th>Plusy i Minusy:</th>
+<th>Plusy i minusy:</th>
 </tr>
 <tr>
 <th>+</th>
@@ -217,8 +215,7 @@ Teraz rzućmy okiem na dostępne media instalacyjne:
 
 <p>
 <e>Gentoo LiveCD</e> to uruchamialne płyty zawierające działające środowisko
-Gentoo. Pozwalają na uruchomienie Linuksa prosto z CD. W czasie startu
-wykrywany
+Gentoo. Pozwalają na uruchomienie Linuksa prosto z CD. W czasie startu wykrywany
 jest sprzęt i ładowane są odpowiednie sterowniki. Płyty te dostępne są dla
 wszystkich wspieranych architektur (x86, alpha, sparc, ppc, hppa, amd64). Co
 więcej, występują w różnych odmianach.
@@ -226,7 +223,7 @@ więcej, występują w różnych odmianach.
 
 <p>
 Wszystkie LiveCD pozwalają na uruchomienie systemu podstawowego, konfigurację
-sieci, zainicjowanie partycji i rozpoczęcie instalacji Gentoo przez Internet.
+sieci, utworzenie partycji i rozpoczęcie instalacji Gentoo przez Internet.
 Na niektórych znajdują się dodatkowo kody źródłowe, dzięki którym możesz
 przeprowadzić instalację bez dostępu do sieci.
 </p>
@@ -238,7 +235,7 @@ Co one zawierają?
 </body>
 </subsection>
 <subsection>
-<title>Gentoo Minimal LiveCD</title>
+<title>Gentoo Minimal LiveCD.</title>
 <body>
 
 <p>
@@ -252,7 +249,7 @@ pliku o nazwie <c>install-x86-minimal-2004.0.iso</c>.
 <table>
 <tr>
 <th>Minimal LiveCD</th>
-<th>Plusy i Minusy:</th>
+<th>Plusy i minusy:</th>
 </tr>
 <tr>
 <th>+</th>
@@ -285,19 +282,19 @@ Gentoo Universal LiveCD to uruchamialna płyta, która może posłużyć do
 instalacji Gentoo bez dostępu do sieci. Zawiera stage1 oraz kilka odmian stage3
 (zoptymalizowanych dla różnych podarchitektur). Odmianę dla architektury x86
 można znaleźć w podkatalogu <c>universal</c>, w pliku
-<c>install-x86-universal-2004.0.iso</c>.
+<c>install-x86-universal-2004.3.iso</c>.
 </p>
 
 <p>
 Jeśli przyjrzysz się bliżej katalogowi <path>livecd</path> dostrzeżesz, że dla
 części architektur dostarczamy także <e>Gentoo Packages CD</e>. Znajdują się na
-nich wyłącznie prekompilowane pakiety (płyty te nie są uruchamialne). Można ją
+nich wyłącznie prekompilowane pakiety (płyty te nie są uruchamialne). Można je
 wykorzystać do instalacji oprogramowania już po zainstalowaniu systemu. Do
 instalacji systemu podstawowego wystarczy LiveCD, jeśli jednak nie chcesz
-samodzielnie kompilować OpenOffice.org, Mozilli, KDE, GNOME itd., potrzebujesz
-także Packages CD. Odmianę dla podarchitektury Athlon-XP można odnaleźć w
+samodzielnie kompilować OpenOffice.org, Mozilli, KDE, GNOME itd. to potrzebujesz
+także PackagesCD. Odmianę dla podarchitektury Athlon-XP można odnaleźć w
 odpowiednim dla niej katalogu w pliku o nazwie
-<c>packages-athlon-xp-2004.0.iso</c>.
+<c>packages-athlon-xp-2004.3.iso</c>.
 </p>
 
 <p>
@@ -308,12 +305,12 @@ podarchitektur.
 
 <table>
 <tr>
-<th>Universal LiveCD i Packages CD.</th>
-<th>Plusy i Minusy:</th>
+<th>Universal LiveCD i PackagesCD.</th>
+<th>Plusy i minusy:</th>
 </tr>
 <tr>
 <th>+</th>
-<ti>Packages CD jest zoptymalizowane dla Twojej architektury i podarchitektury.</ti>
+<ti>PackagesCD jest zoptymalizowane dla Twojej architektury i podarchitektury.</ti>
 </tr>
 <tr>
 <th>+</th>
@@ -343,21 +340,21 @@ masz dostępu do Internetu.</ti>
 <p>
 Zdecydowałeś się skorzystać z Gentoo LiveCD (jeśli nie, to czytasz złą sekcję).
 Zaczniemy od ściągnięcia ich na dysk i nagrania na płyty. Omówiliśmy już różne
-odmiany, ale gdzie je znaleźć?
+odmiany, teraz napiszemy gdzie je znaleźć.
 </p>
 
 <p>
 Odwiedź jeden z naszych <uri link="/main/en/mirrors.xml">serwerów lustrzanych</uri> i
 przejdź do wybranego katalogu. Wewnątrz znajdziesz odpowiednio nazwane pliki.
-Są to pełne obrazy płyt, gotowe do nagrania na CD-R.
+Są to pełne obrazy płyt, gotowe do nagrania na płyty CD-R.
 </p>
 
 <p>
-Jeśli zastanawiasz się czy pobrane pliki są prawidłowe, czy też uszkodzone,
-możesz porównać ich sumę kontrolną MD5 z tą, którą dostarczamy razem z obrazem
-płyty (na przykład <path>install-x86-minimal-2004.0.iso.md5</path>). Do
-sprawdzania sumy MD5 pod Linuksem/Uniksem służy program <c>md5sum</c>,
-natomiast pod Windowsem <uri link="http://www.md5summer.org">md5summer</uri>.
+Aby potwierdzić, że pobrane przez Ciebie pliki nie zawierają błędów powinieneś
+porównać ich sumy kontrolne MD5 z tymi, które dostarczamy razem z obrazem płyty
+(np. <path>install-x86-minimal-2004.3.iso.md5</path>). Do sprawdzania sumy MD5
+pod Linuksem/Uniksem służy program <c>md5sum</c>, a pod Windowsem <uri
+link="http://www.md5summer.org">md5summer</uri>.
 </p>
 
 
