@@ -4,12 +4,12 @@
 <!-- Orig revision: 1.12 -->
 <!-- Translator: sekretarz <sekretarz@gentoo.org> -->
 <!-- Title: Przygotowanie Dysków -->
-<!-- Status: Ukończono -->
+<!-- Status: Release -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-disk.xml,v 1.2 2004/12/05 22:12:12 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-disk.xml,v 1.3 2004/12/06 17:11:19 rane Exp $ -->
 
 <sections>
 
@@ -31,8 +31,8 @@ wykorzystać dostępne miejsce.
 
 <p>
 Zaczniemy od omówienia <e>urządzeń blokowych</e>. Najpopularniejszym z nich
-prawdopodobnie jest <path>/dev/hda</path>, reprezentujący w Linuksie pierwszy
-napęd IDE. Jeśli posiadasz urządzenia SCSI, pierwszym takim
+jest <path>/dev/hda</path>, reprezentujący w Linuksie pierwszy
+napęd IDE. Jeśli posiadasz napęd SCSI, pierwszym takim
 dyskiem jest <path>/dev/sda</path>.
 </p>
 
@@ -40,33 +40,33 @@ dyskiem jest <path>/dev/sda</path>.
 Urządzenia blokowe stanowią abstrakcyjny interfejs dysków. Programy
 użytkownika mogą z nich korzystać nie martwiąc się czy napędy
 są typu IDE, SCSI lub jeszcze inne. Przechowywane dane adresuje się
-za jako ciąg 512-bajtowych bloków.
+jako ciąg 512-bajtowych bloków.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Plastry</title>
+<title>Plastry.</title>
 <body>
 
 <p>
-Jakkolwiek teoretycznie możliwe jest przeznaczenie na system całego dysku,
-zazwyczaj nie jest to rozwiązanie praktyczne. Zamiast tego, dzieli się
-napęd na mniejsze, łatwiejsze w zarządzaniu, urządzenia blokowe.
-Na systemach Alpha, są to tak zwane <e>plastry</e>.
+Teoretycznie możliwe jest przeznaczenie na system całego dysku,
+zazwyczaj nie jest to jednak rozwiązanie zbyt praktyczne. Zamiast tego dzieli się
+napęd na mniejsze i łatwiejsze w zarządzaniu tzw. urządzenia blokowe.
+Na systemach Alpha są one nazywane <e>plastrami</e> (ang. slices).
 </p>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Projektowanie Schematu Podziału</title>
+<title>Projektowanie schematu podziału.</title>
 <subsection>
-<title>Domyślny Schemat Podziału</title>
+<title>Domyślny schemat Podziału</title>
 <body>
 
 <p>
-Jako przykład użyjemy następującego schematu plastrów:
+Jako przykładu użyjemy następującego schematu plastrów:
 </p>
 
 <table>
@@ -76,7 +76,7 @@ Jako przykład użyjemy następującego schematu plastrów:
 </tr>
 <tr>
   <ti><path>/dev/sda1</path></ti>
-  <ti>Plaster Swap</ti>
+  <ti>Plaster wymiany</ti>
 </tr>
 <tr>
   <ti><path>/dev/sda2</path></ti>
@@ -90,9 +90,8 @@ Jako przykład użyjemy następującego schematu plastrów:
 
 
 <p>
-Jeśli interesują Cię nasze rady dotyczące rozmiarów partycji
-(lub woluminów logicznych) oraz ich ilości, czytaj dalej.
-W przeciwnym wypadku przejdź od razu do <uri link="#fdisk">podziału dysku za pomocą fdisk</uri>.
+Jeśli interesują Cię nasze rady dotyczące rozmiarów oraz ilości partycji, czytaj dalej.
+W przeciwnym wypadku przejdź od razu do paragrafu <uri link="#fdisk">Podziału dysku za pomocą fdisk</uri>.
 </p>
 
 </body>
@@ -107,12 +106,12 @@ Ilość partycji ściśle zależy od danego
 wielu użytkowników, prawdopodobnie uznasz za stosowne
 oddzielenie <path>/home</path> aby poprawić bezpieczeństwo
 i uprościć tworzenie kopii zapasowych. Jeżeli docelowym
-zastosowaniem świeżego Gentoo jest serwer poczty, na osobnej
+zastosowaniem Gentoo jest serwer poczty, na osobnej
 partycji powinieneś umieścić <path>/var</path>, gdzie przechowywane
-są listy. Dobry wybór systemu plików może tu znacznie zwiększyć
+są listy. Dobry wybór systemu plików może znacznie zwiększyć
 wydajność. Oddzielenie <path>/opt</path> jest dobrym rozwiązaniem
 na serwerach gier, gdyż większość używanego oprogramowania zostanie
-tam zainstalowana. Powód jest podobny do <path>/home</path>: bezpieczeństwo
+tam zainstalowana. Powód jest podobny jak przy <path>/home</path>: bezpieczeństwo
 i kopie zapasowe.
 </p>
 
@@ -124,35 +123,34 @@ lub woluminów ma wiele zalet:
 <ul>
 <li>
   Masz możliwość dostosowania jak najwydajniejszego w danym zastosowaniu
-  systemu plików dla poszczególnych partycji lub woluminów
+  systemu plików dla poszczególnych partycji.
 </li>
 <li>
   W przypadku zapełnienia partycji przez nieprawidłowo działające
-  narzędzie, nie ma to wpływu na całość systemu
+  narzędzie, nie ma to wpływu na całość systemu.
 </li>
 <li>
   Jeśli to konieczne, można skrócić czas kontroli systemów plików, gdyż
   można jednocześnie dokonywać jej na kilku partycjach (ma to znaczenie
-  zwłaszcza na sprzęcie z wieloma dyskami)
+  zwłaszcza na sprzęcie z wieloma dyskami).
 </li>
 <li>
   Montując część partycji lub woluminów z opcjami read-only (tylko do odczytu),
   nosuid (ignorowane są bity setuid), noexec (ignorowane są bity wykonywalności) itd.
-  można znacznie poprawić bezpieczeństwo
+  można znacznie poprawić bezpieczeństwo.
 </li>
 </ul>
 
 <p>
-Niestety zbyt rozbudowany podział niesie z sobą spore niebezpieczeństwo:
-źle zaplanowany zaowocuje pustkami na zbyt dużych
-i ciasnotą na zbyt małych partycjach.
+Niestety zbyt rozbudowany podział niesie ze sobą spore problemy:
+źle zaplanowany zaowocuje pustkami na zbyt dużych i ciasnotą na zbyt małych partycjach.
 </p>
 
 </body>
 </subsection>
 </section>
 <section id="fdisk">
-<title>Partycjonowanie Dysku za pomocą fdisk</title>
+<title>Partycjonowanie dysku za pomocą fdisk.</title>
 <subsection>
 <body>
 
@@ -168,7 +166,7 @@ jak w zaprezentowanym wcześniej schemacie:
 </tr>
 <tr>
   <ti><path>/dev/sda1</path></ti>
-  <ti>Plaster Swap</ti>
+  <ti>Plaster wymiany</ti>
 </tr>
 <tr>
   <ti><path>/dev/sda2</path></ti>
@@ -181,18 +179,19 @@ jak w zaprezentowanym wcześniej schemacie:
 </table>
 
 <p>
-Zmodyfikuj go wedle swoich potrzeb.
+Oczywiście możesz i czasem nawet powinieneś dostosować ten schemat odpowiednio
+do swoich potrzeb.
 </p>
 
 
 </body>
 </subsection>
 <subsection>
-<title>Sprawdzanie Dostępnych Dysków</title>
+<title>Sprawdzanie dostępnych dysków.</title>
 <body>
 
 <p>
-Aby rozejrzeć się w dostępnych dyskach, skorzystaj z następujących poleceń:
+Aby dowiedzieć się jakie dyski masz do dyspozycji skorzystaj z następujących poleceń:
 </p>
 
 <pre caption="Sprawdzanie dostępnych dysków">
@@ -217,19 +216,19 @@ Odpal <c>fdisk</c>:
 </body>
 </subsection>
 <subsection>
-<title>Usuwanie Wszystkich Plastrów</title>
+<title>Usuwanie plastrów.</title>
 <body>
 
 <p>
-Jeżeli Twój dysk twardy jest kompletnie pusty, będziesz musiał najpierw stworzyć
-etykiete dysku BSD.
+Jeżeli Twój dysk twardy jest pusty będziesz musiał najpierw stworzyć
+etykietę dysku BSD.
 </p>
 
-<pre caption="Utworzenie etykiety BSD dysku">
+<pre caption="Tworzenie etykiety BSD dysku">
 Command (m for help): <i>b</i>
 /dev/sda contains no disklabel.
 Do you want to create a disklabel? (y/n) <i>y</i>
-<comment>Teraz zobaczysz pare informacji specyficznych dla każdego dysku</comment>
+<comment>Teraz zobaczysz kilka informacji różnych dla każdego dysku</comment>
 3 partitions:
 #       start       end      size     fstype   [fsize bsize   cpg]                                    
   c:        1      5290*     5289*    unused        0     0
@@ -242,7 +241,7 @@ usunąć również pozostałe (oczywiście oprócz 'c').
 </p>
 
 <p>
-Użyj <c>p</c> alby ujrzeć wszystkie plastry. Do usuwania służy <c>d</c>.
+Użyj <c>p</c> aby ujrzeć wszystkie plastry. Do usuwania służy <c>d</c>.
 </p>
 
 <pre caption="Usuwanie plastra">
@@ -264,11 +263,11 @@ Partition (a-h): <i>a</i>
 </pre>
 
 <p>
-Po powtórzeniu powyższego procesu dla wszystkich plastrów, listing powinien
+Po powtórzeniu powyższego procesu dla wszystkich plastrów listing powinien
 przedstawiać się następująco:
 </p>
 
-<pre caption="Viewing an empty scheme">
+<pre caption="Pusty listing schematu partycji">
 BSD disklabel command (m for help): <i>p</i>
 
 3 partitions:
@@ -279,21 +278,21 @@ BSD disklabel command (m for help): <i>p</i>
 </body>
 </subsection>
 <subsection>
-<title>Tworzenie Plastra Swap</title>
+<title>Tworzenie plastra wymiany.</title>
 <body>
 
 <p>
-W komputerach Alpha nie ma konieczności tworzenia partycji boot. Jakkolwiek
-pierwszy cylinder zostanie zajęty obrazem <c>aboot</c>.
+W komputerach Alpha nie ma konieczności tworzenia partycji boot. 
+Za to pierwszy cylinder dysku zostanie zajęty obrazem <c>aboot</c>.
 </p>
 
 <p>
-Utworzymy teraz plaster swap, począwszy od trzeciego cylindra o rozmiarze
-1GB. W tym celu skorzystaj z polecenia <c>n</c>. Następnie
-zmień jego typ na <c>1</c>, czyli <e>swap</e>.
+Utworzymy teraz plaster wymiany zaczynający się od trzeciego cylindra o rozmiarze
+1GB. W tym celu skorzystamy z polecenia <c>n</c>. Następnie
+zmienimy jego typ na <c>1</c>, czyli <e>swap</e>.
 </p>
 
-<pre caption="Zakładanie plastra swap">
+<pre caption="Zakładanie plastra wymiany">
 BSD disklabel command (m for help): <i>n</i>
 Partition (a-p): <i>a</i>
 First cylinder (1-5290, default 1): <i>3</i>
@@ -320,21 +319,21 @@ BSD disklabel command (m for help): <i>p</i>
 </body>
 </subsection>
 <subsection>
-<title>Tworzenie Plastra Root</title>
+<title>Tworzenie plastra root.</title>
 <body>
 
 <p>
-Nadszedł czas na utworzenie plastra root. Powinien on zaczynać się
+Nadszedł czas na utworzenie plastra root. Powinien zaczynać się
 od pierwszego cylindra <e>po</e> plastrze swap. Aby zobaczyć gdzie kończy
 się ów plaster skorzystaj z polecenia <c>p</c>. W naszym przykładzie
 jest to 1003, a więc początkiem plastra root będzie cylinder 1004.
 </p>
 
 <p>
-Obecnie w programie <c>fdisk</c> znajduje się błąd, powodujący iż
+Obecnie w programie <c>fdisk</c> znajduje się błąd powodujący iż
 liczba dostępnych cylindrów jest o jeden większa od faktycznej.
-Innymi słowy, zapytany o ostatni cylinder, podaj numer (w naszym przykładzie
-5290) zmniejszony o jeden.
+Innymi słowy, zapytany o ostatni cylinder podaj numer zmniejszony o jeden (w
+naszym przykładzie 5290).
 </p>
 
 <p>
@@ -369,7 +368,7 @@ BSD disklabel command (m for help): <i>p</i>
 </body>
 </subsection>
 <subsection>
-<title>Zapisywanie Podziału Plastrów i Zamykanie fdisk</title>
+<title>Zapisywanie podziału i zamykanie fdisk.</title>
 <body>
 
 <p>
@@ -381,45 +380,41 @@ Command (m for help): <i>w</i>
 </pre>
 
 <p>
-Twoj plastry są już gotowe, możesz teraz przejść do <uri 
-link="#filesystems">Zakładania Systemów Plików</uri>.
+Twoje plastry są już gotowe, więc możesz przejść do paragrafu <uri 
+link="#filesystems">Tworzenie systemów plików</uri>.
 </p>
 
 </body>
 </subsection>
 </section>
 <section id="filesystems">
-<title>Tworzenie Systemów Plików</title>
+<title>Tworzenie systemów plików.</title>
 <subsection>
-<title>Wprowadzenie</title>
+<title>Wprowadzenie.</title>
 <body>
 
 <p>
-Po stworzeniu partycji <!--(lub logicznych woluminów)--> nadszedł czas na
-założenie na nich systemów plików. Jeśli nie obchodzi Cię
-jakie wybierzesz i jesteś zadowolony z domyślnych ustawień w podręczniku,
-przejdź do
-<uri link="#filesystems-apply">Zakładania na Partycji Systemu Plików</uri>.
-W przeciwnym wypadku czytaj dalej aby dowiedzieć się co nieco na ich temat.
+Po utworzeniu partycji nadszedł czas na założenie na nich systemów plików. 
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Systemy Plików?</title>
+<title>Systemy plików?</title>
 <body>
 
 <p>
-Dostępnych jest kilka systemów plików. Większość z nich działa stabilnie na architekturze Alpha
+Większość z dostępnych systemów plików działa stabilnie na
+architekturze Alpha.
 </p>
 
 <p>
-<b>ext2</b> to sprawdzony i popularny linuksowy system plików, ale nie posiada
-księgowania. Powoduje to, iż jego regularne kontrole przy starcie systemu
-bywają długotrwałe. Obecnie istnieją nowoczesne systemy plików z księgowaniem,
-mogące być szybko sprawdzane i są zasadniczo zalecane. Księgowanie
-zapobiega długotrwałym kontrolom podczas uruchamiania i ewentualnym
-błędom spójności danych.
+<b>ext2</b> to sprawdzony i popularny linuksowy system plików, którego główną
+wadą jest to, że nie posiada księgowania. Powoduje to, iż jego regularne
+kontrole przy starcie systemu bywają długotrwałe. Obecnie istnieją nowoczesne
+systemy plików z księgowaniem, które można szybko sprawdzić i to właśnie te
+polecamy naszym użytkownikom. Księgowanie zapobiega długotrwałym kontrolom
+podczas uruchamiania systemu oraz ewentualnym błędom spójności danych.
 </p>
 
 <p>
@@ -463,12 +458,12 @@ koncie dostatecznych osiągnięć aby można było mówić
 </body>
 </subsection>
 <subsection id="filesystems-apply">
-<title>Zakładanie Systemu Plików na Partycji</title>
+<title>Zakładanie systemów plików na partycjach.</title>
 <body>
 
 <p>
-Aby założyć na woluminie lub partycji system plików, możesz skorzystać z dostępnych
-dla każdego narzędzi:
+Aby założyć na woluminie lub partycji system plików powinieneś skorzystać
+odpowiednich dla każdego z nich narzędzi:
 </p>
 
 <table>
@@ -500,7 +495,7 @@ dla każdego narzędzi:
 
 <p>
 Na przykład, aby założyć ext2 na partycji boot (w naszym przypadku <path>/dev/hda1</path>)
-oraz ext3 na partycji root (w naszym przypadku <path>/dev/hda3</path>), powinieneś
+oraz ext3 na partycji root (w naszym przypadku <path>/dev/hda3</path>) powinieneś
 wykonać następujące polecenia:
 </p>
 
@@ -509,47 +504,43 @@ wykonać następujące polecenia:
 </pre>
 
 <p>
-Stwórz teraz systemy plików na swoich partycjach (lub woluminach logicznych).
+Stwórz teraz systemy plików na swoich partycjach.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Aktywacja Partycji Swap</title>
+<title>Aktywacja partycji wymiany.</title>
 <body>
 
 <p>
-Aby zainicjalizować partycje wymiany, skorzystaj z programu <c>mkswap</c>.
+Aby utworzyć partycję wymiany skorzystaj z programu <c>mkswap</c>.
 </p>
 
-<pre caption="Inicjalizacja partycji wymiany">
+<pre caption="Tworzenie partycji wymiany">
 # <i>mkswap /dev/sda1</i>
 </pre>
 
 <p>
-Aby je aktywować skorzystaj ze <c>swapon</c>:
+Aby ją aktywować skorzystaj z polecenia <c>swapon</c>:
 </p>
 
 <pre caption="Aktywacja partycji wymiany">
 # <i>swapon /dev/sda1</i>
 </pre>
 
-<p>
-Teraz Twoja kolej na inicjalizację i aktywację.
-</p>
-
 </body>
 </subsection>
 </section>
 <section>
-<title>Montowanie</title>
+<title>Montowanie.</title>
 <body>
 
 <p>
-Po założeniu partycji i utworzeniu systemów plików, nadszedł czas na ich
+Po założeniu partycji i utworzeniu na nich systemów plików, nadszedł czas na ich
 zamontowanie. Służy do tego program <c>mount</c>. Nie zapomnij utworzyć
-odpowiednich katalogów dla każdego z nich. Pokażemy to na przykładzie
-partycji boot oraz root:
+odpowiednich katalogów dla każdej z montowanych partycji. Pokażemy to na przykładzie
+partycji root:
 </p>
 
 <pre caption="Montowanie partycji">
@@ -558,19 +549,19 @@ partycji boot oraz root:
 
 <note>
 Jeżeli chcesz przenieść <path>/tmp</path> na oddzielną partycję,
-nie zapomnij po zamontowaniu odpowiedni poprawić praw dostępu: <c>chmod
+nie zapomnij po zamontowaniu odpowiednio poprawić praw dostępu: <c>chmod
 1777 /mnt/gentoo/tmp</c>. Dotyczy to również <path>/var/tmp</path>.
 </note>
 
 <p>
 Musimy też zamontować system plików proc (wirtualny interfejs jądra)
-w <path>/proc</path>. Zacznijmy od utworzenia odpowiedniego katalogu
-(<path>/mnt/gentoo/proc</path>):
+w <path>/proc</path>. Najpierw jednak nagrajmy na dysk kilka niezbędnych
+plików.
 </p>
 
 <p>
-Przejdź teraz do <uri link="?part=1&amp;chap=5">Instalacji Plików
-Instalacyjnych Gentoo</uri>.
+Kiedy skończysz przejdź do rozdziału <uri link="?part=1&amp;chap=5">Wgrywanie
+plików instalacyjnych</uri>.
 </p>
 
 </body>
