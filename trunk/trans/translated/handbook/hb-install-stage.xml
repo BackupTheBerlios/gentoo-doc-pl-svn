@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.47 -->
+<!-- Orig revision: 1.66 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Przygotowanie Plików Instalacyjnych Gentoo -->
 <!-- Status: Ukończono -->
-<!-- Update from 1.37 to 1.47: sekretarz <sekretarz@dukato.net> -->
+<!-- Update from 1.37 to 1.66: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.8 2004/07/12 07:43:14 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.9 2004/11/01 17:57:26 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -52,7 +52,9 @@ Na przykład, aby ustawić datę 25 Kwietnia 2004 r, 16:21:
 <p>
 W następnym kroku powinieneś wykonać instalację wybranego tarballa <e>stage</e>.
 Możesz go pobrać z Internetu lub, jeśli działasz spod którejś płytki 
-Gentoo Universal LiveCD, przekopiować go z CD.
+Gentoo Universal LiveCD, przekopiować go z CD. Jeżeli masz Universal CD i na płycie znajduje się
+stage którego chcesz używać, ściaganie go z Internetu jest tylko niepotrzebną stratą pasma, gdyż pliki
+stage są takie same.
 </p>
 
 <ul>
@@ -80,32 +82,18 @@ Przejdź do punktu montowania systemu plików Gentoo
 
 <p>
 W zależności od medium instalacyjnego masz pod ręką kilka narzędzi,
-za pomocą których możesz ściągnąć stage. Jeśli posiadasz program
-<c>lynx</c>, od razu możesz przejść pod adres
-<uri link="/main/en/mirrors.xml">Listy mirrorów Gentoo</uri>
-i wybrać serwer najbliżej siebie. Wejdź w katalog <path>releases/</path>,
-następnie w odpowiadający architekturze Twojego komputera (na przykład <path>x86/</path>) oraz
-wersji Gentoo (<path>2004.1/</path>) by zakończyć
-w katalogu <path>stages/</path>. Powinieneś widzieć dostępne dla Twojej
-architektury wersje plików stage. Wybierz jeden i naciśnij <c>D</c> aby rozpocząć
-pobieranie. Kiedy skończysz, klawiszem <c>Q</c> zamknij przeglądarkę.
+za pomocą których możesz ściągnąć stage. Jeżeli masz dostępny program <c>links2</c>,
+możesz wejść bezpośrednio na <uri link="/main/en/mirrors.xml">liste serwerów lustrzanych Gentoo</uri> 
+i wybrać serwer, który znajduje się najbliżej Ciebie. Jeżeli nie masz programu <c>links2</c>, użyj
+<c>lynx</c> do tego celu. W tym przypadku podmień wszystkie wystąpenia <c>links2</c> na <c>lynx</c>.
 </p>
 
-<note>
-Pliki stage dla <uri link="http://hardened.gentoo.org">Gentoo Hardened</uri>
-(dla architektury x86) są częścią wydania <path>2004.1</path>.
-</note>
-
-<pre caption="Przeglądanie listy serwerów zwierciadlanych za pomocą lynxa">
-# <i>lynx http://www.gentoo.org/main/en/mirrors.xml</i>
-</pre>
-
 <p>
-Jeśli nie masz programu <c>lynx</c>, powinieneś mieć do dyspozycji <c>links2</c>.
-<c>links2</c> ma więcej możliwości niż <c>lynx</c>, ale ma też mankamenty. Jednym
-z nich jest to, iż nie używa uprzednio zadeklarowanych zmiennych określających proxy.
-Jeśli używasz proxy, wpisz <c>links2 -http-proxy serwer.proxy.com:8080</c>.
-Od tego miejsca dalsze kroki są takie same jak w przypadku <c>lynxa</c>.
+Wejdź do katalogu <path>releases/</path>, następnie katalogu twojej architektury (np. <path>x86/</path>)
+oraz wersji Gentoo (<path>2004.2/</path>) i na koniec do katalogu <path>stages/</path>.
+Powinneś zobaczyć tam dostępne pliki stage dla Twojej architektury (mogą one być umieszczone w
+podkatalogach, dla każdej podarchitektury). Wybierz jeden i naciśnij <c>D</c>, aby go ściągnąć.
+Kiedy skończyłysz ściąganie naciśnij <c>Q</c> aby wyjść z przegladarki.
 </p>
 
 <pre caption="Przeglądanie listy serwerów zwierciadlanych za pomocą links2">
@@ -115,12 +103,12 @@ Od tego miejsca dalsze kroki są takie same jak w przypadku <c>lynxa</c>.
 
 <p>
 Jeśli chcesz zweryfikować integralność pobranych archiwów stage, porównaj
-wynik polecenia <c>md5sum</c> z sumami MD5 udostępnianymi na serwerze.
+wynik polecenia <c>md5sum</c> z sumami MD5 udostępnianymi na serwerze. Dla przykładu sprawdź poprawność tarballa stage dla architektury x86:
 </p>
 
 <pre caption="Sprawdzanie integralności tarballa stage">
-# <i>md5sum -c stage1-x86-20040412.tar.bz2.md5</i>
-stage1-x86-20040412.tar.bz2: OK
+# <i>md5sum -c stage1-x86-2004.2.tar.bz2.md5</i>
+stage1-x86-2004.2.tar.bz2: OK
 </pre>
 
 </body>
@@ -135,14 +123,8 @@ GNU <c>tar</c> będzie najlepszym narzędziem:
 </p>
 
 <pre caption="Wypakowanie stage">
-# <i>tar -xvjpf stage?-*.tar.bz2</i>
-</pre>
-
-<note>
-Możesz zignorować jakiekolwiek ostrzeżenia  "No such file or directory" dotyczące ./proc oraz 
-informacje o "Error exit delayed from previous errors".
-</note>
-        
+# <i>tar -xvjpf stage3-&lt;subarch&gt;-2004.2.tar.bz2</i>
+</pre>        
 
 <p>
 Upewnij się, że użyłeś tych samych przełączników (<c>-xvjpf</c>). Opcja <c>x</c> oznacza
@@ -227,10 +209,12 @@ Gdy stage zostanie zainstalowany, przejdź do
 <p>
 Jeśli nie masz działającego połączenia internetowego, będziesz musiał 
 zainstalować dostarczoną na jednym z naszych LiveCD migawkę portage.
-Jeżeli chcesz później używać spreparowanych paczek, by przyspieszyć 
+Oznacza to, że będziesz musiał instalować Gentoo ze <e>stage3</e> (gdyż tylko ten
+stage pozwala na instalacje bez połączenia internetowego)
+Jeżeli chcesz później używać prekompilowanych paczek, by przyspieszyć 
 instalację, <e>musisz</e> użyć migawki dostępnej na LiveCD. 
 Inni użytkownicy pobiorą w pełni aktualne drzewo Portage dzięki 
-<c>emerge</c> nieco dalej.
+<c>emerge</c> w następnym rozdziale.
 </p>
  
 <p>
@@ -270,7 +254,7 @@ co tam dla Ciebie przygotowaliśmy:
 Teraz wypakuj migawkę używając polecenia o niżej podanej składni. Kolejny raz
 upewnij się, że przekazujesz właściwe opcje do programu <c>tar</c>. Zatem, <c>-C</c>
 występuje z wielką literą <c>C</c>, a nie <c>c</c>. W tym przykładzie nasz plik
-zwie się <path>portage-20040413.tar.bz2</path>. Zamiast tego wpisz nazwę pliku,
+zwie się <path>portage-20040710.tar.bz2</path>. Zamiast tego wpisz nazwę pliku,
 który posiadasz.
 </p>
 
@@ -328,8 +312,8 @@ którym wprowadzisz omawiane nieco dalej opcje optymalizacji.
 <p>
 Jak już prawdopodobnie zauważyłeś, plik <path>make.conf.example</path>
 ma charakterystyczną strukturę: linie z komentarzem rozpoczyna "#", linie zawierające
-zmienne używają składni <c>ZMIENNA="zawartość"</c>. Kilka z tych zmiennych
-zostało przedyskutowanych poniżej.
+zmienne używają składni <c>ZMIENNA="zawartość"</c>. Takiej samej składni używa także plik <path>/etc/make.conf</path>.
+Kilka z tych zmiennych zostało przedyskutowanych poniżej.
 </p>
 
 </body>
@@ -386,6 +370,12 @@ kompilowane programy. Możliwe jej wartości:
   <ti></ti>
   <ti>powerpc-unknown-linux-gnu</ti>
 </tr>
+<tr>
+  <ti>ppc64</ti>
+  <ti></ti>
+  <ti>powerpc64-unknown-linux-gnu</ti>
+</tr>
+      
 <tr>
   <ti>sparc</ti>
   <ti></ti>
@@ -456,7 +446,7 @@ architekturę. Możliwe jej wartości są opisane jako komentarze w
 </p>
 
 <pre caption="Ustawienie GCC march">
-<comment># Użytkownicy AMD64 nie powinni używać athlon-xp</comment>
+<comment># Użytkownicy AMD64, którzy chcą mieć natywny system 64bit nie powinni używać athlon-xp</comment>
 -march=athlon-xp
 </pre>
 
@@ -498,7 +488,7 @@ CXXFLAGS="${CFLAGS}"                  <comment># Użycie tych samych ustawień d
 <p>
 Za pomocą <c>MAKEOPTS</c> definiujesz, ile może być przeprowadzanych równolegle
 kompilacji podczas przygotowywania pakietu do instalacji. Sugerowaną liczbą jest ilość
-procesorów w systemie plus jeden.
+procesorów w systemie plus jeden, jednak nie jest on zawsze najlepszym wyjściem.
 </p>
 
 <pre caption="MAKEOPTS dla przeciętnego systemu 1-procesorowego">
@@ -512,7 +502,7 @@ MAKEOPTS="-j2"
 <body>
 
 <p>
-Popraw wedle życzenia <path>/mnt/gentoo/etc/make.conf</path> i zapisz go.
+Popraw wedle życzenia <path>/mnt/gentoo/etc/make.conf</path> i zapisz go (użytkownicy <c>nano</c> powinni nacisnąć <c>Ctrl-X</c>).
 Teraz jesteś przygotowany na  <uri link="?part=1&amp;chap=6">
 Instalację systemu podstawowego </uri>.
 </p>
