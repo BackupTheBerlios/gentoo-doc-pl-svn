@@ -6,7 +6,7 @@
 <!-- Title: Zabezpieczanie Gentoo  -->
 <!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-security.xml,v 1.6 2004/12/28 11:45:26 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-security.xml,v 1.7 2004/12/28 22:56:32 rane Exp $ -->
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 
 <guide link = "/doc/en/gentoo-security.xml">
@@ -185,7 +185,7 @@ na dysku miejsca. Portage używa <path>/var/tmp</path> do kompilowania plików,
 więc ta partycja powinna być stosunkowo duża.
 </li>
 <li>
-Każdy katalog przeznaczony do instalowawania oprogramowania spoza dystrybucji
+Każdy katalog przeznaczony do instalowania oprogramowania spoza dystrybucji
 powinien znajdować się na osobnej partycji. Zgodnie ze <uri
 link="http://www.pathname.com/fhs/">standardem hierarchii plików</uri> katalogi
 te to <path>/opt</path> lub <path>/usr/local</path>. Jeśli są na osobnych
@@ -207,8 +207,8 @@ typem paranoika może używać do tego celu dysków CD-ROM :]
 <p>
 Użytkownik 'root' jest najważniejszą osobą w systemie. Jego konto nie powinno
 być używane do niczego do czego nie jest niezbędnie potrzebne. Jeśli włamywacz
-uzyska dostęp do tego konta to nie będziesz mógł zaufać swojemu systemowi dopóki
-go nie zainstalujesz od nowa.
+uzyska dostęp do tego konta to jedynym wyjściem będzie ponowna instalacja całego
+systemu.
 </p>
 
 <p>
@@ -217,16 +217,16 @@ Złote zasady dla konta 'root':
 
 <ul>
 <li>
-Zawsze twórz osobne konto użytkownika do codziennej pracy. Jeśli będziesz zmuszony
-do częstego przełączania się na roota dodaj to konto do grupy 'wheel'. Umożliwi
-to mu używanie komendy <c>su</su> do przełączania się na konto superużytkownika.
+Należy utworzyć osobne konto użytkownika do codziennej pracy. Jeśli wymagane jest
+częste przełączanie się na roota warto dodać to konto do grupy 'wheel'. Umożliwi
+to używanie komendy <c>su</su> do przełączania się na konto superużytkownika.
 </li>
 <li>
-Nigdy nie uruchamiaj serwera X, lub jakiejkolwiek aplikacji użytkowników jako
-root. Konto roota powinno być używane tylko wtedy, gdy jest to niezbędne. Jeśli
-użyjesz aplikacji zawierającej błąd jako użytkownik to włamywacz uzyska dostęp
-jedynie do zwykłego konta, jeśli uruchomisz ją jako root dostanie dostęp do
-całego Twojego systemu.
+Nigdy nie należy uruchamiać serwera X, lub jakiejkolwiek aplikacji użytkowników
+jako root. Konto roota powinno być używane tylko wtedy, gdy jest to niezbędne.
+Jeśli uruchamiana z normalnymi prawami aplikacja zawiera błąd to włamywacz uzyska
+dostęp jedynie do zwykłego konta, jeśli uruchomi się ją jako root dostanie dostęp
+do całego systemu.
 </li>
 <li>
 Zawsze używaj absolutnych ścieżek do programów kiedy jesteś zalogowany jako root
@@ -238,19 +238,20 @@ aplikacji niż zamierzał. Jeśli <c>PATH</c> root'a jest chroniona, lub root
 zawsze używa absolutnych ścieżek nie ma możliwości by to się stało.
 </li>
 <li>
-Jeśli użytkownik potrzebuje wpisać jako root tylko kilka wybranych komend rozważ
-użycie <c>sudo</c> zamiast przelogowywać się na konto root'a. Oczywiście musisz
-zwracać baczną uwagę na to komu dajesz dostęp do <c>sudo</c>.
+Jeśli użytkownik potrzebuje wpisać jako root tylko kilka wybranych komend
+powinno się rozważyć użycie <c>sudo</c> zamiast przelogowywać się na konto
+root'a. Oczywiście musisz zwracać baczną uwagę na to komu dajesz dostęp do
+<c>sudo</c>.
 </li>
 <li>
-Nigdy nie zostawiaj otwartego terminala z zalogowanym do niego rootem.
+Nigdy nie zostawiać otwartego terminala z zalogowanym do niego rootem.
 </li>
 </ul>
 
 <p>
-Gentoo posiada kilka domyślnych zabezpieczeń przed normalnymi użytkownikami,
-którzy chcą używać su do przełączania się na konto roota. Domyślne ustawienie
-PAM umożliwia takie ułatwienia jedynie dla użytkowników, którzy są członkami
+Gentoo posiada kilka domyślnych zabezpieczeń przed zwykłymi użytkownikami,
+którzy chcą używać polecenia su do przełączania się na konto roota. Domyślne ustawienie
+PAM umożliwia takie ułatwienia jedynie dla tych, którzy są członkami
 grupy 'wheel'.
 </p>
 
@@ -267,30 +268,30 @@ swojego systemu i sieci.
 
 <ul>
 <li>
-Dobra polityka bezpieczeństwa powinna dotyczyć całego systemu, a nie być po
-prostu zbieraniną różnych właściwości. Na przykład adminstrator, który nie
+Dobra polityka bezpieczeństwa powinna dotyczyć całego systemu, a nie być jedynie
+zbieraniną różnych jego właściwości. Na przykład administrator, który nie
 przemyślał polityki bezpieczeństwa mógłby wyłączyć telnet, ponieważ umożliwia
 przesyłanie niezaszyfrowanych haseł, ale pozostawić dostęp przez FTP, który
 posiada te same słabości. Dobra polityka bezpieczeństwa umożliwia rozpoznanie
 wartych i niewartych do zastosowania środków bezpieczeństwa.
 </li>
 <li>
-W celu diagnozowania problemów, przeprowadzania audytu, czy wykrywania
-włamywaczy zapewne będziesz zmuszony przechwytywać ruch w sieci, przeglądać
-historię logowania i poleceń poszczególnych i użytkowników, oraz przeglądać ich
-katalogi domowe. Jeśli nie poinforumujesz o tym użytkowników możesz mieć poważne
-problemy z prawem, Twoja działalność może zostać uznana za naruszenie ich
-prywatności i wpędzić Cię w spore kłopoty.
+W celu diagnozowania problemów, przeprowadzania audytu czy wykrywania
+włamań administrator jest zmuszony do przechwytywania ruchu w sieci,
+przeglądania historii logowania i poleceń poszczególnych użytkowników, oraz
+kontroli ich katalogów domowych. Jeśli nie poinforumuje o tym użytkowników
+może mieć poważne problemy z prawem, Taka działalność może zostać uznana za
+naruszenie ich prywatności i wpędzić w spore kłopoty.
 </li>
 <li>
-Bardzo często zagrożenie dla systemu powodują przejęte konta użytkowników.
-Jeśli nie wytłumaczysz użytkownikom jak mają postępować (np. nie zabronisz im
-przyklejania listy haseł na kartkach na biurku) nie będziesz miał po co
-zabezpieczać ich kont.
+Bardzo często dużym zagrożeniem dla systemu są przejęte konta użytkowników.
+Jeśli nie wytłumaczy się użytkownikom jak mają postępować (np. nie zabroni się im
+przyklejania listy haseł na kartkach na biurku) zabezpieczanie ich kont będzie
+bezcelowe. 
 </li>
 <li>
-Dobrze udokumentowany rozkład sieci i systemu pomoże zarówno Tobie jak i
-innym osobom badającym Twój system po włamaniu w zidentyfikowaniu zarówno osoby
+Dobrze udokumentowany rozkład sieci i systemu pomoże
+osobom badającym system po włamaniu w zidentyfikowaniu zarówno osoby
 włamywacza jak i sposobu w jaki dokonał włamania. Polityka bezpieczeństwa
 powinna zawierać również informację, że cały Twój system jest Twoją prywatną
 siecią i każda nieautoryzowana próba dostępu jest zabroniona, co później może
@@ -304,14 +305,14 @@ Jak widać dobra polityka bezpieczeństwa jest bardzo przydatnym narzędziem.
 
 <p>
 Polityka powinna być dokumentem, lub kilkoma dokumentami, które opisują całą
-naszą sieć oraz usługi w niej dostarczane, to co jest dozwolone, co zabronione,
-dobre zwyczaje w sieci, i tak dalej. Wszyscy użutkownicy powinnie się zapoznać z
-tym dokumentem oraz być powiadamiani o wszelkich dokonywanych w nim zmianach,
-których powinieneś dokonywać, aby dokument był aktualny. Powinieneś pomóc
+sieć oraz usługi przez nią zapewniane, to co jest dozwolone, co zabronione,
+zwyczaje obowiązujące w sieci i tak dalej. Wszyscy użutkownicy powinni zapoznać
+się z tym dokumentem oraz być powiadamiani o wszelkich dokonywanych w nim zmianach,
+które powinno się nanoniś, aby dokument był aktualny. Warto pomóc
 użytkownikom w zrozumieniu całej polityki oraz wytłumaczyć dlaczego należy jej
 przestrzegać, a także jasno zaznaczyć jakie poniosą konsekwencje jeśli postąpią
-wbrew niej (dokument powinien zawierać wszystkie te informacje). Powinieneś im
-przypominać o tym wszystkim co najmniej raz do roku, ponieważ polityka może się
+wbrew niej (dokument powinien zawierać wszystkie te informacje). Należy 
+przypominać im o tym wszystkim co najmniej raz w roku, ponieważ polityka może się
 zmieniać (a także, żeby nie zapomnieli, że taki dokument istnieje).
 </p>
 
@@ -321,11 +322,11 @@ precyzyjny w każdym z poruszanych tematów.
 </note>
 
 <p>
-Polityka bezpieczeństwa powinna przynajmniej poruszać następujące tematy:
+Każda polityka bezpieczeństwa powinna (co najmniej) poruszać następujące tematy:
 </p>
 
 <ul>
-<li>Dozwolone użycie</li>
+<li>Dozwolone użycie.</li>
 <li>
   <ul>
   <li>Wygaszacze ekranu.</li>
@@ -336,10 +337,10 @@ Polityka bezpieczeństwa powinna przynajmniej poruszać następujące tematy:
   </ul>
 </li>
 <li>Sposób postępowania z krytycznymi informacjami (w formie papierowej jak i
-elektronicznej).</li>
+w elektronicznej).</li>
 <li>
   <ul>
-  <li>Czyszczenie biurka oraz zamykanie informacji utajnionych.</li>
+  <li>Czyszczenie biurka oraz zamykanie na klucz informacji utajnionych.</li>
   <li>Wyłączanie komputera przed wyjściem.</li>
   <li>Używanie szyfrowania.</li>
   <li>Sposób postępowania z kluczami zaufanych współpracowników.</li>
@@ -364,7 +365,8 @@ Polityka bezpieczeństwa ma tendencję do szybkiego rozrastania się, co może
 prowadzić do przeoczenia najważniejszych informacji. Wersja dokumentu dla
 pracowników IT może zawierać poufne informacje, które nie powinny być znane
 wszystkim użytkownikom. W związku z tym warto podzielić całość na serię
-mniejszych dokumentów, np. dotyczące haseł, poczty, zdalnego dostępu itd.
+mniejszych dokumentów, np. dotyczących osobno haseł, poczty, zdalnego dostępu
+itd.
 </p>
 
 <p>
@@ -390,9 +392,9 @@ Handbook</uri>.
 <p>
 Plik <path>make.conf</path> zawiera listę zdefiniowanych przez użytkownika flag
 USE, a plik <path>/etc/make.profile/make.defaults</path> listę domyślnych flag
-dla Linuksa Gentoo. Jeśli chodzi o potrzeby tego przewodnika to ważnymi dla nas
-są flagi <c>pam</c> (Pluggable Authentication Modules), <c>tcpd</c> (TCP
-wrapper) oraz <c>ssl</c> (Secure Socket Layer). Wszystkie te flagi są ustawiane
+dla Linuksa Gentoo. Jeśli chodzi o potrzeby tego przewodnika to znaczenie mają
+jedynie flagi <c>pam</c> (Pluggable Authentication Modules), <c>tcpd</c> (TCP
+wrapper) oraz <c>ssl</c> (Secure Socket Layer). Wszystkie te są ustawione
 domyślnie.
 </p>
 
@@ -403,8 +405,8 @@ domyślnie.
 <body>
 
 <p>
-Są dwa sposoby chronienia hasłem bootloadera. Pierwsza używa otwartego tekstu, a
-druga szyfruje hasło przy pomocy md5+salt.
+Są dwa sposoby na ochronę tego bootloadera hasłem. Pierwszy przy używyciu
+otwartego tekstu, a drugi z hasłem zaszyfrowanym przy pomocy md5+salt.
 </p>
 
 <pre caption="/boot/grub/grub.conf">
@@ -413,12 +415,12 @@ password zmień_mnie
 </pre>
 
 <p>
-Taki wpis ustala hasło <c>zmień_hasło</c>. Jeśli hasło nie zostanie wpisane
-przy starcie systemu GRUB użyje domyślnych ustawień.
+Taki wpis ustala hasło na ciąg znaków <c>zmień_mnie</c>. Jeśli hasło nie
+zostanie wpisane przy starcie systemu, GRUB użyje domyślnych ustawień.
 </p>
 
 <p>
-Zanim dodasz hasło w formie md5 musisz je zaszyfrować do formatu takiego jak ten
+Zanim dodasz hasło w postaci md5 musisz je zaszyfrować do formatu takiego jak ten
 używany w pliku <path>/etc/shadow</path>. Aby uzyskać więcej informacji
 przeczytaj <c>man crypt</c>. Zaszyfrowane hasło <e>zmień_mnie<e> może mieć
 na przykład taką postać: <c>$1$T7/dgdIJ$dJM.n2wZ8RG.oEiIOwJUs</c>.
@@ -447,7 +449,8 @@ grub> <i>quit</i>
 </pre>
 
 <p>
-Następnie wytnij i wklej swoje hasło do pliku <path>/boot/grub/grub.conf</path>.
+Następnie należy wyciąć zaszyfrowane hasło i wkleić je do pliku
+<path>/boot/grub/grub.conf</path>.
 </p>
 
 <pre caption="/boot/grub/grub.conf">
@@ -456,7 +459,7 @@ password --md5 $1$T7/dgdIJ$dJM.n2wZ8RG.oEiIOwJUs.
 </pre>
 
 <p>
-Pięciosekundowe opóźnienie jest poręczne przy zdalnej administracji systemem,
+Pięciosekundowe opóźnienie jest przydatne przy zdalnej administracji systemem,
 kiedy chcemy mieć możliwość uruchomienia systemu bez bezpośredniego do niego
 dostępu. Więcej o hasłach w GRUB dowiesz się wpisując polecenie <c>info
 grub</c>.
@@ -501,7 +504,7 @@ razem.
 </p>
 
 <p>
-Żeby zastosować zmiany musisz jeszcze uruchomić <c>/sbin/lilo</c>.
+Żeby zastosować zmiany należy jeszcze uruchomić <c>/sbin/lilo</c>.
 </p>
 
 </body>
@@ -511,13 +514,13 @@ razem.
 <body>
 
 <p>
-W pliku <path>/etc/securetty</path> możesz skonfiguować te urządzenia
+W pliku <path>/etc/securetty</path> można skonfiguować te urządzenia
 <c>tty</c> (terminale), na których będzie mógł się logować root.
 </p>
 
 <p>
 Zalecamy zakomentowanie wszystkich linii poza <c>vc/1</c>. Zapewni to, że root
-będzie mógł się logować tylko raz i tylko na jednym terminalu.
+będzie mógł być zalogowany tylko raz i tylko na jednym terminalu.
 </p>
 
 <note>
@@ -545,9 +548,9 @@ system przed atakiem.
 </p>
 
 <p>
-Ważną rzeczą jest również to, by Twoje logi były łatwe w zarządzaniu i
-przeglądaniu. Linux Gentoo umożliwia Ci wybranie jedenego z trzech dostępnych loggerów
-systemowych podczas instalacji.
+Ważną rzeczą jest również to, by logi były łatwe w zarządzaniu i
+przeglądaniu. Gentoo umożliwia wybranie jednego z trzech dostępnych programów
+logujących podczas instalacji.
 </p>
 
 </body>
@@ -565,10 +568,10 @@ rotacji logów będzie uzależniona od obciążenia systemu.
 </p>
 
 <p>
-Poniżej znajduje się domyślny plik <path>syslog.conf</path>, do którego
+Poniżej znajduje się domyślny plik <path>syslog.conf</path> do którego
 dodaliśmy kilka opcji. Odkomentowaliśmy linie dotyczące <c>crona</c> i
 <c>tty</c> oraz dodaliśmy opcję wysyłania logów na zdalny serwer. Żeby jeszcze
-bardziej zwiększyć bezpieczeństwo możesz dopisać logowanie w dwóch różnych
+bardziej zwiększyć bezpieczeństwo, można skonfigurować logowanie w dwóch różnych
 miejscach.
 </p>
 
@@ -655,8 +658,8 @@ local2.*                --/var/log/ppp.log
 </pre>
 
 <p>
-Atakujący zwykle spróbują wyczyścić swoje ślady poprzed wyedytowanie lub
-skasowanie logów. Możesz im to utrudnić ustawiając zdalne logowanie na innych
+Włamywacze zwykle próbują wyczyścić ślady poprzez wyedytowanie lub
+skasowanie logów. Można im to utrudnić ustawiając zdalne logowanie na innych
 maszynach. Więcej informacji o syslogd znajdziesz w <c>man syslog</c>.
 </p>
 
@@ -667,19 +670,19 @@ maszynach. Więcej informacji o syslogd znajdziesz w <c>man syslog</c>.
 <body>
 
 <p>
-<uri link="http://metalog.sourceforge.net">Metalog</uri>  Franka Dennis'a nie ma
+<uri link="http://metalog.sourceforge.net">Metalog</uri> Franka Dennis'a nie ma
 możliwości logowania na zdalny serwer. Ma za to sporą przewagę jeśli chodzi o
 elastyczność i wydajność logowania. Może logować nazwę programu, priorytet i
 wiele innych informacji. Daje możliwość korzystania z wyrażeń regularnych oraz
 uruchamiania skryptów w przypadku wystąpienia określonego ciągu. Bardzo przydaje
-się to do błyskawicznego wykonywania niezbędnych działań, w przypadku gdy dzieje
+się to do błyskawicznego wykonywania niezbędnych działań w przypadku gdy dzieje
 się coś bardzo złego.
 </p> 
 
 <p>
-Zwykle wystarcza domyślna konfiguracja. Jeśli chcesz być powiadamiany e-mailem
-za każdym razem gdy wystąpi błąd przy wpisywaniu hasła możesz użyć jednego z
-następujących skryptów.
+Zwykle wystarcza domyślna konfiguracja. Aby być powiadamianym e-mailem
+za każdym razem gdy wystąpi błąd przy wpisywaniu hasła można użyć jednego z
+następujących skryptów:
 </p>
 
 <p>
@@ -727,14 +730,14 @@ command  = "/usr/local/sbin/mail_pwd_failures.sh"
 Syslog-ng posiada te same funkcje co syslog i metalog, jednak z małymi
 różnicami. Może filtrować wiadomości zależnie od poziomu i zawartości (jak
 metalog), umożliwia zdalne logowanie (jak syslog), dobrze współpracuje z
-rozmaitymi plikami, jak syslogd (nawet ze strumieniami z Solarisa), potrafi
+rozmaitymi plikami, tak jak syslogd (nawet ze strumieniami z Solarisa) potrafi
 wyświetlać logi na TTY, wykonywać programy i może pełnić funkcje serwera
 logów. Jest najlepszym dostępnym programem tego typu i jakby tego było mało
 posiada największe możliwości konfiguracyjne. 
 </p>
 
 <p>
-Poniżej znajduje się przykładowy plik konfiguracyjny, na który nanieśliśmy kilka
+Poniżej znajduje się przykładowy plik konfiguracyjny na który nanieśliśmy kilka
 drobnych poprawek.
 </p>
 
@@ -814,8 +817,8 @@ log { source(src); destination(console_all); };
 </pre>
 
 <p>
-Konfiguracja syslog-ng jest dość łatwa, z powodu jej ogromnych rozmiarów łatwo
-jednak również przegapić coś ważnego w pliku konfiguracyjnym. Autor wciąż
+Konfiguracja syslog-ng jest dość łatwa, ale z powodu ogromnych rozmiarów całego
+pliku łatwo przegapić coś ważnego. Autor wciąż
 obiecuje dodatkowe opcje, jak na przykład szyfrowanie, autoryzacja, kompresja
 czy kontrola MAC (Mandatory Access Control). Z tymi opcjami program będzie
 idealnym narzędziem do logowania ruchu sieciowego, bo uniemożliwi włamywaczom
@@ -824,7 +827,7 @@ szpiegowanie logów.
 
 <p>
 Ogromną zaletą syslog-ng jest również to, że nie musi być uruchamiany z prawami
-root'a!
+roota.
 </p>
 
 </body>
@@ -840,7 +843,7 @@ Aplikacje takie jak Logcheck znacznie ułatwiają ich codzienną analizę. Logch
 to skrypt powiązany z plikiem binarnym o nazwie <c>logtail</c>, który jest
 zwykle uruchamiany z demona cron i dzięki zestawowi prostych reguł sprawdza logi
 pod kątem występowania podejrzanych sytuacji. Jeśli coś takiego wystąpi wysyła
-e-mail na skrzynkę root'a.
+e-mail na skrzynkę roota.
 </p>
 
 <p>
@@ -852,7 +855,7 @@ Logcheck do filtrowania ważnych wpisów w logach używa informacji z czterech
 plików. Te pliki to <path>logcheck.hacking</path>, który zawiera znane
 wiadomości opisujące atak, <path>logcheck.violations</path>, który zawiera
 wzory naruszenia bezpieczeństwa, <path>logcheck.violations.ignore</path> z
-informacjami pozwalającymi na zignorowanie często występujących, omyłkowo
+informacjami pozwalającymi na zdefiniowanie często występujących, omyłkowo
 branych za ataki wpisów w logach, oraz <path>logcheck.ignore</path>, który
 pozwala na ich zignorowanie. 
 </p>
@@ -867,9 +870,7 @@ zostaną zignorowane.
 it on Gentoo to figure out how it's configured! -->
 </body>
 </section>
-
 </chapter>
-
 <chapter>
 <title>Montowanie partycji.</title>
 <section>
@@ -952,8 +953,8 @@ opcją <c>noexec</c> możesz przestawić ścieżkę, gdzie będzie się to dzia�
 
 <p>
 Kontrola użycia zasobów jest bardzo efektywnym sposobem zapobiegania lokalnym
-atakom typu Denial of Service. Możemy przy okazji również nałożyć restrykcje dla
-ilości możliwych loginów dla użytkowników oraz grup.
+atakom typu "Denial of Service". Możemy przy okazji również nałożyć restrykcje dla
+ilości możliwych jednoczesnych zalogowań dla użytkowników oraz grup.
 </p>
 
 <pre caption="/etc/security/limits.conf">
@@ -969,15 +970,15 @@ ilości możliwych loginów dla użytkowników oraz grup.
 </pre>
 
 <p>
-Jeśli zauważysz, że próbujesz ustawić wartość <c>nproc</c> lub <c>maxlogins</c>
-powinieneś zamiast tego rozważyć całkowite usunięcie użytkownika. W powyższym
+Zamiast ustawiania wartości <c>nproc</c> lub <c>maxlogins</c> na 0
+należy rozważyć całkowite usunięcie takiego użytkownika. W powyższym
 przykładzie ustawiliśmy grupie <c>dev</c> ilość procesów, plików core oraz
 wartość <c>maxlogins</c>. Reszta to wartości domyślne.
 </p>
 
 <note>
 <path>/etc/security/limits.conf</path> jest częścią pakietu PAM i ma
-zastosowanie wyłącznie dla pakietów używających PAM. 
+zastosowanie wyłącznie dla pakietów go używających. 
 </note>
 
 </body>
@@ -989,7 +990,7 @@ zastosowanie wyłącznie dla pakietów używających PAM.
 <p>
 Plik <path>/etc/limits</path> jest bardzo podobny do pliku
 <path>/etc/security/limits.conf</path>. Jedyną różnicą jest format pliku oraz
-to, że ma on zastosowanie dla użytkowników, a nie grup. Jego przykładowa
+to, że ma on zastosowanie dla użytkowników, a nie dla grup. Jego przykładowa
 konfiguracja wygląda tak:
 </p>
 
@@ -999,9 +1000,9 @@ kn L10 C100000 U35
 </pre>
 
 <p>
-Definiujemy tu domyślne ustawienia specyficzne dla użytkownika kn. Plik ten jest
+Definiujemy tu domyślne ustawienia dla użytkownika kn. Plik ten jest
 częścią pakietu sys-apps/shadow. Nie ma tu sensu ustawiać czegokolwiek jeśli nie
-skonfigurowałeś prawidłowo PAM, lub całkiem ją wyłączyłeś w
+skonfigurowano prawidłowo PAM, lub całkiem ją wyłączono w pliku
 <path>make.conf</path>.
 </p>
 
@@ -1012,7 +1013,7 @@ skonfigurowałeś prawidłowo PAM, lub całkiem ją wyłączyłeś w
 <body>
 
 <warn>
-Upewnij się, że system plików, na którym pracujesz wspiera quuaty. Żeby używać
+Upewnij się, że system plików na którym pracujesz wspiera quoty. Żeby używać
 ich na ReiserFS musisz nałożyć na kernel łatkę <uri link =
 "ftp://ftp.namesys.com/pub/reiserfs-for-2.4/testing/quota-2.4.20">Namesys</uri>.
 Narzędzia użytkownika są dostępne ze stron <uri link =
@@ -1022,19 +1023,18 @@ problemów - zostałeś ostrzeżony!
 </warn>
 
 <p>
-Umieszczenie quota na systemie plików nałoży ograniczynie w użyciu przestrzeni
+Umieszczenie quoty na systemie plików nałoży ograniczenie w użyciu przestrzeni
 dyskowej zarówno przez grupy jak i przez użytkowników. Quoty włącza się w
-kernelu, a następnie dodaje je do punktu montowania w pliku
+jądrze, a następnie dodaje je do punktu montowania w pliku
 <path>/etc/fstab</path>. Opcja konfiguracji kernela, które je włącza to <c>File
-systems-&gt;Quota support</c>. Zaznacz wymagane opcje, przebuduj kernel, a
-następnie przy jego pomocy uruchom system.
+systems-&gt;Quota support</c>. Należy zaznaczyć wymagane opcje, przebudować kernel, a
+następnie przy jego pomocy uruchomić system.
 </p>
 
 <p>
-Zacznij od zainstalowania quota przy pomocy polecenia <c>emerge quota</c>.
-Następnie zmodyfikuj plik <path>/etc/fstab</path> dodając <c>usrquota</c> i
-<c>grpquota</c> dla partycji, na których chcesz ograniczać użycie dysku, tak
-jak w przykładzie poniżej. 
+Zaczniemy od zainstalowania quota przy pomocy polecenia <c>emerge quota</c>.
+Następnie zmodyfikujemy plik <path>/etc/fstab</path> dodając tam <c>usrquota</c> i
+<c>grpquota</c> dla partycji, na których chcemy ograniczać użycie dysku.
 </p>
 
 <pre caption="/etc/fstab">
@@ -1050,8 +1050,8 @@ proc /proc proc defaults 0 0
 </pre>
 
 <p>
-Na każdej partycji na której uaktywniłeś quoty utwórz pliki quota
-(<path>quota.user</path> i <path>quota.group</path>) oraz umieść je w katalogu
+Na każdej partycji na której uaktywniono quoty należy stwórzyć pliki quota
+(<path>quota.user</path> i <path>quota.group</path>) oraz umieścić je w katalogu
 głównym każdej partycji.
 </p>
 
@@ -1063,9 +1063,9 @@ głównym każdej partycji.
 </pre>
 
 <p>
-Musisz powtórzyć te czynności osobno dla każdej partycji na której chcesz używać
-quota. Po skonfigurowaniu tych wszystkich plików dodaj skrypt <c>quota</c> na
-runlevel boot.
+Trzeba powtórzyć te czynności osobno dla każdej partycji na której chce się używać
+quota. Po skonfigurowaniu tych wszystkich plików dodajemy skrypt <c>quota</c> na
+runlevel o nazwie boot.
 </p>
 
 <pre caption="Dodawania skryptu quota do runlevelu boot">
@@ -1073,8 +1073,8 @@ runlevel boot.
 </pre>
 
 <p>
-Następnie skonfigurujemy system tak, żeby sprawdzał quoty raz w tygodniu dodając
-następującą linię do pliku <path>/etc/crontab</path>:
+Następnie skonfigurujemy system tak, żeby sprawdzał quoty raz w tygodniu. Robimy
+to dodając następującą linię do pliku <path>/etc/crontab</path>:
 </p>
 
 <pre caption="Dodawanie sprawdzania quota w crontabie">
@@ -1084,7 +1084,7 @@ następującą linię do pliku <path>/etc/crontab</path>:
 <p>
 Po ponowym uruchomieniu komputera przyszła pora na skonfigurowanie quot dla
 poszczególnych użytkowników i grup. Polecenie <c>edquota -u kn</c> otworzy
-edytor zdefiniowany przez zmienną $EDITOR (domyślnie jest to nano) i pozwoli
+edytor zdefiniowany zmienną $EDITOR (domyślnie jest to nano) i pozwoli
 wyedytować quota dla użytkownika kn. Polecenie <c>edquota -g</c> robi to samo
 dla grup.
 </p>
@@ -1107,11 +1107,11 @@ Aby uzyskać więcej informacji zapoznaj się z dokumentami <c>man edquota</c> i
 <body>
 	    
 <p>
-Jeśli w swojej polityce bezpieczeństwa założyłeś, że użytkownicy powinni
-co tydzień zmieniać hasło zmień wartość zmiennej <c>PASS_MAX_DAYS</c> na 14 oraz
-zmiennej <c>PASS_WARN_AGE</c> na 7. Zalecamy częste zmienianie hasła, ponieważ
-metodami brute force można złamać każde z nich, jeśli tylko damy włamywaczom
-dość czasu. Ponadto zalecamy ustawienie zmiennej <c>LOG_OK_LOGINS</c> na 'yes'.
+Jeśli w polityce bezpieczeństwa założono, że użytkownicy powinni
+co tydzień zmieniać hasło trzeba zmienić wartość zmiennej <c>PASS_MAX_DAYS</c> na 14 oraz
+zmiennej <c>PASS_WARN_AGE</c> na 7. Zalecamy częste zmienianie haseł ponieważ
+metodami brute force można złamać każde z nich, jeśli tylko ma się dość dużo
+czasu. Ponadto polecamy ustawienie zmiennej <c>LOG_OK_LOGINS</c> na 'yes'.
 </p>
 
 </body>
@@ -1121,18 +1121,18 @@ dość czasu. Ponadto zalecamy ustawienie zmiennej <c>LOG_OK_LOGINS</c> na 'yes'
 <body>
 
 <p>
-Również plik <path>login.access</path> jest częścią pakietu sys-apps/shadow i
-daje możliwość skonfigurowania tabeli dostępu do logowania. Dzięki tej tabeli
-będziesz mógł decydować czy ktoś będzie mógł się zalogować na podstawie jego
-nazwy użytkownika, przynależności do grupy lub nazwy hosta. Domyślnie taką
+Plik <path>login.access</path> także jest częścią pakietu sys-apps/shadow. 
+Daje możliwość skonfigurowania tabeli dostępu do logowania. Dzięki tej tabeli
+można decydować czy ktoś będzie mógł się zalogować na podstawie jego
+nazwy użytkownika, przynależności do grupy czy nazwy hosta. Domyślnie taką
 możliwość mają wszyscy użytkownicy w systemie, więc plik ten zawiera jedynie
 zakomentowane przykładowe wartości ustawień. Niezależnie od tego czy
-konfigurujesz serwer czy stację roboczą polecamy zablokowanie dostępu do konsol
+konfigurujemy serwer czy stację roboczą warto zablokować dostęp do konsol
 wszystkim poza administratorami.
 </p>
 
 <note>
-Te ustawienia nie dotyczą root'a.
+Te ustawienia nie dotyczą roota.
 </note>
 
 <pre caption="/etc/login.access">
@@ -1141,12 +1141,12 @@ Te ustawienia nie dotyczą root'a.
 </pre>
 
 <impo>
-Ustawiaj to bardzo uważnie, bo jeśli zrobisz to źle i nie będziesz miał dostępu
-do konta root'a możesz stracić dostęp do maszyny. 
+Należy zachować ostrożność przy tym ustawieniu. Zły wpis skończy się utratą
+dostępu do konta root i możliwości administrowania komputerem. 
 </impo>
 
 <note>
-Ustawienie te nie mają wpływy na SSH, ponieważ SSH nie używa domyślnie
+Ustawienie te nie mają wpływu na SSH, ponieważ SSH nie używa domyślnie
 <c>/bin/login</c>. Możemy to jednak ustawić dodając linię <c>UseLogin yes</c> w
 <path>/etc/ssh/sshd_config</path>.
 </note>
@@ -1154,7 +1154,7 @@ Ustawienie te nie mają wpływy na SSH, ponieważ SSH nie używa domyślnie
 <p>
 Takie ustawienie umożliwi zalogowanie się jedynie członkom grupy wheel z domeny
 gentoo.org. Może jest to dość paranoiczne podejście, lepiej jednak być trochę
-'za bardzo' zabezpieczonym niż później żałować.
+"za bardzo" zabezpieczonym niż później żałować.
 </p>
 
 </body>
@@ -1205,14 +1205,15 @@ przy pomocy polecenia <c>/bin/chmod o-w</c> dla każdego z plików.
 <p>
 Pliki z bitami SUID i SGID uruchamiane są zawsze z prawami dostępu
 swojego <e>właściciela</e>, a nie z prawami osoby je uruchamiającej. Normalnie
-bity te są ustawiana na programach, które muszą być uruchamiane z prawami root'a żeby
-mogły wykonywać swoją pracę. Jeśli taki plik zawiera błąd może spowodować do
-kompromitacji lolalnego konta root. W związku z takim niebezpieczeństwem
-powinniśmy unikać ustawiania tych bitów gdzie tylko się da. Jeśli nie używasz
-któregoś z takich plików wykonaj na nim polecenie <c>chmod 0</c> lub odmerguj
-pakiet do którego on należy (sprawdź do którego należą przy pomocy polecenia
-qpkg -f; jeśli nie masz tego polecenia zainstaluj sobie pakiet gentoolkit).
-W każdym innym wypadku użyj polecenia <c>chmod -s</c> do zdjęcia bitu SUID. 
+bity te są ustawiane na programach, które muszą być uruchamiane z prawami roota
+aby mogły wykonywać swoją pracę. Jeśli taki plik zawiera błąd może spowodować
+kompromitację lokalnego konta root. W związku z takim niebezpieczeństwem
+powinniśmy unikać ustawiania tych bitów. Jeśli nie używamy
+któregoś z takich plików wykonujemy na nim polecenie <c>chmod 0</c> lub
+odmergujemy pakiet do którego on należy (sprawdź do którego należą przy pomocy
+polecenia qpkg -f; jeśli nie masz tego polecenia zainstaluj sobie pakiet gentoolkit).
+W każdym innym wypadku należy użyć polecenia <c>chmod -s</c> do zdjęcia bitu
+SUID.
 </p>
 
 <pre caption="Znajdowanie plików z bitem SUID">
@@ -1249,24 +1250,24 @@ bity SUID i SGID.
 </pre>
 
 <p>
-Domyślnie Linux Gentoo nie zawiera wielu plików SUID (chociaż ich ilość zależy
+Domyślnie Gentoo nie zawiera wielu plików SUID (chociaż ich ilość zależy
 również od tego jakie programy są zainstalowane), ale jest możliwość, że
-otrzymasz listę taką jak ta wyżej. Większość komend nie powinna być uruchamiana
+otrzymamy listę taką jak ta wyżej. Większość komend nie powinna być uruchamiana
 przez zwykłych użytkowników, a jedynie przez roota. Zdejmij bity SUID z
 programów  <c>ping</c>, <c>mount</c>, <c>umount</c>, <c>chfn</c>, <c>chsh</c>,
 <c>newgrp</c>, <c>suidperl</c>, <c>pt_chown</c> i <c>traceroute</c> przy pomocy
-polecenia <c>chmod -s</c>. Nie usuwaj tego bitu z <c>su</c>, <c>qmail-queue</c>
-czy <c>unix_chkpwd</c>. Usunięcie setuid z tych plików sprawi, że stracisz
-możliwość przełączania się na konto superużytkownika czy otrzymywania poczty.
-Usuwając SUID odbierasz zwykłemu użytkownikowi (lub włamywaczowi) możliwość
+polecenia <c>chmod -s</c>. Nie należy usuwać tego bitu z <c>su</c>, <c>qmail-queue</c>
+czy <c>unix_chkpwd</c>. Usunięcie setuid z tych plików spowoduje utratę
+możliwości przełączania się na konto superużytkownika czy otrzymywania poczty.
+Usuwając SUID odbieramy zwykłemu użytkownikowi (lub włamywaczowi) możliwość
 uzyskania dostępu do konta roota przez któryś z tych plików.
 </p>
 
 <p>
 Jedynymi plikami z SUID w moim systemie są <c>su</c>, <c>passwd</c>,
 <c>gpasswd</c>, <c>qmail-queue</c>, <c>unix_chkpwd</c> i <c>pwdb_chkpwd</c>.
-Jeśli używasz serwera X możesz potrzebować jeszcze kilku, ponieważ potrzebuje on
-czasem większego dostępu, oferowanego przez bity SUID.
+Każdy kto używa serwera X może potrzebować jeszcze kilku, ponieważ serwer
+korzysta czasem z rozszerzonego dostępu, oferowanego przez bity SUID.
 </p>
 
 </body>
@@ -1279,7 +1280,7 @@ czasem większego dostępu, oferowanego przez bity SUID.
 <body>
 
 <p>
-PAM jest zestawem bibliotek, które dostarczają różnych metod autoryzacji dla
+PAM jest zestawem bibliotek, które umożliwiają wykorzystanie różnych metod autoryzacji dla
 programów i użytkowników. Flaga USE <c>pam</c> jest włączana domyślnie.
 Domyślne ustawienia PAM w Gentoo są stosunkowo dobre, zawsze jednak można je
 nieco ulepszyć. Po pierwsze warto zainstalować sobie cracklib. 
@@ -1319,13 +1320,13 @@ session	 required pam_limits.so
 </pre>
 
 <p>
-Każda usługa, której nie skonfigurujesz w pliku <path>/etc/pam.d</path>
+Każda nieskonfigurowana w pliku <path>/etc/pam.d</path> usługa
 zostanie potraktowana zgodnie z zasadami z pliku  <path>/etc/pam.d/other</path>.
-Domyślnie jest to ustawienie <c>deny</c>, tak jak powinno to być zresztą
-ustawione. Lubię mieć dużą ilość logów, w związku z czym dodałem
+Domyślnie jest to <c>deny</c>, tak jak powinno to być zresztą
+ustawione. Osobiście lubię mieć dużą ilość logów, w związku z czym dodałem
 <c>pam_warn.so</c>. Ostatnim ustawieniem jest <c>pam_limits</c>, które jest
 konfigurowane w pliku <path>/etc/security/limits.conf</path>. Więcej informacji
-o tych ustawieniach znajdziesz w <uri link="#limits_conf">Sekcji
+o tych ustawieniach znajduje się w <uri link="#limits_conf">Sekcji
 /etc/security/limits.conf</uri>.
 </p>
 
@@ -1343,7 +1344,6 @@ session  required pam_warn.so
 </body>
 </section>
 </chapter>
-
 <chapter>
 <title>TCP Wrappers.</title>
 <section>
@@ -1370,7 +1370,7 @@ time: LOCAL, .gentoo.org
 </pre>
 
 <p>
-Jak widzisz format tego pliku jest bardzo podobny do tego z pliku
+Jak widać format tego pliku jest bardzo podobny do tego z pliku
 <path>/etc/login.access</path>. Tcpd posiada wsparcie dla określonych usług, nie
 nakłada się z <path>/etc/login.access</path>. Te ustawienie nie będą miały
 wpływu na usługi używające tcp wrappers.
@@ -1393,7 +1393,7 @@ don't do it!. Read the <c>man 5 hosts_access</c> for more information.
 </chapter>
 
 <chapter>
-<title>Ochrona kernela.</title>
+<title>Ochrona jądra.</title>
 <section>
 <title>Usuwanie zbędnych funkcji.</title>
 <body>
