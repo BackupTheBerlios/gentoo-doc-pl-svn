@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.16 -->
+<!-- Orig revision: 1.18 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Ukończono -->
@@ -10,7 +10,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-about.xml,v 1.12 2004/03/06 09:16:46 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-about.xml,v 1.13 2004/03/10 06:36:25 lcs Exp $ -->
 
 <sections>
 <section>
@@ -69,8 +69,8 @@ kończy się określonym stanem:
   Po etapie 3, przygotowałeś twarde dyski na instalację Gentoo.
 </li>
 <li>
-  Po etapie 4, środowisko instalacyjne jest gotowe i zalogowałeś
-  się do nowego systemu.
+  Po etapie 4, środowisko instalacyjne już przygotowano i jesteś
+  gotowy na zalogowanie się do nowego systemu.
 </li>
 <li>
   Po etapie 5, zainstalowałeś główne pakiety.
@@ -199,19 +199,11 @@ w środowisku Gentoo Linux.
 <title>W Jaki Sposób Portage Obsługuje GRP?</title>
 <body>
 <p>
-Aby Portage mogło skorzystać z prekompilowanych pakietów,
-muszą się one znajdować w katalogu <path>/usr/portage/packages/All</path>.
-Jeżeli instalujesz Gentoo przy użyciu LiveCD zawierającego GRP
-i zamierzasz go użyć, o sposobie jego
-instalacji dowiesz się w trakcie dalszej lektury podręcznika.
-</p>
-<p>
-Samo posiadanie GRP nie wystarczy, twoje drzewo Portage, czyli
-kolekcja <e>ebuildów</e> (plików zawierających informacje
-o pakiecie, takie jak opis, strona domowa, URL kodów źródłowych,
-opis kompilacji, zależności itd.), musi być z nimi zsynchronizowane:
-wersje dostępnych ebuildów i odpowiadających im prekompilowanych
-pakietów muszą się pokrywać.
+Twoje drzewo Portage - kolekcja <e>ebuildów</e> (plików zawierających
+informacje o pakiecie, takie jak opis, strona domowa, URL kodów źródłowych,
+opis kompilacji, zależności itd.) - musi być zsynchronizowane z 
+zestawem GRP: wersje dostępnych ebuildów muszą się pokrywać
+z odpowiednimi pakietami GRP.
 </p>
 <p>
 Z tego powodu, jeśli zamierzasz korzystać z GRP, zamiast
