@@ -2,13 +2,13 @@
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 <!-- Orig revision: 1.24 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
-<!-- Title: Wybór Właściwego Medium Instalacyjnego -->
-<!-- Status: Ukończono -->
+<!-- Title: Wybór właściwego medium instalacyjnego na HPPA -->
+<!-- Status: Release -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-hppa-medium.xml,v 1.1 2004/12/05 15:59:02 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-hppa-medium.xml,v 1.2 2004/12/07 16:39:38 rane Exp $ -->
 
 <sections>
 
@@ -82,10 +82,10 @@ Zacznijmy od omówienia trzech etapów (stage) instalacji.
 
 <p>
 Gentoo Linux może zostać zainstalowany przy pomocy jednego z trzech tarballi.
-Jeśli chcesz przeprowadzić samodzielnie bootstrap i zbudować cały system
-od podstaw, skorzystaj ze <e>stage1</e>. W <e>stage2</e> będziesz musiał
-skompilować system ze stanu tuż po gotowym bootstrapie. Prekompilowany podstawowy
-system Gentoo znajduje się w <e>stage3</e>. Naszą dystrybucję można
+Jeśli chcesz przeprowadzić samodzielnie bootstrap i zbudować cały system od
+podstaw, skorzystaj ze <e>stage1</e>. W <e>stage2</e> będziesz musiał
+skompilować system ze stanu tuż po ukończeniu bootstrapu. Prekompilowany
+podstawowy system Gentoo znajduje się w <e>stage3</e>. Naszą dystrybucję można
 zainstalować bez żadnych kompilacji, z wyjątkiem jądra i kilku opcjonalnych
 programów. W takim przypadku odpowiedni jest <e>stage3</e>.
 </p>
@@ -95,116 +95,116 @@ Który stage wybrać?
 </p>
 
 <p>
-Rozpoczęcie od <e>stage1</e> pozwala na pełną kontrolę optymalizacji i funkcjonalności.
-Przeznaczony jest on zwłaszcza dla użytkowników, którzy wiedzą co robią. Poza tym, stwarza
-świetną okazję do głębszego poznania mechanizmów Gentoo.
+Rozpoczęcie od <e>stage1</e> pozwala na pełną kontrolę nad konfiguracją i
+optymalizacją systemu. Przeznaczony jest on zwłaszcza dla doświadczonych
+użytkowników. Stwarza świetną okazję do głębszego poznania mechanizmów działania Gentoo.
 </p>
 
 <p>
-Instalacja ze <e>stage1</e> jest możliwa tylko wtedy, gdy masz działające połączenie z Internetem.
-</p>
-
-<table>
-<tr>
-  <th>Stage1</th>
-  <th>Plusy i Minusy:</th>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Pozwala na pełną kontrolę nad procesem budowania i optymalizacji systemu.</ti>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Odpowiedni dla użytkowników, którzy wiedzą co robią.</ti>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Pozwala na głębsze poznanie mechanizmów Gentoo.</ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>Instalacja zabiera dużo czasu.</ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>Jeśli nie planujesz poprawiania ustawień, prawdopodobnie
-  okaże się stratą czasu.</ti>
-</tr>
-</table>
-
-<p>
-W <e>stage2</e> bootstrap przeprowadziliśmy za Ciebie. Jeśli jesteś
-zadowolony z wybranych przez nas ustawień, użyj właśnie jego.
-</p>
-
-<p>
-Instalacja ze <e>stage2</e> jest możliwa tylko wtedy, gdy masz działające połączenie z Internetem.
+Instalację od <e>stage1</e> możesz zacząć tylko wtedy, gdy masz
+skonfigurowane i działające połączenie z Internetem.
 </p>
 
 <table>
 <tr>
-  <th>Stage2</th>
-  <th>Plusy i Minusy:</th>
+<th>Stage1</th>
+<th>Plusy i Minusy:</th>
 </tr>
 <tr>
-  <th>+</th>
-  <ti>Nie musisz przeprowadzać bootstrapu.</ti>
+<th>+</th>
+<ti>Pozwala na pełną kontrolę nad konfiguracją i optymalizacją systemu.</ti>
 </tr>
 <tr>
-  <th>+</th>
-  <ti>Instalacja zajmuje mniej czasu niż w przypadku stage1.</ti>
+<th>+</th>
+<ti>Odpowiedni dla doświadczonych użytkowników.</ti>
 </tr>
 <tr>
-  <th>+</th>
-  <ti>Wciąż możesz poprawić dużo ustawień.</ti>
+<th>+</th>
+<ti>Pozwala na głębsze poznanie mechanizmów działania Gentoo.</ti>
 </tr>
 <tr>
-  <th>-</th>
-  <ti>Nie możesz poprawić tak dużo jak w przypadku stage1.</ti>
+<th>-</th>
+<ti>Instalacja zabiera dużo czasu.</ti>
 </tr>
 <tr>
-  <th>-</th>
-  <ti>Nie jest najszybszą metodą instalacji Gentoo.</ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>Musisz zaakceptować wybrane przez nas optymalizacje i
-  ustawienia.</ti>
+<th>-</th>
+<ti>Jeśli nie planujesz poprawiania ustawień prawdopodobnie okaże się stratą
+czasu.</ti>
 </tr>
 </table>
 
 <p>
-Najszybszą instalację Gentoo Linux umożliwia <e>stage3</e>. Skompilowano
-w nim z dobrymi ustawieniami optymalizacji, łączącymi wysoką wydajność ze
-stabilnością cały podstawowy system. Jest ono wymagane w przypadku instalacji
+W <e>stage2</e> bootstrap przeprowadziliśmy za Ciebie. Jeśli jesteś zadowolony
+z wybranych przez nas ustawień użyj właśnie jego.
+</p>
+
+<p>
+Instalację ze <e>stage2</e> możesz przeprowadzić tylko wtedy, gdy masz
+skonfigurowane i działające połączenie z Internetem.
+</p>
+
+<table>
+<tr>
+<th>Stage2</th>
+<th>Plusy i Minusy:</th>
+</tr>
+<tr>
+<th>+</th>
+<ti>Nie musisz przeprowadzać bootstrapu.</ti>
+</tr>
+<tr>
+<th>+</th>
+<ti>Instalacja zajmuje mniej czasu niż w przypadku stage1.</ti>
+</tr>
+<tr>
+<th>+</th>
+<ti>Wciąż możesz poprawić dużo ustawień.</ti>
+</tr>
+<tr>
+<th>-</th>
+<ti>Ale nie możesz poprawić tak dużo jak w przypadku stage1.</ti>
+</tr>
+<tr>
+<th>-</th>
+<ti>Nie jest najszybszą metodą instalacji Gentoo.</ti>
+</tr>
+<tr>
+<th>-</th>
+<ti>Musisz zaakceptować wybrane przez nas optymalizacje i ustawienia.</ti>
+</tr>
+</table>
+
+<p>
+Najszybszą instalację Gentoo Linux umożliwia <e>stage3</e>. Skompilowano w nim
+z dobrymi ustawieniami optymalizacji, łączącymi wysoką wydajność ze
+stabilnością, cały podstawowy system. Jest ono wymagane w przypadku instalacji
 za pomocą prekompilowanych pakietów.
 </p>
 
 <table>
 <tr>
-  <th>Stage3</th>
-  <th>Plusy i Minusy:</th>
+<th>Stage3</th>
+<th>Plusy i minusy:</th>
 </tr>
 <tr>
-  <th>+</th>
-  <ti>Najszybsza metoda instalacji Gentoo.</ti>
+<th>+</th>
+<ti>Najszybsza metoda instalacji Gentoo.</ti>
 </tr>
 <tr>
-  <th>-</th>
-  <ti>Nie można poprawiać systemu podstawowego - jest
-  prekompilowany.</ti>
+<th>-</th>
+<ti>Nie można poprawiać systemu podstawowego - jest prekompilowany.</ti>
 </tr>
 <tr>
-  <th>-</th>
-  <ti>Nie możesz przechwalać się używaniem stage1 lub stage2.</ti>
+<th>-</th>
+<ti>Nie możesz przechwalać się używaniem stage1 lub stage2.</ti>
 </tr>
 </table>
 
 <p>
-Zapisz sobie (lub zapamiętaj) który stage wybrałeś. Będzie Ci to potrzebne
+Zapisz sobie (lub zapamiętaj), który stage wybrałeś. Będzie Ci to potrzebne
 przy wybieraniu odpowiedniego LiveCD. Z pewnością zainteresuje Cię także
-możliwość rekompilacji całego systemu w przyszłości, gdy zdecydujesz się
-na inne ustawienia optymalizacji już po zakończeniu instalacji.
+możliwość rekompilacji całego systemu w przyszłości, gdy zdecydujesz się na
+inne ustawienia optymalizacji już po zakończeniu instalacji.
 </p>
 
 <p>
@@ -220,18 +220,20 @@ Teraz rzućmy okiem na dostępne media instalacyjne:
 <p>
 <e>Gentoo LiveCD</e> to uruchamialne płyty zawierające działające środowisko
 Gentoo. Pozwalają na uruchomienie Linuksa prosto z CD. W czasie startu wykrywany
-jest sprzęt i ładowane są odpowiednie sterowniki. Zarządzają nimi developerzy Gentoo.
+jest sprzęt i ładowane są odpowiednie sterowniki. Płyty te dostępne są dla
+wszystkich wspieranych architektur (x86, alpha, sparc, ppc, hppa, amd64). Co
+więcej, występują w różnych odmianach.
 </p>
 
 <p>
-Wszystkie LiveCD pozwalają na uruchomienie systemu podstawowego, konfigurację sieci, 
-utworzenie partycji i rozpoczęcie instalacji Gentoo. Na niektórych znajdują
-się dodatkowo kody źródłowe, dzięki którym możesz przeprowadzić instalację
-bez dostępu do sieci.
+Wszystkie LiveCD pozwalają na uruchomienie systemu podstawowego, konfigurację
+sieci, utworzenie partycji i rozpoczęcie instalacji Gentoo przez Internet.
+Na niektórych znajdują się dodatkowo kody źródłowe, dzięki którym możesz
+przeprowadzić instalację bez dostępu do sieci.
 </p>
 
 <p>
-Co zawierają te płyty?
+Co one zawierają?
 </p>
 
 </body>
@@ -241,11 +243,12 @@ Co zawierają te płyty?
 <body>
 
 <p>
-Jest to mała płytka, przy pomocy której możesz
-szybko uruchomić system podstawowy, przygotować połączenie sieciowe i rozpocząć
-instalację Gentoo. Zwykle nie zawiera żadnych stage (choć czasem
-zdarzają się wersje z nagranym stage1), kodów źródłowych, ani
-prekompilowanych pakietów.
+Są to małe, uruchamialne płyty zawierające wszystko, co potrzebne do
+przeprowadzenia instalacji przez Internet. Nie zawierają żadnych stage (czasem
+mogą zawierać stage1), kodów źródłowych, ani prekompilowanych pakietów. Wersję
+dla architektury HPPA można odnaleźć w podkatalogu
+<path>releases/hppa/2004.3/livecd/</path>, w
+pliku o nazwie <c>install-hppa-minimal-2004.0.iso</c>.
 </p>
 
 </body>
@@ -259,34 +262,31 @@ prekompilowanych pakietów.
 
 <p>
 Zdecydowałeś się skorzystać z Gentoo LiveCD (jeśli nie, to czytasz złą sekcję).
-Zaczniemy od ściągnięcia ich na dysk i nagrania na płyty. Gdzie
-się znajdują?
+Zaczniemy od ściągnięcia ich na dysk i nagrania na płyty. Omówiliśmy już różne
+odmiany, teraz napiszemy gdzie je znaleźć.
 </p>
 
 <p>
-Odwiedź jeden z naszych <uri
-link="/main/en/mirrors.xml">mirrorów</uri>. Kiedy się z którymś
-połączysz przejdź do katalogu
-<path>experimental/hppa/livecd</path>, który zawiera potrzebne Ci
-obrazy LiveCD w formacie ISO. Są to pełne i gotowe do nagrania
-na CD-R obrazy płyt.
+Odwiedź jeden z naszych <uri link="/main/en/mirrors.xml">serwerów
+lustrzanych</uri> i
+przejdź do katalogu <path>releases/x86/2004.3/livecd</path>. Wewnątrz znajdziesz
+odpowiednio nazwane pliki.
+Są to pełne obrazy płyt, gotowe do nagrania na płyty CD-R.
 </p>
 
 <p>
-Jeśli nie jesteś pewien czy pobrane pliki są poprawne możesz
-porównać ich sumę kontrolną MD5 z tą, którą dostarczamy razem z
-ISO (na przykład
-<path>install-hppa-minimal-2004.3.iso.md5</path>). Do sprawdzania
-sumy MD5 pod Linuksem/Uniksem służy program <c>md5sum</c>,
-natomiast pod Windowsem <uri
+Aby potwierdzić, że pobrane przez Ciebie pliki nie zawierają błędów powinieneś
+porównać ich sumy kontrolne MD5 z tymi, które dostarczamy razem z obrazem płyty
+(np. <path>install-x86-minimal-2004.3.iso.md5</path>). Do sprawdzania sumy MD5
+pod Linuksem/Uniksem służy program <c>md5sum</c>, a pod Windowsem <uri
 link="http://www.md5summer.org">md5summer</uri>.
 </p>
 
 <p>
-Inną metodą sprawdzenia poprawności pobranego pliku jest
-zweryfikowanie jego kryptograficznej sygnatury przy pomocy GnuPG.
-Najpierw pobierz plik zawierający sygnaturę z naszego serwera
-(ten z rozszerzeniem .asc).
+Innym sposobem sprawdzenia poprawności pobranego pliku jest użycie GnuPG w celu
+porównania kryptograficznej sygnatury pobranego pliku z tą, którą dostarczamy w
+pliku z rozszerzeniem <path>.asc</path>). Ściągnij plik sygnatury i uzyskaj
+klucz publiczny swojego obrazu:
 </p>
 
 <pre caption="Uzyskiwanie klucza publicznego">
@@ -294,7 +294,7 @@ $ <i>gpg --keyserver pgp.mit.edu --recv-keys 17072058</i>
 </pre>
 
 <p>
-Teraz zweryfikuj sygnaturę:
+Teraz zweryfikuj uzyskaną sygnaturę porównując ją z tą pochodzącą z serwera:
 </p>
 
 <pre caption="Weryfikacja sygnatury">
@@ -302,24 +302,23 @@ $ <i>gpg --verify &lt;plik_z_sygnaturą&gt; &lt;pobrane_iso&gt;</i>
 </pre>
 
 <p>
-Aby nagrać pobrane obrazy, musisz wybrać w programie do
-nagrywania tryb RAW. Sposób zależy od używanego narzędzia.
-Omówimy poniżej nagrywanie przy pomocy programów <c>cdrecord</c>
-i <c>K3B</c>. Więcej informacji uzyskasz z <uri
-link="/doc/en/faq.xml#isoburning">Gentoo FAQ</uri>.
+Aby nagrać pobrane obrazy, musisz wybrać w programie do nagrywania
+tryb RAW. Sposób w jaki to się robi zależy od używanego narzędzia. Omówimy
+poniżej kilka najpopularniejszych.
 </p>
 
 <ul>
-  <li>
-Jeśli używasz cdrecord, wpisz po prostu <c>cdrecord
-dev=/dev/hdc</c> (zamieniając <path>/dev/hdc</path> swoim
-urządzeniem nagrywarki) i ścieżkę do pobranego ISO jako parametr.
-  </li>
-  <li>
-W k3b wybierz kolejno <c>Tools</c>, <c>CD</c>, <c>Burn Image</c>.
-Następnie wskaż obraz płyty do wypalenia i kliknij na
-<c>Start</c>.
-  </li>
+<li>
+W cdrecord wystarczy wpisać <c>cdrecord dev=/dev/hdc</c> (oczywiście musisz
+zamienić <path>/dev/hdc</path> odpowiednią ściężką do swojego urządzenia
+CD-RW)
+i nazwę pliku ISO, który chcesz wypalić.
+</li>
+<li>
+W K3B wybierz kolejno <c>Tools</c> &gt; <c>CD</c> &gt; <c>Burn Image</c>.
+Następnie wskaż swój plik ISO w oknie o nazwie 'Image to Burn'. Wreszcie
+wciśnij <c>Start</c>, aby wypalić obraz.
+</li>
 </ul>
 
 </body>
@@ -349,8 +348,7 @@ To terminate search, press and hold the ESCAPE key.
 Kiedy się pojawi, wciśnij i przytrzymaj klawisz ESC aż do pojawienia się
 menu opcji. Może to zająć chwilę, więc bądź cierpliwy. Domyślnie
 powinieneś otworzyć konsolę BOOT_ADMIN. Gdy zobaczysz menu opcji, wybierz
-<c>Enter Boot Administration mode</c>, aby do niej przejść. Powinieneś zobaczyć
-prompt '&gt;'.
+<c>Enter Boot Administration Mode</c>. Powinieneś zobaczyć znak zachęty '&gt;'.
 </p>
 
 <p>
@@ -373,17 +371,14 @@ możesz uruchomić system. Poniżej masz przykładowy wynik tej komendy:
 Device Selection      Device Path             Device Type and Utilities
 ---------------------------------------------------------------------------
 
-P0                    scsi.5.0                TOSHIBA CD-ROM XM-3301TA
-                                                  IPL
-P1                    scsi.2.0                COMPAQ ST32550N
-                                                  IPL
-P2                    lan.0010a7-06d1b6.3.6   server
-                                                  IPL
+P0                    scsi.5.0                TOSHIBA CD-ROM XM-3301TA                                                 IPL
+P1                    scsi.2.0                COMPAQ ST32550N		                                               IPL
+P2                    lan.0010a7-06d1b6.3.6   server			                                               IPL
 </pre>
 
 <p>
-Aby uruchomić komputer z CD-ROMu musisz podać odpowiednią "Device
-Path". Na przykład, jeśli chcesz uruchomić go z napędu TOSHIBA, wpisz:
+Aby uruchomić komputer z CD-ROMu musisz podać odpowiednią ścieżkę urządzenia. Na
+przykład, jeśli chcesz uruchomić go z napędu TOSHIBA, wpisz: 
 </p>
 
 <pre caption="Uruchamianie z CD-ROMu">
@@ -450,15 +445,13 @@ Po wybraniu parametrów kernela, uruchom go.
 </pre>
 
 <p>
-Na aktywnej konsoli powinieneś zobaczyć prompt superużytkownika (&quot;#&quot;).
-Dostępne  będą również inne konsole, można się między nimi przełączać naciskając
+Na aktywnej konsoli powinieneś zobaczyć znak zachęty superużytkownika (&quot;#&quot;).
+Dostępne będą również inne konsole, można się między nimi przełączać naciskając
 Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą z nich wciśnij Alt-F1.
 </p>
 
 <p>
-Teraz przejdź do paragrafu <uri
-link="#doc_chap3_sect7">Konfiguracja dodatkowego
-sprzętu</uri>.
+Teraz przejdź do paragrafu <uri link="#doc_chap3_sect7">Konfiguracja dodatkowego sprzętu</uri>.
 </p>
 
 </body>
@@ -491,38 +484,37 @@ dla różnych rodzajów urządzeń sieciowych):
 <body>
 
 <p>
-Jeśli planujesz dać dostęp do środowiska instalacyjnego
-innym użytkownikom, lub chcesz korzystać z <c>irssi</c>
-uruchomionego  bez uprawnień roota (ze względów bezpieczeństwa), 
-musisz stworzyć odpowiednie konta i zmienić hasło roota.
+Jeśli planujesz umożliwić dostęp do środowiska instalacyjnego innym
+użytkownikom, lub korzystać z <c>irssi</c> bez uprawnień administratora (ze względów
+bezpieczeństwa), musisz stworzyć odpowiednie konta oraz zmienić hasło roota.
 </p>
 
 <p>
-Aby zmienić hasło roota, skorzystaj z narzędzia <c>passwd</c>:
+Aby zmienić hasło roota, skorzystaj z polecenia <c>passwd</c>:
 </p>
 
 <pre caption="Zmiana hasła roota"> 
 # <i>passwd</i>
-New password: <comment>(Enter your new password)</comment>
-Re-enter password: <comment>(Re-enter your password)</comment>
+New password: <comment>(Wprowadź nowe hasło)</comment>
+Re-enter password: <comment>(Potwierdź nowe hasło)</comment>
 </pre>
 
 <p>
-Aby stworzyć konto użytkownika, najpierw podamy jego login, a
-potem ustawimy hasło. Skorzystamy przy tym z programów <c>useradd</c> oraz <c>passwd</c>.
-W przykładzie, stworzymy użytkownika &quot;rane&quot;.
+Aby stworzyć konto użytkownika najpierw podamy jego login, a
+potem ustawimy hasło. Skorzystamy przy tym z poleceń <c>useradd</c> oraz
+<c>passwd</c>. W przykładzie, stworzymy użytkownika &quot;john&quot;.
 </p>
 
 <pre caption="Tworzenie konta użytkownika">
-# <i>useradd -m -G users rane</i>
-# <i>passwd rane</i>
-New password: <comment>(Enter rane's password)</comment>
-Re-enter password: <comment>(Re-enter rane's password)</comment>
+# <i>useradd -m -G users john</i>
+# <i>passwd john</i>
+New password: <comment>(Wprowadź hasło)</comment>
+Re-enter password: <comment>(Potwierdź hasło)</comment>
 </pre>
 
 <p>
-Aby przełączyć się z konta roota na nowoutworzone konto
-użytkownika skorzystaj z polecenia <c>su</c>:
+Aby przełączyć się z konta roota na nowoutworzone konto użytkownika skorzystaj
+z polecenia <c>su</c>:
 </p>
 
 <pre caption="Zmiana id użytkownika">
@@ -532,18 +524,19 @@ użytkownika skorzystaj z polecenia <c>su</c>:
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Przeglądanie dokumentacji podczas instalacji Gentoo.</title>
+<title>Opcjonalnie: Dostęp do dokumentacji podczas instalowania Gentoo.</title>
 <body>
 
 <p>
-Jeśli chcesz korzystać z Podręcznika Gentoo (nieważne czy z tego na CD, czy tego w
-sieci) podczas instalacji musisz najpierw utworzyć konto użytkownika (zobacz <uri
-link="#useraccounts">Opcjonalnie: Konta użytkowników</uri>). Następnie
-naciśnij <c>Alt-F2</c>, aby przejść na nową konsolę i zaloguj się na niej.
+Jeśli zamierzasz podczas instalacji  korzystać z Podręcznika Gentoo (obojętnie
+czy nagranego na CD czy znajdującego się w Internecie) powinieneś dodać konto
+użytkownika, tak jak opisaliśmy to przed chwilą, a następnie przejść przy pomocy
+kombinacji klawiszy <c>Alt-F2</c> na nowy terminal i tam się zalogować.
 </p>
 
 <p>
-Jeśli chcesz przeglądać dokumentację zapisaną na CD od razu odpal program links2:
+Aby skorzystać z dokumentacji nagranej na CD użyj programu <c>links2</c>
+w następujący sposób:
 </p>
 
 <pre caption="Przeglądanie dokumentacji zapisanej na CD">
@@ -551,15 +544,14 @@ Jeśli chcesz przeglądać dokumentację zapisaną na CD od razu odpal program l
 </pre>
 
 <p>
-Znacznie lepszym pomysłem jest korzystanie z Podręcznika znajdującego się w Internecie,
-ponieważ zwykle jest on dużo aktualniejszy od tego dostępnego na LiveCD.
-Dostęp do niego uzyskasz przy pomocy programu links2, ale będziesz
-mógł to zrobić dopiero po ukończeniu czynności opisanych w rozdziale
-<e>Konfiguracja sieci</e> (inaczej nie połączysz się z Internetem i nie
-zobaczysz żadnych dokumentów).
+Najnowszą i najlepszą dostępną wersją Podręcznika Gentoo jest ta znajdująca się
+na naszej stronie internetowej. Zalecamy korzystanie właśnie z tej wersji.
+Podobnie jak w przypadku dokumentacji nagranej na CD można użyć do tego programu
+<c>links2</c>, pod warunkiem oczywiście, że mamy już skonfigurowane i działające
+połączenie z Internetem.
 </p>
 
-<pre caption="Przeglądanie dokumentacji online">                                                                                                          
+<pre>
 # <i>links2 http://www.gentoo.org/doc/en/handbook/handbook-hppa.xml</i>
 </pre>
 
@@ -570,19 +562,19 @@ Na pierwszą konsolę wrócisz wciskając <c>Alt-F1</c>.
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Uruchamienie demona SSH.</title>
+<title>Opcjonalnie: Uruchamianie demona SSH.</title>
 <body>
 
 <p>
-Jeśli chcesz umożliwić innym użytkownikom dostęp do komputera podczas instalacji
-(np. gdy zechcą zdalnie pomóc Ci w instalacji Gentoo, lub nawet zrobić to
-za Ciebie) musisz najpierw pozakładać im konta. Możesz również
-dać im dostęp do konta roota, rób to jednak tylko wtedy, gdy
-<b>całkowicie</b> ufasz danej osobie.
+Jeśli chcesz w czasie instalacji umożliwić dostęp do komputera innym
+użytkownikom (ponieważ np. ktoś chce Ci zdalnie pomóc w instalacji Gentoo, lub
+nawet przeprowadzić cały ten proces za Ciebie) musisz założyć im osobiste
+konta, a czasem nawet dać hasło do konta roota (rób to tylko wtedy, gdy
+<e>całkowicie</e> ufasz tej osobie).
 </p>
 
 <p>
-Aby uruchomić demona SSH wpisz następującą komendę;
+Aby uruchomić demona SSH wpisz następującą komendę:
 </p>
 
 <pre caption="Uruchamianie demona SSH">
@@ -590,12 +582,14 @@ Aby uruchomić demona SSH wpisz następującą komendę;
 </pre>
 
 <p>
-Aby móc używać sshd musisz mieć działające połączenie z Internetem. Przejdź do
-rozdziału <uri link="?part=1&amp;chap=3">Konfiguracja sieci</uri>, gdzie
-dokładnie wyjaśnimy Ci jak to się robi.
+Aby używać sshd musisz mieć skonfigurowane i działające połączenie sieciowe. Aby
+je
+skonfigurować przejdź do rozdziału <uri link="?part=1&amp;chap=3">Konfiguracja
+sieci</uri>.
 </p>
 
 </body>
 </subsection>
 </section>
 </sections>
+
