@@ -1,55 +1,39 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.33 -->
-<!-- Translator: veng <veng@wp.pl> -->
+<!-- Orig revision: 1.34 -->
+<!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Przygotowanie Plików Instalacyjnych Gentoo -->
 <!-- Status: Ukończono -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.4 2004/02/10 23:31:03 veng Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.5 2004/03/01 23:29:09 veng Exp $ -->
 
 <sections>
 <section>
-<title>Wybór właściwego pliku Stage</title>
+<title>Instalowanie tarballa Stage</title>
+<subsection>
+<title>Podejmowanie decyzji</title>
 <body>
 
 <p>
-Kiedy prosiliśmy Cię o wybór medium instalacyjnego (LiveCD, istniejącej dystrybucji
-itp) wyjaśnialiśmy, jakie są plusy i minusy każdej opcji. Z nimi wiązał się dobór pliku
-stage: kompilujesz wszystko (<e>stage1</e>), pomijasz bootstrap (<e>stage2</e>)
-czy zaczynasz od prekompilowanego systemu (<e>stage3</e>)?
-</p>
-
-<p>
-W zależności od użytego do instalacji medium, jedni mają już decyzje za sobą,
-innym zadamy kolejne pytania. Teraz nadeszła pora wykorzystania
-wybranego pliku stage.
-</p>
-
-<p>
-Dwie kolejne części wyjaśniają jak zainstalować stage odpowiadający Twoim
-preferencjom. Domyślnie pobieramy ten plik z Internetu, lecz 
-także może się on znajdować na niektórych LiveCD.
-</p>
-
-<p>
-Jeśli masz działające połaczenie z Internetem, lepiej będzie użyć opcji domyślnej.
-W przeciwnym przypadku lub jeżeli instalujesz z wykorzystaniem GRP (pakietów
-prekompilowanych), musisz wybrać alternatywę.
+W następnym kroku powinieneś wykonać instalację wybranego tarballa <e>stage</e>.
+Możesz go pobrać z Internetu lub, jeśli działasz z jednego z naszych LiveCD,
+przekopiować go z CD.
 </p>
 
 <ul>
-<li><uri link="#doc_chap2">Domyślnie: Pobieranie z Internetu</uri></li>
+<li><uri link="#doc_chap2">Domyślnie: Użycie Stage z Internetu</uri></li>
 <li><uri link="#doc_chap3">Alternatywnie: Wykorzystanie Stage z LiveCD</uri></li>
 </ul>
 
 </body>
+</subsection>
 </section>
 <section>
-<title>Domyślnie: Pobieranie z Internetu</title>
+<title>Domyślnie: Użycie Stage z Internetu</title>
 <subsection>
 <title>Pobieranie tarballa Stage</title>
 <body>
@@ -69,12 +53,17 @@ za pomocą których możesz ściągnąć stage. Jeśli posiadasz program
 <c>lynx</c>, od razu możesz przejść pod adres
 <uri link="/main/en/mirrors.xml">Listy mirrorów Gentoo</uri>
 i wybrać serwer najbliżej siebie. Wejdź w katalog <path>releases/</path>,
-następnie w odpowiadający architekturze Twojego komputera (na przykład
-<path>x86/</path>) i wersji Gentoo (<path>1.4/</path>) by zakończyć
+następnie w odpowiadający wersji Gentoo (<path>2004.0/</path>) oraz
+architekturze Twojego komputera (na przykład <path>x86/</path>) by zakończyć
 w katalogu <path>stages/</path>. Powinieneś widzieć dostępne dla Twojej
 architektury wersje plików stage. Wybierz jeden i naciśnij <c>D</c> aby rozpocząć
 pobieranie. Kiedy skończysz, klawiszem <c>Q</c> zamknij przeglądarkę.
 </p>
+
+<note>
+Pliki stage dla <uri link="http://hardened.gentoo.org">Gentoo Hardened</uri>
+(dla architektury x86) znajdują się wewnątrz podkatalogu <path>hardened/stages/</path>.
+</note>
 
 <pre caption="Przeglądanie listy serwerów zwierciadlanych za pomocą lynxa">
 # <i>lynx http://www.gentoo.org/main/en/mirrors.xml</i>
@@ -89,8 +78,8 @@ Od tego miejsca dalsze kroki są takie same jak w przypadku <c>lynxa</c>.
 </p>
 
 <pre caption="Przeglądanie listy serwerów zwierciadlanych za pomocą links2">
-<comment>(Bez proxy:)</comment>   # <i>links2 http://www.gentoo.org/main/en/mirrors.xml</i>
-<comment>(Z proxy:)</comment>      # <i>links2 -http-proxy serwer.proxy.com:8080 http://www.gentoo.org/main/en/mirrors.xml</i>
+<comment>(Bez proxy)</comment>   # <i>links2 http://www.gentoo.org/main/en/mirrors.xml</i>
+<comment>(Z proxy)</comment>      # <i>links2 -http-proxy serwer.proxy.com:8080 http://www.gentoo.org/main/en/mirrors.xml</i>
 </pre>
 
 <p>
@@ -127,8 +116,8 @@ ze standardowego wejścia.
 </p>
 
 <p>
-Gotowe? W porządku, możesz przejść do następnego paragrafu <uri
-link="#doc_chap4">Konfiguracja opcji kompilacji</uri>.
+Gdy stage jest już zainstalowany, możesz przejść do
+<uri link="#installing_portage">Instalacji Portage</uri>.
 </p>
 
 </body>
@@ -178,11 +167,54 @@ Nie zapomnij zamienić jego nazwy na prawidłową dla Ciebie.
 <pre caption="Wypakowanie tarballa stage">
 # <i>tar -xvjpf /mnt/cdrom/stages/stage3-20031011.tar.bz2</i>
 </pre>
-
+ 
+<p>
+Gdy stage zostanie zainstalowany, przejdź do 
+<uri link="#installing_portage">Instalacji Portage</uri>.
+</p>
+ 
 </body>
 </subsection>
+</section>
+<section id="installing_portage">
+<title>Instalacja Portage</title>
 <subsection>
-<title>Instalacja migawki Portage i źródeł</title>
+<title>Z siecią czy bez sieci?</title>
+<body>
+ 
+<p>
+Jeśli nie masz działającego połączenia internetowego, będziesz musiał 
+zainstalować dostarczoną na jednym z naszych LiveCD migawkę portage.
+Jeżeli chcesz później używać spreparowanych paczek, by przyspieszyć 
+instalację, <e>musisz</e> użyć tej migawki, dostępnej na LiveCD
+czy też na jednym z naszych mirrorów. Inni użytkownicy pobiorą w pełni 
+aktualne drzewo Portage dzięki <c>emerge</c> nieco dalej.
+</p>
+ 
+<p>
+Kontynuujemy poprzez odpowiednią część:
+</p>
+ 
+<ul>
+<li>
+<uri link="#installing_from_LiveCD">Instalacja migawki Portage i kodu 
+źródłowego z LiveCD</uri> (dla instalacji bez użycia sieci lub 
+z wykorzystaniem GRP)
+</li>
+<li>
+<uri link="#installing_from_Internet">Instalacja migawki Portage z serwera
+zwierciadlanego Gentoo</uri> (dla instalacji GRP)
+</li>
+<li>
+<uri link="#compile_options">Konfiguracja opcji kompilacji</uri>
+(wszystkie pozostałe metody instalacji)
+</li>
+</ul>
+ 
+</body>
+</subsection>
+<subsection id="installing_from_LiveCD">
+<title>Instalowanie migawki Portage Snapshot i kodu źródłowego z LiveCD</title>
 <body>
 
 <p>
@@ -208,7 +240,7 @@ który posiadasz.
 </pre>
 
 <p>
-Musisz także skopiować źródła programów dostępne na płycie.
+Musisz także skopiować źródła programów dostępne na płycie:
 </p>
 
 <pre caption="Kopiowanie kodu źródłowego">
@@ -217,34 +249,50 @@ Musisz także skopiować źródła programów dostępne na płycie.
 </pre>
 
 <p>
-Jeśli chcesz wykorzystać GRP (paczki binarne), czytaj dalej. W przeciwnym przypadku przejdź do
-<uri link="#doc_chap4">Konfiguracji opcji kompilacji</uri>.
+Gdy migawka Portage zostanie zainstalowana, przejdź do <uri
+link="#compile_options">Konfiguracji opcji kompilacji</uri>.
 </p>
 
 </body>
 </subsection>
-<subsection>
-<title>Opcjonalnie: Przygotowanie GRP</title>
+<subsection id="installing_from_Internet">
+<title>Instalacja migawki Portage z serwera zwierciadlanego </title>
 <body>
 
 <p>
-Jeżeli zamierzasz instalować Gentoo używająć GRP (prekompilowanych pakietów),
-musisz skopiować wszystkie paczki z CD na dysk.
+By instalacja z użyciem GRP zakończyła się sukcesem, musisz pobrać odpowiednią
+migawkę Portage. Przejdź za pomocą programu <c>lynx</c> (lub <c>links2</c>)
+do jednego z naszych <uri link="/main/en/mirrors.xml">mirrorów</uri>
+i ściągnij plik z <path>releases/2004.0/twoja_architektura/snapshots</path>. 
+Upewnij się, iż znajdujesz się w <path>/mnt/gentoo</path> by został on 
+zapisany na dysk.
 </p>
 
-<pre caption="Kopiowanie paczek binarnych">
-# <i>mkdir -p /mnt/gentoo/usr/portage/packages/All</i>
-# <i>cp /mnt/cdrom/packages/All/* /mnt/gentoo/usr/portage/packages/All/</i>
+<pre caption="Pobieranie migawki Portage">
+# <i>cd /mnt/gentoo</i>
+# <i>lynx http://www.gentoo.org/main/en/mirrors.xml</i>
 </pre>
 
 <p>
-Teraz przejdź do <uri link="#doc_chap4">Konfiguracji opcji kompilacji</uri>.
+A teraz rozpakuj migawkę wykorzystując podane polecenie.
+Ponownie musisz upewnić się, że używasz właściwych opcji polecenia
+<c>tar</c>. Zwróć uwagę na to, że <c>-C</c> występuje z wielką <c>C</c>,
+a nie z <c>c</c>. W następnym przykładzie nazwą naszej migawki jest <path>portage-20031011.tar.bz2</path>. Dopasuj i ją odpowiednio.
+</p>
+ 
+<pre caption="Rozpakowanie migawki Portage">
+# <i>tar -xvjf /mnt/gentoo/portage-20031011.tar.bz2 -C /mnt/gentoo/usr</i>
+</pre>
+ 
+<p>
+Gdy zainstalujesz migawkę Portage, przejdź do <uri
+link="#compile_options">Konfiguracji opcji kompilacji</uri>.
 </p>
 
 </body>
 </subsection>
 </section>
-<section>
+<section id="compile_options">
 <title>Konfiguracja opcji kompilacji</title>
 <subsection>
 <title>Wprowadzenie</title>
@@ -259,7 +307,7 @@ pliku konfiguracyjnego <path>/etc/make.conf</path>. Teraz zabieramy się do jego
 
 <note>
 Opatrzona komentarzami lista wszystkich możliwych zmiennych znajduje się
-w pliku <path>/mnt/gentoo/etc/make.conf(.example)</path>. By zakończyć
+w pliku <path>/mnt/gentoo/etc/make.conf.example</path>. By zakończyć
 instalację sukcesem, musisz wyedytować tylko te spośród nich, które
 wyszczególniliśmy poniżej.
 </note>
@@ -274,7 +322,7 @@ którym wprowadzisz omawiane nieco dalej opcje optymalizacji.
 </pre>
 
 <p>
-Jak już prawdopodobnie zauważyłeś, plik <path>make.conf(.example)</path>
+Jak już prawdopodobnie zauważyłeś, plik <path>make.conf.example</path>
 ma charakterystyczną strukturę: linie z komentarzem rozpoczyna "#", linie zawierające
 zmienne używają składni <c>ZMIENNA="zawartość"</c>. Kilka z tych zmiennych
 zostało przedyskutowanych poniżej.
@@ -287,10 +335,10 @@ zostało przedyskutowanych poniżej.
 <body>
 
 <warn>
-Mimo, iż może to zainteresować tych, którzy nie korzystają ze stage1, <e>nie</e>
+Mimo, iż może to kusić tych, którzy nie korzystają ze stage1, <e>nie</e>
 powinni oni zmieniać ustawienia <c>CHOST</c> w <path>make.conf</path>. Dokonanie
-tego może uczynić system niezdatnym do użytku. Powtarzamy: tę zmienną modyfikuj tylko,
-gdy instalujesz używając <e>stage1</e>.
+tego może uczynić system nie przydatnym do użytku. Powtarzamy: tę zmienną 
+modyfikuj tylko, gdy instalujesz używając <e>stage1</e>.
 </warn>
 
 <p>
@@ -393,14 +441,14 @@ Nie będziemy tłumaczyć znaczenia wszystkich możliwych opcji optymalizacji.
 Jeśli chcesz je poznać, przeczytaj
 <uri link="http://www.gnu.org/software/gcc/onlinedocs/">Podręcznik Online GNU
 </uri> lub stronę info <c>gcc</c> (<c>info gcc</c> -- działa tylko na systemach
-linuksowych). Plik <path>make.conf</path> sam zawiera dużo informacji i przykładów
+linuksowych). Plik <path>make.conf.example</path> sam zawiera dużo informacji i przykładów
  - nie zapomnij przeczytać także i jego.
 </p>
 
 <p>
 Pierwszym ustawieniem jest flaga <c>-march=</c> która określa docelową
 architekturę. Możliwe jej wartości są opisane jako komentarze w
-<path>make.conf</path>. Na przykład, architektura x86 Athlon XP :
+<path>make.conf.example</path>. Na przykład, architektura x86 Athlon XP :
 </p>
 
 <pre caption="Ustawienie GCC march">
