@@ -3,14 +3,13 @@
 
 <!-- Orig revision: 1.70 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
-<!-- Title: Przygotowanie Plików Instalacyjnych Gentoo -->
-<!-- Status: Ukończono -->
-<!-- Update from 1.37 to 1.70: sekretarz <sekretarz@dukato.net> -->
+<!-- Title: Przygotowanie plików instalacyjnych Gentoo -->
+<!-- Status: Release -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.13 2004/11/27 18:14:42 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.14 2004/12/11 22:05:38 rane Exp $ -->
 
 <sections>
 
@@ -18,14 +17,15 @@
 <date>2004-11-09</date>
 
 <section>
-<title>Instalowanie tarballa Stage</title>
+<title>Instalowanie tarballa stage.</title>
 <subsection>
-<title>Ustawienie poprawnej daty i czasu</title>
+<title>Ustawienie poprawnej daty i czasu.</title>
 <body>
    
 <p>
-Musisz sprawdzić swoją datę/czas i zaktualizować go zanim przejdziesz do kolejnych kroków.
-Niesychronizowany zegar może być przyczyną dziwnych błędów w przyszłości!
+Na samym początku całego procesu instalacji musisz sprawdzić swoją datę/czas i
+i ewentualnie je zaktualizować. Niezsychronizowany zegar może być przyczyną
+dziwnych błędów w przyszłości!
 </p>
 	     
 <p>
@@ -50,33 +50,33 @@ Na przykład, aby ustawić datę 29 Października 2004 r, 16:21:
 </body>
 </subsection>
 <subsection>
-<title>Podejmowanie decyzji</title>
+<title>Podejmowanie decyzji.</title>
 <body>
 
 <p>
 W następnym kroku powinieneś wykonać instalację wybranego tarballa <e>stage</e>.
-Możesz go pobrać z Internetu lub, jeśli działasz spod którejś płytki 
-Gentoo Universal LiveCD, przekopiować go z CD. Jeżeli masz Universal CD i na płycie znajduje się
-stage którego chcesz używać, ściaganie go z Internetu jest tylko niepotrzebną stratą pasma, gdyż pliki
-stage są takie same.
+Możesz go pobrać z Internetu lub, jeśli działasz z którejś płytki 
+Gentoo Universal LiveCD, przekopiować z CD. Jeżeli masz Universal CD i na płycie znajduje się
+stage którego chcesz używać ściąganie go z Internetu jest tylko niepotrzebną
+stratą czasu, gdyż pliki stage są takie same.
 </p>
 
 <ul>
-<li><uri link="#doc_chap2">Domyślnie: Użycie Stage z Internetu</uri></li>
-<li><uri link="#doc_chap3">Alternatywnie: Wykorzystanie Stage z LiveCD</uri></li>
+<li><uri link="#doc_chap2">Domyślnie: Użycie stage z Internetu</uri>.</li>
+<li><uri link="#doc_chap3">Alternatywnie: Wykorzystanie stage z LiveCD</uri>.</li>
 </ul>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Domyślnie: Użycie Stage z Internetu</title>
+<title>Domyślnie: Użycie stage z Internetu.</title>
 <subsection>
-<title>Pobieranie tarballa Stage</title>
+<title>Pobieranie tarballa stage.</title>
 <body>
 
 <p>
-Przejdź do punktu montowania systemu plików Gentoo
+Najpierw przejdź do punktu montowania systemu plików Gentoo
 (prawdopodobnie <path>/mnt/gentoo</path>):
 </p>
 
@@ -85,29 +85,30 @@ Przejdź do punktu montowania systemu plików Gentoo
 </pre>
 
 <p>
-W zależności od medium instalacyjnego masz pod ręką kilka narzędzi,
-za pomocą których możesz ściągnąć stage. Jeżeli masz dostępny program <c>links2</c>,
-możesz wejść bezpośrednio na <uri link="/main/en/mirrors.xml">liste serwerów lustrzanych Gentoo</uri> 
+W zależności od medium instalacyjnego masz do dyspozycji kilka narzędzi,
+za pomocą których możesz ściągnąć stage. Jeżeli masz program <c>links2</c>
+możesz wejść bezpośrednio na <uri link="/main/en/mirrors.xml">listę serwerów lustrzanych Gentoo</uri> 
 i wybrać serwer, który znajduje się najbliżej Ciebie. Jeżeli nie masz programu <c>links2</c>, użyj
 <c>lynx</c> do tego celu. W tym przypadku podmień wszystkie wystąpenia <c>links2</c> na <c>lynx</c>.
 </p>
 
 <p>
-Wejdź do katalogu <path>releases/</path>, następnie katalogu twojej architektury (np. <path>x86/</path>)
-oraz wersji Gentoo (<path>2004.3/</path>) i na koniec do katalogu <path>stages/</path>.
-Powinneś zobaczyć tam dostępne pliki stage dla Twojej architektury (mogą one być umieszczone w
-podkatalogach, dla każdej podarchitektury). Wybierz jeden i naciśnij <c>D</c>, aby go ściągnąć.
-Kiedy skończyłysz ściąganie naciśnij <c>Q</c> aby wyjść z przegladarki.
+Wejdź do <path>releases/</path>, a następnie do katalogu Twojej architektury (np. <path>x86/</path>)
+oraz wersji Gentoo (<path>2004.3/</path>) i na koniec do <path>stages/</path>.
+Powinieneś zobaczyć dostępne pliki stage dla Twojej architektury (czasem mogą być umieszczone w
+podkatalogach dla różnych podarchitektur). Wybierz jeden i naciśnij <c>D</c> aby go ściągnąć.
+Kiedy skończysz ściąganie naciśnij <c>Q</c> aby wyjść z przeglądarki.
 </p>
 
-<pre caption="Przeglądanie listy serwerów zwierciadlanych za pomocą links2">
+<pre caption="Przeglądanie listy serwerów lustrzanych za pomocą links2">
 <comment>(Bez proxy)</comment>   # <i>links2 http://www.gentoo.org/main/en/mirrors.xml</i>
 <comment>(Z proxy)</comment>      # <i>links2 -http-proxy serwer.proxy.com:8080 http://www.gentoo.org/main/en/mirrors.xml</i>
 </pre>
 
 <p>
 Jeśli chcesz zweryfikować integralność pobranych archiwów stage, porównaj
-wynik polecenia <c>md5sum</c> z sumami MD5 udostępnianymi na serwerze. Dla przykładu sprawdź poprawność tarballa stage dla architektury x86:
+wynik polecenia <c>md5sum</c> z sumami MD5 udostępnianymi na serwerze. Np.
+sprawdźmy poprawność tarballa stage dla architektury x86:
 </p>
 
 <pre caption="Sprawdzanie integralności tarballa stage">
@@ -118,12 +119,11 @@ stage1-x86-2004.3.tar.bz2: OK
 </body>
 </subsection>
 <subsection>
-<title>Rozpakowanie tarballa Stage</title>
+<title>Rozpakowywanie tarballa Stage.</title>
 <body>
 
 <p>
-Teraz wypakuj pobrany plik stage. Do tego zadania
-GNU <c>tar</c> będzie najlepszym narzędziem:
+Wypakuj pobrany plik stage przy pomocy GNU <c>tar</c>:
 </p>
 
 <pre caption="Wypakowanie stage">
@@ -131,9 +131,9 @@ GNU <c>tar</c> będzie najlepszym narzędziem:
 </pre>        
 
 <p>
-Upewnij się, że użyłeś tych samych przełączników (<c>-xvjpf</c>). Opcja <c>x</c> oznacza
+Użyj dokładnie tych samych przełączników (<c>-xvjpf</c>). Opcja <c>x</c> oznacza
 <e>wypakuj</e>, <c>v</c> to <e>wyświetl</e> (no dobra, to jest opcjonalne),
-<c>j</c> służy <e>dekompresji archiwum bzip2</e>, <c>p</c> to <e>zachowuj
+<c>j</c> służy do <e>dekompresji archiwum bzip2</e>, <c>p</c> to <e>zachowuj
 uprawnienia</e>, natomiast <c>f</c> podkreśla, że chcemy rozpakować to, co czytamy z pliku, a nie
 ze standardowego wejścia.
 </p>
@@ -147,14 +147,14 @@ Gdy stage jest już zainstalowany, możesz przejść do
 </subsection>
 </section>
 <section>
-<title>Alternatywnie: Wykorzystanie Stage z LiveCD</title>
+<title>Alternatywnie: Wykorzystanie stage z LiveCD.</title>
 <subsection>
-<title>Rozpakowanie tarballa Stage</title>
+<title>Rozpakowanie tarballa stage.</title>
 <body>
 
 <p>
 Pliki stage umieszczone są na CD w katalogu <path>/mnt/cdrom/stages</path>.
-Aby obejrzeć ich spis użyj <c>ls</c> :
+Aby obejrzeć ich spis użyj polecenia <c>ls</c>:
 </p>
 
 <pre caption="Lista dostępnych wersji stage">
@@ -162,7 +162,7 @@ Aby obejrzeć ich spis użyj <c>ls</c> :
 </pre>
 
 <p>
-Jeśli system zgłasza błąd, może musisz wpierw zamontować CD-ROM:
+Jeśli system zgłasza błąd to możliwe, że musisz wpierw zamontować CD-ROM:
 </p>
 
 <pre caption="Montowanie CD-ROM">
@@ -184,7 +184,7 @@ Teraz przejdź do punktu montowania Gentoo (zwykle <path>/mnt/gentoo</path>):
 Następnie wypakujemy wybrany tarball. Użyjemy do tego celu GNU <c>tar</c>.
 Upewnij się, że używasz takich samych przełączników (<c>-xvjpf</c>)!
 W kolejnym przykładzie wykorzystujemy plik  <path>stage3-&lt;subarch&gt;-20040412.tar.bz2</path>.
-Nie zapomnij zamienić jego nazwy na prawidłową dla Ciebie.
+Odpowiednio zmień jego nazwę we wszystkich poleceniach.
 </p>
 
 <pre caption="Wypakowanie tarballa stage">
@@ -205,47 +205,47 @@ Gdy stage zostanie zainstalowany, przejdź do
 </subsection>
 </section>
 <section id="installing_portage">
-<title>Instalacja Portage</title>
+<title>Instalacja Portage.</title>
 <subsection>
 <title>Z siecią czy bez sieci?</title>
 <body>
  
 <p>
 Jeśli nie masz działającego połączenia internetowego, będziesz musiał 
-zainstalować dostarczoną na jednym z naszych LiveCD migawkę portage.
+zainstalować dostarczony na LiveCD snapshot portage.
 Oznacza to, że będziesz musiał instalować Gentoo ze <e>stage3</e> (gdyż tylko ten
-stage pozwala na instalacje bez połączenia internetowego)
-Jeżeli chcesz później używać prekompilowanych paczek, by przyspieszyć 
-instalację, <e>musisz</e> użyć migawki dostępnej na LiveCD. 
-Inni użytkownicy pobiorą w pełni aktualne drzewo Portage dzięki 
+stage pozwala na instalacje bez połączenia z Internetem).
+Jeżeli chcesz później używać prekompilowanych paczek by przyspieszyć 
+instalację, <e>musisz</e> użyć snapshotu dostępnego na LiveCD. 
+Pozostali użytkownicy pobiorą w pełni aktualne drzewo Portage dzięki 
 <c>emerge</c> w następnym rozdziale.
 </p>
  
 <p>
-Kontynuujemy poprzez odpowiednią część:
+Przejdź do jednego z następujących paragrafów:
 </p>
  
 <ul>
 <li>
-<uri link="#installing_from_LiveCD">Instalacja migawki Portage i kodu 
+<uri link="#installing_from_LiveCD">Instalacja snapshota Portage i kodu 
 źródłowego z LiveCD</uri> (dla instalacji bez użycia sieci lub 
-z wykorzystaniem GRP)
+z wykorzystaniem GRP).
 </li>
 <li>
-<uri link="#compile_options">Konfiguracja opcji kompilacji</uri>
-(wszystkie pozostałe metody instalacji)
+<uri link="#compile_options">Konfigurowanie opcji kompilacji</uri>
+(wszystkie pozostałe metody instalacji).
 </li>
 </ul>
  
 </body>
 </subsection>
 <subsection id="installing_from_LiveCD">
-<title>Instalowanie migawki Portage Snapshot i kodu źródłowego z LiveCD</title>
+<title>Instalowanie snapshota Portage i kodu źródłowego z LiveCD.</title>
 <body>
 
 <p>
-Na płytkach Universal LiveCD znajduje się migawka Portage. Skoro czytasz 
-ten tekst, możemy bezpiecznie założyć, że używasz takiej płyty. 
+Na płytkach Universal LiveCD znajduje się snapshot Portage. W tekście
+zakładamy, że używasz właśnie tej  płyty. 
 Przejrzyj katalog <path>/mnt/cdrom/snapshots/</path> i zobacz,
 co tam dla Ciebie przygotowaliśmy:
 </p>
@@ -255,14 +255,14 @@ co tam dla Ciebie przygotowaliśmy:
 </pre>
 
 <p>
-Teraz wypakuj migawkę używając polecenia o niżej podanej składni. Kolejny raz
-upewnij się, że przekazujesz właściwe opcje do programu <c>tar</c>. Zatem, <c>-C</c>
-występuje z wielką literą <c>C</c>, a nie <c>c</c>. W tym przykładzie nasz plik
-zwie się <path>portage-20041022.tar.bz2</path>. Zamiast tego wpisz nazwę pliku,
-który posiadasz.
+Teraz wypakuj snapshot używając polecenia o niżej podanej składni. Kolejny raz
+upewnij się, że przekazujesz właściwe opcje do programu <c>tar</c>. Zwróć uwagę,
+że <c>-C</c> występuje z wielką literą <c>C</c>, a nie <c>c</c>. W tym przykładzie nasz plik
+nazywa się <path>portage-20041022.tar.bz2</path>. Odpowiedno zmień wszystkie
+polecenia, tak aby pasowały do Twojej sytuacji i nazewnictwa plików.
 </p>
 
-<pre caption="Rozpakowanie migawki Portage">
+<pre caption="Rozpakowanie snapshot Portage">
 # <i>tar -xvjf /mnt/cdrom/snapshots/portage-20041022.tar.bz2 -C /mnt/gentoo/usr</i>
 </pre>
 
@@ -276,8 +276,8 @@ Musisz także skopiować źródła programów dostępne na płycie:
 </pre>
 
 <p>
-Gdy migawka Portage zostanie zainstalowana, przejdź do <uri
-link="#compile_options">Konfiguracji opcji kompilacji</uri>.
+Gdy snapshot Portage zostanie zainstalowany przejdź do <uri
+link="#compile_options">Konfigurowanie opcji kompilacji</uri>.
 </p>
 
 </body>
@@ -285,27 +285,28 @@ link="#compile_options">Konfiguracji opcji kompilacji</uri>.
 </section>
 
 <section id="compile_options">
-<title>Konfiguracja opcji kompilacji</title>
+<title>Konfigurowanie opcji kompilacji.</title>
 <subsection>
-<title>Wprowadzenie</title>
+<title>Wprowadzenie.</title>
 <body>
 
 <p>
-Jest wiele zmiennych wpływających na zachowanie Gentoo, które możesz ustawić.
-Możesz je wprowadzać jako zmienne środowiskowe (poprzez <c>export</c>),
-ale wtedy nie zostaną zapisane. Portage do zachowywania konfiguracji używa
-pliku konfiguracyjnego <path>/etc/make.conf</path>. Teraz zabieramy się do jego edycji.
+Jest wiele możliwych do skonfigurowania zmiennych wpływających na zachowanie
+Gentoo. Możesz je wprowadzać jako zmienne środowiskowe (poprzez <c>export</c>),
+ale wtedy nie zostaną zapisane na stałe. Zamiast tego Portage do zachowywania
+konfiguracji używa pliku konfiguracyjnego <path>/etc/make.conf</path>. Pora
+wziąć się za jego edycję.
 </p>
 
 <note>
 Opatrzona komentarzami lista wszystkich możliwych zmiennych znajduje się
-w pliku <path>/mnt/gentoo/etc/make.conf.example</path>. By zakończyć
-instalację sukcesem, musisz wyedytować tylko te spośród nich, które
-wyszczególniliśmy poniżej.
+w pliku <path>/mnt/gentoo/etc/make.conf.example</path>. Do szczęśliwego
+ukończenia instalacji wystarczy wyedytowanie tylko kilku z nich, tych, których
+listę przedstawiamy poniżej.
 </note>
 
 <p>
-Odpal swój ulubiony edytor (w naszym przewodniku używamy <c>nano</c>),
+Uruchom swój ulubiony edytor (w przykładach używamy <c>nano</c>),
 którym wprowadzisz omawiane nieco dalej opcje optymalizacji.
 </p>
 
@@ -314,28 +315,29 @@ którym wprowadzisz omawiane nieco dalej opcje optymalizacji.
 </pre>
 
 <p>
-Jak już prawdopodobnie zauważyłeś, plik <path>make.conf.example</path>
-ma charakterystyczną strukturę: linie z komentarzem rozpoczyna "#", linie zawierające
-zmienne używają składni <c>ZMIENNA="zawartość"</c>. Takiej samej składni używa także plik <path>/etc/make.conf</path>.
-Kilka z tych zmiennych zostało przedyskutowanych poniżej.
+Jak już zapewne zauważyłeś plik <path>make.conf.example</path> ma
+charakterystyczną strukturę: linie z komentarzem rozpoczyna "#", linie
+zawierające zmienne używają składni <c>ZMIENNA="zawartość"</c>. Takiej samej
+składni używa także plik <path>/etc/make.conf</path>. Kilka z tych zmiennych
+zostało przedyskutowanych poniżej.
 </p>
 
 <warn>
-Nie wprowadzaj zmian w zmiennej USE, jeżeli korzystasz ze stage3 z instalacją GRP.
-Będziesz mógł zmienić zmienną USE po instalacji pakietów. Twój system zostanie zaataowany
-przez gremliny, jeżeli zignorujesz to ostrzeżenie!
+Nie wprowadzaj zmian w zmiennej USE jeżeli korzystasz ze stage3 z instalacją GRP.
+Będziesz mógł zmienić zmienną USE po instalacji pakietów. Twój system zostanie
+zatakowany przez gremliny, jeżeli zignorujesz to ostrzeżenie!
 </warn>
 
 </body>
 </subsection>
 <subsection>
-<title>CHOST</title>
+<title>CHOST.</title>
 <body>
 
 <warn>
 Mimo, iż może to kusić tych, którzy nie korzystają ze stage1, <e>nie</e>
 powinni oni zmieniać ustawienia <c>CHOST</c> w <path>make.conf</path>. Dokonanie
-tego może uczynić system nie przydatnym do użytku. Powtarzamy: tę zmienną 
+tego może zepsuć cały system. Powtarzamy: tę zmienną 
 modyfikuj tylko, gdy instalujesz używając <e>stage1</e>.
 </warn>
 
@@ -421,7 +423,7 @@ kompilowane programy. Możliwe jej wartości:
 </body>
 </subsection>
 <subsection>
-<title>CFLAGS i CXXFLAGS</title>
+<title>CFLAGS i CXXFLAGS.</title>
 <body>
 
 <p>
@@ -450,9 +452,10 @@ linuksowych). Plik <path>make.conf.example</path> sam zawiera dużo informacji i
 </p>
 
 <p>
-Pierwszym ustawieniem jest flaga <c>-march=</c> która określa docelową
+Pierwszym ustawieniem jakim się tu zajmiemy jest flaga <c>-march=</c> która określa docelową
 architekturę. Możliwe jej wartości są opisane jako komentarze w
-<path>make.conf.example</path>. Na przykład, architektura x86 Athlon XP :
+<path>make.conf.example</path>. Na przykład dla architektury x86 Athlon XP
+będzie to:
 </p>
 
 <pre caption="Ustawienie GCC march">
@@ -463,7 +466,7 @@ architekturę. Możliwe jej wartości są opisane jako komentarze w
 <p>
 Drugim jest flaga <c>-O</c> (to jest duże O, nie zero), która określa 
 klasę optymalizacji <c>gcc</c>. Dostępne klasy to <c>s</c> (optymalizacja rozmiaru),
-<c>0</c> (brak optymalizacji), <c>1</c>, <c>2</c> lub <c>3</c> są coraz
+<c>0</c> (brak optymalizacji), <c>1</c>, <c>2</c> lub <c>3</c> - coraz
 silniej optymalizujące (każda z nich używa tych samych flag, co poprzednia
 oraz dodaje własne). Jako przykład posłuży nam klasa optymalizacji 2:
 </p>
@@ -497,16 +500,16 @@ CXXFLAGS="${CFLAGS}"                  <comment># Użycie tych samych ustawień d
 </body>
 </subsection>
 <subsection>
-<title>MAKEOPTS</title>
+<title>MAKEOPTS.</title>
 <body>
 
 <p>
-Za pomocą <c>MAKEOPTS</c> definiujesz, ile może być przeprowadzanych równolegle
+Za pomocą <c>MAKEOPTS</c> definiujesz ile system może przeprowadzać równoleglych
 kompilacji podczas przygotowywania pakietu do instalacji. Sugerowaną liczbą jest ilość
-procesorów w systemie plus jeden, jednak nie jest on zawsze najlepszym wyjściem.
+procesorów w systemie plus jeden, nie jest to jednak zawsze najlepsze wyjście.
 </p>
 
-<pre caption="MAKEOPTS dla przeciętnego systemu 1-procesorowego">
+<pre caption="MAKEOPTS dla przeciętnego systemu jednoprocesorowego">
 MAKEOPTS="-j2"
 </pre>
 
@@ -517,8 +520,9 @@ MAKEOPTS="-j2"
 <body>
 
 <p>
-Popraw wedle życzenia <path>/mnt/gentoo/etc/make.conf</path> i zapisz go (użytkownicy <c>nano</c> powinni nacisnąć <c>Ctrl-X</c>).
-Teraz jesteś przygotowany na  <uri link="?part=1&amp;chap=6">
+Popraw wedle życzenia <path>/mnt/gentoo/etc/make.conf</path> i zapisz go
+(użytkownicy <c>nano</c> powinni nacisnąć <c>Ctrl-X</c>).
+Teraz jesteś przygotowany na <uri link="?part=1&amp;chap=6">
 Instalację systemu podstawowego </uri>.
 </p>
 
