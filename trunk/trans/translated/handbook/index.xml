@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding="UTF-8"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.83 -->
-<!-- Translator: sekretarz <sekretarz@gentoo.org> -->
+<!-- Orig revision: 1.41 -->
+<!-- Translator: aye <aye@gentoo.pl> -->
 <!-- Title: odręcznik Gentoo (strona informacyjna) -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/index.xml,v 1.21 2004/11/12 19:13:37 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/index.xml,v 1.22 2004/12/12 16:08:01 aye Exp $ -->
 
 <guide link="index.xml">
 <title>Podręcznik Gentoo</title>
@@ -14,10 +14,11 @@
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
 <author title="Tłumacz">
-  <mail link="sekretarz@gentoo.org">Karol Wojtaszek</mail>
+  <mail link="lucass@gentoo.pl">Łukasz Strzygowski</mail>
 </author>
+
 <author title="Tłumacz">
-  <mail link="rane666@o2.pl">rane</mail>
+  <mail link="aye@gentoo.pl">aye</mail>
 </author>
                                                                                                                                  
                                                                                                                                
@@ -29,8 +30,8 @@ Informacje, które nie mogą zostać dodane spójnie, nie będą brane pod uwag�
 
 <license/>
 
-<version>2.41</version>
-<date>November 9, 2004</date>
+<version>0.21</version>
+<date>2004-10-30</date>
 
 <chapter>
 <title>Podręcznik Gentoo</title>
@@ -50,6 +51,7 @@ Podręcznik Gentoo dostępny jest w następujących językach:
 <uri link="/doc/fr/handbook">Francuskim</uri> |
 <uri link="/doc/id/handbook">Indonezyjskim</uri> |
 <uri link="/doc/it/handbook">Włoskim</uri> |
+<uri link="/doc/it/handbook">Japońskim</uri> |
 <uri link="/doc/es/handbook">Hiszpańskim</uri> | 
 <uri link="/doc/zh_tw/handbook">Chińskim Tradycyjnym</uri>
 </p>
@@ -63,7 +65,7 @@ Podręcznik Gentoo dostępny jest w następujących językach:
 <p>
 Witaj na stronie Podręcznika Gentoo. Zawarte tu informacje powinny
 rozwiać większość wątpliwości na jego temat. Omówimy idee, aktualny
-status, plany na przyszłość, sposoby zgłaszania bugów itd.
+status, plany na przyszłość, sposoby zgłaszania błędów itd.
 </p>
 
 </body>
@@ -82,7 +84,7 @@ status, plany na przyszłość, sposoby zgłaszania bugów itd.
 </tr>
 <tr>
   <ti>HTML</ti>
-  <ti>Jedna strona na rozdział, doskonały do przeglądania online</ti>
+  <ti>Najnowsza wersja, każdy rozdział na osobnej stronie, doskonały do przeglądania online</ti>
   <ti>
     <uri link="handbook-x86.xml">x86</uri>,
     <uri link="handbook-alpha.xml">alpha</uri>,
@@ -90,12 +92,13 @@ status, plany na przyszłość, sposoby zgłaszania bugów itd.
     <uri link="handbook-hppa.xml">hppa</uri>,
     <uri link="handbook-mips.xml">mips</uri>,
     <uri link="handbook-ppc.xml">ppc</uri>,
+    <uri link="handbook-ppc64.xml">ppc64</uri>,
     <uri link="handbook-sparc.xml">sparc</uri>
   </ti>
 </tr>
 <tr>
   <ti>HTML</ti>
-  <ti>Wszystko na jednej stronie</ti>
+  <ti>Najnowsza wersja, wszystko na jednej stronie</ti>
   <ti>
     <uri link="handbook-x86.xml?full=1">x86</uri>,
     <uri link="handbook-alpha.xml?full=1">alpha</uri>,
@@ -103,12 +106,13 @@ status, plany na przyszłość, sposoby zgłaszania bugów itd.
     <uri link="handbook-hppa.xml?full=1">hppa</uri>,
     <uri link="handbook-mips.xml?full=1">mips</uri>,
     <uri link="handbook-ppc.xml?full=1">ppc</uri>,
+    <uri link="handbook-ppc64.xml?full=1">ppc64</uri>,
     <uri link="handbook-sparc.xml?full=1">sparc</uri>
   </ti>
 </tr>
 <tr>
   <ti>HTML</ti>
-  <ti>Wszystko na jednej stronie, wersja przeznaczona do druku</ti>
+  <ti>Najnowsza wersja, wszystko na jednej stronie, wersja przeznaczona do druku</ti>
   <ti>
     <uri link="handbook-x86.xml?style=printable&amp;full=1">x86</uri>,
     <uri link="handbook-alpha.xml?style=printable&amp;full=1">alpha</uri>,
@@ -116,7 +120,47 @@ status, plany na przyszłość, sposoby zgłaszania bugów itd.
     <uri link="handbook-hppa.xml?style=printable&amp;full=1">hppa</uri>,
     <uri link="handbook-mips.xml?style=printable&amp;full=1">mips</uri>,
     <uri link="handbook-ppc.xml?style=printable&amp;full=1">ppc</uri>,
+    <uri link="handbook-ppc64.xml?style=printable&amp;full=1">ppc64</uri>,
     <uri link="handbook-sparc.xml?style=printable&amp;full=1">sparc</uri>
+  </ti>
+</tr>
+<tr>
+  <ti>HTML</ti>
+  <ti>2004.2 version, one page per chapter, perfect for online viewing</ti>
+  <ti>
+    <uri link="2004.2/handbook-x86.xml">x86</uri>,
+    <uri link="2004.2/handbook-alpha.xml">alpha</uri>,
+    <uri link="2004.2/handbook-amd64.xml">amd64</uri>,
+    <uri link="2004.2/handbook-hppa.xml">hppa</uri>,
+    <uri link="2004.2/handbook-mips.xml">mips</uri>,
+    <uri link="2004.2/handbook-ppc.xml">ppc</uri>,
+    <uri link="2004.2/handbook-sparc.xml">sparc</uri>
+  </ti>
+</tr>
+<tr>
+  <ti>HTML</ti>
+  <ti>2004.2 version, All in one page</ti>
+  <ti>
+    <uri link="2004.2/handbook-x86.xml?full=1">x86</uri>,
+    <uri link="2004.2/handbook-alpha.xml?full=1">alpha</uri>,
+    <uri link="2004.2/handbook-amd64.xml?full=1">amd64</uri>,
+    <uri link="2004.2/handbook-hppa.xml?full=1">hppa</uri>,
+    <uri link="2004.2/handbook-mips.xml?full=1">mips</uri>,
+    <uri link="2004.2/handbook-ppc.xml?full=1">ppc</uri>,
+    <uri link="2004.2/handbook-sparc.xml?full=1">sparc</uri>
+  </ti>
+</tr>
+<tr>
+  <ti>HTML</ti>
+  <ti>2004.2 version, all in one page, printable version</ti>
+  <ti>
+    <uri link="2004.2/handbook-x86.xml?style=printable&amp;full=1">x86</uri>,
+    <uri link="2004.2/handbook-alpha.xml?style=printable&amp;full=1">alpha</uri>,
+    <uri link="2004.2/handbook-amd64.xml?style=printable&amp;full=1">amd64</uri>,
+    <uri link="2004.2/handbook-hppa.xml?style=printable&amp;full=1">hppa</uri>,
+    <uri link="2004.2/handbook-mips.xml?style=printable&amp;full=1">mips</uri>,
+    <uri link="2004.2/handbook-ppc.xml?style=printable&amp;full=1">ppc</uri>,
+    <uri link="2004.2/handbook-sparc.xml?style=printable&amp;full=1">sparc</uri>
   </ti>
 </tr>
 </table>
@@ -133,35 +177,111 @@ status, plany na przyszłość, sposoby zgłaszania bugów itd.
 
 <p>
 Celem Podręcznika Gentoo jest stworzenie dokumentu opisującego
-wszystkie możliwe aspekty Gentoo Linux. Łączy on istniejące już przewodniki
-w jedną, spójną książkę, obejmującą wszystkich użytkowników,
-architektury oraz rodzaje instalacji. Przez to nie tylko prościej jest nam zarządzać nim, ale także użytkownik przekonuje się, że różnice pomiędzy architekturami są niewielkie.
+wszystkie możliwe aspekty systemu Gentoo Linux. Łączy on istniejące już przewodniki
+w jedną, spójną książkę, obejmującą wszystkie architektury, rodzaje instalacji
+i przeznaczoną dla wszystkich użytkowników.
+Dzięki temu nie tylko nam łatwiej jest nim zarządzać, ale także użytkownik przekonuje 
+się, że różnice są niewielkie, a poszczególne architektury nie stanowią osobnych bytów.
 </p>
 
 <p>
-Poprzez nie rozdzielanie instrukcji dla wszystkich możliwych opcji, 
-użytkownik może zobczyć rezultaty pozostałych wyborów. Dla użytkownika 
-powoduje to <b>lepszy pogląd na instrukcję instalacji</b>: nawet jeżeli 
-wybierze - na przykład - stage3, będzie wiedział co zawiera stage2 czy stage1.
-Nie ukrywanie tych instrukcji jest dobrym wyborem.
+Pomaga nam to również dopracować najważniejsze punkty i pokazać więcej przz
+ykładów,
+gdyż nie jesteśmy juz zmuszeni do zawarcia wszystkiego na jednej
+stronie, co powoduje, że czytanie dokumentacji staje się bardziej
+płynne.
+</p>
+
+
+</body>
+</section>
+<section>
+<title>Status</title>
+<body>
+
+<p>
+W chwili obecnej ukończono i udostępniono już trzecią część podręcznika, 
+<uri link="handbook.xml?part=1">Praca z Gentoo</uri>. 
+Ta część zawiera dokładny opis aspektów systemu Portage.
+</p>
+
+<p>
+Jeżeli chcesz pomóc w pracach nad Podręcznikiem Gentoo, skorzystaj
+z listy dyskusyjnej <mail link="gentoo-doc@gentoo.org">gentoo-doc</mail>,
+lub napisz bezpośrednio do <mail
+link="swift@gentoo.org">Svena Vermeulena</mail>.
 </p>
 
 </body>
 </section>
+</chapter>
+<chapter id="faq">
+<title>Najczęściej Zadawane Pytania</title>
+<section>
+<section>
+<title>Nie możecie stworzyć handbooka tworzonego dynamicznie dla danej konfiguracji?</title>
+<body>
+
+<p>
+Wszystko jest możliwe, ale nie zrobiliśmy tego z kilku powodów.
+</p>
+
+<p>
+<b>Zarządzanie</b> przewodnikiem byłoby znacznie trudniejsze. Nie tylko
+musielibyśmy zgłaszać błędy dla różnych wyborów
+(w przeciwieństwie do pozostałych zgłoszeń, musielibyśmy napisać jakie podjęliśmy
+wcześniej decyzje), ale byłoby znacznie trudniej tworzyć
+opis płynnie: musielibyśmy poświęcać znacznie więcej uwagi na
+spójność stylu podręcznika.
+</p>
+
+<p>
+Poza tym w chwili obecnej dysponujemy jedynie wersją online, ale pracujemy nad
+<b>innymi formatami</b>, jak na przykład PDF. Jeśli musielibyśmy tworzyć
+osobne PDFy dla każdej architektury i każdej opcji, powstałyby znaczne ilości
+niewiele różniących się dokumentów. Pomyśl marnotrawienie zasobów :).
+</p>
+
+<p>
+Użytkownik podejmuje decyzje <b>na różnych etapach</b>. Zwykłe wydrukowanie
+odpowiedniego podręcznika stałoby się dla niego o wiele trudniejsze - musielibyśmy 
+juz na wstępie poinformować go o wszystkich możliwych opcjach, co prawdopodobnie 
+skutecznie odstraszyłoby go od instalacji.
+</p>
+
+<p>
+"Instalacja Gentoo" <b>nie jest jedyną częścią</b> Podręcznika Gentoo.
+Kolejne nie zależą od podjętych w niej decyzji. Dynamiczne tworzenie
+podręcznika tylko dla opisu instalacji byłoby samobójstwem.
+</p>
+
+<p>
+Dzięki nierozdzielaniu instrukcji dla każdej możliwej opcji, użytkownik
+może przejrzeć rezultaty innych decyzji. Powoduje to, że ma on <b>szersze spojrzenie
+na opis instalacji</b>. Na przykład jeśli wybrał stage3, wie także czym są stage2 i stage1.
+Ukrywanie tych informacji nie jest dobrym pomysłem.
+</p>
+
+</body>
+</section>
+
+
+
 <section>
 <title>Nie zgadzam się z...</title>
 <body>
 
 <p>
-Proszę, <uri link="http://bugs.gentoo.org">zgłoś</uri> swój pomysł; jednak niezgadzanie 
-się bez argumentacji nie pomoże nam. Dokumentacja tworzona jest z myślą o społeczności,
-więc opinie społeczności będą także doceniane.
+Proszę, <uri link="http://bugs.gentoo.org">zgłoś</uri> swój pomysł; niekonstruktywna
+krytyka niewiele nam pomoże. Dokumentacja tworzona jest z myślą o społeczności,
+więc opinie społeczności są dla nas bardzo cenne ważne.
 </p>
 
 <p>
 Musisz jednak pamiętać, że wiekszość decyzji podczas tworzenia dokumetacji podejmowana jest na zasadzie
-złotego środka. <e>Nie jest możliwe</e> napisanie dokumentacji w taki sposób, żeby wszyscy byli 
-z niej zadowoleni. Musisz być gotowy zaakceptować odpowiedź "Nie", gdy wierzymy, że aktualna forma da 
+złotego środka. <e>Niemożliwym jest </e> napisanie/skonstruowanie dokumentacji w taki sposób, żeby 
+wszyscy byli w pełni usatysfakcjonowani.
+Musisz być gotowy zaakceptować odpowiedź "Nie", gdy wierzymy, że aktualna forma da 
 korzyści większej ilości ludzi.
 </p>
 
