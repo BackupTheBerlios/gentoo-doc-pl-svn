@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.21 -->
+<!-- Orig revision: 1.23 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Systemu -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.16 2004/02/03 22:18:07 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.17 2004/02/12 18:55:28 lcs Exp $ -->
 
 <sections>
 <section>
@@ -270,9 +270,9 @@ link="?part=1&amp;chap=3#doc_chap4_sect3">Terminologia Sieciowa
 </p>
 
 <p>
-Podamy dwa przykłady; w pierwszym korzystamy z DHCP, w drugim mamy stałe IP
+Podamy trzy przykłady; w pierwszym korzystamy z DHCP, w drugim mamy stałe IP
 (192.168.0.2) z maską sieciową 255.255.255.0, adresem broadcast 192.168.0.255
-i bramą 192.168.0.1:
+i bramą 192.168.0.1, w kolejnym po prostu uaktywnimy interfejs do pracy z rp-pppoe:
 </p>
 
 <pre caption="Przykładowe /etc/conf.d/net">
@@ -282,6 +282,9 @@ iface_eth0="dhcp"
 <comment>(Dla stałego IP:)</comment>
 iface_eth0="192.168.0.2 broadcast 192.168.0.255 netmask 255.255.255.0"
 gateway="eth0/192.168.0.1"
+
+<comment>(Dla rp-pppoe:)</comment>
+iface_eth0="up"
 </pre>
 
 <p>
@@ -343,9 +346,9 @@ powinieneś dodać do <path>/etc/hosts</path> następujące linijki:
 
 <pre caption="Wpisywanie informacji o sieci">
 127.0.0.1     localhost
-192.168.0.5   jenny
-192.168.0.6   benny
-192.168.0.7   tux
+192.168.0.5   jenny.homenetwork jenny
+192.168.0.6   benny.homenetwork benny
+192.168.0.7   tux.homenetwork tux
 
 </pre>
 
