@@ -6,7 +6,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.8 2004/01/05 07:29:34 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-kernel.xml,v 1.9 2004/01/07 16:23:34 lcs Exp $ -->
 
 <sections>
 <section>
@@ -37,9 +37,9 @@ dla graczy), ...
 
 <p>
 Dla platformy Alpha udostępniamy <c>vanilla-sources</c> (standardowe
-jądro, rozwijane przez developerów linuksa), <c>alpha-sources</c>
+jądro, rozwijane przez developerów Linuksa), <c>alpha-sources</c>
 (jądro zoptymalizowane dla użytkowników Alpha) oraz <c>compaq-sources</c>
-(jądro używane dla Alpha przez RedHat'a, rozwijane przez Compaq).
+(jądro używane dla Alpha przez RedHata, rozwijane przez Compaq).
 </p>
 
 <p>
@@ -124,14 +124,14 @@ link="#doc_chap3">Alternatywnie: Używanie genkernel</uri>.
 <body>
 
 <p>
-Ręczna konfiguracja jądra często postrzegana jest za najtrudniejszą
+Ręczna konfiguracja jądra często postrzegana jest jako najtrudniejsza
 rzecz, przez którą przejść musi każdy użytkownik Linuksa. Nic bardziej
 mylnego -- po konfiguracji kilku kerneli zapomnisz, że miałeś z tym
 jakiekolwiek problemy ;)
 </p>
 
 <p>
-Jakkolwiek, jednemu <e>nie można</e> zaprzeczyć: musisz dobrze znać swój komputer
+Jednemu <e>nie można</e> zaprzeczyć: musisz dobrze znać swój komputer
 zanim rozpoczniesz ręczną konfigurację. Większość informacji zdobędziesz
 przeglądając zawartość <path>/proc/pci</path> (lub używając <c>lspci</c>
 jeśli jest dostępne). Aby przejrzeć listę modułów, których używa LiveCD
@@ -152,7 +152,7 @@ Uruchomi się narzędzie konfiguracyjne oparte na ncurses.
 <p>
 Twoim oczom ukaże się kilkanaście sekcji. Zacznijmy od pokazania tych
 opcji, które musisz aktywować (w przeciwnym wypadku Gentoo nie zadziała,
-lub zadziała nie prawidłowo).
+lub zadziała nieprawidłowo).
 </p>
 
 </body>
@@ -501,7 +501,7 @@ W przypadku gdy rozmiar jądra tylko niewiele przekracza limit, możesz spróbow
 je zmniejszyć programem <c>strip</c>:
 </p>
 
-<pre caption="Strip'owanie jądra">
+<pre caption="Stripowanie jądra">
 # <i>strip -R .comment -R .note vmlinux</i>
 </pre>
 <p>
@@ -742,7 +742,7 @@ oznacza to także, że jesteś użytkownikiem platformy x86. Inne architektury
 <p>
 Po zainstalowaniu źródeł jądra, nadszedł czas na ich kompilację.
 <c>genkernel</c> dokonuje podobnej konfiguracji z jakiej korzysta LiveCD.
-Oznacza to, że jeśli go użyjesz to Twój system będzie automatycznie wykrywał
+Oznacza to, że jeśli go użyjesz, Twój system będzie automatycznie wykrywał
 sprzęt w czasie startu. Ponieważ aby z niego korzystać, nie
 trzeba przeprowadzać żadnych ręcznych ustawień, jest on idealnym rozwiązaniem
 dla użytkowników z jakichś powodów nie chcących przeprowadzać samodzielnej
@@ -920,7 +920,7 @@ Jeżeli nie chcesz instalować tego wszystkiego, odznacz wszystkie flagi USE, na
 </pre>
 
 <p>
-Jeśli rezutat cię zadowala i chcesz w taki sposób zainstalować <c>emu10k1</c>,
+Jeśli rezutat Cię zadowala i chcesz w taki sposób zainstalować <c>emu10k1</c>,
  usuń opcję <c>--pretend</c>.
 </p>
 
