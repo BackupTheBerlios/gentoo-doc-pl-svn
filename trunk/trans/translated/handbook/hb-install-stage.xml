@@ -1,19 +1,50 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.37 -->
+<!-- Orig revision: 1.47 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Przygotowanie Plików Instalacyjnych Gentoo -->
 <!-- Status: Ukończono -->
+<!-- Update from 1.37 to 1.47: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.7 2004/03/16 10:07:39 veng Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.8 2004/07/12 07:43:14 sekretarz Exp $ -->
 
 <sections>
 <section>
 <title>Instalowanie tarballa Stage</title>
+<subsection>
+<title>Ustawienie poprawnej daty i czasu</title>
+<body>
+   
+<p>
+Musisz sprawdzić swoją datę/czas i zaktualizować go zanim przejdziesz do kolejnych kroków.
+Niesychronizowany zegar może być przyczyną dziwnych błędów w przyszłości!
+</p>
+	     
+<p>
+Aby zwerfikować aktualną datę/czas, uruchom <c>date</c>:
+</p>
+		         
+<pre caption="Werfikacja daty/czasu">
+# <i>date</i>
+Sun Apr 25 16:21:18 CEST 2004
+</pre>
+				         
+<p>
+Jeżeli wyświetlana data/czas są złe, uaktualij je używając <c>date MMDDggmmWWRR</c>
+(<b>M</b>iesiąc, <b>D</b>zień, <b>g</b>odzina, <b>m</b>inuta, <b>W</b>iek i <b>R</b>ok).
+Na przykład, aby ustawić datę 25 Kwietnia 2004 r, 16:21:
+</p>
+							         
+<pre caption="Ustawienie daty/czasu">
+# <i>date 042516212004</i>
+</pre>
+	     
+</body>
+</subsection>
 <subsection>
 <title>Podejmowanie decyzji</title>
 <body>
@@ -53,8 +84,8 @@ za pomocą których możesz ściągnąć stage. Jeśli posiadasz program
 <c>lynx</c>, od razu możesz przejść pod adres
 <uri link="/main/en/mirrors.xml">Listy mirrorów Gentoo</uri>
 i wybrać serwer najbliżej siebie. Wejdź w katalog <path>releases/</path>,
-następnie w odpowiadający wersji Gentoo (<path>2004.0/</path>) oraz
-architekturze Twojego komputera (na przykład <path>x86/</path>) by zakończyć
+następnie w odpowiadający architekturze Twojego komputera (na przykład <path>x86/</path>) oraz
+wersji Gentoo (<path>2004.1/</path>) by zakończyć
 w katalogu <path>stages/</path>. Powinieneś widzieć dostępne dla Twojej
 architektury wersje plików stage. Wybierz jeden i naciśnij <c>D</c> aby rozpocząć
 pobieranie. Kiedy skończysz, klawiszem <c>Q</c> zamknij przeglądarkę.
@@ -62,7 +93,7 @@ pobieranie. Kiedy skończysz, klawiszem <c>Q</c> zamknij przeglądarkę.
 
 <note>
 Pliki stage dla <uri link="http://hardened.gentoo.org">Gentoo Hardened</uri>
-(dla architektury x86) znajdują się wewnątrz podkatalogu <path>hardened/stages/</path>.
+(dla architektury x86) są częścią wydania <path>2004.1</path>.
 </note>
 
 <pre caption="Przeglądanie listy serwerów zwierciadlanych za pomocą lynxa">
@@ -88,8 +119,8 @@ wynik polecenia <c>md5sum</c> z sumami MD5 udostępnianymi na serwerze.
 </p>
 
 <pre caption="Sprawdzanie integralności tarballa stage">
-# <i>md5sum stage1-x86-20030910.tar.bz2</i>
-6cda1cc745ba882731ac07fbae0dd973  stage1-x86-20030910.tar.bz2
+# <i>md5sum -c stage1-x86-20040412.tar.bz2.md5</i>
+stage1-x86-20040412.tar.bz2: OK
 </pre>
 
 </body>
@@ -106,6 +137,12 @@ GNU <c>tar</c> będzie najlepszym narzędziem:
 <pre caption="Wypakowanie stage">
 # <i>tar -xvjpf stage?-*.tar.bz2</i>
 </pre>
+
+<note>
+Możesz zignorować jakiekolwiek ostrzeżenia  "No such file or directory" dotyczące ./proc oraz 
+informacje o "Error exit delayed from previous errors".
+</note>
+        
 
 <p>
 Upewnij się, że użyłeś tych samych przełączników (<c>-xvjpf</c>). Opcja <c>x</c> oznacza
@@ -160,14 +197,19 @@ Teraz przejdź do punktu montowania Gentoo (zwykle <path>/mnt/gentoo</path>):
 <p>
 Następnie wypakujemy wybrany tarball. Użyjemy do tego celu GNU <c>tar</c>.
 Upewnij się, że używasz takich samych przełączników (<c>-xvjpf</c>)!
-W kolejnym przykładzie wykorzystujemy plik <path>stage3-20031011.tar.bz2</path>.
+W kolejnym przykładzie wykorzystujemy plik  <path>stage3-&lt;subarch&gt;-20040412.tar.bz2</path>.
 Nie zapomnij zamienić jego nazwy na prawidłową dla Ciebie.
 </p>
 
 <pre caption="Wypakowanie tarballa stage">
-# <i>tar -xvjpf /mnt/cdrom/stages/stage3-20031011.tar.bz2</i>
+# <i>tar -xvjpf /mnt/cdrom/stages/stage3-&lt;subarch&gt;-20040412.tar.bz2</i>
 </pre>
  
+<note>
+Możesz zignorować jakiekolwiek ostrzeżenia  "No such file or directory" dotyczące ./proc oraz 
+informacje o "Error exit delayed from previous errors".
+</note>
+
 <p>
 Gdy stage zostanie zainstalowany, przejdź do 
 <uri link="#installing_portage">Instalacji Portage</uri>.
@@ -228,12 +270,12 @@ co tam dla Ciebie przygotowaliśmy:
 Teraz wypakuj migawkę używając polecenia o niżej podanej składni. Kolejny raz
 upewnij się, że przekazujesz właściwe opcje do programu <c>tar</c>. Zatem, <c>-C</c>
 występuje z wielką literą <c>C</c>, a nie <c>c</c>. W tym przykładzie nasz plik
-zwie się <path>portage-20031011.tar.bz2</path>. Zamiast tego wpisz nazwę pliku,
+zwie się <path>portage-20040413.tar.bz2</path>. Zamiast tego wpisz nazwę pliku,
 który posiadasz.
 </p>
 
 <pre caption="Rozpakowanie migawki Portage">
-# <i>tar -xvjf /mnt/cdrom/snapshots/portage-20031011.tar.bz2 -C /mnt/gentoo/usr</i>
+# <i>tar -xvjf /mnt/cdrom/snapshots/portage-20040413.tar.bz2 -C /mnt/gentoo/usr</i>
 </pre>
 
 <p>
@@ -401,7 +443,7 @@ w optymalizacji może spowodować, że programy zaczną źle funkcjonować
 <p>
 Nie będziemy tłumaczyć znaczenia wszystkich możliwych opcji optymalizacji.
 Jeśli chcesz je poznać, przeczytaj
-<uri link="http://www.gnu.org/software/gcc/onlinedocs/">Podręcznik Online GNU
+<uri link="http://gcc.gnu.org/onlinedocs/">Podręcznik Online GNU
 </uri> lub stronę info <c>gcc</c> (<c>info gcc</c> -- działa tylko na systemach
 linuksowych). Plik <path>make.conf.example</path> sam zawiera dużo informacji i przykładów
  - nie zapomnij przeczytać także i jego.
@@ -414,6 +456,7 @@ architekturę. Możliwe jej wartości są opisane jako komentarze w
 </p>
 
 <pre caption="Ustawienie GCC march">
+<comment># Użytkownicy AMD64 nie powinni używać athlon-xp</comment>
 -march=athlon-xp
 </pre>
 
@@ -442,7 +485,7 @@ flag optymalizacji, jak w następującym przykładzie:
 </p>
 
 <pre caption="Definiowanie zmiennych CFLAGS i CXXFLAGS">
-CFLAGS="-march=athlon-xp -pipe -O2"
+CFLAGS="-march=athlon-xp -pipe -O2"   <comment># Użytkownicy AMD64 nie powinni używać athlon-xp</comment>
 CXXFLAGS="${CFLAGS}"                  <comment># Użycie tych samych ustawień dla obu zmiennych</comment>
 </pre>
 
