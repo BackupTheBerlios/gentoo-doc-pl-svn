@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
-<!-- Orig revision: 1.48 -->
+<!-- Orig revision: 1.49 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Wybór Właściwego Medium Instalacyjnego -->
 <!-- Status: Ukończono -->
@@ -8,7 +8,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.16 2004/03/06 09:39:41 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.17 2004/03/10 06:55:45 lcs Exp $ -->
 
 <sections>
 <section>
@@ -246,8 +246,8 @@ Teraz rzućmy okiem na dostępne media instalacyjne:
 <li>
   <uri link="#doc_chap2_sect3">Gentoo LiveCD</uri>
   <ul>
-  <li><uri link="#doc_chap2_sect4">Gentoo basic LiveCD</uri></li>
-  <li><uri link="#doc_chap2_sect5">Gentoo 2-CD LiveCD Set</uri></li>
+  <li><uri link="#doc_chap2_sect4">Gentoo Minimal LiveCD</uri></li>
+  <li><uri link="#doc_chap2_sect5">Gentoo Universal LiveCD</uri></li>
   <li><uri link="#doc_chap2_sect6">Gentoo KDE/Gnome LiveCD</uri></li>
   </ul>
 </li>
@@ -273,7 +273,7 @@ amd64). Co więcej, występują w różnych odmianach.
 <p>
 Wszystkie LiveCD pozwalają na uruchomienie, konfigurację sieci, zainicjalizowanie
 parycji i rozpoczęcie instalacji Gentoo przez Internet. Na niektórych znajdują
-się dodatkowo kody źródłowe oraz prekompilowane pakiety pozwalające na instalację
+się dodatkowo kody źródłowe, dzięki którym możesz przeprowadzić instalację
 bez dostępu do sieci.
 </p>
 
@@ -286,8 +286,8 @@ dostępne są dla Twojej architektury:
 <table>
 <tr>
   <th>Architektura</th>
-  <th>basic LiveCD</th>
-  <th>2-CD LiveCD Set</th>
+  <th>Minimal LiveCD</th>
+  <th>Universal LiveCD</th>
   <th>KDE/Gnome LiveCD</th>
 </tr>
 <tr>
@@ -323,7 +323,7 @@ dostępne są dla Twojej architektury:
 <tr>
   <ti>amd64</ti>
   <ti>+</ti>
-  <ti></ti>
+  <ti>+</ti>
   <ti></ti>
 </tr>
 </table>
@@ -335,7 +335,7 @@ Co one zawierają?
 </body>
 </subsection>
 <subsection>
-<title>Gentoo basic LiveCD</title>
+<title>Gentoo Minimal LiveCD</title>
 <body>
 
 <p>
@@ -349,7 +349,7 @@ w podkatalogu <path>universal</path>, w pliku o nazwie
 
 <table>
 <tr>
-  <th>Basic LiveCD</th>
+  <th>Minimal LiveCD</th>
   <th>Plusy i Minusy</th>
 </tr>
 <tr>
@@ -378,26 +378,27 @@ w podkatalogu <path>universal</path>, w pliku o nazwie
 </body>
 </subsection>
 <subsection>
-<title>Gentoo 2-CD LiveCD Set</title>
+<title>Gentoo Universal LiveCD</title>
 <body>
 
 <p>
-Pierwsza, uruchamialna płyta może posłużyć do instalacji Gentoo
-bez dostępu do sieci. Zawiera stage1, kilka odmian stage3
+Gentoo Universal LiveCD to uruchamialna płyta może posłużyć do instalacji 
+Gentoo bez dostępu do sieci. Zawiera stage1, kilka odmian stage3
 (zoptymalizowanych dla różnych podarchitektur) oraz kody źródłowe,
-umożliwiające instalację od stage1 bez dostępu do sieci. Dla
-części architektur, na CD1 dostarczamy także stage2 oraz 
+umożliwiające instalację od stage1 bez dostępu do sieci. 
 zbiór prekompilowanych pakietów. Odmianę dla architektury
 x86 można znaleźć w podkatalogu <c>universal</c>,
 w pliku <c>install-x86-universal-2004.0.iso</c>.
 
 </p>
 <p>
-Na drugiej płycie znajdują się wyłącznie prekompilowane pakiety. Można
-ją wykorzystać do instalacji oprogramowania już po zakończeniu 
-stawiania systemu. Do instalacji systemu podstawowego wystarczy
+Jeśli przyjrzysz się bliżej katalogowi <path>livecd</path>, dostrzeżesz
+iż dlaa części architektur dostarczamy także <e>Gentoo Packages CD</e>.
+Znajdują się na nich wyłącznie prekompilowane pakiety (i nie są
+uruchamialne). Można ją wykorzystać do instalacji oprogramowania już po 
+zakończeniu stawiania systemu. Do instalacji systemu podstawowego wystarczy
 CD1, jednakże jeśli nie chcesz samodzielnie kompilować
-OpenOffice.org, Mozilli, KDE, GNOME itd., potrzebujesz także CD2.
+OpenOffice.org, Mozilli, KDE, GNOME itd., potrzebujesz także Packages CD.
 Odmianę dla podarchitektury Athlon-XP można odnaleźć w odpowiednim
 dla niej katalogu w pliku o nazwie <c>packages-athlon-xp-2004.0.iso</c>.
 </p>
@@ -408,16 +409,16 @@ konkretnej architektury, jak i zoptymalizowane dla różnych podarchitektur.
 
 <table>
 <tr>
-  <th>2-CD LiveCD Set</th>
+  <th>Universal LiveCD i Packages CD</th>
   <th>Plusy i Minusy</th>
 </tr>
 <tr>
   <th>+</th>
-  <ti>Zoptymalizowane dla Twojej architektury i podarchitektury</ti>
+  <ti>Packages CD jest zoptymalizowane dla Twojej architektury i podarchitektury</ti>
 </tr>
 <tr>
   <th>+</th>
-  <ti>Dostarczają prekompilowane pakiety do szybkiej instalacji</ti>
+  <ti>Packages CD zawiera prekompilowane pakiety do szybkiej instalacji</ti>
 </tr>
 <tr>
   <th>+</th>
