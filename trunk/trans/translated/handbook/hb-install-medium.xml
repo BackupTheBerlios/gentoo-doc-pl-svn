@@ -8,7 +8,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.21 2004/04/14 10:20:38 swierszczu Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.22 2004/12/02 22:38:55 rane Exp $ -->
 
 <sections>
 <section>
@@ -235,6 +235,46 @@ za pomocą prekompilowanych pakietów.
   <ti>Nie możesz przechwalać się używaniem stage1 lub stage2</ti>
 </tr>
 </table>
+
+<table>
+<tr>
+  <th>Stage3</th>
+    <th>Plusy i Minusy</th>
+    </tr>
+    <tr>
+      <th>+</th>
+	<ti>Najszybsza metoda instalacji Gentoo</ti>
+	</tr>
+	<tr>
+	  <th>-</th>
+	    <ti>Nie można poprawiać systemu podstawowego - jest prekompilowany</ti>
+	    </tr>
+	    <tr>
+	      <th>-</th>
+		<ti>Nie możesz przechwalać się używaniem stage1 lub stage2</ti>
+		</tr>
+		</table>
+		
+
+<table>
+<tr>
+  <th>Stage3</th>
+    <th>Plusy i Minusy</th>
+    </tr>
+    <tr>
+      <th>+</th>
+        <ti>Najszybsza metoda instalacji Gentoo</ti>
+	</tr>
+	<tr>
+	  <th>-</th>
+	    <ti>Nie można poprawiać systemu podstawowego - jest prekompilowany</ti>
+	    </tr>
+	    <tr>
+	      <th>-</th>
+	        <ti>Nie możesz przechwalać się używaniem stage1 lub stage2</ti>
+		</tr>
+		</table>
+
 
 <p>
 Zapisz sobie (lub zapamiętaj), który stage wybrałeś. Będzie Ci to potrzebne
@@ -912,15 +952,15 @@ Oto przykładowy rezultat tego polecenia:
 </p>
 
 <pre caption="Dostępne media uruchamiające">
-Device Selection      Device Path             Device Type and Utilities
+Device Selection      Device Path	      Device Type and Utilities
 ---------------------------------------------------------------------------
 
-P0                    scsi.5.0                TOSHIBA CD-ROM XM-3301TA
-                                                  IPL
-P1                    scsi.2.0                COMPAQ ST32550N
-                                                  IPL
-P2                    lan.0010a7-06d1b6.3.6   server
-                                                  IPL
+P0		      scsi.5.0		      TOSHIBA CD-ROM XM-3301TA
+						  IPL
+P1		      scsi.2.0		      COMPAQ ST32550N
+						  IPL
+P2		      lan.0010a7-06d1b6.3.6   server
+						  IPL
 </pre>
 
 <p>
@@ -949,7 +989,7 @@ Attempting to load IPL.
 
 
 Hard booted.
-palo ipl 1.2 root@b180l.da-kot Tue Apr  8 12:43:07 CEST 2003
+palo ipl 1.2 root@b180l.da-kot Tue Apr	8 12:43:07 CEST 2003
 
 Boot image contains:
     0/vmlinux32 4028015 bytes @ 0x1520000
@@ -1209,7 +1249,7 @@ urządzeniem odpowiednim dla swojego dysku.
 </p>
 
 <pre caption="Poprawianie wydajności dysku">
-<comment>Aktywacja DMA:</comment>                                            # <i>hdparm -d 1 /dev/hda</i>
+<comment>Aktywacja DMA:</comment>					     # <i>hdparm -d 1 /dev/hda</i>
 <comment>Aktywacja DMA + Bezpieczne opcje poprawiające wydajność:</comment>  # <i>hdparm -d 1 -A 1 -m 16 -u 1 -a 64 /dev/hda</i>
 </pre>
 
@@ -1336,7 +1376,7 @@ wpisz następujące polecenia:
 </p>
 
 <pre caption="Uruchamianie z Sieci MIPS">
-        Running power-on diagnostics
+	Running power-on diagnostics
 
 System Maintenance Menu
 
