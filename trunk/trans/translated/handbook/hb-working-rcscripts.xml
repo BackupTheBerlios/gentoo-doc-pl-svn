@@ -6,7 +6,7 @@
 <!-- Title: Skrypty Init -->
 <!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-rcscripts.xml,v 1.16 2004/12/27 11:35:05 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-rcscripts.xml,v 1.17 2005/01/03 23:11:19 sekretarz Exp $ -->
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
@@ -41,7 +41,7 @@ Proces ten następnie upewnia się czy wszystkie systemy plików (zdefiniowane w
 <path>/etc/fstab</path>) zostały poprawnie zamontowane i są gotowe do pracy.
 Następnie uruchamiane są poszczególne skrypty umieszczone w katalogu
 <path>/etc/init.d</path>, które mają za zadanie uruchomić kolejno wszystkie
-serwisy niezbędne do poprawnego działania systemu.
+usługi niezbędne do poprawnego działania systemu.
 </p>
 
 <p>
@@ -200,7 +200,7 @@ ponownego uruchamiania systemu.
 Poziomy definiowane przez użytkownika związane są z podkatalogami 
 <path>/etc/runlevels</path>: <path>boot</path>, <path>default</path>, <path>nonetwork</path>
 i <path>single</path>. W poziomie <path>boot</path> uruchamiane są wszystkie niezbędne 
-serwisy systemowe używane w pozostałych poziomach.   
+usługi systemowe używane w pozostałych poziomach.   
 Pozostałe trzy różnią się rodzajem uruchamianych usług: 
 <path>default</path> służy do uruchamiania "standardowych" operacji, <path>nonetwork</path>
 wykorzystywany jest w przypadkach kiedy do uruchomienia danej usługi nie jest wymagane 
@@ -284,7 +284,7 @@ Podobnie można zapytać, które z usług w systemie wymagają danej usługi (<c
 mogą lecz nie muszą go używać (<c>usesme</c>):
 </p>
 
-<pre caption="Zapytanie o listę serwisów, które wymagają Postfixa">
+<pre caption="Zapytanie o listę usług, które wymagają Postfixa">
 # <i>/etc/init.d/postfix needsme</i>
 </pre>
 
@@ -384,7 +384,7 @@ nie zostaną zastosowane.
 <body>
 
 <p>
-Gentoo umożliwia bardzo prosty sposób konfiguracji poszczególnych serwisów. Każdy
+Gentoo umożliwia bardzo prosty sposób konfiguracji poszczególnych usług. Każdy
 skrypt init może być skonfigurowany za pomocą stosownego pliku w katalogu
 <path>/etc/conf.d</path>. Na przykład skrypt apache2 (<path>/etc/init.d/apache2</path>)
 posiada swój własny plik konfiguracyjny, <path>/etc/conf.d/apache2</path>, w którym
