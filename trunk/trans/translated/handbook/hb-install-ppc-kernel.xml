@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.15 -->
+<!-- Orig revision: 1.18 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Konfiguracja jądra dla PPC -->
 <!-- Status: Release -->
@@ -9,12 +9,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc-kernel.xml,v 1.9 2004/12/27 11:35:03 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc-kernel.xml,v 1.10 2005/03/06 11:06:38 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.12</version>
-<date>2004-12-12</date>
+<version>1.15</version>
+<date>2005-01-09</date>
 
 <section>
 <title>Strefa czasowa.</title>
@@ -49,8 +49,7 @@ różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
 
 <p>
 Dla architektury PPC mamy do wyboru jądra <c>development-sources</c> i
-<c>gentoo-dev-sources</c> (oba serii 2.6). Te drugie są dostępne w instalacji
-bez dostępu do sieci. Dla maszyn Pegasos oferujemy <c>pegasos-dev-sources</c>,
+<c>gentoo-dev-sources</c> (oba serii 2.6). Dla maszyn Pegasos oferujemy <c>pegasos-dev-sources</c>,
 jądro serii 2.6 z nałożonym specjalnym zestawem poprawek dla tego sprzętu.
 Wybierzmy sobie któreś i zainstalujmy:
 </p>
@@ -339,6 +338,17 @@ musisz zatem emergować udev:
 
 <pre caption="Emerging udev">
 # <i>emerge udev</i>
+</pre>
+
+<p>
+Pojawił się pewien problem z PAM na <b>stage3</b> wersji 2004.3. 
+Aby rozwiązać te problemy wykonaj następujące czynności:
+</p>
+<pre caption="Naprawa problemów z logowaniem na 2004.3">
+<comment>Najpierw musimy dodać flage pam do USE.</comment>
+# <i>nano /etc/make.conf</i>
+<comment>Teraz musimy przeemergować shadow, pam and pam-login.</comment>
+# <i>emerge shadow pam pam-login</i>
 </pre>
 
 <p>

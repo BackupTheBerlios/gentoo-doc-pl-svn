@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.12 -->
+<!-- Orig revision: 1.15 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Przygotowanie dysków dla PPC64 -->
 <!-- Status: Release -->
@@ -9,12 +9,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc64-disk.xml,v 1.5 2004/12/27 11:35:03 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc64-disk.xml,v 1.6 2005/03/06 11:00:22 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.8</version>
-<date>2004-11-21</date>
+<version>1.10</version>
+<date>2005-02-20</date>
 
 <section>
 <title>Wprowadzenie do urządzeń blokowych.</title>
@@ -194,8 +194,8 @@ Zapyta ono o numer kasowanych partycji.
 
 <p>
 Następnie załóż partycję <e>Apple_bootstrap</e> za pomocą <c>b</c>.
-Zostaniez zapytany o początkowy blok. Jeśli poprzednio wybrałeś
-na ten cel trzecią partycję, wpisz <c>3p</c>.
+Zostaniez zapytany o początkowy blok. Wpisz numer pierwszej wolnej
+partycji, a następnie litere <c>p</c>. Na przykład druga partycja to <c>2p</c>.
 </p>
 
 <note>
@@ -207,15 +207,15 @@ PPC nie potrzebują osobnej partycji boot.
 
 <p>
 Teraz stwórz partycję wymiany za pomocą <c>c</c>. <c>mac-fdisk</c> ponownie
-zapyta o blok początkowy. Jako, że wcześniej skorzystaliśmy z <c>3</c>,
-teraz wpisz <c>4p</c>. Gdy zostaniesz zapytany o rozmiar wpisz <c>512M</c>
+zapyta o blok początkowy. Jako, że wcześniej skorzystaliśmy z <c>2</c>,
+teraz wpisz <c>3p</c>. Gdy zostaniesz zapytany o rozmiar wpisz <c>512M</c>
 (lub inny na jaki się zdecydowałeś - 512MB to zalecane minimum). Następnie
 na pytanie o nazwę wpisz <c>swap</c> (koniecznie).
 </p>
 
 <p>
-Żeby założyć partycję root, wpisz <c>c</c>, następnie <c>5p</c>, aby wybrać
-blok od którego ma się zaczynać. Na pytanie o rozmiar ponownie wpisz <c>5p</c>,
+Żeby założyć partycję root, wpisz <c>c</c>, następnie <c>4p</c>, aby wybrać
+blok od którego ma się zaczynać. Na pytanie o rozmiar ponownie wpisz <c>4p</c>,
 <c>mac-fdisk</c> przydzieli jej całą pozostałą wolną przestrzeń
 Koniecznie podaj nazwę <c>root</c>.
 </p>
@@ -674,7 +674,8 @@ Aby ją aktywować skorzystaj z polecenia <c>swapon</c>:
 </pre>
 
 <p>
-Utwórz i aktywuj swoją partycję wymiany.
+Utwórz i aktywuj swoją partycję wymiany przy pomocy wyżej przedstawionych
+poleceń.
 </p>
 
 </body>
