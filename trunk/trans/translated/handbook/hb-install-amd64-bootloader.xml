@@ -1,0 +1,318 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- Orig revision: 1.36 -->
+<!-- Translator: veng <veng@gentoo.pl> -->
+<!-- Title: O instalacji Gentoo Linux -->
+<!-- Status: Ukończono -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-amd64-bootloader.xml,v 1.1 2004/11/02 19:44:57 sekretarz Exp $ -->
+
+<sections>
+<section>
+<title>Podejmowanie decyzji</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<p>
+Gdy skonfigurowałeś jądro i zmodyfikowałeś odpowiednio niezbędne systemowe
+pliki konfiguracyjne, nadeszła pora zainstalowania programu, który uruchomi jądro
+w momencie startu systemu. Taki program nazywa się <e>bootloader</e>.
+Ale zanim zaczniesz, rozważ wszystkie opcje...
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Obsługa framebuffera</title>
+<body>
+
+<p>
+<e>Gdy</e> skonfigurowałeś jądro z obsługa framebuffera i chcesz to wykorzystać,
+musisz dodać parametr <c>video</c> do konfiguracji bootloadera.
+</p>
+
+<p>
+Wiecej informacji na temat framebuffera możesz znaleźć w <path>/usr/src/linux/Documentation/fb/vesafb.txt</path>.
+
+<p>
+Zapamiętaj (albo zapisz) swoją wartość; niedługo Ci się ona przyda.
+</p>
+
+<p>
+Teraz wybierz bootloader z tabeli powyżej.
+</p>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Użycie programu GRUB</title>
+<subsection>
+<title>Wyjaśnienie terminologii GRUBa</title>
+<body>
+
+<p>
+Najważniejszym czynnikiem prowadzącym do zrozumienia programu
+GRUB jest pojęcie jego sposobu odnoszenia się do dysków i partycji.
+Twoja linuksowa partycja <path>/dev/hda1</path> jest określana
+przez GRUBa jako <path>(hd0,0)</path>.
+Zauważ nawiasy po obu stronach <path>hd0,0</path> - ich użycie jest wymagane.
+</p>
+
+<p>
+Dyski twarde są liczone od zera, a nie od "a", partycje także zaczynają
+się od zera, a nie od jedynki. Bądź świadom także tego, że w grupie
+urządzeń pamięci masowej, tylko twarde dyski są liczone, nie ma to
+natomiast miejsca  w przypadku napędów ATAPI-IDE takich jak cdromy
+i nagrywarki. Ta sama sytuacja ma miejsce w przypadku dysków SCSI.
+(Normalnie otrzymują one wyższe numery niż dyski IDE za wyjątkiem
+sytuacji, gdy BIOS jest ustawiony na start systemu z urządzenia SCSI.)
+</p>
+
+<p>
+Zakładając, że masz dysk twardy oznaczony jako <path>/dev/hda</path>,
+odtwarzacz cdrom <path>/dev/hdb</path>, nagrywarkę <path>/dev/hdc</path>,
+drugi dysk twardy <path>/dev/hdd</path> i nie posiadasz dysku SCSI,
+urządzenie <path>/dev/hdd7</path> jest rozumiane jako <path>(hd1,6)</path>.
+To może brzmi pokrętnie i w rzeczywistości takie jest, lecz, jak się
+niedługo przekonamy, GRUB oferuje mechanizm uzupełniania wiersza polecenia
+klawiszem TAB, co z pewnością jest wybawieniem dla tych, którzy mają
+dużo dysków twardych i partycji, a gubią się nieco w sposobie numeracji
+używanym przez program GRUB.
+</p>
+
+<p>
+Już wiesz, co Cię czeka, nadeszła pora zainstalować GRUB'a.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Instalowanie GRUBa</title>
+<body>
+
+<p>
+Aby zainstalować program GRUB, używamy emerge.
+</p>
+
+<pre caption = "Instalowanie GRUBa">
+# <i>emerge --usepkg grub</i>
+# <i>cp -Rpv /usr/share/grub/i386-pc/* /boot/grub</i>
+</pre>
+
+<p>
+Mimo, że właśnie zainstalowaliśmy GRUBa, utworzyć plik konfiguracyjny i
+zainstalować GRUBa w MBR, aby mógł on automatycznie uruchomić jądro. Utwórz
+<path>/boot/grub/grub.conf</path> za pomocą <c>nano</c> (albo innego edytora):
+</p>
+
+<pre caption = "Tworzenie pliku /boot/grub/grub.conf">
+# <i>nano -w /boot/grub/grub.conf</i>
+</pre>
+
+<p>
+Teraz zamierzamy zredagować <path>grub.conf</path>. Poniżej
+znajdziesz trzy propozycje pliku <path>grub.conf</path> odpowiadające
+schematowi partycjonowania użytemu w tym przewodniku, z obrazem jądra
+o nazwie <path>kernel-2.6.5-gentoo</path>. Wyczerpująco opatrzymy komentarzami
+tylko pierwszą wersję pliku <path>grub.conf</path>.
+</p>
+
+<ul>
+  <li>
+    Pierwszy <path>grub.conf</path> jest dla osób, które nie wykorzystały
+    programu <c>genkernel</c> do budowania jądra.
+  </li>
+  <li>
+    Drugi <path>grub.conf</path> jest dla tych, którzy użyli programu
+    <c>genkernel</c> do zbudowania jądra.
+  </li>
+</ul>
+
+<pre caption = "grub.conf dla nie używających genkernela">
+<comment># Która pozycja ma być uruchamiana domyślnie. 0 oznacza pierwszą, 1 drugą itd</comment>
+default 0
+<comment># Ile sekund oczekiwać przed uruchomieniem pozycji domyślnej.</comment>
+timeout 30
+<comment># Ładniutki, tłuściutki obrazek na zaostrzenie apetytu :)
+# Zakomentuj jeśli nie masz zainstalowanej karty graficznej</comment>
+splashimage=(hd0,0)/grub/splash.xpm.gz
+
+title=Gentoo Linux 2.6.5
+<comment># Partycja na której znajduje się obraz jądra (lub system operacyjny) </comment>
+root (hd0,0)
+kernel /kernel-2.6.5-gentoo root=/dev/hda3
+
+<comment># Następne trzy linie potrzebne są tylko, gdy chcesz uruchamiać także Windows.</comment>
+<comment># W tym przypadku, Windows mieści się na /dev/hda6.</comment>
+title=Windows XP
+rootnoverify (hd0,5)
+makeactive
+chainloader +1
+</pre>
+
+<pre caption = "grub.conf dla użytkowników genkernela">
+default 0
+timeout 30
+splashimage=(hd0,0)/grub/splash.xpm.gz
+
+title=Gentoo Linux 2.6.5
+root (hd0,0)
+kernel /kernel-2.6.5-gentoo root=/dev/ram0 init=/linuxrc ramdisk=8192 real_root=/dev/hda3
+initrd /initrd-2.6.5-gentoo
+
+<comment># Tylko, gdy chcesz uruchamiać dwa systemy</comment>
+title=Windows XP
+rootnoverify (hd0,5)
+makeactive
+chainloader +1
+</pre>
+
+
+<note>
+Jeśli partycjonowanie wykonałeś inaczej i/lub używasz innego obrazu jądra,
+dokonaj niezbędnych poprawek. Ważne jest, by wszystko, co dotyczy urządzenia
+z GRUBem (np. <path>(hd0,0)</path>) było względne w stosunku do punktu
+montowania, a nie partycji root. Innymi słowy, <path>(hd0,0)/grub/splash.xpm.gz</path>
+w rzeczywistości znaczy <path>/boot/grub/splash.xpm.gz</path>, gdyż <path>(hd0,0)</path>
+to partycja <path>/boot</path>.
+</note>
+
+<p>
+Jeśli chcesz przekazać jakieś dodatkowe opcje do jądra na starcie, po prostu
+dopisz je na końcu polecenia kernel. W tym momencie już dodaliśmy jeden
+parametr (<c>root=/dev/hda3</c> lub <c>real_root=/dev/hda3</c>),
+ale bez problemu możesz wzbogacić polecenie o kolejne. Przykładowo
+posłużymy się opcją <c>vga</c> dotyczącą bufora ramki, którą
+przedyskutowaliśmy uprzednio:
+</p>
+
+<pre caption = "Dodawanie parametru vga jako parametru startowego dla jądra">
+title=Gentoo Linux
+  root (hd0,0)
+  kernel /kernel-2.6.5 root=/dev/hda3 video=vesafb
+</pre>
+
+<p>
+Użytkownicy programu <c>genkernel</c> powinni wiedzieć, że jądra, które zbudowali,
+używają tych samych opcji bootowania co LiveCD. Na przykład, jeśli masz urządzenia
+SCSI, powinieneś dodać parametr <c>doscsi</c>.
+</p>
+
+<p>
+A teraz zapisz plik <path>grub.conf</path> i opuść edytor. W tej chwili, GRUB jest
+w pełni skonfigurowany i możesz przejść do <uri link="?part=1&amp;chap=10">
+Instalacji Niezbędnych Narzędzi Systemowych</uri>.
+</p>
+
+<p>
+Programiści GRUBa zalecają stosowanie programu <c>grub-install</c>. Jedank, z pewnych powodów
+program <c>grub-install</c> nie działa poprawnie i nadal GRUBa trzeba instalować ręcznie.
+<p>
+
+<p>
+Kontynuuj z <uri link="#grub-install-auto">Domyślnie: Instalowanie GRUBa przy pomocy grub-install</uri>
+lub <uri link="#grub-install-manual"> Alternatywnie: Instalowanie GRUBa ręcznie</uri>
+</p>
+
+</body>
+</subsection>
+<subsection id="grub-install-auto">
+<title>Domyślnie: Instalowanie GRUBa przy pomocy grub-install</title>
+<body>
+
+<!-- TODO: Trzeba to uzupelnić ;> -->
+
+</body>
+</subsection>
+<subsection id="grub-install-manual">
+<title> Alternatywnie: Instalowanie GRUBa ręcznie</title>
+<body>
+
+<p>
+Aby zacząć konfigurować GRUBa, wywołaj program <c>grub</c>. Zobaczysz prompt
+<path>grub&gt;</path> oznaczający tryb poleceń. Teraz trzeba podawać
+odpowiednie komendy, by umieścić boot rekord GRUBa na dysku twardym.
+</p>
+
+<pre caption = "Uruchomienie powłoki GRUBa">
+# <i>grub</i>
+</pre>
+
+<note>
+Jeżeli nie posiadasz stacji dyskietek, dodaj opcję <c>--no-floppy</c>
+do powyższej komendy by zapobiec wykrywaniu przez program nieistniejących
+napędów.
+</note>
+
+<p>
+W przykładowej konfiguracji planujemy zainstalować GRUBa w taki sposób,
+by czytał dalsze informacje z partycji startowej <path>/dev/hda1</path>,
+a jego boot rekord znajdował się w MBR (master boot rekord), co spowoduje,
+że pierwszą rzeczą jaką zobaczymy po uruchomieniu komputera będzie prompt
+programu GRUB. Oczywiście, jeśli nie naśladujesz wzorcowych ustawień, które
+podajemy od początku przewodnika, odpowiednio zmodyfikuj ustawienia.
+</p>
+
+<p>
+Funkcja kompletowania klawiszem tab może być wykorzystywana z poziomu
+powłoki GRUBa. Na przykład, jeśli napiszesz "<c>root (</c>" i następnie wciśniesz
+TAB, zobaczysz listę urządzeń (np <path>hd0</path>). Gdy wpiszesz
+"<c>root (hd0,</c>" i użyjesz TAB, otrzymasz spis dostępnych do wyboru partycji
+(np <path>hd0,0</path>).
+</p>
+
+<p>
+Z pomocą uzupełniania klawiszem TAB, ustawienie programu GRUB nie powinno
+być już takie trudne. To co, zabieramy się za konfigurowanie GRUBa? :-)
+</p>
+
+<p>
+Jeżeli masz więciej pytań dotyczących GRUBa, przeczytaj <uri link="http://www.gnu.org/software/grub/grub-faq.html">GRUB FAQ</uri> 
+lub <uri link="http://www.gnu.org/software/grub/manual/">Podręcznik GRUBa</uri>.
+</p>
+
+<p>
+Teraz możesz przejść do <uri link="#reboot">Ponownego uruchomienia systemu</uri>
+</p>
+
+</body>
+</subsection>
+
+</section>
+<section id="reboot">
+<title>Ponowne uruchomienie Systemu</title>
+<subsection>
+<body>
+
+<p>
+Wyjdź ze środowiska chroot i odmontuj wszytskie zamontowane partycje. Następnie wpisz to
+magiczne polecenie na które tak długo czekałeś: <c>reboot</c>
+</p>
+
+<pre caption="Wyjście z chroota, odmontowanie wszystkich zamontowanych partycji i ponowne uruchomienie">
+# <i>exit</i>
+cdimage ~# <i>cd</i>
+cdimage ~# <i>umount /mnt/gentoo/boot /mnt/gentoo/proc /mnt/gentoo</i>
+cdimage ~# <i>reboot</i>
+</pre>
+
+<p>
+Nie zapomnij o wyłożeniu rozruchowej płyty CD, by wystartować system Gentoo z dysku, a nie
+z płyty CD.
+</p>
+
+<p>
+Po ponownym uruchomieniu komputera, zakończ instalację z rozdziałem <uri 
+link="?part=1&amp;chap=11">Zakończenie instalacji Gentoo</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+
+</sections>
+
