@@ -4,10 +4,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 <!-- Orig revision: 1.11 -->
+
 <!-- Translator: sekretarz <sekretarz@gentoo.org> -->
 <!-- Title: O instalacji Gentoo Linux -->
-<!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-bootloader.xml,v 1.4 2004/11/27 18:14:42 sekretarz Exp $ -->
+
+<!-- Status: Release -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-bootloader.xml,v 1.5 2004/12/22 13:18:56 rane Exp $ -->
 
 <sections>
 
@@ -15,32 +17,34 @@
 <date>2004-09-24</date>
 
 <section>
-<title>Podejmowanie decyzji</title>
+<title>Podejmowanie decyzji.</title>
 <subsection>
-<title>Wprowadzenie</title>
+<title>Wprowadzenie.</title>
 <body>
 
 <p>
 Gdy skonfigurowałeś jądro i zmodyfikowałeś odpowiednio niezbędne systemowe
-pliki konfiguracyjne, nadeszła pora zainstalowania programu, który uruchomi jądro
+pliki konfiguracyjne nadeszła pora zainstalowania programu, który uruchomi jądro
 w momencie startu systemu. Taki program nazywa się <e>bootloader</e>.
 Ale zanim zaczniesz, rozważ wszystkie opcje...
 </p>
 
 <p>
-Istnieją dwa bootloadery, które wspomagają architekturę Alpha:  <uri link="#aboot">aBoot</uri> i <uri link="#milo">MILO</uri>.
-Musisz wybrać jeden z nich.
+Istnieją dwa bootloadery, które działają na architekturze Alpha:  <uri
+link="#aboot">aBoot</uri> i <uri link="#milo">MILO</uri>. Musisz wybrać jeden z
+nich.
 </p>
 
 </body>
 </subsection>
 </section>
 <section id="aboot">
-<title>Domyślne: Użytkowanie programu aboot</title>
+<title>Domyślnie: Użycie programu aboot.</title>
 <body>
 
 <p>
-Najpierw zainstalujemy program w systemie. Rzecz jasna, korzystamy z <c>emerge</c>:
+Zacznijmy od zainstalowania tego programu w systemie, oczywiście przy pomocy
+polecenia <c>emerge</c>:
 </p>
 
 <pre caption = "Instalowanie programu aboot">
@@ -49,8 +53,8 @@ Najpierw zainstalujemy program w systemie. Rzecz jasna, korzystamy z <c>emerge</
 
 <p>
 Następny krok umożliwi start systemu z dysku. <c>aboot</c> zostanie uruchomiony
-po włączeniu komputera. Jest to możliwe dzięki zapisaniu bootloadera
-<c>aboot</c> na samym początku dysku.
+bezpośrednio po włączeniu komputera. Jest to możliwe dzięki zapisaniu
+bootloadera <c>aboot</c> na samym początku dysku.
 </p>
 
 <pre caption = "Włączenie startu z dysku">
@@ -59,13 +63,13 @@ po włączeniu komputera. Jest to możliwe dzięki zapisaniu bootloadera
 </pre>
 
 <note>
-Jeśli używasz innego schematu partycjonowania niż omawiany w tym rozdziale,
-zmodyfikuj odpowiednio polecenia. Przeczytaj odpowiednie strony podręcznika
-systemowego (<c>man 8 swriteboot</c> oraz <c>man 8 abootconf</c>).
+Jeśli używasz innego schematu partycjonowania niż przedstawiony w tym
+Podręczniku odpowiednio zmodyfikuj wszystkie polecenia. Przeczytaj odpowiednie
+strony podręcznika systemowego (<c>man 8 swriteboot</c> oraz <c>man 8 abootconf</c>).
 </note>
 
 <p>
-Dodatkowo, możesz uprościć start Gentoo poprzez ustawienie pliku
+Dodatkowo możesz uprościć start Gentoo poprzez ustawienie pliku
 konfiguracyjnego programu aboot i zmiennej SRM boot_osflags.
 Musisz upewnić się, że bootdef_dev jest także ustawiony poprawnie
 (łatwiej to zrobić w konsoli SRM niż spod Linuksa).
@@ -88,31 +92,31 @@ automatyczny proces ładowania systemu.
 </p>
 
 <p>
-Jeśli instalujesz poprzez port szeregowy, nie zapomnij umieścić
+Jeśli instalujesz poprzez port szeregowy nie zapomnij umieścić
 flagi startu z konsoli szeregowej w <path>aboot.conf</path>.
 Plik <path>/etc/aboot.conf.example</path> zawiera dodatkowe informacje.
 </p>
 
 <p>
-Aboot jest już skonfigurowany i gotowy do użytku. Przejdź do
-<uri link="?part=1&amp;chap=10">Instalacji Niezbędnych Narzędzi Systemowych</uri>.
+Aboot jest już skonfigurowany i gotowy do użytku. Możesz przejść do rozdziału
+<uri link="?part=1&amp;chap=10">Instalacja niezbędnych narzędzi systemowych</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Alternatywnie: Użytkowanie MILO</title>
+<title>Alternatywnie: Użycie MILO.</title>
 <body>
 
 <p>
-Zanim przejdziesz dalej, zdecyduj, w jaki sposób chcesz uruchamiać
+Zanim przejdziesz dalej, zdecyduj w jaki sposób chcesz uruchamiać
 MILO. W tej części zakładamy, że chcesz utworzyć dyskietkę startową
 z MILO. Jeśli chcesz bootować z partycji MS-DOS dysku twardego,
-musisz odpowiednio poprawić polecenia.
+musisz odpowiednio zmodyfikować wszystkie polecenia.
 </p>
 
 <p>
-Aby zainstalować MILO, używamy <c>emerge</c>.
+Zainstalujmy MILO przy pomocy polecenia <c>emerge</c>.
 </p>
 
 <pre caption = "Instalowanie MILO">
@@ -120,10 +124,10 @@ Aby zainstalować MILO, używamy <c>emerge</c>.
 </pre>
 
 <p>
-Po zainstalowaniu MILO, obrazy MILO powinny znajdować się
+Po zainstalowaniu MILO obrazy MILO powinny znajdować się
 w <path>/opt/milo</path>. Polecenia poniżej utworzą dyskietkę
 startową zawierającą MILO. Pamiętaj by użyć właściwego obrazu
-dla Twojej architektury Alpha.
+, czyli tego dla Twojej architektury (Alpha).
 </p>
 
 <pre caption = "Instalowanie MILO na dyskietce">
@@ -140,8 +144,8 @@ dla Twojej architektury Alpha.
 
 <p>
 Twoja dyskietka startowa MILO jest już przygotowana do uruchomienia
-Gentoo Linuksa. Być może musisz ustawić zmienne środowiskowe
-w ARCS Firmware, by MILO się uruchamiało; wyjaśnienie znajdziesz pod adresem
+Gentoo Linux. Być może musisz ustawić zmienne środowiskowe
+w ARCS Firmware by MILO się uruchamiało; wyjaśnienie znajdziesz pod adresem
 <uri link="http://tldp.org/HOWTO/MILO-HOWTO/">MILO-HOWTO</uri> wraz z kilkoma przykładami
 popularniejszych systemów i niektórymi komendami do zastosowania w trybie interaktywnym.
 </p>
@@ -152,18 +156,18 @@ byłoby <e>złym</e> pomysłem.
 </p>
 
 <p>
-Możesz przejść do <uri link="#reboot">Ponowne uruchomienie Systemu</uri>.
+Następnie przejdź do paragrafu <uri link="#reboot">Ponowne uruchomienie systemu</uri>.
 </p>
 
 </body>
 </section>
 <section id="reboot">
-<title>Ponowne uruchomienie Systemu</title>
+<title>Ponowne uruchomienie systemu.</title>
 <subsection>
 <body>
 
 <p>
-Wyjdź ze środowiska chroot i odmontuj wszytskie zamontowane partycje. Następnie wpisz to
+Wyjdź ze środowiska chroot i odmontuj wszystkie zamontowane partycje. Następnie wpisz to
 magiczne polecenie na które tak długo czekałeś: <c>reboot</c>
 </p>
 
@@ -175,19 +179,19 @@ cdimage ~# <i>reboot</i>
 </pre>
 
 <p>
-Nie zapomnij o wyłożeniu rozruchowej płyty CD, by wystartować system Gentoo z dysku, a nie
-z płyty CD.
+Nie zapomnij o wyjęciu LiveCD z napędu, bo zabootujesz system z płyty zamiast
+swojego nowego Gentoo.
 </p>
 
 <p>
-Po ponownym uruchomieniu komputera, zakończ instalację z rozdziałem <uri 
-link="?part=1&amp;chap=11">Zakończenie instalacji Gentoo</uri>.
+Po ponownym uruchomieniu komputera w celu dokończenia instalacji Gentoo przejdź
+do rozdziału <uri link="?part=1&amp;chap=11">Finalizowanie instalacji
+Gentoo</uri>.
 </p>
 
 </body>
 </subsection>
 </section>
-
 </sections>
 
 
