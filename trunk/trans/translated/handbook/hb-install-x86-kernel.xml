@@ -1,62 +1,64 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.27 -->
+<!-- Orig revision: 1.29 -->
 <!-- Translator: sekretarz <sekretarz@dukato.net> -->
 <!-- Title: Instalacja jądra dla x86 -->
-<!-- Status: Ukończono -->
+<!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.7 2004/11/27 18:14:42 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.8 2004/12/09 16:21:28 rane Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 <sections>
 
-<version>1.24</version>
-<date>2004-11-26</date>
+<version>1.29</version>
+<date>2004-12-09</date>
 
 <section>
-<title>Strefa czasowa</title>
+<title>Strefa czasowa.</title>
 <body>
 
 <p>
-Musisz najpierw ustawić swoją strefę czasową, żeby system wiedział gdzie się znajduje.
-Znajdz swoją strefę czasową w <path>/usr/share/zoneinfo</path> i zrób dowiązanie
+Po pierwsze musisz ustawić swoją strefę czasową, żeby system wiedział gdzie się znajduje.
+Znajdź swoją strefę czasową w <path>/usr/share/zoneinfo</path> i zrób dowiązanie
 do <path>/etc/localtime</path> używając <c>ln</c>:
 </p>
 
 <pre caption="Ustawienie informacji o strefie czasowej">
 # <i>ls /usr/share/zoneinfo</i>
-<comment>(Przypuśćmy, że chcesz używać strefy czasowej GMT)</comment>
-# <i>ln -sf /usr/share/zoneinfo/GMT /etc/localtime</i>
+<comment>(Przypuśćmy, że chcesz używać strefy czasowej Poland)</comment>
+# <i>ln -sf /usr/share/zoneinfo/Poland /etc/localtime</i>
 </pre>
 
 </body>
 </section>
 <section>
-<title>Instalacja Źródeł</title>
+<title>Instalacja źródeł.</title>
 <subsection>
-<title>Wybór Jądra</title>
+<title>Wybór jądra.</title>
 <body>
 
 <p>
-Sercem każdej dystrybucji jest jądro Linuxa. Jest ono powłoką pomiedzy programami użytkownika i sprzętem. 
-Gentoo udostępnia swoim użytkownikom kilka źródeł jąder. Ich pełną listę wraz z opisem możesz znaleźć w
-<uri link="/doc/en/gentoo-kernel.xml">Podręczniku Jąder Linuxa</uri>
+Sercem każdej dystrybucji jest jądro Linuksa, które jest pośrednikiem pomiędzy
+programami i sprzętem. Gentoo udostępnia swoim użytkownikom kilka
+źródeł kernela. Ich pełną listę wraz z opisami znalejdziesz w <uri
+link="/doc/en/gentoo-kernel.xml">Podręczniku kerneli Linuksa.</uri>.
 </p>
 
 <p>
 Dla architektury x86 udostępniamy między innymi: <c>vanilla-sources</c> 
-(standartowe źródła jądra z serii 2.4 rozwijane przez programistów linuxa),
-<c>gentoo-sources</c> (źródła jądra z serii 2.4 łatane poprawkami
-wydajnościowymi), <c>gentoo-dev-sources</c> (jądro z serii 2.6 łatane poprawkami 
-wydajościowymi), <c>development-sources</c> (standartowe źródła jądra z serii 2.6), ...
+(standardowe źródła jądra serii 2.4 rozwijane przez programistów Linuksa),
+<c>gentoo-sources</c> (źródła jądra z serii 2.4 z łatkami poprawiającymi
+wydajność), <c>gentoo-dev-sources</c> (jądro z serii 2.6 z łatkami
+poprawiającymi wydajość), <c>development-sources</c> (standardowe źródła jądra z
+serii 2.6), ...
 </p>
 
 <p>
-Jeżeli wybrałeś instalacje bez dostępu do sieci, dostępna jest tylko część źródeł, które znajdują się na LiveCD.
-Dla wydania 2004.3 Należą do nich:
+Jeżeli wybrałeś instalację bez dostępu do sieci jesteś ograniczony do źródeł,
+które znajdują się na LiveCD. Dla wydania 2004.3 są to:
 </p>
 
 <ul>
@@ -75,8 +77,9 @@ Wybierz źródła jądra i zainstaluj je.
 </pre>
 
 <p>
-Jeżeli wejdziesz do <path>/usr/src</path> powinneś zobaczyć dowiązanie symboliczne nazwane 
-<path>linux</path> wskazujące na źródła Twojego jądra. Zakładamy, że zainstalowałeś <c>gentoo-sources-2.4.26-r6</c>:
+Jeżeli wejdziesz do <path>/usr/src</path> powinneś zobaczyć dowiązanie
+symboliczne nazwane <path>linux</path> wskazujące na źródła Twojego jądra.
+Zakładamy, że zainstalowałeś <c>gentoo-sources-2.4.26-r6</c>:
 </p>
 
 <pre caption="Podgląd dowiązania symbolicznego do źródeł jądra">
