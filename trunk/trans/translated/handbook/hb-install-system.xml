@@ -3,37 +3,37 @@
 
 <!-- Orig revision: 1.56 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
-<!-- Title: Instalacja Systemu Podstawowego -->
+<!-- Title: Instalacja systemu podstawowego -->
 <!-- Status: Ukończono -->
 <!-- Update from 1.32 to 1.56: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.17 2004/11/12 19:13:36 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.18 2004/12/12 12:39:55 rane Exp $ -->
 
 <sections>
 
 <version>1.55</version>
-<date>November 6, 2004</date>
+<date>2004-11-06</date>
 
 <section>
-<title>Praca w chroot</title>
+<title>Praca w chroot.</title>
 <subsection>
-<title>Opcjonalnie: Wybieranie serwerów zwierciadlanych</title>
+<title>Opcjonalnie: Wybieranie serwerów lustrzanych.</title>
 <body>
 
 <p>
-Jeśli instalacja jest prowadzona z Gentoo LiveCD, można użyć narzędzia <c>mirrorselect</c>
+Jeśli instalacja jest prowadzona z Gentoo LiveCD można użyć narzędzia <c>mirrorselect</c>
 i za jego pomocą wprowadzić do <path>/etc/make.conf</path> adresy serwerów, które będą używane
-zarówno dla Portage, jak i do pobierania źródeł (oczywiście w przypadku gdy masz działające
-połączenie sieciowe):
+zarówno do synchronizacji drzewa Portage, jak i do pobierania źródeł (oczywiście
+w przypadku gdy masz działające połączenie sieciowe):
 </p>
 
 <warn>
 Istnieje bład w programie mirrorslect, który może powodować dodanie śmieci po
 deklaracji GENTOO_MIRRORS. Otwórz plik <path>/mnt/gentoo/etc/make.conf</path>
-i sprawdz czy istnieją te śmieci, jeżeli tak, to usuń je.
+i sprawdź czy są tam jakieś śmieci, jeżeli tak, to usuń je.
 </warn>
 
 <pre caption="Wybieranie najszybszych serwerów">
@@ -48,18 +48,18 @@ Ten krok jest całkowicie opcjonalny. Skoro <c>mirrorselect</c> nie zadziałał,
 </body>
 </subsection>
 <subsection>
-<title>Kopiowanie informacji o DNS</title>
+<title>Kopiowanie informacji o DNS.</title>
 <body>
 
 <p>
-Jest jedna rzecz do zrobienia, zanim zmienimy środowisko pracy - jest nią
+Zanim zmienimy środowisko pracy musimy wykonać jedną bardzo ważną czynność - jest nią
 przekopiowanie ustawień DNS zawartych w <path>/etc/resolv.conf</path>. Jest to
-konieczne, by sieć działała także w nowych warunkach pracy.
-<path>/etc/resolv.conf</path> określa, jakie serwery nazw będą używane dla Twojej
+konieczne, by sieć działała także w nowym środowisku.
+<path>/etc/resolv.conf</path> określa jakie serwery nazw będą używane dla Twojej
 sieci.
 </p>
 
-<pre caption="Skopiowanie informacji o DNS">
+<pre caption="Kopiowanie informacji o DNS">
 <comment>(Opcja "-L" jest potrzebna, aby mieć pewność, że nie zostanie skopiowane dowiązanie symboliczne)</comment>
 # <i>cp -L /etc/resolv.conf /mnt/gentoo/etc/resolv.conf</i>
 </pre>
@@ -67,7 +67,7 @@ sieci.
 </body>
 </subsection>
 <subsection>
-<title>Montowanie systemu plików proc</title>
+<title>Montowanie systemu plików proc.</title>
 <body>
 	   	 
 <p>
@@ -82,7 +82,7 @@ instalacji używania informacji dostarczanych przez jądro także w środowisku 
 </body>
 </subsection>
 <subsection>
-<title>Zmiana środowiska</title>
+<title>Zmiana środowiska.</title>
 <body>
 
 <p>
@@ -97,8 +97,8 @@ do systemu instalowanego (czyli na założone partycje).
 Zmiana odbywa sie w trzech etapach. Najpierw zamieniamy katalog główny
 z <path>/</path> (na medium instalacyjnym) na <path>/mnt/gentoo</path>
 (na założonych partycjach) poleceniem <c>chroot</c>. Następnie tworzymy środowisko
-używając <c>env-update</c>, które w istocie tworzy zmienne środowiskowe.
-Ostatecznie, wczytujemy te zmienne do pamięci poleceniem <c>source</c>.
+używając <c>env-update</c>, które w istocie wyeksportuje nowe zmienne środowiskowe.
+Ostatecznie wczytujemy te zmienne do pamięci poleceniem <c>source</c>.
 </p>
 
 <pre caption = "Zmiana środowiska poprzez chroot">
@@ -117,15 +117,15 @@ jeszcze kilka rozdziałów podręcznika instalacji :-)
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Aktualizacja drzewa Portage</title>
+<title>Opcjonalnie: Aktualizacja drzewa Portage.</title>
 <body>
 
 <p>
-Jeśli nie zainstalowałeś w poprzednim rozdziale migawki Portage, 
-musisz pobrać ostatnią migawkę Portage z Internetu. 
-<c>emerge --sync</c> zrobi to dla Ciebie. Inni użytkownicy powinni 
-pominąć tą sekcję i przejść do 
-<uri link="#configure_USE">Konfiguracji zmiennych USE</uri>.
+Jeśli nie zainstalowałeś wcześniej snapshota, 
+musisz pobrać najnowszą wersję drzewa Portage z Internetu. 
+Polecenie <c>emerge --sync</c> zrobi to za Ciebie. Użytkownicy z zainstalowanym
+drzewem powinni  pominąć tą sekcję i przejść od razu do <uri
+link="#configure_USE">Konfiguracji zmiennych USE</uri>.
 </p>
 
 <pre caption="Aktualizowanie drzewa Portage">
@@ -133,9 +133,10 @@ pominąć tą sekcję i przejść do
 </pre>
 
 <p>
-Portage używa protokołu RSYNC uaktualniające drzewo Portage. Jeżeli powyższe
-polecenie zakończy się niepowodzeniem przez firewalla, użyj <c>emerge-websync</c>, który
-ściąga i instaluje migawke portage i używa do tego celu protokołu HTTP.
+Portage używa protokołu RSYNC do uaktualniania drzewa pakietów. Jeżeli powyższe
+polecenie zakończy się niepowodzeniem (np. z winy firewall'a) użyj polecenia
+<c>emerge-websync</c>, które ściąga i instaluje snapshot drzewa Portage przy
+pomocy protokołu HTTP.
 </p>
 
 <pre caption="Aktualizacja drzewa Portage poprzez emerge-webrsync">
@@ -143,23 +144,24 @@ polecenie zakończy się niepowodzeniem przez firewalla, użyj <c>emerge-websync
 </pre>
 
 <p>
-Jeśli otrzymałeś ostrzeżenie, że dostępna jest nowa wersja Portage i powinieneś dokonać
-aktualizacji, możesz je zignorować. Portage zostanie zaktualizowane nieco później.
+Jeśli otrzymałeś ostrzeżenie, że dostępna jest nowa wersja programu Portage i
+powinieneś dokonać jego aktualizacji, możesz je zignorować. Portage zostanie
+zaktualizowane nieco później.
 </p>
 
 </body>
 </subsection>
 <subsection id="configure_USE">
-<title>Konfiguracja zmiennych USE</title>
+<title>Konfiguracja zmiennych USE.</title>
 <body>
 
 <p>
-<c>USE</c> to jedna z najbardziej znaczących zmiennych dostępnych użytkownikom Gentoo.
-Pewne programy mogą być kompilowane z lub bez dodatkowej obsługi niektórych
-pozycji. Na przykład dopuszczalne jest budowanie ze wsparciem dla gtk lub qt.
-Niektóre możemy z kolei wyposażyć w obsługę SSL, bądź też jej pozbawić. Jeszcze inne
-mogą być kompilowane ze wsparciem bufora ramki (svgalib) zamiast X11
-(X-server).
+<c>USE</c> to jedna z najbardziej znaczących zmiennych dostępnych dla
+użytkowników Gentoo. Pewne programy mogą być kompilowane z, lub bez dodatkowej
+obsługi niektórych pozycji. Na przykład dopuszczalne jest budowanie ze wsparciem
+dla gtk lub qt. Niektóre możemy z kolei wyposażyć w obsługę SSL, bądź też jej
+pozbawić. Jeszcze inne mogą być kompilowane ze wsparciem bufora ramki (svgalib)
+zamiast X11 (X-server).
 </p>
 
 <p>
@@ -171,10 +173,10 @@ być budowany. I to właśnie jest moment, kiedy <c>USE</c> wkracza do gry.
 
 <p>
 W zmiennych <c>USE</c> definiujesz słowa kluczowe zamieniane następnie na
-opcje kompilacji. Na przykład, <e>ssl</e> włączy obsługę SSL w programach,
-które go wykorzystują. <e>-X</e> usunie wsparcie dla X (zwróć uwagę na znak
+opcje kompilacji. Na przykład dodanie do zmiennej <e>ssl</e> włączy obsługę SSL w programach,
+które go wykorzystują. <e>-X</e> usunie wsparcie dla serwera X (zwróć uwagę na znak
 minusa z przodu). Ustawienie <e>gnome gtk -kde -qt</e> zaowocuje wsparciem dla GNOME
-(oraz gtk), ale nie dla KDE (jak również qt), przygotowując znakomicie grunt
+(oraz gtk), ale nie dla KDE (i związanym z nim ściścle qt), przygotowując znakomicie grunt
 pod GNOME.
 </p>
 
@@ -182,17 +184,17 @@ pod GNOME.
 Domyślne ustawienia <c>USE</c> znajdują się w
 <path>/etc/make.profile/make.defaults</path>. To, co umieścisz w
 <path>/etc/make.conf</path> jest wyliczane na ich podstawie. Jeśli
-dodasz coś do <c>USE</c>, jest ono dodawane także do domyślnej listy. Gdy coś
+dodasz coś do <c>USE</c> to jest ono dodawane także do domyślnej listy. Gdy coś
 z <c>USE</c> usuniesz (umieszczając znak minusa przed nazwą)
 jest z niej usuwane (jeśli w ogóle się tam znajdowało).
 <e>Nigdy</e> nie zastępuj niczego wewnątrz katalogu <path>/etc/make.profile</path>;
-zostałoby to nadpisane przy aktualizacji Portage!
+takie nieregulaminowe zmiany zostaną szybko nadpisane - przy najbliższej aktualizacji Portage!
 </p>
 
 <p>
-Pełny opis dotyczący <c>USE</c> znajduje się w drugiej części Podręcznika Gentoo,
-<uri link="?part=2&amp;chap=2">Flagi USE</uri>.
-Kompletną charakterystykę dostępnych flag USE posiadasz już w pliku
+Pełny opis dotyczący <c>USE</c> znajduje się w drugiej części Podręcznika
+Gentoo, w rozdziale <uri link="?part=2&amp;chap=2">Flagi USE</uri>.
+Kompletną charakterystykę dostępnych flag USE znajdziesz w pliku
 <path>/usr/portage/profiles/use.desc</path>.
 </p>
 
@@ -217,8 +219,8 @@ USE="-gtk -gnome qt kde dvd alsa cdr"
 <p>
 Najprawdopodobniej będziesz używał tylko jedej albo dwóch lokalizacji na swoim systemie.
 Po kompilacji <c>glibc</c> dostępne są wszystkie lokalizacje jakie zostały stworzone.
-Możesz teraz aktywować flagę USE <c>userlocales</c> i zdecydować w pliku <path>/etc/locales.build</path>, których lokali będziesz tak
-naprawde potrzebował.
+Możesz teraz aktywować flagę USE <c>userlocales</c> i zdecydować w pliku
+<path>/etc/locales.build</path>, których lokali będziesz tak naprawdę potrzebował.
 </p>
 
 <pre caption="Aktywacja flagi userlocales specjalnie dla glibc">
@@ -233,61 +235,62 @@ Teraz zdecyduj, których lokali będziesz używał:
 <pre caption="nano -w /etc/locales.build">
 en_US/ISO-8859-1
 en_US.UTF-8/UTF-8
-de_DE/ISO-8859-1
-de_DE@euro/ISO-8859-15
+pl_PL/ISO-8859-2
+pl_PL.UTF-8/UTF-8
 </pre>
 
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Użycie kompilacji rozproszonej</title>
+<title>Opcjonalnie: Użycie kompilacji rozproszonej.</title>
 <body>
 
 <p>
 Jeśli jesteś zainteresowany wykorzystaniem zbioru komputerów do pomocy w kompilowaniu
 systemu zerknij na nasz <uri
 link="/doc/en/distcc.xml">Przewodnik DistCC</uri>. Poprzez użycie <c>distcc</c> możesz
-wykorzystać do instalacji moc obliczeniową kilku maszyn.
+wykorzystać do instalacji moc obliczeniową kilku maszyn i znacznie przyspieszyć
+cały proces.
 </p>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Różnice między Stage1, Stage2 i Stage3</title>
+<title>Różnice między Stage1, Stage2 i Stage3.</title>
 <body>
 
 <p>
 Usiądź teraz wygodnie i przemyśl poprzednie czynności. Prosiliśmy Cię
 o wybranie <e>stage1</e>, <e>stage2</e> lub <e>stage3</e> i ostrzegaliśmy,
-że ten wybór decyduje o dalszym przebiegu instalacji. W tym miejscu po raz pierwszy
-określa on kolejne działania.
+że ten wybór zadecyduje o dalszym przebiegu instalacji. W tym miejscu po raz pierwszy
+ma on wpływ na Twoje działania.
 </p>
 
 <ul>
 <li>
-  Jeśli wybrałeś <e>stage1</e>, musisz wykonać <e>obydwa</e> kroki w tym rozdziale
-  (zaczynając od <uri link="#doc_chap3"> Przechodzenia ze Stage1
-  do Stage2</uri>)
+  Jeśli wybrałeś <e>stage1</e> musisz wykonać <e>obydwa</e> kroki opisane w tym
+  rozdziale   (zaczynając od <uri link="#doc_chap3">Przechodzenia ze Stage1
+  do Stage2</uri>).
 </li>
 <li>
   Gdy za początek instalacji obrałeś <e>stage2</e> możesz pominąć tylko pierwszy krok
   i od razu przejść do drugiego (<uri link="#doc_chap4">Przechodzenie
-  ze Stage2 do Stage3</uri>)
+  ze Stage2 do Stage3</uri>).
 </li>
 <li>
-  Jeżeli jednak wytypowałeś <e>stage3</e> (z lub bez GRP), możesz pominąć
-  obydwa kroki i przejść do następnego rozdziału: 
-  <uri link="?part=1&amp;chap=7">Konfiguracja jądra</uri>
+  Jeżeli jednak wytypowałeś <e>stage3</e> (z, lub bez GRP), możesz pominąć
+  obydwa kroki i przejść do następnego rozdziału, czyli
+  <uri link="?part=1&amp;chap=7">Konfiguracji jądra</uri>.
 </li>
 </ul>
 
 </body>
 </section>
 <section>
-<title>Przejście ze Stage1 do Stage2</title>
+<title>Przechodzenie ze Stage1 do Stage2.</title>
 <subsection>
-<title>Wprowadzenie do procesu bootstrap</title>
+<title>Wprowadzenie do procesu bootstrap.</title>
 <body>
 
 <p>
@@ -314,14 +317,14 @@ link="#bootstrap">Bootstrap systemu</uri>.
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: wcześniejsze pobranie źródeł</title>
+<title>Opcjonalnie: Wcześniejsze pobranie źródeł.</title>
 <body>
 
 <p>
 Jeśli nie przekopiowałeś uprzednio kodu źródłowego, skrypt bootstrap
 pobierze wszystkie potrzebne pliki. Chyba nie trzeba przypominać, że
 do tego wymagane jest działające połączenie sieciowe ;) Jeśli chcesz
-najpierw ściągnąć źródła a potem wykonać bootstrap systemu (np. dlatego,
+najpierw ściągnąć źródła, a dopiero potem wykonać bootstrap systemu (np. dlatego,
 że nie chcesz mieć otwartego połaczenia z siecią podczas kompilacji)
 użyj przełącznika <e>-f</e> skryptu bootstrap, co spowoduje pobranie
 wszystkich niezbędnych plików.
@@ -335,7 +338,7 @@ wszystkich niezbędnych plików.
 </body>
 </subsection>
 <subsection id="bootstrap">
-<title>Bootstrap systemu</title>
+<title>Bootstrap systemu.</title>
 <body>
 
 <p>
@@ -358,9 +361,9 @@ do Stage3</uri>.
 </subsection>
 </section>
 <section>
-<title>Przechodzenie ze Stage2 do Stage3</title>
+<title>Przechodzenie ze Stage2 do Stage3.</title>
 <subsection>
-<title>Wprowadzenie</title>
+<title>Wprowadzenie.</title>
 <body>
 
 <p>
@@ -380,11 +383,11 @@ do niczego zmuszać.
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Przejrzenie zadań do wykonania</title>
+<title>Opcjonalnie: Przejrzenie zadań do wykonania.</title>
 <body>
 
 <p>
-Jeśli chcesz wiedzieć, jakie pakiety zostaną zainstalowane, wykonaj polecenie
+Jeśli chcesz wiedzieć, jakie pakiety zostaną zainstalowane wykonaj polecenie
 <c>emerge --pretend system</c>. Otrzymasz spis wszystkich programów do zbudowania.
 Ponieważ ta lista jest całkiem spora, powinieneś użyć programu stronicującego
 w rodzaju <c>less</c> lub <c>more</c> aby poruszać się w górę i w dół.
@@ -415,13 +418,13 @@ potrzebnych plików.
 </body>
 </subsection>
 <subsection>
-<title>Budowanie systemu</title>
+<title>Budowanie systemu.</title>
 <body>
 
 <p>
-Aby rozpocząć budowanie systemu, wykonaj <c>emerge system</c>.
-Potem zrób coś, co zaprzątnie Twoją uwagę, gdyż ten etap jest
-naprawdę czasochłonny.
+Aby rozpocząć budowanie systemu wpisz polecenie <c>emerge system</c>. A potem
+zajmij się czymkolwiek - odrabianiem lekcji, czytaniem książek, możesz też
+posprzątać pokój - cały ten proces zajmie mnóstwo czasu.
 </p>
 
 <pre caption = "Budowanie systemu">
@@ -430,9 +433,10 @@ naprawdę czasochłonny.
 
 <p>
 Póki co możesz bezpiecznie zignorować ostrzeżenia o zaktualizowanych plikach
-konfiguracyjnych (i potrzebie uruchomienia <c>etc-update</c>). Kiedy Twoje Gentoo
-zostanie zainstalowane i uruchomione, przeczytaj naszą dokumentację dotyczącą
-<uri link="?part=3&amp;chap=2#doc_chap3">Ochrony plików konfiguracyjnych</uri>.
+konfiguracyjnych (i potrzebie uruchomienia <c>etc-update</c>). W przyszłości,
+kiedy Twoje Gentoo zostanie już zainstalowane i uruchomione przeczytaj naszą
+dokumentację dotyczącą <uri link="?part=3&amp;chap=2#doc_chap3">Ochrony plików
+konfiguracyjnych</uri>.
 </p>
 
 <p>
