@@ -6,7 +6,7 @@
 <!-- Title: Instalacja jądra dla AMD64 -->
 <!-- Status: Ukończono -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-amd64-kernel.xml,v 1.2 2004/07/12 09:50:04 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-amd64-kernel.xml,v 1.3 2004/07/12 11:02:36 sekretarz Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
@@ -38,7 +38,7 @@ do <path>/etc/localtime</path> używając <c>ln</c>:
 
 <p>
 Sercem każdej dystrybucji jest jądro Linuxa. Jest ono powłoką pomiedzy programami użytkownika i sprzętem. 
-Gentoo udostępnia swoim użytkownikom kilka źródeł jąder. Pełna lista wraz z opisem dostępna jest w 
+Gentoo udostępnia swoim użytkownikom kilka źródeł jąder. Ich pełną listę wraz z opisem możesz znaleźć w 
 <uri link="/doc/en/gentoo-kernel.xml">Podręczniku Jąder Linuxa</uri>
 </p>
 
@@ -79,7 +79,7 @@ zmień je przed kontynuacją:
 <p>
 Teraz przyszedł czas na konfigurację i kompilację źródeł Twojego jądra.
 Do tego celu możesz użyć <c>genkernela</c>, który zbuduje podstawowe jądro, takie
-jakiego używa LiveCD. Najpierw jednak wytłumaczymy ręczną konifgurację, ponieważ
+jakie używa LiveCD. Najpierw jednak wytłumaczymy ręczną konfigurację, ponieważ
 jest to najlepszy sposób na optymilizację swojego środowiska.
 </p>
 
@@ -105,16 +105,15 @@ nie bedziesz pamietał jakie to było trudne ;)
 </p>
 
 <p>
-Jednak, jadna rzecz <e>jest</e> prawdziwa: musisz znać swój system zanim 
+Jednak, jadno <e>jest</e> prawdą: musisz dobrze znać swój system zanim 
 zaczniesz ręczną konfigurację jądra. Wiekszość informacji możesz zdobyć czytając
 zawartość <path>/proc/pci</path> (albo używając <c>lspci</c> jeżeli jest dostępne).
-Możesz także uruchomić <c>lsmod</c>, aby zobaczyć jakich modułów używa LiveCD (może
-to być dobrą podpowiedzią co należy włączyć).
+Możesz także uruchomić <c>lsmod</c>, aby zobaczyć jakich modułów używa LiveCD (jest to dobrą podpowiedzią co należy włączyć).
 </p>
 
 <p>
 Teraz przejdź do katalogu, w którym znajdują się źródła jądra i wykonaj <c>make menuconfig</c>. Odpali
-się menu konfiguracyjne oparte o ncurses.
+się menu konfiguracyjne oparte na ncurses.
 </p>
 
 <pre caption="Wywołanie menuconfiga">
@@ -135,8 +134,8 @@ niepoprawnie bez dodatkowych udogodnień).
 <body>
 
 <p>
-Na początku, musisz uaktywnić używanie rozwijanego oraz eksperymentalnego kodu/sterowników.
-Potrzebujesz tego, w innym przypdaku niektóry bardzo ważny kod/sterowniki nie pokażą się w menu: 
+Na początku, musisz uaktywnić używanie rozwijanego oraz eksperymentalnego kodu/sterowników,
+aby niektóre bardzo ważne sterowniki pokazały się w menu:
 </p>
 
 <pre caption="Wybór eksperymentalnego kodu/sterowników">
@@ -145,7 +144,7 @@ Code maturity level options ---&gt;
 </pre>
 
 <p>
-Teraz idź do <c>File Systems</c> i wybierz wspomaganie dla systemów plików, których używasz.
+Teraz idź do <c>File Systems</c> i wybierz wsparcie dla systemów plików, których używasz.
 <e>Nie</e> kompiluj ich jako modułów, inaczej Gentoo nie będzie mogło zamontować Twoich partycji.
 Wybierz także <c>Virtual memory</c>, <c>/proc file system</c>, 
 <c>/dev file system</c> + <c>Automatically mount at boot</c>:
@@ -229,7 +228,7 @@ Kiedy kompilacja zakończy się, skopiuj obraz jądra do <path>/boot</path>:
 </pre>
 
 <p>
-Dobrze jest też skopiować plik konfiguracyjny jądra do <path>/boot</path>, na wszelki wypadek :)
+Na wszelki wypadek, dobrze jest też skopiować plik konfiguracyjny jądra do <path>/boot</path> :)
 </p>
 
 <pre caption="Archiwizacja pliku konfiguracyjnego">
@@ -249,12 +248,12 @@ Teraz kontynuuj z <uri link="#kernel_modules">Konfiguracja Modułów Jądra</uri
 
 <p>
 Skoro czytasz tą sekcję, zapewnie zdecydowałeś się skorzystać ze 
-skryptu <c>genkernel</c> aby automatycznie skonfigurował Twoje jądro.
+skryptu <c>genkernel</c> do automatycznej konfiguracji jądra.
 </p>
 
 <p>
-Po zainstalowaniu źródeł jądra, nadszedł czas na ich kompilację używając skryptu <c>genkernel</c>
-do automatycznego skompilowania jądra dla Ciebie. <c>Genkernel</c> dokonuje podobnej konfiguracji
+Po zainstalowaniu źródeł jądra, nadszedł czas na ich kompilację używając skryptu <c>genkernel</c>, który
+automatycznie skompiluje za Ciebie jądro. <c>Genkernel</c> dokonuje podobnej konfiguracji
 z jakiej korzysta LiveCD. Oznacza to, że jeżeli go użyjesz, Twój system będzie automatycznie wykrywał sprzęt
 podczas startu systemu. Ponieważ genkernel nie wymaga żadnej ręcznej ingerencji w konfigurację jądra,
 jest on idealnym rozwiązaniem dla użytkowników, którzy nie lubią samodzielnej kompilacji jądra.
@@ -269,7 +268,7 @@ Zatem, do dzieła. Zacznijmy od instalacji naszego skryptu:
 </pre>
 
 <p>
-Skompiluj teraz swoje jądro poleceniem <c>genkernel all</c>.
+Teraz skompiluj swoje jądro poleceniem <c>genkernel all</c>.
 Zwróć uwagę, iż <c>genkernel</c> aktywuje wsparcie dla niemal całego
 obsługiwanego sprzętu, wobec czego kompilacja może trwać dosyć długo!
 </p>
@@ -287,7 +286,7 @@ systemu plików (<e>Nie</e> jako moduł).
 <p>
 Gdy proces dobiegnie końca,gotowe będzie jądro, pełen zestaw modułów oraz <e>dysk startowy</e> (initrd).
 Będziemy używać jądra oraz initrd kiedy będziemy konfigurować menedżer uruchamiania. Zapisz sobie ich nazwy, aby
-wiedzieć co wpisać w jego pliku konfiguracyjnym. Initrd zostanie załadowany od razy po starcie systemu i 
+wiedzieć co wpisać w jego pliku konfiguracyjnym. Initrd zostanie załadowany od razu po starcie systemu i 
 przeprowadzi automatyczne wykrywanie sprzętu (tak jak na LiveCD).
 </p>
 
