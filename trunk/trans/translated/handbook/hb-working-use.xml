@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.7 -->
+<!-- Orig revision: 1.11 -->
 <!-- Translator: Sharak <sharak@rybnet.pl> -->
 <!-- Title: Flagi USE -->
 <!-- Status: Ukończono -->
@@ -10,7 +10,7 @@
 -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.4 2004/04/20 18:06:00 sharak Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.5 2004/04/21 08:14:14 sharak Exp $ -->
 
 <sections>
 <section>
@@ -95,7 +95,7 @@ dokonania dezycji specyficznych dla danego pakietu.
 </ul>
 
 <p>
-Lista dostępnych globalnych flag USE jest na stronie <uri
+Lista dostępnych globalnych flag USE jest dostępna <uri
 link="/dyn/use-index.xml">online</uri> lub też lokalnie w pliku
 <path>/usr/portage/profiles/use.desc</path>. Krótki (<e>bardzo</e> 
 niekompletny)
@@ -149,8 +149,8 @@ slang
 </pre>
 
 <p>
-Jak możesz zauważyć, wymienione wyżej zmienne zawierają już dość dużo 
-słów kluczowych. Pamiętaj, <b>nie</b> dokonuj zmian w pliku 
+Jak możesz zauważyć, domyślny zestaw zawiera już dość dużo słów
+kluczowych. Pamiętaj, <b>nie</b> dokonuj zmian w pliku 
 <path>/etc/make.profile/make.defaults</path> aby dostosować zmienną 
 <c>USE</c> do Twoich potrzeb: zmiany te zostaną cofnięte podczas 
 aktualizacji Portage!
@@ -234,7 +234,7 @@ motif           x11-libs/openmotif
 <p>
 Oczywiście istnieje pierwszeństwo w przydzielaniu priorytetów konkretnym 
 flagom USE. Nie ma sensu deklarować zmiennej <c>USE="-java"</c> tylko po 
-to, aby zobaczyć, że <c>java</c> jest i tak zdeklarowana. Pierwszeństwo 
+to, aby zobaczyć, że <c>java</c> i tak zostanie użyta. Pierwszeństwo 
 dla flag USE jest ustalone przez odpowiedni priorytet (pierwszy ma 
 najniższy priorytet):
 </p>
@@ -319,7 +319,7 @@ pakietach zwane <c>etcat</c>. Znajduje się ono w pakiecie
 <p>
 Teraz uruchom <c>etcat</c> z argumentem <c>uses</c> aby przejrzeć flagi 
 USE dla konkretnego pakietu. Dla przykładu sprawdźmy pakiet 
-<c>gnumeric</c> package:
+<c>gnumeric</c>:
 </p>
 
 <pre caption="Użycie etcat do przeglądania użytych flag USE:">
