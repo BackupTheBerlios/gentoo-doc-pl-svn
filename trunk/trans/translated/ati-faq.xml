@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/ati-faq.xml,v 1.1 2004/11/30 23:07:42 rane Exp $ -->
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+
+<guide link="/doc/en/ati-faq.xml">
+<title>FAQ do kart ATi w Gentoo Linux</title>
+
+<abstract>
+To FAQ powinno pomóc użytkownikom kart ATi w pozbyciu się kilku często występujących problemów związanych z DRI i X11.
+</abstract>
+
+<license/>
+
+<version>1.0.6</version>
+
+<chapter>
+<title>Obsługa Sprzętu</title>
+<section>
+<title>Czy moja karta ATi jest obsługiwana?</title>
+<body>
+
+<p>
+Prawie wszystkie karty ATi są obsługiwane przez <uri link="http://www.freedesktop.org/Software/xorg">xorg-x11</uri>, przynajmniej jeśli chodzi o przyspieszenie grafiki 2D. Obsługa grafiki 3D jest dostarczana dzięki <uri link="http://dri.sf.net">projektowi DRI</uri>, który już jest zawarty w xorg-x11, lub przez zamnięte sterowniki<uri link="http://mirror.ati.com/support/drivers/linux/radeon-linux.html"> dostarczane </uri> przez ATi.
+</p>
+
+<table>
+<tr>
+  <th>GPU</th>
+  <th>Nazwa zwyczajowa</th>
+  <th>Obsługa przez</th>
+</tr>
+<tr>
+  <ti>rage128</ti>
+  <ti>Rage128</ti>
+  <ti>xorg DRI</ti>
+</tr>
+<tr>
+  <ti>r100</ti>
+  <ti>Radeon7xxx, Radeon64</ti>
+  <ti>xorg DRI</ti>
+</tr>
+<tr>
+  <ti>r200, r250, r280</ti>
+  <ti>Radeon8500, Radeon9000, Radeon9200</ti>
+  <ti>xorg DRI, ATI DRI</ti>
+</tr>
+<tr>
+  <ti>r300, i późniejsze</ti>
+  <ti>Radeon 9500 - 9800</ti>
+  <ti>xorg 2D, ATI DRI</ti>
+</tr>
+</table>
+
+</body>
+</section>
+<section>
+<title>
+Mam kartę typu All-In-Wonder/Vivo. Czy funkcje multimedialne są obsługiwane?
+</title>
+<body>
+
+<p>
+Obsługę funkcji multimedialnych dostarcza <uri link="http://gatos.sf.net">projekt GATOS</uri>, te sterowniki zostaną niedługo wcielone do xorg-x11.
+</p>
+
+</body>
+</section>
+<section>
+<title>Nie używam systemu zgodnego z x86. Jaki mam wybór?</title>
+<body>
+
+<p>
+Masz prawie taką samą obsługę x11 na platformach ppc i alpha, ale nie możesz używać zamkniętych sterowników ATi. Oznacza to, że nie wykorzystasz funkcji 3d kart r300 i późniejszych. Jeśli masz taką kartę i chcesz by była ona obsługiwana przez x11 powinieneś się skontaktować z <uri link="http://www.ati.com">ATI</uri> i poprosić ich by otworzyli specyfikację.
+</p>
+
+</body>
+</section>
+<section>
+<title>Posiadam laptopa. Czy moja karta "mobility" jest obsługiwana?</title>
+<body>
+
+<p>
+Powinna być, ale może wystąpić błąd konfiguracji związany z OEM PCI id, który występuje na tych chipach. W większości przypadków będziesz musiał sam napisać plik konfiguracyjny lub użyć <c>xorgconfig</c>.
+</p>
+
+</body>
+</section>
+</chapter>
+
+<chapter>
+<title>Instalacja</title>
+<section>
+<title>Paczki</title>
+<body>
+
+<ul>
+
+  <li>Ebuild <c>xorg-x11</c> dostarcza implementacji X11.</li>
+
+  <li>Dla jąder z serii 2.6.x moduły jądra i dri mogą być budowane razem z jądrem lub być dostarczone przez ebuild <c>x11-drm</c></li>
+
+  <li>Dla jąder z serii 2.4.x trzeba użyć ebuilda <c>x11-drm</c></li>
+
+  <li>Sterowniki ATi dostarczane przez ebuild <c>ati-drivers</c> zawierają zarówno zamknięte sterowniki ATi jak i moduły jądra zarówno dla jąder 2.4.x jak i 2.6.x</li>
+
+</ul>
+
+<impo>
+Twoje jądro musi posiadać obsługę agpgart. Jeśli używasz jądra 2.4.x, lub planujesz użyć ebuilda x11-drm nie powinieneś mieć modułów DRM wkompilowanych w jądro. 
+</impo>
+
+<pre caption="Instalacja sterowników">
+<codenote>Jeśli po prostu chcesz użyć sterowników Rage128 instalowanych razem z x11</codenote>
+# <i>VIDEO_CARDS="rage128" emerge x11-drm</i>
+<codenote>Aby mieć obsługę kart Radeon</codenote>
+<codenote>(r100, r200, r250, ale jeszcze nie r300)</codenote>
+# <i>VIDEO_CARDS="radeon" emerge x11-drm</i>
+<codenote>By zainstalować zamknięte sterowniki ATi</codenote>
+<codenote>(tylko r200,r250 i r300)</codenote>
+# <i>emerge ati-drivers</i>
+<codenote>By zainstalować X11, ale nie instalować</codenote>
+<codenote>żadnych modułów jądra</codenote>
+# <i>emerge xorg-x11</i>
+</pre>
+
+</body>
+</section>
+<section>
+<title>Konfiguracja</title>
+<body>
+
+<p>
+Sugeruje się użycie <c>xorgcfg</c>, <c>xorgconfig</c> lub bezpośrednie skorzystanie z opcji autokonfiguracji Xorg:
+</p>
+
+<pre caption="autokonfiguracja X">
+# <i>X -configure</i>
+</pre>
+
+<p>
+Aby znaleźć więcej informacji o samym pliku konfiguracyjnym <c>xorg.conf</c> zajrzyj na stronę <uri link="http://www.gentoo.org/doc/en/desktop.xml">Zasoby dokumentacji Gentoo Desktop</uri>.
+</p>
+
+<note>
+Użytkownicy ati-drivers mogą także użyć <c>fglrxconfig</c>.
+</note>
+
+<impo>
+Użytkownicy PPC mogą użyć <c>Xautoconf</c>, osobnego konfiguratora po zainstalowaniu ebuilda <c>Xautoconf</c>, ale to nie jest niezbędne.
+</impo>
+
+</body>
+</section>
+</chapter>
+</guide>
