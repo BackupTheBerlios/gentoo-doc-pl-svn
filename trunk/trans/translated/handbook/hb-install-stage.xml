@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.70 -->
+<!-- Orig revision: 1.76 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Przygotowanie plików instalacyjnych Gentoo -->
 <!-- Status: Release -->
@@ -9,12 +9,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.14 2004/12/11 22:05:38 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.15 2004/12/22 14:36:56 rane Exp $ -->
 
 <sections>
 
-<version>1.67</version>
-<date>2004-11-09</date>
+<version>1.71</version>
+<date>2004-12-18</date>
 
 <section>
 <title>Instalowanie tarballa stage.</title>
@@ -462,6 +462,12 @@ będzie to:
 <comment># Użytkownicy AMD64, którzy chcą mieć natywny system 64bit nie powinni używać athlon-xp</comment>
 -march=athlon-xp
 </pre>
+
+<p>
+Prosimy, upewnijcie się, że macie <e>poprawnie</e> ustawiony CHOST. Na przykład
+ustawienie CHOST dla sparc64 to <c>sparc-unknown-linux-gnu</c>, a nie
+<c>sparc64-unknown-linux-gnu</c>!
+</p>
 
 <p>
 Drugim jest flaga <c>-O</c> (to jest duże O, nie zero), która określa 

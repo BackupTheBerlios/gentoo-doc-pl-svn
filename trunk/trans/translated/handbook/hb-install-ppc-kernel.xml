@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.14 -->
+<!-- Orig revision: 1.15 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Konfiguracja jądra dla PPC -->
 <!-- Status: Release -->
@@ -9,12 +9,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc-kernel.xml,v 1.6 2004/12/11 11:48:19 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc-kernel.xml,v 1.7 2004/12/22 14:36:56 rane Exp $ -->
 
 <sections>
 
-<version>1.11</version>
-<date>2004-09-01</date>
+<version>1.12</version>
+<date>2004-12-12</date>
 
 <section>
 <title>Strefa czasowa.</title>
@@ -156,16 +156,16 @@ Następnie przejdź do <c>File Systems</c> i wybierz wsparcie dla systemów plik
 których zamierzasz używać. Jeśli tego zaniedbasz Gentoo nie będzie w stanie
 zamontować partycji, a czasem nawet się nie uruchomi. Pamiętaj również, aby
 włączać te sterowniki na stałe do jądra, broń Boże nie kompiluj ich jako
-modułów. Przy okazji zaznacz też <c>Virtual memory</c>, <c>/proc file system</c>
-i <c>/dev file system</c> + <c>Automatically mount at boot</c>:
+modułów. Przy okazji zaznacz też <c>Virtual memory</c> i <c>/proc file
+system</c>.
 </p>
 
 <pre caption="Wybór potrzebnych systemów plików">
 File systems ---&gt;
   Pseudo Filesystems ---&gt;
     [*] /proc file system support
-    [*] /dev file system support (OBSOLETE)
-    [*]   Automatically mount at boot
+    [ ] /dev file system support (OBSOLETE)
+    [ ]   Automatically mount at boot
     [*] Virtual memory file system support (former shm fs)
 
 <comment>(Wybierz jedną lub kilka z tych opcji zależnie od używanych systemów plików.)</comment>
@@ -331,6 +331,15 @@ Następnie uruchom <c>modules-update</c>, aby potwierdzić wprowadzone do pliku
 <pre caption="Uruchamianie modules-update">
 # <i>modules-update</i>
 </pre>
+
+<p>
+Od wersji 2004.3 zalecamy używanie udev zamiast devfs. Żeby Twój system działał
+musisz zatem emergować udev:
+</p>
+
+<pre caption="Emerging udev">
+# <i>emerge udev</i>
+<pre>
 
 <p>
 Kiedy skończysz przejdź do rozdziału <uri link="?part=1&amp;chap=8">Konfiguracja

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.56 -->
+<!-- Orig revision: 1.66 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Instalacja systemu podstawowego -->
 <!-- Status: Release -->
@@ -10,12 +10,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.20 2004/12/14 17:57:18 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.21 2004/12/22 14:36:56 rane Exp $ -->
 
 <sections>
 
-<version>1.55</version>
-<date>2004-11-06</date>
+<version>1.60</version>
+<date>2004-12-16</date>
 
 <section>
 <title>Praca w chroot.</title>
@@ -124,7 +124,7 @@ jeszcze kilka rozdziałów podręcznika instalacji :-)
 Jeśli nie zainstalowałeś wcześniej snapshota, 
 musisz pobrać najnowszą wersję drzewa Portage z Internetu. 
 Polecenie <c>emerge --sync</c> zrobi to za Ciebie. Użytkownicy z zainstalowanym
-drzewem powinni  pominąć tą sekcję i przejść od razu do <uri
+drzewem powinni pominąć tą sekcję i przejść od razu do <uri
 link="#configure_USE">Konfiguracji zmiennych USE</uri>.
 </p>
 
@@ -349,6 +349,19 @@ czasu zanim się zakończy.
 
 <pre caption = "Bootstrap systemu">
 # <i>cd /usr/portage</i>
+# <i>scripts/bootstrap.sh</i>
+</pre>
+
+<p>
+Jeśli ustawiłeś flagę USE <c>nptl</c> ponownie uruchomienie <c>bootstrap.sh</c>
+spowoduje błąd związany z blokowaniem <c>linux26-headers</c> przez
+<c>linux-headers</c>. Kiedy otrzymasz taki błąd usuń pakiet <c>linux-headers</c>
+i spróbuj ponownie:
+</p>
+
+<pre caption="Usuwanie linux-headers z systemu">
+#  <i>emerge -C linux-headers</i>
+# <i>emerge --oneshot --nodeps linux26-headers</i>
 # <i>scripts/bootstrap.sh</i>
 </pre>
 
