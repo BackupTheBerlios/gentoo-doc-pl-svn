@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.14 -->
+<!-- Orig revision: 1.19 -->
 <!-- Translator: Aye <aye@napisy.org> -->
 <!-- Title: Instalacja dodatkowych narzędzi -->
 <!-- Status: Ukończono -->
-
+<!-- Update from 1.14 to 1.19: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-tools.xml,v 1.7 2004/01/19 00:22:20 swierszczu Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-tools.xml,v 1.8 2004/07/11 14:36:29 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -34,10 +34,10 @@ w Twoim systemie. Mechanizmem tym zarządza <e>program logujący</e>.
 
 <p>
 Gentoo oferuje kilka różnych programów logujących: <c>sysklogd</c> -
-tradycyjny zestaw logujących demonów, <c>msyslog</c> - elastyczny
-program o modularnej budowie, <c>syslog-ng</c> - zaawansowany program
-logujący oraz <c>metalog</c> charakteryzujący się dużą liczbą opcji
-konfiguracyjnych.
+tradycyjny zestaw logujących demonów, <c>syslog-ng</c> - 
+zaawanosowany program logujący oraz <c>metalog</c> charakteryzujący się dużą liczbą opcji
+konfiguracyjnych. W Portage możesz znaleźć cały wachlarz programów logujących i nie tylko - 
+liczba naszych pakietów rośnie z każdym dniem.
 </p>
 
 <p>
@@ -53,7 +53,7 @@ programu <c>syslog-ng</c>:
 </p>
 
 <pre caption="Instalacja programu logującego">
-# <i>emerge --usepkg syslog-ng</i>
+# <i>emerge syslog-ng</i>
 # <i>rc-update add syslog-ng default</i>
 </pre>
 
@@ -81,14 +81,14 @@ wymagają dodatkowej konfiguracji (wykonywanej przez polecenie:
 programu użyć, wybierz <c>vixie-cron</c>.
 </p>
 
-<note>
-Jeżeli instalujesz Gentoo używając prekompilowanych pakietów, użyj
-<c>vcron</c> zamiast <c>vixie-cron</c>, ponieważ próba instalacji 
-<c>vixie-cron</c> zakończy się niepowodzeniem.
-</note>
+<p>
+My dostarczamy tylko <c>vixie-cron</c> dla instalacji bez sieci. 
+Jeżeli chcesz używać innego demona crona musisz poczekać i zainstalować
+go później.
+</p>
 
 <pre caption="Instalacja demona cron">
-# <i>emerge --usepkg vixie-cron</i>
+# <i>emerge vixie-cron</i>
 # <i>rc-update add vixie-cron default</i>
 <comment>(Jeżeli wybrałeś dcron lub fcron:)</comment> # <i>crontab /etc/crontab</i>
 </pre>
@@ -121,20 +121,20 @@ zależności od systemu plików:
 <tr>
   <ti>XFS</ti>
   <ti>xfsprogs</ti>
-  <ti><c>emerge --usepkg xfsprogs</c></ti>
+  <ti><c>emerge xfsprogs</c></ti>
 </tr>
 <tr>
   <ti>ReiserFS</ti>
   <ti>reiserfsprogs</ti>
-  <ti><c>emerge --usepkg reiserfsprogs</c></ti>
+  <ti><c>emerge reiserfsprogs</c></ti>
 </tr>
 <tr>
   <ti>JFS</ti>
   <ti>jfsutils</ti>
-  <ti><c>emerge --usepkg jfsutils</c></ti>
+  <ti><c>emerge jfsutils</c></ti>
 </tr>
 </table>
-
+<!-- TODO reactivate when LVM2 instructions are boarded
 <p>
 Jeżeli korzystasz z LVM, powinieneś również zainstalować <c>lvm-user</c>:
 </p>
@@ -142,7 +142,7 @@ Jeżeli korzystasz z LVM, powinieneś również zainstalować <c>lvm-user</c>:
 <pre caption="Instalacja narzędzi LVM">
 # <i>emerge --usepkg lvm-user</i>
 </pre>
-
+-->
 <p>
 Jeżeli nie potrzebujesz <c>rp-pppoe</c> do połączenia z Internetem,
 przejdź do <uri link="?part=1&amp;chap=11">Zakończenie instalacji Gentoo
@@ -157,20 +157,10 @@ przejdź do <uri link="?part=1&amp;chap=11">Zakończenie instalacji Gentoo
 
 <p>
 Jeżeli potrzebujesz <c>rp-pppoe</c>, aby połączyć się z Internetem,
-będziesz musiał go zainstalować. Użytkownicy GRP (prekompilowanych
-pakietów) powinni wydać następujące polecenie:
+będziesz musiał go zainstalować. 
 </p>
 
-<pre caption="Instalacja rp-pppoe dla użytkowników GRP">
-<comment>(Tylko użytkownicy GRP:)</comment>
-# <i>emerge --usepkgonly rp-pppoe</i>
-</pre>
-
-<p>
-Pozostali użytkownicy powinni posłużyć się poleceniem:
-</p>
-
-<pre caption="Instalacja rp-pppoe dla pozostałych użytkowników">
+<pre caption="Instalacja rp-pppoe">
 # <i>USE="-X" emerge rp-pppoe</i>
 </pre>
 
