@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.23 -->
+<!-- Orig revision: 1.28 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Zakończenie Instalacji -->
 <!-- Status: Ukończono -->
-
+<!-- Update from 1.23 to 1.28: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.17 2004/03/19 06:03:17 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.18 2004/07/11 11:35:09 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -56,7 +56,7 @@ Na przykład, aby dodać użytkownika <c>john</c> i dopisać go do grup
 </p>
 
 <pre caption="Dodawanie użytkownika do codziennej pracy">
-# <i>useradd john -m -G users,wheel,audio -s /bin/bash</i>
+# <i>useradd john -m -G users,wheel,audio,tty -s /bin/bash</i>
 # <i>passwd john</i>
 Password: <comment>(Podaj hasło johna)</comment>
 Re-enter password: <comment>(Ponownie podaj hasło johna)</comment>
@@ -64,7 +64,7 @@ Re-enter password: <comment>(Ponownie podaj hasło johna)</comment>
 
 <p>
 Jeśli użytkownik ten kiedykolwiek zechce wykonać pewne czynności
-jako root, może korzystając z <c>su -</c> tymczasowo otrzymać
+jako root, może korzystając z <c>su -</c>, aby tymczasowo otrzymać
 uprawnienia superużytkownika. Alternatywnie może skorzystać z pakietu
 <c>sudo</c>, charakteryzującego się wysokim poziomem bezpieczeństwa
 jeśli zostanie prawidłowo skonfigurowany.
@@ -82,7 +82,7 @@ jeśli zostanie prawidłowo skonfigurowany.
 <p>
 Gratulacje! Twój świeży system Gentoo jest już gotowy. Opuść środowisko 
 chroot, odmontuj wszystkie partycje i wreszcie uruchom
-magiczny program, na który tak czekałeś: <c>reboot</c>.
+magiczne polecenie, na które tak czekałeś: <c>reboot</c>.
 </p>
 
 <pre caption="Restartowanie systemu">
@@ -98,11 +98,10 @@ uruchomi się on ponownie, zamiast Twojego systemu.
 </p>
 
 <p>
-Użytkownicy OldWorld PPC uruchomią MacOS, gdyż ich bootloader nie został
-jeszcze zainstalowani. Powinni oni przeczytać <uri
-link="#doc_chap2_sect2">Opcjonalnie: Konfiguracja BootX</uri>. Użytkownicy MIPS
-będą musieli wprowadzić kilka poprawek do MIPS PROM aby umożliwić
-Gentoo działanie. Dla nich przeznaczona jest sekcja
+Użytkownikom OldWorld <b>PPC</b> uruchomi się MacOS, gdyż ich bootloader nie został
+jeszcze zainstalowany. Powinni oni przeczytać <uri
+link="#doc_chap2_sect2">Opcjonalnie: Konfiguracja BootX</uri>. Użytkownicy <b>MIPS</b>
+będą musieli wprowadzić kilka poprawek do MIPS PROM aby Gentoo zadziałało. Dla nich przeznaczona jest sekcja
 <uri link="#doc_chap2_sect3">Opcjonalnie: Zmuszanie Gentoo/MIPS do Poprawnej Pracy</uri>.
 </p>
 <p>
@@ -119,7 +118,7 @@ link="?part=1&amp;chap=12">Co Dalej?</uri>.
 <body>
 
 <impo>
-Podsekcja ta przeznaczona jest <e>wyłącznie</e> dla użytkowników PPC,
+Podsekcja ta przeznaczona jest <e>wyłącznie</e> dla użytkowników <b>PPC</b>,
 którzy chcą skorzystać z menadżera uruchamiania BootX. Wszyscy
 inni powinni ją pominąć.
 </impo>
@@ -150,6 +149,11 @@ wypadku przeczytaj rozdział <uri link="?part=1&amp;chap=12">Co Dalej?</uri>.
 <subsection>
 <title>Opcjonalnie: Zmuszanie Gentoo/MIPS do Poprawnej Pracy</title>
 <body>
+
+<impo>
+Podsekcja ta jest przeznaczona <e>wyłącznie</e> dla użytkowników systemu <b>MIPS</b>!
+Pozostali czytelnicy powinni opóścić tą podsekcję.
+</impo>
 
 <p>
 Po restarcie, przejdź do <e>System Maintenance Menu</e> i zaznacz
@@ -225,7 +229,6 @@ pakiety z Packages CD. Zacznijmy od zamontowania tej płyty.
 </p>
 
 <pre caption="Montowanie Packages CD">
-# <i>mkdir /mnt/cdrom</i>
 <comment>(Umieść Packages CD w czytniku CD-ROM)</comment>
 # <i>mount /mnt/cdrom</i>
 </pre>
