@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.26 -->
+<!-- Orig revision: 1.27 -->
 <!-- Translator: Spock <spock@o2.pl> -->
 <!-- Title: Kontrola zachowania Portage -->
 <!-- Status: Release -->
@@ -9,13 +9,49 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-features.xml,v 1.7 2004/12/27 11:35:05 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-features.xml,v 1.8 2005/02/20 11:16:38 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.23</version>
-<date>2004-11-26</date>
+<version>1.24</version>
+<date>2005-01-22</date>
 
+<section>
+<title>Funkcje Portage</title>
+<body>
+
+<p>
+Portage has several additional features that makes your Gentoo experience even
+better. Many of these features rely on certain software tools that improve
+performance, reliability, security, ...
+</p>
+
+<p>
+To enable or disable certain Portage features you need to edit
+<path>/etc/make.conf</path>'s <c>FEATURES</c> variable. In several cases you
+will also need to install the additional tool on which the feature relies.
+</p>
+
+<p>
+Not all features that Portage supports are listed here. For a full overview,
+please consult the <path>make.conf</path> man page:
+</p>
+
+<pre caption="Consulting the make.conf man page">
+$ <i>man make.conf</i>
+</pre>
+
+<p>
+To find out what FEATURES are default set, run <c>emerge --info</c> and search
+for the FEATURES variable or grep it out:
+</p>
+
+<pre caption="Finding out the FEATURES that are already set">
+$ <i>emerge --info | grep FEATURES</i>
+</pre>
+
+</body>
+</section>
 <section>
 <title>DistCC.</title>
 <subsection>
