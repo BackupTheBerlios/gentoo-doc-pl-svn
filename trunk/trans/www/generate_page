@@ -1,32 +1,61 @@
-#/bin/sh
+#/bin/bash
 
-#$Header: /cvsroot/gentoo-doc-pl/trans/www/generate_page,v 1.11 2004/09/02 15:18:57 sekretarz Exp $
+# sciagamy zrodla z cvs                                                         
+cd ~/gentoo-doc-pl                                                              
+cvs -d/cvsroot/gentoo-doc-pl co trans          
 
-cd ~lcs/trans/www
+cd www
+
+# Tworzymy katalog z informacjami z cvs gentoo
+mkdir tmp
 
 # Teraz zrobimy tablicê z dokumentami
 echo > doctable.xml
 for file in `find ../trans/translated/ ../trans/non_translated -name "*.xml" | sort` 
 do
-	echo "<tr>" >> doctable.xml
-	echo "<ti><uri link=\"http://cvs.berlios.de/cgi-bin/viewcvs.cgi/gentoo-doc-pl/trans/trans/$file\">" >> doctable.xml
-	echo $file | sed -e 's:.*/\(.*\)\.xml:\1</uri></ti>:' >> doctable.xml
-	grep '^<!-- Orig revision:' $file | sed -e 's/<!-- Orig revision: \(.*\) -->$/<ti>\1<\/ti>/' >> doctable.xml
-	grep 'Header: /cvsroot/' $file|
-	awk '/Header: \/cvsroot/ {
-		gsub(/\//,"-",$5)
-		print "<ti>" $4 "</ti>\n<ti>" $5 "</ti>"}'  >> doctable.xml
-	grep '^<!-- Translator:' $file | sed -e 's/<!-- Translator: \(.*\) <\(.*\)> -->$/<ti><mail link=\"\2\">\1<\/mail><\/ti>/' >> doctable.xml
-	grep '^<!-- Status:' $file | sed -e 's/<!-- Status: \(.*\) -->$/<ti>\1<\/ti>/' >> doctable.xml
-	echo "</tr>" >> doctable.xml
+   bname="`basename $file`"
+   echo "<tr>" >> doctable.xml
+   echo "<ti><uri link=\"http://cvs.berlios.de/cgi-bin/viewcvs.cgi/gentoo-doc-pl/trans/trans/$file\">" >> doctable.xml
+   echo $file | sed -e 's:.*/\(.*\)\.xml:\1</uri></ti>:' >> doctable.xml
 
-	# Tworzymy html z handbooka
-	xmllint $file
-	xsltproc --novalid guide.xsl $file > /home/groups/gentoo-doc-pl/htdocs/handbook/`basename $file | sed -e s/.xml/.html/g`
+   #sciagmy informacje z cvs gentoo
+   if  expr match "$bname" "hb" || expr match "$bname" "handbook"; then
+     wget "http://www.gentoo.org/cgi-bin/viewcvs.cgi/en/handbook/$bname?root=doc" -O tmp/$bname -q; 
+   else
+     wget "http://www.gentoo.org/cgi-bin/viewcvs.cgi/en/$bname?root=doc" -O tmp/$bname -q;
+   fi
+   if [ `file tmp/$bname | awk '{print $2}'` != "empty" ]; then
+      grep Revision tmp/$bname | head -n 1 | awk '{print $2}' | sed -e 's/<b>\(.*\)<\/b>/<ti>\1<\/ti>/' >> doctable.xml
+   else
+      echo "<ti>0.00</ti>"  >> doctable.xml
+   fi
+   
+   
+   # wyciagamy wersje z ktorej tlumaczono
+   grep '^<!-- Orig revision:' $file | sed -e 's/<!-- Orig revision: \(.*\) -->$/<ti>\1<\/ti>/' >> doctable.xml
+
+   #wyciagamy date ostatniej modyfikacji
+   grep 'Header: /cvsroot/' $file|
+	awk '/Header: \/cvsroot/ {
+                gsub(/\//,"-",$5)
+                print "<ti>" $5 "</ti>"}'  >> doctable.xml
+
+   grep '^<!-- Translator:' $file | sed -e 's/<!-- Translator: \(.*\) <\(.*\)> -->$/<ti><mail link=\"\2\">\1<\/mail><\/ti>/' >> doctable.xml
+   grep '^<!-- Status:' $file | sed -e 's/<!-- Status: \(.*\) -->$/<ti>\1<\/ti>/' >> doctable.xml
+
+   
+   echo "</tr>" >> doctable.xml
+
+    # Tworzymy html z handbooka
+    xsltproc --novalid guide.xsl $file > /home/groups/gentoo-doc-pl/htdocs/handbook/`basename $file | sed -e s/.xml/.html/g`
 done
 
+# czyscimy
+rm /home/groups/gentoo-doc-pl/htdocs/handbook/index.html        
+rm -rf tmp
+
 # Teraz zrobimy tablicê z cz³onkami projektu
-sed -e 's/\(.*\) - \(.*\) - \(.*\)/<tr><ti>\1<\/ti><ti>\2<\/ti><ti><mail link=\"\3\">\3<\/mail><\/ti><\/tr>/' txt/people > peopletable.xml
+sed -e 's/\(.*\) - \(.*\) - \(.*\)/<tr><ti>\1<\/ti><ti>\2<\/ti><ti><mail link=\"\3\">\3<\/mail><\/ti><\/tr>/' ../trans/people > peopletable.xml
 
 # A teraz wszystko sparsujemy
 xsltproc guide.xsl index.xml > /home/groups/gentoo-doc-pl/htdocs/index.html
