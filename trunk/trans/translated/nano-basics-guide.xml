@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- Orig revision: 1.00 -->
+<!-- Translator: flexx <cyberfreak@o2.pl> -->
+<!-- Title: Przewodnik po podstawach Nano -->
+<!-- Status: Ukończono -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/nano-basics-guide.xml,v 1.1 2004/11/28 22:47:12 rane Exp $ -->
+
+<guide link="nano-basics-guide.xml" lang="pl">
+<chapter>
+<title>Podstawy Nano.</title>
+<section>
+<title>Przeznaczenie.</title> 
+<body>
+ 
+<p>
+Ten krótki przewodnik został napisany w celu omówienia podstawowych funkcji edytora Nano. W celu uzyskania bardziej szczegółowych informacji odwiedź stronę:
+</p> 
+
+<p>
+<uri>http://www.nano-editor.org</uri> 
+</p>
+
+</body>
+</section>
+<section>
+<title>Otwieranie i tworzenie plików.</title> 
+<body>
+
+<p>
+Otwieranie i tworzenie plików w Nano jest łatwe. Po prostu wpisz:
+</p> 
+
+<pre>
+  # <i>nano nazwa_pliku</i> 
+</pre>
+
+<p>
+Nano jest edytorem pozbawionym trybów pracy, więc możesz natychmiast pisać w otwartym pliku. Jeśli edytujesz plik konfiguracyjny taki jak np:
+<path>/etc/fstab</path> użyj opcji -w, na przykład: 
+</p>
+
+<pre>
+# <i>nano -w /etc/fstab</i> 
+</pre>
+
+<warn>
+Podczas edycji pliku konfiguracyjnego użycie -w jest bardzo ważne. Brak tej opcji może uniemożliwić uruchomienie systemu lub spowodować inne utrudnienia.
+</warn> 
+
+</body>
+</section>
+<section>
+
+<title>Zapisywanie i wychodzenie.</title> 
+<body>
+
+<p>
+Jeżeli chcesz zapisać zmiany, które wprowadziłeś, naciśnij <c>Ctrl+O</c>.
+Aby opuścić <c>nano</c>, naciśnij <c>Ctrl+X</c>.
+Jeżeli poprosisz <c>nano</c> o wyjście ze zmodyfikowanego pliku, zostaniesz zapytany czy chcesz zapisać zmiany.  
+Naciśnij <c>N</c>, aby porzucić zmiany lub <c>Y</c>, aby je zatwierdzić. 
+Następnie zostaniesz zapytany o żądaną nazwę pliku. Wpisz ją i potwierdź klawiszem <c>Enter</c>. 
+</p>
+
+<p>
+Jeżeli przypadkowo zapisałeś niechciane zmiany w pliku, możesz je bezpiecznie anulować wciskając <c>ctrl+c</c> kiedy jesteś proszony o podanie nazwy pliku do zapisu.
+</p>
+
+</body>
+</section>
+<section>
+
+<title>Wycinanie i wklejanie</title> 
+<body>
+<p>
+Aby wyciąć pojedynczą linijkę użyj <c>^K</c>. Zwyczajnie przytrzymaj <c>ctrl</c> i naciśnij <c>k</c>. Linijka zniknie. Następnie aby ją wkleić ustawiasz  kursor w odpowiednim miejscu i naciskasz <c>^U</c>  (czyli <c>ctrl+u</c>). Linijka pojawi się w nowym miejscu. Czasem potrzebujesz przemieścić cały paragraf. Aby przesunąć wiele wersów po prostu wytnij każdą linijkę po kolei a następnie je wklej. Cały paragraf pojawia się tam gdzie chcesz. 
+</p>
+
+<p>
+Jeżeli potrzebujesz większej kontroli nad tym co wycinasz to powinieneś zaznaczyć tekst. Umieść kursor na początku tekstu, który chcesz wyciąć. Naciśnij <c>^^</c> (czyli <c>ctrl ^</c> lub <c>ctrl 6</c>). Następnie umieść kursor na końcu tekstu do wycięcia. Żądany tekst powinien być teraz podświetlony. 
+Jeżeli chcesz zrezygnować z zaznaczenia tekstu ponownie naciśnij <c>^^</c>. 
+Naciśnij <c>^K</c>  aby wyciąć tekst. 
+Użyj <c>^U</c>, aby go wkleić.
+
+I to już wszystko w tym temacie. 
+</p>
+
+</body>
+</section>
+<section>
+<title>Wyszukiwanie tekstu</title> 
+<body>
+
+<p>
+Wyszukiwanie tekstu jest proste. Wystarczy, że naciśniesz <c>^W</c> (<c>ctrl+w</c>) i wpiszesz poszukiwany tekst.
+</p>
+
+</body>
+</section>
+<section>
+
+<title>Więcej opcji</title> 
+<body>
+<p>
+Jeżeli chcesz dostosować Nano do swoich potrzeb, koniecznie przeczytaj i przeedytuj plik <path>/etc/nanorc</path>. 
+</p>
+
+</body>
+</section>
+<section>
+
+<title>Zakończenie</title> 
+<body>
+<p>I to już wszystko!. Więcej informacji o programie znajdziesz pod adresem:</p>
+
+<p>
+<uri>http://www.nano-editor.org</uri>
+</p>
+
+</body>
+</section>
+</chapter>
+</guide>
+

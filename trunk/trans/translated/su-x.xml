@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- Orig revision: 1.00 -->
+<!-- Translator: rane <rane@gentoo.pl> -->
+<!-- Title: Praca z su w środowisku graficznym - HOWTO -->
+<!-- Status: Ukończono -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/su-x.xml,v 1.1 2004/11/28 22:47:12 rane Exp $ -->
+
+<guide link="su-x.xml" lang="pl">
+<title>Praca z su w środowisku graficznym - HOWTO</title> 
+
+<abstract>
+Ten poradnik zawiera kilka pomocnych wskazówek związanych z używaniem konta roota i uruchamianiem programów z jego uprawnieniami w środowisku graficznym. 
+</abstract> 
+
+<chapter>
+<title>Wprowadzenie</title> 
+<section>
+<title>Przeznaczenie</title> 
+<body>
+
+<p>
+Wyobraźmy sobie, że jesteśmy zalogowani jako zwykły user i musimy uruchomić jakąś aplikacje jako root. Na przykład chcemy skonfigurować kernel poleceniem <e>make xconfig</e>. Nie uda nam się to, otrzymamy taki błąd:
+</p>
+
+<pre caption="Przykładowy błąd w X-ach">
+<comment>(próba uruchomienia w xterm)</comment> 
+$ <i>su -</i>
+Password: # 
+<i>xlogo -render</i> 
+Xlib: connection to ":0.0" refused by server Xlib: No protocol specified Error: Can't open display: :0.0 
+</pre>
+
+<p>
+Istnieje kilka rozwiązań tego problemu, część z nich nie jest całkiem bezpieczna, ale decyzja czego chcesz używać należy zawsze do Ciebie.
+</p> 
+
+
+</body>
+</section>
+<section>
+<title>Uruchamianie X-ów jako root</title> 
+<body>
+
+<p>
+Omówmy kilka z problemów związanych z wyborem takiej taktyki.
+</p> 
+
+<p>
+Wiele osób zechce zapewne z tym dyskutować, ale ogólnie rzecz biorąc zwyczaj uruchamiania X-ów jako root (superuser) kończy się zwykle tragedią i nauczką na całe życie.
+</p> 
+
+<p>
+Z uruchamianiem X-ów jako root związane są poniższe ryzyka:
+</p> 
+
+<ul>
+  <li>Utrata danych</li> 
+  <li>Nieautoryzowany dostęp</li> 
+  <li>Potencjalne błędy</li> 
+</ul>
+
+<p>
+Można dyskutować, że większość z tych problemów jest zwykle spowodowana niewłaściwą konfiguracją środowiska graficznego, ale to marne tłumaczenie, ponieważ nie byłoby żadnych kłopotów, gdyby użytkownik po prostu nie wchodził w środowisko graficzne z konta roota.
+</p>
+
+<p>
+Najczęście to nowi użytkownicy Linuksa mają brzydki zwyczaj uruchamiania X-ów jako z roota.
+</p>
+
+<p>
+Podam przykład. Często przesiaduję na ircowych kanałach Gentoo. Prawie zawsze spotykam na nich kogoś używającego konta root do ircowania. Teraz spójrzmy jak groźna może być taka zabawa. W zależności od klienta IRC jakiego używa dany użytkownik mogę zrobić szereg złośliwych i tragicznych w skutkach rzeczy z jego komputerem. Np. mogę przy pomocy dcc wysłać mu taki plik <path>.bashrc</path>:
+</p>
+
+<pre caption="złośliwy .bashrc">#!/bin/sh logout</pre> 
+
+<p>
+I co się dzieje, gdy człowiek ten ma włączone automatyczne przyjmowanie plików przez dcc? Co jeśli jako katalog dla pobieranych plików ma ustawiony <path>~/</path>? Nasz plik .bashrc zastąpi ten prawdziwy i w konsekwencji przy następnym logowaniu użytkownicy będą natychmiast wylogowywani :]
+</p>
+
+<p>
+Myślicie, że przesadzam? Zastanówcie się, to tylko jeden z wielu dowodów na to, że praca w środowisku graficznym uruchomionym z prawami roota wiąże się z wieloma problemami i może być bardzo groźna.
+</p>
+
+</body>
+</section>
+</chapter>
+<chapter>
+<title>Rozwiązanie</title> 
+<section>
+<title>x11-misc/sux</title> 
+<body>
+
+<p>
+Dokładny opis i dokumetacja sux znajduje się na głównej <uri link="http://fgouget.free.fr/sux/sux-readme.shtml">stronie</uri> tego projektu. Tu omówimy tylko jego podstawowe funkcje.
+</p>
+
+<note>
+Sux jest nakładką na program su, która przeniesie twoje referencje do użytkownika docelowego. Sux jest wydany na licencji X11.
+</note> 
+
+<p>
+Instalacja sux jest prosta - wykonujemy ją poleceniem emerge sux.
+</p> 
+
+<pre caption="Instalacja Sux">
+# <i>emerge x11-misc/sux</i> 
+</pre>
+
+<p>
+Poniżej podajemy kilka przykładów użycia sux:
+</p> 
+
+<pre caption="Uruchamianie aplikacji w X-ach jako root">
+$ <i>sux -c /usr/bin/X11/xlogo -render</i> 
+Password:
+<comment>
+(Wprowadź hasło I naciśnij enter)
+</comment> 
+</pre>
+
+<pre caption="Uruchamianie powłoki jako root">
+$ <i>sux -</i> 
+Password: 
+<comment>
+(Wprowadź hasło I naciśnij enter)
+</comment> 
+# <i>xlogo -render</i>
+Uruchomienie powłoki dla roota przy pomocy sux ułatwia uruchamianie aplikacji, wystarczy wtedy po prostu wpisać jej nazwę, aby się odpaliła.
+</pre> 
+
+</body>
+</section>
+<section>
+<title>Użytkownicy KDE</title> 
+<body>
+
+<p>
+<c>Kdesu</c> jest nakładką na su przeznaczoną dla środowiska KDE, która z powodzeniem może zastąpić sux. Program ten pozwala uruchomiać aplikacje w środowisku graficznym bez zmieny konta użytkownika, wyświetlając jedynie po drodze okienko, w którym należy podać hasło roota. Jedyną wadą <c>kdesu</c> jest to, że nie jest w stanie uruchomić programów konsolowych. 
+</p>
+
+<impo>
+<c>kdesu</c> zostało stworzone jedynie do uruchamiania aplikacji graficznych.
+</impo>
+
+<p>
+Używanie <c>kdesu</c> jest proste, oto kilka przykładowych zastosowań:
+</p>
+
+<pre caption="Uruchomienie aplikacji w X-ach z wybranymi opcjami jako root">
+# <i>kdesu -c "/usr/bin/X11/xlogo -render"</i>
+<comment>
+(można również uruchamiać z prawami innych użytkowników, nie tylko roota)
+</comment>
+# <i>kdesu -u inny_użytkownik -c "/usr/bin/X11/xlogo -render"</i> 
+</pre>
+
+<pre caption="Uruchomienie aplikacji w X-ach bez opcji, jako root">
+# <i>kdesu /usr/bin/X11/xlogo</i>
+<comment>
+(można również uruchamiać z prawami innych użytkowników, nie tylko roota)
+</comment> 
+# <i>kdesu -u inny_użytkownik /usr/bin/X11/xlogo</i> 
+</pre>
+
+</body>
+</section>
+</chapter>
+<chapter>
+<title>Zakończenie</title> 
+
+<section>
+<title>Podsumowanie</title> 
+<body>
+
+<p>
+Oczywiście istnieje znacznie więcej sposobów na rozwiązanie przedstawionych powyżej problemów. Ja uznaję sux/kdesu za najprostszą metodę i dlatego zdecydowałem się używać właśnie tych programów.
+</p> 
+
+<p>
+Mam nadzieję, że mój poradnik będzie choć trochę pomocny, życzę powodzenia w korzystaniu ze świeżo nabytej wiedzy. 
+</p> 
+
+</body>
+</section>
+</chapter>
+</guide>
+
