@@ -3,11 +3,11 @@
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
-<!-- Orig revision: 1.25 -->
+<!-- Orig revision: 1.26 -->
 <!-- Translator: veng <veng@wp.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.4 2004/01/18 21:25:35 veng Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.5 2004/02/14 15:47:05 veng Exp $ -->
 
 <sections>
 <section>
@@ -430,7 +430,7 @@ schematu partycjonowania. Wyróżniamy trzy części:
 <pre caption = "Przykładowy /etc/lilo.conf">
 boot=/dev/hda             <comment># Instalacja LILO w MBR</comment>
 prompt                    <comment># Dajemy użytkownikowi możliwość wyboru innej pozycji</comment>
-timeout=50                <comment># Czekamy 5 sekund przed uruchomieniem domyślnej pozycji</comment>
+delay=50                <comment># Czekamy 5 sekund przed uruchomieniem domyślnej pozycji</comment>
 default=gentoo            <comment># Kiedy oczekiwanie się zakończy, uruchamiamy pozycję "gentoo"</comment>
 <comment># Tylko jeśli używasz bufora ramki. W przeciwnym wypadku usuń następującą linię:</comment>
 vga=788                   <comment># Ustawienia framebuffera. Dopasuj wedle uznania.</comment>
