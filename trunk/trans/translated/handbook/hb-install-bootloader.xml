@@ -3,17 +3,17 @@
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
-<!-- Orig revision: 1.24 -->
+<!-- Orig revision: 1.25 -->
 <!-- Translator: veng <veng@wp.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.1 2004/01/17 23:20:34 veng Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-bootloader.xml,v 1.2 2004/01/17 23:25:44 veng Exp $ -->
 
 <sections>
 <section>
 <title>Podejmowanie decyzji</title>
 <subsection>
-<title>Wprowadzenia</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
@@ -283,7 +283,7 @@ splashimage=(hd0,0)/grub/splash.xpm.gz
 title=Gentoo Linux 2.4.22
 <comment># Partycja na której znajduje się obraz jądra (lub system operacyjny) </comment>
 root (hd0,0)
-kernel (hd0,0)/boot/kernel-2.4.22 root=/dev/hda3
+kernel (hd0,0)/kernel-2.4.22 root=/dev/hda3
 
 <comment># Następne trzy linie są potrzebne tylko, gdy chcesz uruchamiać także Windows.</comment>
 <comment># W tym przypadku, Windows mieści się na /dev/hda6.</comment>
@@ -299,8 +299,8 @@ splashimage=(hd0,0)/grub/splash.xpm.gz
 
 title=Gentoo Linux 2.4.22
 root (hd0,0)
-kernel (hd0,0)/boot/kernel-2.4.22 root=/dev/hda3
-initrd (hd0,0)/boot/initrd-2.4.22
+kernel (hd0,0)/kernel-2.4.22 root=/dev/hda3
+initrd (hd0,0)/initrd-2.4.22
 
 <comment># Tylko jeśli chcesz uruchamiać dwa systemy</comment>
 title=Windows XP
@@ -315,8 +315,8 @@ splashimage=(hd0,0)/grub/splash.xpm.gz
 
 title=Gentoo Linux 2.4.22
 root (hd0,0)
-kernel (hd0,0)/boot/kernel-2.4.22 root=/dev/ram0 init=/linuxrc real_root=/dev/hda3
-initrd (hd0,0)/boot/initrd-2.4.22
+kernel (hd0,0)/kernel-2.4.22 root=/dev/ram0 init=/linuxrc real_root=/dev/hda3
+initrd (hd0,0)/initrd-2.4.22
 
 <comment># Tylko, gdy chcesz uruchamiać dwa systemy</comment>
 title=Windows XP
