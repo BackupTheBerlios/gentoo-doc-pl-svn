@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>	
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
-<!-- Orig revision: 1.13 -->
-<!-- Translator: Aye <aye@napisy.org> -->
+<!-- Orig revision: 1.21 -->
+<!-- Translator: aye <aye@gentoo.pl> -->
 <!-- Title: Kontrola Zachowania Portage -->
 <!-- Status: Ukończono -->
 <!-- Update from 1.9 to 1.13: sekretarz <sekretarz@dukato.net> -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-working-behaviour.xml,v 1.8 2004/07/11 13:45:29 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-working-behaviour.xml,v 1.9 2004/12/02 22:29:30 aye Exp $ -->
 
 <sections>
 <section>
@@ -22,8 +22,8 @@
 Portage bazuje na koncepcji "ochrony plików". Oznacza to, że podczas
 aktualizacji programów, określone pliki nie zostaną nadpisane przez
 nowsze wersje. Zamiast tego pojawi się stosowna informacja. Mechanizm
-ten jest bardzo użyteczny przy plikach konfiguracyjnych (które znajdują
-się w katalogu <path>/etc</path>).
+ten jest oczywiscie bardzo użyteczny przy plikach konfiguracyjnych 
+(które znajdują się w katalogu <path>/etc</path>).
 </p>
 
 <p>
@@ -174,7 +174,7 @@ działanie, gdy nie znajdzie już żadnych plików do aktualizacji.
 <section>
 <title>Opcje Sieciowe</title>
 <subsection>
-<title>Mirrory</title>
+<title>Mirrory globalne</title>
 <body>
 
 <p>
@@ -232,6 +232,37 @@ PORTAGE_BINHOST="ftp://login:pass@grp.mirror.site/pub/grp/i686/athlon-xp"
 </body>
 </subsection>
 <subsection>
+<title>Package Mirrors</title>	
+<body>	
+<p>	
+ Wiele pakietów posiada zmienną SRC, zawierającą 'mirror://'.
+ Źródła tych pakietów dostępne są na wielu hostach (np.: 
+ sourceforge, gnu, ...). Za każdym razem, gdy portage natrafi na tak
+ zdefiniowaną zmienną SRC, pobierze właściwy server z
+ <path>/etc/portage/mirrors</path>, a jeżeli nie znajdzie w nim
+ odpowiedniego wpisu z <path>/usr/portage/profiles/thirdpartymirrors</path>.
+</p>
+
+<p>
+ Możesz zadeklarować swoje ulubione mirrory w 
+ <path>/etc/portage/mirrors</path>. Jeżeli chcesz na przykład używać
+ <uri>http://keihanna.dl.sourceforge.net</uri> za każdym razem, gdy
+ pakiet ma zostać pobrany z sourceforge, wpisz:
+</p>
+ 	 	
+<pre caption="/etc/portage/mirrors example">	
+ sourceforge http://keihanna.dl.sourceforge.net	
+</pre>	
+
+<p>
+Możesz również zadeklarować specjalne mirrory <c>lokalne</c>.
+Będą one sprawdzane zawsze jako pierwsze, nawet jeżeli pakiet nie
+posiada 'mirror://' w swojej zmiennej SRC lub gdy ma deklarację, że
+nie powinien być mirrorowany.
+</p> 	 	
+</body>	
+</subsection>	
+<subsection>
 <title>Mirrorselect</title>
 <body>
 
@@ -265,7 +296,8 @@ dostępnych opcji.
 <p>
 Program, którego Portage będzie używał do pobierania plików może być
 określony przez zmienne <c>FETCHCOMMAND</c> i <c>RESUMECOMMAND</c>.
-Kilka przykładów ich użycia znajduje się w plikach <path>/etc/make.conf</path> 
+Kilka przykładów ich użycia znajduje się w plikach 
+<path>/etc/make.conf.example</path> 
 oraz <path>/etc/make.globals</path>. Domyślnie używany jest program
 <c>wget</c>.
 </p>
@@ -289,7 +321,7 @@ Pomimo, że możesz zadeklarować je w pliku <path>/etc/make.conf</path>,
 zalecane jest jakieś bardziej ogólne miejsce, ponieważ zmienne
 <c>http_proxy</c> i <c>ftp_proxy</c> są również używane przez inne
 narzędzia (<path>/etc/make.conf</path> jest wykorzystywany jedynie przez
-Portage). Zajrzyj do rozdziału <uri link="?part=2&amp;chap=6">Zmienne
+Portage). Zajrzyj do rozdziału <uri link="?part=2&amp;chap=5">Zmienne
 środowiskowe</uri>, aby dowiedzieć się jak zadeklarować zmienne o
 zasięgu globalnym.
 </p>
@@ -301,15 +333,15 @@ zasięgu globalnym.
 <body>
 
 <p>
-Program <c>rsync</c> jest używany przez polecenie <c>emerge sync</c> do
+Program <c>rsync</c> jest używany przez polecenie <c>emerge --sync</c> do
 aktualizacji Twojego drzewa Portage. Zmiennymi, którymi możemy
 wpływać na jego zachowanie są: <c>RSYNC_EXCLUDEFROM</c>,
 <c>RSYNC_RETRIES</c> oraz <c>RSYNC_TIMEOUT</c>.
 </p>
 
 <p>
-Sposobem uchronienia ebuildów przed aktualizacją lub usunięciem przez <c>emerge
-sync</c> jest ustawienie zmiennej <c>RSYNC_EXCLUDEFROM</c>. Powinna ona
+Sposobem uchronienia ebuildów przed aktualizacją lub usunięciem przez <c>emerge 
+--sync</c> jest ustawienie zmiennej <c>RSYNC_EXCLUDEFROM</c>. Powinna ona
 zawierać nazwę pliku, który będzie używany przez program <c>rsync</c> do
 wykluczenia pewnych plików z procesu aktualizacji i jest domyślnie
 ustawiona na <path>/etc/portage/rsync_excludes</path>. Używanie tej
@@ -386,7 +418,7 @@ PORTDIR="/usr/portage"
 Jeżeli chcesz wraz z "oficjalnym" trzymać swoje prywatne drzewo Portage,
 powinieneś ustawić zmienną  <c>PORTDIR_OVERLAY</c>. Katalog(i)
 wymienione w tej zmiennej pozostaną nienaruszone podczas wykonywania
-<c>emerge sync</c>: ebuildy znajdujące się w tej lokalizacji nie zostaną
+<c>emerge --sync</c>: ebuildy znajdujące się w tej lokalizacji nie zostaną
 zaktualizowane ani usunięte, ale należą do drzewa Portage.
 </p>
 
@@ -660,13 +692,7 @@ zajrzyj na stronę podręcznika systemowego <path>make.conf</path>:
 
 <p>
 Plik <path>/etc/make.conf</path> zawiera mnóstwo komentarzy wraz z
-przykładami, które mogą okazać się przydatne. Niestety jednak, większość 
-ludzi nie aktualizuje swoich <path>/etc/make.conf</path> interaktywnie i
-'przegapia' nowe opcje. Najnowszą wersję pliku
-<path>/etc/make.conf</path> możesz znaleść w 
-<uri
-link="http://www.gentoo.org/cgi-bin/viewcvs.cgi/*checkout*/portage/cnf/make.conf?rev=HEAD&amp;cvsroot=gentoo-src&amp;content-type=text/plain">Repozytorium
-ViewCVS</uri>.
+przykładami, które mogą okazać się przydatne. 
 </p>
 
 </body>
