@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.76 -->
+<!-- Orig revision: 1.79 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Przygotowanie plików instalacyjnych Gentoo -->
 <!-- Status: Release -->
@@ -9,12 +9,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.16 2004/12/27 11:35:04 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.17 2005/03/02 21:17:29 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.71</version>
-<date>2004-12-18</date>
+<version>1.74</version>
+<date>2005-02-14</date>
 
 <section>
 <title>Instalowanie tarballa stage.</title>
@@ -87,9 +87,22 @@ Najpierw przejdź do punktu montowania systemu plików Gentoo
 <p>
 W zależności od medium instalacyjnego masz do dyspozycji kilka narzędzi,
 za pomocą których możesz ściągnąć stage. Jeżeli masz program <c>links2</c>
-możesz wejść bezpośrednio na <uri link="/main/en/mirrors.xml">listę serwerów lustrzanych Gentoo</uri> 
-i wybrać serwer, który znajduje się najbliżej Ciebie. Jeżeli nie masz programu <c>links2</c>, użyj
-<c>lynx</c> do tego celu. W tym przypadku podmień wszystkie wystąpenia <c>links2</c> na <c>lynx</c>.
+możesz wejść bezpośrednio na <uri link="/main/en/mirrors.xml">listę serwerów lustrzanych Gentoo</uri> i wybrać serwer, który znajduje się najbliżej Ciebie. 
+</p>
+
+<p>
+Jeżeli nie masz programu <c>links2</c>, użyj <c>lynx</c> do tego celu. 
+Wyeksportuj zmienną <c>http_proxy</c> i <c>ftp_proxy</c>, jeżeli chcesz używać 
+serwera proxy:
+</p>
+
+<pre caption="Ustawienie informacji o proxy dla lynxa">
+# <i>export http_proxy="http://proxy.server.com:port"</i>
+# <i>export ftp_proxy="http://proxy.server.com:port"</i>
+</pre>
+
+<p>
+W dalszej części zakładamy, że do swojej dyspozycji masz przeglądarke <c>links2</c>.
 </p>
 
 <p>
@@ -101,8 +114,10 @@ Kiedy skończysz ściąganie naciśnij <c>Q</c> aby wyjść z przeglądarki.
 </p>
 
 <pre caption="Przeglądanie listy serwerów lustrzanych za pomocą links2">
-<comment>(Bez proxy)</comment>   # <i>links2 http://www.gentoo.org/main/en/mirrors.xml</i>
-<comment>(Z proxy)</comment>      # <i>links2 -http-proxy serwer.proxy.com:8080 http://www.gentoo.org/main/en/mirrors.xml</i>
+# <i>links2 http://www.gentoo.org/main/en/mirrors.xml</i>
+
+<comment>(Jeżeli potrzebujesz proxy w links2:)</comment>
+# <i>links2 -http-proxy serwer.proxy.com:8080 http://www.gentoo.org/main/en/mirrors.xml</i>
 </pre>
 
 <p>
@@ -132,11 +147,18 @@ Wypakuj pobrany plik stage przy pomocy GNU <c>tar</c>:
 
 <p>
 Użyj dokładnie tych samych przełączników (<c>-xvjpf</c>). Opcja <c>x</c> oznacza
-<e>wypakuj</e>, <c>v</c> to <e>wyświetl</e> (no dobra, to jest opcjonalne),
-<c>j</c> służy do <e>dekompresji archiwum bzip2</e>, <c>p</c> to <e>zachowuj
-uprawnienia</e>, natomiast <c>f</c> podkreśla, że chcemy rozpakować to, co czytamy z pliku, a nie
-ze standardowego wejścia.
+<e>wypakuj</e>, <c>v</c> to <e>wyświetl</e>, aby widzieć co się dzieje podczas 
+wypakowywania (no dobra, to jest opcjonalne), <c>j</c> służy do <e>dekompresji 
+archiwum bzip2</e>, <c>p</c> to <e>zachowuj uprawnienia</e>, natomiast <c>f</c> 
+podkreśla, że chcemy rozpakować to, co czytamy z pliku, a nie ze standardowego 
+wejścia.
 </p>
+
+<note>
+Obrazy płyt i LiveCD niektórych architektur (np. MIPS) zawierają <c>tar'a</c>
+wbudowanego w BusyBox, który aktualnie nie wspiera opcji <c>-v</c> i nie będzie
+ona działała.
+</note>
 
 <p>
 Gdy stage jest już zainstalowany, możesz przejść do
@@ -182,9 +204,11 @@ Teraz przejdź do punktu montowania Gentoo (zwykle <path>/mnt/gentoo</path>):
 
 <p>
 Następnie wypakujemy wybrany tarball. Użyjemy do tego celu GNU <c>tar</c>.
-Upewnij się, że używasz takich samych przełączników (<c>-xvjpf</c>)!
-W kolejnym przykładzie wykorzystujemy plik  <path>stage3-&lt;subarch&gt;-20040412.tar.bz2</path>.
-Odpowiednio zmień jego nazwę we wszystkich poleceniach.
+Upewnij się, że używasz takich samych przełączników (<c>-xvjpf</c>)! Pamiętaj, że
+argument <c>v</c> jest opcjonalny i nie jest obsługiwany przez pewne wersje 
+<c>tar'a</c>. W kolejnym przykładzie wykorzystujemy plik 
+<path>stage3-&lt;subarch&gt;-20040412.tar.bz2</path>. Odpowiednio zmień jego 
+nazwę we wszystkich poleceniach.
 </p>
 
 <pre caption="Wypakowanie tarballa stage">
@@ -207,83 +231,54 @@ Gdy stage zostanie zainstalowany, przejdź do
 <section id="installing_portage">
 <title>Instalacja Portage.</title>
 <subsection>
-<title>Z siecią czy bez sieci?</title>
+<title>Wypakowanie snapshota Portage</title>
 <body>
  
 <p>
-Jeśli nie masz działającego połączenia internetowego, będziesz musiał 
-zainstalować dostarczony na LiveCD snapshot portage.
-Oznacza to, że będziesz musiał instalować Gentoo ze <e>stage3</e> (gdyż tylko ten
-stage pozwala na instalacje bez połączenia z Internetem).
-Jeżeli chcesz później używać prekompilowanych paczek by przyspieszyć 
-instalację, <e>musisz</e> użyć snapshotu dostępnego na LiveCD. 
-Pozostali użytkownicy pobiorą w pełni aktualne drzewo Portage dzięki 
-<c>emerge</c> w następnym rozdziale.
+Musisz teraz zainstalować snapshot Portage, kolekcje plików, które informują
+Portage jakie programy mozesz zainstalować, które profile są dostępne itp.
 </p>
- 
-<p>
-Przejdź do jednego z następujących paragrafów:
-</p>
- 
-<ul>
-<li>
-<uri link="#installing_from_LiveCD">Instalacja snapshota Portage i kodu 
-źródłowego z LiveCD</uri> (dla instalacji bez użycia sieci lub 
-z wykorzystaniem GRP).
-</li>
-<li>
-<uri link="#compile_options">Konfigurowanie opcji kompilacji</uri>
-(wszystkie pozostałe metody instalacji).
-</li>
-</ul>
  
 </body>
 </subsection>
-<subsection id="installing_from_LiveCD">
-<title>Instalowanie snapshota Portage i kodu źródłowego z LiveCD.</title>
+<subsection id="installing_from_Internet">
+<title>Ściąganie i instalowanie snapshota Portage</title>
 <body>
 
 <p>
-Na płytkach Universal LiveCD znajduje się snapshot Portage. W tekście
-zakładamy, że używasz właśnie tej  płyty. 
-Przejrzyj katalog <path>/mnt/cdrom/snapshots/</path> i zobacz,
-co tam dla Ciebie przygotowaliśmy:
+Przejdz do miejsca gdzie zamontowałeś swój system plików (najcześciej to <path>/mnt/gentoo</path>):
 </p>
 
-<pre caption="Sprawdzanie zawartości /mnt/cdrom/snapshots">
-# <i>ls /mnt/cdrom/snapshots</i>
+<pre caption="Przechodzenie do punktu montowania Gentoo">
+# <i>cd /mnt/gentoo</i>
 </pre>
 
 <p>
-Teraz wypakuj snapshot używając polecenia o niżej podanej składni. Kolejny raz
-upewnij się, że przekazujesz właściwe opcje do programu <c>tar</c>. Zwróć uwagę,
-że <c>-C</c> występuje z wielką literą <c>C</c>, a nie <c>c</c>. W tym przykładzie nasz plik
-nazywa się <path>portage-20041022.tar.bz2</path>. Odpowiedno zmień wszystkie
-polecenia, tak aby pasowały do Twojej sytuacji i nazewnictwa plików.
+Odpal <c>links2</c> (lub <c>lynx</c>) i przejdz do naszej <uri
+link="/main/en/mirrors.xml">listy mirrorów Gentoo</uri>. Wybierz jeden z serwerów,
+który znajduje się najbliżej ciebie i wejdz do katalogu <path>snapshots/</path>.
+Ściągnij najnowszy shapshot Portage (na przykład <path>portage-20041202.tar.bz2
+</path>) poprzez jego wybranie i naciśnięcie klawisza <c>D</c>.
 </p>
 
-<pre caption="Rozpakowanie snapshot Portage">
-# <i>tar -xvjf /mnt/cdrom/snapshots/portage-20041022.tar.bz2 -C /mnt/gentoo/usr</i>
+<pre caption="Przeglądanie listy mirrorów Gentoo">
+# <i>links2 http://www.gentoo.org/main/en/mirrors.xml</i>
 </pre>
 
 <p>
-Musisz także skopiować źródła programów dostępne na płycie:
+Teraz wyjdz z przeglądarki naciskając klawisz <c>Q</c>. Twój snapshot znajduje się
+teraz w <path>/mnt/gentoo</path>. W następnym kroku wypakujemy snapshot Portage.
+Upewnij się, że używasz dokładnych poleceń; ostatnia opcja to wielka litera <c>C</c>,
+nie <c>c</c>.
 </p>
 
-<pre caption="Kopiowanie kodu źródłowego">
-# <i>mkdir /mnt/gentoo/usr/portage/distfiles</i>
-# <i>cp /mnt/cdrom/distfiles/* /mnt/gentoo/usr/portage/distfiles/</i>
+<pre caption="Wypakowywanie snapshota Portage">
+# <i>tar -xvjf /mnt/gentoo/portage-20041202.tar.bz2 -C /mnt/gentoo/usr</i>
 </pre>
-
-<p>
-Gdy snapshot Portage zostanie zainstalowany przejdź do <uri
-link="#compile_options">Konfigurowanie opcji kompilacji</uri>.
-</p>
 
 </body>
 </subsection>
 </section>
-
 <section id="compile_options">
 <title>Konfigurowanie opcji kompilacji.</title>
 <subsection>
@@ -321,12 +316,6 @@ zawierające zmienne używają składni <c>ZMIENNA="zawartość"</c>. Takiej sam
 składni używa także plik <path>/etc/make.conf</path>. Kilka z tych zmiennych
 zostało przedyskutowanych poniżej.
 </p>
-
-<warn>
-Nie wprowadzaj zmian w zmiennej USE jeżeli korzystasz ze stage3 z instalacją GRP.
-Będziesz mógł zmienić zmienną USE po instalacji pakietów. Twój system zostanie
-zatakowany przez gremliny, jeżeli zignorujesz to ostrzeżenie!
-</warn>
 
 </body>
 </subsection>
@@ -419,6 +408,17 @@ kompilowane programy. Możliwe jej wartości:
   <ti>x86_64-pc-linux-gnu</ti>
 </tr>
 </table>
+
+<p>
+Upewnij się, czy na pewno dobrze ustawiłeś zmienną CHOST. Na przykład,
+zmienna CHOST dla sparc64 to nadal <c>sparc-unknown-linux-gnu</c>, a nie
+<c>sparc64-unknown-linux-gnu</c>!
+</p>
+
+<p>
+Użytkownicy zainteresowani bootstapowaniem systemu z obsługą NPTL na architekturze
+x86 muszą ustawić CHOST na <c>i586-pc-linux-gnu</c> lub wyższy.
+</p>
 
 </body>
 </subsection>
