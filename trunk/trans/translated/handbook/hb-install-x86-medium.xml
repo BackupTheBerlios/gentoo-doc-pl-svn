@@ -1,0 +1,638 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- Orig revision: 1.23 -->
+<!-- Translator: rane <rane@gentoo.pl> -->
+<!-- Title: O instalacji Gentoo Linux -->
+<!-- Status: Ukończono -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-medium.xml,v 1.1 2004/11/30 22:33:45 rane Exp $ -->
+
+<sections>
+
+<version>1.23</version>
+
+<section>
+<title>Wymagania Sprzętowe</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<p>
+Zanim zaczniemy, musimy ustalić jakie wymagania sprzętowe powinien
+spełniać Twój komputer, aby pomyślnie zainstalować na nim Gentoo. Zależy
+to oczywiście od docelowej architektury.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Architektura x86</title>
+<body>
+
+
+<ul>
+<li>
+Conajmniej 1GB wolnej przestrzeni dyskowej
+</li>
+<li>
+Jeśli nie planujesz korzystać z prekompilowanych pakietów potrzebujesz conajmniej 300MB pamięci (RAM + swap)
+</li>
+<li>
+Dla <e>architektury x86</e>, potrzebujesz procesora 486 lub lepszego oraz przynajmniej 64 megabajty pamięci
+</li>
+</ul>
+
+</body>
+</subsection>
+</section>
+<section>
+
+<title>Podejmij Decyzję</title>
+<subsection>
+<title>Wprowadzenie</title>
+<body>
+
+<p>
+Ciągle zainteresowany Gentoo? Cóż, nadszedł czas na wybranie medium
+instalacyjnego. Tak, masz wybór, nie, nie wszystkie metody są identyczne
+i tak, rezultatem zawsze jest podstawowy system Gentoo.
+</p>
+
+<p>
+Omówimy następujące media instalacyjne:
+</p>
+
+<ul>
+<li>Gentoo Minimal LiveCD</li>
+<li>Gentoo Universal LiveCD</li>
+<li>Gentoo KDE/GNOME LiveCD</li>
+<li>Uruchamianie z Sieci</li>
+</ul>
+
+<p>
+Każde z nich ma swoje wady i zalety. Przedstawimy je, abyś mógł
+podjąć odpowiednią decyzję. Najpierw jednak wyjaśnimy na czym
+polega instalacja trzyetapowa.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Trzy Etapy (Stage)</title>
+<body>
+
+<p>
+Gentoo Linux może zostać zainstalowany przy pomocy jednego z trzech tarballi.
+Jeśli chcesz przeprowadzić samodzielnie bootstrap i zbudować cały system
+od podstaw, skorzystaj ze <e>stage1</e>. W <e>stage2</e> będziesz musiał
+skompilować system ze stanu po gotowym bootstrapie. Prekompilowany podstawowy
+system Gentoo znajduje się w <e>stage3</e>. Naszą dystrybucję można
+zainstalować bez żadnych kompilacji, z wyjątkiem jądra i kilku opcjonalnych
+programów. W takim przypadku odpowiedni jest <e>stage3</e>.
+</p>
+
+<p>
+Zatem który stage wybrać?
+</p>
+
+<p>
+Rozpoczęcie od <e>stage1</e> pozwala na pełną kontrolę optymalizacji i funkcjonalności.
+Przeznaczony jest on zwłaszcza dla użytkowników, którzy wiedzą co robią. Poza tym, stwarza
+świetną okazję do głębszego poznania mechanizmów Gentoo.
+</p>
+
+<table>
+<tr>
+	<th>Stage1</th>
+	<th>Plusy i Minusy</th>
+</tr>
+<tr>
+	<th>+</th>
+<ti>
+	Pozwala na pełną kontrolę optymalizacji i funkcjonalności systemu
+</ti>
+</tr>
+<tr>
+	<th>+</th>
+	<ti>Odpowiedni dla użytkowników, którzy wiedzą co robią</ti>
+</tr>
+<tr>
+	<th>+</th>
+	<ti>Pozwala na głębsze poznanie mechanizmów Gentoo</ti>
+</tr>
+<tr>
+	<th>-</th>
+	<ti>Instalacja zabiera dużo czasu</ti>
+</tr>
+<tr>
+	<th>-</th>
+	<ti>Jeśli nie planujesz poprawiania ustawień, prawdopodobnie okaże się stratą czasu</ti>
+</tr>
+</table>
+
+<p>
+
+W <e>stage2</e> bootstrap przeprowadziliśmy za Ciebie. Jeśli jesteś
+zadowolony z wybranych przez nas ustawień, użyj właśnie jego.
+</p>
+
+<p>
+Instalację ze <e>stage2</e> możesz przeprowadzić tylko wtedy, gdy masz skonfigurowane i działające połączenie z Interntem.
+</p>
+
+<table>
+<tr>
+ <th>Stage2</th>
+ <th>Plusy i Minusy</th>
+ </tr>
+ <tr>
+ <th>+</th>
+ <ti>Nie musisz przeprowadzać bootstrapu</ti>
+</tr>
+<tr>
+   <th>+</th>
+   <ti>Instalacja zajmuje mniej czasu niż w przypadku stage1</ti>
+   </tr>
+   <tr>
+   <th>+</th>
+   <ti>Wciąż możesz poprawić dużo ustawień</ti>
+</tr>
+<tr>
+  <th>-</th>
+    <ti>Nie możesz poprawić tak dużo jak w przypadku stage1</ti>
+    </tr>
+    <tr>
+    <th>-</th>
+    <ti>Nie jest najszybszą metodą instalacji Gentoo</ti>
+</tr>
+<tr>
+<th>-</th>
+<ti>Musisz zaakceptować wybrane przez nas optymalizacje i ustawienia</ti>
+</tr>
+</table>
+
+<p>
+Najszybszą instalację Gentoo Linux umożliwia <e>stage3</e>. Skompilowano w nim z dobrymi ustawieniami optymalizacji, łączącymi wysoką wydajność ze stabilnością, cały podstawowy system. Jest ono wymagane w przypadku instalacji za pomocą prekompilowanych pakietów.
+</p>
+
+<p>
+Najszybszą instalację Gentoo Linux umożliwia <e>stage3</e>. Skompilowano
+w nim z dobrymi ustawieniami optymalizacji, łączącymi wysoką wydajność ze
+stabilnością, cały podstawowy system. Jest ono wymagane w przypadku instalacji
+za pomocą prekompilowanych pakietów.
+</p>
+
+<table>
+<tr>
+<th>Stage3</th>
+<th>Plusy i Minusy</th>
+</tr>
+<tr>
+<th>+</th>
+<ti>Najszybsza metoda instalacji Gentoo</ti>
+</tr>
+<tr>
+<th>-</th>
+<ti>Nie można poprawiać systemu podstawowego - jest prekompilowany</ti>
+</tr>
+<tr>
+<th>-</th>
+<ti>Nie możesz przechwalać się używaniem stage1 lub stage2</ti>
+</tr>
+</table>
+
+<p>
+Zapisz sobie (lub zapamiętaj), który stage wybrałeś. Będzie Ci to potrzebne
+przy wybieraniu odpowiedniego LiveCD. Z pewnością zainteresuje Cię także
+możliwość rekompilacji całego systemu w przyszłości, gdy zdecydujesz się
+na inne ustawienia optymalizacji już po zakończeniu instalacji.
+</p>
+
+<p>
+Teraz rzućmy okiem na dostępne media instalacyjne:
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Gentoo LiveCD</title>
+<body>
+
+<p>
+<e>Gentoo LiveCD</e> to uruchamialne płyty zawierające działające środowisko
+Gentoo. Pozwalają na uruchomienie Linuksa prosto z CD. W czasie startu wykrywany
+jest sprzęt i ładowane są odpowiednie sterowniki. Płyty te dostępne są
+dla wszystkich wspieranych architektur (x86, alpha, sparc, ppc, hppa,
+amd64). Co więcej, występują w różnych odmianach.
+</p>
+
+<p>
+Wszystkie LiveCD pozwalają na uruchomienie, konfigurację sieci, zainicjalizowanie
+parycji i rozpoczęcie instalacji Gentoo przez Internet. Na niektórych znajdują
+się dodatkowo kody źródłowe, dzięki którym możesz przeprowadzić instalację
+bez dostępu do sieci.
+</p>
+
+<p>
+Co one zawierają?
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Gentoo Minimal LiveCD</title>
+<body>
+
+<p>
+Są to małe, uruchamialne płyty zawierające wszystko, co potrzebne do
+przeprowadzenia instalacji przez Internet. Nie zawierają żadnych stage
+(lub, w niektórych przypadkach, zawierają stage1), kodów źródłowych
+ani pakietów GRP. Wersję dla architektury x86 można odnaleźć
+w podkatalogu <path>universal</path>, w pliku o nazwie
+<c>install-x86-minimal-2004.0.iso</c>.
+</p>
+
+<table>
+<tr>
+<th>Minimal LiveCD</th>
+<th>Plusy i Minusy</th>
+</tr>
+<tr>
+<th>+</th>
+<ti>Mały rozmiar</ti>
+</tr>
+<tr>
+<th>+</th>
+<ti>Odpowiednie dla całej architektury</ti>
+</tr>
+<tr>
+<th>+</th>
+<ti>
+Możesz skorzystać ze stage1, stage2 lub stage3 pobierając je z sieci
+</ti>
+</tr>
+<tr>
+<th>-</th>
+<ti>Nie zawierają stage, migawek portage, pakietów GRP, więc nie nadają się do instalacji bez dostępu do sieci.</ti>
+</tr>
+</table>
+
+
+</body>
+</subsection>
+<subsection>
+<title>Gentoo Universal LiveCD</title>
+<body>
+
+<p>
+Gentoo Universal LiveCD to uruchamialna płyta, która może posłużyć do instalacji
+Gentoo bez dostępu do sieci. Zawiera stage1 oraz kilka odmian stage3
+(zoptymalizowanych dla różnych podarchitektur).
+Odmianę dla architektury
+x86 można znaleźć w podkatalogu <c>universal</c>,
+w pliku <c>install-x86-universal-2004.0.iso</c>.
+
+</p>
+<p>
+Jeśli przyjrzysz się bliżej katalogowi <path>livecd</path>, dostrzeżesz
+iż dla części architektur dostarczamy także <e>Gentoo Packages CD</e>.
+Znajdują się na nich wyłącznie prekompilowane pakiety (i nie są
+uruchamialne). Można ją wykorzystać do instalacji oprogramowania już po
+zakończeniu stawiania systemu. Do instalacji systemu podstawowego wystarczy
+CD1, jednakże jeśli nie chcesz samodzielnie kompilować
+OpenOffice.org, Mozilli, KDE, GNOME itd., potrzebujesz także Packages CD.
+Odmianę dla podarchitektury Athlon-XP można odnaleźć w odpowiednim
+dla niej katalogu w pliku o nazwie <c>packages-athlon-xp-2004.0.iso</c>.
+</p>
+<p>
+Dostarczamy zarówno "domyślne" zestawy LiveCD, uruchamialne na wszystkich odmianach
+konkretnej architektury, jak i zoptymalizowane dla różnych podarchitektur.
+</p>
+
+<table>
+<tr>
+<th>Universal LiveCD i Packages CD</th>
+<th>Plusy i Minusy</th>
+</tr>
+<tr>
+<th>+</th>
+<ti>Packages CD jest zoptymalizowane dla Twojej architektury i podarchitektury</ti>
+</tr>
+<tr>
+<th>+</th>
+<ti>Packages CD zawiera prekompilowane pakiety do szybkiej instalacji</ti>
+</tr>
+<tr>
+<th>+</th>
+<ti>
+Zawierają wszystko czego potrzebujesz do instalacji nawet bez dostępu do sieci.
+</ti>
+</tr>
+<tr>
+<th>-</th>
+<ti>Duży rozmiar</ti>
+</tr>
+</table>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Pobierz, Nagraj i Uruchom Gentoo LiveCD</title>
+<subsection>
+<title>Pobieranie i Nagrywanie LiveCD</title>
+<body>
+
+<p>
+Zdecydowałeś się skorzystać z Gentoo LiveCD (jeśli nie, to czytasz złą sekcję).
+Zaczniemy od ściągnięcia ich na dysk i nagrania na płyty. Omówiliśmy już różne odmiany, ale
+gdzie je znaleźć?
+</p>
+
+<p>
+Odwiedź jeden z <uri link="/main/en/mirrors.xml">serwerów lustrzanych</uri> i przejdź do wybranego katalogu. Wewnątrz znajdziesz odpowiednio nazwane pliki. Są to pełne obrazy płyt, gotowe do nagrania na CD-R.
+</p>
+
+<p>
+Jeśli zastanawiasz się czy pobrane pliki są prawidłowe, czy też uszkodzone,
+możesz porównać ich sumę kontrolną MD5 z tą, którą dostarczamy razem z iso
+(na przykład <path>install-x86-minimal-2004.0.iso.md5</path>). Do sprawdzania
+sumy MD5 pod Linuksem/Uniksem służy program <c>md5sum</c>, natomiast
+pod Windowsem <uri link="http://www.md5summer.org">md5summer</uri>.
+</p>
+
+
+<p>
+Innym sposobem sprawdzenia poprawności pobranego pliku jest użycie GnuPG, aby sprawdzić kryptograficzną sygnaturę pliku z tą, którą dostarczamy w pliku z rozszerzeniem <path>.asc</path>). Ściągnij plik sygnatury i uzyskaj klucz publiczny:
+</p>
+
+<pre caption="Uzyskiwanie klucza publicznego">
+$ <i>gpg --keyserver pgp.mit.edu --recv-keys 17072058</i>
+</pre>
+
+<p>
+Teraz zweryfikuj sygnaturę:
+</p>
+
+<pre caption="Weryfikacja sygnatury">
+$ <i>gpg --verify &lt;plik_sygnatury&gt; &lt;pobrany_obraz_iso&gt;</i>
+</pre>
+
+<p>
+Aby nagrać pobrane obrazy, musisz wybrać w programie do nagrywania
+tryb RAW. Sposób zależy od używanego narzędzia. Omówimy poniżej kilka
+najpopularniejszych.
+</p>
+
+<ul>
+  <li>
+W cdrecord wystarczy wpisać <c>cdrecord dev=/dev/hdc</c> (oczywiście musisz zamienić <path>/dev/hdc</path> odpowiednią ściężką do swojego urządzenia CD-RW) i nazwę pliku ISO, który chcesz wypalić.
+  </li>
+  <li>
+W K3B wybierz kolejno <c>Tools</c> &gt; <c>CD</c> &gt; <c>Burn Image</c>. Następnie wskaż swój plik ISO w oknie o nazwie 'Image to Burn'. Wreszcie wciśnij <c>Start</c>, aby wypalić obraz.
+  </li>
+</ul>
+
+</body>
+</subsection>
+<subsection>
+<title>Uruchamianie LiveCD dla x86 lub AMD64</title>
+<body>
+
+<impo>
+Ta podsekcja przeznaczona jest <e>tylko</e> dla platform x86 oraz amd64. Przeczytaj ją do końca
+zanim rozpoczniesz instalację, gdyż później może nie być do tego okazji.
+</impo>
+
+<p>
+Po nagraniu płyt instalacyjnych nadszedł czas na ich uruchomienie. Zrestartuj
+komputer i wejdź do ustawień BIOSu. Zazwyczaj służą do tego klawisze Del,
+F1 lub ESC, w zależności od jego producenta. Następnie musisz zmienić
+kolejność uruchamiania, aby CD-ROM znalazł się przed twardym dyskiem.
+Przeważnie kryje się ona w "CMOS Setup". Jeśli tego nie zrobisz, system
+uruchomi się z twardego dysku, a nie z płyty.
+</p>
+
+<p>
+Teraz umieść płytę instalacyjną w czytniku i ponownie zrestartuj komputer.
+Powinieneś ujrzeć ładny ekran startowy z logo Gentoo Linux. Możesz po prostu
+wcisnąć Enter aby rozpocząć proces uruchamiania z domyślnymi opcjami lub
+te opcje zmienić, wybierając jądro i podając odpowiednie parametry.
+</p>
+
+<p>
+Wybór jądra? Tak, dostarczamy kilka kerneli na naszych LiveCD. Domyślnym
+jest <c>gentoo</c>. Oprócz niego dostępne są <c>smp</c>, aktywujący
+wsparcie dla maszyn wieloprocesorowych oraz <c>nofb</c>, z wyłączonym
+framebufferem.
+</p>
+
+<p>
+Below you'll find a short overview on the available kernels:
+</p>
+
+<table>
+<tr>
+<th>Jądro</th>
+<th>Opis</th>
+</tr>
+<tr>
+<ti>gentoo</ti>
+<ti>Domyślne jądro 2.6 ze wsparciem dla framebuffera i wielu procesorów</ti>
+</tr>
+<tr>
+<ti>gentoo-nofb</ti>
+<ti>To samo co gentoo, ale bez obsługi framebuffera</ti>
+</tr>
+<tr>
+<ti>memtest86</ti>
+<ti>Program do testowania pamięci</ti>
+</tr>
+</table>
+	    
+<p>
+You can also provide kernel options. They represent optional settings you can
+(de)activate at will. The following list is the same as the one you receive
+when you press F2 at the bootscreen.
+</p>
+
+<pre caption="Options available to pass to your kernel of choice">
+- agpgart       ładuje agpgart (używane w przypadku problemów z grafiką, zwłaszcza zawieszania się komputera)
+- acpi=on       włącza wsparcie dla ACPI
+- ide=nodma     wymusza wyłączenie DMA force na psujących się napędach IDE
+- doscsi        skanuje w poszukiwaniu urządzeń scsi (może nie działać prawidłowo z niektórymi kartami ethernet) 
+- dopcmcia      uruchamia usługę dla cdromów PCMCIA 
+- nofirewire    wyłącza moduły firewire (dla cdromów firewire, etc)
+- nokeymap      wyłącza wybór mapowania klawiatury innego niż US
+- docache       cache'uje cały proces bootowania cd w RAMie, umożliwia to odmontowanie cdromu podczas instalacji 
+- nodetect      uniemożliwia uruchomienie hwsetup/kudzu i hotplug
+- nousb         wyłącza ładowanie modułu usb z initrd, wyłącza też hotplug
+- nodhcp        dhcp nie wystartuje automatycznie jeśli zostanie wykryty nic
+- nohotplug     wyłącza ładowanie urządzeń hotplug
+- noapic        wyłącza apic (użyj w przypadku problemów ze sprzętem nics,scsi,etc)
+- hdx=stroke    pozwala na partycjonowanie całego dysku, nawet wtedy, gdy BIOS nie obsługuje dużych dysków
+</pre>
+
+<p>
+Teraz uruchom swoją płytę, wybierz jądro (jeśli domyślne <c>gentoo</c>
+Cię nie zadowala) oraz odpowiednie opcje. W przykładzie pokażemy, jak
+uruchomić kernel <c>gentoo</c> z parametrami <c>dopcmcia</c>.
+</p>
+
+<pre caption="Uruchamianie LiveCD">
+boot: <i>gentoo dopcmcia</i>
+</pre>
+
+<p>
+Jeśli instalujesz Gentoo na systemie, w którym masz klawiaturę inną niż US wciśnij F2, że przejść do trybu verbose, a następnie postępuj zgodnie ze wskazówkami, które zobaczysz, jeśli nie wybierzesz nowego mapowania w ciągu 10 sekund, zostanie załadowane to domyślne, czyli amerykańskie. Jak tylko skończy się proces wczytywania systemu zostaniesz automatycznie zalogowany do &quot;Live&quot; Gentoo Linux jako &quot;root&quot;, nazywany też czasem superużytkownikiem. Powinieneś widzieć na bieżącej konsoli znak zachęty (&quot;#&quot;) roota. Konsolę zmieniasz kombinacjami klawiszy Alt-F2, Alt-F3 i Alt-F4. Do konsoli, którą zobaczyłeś na początku wrócisz naciskając Alt-F1.
+</p>
+
+<p>
+Teraz przejdź do <uri link="#doc_chap3_sect7">Konfiguracji Dodatkowego Sprzętu</uri>.
+</p>
+
+</body>
+</subsection>
+<subsection id="hardware">
+<title>Konfiguracja Dodatkowego Sprzętu</title>
+<body>
+
+<p>
+W czasie uruchamiania LiveCD, system próbuje wykryć sprzęt i załadować odpowiednie
+sterowniki. Zazwyczaj czyni to prawidłowo, ale czasami mogą zdarzyć się problemy
+(LiveCD dla SPARC nawet nie próbuje) i nie wszystkie moduły zostaną aktywowane.
+Gdy zawiedzie detekcja PCI, możesz załadować odpowiednie moduły ręcznie.
+</p>
+
+<p>
+W poniższym przykładzie spróbujemy załadować moduł <c>8139too</c> (wsparcie
+dla różnych rodzajów urządzeń sieciowych):
+</p>
+
+<pre caption="Ładowanie modułów jądra">
+# <i>modprobe 8139too</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Poprawianie Wydajności Twardego Dysku</title>
+<body>
+
+<p>
+Jeśli jesteś zaawansowanym użytkownikiem, być może zainteresuje Cię
+możliwość zwiększenia wydajności dysku IDE za pomocą <c>hdparm</c>.
+Mozna ją przetestować za pomocą parametrów <c>-tT</c> (wykonanie
+tego kilka razy zwiększa precyzję pomiaru):
+</p>
+
+<pre caption="Testowanie wydajności dysku">
+# <i>hdparm -tT /dev/hda</i>
+</pre>
+
+<p>
+Aby coś poprawić, możesz wykorzystać któryś z poniższych przykładów
+(lub poeksperymentować samodzielnie). Zastąp <path>/dev/hda</path>
+urządzeniem odpowiednim dla swojego dysku.
+</p>
+
+<pre caption="Poprawianie wydajności dysku">
+<comment>Aktywacja DMA:</comment>                                            # <i>hdparm -d 1 /dev/hda</i>
+<comment>Aktywacja DMA + Bezpieczne opcje poprawiające wydajność:</comment>  # <i>hdparm -d 1 -A 1 -m 16 -u 1 -a 64 /dev/hda</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Konta Użytkowników</title>
+<body>
+
+<p>
+Jeśli planujesz dać dostęp do środowiska instalacyjnego
+innym użytkownikom, lub korzystać z <c>irssi</c> bez uprawnień
+administratora (ze względów bezpieczeństwa), musisz stworzyć
+odpowiednie konta i zmienić hasło roota.
+</p>
+
+<p>
+Aby zmienić hasło roota, skorzystaj z narzędzia <c>passwd</c>:
+</p>
+
+<pre caption="Zmiana hasła roota">
+# <i>passwd</i>
+New password: <comment>(Podaj nowe hasło)</comment>
+Re-enter password: <comment>(Podaj nowe hasło jeszcze raz)</comment>
+</pre>
+
+<p>
+Aby stworzyć konto użytkownika, najpierw podamy jego login, a
+potem ustawimy hasło. Skorzystamy przy tym z <c>useradd</c> oraz <c>passwd</c>.
+W przykładzie, stworzymy użytkownika &quot;john&quot;.
+</p>
+
+<pre caption="Tworzenie konta użytkownika">
+# <i>useradd john</i>
+# <i>passwd john</i>
+New password: <comment>(Podaj hasło johna)</comment>
+Re-enter password: <comment>(Podaj hasło johna jeszcze raz)</comment>
+</pre>
+
+<p>
+Aby zmienić id użytkownika z roota na nowo utworzone konto, skorzystaj
+z polecenia <c>su</c>:
+</p>
+
+<pre caption="Zmiana id użytkownika">
+# <i>su john -</i>
+</pre>
+
+<p>
+Jeśli chcesz korzystać z Podręcznika Gentoo (obojętnie czy z CD czy z sieci) podczas instalacji powinieneś dodać konto użytkownika, tak jak opisaliśmy to przed chwilą, a następnie przejść przy pomocy kombinacji klawiszy <c>Alt-F2</c> na nowy terminal i tam się zalogować.
+</p>
+
+<p>
+Aby przejrzeć dokumentację nagraną na CD użyj programu <c>links2</c> w następujący sposób: 
+</p>
+
+<pre caption="Przeglądanie dokumentacji na CD">
+# <i>links2 /mnt/cdrom/docs/html/index.html</i>
+</pre>
+
+<p>
+Najczęściej wykorzystywaną metodą jest jednak czytanie Podręcznika Gentoo z sieci, ponieważ zawsze korzysta się wtedy z najnowszej i najlepszej dostępnej jego wersji. Możesz zrobić to również przy pomocy programu <c>links2</c>, pod warunkiem oczywiście, że skonfigurowałeś już swoje połączenie sieciowe. 
+</p>
+
+<pre caption="Przeglądanie dokumentacji w sieci">
+# <i>links2 http://www.gentoo.org/doc/en/handbook/handbook-x86.xml</i>
+</pre>
+
+<p>
+Na pierwszą konsolę przełączasz się wciskając <c>Alt-F1</c>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Uruchamianie demona SSH</title>
+<body>
+
+<p>
+Jeśli chcesz w czasie instalacji dać dostęp do swojego komputera innym użytkownikom (ponieważ np. ktoś będzie chciał Ci pomóc w instalacji Gentoo, lub nawet zrobić to za Ciebie) musisz założyć im osobiste konta, a czasem nawet dać hasło do konta roota (rób to tylko wtedy, gdy <e>całkowicie</e> ufasz tej osobie).
+</p>
+
+<p>
+Aby uruchomić demona SSH wpisz następującą komendę:
+</p>
+
+<pre caption="Uruchamianie demona SSH">
+# <i>/etc/init.d/sshd start</i>
+</pre>
+
+<p>
+Aby używać sshd musisz mieć działające połączenie sieciowe. Aby je skonfigurować przejdź do rozdziału <uri link="?part=1&amp;chap=3">Konfiguracja sieci</uri>.
+</p>
+
+</body>
+</subsection>
+</section>
+</sections>
