@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.16 -->
+<!-- Orig revision: 1.18 -->
 <!-- Translator: Sharak <sharak@rybnet.pl> -->
 <!-- Title: Flagi USE -->
 <!-- Status: Ukończono -->
@@ -11,7 +11,7 @@
 -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.7 2004/07/12 09:50:04 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.8 2004/09/19 14:49:16 sharak Exp $ -->
 
 <sections>
 <section>
@@ -61,12 +61,12 @@ także pakiety zależne.
 <p>
 Przyjrzyjmy się zatem przykładowi: słowo kluczowe <c>kde</c>. Jeżeli nie 
 posiadasz go wśród zmiennych <c>USE</c>, wszystkie pakiety, które 
-posiadają <e>opcjonalne</e> wsparcie dla KDE, zostaną skompilowane 
-<e>bez</e>wsparcia dla KDE. Wszystkie pakiety, które będą 
+posiadają <e>opcjonalną</e> obsługę KDE, zostaną skompilowane 
+<e>bez</e> obsługi KDE. Wszystkie pakiety, które będą 
 <e>opcjonalnie</e> zależne od KDE, zostaną zainstalowane <e>bez</e> 
 bibliotek KDE (jako zależności). Jeżeli zdefiniujesz słowo kluczowe 
-<c>kde</c>, wtedy te pakiety zostaną skompilowane <e>ze</e> wsparciem 
-dla KDE oraz biblioteki KDE zostaną zainstalowane jako pakiety zależne.
+<c>kde</c>, wtedy te pakiety zostaną skompilowane <e>z</e> obsługą
+KDE oraz biblioteki KDE zostaną zainstalowane jako pakiety zależne.
 </p>
 
 <p>
@@ -86,8 +86,8 @@ Wyróżniamy dwa typy flag USE: <e>globalne</e> oraz <e>lokalne</e>.
 
 <ul>
   <li>
-    <e>Globalne</e> flagi USE są używane dla większej ilości pakietów, 
-ogólnosystemowe. Większość ludzi postrzega je właśnie jako flagi USE.
+    <e>Globalne</e> flagi USE są używane dla większej ilości pakietów,
+są ogólnosystemowe. Większość ludzi postrzega je właśnie jako flagi USE.
   </li>
   <li>
     <e>Lokalne</e> flagi USE są używane przez pojedynczy pakiet w celu 
@@ -99,21 +99,23 @@ dokonania dezycji specyficznych dla danego pakietu.
 Lista dostępnych globalnych flag USE jest dostępna <uri
 link="/dyn/use-index.xml">online</uri> lub też lokalnie w pliku
 <path>/usr/portage/profiles/use.desc</path>. Krótki (<e>bardzo</e> 
-niekompletny)
-fragment:
+niekompletny) fragment:
 </p>
 
 <pre caption="Krótki fragment dostępnych flag USE">
 gtk     - Dodaje wsparcie dla x11-libs/gtk+ (The GIMP Toolkit)
-gtk2    - Używa gtk+-2.0.0 zamiast gtk+-1.2 w przypadku, gdy program 
-wspiera oba formaty.
+gtk2    - Używa gtk+-2.0.0 zamiast gtk+-1.2 w przypadku, gdy program wspiera oba formaty.
 gtkhtml - Dodaje wsparcie dla gnome-extra/gtkhtml
 guile   - Dodaje wsparcie dla dev-util/guile (Intepreter dla Scheme)
-icc     - Używa kompilatora Intel C++ jeżeli pakiet posiada dla niego 
-wsparcie
+icc     - Używa kompilatora Intel C++ jeżeli pakiet posiada dla niego wsparcie
 icc-pgo - Włącza generację danych PGO lub używa przy icc.
 imap    - Dodaje wpsarcie dla IMAP
 </pre>
+
+<p>
+Lista dostępnych lokalnych flag USE znajduje się w pliku
+<path>/usr/portage/profiles/use.local.desc</path>.
+</p>
 
 </body>
 </subsection>
@@ -166,16 +168,38 @@ minus ("-") przed wybraną flagą.
 </p>
 
 <p>
-Na przykład, aby usunąć wsparcie dla KDE i QT ale dodać wsparcie dla 
-ldap, zmienna <c>USE</c> w pliku <path>/etc/make.conf</path> powinna 
-wyglądać następująco:
+Na przykład, aby usunąć obsługę KDE i QT ale dodać obsługę ldap, zmienna 
+<c>USE</c> w pliku <path>/etc/make.conf</path> powinna wyglądać następująco:
 </p>
 
-<pre caption="Przykładowe ustawienia zmiennej USE w pliku 
-/etc/make.conf">
+<pre caption="Przykładowe ustawienia zmiennej USE w pliku /etc/make.conf">
 USE="-kde -qt ldap"
 </pre>
 
+<p>
+Czasami chcesz zadeklarować wybraną flagę USE dla jednego (lub kilku) aplikacji,
+ale nie dla całego systemu. Aby tego dokonać, aby tego dokonać, będziesz
+musiał utworzyć katalog  <path>/etc/portage</path> (jeżeli jeszcze nie istnieje)
+i wyedytować <path>/etc/portage/package.use</path>.
+</p>
+
+<p>
+Na przykład, jeżeli nie chcesz globalnego wsparcia dla <c>berkdb</c> natomiast
+chciałbyś mieć jego wsparcie dla <c>mysql</c>, pownieneś dodać:
+</p>
+
+<pre caption="Przykład /etc/portage/package.use">
+dev-db/mysql berkdb
+</pre>
+
+<p>
+Oczywiście możesz całkowicie <e>wyłączyć</e> flagi USE dla wybranej aplikacji.
+Na przykład, jeżeli nie chcesz obsługi <c>javy</c> w PHP:
+</p>
+
+<pre caption="2 przykład /etc/portage/package.use">
+dev-php/php -java
+</pre>
 </body>
 </subsection>
 <subsection>
@@ -186,11 +210,13 @@ USE="-kde -qt ldap"
 Czasami zachodzi potrzeba użycia flagi USE tylko jeden raz. Zamiast 
 edytować plik <path>/etc/make.conf</path> dwa razy (aby dokonać oraz 
 przywrócić zmiany w zmiennej USE), możesz po prostu zadeklarować zmienną 
-USE jako zmienną środowiska.
+USE jako zmienną środowiska. Pamiętaj, jeżeli ponownie zainstalujesz lub
+zaktualizujesz tą aplikację (przypadkowo lub przy aktualizacji systemu)
+Twoje zmiany zostana utracone!
 </p>
 
 <p>
-Jako przykład usuniemy wsparcie dla javy na czas instalacji mozilli.
+Jako przykład usuniemy obsługę javy na czas instalacji mozilli.
 </p>
 
 <note>
@@ -253,6 +279,10 @@ znajdujący się w pliku <path>/etc/make.profile/use.defaults</path>
 <path>/etc/make.conf</path>
   </li>
   <li>
+    Zdefiniowana przez użytkownika zmienna USE w pliku
+ <path>/etc/portage/package.use</path>
+  </li>
+  <li>
     Zmienna USE zdefiniowana przez użytkownika jako zmienna 
 środowiskowa.
   </li>
@@ -276,10 +306,11 @@ Polecenie to ukaże wszystkie istotne zmienne (włączając zmienną
 <body>
 
 <p>
-Po zmodyfikowaniu swoich flag USE, jeżeli chcesz uaktualnić swój system, aby pakiety
-używały nowych flag USE, musisz wykonać pare czynności przedstawionych poniżej.
-Pamiętaj jednak, że czynności te są czasochłonne. Trwają prace nad dostosowaniem
-Portage, aby obsługiwał takie zachowania automatycznie i szybciej. 
+Jeżeli zmodyfikowałeś swoje flagi USE i chcesz teraz uaktualnić swój system, 
+aby pakiety używały nowych flag USE, musisz wykonać pare czynności
+przedstawionych poniżej. Pamiętaj jednak, że czynności te są czasochłonne.
+Trwają prace nad dostosowaniem Portage, aby obsługiwał takie zachowania
+automatycznie i szybciej. 
 </p>
 
 <p>
@@ -292,7 +323,7 @@ Po pierwsze, przekompiluj swój system używając nowych flag USE:
  
 <p>
 Następnie trzeba uruchomić Portage depclean, aby usunąć niepotrzebne zależności, które 
-zostały zaemergowane na "starym" systemie, ale są zdezaktalizowane z nowymi flagami USE. 
+zostały zemergowane na "starym" systemie, ale są zdezaktualizowane z nowymi flagami USE. 
 </p>
 
 <warn>
@@ -347,7 +378,7 @@ Calculating dependencies ...done!
 </pre>
 
 <p>
-<c>emerge</c> nie jest jedynym narzędziem, które potrafi to robić. Tak 
+<c>emerge</c> nie jest jedynym narzędziem wykorzystywanym w tym celu. Tak 
 naprawdę mamy narzędzie przeznaczone do przeglądania informacji o 
 pakietach zwane <c>etcat</c>. Znajduje się ono w pakiecie 
 <c>gentoolkit</c>. Najpierw zainstaluj <c>gentoolkit</c>:
