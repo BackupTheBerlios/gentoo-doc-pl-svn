@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-medium.xml,v 1.6 2004/12/07 14:10:19 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-medium.xml,v 1.7 2004/12/07 15:01:42 rane Exp $ -->
 
 <sections>
 
@@ -22,7 +22,7 @@
 <body>
 
 <p>
-Zanim zaczniemy, musimy ustalić jakie wymagania sprzętowe powinien spełniać
+Zanim zaczniemy musimy ustalić jakie wymagania sprzętowe powinien spełniać
 Twój komputer, aby pomyślnie zainstalować na nim Gentoo. Zależy to oczywiście
 od docelowej architektury.
 </p>
@@ -32,6 +32,11 @@ od docelowej architektury.
 <subsection>
 <title>Architektura x86.</title>
 <body>
+
+<p>
+Zanim przejdziesz do następnej części, sprawdź czy Twój sprzęt
+spełnia następujące wymagania:
+</p>
 
 <ul>
 <li>
@@ -70,8 +75,6 @@ Omówimy następujące media instalacyjne:
 <ul>
 <li>Gentoo Minimal LiveCD.</li>
 <li>Gentoo Universal LiveCD.</li>
-<li>Gentoo KDE/GNOME LiveCD.</li>
-<li>Uruchamianie z Sieci.</li>
 </ul>
 
 <p>
@@ -104,6 +107,11 @@ Który stage wybrać?
 Rozpoczęcie od <e>stage1</e> pozwala na pełną kontrolę nad konfiguracją i
 optymalizacją systemu. Przeznaczony jest on zwłaszcza dla doświadczonych użytkowników.
 Stwarza świetną okazję do głębszego poznania mechanizmów działania Gentoo.
+</p>
+
+<p>
+Instalację od <e>stage1</e> możesz zacząć tylko wtedy, gdy masz
+skonfigurowane i działające połączenie z Internetem.
 </p>
 
 <table>
@@ -361,7 +369,6 @@ pod Linuksem/Uniksem służy program <c>md5sum</c>, a pod Windowsem <uri
 link="http://www.md5summer.org">md5summer</uri>.
 </p>
 
-
 <p>
 Innym sposobem sprawdzenia poprawności pobranego pliku jest użycie GnuPG w celu
 porównania kryptograficznej sygnatury pobranego pliku z tą, którą dostarczamy w
@@ -422,7 +429,7 @@ uruchomi się z twardego dysku zamiast z płyty.
 </p>
 
 <p>
-Teraz umieść płytę instalacyjną w czytniku i ponownie zrestartuj komputer.
+Umieść płytę instalacyjną w czytniku i ponownie uruchom komputer.
 Powinieneś ujrzeć ładny ekran startowy z logo Gentoo Linux. Możesz po prostu
 wcisnąć Enter aby rozpocząć proces uruchamiania z domyślnymi opcjami lub
 zmienić te opcje, wybierając jądro i podając odpowiednie parametry.
@@ -521,7 +528,7 @@ PCI możesz załadować odpowiednie moduły ręcznie.
 
 <p>
 W poniższym przykładzie spróbujemy załadować moduł <c>8139too</c> (wsparcie
-dla różnych rodzajów urządzeń sieciowych):
+dla wielu różnych rodzajów urządzeń sieciowych):
 </p>
 
 <pre caption="Ładowanie modułów jądra">
