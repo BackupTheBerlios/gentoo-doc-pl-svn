@@ -6,42 +6,42 @@
 <!-- Title: Zabezpieczanie Gentoo  -->
 <!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-security.xml,v 1.4 2004/12/23 14:29:19 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/gentoo-security.xml,v 1.5 2004/12/23 22:33:36 rane Exp $ -->
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 
 <guide link = "/doc/en/gentoo-security.xml">
 <title>Gentoo Linux Security Guide</title>
-<author title="Author">
+<author title="Autor">
   <mail link="kn@insecurity.dk">Kim Nielsen</mail>
 </author>
-<author title="Editor"><!-- zhen@gentoo.org -->
+<author title="Edytor"><!-- zhen@gentoo.org -->
   John P. Davis
 </author>
-<author title="Editor">
+<author title="Edytor">
   <mail link="stocke2@gentoo.org">Eric R. Stockbridge</mail>
 </author>
-<author title="Editor">
+<author title="Edytor">
   <mail link="carl@gentoo.org">Carl Anderson</mail>
 </author>
-<author title="Editor">
+<author title="Edytor">
   <mail link="peesh@gentoo.org">Jorge Paulo</mail>
 </author>
-<author title="Editor">
+<author title="Edytor">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
-<author title="Editor">
+<author title="Edytor">
   <mail link="bennyc@gentoo.org">Benny Chuang</mail>
 </author>
-<author title="Editor">
+<author title="Edytor">
   <mail link="jaervosz@itu.dk">Sune Jeppesen</mail>
 </author>
-<author title="Editor">
+<author title="Edytor">
   <mail link="blubber@gentoo.org">Tiemo Kieft</mail>
 </author>
-<author title="Editor">
+<author title="Edytor">
 	<mail link="klasikahl@gentoo.org">Zack Gilburd</mail>
 </author>
-<author title="Editor">
+<author title="Edytor">
   <mail link="krispykringle@gentoo.org">Dan Margolis</mail>
 </author>
 
@@ -1450,20 +1450,12 @@ po nim spodziewać.
 Administratorzy często używają ping jako narzędzia diagnostycznego i narzekają
 jeśli jest wyłączony, ale są również powody dla których warto zabronić
 pingowania serwera ludziom z zewnątrz. Czasem również ktoś z wewnątrz będzie
-chciał użyć ping, dlatego warto wyłączyć ten typ pakietów w firewallu i
-umożliwić jednocześnie używania tego narzędzia administratorom w sieci lokalnej. 
-
-This will cause the kernel to simply ignore all ping messages (also known as
-ICMP type 0 messages). The reason for this is that an IP packet carrying an ICMP
-message can contain a payload with information other than you think.
-Administrators use ping as a diagnostic tool and often complain if it is
-disabled, but there is no reason for an outsider to be able to ping. However,
-since it sometimes can be handy for insiders to be able to ping, you can disable
-ICMP type 0 messages in the firewall (allowing local administrators to continue
-to use this tool).
+chciał użyć ping, dlatego znacznie lepszym pomysłem jest wyłączenie tego typu
+pakietów w firewallu i umożliwienie używania tego narzędzia również
+administratorom w sieci lokalnej. 
 </p>
 
-<pre caption="Ignore broadcast pings">
+<pre caption="Ignorowanie transmisji ping">
 # <i>/bin/echo "1" &gt; /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts</i>
 </pre>
 
