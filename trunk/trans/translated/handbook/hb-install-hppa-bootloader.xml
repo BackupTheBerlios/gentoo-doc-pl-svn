@@ -6,10 +6,10 @@
 
 <!-- Orig revision: 1.8 -->
 <!-- Translator: sekretarz <sekretarz@gentoo.org> -->
-<!-- Title: O instalacji Gentoo Linux -->
-<!-- Status: Ukończono -->
+<!-- Title: Konfiguracja bootloadera na HPPA -->
+<!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-hppa-bootloader.xml,v 1.3 2004/11/27 18:14:42 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-hppa-bootloader.xml,v 1.4 2004/12/22 13:24:01 rane Exp $ -->
 
 <sections>
 
@@ -17,12 +17,12 @@
 <date>2004-09-24</date>
 
 <section>
-<title>Instalacja PALO</title>
+<title>Instalowanie PALO.</title>
 <body>
 
 <p>
-Bootloader dla platformy PA-RISC nazywa się palo. Plik konfiguracyjny dla
-niego znajduje się w <path>/etc/palo.conf</path>. Oto przykładowa konfiguracja:
+Bootloader dla platformy PA-RISC nazywa się PALO. Jego plik konfiguracyjny
+to <path>/etc/palo.conf</path>. Oto przykładowa konfiguracja:
 </p>
 
 <pre caption = "Przykład /etc/palo.conf">
@@ -32,33 +32,34 @@ niego znajduje się w <path>/etc/palo.conf</path>. Oto przykładowa konfiguracja
 </pre>
 
 <p>
-Pierwsza linia przekazuje palo miejsce jądra i parametry których używasz podczas startu.
+Pierwsza linia wskazuje PALO miejsce, gdzie znajduje się jądro oraz parametry których używasz podczas startu.
 Opcja <c>2/vmlinux</c> mówi, że jądro o nazwie  <c>/vmlinux</c> znajduje się na drugiej
-partycji. Uważaj, ścieżka do kernela jest względna zależnie od partycji, nie patycji rootowej.
+partycji. 
 </p>
 
 <p>
-Druga linia wskazuje na zapasowe jądro, które ma być użyte w razie potrzeby. Jeżeli to Twoja
-pierwsza instalacja i nie masz jeszcze zapasowego jądra, możesz zakomentować tą linię.
-Trzecia linia wskazuje na dysk na którym znajduje się palo.
+Druga linia wskazuje na zapasowe jądro, które ma być użyte do odzyskiwania
+systemu. Jeżeli to Twoja pierwsza instalacja i nie masz jeszcze zapasowego
+jądra, możesz zakomentować tą linię. Trzecia linia wskazuje na dysk na którym
+znajduje się PALO.
 </p>
 
 <p>
-Kiedy zakończysz konfigurację, wywołaj <c>palo</c>.
+Kiedy skończysz konfigurację wpisz polecenie <c>palo</c>.
 </p>
 
-<pre caption = "Zaaplikowanie konfiguracji PALO">
+<pre caption="Aplikowanie konfiguracji PALO">
 # <i>palo</i>
 </pre>
 
 <p>
-Teraz jesteś gotowy na <uri link="#reboot">Ponowne Uruchomienie Systemu</uri>.
+Teraz jesteś gotowy na <uri link="#reboot">ponowne uruchomienie systemu</uri>.
 </p>
 
 </body>
 </section>
 <section id="reboot">
-<title>Ponowne Uruchomienie Systemu</title>
+<title>Ponowne uruchomienie systemu.</title>
 <subsection>
 <body>
 
@@ -75,13 +76,14 @@ cdimage ~# <i>reboot</i>
 </pre>
 
 <p>
-Nie zapomnij o wyłożeniu rozruchowej płyty CD, by wystartować system Gentoo z dysku, a nie
-z płyty CD.
+Nie zapomnij o wyjęciu LiveCD z napędu, bo zabootujesz system z płyty zamiast
+swojego nowego Gentoo.
 </p>
 
 <p>
-Po ponownym uruchomieniu komputera, zakończ instalację z rozdziałem  <uri
-link="?part=1&amp;chap=11">Zakończenie instalacji Gentoo</uri>.
+Po ponownym uruchomieniu komputera w celu dokończenia instalacji Gentoo przejdź
+do rozdziału <uri link="?part=1&amp;chap=11">Finalizowanie instalacji
+Gentoo</uri>.
 </p>
 
 </body>
