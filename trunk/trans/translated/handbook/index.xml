@@ -1,43 +1,55 @@
 <?xml version='1.0' encoding="UTF-8"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.15 -->
-<!-- Translator: lucass <lucass@gentoo.pl> -->
-<!-- Title: Podręcznik Gentoo (strona informacyjna) -->
-<!-- Status: Ukończono -->
+<!-- Orig revision: 1.37 -->
+<!-- Translator: sekretarz <sekretarz@gentoo.org> -->
+<!-- Title: odręcznik Gentoo (strona informacyjna -->
+<!-- Status: Ukończono-->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/index.xml,v 1.16 2004/11/01 22:47:28 sekretarz Exp $ -->
 
-
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/index.xml,v 1.15 2004/03/19 12:11:21 swierszczu Exp $ -->
-
-<guide>
+<guide link="index.xml">
 <title>Podręcznik Gentoo</title>
 
 <author title="Author">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
-<author title="Tłumacz">
-  <mail link="lucass@gentoo.pl">Łukasz Strzygowski</mail>
-</author>
-<author title="Korektor">
-   <mail link="swierszczu@gentoo.pl">Grzegorz Rosek</mail>
-</author>
-
 
 <abstract>
 Podręcznik Gentoo jest próbą zebrania całej dokumentacji w jednym miejscu.
-Informacje, które nie mogą zostać dodane spójnie, nie będą brane pod
-uwagę.
+Informacje, które nie mogą zostać dodane spójnie, nie będą brane pod uwagę.
 </abstract>
 
 <license/>
 
-<version>0.8</version>
-<date>26 luty 2003</date>
+<version>0.20</version>
+<date>October 21, 2004</date>
 
 <chapter>
 <title>Podręcznik Gentoo</title>
 <section>
-<title>Wprowadzenie</title>
+<title>Dostępne tłumaczenia</title>
+<body>
+
+<p>
+Podręcznik Gentoo dostępny jest w następujących językach:
+</p>
+
+<p>
+<uri link="/doc/da/handbook">Duńskim</uri> |
+<uri link="/doc/de/handbook">Niemieckim</uri> |
+<!-- <uri link="/doc/nl/handbook">Holenderskim</uri> | -->
+<uri link="/doc/en/handbook">Angielskim</uri> |
+<uri link="/doc/fr/handbook">Francuskim</uri> |
+<uri link="/doc/id/handbook">Indonezyjskim</uri> |
+<uri link="/doc/it/handbook">Włoskim</uri> |
+<uri link="/doc/es/handbook">Hiszpańskim</uri> | 
+<uri link="/doc/zh_tw/handbook">Chińskim Tradycyjnym</uri>
+</p>
+
+</body>
+</section>
+<section>
+<title>Wstęp</title>
 <body>
 
 <p>
@@ -54,27 +66,50 @@ status, plany na przyszłość, sposoby zgłaszania bugów itd.
 <section>
 <body>
 
-<p>
-Aktualnie podręcznik dostępny jest tylko w wersji on-line. Pracujemy nad 
-dokumentem na jednej stronie, przeznaczonym do druku.
-</p>
-
 <table>
 <tr>
   <th>Format</th>
   <th>Opis</th>
+  <th>Łącza</th>
 </tr>
 <tr>
-  <ti><uri link="handbook.xml">HTML</uri></ti>
-  <ti>Jeden rozdział na stronę. Doskonały do przeglądania on-line.</ti>
+  <ti>HTML</ti>
+  <ti>Jedna strona na rozdział, doskonały do przeglądania online</ti>
+  <ti>
+    <uri link="handbook-x86.xml">x86</uri>,
+    <uri link="handbook-alpha.xml">alpha</uri>,
+    <uri link="handbook-amd64.xml">amd64</uri>,
+    <uri link="handbook-hppa.xml">hppa</uri>,
+    <uri link="handbook-mips.xml">mips</uri>,
+    <uri link="handbook-ppc.xml">ppc</uri>,
+    <uri link="handbook-sparc.xml">sparc</uri>
+  </ti>
 </tr>
 <tr>
-  <ti><uri link="handbook.xml?full=1">HTML</uri></ti>
+  <ti>HTML</ti>
   <ti>Wszystko na jednej stronie</ti>
+  <ti>
+    <uri link="handbook-x86.xml?full=1">x86</uri>,
+    <uri link="handbook-alpha.xml?full=1">alpha</uri>,
+    <uri link="handbook-amd64.xml?full=1">amd64</uri>,
+    <uri link="handbook-hppa.xml?full=1">hppa</uri>,
+    <uri link="handbook-mips.xml?full=1">mips</uri>,
+    <uri link="handbook-ppc.xml?full=1">ppc</uri>,
+    <uri link="handbook-sparc.xml?full=1">sparc</uri>
+  </ti>
 </tr>
 <tr>
-  <ti><uri link="handbook.xml?style=printable&amp;full=1">HTML</uri></ti>
-  <ti>Wszystko na jednej stronie. Wersja przeznaczona do druku</ti>
+  <ti>HTML</ti>
+  <ti>Wszystko na jednej stronie, wersja przeznaczona do druku</ti>
+  <ti>
+    <uri link="handbook-x86.xml?style=printable&amp;full=1">x86</uri>,
+    <uri link="handbook-alpha.xml?style=printable&amp;full=1">alpha</uri>,
+    <uri link="handbook-amd64.xml?style=printable&amp;full=1">amd64</uri>,
+    <uri link="handbook-hppa.xml?style=printable&amp;full=1">hppa</uri>,
+    <uri link="handbook-mips.xml?style=printable&amp;full=1">mips</uri>,
+    <uri link="handbook-ppc.xml?style=printable&amp;full=1">ppc</uri>,
+    <uri link="handbook-sparc.xml?style=printable&amp;full=1">sparc</uri>
+  </ti>
 </tr>
 </table>
 
@@ -83,166 +118,26 @@ dokumentem na jednej stronie, przeznaczonym do druku.
 </chapter>
 
 <chapter>
-<title>Informacje o podręczniku</title>
+<title>Informacje na temat podręcznika</title>
 <section>
 <title>Cel</title>
 <body>
 
 <p>
 Celem Podręcznika Gentoo jest stworzenie dokumentu opisującego
-wszystkie aspekty Gentoo Linux. Łączy on istniejące już przewodniki
+wszystkie możliwe aspekty Gentoo Linux. Łączy on istniejące już przewodniki
 w jedną, spójną książkę, obejmującą wszystkich użytkowników,
-architektury oraz rodzaje instalacji. Pokazuje, że różnice są niewielkie,
-a większość elementów jest wspólna.
+architektury oraz rodzaje instalacji. Przez to nie tylko prościej jest nam zarządzać nim, ale także użytkownik przekonuje się, że różnice pomiędzy architekturami są niewielkie.
 </p>
 
 <p>
-Oprócz tego pozwala nam dopracować najważniejsze punkty i pokazać więcej 
-przykładów, gdyż nie jesteśmy zmuszeni do zawarcia wszystkiego na jednej 
-stronie. Kolejną zaletą jest możliwość łatwiejszej aktualizacji.
+Poprzez nie rozdzielanie instrukcji dla wszystkich możliwych opcji, 
+użytkownik może zobczyć rezultaty pozostałych wyborów. Dla użytkownika 
+powoduje to <b>lepszy pogląd na instrukcję instalacji</c>: nawet jeżeli 
+wybierze - na przykład - stage3, będzie wiedział co zawiera stage2 czy stage1.
+Nie ukrywanie tych instrukcji jest dobrym wyborem.
 </p>
 
-</body>
-</section>
-<section>
-<title>Status</title>
-<body>
-
-<p>
-Ukończono już drugą część podręcznika, <uri
-link="handbook.xml?part=1">Praca z Gentoo</uri>. Zawiera ona informacje
-o wszystkich charakterystycznych cechach naszej dystrybucji, takich jak 
-Portage (łącznie z programem <c>emerge</c>), flagach USE, skryptach
-startowych oraz zmiennych środowiskowych.
-</p>
-
-<p>
-Jeśli chcesz pomóc w pracach nad Podręcznikiem Gentoo, skorzystaj
-z listy dyskusyjnej <mail link="gentoo-doc@gentoo.org">gentoo-doc</mail>,
-lub prześlij swoje uwagi bezpośrednio do <mail 
-link="swift@gentoo.org">Svena Vermeulena</mail>.
-</p>
-
-</body>
-</section>
-<section>
-<title>Plany na przyszłość</title>
-<body>
-
-<p>
-<uri link="/proj/en/desktop">Projekt Gentoo Desktop</uri> planuje
-przepisanie <uri link="/doc/en/desktop.xml">Opisu Konfiguracji 
-Desktopu</uri> aby nadawał się do umieszczenia w Podręczniku. 
-Aktualnie nie mamy na ten temat więcej informacji. Zainteresowani 
-powinni kontaktować się ze <mail link="swift@gentoo.org">Svenem Vermeulenem</mail>
-lub pisać na <mail link="gentoo-doc@gentoo.org">listę dyskusyjną
-dokumentacji Gentoo</mail>.
-</p>
-<p>
-Kilku developerów Gentoo tworzy kolejną część, opisującą rozmaite
-elementy budowy systemu (ebuildy, e-classy itd.). Obecnie nie posiadamy
-na ten temat szczegółowych informacji. Wszyscy zainteresowani
-powinni kontaktować się z <mail link="seemant@gentoo.org">Seemantem
-Kulleenem</mail>.
-</p>
-</body>
-</section>
-<section>
-<title>Zgłaszanie błędów i propozycji poprawek</title>
-<body>
-
-<p>
-Jeśli znajdziesz buga w podręczniku, zgłoś go do <uri
-link="http://bugs.gentoo.org">Gentoo Linux Bugzilla</uri> w kategorii
-<e>Docs-user</e>, Component <e>Handbook</e>. 
-</p>
-
-</body>
-</section>
-</chapter>
-<chapter>
-<title>Najczęściej Zadawane Pytania</title>
-<section>
-<title>W jakim celu łączycie ze sobą dokumenty?</title>
-<body>
-
-<p>
-Dawniej, znaczna część opisów była specyficzna dla danej architektury,
-były one niemal niemożliwe do wygodnego zarządzania. Jako, że
-najpopularniejszą platformę używaną przez społeczność Gentoo stanowi
-x86, jej instrukcje rozwijano najaktywniej. Pozostałe często były
-nieaktualne i przestarzałe.
-</p>
-
-<p>
-Łącząc opisy razem, każda aktualizacja dotyczy wszystkich architektur.
-Jest to możliwe, gdyż jedynie niewielka część instrukcji nie jest wspólna:
-<e>uruchamianie</e>, <e>partycjonowanie</e>, <e>jądro</e> oraz
-<e>bootloader</e>.
-</p>
-
-</body>
-</section>
-<section>
-<title>Czy nie możecie stworzyć handbooka tworzonego dynamicznie dla danej 
-konfiguracji?</title>
-<body>
-
-<p>
-Wszystko jest możliwe, ale nie zrobiliśmy tego z kilku powodów.
-</p>
-
-<p>
-<b>Zarządzanie</b> przewodnikiem byłoby znacznie trudniejsze. Nie tylko
-musielibyśmy zgłaszać bugi dla różnych wyborów (w przeciwieństwie do 
-pozostałych zgłoszeń, musielibyśmy pisać jakie podjęliśmy wcześniej
-decyzje), ale byłoby o wiele trudniej tworzyć płynne opisy: należałoby
-poświęcać znacznie więcej uwagi spójności stylu podręcznika.
-</p>
-
-<p>
-Jakkolwiek dysponujemy obecnie jedynie wersją online, pracujemy nad
-<b>innymi formatami</b>, na przykład PDF. Jeśli musielibyśmy tworzyć
-PDFy dla każdej architektury i każdej opcji, powstałyby ich znaczne ilości
-niewiele się różniące. Byłoby to marnowanie zasobów.
-</p>
-
-<p>
-Użytkownik podejmuje decyzje <b>na różnych etapach</b>. Byłoby dla niego
-o wiele trudniej otrzymać odpowiedni podręcznik gdyby musiał
-o wszystkim decydować już na początku. Prawdopodobnie szybko by się
-zniechęcił.
-</p>
-
-<p>
-"Instalacja Gentoo" <b>nie jest jedyną częścią</b> Podręcznika Gentoo.
-Kolejne nie zależą od podjętych w niej decyzji. Dynamiczne tworzenie
-podręcznika tylko dla opisu instalacji byłoby samobójstwem.
-</p>
-
-<p>
-Dzięki nierozdzielaniu instrukcji dla każdej możliwej opcji, użytkownik
-może przejrzeć rezultaty innych decyzji. Dzięki temu ma <b>szersze spojrzenie
-na opis instalacji</b>. Na przykład nawet jeśli wybrał stage3, wie także
-o stage2 i stage1.
-</p>
-
-</body>
-</section>
-<section>
-<title>Ale te wszystkie instrukcje przeznaczone tylko dla konkretnej 
-architektury są męczące</title>
-<body>
-<p>
-Dobrze, rozumiemy to. Projekt GDP obawia się, że części użytkowników
-instrukcje instalacji mogą wydać się mniej czytelne z powodu
-opisów przeznaczonych tylko dla konkretnych architektur (takich
-jak uruchamianie systemu, partycjonowanie, konfiguracja jądra
-oraz menadżer uruchamiania). Życzenie dynamicznego oddzielania
-tych opisów bez jednoczesnego podziału plików źródłowych
-dodaliśmy do naszej listy <uri 
-link="/proj/en/gdp/roadmap.xml">TODO</uri>.
-</p>
 </body>
 </section>
 <section>
@@ -250,17 +145,16 @@ link="/proj/en/gdp/roadmap.xml">TODO</uri>.
 <body>
 
 <p>
-<uri link="http://bugs.gentoo.org">Przedstaw nam</uri> swój pomysł; 
-Niekonstruktywna krytyka niewiele pomoże. Dokumentacja tworzona jest 
-dla społeczności, więc jej głos jest dla nas bardzo ważny.
+Proszę, <uri link="http://bugs.gentoo.org">zgłoś</uri> swój pomysł; jednak niezgadzanie 
+się bez argumentacji nie pomoże nam. Dokumentacja tworzona jest z myślą o społeczności,
+więc opinie społeczności będą także doceniane.
 </p>
 
 <p>
-Jakkolwiek, musisz przyjąć do wiadomości, że większość 
-podejmowanych przy rozwoju dokumentacji decyzji stanowi kompromis.
-<e>Nie jest możliwe</e> stworzenie instrukcji, z których wszyscy byliby
-w pełni zadowoleni. Musisz zaakceptować "Nie", jeśli wierzymy że
-obecny opis zadowala większość czytelników
+Musisz jednak pamiętać, że wiekszość decyzji podczas tworzenia dokumetacji podejmowana jest na zasadzie
+złotego środka. <e>Nie jest możliwe</e> napisanie dokumentacji w taki sposób, żeby wszyscy byli 
+z niej zadowoleni. Musisz być gotowy zaakceptować odpowiedź "Nie", gdy wierzymy, że aktualna forma da 
+korzyści wiekszości ludzi.
 </p>
 
 </body>
