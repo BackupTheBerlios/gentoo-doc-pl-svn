@@ -14,11 +14,11 @@ echo > doctable.xml
 for file in `find ../translated/ -name "*.xml"` 
 do
    echo "<tr>" >> doctable.xml
-   echo "<ti><uri link=\"http://cvs.berlios.de/cgi-bin/viewcvs.cgi/gentoo-doc-pl/$file?rev=HEAD&amp;content-type=
+   echo "<ti><uri link=\"http://cvs.berlios.de/cgi-bin/viewcvs.cgi/gentoo-doc-pl/trans/$file?rev=HEAD&amp;content-type=
 text/vnd.viewcvs-markup\">" >> doctable.xml
    grep '^<!-- Title:' $file | sed -e 's/<!-- Title: \(.*\) -->$/\1<\/uri><\/ti>/' >> doctable.xml
    grep '^<!-- Orig revision:' $file | sed -e 's/<!-- Orig revision: \(.*\) -->$/<ti>\1<\/ti>/' >> doctable.xml
-   grep '^<!-- \$Header: /cvsroot/gentoo-doc-pl/trans/www/generate_page,v 1.2 2003/12/23 12:30:05 lcs Exp $file |
+   grep '^<!-- \$Header: /cvsroot/gentoo-doc-pl/trans/www/generate_page,v 1.3 2003/12/24 10:31:10 lcs Exp $file |
    awk '/^<!-- \$Header:/ {
          gsub(/\//,"-",$5)
          print "<ti>" $4 "</ti>\n<ti>" $5 "</ti>"}'  >> doctable.xml
