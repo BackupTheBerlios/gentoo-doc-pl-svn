@@ -1,10 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.5 -->
+<!-- Orig revision: 1.7 -->
 <!-- Translator: gooroo <gooroo@gentoo.pl> -->
 <!-- Title: Skrypty Init -->
-<!-- Status: Do korekty -->
+<!-- Status: Ukończono -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-rcscripts.xml,v 1.8 2004/02/22 15:54:49 gooroo Exp $ -->
+
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
@@ -19,8 +21,7 @@
 Podczas uruchamiania systemu operacyjnego na ekranie pojawia się
 dużo, nie zawsze zrozumiałego tekstu. Jeśli przyjrzysz się dokładniej, zauważysz
 że tekst ten jest za każdym razem taki sam. Cały ten proces nazywamy <e>sekwencją
-startową</e>, która (w większym lub mniejszym stopniu) jest skonfigurowana statycznie.
-</p>
+startową</e>, która (w większym lub mniejszym stopniu) jest skonfigurowana statycznie.   
 
 <p>
 Najpierw <e>boot loader</e> ładuje obraz jądra systemu do pamięci i zleca
@@ -35,9 +36,9 @@ w <path>/etc/fstab</path>) zostały poprawnie zamontowane i są gotowe do pracy.
 Następnie uruchamiane są poszczególne skrypty umieszczone w katalogu 
 <path>/etc/init.d</path>, które mają za zadanie uruchomić kolejno wszystkie serwisy
 niezbędne do poprawnego działania systemu.
+
 </p>
 
-<p>
 Na koniec, kiedy wszystkie skrypty zostaną wykonane, <c>init</c> aktywuje terminale
 (w większości przypadków są to poprostu wirtualne konsole, między którymi można
 się przełączać za pomocą kombinacji klawiszy <c>Alt-F1</c>, <c>Alt-F2</c> itd.)
@@ -72,7 +73,7 @@ działania danego serwisu musi wcześniej zostać uruchomiony inny.
 Kiedy skrypty mające dowiązanie w <path>/etc/runlevels/boot</path> zostaną
 uruchomione, <c>init</c> kontynuuje uruchamianie tych, do których dowiązania
 znajdują się w katalogu <path>/etc/runlevels/default</path>. Podobnie jak poprzednim
-przypadku, są one uruchamiane są w kolejności alfabetycznej. Wyjątek stanowią
+przypadku, uruchamiane są w kolejności alfabetycznej. Wyjątek stanowią
 tylko przypadki gdzie muszą zostać spełnione zależności niezbędne do poprawnego
 przeprowadzenia procesu startowego. 
 </p>
@@ -191,7 +192,7 @@ restartu systemu.
 </p>
 
 <p>
-Poziomy "efiniowane przez użytkownika związane są z podkatalogami 
+Poziomy definiowane przez użytkownika związane są z podkatalogami 
 <path>/etc/runlevels</path>: <path>boot</path>, <path>default</path>, <path>nonetwork</path>
 i <path>single</path>. W poziomie <path>boot</path> uruchamiane są wszystkie niezbędne 
 serwisy systemowe, używane w pozostałych poziomach.   
