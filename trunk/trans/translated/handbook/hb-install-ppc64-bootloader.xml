@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.7 -->
+<!-- Orig revision: 1.9 -->
 <!-- Translator: sekretarz <sekretarz@dukato.net> -->
 
 <!-- Title: Konfiguracja bootloadera dla PPC64 -->
@@ -10,12 +10,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc64-bootloader.xml,v 1.3 2004/12/22 13:10:14 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-ppc64-bootloader.xml,v 1.4 2004/12/23 20:55:12 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.4</version>
-<date>2004-10-23</date>
+<version>1.6</version>
+<date>2004-12-22</date>
 
 <section>
 <title>Podejmowanie decyzji.</title>
@@ -150,11 +150,9 @@ boot=/dev/sda2
 
 
 <comment>## ofboot w openfirmware służy do wyboru partycji startowej.
-## Jeśli tego parametru nie będzie, yaboot nie zadziała na G5
+## Jeśli tego parametru nie będzie, yaboot nie zadziała na G5 i na niektórych G4
 ## (dopóki nie przekażesz odpowiednich opcji do programu mkofboot/ybin).
 ## hd:X oznacza /dev/sdaX (lub /dev/hdaX).
-##
-## Posiadacze G5 powinni odkomentować tę linię !!</comment>
 
 ofboot=hd:2
 
@@ -170,17 +168,16 @@ magicboot=/usr/lib/yaboot/ofboot
 
 <comment>#################
 ## Ta część może być powielona, jeśli masz więcej niż jeden kernel lub zestaw
-## parametrów startowych
+## parametrów startowych - podmień 2.6.9 na wersję Twojego jądra
 #################</comment>
-image=/boot/kernel-2.6.7-gentoo-r8
+image=/boot/kernel-2.6.9
   label=Linux
-  root=/dev/sda4
-  sysmap=/boot/System.map-2.6.7
+  root=/dev/sda3
+  sysmap=/boot/System.map-2.6.9
   read-only
-<comment>##################</comment>
 
-macos=hd:5
-macosx=hd:6
+macos=hd:13
+macosx=hd:12
 enablecdboot
 enableofboot
 </pre>
@@ -188,7 +185,11 @@ enableofboot
 <p>
 Gdy <path>yaboot.conf</path> jest ustawiony w sposób, który Cię zadowala,
 uruchom <c>mkofboot -v</c> by zmiany odniosły skutek na partycji bootstrap.
-<e>Nie zapomnij o tym!</e> Jeśli wszystko poszło po myśli i wprowadziłeś takie
+<e>Nie zapomnij o tym!</e>. Odpowiedź twierdząco, jeżeli <c>mkofboot</c> zapyta Cię o stworzenie nowego systemu plików.
+</p>
+
+<p>
+Jeśli wszystko poszło po myśli i wprowadziłeś takie
 same opcje jak w przykładzie powyżej po restarcie ujrzysz proste menu z pięcioma
 pozycjami. Dokonując w przyszlości poprawek uruchom tylko <c>ybin -v</c>
 by zaktualizować partycję bootstrap - <c>mkofboot</c> używa się tylko
@@ -242,9 +243,9 @@ Wreszcie wpisz komendę <c>reboot</c>.
 
 <pre caption="Opuszczanie chroota, odmontowywanie partycji i rebootowanie">
 # <i>exit</i>
-cdimage ~# <i>cd</i>
-cdimage ~# <i>umount /mnt/gentoo/proc /mnt/gentoo</i>
-cdimage ~# <i>reboot</i>
+livecd ~# <i>cd</i>
+livecd ~# <i>umount /mnt/gentoo/boot /mnt/gentoo/proc /mnt/gentoo/dev /mnt/gentoo</i>
+livecd ~# <i>reboot</i>
 </pre>
 
 <p>
