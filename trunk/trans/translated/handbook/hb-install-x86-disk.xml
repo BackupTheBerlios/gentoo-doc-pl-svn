@@ -3,32 +3,32 @@
 
 <!-- Orig revision: 1.15 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
-<!-- Title: Przygotowanie Dysków -->
-<!-- Status: Ukończono -->
+<!-- Title: Przygotowanie dysków -->
+<!-- Status: Release -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-disk.xml,v 1.2 2004/11/29 23:01:15 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-disk.xml,v 1.3 2004/12/07 11:55:03 rane Exp $ -->
 
 <sections>
 <section>
-<title>Wprowadzenie do Urządzeń Blokowych</title>
+<title>Wprowadzenie do urządzeń blokowych.</title>
 <subsection>
-<title>Urządzenia Blokowe</title>
+<title>Urządzenia blokowe.</title>
 <body>
 
-<p> 
-Rzućmy okiem na aspekty Gentoo Linux, oraz ogólnie Linuksa, związane z dyskami.
+<p>
+Rzućmy okiem na aspekty Gentoo Linux, oraz ogólnie Linuksa związane z dyskami.
 Omówimy systemy plików, partycje oraz urządzenia blokowe. Następnie
-przeprowadzimy Cię przez proces podziału twardego dysku, aby jak najlepiej
-wykorzystać dostępną przestrzeń.
+przeprowadzimy Cię przez proces podziału twardego dysku, abyś mógł jak najlepiej
+wykorzystać dostępne miejsce.
 </p>
 
 <p> 
 Zaczniemy od omówienia <e>urządzeń blokowych</e>. Najpopularniejszym z nich
-prawdopodobnie jest <path>/dev/hda</path>, reprezentujący w Linuksie pierwszy
+prawdopodobnie jest <path>/dev/hda</path> reprezentujący w Linuksie pierwszy
 napęd IDE. Jeśli posiadasz urządzenia SCSI, pierwszym takim
 dyskiem jest <path>/dev/sda</path>.
 </p>
@@ -36,32 +36,32 @@ dyskiem jest <path>/dev/sda</path>.
 <p>
 Urządzenia blokowe stanowią abstrakcyjny interfejs dysków. Programy
 użytkownika mogą z nich korzystać nie martwiąc się czy napędy
-są typu IDE, SCSI lub jeszcze inne. Przechowywane dane adresuje się
-za jako ciąg 512-bajtowych bloków.
+są typu IDE, SCSI, czy nawet jakiegoś jeszcze innego. Przechowywane dane adresuje się
+jako ciąg 512-bajtowych bloków.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Partycje i Plastry</title>
+<title>Partycje i plastry.</title>
 <body> 
 
 <p> 
-Jakkolwiek teoretycznie możliwe jest przeznaczenie na system całego dysku,
-zazwyczaj nie jest to rozwiązanie praktyczne. Zamiast tego, dzieli się
-napęd na mniejsze, łatwiejsze w zarządzaniu, urządzenia blokowe.
-W większości platform nazywane są one <e>partycjami</e>. Część architektur,
+Teoretycznie możliwe jest przeznaczenie całego dysku na system,
+zazwyczaj nie jest to jednak rozwiązanie zbyt praktyczne. Zamiast tego dzielimy
+napęd na mniejsze i dużo łatwiejsze w zarządzaniu urządzenia blokowe.
+W większości platform nazywane są one <e>partycjami</e>. Część architektur
 korzystająca z podobnych technik nazywa je <e>plastrami</e>.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Partycje</title>
+<title>Partycje.</title>
 <body>
 
 <note>
-To (teoretyczne) wyjaśnienie dotyczy jedynie architektury x86.
+To teoretyczne wyjaśnienie dotyczy jedynie architektury x86.
 </note> 
 
 <p>
@@ -72,13 +72,13 @@ Wyróżniamy trzy rodzaje partycji: <e>podstawowe</e>,
 <p>
 Informacje o partycjach <e>podstawowych</e> przechowywane są w MBR
 (master boot record). Jako że jest on bardzo mały (512 bajtów), mieszczą
-się w nim dane najwyżej czterech takich partycji (na przykład,
+się w nim dane maksymalnie czterech takich partycji (na przykład,
 od <path>/dev/hda1</path> do <path>/dev/hda4</path>).
 </p>
 
 <p>
 Specjalną odmianą partycji podstawowych są partycje <e>rozszerzone</e>
-(oznacza to, że również obowiązuje je powyższy limit). Przechowują
+(również obowiązuje je powyższy limit). Przechowują
 one kolejne partycje. W ten sposób można ominąć niewygodną granicę
 i lepiej zagospodarować przestrzeń dyskową bez utraty kompatybilności
 wstecz.
@@ -91,7 +91,7 @@ Partycje umieszczone i opisane wewnątrz rozszerzonych nazywamy <e>logicznymi</e
 </body>
 </subsection>
 <subsection>
-<title>Zaawansowane Metody Przechowywania Danych</title>
+<title>Zaawansowane metody przechowywania danych.</title>
 <body>
 
 <p>
@@ -107,41 +107,41 @@ wiedzieć o obsłudze także nowocześniejszych rozwiązań.
 </subsection>
 </section>
 <section>
-<title>Projektowanie Schematu Podziału</title>
+<title>Projektowanie schematu podziału.</title>
 <subsection>
-<title>Domyślny Schemat Podziału</title>
+<title>Domyślny schemat podziału.</title>
 <body>
 
 <p>
 Jeśli nie masz ochoty samodzielnie rozrysowywać schematu podziału
 swojego dysku, możesz skorzystać z domyślnego (nie dotyczy LVM), którego
-użyjemy w podręczniku:
+użyjemy w Podręczniku:
 </p>
 
 <table>
 <tr>
-	<th>Partycja</th>
-	<th>System plików</th>
-	<th>Rozmiar</th>
-	<th>Opis</th>
+<th>Partycja</th>
+<th>System plików</th>
+<th>Rozmiar</th>
+<th>Opis</th>
 </tr>
 <tr>
-	<ti><path>/dev/hda1</path></ti>
-	<ti>ext2</ti>
-	<ti>32M</ti>
-	<ti>Partycja boot</ti>
+<ti><path>/dev/hda1</path></ti>
+<ti>ext2</ti>
+<ti>32M</ti>
+<ti>Partycja boot</ti>
 </tr>
 <tr>
-	<ti><path>/dev/hda2</path></ti>
-	<ti>(swap)</ti>
-	<ti>512M</ti>
-	<ti>Partycja swap</ti>
+<ti><path>/dev/hda2</path></ti>
+<ti>(swap)</ti>
+<ti>512M</ti>
+<ti>Partycja wymiany</ti>
 </tr>
 <tr>
-	<ti><path>/dev/hda3</path></ti>
-	<ti>ext3</ti>
-	<ti>Reszta dysku</ti>
-	<ti>Partycja root</ti>
+<ti><path>/dev/hda3</path></ti>
+<ti>ext3</ti>
+<ti>Reszta dysku</ti>
+<ti>Partycja root</ti>
 </tr>
 </table>
 
@@ -149,21 +149,21 @@ użyjemy w podręczniku:
 </subsection>
 <subsection>
 
-<title>Jak Dużo Jak Wielkich?</title>
+<title>Jak dużo jak wielkich?</title>
 <body>
 
 <p>
 Ilość partycji ściśle zależy od danego
-środowiska. Na przykład, jeśli administrujesz systemem mającym
+środowiska. Na przykład jeśli administrujesz systemem mającym
 wielu użytkowników, prawdopodobnie uznasz za stosowne
-oddzielenie <path>/home</path> aby poprawić bezpieczeństwo
+oddzielenie <path>/home</path>, aby poprawić bezpieczeństwo
 i uprościć tworzenie kopii zapasowych. Jeżeli docelowym
 zastosowaniem świeżego Gentoo jest serwer poczty, na osobnej
 partycji powinieneś umieścić <path>/var</path>, gdzie przechowywane
-są listy. Dobry wybór systemu plików może tu znacznie zwiększyć
-wydajność. Oddzielenie <path>/opt</path> jest dobrym rozwiązaniem
-na serwerach gier, gdyż większość używanego oprogramowania zostanie
-tam zainstalowana. Powód jest podobny do <path>/home</path>: bezpieczeństwo
+są listy. Dobry wybór systemu plików też może
+tu znacznie zwiększyć wydajność. Oddzielenie <path>/opt</path> jest 
+dobrym rozwiązaniem na serwerach gier, gdyż większość używanego oprogramowania zostanie
+tam zainstalowana. Powód jest podobny jak w przypadku <path>/home</path>: bezpieczeństwo
 i kopie zapasowe.
 </p>
 
@@ -175,31 +175,37 @@ lub woluminów ma wiele zalet:
 <ul>
 <li>
 Masz możliwość dostosowania jak najwydajniejszego w danym zastosowaniu
-systemu plików dla poszczególnych partycji lub woluminów
+systemu plików dla poszczególnych partycji lub woluminów.
 </li>
 <li>
-W przypadku zapełnienia partycji przez nieprawidłowo działające
-narzędzie, nie ma to wpływu na całość systemu
+Zapełnienie całego wolnego miejsca na partycji
+przez wadliwie działające narzędzie nie ma
+szkodliwego wpływu na całość systemu.
 </li>
 <li>
-Jeśli to konieczne, można skrócić czas kontroli systemów plików, gdyż
-można jednocześnie dokonywać jej na kilku partycjach (ma to znaczenie
-zwłaszcza na sprzęcie z wieloma dyskami)
+Jeśli to konieczne, można skrócić czas kontroli
+systemów plików dzięki możliwości jednoczesnego
+dokonywania jej na kilku partycjach (ma to znaczenie
+zwłaszcza na sprzęcie z wieloma dyskami).
 </li>
 <li>
 Montując część partycji lub woluminów z opcjami read-only (tylko do odczytu),
 nosuid (ignorowane są bity setuid), noexec (ignorowane są bity wykonywalności) itd.
-można znacznie poprawić bezpieczeństwo
+można znacznie poprawić bezpieczeństwo.
 </li>
 </ul>
 
 <p>
-Niestety zbyt rozbudowany podział niesie z sobą spore niebezpieczeństwo:
+Niestety zbyt rozbudowany podział niesie ze sobą spore niebezpieczeństwo:
 źle zaplanowany zaowocuje pustkami na zbyt dużych
 i ciasnotą na zbyt małych partycjach.
 </p>
+
 <p>
-W przykładzie pokażemy partycjonowanie dysku 20GB, wykorzystywanego w pokazowym laptopie z zainstalowanymi serwerami poczty oraz WWW, GNOME, itd.:
+W przykładzie pokażemy partycjonowanie dysku
+20GB wykorzystywanego w laptopie z
+zainstalowanymi serwerami poczty oraz WWW,
+GNOME, itd.:
 </p>
 		    
 <pre caption="Przykładowy podział dysku">
@@ -220,18 +226,19 @@ ale po instalacji wszystkich potrzebnych pakietów nie będzie się
 on zbytnio rozrastał. Część czytelników może pomyśleć, iż
 zbyt wiele miejsca przeznaczyliśmy na <path>/var</path>.
 Należy zwrócić uwagę, że Gentoo kompiluje wszystkie pakiety
-wewnątrz <path>/var/tmp/portage</path>. Powinien mieć
-wobec tego przynajmniej 1GB wolnej przestrzeni, jeśli nie zamierzasz
-kompilować większych programów, lub nawet 3GB - gdy
-jednoczesna instalacja KDE i OpenOffice.org nie stanowi dla Ciebie
-problemu.
+wewnątrz <path>/var/tmp/portage</path>.
+Powinien on mieć wobec tego przynajmniej 1GB
+wolnej przestrzeni, jeśli nie zamierzasz
+kompilować większych programów, lub nawet 3GB -
+jeśli będziesz chciał jednocześnie kompilować
+KDE i OpenOffice.org.
 </p>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Partycjonowanie Dysku za pomocą fdisk</title>
+<title>Partycjonowanie dysku za pomocą fdisk.</title>
 <subsection>
 <body>
 
@@ -266,14 +273,18 @@ jak w zaprezentowanym wcześniej schemacie:
 <p>
 Zmodyfikuj go stosownie do swoich potrzeb.
 </p>
+
 </body>
 </subsection>
 <subsection>
-<title>Wyświetlanie Aktualnego Podziału Dysku</title>
+<title>Wyświetlanie aktualnego podziału dysku.</title>
 <body>
+
 <p>
-<c>fdisk</c> to znane i funkcjonalne narzędzie do partycjonowania.
-Uruchom go dla swojego dysku (pokażemy to na przykładzie <path>/dev/hda</path>):
+<c>fdisk</c> to popularne i wygodne narzędzie
+do partycjonowania dysków.
+Zacznijmy od uruchomienia go dla naszego dysku
+(pokażemy to na przykładzie <path>/dev/hda</path>):
 </p>
 
 <pre caption="Uruchamianie fdisk">
@@ -281,7 +292,7 @@ Uruchom go dla swojego dysku (pokażemy to na przykładzie <path>/dev/hda</path>
 </pre>
 
 <p>
-Twoim oczom ukaże się podobny znak zachęty:
+Naszym oczom ukaże się taki znak zachęty:
 </p>
 
 <pre caption="Znak zachęty fdisk">
@@ -314,14 +325,14 @@ Command (m for help):
 
 <p>
 Na prezentowanym dysku znajduje się siedem linuksowych systemów plików
-(każdy na odpowiadającej partycji, oznaczonej jako "Linux") oraz partycja
+(każdy na osobnej partycji, oznaczonej jako "Linux") oraz partycja
 wymiany (oznaczona jako "Linux swap").
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Kasowanie wszystkich Partycji</title>
+<title>Kasowanie wszystkich partycji.</title>
 <body>
 
 <p>
@@ -335,17 +346,17 @@ Partition number (1-4): <i>1</i>
 </pre>
 
 <p>
-Nasza partycja została oznaczona do usunięcia. Nie będzie więcej pojawiać się
-po wydaniu polecenia <c>p</c>, ale dopóki zmiany nie zostaną zapisane
-fizycznie, pozostanie nie naruszona. Jeśli popełnisz błąd i zechcesz
-anulować wszelkie zmiany, wpisz natychmiast <c>q</c> i wciśnij Enter.
-Twoje modyfikacje pójdą w niepamięć.
+Nasza partycja została zaznaczona do usunięcia. Nie będzie więcej pojawiać się
+po wydaniu polecenia <c>p</c>, ale pozostanie nienaruszon dopóki zmiany nie zostaną zapisane
+fizycznie. Jeśli popełnisz błąd i zechcesz anulować wszystkie wprowadzone zmiany, 
+wpisz natychmiast <c>q</c> i wciśnij Enter. Twoje modyfikacje pójdą w niepamięć.
 </p>
 
 <p>
 Zakładając, że chcesz pozbyć się wszystkich istniejących partycji,
-na przemian wykonuj <c>p</c> aby wyświetlić ich listing i
-po kolei kasuj je poleceniem <c>d</c> z odpowiednim numerem. Po ukończeniu,
+na przemian wykonuj <c>p</c>, aby wyświetlić
+ich listę i po kolei kasuj je poleceniem
+<c>d</c> z odpowiednim numerem. Po ukończeniu,
 <c>p</c> powinno dać następujący rezultat:
 </p>
 
@@ -362,14 +373,14 @@ Command (m for help):
 <p>
 Kiedy nasza tymczasowa kopia tablicy partycji będzie pusta, możemy rozpocząć
 tworzenie nowego podziału. Pokażemy to na przykładzie domyślnego omawianego
-schematu. Oczywiście jeśli Ci on nie odpowiada, musisz poczynić stosowne
-modyfikacje prezentowanych poleceń.
+schematu. Oczywiście jeśli Ci nie odpowiada to
+powinieneś poczynić stosowne modyfikacje prezentowanych poleceń.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Zakładanie Partycji Boot</title>
+<title>Zakładanie partycji boot.</title>
 <body>
 
 <p>
@@ -392,45 +403,45 @@ Using default value 1
 Last cylinder or +size or +sizeM or +sizeK (1-3876, default 3876): <i>+32M</i>
     </pre>
 
-    <p>
-    Teraz polecenie <c>p</c> powinno pokazać następujący listing:
-    </p>
+<p>
+Teraz polecenie <c>p</c> powinno pokazać następujący listing:
+</p>
 
-    <pre caption="Utworzona partycja boot" >
-    Command (m for help): <i>p</i>
+<pre caption="Utworzona partycja boot" >
+Command (m for help): <i>p</i>
 
-    Disk /dev/hda: 30.0 GB, 30005821440 bytes
-    240 heads, 63 sectors/track, 3876 cylinders
-    Units = cylinders of 15120 * 512 = 7741440 bytes
+Disk /dev/hda: 30.0 GB, 30005821440 bytes
+240 heads, 63 sectors/track, 3876 cylinders
+Units = cylinders of 15120 * 512 = 7741440 bytes
 
-    Device Boot    Start       End    Blocks   Id  System
-    /dev/hda1          1        14    105808+  83  Linux
-    </pre>
+Device Boot    Start       End    Blocks   Id  System
+/dev/hda1          1        14    105808+  83  Linux
+</pre>
 
-    <p>
-    Musimy oznaczyć naszą partycję jako uruchamialną. W tym celu skorzystamy
-    z polecenia <c>a</c>. Na kolejnych wydrukach podziału, w kolumnie
-    "Boot" pokazywać się będzie <path>*</path>.
-    </p>
+<p>
+Musimy oznaczyć naszą partycję jako uruchamialną. W tym celu skorzystamy
+z polecenia <c>a</c>. Na kolejnych wydrukach podziału, w kolumnie
+"Boot" pokazywać się będzie <path>*</path>.
+</p>
 
-    </body>
-    </subsection>
-    <subsection>
-    <title>Zakładanie Partycji Swap</title>
-    <body>
+</body>
+</subsection>
+<subsection>
+<title>Zakładanie partycji wymiany.</title>
+<body>
 
-    <p>
-    Nadszedł czas na utworzenie partycji wymiany. Ponownie skorzystaj z polecenia
-    <c>n</c>, następnie podaj <c>p</c> gdyż ma to być partycja podstawowa i <c>2</c>,
-    ponieważ będzie ona drugą tego typu. Zapytany o pierwszy cylinder wciśnij Enter,
-    natomiast na pytanie o ostatni wpisz <c>+512M</c>, żeby nadać partycji
-    rozmiar 512MB. Po ukończeniu wykonaj <c>t</c>, aby zmienić jej typ,
-    <c>2</c>, aby wybrać tę, którą właśnie stworzyłeś i <c>82</c>, żeby oznaczyć
-    ją jako "Linux Swap". Teraz polecenie <c>p</c> powinno dać następujący
-    listing:
-    </p>
+<p>
+Nadszedł czas na utworzenie partycji wymiany. Ponownie skorzystaj z polecenia
+<c>n</c>, następnie podaj <c>p</c> gdyż ma to być partycja podstawowa i <c>2</c>,
+ponieważ będzie ona drugą tego typu. Zapytany o pierwszy cylinder wciśnij Enter,
+natomiast na pytanie o ostatni wpisz <c>+512M</c>, żeby nadać partycji
+rozmiar 512MB. Po ukończeniu wykonaj <c>t</c>, aby zmienić jej typ,
+<c>2</c>, aby wybrać tę, którą właśnie stworzyłeś i <c>82</c>, żeby oznaczyć
+ją jako "Linux Swap". Teraz polecenie <c>p</c> powinno dać następujący
+listing:
+</p>
     
-<pre caption="Listing podziału po utworzeniu partycji wymiany">
+<pre caption="Wydruk podziału po utworzeniu partycji wymiany">
 Command (m for help): <i>p</i>
 
 Disk /dev/hda: 30.0 GB, 30005821440 bytes
@@ -445,19 +456,19 @@ Device Boot    Start       End    Blocks   Id  System
 </body>
 </subsection>
 <subsection>
-<title>Zakładanie Partycji Root</title>
+<title>Zakładanie partycji root.</title>
 <body>
 
 <p>
 Na koniec, utworzymy partycję root. Jeszcze raz posłużymy się w tym celu poleceniem
-<c>n</c>. Zapytany o rodzaj wpisz <c>p</c>, ponieważ chcemy by była podstawowa,
+<c>n</c>. Zapytany o rodzaj wpisz <c>p</c>, aby była partycją podstawową,
 następnie <c>3</c>, gdyż będzie już trzecią tego typu, czyli w naszym przypadku
 <path>/dev/hda3</path>. Na pytanie o pierwszy i ostatni cylinder wciśnij Enter,
 dzięki temu zajmie ona całą pozostałą wolną przestrzeń. Teraz polecenie
 <c>p</c> powinno pokazać następujący wydruk:
 </p>
 
-<pre caption="Listing podziału po utworzeniu partycji root">
+<pre caption="Wydruk podziału po utworzeniu partycji root">
 Command (m for help): <i>p</i>
 
 Disk /dev/hda: 30.0 GB, 30005821440 bytes
@@ -474,11 +485,11 @@ Device Boot    Start       End    Blocks   Id  System
 </body>
 </subsection>
 <subsection>
-<title>Zapisywanie Podziału Partycji</title>
+<title>Zapisywanie podziału partycji.</title>
 <body>
 
 <p>
-Aby zachować ustalony podział i opuścić <c>fdisk</c>, wpisz <c>w</c>.
+Aby zachować ustalony podział i opuścić <c>fdisk</c> wpisz <c>w</c>.
 </p>
 
 <pre caption="Zachowywanie zmian i zamykanie fdisk">
@@ -486,31 +497,46 @@ Command (m for help): <i>w</i>
 </pre>
 
 <p>
-Twoje partycje są już gotowe, możesz teraz przejść do <uri 
-link="#filesystems">Zakładania Systemów Plików</uri>.
+Kiedy Twoje partycje będą już gotowe,możesz
+przejść do paragrafu <uri
+link="#filesystems">Zakładanie systemów plików</uri>.
 </p>
 
 </body>
 </subsection>
+</section>
+<section id="#filesystems">
+<title>Zakładanie systemów plików.</title>
 <subsection>
-<title>Systemy Plików?</title>
+<title>Wprowadzenie.</title>
 <body>
 
 <p>
-Dostępne są różne systemy plików. Część z nich działa stabilnie
-na wszystkich platformach, część tylko na niektórych. Poniższa tabela
-prezentuje te, które są dostępne i na jakich architekturach działają.
-Jeśli architektura oznaczona jest przez "(...)" to znaczy, iż
-system plików powinien działać, ale nie został dostatecznie przetestowany.
+Po utworzeniu partycji nadszedł czas na założenie na nich systemów plików.
+Jeśli jest Ci obojętne jakie wybierzesz lub jesteś zadowolony z domyślnych
+ustawień w podręczniku, przejdź do paragrafu <uri
+link="#filesystems-apply">Zakładanie systemów plikół na partycji</uri>. 
+W przeciwnym wypadku czytaj dalej aby dowiedzieć się więcej na ich temat.
+</p>
+
+<subsection>
+<title>Systemy plików?</title>
+<body>
+
+<p>
+Jądro Linuksa może współpracować z wieloma
+różnymi systemami plików. W Podręczniku
+omówimy te najczęściej używane, czyli ext2, ext3, ReiserFS i JFS. 
 </p>
 
 <p>
-<b>ext2</b> to sprawdzony i popularny linuksowy system plików, ale nie posiada
-księgowania. Powoduje to, iż jego regularne kontrole przy starcie systemu
-bywają długotrwałe. Obecnie istnieją nowoczesne systemy plików z księgowaniem,
-mogące być szybko sprawdzane i są zasadniczo zalecane. Księgowanie
-zapobiega długotrwałym kontrolom podczas uruchamiania i ewentualnym
-błędom spójności danych.
+<b>ext2</b> to sprawdzony i popularny linuksowy system plików,
+którego główną wadą jest to, że nie posiada księgowania. Powoduje to, iż jego
+regularne kontrole przy starcie systemu bywają długotrwałe. Obecnie istnieją
+nowoczesne systemy plików z księgowaniem, które można szybko sprawdzić i to
+właśnie te polecamy naszym użytkownikom. Księgowanie zapobiega długotrwałym
+kontrolom podczas uruchamiania systemu oraz ewentualnym błędom spójności
+danych.
 </p>
 
 <p>
@@ -545,21 +571,19 @@ systemu do utraty danych.
 </p>
 
 <p>
-<b>JFS</b> to bardzo wydajny system plików z księgowaniem IBMa.
-Dopiero niedawno został uznany za stabilny i nie ma na swoim
-koncie dostatecznych osiągnięć aby można było mówić
-źle lub dobrze o jego stabilności.
+<b>JFS</b> to bardzo wydajny system plików IBM'a wyposażony w księgowanie.
+Jest dość nowy i jest jeszcze za wcześnie by oceniać jego stabilność.
 </p>
 
 </body>
 </subsection>
 <subsection id="filesystems-apply">
-<title>Zakładanie na Partycji Systemu Plików</title>
+<title>Zakładanie systemów plików na partycjach.</title>
 <body>
 
 <p>
-Aby założyć na woluminie lub partycji system plików, możesz skorzystać z dostępnych
-dla każdego narzędzi:
+Aby założyć na woluminie lub partycji system plików powinieneś
+skorzystać z odpowiednich narzędzi:
 </p>
 
 <table>
@@ -591,7 +615,7 @@ dla każdego narzędzi:
 
 <p>
 Na przykład, aby założyć ext2 na partycji boot (w naszym przypadku <path>/dev/hda1</path>)
-oraz ext3 na partycji root (w naszym przypadku <path>/dev/hda3</path>), powinieneś
+oraz ext3 na partycji root (w naszym przypadku <path>/dev/hda3</path>) powinieneś
 wykonać następujące polecenia:
 </p>
 
@@ -601,47 +625,43 @@ wykonać następujące polecenia:
 </pre>
 
 <p>
-Stwórz teraz systemy plików na swoich partycjach (lub woluminach logicznych).
+Stwórz teraz systemy plików na swoich partycjach.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Aktywacja Partycji Swap</title>
+<title>Aktywacja partycji wymiany.</title>
 <body>
 
 <p>
-Aby zainicjalizować partycje wymiany, skorzystaj z programu <c>mkswap</c>.
+Aby utworzyć partycję wymiany skorzystaj z programu <c>mkswap</c>.
 </p>
 
-<pre caption="Inicjalizacja partycji wymiany">
+<pre caption="Tworzenie partycji wymiany">
 # <i>mkswap /dev/hda2</i>
 </pre>
 
 <p>
-Aby je aktywować skorzystaj ze <c>swapon</c>:
+Do aktywowawania partycji wymiany użyj programu <c>swapon</c>:
 </p>
 
 <pre caption="Aktywacja partycji wymiany">
 # <i>swapon /dev/hda2</i>
 </pre>
 
-<p>
-Teraz Twoja kolej na inicjalizację i aktywację.
-</p>
-
 </body>
 </subsection>
 </section>
 <section>
-<title>Montowanie</title>
+<title>Montowanie.</title>
 <body>
 
 <p>
-Po założeniu partycji i utworzeniu systemów plików, nadszedł czas na ich
-zamontowanie. Służy do tego program <c>mount</c>. Nie zapomnij utworzyć
-odpowiednich katalogów dla każdego z nich. Pokażemy to na przykładzie
-partycji boot oraz root:
+Po założeniu partycji i utworzeniu na nich systemów plików nadszedł czas na ich
+zamontowanie. Służy do tego program <c>mount</c>. Nie zapomnij o utworzeniu
+odpowiednich katalogów dla montowanych partycji. W przykładzie zamontujemy
+partycje boot i root:
 </p>
 
 <pre caption="Montowanie partycji">
@@ -651,8 +671,8 @@ partycji boot oraz root:
 </pre>
 
 <note>
-Jeżeli chcesz przenieść <path>/tmp</path> na oddzielną partycję,
-nie zapomnij po zamontowaniu odpowiedni poprawić praw dostępu: <c>chmod
+Jeżeli chcesz przenieść <path>/tmp</path> na osobną partycję,
+nie zapomnij po zamontowaniu odpowiednio zmienić praw dostępu: <c>chmod
 1777 /mnt/gentoo/tmp</c>. Dotyczy to również <path>/var/tmp</path>.
 </note>
 
@@ -668,8 +688,8 @@ w <path>/proc</path>. Zacznijmy od utworzenia odpowiedniego katalogu
 </pre>
 
 <p>
-Przejdź teraz do <uri link="?part=1&amp;chap=5">Instalacji Plików
-Instalacyjnych Gentoo</uri>.
+Kiedy skończysz przejdź do rozdziału <uri link="?part=1&amp;chap=5">Wgrywanie
+plików instalacyjnych Gentoo</uri>.
 </p>
 
 </body>

@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-mips-disk.xml,v 1.1 2004/12/06 17:18:30 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-mips-disk.xml,v 1.2 2004/12/07 11:55:03 rane Exp $ -->
 
 <sections>
 
@@ -280,10 +280,10 @@ link="#filesystems">Zakładanie systemów plików</uri>.
 
 <p>
 Po utworzeniu partycji nadszedł czas na założenie na nich systemów plików.
-Jeśli nie obchodzi Cię jakie wybierzesz i jesteś zadowolony z domyślnych
-ustawień w podręczniku, przejdź do <uri link="#filesystems-apply">Zakładania na
-Partycji Systemu Plików</uri>. W przeciwnym wypadku czytaj dalej aby dowiedzieć
-się co nieco na ich temat.
+Jeśli jest Ci obojętne jakie wybierzesz lub jesteś zadowolony z domyślnych
+ustawień w podręczniku, przejdź do paragrafu <uri
+link="#filesystems-apply">Zakładanie systemów plikół na partycji</uri>. 
+W przeciwnym wypadku czytaj dalej aby dowiedzieć się więcej na ich temat.
 </p>
 
 </body>
@@ -338,9 +338,8 @@ systemu do utraty danych.
 </p>
 
 <p>
-<b>JFS</b> to bardzo wydajny system plików IBM, posiadający księgowanie.
-Dopiero niedawno został uznany za stabilny i jest jeszcze za wcześnie, 
-aby można było mówić źle lub dobrze o jego stabilności.
+<b>JFS</b> to bardzo wydajny system plików IBM'a wyposażony w księgowanie.
+Jest dość nowy i jest jeszcze za wcześnie by oceniać jego stabilność.
 </p>
 
 </body>
@@ -403,24 +402,20 @@ Stwórz teraz systemy plików na swoich partycjach (lub woluminach).
 <body>
 
 <p>
-Aby zainicjować partycję wymiany, skorzystaj z programu <c>mkswap</c>.
+Aby utworzyć partycję wymiany skorzystaj z programu <c>mkswap</c>.
 </p>
 
-<pre caption="Inicjalizacja partycji wymiany">
+<pre caption="Tworzenie partycji wymiany">
 # <i>mkswap /dev/sda2</i>
 </pre>
 
 <p>
-Aby aktywować partycję wymiany użyj programu <c>swapon</c>:
+Do aktywowania partycji wymiany użyj programu <c>swapon</c>:
 </p>
 
 <pre caption="Aktywacja partycji wymiany">
 # <i>swapon /dev/sda2</i>
 </pre>
-
-<p>
-Teraz sam utwórz i aktuwuj partycję wymiany.
-</p>
 
 </body>
 </subsection>
@@ -430,10 +425,10 @@ Teraz sam utwórz i aktuwuj partycję wymiany.
 <body>
 
 <p>
-Po założeniu partycji i utworzeniu systemów plików, nadszedł czas na ich
+Po założeniu partycji i utworzeniu na nich systemów plików nadszedł czas na ich
 zamontowanie. Służy do tego program <c>mount</c>. Nie zapomnij o utworzeniu
 odpowiednich katalogów dla montowanych partycji. W przykładzie zamontujemy
-partycje boot i root.
+partycje boot i root:
 </p>
 
 <pre caption="Montowanie partycji">
