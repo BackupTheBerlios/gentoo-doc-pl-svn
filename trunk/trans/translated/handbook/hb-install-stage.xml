@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.79 -->
+<!-- Orig revision: 1.83 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Przygotowanie plików instalacyjnych Gentoo -->
 <!-- Status: Release -->
@@ -9,12 +9,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.17 2005/03/02 21:17:29 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.18 2005/03/26 18:53:55 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.74</version>
-<date>2005-02-14</date>
+<version>1.76</version>
+<date>2005-03-25</date>
 
 <section>
 <title>Instalowanie tarballa stage.</title>
@@ -257,8 +257,7 @@ Przejdz do miejsca gdzie zamontowałeś swój system plików (najcześciej to <p
 Odpal <c>links2</c> (lub <c>lynx</c>) i przejdz do naszej <uri
 link="/main/en/mirrors.xml">listy mirrorów Gentoo</uri>. Wybierz jeden z serwerów,
 który znajduje się najbliżej ciebie i wejdz do katalogu <path>snapshots/</path>.
-Ściągnij najnowszy shapshot Portage (na przykład <path>portage-20041202.tar.bz2
-</path>) poprzez jego wybranie i naciśnięcie klawisza <c>D</c>.
+Ściągnij najnowszy shapshot Portage poprzez jego wybranie i naciśnięcie klawisza <c>D</c>.
 </p>
 
 <pre caption="Przeglądanie listy mirrorów Gentoo">
@@ -273,7 +272,8 @@ nie <c>c</c>.
 </p>
 
 <pre caption="Wypakowywanie snapshota Portage">
-# <i>tar -xvjf /mnt/gentoo/portage-20041202.tar.bz2 -C /mnt/gentoo/usr</i>
+<comment>(Podmień wartość &lt;date&gt; datą ściągniętego snapshota)</comment>
+# <i>tar -xvjf /mnt/gentoo/portage-&lt;date&gt;.tar.bz2 -C /mnt/gentoo/usr</i>
 </pre>
 
 </body>
@@ -459,7 +459,8 @@ będzie to:
 </p>
 
 <pre caption="Ustawienie GCC march">
-<comment># Użytkownicy AMD64, którzy chcą mieć natywny system 64bit nie powinni używać athlon-xp</comment>
+<comment># Użytkownicy AMD64, którzy chcą mieć natywny system 64bit powinni
+używać flagi -march=k8</comment>
 -march=athlon-xp
 </pre>
 
@@ -499,7 +500,8 @@ flag optymalizacji, jak w następującym przykładzie:
 </p>
 
 <pre caption="Definiowanie zmiennych CFLAGS i CXXFLAGS">
-CFLAGS="-march=athlon-xp -pipe -O2"   <comment># Użytkownicy AMD64 nie powinni używać athlon-xp</comment>
+CFLAGS="-march=athlon-xp -pipe -O2"   <comment># Użytkownicy AMD64 powinni
+używać flagi march=k8</comment>
 CXXFLAGS="${CFLAGS}"                  <comment># Użycie tych samych ustawień dla obu zmiennych</comment>
 </pre>
 
