@@ -1,18 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.66 -->
+<!-- Orig revision: 1.67 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Przygotowanie Plików Instalacyjnych Gentoo -->
 <!-- Status: Ukończono -->
-<!-- Update from 1.37 to 1.66: sekretarz <sekretarz@dukato.net> -->
+<!-- Update from 1.37 to 1.67: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.9 2004/11/01 17:57:26 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.10 2004/11/12 19:13:36 sekretarz Exp $ -->
 
 <sections>
+
+<version>1.67</version>
+<date>November 9, 2004</date>
+
 <section>
 <title>Instalowanie tarballa Stage</title>
 <subsection>
@@ -467,6 +471,10 @@ Inne popularne flagi optymalizujące to <c>-pipe</c> (gcc używa potoków zamias
 plików tymczasowych w komunikacji między różnymi etapami kompilacji) oraz
 <c>-fomit-frame-pointer</c> (w rejestrach nie będą przechowywane wskażniki
 ramki dla funkcji, które ich nie wymagają).
+
+<p>
+Zauważ, że używanie flagi <c>-fomit-frame-pointer</c> może powodować poważne 
+problemy podczas debugowania kodu!
 </p>
 
 <p>

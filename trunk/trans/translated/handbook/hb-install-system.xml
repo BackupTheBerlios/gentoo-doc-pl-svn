@@ -1,18 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.53 -->
+<!-- Orig revision: 1.56 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Instalacja Systemu Podstawowego -->
 <!-- Status: Ukończono -->
-<!-- Update from 1.32 to 1.53: sekretarz <sekretarz@dukato.net> -->
+<!-- Update from 1.32 to 1.56: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.16 2004/11/03 23:51:17 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-system.xml,v 1.17 2004/11/12 19:13:36 sekretarz Exp $ -->
 
 <sections>
+
+<version>1.55</version>
+<date>November 6, 2004</date>
+
 <section>
 <title>Praca w chroot</title>
 <subsection>
@@ -218,7 +222,8 @@ naprawde potrzebował.
 </p>
 
 <pre caption="Aktywacja flagi userlocales specjalnie dla glibc">
-echo "sys-libs/glibc userlocales" >> /etc/portage/package.use
+# <i>mkdir /etc/portage</i>
+# <i>echo "sys-libs/glibc userlocales" >> /etc/portage/package.use</i>
 </pre>
 
 <p>
