@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.10 -->
+<!-- Orig revision: 1.26 -->
 <!-- Translator: Spock <spock@o2.pl> -->
-<!-- Title: Kontrola Zachowania Portage -->
-<!-- Status: Ukończono -->
+<!-- Title: Kontrola zachowania Portage -->
+<!-- Status: Release -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-features.xml,v 1.2 2004/01/09 23:42:41 spock Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-features.xml,v 1.3 2004/12/09 14:48:12 rane Exp $ -->
 
 <sections>
 <section>
-<title>DistCC</title>
+<title>DistCC.</title>
 <subsection>
 <title>Czym jest DistCC?</title>
 <body>
@@ -35,7 +35,7 @@ jak używać distcc w Gentoo) znajdziesz w naszej
 </body>
 </subsection>
 <subsection>
-<title>Instalacja DistCC</title>
+<title>Instalacja DistCC.</title>
 <body>
 
 <p>
@@ -62,7 +62,7 @@ opcję <c>--usepkg</c>.
 </body>
 </subsection>
 <subsection>
-<title>Używanie distcc z Portage</title>
+<title>Używanie distcc z Portage.</title>
 <body>
 
 <p>
@@ -121,7 +121,7 @@ do naszej <uri link="/doc/en/distcc.xml">Dokumentacji Gentoo DistCC</uri>.
 </subsection>
 </section>
 <section>
-<title>ccache</title>
+<title>ccache.</title>
 <subsection>
 <title>Czym jest ccache?</title>
 <body>
@@ -130,7 +130,7 @@ do naszej <uri link="/doc/en/distcc.xml">Dokumentacji Gentoo DistCC</uri>.
 <c>ccache</c> jest szybkim cache kompilatora. Dzięki niemu pliki pośrednie 
 powstające w trakcie kompilacji będą cache'owane i podczas rekompilacji
 programu czas budowania plików wynikowych zostanie znacznie skrócony. W typowych
-sytuacjach, czas kompilacji może być od 5 do 10 razy krótszy.
+sytuacjach czas kompilacji może być od 5 do 10 razy krótszy.
 </p>
 
 <p>
@@ -141,7 +141,7 @@ Jeśli jesteś zainteresowany szczegółami <c>ccache</c>, odwiedź
 </body>
 </subsection>
 <subsection>
-<title>Instalacja ccache</title>
+<title>Instalacja ccache.</title>
 <body>
 
 <p>
@@ -156,7 +156,7 @@ to zemerge'ować odpowiedni pakiet:
 </body>
 </subsection>
 <subsection>
-<title>Portage i ccache</title>
+<title>Portage i ccache.</title>
 <body>
 
 <p>
@@ -170,7 +170,7 @@ FEATURES="ccache"
 
 <p>
 Następnie, wyedytuj (lub stwórz) zmienną <c>CCACHE_SIZE</c> (też w pliku
-<path>/etc/make.conf</path>) tak, aby zawierała wielkość dysku, jaką zamierzasz
+<path>/etc/make.conf</path>) tak, aby zawierała ilość miejsca dysku, jaką zamierzasz
 przeznaczyć dla <c>ccache</c>:
 </p>
 
@@ -180,8 +180,8 @@ CCACHE_SIZE="2G"
 
 <p>
 Od tej chwili Portage będzie używał <c>ccache</c> aby przyspieszyć kompilację
-(tam, gdzie to możliwe). Jeśli masz wątpliowości, co do tego czy <c>ccache</c> 
-działa, możesz uruchomić <c>ccache -s</c> aby przejrzeć statystykę:
+- tam, gdzie to możliwe. Jeśli masz wątpliwości co do tego czy <c>ccache</c> 
+działa możesz uruchomić <c>ccache -s</c> aby przejrzeć statystyki:
 </p>
 
 <pre caption="Przeglądanie statystyki ccache">
@@ -192,9 +192,9 @@ działa, możesz uruchomić <c>ccache -s</c> aby przejrzeć statystykę:
 </subsection>
 </section>
 <section>
-<title>Pakiety binarne</title>
+<title>Pakiety binarne.</title>
 <subsection>
-<title>Tworzenie pakietów binarnych</title>
+<title>Tworzenie pakietów binarnych.</title>
 <body>
 
 <p>
@@ -245,14 +245,14 @@ możesz użyć opcji <c>--buildpkgonly</c> (w skrócie: <c>-B</c>):
 </subsection>
 </section>
 <section>
-<title>Bezpieczeństwo Portage</title>
+<title>Bezpieczeństwo w Portage.</title>
 <subsection>
-<title>Sandbox</title>
+<title>Sandbox.</title>
 <body>
 
 <p>
-W trakcie budowania i instalacji pakietów, Portage używa <e>sandboxa</e> w celu
-ochrony Twojego systemu. Oznacza to, że dopóki pakiet nie jest zainstalowany
+W trakcie budowania i instalacji pakietów Portage używa <e>sandboxa</e> w celu
+ochrony Twojego systemu. Polega to na tym, że dopóki pakiet nie jest zainstalowany
 w Twoim systemie, nie może naruszyć żadnego pliku poza sandboxem. Dzięki temu
 Portage wie, które pliki są tworzone i modyfikowane przez dany pakiet.
 </p>
@@ -260,31 +260,31 @@ Portage wie, które pliki są tworzone i modyfikowane przez dany pakiet.
 <p>
 Kiedy kompilacja pakietu zostaje zakończona, Portage "preinstaluje" pakiet w
 sandboxie i rejestruje, gdzie są położone poszczególne pliki tego pakietu. Następnie
-pliki te są przenoszone z sandboxa do samego systemu.
+pliki te są przenoszone z sandboxa do właściwego systemu.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Uprawnienia użytkowników</title>
+<title>Uprawnienia użytkowników.</title>
 <body>
 
 <p>
 Portage potrafi również budować pakiety pracując jako użytkownik "portage" (a nie root) 
 z grupy "portage". Budowanie pakietów jako użytkownik "portage" zwiększa bezpieczeństwo
-podczas kompilacji i instalacji programów. Pracy w trybie zwykłego użytkownika można
-używać z lub bez sandboxa. Oczywiście, najlepiej użyć jednego i drugiego :)
+podczas kompilacji i instalacji programów. Pracę w trybie zwykłego użytkownika można
+prowadzić zarówno z jak i bez sandboxa. Oczywiście najlepiej użyć jednego i drugiego :)
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Włączanie sandbox i/lub userpriv</title>
+<title>Włączanie sandbox i/lub userpriv.</title>
 <body>
 
 <p>
 <c>sandbox</c> jest domyślnym ustawieniem używanym przez Portage. Jeśli chcesz
-aktywować <c>userpriv</c>, musisz go dodać do zmiennej <c>FEATURES</c>. Włączenie
+aktywować <c>userpriv</c> musisz go dodać do zmiennej <c>FEATURES</c>. Włączenie
 <c>userpriv</c> wyłączy <c>sandbox</c>. Aby używać jednego i drugiego, musisz w zmiennej
 <c>FEATURES</c> umieścić również słowo kluczowe <c>usersandbox</c>:
 </p>
@@ -294,19 +294,19 @@ FEATURES="userpriv usersandbox"
 </pre>
 
 <warn>
-Pamiętaj, aby <e>nie</e> usuwać słowa <c>sandbox</c> ze zmiennej <c>FEATURES</c>!
+Pamiętaj, aby <e>nie</e> usunąć słowo <c>sandbox</c> ze zmiennej <c>FEATURES</c>!
 </warn>
 
 </body>
 </subsection>
 <subsection>
-<title>Dokładne sprawdzanie</title>
+<title>Dokładne sprawdzanie.</title>
 <body>
 
 <p>
-Portage może automatycznie reagować na niebezpieczne sytuacje (takie, jak brakujące
-lub nieprawidłowe pliki Manifest). Aby włączyć dokładne sprawdzanie, dodaj
-słowo kluczowe <c>strict</c>, do zmiennej <c>FEATURES</c>:
+Portage może automatycznie reagować na niebezpieczne sytuacje (takie jak brakujące
+lub nieprawidłowe pliki Manifest). Aby włączyć dokładne sprawdzanie dodaj
+słowo kluczowe <c>strict</c> do zmiennej <c>FEATURES</c>:
 </p>
 
 <pre caption="Włączanie dokładnego sprawdzania">
@@ -316,14 +316,14 @@ FEATURES="strict"
 </body>
 </subsection>
 <subsection>
-<title>Smart File System Permissions</title>
+<title>Inteligentne podejście do praw do plików.</title>
 <body>
 
 <p>
-Portage może zostać skonfigurowany, aby automatycznie radził sobie z 
+Portage może zostać skonfigurowane, tak aby automatycznie radziło sobie z 
 potencjalnie niebezpiecznymi uprawnieniami dostępu do plików. Portage
-czyści wtedy bity czytania dla grupy i innych użytkowników w przypadku plików
-setuid oraz bit czytania dla innych użytkowników w przypadku plików setgid.
+czyści wtedy bity odczytu dla grupy i innych użytkowników - w przypadku plików
+setuid oraz bit odczytu dla innych użytkowników - w przypadku plików setgid.
 Zmiana uprawnień dokonywana jest w fazie "pre-install". Aby włączyć 
 "smart file permissions", dodaj słowo kluczowe <c>sfperms</c> do zmiennej
 <c>FEATURES</c>:
@@ -337,17 +337,17 @@ FEATURES="sfperms"
 </subsection>
 </section>
 <section>
-<title>Inne</title>
+<title>Inne.</title>
 <subsection>
-<title>Pomoc Portage</title>
+<title>Pomoc Portage.</title>
 <body>
 
 <p>
 Istnieje jeszcze kilka innych słów kluczowych, które możesz umieścić w zmiennej
 <c>FEATURES</c>. Większość z nich jest przydatna developerom i mniej interesująca
 dla przeciętnego użytkownika. Jeśli chciałbyś dowiedzieć się więcej na temat tych
-dodatkowych słów kluczowych (lub ogólnie na temat Portage), nie zapomnij przeczytać
-podręcznika systemowego <path>make.conf</path>.
+dodatkowych słów kluczowych (lub ogólnie na temat Portage) przeczytaj
+podręcznik systemowy <path>make.conf</path>.
 </p>
 
 <pre caption="Więcej informacji na temat Portage">
