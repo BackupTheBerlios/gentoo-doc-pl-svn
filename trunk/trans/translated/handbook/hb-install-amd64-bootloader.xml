@@ -7,7 +7,7 @@
 <!-- Translator: sekretarz <sekretarz@gentoo.org> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-amd64-bootloader.xml,v 1.4 2004/11/03 23:50:26 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-amd64-bootloader.xml,v 1.5 2004/11/06 18:11:36 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -225,7 +225,34 @@ lub <uri link="#grub-install-manual"> Alternatywnie: Instalowanie GRUBa ręcznie
 <title>Domyślnie: Instalowanie GRUBa przy pomocy grub-install</title>
 <body>
 
-<!-- TODO: Trzeba to uzupelnić ;> -->
+<p>
+Aby zainstalować GRUBa, będziesz musial wywołać polecenie <c>grub-install</c>.
+Jednak, <c>grub-install</c> nie zadziała poprawnie, jeżeli będziemy w środowisku
+chrootowanym. Musimy najpierw uaktualnić plik <path>/etc/mtab</path> (plik z informacjami
+o wszystkich zamontowanych urządzeniach), istnieje prosty sposób na wykonanie tej czynności - 
+wystarczt skopiować plik <path>/proc/mounts</path> do <path>/etc/mtab</path>:
+</p>
+
+<pre caption="Aktualizacja /etc/mtab">
+# <i>cp /proc/mounts /etc/mtab</i>
+</pre>
+
+<p>
+Teraz możemy zainstalować GRUBa używając <c>grub-install</c>:
+</p>
+
+<pre caption="Uruchamianie grub-install">
+# <i>grub-install --root-directory=/boot /dev/hda</i>
+</pre>
+
+<p>
+Jeżeli masz więciej pytań dotyczących GRUBa, przeczytaj <uri link="http://www.gnu.org/software/grub/grub-faq.html">GRUB FAQ</uri> 
+lub <uri link="http://www.gnu.org/software/grub/manual/">Podręcznik GRUBa</uri>.
+</p>
+
+<p>
+Teraz jesteś gotowy na <uri link="#reboot">Ponowne Uruchomienie Systemu</uri>.
+</p>
 
 </body>
 </subsection>
