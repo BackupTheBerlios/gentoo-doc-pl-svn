@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.19 -->
+<!-- Orig revision: 1.21 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Zakończenie Instalacji -->
 <!-- Status: Ukończono -->
@@ -10,7 +10,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.14 2004/03/01 14:46:45 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.15 2004/03/10 07:03:16 lcs Exp $ -->
 
 <sections>
 <section>
@@ -221,27 +221,31 @@ Password: <comment>(Podaj hasło roota)</comment>
 </pre>
 
 <p>
-Jeśli posiadasz drugą płytę instalacyjną (CD-2), powinieneś teraz skopiować
-dostępne na niej prekompilowane pakiety. Zacznij od jej zamontowania:
+Musisz teraz skonfigurować Portage aby mogło instalować prekompilowane
+pakiety z Packages CD. Zacznijmy od zamontowania tej płyty.
 </p>
 
-<pre caption="Montowanie CD-2">
+<pre caption="Montowanie Packages CD">
 # <i>mkdir /mnt/cdrom</i>
-<comment>(Umieść CD-2 w czytniku CD-ROM)</comment>
+<comment>(Umieść Packages CD w czytniku CD-ROM)</comment>
 # <i>mount /mnt/cdrom</i>
 </pre>
 
 <p>
-Następnie przekopiujemy wszystkie pakiety GRP do <path>/usr/portage/packages</path>:
+Teraz skonfiguruj Portage aby szukało pakietów GRP w <path>/mnt/cdrom</path>.
 </p>
 
-<pre caption="Kopiowane prekompilowanych pakietów">
-# <i>cp -a /mnt/cdrom/packages/All/* /usr/portage/packages/All/</i>
+<pre caption="Configuring Portage to use /mnt/cdrom">
+# <i>ls /mnt/cdrom</i>
+<comment>(Jeśli istnieje katalog /mnt/cdrom/packages:)</comment>
+# <i>export PKGDIR="/mnt/cdrom/packages"</i>
+<comment>(A jeśli nie:)</comment>
+# <i>export PKGDIR="/mnt/cdrom"</i>
 </pre>
 
 <p>
-Teraz możemy je instalować. CD-2 zawiera wiele ciekawych programów, na przykład
-KDE:
+Teraz możesz instalować pakiety. Packages CD zawiera wiele ciekawych
+programów, na przykład KDE:
 </p>
 
 <pre caption="Instalacja KDE">
