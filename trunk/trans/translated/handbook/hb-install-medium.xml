@@ -1,4 +1,4 @@
-<!-- Orig revision: 1.29 -->
+<!-- Orig revision: 1.31 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Wybór Właściwego Medium Instalacyjnego -->
 <!-- Status: Ukończono -->
@@ -6,7 +6,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.3 2003/12/22 20:13:36 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.4 2003/12/23 22:22:21 lcs Exp $ -->
 
 <sections>
 <section>
@@ -28,11 +28,10 @@ to oczywiście od docelowej architektury.
 <body>
 
 <p>
-Oficjalnie, Gentoo Linux dostępny jest dla pięciu architektur: <b>x86</b> (łącznie
+Oficjalnie, Gentoo Linux dostępny jest dla sześciu architektur: <b>x86</b> (łącznie
 ze wszystkimi podarchitekturami, jak Pentium, Athlon itd.), <b>sparc</b> (zarówno
-Sparc32 jak i Sparc64), <b>ppc</b> (PowerPC), <b>hppa</b> oraz <b>alpha</b>. 
-Dodatkowo, eksperymentalnie wspierane są trzy kolejne: <b>amd64</b>, <b>ia64</b>
-oraz <b>mips</b>.
+Sparc32 jak i Sparc64), <b>ppc</b> (PowerPC), <b>hppa</b>, <b>alpha</b> oraz <b>mips</b>. 
+Dodatkowo, eksperymentalnie wspierane są dwie kolejne: <b>amd64</b> oraz <b>ia64</b>.
 </p>
 
 <p>
@@ -60,12 +59,16 @@ wymogi:
   link="http://www.pateam.org">PA Team website</uri>
 </li>
 <li>
-  Dla <e>architektury PowerPC</e>, potrzebujesz iMac'a lub Pegasos'a
+  Dla <e>architektury PowerPC</e>, potrzebujesz przynajmniej PowerPC :)
+  (najlepiej G3 lub G4, jak iMac, iBook, PowerBook itd.)
 </li>
 <li>
   Dla <e>architektury SPARC</e>, sprawdź <uri
   link="http://www.ultralinux.org/faq.html#s_2">UltraLinux FAQ</uri>
 </li>
+<li>
+  Dla <e>architektury MIPS</e>, sprawdź dokument <uri
+link="/doc/en/mips-requirements.xml">MIPS Hardware Requirements</uri>.
 </ul>
 
 </body>
@@ -240,6 +243,7 @@ Teraz rzućmy okiem na dostępne media instalacyjne:
 </li>
 <li><uri link="#doc_chap2_sect7">Knoppix</uri></li>
 <li><uri link="#doc_chap2_sect8">Inna Dystrybucja</uri></li>
+<li><uri link="#doc_chap2_sect9">Uruchamianie z Sieci</uri></li>
 </ul>
 
 </body>
@@ -469,7 +473,39 @@ dystrybucji, będziesz mógł skorzystać ze wszystkich dostępnych w niej narz�
 oraz pomijając dalszą część rozdziału, przejść do 
 <uri link="?part=1&amp;chap=3">Konfiguracji Sieci</uri>.
 </p>
+</body>
+</subsection>
+<subsection>
+<title>Uruchamianie z Sieci</title>
+<body>
 
+<p>
+W pewnych przypadkach, nie masz możliwości uruchomienia komputera z płyty
+CD lub skorzystania z zainstalowanej dystrybucji w celu instalacji Gentoo.
+Jeśli twój komputer ma kartę sieciową i BIOS/ROM umożliwiający uruchomienie
+z sieci (PXE), wystarczy że ściągniesz podczas startu niewielki system
+i z niego przeprowadzisz proces instalacji.
+</p>
+
+<p>
+Jeśli chcesz skorzystać z tej metody (nie dotyczy użytkowników <e>MIPS</e>)
+powinieneś skonfigurować działający serwer DHCP oraz TFTP. Informacje
+o konfiguracji 
+<uri link="/doc/en/diskless-howto.xml#doc_chap3">DHCP</uri> i <uri
+link="/doc/en/diskless-howto.xml#doc_chap4">TFTP</uri> znajdują się w 
+<uri link="/doc/en/diskless-howto.xml">Diskless-HOWTO</uri>.
+</p>
+
+<p>
+W zależności od konfiguracji, powinieneś stworzyć lub pobrać odpowiedni
+obraz kernela.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Wybór Medium Instalacyjnego</title>
+<body>
 <p>
 Nadszedł czas na wybór medium instalacyjnego i przejście do odpowiedniej sekcji.
 W kolejnych rozdziałach, domyślnie opisywać będziemy instalację z LiveCD, ale
@@ -482,6 +518,9 @@ zamieścimy również odpowiednie adnotacje o innych metodach.
 </li>
 <li>
   <uri link="#doc_chap4">Alternatywnie: Pobierz, Nagraj i Uruchom Knoppix'a</uri>
+</li>
+<li>
+  <uri link="#doc_chap5">Alternatywnie: Uruchamianie z Sieci</uri>
 </li>
 </ul>
 
@@ -581,6 +620,9 @@ najpopularniejszych.
 		<path>/dev/hdc</path> swoim urządzeniem nagrywarki) i ścieżkę do pobranego
 		ISO jako parametr.
   </li>
+   <li>
+      W Mac Os X' Finder, zaznacz plik ISO, kliknij <c>File</c> i <c>Burn Image</c> 
+   </li>
 </ul>
 
 <p>
@@ -1224,6 +1266,9 @@ najpopularniejszych.
 		<path>/dev/hdc</path> swoim urządzeniem nagrywarki) i ścieżkę do pobranego
 		ISO jako parametr.
   </li>
+   <li>
+      W Mac Os X' Finder, zaznacz plik ISO, kliknij <c>File</c> i <c>Burn Image</c> 
+   </li>
 </ul>
 
 <p>
@@ -1260,7 +1305,121 @@ się jako root, aby zmiany zostały zatwierdzone.
 $ <i>su -</i>
 Password: <comment>(Podaj hasło root'a)</comment>
 </pre>
+<p>
+Teraz przejdź do kolejnego rozdziału, o <uri 
+link="?part=1&amp;chap=3">Konfiguracji Sieci</uri>.
+</p>
+</body>
+</section>
+
+<section>
+<title>Alternatywnie: Uruchamianie z Sieci</title>
+<subsection>
+<body>
+
+<p>
+Aby móc zainstalować Gentoo, obraz który pobierasz z serwera TFTP powinien
+zawierać niezbędne narzędzia do tworzenia systemów plików, zakładania i montowania
+partycji, rozpakowywania tarballi oraz chroot. Możesz pobrać gotowe, odpowiednio
+przygotowane obrazy z Internetu...
+</p>
+
+<p>
+W tym momencie, jedyną architekturą posiadającą gotowe obrazy do uruchamiania
+z sieci jest MIPS.
+</p>
+
+<ul>
+  <li><uri link="#doc_chap5_sect2">Uruchamianie z Sieci Komputera MIPS</uri></li>
+</ul>
 
 </body>
+</subsection>
+<subsection>
+<title>Uruchamianie z Sieci Komputera MIPS</title>
+<body>
+
+<p>
+Zacznij od pobrania jednego z dostępnych w sieci obrazów
+z <uri>http://dev.gentoo.org/~kumba/mips/netboot/</uri>.
+</p>
+
+<p>
+Skonfiguruj teraz serwer DHCP aby wysłać plik do klienta. Jakkolwiek
+maszyny SGI wymagają pewnych poprawek w komputerze host aby TFTP
+działało poprawnie:
+</p>
+
+<pre caption="Kilka poprawek w maszynach SGI aby TFTP działało prawidłowo">
+<comment>(Wyłącz "Path Maximum Transfer Unit", w przeciwnym razie SGI nie odnajdzie jądra)</comment>
+# <i>echo 1 &gt; /proc/sys/net/ipv4/ip_no_pmtu_disc</i>
+<comment>(Ustaw zakres portów dostępnych dla SGI Prom)</comment>
+# <i>echo "2048 32767" &gt; /proc/sys/net/ipv4/ip_local_port_range</i>
+</pre>
+
+<p>
+Uruchom teraz swój komputer, wejdź do monitora PROM i wpisz następujące polecenia
+aby uruchomić system z sieci:
+</p>
+
+<pre caption="Uruchamianie z Sieci MIPS">
+        Running power-on diagnostics
+
+System Maintenance Menu
+
+1) Start System
+2) Install System Software
+3) Run Diagnostics
+4) Recover System
+5) Enter Command Monitor
+
+Option? <i>5</i>
+Command Monitor. Type "exit" to return to the menu.
+&gt;&gt; <i>bootp(): root=/dev/ram0</i>
+</pre>
+
+<note>
+Być może aby wejść do powyższego menu będziesz musiał wcisnąć klawisz Esc,
+gdyż komputer spróbuje bezpośrednio uruchomić system.
+</note>
+
+<p>
+Czasami uruchamianie z sieci wymaga wykonania kilku sztuczek. Następujące
+polecenia PROM mogą pomóc, ale niczego nie obiecujemy. Jeśli
+mimo wszystko twój komputer nie pozwala na skorzystanie z tej metody,
+sprawdź na komputerze z TFTP czy:
+</p>
+
+<ul>
+  <li>dhcpd przydziela maszynie SGI adres IP</li>
+  <li>
+    Prawidłowo ustawione są prawa dostępu w katalogu tftp (zazwyczaj <path>
+    /tftpboot</path>)
+  </li>
+  <li>
+    Sprawdź logi systemowe aby zobaczyć jakie błędy zgłasza serwer tftp.
+  </li>
+  <li>
+    Pomódl się do maskotki Tuxa (metoda ta może nie zadziałać, nie jest też
+    oficjalnie wspieraną techniką rozwiązywania błędów)
+  </li>
+</ul>
+
+<pre caption="Sztuczki do uruchamiania z sieci">
+&gt;&gt; <i>resetenv</i>
+&gt;&gt; <i>unsetenv netaddr</i>
+&gt;&gt; <i>unsetenv dlserver</i>
+&gt;&gt; <i>init</i>
+&gt;&gt; <i>bootp(): root=/dev/ram0</i>
+</pre>
+
+<p>
+Jeżeli wszystko się udało, jesteś zalogowany do powłoki <c>ash</c> busybox'a.
+Możesz teraz przejść do <uri link="?part=1&amp;chap=3">Konfiguracji
+Sieci</uri>.
+</p>
+
+</body>
+</subsection>
 </section>
 </sections>
