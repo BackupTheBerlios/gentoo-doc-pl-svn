@@ -1,4 +1,4 @@
-<!-- Orig revision: 1.32 -->
+<!-- Orig revision: 1.37 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Wybór Właściwego Medium Instalacyjnego -->
 <!-- Status: Ukończono -->
@@ -6,7 +6,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.7 2004/01/05 07:29:34 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.8 2004/01/07 07:14:16 lcs Exp $ -->
 
 <sections>
 <section>
@@ -122,7 +122,7 @@ od podstaw, skorzystaj ze <e>stage1</e>. W <e>stage2</e> będziesz musiał
 skompilować system ze stanu po gotowym bootstrapie. Prekompilowany podstawowy 
 system Gentoo znajduje się w <e>stage3</e>. Naszą dystrybucję można
 zainstalować bez żadnych kompilacji, nawet jądra. W takim przypadku odpowiedni
-jest <e>stage3</e>.
+jest <e>stage3</e> oraz LiveCD zawierające prekompilowane pakiety.
 </p>
 
 <p>
@@ -276,7 +276,8 @@ bez dostępu do sieci.
 <p>
 &quot;Co? Prekompilowane pakiety?&quot; Słyszę krzyki niedowierzania. Tak, chcemy
 dać użytkownikom możliwość szybkiej instalacji. Kolekcja prekompilowanych
-pakietów nazywa się <e>Gentoo Reference Platform</e> (GRP).
+pakietów nazywa się <e>Gentoo Reference Platform</e> (GRP). Omówimy ją
+szerzej w kolejnych rozdziałach.
 </p>
 
 <p>
@@ -362,14 +363,14 @@ ani pakietów GRP.
 <tr>
   <th>+</th>
   <ti>
-		Możesz skorzystać ze stage1, stage2 lub stage3 pobierając je z sieci.
+		Możesz skorzystać ze stage1, stage2 lub stage3 pobierając je z sieci
   </ti>
 </tr>
 <tr>
   <th>-</th>
   <ti>
 		Nie zawierają stage, migawek portage, pakietów GRP, więc nie nadają się
-		do instalacji bez dostępu do sieci ani korzystania z prekompilowanych pakietów.
+		do instalacji bez dostępu do sieci 
   </ti>
 </tr>
 </table>
@@ -597,6 +598,13 @@ kilka, różniących się tylko datą w nazwie (np. <path>livecd-x86-cd1-2003102
  weź ten najnowszy.
 </p>
 
+<p>
+Jeśli zastanawiasz się czy pobrane pliki są prawidłowe, czy też uszkodzone,
+możesz porównać ich sumę kontrolną MD5 z tą, którą dostarczamy razem z iso
+(na przykład <path>livecd-x86-cd1-20031029.iso.md5</path>). Do sprawdzania
+sumy MD5 pod Linuksem/Uniksem służy program <c>md5sum</c>, natomiast
+pod Windowsem <uri link="http://www.md5summer.org">md5summer</uri>.
+</p>
 <note>
   Sprawdź opis w <uri link="http://store.gentoo.org">Sklepie Gentoo</uri>, aby 
   upewnić się, którego LiveCD (lub stage) powinieneś użyć.
@@ -1283,9 +1291,6 @@ najpopularniejszych.
 		<path>/dev/hdc</path> swoim urządzeniem nagrywarki) i ścieżkę do pobranego
 		ISO jako parametr.
   </li>
-   <li>
-      W Mac Os X' Finder, zaznacz plik ISO, kliknij <c>File</c> i <c>Burn Image</c> 
-   </li>
 </ul>
 
 <p>
