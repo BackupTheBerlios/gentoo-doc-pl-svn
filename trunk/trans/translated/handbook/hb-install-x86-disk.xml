@@ -10,7 +10,7 @@
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-disk.xml,v 1.4 2004/12/07 12:13:05 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-disk.xml,v 1.5 2004/12/07 12:42:48 rane Exp $ -->
 
 <sections>
 <section>
@@ -36,7 +36,7 @@ dyskiem jest <path>/dev/sda</path>.
 <p>
 Urządzenia blokowe stanowią abstrakcyjny interfejs dysków. Programy
 użytkownika mogą z nich korzystać nie martwiąc się czy napędy
-są typu IDE, SCSI, czy nawet jakiegoś jeszcze innego. Przechowywane dane adresuje się
+są typu IDE, SCSI, lub jeszcze innego. Przechowywane dane adresuje się
 jako ciąg 512-bajtowych bloków.
 </p>
 
@@ -270,6 +270,7 @@ jak w zaprezentowanym wcześniej schemacie:
 <ti>Partycja root</ti>
 </tr>
 </table>
+
 <p>
 Zmodyfikuj go stosownie do swoich potrzeb.
 </p>
@@ -281,10 +282,9 @@ Zmodyfikuj go stosownie do swoich potrzeb.
 <body>
 
 <p>
-<c>fdisk</c> to popularne i wygodne narzędzie
-do partycjonowania dysków.
-Zacznijmy od uruchomienia go dla naszego dysku
-(pokażemy to na przykładzie <path>/dev/hda</path>):
+<c>fdisk</c> to popularne i wygodne narzędzie do partycjonowania dysków.
+Zacznijmy od uruchomienia go dla naszego dysku (pokażemy to na przykładzie
+<path>/dev/hda</path>):
 </p>
 
 <pre caption="Uruchamianie fdisk">
@@ -619,13 +619,13 @@ oraz ext3 na partycji root (w naszym przypadku <path>/dev/hda3</path>) powiniene
 wykonać następujące polecenia:
 </p>
 
-<pre caption="Zakładanie na partycji systemu plików">
+<pre caption="Zakładanie systemu plików na partycji">
 # <i>mke2fs /dev/hda1</i>
 # <i>mke2fs -j /dev/hda3</i>
 </pre>
 
 <p>
-Stwórz teraz systemy plików na swoich partycjach.
+Teraz stwórz systemy plików na swoich partycjach.
 </p>
 
 </body>
