@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.34 -->
+<!-- Orig revision: 1.35 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Przygotowanie Dysków -->
 <!-- Status: Ukończono -->
@@ -10,7 +10,7 @@
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.18 2004/01/28 16:09:37 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.19 2004/02/12 18:57:20 lcs Exp $ -->
 
 <sections>
 <section>
@@ -1721,7 +1721,10 @@ Aby zainicjalizować partycje wymiany, skorzystaj z programu <c>mkswap</c>.
 <p>
 Aby je aktywować skorzystaj ze <c>swapon</c>:
 </p>
-
+<note>
+Jako że Knoppix automatycznie aktywuje wszystkie istniejące partycje wymiany,
+jego użytkownicy mogą pominąć ten krok.
+</note>
 <pre caption="Aktywacja partycji wymiany">
 # <i>swapon /dev/hda2</i>
 </pre>
