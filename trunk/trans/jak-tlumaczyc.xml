@@ -34,13 +34,13 @@ powinien posiadać wiedzę i doświadczenie w używaniu naszej dystrybucji.
 
 <p>
 Informacje zawarte w tym dokumencie zostały spisane, aby ułatwić nowym osobom
-dołączenie do projektu oraz w celu usystematyzowania wszystkie zasad i reguł
-obowiązujących członków naszego zespołu.
+dołączenie do projektu oraz w celu usystematyzowania wszystkich zasad i reguł
+obowiązujących obecnych członków naszego zespołu.
 </p>
 
 <p>
-Wszelkie propozycje poprawek do tego tekstu prosimy postulować na nasz
-naszą listę mailową - jedyny oficjalny kanał komunikacji. To jak się do
+Wszelkie propozycje poprawek do tego tekstu prosimy postulować na 
+naszą listę mailową - nasz jedyny oficjalny kanał komunikacji. To jak się do
 niej dostać omówimy w dalszej części tego przewodnika.
 </p>
 
@@ -160,8 +160,8 @@ Uwagi:
 </p>
 
 <p>
-Pamiętamy o wszystkich &lt;path&gt; i &lt;c&gt; z oryginału i podkreślamy je również
-w odpowiednich fragmentach przetłumaczonego tekstu.
+Pamiętamy o wszystkich &lt;path&gt; i &lt;c&gt; z oryginału i podkreślamy je we
+właściwy sposób również  w odpowiednich fragmentach przetłumaczonego tekstu.
 </p>
 
 <pre caption=" Nagłówek.">
@@ -173,7 +173,7 @@ w odpowiednich fragmentach przetłumaczonego tekstu.
 &lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
 &lt;!-- See http://creativecommons.org/licenses/by-sa/1.0 --&gt;
 
-&lt;!-- $Header: /cvsroot/gentoo-doc-pl/trans/jak-tlumaczyc.xml,v 1.6 2004/12/28 00:17:46 rane Exp $ --&gt;
+&lt;!-- $Header: /cvsroot/gentoo-doc-pl/trans/jak-tlumaczyc.xml,v 1.7 2004/12/28 10:43:37 rane Exp $ --&gt;
 
 <comment>Po:</comment>
 
@@ -189,7 +189,7 @@ w odpowiednich fragmentach przetłumaczonego tekstu.
 &lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
 &lt;!-- See http://creativecommons.org/licenses/by-sa/1.0 --&gt;
 
-&lt;!-- $Header: /cvsroot/gentoo-doc-pl/trans/jak-tlumaczyc.xml,v 1.6 2004/12/28 00:17:46 rane Exp $ --&gt;
+&lt;!-- $Header: /cvsroot/gentoo-doc-pl/trans/jak-tlumaczyc.xml,v 1.7 2004/12/28 10:43:37 rane Exp $ --&gt;
 </pre>
 
 <p>
@@ -226,9 +226,10 @@ $ vim hb-install-stage.xml
 
 <p>
 W tym momencie zapominamy o oryginalnym, angielskim tekście i poprawiamy cały
-dokument tak, aby wyglądał możliwie naturalnie dla naszych rodaków. Staramy się
-wyłowić wszystkie błędy ortograficzne, gramatyczne i interpunkcjyjne jakie
-popełniliśmy w trakcie tłumaczenia. Wszelkie wątpliwości pomogą nam rozwiać: 
+dokument tak, aby wyglądał możliwie naturalnie dla naszych rodaków. Warto
+poprawić styl i budowę zdań. Staramy się również wyłowić wszystkie błędy
+ortograficzne, gramatyczne i interpunkcjyjne jakieapopełniliśmy w trakcie
+tłumaczenia. Wszelkie wątpliwości pomogą nam rozwiać: 
 </p>
 
 <ul>
@@ -247,6 +248,35 @@ freenode i pytamy przebywających tam innych tłumaczy o ich zdanie
 w kontrowersyjnej sprawie. Możemy również zapisać się i wysłać maila na listę
 dyskusyjną tłumaczy Gentoo - o której opowiemy nieco później.
 </p>
+
+</body>
+</section>
+</chapter>
+<chapter>
+<title>Kodowanie UTF-8.</title>
+<section>
+<body>
+
+<p>
+Ekipa Gentoo Linux promuje Unicode (UTF-8) jako oficjalny standard kodowania
+znaków. Definiuje on litery narodowe niemal wszystkich języków świata. Niestety
+w Polsce wciąż najpopularniejszy jest standard ISO8859-2.
+</p>
+
+<p>
+Wcześniej, w paragrafie dotyczącym środowiska pracy zachęcaliśmy do
+przestawienia edytora na pracę w UTF-8. Inną metodą otrzymania tekstu w
+prawidłowym kodowaniu jest skorzystanie z programu do konwersji o nazwie
+<c>iconv</c>.
+</p>
+
+<pre caption="Konwersja dokumentów z ISO8859-2 na UTF-8 i na odwrót">
+<comment>Zastąp index-iso.xml oraz index-utf.xml odpowiednimi nazwami plików</comment>
+Konwersja z ISO8859-2 na UTF-8:
+# iconv -fISO8859-2 -tUTF-8 -o index-utf.xml index-iso.xml
+Konwersja z UTF-8 na ISO8859-2:
+# iconv -fUTF-8 -tISO8859-2 -o index-iso.xml index-utf.xml
+</pre>
 
 <p>
 Kiedy skończymy tłumaczenie wysyłamy plik na bugzillę projektu tłumaczeń
