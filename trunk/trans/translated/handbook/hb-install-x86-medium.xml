@@ -5,7 +5,11 @@
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Release -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-medium.xml,v 1.5 2004/12/07 14:03:54 rane Exp $ -->
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-medium.xml,v 1.6 2004/12/07 14:10:19 rane Exp $ -->
 
 <sections>
 
@@ -359,10 +363,10 @@ link="http://www.md5summer.org">md5summer</uri>.
 
 
 <p>
-Innym sposobem sprawdzenia poprawności pobranego pliku jest użycie GnuPG, aby
-sprawdzić kryptograficzną sygnaturę pliku z tą, którą dostarczamy w pliku z
-rozszerzeniem <path>.asc</path>). Ściągnij plik sygnatury i uzyskaj klucz
-publiczny:
+Innym sposobem sprawdzenia poprawności pobranego pliku jest użycie GnuPG w celu
+porównania kryptograficznej sygnatury pobranego pliku z tą, którą dostarczamy w
+pliku z rozszerzeniem <path>.asc</path>). Ściągnij plik sygnatury i uzyskaj klucz
+publiczny swojego obrazu:
 </p>
 
 <pre caption="Uzyskiwanie klucza publicznego">
@@ -370,7 +374,7 @@ $ <i>gpg --keyserver pgp.mit.edu --recv-keys 17072058</i>
 </pre>
 
 <p>
-Teraz zweryfikuj sygnaturę:
+Teraz zweryfikuj uzyskaną sygnaturę porównując ją z tą pochodzącą z serwera:
 </p>
 
 <pre caption="Weryfikacja sygnatury">
@@ -379,7 +383,7 @@ $ <i>gpg --verify &lt;plik_sygnatury&gt; &lt;pobrany_obraz_iso&gt;</i>
 
 <p>
 Aby nagrać pobrane obrazy, musisz wybrać w programie do nagrywania
-tryb RAW. Sposób zależy od używanego narzędzia. Omówimy poniżej kilka
+tryb RAW. Sposób w jaki to się robi zależy od używanego narzędzia. Omówimy poniżej kilka
 najpopularniejszych.
 </p>
 
@@ -412,23 +416,21 @@ do tego okazji.
 Po nagraniu płyt instalacyjnych nadszedł czas na ich uruchomienie. Zrestartuj
 komputer i wejdź do ustawień BIOSu. Zazwyczaj służą do tego klawisze Del,
 F1 lub ESC, w zależności od jego producenta. Następnie musisz zmienić
-kolejność uruchamiania, aby CD-ROM znalazł się przed twardym dyskiem.
+kolejność uruchamiania, tak aby CD-ROM znalazł się przed twardym dyskiem.
 Przeważnie kryje się ona w "CMOS Setup". Jeśli tego nie zrobisz, system
-uruchomi się z twardego dysku, a nie z płyty.
+uruchomi się z twardego dysku zamiast z płyty.
 </p>
 
 <p>
 Teraz umieść płytę instalacyjną w czytniku i ponownie zrestartuj komputer.
 Powinieneś ujrzeć ładny ekran startowy z logo Gentoo Linux. Możesz po prostu
 wcisnąć Enter aby rozpocząć proces uruchamiania z domyślnymi opcjami lub
-te opcje zmienić, wybierając jądro i podając odpowiednie parametry.
+zmienić te opcje, wybierając jądro i podając odpowiednie parametry.
 </p>
 
 <p>
 Wybór jądra? Tak, dostarczamy kilka kerneli na naszych LiveCD. Domyślnym
-jest <c>gentoo</c>. Oprócz niego dostępne są <c>smp</c>, aktywujący
-wsparcie dla maszyn wieloprocesorowych oraz <c>nofb</c>, z wyłączonym
-framebufferem.
+jest <c>gentoo</c>. 
 </p>
 
 <p>
@@ -496,7 +498,7 @@ się proces wczytywania systemu zostaniesz automatycznie zalogowany do
 &quot;Live&quot; Gentoo Linux jako &quot;root&quot;, nazywany też czasem
 superużytkownikiem. Powinieneś widzieć na bieżącej konsoli znak zachęty
 (&quot;#&quot;) roota. Konsole zmieniasz kombinacjami klawiszy Alt-F2, Alt-F3 i
-Alt-F4. Do konsoli, którą zobaczyłeś na początku wrócisz naciskając Alt-F1.
+Alt-F4. Do konsoli, którą widziałeś na początku wrócisz naciskając Alt-F1.
 </p>
 
 <p>
@@ -514,7 +516,7 @@ W czasie uruchamiania LiveCD system spróbuje wykryć sprzęt i załadować
 odpowiednie sterowniki. Zazwyczaj czyni to prawidłowo, ale czasami mogą zdarzyć
 się problemy (nie narzekajcie, LiveCD dla SPARC nawet nie próbuje wykrywać
 sprzętu...) i nie wszystkie moduły zostaną aktywowane. Gdy zawiedzie skanowanie
-PCI, możesz załadować odpowiednie moduły ręcznie.
+PCI możesz załadować odpowiednie moduły ręcznie.
 </p>
 
 <p>
@@ -529,13 +531,13 @@ dla różnych rodzajów urządzeń sieciowych):
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: poprawianie wydajności twardego dysku.</title>
+<title>Opcjonalnie: Poprawianie wydajności twardego dysku.</title>
 <body>
 
 <p>
-Jeśli jesteś zaawansowanym użytkownikiem, być może zainteresuje Cię
+Jeśli jesteś zaawansowanym użytkownikiem być może zainteresuje Cię
 możliwość zwiększenia wydajności dysku IDE za pomocą <c>hdparm</c>.
-Mozna ją przetestować za pomocą parametrów <c>-tT</c> (wykonanie
+Obecną wydajnoś można przetestować za pomocą parametrów <c>-tT</c> (wykonanie
 tego kilka razy zwiększa precyzję pomiaru):
 </p>
 
@@ -557,36 +559,36 @@ urządzeniem odpowiednim dla swojego dysku.
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Konta Użytkowników.</title>
+<title>Opcjonalnie: Konta użytkowników.</title>
 <body>
 
 <p>
 Jeśli planujesz umożliwić dostęp do środowiska instalacyjnego innym użytkownikom, 
 lub korzystać z <c>irssi</c> bez uprawnień administratora (ze względów bezpieczeństwa), 
-musisz stworzyć odpowiednie konta i zmienić hasło roota.
+musisz stworzyć odpowiednie konta oraz zmienić hasło roota.
 </p>
 
 <p>
-Aby zmienić hasło roota, skorzystaj z narzędzia <c>passwd</c>:
+Aby zmienić hasło roota, skorzystaj z polecenia <c>passwd</c>:
 </p>
 
 <pre caption="Zmiana hasła roota">
 # <i>passwd</i>
-New password: <comment>(Podaj nowe hasło)</comment>
-Re-enter password: <comment>(Podaj nowe hasło jeszcze raz)</comment>
+New password: <comment>(Podaj nowe hasło.)</comment>
+Re-enter password: <comment>(Potwierdź nowe hasło.)</comment>
 </pre>
 
 <p>
-Aby stworzyć konto użytkownika, najpierw podamy jego login, a
-potem ustawimy hasło. Skorzystamy przy tym z <c>useradd</c> oraz <c>passwd</c>.
-W przykładzie, stworzymy użytkownika &quot;john&quot;.
+Aby stworzyć konto użytkownika najpierw podamy jego login, a
+potem ustawimy hasło. Skorzystamy przy tym z poleceń <c>useradd</c> oraz <c>passwd</c>.
+W przykładzie, stworzymy użytkownika &quot;rane&quot;.
 </p>
 
 <pre caption="Tworzenie konta użytkownika">
-# <i>useradd john</i>
-# <i>passwd john</i>
-New password: <comment>(Podaj hasło johna)</comment>
-Re-enter password: <comment>(Podaj hasło johna jeszcze raz)</comment>
+# <i>useradd rane</i>
+# <i>passwd rane</i>
+New password: <comment>(Podaj hasło rane'a.)</comment>
+Re-enter password: <comment>(Podaj hasło rane'a jeszcze raz.)</comment>
 </pre>
 
 <p>
@@ -599,10 +601,10 @@ z polecenia <c>su</c>:
 </pre>
 
 <p>
-Jeśli zamierzasz podczas instalacji  korzystać z Podręcznika Gentoo (obojętnie czy z 
-CD czy z sieci) powinieneś dodać konto użytkownika, tak jak opisaliśmy to 
-przed chwilą, a następnie przejść przy pomocy kombinacji klawiszy <c>Alt-F2</c> 
-na nowy terminal i tam się zalogować.
+Jeśli zamierzasz podczas instalacji  korzystać z Podręcznika Gentoo (obojętnie
+czy nagranego na CD czy znajdującego się w Internecie) powinieneś dodać konto
+użytkownika, tak jak opisaliśmy to przed chwilą, a następnie przejść przy pomocy
+kombinacji klawiszy <c>Alt-F2</c> na nowy terminal i tam się zalogować.
 </p>
 
 <p>
@@ -634,7 +636,7 @@ połączenie z Internetem.
 
 <p>
 Jeśli chcesz w czasie instalacji umożliwić dostęp do komputera innym
-użytkownikom (ponieważ np. ktoś będzie chce Ci pomóc w instalacji Gentoo, lub
+użytkownikom (ponieważ np. ktoś chce Ci zdalnie pomóc w instalacji Gentoo, lub
 nawet przeprowadzić cały ten proces za Ciebie) musisz założyć im osobiste
 konta, a czasem nawet dać hasło do konta roota (rób to tylko wtedy, gdy
 <e>całkowicie</e> ufasz tej osobie).
@@ -649,7 +651,7 @@ Aby uruchomić demona SSH wpisz następującą komendę:
 </pre>
 
 <p>
-Aby używać sshd musisz mieć działające połączenie sieciowe. Aby je
+Aby używać sshd musisz mieć skonfigurowane i działające połączenie sieciowe. Aby je
 skonfigurować przejdź do rozdziału <uri link="?part=1&amp;chap=3">Konfiguracja
 sieci</uri>.
 </p>
