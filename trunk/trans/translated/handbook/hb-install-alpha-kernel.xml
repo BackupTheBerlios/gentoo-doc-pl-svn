@@ -9,12 +9,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-kernel.xml,v 1.9 2004/12/27 11:35:02 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-kernel.xml,v 1.10 2004/12/27 14:36:26 rane Exp $ -->
 
 <sections>
 
-<version>1.14</version>
-<date>2004-12-10</date>
+<version>1.12</version>
+<date>2004-12-26</date>
 
 <section>
 <title>Strefa czasowa.</title>
@@ -461,12 +461,13 @@ ebuildy. Oto lista wszystkich dostępnych modułów:
   <th>Polecenie</th>
 </tr>
 <tr>
-  <ti>x11-drm</ti>
+  <ti>xfree-drm (lub x11-drm)</ti>
   <ti>
     Zestaw sterowników dla kart ATI Radeon 9200, Rage128, Matrox, Voodoo i wielu innych
-    dla XFree86 i xorg-. Aby dowiedzieć się co powinieneś wpisać w pole "moja_karta"
-    sprawdź zmienną <c>IUSE_VIDEO_CARDS</c> w jednym z plików ebuild z katalogu
-     <path>/usr/portage/x11-base/x11-drm</path>.
+    dla XFree86 i xorg-x11. Aby dowiedzieć się co należy wpisać w pole "moja_karta"
+    sprawdzamy zmienną <c>IUSE_VIDEO_CARDS</c> w jednym z plików ebuild z katalogu
+     <path>/usr/portage/x11-base/x11-drm</path>. W wydaniu 2004.3 zmieniono nazwę ebuildu
+     xfree-drm na x11-drm.
   </ti>
   <ti><c>VIDEO_CARDS="moja_karta" emerge xfree-drm</c></ti>
 </tr>
