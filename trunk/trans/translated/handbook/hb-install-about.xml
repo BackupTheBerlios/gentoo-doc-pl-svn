@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.31 -->
+<!-- Orig revision: 1.32 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Release -->
@@ -10,12 +10,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-about.xml,v 1.25 2004/12/27 11:35:02 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-about.xml,v 1.26 2005/01/27 20:05:47 sekretarz Exp $ -->
 
 <sections>
 
-<version>1.28</version>
-<date>2004-10-18</date>
+<version>1.29</version>
+<date>2005-01-04</date>
  	 
 <section>
 <title>Wprowadzenie.</title>
@@ -66,8 +66,7 @@ kończy się określonym stanem:
   Po etapie 1 jesteś w działającym środowisku, gotowym do instalacji.
 </li>
 <li>
-  Po etapie 2 masz skonfigurowane połączenie internetowe (w pewnych sytuacjach
-  można to pominąć).
+  Po etapie 2 masz skonfigurowane połączenie internetowe.
 </li>
 <li>
   Po etapie 3 Twoje dyski są gotowe do instalacji Gentoo.
@@ -125,21 +124,27 @@ jest pobranie i instalacja za pomocą któregoś z naszych LiveCD (płyt
 instalacyjnych). Istnieje także możliwość przeprowadzenia
 tego procesu przy użyciu już zainstalowanej dystrybucji, innej
 uruchamialnej płyty (na przykład Knoppiksa), środowiska uruchamianego
-z sieci (netboot), dyskietki ratunkowej itd. Niniejszy dokument prezentuje
+z sieci (netboot), dyskietki ratunkowej itd. 
+</p>
+
+<p>
+Niniejszy dokument prezentuje
 jedynie metody z użyciem LiveCD oraz, w pewnym wypadku, NetBootem (ang. NetBooting). 
 Opis pozostałych możliwości znajduje się w <uri 
 link="/doc/en/altinstall.xml">Przewodniku po alternatywnych metodach instalacji</uri>.
+Jeżeli chcesz przeprowadzić instalację bez dostępu do internetu, zainteresują cię na pewno 
+<uri link="2004.3/index.xml">Podręczniki Gentoo 2004.3</uri>, które zawierają informacje 
+na temat tego sposobu instalacji
 </p>
 
-<!-- poprawić!!!<p>
-Bardzo przydatny dla początkujących użytkowników jest dokument a
-Zapewne zainteresuje Cię dokument <uri
+<p>
+Bardzo przydatny dla początkujących użytkowników jest dokument <uri
 link="/doc/en/gentoo-x86-tipsntricks.xml">Sztuczki i króczki Instalacji</uri>,
-gdyż może być bardzo przydatny. Jeżeli uważasz, że aktualne instrukcje
-instalacji są zbyt szczegółowe, możesz skorzystać z Szybkiego Podręcznika
+gdyż może być on bardzo przydatny. Jeżeli uważasz, że aktualne instrukcje
+instalacji są zbyt szczegółowe, możesz także skorzystać z Szybkiego Podręcznika
 Instalacji dostępnego w naszych <uri link="/doc/en/index.xml">Zasobach
 dokumentacji</uri>.
-</p>-->
+</p>
 
 <p>
 Możliwości wyboru nie kończą się na medium instalacyjnym. Istnieje
@@ -157,8 +162,7 @@ wszystkiego, lecz możesz zacząć od częściowo przygotowanego systemu.
 
 <p>
 Jeśli napotkasz jakiś problem w trakcie instalacji
-(lub w dokumentacji) sprawdź korekty naszego <uri
-link="/proj/en/releng/">Gentoo Release Engineering Project</uri> oraz odwiedź naszą
+(lub w dokumentacji) odwiedź naszą
 <uri link="http://bugs.gentoo.org">bugzillę</uri> i sprawdź
 czy jest on znany. Nie obawiaj się o to, który z developerów
 zostanie do niego przypisany - oni zazwyczaj nie gryzą.
@@ -190,96 +194,6 @@ link="http://forums.gentoo.org/viewforum.php?f=40">FAQ</uri> na naszym
 <uri link="http://forums.gentoo.org">forum</uri>. Jeśli nie możesz
 znaleźć odpowiedzi, zapytaj na kanale #gentoo w sieci irc.freenode.net.
 Tak, niektórzy z nas są maniakami przesiadującymi na IRCu :-)
-</p>
-
-</body>
-</subsection>
-</section>
-<section>
-<title>Kompilować samemu czy skorzystać z pakietów prekompilowanych?</title>
-<subsection>
-<title>Czym jest Gentoo Reference Platform?</title>
-<body>
-
-<p>
-Gentoo Reference Platform, w skrócie GRP, jest snapshotem
-prekompilowanych pakietów, które użytkownicy (czyli
-także Ty!) mogą wykorzystać do skrócenia procesu
-instalacji Gentoo. GRP zawiera wszystkie programy potrzebne
-w pełni sprawnym systemie Gentoo. Oprócz pakietów
-niezbędnych do skrócenia instalacji podstawowej, dostarczamy
-także te większe, takie jak KDE, XFree, GNOME, OpenOffice
-czy Mozilla.
-</p>
-
-<p>
-Jednakże, pakiety prekompilowane nie są na bieżąco aktualizowane,
-są tylko snapshotami wydawanymi razem z każdą wersją Gentoo, pozwalającymi
-na skrócenie procesu jej instalacji. Następnie
-możesz uaktualnić te pakiety w tle, nie odrywając się od pracy
-w środowisku Gentoo Linux.
-</p>
-
-</body>
-</subsection>
-<subsection>
-<title>W jaki sposób Portage obsługuje GRP?</title>
-<body>
-
-<p>
-Twoje drzewo Portage - kolekcja <e>ebuildów</e> (plików zawierających
-informacje o pakiecie, takie jak opis, strona domowa, URL kodów źródłowych,
-opis kompilacji, zależności itd.) - musi być zsynchronizowane z 
-zestawem GRP: wersje dostępnych ebuildów muszą się pokrywać
-z odpowiednimi pakietami GRP.
-</p>
-
-<p>
-Z tego powodu, jeśli zamierzasz korzystać z GRP, zamiast
-aktualizować drzewo portage, musisz zainstalować jego snapshot.
-</p>
-
-</body>
-</subsection>
-<subsection>
-<title>Czy GRP jest dostępne?</title>
-<body>
-
-<p>
-Dla niektórych architektur nie dostarczamy GRP. Nie oznacza to
-że go nie obsługują, po prostu nie mamy odpowiedniego sprzętu
-do tworzenia i testowania prekompilowanych pakietów.
-</p>
-
-<p>
-W tej chwili GRP dostępne jest dla następujących architektur:
-</p>
-<ul>
-  <li>
-    Architektura <b>x86</b> (x86, athlon-xp, pentium3, pentium4)
-    Note: Pakiety GRP do x86 i i686 (jak np. packages-2004.3.iso) dostępne są
-    na naszych serwerach lustrzanych (ang. mirror), natomiast pakiety na pentium3, 
-    pentium4, athlon-xp dostępne są wyłącznie poprzez bittorrent'a.
-  </li>
-  <li>
-    Architektura <b>amd64</b> (amd64).
-  </li>
-  <li>
-    Architektura <b>sparc</b> (sparc32, sparc64).
-  </li>
-  <li>
-    Architektura <b>ppc</b> (G3, G4, G5).
-  </li>
-</ul>
-
-<p>
-Jeśli na tej liście nie została wymieniona Twoja architektura (lub
-podarchitektura), nie możesz skorzystać z GRP.
-</p>
-
-<p>
-Oto koniec niniejszego wprowadzenia, przejdź teraz do rozdziału <uri
-link="?part=1&amp;chap=2">Wybór medium instalacyjnego</uri>.
 </p>
 
 </body>
