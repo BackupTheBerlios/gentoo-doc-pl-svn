@@ -1,93 +1,121 @@
 <?xml version='1.0' encoding='UTF-8'?>
-
-<!-- Orig revision: 1.7 -->
-<!-- Translator: rafro <?@gentoo.pl> -->
-<!-- Title: Przewodnik po konfiguracji xorg -->
-<!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/xorg-config.xml,v 1.2 2004/12/22 20:46:34 sekretarz Exp $ -->
-
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/xorg-config.xml,v 1.3 2005/02/20 22:00:21 sekretarz Exp $ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<guide link="/doc/pl/udev-guide.xml" lang="pl">
+<!-- Orig revision: 1.7 -->
+<!-- Translator: volt3r <volt3r@pf.pl> -->
+<!-- Title: Przewodnik po konfiguracji serwera X. -->
+<!-- Status: Do korekty -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/xorg-config.xml,v 1.3 2005/02/20 22:00:21 sekretarz Exp $ -->
 
-<title>JakZrobić Konfiguracja Serwera X</title>
+<guide link="xorg-config.xml">
+
+<title>Przewodnik po konfiguracji serwera X.</title>
 
 <author title="Author">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
-<author title="Tłumacz">
-  <mail link="rofrol@gmail.com">Roman Frołow</mail>
-</author>
 
 <abstract>
-Xorg jest serwerem X Windows, który umożliwia natychmiastowo posiadanie graficznego środowiska. Ten dokument JakZrobić wyjaśnia czym jest Xorg, jak go zainstalować oraz jakie rożne opcje konfiguracyjne są dostępne.
+Xorg jest serwerem X Window, który pozwala użytkownikom na posiadanie
+graficznego środowiska. Ten przewodnik wyjaśnia czym tak naprawdę jest Xorg, jak
+go zainstalować i jakie są różne warianty jego konfiguracji.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.0 -->
 <license/>
 
-<version>1.5</version>
-<date>2004-08-01</date>
+<version>1.6</version>
+<date>2004-11-26</date>
 
 <chapter>
-<title>Co to jest serwer X Window?</title>
+<title>Czym jest serwer X Window?</title>
 <section>
-<title>Środowisko Graficzne vs Linia Komend</title>
+<title>Środowisko graficzne przeciw tekstowemu.</title>
 <body>
 
 <p>
-Zwykły użytkownik może się przestraszyć, jeśli będzie musiał wpisywać polecenia. Dlaczego nie mógłby dowolnie wskazywać i klikać w Gentoo (i w Linuxie w ogólności)? Więc, *duży uśmiech*, oczywiście możesz to robić :-) Linux oferuje dużą różnorodność wodotryskowych interfejsów użytkownika i środowiska, które możesz doinstalować do swego systemu.
+Przeciętny użytkownik może być przestraszony wizją wpisywania różnych komend.
+Dlaczego nie miałby tylko wskazać i kliknąć ? Więc *duży uśmiech*, jesteśmy w
+stanie zrobić, aby właśnie tak było :-) Linux oferuje szeroką gamę środowisk
+graficznych, które możesz zainstalować na swoim obecnym systemie.
 </p>
 
 <p>
-Jedna z większych niespodzianek, która spotyka nowych użytkowników: graficzny interfejs użytkownika jest niczym więcej niż aplikacją, która działa w systemie. To <e>nie</e> jest część jądra Linux lub innych wnętrzności systemu. Xorg jest potężnym narzędziem, które dostarcza pełnię możliwości graficznych dla twojej stacji roboczej.
+To może być dużym zaskoczeniem dla nowych użytkowników: graficzny interfejs
+użytkownika nie jest niczym więcej jak tylko kolejną aplikacją uruchamianą w
+systemie. To <e>nie jest</e> w żadnym wypadku część jądra Linuksa lub
+jakiejś innej wewnętrznej części systemu. Jest to potężne narzędzie, które w
+pełni otwiera możliwości graficzne naszej stacji roboczej.
 </p>
 
 <p>
-Jako że standardy są ważne, standard dla rysowania i przenoszenia okien na ekranie, współdziałanie z użytkownikiem dzięki myszce i klawiaturze i inne podstawowe standardy zostały utworzone i nazwane <e>X Window System</e>, zwykle skracane do <e>X11</e> lub po prostu <e>X-y</e>. Używa się tego na Unixie, Linuxie i innych podobnych do Unixa systemach operacyjnych na całym świecie.
+Ponieważ standardy są istotne, należy zaznaczyć, że standardem dla rysowania i
+przemieszczania okien na ekranie, interakcji z użytkownikiem przy pomocy myszy, 
+klawiatury i innych fundamentalnych aspektów został stworzony i nazwany
+<e>System X Window</e>, zwykle nazywany skrótowo <e>X11</e> lub poprostu
+<e>X</e>. Używany jest on na systemach Unix, Linux oraz pochodnych Uniksa na
+całym świecie.
 </p>
 
 <p>
-Aplikacja, która udostępnia Użytkownikom Linuxa możliwość działania graficznego interfejsu użytkownika, i która używa standardu X11 to Xorg-X11, odnoga projektu XFree86. XFree86 zdecydowało się użyć licencji, która mogłaby nie być zgodna z licencją GPL; dlatego zalecane jest użycie Xorg. Zauważ jednak, że różnice pomiędzy Xorg a XFree86 są aktualnie bardzo małe; jeśli znasz jedną, znasz drugą. Wersje XFree86 wcześniejsze niż 4.4 również są dostępne przez Portage.
+Aplikacją, dającą użytkownikom Linuksa zdolność użytkowania graficznego
+interfejsu użytkownika i w ten sposób używania standardu X11 jest Xorg-X11,
+gałąź powstała z projektu XFree86. Projektanci XFree86 w pewnym momencie
+zdecydowali się zmienić licencję na taką, która nie jest do końca zgodna z licencją
+GPL; użytkowanie Xorg jest więc zalecane. Należy tutaj zaznaczyć, że różnice
+pomiędzy Xorg a XFree86 są w tej chwili bardzo nieznaczne; jeżeli znasz jedną to
+napewno znasz i inne. XFree86 w wersjach wcześniejszych niż 4.4 są w dalszym ciągu
+dostępne w portage.
 </p>
 
 </body>
 </section>
 <section>
-<title>Projekt X.org</title>
+<title>Projekt X.org.</title>
 <body>
 
 <p>
-Projekt <uri link="http://www.x.org">X.org</uri> stworzył i zarządza wolnorozprowadzalną otwartoźródłową realizacją systemu X11. Jest to otwartoźródłowa oparta na X11 infrastruktura pulpitu.
+Projekt <uri link="http://www.x.org">X.org</uri> został stworzony i jest
+utrzymywany jako wolno dostępna i bezpłatna implementacja systemu X11. Jest to
+infrastruktura o otwartym kodzie źródłowym bazująca na systemie X11.
 </p>
 
 <p>
-Xorg udostępnia interfejs pomiędzy sprzętem a oprogramowaniem graficznym, które chcesz uruchamiać. Poza tym, Xorg jest również w pełni sieciowo zorientowany, co oznacza, że możesz uruchomić aplikację na jednym systemie oglądając ją na innym.
+Xorg udostępnia interfejs pomiędzy Twoim sprzętem oraz graficznym
+oprogramowaniem, które możesz chcieć wykorzystywać. Ponadto, Xorg jest w pełni
+gotowy do pracy w sieci, to znaczy pozwala Ci na uruchamianie aplikacji na
+jednym z systemów, oglądając wyniki jej pracy na zupełnie innym.
 </p>
 
 </body>
 </section>
 </chapter>
 <chapter>
-<title>Instalowanie Xorg</title>
+<title>Instalacja Xorg.</title>
 <section>
-<title>Używanie emerge</title>
+<title>Używamy emerge.</title>
 <body>
 
 <p>
-Wystarczy tej gadki, przejdźmy do konkretów. Aby zainstalować Xorg, potrzebujesz tylko uruchomić  <c>emerge xorg-x11</c>. Instalowanie Xorg trochę zajmuje, więc może będziesz chciał coś przegryźć w trakcie czekania.
+Wystarczy tych pogaduszek, zabierzmy się wkońcu do roboty, ok? Aby zainstalować
+Xorg, musisz tylko wydać polecenie <c>emerge xorg-x11</c>. Instalacja Xorg może
+trochę potrwać, więc najlepiej jak pójdziesz coś przegryźć w tym czasie.
 </p>
 
-<pre caption="Instalowanie Xorg">
+<pre caption="Instalacja Xorg">
 # <i>emerge xorg-x11</i>
 </pre>
 
 <p>
-Kiedy instalacja jest zakończona, możesz potrzebować przeładowania kilku zmiennych zanim będziesz kontynuować. Uruchom po prostu <c>env-update</c>, a następnie <c>source /etc/profile</c> i wszystko masz ustawione. To nie uszkadza w żaden sposób twojego systemu.
+Kiedy instalacja zostanie zakończona, może być konieczne przeładowanie zmiennych
+środowiskowych zanim będziemy mogli kontynuować. Poprostu uruchom
+<c>env-update</c> poprzedzające <c>source /etc/profile</c> i już wszystko będzie
+gotowe. Nie musisz się obawiać, to w żaden sposób nie uszkodzi Twojego systemu.
 </p>
 
-<pre caption="Przeładowywanie zmiennych środowiskowych">
+<pre caption="Przeładowanie zmiennych środowiskowych">
 # <i>env-update</i>
 # <i>source /etc/profile</i>
 </pre>
@@ -96,60 +124,96 @@ Kiedy instalacja jest zakończona, możesz potrzebować przeładowania kilku zmi
 </section>
 </chapter>
 <chapter>
-<title>Konfigurowanie Xorg</title>
+<title>Konfiguracja Xorg.</title>
 <section>
-<title>Plik xorg.conf</title>
+<title>Plik xorg.conf.</title>
 <body>
 
 <p>
-Plik konfiguracyjny Xorg nazywa się <path>xorg.conf</path> i znajduje się w <path>/etc/X11</path>. Pakiet Xorg-X11 dostarcza przykładowy plik konfiguracyjny <path>/etc/X11/xorg.conf.example</path>, który możesz użyć, aby stworzyć własny. Zawiera dużo komentarzy, ale jeśli potrzebujesz więcej dokumentacji odnośnie składni, nie wahaj się przeczytać stronę man:
+Głównym plikiem konfiguracyjnym Xorg jest <path>xorg.conf</path> znajdujący się 
+w <path>/etc/X11</path>. Pakiet Xorg-X11 udostępnia nam przykładowy plik
+konfiguracyjny <path>/etc/X11/xorg.conf.example</path>, który może być użyty do
+stworzenia własnego. Jest on bardzo dobrze opisany, lecz jeśli będziesz w
+potrzebie skorzystania z szerszej dokumentacji, nie wahaj się zajrzeć na strony
+podręcznika systemowego:
 </p>
 
-<pre caption="Czytanie strony man xorg.conf">
+<pre caption="Strony podręcznika systemowego xorg.conf">
 # <i>man 5 xorg.conf</i>
 </pre>
 
 <p>
-Miłego czytania, jeśli ktoś chce. My na pewno nie chcemy, więc będziemy kontynuować na sprawdzeniu, jak możemy stworzyć plik automatycznie.
+Miłego czytania dla tych, którzy się zdecydują. My napewno nie, więc kontynujmy
+sprawdzając jak możemy stworzyć taki plik konfiguracyjny automatycznie.
 </p>
 
 </body>
 </section>
 <section>
-<title>Domyślnie: Automatyczna Generacja xorg.conf</title>
+<title>Domyślnie: Automatyczne generowanie pliku xorg.conf.</title>
 <body>
 
 <p>
-Xorg sam umie dobrać większość parametrów za Ciebie. W większości przypadków, będziesz musiał tylko zmienić kilka linii, aby uzyskać pożądaną rozdzielczość. Jeśli interesuje Cię mocniejsze podkręcanie, przeczytaj część Zasoby na końcu tego rozdziału. Ale najpierw wygenerujmy (miejmy nadzieję działający) plik konfiguracyjny Xorg.
+Xorg jest w stanie samodzielnie odgadnąć większość parametrów Twojego 
+komputera i w większości przypadków, potrzebna będzie jednynie zmiana kilku 
+linijek w celu ustawienia żądanej rozdzielczości. Jeżeli zainteresuje Cię 
+poznanie bardziej dogłębnych ustawień, sprawdź jakie istnieją inne zasoby 
+dokumentacji podane na końcu tego przewodnika. Lecz najpierw, zajmijmy się 
+wygenerowaniem (miejmy nadzieję działającego) pliku konfiguracyjnego Xorg.
 </p>
 
-<pre caption="Generowanie pliku xorg.conf">
+<pre caption="Generowanie pliku konfiguracyjnego xorg.conf">
 # <i>Xorg -configure</i>
 </pre>
 
 <p>
-Nie zapomnij przeczytać ostatnich linii wypisanych na ekranie, kiedy Xorg zakończy wykrywanie sprzętu. Jeśli mówi, że się nie udało w którymś miejscu, jesteś zmuszony ręcznie napisać plik <path>xorg.conf</path>. Zakładając, że się udało, powie Ci, że stworzył <path>/root/xorg.conf.new</path> gotowy do testów. Więc potestujmy :)
+Kiedy zakończy się detekcja sprzętu, pamiętaj, aby dokładnie przeczytać 
+ostatnią linijkę wydrukowaną na ekranie. Jeżeli będzie ona
+mówiła o jakimkolwiek błędzie, konieczne będzie samodzielne napisanie pliku
+konfiguracyjnego <path>xorg.conf</path>. Jeśli żaden błąd się nie pojawił, ukaże
+się informacja o stworzeniu pliku <path>/root/xorg.conf.new</path> gotowego do
+testów. Więc nie czekajmy i bierzmy się wkońcu za testy :)
 </p>
 
-<pre caption="Testowanie pliku xorg.conf.new">
+<pre caption="Testowanie xorg.conf.new">
 # <i>X -config /root/xorg.conf.new</i>
 </pre>
 
 <p>
-Jeśli wszystko idzie dobrze, powinieneś zobaczyć brzydkiego, odrażającego, wzdragającego, zdeformowanego zarządcę okien zwanego <c>twm</c>, prawdopodobnie najmniejszego dostępnego zarządcę okien. Spróbuj poruszać myszą i zobacz czy klawiatura i reszta działa. W następnej sekcji zoptymalizujemy nasz plik <path>xorg.conf</path>, aby pasował do sprzętu. Teraz przejdź do jednego z terminali, które widzisz na ekranie i wpisz <c>exit</c> (lub naciśnij Ctrl-D)  zanim Xorg nie zakończy pracy. Jeśli nie możesz użyć myszy, aby aktywować okno terminalu, możesz również nacisnąć  Ctrl-Alt-Backspace, aby zabić serwer X.
+Jeśli wszystko poszło zgodnie z planem, na ekranie powinien ukazać się brzydki, 
+szpetny, odrażający i całkowicie odrażający menedżer okien zwany <c>twm</c>, 
+prawdopodobnie najmniejszy z dostępnych menedżerów okien. Spróbuj teraz ruszyć
+myszką, poklikać na klawiaturze i zobacz czy wszystko działa jak należy. W
+następnej sekcji tego poradnika, zoptymalizujemy nasz <path>xorg.conf</path>
+tak, aby mógł w pełni wykorzystywać możliwości naszego sprzętu. Więc, udajemy 
+się do jednego z naszych terminali i wpisujemy <c>exit</c> (lub wciskamy Ctrl-D) dopóki
+Xorg nie zakończy swojego działania. Jeżeli nie jesteś w stanie użyć myszy aby
+przekazać fokus terminalom, możesz także użyć kombinacji Ctrl-Alt-Backspace, aby
+zabić serwer X.
+</p>
+
+<p>
+Jeżeli <c>twm</c> nie został załadowany, nie przejmuj się - załaduje się kiedy
+odpalisz serwer X standardowym poleceniem <c>startx</c>. Sprawdź czy myszka
+pracuje poprawnie, oraz czy rozdzielczość jest satysfakcjonująca. Możesz nie być
+w stanie wywnioskować dokładnej rozdzielczości, ale z pewnością będziesz w
+stanie zobaczyć czy nie jest ona przypadkiem zbyt mała. Możesz w każdej chwili zabić
+serwer X poprzez poznaną już kombinację Ctrl-Alt-Backspace.
 </p>
 
 </body>
 </section>
 <section>
-<title>Zastępczo: Półautomatyczna Generacja xorg.conf</title>
+<title>Poł-automatyczne generowanie pliku xorg.conf.</title>
 <body>
 
 <p>
-Xorg udostępnia narzędzie zwane <c>xorgconfig</c>, które spyta Cię o kilka różnych informacji dotyczących twojego systemu (karta graficzna, klawiatura, ...). Opierając się na twoich wpisach stworzy plik <path>xorg.conf</path>.
+Xorg udostępnia narzędzie <c>xorgconfig</c>, które zadając różne pytania
+dotyczące posiadanego sprzętu (karty graficznej, klawiatury, ...), wygereneruje
+odpowienio plik <path>xorg.conf</path>.
 </p>
 
-<pre caption="Półautomatyczna Generacja xorg.conf">
+<pre caption="Pół-automatyczne generowanie pliku xorg.conf">
 # <i>xorgconfig</i>
 </pre>
 
@@ -157,61 +221,78 @@ Xorg udostępnia narzędzie zwane <c>xorgconfig</c>, które spyta Cię o kilka r
 </section>
 </chapter>
 <chapter>
-<title>Podkręcanie xorg.conf</title>
+<title>Dopracowywanie pliku xorg.conf.</title>
 <section>
-<title>Nadpisywanie xorg.conf</title>
+<title>Kopiowanie pliku xorg.conf.</title>
 <body>
 
 <p>
-Najpierw przekopiuj <path>xorg.conf.new</path> na <path>/etc/X11/xorg.conf</path>, abyśmy nie musieli uruchamiać ciągle <c>Xorg
--config</c> -- wpisywanie <c>startx</c> jest dużo prostsze :)
+Na początek nadpiszmy naszym nowym plikiem <path>xorg.conf.new</path> plik 
+<path>/etc/X11/xorg.conf</path>, tak abyśmy nie musieli ciągle wpisywać <c>Xorg 
+-config</c> -- proste <c>startx</c> jest dużo prosze :)
 </p>
 
-<pre caption="Nadpisywanie xorg.conf">
+<pre caption="Nadpisywanie pliku xorg.conf">
 # <i>cp /root/xorg.conf.new /etc/X11/xorg.conf</i>
 </pre>
 
 <p>
-Teraz uruchom <c>startx</c>, aby  wystartować serwer X. On użyje świeżo nadpisanego pliku jako własnego pliku konfiguracyjnego. Aby zakończyć sesję X, wpisz <c>exit</c> lub Ctrl-D w pojawiających się xtermach. Możesz również zabić sesję X używająć kombinacji Ctrl-Alt-Backspace. To by było jednak hańbiące wyjście z X - czego nie zawsze byś chciał. Jednak to nie boli :)
+Teraz, aby uruchomić serwer X wykonaj <c>startx</c>. Użyje on świeżo
+nadpisanego pliku konfiguracyjnego. Aby zakończyć sesję X, wpisz <c>exit</c> 
+lub naciskaj Ctrl-D na xtermach, które właśnie się pojawiły. Możesz też zabić
+serwer X poprzez znaną już kombinację Ctrl-Alt-Backspace. To wprawdzie bardzo
+niepoprawnie, jednak jeżeli bardzo chcesz to wiedz, że nic się nie zepsuje :)
 </p>
 
-<pre caption="Startowanie X-ów">
+<pre caption="Uruchomienie serwera X">
 # <i>startx</i>
 </pre>
 
 </body>
 </section>
 <section>
-<title>Ustawianie Rozdzielczości</title>
+<title>Ustawiamy rozdzielczość.</title>
 <body>
 
 <p>
-Jeśli czujesz, że rozdzielczość ekranu jest zła, powinieneś sprawdzić dwie sekcje w swojej konfiguracji. Najpierw jest sekcja <e>Screen</e>, w której jest wykaz rozdzielczości - jeśli są jakiekolwiek - które serwer X będzie używał. Domyślnie, ta sekcja może nie posiadać jakiegokolwiek wpisu o rozdzielczości w ogóle. Jeśli tak jest, Xorg oszacuje rozdzielczości  opierając się na informacjach z drugiej sekcji <e>Monitor</e>.
+Jeśli czujesz, że rozdzielczość ekranu nie jest satysfakcjonująca, musisz
+sprawdzić dwie sekcje pliku konfiguracyjnego. Pierwsza sekcja <e>Screen</e>
+zawiera listę rozdzielczości, z którymi serwer X ma będzie pracował. Jeżeli 
+nie zawiera ona żadnych, Xorg obliczy sobie z jaką powinien się uruchomić 
+bazując na informacjach w drugie sekcji <e>Monitor</e>.
 </p>
 
 <p>
-Xorg sprawdza wtedy ustawienia <c>HorizSync</c> i
-<c>VertRefresh</c> z sekcji <e>Monitor</e>, aby obliczyć odpowiednie dla monitora rozdzielczości. Na tą chwilę, zostaw te ustawienia tak jak są. Tylko gdy zmiany w sekcji <e>Screen</e>
-(co opiszemy za minutę) nie dadzą rezultatu, będziesz musiał przejrzeć specyfikację twojego monitora i wprowadzić poprawne wartości. Możesz również użyć narzędzia, które przeszukuje specyfikacje monitora, takiego jak
-<c>sys-apps/ddcxinfo-knoppix</c>.
+Xorg używa ustawień wartości <c>HorizSync</c> oraz <c>VertRefresh</c> w sekcji
+<e>Monitor</e> do obliczenia rozdzielczości. Jak narazie zostaw te wartości nie
+zmienione. Tylko w przypadku, gdy zmiany w sekcji <e>Screen</e> (którą opiszemy
+za minutkę) nie będą działały, konieczne będzie zajrzenie do specyfikacji
+monitora i wpisanie poprawnych wartości. Możesz także użyć specjalnego
+narzędzia, które wyszuka te wartości, np. <c>sys-apps/ddcxinfo-knoppix</c>.
 </p>
 
 <warn>
-<b>Nie</b> zmieniaj "od tak sobie" tych dwóch wartości odnoszących się do monitora bez przejrzenia specyfikacji twojego monitora. Ustawienie nieprawidłowych wartości doprawadza do błędów przekroczenia odświeżania w najlepszym wypadku, a spalenia ekranu w najgorszym.
+<b>Nigdy</b> nie zmieniaj tych wartości ot tak sobie, bez sprawdzenia
+specyfikacji technicznej swojego monitora. Ustawienie nie odpowiednich wartości
+w najlepszym wypadku prowadzi do błędów out-of-sync, a w najgorszym do spalenia
+monitora.
 </warn>
 
 <p>
-Teraz zmieńmy rozdzielczości. W następnym przykładzie z <path>/etc/X11/xorg.conf</path> dodamy linie <c>Modes</c> i
-<c>DefaultDepth</c>, tak aby nasz serwer X startował domyślnie z 24 bitami przy rozdzielczości 1024x768. Nie zajmuj się podanymi napisami - są przykładami i zwykle różnią się od ustawień dla twojego systemu.
+A teraz zmieńmy sobie wkońcu rozdzielczość. W następnym przykładzie dodamy do
+<path>/etc/X11/xorg.conf</path> linię <c>Modes</c> oraz <c>DefaultDepth</c> tak,
+aby serwer X uruchamiał się domyślnie w rozdzielczości 1024x768 i 24 bitowej
+palecie kolorów. To tylko przykład i zapewne zechcesz dostosować go do swoich
+potrzeb.
 </p>
 
-<pre caption="Zmienianie sekcji Screen w /etc/X11/xorg.conf">
+<pre caption="Zmiana rozdzielczości w sekcji Screen pliku /etc/X11/xorg.conf">
 Section "Screen"
   Identifier  "Default Screen"
   Device    "S3 Inc. ProSavage KN133 [Twister K]"
   Monitor   "Generic Monitor"
   <i>DefaultDepth  24</i>
-  <comment># Pewna część tekstu pominięta dla zwiększenia czytelności</comment>
+  <comment># Pomijamy kilka linijek w celu zwiększenia czytelności</comment>
   SubSection "Display"
     Depth   24
     <i>Modes   "1024x768"</i>
@@ -220,20 +301,25 @@ EndSection
 </pre>
 
 <p>
-Uruchom X-y (<c>startx</c>), aby sprawdzić, czy używają pożądanej rozdzielczości :)
+Załącz serwer X (<c>startx</c>), aby odkryć że używa on dokładnie tej
+rozdzielczości, którą właśnie ustawiliśmy :)
 </p>
 
 </body>
 </section>
 <section>
-<title>Konfigurowanie Klawiatury</title>
+<title>Konfiguracja klawiatury.</title>
 <body>
 
 <p>
-Aby ustawić X-y do używania międzynarodowej klawiatury, znajdź sekcję <e>InputDevice</e>, która konfiguruje klawiaturę i dodaj opcję <c>XkbLayout</c>, wskazując na klawiaturę, którą chcesz. Na przykład, pokażemy Ci jak uzyskać klawiaturę Belgijską. Podmień po prostu kod języka na swój:
+Aby skonfigurować serwer X do używania odpowiedniego układu klawiatury, odszukaj
+sekcję <e>InputDevice</e>, która odpowiada za konfigurację klawiatury i dodaj
+opcję <c>XkbLayout</c>, która będzie mówiła jaki układ klawiatury ma być użyty.
+W przykładzie poniżej, pokazujemy jak ustawić belgijski, prosta zmiana kodu 
+belgii na kod Twojego kraju załatwi sprawę:
 </p>
 
-<pre caption="Zmienianie układu klawiatury">
+<pre caption="Zmiana układu klawiatury">
 Section "InputDevice"
   Identifier  "Generic Keyboard"
   Driver    "keyboard"
@@ -247,29 +333,38 @@ EndSection
 </body>
 </section>
 <section>
-<title>Konfigurowanie Myszy</title>
+<title>Konfiguracja myszy.</title>
 <body>
 
 <p>
-Jeśli twoja mysz nie działa, najpierw musisz dowiedzieć się czy została wykryta przez jądro w ogóle. Myszy PS/2 (zgodnie z urządzeniem) widziane są jako <path>/dev/psaux</path>. Inne myszy (jak myszy USB) są widziane jako 
-<path>/dev/input</path> (lub <path>/dev/input/mice</path>). W każdym przypadku możesz sprawdzić, czy urządzenia reprezentują twoją myszę sprawdzając dane wyjściowe tych plików, kiedy poruszasz myszą. Aby zakończyć sesję naciśnij <c>Ctrl-C</c>.
+Jeżeli Twoja mysz nie działa, po pierwsze konieczne będzie sprawdzenie czy jest
+ona wykrywana przez jądro. Myszy PS/2 są (w pojęciu urządzeń linuksa)
+widziane jako <path>/dev/psaux</path>. Pozostałe (jak np. USB) jako
+<path>/dev/input</path> (lub <path>/dev/input/mice</path>). Możesz teraz
+sprawdzić czy wyjście pliku odpowiadające Twojemu urządzeniu coś pokazuje w
+momencie ruchu myszą. Aby zakończyć naciśnij <c>Ctrl-C</c>.
 </p>
 
-<pre caption="Sprawdzanie plików urządzeń">
+<pre caption="Sprawdzanie pliku urządzenia">
 # <i>cat /dev/input</i>
-<comment>(Nie zapomnij nacisnąć Ctrl-C, aby to przerwać)</comment>
+<comment>(Pamiętaj, że aby zakończyć należy użyć kombinacji Ctrl-C)</comment>
 </pre>
 
 <p>
-Jeśli twoja mysz nie zostanie wykryta, sprawdź, czy wszystkie niezbędne moduły są załadowane.
+Jeżeli Twoja mysz nie została wykryta, sprawdź czy wszystkie potrzebne moduły
+jądra zostały załadowane.
 </p>
 
 <p>
-Jeśli twoja mysz jest wykryta, wpisz nazwę urządzenia w odpowiedniej sekcji
-<e>InputDevice</e>. W następnym przykładzie zobaczysz, jak ustawiamy również dwie inne opcje: <c>Protocol</c> (wskazuje protokół myszy, który będzie użyty - większość użytkowników wybierze PS/2 lub IMPS/2) i <c>ZAxisMapping</c> (pozwala na użycie kółka myszy - jeśli się da).
+Jeżeli Twoja mysz została wykryta, wpisz odpowiednią nazwę pliku urządzenia do
+sekcji <e>InputDevice</e>. W poniższym przykładzie zobaczysz, że wpiszemy także
+dwie inne opcje: <c>Protocol</c> (która podaje, jakiego protokołu będzie używała
+nasza mysz - większość użytkowników używa PS/2 lub IMPS/2), oraz
+<c>ZAxisMapping</c> (która pozwala na używanie rolek myszy (jeśli takie
+występują)).
 </p>
 
-<pre caption="Zmienianie ustawień myszy w Xorg">
+<pre caption="Zmiana ustawień myszy">
 Section "InputDevice"
   Identifier  "TouchPad Mouse"
   Driver    "mouse"
@@ -281,42 +376,52 @@ EndSection
 </pre>
 
 <p>
-Uruchom <c>startx</c> i ciesz się z rezultatu :) Gratulacje,  teraz posiadasz (miejmy nadzieję) działające Xorg w twoim systemie. Następny krok to usunięcie tego lekkiego zarządcy okien i użycie lepszego (lub nawet całego środowiska pulpitu) takiego jak KDE lub GNOME, ale to nie jest część tego przewodnika :)
+Wykonaj teraz <c>startx</c> i ciesz się z rezultatów :) Gratulacje, masz teraz
+(miejmy nadzieję) w piełni działający serwer X jakim jest Xorg. Następnym
+krokiem będzie usunięcie tego ochydnego małego menedżera okien i używanie
+jakiegoś wartego uwagi jak np. KDE lub GNOME, ale to temat na inny poradnik :)
 </p>
 
 </body>
 </section>
 </chapter>
 <chapter>
-<title>Zasoby</title>
+<title>Źródła.</title>
 <section>
-<title>Tworzenie i Podkręcanie xorg.conf</title>
+<title>Tworzenie i optymalizacja pliku xorg.conf.</title>
 <body>
 
 <p>
-Na początek, <c>man 5 xorg.conf</c> udostępnia krótki, już kompletny informator o składniach użytych w pliku konfiguracyjnym. Otwórz go w terminalu podczas edycji pliku konfiguracyjnego!
+Po pierwsze, <c>man 5 xorg.conf</c> szybko udostępni nam kompletną dokumentację
+dotyczącą składni używanej w pliku konfiguracyjnym Xorg. Pamiętaj, aby mieć ją
+otwartą, gdy przyjdzie Ci dokonywać jakichkolwiek zmian w tym pliku.
 </p>
 
 <p>
-Drugi punkt zasobów na twoim systemie to katalog
-<path>/usr/X11R6/lib/X11/doc</path> z różnymi plikami <path>README</path> dla osobnych chipsetów graficznych.
+Kolejnym miejscem w jakim znajdziemy zasoby dokumentacji jest
+<path>/usr/X11R6/lib/X11/doc</path> z mnóstwem różnych plików
+<path>README</path> dla poszczególnych chipsetów kart graficznych.
 </p>
 
 <p>
-Jest również dużo zasobów w sieci o edytowaniu <path>xorg.conf</path>. Podamy tylko kilka z nich, użyj <uri link="http://www.google.com">Google</uri>
-aby znaleźć więcej :) Jako że <path>xorg.conf</path> i <path>XF86Config</path> (plik konfiguracyjny projektu XFree86) używają tej samej składni dla większości opcji konfiguracyjnych oraz istnieje więcej informacji o 
-<path>XF86Config</path>, podamy również i te zasoby.
+Jest jeszcze wiele dokumentacji dostępnej bezprośrednio w internecie na temat
+edycji pliku <path>xorg.conf</path>. Podamy tutaj zaledwie kilka, pamiętaj że
+zawsze możesz znaleźć więcej w <uri link="http://www.google.com">Google</uri> :)
+Ponieważ zarówno <path>xorg.conf</path> jak i <path>XF86Config</path> (plik
+konfiguracyjny projektu XFree86) używają tej samej składni dla większości opcji
+konfiguracyjnych, a dużo z dostępnej dokumentacji jest przeznaczona właśnie 
+dla XFree86, podamy tutaj także odnośniki i do niej.
 </p>
 
 <ul>
   <li>
-    <uri link="http://tldp.org/HOWTO/XFree-Local-multi-user-HOWTO/">The XFree
-    Local Multi-User HOWTO</uri>
+    <uri link="http://tldp.org/HOWTO/XFree-Local-multi-user-HOWTO/">
+    Przewodnik po trybie wieloużytkownikowym.</uri>
   </li>
   <li>
     <uri
-    link="http://www-106.ibm.com/developerworks/edu/os-dw-linuxxwin-i.html">An
-    Introduction to XFree 4.x</uri> napisana przez Chrisa Housera
+    link="http://www-106.ibm.com/developerworks/edu/os-dw-linuxxwin-i.html">Wstęp
+    do XFree 4.x</uri> autorstwa Chrisa Housera.
   </li>
 </ul>
 
