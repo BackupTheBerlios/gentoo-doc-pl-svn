@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.7 -->
+<!-- Orig revision: 1.13 -->
 <!-- Translator: gooroo <gooroo@gentoo.pl> -->
 <!-- Title: Skrypty Init -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-rcscripts.xml,v 1.8 2004/02/22 15:54:49 gooroo Exp $ -->
+<!-- Update from 1.7 to 1.13: sekretarz <sekretarz@dukato.net> -->
 
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-rcscripts.xml,v 1.9 2004/07/11 14:18:45 sekretarz Exp $ -->
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
@@ -634,6 +635,84 @@ pliki związane z tymi zależnościami (w tym przypadku <path>/etc/conf.d/net</p
 także zostaną przetworzone.
 </p>
 
+</body>
+</subsection>
+</section>
+<section>
+<title>Zmiana zachowania poziomu działania</title>
+<subsection>
+<title>Kto może mieć z tego korzyści?</title>
+<body>
+
+<p>
+Dużo użytkowników laptopów zna taką sytuację: w domu trzeba uruchomić <c>net.eth0<c>, podczas
+gdy jeżeli jesteś w drodze, nie chcesz go uruchomić (skoro i tak nie ma dostępnej sieci).
+W Gentoo możesz modyfikować w dowolny sposób zachowanie poziomów działania.
+</p>
+
+<p>
+Możesz, na przykład, utworzyć drugi "domyślny" poziom, który używa innych stryptów inicjalizujących.
+Możesz wybierać, który poziom działa chcesz używać podczas startu systemu.
+</p>
+
+/body>
+</subsection>
+<subsection>
+<title>Używanie SOFTLEVELa</title>
+<body>
+  
+<p>
+Po pierwsze, musisz utworzyć katalog poziomów działania dla swojego drugiego "domyślnego" poziomu działania.
+Jako przykład stworzymy katalog <path>offline</path>:
+</p>
+
+<pre caption="Tworzenie katalogu poziomu działania">
+# <i>mkdir /etc/runlevels/offline</i>
+</pre>
+	     
+<p>
+Dodaj potrzebne skrypty inicjalizacyjne do nowostworzonego katalogu. Na przykład, jeżeli
+chcesz mieć dokładną kopię aktualnego <c>domyślnego</c> poziomu działania, wyłączając <c>net.eth0</c>:
+</p>
+
+<pre caption="Dodawanie potrzebnych skryptów inicjalizacyjnych">
+# <i>ls /etc/runlevels/default</i>
+acpid  domainname  local  net.eth0  netmount  postfix  syslog-ng  vixie-cron
+# <i>rc-update add acpid offline</i>
+# <i>rc-update add domainname offline</i>
+# <i>rc-update add local offline</i>
+# <i>rc-update add syslog-ng offline</i>
+# <i>rc-update add vixie-cron offline</i>
+</pre>
+
+<p>
+Teraz wyedytuj pliki konfiguracyjne Twojego bootloadera i dodaj wpis dla poziomu działania <c>offline</c>.
+Dla przykładu w <path>/boot/grub/grub.conf</path>: 
+</p>
+	         
+<pre caption="Dodawanie wpisu dla poziomu działania offline">
+title Gentoo Linux Offline Usage
+root (hd0,0)
+kernel (hd0,0)/kernel-2.4.25 root=/dev/hda3 <i>softlevel=offline</i>
+</pre>
+					     
+<p>
+Teraz już jest wszystko ustawione. Jeżeli wystartujesz system i wybierzesz dodaną przed chwilą pozycję,
+zamiast <c>domyślnego</c> poziomu działania będzie używany poziom <c>offline</c>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Używanie BOOTLEVELa</title>
+<body>
+		     
+<p>
+Używanie <c>bootlevela</c> jest analogiczne do <c>softlevela</c>. Jedyną różnicą
+jest definiowanie drugiego "rozruchowego" poziomu uruchamiania zamiast drugiego
+"domyślnego" poziomu uruchamiania.
+</p>
+				         
 </body>
 </subsection>
 </section>
