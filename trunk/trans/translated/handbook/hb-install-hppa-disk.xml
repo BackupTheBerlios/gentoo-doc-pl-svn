@@ -4,23 +4,23 @@
 <!-- Orig revision: 1.12 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Przygotowanie dysków dla architektury HPPA -->
-<!-- Status: Ukończono -->
+<!-- Status: Release -->
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-hppa-disk.xml,v 1.1 2004/12/03 14:52:08 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-hppa-disk.xml,v 1.2 2004/12/07 12:13:05 rane Exp $ -->
 
 <sections>
 
 <section>
-<title>Wprowadzenie do Urządzeń Blokowych</title>
+<title>Wprowadzenie do urządzeń blokowych.</title>
 <subsection>
-<title>Urządzenia Blokowe</title>
+<title>Urządzenia blokowe.</title>
 <body>
 
 <p>
-Rzućmy okiem na aspekty Gentoo Linux, oraz ogólnie Linuksa, związane z dyskami.
+Rzućmy okiem na aspekty Gentoo Linux, oraz ogólnie Linuksa związane z dyskami.
 Omówimy systemy plików, partycje oraz urządzenia blokowe. Następnie
-przeprowadzimy Cię przez proces podziału twardego dysku, aby jak najlepiej
+przeprowadzimy Cię przez proces podziału twardego dysku, abyś mógł jak najlepiej
 wykorzystać dostępną przestrzeń.
 </p>
 
@@ -34,21 +34,21 @@ dyskiem jest <path>/dev/sda</path>.
 <p>
 Urządzenia blokowe stanowią abstrakcyjny interfejs dysków. Programy
 użytkownika mogą z nich korzystać nie martwiąc się czy napędy
-są typu IDE, SCSI lub jeszcze inne. Przechowywane dane adresuje się
+są typu IDE, SCSI lub jeszcze innego. Przechowywane dane adresuje się
 za jako ciąg 512-bajtowych bloków.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Partycje i Plastry</title>
+<title>Partycje i plastry.</title>
 <body>
 
 <p>
-Jakkolwiek teoretycznie możliwe jest przeznaczenie na system całego dysku,
-zazwyczaj nie jest to rozwiązanie praktyczne. Zamiast tego, dzieli się
-napęd na mniejsze, łatwiejsze w zarządzaniu, urządzenia blokowe.
-W większości platform nazywane są one <e>partycjami</e>. Część architektur,
+Teoretycznie możliwe jest przeznaczenie całego dysku na system,
+zazwyczaj nie jest to jednak rozwiązanie zbyt praktyczne. Zamiast tego dzielimy
+napęd na mniejsze i dużo łatwiejsze w zarządzaniu urządzenia blokowe.
+W większości platform nazywane są one <e>partycjami</e>. Część architektur
 korzystająca z podobnych technik nazywa je <e>plastrami</e>.
 </p>
 
@@ -56,7 +56,7 @@ korzystająca z podobnych technik nazywa je <e>plastrami</e>.
 </subsection>
 </section>
 <section>
-<title>Projektowanie schematu partycjonowania</title>
+<title>Projektowanie schematu partycjonowania.</title>
 <subsection>
 <title>Jak dużo i jak wielkich?</title>
 <body>
@@ -64,10 +64,10 @@ korzystająca z podobnych technik nazywa je <e>plastrami</e>.
 <p>
 Ilość partycji ściśle zależy od danego
 środowiska. Na przykład, jeśli administrujesz systemem mającym
-wielu użytkowników, prawdopodobnie uznasz za stosowne
+wielu użytkowników prawdopodobnie uznasz za stosowne
 oddzielenie <path>/home</path> aby poprawić bezpieczeństwo
 i uprościć tworzenie kopii zapasowych. Jeżeli docelowym
-zastosowaniem świeżego Gentoo jest serwer poczty, na osobnej
+zastosowaniem świeżego Gentoo jest serwer poczty, to na osobnej
 partycji powinieneś umieścić <path>/var</path>, gdzie przechowywane
 są listy. Dobry wybór systemu plików może tu znacznie zwiększyć
 wydajność. Oddzielenie <path>/opt</path> jest dobrym rozwiązaniem
@@ -83,32 +83,41 @@ lub woluminów ma wiele zalet:
 
 <ul>
 <li>
-Masz możliwość dostosowania jak najwydajniejszego w danym zastosowaniu systemu plików dla poszczególnych partycji lub woluminów
+Masz możliwość dostosowania jak najwydajniejszego w danym zastosowaniu systemu
+plików dla poszczególnych partycji lub woluminów.
 </li>
 <li>
-W przypadku zapełnienia partycji przez nieprawidłowo działające narzędzie, nie ma to wpływu na całość systemu
+Zapełnienie całego wolnego miejsca na partycji
+przez wadliwie działające narzędzie nie ma
+szkodliwego wpływu na całość systemu.
 </li>
 <li>
-Jeśli to konieczne, można skrócić czas kontroli systemów plików, gdyż można jednocześnie dokonywać jej na kilku partycjach (ma to znaczenie zwłaszcza na sprzęcie z wieloma dyskami)
+Jeśli to konieczne można skrócić czas kontroli systemów plików, gdyż można
+jednocześnie dokonywać jej na kilku partycjach (ma to znaczenie zwłaszcza na
+sprzęcie z wieloma dyskami).
 </li>
 <li>
-Montując część partycji lub woluminów z opcjami read-only (tylko do odczytu), nosuid (ignorowane są bity setuid), noexec (ignorowane są bity wykonywalności) itd. można znacznie poprawić bezpieczeństwo
+Montując część partycji lub woluminów z opcjami read-only (tylko do odczytu),
+nosuid (ignorowane są bity setuid), noexec (ignorowane są bity wykonywalności)
+itd.
 </li>
 </ul>
 
 <p>
-Niestety zbyt rozbudowany podział niesie z sobą spore niebezpieczeństwo: źle zaplanowany zaowocuje pustkami na zbyt dużych i ciasnotą na zbyt małych partycjach.
+Niestety zbyt rozbudowany podział niesie ze sobą spore niebezpieczeństwo:
+źle zaplanowany zaowocuje pustkami na zbyt dużych
+i ciasnotą na zbyt małych partycjach.
 </p>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Partycjonowanie Dysku za pomocą fdisk na HPPA</title>
+<title>Partycjonowanie dysku za pomocą fdisk.</title>
 <body>
 
 <p>
-Do przeprowadzenia podziału użyjemy <c>fdisk</c>:
+Do przeprowadzenia podziału użyjemy pragramu <c>fdisk</c>:
 </p>
 
 <pre caption="Uruchamianie fdisk">
@@ -116,7 +125,8 @@ Do przeprowadzenia podziału użyjemy <c>fdisk</c>:
 </pre>
 
 <p>
-Maszyny HPPA używają standardowych tablicy partycji DOS. Aby utworzyć nową tablicę partycjy DOS użyj polecenia <c>o</c>.
+Maszyny HPPA używają standardowych tablicy partycji DOS. Aby utworzyć nową
+tablicę partycji DOS użyj polecenia <c>o</c>.
 </p>
 
 <pre caption="Tworzenie tablicy partycji DOS">
@@ -127,11 +137,16 @@ Building a new DOS disklabel.
 </pre>
 
 <p>
-PALO (bootloader HPPA)	wymaga do pracy oddzielnej partycji. Musisz na nią przeznaczyć przynajmniej 16MB na początku dysku. Powinna być typu <e>f0</e> (Linux/PA-RISC boot). 
+PALO (bootloader HPPA) wymaga do pracy osobnej partycji. Musisz na nią
+przeznaczyć przynajmniej 16MB na początku dysku. Powinna być typu <e>f0</e>
+(Linux/PA-RISC boot).
 </p>
 
 <impo>
-Jeśli nie utworzysz tej partycji, system przestanie Cię kochać i się nie uruchomi. Ponadto jeśli masz dysk większy niż 2GB załóż tą partycję w jego pierwszych 2GB. PALO nie odczyta kernela znajdującego się dalej niż na pierwszych 2GB dysku.
+Jeśli nie utworzysz tej partycji system przestanie Cię kochać i się nie
+uruchomi. Ponadto jeśli masz dysk większy niż 2GB załóż tą partycję w jego
+pierwszych 2GB. PALO nie odczyta kernela znajdującego się dalej niż na
+pierwszych 2GB dysku.
 </impo>
 
 <pre caption="Prosty schemat partycjonowania">
@@ -156,24 +171,25 @@ Units = cylinders of 8246 * 512 = 4221952 bytes
 </pre>
 
 <p>
-Po utworzeniu partycji możesz przejść do <uri link="#filesystems">Zakładania Systemów Plików</uri>.
+Kiedy Twoje partycje będą już gotowe, możesz
+przejść do paragrafu <uri
+link="#filesystems">Zakładanie systemów plików</uri>.
 </p>
 
 </body>
 </section>
 <section id="filesystems">
-<title>Tworzenie Systemów Plików</title>
+<title>Tworzenie systemów plików.</title>
 <subsection>
-<title>Wprowadzenie</title>
+<title>Wprowadzenie.</title>
 <body>
 
 <p>
-Po stworzeniu partycji nadszedł czas na
-założenie na nich systemów plików. Jeśli nie obchodzi Cię
-jakie wybierzesz i jesteś zadowolony z domyślnych ustawień w podręczniku,
-przejdź do
-<uri link="#filesystems-apply">Zakładania na Partycji Systemu Plików</uri>.
-W przeciwnym wypadku czytaj dalej aby dowiedzieć się co nieco na ich temat.
+Po utworzeniu partycji nadszedł czas na założenie na nich systemów plików.
+Jeśli jest Ci obojętne jakie wybierzesz lub jesteś zadowolony z domyślnych
+ustawień w podręczniku, przejdź do paragrafu <uri
+link="#filesystems-apply">Zakładanie systemów plików na partycji</uri>.
+W przeciwnym wypadku czytaj dalej aby dowiedzieć się więcej na ich temat.
 </p>
 
 </body>
@@ -183,16 +199,18 @@ W przeciwnym wypadku czytaj dalej aby dowiedzieć się co nieco na ich temat.
 <body>
 
 <p>
-Na HPPA masz do dyspozycji kilka systemów plików, które powinny działać stabilnie. Są to ext2, ext3, XFS i reiserfs. Wszystkie inne występują w wersjach wyłą cznie testowych.
+Na HPPA stabilnie powinny działać systemy plików ext2, ext3, XFS i reiserfs. 
+Pozsostałe występują w wersjach wyłącznie testowych.
 </p>
 
 <p>
-<b>ext2</b> to sprawdzony i popularny linuksowy system plików, ale nie posiada
-księgowania. Powoduje to, iż jego regularne kontrole przy starcie systemu
-bywają długotrwałe. Obecnie istnieją nowoczesne systemy plików z księgowaniem,
-mogące być szybko sprawdzane i są zasadniczo zalecane. Księgowanie
-zapobiega długotrwałym kontrolom podczas uruchamiania i ewentualnym
-błędom spójności danych.
+<b>ext2</b> to sprawdzony i popularny linuksowy system plików,
+którego główną wadą jest to, że nie posiada księgowania. Powoduje to, iż jego
+regularne kontrole przy starcie systemu bywają długotrwałe. Obecnie istnieją
+nowoczesne systemy plików z księgowaniem, które można szybko sprawdzić i to
+właśnie te polecamy naszym użytkownikom. Księgowanie zapobiega długotrwałym
+kontrolom podczas uruchamiania systemu oraz ewentualnym błędom spójności
+danych.
 </p>
 
 <p>
@@ -227,21 +245,19 @@ systemu do utraty danych.
 </p>
 
 <p>
-<b>JFS</b> to bardzo wydajny system plików z księgowaniem IBMa.
-Dopiero niedawno został uznany za stabilny i nie ma na swoim
-koncie dostatecznych osiągnięć aby można było mówić
-źle lub dobrze o jego stabilności.
+<b>JFS</b> to bardzo wydajny system plików IBM'a wyposażony w księgowanie.
+Jest dość nowy i jest jeszcze za wcześnie by oceniać jego stabilność.
 </p>
 
 </body>
 </subsection>
 <subsection id="filesystems-apply">
-<title>Zakładanie na Partycji Systemu Plików</title>
+<title>Zakładanie systemu plikół na partycji.</title>
 <body>
 
 <p>
-Aby założyć na woluminie lub partycji system plików, możesz skorzystać z dostępnych
-dla każdego narzędzi:
+Aby założyć na woluminie lub partycji system plików powinieneś
+skorzystać z odpowiednich narzędzi:
 </p>
 
 <table>
@@ -273,27 +289,27 @@ dla każdego narzędzi:
 
 <p>
 Na przykład, aby założyć ext2 na partycji boot (w naszym przypadku <path>/dev/sda2</path>)
-oraz ext2 na partycji root (w naszym przypadku <path>/dev/sda4</path>), powinieneś
+oraz ext2 na partycji root (w naszym przypadku <path>/dev/sda4</path>) powinieneś
 wykonać następujące polecenia:
 </p>
 
-<pre caption="Zakładanie na partycji systemu plików">
+<pre caption="Zakładanie systemu plików na partycji">
 # <i>mke2fs /dev/sda2</i>
 # <i>mke2fs /dev/sda4</i>
 </pre>
 
 <p>
-Stwórz teraz systemy plików na swoich partycjach (lub woluminach logicznych).
+Teraz stwórz systemy plików na swoich partycjach.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Aktywacja Partycji Swap</title>
+<title>Aktywacja partycji wymiany.</title>
 <body>
 
 <p>
-Aby zainicjować partycję wymiany, skorzystaj z programu <c>mkswap</c>.
+Aby utworzyć partycję wymiany skorzystaj z programu <c>mkswap</c>.
 </p>
 
 <pre caption="Tworzenie partycji wymiany">
@@ -301,29 +317,25 @@ Aby zainicjować partycję wymiany, skorzystaj z programu <c>mkswap</c>.
 </pre>
 
 <p>
-Aby je aktywować skorzystaj ze <c>swapon</c>:
+Do aktywowawania partycji wymiany użyj programu <c>swapon</c>:
 </p>
 
 <pre caption="Aktywacja partycji wymiany">
 # <i>swapon /dev/sda3</i>
 </pre>
 
-<p>
-Teraz Twoja kolej na inicjalizację i aktywację.
-</p>
-
 </body>
 </subsection>
 </section>
 <section>
-<title>Montowanie</title>
+<title>Montowanie.</title>
 <body>
 
 <p>
-Po założeniu partycji i utworzeniu systemów plików, nadszedł czas na ich
-zamontowanie. Służy do tego program <c>mount</c>. Nie zapomnij utworzyć
-odpowiednich katalogów dla każdego z nich. Pokażemy to na przykładzie
-partycji boot oraz root:
+Po założeniu partycji i utworzeniu na nich systemów plików nadszedł czas na ich
+zamontowanie. Służy do tego program <c>mount</c>. Nie zapomnij o utworzeniu
+odpowiednich katalogów dla montowanych partycji. W przykładzie zamontujemy
+partycje boot i root:
 </p>
 
 <pre caption="Montowanie partycji">
@@ -334,19 +346,13 @@ partycji boot oraz root:
 
 <note>
 Jeżeli chcesz przenieść <path>/tmp</path> na oddzielną partycję,
-nie zapomnij po zamontowaniu odpowiedni poprawić praw dostępu: <c>chmod
+nie zapomnij po zamontowaniu odpowiednio poprawić praw dostępu: <c>chmod
 1777 /mnt/gentoo/tmp</c>. Dotyczy to również <path>/var/tmp</path>.
 </note>
 
 <p>
-Musimy też zamontować system plików proc (wirtualny interfejs jądra)
-w <path>/proc</path>. Zacznijmy od utworzenia odpowiedniego katalogu
-(<path>/mnt/gentoo/proc</path>):
-</p>
-
-<p>
-Przejdź teraz do <uri link="?part=1&amp;chap=5">Instalacji Plików
-Instalacyjnych Gentoo</uri>.
+Kiedy skończysz przejdź do rozdziału <uri link="?part=1&amp;chap=5">Wgrywanie
+plików instalacyjnych Gentoo</uri>.
 </p>
 
 </body>
