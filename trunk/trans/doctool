@@ -1,0 +1,464 @@
+#!/usr/bin/python -O
+
+import os,sys,shutil,string
+from commands import getstatusoutput
+from elementtree.ElementTree import *
+    
+codes={}
+codes["reset"]="\x1b[0m"
+codes["bold"]="\x1b[01m"
+
+codes["teal"]="\x1b[36;06m"
+codes["turquoise"]="\x1b[36;01m"
+
+codes["fuchsia"]="\x1b[35;01m"
+codes["purple"]="\x1b[35;06m"
+
+codes["blue"]="\x1b[34;01m"
+codes["darkblue"]="\x1b[34;06m"
+
+codes["green"]="\x1b[32;01m"
+codes["darkgreen"]="\x1b[32;06m"
+
+codes["yellow"]="\x1b[33;01m"
+codes["brown"]="\x1b[33;06m"
+
+codes["red"]="\x1b[31;01m"
+codes["darkred"]="\x1b[31;06m"
+
+def bold(text):
+        return codes["bold"]+text+codes["reset"]
+
+def teal(text):                                                                 
+        return codes["teal"]+text+codes["reset"]
+def turquoise(text):
+        return codes["turquoise"]+text+codes["reset"]
+def darkteal(text):
+        return turquoise(text)
+def fuchsia(text):
+        return codes["fuchsia"]+text+codes["reset"]
+def purple(text):
+        return codes["purple"]+text+codes["reset"]
+def blue(text):
+        return codes["blue"]+text+codes["reset"]
+def darkblue(text):
+        return codes["darkblue"]+text+codes["reset"]
+def green(text):
+        return codes["green"]+text+codes["reset"]
+def darkgreen(text):
+        return codes["darkgreen"]+text+codes["reset"]
+
+def yellow(text):
+        return codes["yellow"]+text+codes["reset"]
+def brown(text):
+        return codes["brown"]+text+codes["reset"]
+def darkyellow(text):
+        return brown(text)
+
+def darkred(text):
+        return codes["darkred"]+text+codes["reset"]
+def red(text):
+        return codes["red"]+text+codes["reset"]
+
+try:
+    TRANS_NAME=os.environ["TRANS_NAME"]
+except:
+    print red("Musisz ustawic zmiennna TRANS_NAME w ktorym spisujesz 'nazwisko imie <adres@domena.pl>'")
+    sys.exit(10)
+
+#Ustawiamy kodowanie na unicode
+#sys.setdefaultencoding('utf-8')
+
+#---------------------------------------------#
+#		Variables		      #
+#---------------------------------------------#	
+
+REPOROOTS=["trans"]
+modes=["changes","commit","todo", "addtodo","add","addchange","remove","deletetodo","help","search"]
+modeshelp={                                                                     
+"changes"   :"Show changes made in file",
+"todo"	    :"Show TODO",
+"add"	    :"Add file to CVS",
+"addtodo"   :"Add task to file",
+"remove"    :"Remove file from CVS and delete item in files.xml",
+"deletetodo":"Delete todo item from files.xml",
+"addchange" :"Add change to file",
+"help"	    :"Show this screen",
+"commit"    :"Valid docs;ask for changes; if OK, commit via cvs",    
+"search"    :"Search file in files.xml",
+}                                                                            
+
+docstatus={
+"1": "Ukonczono",
+"2": "Do korekty",
+"3": "Release",
+"4": "Nieukoczono",
+"5": "Do tlumaczenia",
+}
+
+options=["--help","--commitmsg","--verbose",""]
+
+mymode=None
+myoptions=[]
+commitmessage=None
+VERSION="0.03 alpha"
+myoperfile=None
+
+#---------------------------------------#
+#		Functions	   	#
+#---------------------------------------#
+
+def help():
+    print 
+    print green("doctool "+VERSION)
+    print "Copyright 2004 Karol Wojtaszek"
+    print "Distributed under the terms of the GNU General Public License"
+    print 
+    for x in modes:                                                         
+        print " "+string.ljust(x,20),modeshelp[x]       
+
+    print
+    sys.exit(1)
+
+#---------------------------------------#
+#		main			#
+#---------------------------------------#
+
+print red("doctool "+VERSION+" by Karol Wojtaszek <sekretarz@gentoo.org>")
+
+if len(sys.argv)>1:
+    x=1
+    while x < len(sys.argv):
+	if sys.argv[x] in modes:
+	    if mymode==None:
+		mymode=sys.argv[x]
+	    else:
+		print '2 mode, blad'
+		sys.exit(2)
+	elif sys.argv[x] in options:
+	    if (optionx=="--commitmsg") and (len(sys.argv)>=(x+1)):
+		commitmessage=sys.argv[x+1]
+		x = x + 1
+	    elif optionx not in myoptions:
+		myoptions.append(optionx)
+	else:
+	    if myoperfile == None:
+		myoperfile = sys.argv[x]
+	    else:
+		print "Opcja \""+sys.argv[x]+"\" nie jest poprawna opcja"
+	x = x + 1
+
+if (mymode=="help") or ("--help" in myoptions):
+    help()
+
+# Sprawdzamy czy plik myoperfile istnieje
+if myoperfile == None:
+    print red("!!! Musisz podac plik")
+    sys.exit(11)
+
+if (mymode != "search") and (not os.path.exists(myoperfile)):
+    print red("!!! Plik "+myoperfile+" nie istnieje")
+    print
+    sys.exit(10)
+
+mydir=os.getcwd()
+if mydir[-1] != "/":
+        mydir=mydir + "/"
+
+myreporoot=""
+
+## Sprawdzamy czy istnieje katalog CVS
+if not os.path.isdir("CVS"):
+    print 'Nie znaleziono katalogu CVS'
+    sys.exit(3)
+else:
+    # Trzeba poprac dane z katalogu CVS
+    try:
+        myrepofile=open("CVS/Repository")
+        myreporoot=myrepofile.readline()[:-1]
+        myrepofile.close()
+        myrepofile=open("CVS/Root")
+        myreporootpath=string.split(myrepofile.readline()[:-1], ":")[-1]
+        myrepofile.close()
+        if myreporootpath == myreporoot[:len(myreporootpath)]:
+                # goofy os x cvs co.
+                myreporoot = myreporoot[len(myreporootpath):]
+                while myreporoot and myreporoot[0] == '/':
+                        myreporoot = myreporoot[1:]
+    except:                                                                 
+        print "Error grabbing repository information; exiting."
+	sys.exit(4)
+
+
+myreporootpath=os.path.normpath(myreporootpath)
+myreporoot=myreporoot.split("trans/")[1:]
+myreporoot=myreporoot[0]+"/"
+filesoper=myreporoot+myoperfile
+myreporelpath=""
+cvsdirroot=None
+
+try: # Szukamy gdzie znajduje sie najwyzszy katalog repo      
+        mydir=os.getcwd()                                                       
+        if mydir[-1] != '/':                                                    
+                mydir = mydir + "/"                     
+        print                                                           
+        while mydir!="/":                                               
+            if os.path.exists(mydir+"/etc/files.xml"):      
+                print darkgreen("CVS root:")+" "+darkred(bold(mydir))
+                cvsdirroot=mydir                     
+                break;                                          
+            else:                                                   
+                mydir=os.path.normpath(mydir+"/..")             
+            if mydir=="/":                                                  
+                print darkred("Chyba nie masz etc/files.xml.. ")
+		sys.exit(150)
+	myreporelpath = mydir
+
+
+except SystemExit, e:                                                           
+        raise  # Need to propogate this                                         
+except Exception, e:                                                            
+        print "!!! Error when determining valid(ity of) REPO:"
+        print "!!!",e                                                           
+        pass                                  
+
+fstorage = myreporelpath+"/etc/files.xml"
+
+#Sprawdzamy czy w systemie jest xmllint
+if getstatusoutput('which xmllint')[0] != 0:
+    print red("!!! xmllint not found.")
+    sys.exit(5)
+    
+# OK, teraz wywolujemy odpowiednie funkcje zaleznie od mymode
+#modes=["changes","commit","todo", "addtodo","add","addchange","remove","deletetodo","help"]
+
+def prout(text):
+    print 
+    print blue(text)
+
+def mShowTodo():
+    # Trzeba sparsowac xml
+    print ''
+    
+def CheckVailidity(file):
+    print teal("Sprawdzam poprawnosc "+file)
+    status,output = getstatusoutput("xmllint --valid --noout "+file)
+    if status != 0:
+	print red("Blad poprawnosci pliku");
+	print output;
+	sys.exit(170);
+    else:
+	print blue("Plik xml poprawny");
+
+def CVSCommitFile(file, commitmsg):
+    print teal("Commit pliku do CVS");
+    status,output = getstatusoutput('cvs commit -m "'+commitmsg+'" '+file)
+    print output
+    if status != 0:
+	print red("Blad podczas commitowania: ")
+	sys.exit(109)
+    else:
+	print blue("Commit poprawny")
+	
+def CVSAddFile(file):
+    print teal("Dodaje pilik do CVS")
+    status,output = getstatusoutput("cvs add "+file)
+    print output
+    if status != 0:
+	print red("Blad podczas dodawania pliku:")
+	sys.exit(110)
+    else:
+	print blue("Dodanie prawidlowe")
+	with_files = file+" "+fstorage
+	CVSCommitFile(with_files, "Initial add")
+	
+def getinfo(text):
+    print ''
+    print blue(text)
+    try:
+	msg=raw_input(green("> "))
+	msg = msg.decode("iso-8859-2")
+    except KeyboardInterrupt:
+	print ''
+	print red("Przerwano.")
+	sys.exit(100);
+    return msg
+
+def printfileinfo(docinfo):
+    print ''
+    print green("*")+"  "+red(docinfo["file"])
+    print "          "+green("Tlumacz: ")+docinfo["translator"]
+    print "          "+green("Sciezka: ")+docinfo["place"]
+    print "          "+green("Status:  ")+docinfo["status"]
+    print "          "+green("Wersja EN: ")+docinfo["en_version"]
+    
+    print ''
+
+def XFilesChangeEnVersion(doc,new_en_ver):
+    file = open(fstorage, "r")
+    tree = ElementTree(file=file)
+    elem = tree.getroot().getchildren()
+
+    elem = XFilesSearchFile(elem, doc)
+    elem = elem.getchildren()
+    
+    stat = XFilesFindTag(elem, "en_version")
+    stat.text = new_en_ver
+    
+    tree.write(fstorage, "iso-8859-2")
+
+    file.close()
+
+    
+def XFilesAddFile(docinfo):
+    new = Element("file")
+    new.text = "\n"
+    new.attrib["name"] = docinfo["file"]
+    elem = SubElement(new, "status").text = docinfo["status"]
+    elem = SubElement(new, "translator").text = docinfo["translator"]
+    elem = SubElement(new, "place").text = docinfo["place"]
+    elem = SubElement(new, "en_version").text = docinfo["en_version"]
+    
+    file = open(fstorage, "r")
+    tree = ElementTree(file=file)
+    elemx = tree.getroot().getchildren()
+				        
+    elemx.append(new)
+    
+    tree.write(fstorage, "iso-8859-2")
+    
+    file.close()
+
+def XFilesSearchFile(tree,file):
+        for node in tree:
+                if node.tag == "file":
+                        if node.get("name") == file:
+                                return node
+
+def XFilesSearchFileRe(tree,file):
+	nodes = ()
+        for node in tree:
+                if node.tag == "file":
+		    if re.compile(file).search(node.get("name"), 1):
+                        nodes+=node
+
+def XFilesFindTag(tree,name):
+        for node in tree:
+                if node.tag == name:
+                        return node
+
+
+def XFilesGetInfoAboutDoc(doc):
+        result = {}
+	        
+        file = open(fstorage, "r")
+        tree = ElementTree(file=file)
+        elem = tree.getroot().getchildren()
+
+        # Szukamy tagu z odpowiedna nazwa pliku
+        elem = XFilesSearchFile(elem, doc)
+					        
+        # Przechodzimy do srodka tagu
+        elem = elem.getchildren();
+								
+        # Pobieramy status
+        result["file"] = doc
+        result["status"] = XFilesFindTag(elem, "status").text
+        result["translator"] = XFilesFindTag(elem, "translator").text
+        result["place"] = XFilesFindTag(elem, "place").text
+        result["en_version"] = XFilesFindTag(elem,"en_version").text
+
+	file.close()
+
+        return result
+
+##
+##
+##
+
+def mAddTodo():
+    print ''
+def mShowChanges():
+    print ''
+def mCommit():
+    CheckVailidity(myoperfile);
+    commitmsg = getinfo("Wpisz informacje o dodanych zmianach: ")
+    stary = XFilesGetInfoAboutDoc(filesoper)
+    new_en_version = getinfo("Obecna wersja en: "+stary["en_version"]+". Wpisz do jakiej wersji uaktualniales doc: ")
+
+    XFilesChangeEnVersion(filesoper, new_en_version)
+
+    with_files = myoperfile+" "+fstorage
+    CVSCommitFile(with_files, commitmsg)
+    print ''
+
+def mAddFile():
+    CheckVailidity(myoperfile)
+
+    status = getinfo("Podaj status dokumentu:")
+    en_version = getinfo("Podaj wersje CVS orginalu angielskiego:")
+
+    printfileinfo({"file":filesoper, "place":myreporoot, "status":status, "translator":TRANS_NAME, "en_version":en_version})
+    XFilesAddFile({"file":filesoper, "place":myreporoot, "status":status, "translator":TRANS_NAME, "en_version":en_version})
+
+    CVSAddFile(myoperfile);
+    print ''
+def mAddChange():
+    print ''
+def mRemoveFile():
+    print ''
+def mDeleteTodo():
+    print ''
+
+if mymode == "changes":
+    prout("Pokazuje zmiany")
+    mShowChanges()
+elif mymode == "commit":
+    prout("Polecenie: Commit")
+    mCommit()
+elif mymode == "todo":
+    prout("Pokazuje TODO")
+    mShowTodo()
+elif mymode == "addtodo":
+    prout("Dodaje TODO")
+    mAddTodo()
+elif mymode == "add":
+    prout("Dodaje plik do CVS")
+    mAddFile()
+elif mymode == "addchange":
+    prout("Dodaje zmiane")
+    mAddChange()
+elif mymode == "remove":
+    prout("Usuwam plik")
+    mRemoveFile()
+elif mymode == "deletetodo":
+    prout("Usuwam TODO")
+    mDeleteTodo()
+elif mymode == "search":
+#    file = open(fstorage, "r")
+#    tree = ElementTree(file=file)
+#    elem = tree.getroot().getchildren()
+
+    # Szukamy tagu z odpowiedna nazwa pliku 
+#    elem = XFilesSearchFile(elem, doc)
+
+    # Przechodzimy do srodka tagu 
+#    elem = elem.getchildren();
+	
+#    list = XFilesSearchFileRe(elem, myoperfile)
+#    for n in list:
+#	m = n.getchildren()
+#        result["file"] = doc
+#        result["status"] = XFilesFindTag(m, "status").text
+#        result["translator"] = XFilesFindTag(m, "translator").text
+#        result["place"] = XFilesFindTag(m, "place").text
+#        result["en_version"] = XFilesFindTag(m,"en_version").text
+
+#    file.close()
+
+
+   printfileinfo(XFilesGetInfoAboutDoc(filesoper))
+
+else:
+    print red("Polecenie nie istnieje")
+sys.exit(0)
