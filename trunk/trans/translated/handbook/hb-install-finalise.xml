@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.17 -->
+<!-- Orig revision: 1.18 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Zakończenie Instalacji -->
 <!-- Status: Ukończono -->
@@ -10,7 +10,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.12 2004/02/12 18:58:19 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-finalise.xml,v 1.13 2004/02/28 15:21:35 lcs Exp $ -->
 
 <sections>
 <section>
@@ -80,15 +80,13 @@ jeśli zostanie prawidłowo skonfigurowany.
 <body>
 
 <p>
-Gratulacje! Twój świeży system Gentoo jest już gotowy. Aby zaktualizować
-pliki konfiguracyjne wykonaj jeszcze polecenie <c>etc-update</c>. Następnie
-opuść środowisko chroot, odmontuj wszystkie partycje, w tym także 
+Gratulacje! Twój świeży system Gentoo jest już gotowy. Opuść środowisko 
+chroot, odmontuj wszystkie partycje, w tym także 
 <path>/mnt/gentoo/dev</path> jeśli ją zamontowałeś i wreszcie uruchom
 magiczny program, na który tak czekałeś: <c>reboot</c>.
 </p>
 
 <pre caption="Restartowanie systemu">
-# <i>etc-update</i>
 # <i>exit</i>
 # <i>cd /</i>
 # <i>umount /mnt/gentoo/boot /mnt/gentoo/proc /mnt/gentoo</i>
