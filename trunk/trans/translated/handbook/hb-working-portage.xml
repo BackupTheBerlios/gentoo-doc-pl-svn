@@ -5,7 +5,7 @@
 <!-- Translator: rane <rane666@o2.pl> -->
 <!-- Title: Praca z Portage -->
 <!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-portage.xml,v 1.3 2004/11/03 23:55:31 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-portage.xml,v 1.4 2004/11/04 18:53:17 rane Exp $ -->
 
 <sections>
 <section>
@@ -207,7 +207,7 @@ Jeśli kiedykolwiek zdarzy nam się posiadać taką paczkę zainstalowaną w sys
 </p>
 
 <p>
-Portage jest w stanie poradzić sobie z tego typu "osieroconymi" zależnościami, ale najpierw należy w pełni uaktualinić swój system, uwzględniając przy tym również zmiany we flagach USE. Następnie uruchamiamy wspomniane już wcześniej polecenie <c>emerge depclean</c>, żeby usunąć "osierocone" zależności, a kiedy już skończymy je odinstalowywać przebudowujemy wszystkie programy, które wcześniej były dynamicznie z nimi zlinkowane, ale teraz już ich nie potrzebują.
+Portage jest w stanie poradzić sobie z tego typu "osieroconymi" zależnościami, ale najpierw należy w pełni uaktualinić swój system, uwzględniając przy tym również zmiany we flagach USE. Następnie uruchamiamy wspomniane już wcześniej polecenie <c>emerge depclean</c>, żeby usunąć "osierocone" zależności, a kiedy już skończymy je odinstalowywać przebudowujemy wszystkie programy, które wcześniej były dynamicznie z nimi zlinkowane, a teraz już ich nie potrzebują.
 </p>
 
 <p>
@@ -221,7 +221,7 @@ Cały proces sprowadza się do wpisania trzech prostych poleceń:
 </pre>
 
 <p>
-Program <c>revdep-rebuild</c> jest częścią paczki<c>gentoolkit</c>, czyli trzeba ją wcześniej zainstalować, aby mieć go do dyspozycji.
+Program <c>revdep-rebuild</c> jest częścią paczki <c>gentoolkit</c>, czyli trzeba ją wcześniej zainstalować, aby mieć go do dyspozycji.
 </p>
 
 <pre caption="Instalacja paczki gentoolkit">
@@ -242,7 +242,7 @@ Jak już wcześniej zaznaczaliśmy Portage jest potężnym narzędziem i posiada
 </p>
 
 <p>
-W Portage możliwe jest posiadanie kilku różnych wersji jednego programu. Podczas gdy inne dystrybucje obchodzą problem nadając po prostu różnym paczkom różne numery porządkowe, jak np. <c>freetype</c> i <c>freetype2</c> Portage wykorzystuje tu technologię tzw. <e>SLOT</e>ów. Każdy ebuild posiada osobny slot dla wersji programu, którą reprezentuje. Ebuildy różnych wersji programu mogą koegzystować w jednym systemie. Na przykład paczka <c>freetype</c> posada ebuildy z ustawionymi wartościami <c>SLOT="1"</c> i <c>SLOT="2"</c>.
+W Portage możliwe jest posiadanie kilku różnych wersji jednego programu. Podczas gdy inne dystrybucje obchodzą problem nadając po prostu różnym paczkom różne numery porządkowe, jak np. <c>freetype</c> i <c>freetype2</c> Portage wykorzystuje tu technologię tzw. <e>SLOT</e>ów. Każdy ebuild posiada osobny slot dla wersji programu, którą reprezentuje. Ebuildy różnych wersji programu mogą koegzystować w jednym systemie. Na przykład paczka <c>freetype</c> posiada ebuildy z ustawionymi wartościami <c>SLOT="1"</c> i <c>SLOT="2"</c>.
 </p>
 
 <p>
@@ -258,7 +258,7 @@ Niektóre programy są dostępne tylko dla określonych architektur. Czasem na i
 </p>
 
 <p>
-Każdej instalacji Gentoo przypisany jest określony <c>profil</c>, który zawiera, poza innymi informacjami, listę paczek, które są niezbędne do prawidłowego działania systemu.
+Każdej instalacji Gentoo przypisany jest określony <c>profil</c>, który zawiera między innymi listę paczek, które są niezbędne do prawidłowego działania systemu.
 </p>
 
 </body>
@@ -318,13 +318,13 @@ Słowo kluczowe <b>~arch</b> oznacza, że aplikacja nie została jeszcze dostate
 Słowo kluczowe <b>-arch</b> lub <b>-*</b> oznacza, że program nie działa na naszej architekturze. Jeśli uważasz inaczej i masz dowody na poparcie tej tezy prosimy o zgłoszenie tego na naszą <uri link="http://bugs.gentoo.org">bugzillę</uri>.
   </li>
   <li>
-<b>missing keyword</b> oznacza, że aplikacja nie została jeszcze przestestowana na naszej architekturze. W takim przypadku należy poprosić któregoś z developerów zajmujących się tymi sprawami o przetestowanie paczki, lub uczynić to własnoręcznie i zgłosić wyniki swoich badań na <uri link="http://bugs.gentoo.org">bugzillę</uri>.
+Komunikat <b>missing keyword</b> oznacza, że aplikacja nie została jeszcze przestestowana na naszej architekturze. W takim przypadku należy poprosić któregoś z developerów zajmujących się tymi sprawami o przetestowanie paczki, lub uczynić to własnoręcznie i zgłosić wyniki swoich badań na <uri link="http://bugs.gentoo.org">bugzillę</uri>.
   </li>
   <li>
 Komunikat <b>package.mask</b> oznacza, że paczka jest zepsuta, niestabilna, lub co gorsza w ogóle nie nadaje się do użytku. 
   </li>
   <li>
-<b>profile</b> oznacza, że paczka nie pasuje do naszego "profilu" i gdybyśmy ją zainstalowali mogłaby zepsuć nasz system.
+Komunikat z tekstem <b>profile</b> oznacza, że paczka nie pasuje do naszego "profilu" i gdybyśmy ją zainstalowali mogłaby zepsuć nasz system.
   </li>
 </ul>
 
@@ -342,14 +342,7 @@ emerge: there are no ebuilds to satisfy "&gt;=sys-devel/gcc-4.2-r4".
 </pre>
 
 <p>
-Komunikat taki oznacza, że 
-
-
-The application you are trying to install depends on another package that is not
-available for your system. Please check <uri
-link="http://bugs.gentoo.org">bugzilla</uri> if the issue is known and if not,
-please report it. Unless you are mixing branches this should not occur and is
-therefore a bug.
+Aplikacja, którą starasz się zainstalować jest zależna od paczki, która nie jest dostępna dla Twojej architektury. Sprawdź na <uri link="http://bugs.gentoo.org">bugzilli</uri> czy problem został nam już zgłoszony i jeśli odkryjesz, że jeszcze o nim nie wiemy daj nam znać. Jeśli nie mieszasz różnych typów gałęzi Portage w jednym systemie problem ten nie powinien wystąpić i oznacza błąd w drzewie.
 </p>
 
 </body>
@@ -367,7 +360,7 @@ therefore a bug.
 </pre>
 
 <p>
-Program, który chcesz zainstaalować ma nazwę, którą posiada więcej niż jedna paczka. Aby rozwiąć ten problem wystarczy dokładniej sprecyzować co chcemy zainstalować, dodając przed nazwę programu kategorię, do której on należy. 
+Program, który chcesz zainstalować ma nazwę, którą posiada więcej niż jedna paczka. Aby rozwiąć ten problem wystarczy dokładniej sprecyzować co chcemy zainstalować, dodając przed nazwę programu kategorię, do której on należy. 
 </p>
 
 </body>
