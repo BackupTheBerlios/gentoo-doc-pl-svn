@@ -10,13 +10,13 @@
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.27 2004/12/02 20:30:00 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-disk.xml,v 1.28 2004/12/04 20:24:59 rane Exp $ -->
 
 <sections>
 <section>
-<title>Wprowadzenie do Urządzeń Blokowych</title>
+<title>Wprowadzenie do urządzeń blokowych.</title>
 <subsection>
-<title>Urządzenia Blokowe</title>
+<title>Urządzenia blokowe</title>
 <body>
 
 <p>
@@ -43,13 +43,13 @@ za jako ciąg 512-bajtowych bloków.
 </body>
 </subsection>
 <subsection>
-<title>Partycje i Plastry</title>
+<title>Partycje i plastry.</title>
 <body>
 
 <p>
 Jakkolwiek teoretycznie możliwe jest przeznaczenie na system całego dysku,
-zazwyczaj nie jest to rozwiązanie praktyczne. Zamiast tego, dzieli się
-napęd na mniejsze, łatwiejsze w zarządzaniu, urządzenia blokowe.
+zazwyczaj nie jest to rozwiązanie praktyczne. Zamiast tego dzielimy
+napęd na mniejsze i łatwiejsze w zarządzaniu urządzenia blokowe.
 W większości platform nazywane są one <e>partycjami</e>. Część architektur,
 korzystająca z podobnych technik nazywa je <e>plastrami</e>.
 </p>
@@ -57,7 +57,7 @@ korzystająca z podobnych technik nazywa je <e>plastrami</e>.
 </body>
 </subsection>
 <subsection>
-<title>Partycje</title>
+<title>Partycje.</title>
 <body>
 
 <note>
@@ -71,7 +71,7 @@ Wyróżniamy trzy rodzaje partycji: <e>podstawowe</e>,
 
 <p>
 Informacje o partycjach <e>podstawowych</e> przechowywane są w MBR
-(master boot record). Jako że jest on bardzo mały (512 bajtów), mieszczą 
+(master boot record). Ponieważ jest on bardzo mały (512 bajtów), mieszczą 
 się w nim dane najwyżej czterech takich partycji (na przykład,
 od <path>/dev/hda1</path> do <path>/dev/hda4</path>).
 </p>
@@ -91,7 +91,7 @@ Partycje umieszczone i opisane wewnątrz rozszerzonych nazywamy <e>logicznymi</e
 </body>
 </subsection>
 <subsection>
-<title>Zaawansowane Metody Przechowywania Danych</title>
+<title>Zaawansowane metody przechowywania danych.</title>
 <body>
 
 <p>
@@ -107,9 +107,9 @@ wiedzieć o obsłudze także nowocześniejszych rozwiązań.
 </subsection>
 </section>
 <section>
-<title>Projektowanie Schematu Podziału</title>
+<title>Projektowanie schematu podziału.</title>
 <subsection>
-<title>Domyślny Schemat Podziału</title>
+<title>Domyślny schemat podziału.</title>
 <body>
 
 <p>
@@ -220,8 +220,9 @@ Dla Sparc:
   <ti>Partycja root</ti>
 </tr>
 </table>
+
 <p>
-Użytkownicy instalujący Gentoo Linux z zainstalowanej dystrybucji, powinni
+Użytkownicy instalujący Gentoo Linux z innej dystrybucji Linuksa powinni
 najpierw zmniejszyć istniejące partycje (oczywiście o ile nie pozostawili
 w zapasie wolnej przestrzeni) aby zdobyć miejsce na nowy system. W tym
 celu mogą skorzystać z wygodnego narzędzia <uri 
@@ -236,44 +237,41 @@ W przeciwnym wypadku przejdź od razu do podziału dysku:
 
 <ul>
 <li>
-  <uri link="#doc_chap3">Partycjonowanie Dysku za pomocą fdisk na x86 lub amd64</uri>
+  <uri link="#doc_chap3">Partycjonowanie dysku za pomocą fdisk na x86 lub amd64</uri>.
 </li>
 <li>
-  <uri link="#doc_chap4">Partycjonowanie Dysku za pomocą fdisk na Alpha</uri>
+  <uri link="#doc_chap4">Partycjonowanie dysku za pomocą fdisk na Alpha</uri>.
 </li>
 <li>
-  <uri link="#doc_chap5">Partycjonowanie Dysku za pomocą fdisk na SPARC</uri>
+  <uri link="#doc_chap5">Partycjonowanie dysku za pomocą fdisk na SPARC</uri>.
 </li>
 <li>
-  <uri link="#doc_chap6">Partycjonowanie Dysku za pomocą mac-fdisk na PPC</uri>
+  <uri link="#doc_chap6">Partycjonowanie dysku za pomocą mac-fdisk na PPC</uri>
 </li>
 <li>
-  <uri link="#doc_chap7">Partycjonowanie Dysku za pomocą fdisk na HPPA</uri>
+  <uri link="#doc_chap7">Partycjonowanie dysku za pomocą fdisk na HPPA</uri>.
 </li>
 <li>
-  <uri link="#doc_chap8">Partycjonowanie Dysku za pomocą fdisk na MIPS</uri>
+  <uri link="#doc_chap8">Partycjonowanie dysku za pomocą fdisk na MIPS</uri>.
 </li>
 </ul>
 
 </body>
 </subsection>
 <subsection>
-<title>Jak Dużo Jak Wielkich?</title>
+<title>Jak dużo jak wielkich?</title>
 <body>
 
 <p>
-Ilość partycji ściśle zależy od danego
-środowiska. Na przykład, jeśli administrujesz systemem mającym
-wielu użytkowników, prawdopodobnie uznasz za stosowne
-oddzielenie <path>/home</path> aby poprawić bezpieczeństwo
-i uprościć tworzenie kopii zapasowych. Jeżeli docelowym
-zastosowaniem świeżego Gentoo jest serwer poczty, na osobnej 
-partycji powinieneś umieścić <path>/var</path>, gdzie przechowywane
-są listy. Dobry wybór systemu plików może tu znacznie zwiększyć
-wydajność. Oddzielenie <path>/opt</path> jest dobrym rozwiązaniem
-na serwerach gier, gdyż większość używanego oprogramowania zostanie
-tam zainstalowana. Powód jest podobny do <path>/home</path>: bezpieczeństwo
-i kopie zapasowe.
+lość partycji ściśle zależy od środowiska. Na przykład, jeśli administrujesz
+systemem mającym wielu użytkowników, prawdopodobnie uznasz za stosowne
+oddzielenie <path>/home</path> aby poprawić bezpieczeństwo i uprościć tworzenie
+kopii zapasowych. Jeżeli docelowym zastosowaniem świeżego Gentoo jest serwer
+poczty, na osobnej  partycji powinieneś umieścić <path>/var</path>, gdzie
+przechowywane są listy. Dobry wybór systemu plików może tu znacznie zwiększyć
+wydajność. Oddzielenie <path>/opt</path> jest dobrym rozwiązaniem na serwerach
+gier, gdyż większość używanego oprogramowania zostanie tam zainstalowana. Powód
+jest podobny jak w przypadku <path>/home</path>: bezpieczeństwo i kopie zapasowe.
 </p>
 
 <p>
@@ -284,28 +282,28 @@ lub woluminów ma wiele zalet:
 <ul>
 <li>
   Masz możliwość dostosowania jak najwydajniejszego w danym zastosowaniu
-  systemu plików dla poszczególnych partycji lub woluminów
+  systemu plików dla poszczególnych partycji lub woluminów.
 </li>
 <li>
   W przypadku zapełnienia partycji przez nieprawidłowo działające
-  narzędzie, nie ma to wpływu na całość systemu
+  narzędzie, nie ma to wpływu na całość systemu.
 </li>
 <li>
   Jeśli to konieczne, można skrócić czas kontroli systemów plików, gdyż
   można jednocześnie dokonywać jej na kilku partycjach (ma to znaczenie
-  zwłaszcza na sprzęcie z wieloma dyskami)
+  zwłaszcza na sprzęcie z wieloma dyskami).
 </li>
 <li>
   Montując część partycji lub woluminów z opcjami read-only (tylko do odczytu),
   nosuid (ignorowane są bity setuid), noexec (ignorowane są bity wykonywalności) itd.
-  można znacznie poprawić bezpieczeństwo
+  można znacznie poprawić bezpieczeństwo.
 </li>
 </ul>
 
 <p>
-Niestety zbyt rozbudowany podział niesie z sobą spore niebezpieczeństwo: 
-źle zaplanowany zaowocuje pustkami na zbyt dużych
-i ciasnotą na zbyt małych partycjach.
+Niestety zbyt rozbudowany podział niesie ze sobą spore niebezpieczeństwo: źle
+zaplanowany zaowocuje pustkami na zbyt dużych i ciasnotą na zbyt małych
+partycjach.
 </p>
 
 <p>
@@ -334,32 +332,33 @@ zbyt wiele miejsca przeznaczyliśmy na <path>/var</path>.
 Należy zwrócić uwagę, że Gentoo kompiluje wszystkie pakiety
 wewnątrz <path>/var/tmp/portage</path>. Powinien mieć
 wobec tego przynajmniej 1GB wolnej przestrzeni, jeśli nie zamierzasz
-kompilować większych programów, lub nawet 3GB - gdy
-jednoczesna instalacja KDE i OpenOffice.org nie stanowi dla Ciebie
-problemu.
+kompilować większych programów, lub nawet 3GB - gdy chcesz móc jednocześnie
+kompilować KDE i OpenOffice.org..
 </p>
 
 <p>
 Podziel teraz swój dysk, korzystając z instrukcji dla danej architektury:
 </p>
+
 <ul>
 <li>
-  <uri link="#doc_chap3">Partycjonowanie Dysku za pomocą fdisk na x86 lub amd64</uri>
+  <uri link="#doc_chap3">Partycjonowanie dysku za pomocą fdisk na x86 lub
+  amd64.</uri>
 </li>
 <li>
-  <uri link="#doc_chap4">Partycjonowanie Dysku za pomocą fdisk na Alpha</uri>
+  <uri link="#doc_chap4">Partycjonowanie dysku za pomocą fdisk na Alpha.</uri>
 </li>
 <li>
-  <uri link="#doc_chap5">Partycjonowanie Dysku za pomocą fdisk na SPARC</uri>
+  <uri link="#doc_chap5">Partycjonowanie dysku za pomocą fdisk na SPARC.</uri>
 </li>
 <li>
-  <uri link="#doc_chap6">Partycjonowanie Dysku za pomocą mac-fdisk na PPC</uri>
+  <uri link="#doc_chap6">Partycjonowanie dysku za pomocą mac-fdisk na PPC.</uri>
 </li>
 <li>
-  <uri link="#doc_chap7">Partycjonowanie Dysku za pomocą fdisk na HPPA</uri>
+  <uri link="#doc_chap7">Partycjonowanie dysku za pomocą fdisk na HPPA.</uri>
 </li>
 <li>
-  <uri link="#doc_chap8">Partycjonowanie Dysku za pomocą fdisk na MIPS</uri>
+  <uri link="#doc_chap8">Partycjonowanie dysku za pomocą fdisk na MIPS.</uri>
 </li>
 </ul>
 
@@ -367,7 +366,7 @@ Podziel teraz swój dysk, korzystając z instrukcji dla danej architektury:
 </subsection>
 </section>
 <section>
-<title>Partycjonowanie Dysku za pomocą fdisk na x86 lub amd64</title>
+<title>Partycjonowanie dysku za pomocą fdisk na x86 lub amd64.</title>
 <subsection>
 <body>
 
@@ -407,11 +406,11 @@ Zmodyfikuj go stosownie do swoich potrzeb.
 </body>
 </subsection>
 <subsection>
-<title>Wyświetlanie Aktualnego Podziału Dysku</title>
+<title>Wyświetlanie aktualnego podziału dysku.</title>
 <body>
 
 <p>
-<c>fdisk</c> to znane i funkcjonalne narzędzie do partycjonowania.
+<c>fdisk</c> to popularne i wygodne narzędzie służące do partycjonowania.
 Uruchom go dla swojego dysku (pokażemy to na przykładzie <path>/dev/hda</path>):
 </p>
 
@@ -420,7 +419,7 @@ Uruchom go dla swojego dysku (pokażemy to na przykładzie <path>/dev/hda</path>
 </pre>
 
 <p>
-Twoim oczom ukaże się podobny znak zachęty:
+Twoim oczom ukaże się mniej więcej taki znak zachęty:
 </p>
 
 <pre caption="Znak zachęty fdisk">
@@ -452,15 +451,15 @@ Command (m for help):
 </pre>
 
 <p>
-Na prezentowanym dysku znajduje się siedem linuksowych systemów plików
-(każdy na odpowiadającej partycji, oznaczonej jako "Linux") oraz partycja
+Na prezentowanym w przykładzie dysku znajduje się siedem linuksowych systemów plików
+(każdy na odpowiedniej partycji, oznaczonej jako "Linux") oraz partycja
 wymiany (oznaczona jako "Linux swap").
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Kasowanie wszystkich Partycji</title>
+<title>Kasowanie wszystkich partycji</title>
 <body>
 
 <p>
@@ -474,16 +473,16 @@ Partition number (1-4): <i>1</i>
 </pre>
 
 <p>
-Nasza partycja została oznaczona do usunięcia. Nie będzie więcej pojawiać się
+Nasza partycja została zaznaczona do usunięcia. Nie będzie więcej pojawiać się
 po wydaniu polecenia <c>p</c>, ale dopóki zmiany nie zostaną zapisane
-fizycznie, pozostanie nie naruszona. Jeśli popełnisz błąd i zechcesz
-anulować wszelkie zmiany, wpisz natychmiast <c>q</c> i wciśnij Enter.
+fizycznie, pozostanie nienaruszona. Jeśli popełnisz błąd i zechcesz
+anulować wprowadzone zmiany, naciśnij <c>q</c> i wciśnij Enter.
 Twoje modyfikacje pójdą w niepamięć.
 </p>
 
 <p>
 Zakładając, że chcesz pozbyć się wszystkich istniejących partycji,
-na przemian wykonuj <c>p</c> aby wyświetlić ich listing i
+na przemian wykonuj <c>p</c>, aby wyświetlić ich listing i
 po kolei kasuj je poleceniem <c>d</c> z odpowiednim numerem. Po ukończeniu,
 <c>p</c> powinno dać następujący rezultat:
 </p>
@@ -499,21 +498,21 @@ Command (m for help):
 </pre>
 
 <p>
-Kiedy nasza tymczasowa kopia tablicy partycji będzie pusta, możemy rozpocząć
+Kiedy nasza tymczasowa tablica partycji będzie pusta, możemy rozpocząć
 tworzenie nowego podziału. Pokażemy to na przykładzie domyślnego omawianego
-schematu. Oczywiście jeśli Ci on nie odpowiada, musisz poczynić stosowne
-modyfikacje prezentowanych poleceń.
+schematu. Oczywiście jeśli Ci on nie odpowiada, i chcesz zastosować inny
+schemat powinieneś poczynić stosowne modyfikacje prezentowanych poleceń.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Zakładanie Partycji Boot</title>
+<title>Zakładanie partycji boot.</title>
 <body>
 
 <p>
-Rozpoczniemy od utworzenia niewielkiej partycji boot. Wpisz <c>n</c> aby
-ją założyć, następnie <c>p</c> aby nadać jej typ podstawowy i <c>1</c>,
+Rozpoczniemy od utworzenia niewielkiej partycji boot. Wpisz <c>n</c>, aby
+ją założyć, następnie <c>p</c>, aby nadać jej typ podstawowy i <c>1</c>,
 ponieważ będzie to pierwsza taka partycja. Zapytany o pierwszy cylinder
 wciśnij Enter, natomiast zapytany o ostatni, wpisz <c>+32M</c>, żeby nadać
 jej rozmiar 32MB.
@@ -555,15 +554,15 @@ z polecenia <c>a</c>. Na kolejnych wydrukach podziału, w kolumnie
 </body>
 </subsection>
 <subsection>
-<title>Zakładanie Partycji Swap</title>
+<title>Zakładanie Partycji wymiany.</title>
 <body>
 
 <p>
-Nadszedł czas na utworzenie partycji wymiany. Ponownie skorzystaj z polecenia
-<c>n</c>, następnie podaj <c>p</c> gdyż ma to być partycja podstawowa i <c>2</c>,
+Pora na utworzenie partycji wymiany. Ponownie skorzystaj z polecenia
+<c>n</c>, następnie podaj <c>p</c>, bo powinna to być partycja podstawowa i <c>2</c>,
 ponieważ będzie ona drugą tego typu. Zapytany o pierwszy cylinder wciśnij Enter,
-natomiast na pytanie o ostatni wpisz <c>+512M</c>, żeby nadać partycji
-rozmiar 512MB. Po ukończeniu wykonaj <c>t</c>, aby zmienić jej typ,
+natomiast na pytanie o ostatni wpisz <c>+512M</c>, co nada partycji
+rozmiar 512MB. Następnie wpisz <c>t</c>, aby zmienić typ partycji,
 <c>2</c>, aby wybrać tę, którą właśnie stworzyłeś i <c>82</c>, żeby oznaczyć
 ją jako "Linux Swap". Teraz polecenie <c>p</c> powinno dać następujący
 listing:
@@ -584,15 +583,15 @@ Device Boot    Start       End    Blocks   Id  System
 </body>
 </subsection>
 <subsection>
-<title>Zakładanie Partycji Root</title>
+<title>Zakładanie partycji root.</title>
 <body>
 
 <p>
-Na koniec, utworzymy partycję root. Jeszcze raz posłużymy się w tym celu poleceniem
-<c>n</c>. Zapytany o rodzaj wpisz <c>p</c>, ponieważ chcemy by była podstawowa,
+Na koniec utworzymy partycję root. Jeszcze raz posłużymy się w tym celu poleceniem
+<c>n</c>. Zapytani o rodzaj wpiszemy <c>p</c>, ponieważ chcemy by była podstawowa,
 następnie <c>3</c>, gdyż będzie już trzecią tego typu, czyli w naszym przypadku
-<path>/dev/hda3</path>. Na pytanie o pierwszy i ostatni cylinder wciśnij Enter,
-dzięki temu zajmie ona całą pozostałą wolną przestrzeń. Teraz polecenie
+<path>/dev/hda3</path>. Na pytanie o pierwszy i ostatni cylinder wciskamy
+Enter, bo dzięki temu zajmie ona całą pozostałą wolną przestrzeń. Teraz polecenie
 <c>p</c> powinno pokazać następujący wydruk:
 </p>
 
@@ -613,7 +612,7 @@ Device Boot    Start       End    Blocks   Id  System
 </body>
 </subsection>
 <subsection>
-<title>Zapisywanie Podziału Partycji</title>
+<title>Zapisywanie podziału partycji.</title>
 <body>
 
 <p>
@@ -625,15 +624,15 @@ Command (m for help): <i>w</i>
 </pre>
 
 <p>
-Twoje partycje są już gotowe, możesz teraz przejść do <uri 
-link="#filesystems">Zakładania Systemów Plików</uri>.
+Twoje partycje są już gotowe, możesz teraz przejść do paragrafu <uri 
+link="#filesystems">Zakładanie systemów plików</uri>.
 </p>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Partycjonowanie Dysku za pomocą fdisk na Alpha</title>
+<title>Partycjonowanie dysku za pomocą fdisk na Alpha.</title>
 <subsection>
 <body>
 
@@ -673,7 +672,7 @@ Zmodyfikuj go stosownie do swoich potrzeb.
 </body>
 </subsection>
 <subsection>
-<title>Sprawdzanie Dostępnych Dysków</title>
+<title>Sprawdzanie dostępnych dysków.</title>
 <body>
 
 <p>
@@ -702,13 +701,13 @@ Uruchom teraz <c>fdisk</c>:
 </body>
 </subsection>
 <subsection>
-<title>Usuwanie Wszystkich Plastrów</title>
+<title>Usuwanie wszystkich plastrów.</title>
 <body>
 
 <p>
 Zaczniemy od pozbycia się wszystkich plastrów, <e>z wyjątkiem</e> plastra 'c'.
 Pokażemy jak to zrobić na przykładzie 'a'. Powtórz ten proces aby
-usunąć również pozostałe (oczywiście oprócz 'c').
+usunąć również pozostałe plastry (oczywiście oprócz 'c').
 </p>
 
 <p>
@@ -750,18 +749,18 @@ BSD disklabel command (m for help): <i>p</i>
 </body>
 </subsection>
 <subsection>
-<title>Tworzenie Plastra Swap</title>
+<title>Tworzenie plastra wymiany.</title>
 <body>
 
 <p>
-W komputerach Alpha nie ma konieczności tworzenia partycji boot. Jakkolwiek
-pierwszy cylinder zostanie zajęty obrazem <c>aboot</c>.
+W komputerach Alpha nie ma konieczności tworzenia partycji boot. 
+Za to pierwszy cylinder zostanie zajęty obrazem <c>aboot</c>.
 </p>
 
 <p>
-Utworzymy teraz plaster swap, począwszy od trzeciego cylindra o rozmiarze
-1GB. W tym celu skorzystaj z polecenia <c>n</c>. Następnie
-zmień jego typ na <c>1</c>, czyli <e>swap</e>.
+Utworzymy teraz plaster swap zaczynający się od trzeciego cylindra i mający rozmiar
+1GB. W tym celu skorzystamy z polecenia <c>n</c>. Następnie
+zmienimy typ plastra na <c>1</c>, czyli <e>swap</e>.
 </p>
 
 <pre caption="Zakładanie plastra swap">
@@ -791,7 +790,7 @@ BSD disklabel command (m for help): <i>p</i>
 </body>
 </subsection>
 <subsection>
-<title>Tworzenie Plastra Root</title>
+<title>Tworzenie plastra root.</title>
 <body>
 
 <p>
@@ -802,7 +801,7 @@ jest to 1003, a więc początkiem plastra root będzie cylinder 1004.
 </p>
 
 <p>
-Obecnie w programie <c>fdisk</c> znajduje się błąd, powodujący iż
+Obecnie w programie <c>fdisk</c> znajduje się błąd, powodujący, że
 liczba dostępnych cylindrów jest o jeden większa od faktycznej.
 Innymi słowy, zapytany o ostatni cylinder, podaj numer (w naszym przykładzie
 5290) zmniejszony o jeden.
@@ -840,7 +839,7 @@ BSD disklabel command (m for help): <i>p</i>
 </body>
 </subsection>
 <subsection>
-<title>Zapisywanie Podziału Plastrów i Zamykanie fdisk</title>
+<title>Zapisanie podziału plastrów i zamknięcie fdisk.</title>
 <body>
 
 <p>
@@ -852,8 +851,8 @@ Command (m for help): <i>w</i>
 </pre>
 
 <p>
-Twoj plastry są już gotowe, możesz teraz przejść do <uri 
-link="#filesystems">Zakładania Systemów Plików</uri>.
+Twoje plastry są już gotowe, możesz teraz przejść do paragrafu <uri 
+link="#filesystems">Zakładanie systemów plików</uri>.
 </p>
 
 
@@ -861,7 +860,7 @@ link="#filesystems">Zakładania Systemów Plików</uri>.
 </subsection>
 </section>
 <section>
-<title>Partycjonowanie Dysku za pomocą fdisk na SPARC</title>
+<title>Partycjonowanie dysku za pomocą fdisk na SPARC.</title>
 <subsection>
 <body>
 
@@ -905,7 +904,7 @@ Zmodyfikuj go stosownie do swoich potrzeb.
 </body>
 </subsection>
 <subsection>
-<title>Uruchamianie fdisk</title>
+<title>Uruchamianie fdisk.</title>
 <body>
 
 <p>
@@ -942,7 +941,7 @@ Device Flag    Start       End    Blocks   Id  System
 </pre>
 
 <p>
-Zwróć uwagę na <c>Sun disk label</c>. Jeśli go brakuje, oznacza to że 
+Zwróć uwagę na <c>Sun Disk Label</c>. Jeśli go brakuje, oznacza to że 
 dysk korzysta z partycji DOS. W takim razie, aby stworzyć
 tablicę partycji Sun, wpisz <c>s</c>.
 </p>
@@ -950,7 +949,7 @@ tablicę partycji Sun, wpisz <c>s</c>.
 </body>
 </subsection>
 <subsection>
-<title>Usuwanie Istniejących Partycji</title>
+<title>Usuwanie istniejących partycji</title>
 <body>
 
 <p>
@@ -967,9 +966,8 @@ Partition number (1-4): <i>1</i>
 <p>
 Aby skasować wszystkie istniejące partycje, na przemian wpisuj <c>p</c>
 aby zobaczyć jakie są dostępne i <c>d</c>, żeby je kasoawć.
-Jeśli popełnisz błąd, natychmiast wpisz <c>q</c> -- <c>fdisk</c>
-przeprowadza wszelkie zmiany w pamięci i możesz je w ten sposób anulować.
-Do zachowywania zmian służy polecenie <c>w</c>.
+Jeśli popełnisz błąd wpisz <c>q</c> - <c>fdisk</c>, zmiany nie zostaną zapisane
+i możesz je w ten sposób anulować. Do zachowywania zmian służy polecenie <c>w</c>.
 </p>
 
 <p>
@@ -989,7 +987,7 @@ Device Flag    Start       End    Blocks   Id  System
 </body>
 </subsection>
 <subsection>
-<title>Tworzenie Sun Disk Label</title>
+<title>Tworzenie Sun Disk Label.</title>
 <body>
 
 <p>
@@ -1029,11 +1027,11 @@ Device Flag    Start       End    Blocks   Id  System
 </body>
 </subsection>
 <subsection>
-<title>Tworzenie Partycji Boot</title>
+<title>Tworzenie partycji boot.</title>
 <body>
 
 <p>
-Jesteśmy gotowi na założenie partycji boot. W tym celu skorzystaj z polecenia
+Teraz jesteś już gotów do założenia partycji boot. W tym celu skorzystaj z polecenia
 <c>n</c> aby rozpocząć tworzenie, następnie wpisz <c>1</c> aby wybrać pierwszą
 partycję. Zapytany o pierwszy cylinder wciśnij Enter, natomiast na pytanie 
 o ostatni wpisz <c>+32M</c>, żeby nadać jej rozmiar <c>32MB</c>. Upewnij się,
@@ -1066,7 +1064,7 @@ Device Flag    Start       End    Blocks   Id  System
 </body>
 </subsection>
 <subsection>
-<title>Tworzenie Partycji Swap</title>
+<title>Tworzenie partycji wymiany.</title>
 <body>
 
 <p>
@@ -1094,16 +1092,16 @@ Device Flag    Start       End    Blocks   Id  System
 </body>
 </subsection>
 <subsection>
-<title>Tworzenie Partycji Root</title>
+<title>Tworzenie Partycji root.</title>
 <body>
 
 <p>
-W końcu, stwórzmy partycję root. W tym celu ponownie skorzystaj
-z polecenia <c>n</c>, aby rozpocząć zakładanie. Następnie wpisz
-<c>4</c>, żeby wybrać czwartą partycję - w naszym przypadku
-<path>/dev/hda4</path>. Zapytany o pierwszy i ostatni cylinder wciśnij
-Enter. Dzięki temu nasza partycja zajmie całą pozostałą przestrzeń.
-Po ukończeniu, polecenie <c>p</c> powinno dać następujący rezultat:
+W końcu stwórzmy partycję root. W tym celu ponownie skorzystaj
+z polecenia <c>n</c>. Następnie wpisz <c>4</c>, żeby wybrać czwartą
+partycję - w naszym przypadku <path>/dev/hda4</path>. Zapytany o 
+pierwszy i ostatni cylinder wciśnij Enter. Dzięki temu nasza 
+partycja zajmie całą pozostałą przestrzeń. Po ukończeniu, 
+polecenie <c>p</c> powinno dać następujący rezultat:
 </p>
 
 <pre caption="Listing kompletnej tablicy partycji">
@@ -1122,7 +1120,7 @@ Device Flag    Start       End    Blocks   Id  System
 </body>
 </subsection>
 <subsection>
-<title>Zachowywanie Zmian i Zamykanie fdisk</title>
+<title>Zachowanie zmian i zamknięcie fdisk.</title>
 <body>
 
 <p>
@@ -1132,6 +1130,7 @@ Aby zachować zmiany i opuścić <c>fdisk</c> wpisz <c>w</c>:
 <pre caption="Zapisywanie zmian i wychodzenie z fdisk">
 Command (m for help): <i>w</i>
 </pre>
+
 <p>
 Twoje partycje są już gotowe,
 możesz teraz przejść do <uri link="#filesystems">Zakładania Systemów Plików</uri>.
@@ -1141,7 +1140,7 @@ możesz teraz przejść do <uri link="#filesystems">Zakładania Systemów Plikó
 </subsection>
 </section>
 <section>
-<title>Partycjonowanie Dysku za pomocą mac-fdisk na PPC</title>
+<title>Partycjonowanie dysku za pomocą mac-fdisk na PPC</title>
 <body>
 
 <p>
@@ -1160,13 +1159,13 @@ Zapyta ono o numer kasowanych partycji.
 
 <p>
 Następnie, załóż partycję <e>Apple_bootstrap</e> za pomocą <c>b</c>.
-Zostaniez zapytany o początkowy blok. Jeśli poprzednio wybrałeś
+Zostaniesz zapytany o początkowy blok. Jeśli poprzednio wybrałeś
 na ten cel trzecią partycję, wpisz <c>3p</c>.
 </p>
 
 <note>
 To <e>nie</e> jest partycja "boot". Nie jest nawet używana
-przez Linuxa; nie potrzebujesz na niej miejsca do założenia
+przez Linuksa; nie potrzebujesz na niej miejsca do założenia
 systemu plików, nie powinieneś jej nawet montować. Użytkownicy
 PPC nie potrzebują partycji boot.
 </note>
@@ -1174,13 +1173,13 @@ PPC nie potrzebują partycji boot.
 <p>
 Teraz stwórz partycję wymiany za pomocą <c>c</c>. <c>mac-fdisk</c> ponownie
 zapyta o blok początkowy. Jako, że wcześniej skorzystaliśmy z <c>3</c>,
-teraz wpisz <c>4p</c>. Gdy zostaniesz zapytany o rozmiar, wpisz <c>512M</c>
-(lub inny na jaki się zdefydowałeś -- 512 jest zalecany). Następnie
+teraz wpiszemy <c>4p</c>. Gdy zostaniesz zapytany o rozmiar, wpisz <c>512M</c>
+(lub inny na jaki się zdecydowałeś - 512 to zalecane minimum). Następnie
 na pytanie o nazwę, wpisz <c>swap</c> (koniecznie).
 </p>
 
 <p>
-Żeby założyć partycję root, wpisz <c>c</c>, następnie <c>5p</c> aby wybrać
+Żeby założyć partycję root, wpisz <c>c</c>, a następnie <c>5p</c>, aby wybrać
 blok, od którego ma się zaczynać. Na pytanie o rozmiar ponownie wpisz <c>5p</c>,
 <c>mac-fdisk</c> zinterpretuje to jako życzenie zajęcia całej wolnej przestrzeni.
 Koniecznie podaj nazwę <c>root</c>.
@@ -1191,14 +1190,14 @@ Na zakończenie, zachowaj zmiany i opuść <c>mac-fdisk</c> poleceniami <c>w</c>
 i</p>
 
 <p>
-Teraz możesz przejść do <uri link="#filesystems">Zakładania Systemów Plików</uri>.
+Teraz możesz przejść do paragrafu<uri link="#filesystems">Zakładanie systemów plików</uri>.
 </p>
 
 
 </body>
 </section>
 <section>
-<title>Partycjonowanie Dysku za pomocą fdisk na HPPA</title>
+<title>Partycjonowanie dysku za pomocą fdisk na HPPA</title>
 <body>
 
 <p>
@@ -1220,27 +1219,21 @@ Jeśli nie utworzysz tej partycji, system przestanie Cię kochać i się nie uru
 </impo>
 
 <p>
-Jeżeli Twój dysk ma ponad 2GB wielkości, upewnij się czy partycja boot znajduje się
-w pierwszych 2GB. PALO nie może korzystać z dalszych obszarów.
+Jeżeli Twój dysk ma ponad 2GB wielkości, upewnij się, że partycja boot znajduje się
+w jego pierwszych 2GB. PALO nie może korzystać z dalszych obszarów.
 </p>
 
 <p>
-Po utworzeniu partycji możesz przejść do <uri 
-link="#filesystems">Zakładania Systemów Plików</uri>.
+Po utworzeniu partycji możesz przejść do paragrafu<uri 
+link="#filesystems">Zakładanie systemów plików</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Partycjonowanie Dysku za pomocą fdisk na MIPS</title>
-<!-- This entire section is copy/pasted from Kumba's original text. It should
-     probably be rewritten, but it seems a bit complicated.
-     Someone donate me a MIPS? :) 
-
-       ~SwifT
--->
+<title>Partycjonowanie Dysku za pomocą fdisk na MIPS.</title>
 <subsection>
-<title>Tworzenie SGI Disk Label</title>
+<title>Tworzenie SGI Disk Label.</title>
 <body>
 
 <p>
@@ -1267,8 +1260,8 @@ dwóch nowych partycji:
 </ul>
 
 <warn>
-SGI Volume Header <e>musi</e> rozpoczynać się od cylindra 0. Nie zapewnienie tego
-doprowadzi do niemożliwości uruchamiania z dysku.
+SGI Volume Header <e>musi</e> rozpoczynać się od cylindra 0. Jeśli zrobisz
+inaczej system nie uruchomi się z tego dysku.
 </warn>
 
 <p>
@@ -1332,10 +1325,11 @@ nadpisanie tablicy partycji następującym poleceniem:
 </body>
 </subsection>
 <subsection>
-<title>Nadawanie właściwego rozmiaru SGI Volume Header</title>
+<title>Nadawanie właściwego rozmiaru SGI Volume Header.</title>
 <body>
 
 <p>
+
 Gdy stworzysz SGI Disklabel, możesz przystąpić do definiowania partycji.
 W powyższym przykładzie, dwie z nich zostały już przygotowane.
 Pełnią one specjalne funkcje i nie mogą być wykorzystane w normalny sposób.
@@ -1346,11 +1340,11 @@ rozmiarze i ośmioznakowej nazwie.
 </p>
 
 <p>
-Proces powiększania woluminu nagłowka nie jest prosty -- trzeba zrobić
+Proces powiększania woluminu nagłówka nie jest prosty - trzeba zastosować
 kilka sztuczek. Nie można po prostu usunąć i dodać go ponownie, ze
 względu na dziwne zachowanie fdisk. W poniższym przykładzie, utworzymy
 50MB nagłówek woluminu oraz 50MB partycję boot. Rzeczywisty
-podział twojego dysku może być inny, ale przykład służy tylko
+podział Twojego dysku może być inny, przykład służy tylko
 zilustrowaniu czynności:
 </p>
 
@@ -1380,7 +1374,7 @@ First cylinder (0-50, default 0): <i>0</i>
 </body>
 </subsection>
 <subsection>
-<title>Ostateczny Schemat Partycji</title>
+<title>Ostateczny schemat partycji.</title>
 <body>
 
 <p>
@@ -1390,32 +1384,31 @@ domyślnie jest to <c>83</c>, Linux Native.
 </p>
 
 <p>
-Następnie, gdy będą już gotowe, przejdź do <uri 
-link="#filesystems">Zakładania Systemów Plików</uri>.
+Następnie, gdy będą już gotowe, przejdź do paragrafu <uri 
+link="#filesystems">Zakładanie systemów plików</uri>.
 </p>
 
 </body>
 </subsection>
 </section>
 <section id="filesystems">
-<title>Tworzenie Systemów Plików</title>
+<title>Tworzenie systemów plików.</title>
 <subsection>
-<title>Wprowadzenie</title>
+<title>Wprowadzenie.</title>
 <body>
 
 <p>
-Po stworzeniu partycji nadszedł czas na
-założenie na nich systemów plików. Jeśli nie obchodzi Cię
-jakie wybierzesz i jesteś zadowolony z domyślnych ustawień w podręczniku,
-przejdź do
-<uri link="#filesystems-apply">Zakładania na Partycji Systemu Plików</uri>.
-W przeciwnym wypadku czytaj dalej aby dowiedzieć się co nieco na ich temat.
+Po utworzeniu partycji nadszedł czas na założenie na nich systemów plików.
+Jeśli nie obchodzi Cię jakie wybierzesz i jesteś zadowolony z domyślnych
+ustawień w podręczniku, przejdź do <uri link="#filesystems-apply">Zakładania na
+Partycji Systemu Plików</uri>. W przeciwnym wypadku czytaj dalej aby dowiedzieć
+się co nieco na ich temat.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Systemy Plików?</title>
+<title>Systemy plików?</title>
 <body>
 
 <p>
@@ -1460,12 +1453,12 @@ system plików powinien działać, ale nie został dostatecznie przetestowany.
 </table>
 
 <p>
-<b>ext2</b> to sprawdzony i popularny linuksowy system plików, ale nie posiada
-księgowania. Powoduje to, iż jego regularne kontrole przy starcie systemu
-bywają długotrwałe. Obecnie istnieją nowoczesne systemy plików z księgowaniem,
-mogące być szybko sprawdzane i są zasadniczo zalecane. Księgowanie
-zapobiega długotrwałym kontrolom podczas uruchamiania i ewentualnym
-błędom spójności danych.
+<b>ext2</b> to sprawdzony i popularny linuksowy system plików, którego główną
+wadą jest to, że nie posiada księgowania. Powoduje to, iż jego regularne 
+kontrole przy starcie systemu bywają długotrwałe. Obecnie istnieją nowoczesne 
+systemy plików z księgowaniem, które można szybko sprawdzić i to właśnie te 
+polecamy naszym użytkownikom. Księgowanie zapobiega długotrwałym kontrolom 
+podczas uruchamiania systemu oraz ewentualnym błędom spójności danych.
 </p>
 
 <p>
@@ -1500,21 +1493,20 @@ systemu do utraty danych.
 </p>
 
 <p>
-<b>JFS</b> to bardzo wydajny system plików z księgowaniem IBMa.
-Dopiero niedawno został uznany za stabilny i nie ma na swoim
-koncie dostatecznych osiągnięć aby można było mówić
-źle lub dobrze o jego stabilności.
+<b>JFS</b> to bardzo wydajny system plików IBM, posiadający księgowanie.
+Dopiero niedawno został uznany za stabilny i jest jeszcze za wcześnie, 
+aby można było mówić źle lub dobrze o jego stabilności.
 </p>
 
 </body>
 </subsection>
 <subsection id="filesystems-apply">
-<title>Zakładanie na Partycji Systemu Plików</title>
+<title>Zakładanie systemu plików na partycji.</title>
 <body>
 
 <p>
-Aby założyć na woluminie lub partycji system plików, możesz skorzystać z dostępnych
-dla każdego narzędzi:
+Aby założyć na woluminie lub partycji system plików, możesz skorzystać z 
+odpowiedniego dla każdego z nich narzędzia:
 </p>
 
 <table>
@@ -1562,11 +1554,11 @@ Stwórz teraz systemy plików na swoich partycjach (lub woluminach logicznych).
 </body>
 </subsection>
 <subsection>
-<title>Aktywacja Partycji Swap</title>
+<title>Aktywacja partycji wymiany.</title>
 <body>
 
 <p>
-Aby zainicjalizować partycje wymiany, skorzystaj z programu <c>mkswap</c>.
+Aby zainicjować partycję wymiany, skorzystaj z programu <c>mkswap</c>.
 </p>
 
 <pre caption="Inicjalizacja partycji wymiany">
@@ -1574,18 +1566,20 @@ Aby zainicjalizować partycje wymiany, skorzystaj z programu <c>mkswap</c>.
 </pre>
 
 <p>
-Aby je aktywować skorzystaj ze <c>swapon</c>:
+Aby aktywować partycję wymiany użyj programu <c>swapon</c>:
 </p>
+
 <note>
 Jako że Knoppix automatycznie aktywuje wszystkie istniejące partycje wymiany,
 jego użytkownicy mogą pominąć ten krok.
 </note>
+
 <pre caption="Aktywacja partycji wymiany">
 # <i>swapon /dev/hda2</i>
 </pre>
 
 <p>
-Teraz Twoja kolej na inicjalizację i aktywację.
+Teraz sam utwórz i aktuwuj partycję wymiany.
 </p>
 
 </body>
@@ -1626,8 +1620,8 @@ w <path>/proc</path>. Zacznijmy od utworzenia odpowiedniego katalogu
 </pre>
 
 <p>
-Przejdź teraz do <uri link="?part=1&amp;chap=5">Instalacji Plików
-Instalacyjnych Gentoo</uri>.
+Kiedy skończysz przejdź do rozdziału <uri link="?part=1&amp;chap=5">Wgrywanie
+plików instajacyjnych Gentoo</uri>.
 </p>
 
 </body>
