@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.34 -->
+<!-- Orig revision: 1.36 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Przygotowanie Plików Instalacyjnych Gentoo -->
 <!-- Status: Ukończono -->
@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.5 2004/03/01 23:29:09 veng Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-stage.xml,v 1.6 2004/03/09 10:56:02 veng Exp $ -->
 
 <sections>
 <section>
@@ -263,7 +263,7 @@ link="#compile_options">Konfiguracji opcji kompilacji</uri>.
 By instalacja z użyciem GRP zakończyła się sukcesem, musisz pobrać odpowiednią
 migawkę Portage. Przejdź za pomocą programu <c>lynx</c> (lub <c>links2</c>)
 do jednego z naszych <uri link="/main/en/mirrors.xml">mirrorów</uri>
-i ściągnij plik z <path>releases/2004.0/twoja_architektura/snapshots</path>. 
+i ściągnij plik z katalogu <path>snapshots</path>. 
 Upewnij się, iż znajdujesz się w <path>/mnt/gentoo</path> by został on 
 zapisany na dysk.
 </p>
@@ -456,8 +456,8 @@ architekturę. Możliwe jej wartości są opisane jako komentarze w
 </pre>
 
 <p>
-Drugim jest flaga <c>-O</c>, która określa klasę optymalizacji <c>gcc</c>.
-Dostępne klasy to <c>s</c> (optymalizacja rozmiaru),
+Drugim jest flaga <c>-O</c> (to jest duże O, nie zero), która określa 
+klasę optymalizacji <c>gcc</c>. Dostępne klasy to <c>s</c> (optymalizacja rozmiaru),
 <c>0</c> (brak optymalizacji), <c>1</c>, <c>2</c> lub <c>3</c> są coraz
 silniej optymalizujące (każda z nich używa tych samych flag, co poprzednia
 oraz dodaje własne). Jako przykład posłuży nam klasa optymalizacji 2:
