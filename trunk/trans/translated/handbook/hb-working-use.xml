@@ -9,12 +9,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.17 2004/12/29 09:06:19 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.18 2005/01/27 18:30:24 grzesieq Exp $ -->
 
 <sections>
 
-<version>1.23</version>
-<date>2004-12-28</date>
+<version>1.26</version>
+<date>2005-01-23</date>
 
 <section>
 <title>Czym są flagi USE?</title>
@@ -138,12 +138,19 @@ wewnątrz zmiennej USE. Aby ułatwić użytkownikom szukanie oraz wybór flag
 USE dostarczamy dobrany przez nas <e>domyślny</e> zestaw. Zestaw ten 
 jest kolekcją flag USE, które według nas są najczęściej używane przez 
 użytkowników Gentoo. Domyślny zestaw jest zdeklarowany w pliku 
-<path>make.defaults</path> i jest on częścią Twojego profilu. 
+<path>make.defaults</path> i jest on częścią Twojego profilu.
+</p>
+
+<p>
+Profil, którego system używa jest wskazywany przez dowiązanie symboliczne <path>/etc/make.profile</path>. Każdy profil działa ponad innym, większym profilem, końcowy wynik jest więc sumą wszystkich profili. Górny profil to <path>base</path> (<path>/usr/portage/profiles/base</path>).
+</p>
+
+<p>
 Rzućmy okiem na te domyślne ustawienia:
 </p>
 
-<pre caption="Zmienna USE w tage/profiles/default-linux/x86/2004.3/make.defaults">
-<comment>(To jest tylko przykład i ustawienia tej flagi mogły ulec zmienie)</comment>
+<pre caption="Skumulowana zmienna USE w /usr/portage/profiles/default-linux/x86/2004.3/make.defaults">
+<comment>(Ten przykład to suma ustawień w plikach base, default-linux, default-linux/x86 i default-linux/x86/2004.3)</comment>
 USE="x86 oss apm arts avi berkdb bitmap-fonts crypt cups encode fortran f77
 foomaticdb gdbm gif gpm gtk gtk2 imlib jpeg kde gnome libg++ libwww mad
 mikmod motif mpeg ncurses nls oggvorbis opengl pam pdflib png python qt
@@ -241,7 +248,7 @@ Niektóre pakiety nie tylko używają flag USE, ale także ich dostarczają.
 Kiedy instalujesz taki pakiet flagi USE, których on dostarcza są dodawane 
 do już istniejących flag. Aby przejrzeć listę pakietów, które 
 dostarczają flagi USE, zajrzyj do pliku 
-<path>/etc/make.profile/use.defaults</path>:
+<path>/etc/make.profile/use.defaults</path> i plików <path>use.defaults</path> z nadrzędnych profili.
 </p>
 
 <pre caption="Fragment pliku /etc/make.profile/use.defaults">
@@ -290,13 +297,13 @@ Zmienna USE zdefiniowana przez użytkownika jako zmienna
 
 <p>
 Aby sprawdzić ostateczne ustawienia zmiennej <c>USE</c> widziane przez 
-Portage wpisz polecenie <c>emerge info</c>.
+Portage wpisz polecenie <c>emerge --info</c>.
 Polecenie to ukaże wszystkie istotne zmienne (włączając zmienną 
 <c>USE</c>) z wartościami użytymi przez Portage.
 </p>
 
-<pre caption="Wykonywanie polecenia emerge info">
-# <i>emerge info</i>
+<pre caption="Wykonywanie polecenia emerge --info">
+# <i>emerge --info</i>
 </pre>
 
 </body>
@@ -324,14 +331,14 @@ zostały zemergowane na "starym" systemie, ale są nieaktualne z nowymi flagami 
 </p>
 
 <warn>
-Uruchomienie <e>emerge depclean</e> jest niebezpieczną operacją i powinno być wykonywane
+Uruchomienie <e>emerge --depclean</e> jest niebezpieczną operacją i powinno być wykonywane
 z zachowaniem pełnej ostrożności. Sprawdź podwójnie listę "nieaktualnych" pakietów i upewnij
 się, że Portage nie chce usunąć czegoś, czego potrzebujesz. W poniższym przykładzie
 dodajemy opcję <c>-p</c>, aby zobaczyć tylko listę pakietów, bez usuwania ich.
 </warn>
 
 <pre caption="Usuwanie niepotrzebnych pakietów">
-# <i>emerge -p depclean</i>
+# <i>emerge -p --depclean</i>
 </pre>
      
 <p>
