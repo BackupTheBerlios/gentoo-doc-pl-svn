@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.36 -->
+<!-- Orig revision: 1.49 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja Systemu -->
 <!-- Status: Ukończono -->
-<!-- Update from 1.31 to 1.36: sekretarz <sekretarz@dukato.net> -->
+<!-- Update from 1.31 to 1.49: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.24 2004/07/11 12:02:05 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-config.xml,v 1.25 2004/11/01 11:17:29 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -40,7 +40,7 @@ do niej symlinka <path>/etc/localtime</path>.
 <p>
 W Linuksie, wszystkie używane przez system partycje powinny być
 wpisane do <path>/etc/fstab</path>. Plik ten zawiera informacje o tym gdzie
-(w strukturze katalogów), jak (z jakimi opcjami) i kiedy (automatycznie czy nie, 
+(w strukturze katalogów), z jakimi opcjami i kiedy (automatycznie czy nie, 
 przez zwykłych użytkowników czy nie itd.) mają zostać zamontowane.
 </p>
 
@@ -85,8 +85,8 @@ jakąś funkcję:
 </ul>
 
 <p>
-Aby utworzyć <path>/etc/fstab</path> uruchom <c>nano</c> (lub swój ulubiony 
-edytor):
+Domyślny <path>/etc/fstab</path> dostarczany przez gentoo <e> nie jest poprawnym plikiem fstab</e>, 
+uruchom więc <c>nano</c> (lub swój ulubiony edytor) i utwórz swój własny plik <path>/etc/fstab</path>:
 </p>
 
 <pre caption="Tworzenie /etc/fstab">
@@ -109,7 +109,7 @@ Musi ona być sprawdzana podczas rozruchu, wieć wpiszemy;
 /dev/hda1   /boot     ext2    defaults        1 2
 </pre>
 
-Niektórzy użytkownicy nie chcą, aby partycja <path>/boot</path> była montowana 
+Niektórzy użytkownicy nie chcą, aby partycja <path>/boot</path>, ze względów bezpieczeństwa, była montowana 
 automatycznie. Powinni oni zastąpić opcję <c>defaults</c> opcją <c>noauto</c>.
 Oznacza to, że musisz ręcznie zamontować tą partycję za każdym razem kiedy chcesz
 jej użyć.
@@ -121,7 +121,7 @@ opcję <c>noatime</c>. Dzięki niej nie są rejestrowane czasy dostępów
 </p>
 
 <pre caption="Poprawiony wpis /boot do /etc/fstab">
-/dev/hda1   /boot     ext2    noauto,noatime    1 2
+/dev/hda1   /boot     ext2    defaults,noatime    1 2
 </pre>
 
 <p>
@@ -130,7 +130,7 @@ trzy wiersze (dla partycji <path>/boot</path>, <path>/</path> oraz swap):
 </p>
 
 <pre caption="Trzy wpisy do /etc/fstab">
-/dev/hda1   /boot     ext2    noauto,noatime    1 2
+/dev/hda1   /boot     ext2    defaults,noatime  1 2
 /dev/hda2   none      swap    sw                0 0
 /dev/hda3   /         ext3    noatime           0 1
 </pre>
@@ -147,7 +147,7 @@ Na koniec, powinieneś jeszcze dodać linijki dla <path>/proc</path>,
 /dev/hda3   /         ext3    noatime           0 1
 
 none        /proc     proc    defaults          0 0
-none        /dev/shm  tmpfs   defaults          0 0
+none        /dev/shm  tmpfs   nodev,nosuid,noexec  0 0
 
 /dev/cdroms/cdrom0    /mnt/cdrom    auto      noauto,user    0 0
 </pre>
@@ -270,9 +270,7 @@ Jeśli korzystasz z DHCP (automatycznego przydzielania IP), powinieneś
 ustawić <c>iface_eth0</c> na <c>dhcp</c>. Jeżeli używasz rp-pppoe (np.
 dla ASDL), ustaw ją na <c>up</c>. Natomiast jeśli musisz
 konfigurować sieć ręcznie i nie zapoznałeś się jeszcze z wymienionymi
-wyżej pojęciami, przeczytaj sekcję <uri
-link="?part=1&amp;chap=3#doc_chap4_sect3">Terminologia Sieciowa
-</uri>.
+wyżej pojęciami, przeczytaj sekcję <uri link="?part=1&amp;chap=3#network_term">Terminologia Sieciowa</uri>.
 </p>
 
 <p>
@@ -284,13 +282,13 @@ i bramą 192.168.0.1, w kolejnym po prostu uaktywnimy interfejs do pracy z rp-pp
 <pre caption="Przykładowe /etc/conf.d/net">
 <comment>(Dla DHCP)</comment>
 iface_eth0="dhcp"
-<comment>Część administratorów sieci wymaga używania</comment>
-<comment>nazwy komputera oraz domeny dostarczanej przez serwer DHCP.</comment>
-<comment>W tym przypadku, dodaj nastepującą linię alby dhcpcd zaczął je używać.</comment>
-<comment>To nadpisze zdefiniowaną przez Ciebie nazwę komputera oraz nazwę domeny.</comment>
+<comment># Część administratorów sieci wymaga używania</comment>
+<comment># nazwy komputera oraz domeny dostarczanej przez serwer DHCP.</comment>
+<comment># W tym przypadku, dodaj nastepującą linię alby dhcpcd zaczął je używać.</comment>
+<comment># To nadpisze zdefiniowaną przez Ciebie nazwę komputera oraz nazwę domeny.</comment>
 dhcpcd_eth0="-HD"
-<comment>Jeżeli zamierzasz używać NTP, aby Twój komputer miał zawsze aktualną datę, użyj</comment>
-<comment>opcji -N, aby dhcpcd nie nadpisywało Twojego pliku /etc/ntp.conf</comment>
+<comment># Jeżeli zamierzasz używać NTP, aby Twój komputer miał zawsze aktualną datę, użyj</comment>
+<comment># opcji -N, aby dhcpcd nie nadpisywało Twojego pliku /etc/ntp.conf</comment>
 dhcpcd_eth0="-N"
 
 <comment>(Dla stałego IP)</comment>
@@ -368,11 +366,12 @@ powinieneś dodać do <path>/etc/hosts</path> następujące linijki:
 
 <p>
 Jeśli nie posiadasz wewnętrznej sieci (lub serwer nazw obejmuje
-także umieszczone w niej komputery) wystarczy pojedynczy wpis:
+także umieszczone w niej komputery) wystarczy pojedynczy wpis. 
+Jeżeli na przyład chcesz nazwać swój system <c>tux.homenetwork</c> użyj:
 </p>
 
 <pre caption="/etc/hosts dla samotnych lub w pełni zintegrowanych maszyn">
-127.0.0.1     localhost  
+127.0.0.1     tux.homenetwork tux localhost
 </pre>
 
 <p>
@@ -394,8 +393,10 @@ czytaj dalej.
 pcmcia-cs jest dostępne wyłącznie na platformach x86, amd64 oraz ppc.
 </note>
 <p>
-Jeśli korzystasz z PCMCIA, zainstaluj pakiet <c>pcmcia-cs</c>.
-Aby pominąć opcjonalną zależność od XFree86, wpisz dodatkowo <c>USE="-X"</c>:
+Jeśli korzystasz z PCMCIA, zainstaluj pakiet <c>pcmcia-cs</c>. 
+Dotyczy się to także użytkowników jąder z serii 2.6 (nawet jeżeli nie bedą
+używali sterowników PCMCIA z tego pakietu). Aby pominąć opcjonalną zależność 
+xorg-x11, wpisz dodatkowo <c>USE="-X"</c>:
 </p>
 
 <pre caption="Instalacja pcmcia-cs">
@@ -415,6 +416,30 @@ Następnie dodaj do domyślnego poziomu uruchamiania skrypt <c>pcmcia</c>:
 </section>
 <section>
 <title>Konfiguracja Systemu</title>
+<subsection>
+<title>Hasło superużytkownika</title>
+<body>
+
+<p>
+Najpierw musimy ustawić hasło na roota wpisując:
+</p>
+
+<pre caption="Ustawienie hasła superużytkownika">
+# <i>passwd</i>
+</pre>
+
+<p>
+Jeżeli chcesz aby superużytkownik mógł logować się na konsole serial, dodaj
+<c>tts/0</c> do <path>/etc/securetty</path>:
+</p>
+
+<pre caption="Dodawanie tts/0 do /etc/securetty">
+# <i>echo "tts/0" &gt;&gt; /etc/securetty</i>
+</pre>
+
+</body>
+</subsection>
+
 <body>
 
 <p>
@@ -443,7 +468,7 @@ kody klawiszy ADB w jądrze i ustawić ją w <path>rc.conf</path>.
 </p>
 
 <p>Po ukończeniu edycji zapisz zmiany i zamknij edytor. Następnie przejdź 
-do <uri link="?part=1&amp;chap=9">Konfiguracji Bootloadera</uri>.
+do <uri link="?part=1&amp;chap=9">Instalacji Odpowiednich Narzędzi Systemowych</uri>.
 </p>
 
 </body>

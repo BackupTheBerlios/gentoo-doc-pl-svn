@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.9 -->
+<!-- Orig revision: 1.23 -->
 <!-- Translator: sekretarz <sekretarz@dukato.net> -->
 <!-- Title: Instalacja jądra dla x86 -->
 <!-- Status: Ukończono -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.4 2004/07/13 07:41:14 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-x86-kernel.xml,v 1.5 2004/11/01 11:17:29 sekretarz Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
@@ -44,20 +44,23 @@ Gentoo udostępnia swoim użytkownikom kilka źródeł jąder. Ich pełną list�
 
 <p>
 Dla architektury x86 udostępniamy między innymi: <c>vanilla-sources</c> 
-(standartowe źródła jądra rozwijane przez programistów linuxa),
-<c>gentoo-sources</c> (źródła jądra łatane poprawkami
+(standartowe źródła jądra z serii 2.4 rozwijane przez programistów linuxa),
+<c>gentoo-sources</c> (źródła jądra z serii 2.4 łatane poprawkami
 wydajnościowymi), <c>gentoo-dev-sources</c> (jądro z serii 2.6 łatane poprawkami 
-wydajościowymi i ulepszeniach stabilność oraz funkcjonalność), <c>xfs-sources</c> 
-(źródła jądra z obsługą XFS), <c>gs-sources</c> (źródła jądra przygotowane pod 
-użycie na serwerach), <c>gaming-sources</c> (źródła jądra przygotowane pod optymalą wydajność
-gier), <c>development-sources</c> (czyste źródła jądra z serii 2.6), ...
+wydajościowymi), <c>development-sources</c> (standartowe źródła jądra z serii 2.6), ...
 </p>
 
 <p>
-Jeżeli wybrałeś instalacje bez dostępu do sieci, dostępna jest tylko część źródeł.
-W tym przypadku jesteś ograniczony do używania <c>gentoo-sources</c>, <c>vanilla-sources</c>,
-<c>development-sources</c> albo <c>gentoo-dev-sources</c>.
+Jeżeli wybrałeś instalacje bez dostępu do sieci, dostępna jest tylko część źródeł, które znajdują się na LiveCD.
+Dla wydania 2004.2 Należą do nich:
 </p>
+
+<ul>
+  <li>gentoo-sources</li>
+  <li>vanilla-sources</li>
+  <li>gentoo-dev-sources</li>
+  <li>development-sources</li>
+</ul>
 
 <p>
 Wybierz źródła jądra i zainstaluj je.
@@ -69,12 +72,12 @@ Wybierz źródła jądra i zainstaluj je.
 
 <p>
 Jeżeli wejdziesz do <path>/usr/src</path> powinneś zobaczyć dowiązanie symboliczne nazwane 
-<path>linux</path> wskazujące na źródła Twojego jądra:
+<path>linux</path> wskazujące na źródła Twojego jądra. Zakładamy, że zainstalowałeś <c>gentoo-sources-2.4.26-r6</c>:
 </p>
 
 <pre caption="Podgląd dowiązania symbolicznego do źródeł jądra">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.4.25-gentoo
+lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.4.26-gentoo-r6
 </pre>
 
 <p>
@@ -85,7 +88,7 @@ zmień je przed kontynuacją:
 <pre caption="Zmiana dowiązania do źródeł jądra">
 # <i>rm /usr/src/linux</i>
 # <i>cd /usr/src</i>
-# <i>ln -s linux-2.4.25-gentoo linux</i>
+# <i>ln -s linux-2.4.26-gentoo-r6 linux</i>
 </pre>
 
 <p>
@@ -161,9 +164,8 @@ Upewnij się, że kompilujesz jądro na odpowienią rodzinę procesorów:
 
 <pre caption="Wybór odpowiedniej rodziny procesorów">
 Processor type and features ---&gt;
-  Subarchitecture Type (<i>PC Compatible</i>) ---&gt;
   <comment>(Zmień zgodnie z Twoim systemem)</comment>
-  Processor family (<i>Athlon/Duron/K7</i>) ---&gt;
+  (<i>Athlon/Duron/K7</i>) Processor family
 </pre>
 
 <p>
@@ -188,7 +190,6 @@ File systems ---&gt;
     [*] /proc file system support
     [*] /dev file system support (OBSOLETE)
     [*]   Automatically mount at boot
-    [*] /dev/pts file system for Unix98 PTYs
     [*] Virtual memory file system support (former shm fs)
 
 <comment>(Wybierz jedną lub więcej z poniższych opcji potrzebnych Twojemu systemowi)</comment>
@@ -200,8 +201,22 @@ File systems ---&gt;
 </pre>
 
 <p>
-Jeżeli używasz PPPoE do połączenia się z Internetem albo używasz modemu dial-up,
-musisz zaznaczyć te opcje w jądrze:
+Jeżeli Twój BIOS nie wspomaga dużych dysków, a dysk przekracza limit wielkości, aby 
+uzyskać dostęp do całego dysku twardego musisz uaktywnić następujące opcje:
+</p>
+  
+<pre caption="Selecting autogeometry resizing support">
+<comment>(Dotyczy tylko jąder z serii 2.4)</comment>
+ATA/IDE/MFM/RLL support ---&gt;
+  IDE, ATA and ATAPI Block devices ---&gt;
+      &lt;*&gt;   Include IDE/ATA-2 DISK support
+      [ ]     Use multi-mode by default
+      [*]     Auto-Geometry Resizing support
+</pre>
+
+<p>
+Jeżeli używasz PPPoE lub modemu dial-up do połączenia się z Internetem, 
+musisz zaznaczyć poniższe opcje w jądrze:
 </p>
 
 <pre caption="Wybór potrzebych sterowników PPPoE">
@@ -239,6 +254,23 @@ Processor type and features  ---&gt;
 </pre>
 
 <p>
+Jeżeli używasz urządzeń wejściowych na USB (jak klawiatura czy myszka) nie zapomnij 
+o włączeniu tych opcji:
+</p>
+
+<pre caption="Włączenie obsługi USB dla urządzeń wejściowych">
+USB Support ---&gt;
+  &lt;*&gt;   USB Human Interface Device (full HID) support
+</pre>
+
+<p>
+Użytkownicy laptopów, którzy chcą mieć obsługę PCMCIA <e>nie</e> powinni używać sterowników
+PCMCIA dostarczanych razem z jąderm z serii 2.4. Bardziej aktualne sterowniki dostępne są
+w pakiecie <c>pcmcia-cs</c>, który możesz zainstalować póżniej. Użytkownicy jąder 2.6 powinni
+używać sterowników PCMCIA dostarczanych razem ze źródłami jądra.
+</p>
+
+<p>
 Przejdź teraz do <uri
 link="#compiling">Kompilacji i Instalacji</uri>.
 </p>
@@ -265,13 +297,13 @@ modules_install</c>:
 
 <p>
 Kiedy kompilacja zakończy się, skopiuj obraz jądra do <path>/boot</path>.
-Zakładamy, że instalujesz wersję 2.4.25 <c>gentoo-sources</c>. Użyj jakiej chcesz
+Zakładamy, że instalujesz wersję 2.4.26 <c>gentoo-sources</c>. Użyj jakiej chcesz
 nazwy i zapamiętaj ją do późniejszej konfiguracji bootloadera.
 </p>
 
 <pre caption="Instalacja jądra">
-# <i>cp arch/i386/boot/bzImage /boot/kernel-2.4.25-gentoo</i>
-# <i>cp System.map /boot/System.map-2.4.25-gentoo</i>
+# <i>cp arch/i386/boot/bzImage /boot/kernel-2.4.26-gentoo-r6</i>
+# <i>cp System.map /boot/System.map-2.4.26-gentoo-r6</i>
 </pre>
 
 <p>
@@ -279,7 +311,7 @@ Na wszelki wypadek, dobrze jest też skopiować plik konfiguracyjny jądra do <p
 </p>
 
 <pre caption="Archiwizacja pliku konfiguracyjnego">
-# <i>cp .config /boot/config-2.4.25-gentoo</i>
+# <i>cp .config /boot/config-2.4.26-gentoo-r6</i>
 </pre>
 
 <p>
@@ -376,13 +408,8 @@ w Twoim systemie. Oto lista ebuildów, które instalują dodatkowe moduły jądr
 </tr>
 <tr>
   <ti>nvidia-kernel</ti>
-  <ti>Wspierający akcelerację sterownik kart graficznych NVIDIA dla XFree86</ti>
+  <ti>Wspierający akcelerację sterownik kart graficznych NVIDIA dla xorg-x11</ti>
   <ti><c>emerge nvidia-kernel</c></ti>
-</tr>
-<tr>
-  <ti>nforce-net</ti>
-  <ti>Zintegrowana karta sieciowa na płytach NVIDIA NForce(2)</ti>
-  <ti><c>emerge nforce-net</c></ti>
 </tr>
 <tr>
   <ti>nforce-audio</ti>
@@ -401,12 +428,12 @@ w Twoim systemie. Oto lista ebuildów, które instalują dodatkowe moduły jądr
 </tr>
 <tr>
   <ti>emu10k1</ti>
-  <ti>Wsparcie dla Creative Sound Blaster Live!/Audigy</ti>
+  <ti>Wsparcie dla Creative Sound Blaster Live!/Audigy (wyłącznie jądra z serii 2.4)</ti>
   <ti><c>emerge emu10k1</c></ti>
 </tr>
 <tr>
   <ti>ati-drivers</ti>
-  <ti>Wspierający akcelerację sterownik dla kart graficznych ATI Radeon 8500+/FireGL dla XFree86</ti>
+  <ti>Wspierający akcelerację sterownik dla kart graficznych ATI Radeon 8500+/FireGL dla xorg-x11</ti>
   <ti><c>emerge ati-drivers</c></ti>
 </tr>
 <tr>
@@ -438,7 +465,7 @@ Jeżeli nie chcesz instalować jakiegoś pakietu wymaganego przez sterownik, uż
 
 <p>
 W poprzednim przykładnie widzimy jedną z zależności <e>emu10k1</e> (<c>aumix</c>) użuuwającej
-flagi <c>gtk</c> i <c>gnome</c>, wymuszającej kompilację gtk (które z kolei wymaga XFree).
+flagi <c>gtk</c> i <c>gnome</c>, wymuszającej kompilację gtk (które z kolei wymaga xorg-x11).
 </p>
 
 <p>

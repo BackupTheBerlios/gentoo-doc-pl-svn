@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.4 -->
+<!-- Orig revision: 1.10 -->
 <!-- Translator: sekretarz <sekretarz@dukato.net> -->
 <!-- Title: Instalacja jądra dla alpha -->
 <!-- Status: Ukończono -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-kernel.xml,v 1.1 2004/07/13 08:10:54 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-alpha-kernel.xml,v 1.2 2004/11/01 11:17:29 sekretarz Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
@@ -171,7 +171,6 @@ File systems ---&gt;
     [*] /proc file system support
     [*] /dev file system support (OBSOLETE)
     [*]   Automatically mount at boot
-    [*] /dev/pts file system for Unix98 PTYs
     [*] Virtual memory file system support (former shm fs)
 
 <comment>(Wybierz jedną lub więcej z poniższych opcji potrzebnych Twojemu systemowi)</comment>
@@ -212,10 +211,10 @@ Nie zapomnij też o włączeniu obsługi Twojej karty sieciowej w jądrze.
 </p>
 
 <p>
-Następujące opcje są rekomendowana do użycia z architekturą alpha:
+Następujące opcje jądra są rekomendowane do użycia:
 </p>
 
-<pre caption="Opcje specyficzne dla alpha">
+<pre caption="Opcje polecane dla architektury alpha">
 General setup ---&gt;
   &lt;*&gt; SRM environment through procfs
   &lt;*&gt; Configure uac policy via sysctl
@@ -270,8 +269,7 @@ Sound ---&gt;
 </pre>
 
 <p>
-Przejdź teraz do <uri
-link="#compiling">Kompilacji i Instalacji</uri>.
+Przejdź teraz do <uri link="#compiling">Kompilacji i Instalacji</uri>.
 </p>
 
 </body>
@@ -296,11 +294,12 @@ modules_install</c>:
 
 <p>
 Kiedy kompilacja zakończy się, skopiuj obraz jądra do <path>/boot</path>.
-W następnym przykładzie akładamy, że instalujesz <c>vanilla-sources-2.4.24</c>:
+W następnym przykładzie akładamy, że instalujesz <c>vanilla-sources-2.4.24</c>
+Niektóre jądra mogą tworzyć plik <path>vmlinux</path> zamiast pliku <path>vmlinux.gz</path>:
 </p>
 
 <pre caption="Instalacja jądra">
-# <i>cp vmlinux /boot/kernel-2.4.24</i>
+# <i>cp arch/alpha/boot/vmlinux.gz /boot/</i>
 # <i>cp System.map /boot/System.map-2.4.24</i>
 </pre>
 

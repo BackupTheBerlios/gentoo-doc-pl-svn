@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.18 -->
+<!-- Orig revision: 1.21 -->
 <!-- Translator: Sharak <sharak@rybnet.pl> -->
 <!-- Title: Flagi USE -->
 <!-- Status: Ukończono -->
-<!-- Update from 1.11 to 1.16: sekretarz <sekretarz@dukato.net> -->
+<!-- Update from 1.11 to 1.21: sekretarz <sekretarz@dukato.net> -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license 
 -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.8 2004/09/19 14:49:16 sharak Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-use.xml,v 1.9 2004/11/01 11:17:29 sekretarz Exp $ -->
 
 <sections>
 <section>
@@ -176,6 +176,13 @@ Na przykład, aby usunąć obsługę KDE i QT ale dodać obsługę ldap, zmienna
 USE="-kde -qt ldap"
 </pre>
 
+</body>
+</subsection>
+<subsection>
+<title>Deklaracja flag USE dla oddzielnego pakietu</title>
+<body>
+				   	
+
 <p>
 Czasami chcesz zadeklarować wybraną flagę USE dla jednego (lub kilku) aplikacji,
 ale nie dla całego systemu. Aby tego dokonać, aby tego dokonać, będziesz
@@ -218,12 +225,6 @@ Twoje zmiany zostana utracone!
 <p>
 Jako przykład usuniemy obsługę javy na czas instalacji mozilli.
 </p>
-
-<note>
-Polecenie <c>emerge</c> będzie opisane bardziej szczegółowo w sekcji 
-<uri
-link="?part=2&amp;chap=2">Portage i oprogramowanie</uri>.
-</note>
 
 <pre caption="Używanie USE jako zmiennej środowiskowej">
 # <i>USE="-java" emerge mozilla</i>
@@ -307,10 +308,7 @@ Polecenie to ukaże wszystkie istotne zmienne (włączając zmienną
 
 <p>
 Jeżeli zmodyfikowałeś swoje flagi USE i chcesz teraz uaktualnić swój system, 
-aby pakiety używały nowych flag USE, musisz wykonać pare czynności
-przedstawionych poniżej. Pamiętaj jednak, że czynności te są czasochłonne.
-Trwają prace nad dostosowaniem Portage, aby obsługiwał takie zachowania
-automatycznie i szybciej. 
+aby pakiety używały nowych flag USE, wywołaj <c>emerge</c> z opcją <c>--newuse</c>
 </p>
 
 <p>
@@ -318,7 +316,7 @@ Po pierwsze, przekompiluj swój system używając nowych flag USE:
 </p>
    
 <pre caption="Rekompilacja systemu">
-# <i>emerge --emptytree world</i>
+# <i>emerge --update --deep --newuse world</i>
 </pre>   
  
 <p>
@@ -338,9 +336,18 @@ dodajemy opcję <c>-p</c>, aby zobaczyć tylko listę pakietów, bez usuwania ic
 </pre>
      
 <p>
-Kiedy depclean zakończy się, Twój system jest już gotowy do używania nowych flag USE.
+Kiedy depclean zakończy się, uruchom <c>revdep-rebuild</c> aby przebudować aplikacje, które mogą być
+połączone dynamicznie z bibliotekami, które zostały usunięte. <c>revdep-rebuild</c> jest częscią pakietu <c>gentoolkit</c>.
 </p>
-         
+
+<pre caption="Uruchomienie revdep-rebuild">
+ # <i>revdep-rebuild</i>
+</pre>
+		   	 
+<p>
+Kiedy to wszystko zostanie zakończone, Twój system używa już nowych ustawień flag USE.
+</p>         
+
 </body>
 </subsection>
 </section>
@@ -351,18 +358,9 @@ Kiedy depclean zakończy się, Twój system jest już gotowy do używania nowych
 <body>
 
 <p>
-W następnym rozdziale <uri link="?part=2&amp;chap=2">Portage i 
-oprogramowanie</uri>
-wytłumaczymy jak zarządzać zainstalowanym oprogramowaniem oraz jak 
-pracować z <c>emerge</c>. Najpierw jednakże chcielibyśmy przybliżyć Ci 
-<c>emerge</c> pokazując jak sprawdzić, których zmiennych USE używa 
-pakiet.
-</p>
-
-<p>
 Weźmy na przykład <c>mozillę</c>: których flag USE ona używa? Aby się 
 tego dowiedzieć, użyjemy polecenia <c>emerge</c> z parametrami 
-<c>--pretend</c> (tak naprawdę to nic on nie daje) oraz <c>--verbose</c> 
+<c>--pretend</c> oraz <c>--verbose</c> 
 (pokazuje więcej informacji):
 </p>
 
@@ -385,7 +383,7 @@ pakietach zwane <c>etcat</c>. Znajduje się ono w pakiecie
 </p>
 
 <pre caption="Instalacja gentoolkit">
-# <i>emerge --usepkg gentoolkit</i>
+# <i>emerge gentoolkit</i>
 </pre>
 
 <p>

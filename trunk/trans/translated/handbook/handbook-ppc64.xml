@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE book SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.92 -->
+<!-- Orig revision: 1.39 -->
 <!-- Translator: sekretarz <sekretarz@dukato.net> -->
-<!-- Title: Podręcznik Gentoo Linux/MIPS -->
+<!-- Title: Podręcznik Gentoo Linux/PPC64 -->
 <!-- Status: Ukończono -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/handbook-mips.xml,v 1.7 2004/11/01 11:17:29 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/handbook-ppc64.xml,v 1.1 2004/11/01 11:17:29 sekretarz Exp $ -->
 
-<book link="handbook-mips.xml">
-<title>Podręcznik Gentoo Linux/MIPS</title>
+<book link="handbook-ppc.xml">
+<title>Podręcznik Gentoo Linux/x86</title>
 
 <author title="Author">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
@@ -33,7 +33,7 @@
   <mail link="agriffis@gentoo.org">Aron Griffis</mail>
 </author>
 <author title="Gentoo AMD64 Developer">
-  <mail link="jhuebel@gentoo.org">Jason Huebel</mail>
+  <mail link="brad_mssw@gentoo.org">Brad House</mail>
 </author>
 <author title="Gentoo HPPA developer">
   <mail link="gmsoft@gentoo.org">Guy Martin</mail>
@@ -90,9 +90,6 @@
 <author title="Editor">
   <mail link="kumba@gentoo.org">Joshua Kinard</mail>
 </author>
-<author title="Editor">
-  <mail link="dertobi123@gentoo.org">Tobias Scherbaum</mail>
-</author>
 <author title="Reviewer">
     <mail link="g2boojum@gentoo.org">Grant Goodyear</mail>
 </author>
@@ -106,7 +103,7 @@
     <mail link="antifa@gentoo.org">Ken Nowack</mail>
 </author>
 <author title="Contributor">
-   <mail link="pylon@gentoo.org">Lars Weiler</mail>
+    <mail link="pylon@gentoo.org">Lars Weiler</mail>
 </author>
 
 <abstract>
@@ -118,7 +115,7 @@ To jest Podręcznik Gentoo, wysiłek zcentralizowania informacji o Gentoo/Linux.
 <license/>
 
 <version>3.2</version>
-<date>October 23, 2004</date>
+<date>July 9, 2004</date>
 
 <part>
 <title>Instalacja Gentoo</title>
@@ -138,9 +135,9 @@ Użytkownicy, którzy nie spotkali się jeszcze z Gentoo, nie wiedzą pewnie, ż
 <title>Wybór odpowiedniego medium instalacyjnego</title>
 <abstract>
 Możesz zainstalować Gentoo na wiele różnych sposobów. Ten rozdział tłumaczy, jak zainstalować Gentoo
-używając obrazu MIPS Netboot.
+używając jednej z naszych LiveCD.
 </abstract>
-  <include href="hb-install-mips-medium.xml"/>
+  <include href="hb-install-ppc64-medium.xml"/>
 </chapter>
 
 <chapter>
@@ -156,7 +153,7 @@ Musisz ustawić sieć, aby zainstalować Gentoo używając Internetu.
 <abstract>
 Aby umożliwić instalację Gentoo, musisz utworzyć odpowiednie partycje.
 </abstract>
-  <include href="hb-install-mips-disk.xml"/>
+  <include href="hb-install-ppc64-disk.xml"/>
 </chapter>
 
 <chapter>
@@ -183,7 +180,7 @@ Ten rozdział opisze jak dojść do tego stadium.
 Jądro Linuxa jest rdzeniem każdej dystrybucji. Ten rozdział wytłumaczy,
 jak skonfigurować Twoje jądro.
 </abstract>
-  <include href="hb-install-mips-kernel.xml"/>
+  <include href="hb-install-ppc64-kernel.xml"/>
 </chapter>
 
 <chapter>
@@ -207,17 +204,17 @@ zainstalować najważniejsze narzędzia.
 <chapter>
 <title>Konfiguracja Bootloadera</title>
 <abstract>
-MIPS tak naprawde nie ma bootloadera, ale wzamian do bootowania jądra używany jest MIPS PROM.
-Ten rozdział tłumaczy jak zainstalować Jądro Linuxa jako opcję bootu PROM.
+Instnieje wiele bootloaderów. Każdy z nich inaczej sie konfiguruje. 
+Przeprowadzimy Cię przez proces konfiguracji bootloadera, który chesz mieć w swoim systemie.
 </abstract>
-  <include href="hb-install-mips-bootloader.xml"/>
+  <include href="hb-install-ppc64-bootloader.xml"/>
 </chapter>
 
 <chapter>
 <title>Zakończenie instalacji Gentoo</title>
 <abstract>
 Już prawie wszystko skończone. Musimy jeszcze tylko utworzyć jednego (lub więcej) użytkowników
-dla Twojego systemu i (opcjonalnie) zainstalować prekompilowane pakiety.
+dla Twojego systemu i (opcjonalnie) zainstalować pakiety GRP.
 </abstract>
   <include href="hb-install-finalise.xml"/>
 </chapter>
@@ -300,23 +297,23 @@ Jeżeli chcesz poznać Portage "od kuchni" musisz wiedzieć gdzie przechowywane 
 </chapter>
 
 <chapter>
-    <title>Konfiguracja Portage</title>
+<title>Konfiguracja Portage</title>
 <abstract>
 Portage pozwala na konfigurację poprzez różne zmienne, które możesz ustawiać w plikach
 konfiguracyjnych oraz poprzez zmienne środowiskowe.
 </abstract>
   <include href="hb-portage-configuration.xml"/>
 </chapter>
-
+	 
 <chapter>
 <title>Mixing Software Branches</title>
 <abstract>
-Gentoo provides software separated in several branches, depending on stability
-and architectural support. "Mixing Software Branches" inform you how these
-branches can be configured and how you can override this separation
-individually.
+   Gentoo provides software separated in several branches, depending on stability
+   and architectural support. "Mixing Software Branches" inform you how these
+   branches can be configured and how you can override this separation
+   individually.
 </abstract>
-  <include href="hb-portage-branches.xml"/>
+     <include href="hb-portage-branches.xml"/>
 </chapter>
 
 <chapter>
@@ -327,7 +324,7 @@ Przeczytaj ten rozdział, żeby dowiedzieć się jak używać dispatch-conf oraz
 </abstract>
   <include href="hb-portage-tools.xml"/>
 </chapter>
-	            
+
 <chapter>
 <title>Pozostawiając oficjalne Drzewo Portage</title>
 <abstract>
@@ -346,5 +343,6 @@ instalować pakiety "z palca" używając tego programu
   <include href="hb-portage-ebuild.xml"/>
 </chapter>
 </part>
-          
+     
 </book>
+
