@@ -4,12 +4,12 @@
 <!-- Orig revision: 1.10 -->
 <!-- Translator: arab <arab@skorski.net> -->
 <!-- Title: Inne narzędzia -->
-<!-- Status: Ukończone -->
+<!-- Status: Attic -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-working-othertools.xml,v 1.7 2004/11/27 18:48:03 sekretarz Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-working-othertools.xml,v 1.8 2004/12/09 14:20:14 rane Exp $ -->
 
 <sections>
 
@@ -17,39 +17,39 @@
 <date>2004-10-21</date>
 
 <section>
-<title>Gentoolkit</title>
+<title>Gentoolkit.</title>
 <subsection>
-<title>Wprowadzenie</title>
+<title>Wprowadzenie.</title>
 <body>
 
 <p>
-Pakiet <c>gentoolkit</c> jest kolekcją nieoficjalnych, jednakże bardzo przydatnych
+Pakiet <c>gentoolkit</c> jest kolekcją nieoficjalnych i bardzo przydatnych
 skryptów administracyjnych dla Gentoo. Kolekcja ta zawiera następujące narzędzia:
 </p>
 
 <ul>
-  <li><c>qpkg</c> by ułatwić przeszukiwanie bazy pakietów</li>
+  <li><c>qpkg</c>, ułatwiający przeszukiwanie bazy pakietów</li>
   <li>
-    <c>dep-clean</c> by zarządzać osieroconymi pakietami i nieistniejącymi zależnościami.
+    <c>dep-clean</c>, zarządzający osieroconymi pakietami i nieistniejącymi zależnościami.
   </li>
   <li>
-    <c>revdep-rebuild</c> przebudowuje zależności w przypadku globalnej zmiany flag.
+    <c>revdep-rebuild</c> przebudowujący zależności w przypadku globalnej zmiany flag.
   </li>
   <li>
-    <c>etcat</c> dostarcza znacznie więcej informacji <comment>(niż emerge)</comment>o
+    <c>etcat</c> dostarczający znacznie więcej informacji <comment>(niż emerge)</comment>o
     pakiecie, w tym informacje u użytych flagach USE, zależnościach, itp.
   </li>
-  <li><c>euse</c> zarządza flagami USE</li>
+  <li><c>euse</c> zarządzający flagami USE.</li>
 </ul>
 
 <p>
-Większość tych narzędzi posiada ładną stronę manuala; proszę jej użyć by zrozumieć
-pełny potencjał tych narzędzi. W następnych sekcjach skrótowo omówimy niektóre
+Narzędzia te posiadają świetnie napisane strony man. Warto je przeczytać by móc w
+pełni zrozumieć ogromny potencjał tych narzędzi. W następnych sekcjach skrótowo omówimy niektóre
 z możliwości tych narzędzi.
 </p>
 
 <p>
-By zainstalować <c>gentoolkit</c>, po prostu zrób emerge:
+Aby zainstalować <c>gentoolkit</c> wpisz po prostu:
 </p>
 
 <pre caption="Instalacja gentoolkit">
@@ -59,14 +59,14 @@ By zainstalować <c>gentoolkit</c>, po prostu zrób emerge:
 </body>
 </subsection>
 <subsection>
-<title>qpkg - Wyszukiwanie pakietów</title>
+<title>qpkg - Wyszukiwanie pakietów.</title>
 <body>
 
 <p>
 <c>qpkg</c> posiada wiele funkcji wyszukujących. Możesz wyszukiwać pakiet
 do którego należy dany plik, wyświetlić zawartość pakietu, sprawdzić pliki
-zawarte w pakiecie, wyświetlić zainstalowane pakiety które polegają
-<comment>(depend)</comment> na danym pakiecie, itp.
+zawarte w pakiecie, oraz wyświetlić zainstalowane pakiety które są zależne
+<comment>(depend)</comment> od danego pakietu, itd.
 </p>
 
 <p>
@@ -80,7 +80,7 @@ gnome-base/libbonobo *
 </pre>
 
 <p>
-Teraz, skoro znamy właściciela, spójrzmy na zawartość pakietu:
+Teraz, skoro znamy już właściciela spójrzmy na zawartość pakietu:
 </p>
 
 <pre caption="Oglądanie zawartości pakietu">
@@ -109,9 +109,10 @@ gnome-base/libbonobo-2.4.0 *
 </pre>
 
 <p>
-W poprzednim przykładzie, <c>libbonobo</c> zawiera 402 pliki z których żaden nie został
-zmodyfikowany od czasu instalacji. Teraz zobaczmy które z zainstalowanych pakietów
-wymagają <c>libbonobo</c> do poprawnego działania:
+Podczas omawiania poprzedniego wykładu dowiedzieliśmy się, że <c>libbonobo</c>
+zawiera 402 pliki z których żaden nie został zmodyfikowany od czasu instalacji.
+Teraz zobaczmy które z zainstalowanych pakietów wymagają <c>libbonobo</c> do
+poprawnego działania:
 </p>
 
 <pre caption="Sprawdzanie zależności">
@@ -138,21 +139,21 @@ DEPENDED ON BY:
 </pre>
 
 <p>
-Więcej informacji o <c>qpkg</c> na stronie manuala:
+Więcej informacji o <c>qpkg</c> uzyskasz z jego strony man:
 </p>
 
-<pre caption="Oglądanie manuala do qpkg">
+<pre caption="Czytanie manuala do qpkg">
 $ <i>man qpkg</i>
 </pre>
 
 </body>
 </subsection>
 <subsection>
-<title>dep-clean</title>
+<title>dep-clean.</title>
 <body>
 
 <p>
-Przy pomocy <c>dep-clean</c> możesz obejrzeć zależności, które nie są poprawne.
+<c>dep-clean</c> umożliwia przeglądania niepoprawnych zależności.
 Domyślnie <c>dep-clean</c> pokazuje:
 </p>
 
@@ -160,8 +161,8 @@ Domyślnie <c>dep-clean</c> pokazuje:
   <li>(na czerwono: brakujące zależności</li>
   <li>(na żółto): zainstalowane pakiety które zostały usunięte z Portage</li>
   <li>
-    (na zielono): zainstalowane pakiety, których nie instalowałeś ręcznie a na których
-    nie polega żaden inny pakiet.
+    (na zielono): zainstalowane pakiety, których nie instalowałeś ręcznie i od których
+    nie zależy żaden inny pakiet.
   </li>
 </ul>
 
@@ -170,17 +171,17 @@ $ <i>dep-clean</i>
 </pre>
 
 <p>
-Więcej informacji o <c>dep-clean</c> znajduje się w manualu:
+Więcej informacji o <c>dep-clean</c> znajduje się w jego manualu:
 </p>
 
-<pre caption="Oglądanie strony dep-clean manuala">
+<pre caption="Czytanie strony man dla dep-clean">
 $ <i>man dep-clean</i>
 </pre>
 
 </body>
 </subsection>
 <subsection>
-<title>revdep-rebuild</title>
+<title>revdep-rebuild.</title>
 <body>
 
 <p>
@@ -196,7 +197,7 @@ binarny interfejs aplikacji)</comment> niekompatybilne z jej poprzednią wersją
 </body>
 </subsection>
 <subsection>
-<title>etcat - Narzędzie do pobierania informacji z Gentoo Portage</title>
+<title>etcat - Narzędzie do pobierania informacji z Gentoo Portage.</title>
 <body>
 
 <p>
@@ -247,7 +248,7 @@ $ <i>man etcat</i>
 </body>
 </subsection>
 <subsection>
-<title>euse - Edytor flag USE Gentoo</title>
+<title>euse - Edytor flag USE Gentoo.</title>
 <body>
 
 <p>
@@ -302,9 +303,9 @@ $ <i>man euse</i>
 </subsection>
 </section>
 <section>
-<title>epm - narzędzie podobne do RPM dla Gentoo</title>
+<title>epm - narzędzie podobne do RPM dla Gentoo.</title>
 <subsection>
-<title>Wprowadzenie</title>
+<title>Wprowadzenie.</title>
 <body>
 
 <p>
@@ -318,19 +319,19 @@ czynności powinna dać się wykonać przy pomocy <c>epm</c>.
 </body>
 </subsection>
 <subsection>
-<title>Wyszukiwanie pakietów</title>
+<title>Wyszukiwanie pakietów.</title>
 <body>
 
 </body>
 </subsection>
 <subsection>
-<title>Zarządzanie oprogramowaniem</title>
+<title>Zarządzanie oprogramowaniem.</title>
 <body>
 
 </body>
 </subsection>
 <subsection>
-<title>Inne właściwości</title>
+<title>Inne właściwości.</title>
 <body>
 
 </body>
