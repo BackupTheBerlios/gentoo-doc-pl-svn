@@ -4,28 +4,41 @@
 <!-- Orig revision: 1.45 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Praca z Portage -->
-<!-- Status: Ukończono -->
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-portage.xml,v 1.7 2004/11/29 16:00:26 rane Exp $ -->
+<!-- Status: Release -->
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-portage.xml,v 1.8 2004/12/08 00:07:26 rane Exp $ -->
 
 <sections>
 
-<version>1.42</version>
-<date>2004-10-24</date>
+<version>1.45</version>
+<date>2004-12-07</date>
 
 <section>
-<title>Witamy w Portage</title>
+<title>Witamy w Portage.</title>
 <body>
 
 <p>
-Portage to najlepszy istniejący program do zarządzania oprogramowaniem. Żadna inna dystrybucja Linuksa nie może się pochwalić równie kompleksowym, konfigurowalnym i użytecznym narzędziem jak to napisane przez developerów Gentoo.
+Portage to najlepszy istniejący program do zarządzania oprogramowaniem. Żadna
+inna dystrybucja Linuksa nie może się pochwalić równie kompleksowym,
+konfigurowalnym i użytecznym narzędziem jak to napisane przez developerów
+Gentoo.
 </p>
 
 <p>
-Portage zostało napisane w dwóch językach skryptowych, <uri link="http://www.python.org">Pythonie</uri> i <uri link="http://www.gnu.org/software/bash">Bashu</uri>, dzięki czemu sposób jego działania jest bardzo przejrzysty, nawet dla niezbyt biegłych w programowaniu użytkowników.
+Portage zostało napisane w dwóch językach skryptowych, <uri
+link="http://www.python.org">Pythonie</uri> i <uri
+link="http://www.gnu.org/software/bash">Bashu</uri>, dzięki czemu sposób jego
+działania jest bardzo przejrzysty nawet dla niezbyt biegłych w programowaniu
+użytkowników.
 </p>
 
 <p>
-Większość użytkowników pracuje z Portage przy pomocy narzędzia <c>emerge</c>. Aby uzyskać więcej informacji na temat tego programu wystarczy wpisać:
+Większość użytkowników pracuje z Portage przy pomocy narzędzia <c>emerge</c>.
+Aby uzyskać więcej informacji na temat tego programu wystarczy wpisać:
 </p>
 
 <pre caption="Czytanie man emerge">
@@ -35,27 +48,38 @@ $ <i>man emerge</i>
 </body>
 </section>
 <section>
-<title>Drzewo Portage</title>
+<title>Drzewo Portage.</title>
 <subsection>
-<title>Ebuildy</title>
+<title>Ebuildy.</title>
 <body>
 
 <p>
-Kiedy mówimy o paczkach tak naprawdę mamy na myśli programy dostępne dla użytkowników Gentoo w drzewie Portage. Drzewo to jest zbiorem <e>ebuildów</e>, czyli plików zawierających wszelkie informacje, które są niezbędne do zarządzania oprogramowaniem (instalacja, wyszukiwanie, inne zapytania...). Domyślnie kolekcja ebuildów znajduje się w katalogu <path>/usr/portage</path>.
+Kiedy mówimy o pakietach to tak naprawdę mamy na myśli programy dostępne dla
+użytkowników Gentoo w drzewie Portage. Drzewo to jest zbiorem <e>ebuildów</e>,
+czyli plików zawierających wszelkie informacje, które są niezbędne do
+zarządzania oprogramowaniem (instalacja, wyszukiwanie, inne zapytania...).
+Domyślnie kolekcja ebuildów znajduje się w katalogu <path>/usr/portage</path>.
 </p>
 
 <p>
-Za każdym razem gdy zażądamy od Portage wykonania jakiegoś zadania związanego z naszym oprogramowaniem użyje ono jako podstawy swojego działania informacji zawartych w kolekcji ebuildów. Stąd też warto w miarę często uaktualniać swoje drzewo Portage, tak aby program wiedział o nowych wersjach programów, poprawkach do nich, etc.
+Za każdym razem gdy zażądamy od Portage wykonania jakiegoś zadania związanego z
+naszym oprogramowaniem użyje ono jako podstawy swojego działania informacji
+zawartych w kolekcji ebuildów. Stąd też warto w miarę często uaktualniać swoje
+drzewo Portage, tak aby system wiedział o nowych wersjach programów, poprawkach
+do nich, etc.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Uaktualnianie drzewa Portage</title>
+<title>Uaktualnianie drzewa Portage.</title>
 <body>
 
 <p>
-Drzewo Portage uaktualniamy zazwyczaj za pomocą narzędzia <uri link="http://rsync.gentoo.org">rsync</uri>. Uaktualnienie to wykonuje się w stosunkowo prosty sposób dzięki jednemu z parametrów polecenia emerge, dzięki któremu komenda ta zadziała jak nakładka na rsync:
+Drzewo Portage uaktualniamy zazwyczaj za pomocą narzędzia <uri
+link="http://rsync.gentoo.org">rsync</uri>. Uaktualnienie to wykonuje się w
+stosunkowo prosty sposób dzięki jednemu z parametrów polecenia emerge, dzięki
+któremu komenda ta zadziała jak nakładka na rsync:
 </p>
 
 <pre caption="Uaktualnianie drzewa Portage">
@@ -63,7 +87,10 @@ Drzewo Portage uaktualniamy zazwyczaj za pomocą narzędzia <uri link="http://rs
 </pre>
 
 <p>
-Jeśli nie możesz używać rsync w wyniku jakichś ograniczeń narzuconych przez różnego rodzaju firewalle możesz zaktualizować drzewo Portage używając jednego z generowanych codziennie snapshotów. Program <c>emerge-webrsync</c> automatycznie pobierze odpowiednie pliki i zainstaluje je w Twoim systemie.
+Jeśli nie możesz używać rsync w wyniku jakichś ograniczeń narzuconych przez
+różnego rodzaju firewalle to możesz zaktualizować drzewo Portage używając jednego z
+generowanych codziennie snapshotów. Program <c>emerge-webrsync</c> automatycznie
+pobierze odpowiednie pliki i zainstaluje je w Twoim systemie.
 </p>
 
 <pre caption="Uruchamianie emerge-webrsync">
@@ -74,25 +101,29 @@ Jeśli nie możesz używać rsync w wyniku jakichś ograniczeń narzuconych prze
 </subsection>
 </section>
 <section>
-<title>Zarządzanie oprogramowaniem</title>
+<title>Zarządzanie oprogramowaniem.</title>
 <subsection>
-<title>Wyszukiwanie oprogramowania</title>
+<title>Wyszukiwanie oprogramowania.</title>
 <body>
 
 <p>
-Do wyszukiwania w drzewie Portage konkretnych programów możesz użyć funkcji wbudowanych w program emerge. Domyślnie <c>emerge search</c> wypisze nazwy wszystkich paczek, które zawierają zadane wyrażenie.
+Do wyszukiwania w drzewie Portage konkretnych programów możesz użyć funkcji
+wbudowanych w program emerge. Domyślnie <c>emerge search</c> wypisze wszystkie
+zawierające dane wyrażenie nazwy pakietów.
 </p>
 
 <p>
-Na przykład poszukajmy wszystkich paczek zawierających literki "pdf" w nazwie:
+Na przykład poszukajmy wszystkich pakietów zawierających literki "pdf" w nazwie:
 </p>
 
-<pre caption="Wyszukiwane paczek z pdf w nazwie">
+<pre caption="Wyszukiwane pakietów z pdf w nazwie">
 $ <i>emerge search pdf</i>
 </pre>
 
 <p>
-Jeśli chcesz wyszukiwać również w opisie paczki, nie tylko w jej nazwie powinieneś dopisać dodatkowo parametr <c>--searchdesc</c> (lub krócej <c>-S</c>)
+Jeśli chcesz wyszukiwać również w opisie pakietu, nie tylko w jego nazwie
+powinieneś dopisać dodatkowo parametr <c>--searchdesc</c> (lub krócej
+<c>-S</c>).
 </p>
 
 <pre caption="Wyszukiwanie wszystkich związanych z pdf paczek">
@@ -100,7 +131,10 @@ $ <i>emerge --searchdesc pdf</i>
 </pre>
 
 <p>
-Kiedy przyjrzymy się wynikowi tego polecenia zauważymy, że dostarcza on wielu ciekawych informacji. Zawartość i opisy poszczególnych pól są dość przejrzyste i nie powinny przysporzyć nikomu problemów. Z tego względu nie będziemy ich tu szerzej omawiać.
+Kiedy przyjrzymy się wynikowi tego polecenia zauważymy, że dostarcza on wielu
+ciekawych informacji. Zawartość i opisy poszczególnych pól są dość przejrzyste i
+nie powinny przysporzyć nikomu problemów. Z tego względu nie będziemy ich tu
+szerzej omawiać.
 </p>
 
 <pre caption="Przykladowy wynik polecenia emerge search">
@@ -116,11 +150,13 @@ Kiedy przyjrzymy się wynikowi tego polecenia zauważymy, że dostarcza on wielu
 </body>
 </subsection>
 <subsection>
-<title>Instalowanie oprogramowania</title>
+<title>Instalowanie oprogramowania.</title>
 <body>
 
 <p>
-Instalacja znalezionych w ten sposób w Portage programów jest prosta i sprowadza się do dodania do polecenia <c>emerge</c> nazwy żądanej paczki. Na przykład zainstalujemy sobie gnumeric:
+Instalacja znalezionych w ten sposób w Portage programów jest prosta i sprowadza
+się do dodania do polecenia <c>emerge</c> nazwy żądanej paczki. Dla przykładu
+zainstalujemy sobie gnumeric:
 </p>
 
 <pre caption="Instalacja gnumeric">
@@ -128,7 +164,12 @@ Instalacja znalezionych w ten sposób w Portage programów jest prosta i sprowad
 </pre>
 
 <p>
-W związku z tym, że wiele aplikacji do prawidłowego działania potrzebuje innych programów instalacja którejś paczki może nieść z sobą potrzebę zainstalowania także jej zależności. Nie ma powodu do zmartwień, to nie RPM'y - Portage doskonale radzi sobie z zależnościami. Jeśli chcesz wiedzieć jakie zależności zostaną zainstalowane z danym programem dodaj przełącznik <c>--pretend</c> do zwykłej komendy instalującej program. Na przykład:
+W związku z tym, że wiele aplikacji do prawidłowego działania potrzebuje innych
+programów instalacja którejś paczki może nieść ze sobą potrzebę zainstalowania
+także jej zależności. Nie ma powodu do zmartwień, to nie RPM'y - Portage
+doskonale radzi sobie z zależnościami. Jeśli chcesz wiedzieć jakie zależności
+zostaną zainstalowane z danym programem dodaj przełącznik <c>--pretend</c> do
+zwykłej komendy instalującej program. Na przykład:
 </p>
 
 <pre caption="Udajemy, że chcemy zainstalować gnumeric">
@@ -136,7 +177,12 @@ W związku z tym, że wiele aplikacji do prawidłowego działania potrzebuje inn
 </pre>
 
 <p>
-Kiedy poprosisz Portage o zainstalowanie jakiejś paczki zostaną pobrane z Internetu wszystkie niezbędne, nieznajdujące się na dysku kody źródłowe. Domyślnie są one przechowywane w <path>/usr/portage/distfiles</path>. Następnie program zostanie rozpakowany, skompliwany i zainstalowany. Jeśli chcesz, żeby Portage jedynie pobrało potrzebne pliki dodaj opcję <c>--fetchonly</c> do komendy emerge:
+Kiedy poprosisz Portage o zainstalowanie jakiejś paczki z
+Internetu zostaną pobrane wszystkie niezbędne, nieznajdujące się na dysku kody źródłowe.
+Domyślnie są one przechowywane w <path>/usr/portage/distfiles</path>. Następnie
+program zostanie rozpakowany, skompliwany i zainstalowany. Jeśli chcesz, żeby
+Portage jedynie pobrało potrzebne pliki dodaj opcję <c>--fetchonly</c> do
+komendy emerge:
 </p>
 
 <pre caption="Pobieranie kodu źródłowego gnumeric">
@@ -146,15 +192,23 @@ Kiedy poprosisz Portage o zainstalowanie jakiejś paczki zostaną pobrane z Inte
 </body>
 </subsection>
 <subsection>
-<title>Usuwanie oprogramowania</title>
+<title>Usuwanie oprogramowania.</title>
 <body>
 
 <p>
-Do usuwania zainstalowanych programów służy polecenie <c>emerge unmerge</c>. Nakaże ono Portage usunięcie wszystkich plików dodanych w procesie instalacji programu <c>pomijając</c> jednak te pliki, które od instalacji programu zostały zmienione. Najczęściej chodzi tu o pliki konfiguracyjne programu, a pozostawienie ich na dysku umożliwia łatwe wznowienie pracy z programem w przypadku, gdy zdecydujemy się go ponownie zainstalować i używać.
+Do usuwania zainstalowanych programów służy polecenie <c>emerge unmerge</c>.
+Nakaże ono Portage usunięcie wszystkich plików dodanych w procesie instalacji
+programu, <c>z pominięciem</c> jednak tych plików, które od instalacji programu zostały
+zmienione. Najczęściej chodzi tu o pliki konfiguracyjne, a
+pozostawienie ich na dysku umożliwia łatwe wznowienie pracy z programem w
+przypadku, gdy w przyszłości zdecydujemy się go ponownie zainstalować i używać.
 </p>
 
 <p>
-W tym dość przejrzystym procesie kryje się pewna pułapka: Portage <e>nie</e> sprawdza, czy paczka, którą zamierzasz usunąć jest zależnością innego zainstalowanego programu. Zostaniesz jednak ostrzeżony jeśli program, który chcesz skasować jest niezbędny do prawidłowego działania całego systemu.
+W tym dość przejrzystym procesie kryje się pewna pułapka: Portage <e>nie</e>
+sprawdza, czy paczka, którą zamierzasz usunąć jest zależnością innego
+zainstalowanego programu. Zostaniesz jednak ostrzeżony jeśli program, który
+chcesz skasować jest niezbędny do prawidłowego działania całego systemu.
 </p>
 
 <pre caption="Usuwanie gnumeric z systemu">
@@ -162,17 +216,25 @@ W tym dość przejrzystym procesie kryje się pewna pułapka: Portage <e>nie</e>
 </pre>
 
 <p>
-Kiedy usuwasz program jego zależności nie są usuwane razem z nim, ale pozostają na dysku. Aby odszukać i usunąć niepotrzebne w systemie zależności używamy polecenia <c>emerge depclean</c>. Omówimy je dokładniej nieco później.
+Kiedy usuwasz program jego zależności nie są usuwane razem z nim, ale pozostają
+na dysku. Aby odszukać i usunąć niepotrzebne w systemie zależności używamy
+polecenia <c>emerge depclean</c>. Omówimy je dokładniej nieco później.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Uaktualnianie systemu</title>
+<title>Uaktualnianie systemu.</title>
 <body>
 
 <p>
-Aby utrzymać swój system w dobrej kondycji (nie wspominając już o instalacji najnowszych poprawek związanych z bezpieczeństwem) jesteśmy zmuszeni dość często go uaktualniać. W związku z tym, że w tym procesie Portage porównuje zainstalowane oprogramowanie z ebuild'ami z drzewa Portage należy najpierw pobrać jego aktualną wersję. Kiedy już je zaktualizujemy przychodzi czas na właściwe uaktualnienie systemu. Dokonujemy tego poleceniem <c>emerge --update world</c>:
+Aby utrzymać swój system w dobrej kondycji (nie wspominając już o instalacji
+najnowszych poprawek związanych z bezpieczeństwem) jesteśmy zmuszeni dość często
+go uaktualniać. W związku z tym, że w tym procesie Portage porównuje
+zainstalowane oprogramowanie z ebuild'ami z drzewa Portage należy najpierw
+pobrać jego aktualną wersję. Kiedy już je zaktualizujemy przychodzi czas na
+właściwe uaktualnienie systemu. Dokonujemy tego poleceniem <c>emerge --update
+world</c>:
 </p>
 
 <pre caption="Uaktualnianie systemu">
@@ -180,7 +242,10 @@ Aby utrzymać swój system w dobrej kondycji (nie wspominając już o instalacji
 </pre>
 
 <p>
-Portage znajdzie wszystkie bezpośrednio zainstalowane przez użytkownika aplikacje, dla których są dostępne nowsze wersje, ale pominie uaktualnienia ich zależności. Aby uaktualnić całe oprogramowanie wraz z zależnościami musimy dodać jeszcze argument <c>--deep</c>:
+Portage znajdzie wszystkie bezpośrednio zainstalowane przez użytkownika
+aplikacje, dla których są dostępne nowsze wersje, ale pominie uaktualnienia ich
+zależności. Aby uaktualnić całe oprogramowanie wraz z zależnościami musimy dodać
+jeszcze argument <c>--deep</c>:
 </p>
 
 <pre caption="Uaktualnienie całego systemu">
@@ -188,7 +253,10 @@ Portage znajdzie wszystkie bezpośrednio zainstalowane przez użytkownika aplika
 </pre>
 
 <p>
-Jeżeli ostatnio zmieniałeś swoje <uri link="?part=2&amp;chap=2">flagi USE</uri> polecam również dodanie do całej tej linii poleceń argumentu <c>--newuse</c>. Portage sprawdzi wtedy czy zmiany we flagach USE niosą ze sobą potrzebę przekompilowania i przeinstalowania którychś z zainstalowanych programów:
+Jeżeli ostatnio zmieniałeś swoje <uri link="?part=2&amp;chap=2">zmienne USE</uri>
+polecamy również dodanie do całej tej linii poleceń argumentu <c>--newuse</c>.
+Portage sprawdzi wtedy czy zmiany we flagach USE niosą ze sobą potrzebę
+przekompilowania i przeinstalowania którychś z zainstalowanych programów:
 </p>
 
 <pre caption="Przeprowadzenie pełnego uaktualnienia">
@@ -198,20 +266,32 @@ Jeżeli ostatnio zmieniałeś swoje <uri link="?part=2&amp;chap=2">flagi USE</ur
 </body>
 </subsection>
 <subsection>
-
-<title>Stub Packages</title>
+<title>Metapakiety.</title>
 <body>
 
 <p>
-Niektóre z paczek w drzewie Portage nie zawierają żadnej zawartości, ale są używane do instalacji całej kolekcji innych paczek. Doskonałym przykładem takiego zestawu jest paczka <c>KDE</c>, która służy do instalowania kompletnego środowiska graficznego. Możemy dzięki jej istnieniu przy pomocy jednego polecenia dodać do systemu wszystkie programy, biblioteki, oraz zależności związane z KDE.
+Niektóre z pakietów w drzewie Portage nie zawierają żadnej zawartości, ale są
+używane do instalacji całych kolekcji innych pakietów. Doskonałym przykładem
+takiego zestawu jest paczka <c>KDE</c>, która służy do instalowania kompletnego
+środowiska graficznego. Możemy dzięki jej istnieniu przy pomocy jednego
+polecenia dodać do systemu wszystkie programy, biblioteki, oraz zależności
+związane z KDE.
 </p>
 
 <p>
-Jeśli kiedykolwiek zdarzy nam się posiadać taką paczkę zainstalowaną w systemie będziemy mieli pewien problem z jej odinstalowaniem. Zwykłe wpisanie <c>emerge</c> poczyni stosunkowo małe spustoszenie w niepotrzebnych nam już plikach, ponieważ ogromna ilość zależności pozostanie w systemie..
+Jeśli kiedykolwiek zdarzy nam się posiadać taką paczkę zainstalowaną w systemie
+to będziemy mieli pewien problem z jej odinstalowaniem. Zwykłe wpisanie
+<c>emerge -C</c> poczyni stosunkowo małe spustoszenie w niepotrzebnych nam już
+plikach, ponieważ ogromna ilość zależności pozostanie w systemie.
 </p>
 
 <p>
-Portage jest w stanie poradzić sobie z tego typu "osieroconymi" zależnościami, ale najpierw należy w pełni uaktualinić swój system, uwzględniając przy tym również zmiany we flagach USE. Następnie uruchamiamy wspomniane już wcześniej polecenie <c>emerge depclean</c>, żeby usunąć "osierocone" zależności, a kiedy już skończymy je odinstalowywać przebudowujemy wszystkie programy, które wcześniej były dynamicznie z nimi zlinkowane, a teraz już ich nie potrzebują.
+Portage jest w stanie poradzić sobie z tego typu "osieroconymi" zależnościami,
+ale najpierw należy w pełni uaktualinić swój system, uwzględniając przy tym
+również zmiany we flagach USE. Następnie uruchamiamy wspomniane już wcześniej
+polecenie <c>emerge depclean</c>, żeby usunąć "osierocone" zależności, a kiedy
+już skończymy je odinstalowywać przebudowujemy wszystkie programy, które
+wcześniej były dynamicznie z nimi zlinkowane, a teraz już ich nie potrzebują.
 </p>
 
 <p>
@@ -225,10 +305,12 @@ Cały proces sprowadza się do wpisania trzech prostych poleceń:
 </pre>
 
 <p>
-Program <c>revdep-rebuild</c> jest częścią paczki <c>gentoolkit</c>, czyli trzeba ją wcześniej zainstalować, aby mieć go do dyspozycji.
+Program <c>revdep-rebuild</c> znajduje się w pakiecie <c>gentoolkit</c> wraz z
+kilkoma innymi bardzo przydatnymi programami. Aby używać programu należy
+oczywiście najpierw zainstalować ten pakiet.
 </p>
 
-<pre caption="Instalacja paczki gentoolkit">
+<pre caption="Instalacja pakietu gentoolkit">
 # <i>emerge gentoolkit</i>
 </pre>
 
@@ -238,61 +320,94 @@ Program <c>revdep-rebuild</c> jest częścią paczki <c>gentoolkit</c>, czyli tr
 <section>
 <title>Kiedy Portage narzeka...</title>
 <subsection>
-<title>na SLOTy, Virtuale, Gałęzie, Architektury i Profile</title>
+<title>...na sloty, virtuale, gałęzie, architektury i profile.</title>
 <body>
 
 <p>
-Jak już wcześniej zaznaczaliśmy Portage jest potężnym narzędziem i posiada możliwości jakich nie ma żaden inny program do zarządzania oprogramowaniem. Postaramy się teraz pokrótce zapoznać Was z kilkoma aspektami pracy z Portage.
+Jak już wcześniej zaznaczaliśmy Portage jest potężnym narzędziem i posiada
+możliwości jakich nie ma żaden inny program do zarządzania oprogramowaniem.
+Postaramy się teraz pokrótce zapoznać Was z kilkoma aspektami pracy z Portage.
 </p>
 
 <p>
-W Portage możliwe jest posiadanie kilku różnych wersji jednego programu. Podczas gdy inne dystrybucje obchodzą problem nadając po prostu różnym paczkom różne numery porządkowe, jak np. <c>freetype</c> i <c>freetype2</c> Portage wykorzystuje tu technologię tzw. <e>SLOT</e>ów. Każdy ebuild posiada osobny slot dla wersji programu, którą reprezentuje. Ebuildy różnych wersji programu mogą koegzystować w jednym systemie. Na przykład paczka <c>freetype</c> posiada ebuildy z ustawionymi wartościami <c>SLOT="1"</c> i <c>SLOT="2"</c>.
+W Portage możliwe jest posiadanie kilku różnych wersji jednego programu. Podczas
+gdy inne dystrybucje obchodzą problem nadając po prostu takim pakietom różne
+numery porządkowe, jak np. <c>freetype</c> i <c>freetype2</c> Portage
+wykorzystuje tu technologię tzw. <e>SLOT</e>ów. Każdy ebuild posiada osobny slot
+dla wersji programu, którą reprezentuje. Ebuildy różnych wersji programu mogą
+koegzystować w jednym systemie. Na przykład paczka <c>freetype</c> posiada
+ebuildy z ustawionymi wartościami <c>SLOT="1"</c> i <c>SLOT="2"</c>.
 </p>
 
 <p>
-Są również paczki, które wykonują te same czynności, ale w różny sposób. Doskonałym przykładem takiego programu są loggery systemowe: <c>metalogd</c>, <c>sysklogd</c> i <c>syslog-ng</c>. Aplikacje, które do prawidłowego działania potrzebują loggera systemowe nie mogą posiadać w zależnościach jedynie np. <c>metalogd</c>, ponieważ pozostałe programy z tej grupy również są w stanie spełnić tą zależność. Do tego właśnie służą Virtuale. Każdy z loggerów systemowych dostarcza po prostu <c>virtual/syslog</c>, który jest jednocześnie zależnością dla innych programów.
+Są również pakiety, które wykonują te same czynności, ale w różny sposób.
+Doskonałym przykładem takiego programu są loggery systemowe: <c>metalogd</c>,
+<c>sysklogd</c> i <c>syslog-ng</c>. Aplikacje, które do prawidłowego działania
+potrzebują loggera systemowego nie mogą posiadać w zależnościach jedynie np.
+<c>metalogd</c>, ponieważ pozostałe programy z tej grupy również są w stanie
+spełnić tą zależność. Do tego właśnie służą Virtuale. Każdy z loggerów
+systemowych dostarcza po prostu <c>virtual/syslog</c>, który jest jednocześnie
+zależnością dla innych programów.
 </p>
 
 <p>
-Oprogramowanie znajdujące się w drzewie Portage jest podzielone na gałęzie. Domyślnie używana jest gałąź stabilna dla danej architektury. Nowe i nieprzetestowane programy są dodawane do gałęzi niestabilnej, czyli testowej. Dopóki ich niezawodność nie zostanie potwierdzona i nie zostaną przeniesione do gałęzi stabilnej Portage nie zainstaluje ich, chociaż nowsze ebuildy będą się znajdowały w drzewie.
+Oprogramowanie znajdujące się w drzewie Portage jest podzielone na gałęzie.
+Domyślnie używana jest gałąź stabilna dla danej architektury. Nowe i
+nieprzetestowane programy są dodawane do gałęzi niestabilnej, czyli testowej.
+Dopóki ich niezawodność nie zostanie potwierdzona i nie zostaną przeniesione do
+gałęzi stabilnej Portage nie zainstaluje ich, chociaż ebuildy nowszych wersji będą się
+znajdowały w drzewie.
 </p>
 
 <p>
-Niektóre programy są dostępne tylko dla określonych architektur. Czasem na innych wcale nie działają, czasem potrzebują jeszcze nieco testów, może się też zdarzyć, że developer danego programu nie ma po prostu czasu lub możliwości, aby przetestować taką paczkę na różnych architekturach.
+Niektóre programy są dostępne tylko dla określonych architektur. Czasem na
+innych wcale nie działają, czasem potrzebują jeszcze nieco testów, może się też
+zdarzyć, że developer danego programu nie ma po prostu czasu lub możliwości, aby
+przetestować taki pakiet na różnych architekturach.
 </p>
 
 <p>
-Każdej instalacji Gentoo przypisany jest określony <c>profil</c>, który zawiera między innymi listę paczek, które są niezbędne do prawidłowego działania systemu.
+Każdej instalacji Gentoo przypisany jest określony <c>profil</c>, który zawiera
+między innymi listę pakietów, które są niezbędne do prawidłowego działania
+systemu.
 </p>
 
 </body>
 </subsection>
 <subsection id="blocked">
-<title>Zablokowane paczki</title>
+<title>Zablokowane pakiety.</title>
 <body>
 
-<pre caption="Ostrzeżenie przed blokadą paczki w portage (z opcją --pretend)">
+<pre caption="Ostrzeżenie przed blokadą pakietu w Portage (z opcją --pretend)">
 [blocks B     ] gnome-base/bonobo-activation (from pkg gnome-base/libbonobo-2.4.0)
 </pre>
 
-<pre caption="Ostrzeżenie Portage przed blokadą paczki (bez opcji --pretend)">
+<pre caption="Ostrzeżenie Portage przed blokadą pakietu (bez opcji --pretend)">
 !!! Error: the gnome-base/bonobo-activation package conflicts with another package.
 !!!        both can't be installed on the same system together.
 !!!        Please use 'emerge --pretend' to determine blockers. 
 </pre>
 
 <p>
-W ebuildach znajdują się określone pola, które informują Portage na temat zależności danego programu. Są dwa rodzaje takich zależności: Zależności niezbędne do zbudowania programu - deklarowane przez <c>DEPEND</c>, oraz zależności niezbędne do jego uruchomienia - deklarowane jako <c>RDEPEND</c>. Kiedy któraś z tych zależności jest niekompatybilna z jakimś virtualem lub paczką jest włączana blokada.
+W ebuildach znajdują się określone pola, które informują Portage na temat
+zależności danego programu. Są dwa rodzaje takich zależności: Zależności
+niezbędne do zbudowania programu - deklarowane przez <c>DEPEND</c>, oraz
+zależności niezbędne do jego uruchomienia - deklarowane jako <c>RDEPEND</c>.
+Kiedy któraś z tych zależności jest niekompatybilna z jakimś virtualem lub
+pakietem jest włączana blokada.
 </p>
 
 <p>
-Mamy dwie możliwości na pozbycie się blokady: Nie instalować programu, lub usunąć paczkę, która go blokuje. W podanym powyżej przykładzie  mogliśmy wybrać pomiędzy rezygnacją z instalacji <c>libbonobo</c>, lub usunięciem <c>bonobo-activation</c>.
+Mamy dwie możliwości na pozbycie się blokady: Nie instalować programu, lub
+usunąć paczkę, która go blokuje. W podanym powyżej przykładzie  mogliśmy wybrać
+pomiędzy rezygnacją z instalacji <c>libbonobo</c>, lub usunięciem
+<c>bonobo-activation</c>.
 </p>
 
 </body>
 </subsection>
 <subsection id="masked">
-<title>Zamaskowane paczki</title>
+<title>Zamaskowane pakiety.</title>
 <body>
 
 <pre caption="Ostrzeżenie Portage o zamaskowanych paczkach">
@@ -311,31 +426,47 @@ Mamy dwie możliwości na pozbycie się blokady: Nie instalować programu, lub u
 </pre>
 
 <p>
-Jeśli zechcemy zainstalować paczkę, która nie jest dostępna dla naszego systemu dostaniemy właśnie taki dotyczący zamaskowania błąd. Możemy wtedy zainstalować inny spełniający te same funkcje, ale dostępny dla naszego systemu program, lub poczekać aż paczka zostanie odmaskowana i udostępniona do użytku. Maskowanie paczek nie odbywa się bez przyczyny:
+Jeśli zechcemy zainstalować paczkę, która nie jest dostępna dla naszego systemu
+dostaniemy właśnie taki, dotyczący zamaskowania błąd. Możemy wtedy zainstalować
+inny spełniający te same funkcje, ale dostępny dla naszego systemu program, lub
+poczekać aż paczka zostanie odmaskowana i udostępniona do użytku. Maskowanie
+paczek nie odbywa się bez przyczyny:
 </p>
 
 <ul>
-  <li>
-Słowo kluczowe <b>~arch</b> oznacza, że aplikacja nie została jeszcze dostatecznie sprawdzona na naszej architekturze, aby znaleźć się w gałęzi stabilnej, zwykle w takim przypadku wystarczy poczekać kilka dni, góra tygodni i spróbować ponownej jej instalacji.
-  </li>
-  <li>
-Słowo kluczowe <b>-arch</b> lub <b>-*</b> oznacza, że program nie działa na naszej architekturze. Jeśli uważasz inaczej i masz dowody na poparcie tej tezy prosimy o zgłoszenie tego na naszą <uri link="http://bugs.gentoo.org">bugzillę</uri>.
-  </li>
-  <li>
-Komunikat <b>missing keyword</b> oznacza, że aplikacja nie została jeszcze przestestowana na naszej architekturze. W takim przypadku należy poprosić któregoś z developerów zajmujących się tymi sprawami o przetestowanie paczki, lub uczynić to własnoręcznie i zgłosić wyniki swoich badań na <uri link="http://bugs.gentoo.org">bugzillę</uri>.
-  </li>
-  <li>
-Komunikat <b>package.mask</b> oznacza, że paczka jest zepsuta, niestabilna, lub co gorsza w ogóle nie nadaje się do użytku. 
-  </li>
-  <li>
-Komunikat z tekstem <b>profile</b> oznacza, że paczka nie pasuje do naszego "profilu" i gdybyśmy ją zainstalowali mogłaby zepsuć nasz system.
-  </li>
+<li>
+Słowo kluczowe <b>~arch</b> oznacza, że aplikacja nie została jeszcze
+dostatecznie sprawdzona na naszej architekturze, aby znaleźć się w gałęzi
+stabilnej, zwykle w takim przypadku wystarczy poczekać kilka dni, góra tygodni i
+spróbować ponownej jej instalacji.
+</li>
+<li>
+łowo kluczowe <b>-arch</b> lub <b>-*</b> oznacza, że program nie działa na
+naszej architekturze. Jeśli uważasz inaczej i masz dowody na poparcie tej tezy
+prosimy o zgłoszenie tego na naszą <uri
+link="http://bugs.gentoo.org">bugzillę</uri>.
+</li>
+<li>
+Komunikat <b>missing keyword</b> oznacza, że aplikacja nie została jeszcze
+przestestowana na tej architekturze. W takim przypadku należy poprosić
+któregoś z developerów zajmujących się tymi sprawami o przetestowanie pakietu,
+lub uczynić to własnoręcznie i zgłosić wyniki swoich badań na <uri
+link="http://bugs.gentoo.org">bugzillę</uri>.
+</li>
+<li>
+Komunikat <b>package.mask</b> oznacza, że paczka jest zepsuta, niestabilna, lub
+co gorsza w ogóle nie nadaje się do użytku.
+</li>
+<li>
+Komunikat z tekstem <b>profile</b> oznacza, że paczka nie pasuje do naszego
+"profilu" i gdybyśmy ją zainstalowali mogłaby zepsuć nasz system.
+</li>
 </ul>
 
 </body>
 </subsection>
 <subsection id="missingdependencies">
-<title>Brakujące zależności</title>
+<title>Brakujące zależności.</title>
 <body>
 
 <pre caption="Komunikat Portage o brakujących zależnościach">
@@ -346,13 +477,18 @@ emerge: there are no ebuilds to satisfy "&gt;=sys-devel/gcc-4.2-r4".
 </pre>
 
 <p>
-Aplikacja, którą starasz się zainstalować jest zależna od paczki, która nie jest dostępna dla Twojej architektury. Sprawdź na <uri link="http://bugs.gentoo.org">bugzilli</uri> czy problem został nam już zgłoszony i jeśli odkryjesz, że jeszcze o nim nie wiemy daj nam znać. Jeśli nie mieszasz różnych typów gałęzi Portage w jednym systemie problem ten nie powinien wystąpić i oznacza błąd w drzewie.
+Aplikacja, którą starasz się zainstalować jest zależna od paczki, która nie jest
+dostępna dla Twojej architektury. Sprawdź na <uri
+link="http://bugs.gentoo.org">bugzilli</uri> czy problem został nam już
+zgłoszony i jeśli odkryjesz, że jeszcze o nim nie wiemy to daj nam o nim znać. Jeśli nie
+mieszasz różnych typów gałęzi Portage w jednym systemie to problem ten nie powinien
+wystąpić i zwykle oznacza błąd w drzewie.
 </p>
 
 </body>
 </subsection>
 <subsection id="ambiguousebuild">
-<title>Niejasna nazwa paczki</title>
+<title>Niejasna nazwa pakietu.</title>
 <body>
 
 <pre caption="Ostrzeżenie Portage dotyczące niejsanych nazw paczek">
@@ -364,13 +500,15 @@ Aplikacja, którą starasz się zainstalować jest zależna od paczki, która ni
 </pre>
 
 <p>
-Program, który chcesz zainstalować ma nazwę, którą posiada więcej niż jedna paczka. Aby rozwiąć ten problem wystarczy dokładniej sprecyzować co chcemy zainstalować, dodając przed nazwę programu kategorię, do której on należy. 
+Program, który chcesz zainstalować ma nazwę, którą posiada więcej niż jedna
+pakiet. Aby rozwiąć ten problem wystarczy dokładniej sprecyzować co chcemy
+zainstalować, dodając przed nazwę programu kategorię, do której on należy.
 </p>
 
 </body>
 </subsection>
 <subsection id="circulardependencies">
-<title>Wzajemnie od siebie zależne paczki</title>
+<title>Wzajemnie od siebie zależne paczki.</title>
 <body>
 
 <pre caption="Ostrzeżenie Portage na temat wzajemnie od siebie zależnych paczek">
@@ -381,23 +519,32 @@ ebuild / app-text/ghostscript-7.05.3-r1 depends on ebuild / net-print/cups-1.1.1
 </pre>
 
 <p>
-Sprawa jest prosta. Dwie (lub więcej) paczki, które chcesz zainstalować są od siebie wzajemnie zależne i w związku z tym nie mogą zostać zainstalowane. Oznacza to błąd w drzewie Portage, który zostanie usunięty możliwie najszybciej po tym jak tylko pierwszy użytkownik zgłosi problem na <uri link="http://bugs.gentoo.org"/>.
+Sprawa jest prosta. Dwa (lub więcej) pakiety, które chcesz zainstalować są od
+siebie wzajemnie zależne i w związku z tym nie mogą zostać zainstalowane.
+Oznacza to błąd w drzewie Portage, który zostanie usunięty możliwie najszybciej
+po tym jak tylko pierwszy użytkownik zgłosi problem ten na <uri
+link="http://bugs.gentoo.org"/>bugzillę</uri>.
 </p>
 
 </body>
 </subsection>
 <subsection id="fetchfailed">
-<title>Nieudane pobieranie</title>
+<title>Nieudane pobieranie.</title>
 <body>
 
-<pre caption="Portage warning about fetch failed">
+<pre caption="Komunikat Portage o nieudanym pobieraniu">
 !!! Fetch failed for sys-libs/ncurses-5.4-r5, continuing...
 <comment>(...)</comment>
 !!! Some fetch errors were encountered.  Please see above for details.
 </pre>
 
 <p>
-Oznacza to, że Portage nie było w stanie pobrać źródeł żądanej aplikacji, w związku z czym zostało zmuszone do zrezygnowania z jej instalacji  i będzie instalowało kolejne programy z listy. Błąd najczęściej jest spowodowany wstawieniem złego adresu serwera w Ebuildzie programu, lub dlatego, że serwer lustrzany nie zdążył jeszcze się zsynchronizować. Możliwa jest również sytuacja, że serwer, na którym znajdują się źródła z jakichś względów jest nieczynny.
+Oznacza to, że Portage nie było w stanie pobrać źródeł żądanej aplikacji, w
+związku z czym zostało zmuszone do zrezygnowania z jej instalacji  i będzie
+instalowało kolejne programy z listy. Błąd najczęściej jest spowodowany
+wstawieniem złego adresu serwera w Ebuildzie programu, lub dlatego, że serwer
+lustrzany nie zdążył jeszcze się zsynchronizować. Możliwa jest również sytuacja,
+że serwer, na którym znajdują się źródła z jakichś względów jest nieczynny.
 </p>
 
 <p>
@@ -407,7 +554,7 @@ Odczekaj około godziny i spróbuj ponownie zainstalować program.
 </body>
 </subsection>
 <subsection id="profileprotect">
-<title>Ochrona Profilu systemu</title>
+<title>Ochrona profilu systemu.</title>
 <body>
 
 <pre caption="Ostrzeżenie Portage dotyczące paczki chronionej Profilem systemu">
@@ -416,7 +563,9 @@ Odczekaj około godziny i spróbuj ponownie zainstalować program.
 </pre>
 
 <p>
-Taki komunikat oznacza, że zażądałeś od Portage usunięcia paczki, która jest kluczowa dla działania Twojego systemu. Znajduje się ona na liście Profilu jako niezbędna i w związku z tym nie zostanie usunięta.
+Taki komunikat oznacza, że zażądałeś od Portage usunięcia paczki, która jest
+kluczowa dla działania Twojego systemu. Znajduje się ona na liście Profilu jako
+niezbędna i w związku z tym nie zostanie usunięta.
 </p>
 
 </body>
