@@ -6,7 +6,7 @@
 <!-- Title: Skrypty Init -->
 <!-- Status: Release -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-rcscripts.xml,v 1.15 2004/12/11 09:55:55 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-working-rcscripts.xml,v 1.16 2004/12/27 11:35:05 sekretarz Exp $ -->
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
@@ -27,6 +27,7 @@ dużo, nie zawsze zrozumiałego tekstu. Jeśli przyjrzysz się dokładniej,
 zauważysz, że tekst ten jest za każdym razem taki sam. Cały ten proces nazywamy <e>sekwencją
 startową</e>, która (w większym lub mniejszym stopniu) jest skonfigurowana
 statycznie.
+</p>
 
 <p>
 Najpierw <e>bootloader</e> ładuje obraz jądra systemu do pamięci i zleca
@@ -36,13 +37,14 @@ jest proces <c>init</c>.
 </p>
 
 <p>
-Proces ten następnie upewnia się czy wszystkie systemy plików (zdefiniowane 
-w <path>/etc/fstab</path>) zostały poprawnie zamontowane i są gotowe do pracy.
-Następnie uruchamiane są poszczególne skrypty umieszczone w katalogu 
-<path>/etc/init.d</path>, które mają za zadanie uruchomić kolejno wszystkie serwisy
-niezbędne do poprawnego działania systemu.
-
+Proces ten następnie upewnia się czy wszystkie systemy plików (zdefiniowane w
+<path>/etc/fstab</path>) zostały poprawnie zamontowane i są gotowe do pracy.
+Następnie uruchamiane są poszczególne skrypty umieszczone w katalogu
+<path>/etc/init.d</path>, które mają za zadanie uruchomić kolejno wszystkie
+serwisy niezbędne do poprawnego działania systemu.
 </p>
+
+<p>
 Na koniec, kiedy wszystkie skrypty zostaną wykonane, <c>init</c> aktywuje terminale
 (w większości przypadków są to po prostu wirtualne konsole, między którymi można
 się przełączać za pomocą kombinacji klawiszy <c>Alt-F1</c>, <c>Alt-F2</c> itd.)
