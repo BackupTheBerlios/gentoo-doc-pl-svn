@@ -6,7 +6,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.5 2004/01/03 10:22:17 lcs Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/Attic/hb-install-medium.xml,v 1.6 2004/01/04 12:11:44 lcs Exp $ -->
 
 <sections>
 <section>
@@ -70,12 +70,13 @@ wymogi:
 <li>
   Dla <e>architektury MIPS</e>, sprawdź dokument <uri
 link="/doc/en/mips-requirements.xml">MIPS Hardware Requirements</uri>.
-</ul>
+</li>
 <li>
   Dla <e>architektury AMD64</e>, sprawdź <uri
   link="http://dev.gentoo.org/~brad_mssw/amd64-tech-notes.html">AMD64 Tech
   Notes</uri>
 </li>
+</ul>
 </body>
 </subsection>
 </section>
@@ -86,7 +87,7 @@ link="/doc/en/mips-requirements.xml">MIPS Hardware Requirements</uri>.
 <body>
 
 <p>
-Ciągle zainteresowany Gentoo? Cóż, nadszedł czas na wygranie medium
+Ciągle zainteresowany Gentoo? Cóż, nadszedł czas na wybranie medium
 instalacyjnego. Tak, masz wybór, nie, nie wszystkie metody są identyczne
 i tak, rezultatem zawsze jest podstawowy system Gentoo.
 </p>
@@ -99,6 +100,7 @@ Omówimy następujące media instalacyjne:
 <li>Gentoo LiveCD</li>
 <li>Knoppix</li>
 <li>Inna Dystrybucja</li>
+<li>Uruchamianie z Sieci</li>
 </ul>
 
 <p>
@@ -425,7 +427,7 @@ konkretnej architektury, jak i zoptymalizowane dla różnych podarchitektur.
 <p>
 Płyty te zawierają "żywe" środowisko Gentoo Linux z pulpitami KDE i GNOME,
 serwerem Apache, przeglądarkami WWW, klientami IRC, narzędziami dla
-firewalli/routerów, narzędzia sieciowe oraz wiele programów konsolowych.
+firewalli/routerów, narzędziami sieciowymi oraz wieloma programamami konsolowymi.
 Mogą służyć do naprawy uszkodzonego systemu plików. Zawierają całe
 gcc (razem z distcc i ccache). Uruchom z nich wszystkie komputery w swojej
 sieci i doświadcz mocy rozproszonej kompilacji. Na CD nie ma GRP, kodów
@@ -468,7 +470,7 @@ W naszym przypadku może służyć do instalacji Gentoo.
 </p>
 
 <p>
-Pobrać ją możesz ze <uri
+Możesz ją pobrać ze <uri
 link="http://www.knoppix.com">strony WWW</uri>.
 </p>
 
@@ -499,7 +501,7 @@ i z niego przeprowadzisz proces instalacji.
 </p>
 
 <p>
-Jeśli chcesz skorzystać z tej metody (nie dotyczy użytkowników <e>MIPS</e>)
+Jeśli chcesz skorzystać z tej metody (nie dotyczy użytkowników <e>MIPS</e>),
 powinieneś skonfigurować działający serwer DHCP oraz TFTP. Informacje
 o konfiguracji 
 <uri link="/doc/en/diskless-howto.xml#doc_chap3">DHCP</uri> i <uri
@@ -545,8 +547,8 @@ zamieścimy również odpowiednie adnotacje o innych metodach.
 <body>
 
 <p>
-Zdecydowałeś się skorzystać z Gentoo LiveCD (jeśli nie to czytasz złą sekcję).
-Zaczniemy od ich ściągnięcia na dysk i nagrania na płyty. Omówiliśmy już różne odmiany, ale
+Zdecydowałeś się skorzystać z Gentoo LiveCD (jeśli nie, to czytasz złą sekcję).
+Zaczniemy od ściągnięcia ich na dysk i nagrania na płyty. Omówiliśmy już różne odmiany, ale
 gdzie je znaleźć?
 </p>
 
@@ -591,12 +593,12 @@ Odwiedź jeden z <uri
 link="/main/en/mirrors.xml">serwerów lustrzanych</uri> i przejdź do
 wybranego katalogu. Wewnątrz znajdziesz odpowiednio nazwane pliki.
 Są to pełne obrazy płyt, gotowe do nagrania na CD-R. Jeśli znajdziesz
-kilka, różniących się datą w nazwie (np. <path>livecd-x86-cd1-20031029.iso</path>),
+kilka, różniących się tylko datą w nazwie (np. <path>livecd-x86-cd1-20031029.iso</path>),
  weź ten najnowszy.
 </p>
 
 <note>
-  Sprawdź opis w <uri link="http://store.gentoo.org">Sklepie Gentoo</uri> aby 
+  Sprawdź opis w <uri link="http://store.gentoo.org">Sklepie Gentoo</uri>, aby 
   upewnić się, którego LiveCD (lub stage) powinieneś użyć.
   Typowym błędem jest wybór LiveCD (lub stage) dla nowszego procesora niż posiadany
   (jak "athlon-xp" dla zwykłego AMD Athlon'a).
@@ -611,7 +613,7 @@ najpopularniejszych.
 <ul>
   <li>
     	W EasyCD Creator, wybierz <c>File</c>, <c>Record CD from CD image</c>.
-		Ustaw typ pliku na <c>ISO image file</c>. Zaznacz następnie ściągnięty
+		Ustaw typ pliku na <c>ISO image file</c>. Następnie zaznacz ściągnięty
 		plik i kliknij <c>Open</c>. Nagrywanie rozpocznie się po wciśnięciu
 		<c>Start recording</c>.
   </li>
@@ -668,7 +670,7 @@ zanim rozpoczniesz instalację, gdyż później może nie być do tego okazji.
 Po nagraniu płyt instalacyjnych, nadszedł czas na ich uruchomienie. Zrestartuj
 komputer i wejdź do ustawień BIOS'u. Zazwyczaj służą do tego klawisze Del,
 F1 lub ESC, w zależności od jego producenta. Następnie musisz zmienić
-kolejność uruchamiania aby CD-ROM znalazł się przed twardym dyskiem.
+kolejność uruchamiania, aby CD-ROM znalazł się przed twardym dyskiem.
 Przeważnie kryje się ona w "CMOS Setup". Jeśli tego nie zrobisz, system
 uruchomi się z twardego dysku, a nie z płyty.
 </p>
@@ -676,7 +678,7 @@ uruchomi się z twardego dysku, a nie z płyty.
 <p>
 Teraz umieść płytę instalacyjną w czytniku i ponownie zrestartuj komputer.
 Powinieneś ujrzeć ładny ekran startowy z logiem Gentoo Linux. Możesz po prostu
-wcisnąć Enter aby rozpocząć proces uruchamiania z domyślnymi opcjami, lub
+wcisnąć Enter aby rozpocząć proces uruchamiania z domyślnymi opcjami lub
 te opcje zmienić, wybierając jądro i podając odpowiednie parametry.
 </p>
 
@@ -711,7 +713,7 @@ Poniżej przedstawiamy przegląd dostępnych jąder:
 </table>
 
 <note>
-Na niektórych LiveCD zamieszczono nie wszystkie, lub dodatkowe, nie opisane
+Na niektórych LiveCD zamieszczono nie wszystkie lub dodatkowe, nie opisane
 tu jądra. Aby wyświetlić listę wszystkich dostępnych na ekranie startowym, wciśnij F1.
 </note>
 
@@ -791,9 +793,9 @@ ustawienia. Poniższa tabela przestawia ich listę.
 </table>
 
 <note>
-Na niektórych LiveCD nie zamieszczono wszystkich, lub dodano opcje
+Na niektórych LiveCD nie zamieszczono wszystkich lub dodano opcje
 nie opisane w podręczniku. Aby wyświetlić na ekranie startowym listę
-wszystkich dostępnych wciśnij F2.
+wszystkich dostępnych, wciśnij F2.
 </note>
 
 <p>
@@ -809,8 +811,8 @@ boot: <i>gentoo dopcmcia cdcache</i>
 <p>
 Następnie wyświetli się kolejny ekran startowy oraz pasek postępu.
 Po zakończeniu procesu uruchamiania zostaniesz zalogowany do
-systemu Gentoo Linux jako &quot;root&quot;. Powinieneś zobaczyć
-na aktywnej konsoli prompt superużytkownika (&quot;#&quot;). Dostępne 
+systemu Gentoo Linux jako &quot;root&quot;. Na aktywnej konsoli
+powinieneś zobaczyć prompt superużytkownika (&quot;#&quot;). Dostępne 
 będą również inne konsole, można się między nimi przełączać naciskając
 Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
 </p>
@@ -837,16 +839,16 @@ Manual</e>) oraz ARC (<e>Advanced Risc Console</e>).
 </p>
 
 <p>
-SRM oparty jest na specyfikacji Alpha Console Subsystem, dostarczającej
-środowisko operacyjne systemom OpenVMS, Tru64 UNIX oraz Linux. ARM
-oparty jest na specyfikacji Advanced RISC Computing (ARC), dostarczającej
+SRM jest oparty na specyfikacji Alpha Console Subsystem, dostarczającej
+środowisko operacyjne systemom OpenVMS, Tru64 UNIX oraz Linux. ARM jest
+oparty na specyfikacji Advanced RISC Computing (ARC), dostarczającej
 środowisko operacyjne systemowi Windows NT.
 </p>
 
 <p>
 Jeśli twoja Alpha wspiera zarówno SRC jak i ARC (ARC, AlphaBIOS, ARCSBIOS),
 przeczytaj <uri link="http://www.alphalinux.org/faq/x31.html">opis
-przełączania na SRM</uri>. Jeśli SRM jest już aktywne, to wszystko jest
+przełączania na SRM</uri>. Jeżeli SRM jest już aktywne, to wszystko jest
 w porządku. Jeśli twój komputer wspiera tylko ARC (Ruffian, nautilus, xl itd.)
 będziesz musiał wybrać <c>MILO</c>, gdy mówić będziemy o bootloaderach.
 </p>
@@ -868,7 +870,7 @@ MILO&gt; <i>boot hdb:boot/vmlinuz initrd=initrd.img root=/dev/ram0 init=/linuxrc
 </pre>
 
 <p>
-Powinieneś zobaczyć na aktywnej konsoli prompt superużytkownika (&quot;#&quot;). 
+Na aktywnej konsoli powinieneś zobaczyć prompt superużytkownika (&quot;#&quot;). 
 Dostępne  będą również inne konsole, można się między nimi przełączać naciskając
 Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
 </p>
@@ -903,8 +905,8 @@ To terminate search, press and hold the ESCAPE key.
 <p>
 Kiedy się pojawi, przytrzymaj wciśnięty klawisz ESC aż do pojawienia się
 menu opcji. Może to chwilę zająć, więc bądź cierpliwy. Domyślnie
-powinieneś otworzyć konsolę BOOT_ADMIN. Jeśli zobaczysz menu opcji, wybierz
-<c>Enter Boot Administration mode</c> aby do niej przejść. Powinieneś zobaczyć
+powinieneś otworzyć konsolę BOOT_ADMIN. Gdy zobaczysz menu opcji, wybierz
+<c>Enter Boot Administration mode</c>, aby do niej przejść. Powinieneś zobaczyć
 prompt '&gt;'.
 </p>
 
@@ -937,7 +939,7 @@ P2                    lan.0010a7-06d1b6.3.6   server
 
 <p>
 Aby uruchomić komputer z CD-ROM'u musisz posiadać odpowiednią Device Path.
-Dla przykładu, jeśli chcesz uruchomić z CD-ROM'u TOSHIBA, wpisz:
+Na przykład, jeśli chcesz uruchomić go z napędu TOSHIBA, wpisz:
 </p>
 
 <pre caption="Uruchamianie z CD-ROM'u">
@@ -948,7 +950,7 @@ Trying scsi.5.0
 
 <p>
 Parametr <c>ipl</c> (Initial Program Loader) włącza w palo (PA-RISC boot LOader)
-tryb interaktywny, pozwalający na przykład na podanie parametrów jądra.
+tryb interaktywny, pozwalający między innymi na podanie parametrów jądra.
 </p>
 
 <p>
@@ -986,8 +988,8 @@ Parametry te będą odpowiednie w większości sytuacji.
 <p>
 Dodatkowe parametry możesz podać po spacji w ostatnim polu. W tej chwili
 jedyną zaimplementowaną opcją jest <c>cdcache</c>. Służy ona do 
-przeniesienia LiveCD do pamięci, dzięki czemu można odmontować CD
-i skorzystać w czasie instalacji z innej płyty.
+przeniesienia LiveCD do pamięci, dzięki czemu można odmontować płytę
+i skorzystać w czasie instalacji z innej.
 </p>
 
 <pre caption="Dodawanie opcji cdcache">
@@ -996,7 +998,7 @@ init=/linuxrc <i>cdcache</i>
 </pre>
 
 <p>
-Kiedy ustawiłeś już parametry jądra, uruchom je.
+Po wybraniu parametrów kernela, uruchom go.
 </p>
 
 <pre caption="Uruchamianie jądra">
@@ -1004,7 +1006,7 @@ Kiedy ustawiłeś już parametry jądra, uruchom je.
 </pre>
 
 <p>
-Powinieneś zobaczyć na aktywnej konsoli prompt superużytkownika (&quot;#&quot;). 
+Na aktywnej konsoli powinieneś zobaczyć prompt superużytkownika (&quot;#&quot;). 
 Dostępne  będą również inne konsole, można się między nimi przełączać naciskając
 Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
 </p>
@@ -1035,7 +1037,7 @@ ok <i>boot cdrom</i>
 </pre>
 
 <p>
-Pojawi się menadżer uruchamiania SILO. Wpisz <c>gentoo</c> (jeśli
+Pojawi się menedżer uruchamiania SILO. Wpisz <c>gentoo</c> (jeśli
 posiadasz jeden procesor) lub <c>smp</c> (jeśli posiadasz kilka procesorów)
 i wciśnij enter aby kontynuować start. W poniższym przykładzie uruchomimy
 kernel <c>gentoo</c>.
@@ -1055,7 +1057,7 @@ login: <i>root</i>
 password: <comment>(Wciśnij Enter)</comment>
 </pre>
 <p>
-Powinieneś zobaczyć na aktywnej konsoli prompt superużytkownika (&quot;#&quot;). 
+Na aktywnej konsoli powinieneś zobaczyć prompt superużytkownika (&quot;#&quot;). 
 Dostępne  będą również inne konsole, można się między nimi przełączać naciskając
 Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
 </p>
@@ -1074,7 +1076,7 @@ Sprzętu</uri>.
 <p>
 Umieść LiveCD w czytniku i zrestartuj komputer. W czasie uruchamiania przytrzymaj 
 wciśnięty klawisz 'C' (lub uruchom bootloader OldWorld, jak BootX lub quik).
-Wyświetli się wiadomośc powitalna i prompt <e>boot:</e> na dole ekranu.
+Wyświetli się wiadomośc powitalna i na dole ekranu prompt <e>boot:</e>.
 </p>
 
 <p>
@@ -1093,7 +1095,7 @@ login: <i>root</i>
 password: <comment>(Wciśnij Enter)</comment>
 </pre>
 <p>
-Powinieneś zobaczyć na aktywnej konsoli prompt superużytkownika (&quot;#&quot;). 
+Na aktywnej konsoli powinieneś zobaczyć prompt superużytkownika (&quot;#&quot;). 
 Dostępne  będą również inne konsole, można się między nimi przełączać naciskając
 Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
 </p>
@@ -1102,7 +1104,7 @@ Alt-F2, Alt-F3 oraz Alt-F4. Aby powrócić na pierwszą - wciśnij Alt-F1.
 <p>
 Jeśli używasz klawiatury innej niż amerykańska, skorzystaj
 z <c>loadkeys</c> aby załadować odpowiednią mapę klawiszy.
-Żeby wyświetlić listę dostępnych uruchom
+Żeby wyświetlić listę dostępnych, uruchom
 <c>ls /usr/share/keymaps</c>.
 </p>
 
@@ -1149,7 +1151,7 @@ dla różnych rodzajów urządzeń sieciowych):
 <p>
 Jeśli jesteś zaawansowanym użytkownikiem, być może zainteresuje cię
 możliwość zwiększenia wydajności dysku IDE za pomocą <c>hdparm</c>.
-Przetestować ją można za pomocą parametrów <c>-tT</c> (wykonanie 
+Mozna ją przetestować za pomocą parametrów <c>-tT</c> (wykonanie 
 tego kilka razy zwiększa precyzję pomiaru):
 </p>
 
@@ -1164,7 +1166,7 @@ urządzeniem odpowiednim dla swojego dysku.
 </p>
 
 <pre caption="Poprawianie wydajności dysku">
-<comment>Aktywacja DMA:</comment>                                       # <i>hdparm -d 1 /dev/hda</i>
+<comment>Aktywacja DMA:</comment>                                            # <i>hdparm -d 1 /dev/hda</i>
 <comment>Aktywacja DMA + Bezpieczne opcje poprawiające wydajność:</comment>  # <i>hdparm -d 1 -A 1 -m 16 -u 1 -a 64 /dev/hda</i>
 </pre>
 
@@ -1191,7 +1193,7 @@ Re-enter password: <comment>(Podaj nowe hasło jeszcze raz)</comment>
 </pre>
 
 <p>
-Aby stworzyć konto użytkownika, najpierw podamy jego ustawienia, a
+Aby stworzyć konto użytkownika, najpierw podamy jego login, a
 potem ustawimy hasło. Skorzystamy przy tym z <c>useradd</c> oraz <c>passwd</c>.
 W przykładzie, stworzymy użytkownika &quot;john&quot;.
 </p>
@@ -1217,7 +1219,7 @@ dla architektur x86, amd64, alpha, sparc oraz ppc.
 <p>
 Jeśli chcesz dać dostęp do środowiska instalacyjnego innym użytkownikom
 (na przykład, żeby pomogli ci w instalacji lub nawet przeprowadzili ją
-za ciebie), musisz stworzyć konta lub podać hasło root (<e>tylko w przypadku
+za ciebie), musisz stworzyć odpowiednie konta lub im podać hasło root (<e>tylko w przypadku
 pełnego zaufania</e>). 
 </p>
 
@@ -1257,7 +1259,7 @@ najpopularniejszych.
 <ul>
   <li>
     	W EasyCD Creator, wybierz <c>File</c>, <c>Record CD from CD image</c>.
-		Ustaw typ pliku na <c>ISO image file</c>. Zaznacz następnie ściągnięty
+		Ustaw typ pliku na <c>ISO image file</c>. Następnie zaznacz ściągnięty
 		plik i kliknij <c>Open</c>. Nagrywanie rozpocznie się po wciśnięciu
 		<c>Start recording</c>.
   </li>
@@ -1321,7 +1323,7 @@ $ <i>su -</i>
 Password: <comment>(Podaj hasło root'a)</comment>
 </pre>
 <p>
-Teraz przejdź do kolejnego rozdziału, o <uri 
+Następnie przejdź do kolejnego rozdziału, o <uri 
 link="?part=1&amp;chap=3">Konfiguracji Sieci</uri>.
 </p>
 </body>
@@ -1335,8 +1337,8 @@ link="?part=1&amp;chap=3">Konfiguracji Sieci</uri>.
 <p>
 Aby móc zainstalować Gentoo, obraz który pobierasz z serwera TFTP powinien
 zawierać niezbędne narzędzia do tworzenia systemów plików, zakładania i montowania
-partycji, rozpakowywania tarballi oraz chroot. Możesz pobrać gotowe, odpowiednio
-przygotowane obrazy z Internetu...
+partycji, rozpakowywania tarballi oraz chroot. Gotowe, odpowiednio
+przygotowane obrazy możesz pobrać z Internetu...
 </p>
 
 <p>
@@ -1360,8 +1362,8 @@ z <uri>http://dev.gentoo.org/~kumba/mips/netboot/</uri>.
 </p>
 
 <p>
-Skonfiguruj teraz serwer DHCP aby wysłać plik do klienta. Jakkolwiek
-maszyny SGI wymagają pewnych poprawek w komputerze host aby TFTP
+Następnie skonfiguruj serwer DHCP aby wysłać plik do klienta. Jakkolwiek
+maszyny SGI wymagają pewnych poprawek w komputerze hosta aby TFTP
 działało poprawnie:
 </p>
 
@@ -1373,8 +1375,8 @@ działało poprawnie:
 </pre>
 
 <p>
-Uruchom teraz swój komputer, wejdź do monitora PROM i wpisz następujące polecenia
-aby uruchomić system z sieci:
+Uruchom teraz swój komputer, wejdź do monitora PROM i aby uruchomić system z sieci,
+wpisz następujące polecenia:
 </p>
 
 <pre caption="Uruchamianie z Sieci MIPS">
