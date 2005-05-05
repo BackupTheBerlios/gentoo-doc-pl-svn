@@ -1,5 +1,5 @@
-?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/ldap-howto.xml,v 1.4 2005/05/05 23:45:02 rane Exp $ -->
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/ldap-howto.xml,v 1.5 2005/05/05 23:56:11 rane Exp $ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
 <!-- Orig revision: 1.17 -->
@@ -48,7 +48,7 @@ OpenLDAP w celu autoryzacji w grupach komputerów z Gentoo.
 <p>
 Pod pojęciem LDAP kryje się <e>lekki protokół dostępu do katalogów</e>. Jest
 oparty na X.500 i zawiera w sobie większość jego podstawowych funkcji, a jest
-pozbawiony jego funkcji zaawansowanych. Co to jest X.500?
+pozbawiony jego funkcji zaawansowanych. Czym jest X.500?
 </p>
 
 <p>
@@ -71,7 +71,7 @@ X.500.
 <p>
 Katalog jest wyspecjalizowaną bazą danych zaprojektowaną dla dużej ilości
 zapytań i małej ilości aktualizacji. W przeciwieństwie do zwykłych baz danych
-nie zawierają wsparcia dla transakcji odwrotnych. Katalogi można łatwo kopiować
+nie zawiera wsparcia dla transakcji odwrotnych. Katalogi można łatwo kopiować
 w celu podwyższenia dostępności i niezawodności. Kiedy są kopiowane może
 dochodzić do pewnych niezgodności, trawających tak długo, jak długo będą
 synchronizowały. 
@@ -98,7 +98,7 @@ dc:        genfic         <comment>(Organizacja)</comment>
           /      \
 ou:   ludzie   serwery    <comment>(Jednostki Organizacji)</comment>
       /    \     ..     
-uid: ..   jhon            <comment>(OU-specyficzne dane)</comment>
+uid: ..   john            <comment>(OU-specyficzne dane)</comment>
 </pre>
 
 <p>
@@ -171,7 +171,7 @@ rootpw          <i>{MD5}Xr4ilOzQ4PCOq3aQ0qbuaQ==</i>
 directory       /var/lib/openldap-ldbm
 index           objectClass     eq
 
-<codenote>Niezaszyfrowane hasła tworzy się przy pomocy polecenia slappasswd -h {Md5}</codenote>
+<codenote>Hasła tworzy się przy pomocy polecenia slappasswd -h {Md5}</codenote>
 </pre>
 
 <p>
@@ -188,7 +188,7 @@ TLS_REQCERT  allow
 </pre>
 
 <p>
-Następnie, aby zabezpieczyć katalog trzeba wygenerować certyfikat SSL.
+Później, aby zabezpieczyć katalog trzeba wygenerować certyfikat SSL.
 Proces ten to seria odpowiedzi na kolejno zadawane pytania. Kiedy zostaniemy
 zapytani o <e>Common Name</e> wpisujemy nazwę za pomocą której klienci będą
 mogli łączyć się z serwerem. Z reguły będzie to pełna nazwa domeny (np.
@@ -203,7 +203,7 @@ ldap.pem -keyout /etc/openldap/ssl/ldap.pem -days 999999</i>
 
 <p>
 Edytujemy plik <path>/etc/conf.d/slapd</path> i dodajemy następującą linijkę,
-maskując obecną:
+jednocześnie maskując domyślną:
 </p>
 
 <pre caption="/etc/conf.d/slapd">
@@ -379,7 +379,7 @@ dodatku otwartym tekstem. Jest to <brite>NIEBEZPIECZNE</brite> i dlatego plik
 ten MUSI mieć prawa dostępu o wartości 600. Ja na codzień mam ten plik pusty, a
 kiedy zachodzi potrzeba zmiany użytkownikowi hasła robię to zarówno w ldap jak i
 w pliku <path>/etc/passwd</path>. Zapisuje tam hasło na 10 sekund na czas kiedy
-dokonuję zmian i zaraz po ich wprowadzeniu usuwam.
+dokonuję zmian i zaraz po ich wprowadzeniu je usuwam.
 </p>
 
 </body>
@@ -407,16 +407,16 @@ access to attrs=userPassword,gecos,description,loginShell
 
 <p>
 Dzięki temu uzyskamy dostęp do wszystkiego do czego użytkownik powinien
-mieć prawo. Jeśli będzie to jego informacja, to będzie miał prawo do jej
-zapisu. Natomiast jeśli będą to informacje innego uzytkownika będzie miał prawo
-wyłącznie do ich odczytu. Anonimowi użytkownicy mogą wysłać login i hasło tak,
-aby się zalogować. Są cztery poziomy dostępu, od najniższego do najwyższego:
-<c>auth, wyszukiwanie (search), odczyt (read) oraz zapis(write)</c>.
+mieć prawo. Będzie miał prawo do zapisu własnych informacji oraz do odczytu
+informacji innych użytkowników. Anonimowi użytkownicy mogą wysłać login i hasło
+tak, aby się zalogować. Są cztery poziomy dostępu, kolejno, od najniższego do
+najwyższego: <c>auth, wyszukiwanie (search), odczyt (read) oraz
+zapis(write)</c>.
 </p>
 
 <p>
 Następny ACL jest znacznie bezpieczniejszy, ponieważ blokuje normalnym
-użytkownikom dostęp do ukrytych haseł innych ludzi:
+użytkownikom dostęp do ukrytych haseł innych osób:
 </p>
 
 <pre caption="/etc/openldap/slapd.conf">
