@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/ldap-howto.xml,v 1.3 2005/02/21 02:53:08 sekretarz Exp $ -->
+?xml version='1.0' encoding='UTF-8'?>
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/ldap-howto.xml,v 1.4 2005/05/05 23:45:02 rane Exp $ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
 <!-- Orig revision: 1.17 -->
@@ -31,7 +31,7 @@
 
 <abstract>
 Ten przewodnik przedstawia podstawy LDAP i pokazuje w jaki sposób skonfigurować
-OpenLDAP w celu autoryzacji pomiędzy grupami "paczek" Gentoo.
+OpenLDAP w celu autoryzacji w grupach komputerów z Gentoo.
 </abstract>
 
 <license/>
@@ -40,25 +40,25 @@ OpenLDAP w celu autoryzacji pomiędzy grupami "paczek" Gentoo.
 <date>2005-01-22</date>
 
 <chapter>
-<title>Początki z OpenLDAP.</title>
+<title>Wprowadzenie do OpenLDAP.</title>
 <section>
 <title>Co to jest LDAP?</title>
 <body>
 
 <p>
-Pod pojęciem LDAP kryje się <e>lekki protokół dostępu do katalogów</e>. Bazując na 
-X.500 obejmuje większość jego podstawowych czynności, ale nie posiada większości
-zaawansowanych funkcji, które zawarte są w X.500. Co to jest X.500?
+Pod pojęciem LDAP kryje się <e>lekki protokół dostępu do katalogów</e>. Jest
+oparty na X.500 i zawiera w sobie większość jego podstawowych funkcji, a jest
+pozbawiony jego funkcji zaawansowanych. Co to jest X.500?
 </p>
 
 <p>
 X.500 jest modelem usług katalogowych w ujęciu OSI. Zawiera
 definicje przestrzeni nazw i protokołów zapytań oraz aktualizacji
-katalogów. Jednak X.500 został uznany za zbyt przerośniety aby zawsze go używać.
-Przejście do LDAP. Tak jak X.500, zawiera model danych/przestrzeni nazw dla
-katalogu jak również i dla protokołu. Pomimo tego LDAP został tak zaprojektowany
-aby działać bezprośrednio nad stosem TCP/IP. LDAP można postrzegać jako
-uproszczoną wersję X.500.
+katalogów. Zwykle jest jednak zbyt rozbudowanym rozwiązaniem.
+LDAP, tak jak X.500, zawiera model danych i przestrzeni nazw dla
+katalogu oraz dla protokołu. Został tak zaprojektowany, aby działać
+bezprośrednio nad stosem TCP/IP. Można go postrzegać jako uproszczoną wersję
+X.500.
 </p>
 
 </body>
@@ -70,10 +70,10 @@ uproszczoną wersję X.500.
 
 <p>
 Katalog jest wyspecjalizowaną bazą danych zaprojektowaną dla dużej ilości
-zapytań jednak małej ilości aktualizacji. Odmiennie główne bazy danych, które nie
-zawierają wsparcia lub funkcjonalności roll-back. Katalogi są łatwo kopiowalne w
-celu podwyższenia dostępności i niezawodności. Kiedy katalogi są kopiowane,
-tymczasowo może dojść do niezgodności tak długo jak będą się ewentualnie 
+zapytań i małej ilości aktualizacji. W przeciwieństwie do zwykłych baz danych
+nie zawierają wsparcia dla transakcji odwrotnych. Katalogi można łatwo kopiować
+w celu podwyższenia dostępności i niezawodności. Kiedy są kopiowane może
+dochodzić do pewnych niezgodności, trawających tak długo, jak długo będą
 synchronizowały. 
 </p>
 
@@ -85,10 +85,10 @@ synchronizowały.
 <body>
 
 <p>
-Wszystkie informacje wewnątrz katalogu rozmieszczone są według hierarchii. Co
-więcej, jeśli użytkownik zechce odczytać dane wewnątrz katalogu, katalog musi
-wiedzieć w jakis sposób zgromadzić dane wewnątrz drzewa. Przyjrzyjmy się
-fikcyjnej firmie i jej sieciowemu drzewu:
+Wszystkie informacje wewnątrz katalogu rozmieszczone są według określonej
+hierarchii. Co więcej, jeśli użytkownik zechce odczytać dane wewnątrz katalogu,
+katalog musi wiedzieć w jaki sposób zgromadzić dane wewnątrz drzewa. Przyjrzyjmy
+się fikcyjnej firmie i jej sieciowemu drzewu:
 </p>
 
 <pre caption = "Struktura organizacji dla GenFic, fikcyjnej firmy Gentoo.">
@@ -102,17 +102,16 @@ uid: ..   jhon            <comment>(OU-specyficzne dane)</comment>
 </pre>
 
 <p>
-Od kiedy dane przestaną być ładowane do bazy zgodnie z rysunkiem powyżej, każdy
-węzeł takiego drzewa będzie musiał być zdefiniowany. Do nazwania takich węzłów
-użytkownicy LDAP używają schematów nazw. Większość dystrubucji LDAP (wliczając w
-to OpenLDAP) posiada już sporą liczbę zdefiniowanych (i ogólnie przyjętych)
-schematów, takich jak inetorgperson, przyjęty za powszechnie używany schemat do
+W związku z tym, że dane do bazy nie są wprowadzane kolejno jak na powyższym
+grafie każda jej część musi posiadać określoną nazwę. Większość dystrubucji LDAP
+(wliczając w to OpenLDAP) posiada już sporą ilość zdefiniowanych (i ogólnie
+przyjętych) schematów, takich jak inetorgperson, powszechnie używany schemat
 definiowania użytkowników.
 </p>
 
 <p>
-Zainteresowanym użytkownikom polecam przeczytanie<uri
-link="http://www.openldap.org/doc/admin21/">Przedownika Administratora OpenLDAP</uri>.
+Zainteresowanym użytkownikom polecam przeczytanie dokumentu <uri
+link="http://www.openldap.org/doc/admin21/">OpenLDAP Admin Guide</uri>.
 </p>
 
 </body>
@@ -124,18 +123,18 @@ link="http://www.openldap.org/doc/admin21/">Przedownika Administratora OpenLDAP<
 <chapter>
 <title>Konfiguracja OpenLDAP.</title>
 <section>
-<title>Początkowa konfiguracja.</title>
+<title>Konfiguracja wstępna.</title>
 <body>
 
 <note>
-W tym dokumencje będziemy używać adresu genfic.com jako przykładu. Oczywiście w
-swoim przypadku użytkownik musi zmienić ten adres na swój własny. Jednak upewnij
-się, czy najwyższy węzeł jest oficjalną domeną wysokiego poziomu (net, com, cc,
-be, ...).
+W tym dokumencje będziemy używać przykładowego adresu genfic.com. Oczywiście w
+każdym przypadku użytkownik musi zmienić ten adres na swój własny. Należy się
+upewnić, czy najwyższy węzeł jest oficjalną domeną wysokiego poziomu (net, com,
+cc, be, ...).
 </note>
 
 <p>
-Najpierw zemergujmy wszystkie potrzebne komponenty na nasz serwer:
+Zaczynamy od zemergowania wszystkich potrzebnych komponentów na nasz serwer:
 </p>
 
 <pre caption="Instalacja OpenLDAP">
@@ -145,8 +144,8 @@ Najpierw zemergujmy wszystkie potrzebne komponenty na nasz serwer:
 </pre>
 
 <p>
-Edytuj plik <path>/etc/openldap/slapd.conf</path> dodając następujące linijki po 
-<c>core.schema</c>:
+Następnie edytujemy plik <path>/etc/openldap/slapd.conf</path> dodając
+następujące linijki po <c>core.schema</c>:
 </p>
 
 <pre caption="/etc/openldap/slapd.conf">
@@ -155,10 +154,10 @@ include         /etc/openldap/schema/cosine.schema
 include         /etc/openldap/schema/inetorgperson.schema
 include         /etc/openldap/schema/nis.schema
 
-<comment># Użyj funkcji crypt aby ukryć hasło.</comment>
+<comment># Użycie funkcji crypt, aby ukryć hasło.</comment>
 password-hash {crypt}
 
-<comment># Zdefiniuj właściwości SSL i TLS (opcja).</comment>
+<comment># Zdefiniowanie właściwości SSL i TLS (opcja).</comment>
 TLSCertificateFile /etc/ssl/ldap.pem
 TLSCertificateKeyFile /etc/openldap/ssl/ldap.pem
 TLSCACertificateFile /etc/ssl/ldap.pem
@@ -172,11 +171,11 @@ rootpw          <i>{MD5}Xr4ilOzQ4PCOq3aQ0qbuaQ==</i>
 directory       /var/lib/openldap-ldbm
 index           objectClass     eq
 
-<codenote>Możesz utworzyć niezaszyfrowane hasło używając polecenia slappasswd -h {Md5}</codenote>
+<codenote>Niezaszyfrowane hasła tworzy się przy pomocy polecenia slappasswd -h {Md5}</codenote>
 </pre>
 
 <p>
-Następnie edytuj plik konfiguracyjny LDAP:
+Następnie edytujemy plik konfiguracyjny LDAP:
 </p>
 
 <pre caption="/etc/openldap/ldap.conf">
@@ -189,10 +188,11 @@ TLS_REQCERT  allow
 </pre>
 
 <p>
-Teraz potrzeba wygenerować certyfikat SSL aby zabezpieczyć katalog. Odpowiedz na
-pytania, które otrzymasz. Kiedy zostaniesz zapytany o <e>Common Name</e>, wpisz
-nazwę (potoczna nazwa) za pomocą której klienci będą łączyć się z serwerem. Z
-reguły będzie to pełna nazwa domeny (np. <path>auth.genfic.com</path>).
+Następnie, aby zabezpieczyć katalog trzeba wygenerować certyfikat SSL.
+Proces ten to seria odpowiedzi na kolejno zadawane pytania. Kiedy zostaniemy
+zapytani o <e>Common Name</e> wpisujemy nazwę za pomocą której klienci będą
+mogli łączyć się z serwerem. Z reguły będzie to pełna nazwa domeny (np.
+<path>auth.genfic.com</path>).
 </p>
 
 <pre caption="Generowanie certyfikatu SSL">
@@ -202,8 +202,8 @@ ldap.pem -keyout /etc/openldap/ssl/ldap.pem -days 999999</i>
 </pre>
 
 <p>
-Edytuj plik <path>/etc/conf.d/slapd</path> i dodaj następującą linijke, maskując
-obecną:
+Edytujemy plik <path>/etc/conf.d/slapd</path> i dodajemy następującą linijkę,
+maskując obecną:
 </p>
 
 <pre caption="/etc/conf.d/slapd">
@@ -219,7 +219,7 @@ Uruchomienie slapd:
 </pre>
 
 <p>
-Możesz przetestować go używając polecenia:
+Możemy przetestować program używając polecenia:
 </p>
 
 <pre caption = "Przetestuj demona SLAPd.">
@@ -227,8 +227,9 @@ Możesz przetestować go używając polecenia:
 </pre>
 
 <p>
-Jeśli otrzymasz błąd, spróbuj uruchomić go dodając parametr <c>-d 255</c>,
-spowoduje dokładniejsze pokazanie błędu i rozwiąże zaistniały problem.
+Jeśli otrzymamy błąd, należy uruchomić usługę dodając parametr <c>-d 255</c>.
+Spowoduje to dokładniejsze opisanie błędu i znacznie pomoże w rozwiązaniu
+zaistniałego problemu.
 </p>
 
 </body>
@@ -242,8 +243,8 @@ spowoduje dokładniejsze pokazanie błędu i rozwiąże zaistniały problem.
 <body>
 
 <p>
-Następnie pora na eksportowanie kont użytkowników. Otwórz plik 
-<path>/usr/share/migrationtools/migrate_common.ph</path> i edytuj go w
+Pora na wyeksportowanie kont użytkowników. Otwieramy plik 
+<path>/usr/share/migrationtools/migrate_common.ph</path> i edytujemy go w
 następujący sposób:
 </p>
 
@@ -257,7 +258,7 @@ pocztowy.</comment>
 </pre>
 
 <p>
-Teraz pora na uruchomienie skryptów eksportujących:
+Teraz czas na uruchomienie skryptów eksportujących:
 </p>
 
 <pre caption="Uruchamianie skryptów eksportujących.">
@@ -270,8 +271,8 @@ Teraz pora na uruchomienie skryptów eksportujących:
 </pre>
 
 <p>
-Ostatni krok wyeksportował pliki do formatu ldif czytanego przez LDAP.
-Teraz dodajmy te pliki do naszego katalogu:
+W tym kroku wyeksportowaliśmy pliki do formatu ldif czytanego przez LDAP.
+Teraz dodajemy te pliki do naszego katalogu:
 </p>
 
 <pre caption="Import danych do naszego katalogu.">
@@ -286,14 +287,15 @@ Teraz dodajmy te pliki do naszego katalogu:
 </chapter>
 
 <chapter>
-<title>Konfiguracja autoryzacji.</title>
+<title>Konfigurowanie uwierzytelniania.</title>
 <section>
-<title>Konfiguracja PAM'a.</title>
+<title>Konfigurowanie PAM.</title>
 <body>
 
 <p>
-Następnie pora na skonfigurowanie PAM'a aby zezwalał na autoryzacje LDAP.
-Edytuj <path>/etc/pam.d/system-auth</path> tak, aby wyglądał jak poniżej:
+Następnie należy skonfigurować PAM tak, aby zezwalała na autoryzację LDAP.
+W tym celu edytujemy <path>/etc/pam.d/system-auth</path> tak, aby wyglądał jak
+poniżej:
 </p>
 
 <pre caption="/etc/pam.d/system-auth">
@@ -346,7 +348,7 @@ scope one
 </pre>
 
 <p>
-Ostatecznie, skonfiguruj swoich klientów tak, aby sprawdzały LDAP dla kont
+Na koniec konfigurujemy swoich klientów tak, aby sprawdzały LDAP dla kont
 systemowych:
 </p>
 
@@ -357,7 +359,7 @@ shadow:         files ldap
 </pre>
 
 <p>
-Aby przetestować zmiany, wpisz:
+Aby przetestować zmiany należy wpisać:
 </p>
 
 <pre caption="Testowanie autoryzacji LDAP:">
@@ -369,16 +371,15 @@ root:x:0:0:root:/root:/bin/bash
 </pre>
 
 <p>
-Jak zapewne zauważyłeś jedna z linijek, które wklejłeś do <path>/etc/ldap.conf</path>
-została "zakomentowana" (linia <c>rootbinddn</c>). Nie będziesz jeszcze jej
-potrzebował, chyba że zechcesz zmienić hasło superużytkownika lub zwkłego
-użytkownika. W tym wypadku będziesz musiał wysłać hasło roota do
-<path>/etc/ldap.secret</path> jako zwyczjany tekst. Jest to 
-<brite>NIEBEZPIECZNE</brite> i powinno być z-chomodowane do wartości 600. 
-Ja robię to zatrzymując ten pusty plik i kiedy zachodzi potrzeba zmiany
-użytkownikowi hasła robię to zarówno w ldap jak i w pliku <path>/etc/passwd</path>.
-Zapisuje tam hasło na 10 sekund na czas kiedy go zmieniam i usuwam po dokonanych
-zmianach.
+Jedna z linijek, które dodaliśmy do <path>/etc/ldap.conf</path> została
+zakomentowana (linia <c>rootbinddn</c>). Nie będziemy jej potrzebować, dopóki
+nie zechcemy zmienić hasła roota lub zwykłego użytkownika. W takim wypadku
+będziemy zmuszeni umieścić to hasło w pliku <path>/etc/ldap.secret</path>, w
+dodatku otwartym tekstem. Jest to <brite>NIEBEZPIECZNE</brite> i dlatego plik
+ten MUSI mieć prawa dostępu o wartości 600. Ja na codzień mam ten plik pusty, a
+kiedy zachodzi potrzeba zmiany użytkownikowi hasła robię to zarówno w ldap jak i
+w pliku <path>/etc/passwd</path>. Zapisuje tam hasło na 10 sekund na czas kiedy
+dokonuję zmian i zaraz po ich wprowadzeniu usuwam.
 </p>
 
 </body>
@@ -389,8 +390,8 @@ zmianach.
 <body>
 
 <p>
-Jeśli przyjrzymy się plikowi <path>/etc/openldap/slapd.conf</path> zauważysz, że
-można sprecyzować ACL-e (zezwolenia jeśli wolisz) dotyczące odczytu i zapisu
+Jeśli przyjrzymy się plikowi <path>/etc/openldap/slapd.conf</path> zauważymy, że
+służy on do precyzowania ACL-i (zezwoleń) dotyczących odczytu i zapisu
 danych przez użytkowników:
 </p>
 
@@ -405,17 +406,17 @@ access to attrs=userPassword,gecos,description,loginShell
 </pre>
 
 <p>
-Dzięki temu uzyskasz dostęp do wszystkiego co użytkownik będzie w stanie
-zmienić. Jeśli będzie to twoja informacja wtedy będziesz miał prawo do jej
-zapisu. Natomiast jeśli są to infromacje innego uzytkownika masz prawo do ich
-odczytu. Anonimowi użytkownicy mogą wysłać login i hasło tak aby się zalogować.
-Są cztery poziomy, od najniższego do najwyższego: <c>auth 
-wyszukiwanie(search) odczyt(read) zapis(write)</c>.
+Dzięki temu uzyskamy dostęp do wszystkiego do czego użytkownik powinien
+mieć prawo. Jeśli będzie to jego informacja, to będzie miał prawo do jej
+zapisu. Natomiast jeśli będą to informacje innego uzytkownika będzie miał prawo
+wyłącznie do ich odczytu. Anonimowi użytkownicy mogą wysłać login i hasło tak,
+aby się zalogować. Są cztery poziomy dostępu, od najniższego do najwyższego:
+<c>auth, wyszukiwanie (search), odczyt (read) oraz zapis(write)</c>.
 </p>
 
 <p>
-Następny ACL jest trochę bardziej zabezpieczony, w celu zablokowania normalnym
-użytkownikom dostępu do ukrytych haseł innych ludzi:
+Następny ACL jest znacznie bezpieczniejszy, ponieważ blokuje normalnym
+użytkownikom dostęp do ukrytych haseł innych ludzi:
 </p>
 
 <pre caption="/etc/openldap/slapd.conf">
@@ -432,14 +433,15 @@ access to *
 </pre>
 
 <p>
-Ten przykład daje suerużytkownikowi oraz John-owi dostęp do
-odczytu(read)/zapisu(write)/wyszukiwania(search) wszystkiego poniżej drzewa 
-<path>dc=genfic,dc=com</path>. Pozwala również na zmianę użytkownikowi własnego
-<path>userPassword</path>. W ostatecznym rozrachunku wszyscy pozostali musza
-jedynie wiedzieć, że mają możliwość wyszukiwania tj. mają dostęp do 
-filtra wyszukującego, jednak nie mogą odczytać wyników wyszukiwania. Teraz
-możesz posiadać wiele acl-i jednak praktycznie, twój najwyższy stopień
-powinnien być najbardziej restrykcyjny. 
+Taka konfiguracja zapewnia suerużytkownikowi oraz użytkownikowi "john" dostęp do
+odczytu (read), zapisu (write) oraz wyszukiwania (search) wszystkiego poniżej drzewa 
+<path>dc=genfic,dc=com</path>. Pozwala również użytkownikowi na zmianę własnego
+<path>userPassword</path>. W ostatecznym rozrachunku wszyscy pozostali muszą
+jedynie wiedzieć, że mają możliwość wyszukiwania (tj. mają dostęp do 
+filtra wyszukującego), jednak nie mogą odczytać wyników wyszukiwania. Możliwe
+jest posiadanie wielu ACL-i, warto jednak w związku z kolejnością ich
+przetwarzania zachować zasadę, że najwyższy stopień powinien być najbardziej
+restrykcyjnym.
 </p>
 
 </body>
@@ -449,14 +451,14 @@ powinnien być najbardziej restrykcyjny.
 <chapter>
 <title>Praca z OpenLDAP.</title>
 <section>
-<title>Utrzymywanie katalogów.</title>
+<title>Utrzymywanie katalogu.</title>
 <body>
 
 <p>
-Możesz zacząć używać katalogów do autoryzacji użytkowników w takich programach
-jak apache/proftpd/qmail/samba. Możesz administrować nim przy uzyciu Webmina,
-który posiada bardzo przejrzysty i ergonomiczny interfejs. Możesz również
-uzywać qg lub directory_administrator. 
+Teraz możemy rozpocząć korzystanie z katalogu do autoryzacji użytkowników w
+takich programach jak apache, proftpd, qmail, czy samba. Możemy administrować
+nim przy uzyciu Webmina, który posiada bardzo przejrzysty i ergonomiczny
+interfejs. Możemy również korzystać z gq lub directory_administrator. 
 </p>
 
 </body>
@@ -470,7 +472,7 @@ uzywać qg lub directory_administrator.
 
 <p>
 Chcieliśmy podziękować Mattowi Helerowi za użyczenie nam swojej skrzynki na cele
-tego przewodnika. Podziękowania należą się również super ludziom z kanału #ldap
+tego przewodnika. Podziękowania należą się również ludziom z kanału #ldap
 w sieci freenode (irc.freenode.net).
 </p>
 
