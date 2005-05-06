@@ -9,7 +9,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-about.xml,v 1.27 2005/05/05 23:45:02 rane Exp $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/handbook/hb-install-about.xml,v 1.28 2005/05/06 00:08:02 rane Exp $ -->
 
 <sections>
 
@@ -34,10 +34,10 @@ Gentoo to szybka i nowoczesna dystrybucja. Do jej głównych zalet należą
 przejrzystość i elastyczność. Tworzymy je jako wolne oprogramowanie i staramy
 się nie ukrywać niczego przed użytkownikiem. Portage, czyli nasz system
 zarządzania pakietami napisaliśmy w Pythonie, dzięki czemu można z łatwością
-przeglądać i modyfikować jego kod tak by dostosować go do swoich potrzeb. Gentoo
+przeglądać i modyfikować jego kod tak, aby dostosować go do swoich potrzeb. Gentoo
 jest oparte głównie na pakietach źródłowych, ale posiada rownież wsparcie dla
-pakietów. Cała konfiguracja odbywa się za pomocą zwyczajnych plików tekstowych.
-Podsumowując: pełna otwartość.
+pakietów prekompilowanych. Cała konfiguracja odbywa się za pomocą zwyczajnych
+plików tekstowych. Podsumowując: Gentoo to pełna otwartość.
 </p>
 
 <p>
@@ -56,13 +56,13 @@ link="http://bugs.gentoo.org">powiadom nas</uri> o tym.
 <p>
 Proces instalacji Gentoo można podzielić na 10 etapów,
 opisanych odpowiednio w rozdziałach 2 - 11. Każdy z nich
-kończy się określonym stanem:
+kończy się w określonym momencie:
 </p>
 
 <ul>
 <li>
   Po ukończeniu etapu pierwszego użytkownik znajduje się wewnątrz w pełni
-  skonfigurowanego i przygotowanego do pracy, środowiska instalacyjnego.
+  skonfigurowanego i przygotowanego do pracy środowiska instalacyjnego.
 </li>
 <li>
   Po ukończeniu etapu drugiego możemy korzystać z właśnie skonfigurowanego łącza
@@ -104,7 +104,7 @@ Za każdym razem gdy użytkownik będzie zmuszony do wybrania jednej z kilku opc
 postaramy się jak najlepiej przedstawić wady i zalety każdego z rozwiązań.
 Następnie będziemy kontynuować omawianie procesu instalacji opisując kolejno
 wybór domyślny, a następnie wszystkie alternatywne możliwości. Domyślne opcje
-mie są tymi zalecanymi, po prostu zakładamy przy pisaniu dokumentacji, że
+mie są tymi zalecanymi, po prostu przy pisaniu dokumentacji zakładamy, że
 wybierze je większość użytkowników. 
 </p>
 
@@ -117,20 +117,20 @@ przypadku spokojnie możemy ją pominąć.
 </body>
 </subsection>
 <subsection>
-<title>Co mam do wyboru?</title>
+<title>Co mamy do wyboru?</title>
 <body>
 
 <p>
 Gentoo można zainstalować na wiele różnych sposobów. Najczęściej wybierana
 metoda to ta przy użyciu jednej z naszych płyt instalacyjnych. Istnieje również
 możliwość przeprowadzenia tego procesu poprzez już zainstalowaną dystrybucję,
-inną uruchamialną płytę (np. Knoppix), środowiska uruchamianego z sieci
-(netmount), czy dyskietki ratunkowej.
+inną uruchamialną płytę (np. Knoppix), środowisko uruchamiane z sieci
+(netmount), czy dyskietkę ratunkową.
 </p>
 
 <p>
 W Podręczniku omawiamy instalację przy użyciu płyt Gentoo LiveCD oraz,
-w pewnych wypadkach rozruchu z sieci (netboot). W tym przypadku zakładamy, że
+w pewnych przypadkach, rozruchu z sieci (netboot). Generalnie zakładamy, że
 użytkownik zamierza zainstalować najnowsze dostępne wersje pakietów. Instalację
 bez dostępu do Internetu omawiamy w <uri link="2005.0/index.xml">Podręcznikach
 Gentoo 2005.0</uri>.
@@ -150,17 +150,17 @@ sposobów instalowania Gentoo. Ponadto warto zapoznać się z dokumentem
 zawierającym <uri link="/doc/en/gentoo-x86-tipsntricks.xml">przydatne rady
 dotyczące instalacji Gentoo</uri>. Zaawansowani użytkownicy, którzy uważają, że
 w Podręczniku proces instalacji jest omówiony zbyt rozwlekle powinni skorzystać
-z dokumentu opisującego ten proces w mocno skrótowej formie (quick install
+z dokumentu opisującego wszystkie czynności w mocno skrótowej formie (quick install
 how-to), który znajduje się w naszych <uri link="/doc/en/index.xml">zasobach
 dokumentacji</uri>.
 </p>
 
 <p>
-Możliwości wyboru nie kończą się na medium instalacyjnym. Istnieje
-możliwość skompilowania całego systemu od podstaw lub wykorzystania
-prekompilowanych pakietów, co zaoszczędzi mnóstwo czasu. Oczywiście
-są także rozwiązania mieszane, dzięki którym nie trzeba kompilować
-wszystkiego, lecz możesz zacząć od częściowo przygotowanego systemu.
+Możliwości wyboru nie kończą się na medium instalacyjnym. Możliwe jest
+skompilowanie całego systemu od podstaw lub wykorzystanie do jego budowy
+prekompilowanych pakietów, co zaoszczędzi mnóstwo czasu. Oczywiście są także
+rozwiązania mieszane, dzięki którym nie trzeba kompilować wszystkiego i
+można zacząć od częściowo przygotowanego systemu.
 </p>
 
 </body>
@@ -179,7 +179,7 @@ zostanie przypisany raport, zwykle nie gryzą.
 </p>
 
 <p>
-<!-- strasznie pomotane zdanie, piszę po swojemu, osądzą mnie Bóg i historia-->
+<!-- rane/tlumacz: strasznie pomotane zdanie, piszę po swojemu, osądzą mnie Bóg i historia-->
 Pomimo, że spora część Podręcznika jest wspólna dla wszystkich architektur
 istnieją w nim również odnośniki do poszczególnych z nich. Staramy się
 ograniczać to zjawisko do minimum, aby uniknąć dezorientowania czytelników.
@@ -187,8 +187,8 @@ ograniczać to zjawisko do minimum, aby uniknąć dezorientowania czytelników.
 
 <p>
 Jeśli nie wiadomo czy kłopot leży po stronie systemu (pewne rzeczy mogą nie być
-dostatecznie przetestowane) czy po stronie użytkownika (czasami może wyniknąć z
-nieuważnego czytania opisu) warto odwiedzić kanał #gentoo na sieci
+dostatecznie przetestowane) czy po stronie użytkownika (czasami problem może
+wyniknąć z nieuważnego czytania opisu) warto odwiedzić kanał #gentoo na sieci
 irc.freenode.net. Zapraszamy tam wszystkich użytkowników.
 </p>
 
@@ -198,16 +198,17 @@ link="/doc/en/faq.xml">FAQ</uri>. Warto również przejrzeć <uri
 link="http://forums.gentoo.org/viewforum.php?f=40">FAQ</uri> na naszym <uri
 link="http://forums.gentoo.org">forum</uri>. Jeśli odpowiedzi na pytanie nie ma
 w żadnym z nich zawsze można zapytać maniaków przesiadujących na kanale #gentoo
-w sieci freenode, zwykle są dobrze poinformowani. 
+(w sieci freenode), zwykle są dobrze poinformowani. 
 </p>
 
+<!-- info o tym gdzie zgłaszać błędy związane z tłumaczeniami-->
 <p>
 W przypadku błędów związanych z tłumaczeniem Podręcznika należy kontaktować się
-z osobami wymienionymi w prawym górnym rogu strony. Można wysłać do nich list,
-ale najszybszą metodą jest zwykle kontakt bezpośredni na ircu, gdzie
-przesiadują w przerwach między kolejnymi chłostami za literówki w tekstach.
-Można ich spotkać na kanałach #gentoo-doc-pl w sieci freenode i #gentoo.pl na
-ircnecie.
+z osobami wymienionymi w prawym górnym rogu strony jako główni tłumacze. Można
+wysłać do nich list, ale najszybszą metodą jest zwykle kontakt bezpośredni na
+ircu, gdzie przesiadują w przerwach między kolejnymi chłostami za literówki w
+tekstach. Najczęściej można ich spotkać na kanałach #gentoo-doc-pl w sieci
+freenode i #gentoo.pl na ircnecie.
 </p>
 
 </body>
