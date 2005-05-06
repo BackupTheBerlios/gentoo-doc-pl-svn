@@ -11,7 +11,7 @@ mkdir tmp
 
 # Teraz zrobimy tablicê z dokumentami
 echo > doctable.xml
-for file in `find ../trans/translated/ ../trans/non_translated -name "*.xml" | sort` 
+for file in `find ../translated/ ../non_translated -name "*.xml" | sort` 
 do
    # Taki myk zeby szybko sprawdzac czy jest z handbooka czy nie i latwo zastepowac
    handbook=""
@@ -68,7 +68,7 @@ rm /home/groups/gentoo-doc-pl/htdocs/handbook/index.html
 rm -rf tmp
 
 # Teraz zrobimy tablicê z cz³onkami projektu
-sed -e 's/\(.*\) - \(.*\) - \(.*\)/<tr><ti>\1<\/ti><ti>\2<\/ti><ti><mail link=\"\3\">\3<\/mail><\/ti><\/tr>/' ../trans/people > peopletable.xml
+sed -e 's/\(.*\) - \(.*\) - \(.*\)/<tr><ti>\1<\/ti><ti>\2<\/ti><ti><mail link=\"\3\">\3<\/mail><\/ti><\/tr>/' ../people > peopletable.xml
 
 # Generujemy jak-tlumaczyc
 xsltproc guide.xsl jak-tlumaczyc.xml > /home/groups/gentoo-doc-pl/htdocs/jak-tlumaczyc.html 
