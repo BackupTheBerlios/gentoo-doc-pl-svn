@@ -25,7 +25,7 @@ do
    rorig=""
    
    echo "<tr>" >> doctable.xml
-   echo "<ti><uri link=\"http://cvs.berlios.de/cgi-bin/viewcvs.cgi/gentoo-doc-pl/trans/$file\">" >> doctable.xml
+   echo "<ti><uri link=\"http://svn.berlios.de/viewcvs/gentoo-doc-pl/trunk/trans/translated/$file\">" >> doctable.xml
    echo $file | sed -e 's:.*/\(.*\)\.xml:\1</uri></ti>:' >> doctable.xml
 
    #sciagmy informacje z cvs gentoo
@@ -64,7 +64,7 @@ do
 done
 
 # czyscimy
-rm /home/groups/gentoo-doc-pl/htdocs/handbook/index.html        
+#rm /home/groups/gentoo-doc-pl/htdocs/handbook/index.html        
 rm -rf tmp
 
 # Teraz zrobimy tablicê z cz³onkami projektu
