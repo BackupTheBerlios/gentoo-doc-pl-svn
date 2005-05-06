@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE guide SYSTEM "guide.dtd">
+
+<guide link="/doc/pl/jak-tlumaczyc.xml" lang="pl">
+<title>Przewodnik dla tłumaczy dokumentacji Gentoo na język polski</title>
+
+<author title="Autor">
+  <mail link="rane@gentoo.pl">rane</mail>
+</author>
+<author title="Autor">
+  <mail link="sekretarz@gentoo.org">sekretarz</mail>
+</author>
+
+<version>1.3</version>
+<date>28-12-2004</date>
+
+<abstract>
+Przewodnik dla tłumaczy dokumentacji Gentoo na język polski.
+</abstract>
+
+<license/>
+
+<chapter>
+<title>Wprowadzenie.</title>
+<section>
+<body>
+
+<p>
+Podstawową zasadą obowiązującą każdego tłumacza jest dobra znajomość języka
+angielskiego. Bardzo ważne jest tu słownictwo techniczne dotyczące systemu
+Linux, oprogramowania, sprzętu oraz samego Gentoo. Oprócz tego każdy chętny
+powinien posiadać wiedzę i doświadczenie w używaniu naszej dystrybucji.
+</p>
+
+<p>
+Informacje zawarte w tym dokumencie zostały spisane, aby ułatwić nowym osobom
+dołączenie do projektu oraz w celu usystematyzowania wszystkich zasad i reguł
+obowiązujących obecnych członków naszego zespołu.
+</p>
+
+<p>
+Wszelkie propozycje poprawek do tego tekstu prosimy postulować na 
+naszą listę mailową - nasz jedyny oficjalny kanał komunikacji. To jak się do
+niej dostać omówimy w dalszej części tego przewodnika.
+</p>
+
+<p>
+Zacznijmy od omówienia procesu tłumaczenia dokumentu:
+</p>
+
+</body>
+</section>
+</chapter>
+<chapter>
+<title>Przygotowanie środowiska pracy.</title>
+<section>
+<body>
+
+<p>
+Najpierw musimy pobrać i rozpakować plik z angielską dokumentacją:
+</p>
+
+<pre caption="Pobieranie i rozpakowywanie dokumentacji w języku angielskim">
+$ wget http://www.gentoo.org/dyn/doc-snapshots/docs-latest-en.tar.bz2
+$ tar xvjf docs-latest-en.tar.bz2
+</pre>
+
+<p>
+Następnie wchodzimy do katalogu, który powstanie w wyniku wykonania tych poleceń
+i odszukujemy w nim dokument, który chcemy przetłumaczyć. Najpierw jednak
+przygotujemy sobie najlepszy w świecie edytor, vim, do pracy w kodowaniu UTF-8 i
+nauczymy go odpowiednio zawijać długie wiersze.
+</p>
+
+<p>
+Otwieramy plik ~/.vimrc:
+</p>
+
+<pre caption="Otwieranie pliku ~/.vimrc">
+$ vim ~/.vimrc
+</pre>
+
+<p>
+I dopisujemy do niego następujące linijki:
+</p>
+
+<pre caption="Konfigurowanie edytora vim">
+:set termencoding=iso-8859-2
+:set fileencoding=utf-8
+:set encoding=utf-8
+:set textwidth=80
+</pre>
+
+
+</body>
+</section>
+</chapter>
+<chapter>
+<title>Tłumaczenie dokumentu.</title>
+<section>
+<body>
+
+<p>
+Następnie wracamy do naszego dokumentu. Załóżmy, że chodzi o plik
+hb-install-stage.xml:
+</p>
+
+<pre caption="Edytowanie dokumentu">
+$ cd en/handbook
+$ vim hb-install-stage.xml
+</pre>
+
+<p>
+Naszym oczom ukaże się ładnie pokolorowany plik, w którym musimy nanieść
+odpowiednie poprawki. Jak to zrobić? Zamieniając angielski tekst polskim i 
+starając się jednocześnie nie naruszyć składni xml.
+</p>
+
+<p>
+Kilka przykładów:
+</p>
+
+<pre caption="Tytuł">
+<comment>Przed:</comment>
+
+&lt;title&gt;Making your Choice&lt;/title&gt;
+
+<comment>Po:</comment>
+
+&lt;title&gt;Podejmowanie decyzji.&lt;/title&gt;
+</pre>
+
+<p>
+Uwagi:
+</p>
+
+<p>
+Tylko pierwsze słowo tytułu piszemy dużą literą, resztę małymi, pamiętamy o
+postawieniu na końcu kropki.
+</p>
+
+<pre caption="Paragraf">
+<comment>Przed:</comment>
+
+&lt;p&gt;
+The stages on the CD reside in the &lt;path&gt;/mnt/cdrom/stages&lt;/path&gt; directory. To
+see a listing of available stages, use &lt;c&gt;ls&lt;/c&gt;:
+&lt;/p&gt;
+
+<comment>Po:</comment>
+
+&lt;p&gt;
+Pliki stage umieszczone są w katalogu &lt;path&gt;/mnt/cdrom/stages&lt;/path&gt; na CD.
+Do przejrzenia ich spisu używamy polecenia &lt;c&gt;ls&lt;/c&gt;:
+&lt;p&gt;
+</pre>
+
+<p>
+Uwagi:
+</p>
+
+<p>
+Pamiętamy o wszystkich &lt;path&gt; i &lt;c&gt; z oryginału i podkreślamy je we
+właściwy sposób również  w odpowiednich fragmentach przetłumaczonego tekstu.
+</p>
+
+<pre caption=" Nagłówek.">
+<comment>Przed:</comment>
+
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;!DOCTYPE sections SYSTEM "/dtd/book.dtd"&gt;
+
+&lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
+&lt;!-- See http://creativecommons.org/licenses/by-sa/1.0 --&gt;
+
+&lt;!-- $Header: /cvsroot/gentoo-doc-pl/trans/jak-tlumaczyc.xml,v 1.10 2004/12/29 14:01:26 rane Exp $ --&gt;
+
+<comment>Po:</comment>
+
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;!DOCTYPE sections SYSTEM "/dtd/book.dtd"&gt;
+
+&lt;!-- Orig revision: 1.9 --&gt;
+&lt;!-- Translator: rane &lt;rane@gentoo.pl&gt; --&gt;
+&lt;!-- Title: Przygotowanie plików instalacyjnych Gentoo --&gt;
+&lt;!-- Status: Release --&gt;
+&lt;!-- &#36;Header: &#36; --&gt;
+
+&lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
+&lt;!-- See http://creativecommons.org/licenses/by-sa/1.0 --&gt;
+
+&lt;!-- $Header: /cvsroot/gentoo-doc-pl/trans/jak-tlumaczyc.xml,v 1.10 2004/12/29 14:01:26 rane Exp $ --&gt;
+</pre>
+
+<p>
+Uwagi:
+</p>
+
+<p>
+Nie pozwalamy, aby zawinęła nam się długa linia z "$Header". Dodajemy
+wiersz "Translator", który zapewni, że potomni będą pamiętali o naszym wkładzie
+w prace nad dokumentacją. Zawartość "Title" tłumaczymy na polski. Wersja
+oryginalnego pliku z CVS na gentoo.org wędruje do pola "Orig revision"
+przetłumaczonego pliku. Nie dotykamy linii dotyczących licencji na jakiej są
+wydawane dokumenty oraz deklaracji kodowania i typu dokumentu.
+</p>
+
+<p>
+W ten sposób, możliwie wiernie, tłumaczymy cały dokument. Kiedy skończymy musimy
+sprawdzić jego składnię przy pomocy programu xmllint:
+</p>
+
+<pre caption="Sprawdzanie poprawności składni XML">
+$ xmllint --noout hb-install-stage.xml
+$ xmllint --valid --noout hb-install-stage.xml
+</pre>
+
+<p>
+Jeśli program nie wydrukuje żadnych komunikatów o błędach możemy przystąpić
+do (niezbędnej przed wysłaniem dokumentu w świat) korekty.
+</p>
+
+<pre caption="Otwarcie pliku tłumaczenia">
+$ vim hb-install-stage.xml
+</pre>
+
+<p>
+W tym momencie zapominamy o oryginalnym, angielskim tekście i poprawiamy cały
+dokument tak, aby wyglądał możliwie naturalnie dla naszych rodaków. Warto
+poprawić styl i budowę zdań. Staramy się również wyłowić wszystkie błędy
+ortograficzne, gramatyczne i interpunkcjyjne jakieapopełniliśmy w trakcie
+tłumaczenia. Wszelkie wątpliwości pomogą nam rozwiać: 
+</p>
+
+<ul>
+<li>Serwis <uri link="http://polszczyzna.pwn.pl">polszczyzna.pwn.pl</uri>.</li>
+<li>Słowniczek przygotowany specjalnie na potrzeby tłumaczeń dokumentacji Gentoo
+(poniżej).</li>
+<li>Oraz zawierający mnóstwo użytecznych informacji 
+<uri link="http://www.piotr.kresak.pl/konwen222.htm">Poradnik dla tłumaczących
+oprogramowanie firmy Lotus</uri>, który powinien być lekturą obowiązkową
+dla każdego tłumacza dokumentacji oprogramowania.</li>
+</ul>
+
+<p>
+Jeśli wciąż nie jesteśmy czegoś pewni odwiedzamy kanał #gentoo-doc-pl na sieci
+freenode i pytamy przebywających tam innych tłumaczy o ich zdanie
+w kontrowersyjnej sprawie. Możemy również zapisać się i wysłać maila na listę
+dyskusyjną tłumaczy Gentoo - o której opowiemy nieco później.
+</p>
+
+</body>
+</section>
+</chapter>
+<chapter>
+<title>Kodowanie UTF-8.</title>
+<section>
+<body>
+
+<p>
+Ekipa Gentoo Linux promuje Unicode (UTF-8) jako oficjalny standard kodowania
+znaków. Definiuje on litery narodowe niemal wszystkich języków świata. Niestety
+w Polsce wciąż najpopularniejszy jest standard ISO8859-2.
+</p>
+
+<p>
+Wcześniej, w paragrafie dotyczącym środowiska pracy zachęcaliśmy do
+przestawienia edytora na pracę w UTF-8. Inną metodą otrzymania tekstu w
+prawidłowym kodowaniu jest skorzystanie z programu do konwersji o nazwie
+<c>iconv</c>.
+</p>
+
+<pre caption="Konwersja dokumentów z ISO8859-2 na UTF-8 i na odwrót">
+<comment>Zastąp index-iso.xml oraz index-utf.xml odpowiednimi nazwami plików</comment>
+Konwersja z ISO8859-2 na UTF-8:
+# iconv -fISO8859-2 -tUTF-8 -o index-utf.xml index-iso.xml
+Konwersja z UTF-8 na ISO8859-2:
+# iconv -fUTF-8 -tISO8859-2 -o index-iso.xml index-utf.xml
+</pre>
+
+<p>
+Kiedy skończymy tłumaczenie wysyłamy plik na bugzillę projektu tłumaczeń
+dokumentacji Gentoo, lub bezpośrednio do CVS, o ile obdarzono nas tak wielkim
+zaufaniem, że mamy do niego dostęp. Stamtąd nasz plik trafia na
+http://gentoo.org i możemy cieszyć się sławą po wieki :]
+</p>
+
+</body>
+</section>
+</chapter>
+<chapter>
+<title>Słowniczek.</title>
+<section>
+<body>
+
+<p>
+Lista terminów, których tłumaczenie na podaną postać jest obowiązkowe (wszystko
+małą literą dla wygody wyszukiwania):
+</p>
+
+<pre caption="Słowniczek">
+&dictionary;
+</pre>
+
+<warn>
+Wszystkie sugestie dotyczące słowniczka prosimy kierować na listę dyskusyjną
+gentoo-doc-pl (informacje poniżej).
+</warn>
+
+</body>
+</section>
+</chapter>
+<chapter>
+<title>Grupa dyskusyjna.</title>
+<section>
+<body>
+
+<p>
+Wszystkich tłumaczy zapraszamy do zapisania się na listę mailową
+specjalnie dla nich przeznaczoną. Wystarczy wysłać pusty mail pod adres
+gentoo-doc-pl-subscribe@gentoo.org i czekać na list z informacjami o tym jak się
+zapisać. Jest to nasz oficjalny kanał wymiany informacji.
+</p>
+
+</body>
+</section>
+</chapter>
+<chapter>
+<title>Program tlumacz.</title>
+<section>
+<body>
+
+<p>
+Szukanie znaczenia wszelkich angielskich słówek ułatwia program "tlumacz by aye",
+napisany na licencji GPL, do pobrania w ten sposób:
+</p>
+
+<pre caption="Pobieranie tlumacza">
+$ wget http://imdb.pl/~aye/tlumacz
+</pre>
+
+<p>
+Znajdowanie słówek jest banalnie proste, znacznie łatwiejsze niż grzebanie po
+www, szukanie w normalnym słowniku, czy nie daj Boże pytanie się o jakiś termin na
+ircu. ;]
+</p>
+
+<pre caption="Przykład użycia tlumacza">
+<comment>Najpierw nadajemy programowi atrybut wykonywalności.</comment>
+$ chmod +x tlumacz
+<comment>Następnie możemy przystąpić do wyszukiwania znaczeń interesujących nas słówek.</comment>
+$ ./tlumacz emerge
+ang-pol
+   emerge [29](Ectaco-Poland)
+      v,
+      1 wynurzac sie
+      2 ukazac sie
+      3 wydostac sie
+      4 pojawic sie
+      5 wygladac
+      6 wychodzic
+      7 wylaniac sie
+      8 powstac
+      9 wynikac
+      10 nasunac sie
+   emerge from the water [30](Ectaco-Poland)
+      v,
+      wyplynac
+</pre>
+
+</body>
+</section>
+</chapter>
+</guide>

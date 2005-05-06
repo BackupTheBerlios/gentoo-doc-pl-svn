@@ -1,8 +1,8 @@
 #/bin/bash
 
-# sciagamy zrodla z cvs                                                         
-cd ~/gentoo-doc-pl                                                              
-cvs -d/cvsroot/gentoo-doc-pl co trans          
+# sciagamy zrodla z svn                                                         
+cd ~/svn/gentoo-doc-pl/trunk/trans/                                                              
+svn update
 
 cd www
 
@@ -18,7 +18,9 @@ do
 
    # Nazwa pliku
    bname="`basename $file`"
-
+    if [ bname = "TODO.xml" ]; then
+	break;
+    fi
    # Rewizja orginalnego dokumentu z cvs gentoo
    rorig=""
    
@@ -30,7 +32,7 @@ do
    if  expr match "$bname" "hb" || expr match "$bname" "handbook"; then
 	handbook="handbook"
    fi
-   wget "http://www.gentoo.org/cgi-bin/viewcvs.cgi/en/$handbook/$bname?root=doc" -O tmp/$bname -q -N; 
+   ./wget "http://www.gentoo.org/cgi-bin/viewcvs.cgi/en/$handbook/$bname?root=doc" -O tmp/$bname -q -N; 
 
    # Dodajemy rewizje z cvs do tabeli
    if [ `file tmp/$bname | awk '{print $2}'` != "empty" ]; then
@@ -58,7 +60,7 @@ do
    echo "</tr>" >> doctable.xml
 
     # Tworzymy html z handbooka
-    xsltproc --novalid guide.xsl $file > /home/groups/gentoo-doc-pl/htdocs/handbook/`basename $file | sed -e s/.xml/.html/g`
+   # xsltproc --novalid guide.xsl $file > /home/groups/gentoo-doc-pl/htdocs/handbook/`basename $file | sed -e s/.xml/.html/g`
 done
 
 # czyscimy
@@ -67,6 +69,9 @@ rm -rf tmp
 
 # Teraz zrobimy tablicê z cz³onkami projektu
 sed -e 's/\(.*\) - \(.*\) - \(.*\)/<tr><ti>\1<\/ti><ti>\2<\/ti><ti><mail link=\"\3\">\3<\/mail><\/ti><\/tr>/' ../trans/people > peopletable.xml
+
+# Generujemy jak-tlumaczyc
+xsltproc guide.xsl jak-tlumaczyc.xml > /home/groups/gentoo-doc-pl/htdocs/jak-tlumaczyc.html 
 
 # A teraz wszystko sparsujemy
 xsltproc guide.xsl index.xml > /home/groups/gentoo-doc-pl/htdocs/index.html

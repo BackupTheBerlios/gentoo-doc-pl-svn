@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- For local usage only -->
+
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 <xsl:output encoding="UTF-8" method="html" indent="yes" doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"/>
 
@@ -382,16 +384,8 @@
                     <br/><br/>
                     Installation:
                     <br/>
-                    <a class="altlink" href="/doc/en/gentoo-x86-install.xml">Gentoo Linux/x86</a>
-                    <br/>
-                    <a class="altlink" href="/doc/en/gentoo-ppc-install.xml">Gentoo Linux/PowerPC</a>
-                    <br/>
-                    <a class="altlink" href="/doc/en/gentoo-sparc-install.xml">Gentoo Linux/Sparc</a>
-                    <br/>
-                    <a class="altlink" href="/doc/en/gentoo-hppa-install.xml">Gentoo Linux/HPPA</a>
-                    <br/>
-                    <a class="altlink" href="/doc/en/gentoo-alpha-install.xml">Gentoo Linux/Alpha</a>
-                   <br/><br/>
+                    <a class="altlink" href="/doc/en/handbook/handbook.xml?part=1">Gentoo Handbook Installation Instructions</a>
+                    <br/><br/>
                     Resources:
                     <br/>
                     <a class="altlink" href="/main/en/lists.xml">Mailing lists</a>
@@ -880,12 +874,12 @@
 <xsl:param name="chid"/>
 <xsl:if test="title">
   <xsl:variable name="sectid">doc_chap<xsl:value-of select="$chid"/>_sect<xsl:number/></xsl:variable>
+  <xsl:if test="@id">
+    <a name="{@id}"/>
+  </xsl:if>
   <p class="secthead">
     <a name="{$sectid}"><xsl:value-of select="title"/>&#160;</a>
   </p>
-</xsl:if>
-<xsl:if test="@id">
-  <a name="{@id}"/>
 </xsl:if>
 <xsl:apply-templates select="body">
   <xsl:with-param name="chid" select="$chid"/>
@@ -1139,17 +1133,22 @@
         <xsl:choose>
           <!-- ?part=X&chap=Y, or ?chap=Y&part=X -->
           <xsl:when test="starts-with(@link, '?part=')">
-            <xsl:param name="thePart" select="substring(substring-before(@link, '&amp;'), 7, 20)"/>
-            <xsl:param name="theChap" select="substring(substring-after(@link, '&amp;'), 6, 20)"/>
+            <xsl:variable name="thePart" select="substring(substring-before(@link, '&amp;'), 7, 20)"/>
+            <xsl:variable name="theChap" select="substring(substring-after(@link, '&amp;'), 6, 20)"/>
             <a href="hb_part{$thePart}_chap{$theChap}.html"><xsl:apply-templates /></a>
           </xsl:when>
           <xsl:when test="starts-with(@link, '?chap=')">
-          
+            <xsl:variable name="thePart" select="substring(substring-after(@link, '&amp;'), 6, 20)"/>
+            <xsl:variable name="theChap" select="substring(substring-before(@link, '&amp;'), 7, 20)"/>
+            <a href="hb_part{$thePart}_chap{$theChap}.html"><xsl:apply-templates /></a>
           </xsl:when>
           <xsl:otherwise>
             <a href="{@link}"><xsl:apply-templates /></a>
           </xsl:otherwise>
         </xsl:choose>
+      </xsl:when>
+      <xsl:when test="starts-with(@link, '/')">
+        <a href="http://www.gentoo.org{@link}"><xsl:apply-templates /></a>
       </xsl:when>
       <xsl:otherwise>
         <a href="{@link}"><xsl:apply-templates/></a>
@@ -1256,9 +1255,12 @@
 
 <!-- License Tag -->
 <xsl:template match="license">
-<pre>
+<xsl:if test="$style != 'printable'">
+<tt>
   The contents of this document are licensed under the <a href="http://creativecommons.org/licenses/by-sa/1.0">Creative Commons - Attribution / Share Alike</a> license.
-</pre>
+</tt>
+</xsl:if>
+
 </xsl:template>
 
 <!-- Define global variables; if a user has
@@ -1296,7 +1298,7 @@
   <p>Content:</p>
   <ul>
     <xsl:for-each select="part">
-      <xsl:param name="curpart" select="position()" />
+      <xsl:variable name="curpart" select="position()" />
       <li>
         <b><a href="hb_part{$curpart}_chap0.html"><xsl:value-of select="title" /></a></b>
         <xsl:if test="abstract">
@@ -1305,7 +1307,7 @@
         </xsl:if>
         <ol>
           <xsl:for-each select="chapter">
-            <xsl:param name="curchap" select="position()" />
+            <xsl:variable name="curchap" select="position()" />
             <li>
               <b><a href="hb_part{$curpart}_chap{$curchap}.html"><xsl:value-of select="title" /></a></b>
               <xsl:if test="abstract">
@@ -1345,14 +1347,14 @@
   <xsl:if test="@id">
     <a name="{@id}"/>
   </xsl:if>
-  <h1><xsl:number level="multiple" format="1. " select="position()"/><xsl:value-of select="title" /></h1>
+  <h1><xsl:number level="multiple" format="1. " value="position()"/><xsl:value-of select="title" /></h1>
   <xsl:if test="abstract">
     <p><xsl:value-of select="abstract" /></p>
   </xsl:if>
   <p>Content:</p>
   <ol>
     <xsl:for-each select="chapter">
-      <xsl:param name="curpos" select="position()" />
+      <xsl:variable name="curpos" select="position()" />
       <xsl:if test="title">
         <li>
           <b><a href="hb_part{$part}_chap{$curpos}.html"><xsl:value-of select="title" /></a></b>
@@ -1374,73 +1376,71 @@
   <xsl:variable name="prevchap" select="number($chap) - 1" />
   <xsl:variable name="nextpart" select="number($part) + 1" />
   <xsl:variable name="nextchap" select="number($chap) + 1" />
-  <xsl:if test="$style != 'printable'">
     <hr />
     <p class="alttext">
       <!-- Previous Parts -->
       <xsl:choose>
         <xsl:when test="number($prevpart) &lt; 1">
-          [ &lt;&lt; Previous Part ]
+          [ &lt;&lt; ]
         </xsl:when>
         <xsl:otherwise>
-          [ <a href="hb_part{$prevpart}_chap0.html">&lt;&lt; Previous Part</a> ]
+          [ <a href="hb_part{$prevpart}_chap0.html">&lt;&lt;</a> ]
         </xsl:otherwise>
       </xsl:choose>
       <!-- Previous Chapter -->
       <xsl:choose>
         <xsl:when test="number($prevchap) &lt; 1">
-          [ &lt; Previous Chapter ]
+          [ &lt; ]
         </xsl:when>
         <xsl:otherwise>
-          [ <a href="hb_part{$part}_chap{$prevchap}.html">&lt; Previous Chapter</a> ]
+          [ <a href="hb_part{$part}_chap{$prevchap}.html">&lt;</a> ]
         </xsl:otherwise>
       </xsl:choose>
       <!-- Content -->
       [ <a href="index.html">Home</a> ]
       <!-- Next Chapter -->
       <xsl:if test="name() = 'book'">
-        [ <a href="hb_part1_chap0.html">Next Chapter &gt;</a> ]
+        [ <a href="hb_part1_chap0.html">&gt;</a> ]
       </xsl:if>
       <xsl:if test="name() = 'part'">
-        [ <a href="hb_part{$part}_chap1.html">Next Chapter &gt;</a> ]
+        [ <a href="hb_part{$part}_chap1.html">&gt;</a> ]
       </xsl:if>
       <xsl:if test="name() = 'chapter'">
         <xsl:choose>
-          <xsl:when test="number($chap) = count(section)">
-            [ Next Chapter &gt; ]
+          <xsl:when test="last() = position()">
+            [ &gt; ]
           </xsl:when>
           <xsl:otherwise>
-            [ <a href="hb_part{$part}_chap{$nextchap}.html">Next Chapter &gt;</a> ]
+            [ <a href="hb_part{$part}_chap{$nextchap}.html">&gt;</a> ]
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
       <!-- Next Part -->
       <xsl:if test="name() = 'book'">
-        [ <a href="hb_part{$nextpart}_chap0.html">Next Part &gt;&gt;</a> ]
+        [ <a href="hb_part{$nextpart}_chap0.html">&gt;&gt;</a> ]
       </xsl:if>
       <xsl:if test="name() = 'part'">
         <xsl:choose>
           <xsl:when test="number($part) = last()">
-            [ Next Part &gt;&gt; ]
+            [ &gt;&gt; ]
           </xsl:when>
           <xsl:otherwise>
-            [ <a href="hb_part{$nextpart}_chap0.html">Next Part &gt;&gt;</a> ]
+            [ <a href="hb_part{$nextpart}_chap0.html">&gt;&gt;</a> ]
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
       <xsl:if test="name() = 'chapter'">
         <xsl:choose>
           <xsl:when test="count(/book/part) = number($part)">
-            [ Next Part &gt;&gt; ] 
+            [ &gt;&gt; ] 
           </xsl:when>
           <xsl:otherwise>
-            [ <a href="hb_part{$nextpart}_chap0.html">Next Part &gt;&gt;</a> ]
+            [ <a href="hb_part{$nextpart}_chap0.html">&gt;&gt;</a> ]
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
     </p>
     <hr />
-  </xsl:if>
 </xsl:template>
 
 
@@ -1464,14 +1464,14 @@
   <xsl:if test="@id">
     <a name="{@id}"/>
   </xsl:if>
-  <h1><xsl:number level="multiple" format="1. " select="position()"/><xsl:value-of select="title" /></h1>
+  <h1><xsl:number level="multiple" format="1. " value="position()"/><xsl:value-of select="title" /></h1>
   <xsl:variable name="doc" select="include/@href"/>
   <xsl:variable name="FILE" select="document($doc)" />
   <xsl:if test="$FILE/sections/section/title">
     <b>Content: </b>
     <ul>
       <xsl:for-each select="$FILE/sections/section/title">
-        <xsl:param name="pos" select="position()" />
+        <xsl:variable name="pos" select="position()" />
         <li><a href="#doc_chap{$pos}" class="altlink"><xsl:value-of select="." /></a></li>
       </xsl:for-each>
     </ul>
@@ -1490,7 +1490,7 @@
     <a name="{@id}"/>
   </xsl:if>
   <xsl:if test="title">
-    <p class="chaphead"><span class="chapnum"><xsl:value-of select="$chap" />.<xsl:number level="multiple" format="a. " select="position()" /></span><xsl:value-of select="title" /></p>
+    <p class="chaphead"><span class="chapnum"><xsl:value-of select="$chap" />.<xsl:number level="multiple" format="a. " value="position()" /></span><xsl:value-of select="title" /></p>
   </xsl:if>
   <xsl:apply-templates select="body|subsection">
     <xsl:with-param name="chpos" select="$pos"/>
@@ -1500,6 +1500,7 @@
 <!-- Subsubsection inside a section -->
 <xsl:template match="/sections/section/subsection">
   <xsl:param name="pos" select="position()"/>
+  <xsl:param name="chpos" />
   <a name="doc_chap{$chpos}_sect{$pos}" />
   <xsl:if test="@id">
     <a name="{@id}"/>
