@@ -1012,8 +1012,8 @@ skonfigurujesz prawidłowo PAM lub całkiem ją wyłączysz w pliku
 <body>
 
 <warn>
-Należy upewnić się, że system plików na którym się pracuje posiada wsparcie dla
-quota. Żeby używać ich na ReiserFS trzeba nałożyć na kernel łatkę <uri link =
+Należy upewnić się, że używany system plików posiada wsparcie dla quota. 
+Żeby używać ich na ReiserFS trzeba nałożyć na kernel łatkę <uri link =
 "ftp://ftp.namesys.com/pub/reiserfs-for-2.4/testing/quota-2.4.20">Namesys</uri>.
 Narzędzia użytkownika są dostępne na stronach <uri link =
 "http://www.sf.net/projects/linuxquota/">Projektu DiskQuota dla Linux</uri>.
@@ -1023,7 +1023,7 @@ problemów.
 
 <p>
 Umieszczenie quoty na systemie plików nałoży ograniczenie w użyciu przestrzeni
-dyskowej zarówno przez grupy jak i przez użytkowników. Quoty włącza się w
+dyskowej zarówno dla grupy jak i dla użytkowników. Quoty włącza się w
 jądrze, a następnie dodaje je do punktu montowania w pliku
 <path>/etc/fstab</path>. Opcja w konfiguracji kernela, które je włącza to <c>File
 systems-&gt;Quota support</c>. Należy zaznaczyć wymagane opcje, przebudować
@@ -1064,7 +1064,7 @@ głównym każdej partycji.
 <p>
 Trzeba powtórzyć te czynności osobno dla każdej partycji na której chce się
 używać quota. Po skonfigurowaniu wszystkich plików dodajemy skrypt
-<c>quota</c> na runlevel o nazwie boot.
+<c>quota</c> do runlevelu boot.
 </p>
 
 <pre caption="Dodawanie skryptu quota do runlevelu boot">
@@ -1096,8 +1096,10 @@ Quotas for user kn:
 
 <p>
 Aby uzyskać więcej informacji należy zapoznać się z dokumentami <c>man
-edquota</c> i <uri link="http://www.tldp.org/HOWTO/mini/Quota.html">Quota mini
-howto</uri>.
+edquota</c>, <uri link="http://www.tldp.org/HOWTO/mini/Quota.html">Jak używać
+Quoty na Linux-ie.</uri>(wersja polska) i <uri
+link="http://www.tldp.org/HOWTO/Quota.html">Mini Quota HOWTO</uri> (wersja
+angielska).
 </p>
 
 </body>
@@ -1108,7 +1110,7 @@ howto</uri>.
 	    
 <p>
 Jeśli w polityce bezpieczeństwa założono, że użytkownicy powinni
-co tydzień zmieniać hasło trzeba zmienić wartość zmiennej <c>PASS_MAX_DAYS</c>
+co tydzień zmieniać hasło należy zmienić wartość zmiennej <c>PASS_MAX_DAYS</c>
 na 14 oraz zmiennej <c>PASS_WARN_AGE</c> na 7. Zalecamy częste zmienianie haseł
 ponieważ metodami brute force można złamać każde z nich, jeśli tylko ma się dość
 dużo czasu. Ponadto polecamy ustawienie zmiennej <c>LOG_OK_LOGINS</c> na 'yes'.
@@ -1142,7 +1144,7 @@ Te ustawienia nie dotyczą roota.
 
 <impo>
 Należy zachować ostrożność przy tym ustawieniu. Zły wpis skończy się utratą
-dostępu do konta root i możliwości administrowania komputerem.
+dostępu do komputera jeżeli nie masz dostepu do konta root.
 </impo>
 
 <note>
@@ -1154,7 +1156,7 @@ Ustawienie te nie mają wpływu na SSH, ponieważ SSH nie używa domyślnie
 <p>
 Takie ustawienie umożliwi zalogowanie się jedynie członkom grupy wheel z domeny
 gentoo.org. Może jest to dość paranoiczne podejście, lepiej jednak być trochę
-"za bardzo" zabezpieczonym niż później żałować.
+"nadmiernie" zabezpieczonym niż później żałować.
 </p>
 
 </body>
@@ -1204,13 +1206,13 @@ przy pomocy polecenia <c>/bin/chmod o-w</c> dla każdego z plików.
 <p>
 Pliki z ustawionymi bitami SUID i SGID uruchamiane są zawsze z prawami dostępu
 swojego <e>właściciela</e>, a nie z prawami osoby je uruchamiającej. Normalnie
-bity te są ustawiane na programach, które muszą być uruchamiane z prawami roota
-aby mogły wykonywać swoją pracę. Jeśli taki plik zawiera błąd może spowodować
-kompromitację lokalnego konta root. W związku z takim niebezpieczeństwem należy
-za wszelką cenę unikać ustawiania tych bitów. Jeśli któryś z takich plików nie
-jest używany wykonujemy na nim polecenie <c>chmod 0</c> lub odmergowujemy pakiet
-do którego należy (pakiety do którego należą dane pliki wyszukujemy przy pomocy
-polecenia <c>equery</c>; jeśli nie ma takiego polecenia należy zainstalować pakiet
+bity te są ustawiane na programach, które do poprawnej pracy wymagają praw roota. 
+Jeśli taki plik zawiera błąd może spowodować kompromitację lokalnego konta root. 
+W związku z takim niebezpieczeństwem należy za wszelką cenę unikać ustawiania 
+tych bitów. Jeśli któryś z takich plików nie jest używany wykonujemy na 
+nim polecenie <c>chmod 0</c> lub odmergowujemy pakiet do którego należy 
+(pakiety do którego należą dane pliki wyszukujemy przy pomocy polecenia 
+<c>equery</c>; jeśli nie ma takiego polecenia należy zainstalować pakiet
 gentoolkit). W każdym innym wypadku należy użyć polecenia <c>chmod -s</c> do
 zdjęcia bitu SUID. 
 </p>
@@ -1251,8 +1253,7 @@ bin/su
 
 <p>
 Domyślnie Gentoo nie zawiera wielu plików SUID (chociaż ich ilość zależy od tego
-jakie programy są zainstalowane), ale istnieje również możliwość, że otrzymamy
-listę równie długą jak ta powyżej. Większość komend nie powinna być uruchamiana
+jakie programy są zainstalowane). Większość komend nie powinna być uruchamiana
 przez zwykłych użytkowników z prawami roota. Polecamy zdjęcie bitów SUID z
 programów <c>ping</c>, <c>mount</c>, <c>umount</c>, <c>chfn</c>,
 <c>chsh</c>, <c>newgrp</c>, <c>suidperl</c>, <c>pt_chown</c> i
@@ -1265,7 +1266,7 @@ przez któryś z tych plików.
 </p>
 
 <p>
-Jedynymi plikami z SUID w moim systemie są <c>su</c>, <c>passwd</c>,
+Jedyne plikami z SUID w moim systemie to: <c>su</c>, <c>passwd</c>,
 <c>gpasswd</c>, <c>qmail-queue</c>, <c>unix_chkpwd</c> i <c>pwdb_chkpwd</c>.
 Każdy kto używa serwera X może potrzebować jeszcze kilku, ponieważ serwer
 korzysta czasem z rozszerzonego dostępu, oferowanego przez bity SUID.
@@ -1291,7 +1292,7 @@ Jeśli użytkownicy posiadają dostęp do partycji nie zamontowanej z opcjami
 <path>/home</path>, lub <path>/var/tmp</path> nie znajdują się na osobnych
 partycjach) należy się upewnić, że nie będą mieli możliwości utworzenia twardego
 dowiązania do plików binarnych i korzystania z nich np. po uaktualnieniu przez
-Portage pliku do nowej, nie zawierającej błędów wersji.
+Portage pliku do nowej, nie zawierającej błędów, wersji.
 </p>
 
 <warn>
@@ -1364,8 +1365,8 @@ session	 required pam_unix.so
 
 <p>
 Takie ustawienie zmusi użytkowników do ustawiania co najmniej ośmioliterowych
-haseł, zawierających co najmniej dwie cyfry i co najmniej 2 inne znaki, oraz co
-najmniej 3 znaki różne w stosunku do tych z poprzedniego hasła. Spowoduje to, że
+haseł, zawierających co najmniej dwie cyfry i co najmniej dwa inne znaki oraz co
+najmniej trzy znaki różne w stosunku do tych z poprzedniego hasła. Spowoduje to, że
 wszyscy użytkownicy będą mieli ustawione dobre hasła. Więcej opcji
 znajduje się w dokumentacji <uri
 link="http://www.kernel.org/pub/linux/libs/pam/Linux-PAM-html/pam-6.html#ss6.3">PAM</uri>.
