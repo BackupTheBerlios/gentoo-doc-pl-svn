@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.40 -->
+<!-- Orig revision: 1.41 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Zakończenie Instalacji -->
 <!-- Status: Release -->
@@ -13,24 +13,23 @@
 
 <sections>
 
-<version>1.36</version>
-<date>2005-03-21</date>
+<version>2.00</version>
+<date>2005-03-28</date>
 
 <section>
-<title>Administracja użytkownikami.</title>
+<title>Administrowanie kontami użytkowników.</title>
 <subsection>
-<title>Dodawanie konta użytkownika do codziennej pracy.</title>
+<title>Tworzenie konta do codziennej pracy.</title>
 <body>
 
 <p>
-Praca w systemie Unix/Linux jako root jest <e>niebezpieczna</e> i należy
-jej unikać tak często jak to tylko możliwe. Usilnie <e>zalecamy</e> stworzyć do
-codziennej pracy konto zwykłego użytkownika.
+Wykonywanie zadań z przywilejami roota jest <e>niebezpieczna</e> i należy tego
+unikać. Do codziennej pracy należy utworzyć zwykłe konto użytkownika.
 </p>
 
 <p>
-Grupy do których należy użytkownik definiują czynności, które mogą być przez
-niego wykonywane. Oto lista ważnych grup, których możesz używać:
+Czynności jakie może wykonać użytkownik są zależne od grup do jakich on należy.
+Oto lista najważniejszych grup:
 </p>
 
 <table>
@@ -40,7 +39,7 @@ niego wykonywane. Oto lista ważnych grup, których możesz używać:
 </tr>
 <tr>
   <ti>audio</ti>
-  <ti>Dostęp do urządzeń audio</ti>
+  <ti>dostęp do urządzeń audio</ti>
 </tr>
 <tr>
    <ti>cdrom</ti>
@@ -71,11 +70,12 @@ niego wykonywane. Oto lista ważnych grup, których możesz używać:
 </table>
 		  
 <p>
-Na przykład, aby dodać użytkownika <c>aye</c> i dopisać go do grup
+
+Na przykład, aby utworzyć konto użytkownika <c>aye</c> i dodać go do grup
 <c>wheel</c> (aby mógł korzystając z <c>su</c> logować się jako root),
-<c>users</c> (domyślna dla wszystkich użytkowników) oraz <c>audio</c>
-(aby mógł korzystać z urządzeń dźwiękowych) wejdź na konto 
-roota (tylko root może tworzyć nowych użytkowników):
+<c>users</c> (grupa domyślna dla wszystkich użytkowników) oraz <c>audio</c>
+(aby mógł korzystać z urządzeń dźwiękowych) należy z konta roota wykonać
+następujące polecenie:
 </p>
 
 <pre caption="Dodawanie użytkownika do codziennej pracy">
