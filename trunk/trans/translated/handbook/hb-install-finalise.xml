@@ -23,12 +23,12 @@
 <body>
 
 <p>
-Wykonywanie zadań z przywilejami roota jest <e>niebezpieczna</e> i należy tego
+Wykonywanie zadań z przywilejami roota jest <e>niebezpieczne</e> i należy tego
 unikać. Do codziennej pracy należy utworzyć zwykłe konto użytkownika.
 </p>
 
 <p>
-Czynności jakie może wykonać użytkownik są zależne od grup do jakich on należy.
+Czynności jakie może wykonać użytkownik są zależne od grup do jakich należy.
 Oto lista najważniejszych grup:
 </p>
 
@@ -72,15 +72,15 @@ Oto lista najważniejszych grup:
 <p>
 
 Na przykład, aby utworzyć konto użytkownika <c>aye</c> i dodać go do grup
-<c>wheel</c> (aby mógł korzystając z <c>su</c> logować się jako root),
+<c>wheel</c> (możliwość korzystajania z <c>su</c> do przełączania się na konto root),
 <c>users</c> (grupa domyślna dla wszystkich użytkowników) oraz <c>audio</c>
-(aby mógł korzystać z urządzeń dźwiękowych) należy z konta roota wykonać
+(możliwość korzystania z urządzeń dźwiękowych) należy z konta roota wykonać
 następujące polecenie:
 </p>
 
 <pre caption="Dodawanie użytkownika do codziennej pracy">
 Login: <i>root</i>
-Password: <comment>(Twoje hasło)</comment>
+Password: <comment>(wpisujemy hasło)</comment>
 
 # <i>useradd aye -m -G users,wheel,audio -s /bin/bash</i>
 # <i>passwd aye</i>
