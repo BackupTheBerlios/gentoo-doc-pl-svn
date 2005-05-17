@@ -1,17 +1,14 @@
-<?xml version='1.0' encoding="UTF-8"?>
-<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/uml.xml,v
-1.22 2005/02/05 16:52:57 swift Exp $ -->
-
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 0.10 -->
-<!-- Translator: edi15ta <edi15ta@gazeta.pl> -->
+<!-- Orig revision: 1.22 -->
+<!-- Translator: Paweł Drobek <> -->
+<!-- Title: Przygotowanie plików instalacyjnych Gentoo -->
 <!-- Status: Release -->
-<!-- $Header: $ -->
+<!-- $Header: /cvsroot/gentoo-doc-pl/trans/translated/uml.xml,v 1.2 2005/05/05 18:11:58 rane Exp $ -->
 
 <guide link="/doc/en/uml.xml">
-<title>Przewodnik Developera Gentoo do testowania systemu z User-Mode
-Linux</title>
+<title>Poradnik prezentuje jak testować środowisko z jądrem w trybie użytkownika</title>
 <author title="Editor">
   <mail link="g2boojum@gentoo.org">Grant Goodyear</mail>
 </author>
@@ -24,10 +21,13 @@ Linux</title>
 <author title="Editor">
   <mail link="bennyc@gentoo.org">Benny Chuang</mail>
 </author>
+<author title="translator">
+  <mail link="p_drobek@op.pl">Paweł Drobek</mail>
+</author>
 
 <abstract>
-Ten przewodnik pokazuje developerom Gentoo jak ustawić i używać
-user-mode linux do testowania potencjalnie groźnych zmian w systemie.
+Poradnik przedstawia problematykę wirtualnego systemu oraz prezentuje sposób
+instalacji i wykrywania potencjalnie niebezpiecznych dla systemu błędówe.
 </abstract>
 
 <license/>
@@ -36,34 +36,31 @@ user-mode linux do testowania potencjalnie groźnych zmian w systemie.
 <date>2005-02-05</date>
 
 <chapter>
-<title>Zdobycie User-Mode Linux</title>
+<title>Skąd można pobrać uml?</title>
 <section>
 <body>
 
 <p>
-Na stronie user-mode linux (<uri>http://user-mode-linux.sourceforge.net</uri>)
-jest napisane, że user-mode linux pozwala użytkownikowi "uruchomić Linuksa
-wewnątrz siebie". Ściślej, user-mode linux dostarcza wirtualną maszynę na 
-której użytkownik może "u[r]uchomić "zarobaczone" oprogramowanie,
-eksperymentować z nowymi jądrami lub dystrybucjami Linuksa i grzebać we
-wnętrznościach Linuksa, wykonując wszystko to bez obaw o główne ustawienia
-systemu". 
-Eksperymentalne zmiany w rdzennych paczkach Gentoo takich jak: 
-<e>sys-apps/baselayout</e> lub <e>sys-libs/glibc</e> mogą załamać system 
-i uczynić go niebootowalnym; z user-mode linux możemy testować te zmiany 
-bez obaw o zniszczenie naszego systemu. 
+Źródła można pobrać ze strony internetowej projektu
+(<uri>http://user-mode-linux.sourceforge.net</uri>). Wirtualny system umożliwia
+użytkownikowi uruchomienie drugiego systemu operacyjnego na systemie gospodarza.
+Ponadto może służyć do testowania nowych wersji jądra, innychdystrybucji oraz
+oprogramowania w wersjach rozwojowych. Eksperymentowanie z pakietami Gentoo
+takimi jak <e>sys-apps/baselayout</e> albo <e>sys-libs/glibc</e> może wiązać się
+z możliwością uszkodzenia systemu i uczynienia go niebotowalnym. Wirtualny
+system zapewnia środowisko testowe odizolowane od systemu gospodarza przez co
+użytkownik ma pewność, że eksperymenty nie wprowadzą żadnych szkodliwych zmian.
 </p>
 
 <p>
-Instalacja user-mode linux jest w gruncie rzeczy identyczna z instalacją 
-normalnego jądra. Najpierw instalujemy źródła jądra (z odpowiednimi łatkami dla
-user-mode linux), a następnie konfigurujemy jądro user-mode linux w normalny
-sposób. Począwszy od jądra 2.6.9, UML został dołączony do jądra vanilla. 
+Instalowanie wirtualnego systemu sprowadza się do postępowania zgodnie z
+poradnikiem do standardowej kompilacji. Pierwszą potrzebną rzeczą będzie jądro z
+naniesionymi odpowiednimi łatami umożliwiającymi współpracę pomiędzy oboma
+systemami. Od jądra w wersji 2.6.9 obsługa wirtualnego Linuksa jest wbudowana. 
 </p>
 
-<pre caption="Instalowanie źródeł jądra UML">
-<comment>(Zaczniemy instalować jądro vanilla 2.6, możesz również 
-użyć usermode-sources)</comment>
+<pre caption="Instalowanie źródeł z obsługą UML">
+<comment>(W poradniku będzie używane czyste jądro 2.6, można również użyć źródeł "usermode".)</comment>
 # <i>emerge sys-kernel/development-sources</i>
 # <i>cd /usr/src/linux</i>
 # <i>make menuconfig <comment>ARCH=um</comment></i>
@@ -72,50 +69,51 @@ użyć usermode-sources)</comment>
 </pre>
 
 <warn>
-Fragment <e>ARCH=um</e> jest <e>bardzo</e> ważny!
+Fragment <e>ARCH=um</e> jest <e>niezmiernie</e> ważny!
 </warn>
 
 <p>
-Należy upewnić się, że <path>/usr/local/bin</path> jest w ścieżkach dostępu.
-Edytujemy <path>/etc/env.d/00basic</path> tak aby zmienna PATH zawierała
-<path>/usr/local/bin</path> po czym uruchomiamy <c>env-update</c>
+Przystępując do pracy należy upewnić się czy zmiennej PATH nadano odpowiednią
+wartość. W tym celu przeprowadza się edycję pliku
+<path>/etc/env.d/00basic</path> i dodać do tej zmiennej (jeżeli konieczne są
+zmiany) katalog <path>/usr/local/bin</path>. Po przeprowadzonych zmiananch
+uruchamia się <c>env-update</c> w celu przeładowania skryptów.
 </p>
 
-<pre caption="Edycja 00basic">
+<pre caption="Edytowanie 00basic">
 # <i>nano -w /etc/env.d/00basic</i>
 # <i>env-update</i>
 # <i>source /etc/profile</i>
 </pre>
 
 <p>
-Aby właściwie przebiegł start Gentoo, jądro user-mode linux musi być tak
-skonfigurowane, aby domyślnie <e>nie</e> montowało automatycznie
-<path>/dev</path> (devfs). Chcemy także się upewnić, że <e>tmpfs</e> ("System
-Plików Pamięci Wirtualnej") jest wkompilowane w jądro, ponieważ domyślnie
-skrypty startowe Gentoo przechowują swoje informacje na małej partycji
-tmpfs. (Binarne jądra dostępne na stronie user-mode automatycznie montują
-<path>/dev</path>, i nie mają wkompilowanego tmpfs; tym się nie przejmujemy).
+Aby wirualny system uruchomił się musi być tak skonfigurowany, aby <e>nie</e>
+montował automatycznie  <path>/dev</path> (devfs). Drugą istotną rzeczą jest
+<e>tmpfs</e>. Wirtualny system plików powinien być wkompilowany w system aby
+skrypty startowe Gentoo miały możliwość przechowywania tam swoich danych. Wersja
+binarna jądra jest dostępna ze strony www podanej wyżej. Jądro automatycznie
+montuje <path>/dev</path> o ile nie posiada wkompilowanej obsługi tmpfs.
 </p>
 
 <p>
-Zalecane jest przeczytanie dokumentacji do user-mode linux, ale główna
-idea jest taka, że uruchamiając program <path>/usr/local/bin/linux</path>
-inicjuje on jądro user-mode i stara się przywrócić system zachowany w pliku
-<path>root_fs</path>, który powinien być umieszczony w katalogu w którym
-obecnie pracujemy.
+Przed rozpoczęciem zaleca się przeczytanie dokumentacji dostępnej do omawianego
+tematu. Podstawowym założeniem uruchomienie <path>/usr/local/bin/linux</path>. Program
+uruchamiając się próbuje uruchomić system zawarty w pliku
+<path>root_fs</path>, który powinien znajdować się w katalogu domowym.
 </p>
 
 <p>
-Nie będzie bolesne jeśli zostaną zainstalowane inne narzędzia user-mode linux.
+Nie wymaganą czynnością, lecz pożyteczną jest zainstalowanie narzędzi do
+wirtualnego systemu.
 </p>
 
-<pre caption="Instalacja narzędzi UML">
+<pre caption="Instalowanie narzędzi UML">
 # <i>emerge sys-apps/usermode-utilities</i>
 </pre>
 
 <p>
-Te narzędzia ułatwiają połączenie sieciowe (pośród innych rzeczy) pomiędzy
-user-mode linux, a hostem.
+Narzędzia te umożliwiają komunikację pomiędzy wirtualnym systemem, a systemem
+gospodarza oraz ustawiają kilka innych rzeczy.
 </p>
 
 </body>
@@ -125,77 +123,78 @@ user-mode linux, a hostem.
 <chapter>
 <title>Tworzenie root_fs</title>
 <section>
-<title>Tworzenie Gentoo chroot</title>
+<title>Tworzenie chrootowalnego Gentoo</title>
 <body>
 
 <p>
-Plik <path>root_fs</path> potrzebny do user-mode linux jest pojedynczym
-plikiem, który zawiera cały system plików Gentoo. Aby stworzyć ten plik
-potrzebne jest załączone wsparcie dla "Loopback device" w jądrze hosta(nie
-user-mode). 
+Plik <path>root_fs</path> zawiera w sobie cały system plików Gentoo. Aby go
+utworzyć będzie potrzebna obsługa urządzeń "loopback" wkompiolowana w jądro
+systemu gospodarza (nie w jądro systemu wirtualnego).
 </p>
 
 <p>
-Tworzenie samego pliku <path>root_fs</path> będzie ostatnim krokiem. Najpierw
-tworzymy system plików Gentoo w zwykłym chroot. Potrzebujemy tarballa ze stage,
-którego można oddzielnie ściagnąć, wypakować z LiveCD lub wypakować z 
-liveCD .iso.  
+Pierwszym krokiem będzie stworzenie drzewa katalogów Gentoo poprzez standardowe
+chrootowanie. Najprościej będzie użyć odpowiedniego pliku etapu z płyty liveCD
+bądz to z jej obrazu. Innym rozwiązaniem będzie pobranie go z Internetu.
 </p>
 
-<pre caption="Montowanie liveCD .iso">
+<pre caption="Montowanie obrazu iso płyty instalacyjnej">
 # <i>mkdir /mnt/loop</i>
-# <i>mount -o loop /path/to/install-&lt;TAB&gt;.iso /mnt/loop</i>
+# <i>mount -o loop /ścieżka/do/instalacji-&lt;TAB&gt;.iso /mnt/loop</i>
 </pre>
 
 <p>
-Ustawianie chroota jest w gruncie rzeczy identyczne do tego zwykłego podczas
-budowania systemu Gentoo.
+Ustawienia środowiska chrootowalengo są identyczne jak standardowej kompilacji Gentoo.
 </p>
 
-<pre caption="Tworzenie punktu montowania Gentoo chroot">
+<pre caption="Creating the Gentoo chroot mount">
 # <i>mkdir /mnt/gentoo</i>
 # <i>cd /mnt/gentoo</i>
-# <i>tar xvjpf /ściezka/do/stage&lt;TAB&gt;.tar.bz2</i>
+# <i>tar xvjpf /path/to/stage&lt;TAB&gt;.tar.bz2</i>
 </pre>
 
 <p>
-Następnie należy odmontować .iso, gdyż jest on już niepotrzebny.
+Na tym etapie można juz odmontować obraz .iso - nie będzie już używany.
 </p>
 
 <p>
-Bootstrap i budowanie systemu w normalny sposób. Po prostu podczas
-instalacji należy trzymać się instrukcji :).
+Bootstrap i kompilacja systemu przebiega w krokach opisanych w Podręczniku
+instalacji Gentoo. Należy po prostu postępować zgodnie z instrukcjami tam
+spisanymi.
 </p>
 
 <p>
-Można dodać jakiekolwiek inne paczki. Nazwa wirtualnego hosta Gentoo jest
-dowolna. W <path>/etc/fstab</path> należy zmienić <path>/dev/ROOT</path> na
-<path>/dev/ubd/0</path> (z dowolnym systemem plików z ext2, ext3, lub reiserfs),
-<path>/dev/SWAP</path> na <path>/dev/ubd/1</path>, i należy odkomentować
-<path>/dev/BOOT</path>.
+Użytkownik ma wolną rękę jeżeli chodzi o dobór instalowanych na wirtualnym
+serwerze pakietów Wirtualny system można również nazwać dowolnie, według
+własnego uznania. Kolejnym krokiem będzie poprawne ustawienie pliku
+<path>/etc/fstab</path> <path>/dev/ROOT</path> zmienia sie na
+<path>/dev/ubd/0</path>, obsługiwane typy  systemów plików to: ext2, ext3, or
+reiserfs. <path>/dev/SWAP</path> zmienia się na <path>/dev/ubd/1</path>, należy
+również odkomentować ścieżkę <path>/dev/BOOT</path> jeżeli posiadmy osobną
+partycję rozruchową. 
 </p>
 
 <p>
-W tym miejscu należy ustawić hasło dla root'a.
+Na tym etapie instalacji ustawia się hasło roota. Służy do tego polecenie:
 </p>
 
-<pre caption="Ustawianie hasła dla root'a">
+<pre caption="Ustawianie hasła roota">
 # <i>passwd</i>
 </pre>
 
 <p>
-Teraz potrzebujemy zrobić pewne zmiany w skryptach startowych. Usunąć
-consolefont i keymaps z boot runlevel:
+Po ustawieniu hasła roota możemy przystąpić do zmian w skryptach startowych.
+Należy usunąć consolefont i keymaps z poziomu uruchomieniowego "boot":
 </p>
 
-<pre caption="Usuwanie niepotrzebnych skryptów init">
+<pre caption="Usuwanie niepotrzebnych skryptów startowych">
 # <i>rc-update del consolefont boot</i>
 # <i>rc-update del keymaps boot</i>
 </pre>
 
 <p>
-Wyjdź z chroota, odmontuj wszystko co masz zamontowane, zarchiwizuj,
-przy pomocy tar, i posprzątaj.
+Teraz można wyjść ze środowiska chrootowalengo, odmontować wszystkie dublujące
+się napędy i oczyścić cały system.
 </p>
 
 <pre caption="Finalizowanie instalacji">
@@ -212,8 +211,8 @@ przy pomocy tar, i posprzątaj.
 <body>
 
 <p>
-Nasz Gentoo chroot zajmuje niemal 300 MB, więc <path>root_fs</path> musi
-mieć co najmniej taki rozmiar. Jako rozsądny rozmiar weźmiemy 0.5 GB.
+Nasze środowisko zajmuje prawie 300 MB, dlatego warto zarezerwować co najmniej
+500 MB dla <path>root_fs</path>.
 </p>
 
 <pre caption="Tworzenie plików UML">
@@ -225,33 +224,34 @@ mieć co najmniej taki rozmiar. Jako rozsądny rozmiar weźmiemy 0.5 GB.
 </pre>
 
 <p>
-Miło by było mieć również partycję swap o rozmiarze 0.5 GB.
+Bardzo przydatny jest również plik wymiany - także w rozmiarze 500 MB. Tworzy
+się go poprzez wydanie następujących komend:
 </p>
 
-<pre caption="Tworzenie partycji swap">
+<pre caption="Tworzenie partycji wymianyCreate swap partition">
 # <i>dd if=/dev/zero of=swap_fs seek=500 count=1 bs=1M</i>
 # <i>mkswap -f swap_fs</i>
 </pre>
 
 <p>
-Teraz zobaczmy czy działa!
+Teraz testujemy ustawienia i sprawdzamy czy nie popełniliśmy w nich błędu.
 </p>
 
-<pre caption="Uruchomienie wątków jądra UML">
+<pre caption="Uruchamianie wątka jądra UML">
 # <i>linux ubd0=root_fs ubd1=swap_fs</i>
 </pre>
 
 <p>
-User-mode linux używa xterma jako wirtualne konsole, które są uruchamiane
-podczas startu systemu, więc należy się upewnić, że terminal spod którego
-uruchamiamy user-mode linux ma poprawnie ustawioną zmienną $DISPLAY (wraz z
-odpowiednimi prawami dostępu xhost/xauth).
+Jeżeli nie pojawi się żaden komunikat świadczący o błędzie przechodzimy do
+ustawienia wirtualnej konsoli. Wirtualny system używa xterma jako konsoli, która
+będzie uruchamiana w trakcie startu systemu, dlatego należy się upewnić czy
+zmienna $DISPLAY jest odpowiednio ustawiona oraz czy użytkownik posiada
+odpowiednie prawa do xhost/xauth.
 </p>
 
 <p>
-Teraz już można logować się do Gentoo user-mode linux. Jedynym powodem, że
-Gentoo user-mode linux nie jest w pełni funkcjonalnym systemem, jest połączenie
-sieciowe wirtualnej maszyny z hostem.  
+Przy odrobinie szczęścia będzie możliwe zalogowanie się do systemu. 
+Jedyną niedogodnością w systemie wirtualnym jest nie w pełni sprawna sieć.  
 </p>
 
 </body>
@@ -259,16 +259,16 @@ sieciowe wirtualnej maszyny z hostem.
 </chapter>
 
 <chapter>
-<title>Połączenie sieciowe</title>
+<title>Sieć</title>
 <section>
 <body>
 
 <p>
-Powinno upewnić się, że jądro hosta ma następujące ustawienia wkompilowane jako
-moduły:
+Należy się upewnić czy system gospodarza ma odpowiednie pozycje wkompilowane w
+jądro jako moduły:
 </p>
 
-<pre caption="Konfiguracja jądra hosta">
+<pre caption="Konfiguracja jądra systemu gospodarza">
 Networking --&gt;
   IP: Netfilter Configuration --&gt;
     IP tables support --&gt;
@@ -280,33 +280,32 @@ Networking --&gt;
 </pre>
 
 <p>
-Należy uruchomić następujące polecenia na maszynie <e>hosta</e>:
+Po sprawdzeniu odpowiednich modułów ładujemy je poprzez wydanie następujących
+poleceń:
 </p>
 
-<pre caption="Ustawianie połaczenia sieciowego">
+<pre caption="Konfigurowanie sieci">
 # <i>modprobe tun</i>
-<comment>(Jeśli otrzymano tu błąd KRYTYCZNY, należy usunąć /dev/net/tun i
-spróbować ponownie)</comment>
+<comment>(Jeżeli otrzymamy krytyczny błąd, to zawsze będzie można skasować /dev/net/tun i spróbować jeszcze raz)</comment>
 # <i>modprobe iptable_nat</i>
 # <i>iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</i>
 # <i>echo 1 > /proc/sys/net/ipv4/ip_forward</i>
 </pre>
 
 <p>
-Linia dotycząca iptables ustawia IP maskujące pomiędzy prywatną siecią, poprzez
-którą user-mode system będzie połączony z internetem (w naszym przypadku
-osiągalne poprzez <c>eth0</c>).  Linia echo włącza przekazywanie pakietów
-pomiędzy prywatną siecią, a naszym interfejsem, którego domyślną bramą jest (dla
-nas) eth0.
+Polecenie iptables wprowadza regułę filtrowania pakietów, a w tym konkretnym
+przypadku maskowanie IP pomiędzy prywatną siecią, na której będzie działał
+wirtualny system, a internetem (osiąganym przez interfejs <c>eth0</c>). W tym
+procesie będzie brała udział brama sieciowa.
 </p>
 
 <p>
-Teraz uruchomimy user-mode system i zobaczymy czy działa połączenie sieciowe.
+Tak ustawiony system powinien działać poprawnie.
 </p>
 
-<pre caption="Uruchamianie UML">
+<pre caption="Get UML up and running">
 # <i>linux ubd0=root_fs ubd1=swap_fs eth0=tuntap,,,192.168.0.254</i>
-<comment>(należy zalogować się do user-mode system)</comment>
+<comment>(logowanie do systemu wirtualnego)</comment>
 # <i>ifconfig eth0 192.168.0.1 up</i>
 # <i>ping -c 2 192.168.0.254</i>
 PING 192.168.0.254 (192.168.0.254): 56 octets data
@@ -322,8 +321,7 @@ Kernel IP routing table
 Destination  Gateway        Genmask        Flags MSS Window irtt Iface
 192.168.0.0  0.0.0.0        255.255.255.0  U      40 0         0 eth0
 0.0.0.0      192.168.0.254  0.0.0.0        UG     40 0         0 eth0
-# <i>scp user@192.168.0.254:/etc/resolv.conf /etc/resolv.conf</i> <comment>(if
-needed)</comment>
+# <i>scp user@192.168.0.254:/etc/resolv.conf /etc/resolv.conf</i> <comment>(if needed)</comment>
 # <i>ping -c 2 www.gentoo.org</i>
 PING www.gentoo.org (207.170.82.202): 56 octets data
 64 octets from 207.170.82.202: icmp_seq=0 ttl=240 time=119.6 ms
@@ -335,14 +333,13 @@ round-trip min/avg/max = 92.0/105.8/119.6 ms
 </pre>
 
 <p>
-W user-mode system powinno się przypisać interfejsowi user-mode eth0 prywatny
-adres IP 192.168.0.1 i po czym uruchomiamy ten interfejs.  Host ma prywatny
-adres IP 192.168.0.254, pingujemy go aby się upewnić czy połączenie
-sieciowe w rzeczywistości działa. Linia route dodaje domyślną bramę (nasz host).
-(jeśli konieczne) Używamy scp aby otrzymać działający
-<path>/etc/resolv.conf</path> i używamy ping www.gentoo.org aby się
-upewnić, że tłumaczenie nazw (i ogólnie dostęp do internetu) z user-mode system
-działa. Teraz user-mode system może wykonać <c>emerge</c> na życzenie!
+Wirtualny system reprezentowany jest przez urządzenie eth0 o adresie IP
+192.168.0.1. System gospodarza posiada adres 192.168.0.254, wysyłamy ping, aby
+upewnić się czy sieć pomiędzy systemami funkcjonuje poprawnie.  Po dodaniu
+domyślnej bramy można użyć "scp" w celu ściągnięcia działającego
+<path>/etc/resolv.conf</path>. Po wgraniu go do /etc wysyłamy ping na
+www.gentoo.org, aby upewnić się czy mamy dostęp do Internetu. Na tym etapie system
+wirtualny można emergować w dowolnym momencie!
 </p>
 
 </body>
@@ -352,18 +349,11 @@ działa. Teraz user-mode system może wykonać <c>emerge</c> na życzenie!
 <title>Testowanie .iso</title>
 <section>
 <body>
-
 <p>
-Być może prawdziwie idealnym testowaniem Gentoo byłby start .iso z user-mode
-linux i wykonanie pełnej instalacji Gentoo we wnętrzu naszego wirtualnego
-user-mode linux system.
+Uruchomienie .iso, albo initrd z obrazu .iso, jest całkiem proste.
 </p>
 
-<p>
-Start .iso, lub w rzeczywistości initrd z .iso, jest całkiem prosty.
-</p>
-
-<pre caption="Start ISO">
+<pre caption="Uruchamianie ISO">
 # <i>mount -o loop /path/to/install-&lt;TAB&gt;.iso /mnt/loop</i>
 # <i>cp /mnt/loop/isolinux/gentoo.igz .</i>
 # <i>linux load_ramdisk=1 prompt_ramdisk=0 ramdisk_size=22000 \</i>
@@ -372,10 +362,10 @@ Start .iso, lub w rzeczywistości initrd z .iso, jest całkiem prosty.
 </pre>
 
 <p>
-Teraz można podążać słowo w słowo według instrukcji instalacji Gentoo,
-jednakże trzeba wiedzieć, że systemem plików root będzie
-<path>/dev/ubd/0</path>, "partycją" swap będzie <path>/dev/ubd/1</path>, a CD
-rom będzie <path>/dev/ubd/2</path>.
+Od tej pory wszystkie czynności wykonuje się tak jak opisano to w Podręczniku
+instalacji Gentoo. Warto przy tym pamiętać, które urządzenia odpowiadają którym
+systemom plików: główny system to <path>/dev/ubd/0</path>, plik wymiany
+<path>/dev/ubd/1</path>, a napęd CDROM to <path>/dev/ubd/2</path>.
 </p>
 
 </body>
@@ -383,24 +373,24 @@ rom będzie <path>/dev/ubd/2</path>.
 </chapter>
 
 <chapter>
-<title>Zasoby</title>
+<title>Źródło</title>
 <section>
 <body>
 
 <ul>
   <li>
-    <uri link="http://edeca.net/articles/bridging/index.html">Bridging with
-    UML</uri>
+    <uri link="http://edeca.net/articles/bridging/index.html">Mostkowanie z
+    wykorzystaniem UML</uri>
   </li>
   <li>
-    <uri link="http://user-mode-linux.sourceforge.net/">UML Homepage</uri>
+    <uri link="http://user-mode-linux.sourceforge.net/">Strona domowa UML</uri>
   </li>
   <li>
-    <uri link="http://www.theshore.net/~caker/uml/">Caker's UML Notes</uri>
+    <uri link="http://www.theshore.net/~caker/uml/">Notatki UML Caker-a</uri>
   </li>
   <li>
-    <uri link="http://sourceforge.net/mailarchive/forum.php?forum_id=3647">UML
-    Mailinglist archives</uri>
+    <uri link="http://sourceforge.net/mailarchive/forum.php?forum_id=3647">
+    Archiwum listy dyskusyjnej UML</uri>
   </li>
 </ul>
 
