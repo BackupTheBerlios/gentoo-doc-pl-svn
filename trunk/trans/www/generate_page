@@ -48,7 +48,7 @@ do
    echo "<ti><uri link=\"http://www.gentoo.org/cgi-bin/viewcvs.cgi/en/$handbook/$bname?r1=$rtrans&amp;r2=$rorig&amp;root=doc\">$rtrans</uri></ti>" >> doctable.xml
    
    #wyciagamy date ostatniej modyfikacji
-   grep '$Id:' $file | awk '{print $5}' | sed 's/.*/<ti>\1<\/ti>/'  >> doctable.xml
+   grep '$Id:' $file | awk '{print "<ti>" $5 "</ti>"}' >> doctable.xml
 
    echo grep 'Id: $file' $file|
 	awk '/Id: $file/ {
