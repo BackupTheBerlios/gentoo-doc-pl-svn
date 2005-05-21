@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.41 -->
+<!-- Orig revision: 1.43 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
 <!-- Title: Konfiguracja sieci -->
 <!-- Status: Release -->
@@ -13,8 +13,8 @@
 
 <sections>
 
-<version>1.38</version>
-<date>2005-01-04</date>
+<version>2.1</version>
+<date>2005-05-19</date>
 
 <section>
 <title>Automatyczna detekcja sieci.</title>
@@ -26,7 +26,7 @@
 Jeżeli Twój komputer jest podłączony do sieci Ethernet z serwerem
 DHCP jest bardzo prawdopodobne, że połączenie zostało skonfigurowane automatycznie.
 Dzięki temu od razu możesz skorzystać z wielu narzędzi sieciowych dostępnych
-na LiveCD, takich jak <c>ssh</c>, <c>scp</c>, <c>ping</c>, <c>irssi</c>,
+na płycie instalacyjnej, takich jak <c>ssh</c>, <c>scp</c>, <c>ping</c>, <c>irssi</c>,
 <c>wget</c> czy <c>links</c>.
 </p>
 
@@ -125,7 +125,7 @@ PPTP - dostępne tylko dla architektury x86).
 <p>
 W przypadku gdy Twój nośnik instalacyjny nie zawiera żadnego z wymienionych
 narzędzi, lub sieć wciąż nie funkcjonuje prawidłowo, przejdź do paragrafu
-<uri link="#doc_chap4">Ręczna konfiguracja sieci</uri>.
+<uri link="#doc_chap3">Ręczna konfiguracja sieci</uri>.
 </p>
 
 <ul>
@@ -167,7 +167,7 @@ razu do <uri link="?part=1&amp;chap=4">Przygotowywania dysków</uri>.
 </p>
 
 <p>
-Jeśli sieć wciąż nie działa, przejdź do <uri link="#doc_chap4">Ręcznej
+Jeśli sieć wciąż nie działa, przejdź do <uri link="#doc_chap3">Ręcznej
 konfiguracji sieci</uri>.
 </p>
 
@@ -180,7 +180,7 @@ konfiguracji sieci</uri>.
 
 <p>
 Jeśli do połączenia z Internetem potrzebujesz PPPoE, użyj 
-<c>rp-ppoe</c> nagranego na nasze LiveCD. Skorzystaj
+<c>rp-ppoe</c> nagranego na naszej płycie instalacyjnej. Skorzystaj
 ze skryptu <c>adsl-setup</c>, aby skonfigurować połączenie. Zostaniesz
 zapytany o urządzenie sieciowe podłączone do modemu asdl, nazwę
 użytkownika i hasło, oraz o IP serwerów DNS i to czy potrzebujesz podstawowego
@@ -197,7 +197,7 @@ Jeśli coś pójdzie nie tak sprawdź czy w <path>/etc/ppp/pap-secrets</path>
 lub <path>/etc/ppp/chap-secrets</path> podałeś prawidłową nazwę użytkownika
 i hasło oraz upewnij się, że wybrałeś właściwe urządzenie sieciowe.
 Jeśli nie zostało ono wykryte, będziesz musiał ręcznie załadować odpowiednie
-sterowniki. Przejdź w takim wypadku do <uri link="#doc_chap4">Ręcznej
+sterowniki. Przejdź w takim wypadku do <uri link="#doc_chap3">Ręcznej
 konfiguracji sieci</uri>, gdzie szerzej to omówimy.
 </p>
 
@@ -212,9 +212,13 @@ dysków</uri>.
 <title>Alternatywnie: Używanie PPTP.</title>
 <body>
 
+<note>
+Obsługa PPTP dostępna jest wyłącznie dla architektury x86
+</note>
+
 <p>
 Jeśli potrzebujesz obsługi PPTP możesz skorzystać z <c>pptpclient</c> zamieszczonego 
-na LiveCD. Najpierw jednak wpisz prawidłową nazwę użytkownika i hasło
+na płycie instalacyjnej. Najpierw jednak wpisz prawidłową nazwę użytkownika i hasło
 do <path>/etc/ppp/pap-secrets</path> lub <path>/etc/ppp/chap-secrets</path>:
 </p>
 
@@ -254,9 +258,10 @@ Następnie przejdź do
 <body>
 
 <p>
-W czasie uruchamiania LiveCD system spróbuje wykryć Twój sprzęt i załadować
-odpowiednie sterowniki. W większości przypadków wykrywanie przebiega prawidłowo,
-czasem jednak musisz ręcznie skorygować niektóre ustawienia. 
+W czasie uruchamiania płyty instalacyjnej system spróbuje wykryć sprzęt 
+i załadować odpowiednie sterowniki. W większości przypadków wykrywanie 
+przebiega prawidłowo, czasem jednak musisz ręcznie skorygować niektóre 
+ustawienia. 
 </p>
 
 <p>
@@ -264,13 +269,6 @@ Jeśli zawiódł <c>net-setup</c> lub <c>asdl-setup</c>, możliwe.
 że nie została wykryta Twoja karta sieciowa. Oznacza to, że
 musisz ręcznie załadować odpowiedni sterownik.
 </p>
-
-<warn>
-Część płyt LiveCD zbudowana jest bez wspomagania dla modułów, czyli wszystkie
-sterowniki są 'załadowane'. Jeżeli karta sieciowa zainstalowana w systemie nie działa,
-możesz wypełnić bugreport, aby płyta LiveCD została uzupełniona o obsłygę tego
-urządzenia.
-</warn>
 
 <p>
 Do wyświetlenia listy modułów kernela ze sterownikami dla urządzeń sieciowych
@@ -380,10 +378,11 @@ i możesz pominąć resztę tego rozdziału i przejść bezpośrednio do
 <body>
 
 <note>
-Niektóre LiveCD nie zawierają programu <c>iwconfig</c>, ale jego użytkownicy
-mogą mimo wszystko z niego skorzystać. Szczegółowe informacje znajdują się
-w <uri link="ftp://ftp.linux-wlan.org/pub/linux-wlan-ng/README">README
-projektu Linux-wlan-ng</uri>.
+Program <c>iwconfig</c> dostępny jest wyłącznie na płytach instalacyjnych
+dla architektur x86, amd64 oraz ppc. Opis instalacji dla pozostałych płyt
+znajduje się na stronach 
+<uri link="ftp://ftp.linux-wlan.org/pub/linux-wlan-ng/README">
+projektu linux-wlan-ng</uri>.
 </note>
 
 <p>
