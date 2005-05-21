@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE guide SYSTEM "guide.dtd">
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
 <guide link="/doc/pl/jak-tlumaczyc.xml" lang="pl">
 <title>Przewodnik dla tłumaczy dokumentacji Gentoo na język polski</title>
@@ -11,8 +11,8 @@
   <mail link="sekretarz@gentoo.org">sekretarz</mail>
 </author>
 
-<version>1.3</version>
-<date>28-12-2004</date>
+<version>1.4</version>
+<date>21-05-2005</date>
 
 <abstract>
 Przewodnik dla tłumaczy dokumentacji Gentoo na język polski.
@@ -85,10 +85,10 @@ I dopisujemy do niego następujące linijki:
 </p>
 
 <pre caption="Konfigurowanie edytora vim">
-:set termencoding=iso-8859-2
-:set fileencoding=utf-8
-:set encoding=utf-8
-:set textwidth=80
+set termencoding=iso-8859-2
+set fileencoding=utf-8
+set encoding=utf-8
+set textwidth=80
 </pre>
 
 
@@ -173,7 +173,7 @@ właściwy sposób również  w odpowiednich fragmentach przetłumaczonego tekst
 &lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
 &lt;!-- See http://creativecommons.org/licenses/by-sa/1.0 --&gt;
 
-&lt;!-- $Header: /cvsroot/gentoo-doc-pl/trans/jak-tlumaczyc.xml,v 1.10 2004/12/29 14:01:26 rane Exp $ --&gt;
+&lt;!-- $Header: /cvsroot/gentoo-doc-pl/trans/jak-tlumaczyc.xml,v 1.11 2004/12/29 23:07:34 rane Exp $ --&gt;
 
 <comment>Po:</comment>
 
@@ -184,12 +184,10 @@ właściwy sposób również  w odpowiednich fragmentach przetłumaczonego tekst
 &lt;!-- Translator: rane &lt;rane@gentoo.pl&gt; --&gt;
 &lt;!-- Title: Przygotowanie plików instalacyjnych Gentoo --&gt;
 &lt;!-- Status: Release --&gt;
-&lt;!-- &#36;Header: &#36; --&gt;
 
 &lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
 &lt;!-- See http://creativecommons.org/licenses/by-sa/1.0 --&gt;
-
-&lt;!-- $Header: /cvsroot/gentoo-doc-pl/trans/jak-tlumaczyc.xml,v 1.10 2004/12/29 14:01:26 rane Exp $ --&gt;
+&lt;!-- $Header: /cvsroot/gentoo-doc-pl/trans/jak-tlumaczyc.xml,v 1.11 2004/12/29 23:07:34 rane Exp $ --&gt;
 </pre>
 
 <p>
@@ -228,7 +226,7 @@ $ vim hb-install-stage.xml
 W tym momencie zapominamy o oryginalnym, angielskim tekście i poprawiamy cały
 dokument tak, aby wyglądał możliwie naturalnie dla naszych rodaków. Warto
 poprawić styl i budowę zdań. Staramy się również wyłowić wszystkie błędy
-ortograficzne, gramatyczne i interpunkcjyjne jakieapopełniliśmy w trakcie
+ortograficzne, gramatyczne i interpunkcyjne jakie popełniliśmy w trakcie
 tłumaczenia. Wszelkie wątpliwości pomogą nam rozwiać: 
 </p>
 
@@ -236,10 +234,20 @@ tłumaczenia. Wszelkie wątpliwości pomogą nam rozwiać:
 <li>Serwis <uri link="http://polszczyzna.pwn.pl">polszczyzna.pwn.pl</uri>.</li>
 <li>Słowniczek przygotowany specjalnie na potrzeby tłumaczeń dokumentacji Gentoo
 (poniżej).</li>
-<li>Oraz zawierający mnóstwo użytecznych informacji 
+<li>Informacje zebrane na <uri
+link="http://venus.ci.uw.edu.pl/~milek/slowniki/zasady.htm"> stronie Marcina
+Miłkowskiego</uri>.</li>
+<li>
+<uri link="http://helion.pl/autor/6slown.htm">Zalecenia wydawnictwa
+Helion</uri> dot. tłumaczenia wybranych terminów informatycznych.
+</li>
+<li>
+Oraz zawierający mnóstwo praktycznych porad 
 <uri link="http://www.piotr.kresak.pl/konwen222.htm">Poradnik dla tłumaczących
-oprogramowanie firmy Lotus</uri>, który powinien być lekturą obowiązkową
-dla każdego tłumacza dokumentacji oprogramowania.</li>
+oprogramowanie firmy Lotus</uri>, który podobnie jak informacje z poprzedniego
+linku powinien być lekturą obowiązkową dla każdego tłumacza dokumentacji
+oprogramowania.
+</li>
 </ul>
 
 <p>
@@ -279,10 +287,10 @@ Konwersja z UTF-8 na ISO8859-2:
 </pre>
 
 <p>
-Kiedy skończymy tłumaczenie wysyłamy plik na bugzillę projektu tłumaczeń
-dokumentacji Gentoo, lub bezpośrednio do CVS, o ile obdarzono nas tak wielkim
-zaufaniem, że mamy do niego dostęp. Stamtąd nasz plik trafia na
-http://gentoo.org i możemy cieszyć się sławą po wieki :]
+Kiedy skończymy tłumaczenie wysyłamy spakowany plik na adres tlumaczenia@gentoo.pl
+skąd zostanie wysłany najpierw do repozytorium SVN Projektu Tłumaczeń, a
+następnie po weryfikacji przez wykwalifikowany personel, trafi na gentoo.org i
+zapewni nam sławę po wieki.
 </p>
 
 </body>
@@ -316,8 +324,8 @@ gentoo-doc-pl (informacje poniżej).
 <body>
 
 <p>
-Wszystkich tłumaczy zapraszamy do zapisania się na listę mailową
-specjalnie dla nich przeznaczoną. Wystarczy wysłać pusty mail pod adres
+Wszystkich tłumaczy zapraszamy do zapisania się na specjalnie dla nich utworzoną
+listę mailingową. Wystarczy wysłać pusty mail pod adres
 gentoo-doc-pl-subscribe@gentoo.org i czekać na list z informacjami o tym jak się
 zapisać. Jest to nasz oficjalny kanał wymiany informacji.
 </p>
