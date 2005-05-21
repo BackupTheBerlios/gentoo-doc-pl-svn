@@ -48,10 +48,15 @@ do
    echo "<ti><uri link=\"http://www.gentoo.org/cgi-bin/viewcvs.cgi/en/$handbook/$bname?r1=$rtrans&amp;r2=$rorig&amp;root=doc\">$rtrans</uri></ti>" >> doctable.xml
    
    #wyciagamy date ostatniej modyfikacji
-   grep 'Header: /cvsroot/' $file|
-	awk '/Header: \/cvsroot/ {
+   grep 'Id: $file' $file|
+	awk '/Id: $file/ {
                 gsub(/\//,"-",$5)
                 print "<ti>" $5 "</ti>"}'  >> doctable.xml
+
+   echo grep 'Id: $file' $file|
+	awk '/Id: $file/ {
+                gsub(/\//,"-",$5)
+                print "<ti>" $5 "</ti>"}'
 
    grep '^<!-- Translator:' $file | sed -e 's/<!-- Translator: \(.*\) <\(.*\)> -->$/<ti><mail link=\"\2\">\1<\/mail><\/ti>/' >> doctable.xml
    grep '^<!-- Status:' $file | sed -e 's/<!-- Status: \(.*\) -->$/<ti>\1<\/ti>/' >> doctable.xml
