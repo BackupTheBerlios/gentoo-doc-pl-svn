@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.20 -->
+<!-- Orig revision: 1.23 -->
 <!-- Translator: gooroo <gooroo@gentoo.pl> -->
 <!-- Title: Skrypty Init -->
 <!-- Status: Release -->
@@ -12,8 +12,8 @@
 
 <sections>
 
-<version>1.17</version>
-<date>2004-10-23</date>
+<version>1.20</version>
+<date>2005-05-20</date>
 
 <section>
 <title>Poziomy działania.</title>
@@ -595,6 +595,11 @@ Nie są one jednak konieczne! System init jest dostatecznie inteligentny aby
 poradzić sobie z ich brakiem dzięki <c>start-stop-daemon</c>.
 </p>
 
+<p>
+Składnia skryptów startowych Gentoo opieraja się na bashu przez co można
+w nich używać instrukcji zgodnych z bashem.
+</p>
+
 </body>
 </subsection>
 <subsection>
@@ -667,7 +672,7 @@ Można wybierać, którego poziomu działania chce się używać podczas startu 
 </body>
 </subsection>
 <subsection>
-<title>Używanie SOFTLEVELa.</title>
+<title>Używanie softlevela.</title>
 <body>
   
 <p>
@@ -685,13 +690,18 @@ chcesz mieć dokładną kopię aktualnego <c>domyślnego</c> poziomu działania,
 </p>
 
 <pre caption="Dodawanie potrzebnych skryptów startowych">
-# <i>ls /etc/runlevels/default</i>
-acpid  domainname  local  net.eth0  netmount  postfix  syslog-ng  vixie-cron
-# <i>rc-update add acpid offline</i>
-# <i>rc-update add domainname offline</i>
-# <i>rc-update add local offline</i>
-# <i>rc-update add syslog-ng offline</i>
-# <i>rc-update add vixie-cron offline</i>
+<comment>(Skopiuj wszystkie usługi z domyślnego runlevela do runlevela offline</comment>
+# <i>cd /etc/runlevels/default</i>
+# <i>for service in *; do rc-update add $service offline; done</i>
+<comment>(Usuń niechciane usługi z runlevela offline</comment>
+# <i>rc-update del net.eth0 offline</i>
+<comment>(Pokaż wszystkie aktywne usługi dla runlevela offline</comment>
+# <i>rc-update show offline</i>
+<comment>(Częściowe wyjście)</comment>
+  	                acpid | offline
+  	           domainname | offline
+     	                local | offline
+  	             net.eth0 |
 </pre>
 
 <p>
@@ -713,7 +723,7 @@ zamiast <c>domyślnego</c> poziomu działania będzie używany poziom <c>offline
 </body>
 </subsection>
 <subsection>
-<title>Używanie BOOTLEVELa.</title>
+<title>Używanie bootlevela.</title>
 <body>
 		     
 <p>
