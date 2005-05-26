@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.15 -->
+<!-- Orig revision: 1.18 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Przygotowanie dysków dla PPC64 -->
 <!-- Status: Release -->
@@ -110,8 +110,7 @@ Są też partycje o nazwach w stylu: <path>Apple_Driver43, Apple_Driver_ATA,
 Apple_FWDriver, Apple_Driver_IOKit, Apple_Patches</path>. Jeśli nie zamierzasz
 używać MacOS 9 możesz je usunąć, ponieważ ani MacOS X, ani Linux ich nie
 potrzebują. Do ich usunięcia musisz użyć programu parted, mac-fdisk nie jest na
-razie w stanie ich skasować.
-</note>
+razie w stanie ich skasować.</note>
 
 <p>
 Jeśli jesteć ciekaw ile i jak dużych partycji radzimy Ci założyć czytaj dalej,
@@ -242,9 +241,15 @@ systemów plików</uri>.
 </body>
 </section>
 <section id="fdisk">
-<title>IBM pSeries: Partycjonowanie dysku przy pomocy fdisk.</title>
+<title>IBM pSeries, iSeries i OpenPower: Partycjonowanie dysku przy pomocy fdisk.</title>
 <subsection>
 <body>
+
+<note>	
+Aby skorzystać z tablicy RAID podczas instalacji Gentoo na sprzęcie opartym na
+POWER-5 należy uruchomić <c>iprutils</c> i sformatować dyski do formatu
+"Advanced Function" i utworzyć na nich tablice dyskowe.
+</note>
 
 <p>
 Zademonstrujemy teraz tworzenie przykładowego schematu podziału dysku takiego
@@ -397,7 +402,7 @@ o pierwszy cylinder wciskamy Enter, a kiedy zapyta o ostatni wpisujemy
 <c>+7M</c>, dzięki czemu stworzymy partycję o rozmiarze 7 MB. Kiedy skończymy
 wpisujemy <c>t</c>, aby wybrać typ partycji, <c>1</c>, aby wybrać pierwszą,
 świeżo utworzoną partycję, a następnie <c>41</c> żeby ustawić jej typ na "PPC
-PReP Boot".
+PReP Boot". Na koniec oznaczamy partycję PReP jako uruchamialną.
 </p>
 
 <note>
@@ -429,6 +434,8 @@ Selected partition 1
 Hex code (type L to list codes): <i>41</i>
 Changed system type of partition 1 to 41 (PPC PReP Boot)
 
+Command (m for help): <i>a</i>	
+Partition number (1-4): <i>1</i>
 Command (m for help):
 </pre>
 
@@ -692,6 +699,11 @@ odpowiednich katalogów dla każdego z nich. Pokażemy to na przykładzie
 partycji boot oraz root:
 </p>
 
+<warn>
+W związku z błędem w pakiecie e2fsprogs trzeba używać polecenia <c>mount -t
+ext3</c> przy każdym montowaniu partycji ext3.
+</warn>
+
 <pre caption="Montowanie partycji">
 # <i>mkdir /mnt/gentoo</i>
 # <i>mount /dev/sda4 /mnt/gentoo</i> 
@@ -706,7 +718,7 @@ nie zapomnij po zamontowaniu odpowiednio poprawić praw dostępu: <c>chmod
 <p>
 Na koniec musimy jeszcze utworzyć pliki <path>/dev</path> dla naszego nowego
 systemu, gdyż będą niezbędne podczas instalacji bootloadera. Możemy to zrobić po
-prostu przemontowując system plików <path>/dev</path> z LiveCD:
+prostu przemontowując system plików <path>/dev</path> z płyty instalacyjnej:
 </p>
 
 <pre caption="Przomontowywanie systemu plików /dev">
