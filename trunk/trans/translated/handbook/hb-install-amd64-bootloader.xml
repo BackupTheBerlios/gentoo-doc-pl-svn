@@ -3,7 +3,7 @@
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
-<!-- Orig revision: 1.25 -->
+<!-- Orig revision: 1.29 -->
 <!-- Translator: sekretarz <sekretarz@gentoo.org> -->
 <!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Release  -->
@@ -11,8 +11,8 @@
 
 <sections>
 
-<version>1.19</version>
-<date>2005-02-15</date>
+<version>2.3</version>
+<date>2005-04-16</date>
 
 <section>
 <title>Podejmowanie decyzji.</title>
@@ -223,7 +223,7 @@ pomocy nano, lub dowolnego innego edytora utwórz plik
 Następnie zredagujmy plik <path>grub.conf</path>. Poniżej
 znajdziesz trzy przykłady pliku <path>grub.conf</path>, odpowiadające
 schematowi partycjonowania użytemu w tym przewodniku, z obrazem jądra
-o nazwie <path>kernel-2.6.5-gentoo</path>. Wyczerpująco opatrzymy komentarzami
+o nazwie <path>kernel-2.6.11-gentoo-r3</path>. Wyczerpująco opatrzymy komentarzami
 tylko pierwszy <path>grub.conf</path>.
 </p>
 
@@ -238,6 +238,12 @@ tylko pierwszy <path>grub.conf</path>.
   </li>
 </ul>
 
+<note>
+Użytkownicy systemu plików JFS muszą dodać <c>ro</c> jako parametr dla jądra.
+JFS musi mieć możliwość odtwarzania logów w trybie tylko do odczytu zanim
+zostanie zamontowane w trybie zarówno odczytu i zapisu.
+</note>
+
 <pre caption = "grub.conf dla nie używających genkernela">
 <comment># Która pozycja ma być uruchamiana domyślnie. 0 oznacza pierwszą, 1 drugą itd</comment>
 default 0
@@ -247,10 +253,10 @@ timeout 30
 # Zakomentuj jeśli nie masz zainstalowanej karty graficznej</comment>
 splashimage=(hd0,0)/grub/splash.xpm.gz
 
-title=Gentoo Linux 2.6.5
+title=Gentoo Linux 2.6.11
 <comment># Partycja na której znajduje się obraz jądra (lub system operacyjny) </comment>
 root (hd0,0)
-kernel /kernel-2.6.5-gentoo root=/dev/hda3
+kernel /kernel-2.6.11-gentoo-r3 root=/dev/hda3
 
 <comment># Następne cztery linie potrzebne są tylko gdy chcesz uruchamiać także Windows.</comment>
 <comment># W tym przypadku, Windows mieści się na /dev/hda6.</comment>
@@ -265,10 +271,10 @@ default 0
 timeout 30
 splashimage=(hd0,0)/grub/splash.xpm.gz
 
-title=Gentoo Linux 2.6.5
+title=Gentoo Linux 2.6.11
 root (hd0,0)
-kernel /kernel-2.6.5-gentoo root=/dev/ram0 init=/linuxrc ramdisk=8192 real_root=/dev/hda3
-initrd /initrd-2.6.5-gentoo
+kernel /kernel-2.6.11-gentoo-r3 root=/dev/ram0 init=/linuxrc ramdisk=8192 real_root=/dev/hda3
+initrd /initrd-2.6.11-gentoo
 
 <comment># Tylko, gdy chcesz uruchamiać dwa systemy</comment>
 title=Windows XP
@@ -277,6 +283,11 @@ makeactive
 chainloader +1
 </pre>
 
+<note>	
+Wpis <c>udev</c> na końcu linii kernel jest potrzebny do ominięcia błędu w
+niektórych wersjach genkernel, występującego gdy korzysta się z udev na
+pierwszym miejscu.
+</note>
 
 <note>
 Jeśli partycjonowanie wykonałeś w inny sposób i/lub używasz innego obrazu jądra,
@@ -300,7 +311,7 @@ przedyskutowaliśmy kilka paragrafów wcześniej.
 
 <p>
 Użytkownicy programu <c>genkernel</c> powinni wiedzieć, że jądra, które zbudowali
-używają tych samych opcji bootowania co LiveCD. Na przykład jeśli masz urządzenia
+używają tych samych opcji bootowania co płyta instalacyjna. Na przykład jeśli masz urządzenia
 SCSI, powinieneś dodać parametr <c>doscsi</c>.
 </p>
 
@@ -345,7 +356,7 @@ Teraz możemy zainstalować GRUB'a poleceniem <c>grub-install</c>:
 </p>
 
 <pre caption="Uruchamianie grub-install">
-# <i>grub-install --root-directory=/boot /dev/hda</i>
+# <i>grub-install /dev/hda</i>
 </pre>
 
 <p>
