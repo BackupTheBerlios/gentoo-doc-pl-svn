@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.11 -->
+<!-- Orig revision: 1.14 -->
 <!-- Translator: sekretarz <sekretarz@dukato.net> -->
 
 <!-- Title: Konfiguracja bootloadera dla PPC64 -->
@@ -14,8 +14,8 @@
 
 <sections>
 
-<version>1.7</version>
-<date>2005-01-15</date>
+<version>2.2</version>
+<date>2005-04-20</date>
 
 <section>
 <title>Podejmowanie decyzji.</title>
@@ -61,6 +61,13 @@ możesz najzwyczajniej w świecie wyedytować wzorcowy plik już zainstalowany w
 yabootconfig/ybin nie działa na IBM. Musisz go zainstalować w inny sposób:
 <uri link="#yaboot-ibm">Używanie yaboot na IBM</uri>
 </impo>
+
+<note>
+Użytkownicy systemu plików JFS muszą dodać <c>ro</c> jako parametr dla jądra.
+JFS musi mieć możliwość odtwarzania logów w trybie tylko do odczytu zanim
+zostanie zamontowane w trybie zarówno odczytu i zapisu.
+</note>
+
 
 <ul>
   <li><uri link="#yabootconfig">Domyślnie: Użycie yabootconfig</uri></li>
@@ -218,7 +225,7 @@ następujących czynności:
 <ul>
   <li>Zainstaluj yaboot-static</li>
   <li>Uruchom 'dd if=/usr/lib/yaboot/yaboot.chrp of=/dev/sdXX' (Zamień XX
-  na nazwę Twojego dysku oraz partycji dla partycji RPeP; w naszym przykładzie był to /dev/sda1)</li>
+  na nazwę Twojego dysku oraz partycji dla partycji PReP; w naszym przykładzie był to /dev/sda1)</li>
   <li>Następnie stwórz swoją wersję pliku yaboot.conf i umieść go w /etc.
   (Możesz wesprzeć się plikiem konfiguracyjnym przedstawionym powyżej,
   zajrzeć na stronę man yaboot.conf lub popatrzeć na przykładowy plik yaboot.conf
@@ -243,6 +250,39 @@ image=/boot/vmlinux-2.6.8-gentoo-r3
           read-only
 </pre>
 
+<p>	
+Na systemach POWER4, POWER5 i sprzęcie opartym na blade, gdzie partycje PReP
+znajdują się na tym samym dysku można znacznie uprościć plik yaboot.conf.
+Powinien wtedy wystarczyć taki plik:
+ </p>	
+ 	 	
+<pre caption="yaboot.conf dla sprzętu PReP">	
+default = linux	
+timeout = 100	
+image=/boot/vmlinux	
+label=linux	
+read-only	
+root = /dev/sda2	
+append="root=/dev/sda2"	
+</pre>	
+ 	 	
+<p>
+Aby sprawdzić czy yaboot skopiował się na partycję PReP:
+</p>	
+ 	 	
+<pre caption="Weryfikacja instalacji yaboot na PReP">	
+# <i>dd if=/dev/sda1 count=10 | grep ELF</i>	
+Binary file (standard input) matches	
+10+0 records in	
+ 10+0 records out	
+</pre>	
+ 	 	
+<p>	
+Jeśli pliki się zgadzają to znaczy, że yaboot został zainstalowany
+poprawnie.
+</p>
+
+
 </body>
 </section>
 <section id="reboot">
@@ -257,14 +297,14 @@ Wreszcie wpisz komendę <c>reboot</c>.
 
 <pre caption="Opuszczanie chroota, odmontowywanie partycji i rebootowanie">
 # <i>exit</i>
-livecd ~# <i>cd</i>
-livecd ~# <i>umount /mnt/gentoo/boot /mnt/gentoo/proc /mnt/gentoo/dev /mnt/gentoo</i>
-livecd ~# <i>reboot</i>
+~# <i>cd</i>
+~# <i>umount /mnt/gentoo/boot /mnt/gentoo/proc /mnt/gentoo/dev /mnt/gentoo</i>
+~# <i>reboot</i>
 </pre>
 
 <p>
-Nie zapomnij o wyjęciu LiveCD z napędu, bo zabootujesz system z płyty zamiast
-swojego nowego Gentoo.
+Nie zapomnij o wyjęciu płyty instalacyjnej z napędu, bo zabootujesz system z
+płyty zamiast swojego nowego Gentoo.
 </p>
 
 <p>
