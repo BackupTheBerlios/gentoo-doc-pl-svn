@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.18 -->
+<!-- Orig revision: 1.23 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Konfiguracja jądra dla PPC -->
 <!-- Status: Release -->
@@ -13,8 +13,8 @@
 
 <sections>
 
-<version>1.15</version>
-<date>2005-01-09</date>
+<version>2.4</version>
+<date>2005-04-16</date>
 
 <section>
 <title>Strefa czasowa.</title>
@@ -48,48 +48,60 @@ różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
 </p>
 
 <p>
-Dla architektury PPC mamy do wyboru jądra <c>development-sources</c> i
-<c>gentoo-dev-sources</c> (oba serii 2.6). Dla maszyn Pegasos oferujemy <c>pegasos-dev-sources</c>,
+Dla architektury PPC mamy do wyboru jądra <c>vanilla-sources</c> i
+<c>gentoo-sources</c> (oba serii 2.6). Dla maszyn Pegasos oferujemy <c>pegasos-dev-sources</c>,
 jądro serii 2.6 z nałożonym specjalnym zestawem poprawek dla tego sprzętu.
 Wybierzmy sobie któreś i zainstalujmy:
 </p>
 
 <pre caption="Instalowanie źródeł jądra">
-# <i>emerge gentoo-dev-sources</i>
+# <i>emerge gentoo-sources</i>
 </pre>
 
+<note>
+Źródła dla PowerPC są oparte o jądro 2.6.10-kernel, na które nałożone kilka
+poprawek zawartych w jądrach 2.6.11, którego nie można używać ponieważ powoduje
+różne problemy na komputerach PowerPC.
+</note>
+
 <p>
-W katalogu <path>/usr/src</path> powinieneś mieć mniej więcej taki symlink, o
-nazwie <path>linux</path>, wskazujący na źródła Twojego aktualnego kernela:
+W katalogu <path>/usr/src</path> powinieneś mieć mniej więcej taki jak poniższy
+symlink, o nazwie <path>linux</path>, wskazujący na źródła jądra. W przykładzie
+zakładamy, że źródła jądra zostały zainstalowane jako
+<c>gentoo-sources-2.6.10-r8</c>:
 </p>
 
 <pre caption="Podgląd symlinka do źródeł kernela">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Jul 10 10:55 /usr/src/linux -&gt; linux-2.6.9
+lrwxrwxrwx    1 root     root           22  Mar 18 16:23 /usr/src/linux -&gt;linux-2.6.10-gentoo-r8
 </pre>
 
 <p>
 Jeśli informacje z symlinka nie pokrywają się z rzeczywistością (np. wskazuje na
-inne niż Twoje źródła kernela) to będziesz musiał go poprawić zanim przejdziesz
-do dalszych części tego dokumentu.
+inne źródła jądra) to będziemy musieli go poprawić przed przejściem
+do dalszych części tego dokumentu. Należy również zwrócić uwagę, że
+<c>linux-2.6.10-gentoo-r8</c> to tylko przykład.
 </p>
 
 <pre caption="Zmiana dowiązania symbolicznego do źródeł jądra">
 # <i>rm /usr/src/linux</i>
 # <i>cd /usr/src</i>
-# <i>ln -s linux-2.6.9 linux</i>
+# <i>ln -s linux-2.6.10-gentoo-r8 linux</i>
 </pre>
 
 <p>
 Pora na skonfigurowanie i skompilowanie źródeł jądra. Możesz użyć do tego
 programu <c>genkernel</c>, który zbuduje uniwersalne jądro, takie jak np.
-to używane przez LiveCD. Możesz też przeprowadzić cały proces ręcznie i lepiej
-dostostosować kernel do swoich potrzeb. Zaczniemy od omówienia tej drugiej,
-znacznie lepszej metody.
+to używane przez płyty instalacyjne. Możesz też przeprowadzić cały proces
+ręcznie i lepiej dostostosować kernel do swoich potrzeb. Zaczniemy od omówienia
+tej drugiej, znacznie lepszej metody.
 </p>
 
 <p>
-Przejdź do paragrafu <uri link="#manual">Ręczna konfiguracja.</uri>
+Aby ręcznie skonfigurować jądro należy przejść do paragrafu <uri	
+link="#manual">Ręczna konfiguracja</uri>, opis pracy z  <c>genkernelem</c>
+opisaliśmy w paragrafie <uri link="#genkernel">Alternatywnie: użycie
+genkernel</uri>
 </p>
 
 </body>
@@ -113,7 +125,7 @@ prawidłowo skonfigurować kernel. Większość informacji o maszynie znajdziemy
 przeglądając zawartość <path>/proc/pci</path> (lub przy użyciu polecenia
 <c>lspci</c> - jeśli działa). Dodatkowe informacje o tym co warto włączyć w swój
 kernel można uzyskać dzięki poleceniu <c>lsmod</c>, które pokaże listę
-modułów jakie załadowało LiveCD.
+modułów jakie załadował system płyty instalacyjnej.
 </p>
 
 <p>
@@ -156,7 +168,7 @@ których zamierzasz używać. Jeśli tego zaniedbasz Gentoo nie będzie w stanie
 zamontować partycji, a czasem nawet się nie uruchomi. Pamiętaj również, aby
 włączać te sterowniki na stałe do jądra, broń Boże nie kompiluj ich jako
 modułów. Przy okazji zaznacz też <c>Virtual memory</c> i <c>/proc file
-system</c>.
+system</c>. <e>Nie należy</e> włączać opcji <c>/dev file system</c>.
 </p>
 
 <pre caption="Wybór potrzebnych systemów plików">
@@ -164,7 +176,6 @@ File systems ---&gt;
   Pseudo Filesystems ---&gt;
     [*] /proc file system support
     [ ] /dev file system support (OBSOLETE)
-    [ ]   Automatically mount at boot
     [*] Virtual memory file system support (former shm fs)
 
 <comment>(Wybierz jedną lub kilka z tych opcji zależnie od używanych systemów plików.)</comment>
@@ -251,21 +262,14 @@ instalację. Opuść program konfiguracyjny i wpisz następujące polecenia:
 
 <p>
 Kiedy jądro skończy się kompilować przekopiuj jego obraz do katalogu
-<path>/boot</path>.
+<path>/boot (należy upewnić się, że jest to poprawnie montowane, zwłaszcza na
+Pegasosie)</path>.
 </p>
 
 <pre caption="Instalowanie kernela">
-<comment>Zastąp 2.6.9 wersją swojego jądra</comment>
-(Apple/IBM)  # <i>cp vmlinux /boot/kernel-2.6.9</i>
-(Pegasos)    # <i>cp arch/ppc/boot/images/zImage.chrp /boot/kernel-2.6.9</i>
-</pre>
-
-<p>
-Nie zapomnij o skopiowaniu pliku System.map:
-</p>
-
-<pre caption="Kopiowanie System.map">
-# <i>cp System.map /boot/System.map-2.6.9</i>
+<comment>Zastąp 2.6.10 wersją swojego jądra</comment>
+(Apple/IBM)  # <i>cp vmlinux /boot/kernel-2.6.10</i>
+(Pegasos)    # <i>cp arch/ppc/boot/images/zImage.chrp /boot/kernel-2.6.10</i>
 </pre>
 
 <p>
@@ -274,7 +278,7 @@ posłużył do zbudowania jądra.
 </p>
 
 <pre caption="Tworzenie kopii zapasowej konfiguracji jądra">
-# <i>cp .config /boot/config-2.6.9</i>
+# <i>cp .config /boot/config-2.6.10-gentoo-r8</i>
 </pre>
 
 <p>
@@ -292,7 +296,7 @@ osobnych modułów jądra</uri>.
 <body>
 
 <p>
-ista modułów, które chcesz aby były automatycznie ładowane przy starcie systemu
+Lista modułów, które chcesz by były automatycznie ładowane przy starcie systemu
 powinna znajdować się w pliku <path>/etc/modules.autoload.d/kernel-2.4</path>
 (lub <path>kernel-2.6</path>). Czasem jeśli chcesz możesz dodać kilka opcji dla
 modułów.
@@ -309,7 +313,7 @@ kernela.
 </pre>
 
 <p>
-Na przykład aby automatycznie ładować do pamięci moduł <c>3c59x.o</c> wyedytuj
+Na przykład, aby automatycznie ładować do pamięci moduł <c>3c59x.o</c> wyedytuj
 plik <path>kernel-2.4</path> lub <path>kernel-2.6</path> i wprowadź do niego
 nazwę tego modułu.
 </p>
@@ -341,22 +345,110 @@ musisz zatem emergować udev:
 </pre>
 
 <p>
-Pojawił się pewien problem z PAM na <b>stage3</b> wersji 2004.3. 
-Aby rozwiązać te problemy wykonaj następujące czynności:
-</p>
-<pre caption="Naprawa problemów z logowaniem na 2004.3">
-<comment>Najpierw musimy dodać flage pam do USE.</comment>
-# <i>nano /etc/make.conf</i>
-<comment>Teraz musimy przeemergować shadow, pam and pam-login.</comment>
-# <i>emerge shadow pam pam-login</i>
-</pre>
-
-<p>
 Kiedy skończysz przejdź do rozdziału <uri link="?part=1&amp;chap=8">Konfiguracja
 systemu</uri>.
 </p>
 
 </body>
 </subsection>
+</section>
+<section id="genkernel">
+<title>Alternatywnie: użycie genkernel</title>
+<body>
+
+<p>
+W tym paragrafie omawiamy proces konfiguracji jądra przy pomocy programu
+<c>genkernel</c>.
+</p>
+
+<p>
+Po zainstalowaniu źródeł należy je skonfigurować. Zrobimy to automatycznie przy
+pomocy programu <c>genkernel</c>, który wykonuje cały proces dokładnie w ten sam
+sposób w jaki jest konfigurowane jądro na płycie instalacyjnej. Konsekwencją
+wyboru genkernela jest to, że system będzie zmuszony do wykrywania dostępnego
+sprzętu przy każdym uruchomieniu komputera. W związku z tym, że genkernel nie
+wymaga od użytkownika żadnych ręcznych poprawek w konfiguracji, jest doskonałym
+rozwiązaniem dla tych wszystkich, którzy nie są najmocniejsi w samodzielnym
+kompilowaniu jądra.
+</p>
+
+<p>
+Zanim jednak zdradzimy jak używa się tego cudownego programu musimy wytłumaczyć
+jak go zainstalować:
+</p>
+
+<pre caption="Emergowanie genkernela">
+# <i>emerge genkernel</i>
+</pre>
+
+<p>
+Następnie kopiujemy konfigurację jądra z płyty instalacyjnej do miejsca, w
+którym znajdzie ją i wykorzysta genkernel:
+</p>
+
+<pre caption="Kopiowanie konfiguracji jądra z płyty instalacyjnej">
+# <i>zcat /proc/config.gz > /usr/share/genkernel/ppc/kernel-config-2.6</i>
+</pre>
+
+<p>
+Źródła skompilujemy przy pomocy polecenia <c>genkernel --udev all</c>.
+Kompilowanie zajmie mnóstwo czasu, ponieważ <c>genkernel</c> zawiera niemal
+wszystkie dostępne sterowniki.
+</p>
+
+<p>
+Jeśli partycja rozruchowa została sformatowana w innym niż ext2 lub ext3
+systemie plików należy ręcznie dodać potrzebne dla nich sterowniki, wybiera się
+je przy pomocy menu <c>genkernel --menuconfig all</c>. Sterowniki te muszą być
+wkompilowane w jądro <e>na stałe</e>, nie można dodawać ich w postaci modułów.
+Użytkownicy EVMS2 lub LVM2 powinni dodać również <c>--evms2</c> lub
+<c>--lvm2</c> do listy argumentów.
+</p>
+
+<pre caption="Uruchamianie genkernel">
+# <i>genkernel --udev all</i>
+</pre>
+
+<p>
+W toku tego procesu powstanie właściwy plik jądra, initrd (initial root disk)
+oraz ogromna rzesza modułów. Nazwy plików jądra i initrd będą potrzebne przy
+konfiguracji bootloadera do prawidłowego wypełnienia jego pliku
+konfiguracyjnego, więc warto je sobie zapisać. Przy następnym uruchumieniu
+komputera zostanie najpierw wykonany plik initrd, który wykryje cały dostępny
+sprzęt i wczyta odpowiednie moduły, a następnie uruchomi się właściwy system.
+</p>
+
+<pre caption="Sprawdzanie nazw utworzonych plików jądra">
+# <i>ls /boot/kernel* /boot/initrd*</i>
+</pre>
+
+<p>
+Now, let's perform one more step to get our system to be more like the
+Installation CD -- let's emerge <c>coldplug</c>. While the initrd autodetects
+hardware that is needed to boot your system, <c>coldplug</c> autodetects
+everything else. To emerge and enable <c>coldplug</c>, type the following:
+</p>
+
+<pre caption="Emerging and enabling coldplug">
+# <i>emerge coldplug</i>
+# <i>rc-update add coldplug boot</i>
+</pre>
+
+<p>
+Jeśli system ma reagować na zdarzenia hotplug trzeba mu najpierw zainstalować i
+skonfigurować ten program:
+</p>
+
+<pre caption="Emergowanie i włączanie hotplug">
+# <i>emerge hotplug</i>
+# <i>rc-update add hotplug default</i>
+</pre>
+
+<p>
+Kolejny etap instalacji to <uri link="?part=1&amp;chap=8">Konfigurowanie
+systemu</uri>.
+</p>
+
+</body>
 </section>
 </sections>
