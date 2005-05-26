@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.19 -->
+<!-- Orig revision: 1.21 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Przygotowanie dysków -->
 <!-- Status: Release -->
@@ -15,7 +15,7 @@
 <sections>
 
 <version>2.1</version>
-<date>2005-02-20</date>
+<date>2005-03-28</date>
 
 <section>
 <title>Wprowadzenie do urządzeń blokowych.</title>
@@ -648,6 +648,11 @@ zamontowanie. Służy do tego program <c>mount</c>. Nie zapomnij o utworzeniu
 odpowiednich katalogów dla montowanych partycji. W przykładzie zamontujemy
 partycje boot i root:
 </p>
+
+<warn>	
+W związku z błędem w pakiecie e2fsprogs trzeba używać polecenia <c>mount -t
+ext3</c> przy każdym montowaniu partycji ext3.
+</warn>
 
 <pre caption="Montowanie partycji">
 # <i>mount /dev/hda3 /mnt/gentoo</i>
