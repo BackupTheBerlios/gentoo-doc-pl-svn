@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.16 -->
+<!-- Orig revision: 1.17 -->
 <!-- Translator: sekretarz <sekretarz@gentoo.org> -->
 <!-- Title: Przygotowanie Dysków -->
 <!-- Status: Release -->
@@ -12,8 +12,8 @@
 <!-- $Id$ -->
 
 <sections>
-<version>1.11</version>
-<date>2005-02-20</date>
+<version>2.00</version>
+<date>2005-03-28</date>
 
 <section>
 <title>Wprowadzenie do urządzeń blokowych.</title>
@@ -90,7 +90,9 @@ Jako przykładu użyjemy następującego schematu plastrów:
 
 <p>
 Jeśli interesują Cię nasze rady dotyczące rozmiarów oraz ilości partycji, czytaj dalej.
-W przeciwnym wypadku przejdź od razu do paragrafu <uri link="#fdisk">Podziału dysku za pomocą fdisk</uri>.
+W przeciwnym wypadku przejdź od razu do paragrafu <uri
+link="#fdisk_SRM">podział dysku za pomocą fdisk (dla SRM)</uri> lub <uri
+link="#fdisk_ARC">podział dysku za pomocą fdisk (dla ARC/AlphaBIOS)</uri>
 </p>
 
 </body>
@@ -148,7 +150,7 @@ Niestety zbyt rozbudowany podział niesie ze sobą spore problemy:
 </body>
 </subsection>
 </section>
-<section id="fdisk">
+<section id="fdisk_SRM">
 <title>Partycjonowanie dysku za pomocą fdisk (tylko SRM).</title>
 <subsection>
 <body>
@@ -423,7 +425,7 @@ Zmodyfikuj go stosownie do swoich potrzeb.
 </body>
 </subsection>
 </section>
-<section id="fdisk">
+<section id="fdisk_ARC">
 <title>Partycjonowanie dysku za pomocą fdisk (tylko ARC/AlphaBIOS).</title>
 <subsection>
 <body>
@@ -817,8 +819,15 @@ odpowiednich katalogów dla każdej z montowanych partycji. Pokażemy to na przy
 partycji root:
 </p>
 
+<warn>
+W związku z błędem w pakiecie e2fsprogs trzeba używać polecenia <c>mount -t
+ext3</c> przy każdym montowaniu partycji ext3.
+</warn>
+
 <pre caption="Montowanie partycji">
 # <i>mount /dev/sda2 /mnt/gentoo</i>
+<comment>(Dla partycji ext3:)</comment>	
+# <i>mount -t ext3 /dev/sda2 /mnt/gentoo</i>
 </pre>
 
 <note>
