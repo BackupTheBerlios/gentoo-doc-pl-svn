@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.9 -->
+<!-- Orig revision: 1.12 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Konfiguracja jądra dla PPC64 -->
 <!-- Status: Release -->
@@ -13,8 +13,8 @@
 
 <sections>
 
-<version>1.5</version>
-<date>2005-03-25</date>
+<version>2.2</version>
+<date>2005-04-25</date>
 
 <section>
 <title>Strefa czasowa.</title>
@@ -48,12 +48,12 @@ różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
 </p>
 
 <p>
-Dla architektury PPC64 powienieś użyć <c>gentoo-dev-sources</c>. Zacznij od
+Dla architektury PPC64 należy użyć <c>gentoo-sources</c>. Zacznij od
 ich instalacji przy pomocy polecenia <c>emerge</c>:
 </p>
 
 <pre caption="Instalowanie źródeł kernela">
-# <i>emerge gentoo-dev-sources</i>
+# <i>emerge gentoo-sources</i>
 </pre>
 
 <p>
@@ -110,7 +110,7 @@ prawidłowo skonfigurować kernel. Większość informacji o maszynie znajdziemy
 przeglądając zawartość <path>/proc/pci</path> (lub przy użyciu polecenia
 <c>lspci</c> - jeśli działa). Dodatkowe informacje o tym co warto włączyć w swój
 kernel można uzyskać dzięki poleceniu <c>lsmod</c>, które pokaże listę
-modułów jakie załadowało LiveCD.
+modułów jakie załadował system płyty instalacyjnej.
 </p>
 
 <p>
@@ -299,15 +299,6 @@ nazwę tego modułu.
 
 <pre caption="/etc/modules.autoload.d/kernel-2.6">
 3c59x
-</pre>
-
-<p>
-Następnie uruchom <c>modules-update</c>, aby potwierdzić wprowadzone do pliku
-<path>/etc/modules.conf</path> zmiany:
-</p>
-
-<pre caption="Uruchamianie modules-update">
-# <i>modules-update</i>
 </pre>
 
 <p>
