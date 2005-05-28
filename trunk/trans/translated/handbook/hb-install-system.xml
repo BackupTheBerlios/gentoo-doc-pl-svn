@@ -13,8 +13,8 @@
 
 <sections>
 
-<version>1.66</version>
-<date>2005-02-25</date>
+<version>2.5</version>
+<date>2005-05-17</date>
 
 <section>
 <title>Praca w chroot.</title>
@@ -139,6 +139,8 @@ Powinneś teraz uaktualnić drzewo Portage. Dokonujemy tego poleceniem
 
 <pre caption="Aktualizowanie drzewa Portage">
 # <i>emerge --sync</i>
+ <comment>(Dla wolnych terminali, takich jak konsola bufora ramki, należy dodać parametr --quiet dla przyspieszenia całego procesu) </comment>	
+# <i>emerge --sync --quiet</i>
 </pre>
 
 <p>
@@ -237,7 +239,9 @@ Zwykle w systemie używa się tylko jednej, góra dwóch lokalizacji.
 Po skompilowaniu <c>glibc</c> dostępne są wszystkie jakie kiedykolwiek zostały stworzone.
 Możemy aktywować flagę USE <c>userlocales</c> i zdecydować w pliku
 <path>/etc/locales.build</path>, których lokali będziemy potrzebować. Należy
-robić to tylko wtedy, gdy ma się dokładną wiedzę na temat tego co należy wybrać!
+robić to tylko wtedy, gdy ma się dokładną wiedzę na temat tego co należy
+wybrać! Nowe ustawiania nie zadziałają podczas bootstrapu, będą aktywne dopiero
+po ponownym skompilowaniu glibc.
 </p>
 
 <pre caption="Aktywacja flagi userlocales dla glibc">
@@ -360,19 +364,6 @@ ukończeniu tego etapu zajmie mnóstwo czasu.
 </pre>
 
 <p>
-Jeśli ustawiono flagę USE <c>nptl</c> ponowne uruchomienie <c>bootstrap.sh</c>
-spowoduje błąd związany z blokowaniem pakietu <c>linux26-headers</c> przez
-<c>linux-headers</c>. Kiedy otrzymamy taki błąd musimy usunąć pakiet
-<c>linux-headers</c> przed rozpoczęcziem bootstrapu:
-</p>
-
-<pre caption="Usuwanie linux-headers z systemu">
-#  <i>emerge -C linux-headers</i>
-# <i>emerge --oneshot --nodeps linux26-headers</i>
-# <i>scripts/bootstrap.sh</i>
-</pre>
-
-<p>
 Pora na kolejny etap, <uri link="#doc_chap4">Przechodzenie ze Stage2
 do Stage3</uri>.
 </p>
@@ -407,15 +398,23 @@ dokonaniu wyboru krótko omawiając każdą z możliwości.
 
 <p>
 Aby dowiedzieć się jakie pakiety zostaną zainstalowane należy wykonać polecenie
-<c>emerge --pretend system</c>. Otrzymamy spis wszystkich programów jakie
-zostaną zbudowane. Ponieważ ta lista jest całkiem spora, powinno się użyć
+<c>emerge --pretend --emptytree system</c>. Otrzymamy spis wszystkich programów
+jakie zostaną zbudowane. Ponieważ ta lista jest całkiem spora, powinno się użyć
 programu stronicującego w rodzaju <c>less</c> lub <c>more</c>, pozwalającego
 poruszać się w górę i w dół listy.
 </p>
 
 <pre caption="Co zainstaluje emerge system?">
-# <i>emerge --pretend system | less</i>
+# <i>emerge --pretend  --emptytree system | less</i>
 </pre>
+
+<p>	
+Warto zauważyć, że jeśli nie zmieniano ustawień CFLAGS i CXXFLAGS wystarczy
+użycie <c>emerge --pretend --newuse system</c>. Polecenie to przebuduje
+wszystkie pakiety, którym zmieniono ustawienia flag USE (w porównaniu z tymi
+użytymi podczas budowy stage2). Jeśli i flagi USE nie były zmieniane to znaczy,
+że instalacja z etapu drugiego była zwykłą stratą czasu.
+</p>
 
 </body>
 </subsection>
@@ -432,7 +431,7 @@ potrzebnych plików.
 </p>
 
 <pre caption = "Pobieranie źródeł">
-# <i>emerge --fetchonly system</i>
+# <i>emerge --fetchonly --emptytree system</i>
 </pre>
 
 </body>
@@ -442,14 +441,19 @@ potrzebnych plików.
 <body>
 
 <p>
-Aby rozpocząć budowanie systemu wpisujemy polecenie <c>emerge system</c>.
-A potem mamy dużo czasu dla siebie: możemy odrobić lekcje, poczytać książkę,
-możemy też posprzątać pokój - cały ten proces zajmie mnóstwo czasu.
+Aby rozpocząć budowanie systemu wpisujemy polecenie <c>emerge  --emptytree
+system</c>. A potem mamy dużo czasu dla siebie: możemy odrobić lekcje, poczytać
+książkę, możemy też posprzątać pokój - cały ten proces zajmie mnóstwo czasu.
 </p>
 
 <pre caption = "Budowanie systemu">
-# <i>emerge system</i>
+# <i>emerge  --emptytree system</i>
 </pre>
+
+<p>
+Po raz kolejny przypominamy, że jeśli nie zmieniano ustawień CFLAGS i CXXFLAGS
+to wystarczy tu parametr --newuse
+</p>
 
 <p>
 Na typ etapie można jeszcze bezpiecznie zignorować ostrzeżenia o
