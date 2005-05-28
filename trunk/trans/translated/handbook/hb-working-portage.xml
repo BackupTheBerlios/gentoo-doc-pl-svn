@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.49 -->
+<!-- Orig revision: 1.53 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Praca z Portage -->
 <!-- Status: Release -->
@@ -186,6 +186,62 @@ komendy emerge:
 
 <pre caption="Pobieranie kodu źródłowego gnumeric">
 # <i>emerge --fetchonly gnumeric</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>
+Wyszukiwanie dokumentacji do zainstalowanych pakietów.
+</title>
+<body>
+
+<p>
+Wiele pakietów rozprowadzanych jest wraz z dokumentacją. Czasem flaga USE
+<c>doc</c> określa, czy dokumentacja dla danego pakietu zostanie
+zainstalowana czy nie. Informację o tym, czy dany pakiet korzysta z flagi
+<c>doc</c> można uzyskać za pomocą następującego polecenia: <c>emerge -vp
+&lt;nazwa pakietu&gt;</c>.
+</p>
+
+<pre caption="Sprawdzenie czy pakiet używa flagi doc.">
+<comment>(oczywiście alsa-lib to tylko przykład)</comment>
+# <i>emerge -vp alsa-lib</i>
+[ebuild N ] media-libs/alsa-lib-1.0.9_rc3 +doc -jack 674 kB
+</pre>
+
+<p>
+Flagę <c>doc</c> można włączyć, bądź wyłączyć globalnie w pliku
+<path>/etc/make.conf</path> lub dla poszczególnych pakietów w pliku
+<path>/etc/portage/package.use</path>. Rozdział <uri
+link="?part=2&amp;chap=2">Flagi USE</uri> omawia ten temat szczegółowo.
+</p>
+
+<p>
+Dokumentacja do zainstalowanego już pakietu na ogół może zostać odnaleziona
+w podkatalogu o nazwie takiej samej jak pakiet w katalogu
+<path>/usr/share/doc</path>. Można również wyświetlić listę wszystkich
+zainstalowanych plików za pomocą narzędzia <c>equery</c>, które to jest
+częścią <uri link="/doc/en/gentoolkit.xml">pakietu</uri>
+<c>app-portage/gentoolkit</c>.
+</p>
+
+<pre caption="Lokalizowanie dokumentacji pakietu.">
+# <i>ls -l /usr/share/doc/alsa-lib-1.0.9_rc3</i>
+total 28
+-rw-r--r-- 1 root root 669 May 17 21:54 ChangeLog.gz
+-rw-r--r-- 1 root root 9373 May 17 21:54 COPYING.gz
+drwxr-xr-x 2 root root 8560 May 17 21:54 html
+-rw-r--r-- 1 root root 196 May 17 21:54 TODO.gz
+
+<comment>(Alternatywnie, można użyć equery do zlokalizowania interesujących plików:)</comment>
+# <i>equery files alsa-lib | less</i>
+media-libs/alsa-lib-1.0.9_rc3
+* Contents of media-libs/alsa-lib-1.0.9_rc3:
+/usr
+/usr/bin
+/usr/bin/alsalisp
+<comment>(Wyjście programu zostało obcięte)</comment>
 </pre>
 
 </body>
