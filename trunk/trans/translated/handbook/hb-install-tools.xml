@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.31 -->
+<!-- Orig revision: 1.33 -->
 <!-- Translator: aye <aye@gentoo.pl> -->
 <!-- Title: Instalacja dodatkowych narzędzi -->
 <!-- Status: Release -->
@@ -13,8 +13,8 @@
 
 <sections>
 
-<version>1.27</version>
-<date>2005-02-04</date>
+<version>2.1</version>
+<date>2005-04-20</date>
 
 <section>
 <title>Program logujący.</title>
@@ -177,7 +177,7 @@ Jeżeli korzystasz z LVM, powinieneś również zainstalować <c>lvm-user</c>:
 
 <p>
 Jeżeli nie potrzebujesz żadnych dodatkowych narzędzi sieciowych (takich, jak <c>rp-pppoe</c> lub klient dhcp)
-przejdź do  <uri link="?part=1&amp;chap=10">Konfiguracji bootloadera</uri>.
+przejdź do <uri link="?part=1&amp;chap=10">Konfiguracji bootloadera</uri>.
 </p>
 
 </body>
@@ -217,6 +217,24 @@ nich korzystać, możesz przekompilować <c>rp-pppoe</c> po instacji
 serwera xorg-x11 lub zainstalować go teraz, jednak jego kompilacja zajmie
 dużo czasu).
 </p>
+
+</body>	
+</subsection>	
+<subsection>	
+<title>Narzędzia RAID dla sprzętu IBM.</title>	
+<body>	
+ 	 	
+<p>	
+Użytkownicy SCSI RAID na systemach opartych na POWER-5 powinni rozważyć
+instalację pakietu <c>iprutils</c>, dzięki któremu możliwe będą operacje na
+tablicach dysku RAID, takie jak pobieranie ich statusu oraz uaktualnianie
+mikrokodu. 
+</p>	
+ 	 	
+<pre caption="Instalowanie iprutils">	
+# <i>emerge iprutils</i>	
+</pre>
+
 
 <p>
 Teraz jesteś już gotowy do przejścia do <uri
