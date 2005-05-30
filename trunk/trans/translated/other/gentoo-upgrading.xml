@@ -1,0 +1,530 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+
+<!-- Orig revision: 1.22 -->
+<!-- Translator: Paweł Drobek <tlumaczenia@gentoo.pl> -->
+<!-- Title: Co dalej? -->
+<!-- Status: Release -->
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+
+<!-- $Id: hb-install-next.xml 976 2005-05-21 20:29:48Z sekretarz $ -->
+
+<guide link="/doc/en/gentoo-upgrading.xml">
+<title>Ulepszanie Gentoo - poradnik</title>
+
+<author title="Author">
+  <mail link="greg_g@gentoo.org">Gregorio Guidi</mail>
+</author>
+<author title="Translator">
+  <mail link="p_drobek@op.pl">Paweł Drobek</mail>
+</author>
+
+<abstract>
+Poradnik z zakresu wydań Gentoo i jaki wpływ wywiera zmiana profilu na istniejącą
+już instalację.
+</abstract>
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.0 -->
+<license/>
+
+<version>2.11.1</version>
+<date>2005-05-22</date>
+
+<chapter>
+<title>Gentoo i ulepszenia</title>
+<section>
+<title>Filozofia</title>
+<body>
+
+<p>
+Zagadnienie ulepszania dystrybucji Gentoo różni się zasadniczo od innych
+dystrybucji. Proces opisywany w tym poradniku nie będzie przebiegał w sposób
+"tradycyjny" jak ma to miejsce w przypadku innych dystrybucji. W sposobie
+klasycznym możemy wyróżnić parę charakterystycznych kroków: oczekiwania pełne
+niecierpliwości na nowe wydanie, pobieranie obrazu, wypalenie, a wreszcie
+instalacja.
+</p>
+
+<p>
+Przebieg klasycznego procesu jest frustrujący dla wielu użytkowników, zapewne
+taki pogląd podzielą nawet początkujący. Podobne wnioski można wysnuć z
+nastawienia doświadczonych użytkowników innych systemów. Dlatego coraz większą
+popularność zyskują aplikacje typu apt lub apt-rpm, które to umożliwiają
+szybkie i częste ulepszenie systemu. Jednak wśród dotychczas wydanych dystybucji
+Linuksa nie ma tak elastycznej distrybucji jak Gentoo jeżeli chodzi o aspekt
+ulepszania systemu. Gentoo od samego początku było projektowane jako system
+nastawiony na częste ulepszenia.
+</p>
+
+<p>
+Pod adresem <uri
+link="/doc/en/handbook/handbook-x86.xml?part=2&amp;chap=1">Instrukcja do Portage
+</uri> w <uri link="/doc/en/handbook/">Podręczniku Gentoo</uri>
+można znależć opis jak zadbać o system, aby był aktualny. Jest również spis
+paczek które ulepszyć należy ręcznie.
+</p>
+
+</body>
+</section>
+<section>
+<title>Wydania i profile</title>
+<body>
+
+<p>
+Często pojawia się pytanie: "Dlaczego wydawane są nowe wersje skoro użytkownik ma
+możliwość ulepszenia zainstalowanego systemu do stanu równego z wydaniem".
+Jest na to kilka powodów m.in.:
+</p>
+
+<ul>
+  <li>
+    Nowe wydanie oznacza nowe i poprawione LiveCD.
+  </li>
+  <li>
+    Nowe wydanie zawiera nową kompilację paczek GRP, dzięki którym użytkownik ma
+    możliwość szybkiego ulepszenia systemu za pomocą stage3 oraz prekompilowanych
+    pakietów.
+  </li>
+  <li>
+    Nowe wydanie może zawierać funkcje niekompatybilne z poprzednimi wersjami.
+  </li>
+</ul>
+
+<p>
+Gdy nowe wydanie zawiera niekompatybilne usprawnienia oraz ustawienia
+środowiskowe w sposób znaczny modyfikujące zachowanie systemu oznacza to wydanie
+nowego <e>profilu</e>.
+</p>
+
+<p>
+<e>Profil</e> jest zbiorem plików konfiguracyjnych zawartych w 
+<path>/usr/portage/profiles</path>. Pliki te zawierają opis pakietów, które
+wchodzą w skład <e>systemu</e>, flag USE oraz rodzaju architektury sprzętowej.
+</p>
+
+<p>
+Profil jest wyznaczany poprzez dowiązanie symboliczne
+<path>/etc/make.profile</path>, które wskazuje na
+<path>/usr/portage/profiles</path>. Dla architektury x86 profil 2005.0
+znajduje się w <path>/usr/portage/profiles/default-linux/x86/2005.0</path>. W
+katalogu <path>/usr/portage/profiles</path> znajdują się profile również do
+innych architektór np sparc, ppc. Dlatego możemy mowić o <e>kaskadowych
+profilach</e>.
+</p>
+
+<p>
+Wycofane profile są również przechowywane w <path>/usr/portage/profiles</path>
+z jedną różnicą. Do podkatalogu z przestarzałym profilem dodawany jest plik
+<path>deprecated</path>, który to oznacza dany profil jako nie wspierany.
+Użytkownik zawsze otrzymuje ostrzeżenie o przestałym profilu, zalecamy w takim
+przypadku jego natychmiastową aktualizację.
+</p>
+
+<p>
+Istnieje kilka powodów dla których wydawane są nowe profile. Można do nich
+zaliczyć na przykład wypuszczenie nowych kluczowych pakietów, takich jak:
+<c>baselayout</c>, <c>gcc</c> lub <c>glibc</c>. Są one niekompatybilne z
+poprzednimi wersjami. Zmiana devfs na udev jako standardowego menedżera
+zarządzającego <path>/dev</path> wymaga również nowego profilu.
+</p>
+
+</body>
+</section>
+</chapter>
+
+<chapter>
+<title>Nowe wydania</title>
+<section>
+<title>Wydania bez zmian w profilach.</title>
+<body>
+
+<p>
+Wydanie nowego Gentoo bez zmian w profilu jest całkowicie niemożliwe i taką
+informację można zdecydowanie uznać za fałszywą. :]
+</p>
+
+</body>
+</section>
+<section>
+<title>Wydania ze zmianami profilu</title>
+<body>
+
+<p>
+Po wydaniu nowego Gentoo użytkownik będzie musiał zdecydować czy pozostać na
+dotychczasowym profilu czy ulepszyć go.
+</p>
+
+<p>
+Nie jest to wymagane, jednak stanowczo zalecane. Ulepszenia pakietów w takim
+przypadku należy dokonać zgodnie z <uri
+link="/doc/en/handbook/handbook-x86.xml?part=2&amp;chap=1">Podręcznikiem Gentoo</uri>.
+</p>
+
+<p>
+Poprzez pojęcie "wycofany profil" należy rozumieć tylko tyle, że developerzy
+Gentoo nie będą już go rozwijać. Aby określić jaki profil aktualnie jest
+zalecany pod daną architekturę można skorzystać z poniższych zależności.
+</p>
+
+<p>
+Jeżeli użytkownik zdecyduje się ulepszyć profil to wszystkie kroki będzie trzeba
+wykonać ręcznie. Róznią się one zależnie od modyfikacji wprowadzonych w nowym
+profilu w porównaniu do ulepszanego profilu.
+</p>
+
+<p>
+W najlepszym przypadku wystarczy zmienić dowiązanie symboliczne <path>/etc/make.profile</path>
+natomiast w najgorszym wymagana będzie rekompilacja całego systemu. Opis w jaki
+sposób przeprowadza się migrację z reguły można znaleźć w notatkach do wydania.
+Znajdują się również w <uri link="#instructions">instrukcjach</uri> na końcu
+tego dokumentu.
+</p>
+
+</body>
+</section>
+<section>
+<title>Wspierane profile</title>
+<body>
+
+<p>
+Następujące profile są wspierane przez developerów Gentoo:
+</p>
+
+<table>
+<tr>
+  <th>Architektura</th>
+  <th>Najpopularniejsze</th>
+  <th>Inne wspierane</th>
+</tr>
+<tr>
+  <th>alpha</th>
+  <ti>2005.0, 2005.0/2.4</ti>
+  <ti>2004.3</ti>
+</tr>
+<tr>
+  <th>arm</th>
+  <ti>2005.0</ti>
+  <ti>2004.3</ti>
+</tr>
+<tr>
+  <th>amd64</th>
+  <ti>2005.0, 2005.0/no-multilib</ti>
+  <ti>2004.3</ti>
+</tr>
+<tr>
+  <th>hppa</th>
+  <ti>2005.0, 2005.0/2.4</ti>
+  <ti>2004.3, 2004.2</ti>
+</tr>
+<tr>
+  <th>ia64</th>
+  <ti>2005.0</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <th>ppc</th>
+  <ti>2005.0</ti>
+  <ti>2004.3, 2004.0</ti>
+</tr>
+<tr>
+  <th>mips</th>
+  <ti>2005.0</ti>
+  <ti>2004.2</ti>
+</tr>
+<tr>
+  <th>s390</th>
+  <ti>2005.0</ti>
+  <ti>2004.3</ti>
+</tr>
+<tr>
+  <th>sparc</th>
+  <ti>2005.0</ti>
+  <ti>2004.3, 2004.0</ti>
+</tr>
+<tr>
+  <th>x86</th>
+  <ti>2005.0, 2005.0/2.4</ti>
+  <ti>2004.3, 2004.2, 2004.0</ti>
+</tr>
+</table>
+
+</body>
+</section>
+</chapter>
+
+<chapter id="instructions">
+<title>Instrukcje ulepszenia</title>
+<section>
+<title>Ulepszanie do 2005.0</title>
+<body>
+
+<p>
+Przed zmianą profilu trzeba będzie określić czy użytkonik będzie zmieniał jądro
+gdyż większość profili wspiera już jądra z serii 2.6.x. Porzucono serię 2.4.x.
+</p>
+
+<p>
+Niektóre architektury wymagają nieco więcej kroków podczas ulepszania profilu.
+W takim przypadku można skorzystać z porad umieszczonych w odpowiednich adresach.
+</p>
+
+<table>
+<tr>
+  <th>Profil</th>
+  <th>Opis</th>
+  <th>Porady</th>
+</tr>
+<tr>
+  <ti>default-linux/alpha/2005.0</ti>
+  <ti>Standardowy profil Alpha 2005.0 dla jąder 2.6</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/alpha/2005.0/2.4</ti>
+  <ti>Standardowy profil Alpha 2005.0 dla jąder 2.4</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/amd64/2005.0</ti>
+  <ti>Standardowy profil AMD64 2005.0 dla jąder 2.6</ti>
+  <ti>
+    <uri
+    link="/proj/en/base/amd64/howtos/index.xml?part=1&amp;chap=1#doc_chap1">Ulepszanie
+    do 2005.0</uri>
+  </ti>
+</tr>
+<tr>
+  <ti>default-linux/amd64/2005.0/no-multilib</ti>
+  <ti>Profil AMD64 2005.0 dla systemu "multilib-disabled"</ti>
+  <ti>
+    <uri
+    link="/proj/en/base/amd64/howtos/index.xml?part=1&amp;chap=1#doc_chap5">Ulepszanie
+    do 2005.0</uri>
+  </ti>
+</tr>
+<tr>
+  <ti>default-linux/arm/2005.0</ti>
+  <ti>Standardowy profil ARM 2005.0 dla jąder 2.6</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/hppa/2005.0</ti>
+  <ti>Standardowy profil HPPA 2005.0 dla jąder 2.6</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/hppa/2005.0/2.4</ti>
+  <ti>Standardowy profil HPPA 2005.0 dla jąder 2.4</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/mips/2005.0</ti>
+  <ti>Standardowy profil MIPS 2005.0</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/mips/cobalt/2005.0</ti>
+  <ti>Kobaltowy profil MIPS 2005.0</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/mips/mips64/n32/2005.0</ti>
+  <ti>Profil 2005.0 dla platform n32 MIPS</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/mips/mips64/ip28/2005.0</ti>
+  <ti>Profil "Indigo2" dla architektury 64-bitowej 2005.0</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/mips/mips64/2005.0</ti>
+  <ti>Profil dla architektury 64-bitowej MIPS 2005.0</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/ppc/2005.0</ti>
+  <ti>Standardowy profil PPC 2005.0 dla jąder 2.6</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/ppc64/2005.0</ti>
+  <ti>Standardowy profil PPC64 2005.0 dla jąder 2.6</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/s390/2005.0</ti>
+  <ti>Standardowy profil S390 2005.0</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/sparc/sparc32/2005.0</ti>
+  <ti>Standardowy profil dla architektury 32-bitowej Sparc 2005.0</ti>
+  <ti></ti>
+</tr>
+<!-- http://dev.gentoo.org/~dsd/kernel-2.6.htm 
+     No subprofiles for sparc
+<tr>
+  <ti>default-linux/sparc/sparc32/2005.0/2.6</ti>
+  <ti>Sparc 32-bit 2005.0 profile for 2.6 kernels</ti>
+  <ti></ti>
+</tr>
+-->
+<tr>
+  <ti>default-linux/sparc/sparc64/2005.0</ti>
+  <ti>Standardowy profil dla architektury 64-bitowej Sparc 2005.0</ti>
+  <ti></ti>
+</tr>
+<!-- http://dev.gentoo.org/~dsd/kernel-2.6.htm
+     No subprofiles for sparc
+<tr>
+  <ti>default-linux/sparc/sparc64/2005.0/2.6</ti>
+  <ti>Sparc 64-bit 2005.0 profile for 2.6 kernels</ti>
+  <ti></ti>
+</tr>
+-->
+<tr>
+  <ti>default-linux/x86/2005.0</ti>
+  <ti>Standardowy profil x86 2005.0 dla jąder 2.6</ti>
+  <ti></ti>
+</tr>
+<tr>
+  <ti>default-linux/x86/2005.0/2.4</ti>
+  <ti>Standardowy profil x86 2005.0 dla jąder 2.4</ti>
+  <ti></ti>
+</tr>
+</table>
+
+<p>
+Aby zmienić profil wymagana będzie zmiana dowiązania symbolicznego
+<path>/etc/make.profile</path> do nowego miejsca. Należy pobrać nowe drzewo
+portów przed przystąpieniem do zmiany profilu! Aby pobrać nowego snapshoota
+można skorzystać z <i>emerge sync</i> lub <i>emerge-websync</i>.
+</p>
+
+<pre caption="Zmiana profilu do 2005.0">
+# <i>rm /etc/make.profile</i>
+# <i>ln -s ../usr/portage/profiles/</i>&lt;selected profile&gt;<i> /etc/make.profile</i>
+</pre>
+
+<p>
+Przed zmianą profilu w systemie opartym na jądrze z serii 2.4 do profilu 2.6
+należy przeczytać dokument <uri link="/doc/en/migration-to-2.6.xml">Migracja Gentoo
+na jądro 2.6</uri>.
+</p>
+
+</body>
+</section>
+<section>
+<title>Ulepszania do 2004.3</title>
+<body>
+
+<p>
+Razem z wydaniem 2004.3 nie wprowadzono znaczących zmian w profilach. Zmieniono
+jednak miejsce przechowywania portów z <path>/usr/portage/profiles</path>
+na <path>/usr/portage/profiles/default-linux/x86/2004.3</path>. Zmiana
+wprowadzona od Portage w wersji >=2.0.51.
+</p>
+
+<p>
+Aby zmienić profil na 2004.3 należy wskazać nowe miejsce dowiązaniu
+symbolicznemu <path>/etc/make.profile</path>:
+</p>
+
+<warn>
+Należy ulepszyć Portage <e>przed</e> zmianą profilu!!!
+</warn>
+
+<pre caption="Ulepszanie dowiązania symbolicznego /etc/make.profile">
+<comment>zamień &lt;arch&gt; na konkretną architekturę</comment>
+# <i>rm /etc/make.profile</i>
+# <i>ln -s ../usr/portage/profiles/default-linux/&lt;arch&gt;/2004.3 /etc/make.profile</i>
+</pre>
+
+<p>
+<b>Wszystkie architektury</b> - Nie wprowadzono zasadniczych zmian jednak należy
+nadmienić, że <c>sys-apps/slocate</c> i <c>net-misc/dhcpcd</c> nie są juz
+paczkami systemowymi. Oznacza to, że <c>emerge --depclean</c> będzie chciało
+usunąć je z systemu. Jeżeli są one wymagane należy je dodać do 
+<path>/var/lib/portage/world</path>.
+</p>
+
+<p>
+<b>ppc</b> - <c>sys-fs/udev</c> są teraz standardowymi paczkami wzamian
+<c>sys-fs/devfs</c>.
+</p>
+
+</body>
+</section>
+<section>
+<title>Ulepszanie do 2004.2</title>
+<body>
+
+<p>
+Aby zmienić profil na 2004.2 należy wskazać nowe miejsce dowiązaniu
+symbolicznemu <path>/etc/make.profile</path>:
+</p>
+
+<warn>
+Należy ulepszyć Portage <e>przed</e> zmianą profilu!!!
+</warn>
+
+<pre caption="Ulepszanie dowiązania symbolicznego /etc/make.profile">
+<comment>zamień &lt;arch&gt; na konkretną architekturę</comment>
+# <i>rm /etc/make.profile</i>
+# <i>ln -s ../usr/portage/profiles/default-linux/&lt;arch&gt;/2004.2 /etc/make.profile</i>
+</pre>
+
+<p>
+<b>x86</b> - Profil zmienia standardowy serwer X z <c>x11-base/xfree</c>
+na <c>x11-base/xorg-x11</c>. Zmiany odnoszą się jedynie do nowych instalacji nie
+wpływa to na już istniejące instalacje serwerów X.
+</p>
+
+<p>
+<b>amd64</b> - Nie wprowadzono zmian w porównaniu do poprzednich profili.
+</p>
+
+</body>
+</section>
+<section>
+<title>Ulepszanie do 2004.0</title>
+<body>
+
+<p>
+Aby zmienić profil na 2004.0 należy wskazać nowe miejsce dowiązaniu
+symbolicznemu <path>/etc/make.profile</path>:
+</p>
+
+<warn>
+Należy ulepszyć Portage <e>przed</e> zmianą profilu!!!
+</warn>
+
+<pre caption="Ulepszanie dowiązania symbolicznego /etc/make.profile">
+<comment>zamień &lt;arch&gt; na konkretną architekturę</comment>
+# <i>rm /etc/make.profile</i>
+# <i>ln -s ../usr/portage/profiles/default-linux/&lt;arch&gt;/2004.0 /etc/make.profile</i>
+</pre>
+
+<p>
+<b>Wszystkie architektury</b> - Nie wprowadzono zmian w porównaniu do poprzednich profili.</p>
+
+</body>
+</section>
+<section>
+<title>Ulepszanie profilu starszego od 1.4 do 1.4</title>
+<body>
+
+<p>
+Sposób jest dość skomplikowany. Opis znajduje się 
+<uri link="/doc/en/new-upgrade-to-gentoo-1.4.xml">tutaj</uri>.
+</p>
+
+</body>
+</section>
+</chapter>
+
+</guide>
