@@ -1,9 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/security/shb-intrusion.xml,v 1.1 2005/06/01 15:43:47 neysx Exp $ -->
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- Orig revision: 1.1 -->
+<!-- Translator: rane <rane@gentoo.pl> -->
+<!-- Title: Podręcznik bezpieczeństwa Gentoo. -->
+<!-- Status: Release -->
+<!-- $Id: $ -->
 
 <sections>
 
@@ -11,116 +13,117 @@
 <date>2005-05-31</date>
 
 <section>
-<title>AIDE (Advanced Intrusion Detection Environment)</title>
+<title>AIDE (Advanced Intrusion Detection Environment).</title>
 <body>
 
 <p>
-AIDE is a Host-Based Intrusion Detection System (HIDS), a free alternative to
-Tripwire (if you already know Tripwire you should have no difficulties learning
-the configuration file for AIDE). HIDS are used to detect changes to important
-system configuration files and binaries, generally by making a unique
-cryptographic hash for the files to be checked and storing it in a secure
-place. On a regular basis (such as once a day), the stored "known-good" hash is
-compared to the one generated from the current copy of each file, to determine
-if that file has changed. HIDS are a great way to detect disallowed changes to
-your system, but they take a little work to implement properly and make good use
-of.
+AIDE jest systemem wykrywania włamań będącym darmową alternatywą dla Tripwire
+(osoby dobrze znające Tripwire nie powinny mieć żadnych problemów z konfiguracją
+AIDE). Systemów HID używa się do wykrywania zmian w ważnych systemowych plikach
+konfiguracyjnych i binarnych. Dokonuje się tego poprzez utworzenie i
+zachowanie unikalnych hashy każdego z tych plików. Co jakiś czas, zwykle
+codziennie, przechowywane w bezpiecznym miejscu hashe są porównywane z nowo
+utworzonymi hashami odpowiednich plików, co umożliwia wykrycie dokonanych w
+nich zmian. HIDS jest więc doskonałym sposobem wykrywania wszelkiej niepożądanej
+aktywności w naszym systemie, a jego jedyną wadą jest to, że odpowiednie
+zaimplementowanie takiego systemu wymaga trochę pracy.
 </p>
 
 <p>
-The configuration file is based on regular expressions, macros and rules for
-files and directories. We have the following macros:
+Plik konfiguracyjny jest oparty na wyrażeniach regularnych, makrach i regułach
+dla plików oraz katalogów. Mamy do dyspozycji następujące makra:
 </p>
 
 <table>
 <tr>
-  <th>Macro</th>
-  <th>Description</th>
-  <th>Syntax</th>
+  <th>Makro</th>
+  <th>Opis</th>
+  <th>Składnia</th>
 </tr>
 <tr>
   <ti>ifdef</ti>
-  <ti>If definded</ti>
-  <ti>@@ifdef "name"</ti>
+  <ti>"Jeśli zdefiniowano"</ti>
+  <ti>@@ifdef "nazwa"</ti>
 </tr>
 <tr>
   <ti>ifndef</ti>
-  <ti>If not defined</ti>
-  <ti>@@ifndef "name"</ti>
+  <ti>"Jeśli nie zdefiniowano..."</ti>
+  <ti>@@ifndef "nazwa"</ti>
 </tr>
 <tr>
   <ti>define</ti>
-  <ti>Define a variable </ti>
-  <ti>@@define "name" "value"</ti>
+  <ti>Definiuje zmienną</ti>
+  <ti>@@define "zmienna" "wartość"</ti>
 </tr>
 <tr>
   <ti>undef</ti>
-  <ti>Undefine a variable</ti>
-  <ti>@@undef "name"</ti>
+  <ti>Usuwa zmienną</ti>
+  <ti>@@undef "nazwa"</ti>
 </tr>
 <tr>
   <ti>ifhost</ti>
-  <ti>if "hostname"</ti>
-  <ti>@@ifhost "hostname"</ti>
+  <ti>Jeśli "nazwa hosta"...</ti>
+  <ti>@@ifhost "nazwa hosta"</ti>
 </tr>
 <tr>
   <ti>ifnhost</ti>
-  <ti>if not "hostname"</ti>
-  <ti>@@ifnhost "hostname"</ti>
+  <ti>Jeśli nazwa hosta różna od "nazwa hosta"...</ti>
+  <ti>@@ifnhost "nazwa hosta"</ti>
 </tr>
 <tr>
   <ti>endif</ti>
 <ti>
-Endif must be used after any of the above macros except define and undef
+Endif używa się po każdym z powyżyszych makr, poza define i undef.
 </ti>
 <ti>@@endif</ti>
 </tr>
 </table>
 
 <p>
-These macros become very handy if you have more than one Gentoo box and want to
-use AIDE on all of them. But not all machines run the same services or even have
-the same users.
+Makra te są bardzo pomocne kiedy administruje się więcej niż jednym komputerem z
+Gentoo i chce się używać AIDE na każdym z nich. Należy jednak zwrócić uwagę, że
+nie wszystkie komputery posiadają te same usługi i identyczne konta
+użytkowników.
 </p>
 
 <p>
-Next we have sets of flags to check for on files and directories. These are a
-combination of permissions, file properties and cryptographic hashes
-(i.e. checksums).
+Kolejny zestaw wyrażeń to flagi dla plików i katalogów, czyli kombinacja praw
+dostępu, właściwości plików i hashy (sum kontrolnych).
 </p>
+
 
 <table>
 <tr>
-  <th>Flag</th>
-  <th>Description</th>
+  <th>Flaga</th>
+  <th>Opis</th>
 </tr>
 <tr>
   <ti>p</ti>
-  <ti>permissions</ti>
+  <ti>prawa dostępu</ti>
 </tr>
 <tr>
   <ti>i</ti>
-  <ti>inode</ti>
+  <ti>inoda</ti>
 </tr>
 <tr>
   <ti>n</ti>
-  <ti>number of links</ti>
+  <ti>liczba połączeń</ti>
 </tr>
 <tr>
   <ti>u</ti>
-  <ti>user</ti>
+  <ti>użytkownik</ti>
 </tr>
 <tr>
   <ti>g</ti>
-  <ti>group</ti>
+  <ti>grupa</ti>
 </tr>
 <tr>
   <ti>s</ti>
-  <ti>size</ti>
+  <ti>rozmiar</ti>
 </tr>
 <tr>
   <ti>b</ti>
-  <ti>block count</ti>
+  <ti>ilość bloków</ti>
 </tr>
 <tr>
   <ti>m</ti>
@@ -136,23 +139,23 @@ combination of permissions, file properties and cryptographic hashes
 </tr>
 <tr>
   <ti>S</ti>
-  <ti>check for growing size</ti>
+  <ti>sprawdza przyrost rozmiaru</ti>
 </tr>
 <tr>
   <ti>md5</ti>
-  <ti>md5 checksum</ti>
+  <ti>suma kontrolna md5</ti>
 </tr>
 <tr>
   <ti>sha1</ti>
-  <ti>sha1 checksum</ti>
+  <ti>suma kontrolna sha1</ti>
 </tr>
 <tr>
   <ti>rmd160</ti>
-  <ti>rmd160 checksum</ti>
+  <ti>suma kontrolna rmd160</ti>
 </tr>
 <tr>
   <ti>tiger</ti>
-  <ti>tiger checksum</ti>
+  <ti>suma kontrolna tiger</ti>
 </tr>
 <tr>
   <ti>R</ti>
@@ -164,71 +167,72 @@ combination of permissions, file properties and cryptographic hashes
 </tr>
 <tr>
   <ti>E</ti>
-  <ti>Empty group</ti>
+  <ti>Pusta grupa</ti>
 </tr>
 <tr>
   <ti>&gt;</ti>
-  <ti>Growing logfile p+u+g+i+n+S</ti>
+  <ti>Rosnący plik z logami p+u+g+i+n+S</ti>
 </tr>
 </table>
 
 <p>
-And if AIDE is compiled with mhash support it supports a few other features:
+Ponadto jeśli AIDE zostanie skompilowane ze wsparciem dla mhash dostępne będą
+dodatkowo takie opcje:
 </p>
 
 <table>
 <tr>
-<th>Flag</th>
-<th>Description</th>
+<th>Flaga</th>
+<th>Opis</th>
 </tr>
 <tr>
 <ti>haval</ti>
-<ti>haval checksum</ti>
+<ti>suma kontrolna haval</ti>
 </tr>
 <tr>
 <ti>gost</ti>
-<ti>gost checksum</ti>
+<ti>suma kontrolna gost</ti>
 </tr>
 <tr>
 <ti>crc32</ti>
-<ti>crc32 checksum</ti>
+<ti>suma kontrolna crc32</ti>
 </tr>
 </table>
 
+
 <p>
-Now you can create you own rules based on the above flags by combining them 
-like this:
+Przy użyciu powyższych flag można stworzyć własny zestaw reguł. Na przykład:
 </p>
 
-<pre caption="Create a ruleset for AIDE">
+<pre caption="Zbór reguł dla AIDE">
 All=R+a+sha1+rmd160
 Norm=s+n+b+md5+sha1+rmd160
 </pre>
 
 <p>
-The last thing we need to create our own configuration file is to see how to add
-a rule to a file or directory. To enter a rule, combine the file or directory
-name and the rule. AIDE will add all files recursively unless you specify an
-alternate rule.
+Ostatnią rzeczą jaką trzeba dopisać do pliku konfiguracyjnego są zasady obsługi
+plików i katalogów. Regułę dodajemy poprzez dopisanie nazwy pliku bądź katalogu
+wraz z odpowiednim zestawem flag. AIDE doda wszystkie możliwe pliki rekursywnie
+o ile nie nakażemy inaczej.
 </p>
 
 <table>
 <tr>
-<th>Flag</th>
-<th>Description</th>
+<th>Flaga</th>
+<th>Opis</th>
 </tr>
 <tr>
 <ti>!</ti>
-<ti>Don't add this file or directory.</ti>
+<ti>Nie dodawać tego pliku bądź katalogu.</ti>
 </tr>
 <tr>
 <ti>=</ti>
-<ti>Add this directory, but not recursively.</ti>
+<ti>Dodaj ten katalog, ale nie rekursywnie.</ti>
 </tr>
 </table>
 
 <p>
-So lets watch a full blown example:
+A oto przykładowy końcowy efekt:
 </p>
 
 <pre caption="/etc/aide/aide.conf">
@@ -273,56 +277,60 @@ Norm=s+n+b+md5+sha1+rmd160
 </pre>
 
 <p>
-In the above example we specify with some macros where the topdir starts and
-where the AIDE directory is. AIDE checks the <path>/etc/aide/aide.db</path> file
-when checking for file integrity. But when updating or creating a new file it
-stores the information in <path>/etc/aide/aide.db.new</path>. This is done so it
-won't automatically overwrite the old db file. The option
-<c>report_URL</c> is not yet implemented, but the author's intention was that 
-it should be able to e-mail or maybe even execute scripts.
+W powyższym przykładzie definiujemy poprzez makra katalog główny oraz miejsce
+gdzie zainstalowano AIDE. AIDE sprawdza plik <path>/etc/aide/aide.db</path> przy
+kontrolowaniu integralności plików, ale podczas uaktualniania lub tworzenia
+nowej bazy wszystkie informacje zapisuje do pliku
+<path>/etc/aide/aide.db.new</path>. Robimy tak, aby zapobiec automatycznemu
+nadpisaniu starego pliku z bazą danych. Opcja <c>report_URL</c> nie została
+jeszcze zaimplementowana, autor zamierza dzięki niej umożliwić programowi
+wysyłanie e-maili oraz wykonywanie skryptów.
 </p>
 
 <p>
-After editing the configuration you should create your db file by executing
-<c>aide -i</c> and then copy the file <path>/etc/aide/aide.db.new</path> to 
-<path>/etc/aide/aide.db</path> and add the check to cron by executing 
-<c>crontab -e</c> as root.
+Po zakończeniu etapu konfigurowania programu należy jeszcze utworzyć plik z bazą
+danych - przy pomocy polecenia <c>aide -i</c> i skopiować plik
+<path>/etc/aide/aide.db.new</path> na miejsce <path>/etc/aide/aide.db</path> oraz
+dodać odpowiedni wpis do crona, przy użyciu polecenia <c>crontab -e</c> z konta
+roota.
 </p>
 
 <note>
-Depending on your CPU, disk access speed, and the flags you have set on files,
-this can take some time.
+Zadanie to może zająć trochę czasu, w zależności od sprzętu i użytych flag.
 </note>
 
-<pre caption="Shedule aide as a cronjob">
+<pre caption="Planowanie aide jako zadania dla crona">
 0 3 * * * /usr/bin/aide -u
 </pre>
 
 <note>
-Remember to set an alias so you get roots mail. Otherwise you will never know
-what AIDE reports.
+Jeśli zapomni się o ustawieniu aliasu pocztowego, który będzie przekierowywał
+całą pocztę roota na prywatne konto administratora to nigdy nie urjrzy się
+żadnego z raportów AIDE.
 </note>
 
 <p>
-In this case it runs once at 3am. This is done since I do not want to disturb
-the users when they are working. Note I am using the <c>-u</c> (Update) option
-instead of the <c>-C</c> (Check). Since <c>-u</c> also checks the files and does
-not overwrite the original db file it saves some time since all you need to do
-is to copy a file when it detects some changes. Just check the changes to see if
-it was you who made the changes instead of some attacker before you copy it!
+W naszym przypadku test będzie uruchamiany co 24 godziny, o 3 w nocy. Postępujemy
+tak, gdyż nie chcemy przeszkadzać użytkownikom w codziennej pracy. Warto zwrócić
+uwagę na użycie opcji <c>-u</c> (uaktualnienie) zamiast <c>-C</c> (sprawdzanie).
+Dzięki temu przy uaktualnianiu bazy danych nie zostanie nadpisany oryginalny jej
+plik i jedynym co trzeba zrobić po wykryciu zmian będzie skopiowanie
+jednego pliku na drugi. Zanim jednak to się zrobi należy się upewnić, że to my
+dokonaliśmy wykrytej zmiany, a nie włamywacz. :]
 </p>
 
 <p>
-Now there is some risk inherent with storing the db files locally, since the
-attacker will (if they know that AIDE is installed) most certainly try to alter
-the db file, update the db file or modify <path>/usr/bin/aide</path>. So you
-should create a CD or other media and put on it a copy of the .db file and the
-AIDE binaries.
+Przechowywanie plików bazy danych na tym samym systemie, na którym dokonujemy
+testów wiąże się z pewnym ryzykiem. Jeśli włamywacz będzie świadom tego, że
+używamy AIDE zwykle spróbuje zmienić plik bazy danych, uaktualnić go po
+wprowadzeniu zmian lub nawet zmodyfikować plik <path>/usr/bin/aide</path>. W
+związku z tym warto rozważyć nagrywanie każdej kolejnej wersji pliku z bazą oraz
+plików binarnych AIDE na płyty CD.
 </p>
 
 <p>
-One can find information at the <uri
-link="http://www.cs.tut.fi/~rammer/aide.html">AIDE</uri> project page.
+Więcej informacji znajduje się na stronach projektu <uri
+link="http://www.cs.tut.fi/~rammer/aide.html">AIDE</uri>.
 </p>
 
 </body>
@@ -332,16 +340,17 @@ link="http://www.cs.tut.fi/~rammer/aide.html">AIDE</uri> project page.
 <body>
 
 <p>
-Snort is a Network Intrusion Detection System (NIDS). To install and configure
-it use the following examples.
+Snort jest to sieciowy system wykrywania włamań (NIDS - Network Intrusion
+Detection System). Aby go zainstalować i skonfigurować należy wykonać
+następujące czynności:
 </p>
 
-<pre caption="Add a user snort to the system">
+<pre caption="Dodawanie użytkownika snort do systemu">
 # useradd snort -d /var/log/snort -s /dev/null
 # chown -R snort /var/log/snort
 </pre>
 
-<pre caption="/etc/conf.d/snort">
+<pre caption="/etc/snort/snort.conf">
 PIDFILE=/var/run/snort_eth0.pid
 MODE="full"
 NETWORK="10.0.0.0/24"
@@ -351,7 +360,7 @@ SNORT_OPTS="-D -s -u snort -dev -l $LOGDIR -h $NETWORK -c $CONF"
 </pre>
 
 <pre caption="/etc/snort/snort.conf">
-<comment>(Step 1)</comment>
+<comment>(Krok 1)</comment>
 var HOME_NET 10.0.0.0/24
 var EXTERNAL_NET any
 var SMTP $HOME_NET
@@ -360,7 +369,7 @@ var SQL_SERVERS $HOME_NET
 var DNS_SERVERS [10.0.0.2/32,212.242.40.51/32]
 var RULE_PATH ./
 
-<comment>(Step 2)</comment>
+<comment>(Krok 2)</comment>
 preprocessor frag2
 preprocessor stream4: detect_scans detect_state_problems detect_scans disable_evasion_alerts
 preprocessor stream4_reassemble: ports all
@@ -369,10 +378,10 @@ preprocessor rpc_decode: 111 32771
 preprocessor bo: -nobrute
 preprocessor telnet_decode
 
-<comment>(Step 3)</comment>
+<comment>(Krok 3)</comment>
 include classification.config
 
-<comment>(Step 4)</comment>
+<comment>(Krok 4)</comment>
 include $RULE_PATH/bad-traffic.rules
 include $RULE_PATH/exploit.rules
 include $RULE_PATH/scan.rules
@@ -447,42 +456,41 @@ config classification: kickass-porn,SCORE! Get the lotion!,1
 </pre>
 
 <p>
-More information is at the <uri
-link="http://www.snort.org">Snort</uri> web site.
+Więcej informacji znajduje się na stronie projektu <uri
+link="http://www.snort.org">Snort</uri>.
 </p>
 
 </body>
 </section>
 
 <section>
-<title>Detecting malware with chkrootkit</title>
-
+<title>Wykrywanie nieprawidłowości przy pomocy chkrootkit.</title>
 <body>
 
 <p>
-HIDS like AIDE are a great way to detect changes to your system, but it never
-hurts to have another line of defence. <c>chkrootkit</c> is a utility that scans
-common system files for the presence of rootkits--software designed to hide an
-intruder's actions and allow him to retain his access--and scans your system for
-likely traces of key loggers and other "malware". While <c>chkrootkit</c> (and
-alternatives like <c>rkhunter</c>) are useful tools, both for system
-maintenance and for tracking an intruder after an attack has occurred, they
-cannot guarantee your system is secure.
+HIDS taki jak AIDE to świetny sposób wykrywania niepożądanych zmian w
+systemie. Warto jednak mieć też drugą linię obrony. <c>chkrootkit</c> to program
+skanujący najważniejszy pliki systemowe pod kątem obecności rootkitów, czyli
+programów pisanych, aby ukryć obecność włamywacza i pozwolić mu na zachowanie
+dostępu do komputera. Program skanuje również system w poszukiwaniu śladów
+loggerów klawiszy i innych niepożądanych programów. Jest to bardzo użyteczne
+narzędzie, posiadające zresztą kilka podobnie działających alternatyw (jak
+<c>rkhunter</c>). Mimo wszystko należy pamiętać, że żaden z nich nie gwarantuje
+bezpieczeństwa systemu.
 </p>
 
 <p>
-The best way to use <c>chkrootkit</c> to detect an intrusion is to run it
-routinely from <c>cron</c>. To start, emerge <path>app-admin/chkrootkit</path>. 
-<c>chkrootkit</c> can be run from the command line by the command of the same
-name, or from <c>cron</c> with an entry such as this:
+Najwygodniejszym sposobem korzystania z <c>chkrootkit</c> jako metody wykrywania
+włamań jest uruchamianie go przy pomocy <c>crona</c>. Przede wszystkim trzeba go
+jednak zainstalować - poleceniem emerge <c>app-admin/chkrootkit</c>.
+<c>chkrootkit</c> może być uruchamiany z linii poleceń przy pomocy komendy o tej
+samej nazwie, lub poprzez taki wpis w <c>cronie</c>:
 </p>
 
-<pre caption="Schedule chkrootkit as a cronjob">
+<pre caption="Planownie chkrootkit jako zadania dla crona">
 0 3 * * * /usr/sbin/chkrootkit
 </pre>
 
 </body>
 </section>
-
-
 </sections>
