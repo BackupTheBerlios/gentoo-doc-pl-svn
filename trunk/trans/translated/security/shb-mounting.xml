@@ -1,9 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/security/shb-mounting.xml,v 1.2 2005/06/01 17:42:46 neysx Exp $ -->
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- Orig revision: 1.1 -->
+<!-- Translator: rane <rane@gentoo.pl> -->
+<!-- Title: Podręcznik bezpieczeństwa Gentoo. -->
+<!-- Status: Release -->
+<!-- $Id: $ -->
 
 <sections>
 
@@ -11,32 +13,33 @@
 <date>2005-05-31</date>
 
 <section>
-<title>Mounting partitions</title>
+<title>Montowanie partycji.</title>
 <body>
 
 <p>
-When mounting an <c>ext2</c>, <c>ext3</c>, or <c>reiserfs</c> partition, you
-have several options you can apply to the file <path>/etc/fstab</path>. The
-options are:
+Podczas montowania partycji <c>ext2</c>, <c>ext3</c> lub <c>reiserfs</c> mamy do
+dyspozycji szereg, ważnych z punktu widzenia bezpieczeństwa, opcji. Są to:
 </p>
 
 <ul>
 <li>
-  <c>nosuid</c> - Will ignore the SUID bit and make it just like an ordinary 
-  file
+  <c>nosuid</c> - ignoruje wszystkie bity SUID, przez co wszystkie pliki z nimi
+  będą traktowane jakby ich nie miały.
 </li>
 <li>
-  <c>noexec</c> - Will prevent execution of files from this partition
+  <c>noexec</c> - uniemożliwia uruchomienie jakiegokolwiek programu z tej
+  partycji.
 </li>
 <li>
-  <c>nodev</c> - Ignores devices
+  <c>nodev</c> - ignoruje urządzenia.
 </li>
 </ul>
 
 <p>
-Unfortunately, these settings can easily be circumvented by executing a
-non-direct path. However, setting <path>/tmp</path> to noexec will stop the
-majority of exploits designed to be executed directly from <path>/tmp</path>.
+Niestety te ustawienia można w łatwy sposób obejść poprzez użycie
+pośredniej ścieżki. Mimo wszystko jednak ustawienie <path>/tmp</path> na
+noexec uniemożliwi wykonanie większości exploitów zaprojektowanych tak, aby
+zostały wykonane właśnie tam.
 </p>
 
 <pre caption="/etc/fstab">
@@ -52,28 +55,30 @@ proc /proc proc defaults 0 0
 </pre>
 
 <warn>
-Placing <path>/tmp</path> in <c>noexec</c> mode can prevent certain scripts
-from executing properly.
+Przełączenie <path>/tmp</path> w tryb <c>noexec</c> uniemożliwi
+prawidłowe wykonanie niektórych skryptów.
 </warn>
 
 <note>
-For disk quotas see <uri link="?part=1&amp;chap=5#quotas">the Quotas section</uri>.
+Więcej informacji o quotach znajduje się w <uri
+link="#doc_chap6_sect3">sekcji dotyczącej quota</uri>.
 </note>
 
 <note>
-I do not set <path>/var</path> to <c>noexec</c> or <c>nosuid</c>, even if files
-normally are never executed from this mount point. The reason for this is that
-qmail is installed in <path>/var/qmail</path> and must be allowed to execute 
-and access one SUID file. I setup <path>/usr</path> in read-only mode since I 
-never write anything there unless I want to update Gentoo. Then I remount the 
-file system in read-write mode, update and remount again.
+Osobiście nie ustawiam <path>/var</path> jako <c>noexec</c> i <c>nosuid</c>,
+nawet jeśli żadne pliki nie są normalnie stamtąd wykonywane. Powodem tego jest
+fakt, że w <path>/var/qmail</path> mam zainstalowany qmail, który musi mieć
+możliwość uruchomienia się z bitem SUID. Partycję <path>/usr</path> przestawiam
+na read-only, ponieważ nigdy nic tam nie zapisuję, chyba, że akurat uaktualniam
+Gentoo. W takich wypadkach przemontowuję tą partycję w tryb do zapisu,
+uaktualniam system i znów przestawiam ją na 'tylko do odczytu'.
 </note>
 
 <note>
-Even if you do not use qmail, Gentoo still needs the executable bit set on 
-<path>/var/tmp</path> since ebuilds are made here. But an alternative path can
-be setup if you insist on having <path>/var</path> mounted in <c>noexec</c>
-mode.
+Nawet jeśli nie używa się qmail, Gentoo wciąż będzie potrzebowało możliwości
+uruchamiania programów w <path>/var/tmp</path> ponieważ są tam tworzone pliki
+ebuild. Można zmienić tą ścieżkę jeśli koniecznie chce się montować
+<path>/var</path> jako <c>noexec</c>.
 </note>
 
 </body>
