@@ -18,7 +18,7 @@ Wielu użytkowników Gentoo posiada karty nVidia. nVidia dostarcza specyficznych
 
 <license/>
 
-<version>1.6</version>
+<version>1.9</version>
 
 <chapter>
 <title>Konfiguracja karty</title>
@@ -104,6 +104,19 @@ EndSection
 </pre>
 
 <p>
+Następnie przejdź do sekcji <c>Screen</c> i upewnij się że dyrektywa <c>DefaultDepth</c> jest ustawiona na 16 lub 24, lub w podsekcjach <c>Display</c> masz <c>Depth</c> ustawione tylko i wyłącznie na 16 lub 24. Bez tego rozszerzenia nvidia-glx nie zostaną uruchomione
+</p>
+
+<pre caption="Uaktualnianie sekcji Screen">
+Section "Screen"
+	<comment>(...)</comment>
+	<i>DefaultDepth 16</i>
+	Subsection "Display"
+	<comment>(...)</comment>
+EndSection
+</pre>
+
+<p>
 Uruchom <c>opengl-update</c>, aby serwer X używał bibliotek GLX nVidii:
 </p>
 
@@ -128,6 +141,20 @@ direct rendering: Yes
 
 <p>
 Aby sprawdzić ilość FPS uruchom program <c>glxgears</c>. 
+</p>
+
+</body>
+</section>
+<section>
+<title>Włączanie obsługi nvidii</title>
+<body>
+
+<p>
+Niektóre programy, takie jak <c>mplayer</c> czy <c>xine-lib</c>używają lokalnej flagi USE nazwanej "nvidia" która włącza obsługę XvMCNVIDIA, przydatną przy oglądaniu filmów w wysokiej rozdzielczości. Dodaj flagę "nvidia" do zmiennej USE w pliku <path>/etc/make.conf</path> lub dodaj ją do <c>media-video/mplayer</c> i/lub <c>media-libs/xine-lib</c> w pliku <path>/etc/portage/package.use</path>.
+</p>
+
+<p>
+Potem uruchom <c>emerge -uD --newuse world</c> by przekompilować programy które korzystają ze zmienionych flag USE.
 </p>
 
 </body>

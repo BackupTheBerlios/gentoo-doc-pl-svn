@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.20 -->
+<!-- Orig revision: 1.22 -->
 <!-- Translator: arachnist <arachnist@gmail.com> -->
 <!-- Title: FAQ do kart ATi w Gentoo Linux -->
 <!-- Status: Ukończono -->
@@ -11,7 +11,7 @@
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 <guide link="/doc/en/ati-faq.xml">
-<title>FAQ do kart ATi w Gentoo Linux</title>
+<title>FAQ do kart ATI w Gentoo Linux</title>
 
 <author title="Author">
  <mail link="lu_zero@gentoo.org">Luca Barbato</mail>
@@ -30,7 +30,7 @@ występujących problemów związanych z DRI i X11.
 
 <license/>
 
-<version>1.0.6</version>
+<version>1.0.8</version>
 
 <chapter>
 <title>Obsługa sprzętu.</title>
@@ -136,8 +136,7 @@ napisać plik konfiguracyjny lub użyć <c>xorgconfig</c>.
 </ul>
 
 <impo>
-Jądro musi posiadać obsługę agpgart. Jeśli używa się jądra 2.4.x lub planuje
-użycie ebuildu x11-drm nie należy wkompilowywać modułów DRM w jądro. 
+Jeśli planujesz użycie <e>wbudowanej</e> w sterowniki ATI obsłgui agpgart zamiast tej z jądra Linuksa, moduł agpgart i moduł specyficzny dla twojego chipu (w konfiguracji jądra) muszą być wyłączone.
 </impo>
 
 <pre caption="Instalacja sterowników">
@@ -180,7 +179,7 @@ Użytkownicy ati-drivers mogą także użyć <c>fglrxconfig</c>.
 </note>
 
 <impo>
-Użytkownicy PPC po zainstalowaniu ebuidy <c>Xautoconf</c> mogą skorzystać z
+Użytkownicy PPC po zainstalowaniu ebuidu <c>Xautoconf</c> mogą skorzystać z
 niezależnego konfiguratora o nazwie <c>Xautoconf</c>.
 </impo>
 
