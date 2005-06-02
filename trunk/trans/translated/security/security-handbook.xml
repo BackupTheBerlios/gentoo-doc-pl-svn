@@ -1,9 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/security/security-handbook.xml,v 1.1 2005/06/01 15:43:47 neysx Exp $ -->
 <!DOCTYPE book SYSTEM "/dtd/book.dtd">
 
+<!-- Orig revision: 1.1 -->
+<!-- Translator: rane <rane@gentoo.pl> -->
+<!-- Title: Podręcznik bezpieczeństwa Gentoo. -->
+<!-- Status: Release -->
+<!-- $Id: $ -->
+
 <book link="/doc/en/security/security-handbook.xml">
-<title>Gentoo Security Handbook</title>
+<title>Podręcznik bezpieczeństwa Gentoo.</title>
 
 <author title="Author">
   <mail link="kn@insecurity.dk">Kim Nielsen</mail>
@@ -40,7 +45,7 @@
 </author>
 
 <abstract>
-This is a step-by-step guide for hardening Gentoo Linux.
+Dokument opisuje proces zabezpieczania Gentoo Linux.
 </abstract>
 
 <license/>
@@ -97,55 +102,55 @@ quality assurance purposes.
 
 <part>
 
-<title>System Security</title>
+<title>Bezpieczeństwo systemu.</title>
 <abstract>
-Harden different parts of your system to make it more secure.
+Opis zabezpieczania kolejnych części systemu.
 </abstract>
 
 <chapter>
-<title>Pre-Installation Concerns</title>
+<title>Czynności przedinstalacyjne.</title>
 <abstract>
-Why is security an important part for every server admin?
+Czemu bezpieczeństwo jest tak ważne?
 </abstract>
   <include href="shb-pre.xml"/>
 </chapter>
 
 <chapter>
-<title>Tightening Security</title>
+<title>Uszczelnianie systemu</title>
 <abstract>
-Tightening security during and after installation.
+Uszczelnianie systemu podczas i tuż po instalacji.
 </abstract>
   <include href="shb-tight.xml"/>
 </chapter>
 
 <chapter>
-<title>Logging</title>
+<title>Logowanie</title>
 <abstract>
-Gentoo Linux lets you choose between 3 different loggers.
+Opis pracy z każdym z trzech programów logujących dostępnych w Gentoo.
 </abstract>
   <include href="shb-logging.xml"/>
 </chapter>
 
 <chapter>
-<title>Mounting Partitions</title>
+<title>Montowanie partycji</title>
 <abstract>
-/etc/fstab provides many security options.
+Opcje bezpieczeństwa w pliku /etc/fstab.
 </abstract>
   <include href="shb-mounting.xml"/>
 </chapter>
 
 <chapter>
-<title>User/Group Limitations</title>
+<title>Limitowanie grup i użytkowników.</title>
 <abstract>
-Control your resource usage.
+Zarządzanie zasobami.
 </abstract>
   <include href="shb-limits.xml"/>
 </chapter>
 
 <chapter>
-<title>File Permissions</title>
+<title>Prawa dostępu do plików.</title>
 <abstract>
-Securing your files.
+Zabezpieczanie plików.
 </abstract>
   <include href="shb-perms.xml"/>
 </chapter>
@@ -153,7 +158,7 @@ Securing your files.
 <chapter>
 <title>PAM</title>
 <abstract>
-Pluggable Authentication Modules.
+Czyli "Pluggable Authentication Modules" - opis dodatkowej konfiguracji PAM.
 </abstract>
   <include href="shb-pam.xml"/>
 </chapter>
@@ -161,55 +166,55 @@ Pluggable Authentication Modules.
 <chapter>
 <title>TCP Wrappers</title>
 <abstract>
-Control access to services.
+Kontrola dostępu do usług.
 </abstract>
   <include href="shb-tcp.xml"/>
 </chapter>
 
 <chapter>
-<title>Kernel Security</title>
+<title>Bezpieczeństwo jądra.</title>
 <abstract>
-Secure your kernel.
+Zabezpieczanie jądra Linux.
 </abstract>
   <include href="shb-kernel.xml"/>
 </chapter>
 
 <chapter>
-<title>Securing Services</title>
+<title>Zabezpieczanie usług.</title>
 <abstract>
-Ensure that your daemons are secure.
+Zapewnienie bezpiecznych warunków pracy z systemowymi demonami.
 </abstract>
   <include href="shb-services.xml"/>
 </chapter>
 
 <chapter>
-<title>Chrooting and Virtual Servers</title>
+<title>Chrootowanie i serwery wirtualne.</title>
 <abstract>
-Isolate your servers.
+Odizolowywanie serwera.
 </abstract>
   <include href="shb-chroot.xml"/>
 </chapter>
 
 <chapter>
-<title>Firewalls</title>
+<title>Firewall</title>
 <abstract>
-Filter your packets.
+Filtrowanie pakietów.
 </abstract>
   <include href="shb-firewalls.xml"/>
 </chapter>
 
 <chapter>
-<title>Intrusion Detection</title>
+<title>Wykrywanie włamań.</title>
 <abstract>
-Detect intruders.
+Wykrywanie włamywaczy.
 </abstract>
   <include href="shb-intrusion.xml"/>
 </chapter>
 
 <chapter>
-<title>Keeping up-to-date</title>
+<title>Aktualizacje.</title>
 <abstract>
-Ensure you have the latest security updates.
+Instalowanie najnowszych poprawek związanych z bezpieczeństwem.
 </abstract>
   <include href="shb-uptodate.xml"/>
 </chapter>
