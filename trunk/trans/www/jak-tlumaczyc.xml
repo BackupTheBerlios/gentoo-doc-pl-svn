@@ -5,14 +5,15 @@
 <title>Przewodnik dla tłumaczy dokumentacji Gentoo na język polski</title>
 
 <author title="Autor">
-  <mail link="rane@gentoo.pl">rane</mail>
+  <mail link="rane@gentoo.pl">Łukasz Damentko</mail>
 </author>
+
 <author title="Autor">
   <mail link="sekretarz@gentoo.org">sekretarz</mail>
 </author>
 
-<version>1.5</version>
-<date>27-05-2005</date>
+<version>2.0</version>
+<date>2005-06-05</date>
 
 <abstract>
 Przewodnik dla tłumaczy dokumentacji Gentoo na język polski.
@@ -39,9 +40,9 @@ obowiązujących obecnych członków naszego zespołu.
 </p>
 
 <p>
-Wszelkie propozycje poprawek do tego tekstu prosimy postulować na 
-naszą listę mailową - nasz jedyny oficjalny kanał komunikacji. To jak się do
-niej dostać omówimy w dalszej części tego przewodnika.
+Wszelkie propozycje poprawek do tego tekstu prosimy postulować na naszą listę
+mailową - nasz jedyny oficjalny kanał komunikacji. To jak się do niej dostać
+omówimy w dalszej części tego przewodnika.
 </p>
 
 <p>
@@ -52,7 +53,7 @@ Zacznijmy od omówienia procesu tłumaczenia dokumentu:
 </section>
 </chapter>
 <chapter>
-<title>Przygotowanie środowiska pracy.</title>
+<title>Przygotowanie środowiska pracy</title>
 <section>
 <body>
 
@@ -96,7 +97,7 @@ set textwidth=80
 </section>
 </chapter>
 <chapter>
-<title>Tłumaczenie dokumentu.</title>
+<title>Tłumaczenie dokumentu</title>
 <section>
 <body>
 
@@ -135,11 +136,12 @@ Uwagi:
 </p>
 
 <p>
-Tylko pierwsze słowo tytułu piszemy dużą literą, resztę małymi, pamiętamy o
-postawieniu na końcu kropki.
+Tylko pierwsze słowo tytułu piszemy dużą literą, resztę małymi, jeśli tytuł to
+tylko jedno zdanie to rezygnujemy z kropki na końcu. Jeśli zdań jest kilka
+kropki musimy dodać.
 </p>
 
-<pre caption="Paragraf">
+<pre caption="Akapit">
 <comment>Przed:</comment>
 
 &lt;p&gt;
@@ -161,13 +163,13 @@ Uwagi:
 
 <p>
 Pamiętamy o wszystkich &lt;path&gt; i &lt;c&gt; z oryginału i podkreślamy je we
-właściwy sposób również  w odpowiednich fragmentach przetłumaczonego tekstu.
+właściwy sposób również w odpowiednich fragmentach przetłumaczonego tekstu.
 </p>
 
-<pre caption=" Nagłówek.">
+<pre caption="Nagłówek">
 <comment>Przed:</comment>
 
-&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!DOCTYPE sections SYSTEM "/dtd/book.dtd"&gt;
 
 &lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
@@ -221,7 +223,7 @@ do (niezbędnej przed wysłaniem dokumentu w świat) korekty.
 </p>
 
 <pre caption="Otwarcie pliku tłumaczenia">
-$ vim hb-install-stage.xml
+$ <i>vim hb-install-stage.xml</i>
 </pre>
 
 <p>
@@ -233,22 +235,27 @@ tłumaczenia. Wszelkie wątpliwości pomogą nam rozwiać:
 </p>
 
 <ul>
-<li>Serwis <uri link="http://polszczyzna.pwn.pl">polszczyzna.pwn.pl</uri>.</li>
-<li>Słowniczek przygotowany specjalnie na potrzeby tłumaczeń dokumentacji Gentoo
-(poniżej).</li>
-<li>Informacje zebrane na <uri
-link="http://venus.ci.uw.edu.pl/~milek/slowniki/zasady.htm"> stronie Marcina
-Miłkowskiego</uri>.</li>
-<li>
-<uri link="http://helion.pl/autor/6slown.htm">Zalecenia wydawnictwa
-Helion</uri> dot. tłumaczenia wybranych terminów informatycznych.
-</li>
-<li>
-Oraz zawierający mnóstwo praktycznych porad 
-<uri link="http://www.piotr.kresak.pl/konwen222.htm">Poradnik dla tłumaczących
-oprogramowanie firmy Lotus</uri>, który powinien być lekturą obowiązkową dla
-każdego tłumacza dokumentacji oprogramowania.
-</li>
+  <li>
+    Serwis <uri link="http://polszczyzna.pwn.pl">polszczyzna.pwn.pl</uri>.
+  </li>
+  <li>
+    Słowniczek przygotowany specjalnie na potrzeby tłumaczeń dokumentacji Gentoo
+    (poniżej).
+  </li>
+  <li>
+    Informacje zebrane na <uri
+    link="http://venus.ci.uw.edu.pl/~milek/slowniki/zasady.htm"> stronie Marcina
+    Miłkowskiego</uri>.</li>
+  <li>
+    <uri link="http://helion.pl/autor/6slown.htm">Zalecenia wydawnictwa
+    Helion</uri> dot. tłumaczenia wybranych terminów informatycznych.
+   </li>
+  <li>
+    Oraz zawierający mnóstwo praktycznych porad 
+    <uri link="http://www.piotr.kresak.pl/konwen222.htm">Poradnik dla tłumaczących
+    oprogramowanie firmy Lotus</uri>, który powinien być lekturą obowiązkową dla
+    każdego tłumacza dokumentacji oprogramowania.
+  </li>
 </ul>
 
 <p>
@@ -262,7 +269,7 @@ dyskusyjną tłumaczy Gentoo - o której opowiemy nieco później.
 </section>
 </chapter>
 <chapter>
-<title>Kodowanie UTF-8.</title>
+<title>Kodowanie UTF-8</title>
 <section>
 <body>
 
@@ -280,7 +287,7 @@ prawidłowym kodowaniu jest skorzystanie z programu do konwersji o nazwie
 </p>
 
 <pre caption="Konwersja dokumentów z ISO8859-2 na UTF-8 i na odwrót">
-<comment>Zastąp index-iso.xml oraz index-utf.xml odpowiednimi nazwami plików</comment>
+<comment>Należy zastąpić index-iso.xml oraz index-utf.xml odpowiednimi nazwami plików</comment>
 Konwersja z ISO8859-2 na UTF-8:
 # iconv -fISO8859-2 -tUTF-8 -o index-utf.xml index-iso.xml
 Konwersja z UTF-8 na ISO8859-2:
@@ -290,7 +297,7 @@ Konwersja z UTF-8 na ISO8859-2:
 <p>
 Kiedy skończymy tłumaczenie wysyłamy spakowany plik na adres tlumaczenia@gentoo.pl
 skąd zostanie wysłany najpierw do repozytorium SVN Projektu Tłumaczeń, a
-następnie po weryfikacji przez wykwalifikowany personel, trafi na gentoo.org i
+następnie, po weryfikacji przez wykwalifikowany personel, trafi na gentoo.org i
 zapewni nam sławę po wieki.
 </p>
 
@@ -298,7 +305,7 @@ zapewni nam sławę po wieki.
 </section>
 </chapter>
 <chapter>
-<title>Słowniczek.</title>
+<title>Słowniczek</title>
 <section>
 <body>
 
@@ -319,7 +326,7 @@ gentoo-doc-pl (informacje poniżej).
 </section>
 </chapter>
 <chapter>
-<title>Grupa dyskusyjna.</title>
+<title>Grupa dyskusyjna</title>
 <section>
 <body>
 
@@ -334,7 +341,7 @@ zapisać. Jest to nasz oficjalny kanał wymiany informacji.
 </section>
 </chapter>
 <chapter>
-<title>Program tlumacz.</title>
+<title>Program tlumacz</title>
 <section>
 <body>
 
@@ -349,8 +356,7 @@ $ wget http://imdb.pl/~aye/tlumacz
 
 <p>
 Znajdowanie słówek jest banalnie proste, znacznie łatwiejsze niż grzebanie po
-www, szukanie w normalnym słowniku, czy nie daj Boże pytanie się o jakiś termin na
-ircu. ;]
+www, czy szukanie w normalnym słowniku.
 </p>
 
 <pre caption="Przykład użycia tlumacza">
