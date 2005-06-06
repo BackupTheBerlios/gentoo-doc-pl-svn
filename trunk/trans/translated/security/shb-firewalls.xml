@@ -34,8 +34,12 @@ Firewall jest przydatny z dwóch powodów:
 </p>
 
 <ul>
-<li>Nie wpuszcza części niepożądanych użytkowników (robaków/włamywaczy)</li>
-<li>Wpuszcza całą resztę (pracowników/dzieci)</li>
+  <li>
+    Nie wpuszcza części niepożądanych użytkowników (robaków/włamywaczy)
+  </li>
+  <li>
+    Wpuszcza całą resztę (pracowników/dzieci)
+  </li>
 </ul>
 
 <p>
@@ -43,10 +47,16 @@ Są trzy typy firewalli:
 </p>
 
 <ul>
-<li>Zajmujące się filtrowaniem pakietów.</li>
-<li>Kontrolujące połączenia sieciowe między systemami wewnętrznymi i
-zewnętrznymi (circuit relay).</li>
-<li>Bramy aplikacyjne.</li>
+  <li>
+    Zajmujące się filtrowaniem pakietów.
+  </li>
+  <li>
+    Kontrolujące połączenia sieciowe między systemami wewnętrznymi i zewnętrznymi
+    (circuit relay).
+  </li>
+  <li>
+    Bramy aplikacyjne.
+  </li>
 </ul>
 
 <p>
@@ -70,13 +80,21 @@ korzysta filtr pakietów. Filtrowanie polega na:
 </p>
 
 <ul>
-<li>Dopuszczaniu lub odrzucaniu pakietów na podstawie ich źródłowego i
-docelowego adresu IP.</li>
-<li>Dopuszczaniu lub odrzucaniu pakietów na podstawie ich źródłowego i
-docelowego portu.</li>
-<li>Odrzucanie lub dopuszczanie na podstawie używanego protokołu.</li>
-<li>Odrzucaniu lub dopuszczaniu pakietów na podstawie ustawionych w nagłówku
-pakietu flag danego protokołu.</li>
+  <li>
+    Dopuszczaniu lub odrzucaniu pakietów na podstawie ich źródłowego i
+    docelowego adresu IP.
+  </li>
+  <li>
+    Dopuszczaniu lub odrzucaniu pakietów na podstawie ich źródłowego i
+    docelowego portu.
+  </li>
+  <li>
+    Odrzucanie lub dopuszczanie na podstawie używanego protokołu.
+  </li>
+  <li>
+    Odrzucaniu lub dopuszczaniu pakietów na podstawie ustawionych w nagłówku
+    pakietu flag danego protokołu.
+  </li>
 </ul>
 
 <p>
@@ -89,14 +107,14 @@ Słabości:
 </p>
 
 <ul>
-<li>
-Informacje o adresie wewnątrz pakietów mogą zostać sfałszowane (zespoofowane)
-przez nadawcę.
-</li>
-<li>
-Treść dopuszczonego pakietu może zawierać niechciane informacje, których
-włamywacz może użyć do złamania aplikacji znajdujących się za firewallem.
-</li>
+  <li>
+    Informacje o adresie wewnątrz pakietów mogą zostać sfałszowane (zespoofowane)
+    przez nadawcę.
+  </li>
+  <li>
+    Treść dopuszczonego pakietu może zawierać niechciane informacje, których
+    włamywacz może użyć do złamania aplikacji znajdujących się za firewallem.
+  </li>
 <!--<li>Usually single point of failure</li>-->
 </ul>
 
@@ -105,12 +123,16 @@ Mocne strony:
 </p>
 
 <ul>
-<li>Łatwość implementacji.</li>
-<li>
-Możliwość informowania o potencjalnych atakach zanim jeszcze się odbędą (np.
-poprzez wykrywanie skanowania portów).
-</li>
-<li>Doskonale nadaje się do zatrzymywania ataków typu SYN.</li>
+  <li>
+    Łatwość implementacji.
+  </li>
+  <li>
+    Możliwość informowania o potencjalnych atakach zanim jeszcze się odbędą (np.
+    poprzez wykrywanie skanowania portów).
+  </li>
+  <li>
+    Doskonale nadaje się do zatrzymywania ataków typu SYN.
+  </li>
 </ul>
 
 <p>
@@ -118,13 +140,18 @@ Przykładowe filtry pakietów na Linuksa:
 </p>
 
 <ul>
-<li><uri link="http://www.iptables.org">Iptables</uri></li>
-<li>
-  <uri link="http://www.linuxdocs.org/HOWTOs/IPCHAINS-HOWTO.html">Ipchains</uri>
-</li>
-<li><uri link="http://www.smoothwall.org">SmoothWall</uri></li>
+  <li>
+    <uri link="http://www.iptables.org">Iptables</uri>
+  </li>
+  <li>
+    <uri link="http://www.linuxdocs.org/HOWTOs/IPCHAINS-HOWTO.html">Ipchains</uri>
+  </li>
+  <li>
+    <uri link="http://www.smoothwall.org">SmoothWall</uri>
+  </li>
 </ul>
 <!--FIXME: should SmoothWall really be included, since it uses iptables?-->
+
 <note>
 Zaleca się używanie iptables. Ipchains to przeżytek.
 </note>
@@ -144,12 +171,12 @@ informacji. Filtrowanie może się odbywać poprzez kontrolę:
 </p>
 
 <ul>
-<li>Źródłowego i docelowego adresu IP.</li>
-<li>Źródłowego i docelowego portu.</li>
-<li>Okresu czasu.</li>
-<li>Protokołu.</li>
-<li>Użytkownika.</li>
-<li>Hasła.</li>
+  <li>Źródłowego i docelowego adresu IP.</li>
+  <li>Źródłowego i docelowego portu.</li>
+  <li>Okresu czasu.</li>
+  <li>Protokołu.</li>
+  <li>Użytkownika.</li>
+  <li>Hasła.</li>
 </ul>
 
 <p>
@@ -162,10 +189,10 @@ Słabości:
 </p>
 
 <ul>
-<li>
-Działa na warstwie transportowej, przez co niektóre aplikacje mogą wymagać
-pewnych modyfikacji, aby mogły w normalny sposób spełniać swoje funkcje.
-</li>
+  <li>
+    Działa na warstwie transportowej, przez co niektóre aplikacje mogą wymagać
+    pewnych modyfikacji, aby mogły w normalny sposób spełniać swoje funkcje.
+  </li>
 </ul>
 
 </body>
@@ -183,10 +210,13 @@ połączenia. Filtrowanie odbywa się na zasadzie:
 </p>
 
 <ul>
-<li>Odrzucania lub akceptowania na podstawie źródłowego i docelowego adresu
-IP.</li>
-<li>Zawartości pakietu.</li>
-<li>Limitowanym dostępie do plików opartym na ich typie i rozszerzeniu.</li>
+  <li>
+    Odrzucania lub akceptowania na podstawie źródłowego i docelowego adresu IP.
+  </li>
+  <li>Zawartości pakietu.</li>
+  <li>
+    Limitowanym dostępie do plików opartym na ich typie i rozszerzeniu.
+  </li>
 </ul>
 
 <p>
@@ -194,11 +224,11 @@ Korzyści:
 </p>
 
 <ul>
-<li>Pozwala na buforowanie (cache) plików, co zwiększa wydajność sieci.</li>
-<li>Dokładnie loguje wszystkie połączenia.</li>
-<li>Dobrze się skaluje (niektóre proxy mogą współdzielić buforowane dane)</li>
-<li>Uniemożliwia bezpośredni dostęp z zewnątrz.</li>
-<li>Może "w locie" zmieniać zawartość pakietu.</li>
+  <li>Pozwala na buforowanie (cache) plików, co zwiększa wydajność sieci.</li>
+  <li>Dokładnie loguje wszystkie połączenia.</li>
+  <li>Dobrze się skaluje (niektóre proxy mogą współdzielić buforowane dane)</li>
+  <li>Uniemożliwia bezpośredni dostęp z zewnątrz.</li>
+  <li>Może "w locie" zmieniać zawartość pakietu.</li>
 </ul>
 
 <p>
@@ -206,7 +236,7 @@ Wady:
 </p>
 
 <ul>
-<li>Skomplikowany proces konfiguracji.</li>
+  <li>Skomplikowany proces konfiguracji.</li>
 </ul>
 
 <p>
@@ -235,7 +265,7 @@ jądrze. Zwykle całość kompiluje się jako moduły, a polecenie <c>iptables</
 razie potrzeby ładuje te z nich, które są mu potrzebne. Jeśli jednak zgodnie z
 poprzednimi sugestiami zrezygnowano z włączania opcji Loadable Kernel Modules
 można spokojnie wkompilować wszystko na stałe. Więcej informacji na temat tego
-jak skonfigurować jądro przed użyciem iptables znajduje się w <uri
+jak skonfigurować jądro przed użyciem iptables znajduje się w dokumencie <uri
 link="http://iptables-tutorial.frozentux.net/chunkyhtml/kernelsetup.html">Iptables
 Tutorial Chapter 2: Preparations</uri>. Po skompilowaniu jądra z odpowiednimi
 opcjami (lub jeszcze w trakcie jego kompilowania) należy zainstalować program
