@@ -1,6 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/security/shb-limits.xml,v 1.2 2005/06/01 17:42:46 neysx Exp $ -->
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- Orig revision: 1.1 -->
+<!-- Translator: rane <rane@gentoo.pl> -->
+<!-- Title: Podręcznik bezpieczeństwa Gentoo. -->
+<!-- Status: Release -->
+<!-- $Id$ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
@@ -15,8 +20,10 @@
 <body>
 
 <p>
-Controlling resource usage can be very effective when trying to prevent a local
-Denial of Service or restricting the maximum allowed logins for a group or user.
+Kontrola użycia zasobów jest bardzo efektywnym sposobem zapobiegania lokalnym
+atakom typu "Denial of Service". Możemy też przy okazji również nałożyć
+restrykcje dla maksymalnej dopuszczalnej ilości zalogowań dla użytkowników oraz
+grup.
 </p>
 
 <pre caption="/etc/security/limits.conf">
@@ -32,15 +39,15 @@ Denial of Service or restricting the maximum allowed logins for a group or user.
 </pre>
 
 <p>
-If you find yourself trying to set <c>nproc</c> or <c>maxlogins</c> to 0, maybe
-you should delete the user instead. The example above sets the group <c>dev</c>
-settings for processes, core file and <c>maxlogins</c>. The rest is set to a
-default value.
+Zamiast ustawiania wartości <c>nproc</c> lub <c>maxlogins</c> na 0
+należy rozważyć całkowite usunięcie takiego użytkownika. W powyższym
+przykładzie ustawiliśmy grupie <c>dev</c> ilość procesów, plików core oraz
+wartość <c>maxlogins</c>. Reszta to wartości domyślne.
 </p>
 
 <note>
-<path>/etc/security/limits.conf</path> is part of the PAM package and will 
-only apply to packages that use PAM.
+<path>/etc/security/limits.conf</path> jest częścią pakietu PAM i ma
+zastosowanie wyłącznie dla pakietów go używających.
 </note>
 
 </body>
@@ -50,10 +57,10 @@ only apply to packages that use PAM.
 <body>
 
 <p>
-<path>/etc/limits</path> is very similar to the limit file 
-<path>/etc/security/limits.conf</path>. The only difference is the format and
-that it only works on users or wild cards (not groups). Let's have a look at a
-sample configuration:
+Plik <path>/etc/limits</path> jest bardzo podobny do pliku
+<path>/etc/security/limits.conf</path>. Jedyne różnice to format pliku oraz
+to, że ma on zastosowanie dla użytkowników, a nie dla grup. Jego przykładowa
+konfiguracja wygląda tak:
 </p>
 
 <pre caption="/etc/limits">
@@ -62,41 +69,41 @@ kn L10 C100000 U35
 </pre>
 
 <p>
-Here we set the default settings and a specific setting for the user kn.  Limits
-are part of the sys-apps/shadow package. It is not necessary to set any limits
-in this file if you have disabled <c>pam</c> in
-<path>make.conf</path> or not configured PAM properly.
+Definiujemy tu domyślne ustawienia dla użytkownika kn. Plik ten jest
+częścią pakietu sys-apps/shadow. Nie ma tu sensu ustawiać czegokolwiek jeśli nie
+skonfigurujesz prawidłowo PAM lub całkiem ją wyłączysz w pliku
+<path>make.conf</path>.
 </p>
 
 </body>
 </section>
 <section id="quotas">
-<title>Quotas</title>
+<title>Quota</title>
 <body>
 
 <warn>
-Make sure the file systems you are working with support quotas. In order to use
-quotas on ReiserFS, you must patch your kernel with patches available from <uri
-link =
-"ftp://ftp.namesys.com/pub/reiserfs-for-2.4/testing/quota-2.4.20">Namesys</uri>. User
-tools are available from <uri link =
-"http://www.sf.net/projects/linuxquota/">the Linux DiskQuota
-project</uri>. While quotas do work with ReiserFS, you may encounter other
-issues while trying to use them--you have been warned!
+Należy upewnić się, że używany system plików posiada wsparcie dla quota.
+Żeby używać ich na ReiserFS trzeba nałożyć na kernel łatkę <uri link =
+"ftp://ftp.namesys.com/pub/reiserfs-for-2.4/testing/quota-2.4.20">Namesys</uri>.
+Narzędzia użytkownika są dostępne na stronach <uri link =
+"http://www.sf.net/projects/linuxquota/">Projektu DiskQuota dla Linux</uri>.
+Spowoduje to, że quoty będą działać, ale nie oznacza, że nie przysporzą żadnych
+problemów.
 </warn>
 
 <p>
-Putting quotas on a file system restricts disk usage on a per-user or per-group
-basis.  Quotas are enabled in the kernel and added to a mount point
-in <path>/etc/fstab</path>. The kernel option is enabled in the kernel
-configuration under <c>File systems-&gt;Quota support</c>. Apply the following
-settings, rebuild the kernel and reboot using the new kernel.
+Umieszczenie quoty na systemie plików nałoży ograniczenie w użyciu przestrzeni
+dyskowej zarówno dla grupy jak i dla użytkowników. Quoty włącza się w
+jądrze, a następnie dodaje je do punktu montowania w pliku
+<path>/etc/fstab</path>. Opcja w konfiguracji kernela, które je włącza to
+<c>File systems-&gt;Quota support</c>. Należy zaznaczyć wymagane opcje,
+przebudować jądro, a następnie przy jego pomocy uruchomić system.
 </p>
 
 <p>
-Start by installing quotas with <c>emerge quota</c>. Then modify your
-<path>/etc/fstab</path> and add <c>usrquota</c> and <c>grpquota</c> to the 
-partitions that you want to restrict disk usage on, like in the example below.
+Zaczniemy od zainstalowania quota przy pomocy polecenia <c>emerge quota</c>.
+Następnie zmodyfikujemy plik <path>/etc/fstab</path> dodając tam <c>usrquota</c>
+i <c>grpquota</c> dla partycji, na których chcemy ograniczać użycie dysku.
 </p>
 
 <pre caption="/etc/fstab">
@@ -112,12 +119,12 @@ proc /proc proc defaults 0 0
 </pre>
 
 <p>
-On every partition that you have enabled quotas, create the quota files
-(<path>aquota.user</path> and <path>aquota.group</path>) and place them in the
-root of the partition.
+Na każdej partycji na której uaktywniono quoty należy stworzyć pliki quota
+(<path>quota.user</path> i <path>quota.group</path>) oraz umieścić je w katalogu
+głównym każdej partycji.
 </p>
 
-<pre caption="Creating the quota files">
+<pre caption="Tworzenie plików quota">
 # <i>touch /tmp/aquota.user</i>
 # <i>touch /tmp/aquota.group</i>
 # <i>chmod 600 /tmp/aquota.user</i>
@@ -125,40 +132,43 @@ root of the partition.
 </pre>
 
 <p>
-This step has to be done on every partition where quotas are enabled. After
-adding and configuring the quota files, we need to add the <c>quota</c> script
-to the boot run level.
+Trzeba powtórzyć te czynności osobno dla każdej partycji na której chce się
+używać quota. Po skonfigurowaniu wszystkich plików dodajemy skrypt
+<c>quota</c> do runlevelu boot.
 </p>
 
-<pre caption="Adding quota to the boot runlevel">
+<pre caption="Dodawanie skryptu quota do poziumu uruchamiania 'boot'">
 # <i>rc-update add quota boot</i>
 </pre>
 
 <p>
-We will now configure the system to check the quotas once a week by adding the
-following line to <path>/etc/crontab</path>:
+Następnie konfigurujemy system tak, żeby sprawdzał quoty raz w tygodniu. Robimy
+to dodając następującą linię do pliku <path>/etc/crontab</path>:
 </p>
 
-<pre caption="Adding quota check to crontab">
+<pre caption="Dodawanie sprawdzania quota w crontabie">
 0 3 * * 0 /usr/sbin/quotacheck -avug.
 </pre>
 
 <p>
-After rebooting the machine, it is time to setup the quotas for users and
-groups. <c>edquota -u kn</c> will start the editor defined in $EDITOR (default
-is nano) and let you edit the quotas of the user kn. <c>edquota -g</c> will do
-the same thing for groups.
+Po ponowym uruchomieniu komputera przychodzi pora na skonfigurowanie quota dla
+poszczególnych użytkowników i grup. Polecenie <c>edquota -u kn</c> otworzy
+edytor zdefiniowany zmienną $EDITOR (domyślnie jest to nano) i pozwoli
+wyedytować quota dla użytkownika kn. Polecenie <c>edquota -g</c> robi to samo
+dla grup.
 </p>
 
-<pre caption="Setting up quota's for user kn">
+<pre caption="Ustawianie quota dla użytkownika kn">
 Quotas for user kn: 
 /dev/sda4: blocks in use: 2594, limits (soft = 5000, hard = 6500) 
          inodes in use: 356, limits (soft = 1000, hard = 1500)
 </pre>
 
 <p>
-For more detail read <c>man edquota</c> or the <uri
-link="http://www.tldp.org/HOWTO/mini/Quota.html">Quota mini howto</uri>.
+Aby uzyskać więcej informacji należy zapoznać się z dokumentami <c>man
+edquota</c>, <uri link="http://www.tldp.org/HOWTO/mini/Quota.html">Jak używać
+Quoty na Linux-ie.</uri>(wersja polska) i <uri
+link="http://www.tldp.org/HOWTO/Quota.html">Mini Quota HOWTO</uri> (wersja
 </p>
 
 </body>
@@ -168,11 +178,11 @@ link="http://www.tldp.org/HOWTO/mini/Quota.html">Quota mini howto</uri>.
 <body>
     
 <p>
-If your security policy states that users should change their password
-every other week, change the value <c>PASS_MAX_DAYS</c> to 14
-and <c>PASS_WARN_AGE</c> to 7. It is recommended that you use password
-aging since brute force methods can find any password, given enough
-time. We also encourage you to set <c>LOG_OK_LOGINS</c> to yes.
+Jeśli w polityce bezpieczeństwa założono, że użytkownicy powinni
+co tydzień zmieniać hasło należy zmienić wartość zmiennej <c>PASS_MAX_DAYS</c>
+na 14 oraz zmiennej <c>PASS_WARN_AGE</c> na 7. Zalecamy częste zmienianie haseł
+ponieważ metodami brute force można złamać każde z nich, jeśli tylko ma się dość
+dużo czasu. Ponadto polecamy ustawienie zmiennej <c>LOG_OK_LOGINS</c> na 'yes'.
 </p>
 
 </body>
@@ -182,17 +192,18 @@ time. We also encourage you to set <c>LOG_OK_LOGINS</c> to yes.
 <body>
 
 <p>
-The <path>login.access</path> file is also part of the sys-apps/shadow package,
-which provides a login access control table. This table is used to control who
-can and cannot login based on user name, group name or host name. By default,
-all users on the system are allowed to login, so the file consists only of
-comments and examples. Whether you are securing your server or workstation, we
-recommend that you setup this file so no one other than yourself (the admin) has
-access to the console.
+Plik <path>login.access</path> także jest częścią pakietu sys-apps/shadow.
+Daje możliwość skonfigurowania tabeli dostępu do logowania. Dzięki tej tabeli
+można decydować czy ktoś będzie mógł się zalogować na podstawie swojej
+nazwy użytkownika, przynależności do grupy czy nazwy hosta. Domyślnie taką
+możliwość mają wszyscy użytkownicy w systemie, więc plik ten zawiera jedynie
+zakomentowane przykładowe wartości ustawień. Niezależnie od tego czy
+konfigurujemy serwer czy stację roboczą warto zablokować dostęp do konsol
+wszystkim poza administratorami.
 </p>
 
 <note>
-These settings do not apply for root.
+Te ustawienia nie dotyczą roota.
 </note>
 
 <pre caption="/etc/login.access">
@@ -201,24 +212,23 @@ These settings do not apply for root.
 </pre>
 
 <impo>
-Be careful when configuring these options, since mistakes will leave you 
-with no access to the machine if you do not have root access.
+Należy zachować ostrożność przy tym ustawieniu. Zły wpis skończy się utratą
+dostępu do komputera jeżeli nie masz dostepu do konta root.
 </impo>
 
 <note>
-These settings do not apply to SSH, since SSH does not execute 
-<c>/bin/login</c> per default. This can be enabled by setting <c>UseLogin 
-yes</c> in <path>/etc/ssh/sshd_config</path>. 
+Ustawienie te nie mają wpływu na SSH, ponieważ SSH nie używa domyślnie
+<c>/bin/login</c>. Możemy jednak analogicznie ustawić SSH, dodając linię
+<c>UseLogin yes</c> w <path>/etc/ssh/sshd_config</path>.
 </note>
 
 <p>
-This will setup login access so members of the wheel group can login locally 
-or from the gentoo.org domain. Maybe too paranoid, but better to be safe than 
+Takie ustawienie umożliwi zalogowanie się jedynie członkom grupy wheel z domeny
+gentoo.org. Może jest to dość paranoiczne podejście, lepiej jednak być trochę
+"nadmiernie" zabezpieczonym niż później żałować.
 sorry.
 </p>
 
 </body>
 </section>
-
-
 </sections>
