@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.44 -->
+<!-- Orig revision: 1.49 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Konfiguracja jądra Gentoo na x86 -->
 <!-- Status: Release -->
@@ -13,11 +13,11 @@
 
 <sections>
 
-<version>2.6</version>
-<date>2005-04-21</date>
+<version>3.0</version>
+<date>2005-06-09</date>
 
 <section>
-<title>Strefa czasowa.</title>
+<title>Strefa czasowa</title>
 <body>
 
 <p>
@@ -118,11 +118,16 @@ zapomina się, że kiedykolwiek uważało się to za trudną czynność. :]
 
 <p>
 Nie sposób jednak zaprzeczyć, że należy dobrze znać swój komputer, aby móc
-prawidłowo skonfigurować jądro. Większość informacji o maszynie można zdobyć
-przeglądając zawartość <path>/proc/pci</path> (lub przy użyciu polecenia
-<c>lspci</c> - jeśli działa). Dodatkowe informacje o sterownikach, które należy
-włączyć do jądra można uzyskać dzięki poleceniu <c>lsmod</c>, które pokaże listę
-modułów jakie załadował system płyty instalacyjnej.
+prawidłowo skonfigurować jądro. Większość informacji można zdobyć poprzez
+zemergowanie pakietu pciutils (<c>emerge pciutils</c>) zawierającego program
+<c>lspci</c>. Dzięki temu będzie możliwe używanie <c>lspci</c> wewnątrz
+chrootowanego środowiska. Podczas pracy z tym programem możne bezpieczenie
+zignorować wszelkie ostrzeżenia związane z <e>pcilib</e> (jak np.
+"pcilib: cannot open /sys/bus/pci/devices). Ponadto można również uruchomić
+<c>lspci</c> poza środowiskiem chroot. Powinno dać to taki sam efekt. Dodatkowe
+informacje o sterownikach, które należy włączyć do jądra można uzyskać dzięki
+poleceniu <c>lsmod</c>, które pokaże listę modułów jakie załadował system płyty
+instalacyjnej.
 </p>
 
 <p>
@@ -197,6 +202,8 @@ File systems ---&gt;
   [ ] /dev/pts file system for Unix98 PTYs
 
 <comment>(Dla jąder 2.6.X)</comment>
+General setup  ---&gt;	
+    [*] Support for hot-pluggable devices
 File systems ---&gt;
   Pseudo Filesystems ---&gt;
     [*] /proc file system support
@@ -365,8 +372,8 @@ konfiguracyjny jądra.
 </pre>
 
 <p>
-Następnie przechodzimy do instalowania <uri link="#kernel_modules">dodatkowych
-modułów</uri>.
+Następnie przechodzimy do akapitu dotyczącego <uri
+link="#kernel_modules">modułów</uri>.
 </p>
 
 </body>
@@ -473,104 +480,7 @@ skonfigurować ten program:
 </body>
 </section>
 <section id="kernel_modules">
-<title>Instalowanie dodatkowych modułów jądra.</title>
-<subsection>
-<title>Dodatkowe moduły.</title>
-<body>
-
-<p>
-Oto lista dodatkowych modułów, które zawierają sprzęt nie obsługiwany przez jądro
-i które należy zainstalować poprzez zemergowanie odpowiednich ebuildów.
-</p>
-
-<table>
-<tcolumn width="1in"/>
-<tcolumn width="4in"/>
-<tcolumn width="2in"/>
-<tr>
-  <th>Ebuild</th>
-  <th>Funkcja</th>
-  <th>Polecenie</th>
-</tr>
-<tr>
-  <ti>nvidia-kernel</ti>
-  <ti>Sterowniki dla kart nvidia</ti>
-  <ti><c>emerge nvidia-kernel</c></ti>
-</tr>
-<tr>
-  <ti>nforce-audio</ti>
-  <ti>Sterowniki do kart dźwiękowych zintegrowanych na płytach z chipsetem
-  nvidia nforce</ti>
-  <ti><c>emerge nforce-audio</c></ti>
-</tr>
-<tr>
-  <ti>e100</ti>
-  <ti>Intel e100 Fast Ethernet Adapters (dla jąder 2.4)</ti>
-  <ti><c>emerge e100</c></ti>
-</tr>
-<tr>
-  <ti>e1000</ti>
-  <ti>Intel e1000 Gigabit Ethernet Adapters (dla jąder 2.4)</ti>
-  <ti><c>emerge e1000</c></ti>
-</tr>
-<tr>
-  <ti>emu10k1</ti>
-  <ti>Obsługa Creative Sound Blaster Live!/Audigy (dla jąder 2.4)</ti>
-  <ti><c>emerge emu10k1</c></ti>
-</tr>
-<tr>
-  <ti>ati-drivers</ti>
-  <ti>Sterowniki dla kart ATI</ti>
-  <ti><c>emerge ati-drivers</c></ti>
-</tr>
-</table>
-
-<p>
-Zainstalowanie któregoś z tych pakietów może wiązać się z potrzebą wgrania
-sporej liczby jego zależności. Aby dowiedzieć się jakie pakiety zostaną
-zainstalowane razem z wybranym ebuildem należy skorzystać z polecenia
-<c>emerge --pretend</c>. Na przykład dla pakietu <c>emu10k1</c> będzie to:
-</p>
-
-<pre caption="Pełna lista pakietów do zainstalowania">
-# <i>emerge --pretend emu10k1</i>
-</pre>
-
-<p>
-Jeśli otrzymana lista zależności jest zbyt długa to warto skorzystać z
-<c>emerge --pretend --verbose</c> i sprawdzić czy nie da się jej zredukować
-przez usunięcie zbędnych flag USE.
-</p>
-
-<pre caption="Przegląd używanych flag USE">
-# <i>emerge --pretend --verbose emu10k1</i>
-<comment>...</comment>
-[ebuild  N    ] media-sound/aumix-2.8  +gpm +nls +gtk +gnome +alsa -gtk2
-</pre>
-
-<p>
-W powyższym przykładzie da się zauważyć, że jedna z zależności pakietu <c>emu10k1</c>
-(<c>aumix</c>) ma włączone flagi <c>gtk</c> i <c>gnome</c>, co sprawi, że przy
-instalacji dograją się dodatkowo oba te pakiety oraz pakiet xorg-x11, od
-którego są one zależne.
-</p>
-
-<p>
-Aby pozbyć się z listy wszystkich niechcianych zależności należy usunąć
-wszystkie zbędne flagi USE, np.:
-</p>
-
-<pre caption="Emergowanie emu10k1 bez zbędnych zależności">
-# <i>USE="-gpm -nls -gtk -gnome -alsa" emerge --pretend emu10k1</i>
-</pre>
-
-<p>
-Kiedy rezultat wcześniejszege polecenia będzie satysfakcjonujący możemy usunąć
-opcję <c>--pretend</c> i przystąpić do instalowania <c>emu10k1</c>.
-</p>
-
-</body>
-</subsection>
+<title>Moduły jądra</title>
 <subsection>
 <title>Konfigurowanie modułów.</title>
 <body>
