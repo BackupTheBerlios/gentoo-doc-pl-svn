@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.1 -->
+<!-- Orig revision: 1.2 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Logowanie -->
 <!-- Status: Finished -->
@@ -12,8 +12,8 @@
 
 <sections>
 
-<version>1.0</version>
-<date>2005-05-31</date>
+<version>1.1</version>
+<date>2005-06-08</date>
 
 <section>
 <title>Wprowadzenie</title>
@@ -252,7 +252,6 @@ destination console_all { file("/dev/tty12"); };
 destination xconsole { pipe("/dev/xconsole"); };
 
 #create filters
-filter f_auth { facility(auth); };
 filter f_authpriv { facility(auth, authpriv); };
 filter f_syslog { not facility(authpriv, mail); };
 filter f_cron { facility(cron); };
