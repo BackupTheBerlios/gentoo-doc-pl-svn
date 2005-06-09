@@ -1,6 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/security/shb-tight.xml,v 1.1 2005/06/01 15:43:47 neysx Exp $ -->
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- Orig revision: 1.1 -->
+<!-- Translator: rane <rane@gentoo.pl> -->
+<!-- Title: Dodatkowe zabezpieczanie systemu -->
+<!-- Status: Ukończono -->
+<!-- $Id$ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
@@ -11,26 +16,27 @@
 <date>2005-05-31</date>
 
 <section>
-<title>USE flags</title>
+<title>Flagi USE</title>
 <body>
 
 <p>
-The <path>make.conf</path> file contains user defined USE flags and
-<path>/etc/make.profile/make.defaults</path> contains the default USE flags for
-Gentoo Linux. For this guide's purposes, the important flags are <c>pam</c>
-(Pluggable Authentication Modules), <c>tcpd</c> (TCP wrappers), and <c>ssl</c>
-(Secure Socket Layer). These are all in the default USE flags.
+Plik <path>make.conf</path> zawiera zdefiniowane przez użytkownika flagi USE, a
+w pliku <path>/etc/make.profile/make.defaults</path> znajduję się te wybrane
+jako domyślne dla Gentoo. Ten przewodnik nawiązuje do flag
+<c>pam</c> (Pluggable Authentication Modules), <c>tcpd</c> (TCP wrappers) i
+<c>ssl</c> (Secure Socket Layer). Wszystkie są włączane w domyślnej
+konfiguracji.
 </p>
 
 </body>
 </section>
 <section id = "passwording_GRUB">
-<title>Password protecting GRUB</title>
+<title>Ochrona hasłem w GRUB</title>
 <body>
 
 <p>
-GRUB supports two different ways of adding password protection to your boot
-loader. The first uses plain text, while the latter uses md5+salt encryption.
+Istnieją dwa sposoby zabezpieczenia tego bootloadera hasłem. Pierwszy przy użyciu
+otwartego tekstu, a drugi z hasłem zaszyfrowanym przy pomocy algorytmu md5+salt.
 </p>
 
 <pre caption="/boot/grub/grub.conf">
@@ -39,22 +45,22 @@ password changeme
 </pre>
 
 <p>
-This will add the password <c>changeme</c>. If no password is entered at boot,
-GRUB will simply use the default boot setting.
+Taki wpis ustala hasło na ciąg znaków <c>zmień_mnie</c>. Jeśli hasło nie
+zostanie wpisane przy starcie systemu, GRUB użyje domyślnych ustawień.
 </p>
 
 <p>
-When adding an md5 password, you must convert your password into crypt format,
-which is the same format used in <path>/etc/shadow</path>. For more information
-see <c>man crypt</c>. The encrypted password <e>changeme</e>, for example, could
-look like this: <c>$1$T7/dgdIJ$dJM.n2wZ8RG.oEiIOwJUs</c>.
+Przed ustawieniem hasła w postaci md5 trzeba je zaszyfrować do formatu takiego
+jak ten używany w pliku <path>/etc/shadow</path>. Więcej informacji można
+znaleźć w dokumencie <c>man crypt</c>. Zaszyfrowane hasło <e>zmień_mnie</e> ma
+taką postać: <c>4ff4d55e97d977e3b9d04b5418426403</c>.
 </p>
 
 <p>
-You can encrypt your password directly at the GRUB shell:
+Zaszyfrowania hasła można dokonać bezpośrednio z powłoki GRUB-a:
 </p>
 
-<pre caption="md5crypt in grub shell">
+<pre caption="md5crypt w powłoce grub">
 #<i>/sbin/grub</i>
 
 GRUB version 0.92 (640K lower / 3072K upper memory)
@@ -73,7 +79,8 @@ grub> <i>quit</i>
 </pre>
 
 <p>
-Then, cut and paste your password to <path>/boot/grub/grub.conf</path>.
+Następnie należy skopiować zaszyfrowane hasło i wkleić je do pliku
+<path>/boot/grub/grub.conf</path>.
 </p>
 
 <pre caption="/boot/grub/grub.conf">
@@ -82,25 +89,26 @@ password --md5 $1$T7/dgdIJ$dJM.n2wZ8RG.oEiIOwJUs.
 </pre>
 
 <p>
-The 5 seconds timeout becomes handy if the system is remote and should be able
-to reboot without any keyboard interaction. Learn more about GRUB passwords by
-executing <c>info grub</c>.
+Pięciosekundowe opóźnienie jest przydatne przy zdalnej administracji systemem,
+kiedy chcemy mieć możliwość uruchomienia systemu bez bezpośredniego do niego
+dostępu. Więcej informacji o hasłach w GRUB można uzyskać wpisując polecenie
+<c>info grub</c>.
 </p>
 
 </body>
 </section>
-<section id = "passwording_LILO">
-<title>Password protecting LILO</title>
+<section id="passwording_LILO">
+<title>Ochrona hasłem w LILO.</title>
 <body>
 
 <p>
-LILO also supports two ways of handling passwords: global and per-image, both in
-clear text.
+LILO również posiada dwie metody postępowania z hasłami: globalną oraz osobną
+dla każdego obrazu, niestety nie ma możliwości ich zaszyfrowania.
 </p>
 
 <p>
-The global password is set at the top of the configuration file, and applies to
-every boot image:
+Globalne hasło ustawia się na samej górze pliku konfiguracyjnego, ma ono
+zastosowanie dla każdego obrazu jądra:
 </p>
 
 <pre caption="/etc/lilo.conf">
@@ -110,7 +118,7 @@ delay=3
 </pre>
 
 <p>
-The per-image password is set as below:
+Poniżej znajduje się przykład ustawienia hasła dla określonego obrazu:
 </p>
 
 <pre caption="/etc/lilo.conf">
@@ -121,33 +129,33 @@ image=/boot/bzImage
 </pre>
 
 <p>
-If the <c>restricted</c> option is not entered, it will prompt for a password
-every time.
+Jeśli nie dopiszemy opcji <c>restricted</c> będziemy za każdym razem pytani o
+hasło.
 </p>
 
 <p>
-In order to store the new information in <path>lilo.conf</path>, you must run
-<c>/sbin/lilo</c>.
+Żeby zastosować zmiany należy uruchomić <c>/sbin/lilo</c>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Restricting Console Usage</title>
+<title>Ograniczanie dostępu do konsoli</title>
 <body>
 
 <p>
-The <path>/etc/securetty</path> file allows you to specify which <c>tty</c>
-(terminal) devices root is allowed to login in from.
+W pliku <path>/etc/securetty</path> można skonfiguować te urządzenia
+<c>tty</c> (terminale), na których będzie mógł się logować root.
 </p>
 
 <p>
-We suggest that you comment out all lines except <c>vc/1</c>. This will ensure
-that root only can login once and only on one terminal.
+Zalecamy zakomentowanie wszystkich linii poza <c>vc/1</c>. Spowoduje to, że root
+będzie mógł być zalogowany tylko raz i tylko na jednym terminalu.
 </p>
 
 <note>
-Users in the group "wheel" can still <c>su -</c> to become root on other TTYs.
+Użytkownicy z grupy 'wheel' wciąż będą mogli stawać się rootem przy pomocy
+polecenia <c>su -</c> na innych terminalach.
 </note>
 
 <pre caption="/etc/securetty">
@@ -156,6 +164,4 @@ vc/1
 
 </body>
 </section>
-
-
 </sections>

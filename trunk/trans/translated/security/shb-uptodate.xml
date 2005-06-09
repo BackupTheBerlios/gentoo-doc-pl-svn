@@ -11,25 +11,25 @@
 <date>2005-05-31</date>
 
 <section>
-<title>Keeping up-to-date</title>
+<title>Aktualizowanie.</title>
 <body>
 
 <p>
-Once you have successfully installed your system and ensured a good level of
-security you are not done. Security is an ongoing process; the vast majority of
-intrusions result from known vulnerabilities in unpatched systems. Keeping your
-system up-to-date is the single most valuable step you can take to greater
-security.
+Udana instalacja systemu i jego odpowiednie zabezpieczenie to nie wszystko.
+Większość włamań do systemów udaje się dzięki wykorzystaniu znanych błędów
+w starych wersjach programów. Częste aktualizowanie systemu jest niezbędne dla
+zachowania odpowiedniego poziomu bezpieczeństwa.
 </p>
 
 <p>
-If you have a recent version of <c>portage</c> installed, you can first sync
-your portage tree with <c>emerge --sync</c> and then issue the command
-<c>glsa-check --list</c> to check if your system is up to date security-wise.
-<c>glsa-check</c> is part of <c>app-portage/gentoolkit</c>.
+Przede wszystkim należy się upewnić, że jest zainstalowana najnowsza wersja
+<c>Portage</c>. Jeśli ją posiadamy wystarczy wydać polecenie <c>emerge
+--sync</c> i zsynchronizować drzewo Portage, a następnie poleceniem
+<c>glsa-check --list</c> sprawdzić czy system jest aktualny pod względem
+bezpieczeństwa.
 </p>
 
-<pre caption="Example output of glsa-check -l">
+<pre caption="Przykładowy wynik glsa-check -l">
 # <i>glsa-check -l</i>
 WARNING: This tool is completely new and not very tested, so it should not be
 used on production systems. It's mainly a test tool for the new GLSA release
@@ -48,31 +48,33 @@ before using this tool AND before reporting a bug.
 </pre>
 
 <warn>
-The <c>glsa-check</c> is still experimental, so if security really is your top
-priority it would be wise to double check the list with other sources.
+Narzędzie <c>glsa-check</c> wciąż jest eksperymentalne warto więc sprawdzić
+również inne źródła informacji, zwłaszcza jeśli naszym głównym priorytetem jest
+maksymalne bezpieczeństwo.
 </warn>
 
 <p>
-All lines with a <c>[A]</c> and <c>[U]</c> can be almost safely ignored as the
-system is not affected by this GLSA.
+Wszystkie linie zawierające <c>[A]</c> oraz <c>[U]</c> mogą zostać zignorowane
+ponieważ oznaczają, że system nie jest podatny na błąd opisany w określonym GLSA.
 </p>
 
 <p>
-Some people still prefer to use <c>emerge packagename</c> instead of
-<c>glsa-check -f</c> so all GLSAs are listed as <c>[N]</c>.
+Niektórzy ludzie wolą mimo wszystko korzystanie z <c>emerge
+nazwa_paczki</c> zamiast używania <c>glsa-check -f</c>. W związku z tym
+wszystkie GLSA będą wymieniane jako <c>[N]</c>.
 </p>
 
 <p>
-If you want an email each time a GLSA is released subscribe to the 
-<c>gentoo-announce</c> mailing list. Instructions for joining it and many other
-great mailing lists can be found <uri link="/main/en/lists.xml">Gentoo Linux
-Mailing List Overview</uri>.
+Aby otrzymywać mail za każdym razem gdy wypuszczane jest GLSA należy
+najpierw zapisać się do listy mailingowej <c>gentoo-announce</c>. Instrukcje na
+temat dołączania do tej i innych list mailingowych można znaleźć na stronie
+<uri link="/main/en/lists.xml">Gentoo Linux Mailing List Overview</uri>.
 </p>
 
 <p>
-Another great security resource is the <uri
-link="http://www.securityfocus.com/archive/1">Bugtraq
-mailing list</uri>.
+Świetnym źródłem informacji dotyczących bezpieczeństwa jest
+<uri
+link="http://www.securityfocus.com/archive/1">lista mailingowa bugtraq</uri>.
 </p>
 
 </body>
