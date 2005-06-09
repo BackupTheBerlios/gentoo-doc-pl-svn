@@ -1,9 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/security/shb-logging.xml,v 1.1 2005/06/01 15:43:47 neysx Exp $ -->
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- Orig revision: 1.1 -->
+<!-- Translator: rane <rane@gentoo.pl> -->
+<!-- Title: Podręcznik bezpieczeństwa Gentoo. -->
+<!-- Status: Release -->
+<!-- $Id$ -->
 
 <sections>
 
@@ -11,38 +13,42 @@
 <date>2005-05-31</date>
 
 <section>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
+
 <p>
-Extra logging should be added to catch warnings or errors that might indicate
-an ongoing attack or a successful compromise. Attackers often scan or probe
-before attacking.
+Aby wychwycić wszystkie ostrzeżenia i błędy wskazujące na próby ataku należy
+włączyć dodatkowe usługi logowania. Włamywacze zwykle skanują i wypróbowują
+system przed atakiem.
 </p>
 
 <p>
-It's also vital that your log files are easily readable and manageable. Gentoo
-Linux lets you choose between 3 different loggers when installing.
+Ważną rzeczą jest również to, by logi były łatwe w zarządzaniu i
+przeglądaniu. Gentoo podczas instalacji umożliwia wybranie jednego z trzech
+programów logujących.
 </p>
 
 </body>
 </section>
 <section>
-<title>Logging: Syslogd</title>
+<title>Logowanie za pomocą syslogd</title>
 <body>
 
 <p>
-Syslogd is the most common logger for Linux and Unix in general. 
-It has some log rotation facilities, but using 
-<path>/usr/sbin/logrotate</path> in a cron job (logrotate is configured in
-<path>/etc/logrotate.conf</path>) might prove to be more powerful as
-<c>logrotate</c> has many features. How often 
-log rotation should be done depends on the system load.
+Syslogd jest najpopularniejszym programem logującym dla systemów Linux i Unix.
+Nie daje możliwości rotowania logów. Można to sobie jednak zrekompensować
+używając programu <path>/usr/sbin/logrotate</path>, warto dopisać go np. w
+demonie cron (plik konfiguracyjny logrotate to
+<path>/etc/logrotate.conf</path>). Częstotliwość rotacji logów będzie
+uzależniona od obciążenia systemu.
 </p>
 
 <p>
-Below is the standard <path>syslog.conf</path> with some added features. We 
-have uncommented the <c>cron</c> and <c>tty</c> lines and added a remote 
-logging server. To further enhance security you could add logging to two places.
+Poniżej znajduje się standardowy plik <path>syslog.conf</path> do którego
+wprowadzono kilka pożytecznych zmian. Odkomentowano linie dotyczące <c>crona</c> i
+<c>tty</c> oraz dodano opcję wysyłania logów na zdalny serwer. Żeby jeszcze
+bardziej zwiększyć bezpieczeństwo, można skonfigurować program tak, aby
+zapisywał logi w dwóch różnych miejscach.
 </p>
 
 <pre caption="/etc/syslog.conf">
@@ -128,10 +134,9 @@ local2.*                --/var/log/ppp.log
 </pre>
 
 <p>
-Attackers will most likely try to erase their tracks by editing or deleting log
-files. You can make it harder for them by logging to one or more remote logging
-servers on other machines. Get more info about syslogd by executing <c>man
-syslog</c>.
+Włamywacze zwykle próbują zatrzeć po sobie ślady poprzez wyedytowanie lub
+skasowanie logów. Można im to utrudnić ustawiając zdalne logowanie na innych
+komputerach. Więcej informacji o syslogd znajduje się w <c>man syslog</c>.
 </p>
 
 </body>
@@ -141,17 +146,19 @@ syslog</c>.
 <body>
 
 <p>
-<uri link="http://metalog.sourceforge.net">Metalog</uri> by Frank Dennis is not
-able to log to a remote server, but it does have advantages when it comes to
-performance and logging flexibility. It can log by program name, urgency,
-facility (like syslogd), and comes with regular expression matching with which
-you can launch external scripts when specific patterns are found. It is very good
-at taking action when needed.
+<uri link="http://metalog.sourceforge.net">Metalog</uri> Franka Dennisa nie ma
+możliwości logowania na zdalnym serwerze. Ma za to sporą przewagę jeśli chodzi o
+elastyczność i wydajność logowania. Może logować nazwę programu, priorytet i
+wiele innych informacji. Daje możliwość korzystania z wyrażeń regularnych oraz
+uruchamiania skryptów w przypadku wystąpienia w logu określonego ciągu znaków.
+Bardzo przydaje się to do błyskawicznego wykonywania niezbędnych działań w
+przypadku gdy dzieje się coś złego.
 </p> 
 
 <p>
-The standard configuration is usually enough.  If you want to be notified by
-email whenever a password failure occurs use one of the following scripts.
+Zwykle wystarcza domyślna konfiguracja. Aby być powiadamianym e-mailem
+za każdym razem gdy wystąpi błąd przy wpisywaniu hasła można użyć jednego z
+następujących skryptów:
 </p>
 
 <p>
@@ -164,7 +171,7 @@ echo "$3" | mail -s "Warning (program : $2)" root
 </pre>
 
 <p>
-For qmail:
+Dla qmail:
 </p>
 
 <pre caption="/usr/local/sbin/mail_pwd_failures.sh for qmail">
@@ -176,13 +183,13 @@ $3
 </pre>
 
 <p>
-Remember to make the script executable by issuing <c>/bin/chmod +x 
-/usr/local/sbin/mail_pwd_failures.sh</c>
+Aby skrypt zadziałał należy mu nadać prawa wykonywalności poprzez wpisanie
+<c>/bin/chmod +x /usr/local/sbin/mail_pwd_failures.sh</c>.
 </p>
 
 <p>
-Then uncomment the command line under "Password failures" in 
-<path>/etc/metalog/metalog.conf</path> like:
+Następnie należy odkomentować linię "Password failures" w pliku
+<path>/etc/metalog/metalog.conf</path>:
 </p>
 
 <pre caption="/etc/metalog/metalog.conf">
@@ -196,15 +203,18 @@ command  = "/usr/local/sbin/mail_pwd_failures.sh"
 <body>
 
 <p>
-Syslog-ng provides some of the same features as syslog and metalog with a small
-difference. It can filter messages based on level and content (like metalog),
-provide remote logging like syslog, handle logs from syslogd (even streams from
-Solaris), write to a TTY, execute programs, and it can act as a logging server.
-Basically it is the best of both loggers combined with advanced configuration.
+Syslog-ng posiada te same funkcje co syslog i metalog, jednak z małymi
+różnicami. Może filtrować wiadomości zależnie od poziomu i zawartości (jak
+metalog), umożliwia zdalne logowanie (jak syslog), dobrze współpracuje z
+rozmaitymi plikami, tak jak syslogd (nawet ze strumieniami z Solarisa) potrafi
+wyświetlać logi na tty, wykonywać programy i może pełnić funkcję serwera
+logów. Jest najlepszym dostępnym programem tego typu i jakby tego było mało
+posiada jeszcze najszersze możliwości konfiguracyjne.
 </p>
 
 <p>
-Below is a classic configuration file slightly modified.
+Poniżej znajduje się standardowy plik konfiguracyjny na który naniesiono kilka
+drobnych poprawek.
 </p>
 
 <pre caption="/etc/syslog-ng/syslog-ng.conf">
@@ -283,53 +293,58 @@ log { source(src); destination(console_all); };
 </pre>
 
 <p>
-Syslog-ng is very easy to configure, but it is also very easy to miss something
-in the configuration file since it is huge. The author still promises some extra
-features like encryption, authentication, compression and MAC (Mandatory Access
-Control) control. With these options it will be a perfect for network logging,
-since the attacker cannot spy on the log.
+Konfiguracja syslog-ng jest dość łatwa, ale z powodu ogromnych rozmiarów całego
+pliku łatwo przegapić coś ważnego. Autor wciąż obiecuje dodatkowe opcje, jak na
+przykład szyfrowanie, uwierzytelnianie, kompresja czy kontrola MAC (Mandatory Access
+Control). Z tymi opcjami program będzie idealnym narzędziem do logowania ruchu
+sieciowego, bo uniemożliwi włamywaczom szpiegowanie logów.
 </p>
 
 <p>
-And syslog-ng does have one other advantage: it does not have to run as root!
+Ogromną zaletą syslog-ng jest również to, że nie musi być uruchamiany z prawami
+roota.
 </p>
 
 </body>
 </section>
 
 <section>
-<title>Log analysis with Logcheck</title>
+<title>Analiza logów przy pomocy logcheck.</title>
 <body>
 
 <p>
-Of course, keeping logs alone is only half the battle. An application such as
-Logcheck can make regular log analysis much easier. Logcheck is a script,
-accompanied by a binary called <c>logtail</c>, that runs from your cron daemon
-and checks your logs against a set of rules for suspicious activity. It then
-mails the output to root's mailbox.
+Oczywiście uniemożliwienie dostępu do logów to tylko połowiczne zwycięstwo.
+Aplikacje takie jak logcheck znacznie ułatwiają ich codzienną analizę. Logcheck
+to skrypt powiązany z plikiem binarnym o nazwie <c>logtail</c>, który jest
+zwykle uruchamiany z demona cron i dzięki zestawowi prostych reguł sprawdza logi
+pod kątem występowania podejrzanych wyrażeń. Jeśli coś takiego wystąpi wysyła
+e-mail na skrzynkę roota.
 </p>
+
 <p>
-Logcheck and logtail are part of the <c>app-admin/logsentry</c> package.
+Logchek i logtail są częścią pakietu <c>app-admin/logsentry</c>.
 </p>
+
 <p>
-Logcheck uses four files to filter important log entries from the
-unimportant. These files are <path>logcheck.hacking</path>, which contains known
-hacking attack messages, <path>logcheck.violations</path>, which contains
-patterns indicating security
-violations, <path>logcheck.violations.ignore</path>, which contains keywords
-likely to be matched by the violations file, allowing normal entries to be
-ignored, and <path>logcheck.ignore</path>, which matches those entries to be
-ignored.
+Do filtrowania ważnych wpisów w logach logcheck używa informacji z czterech
+plików. Te pliki to <path>logcheck.hacking</path>, który zawiera znane
+wiadomości opisujące atak, <path>logcheck.violations</path>, który zawiera
+wzory naruszeń bezpieczeństwa, <path>logcheck.violations.ignore</path> z
+informacjami pozwalającymi na zdefiniowanie często występujących, omyłkowo
+branych za ataki wpisów w logach, oraz <path>logcheck.ignore</path>, który
+pozwala na ich zignorowanie.
 </p>
 
 <warn>
-Do not leave <path>logcheck.violations.ignore</path> empty. Logcheck
-uses <c>grep</c> to parse logs, some versions of which will take an empty file
-to mean wildcard. All violations would thus be ignored.
+Nigdy nie należy zostawiać pliku <path>logcheck.violations.ignore</path>
+pustego. Logcheck używa programu <c>grep</c> do analizy logów, a niektóre jego
+wersje mogą nie zadziałać poprawnie w takim wypadku i wszystkie naruszenia
+ochrony zostaną zignorowane.
 </warn>
+
 <!-- FIXME: Might want to add more details on logcheck here...I have to install
 it on Gentoo to figure out how it's configured! -->
+
 </body>
 </section>
-
 </sections>
