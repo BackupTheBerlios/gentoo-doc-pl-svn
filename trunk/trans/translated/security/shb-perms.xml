@@ -11,25 +11,26 @@
 <date>2005-05-31</date>
 
 <section>
-<title>World readable</title>
+<title>Dostępne do odczytu dla wszystkich.</title>
 <body>
 
 <p>
-Normal users should not have access to configuration files or passwords. An
-attacker can steal passwords from databases or web sites and use them to
-deface--or even worse, delete--data. This is why it is important that your file
-permissions are correct. If you are sure that a file is only used by root,
-assign it with the permissions <c>0600</c> and assign the file to the correct
-user with <c>chown</c>.
+Zwykli użytkownicy nie powinni mieć dostępu do plików konfiguracyjnych i
+zawierających hasła. Jeśli włamywaczowi uda się wykraść hasła z bazy danych lub
+strony internetowej to będzie mógł podmienić albo nawet usunąć nasze pliki.
+Właśnie to jest powodem, dla którego warto uważnie ustawić prawa do wszystkich
+ważnych plików. Jeśli jest się pewnym, że z danego pliku będzie korzystał
+wyłącznie root należy ustawić jego prawa na <c>0600</c> i przypisać plik
+odpowiedniemu użytkownikowi przy pomocy polecenia <c>chown</c>.
 </p>
 
 </body>
 </section>
 <section>
-<title>World/Group writable</title>
+<title>Dostępne do zapisu dla wszystkich</title>
 <body>
 
-<pre caption="Finding world-writable files and directories">
+<pre caption="Znajdowanie takich plików i katalogów">
 # <i>/usr/bin/find / -type f \( -perm -2 -o -perm -20 \) \ 
    -exec ls -lg {} \; 2>/dev/null >writable.txt</i>
 # <i>/usr/bin/find / -type d \( -perm -2 -o -perm -20 \) \ 
@@ -37,40 +38,42 @@ user with <c>chown</c>.
 </pre>
 
 <p>
-This will create a huge file with permission of all files having either write
-permission set to the group or everybody. Check the permissions and eliminate
-world writable files to everyone, by executing <c>/bin/chmod o-w</c> on the
-files.
+Polecenie to utworzy listę plików z prawami do zapisu dla wszystkich
+użytkowników lub grup. Należy sprawdzić prawa, a następnie usunąć zapisywalność
+przy pomocy polecenia <c>/bin/chmod o-w</c> dla każdego z plików.
 </p>
 
 </body>
 </section>
 <section>
-<title>SUID/SGID files</title>
+<title>Pliki z bitami SUID i SGID</title>
 <body>
 
 <p>
-Files with the SUID or SGID bit set execute with privileges of the <e>owning</e>
-user or group and not the user executing the file. Normally these bits are used
-on files that must run as root in order to do what they do. These files can lead
-to local root compromises (if they contain security holes). This is dangerous
-and files with the SUID or SGID bits set should be avoided at any cost. If you
-do not use these files, use <c>chmod 0</c> on them or unmerge the package that
-they came from (check which package they belong to by using <c>equery</c>; if
-you do not already have it installed simply type <c>emerge
-gentoolkit</c>). Otherwise just turn the SUID bit off with <c>chmod -s</c>.
+Pliki z ustawionymi bitami SUID i SGID uruchamiane są zawsze z prawami dostępu
+swojego <e>właściciela</e>, a nie z prawami osoby je uruchamiającej. Normalnie
+bity te są ustawiane na programach, które do poprawnej pracy wymagają praw
+roota. Jeśli taki plik zawiera błąd może spowodować kompromitację lokalnego
+konta root. W związku z takim niebezpieczeństwem należy za wszelką cenę unikać
+ustawiania tych bitów. Jeśli któryś z takich plików nie jest używany wykonujemy
+na nim polecenie <c>chmod 0</c> lub odmergowujemy pakiet do którego należy
+(pakiety do którego należą dane pliki wyszukujemy przy pomocy polecenia
+<c>equery</c>; jeśli nie ma takiego polecenia należy zainstalować pakiet
+gentoolkit). W każdym innym wypadku należy użyć polecenia <c>chmod -s</c> do
+zdjęcia bitu SUID.
 </p>
 
-<pre caption="Finding setuid files">
+<pre caption="Znajdowanie plików z bitem SUID">
 # <i>/usr/bin/find / -type f \( -perm -004000 -o -perm -002000 \) \ 
    -exec ls -lg {} \; 2>/dev/null >suidfiles.txt</i>
 </pre>
 
 <p>
-This will create a file containing a list of all the SUID/SGID files.
+To polecenie utworzy plik z listą wszystkich programów, które mają ustawione
+bity SUID i SGID.
 </p>
 
-<pre caption="List of setuid binaries">
+<pre caption="Lista plików binarnych z suidem">
 /bin/su
 /bin/ping
 /bin/mount
@@ -94,66 +97,70 @@ This will create a file containing a list of all the SUID/SGID files.
 </pre>
 
 <p>
-By default Gentoo Linux does not have a lot of SUID files (though this depends
-on what you installed), but you might get a list like the one above. Most of the
-commands should not be used by normal users, only root. Switch off the SUID bit
-on <c>ping</c>, <c>mount</c>, <c>umount</c>, <c>chfn</c>, <c>chsh</c>, <c>newgrp</c>, <c>suidperl</c>, <c>pt_chown</c>
-and <c>traceroute</c> by executing <c>chmod -s</c> on every file. Don't
-remove the bit on <c>su</c>, <c>qmail-queue</c> or <c>unix_chkpwd</c>. Removing
-setuid from those files will prevent you from <c>su</c>'ing and receiving
-mail. By removing the bit (where it is safe to do so) you remove the possibility
-of a normal user (or an attacker) gaining root access through any of these
-files.
+Domyślnie Gentoo nie zawiera wielu plików SUID (chociaż ich ilość zależy od tego
+jakie programy są zainstalowane). Większość komend nie powinna być uruchamiana
+przez zwykłych użytkowników z prawami roota. Polecamy zdjęcie bitów SUID z
+programów <c>ping</c>, <c>mount</c>, <c>umount</c>, <c>chfn</c>,
+<c>chsh</c>, <c>newgrp</c>, <c>suidperl</c>, <c>pt_chown</c> i
+<c>traceroute</c>. Dokonuje się tego przy pomocy polecenia <c>chmod -s</c>. Nie
+należy usuwać tego bitu z <c>su</c>, <c>qmail-queue</c> czy <c>unix_chkpwd</c>.
+Usunięcie setuid z tych plików spowoduje utratę możliwości przełączania się na
+konto superużytkownika czy otrzymywania poczty. Usuwając SUID odbieramy zwykłemu
+użytkownikowi (lub włamywaczowi) możliwość uzyskania dostępu do konta roota
+przez któryś z tych plików.
 </p>
 
 <p>
-The only SUID files that I have on my system are <c>su</c>, <c>passwd</c>,
-<c>gpasswd</c>, <c>qmail-queue</c>, <c>unix_chkpwd</c> and <c>pwdb_chkpwd</c>.
-But if you are running X, you might have some more, since X needs the elevated
-access afforded by SUID.
+Jedyne plikami z SUID w moim systemie to: <c>su</c>, <c>passwd</c>,
+<c>gpasswd</c>, <c>qmail-queue</c>, <c>unix_chkpwd</c> i <c>pwdb_chkpwd</c>.
+Każdy kto używa serwera X może potrzebować jeszcze kilku, ponieważ serwer
+korzysta czasem z rozszerzonego dostępu, oferowanego przez bity SUID.
 </p>
+
 </body>
 </section>
 <section>
-<title>SUID/SGID binaries and Hard links</title>
+<title>Twarde dowiązania do plików binarnych z SUID/SGID</title>
 <body>
 
 <p>
-A file is only considered deleted when there are no more links pointing to it. 
-This might sound like a strange concept, but consider that a filename like 
-<path>/usr/bin/perl</path> is actually a link to the inode where the data is 
-stored. Any number of links can point to the file, and until all of them are
-gone, the file still exists.
+Plik można uznać za skasowany tylko wtedy gdy nie istnieją żadne na niego
+wskazujące odnośniki. Może to wydawać się dziwne, ale na przykład plik
+<path>/usr/bin/perl</path> jest wyłącznie odnośnikiem do inody gdzie znajdują
+się właściwe dane. Do pliku może istnieć nieskończenie duża ilość dowiązań i
+dopóki wszystkie nie zostaną skasowane plik wciąż istnieje.
 </p>
 
 <p>
-If your users have access to a partition that isn't mounted with <c>nosuid</c>
-or <c>noexec</c> (for example, if <path>/tmp</path>, <path>/home</path>, or 
-<path>/var/tmp</path> are not separate partitions) you should take care to 
-ensure your users don't create hard links to SUID or SGID binaries, so that 
-after Portage updates they still have access to the old versions.
+Jeśli użytkownicy posiadają dostęp do partycji nie zamontowanej z opcjami
+<c>nosuid</c> i <c>noexec</c> (na przykład gdy <path>/tmp</path>,
+<path>/home</path>, lub <path>/var/tmp</path> nie znajdują się na osobnych
+partycjach) należy się upewnić, że nie będą mieli możliwości utworzenia twardego
+dowiązania do plików binarnych i korzystania z nich np. po uaktualnieniu przez
+Portage pliku do nowej, nie zawierającej błędów wersji.
 </p>
 
 <warn>
-if you have received a warning from portage about remaining hard links, and your 
-users can write to a partition that allows executing SUID/SGID files, you 
-should read this section carefully. One of your users may be attempting to 
-circumvent your update by keeping an outdated version of a program. If your 
-users cannot create their own SUID files, or can only execute programs using
-the dynamic loader (partitions mounted <c>noexec</c>), you do not have to 
-worry.
+Jeśli otrzymamy od Portage ostrzeżenie o istniejących twardych dowiązaniach, a
+użytkownicy mają dostęp do partycji umożliwiającej wykonywanie plików SUID/SGID
+należy uważnie przeczytać ten rozdział. Jeden z użytkowników może podejmować
+próbę obejścia uaktualnień poprzez zatrzymanie przestarzałej wersji
+programu. Jeśli użytkownicy nie mogą tworzyć własnych plików SUID lub uruchamiać
+programów poprzez dynamiczny program ładujący (partycje zamontowane jako
+<c>noexec</c>) nie ma powodu do zmartwień.
 </warn>
 
 <note>
-Users do not need read access to a file to create a link to it, they only need 
-read permission to the directory that contains it.
+Użytkownik nie musi posiadać prawa odczytu pliku, aby móc utworzyć do niego
+dowiązanie, wystarczy, że ma prawa do katalogu go zawierającego.
 </note>
 
 <p>
-To check how many links a file has, you can use the <c>stat</c> command.
+Aby sprawdzić ilość istniejących dowiązań do danego pliku należy skorzystać z
+polecenia <c>stat</c>.
 </p>
 
-<pre caption="Stat command">
+<pre caption="Polecenie stat">
 $ stat /bin/su    
   File: `/bin/su'
   Size: 29350           Blocks: 64         IO Block: 131072 regular file
@@ -165,10 +172,12 @@ Change: 2004-11-04 01:46:17.000000000 +0000
 </pre>
 
 <p>
-To find the SUID and SGID files with multiple links, you can use <c>find</c>.
+Do znajdowania plików z ustawionymi bitami SUID i SGID korzystamy z programu
+<c>find</c>.
 </p>
 
-<pre caption="Finding multiply linked suid/sgid binaries">
+<pre caption="Znajdowanie wielokrotnie zlinkowanych plików binarnych z bitem
+suid/sgid">
 $ find / -type f \( -perm -004000 -o -perm -002000 \) -links +1 -ls
 </pre>
 
