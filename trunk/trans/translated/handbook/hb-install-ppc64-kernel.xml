@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.12 -->
+<!-- Orig revision: 1.15 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Konfiguracja jądra dla PPC64 -->
 <!-- Status: Release -->
@@ -13,11 +13,11 @@
 
 <sections>
 
-<version>2.2</version>
-<date>2005-04-25</date>
+<version>2.4</version>
+<date>2005-06-09</date>
 
 <section>
-<title>Strefa czasowa.</title>
+<title>Strefa czasowa</title>
 <body>
 
 <p>
@@ -106,11 +106,16 @@ kilku kerneli zapomnicie, że kiedykowiek uważaliście to za trudne zadanie.
 
 <p>
 Nie sposób jednak zaprzeczyć, że należy dobrze znać swój komputer, aby móc
-prawidłowo skonfigurować kernel. Większość informacji o maszynie znajdziemy
-przeglądając zawartość <path>/proc/pci</path> (lub przy użyciu polecenia
-<c>lspci</c> - jeśli działa). Dodatkowe informacje o tym co warto włączyć w swój
-kernel można uzyskać dzięki poleceniu <c>lsmod</c>, które pokaże listę
-modułów jakie załadował system płyty instalacyjnej.
+prawidłowo skonfigurować jądro. Większość informacji można zdobyć poprzez
+zemergowanie pakietu pciutils (<c>emerge pciutils</c>) zawierającego program
+<c>lspci</c>. Dzięki temu będzie możliwe używanie <c>lspci</c> wewnątrz
+chrootowanego środowiska. Podczas pracy z tym programem możne bezpieczenie
+zignorować wszelkie ostrzeżenia związane z <e>pcilib</e> (jak np.
+"pcilib: cannot open /sys/bus/pci/devices). Ponadto można również uruchomić
+<c>lspci</c> poza środowiskiem chroot. Powinno dać to taki sam efekt. Dodatkowe
+informacje o sterownikach, które należy włączyć do jądra można uzyskać dzięki
+poleceniu <c>lsmod</c>, które pokaże listę modułów jakie załadował system płyty
+instalacyjnej.
 </p>
 
 <p>
@@ -142,9 +147,12 @@ fragmentów kodu jądra. Jeśli tego nie zrobisz to nawet nie zobaczysz kilku
 bardzo ważnych opcji.
 </p>
 
-<pre caption="Wybieranie opcji experimental code/drivers">
+<pre caption="Wybieranie opcji experimental code/drivers oraz innych generalnych
+ustawień">
 Code maturity level options ---&gt;
   [*] Prompt for development and/or incomplete code/drivers
+General setup --->	
+  [*] Support for hot-pluggable devices
 </pre>
 
 <p>

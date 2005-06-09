@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.23 -->
+<!-- Orig revision: 1.28 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Konfiguracja jądra dla PPC -->
 <!-- Status: Release -->
@@ -13,11 +13,11 @@
 
 <sections>
 
-<version>2.4</version>
-<date>2005-04-16</date>
+<version>2.7</version>
+<date>2005-06-09</date>
 
 <section>
-<title>Strefa czasowa.</title>
+<title>Strefa czasowa</title>
 <body>
 
 <p>
@@ -121,11 +121,16 @@ kilku kerneli zapomnicie, że kiedykowiek uważaliście to za trudne zadanie.
 
 <p>
 Nie sposób jednak zaprzeczyć, że należy dobrze znać swój komputer, aby móc
-prawidłowo skonfigurować kernel. Większość informacji o maszynie znajdziemy
-przeglądając zawartość <path>/proc/pci</path> (lub przy użyciu polecenia
-<c>lspci</c> - jeśli działa). Dodatkowe informacje o tym co warto włączyć w swój
-kernel można uzyskać dzięki poleceniu <c>lsmod</c>, które pokaże listę
-modułów jakie załadował system płyty instalacyjnej.
+prawidłowo skonfigurować jądro. Większość informacji można zdobyć poprzez
+zemergowanie pakietu pciutils (<c>emerge pciutils</c>) zawierającego program
+<c>lspci</c>. Dzięki temu będzie możliwe używanie <c>lspci</c> wewnątrz
+chrootowanego środowiska. Podczas pracy z tym programem możne bezpieczenie
+zignorować wszelkie ostrzeżenia związane z <e>pcilib</e> (jak np.
+"pcilib: cannot open /sys/bus/pci/devices). Ponadto można również uruchomić
+<c>lspci</c> poza środowiskiem chroot. Powinno dać to taki sam efekt. Dodatkowe
+informacje o sterownikach, które należy włączyć do jądra można uzyskać dzięki
+poleceniu <c>lsmod</c>, które pokaże listę modułów jakie załadował system płyty
+instalacyjnej.
 </p>
 
 <p>
@@ -157,9 +162,12 @@ fragmentów kodu jądra. Jeśli tego nie zrobisz to nawet nie zobaczysz kilku
 bardzo ważnych opcji.
 </p>
 
-<pre caption="Wybieranie opcji experimental code/drivers">
+<pre caption="Wybieranie opcji experimental code/drivers oraz generalnych
+ustawień">
 Code maturity level options ---&gt;
   [*] Prompt for development and/or incomplete code/drivers
+General setup --->	
+  [*] Support for hot-pluggable devices
 </pre>
 
 <p>
@@ -210,28 +218,7 @@ Nie zapomnij wkompilować sterownika dla swojej karty sieciowej.
 </p>
 
 <p>
-Wyłącz ADB raw keycodes:
-</p>
-
-<pre caption="Wyłączanie ADB raw keycodes">
-Macintosh Device Drivers ---&gt;
-  [ ] Support for ADB raw keycodes
-</pre>
-
-<p>
-Wybierz także właściwe wsparcie dla RTC (<e>wyłącz</e> opcję <c>Enhanced RTC</c>.
-</p>
-
-<pre caption="Aktywowanie właściwego wsparcia dla RTC">
-Character devices ---&gt;
-  [ ] Enhanced RTC
-
-General setup ---&gt;
-  [*] Support for /dev/rtc
-</pre>
-
-<p>
-Użytkownicy maszyn OldWorld będą potrzebowali wsparcia dla HFS, aby skopiować
+Użytkownicy komputerów OldWorld będą potrzebowali wsparcia dla HFS, aby skopiować
 skompilowane jądro na partycję MacOS.
 </p>
 
@@ -240,8 +227,17 @@ File Systems ---&gt;
   [*] HFS Support
 </pre>
 
+<p>	
+Wywłaszczanie w jądrze wciąż działa niestabilnie na platformie PPC i może spowodować błędy przy kompilacji, czy naruszenia ochrony pamięci. <e>Nie radzimy</e> korzystać z tej opcji. 
+</p>	
+ 	 	
+<pre caption="Upewnianie się, że wyłączono wywłaszczanie">	
+Platform options ---&gt;	
+  [ ] Preemptible Kernel	
+</pre>
+
 <p>
-Kiedy skończysz konfigurować swój kernel przejdź do paragrafu
+Po ukończeniu konfigurowania jądra należy przejść do paragrafu
 <uri link="#compiling">Kompilacja i instalacja</uri>.
 </p>
 
@@ -423,13 +419,15 @@ sprzęt i wczyta odpowiednie moduły, a następnie uruchomi się właściwy syst
 </pre>
 
 <p>
-Now, let's perform one more step to get our system to be more like the
-Installation CD -- let's emerge <c>coldplug</c>. While the initrd autodetects
-hardware that is needed to boot your system, <c>coldplug</c> autodetects
-everything else. To emerge and enable <c>coldplug</c>, type the following:
+Następna czynność jeszcze bardziej upodobni nasz system do tego znajdującego się
+na płycie instalacyjnej. Zemergujemy <c>coldplug</c>, który działa na podobnej
+zasadzie jak initrd, wykrywający przy starcie wszystkie niezbędne do
+uruchomienia systemu urządzenia, z tym, że zajmuje się wszystkimi ich typami.
+Aby zemergować i uruchomić <c>coldplug</c> należy wykonać następujące
+polecenia:
 </p>
 
-<pre caption="Emerging and enabling coldplug">
+<pre caption="Emergowanie i uruchamianie coldplug">
 # <i>emerge coldplug</i>
 # <i>rc-update add coldplug boot</i>
 </pre>
@@ -448,7 +446,6 @@ skonfigurować ten program:
 Kolejny etap instalacji to <uri link="?part=1&amp;chap=8">Konfigurowanie
 systemu</uri>.
 </p>
-
 </body>
 </section>
 </sections>
