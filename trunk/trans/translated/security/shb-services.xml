@@ -1,6 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/security/shb-services.xml,v 1.2 2005/06/01 17:42:46 neysx Exp $ -->
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- Orig revision: 1.1 -->
+<!-- Translator: rane <rane@gentoo.pl> -->
+<!-- Title: Zabezpieczanie usług -->
+<!-- Status: Finished -->
+<!-- $Id: gentoo-security.xml 969 2005-05-21 18:46:46Z sekretarz $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
@@ -15,16 +20,16 @@
 <body>
 
 <p>
-Apache (1.3.26) comes with a pretty decent configuration file but again, we need
-to improve some things, like binding Apache to one address and preventing it
-from leaking information. Below are the options that you should apply the
-configuration file.
+Apache (1.3.26) posiada stosunkowo dobry domyślny plik konfiguracyjny, warto
+jednak nanieść na niego kilka poprawek, jak na przykład związanie go z jednym
+adresem czy zapobieganie wyciekom informacji. Poniżej podajemy opcje,
+które warto dodać do pliku konfiguracyjnego.
 </p>
 
 <p>
-If you did not disable <c>ssl</c> in your <path>/etc/make.conf</path> before
-installing Apache, you should have access to an ssl enabled server. Just add the
-following line to enable it.
+O ile nie wyłączono <c>ssl</c> w pliku <path>/etc/make.conf</path> przed
+instalacją, Apache powinien posiadać jego obsługę. Aby ją uaktywnić należy
+dopisać następującą linię:
 </p>
 
 <pre caption="/etc/conf.d/apache">
@@ -46,15 +51,15 @@ ServerTokens Prod
 </pre>
 
 <p>
-Apache is compiled with <c>--enable-shared=max</c> and 
-<c>--enable-module=all</c>. This will by default enable all modules, so you
-should comment out all modules in the <c>LoadModule</c> section
-(<c>LoadModule</c> and <c>AddModule</c>) that you do not use. Restart the
-service by executing <c>/etc/init.d/apache restart</c>.
+Apache jest kompilowany z opcjami <c>--enable-shared=max</c> i
+<c>--enable-module=all</c>, czyli ze wszystkimi modułami, co zmusza do
+wykomentowywania wszystkich przez nas nie używanych z sekcji <c>LoadModule</c>
+(<c>LoadModule</c> i <c>AddModule</c>). Następnie należy zrestartować usługę
+poleceniem <c>/etc/init.d/apache restart</c>.
 </p>
 
 <p>
-Documentation is available at <uri>http://www.apache.org</uri>.
+Całość dokumentacji znajduje się na stronie <uri>http://www.apache.org</uri>.
 </p>
 
 </body>
@@ -65,23 +70,24 @@ Documentation is available at <uri>http://www.apache.org</uri>.
 <body>
 
 <p>
-One can find documentation at the <uri
+Dokumentacja znajduje się na stronach <uri
 link="http://www.isc.org/products/BIND/bind9.html">Internet Software
-Consortium</uri>. The BIND 9 Administrator Reference Manual is also in
-the <path>doc/arm</path>.
+Consortium</uri>. "The BIND 9 Administrator Reference Manual" znajduje się
+również w katalogu <path>doc/arm</path>.
 </p>
 
 <p>
-The newer BIND ebuilds support chrooting out of the box. After emerging 
-<c>bind</c> follow these simple instructions:
+Nowsze ebuildy BIND umożliwiają chrootowanie się poza maszynę. Po zemergowaniu
+<c>bind</c> należy wykonać następujące czynności:
 </p>
 
-<pre caption="Chrooting BIND">
+<pre caption="Chrootowanie BIND">
 ebuild /var/db/pkg/net-dns/bind-9.2.2-r2/bind-9.2.2-r2.ebuild config\`"
 <comment>(Before running the above command you might want to change the chroot 
 directory in /etc/conf.d/named. Otherwise /chroot/dns will be used.)</comment>
-<comment>(You might need to substitute the version number with the current version number )</comment>
+<comment>(Należy zamienić podany numer wersji aktualnie używanym)</comment>
 </pre>
+
 </body>
 </section>
 <section>
@@ -89,10 +95,11 @@ directory in /etc/conf.d/named. Otherwise /chroot/dns will be used.)</comment>
 <body>
 
 <p>
-Djbdns is a DNS implementation on the security of which its author is willing to
-bet <uri link="http://cr.yp.to/djbdns/guarantee.html">money</uri>. It is very
-different from how Bind 9 works but worth a try.  More information can be
-obtained from <uri>http://www.djbdns.org</uri>.
+Djbdns to implementacja zabezpieczeń DNS, której autor jest tak pewny, że
+stawia na nią <uri link="http://cr.yp.to/djbdns/guarantee.html">pieniądze</uri>.
+Jej sposób działania bardzo różni się od tego z Bind 9, ale mimo wszystko warto
+ją wypróbować. Więcej informacji znajduje się na stronie
+<uri>http://www.djbdns.org</uri>.
 </p>
 
 </body>
@@ -103,12 +110,13 @@ obtained from <uri>http://www.djbdns.org</uri>.
 <body>
 
 <p>
-Generally, using FTP (File Transfer Protocol) is a bad idea. It uses unencrypted
-data (ie. passwords are sent in clear text), listens on 2 ports (normally port
-20 and 21), and attackers are frequently looking for anonymous logins for
-trading warez. Since the FTP protocol contains several security problems you
-should instead use <c>sftp</c> or HTTP. If this is not possible, secure your
-services as well as you can and prepare yourself.
+Generalnie używanie FTP (File Transfer Protocol) to kiepski pomysł. FTP używa
+niezaszyfrowanych haseł (są przesyłane czystym tekstem), nasłuchuje na dwóch
+portach (standardowo 20 i 21), a ponadto jest często atakowane przez
+włamywaczy szukających anonimowych serwerów w celu wymiany warezów. W związku z
+wieloma brakami w bezpieczeństwie protokołu FTP powinno się zamiast niego używać
+<c>sftp</c> lub HTTP. Jeśli nie jest to możliwe należy zabezpieczyć FTP jak to
+tylko możliwe i przygotować się na sporo problemów.
 </p>
 
 </body>
@@ -118,30 +126,31 @@ services as well as you can and prepare yourself.
 <body>
 
 <p>
-If you only need local applications to access the <c>mysql</c> database, 
-uncomment the following line in <path>/etc/mysql/my.cnf</path>.
+Jeśli dostęp do bazy <c>mysql</c> jest potrzebny wyłącznie lokalnym aplikacjom
+należy odkomentować następującą linię w pliku <path>/etc/mysql/my.cnf</path>:
 </p>
 
-<pre caption="Disable network access">
+<pre caption="Zamknięcie dostępu z sieci">
 skip-networking
 </pre>
 
 <p>
-Then we disable the use of the LOAD DATA LOCAL INFILE command. This is to
-prevent against unauthorized reading from local files. This is relevant when new
-SQL Injection vulnerabilities in PHP applications are found.
+Następnie wyłączymy komendę LOAD DATA LOCAL INFILE. Zapobiegnie to
+nieautoryzowanemu dostępowi do lokalnych plików. Takie zabezpieczenie przydaje
+się np. w przypadku odkrycia słabych punktów w PHP umożliwiających atak typu SQL
+Injection.
 </p>
 
-<pre caption="Disable LOAD DATA LOCAL INFILE in the [mysqld] section">
+<pre caption="Wyłączanie LOAD DATA LOCAL INFILE w sekcji [mysqld]">
 set-variable=local-infile=0
 </pre>
 
 <p>
-Next, we must remove the sample database (test) and all accounts except the
-local <c>root</c> account.
+Następnie musimy usunąć przykładową bazę danych (test) i wszystkie konta poza
+kontem roota.
 </p>
 
-<pre caption="Removing sample database and all unnecessary users">
+<pre caption="Usuwanie przykładowej bazy i zbędnych kont">
 mysql> <i>drop database test;</i>
 mysql> <i>use mysql;</i>
 mysql> <i>delete from db;</i>
@@ -150,14 +159,15 @@ mysql> <i>flush privileges;</i>
 </pre>
 
 <warn>
-Be careful with the above if you have already configured user accounts.
+Należy uważać z wpisywaniem powyższych poleceń jeśli posiada się już
+skonfigurowane konta użytkowników.
 </warn>
 
 <note>
-If you have been changing passwords from the MySQL prompt, you should always
-clean out <path>~/.mysql_history</path> and
-<path>/var/log/mysql/mysql.log</path> as they store the executed SQL commands
-with passwords in clear text.
+Jeśli zmieniano hasła z wiersza poleceń MySQL należy wyczyścić pliki
+<path>~/.mysql_history</path> i <path>/var/log/mysql/mysql.log</path> ponieważ
+zawierają one historię poleceń SQL wraz z hasłami zapisanymi otwartym
+tekstem.
 </note>
 
 </body>
@@ -167,8 +177,9 @@ with passwords in clear text.
 <body>
 
 <p>
-Proftpd has had several security problems, but most of them seem to have been
-fixed. Nonetheless, it is a good idea to apply some enhancements:
+Proftpd miało wiele problemów związanych z bezpieczeństwem, na szczęście
+większość z nich już naprawiono. Do domyślnego pliku konfiguracyjnego warto
+dodać następujące opcje:
 </p>
 
 <pre caption="/etc/proftpd/proftpd.conf">
@@ -210,7 +221,7 @@ DenyFilter \*.*/
 </pre>
 
 <p>
-One can find documentation at <uri>http://www.proftpd.org</uri>.
+Całość dokumentacji znajduje się na stronie <uri>http://www.proftpd.org</uri>.
 </p>
 
 </body>
@@ -220,14 +231,16 @@ One can find documentation at <uri>http://www.proftpd.org</uri>.
 <body>
 
 <p>
-Pure-ftpd is an branch of the original trollftpd, modified for security reasons
-and functionality by Frank Dennis.
+Pure-ftpd to odmiana trollftpd, zmodyfikowana pod kątem bezpieczeństwa przez
+Franka Dennisa.
 </p>
 
 <p>
-Use virtual users (never system accounts) by enabling the <c>AUTH</c> option.
-Set this to <c>-lpuredb:/etc/pureftpd.pdb</c> and create your users by using
-<c>/usr/bin/pure-pw</c>. 
+Dzięki włączeniu opcji <c>AUTH</c> uniemożliwia się korzystania z kont
+użytkowników systemowych i zmusza serwer do pracy z kontami wirtualnymi.
+Bazę danych wirtualnych użytkowników tworzy się poleceniem
+<c>-lpuredb:/etc/pureftpd.pdb</c>, a użytkowników do niej dodaje za pomocą
+<c>/usr/bin/pure-pw</c>.
 </p>
 
 <pre caption="/etc/conf.d/pure-ftpd">
@@ -238,19 +251,20 @@ MISC_OTHER="-A -E -X -U 177:077 -d -4 -L100:5 -I 15"
 </pre>
 
 <p>
-Configure your <c>MISC_OTHER</c> setting to deny anonymous logins (<c>-E</c>),
-chroot everyone (<c>-A</c>), prevent users from reading or writing to files
-beginning with a . (dot) (<c>-X</c>), max idle time (<c>-I</c>), limit recursion
-(<c>-L</c>), and a reasonable <c>umask</c>.
+Warto również skonfigurować opcję <c>MISC_OTHER</c>, tak aby uniemożliwić
+logowanie się jako anonymous (<c>-E</c>), zamykać każdego użytkownika w chroocie
+(<c>-A</c>), uniemożliwić dostęp do plików rozpoczynających się od . (kropki)
+(<c>-X</c>), podać maksymalny czas beczynności (<c>-I</c>), zabronić
+rekursywnego pobierania (<c>-L</c>), oraz ustawić sensowny <c>umask</c>.
 </p>
 
 <warn>
-Do <e>not</e> use the <c>-w</c> or <c>-W</c> options! If you want to have a
-warez site, stop reading this guide!
+<e>Nie wolno używać</e> opcji <c>-w</c> lub <c>-W</c>! Jeśli chcesz założyć warez
+zrezygnuj z czytania tego przewodnika!
 </warn>
 
 <p>
-One can find documentation at <uri>http://www.pureftpd.org</uri>.
+Całość dokumentacji znajduje się na stronie <uri>http://www.pureftpd.org</uri>.
 </p>
 
 </body>
@@ -260,9 +274,9 @@ One can find documentation at <uri>http://www.pureftpd.org</uri>.
 <body>
 
 <p>
-Vsftpd (short for very secure ftp) is a small ftp daemon running a reasonably
-default configuration. It is simple and does not have as many features as 
-pureftp and proftp.
+Vsftp (skrót od "bardzo bezpieczne ftp" (very secure ftp)) to mały daemon ftp z
+bardzo dobrą domyślną konfiguracją. Jest bardzo prostym programem, więc nie
+posiada tak rozbudowanych możliwości jak pureftp albo proftp.
 </p>
 
 <pre caption="/etc/vsftpd">
@@ -286,10 +300,10 @@ ls_recurse_enable=NO
 </pre>
 
 <p>
-As you can see, there is no way for this service to have individual permissions,
-but when it comes to anonymous settings it is
-quite good. Sometimes it can be nice to have an anonymous ftp server (for
-sharing open source), and vsftpd does a really good job at this.
+Jak widać nie ma możliwości, aby usługa ta posiadała jakieś indywidualne
+ustawienia praw dostępu. Jeśli jednak chodzi o ustawienia dla
+anonimowych użytkowników okazuje się ona bardzo dobra, a taki anonimowy serwer
+przydaje się np. gdy trzeba szybko podzielić się z kimś kodem open source.
 </p>
 
 </body>
@@ -299,10 +313,14 @@ sharing open source), and vsftpd does a really good job at this.
 <body>
 
 <p>
-Qmail is often considered to be a very secure mail server. It is written with
-security (and paranoia) in mind. It does not allow relaying by default and has
-not had a security hole since 1996. Simply <c>emerge qmail</c> and go configure!
+Qmail jest uważany za bardzo bezpieczny serwer pocztowy. Przy jego pisaniu
+zwrócono szczególną uwagę na opcje związane z bezpieczeństwem. Domyślna
+konfiguracja nie umożliwia przekazywania poczty, a w samym programie nie
+znaleziono błędu związanego z bezpieczeństwem od 1996 roku. Nie ma się co
+zastanawiać, należy po prostu wpisać <c>emerge qmail</c> i zabrać się za
+konfigurację.
 </p>
+
 </body>
 </section>
 <section>
@@ -310,9 +328,9 @@ not had a security hole since 1996. Simply <c>emerge qmail</c> and go configure!
 <body>
 
 <p>
-Samba is a protocol to share files with Microsoft/Novell networks and it
-should <e>not</e> be used over the Internet. Nonetheless, it still needs
-securing.
+Samba jest protokołem umożliwiającym wymianę plików z sieciami Microsoft i
+Novell, z którego <e>nie powinno</e> używać się w Internecie. Ponadto jak niemal każdy
+program wymaga pewnego dokonfigurowania.
 </p>
 
 <pre caption="/etc/samba/smb.conf">
@@ -347,14 +365,15 @@ securing.
 </pre>
 
 <p>
-Make sure that permissions are set correct on every share and remember to read
-the <uri link="http://www.samba.org">documentation</uri>.
+Warto upewnić się, że wszystkie prawa dostępu są ustawione prawidłowo
+oraz zapoznać się z <uri link="http://www.samba.org">dokumentacją</uri>
+programu.
 </p>
 
 <p>
-Now restart the server and add the users who should have access to this
-service. This is done though the command <path>/usr/bin/smbpasswd</path> with
-the parameter <c>-a</c>.
+Następnie należy zrestartować serwer i dodać konta użytkowników, którzy mają
+mieć dostęp do tej usługi. Dokonuje się tego przy pomocy polecenia
+<path>/usr/bin/smbpasswd</path> z parametrem <c>-a</c>.
 </p>
 
 </body>
@@ -364,11 +383,11 @@ the parameter <c>-a</c>.
 <body>
 
 <p>
-The only securing that OpenSSH needs is turning on a stronger authentication
-based on public key encryption. Too many sites (like
-<uri>http://www.sourceforge.net</uri>, <uri>http://www.php.net</uri> and 
-<uri>http://www.apache.org</uri>) have suffered unauthorized intrusion
-due to password leaks or bad passwords.
+Jedynym zabezbieczeniem jakiego potrzebuje OpenSSH jest przełączenie go na
+silniejszy mechanizm uwierzytelniania, oparty na szyfrowaniu klucza publicznego
+(przy pomocy niewłaściwie ustawionych haseł włamano się już między innymi na
+strony <uri>http://www.sourceforge.net</uri>, <uri>http://www.php.net</uri> i
+<uri>http://www.apache.org</uri>).
 </p>
 
 <pre caption="/etc/ssh/sshd_config">
@@ -403,24 +422,25 @@ ListenAddress 127.0.0.1
 </pre>
 
 <p>
-Also verify that you don't have <c>UsePAM yes</c> in your configuration file as
-it overrides the public key authentication mechanism.
+Należy sprawdzić czy w pliku konfiguracyjnym nie ma linii <c>UsePAM yes</c>,
+ponieważ nadpisze ona ustawienia dla uwierzytelniania poprzez klucze publiczne.
 </p>
 
 <p>
-Now all that your users have to do is create a key (on the machine
-they want to login from) with the following command:
+Teraz wszyscy użytkownicy muszą wygenerować własne klucze na komputerach, z
+których będą się logować na nasz serwer. Dokonuje się tego następującym
+poleceniem:
 </p>
 
-<pre caption="Create a DSA keypair">
+<pre caption="Tworzenie pary kluczy DSA">
 # <i>/usr/bin/ssh-keygen -t dsa</i>
 </pre>
 
 <p>
-And type in a pass phrase.
+Następnie należy wpisać hasło.
 </p>
 
-<pre caption="Output of ssh-keygen">
+<pre caption="Wynik polecenia ssh-keygen">
 Generating public/private dsa key pair.
 Enter file in which to save the key (/home/kn/.ssh/id_dsa):<i>[Press enter]</i>
 Created directory '/home/kn/.ssh'.
@@ -433,52 +453,54 @@ The key fingerprint is:
 </pre>
 
 <p>
-This will add two files in your <path>~/.ssh/</path> directory called 
-<path>id_dsa</path> and <path>id_dsa.pub</path>. The file called 
-<path>id_dsa</path> is your private key and should be kept from other people
-than yourself. The other file <path>id_dsa.pub</path> is to be distributed to
-every server that you have access to. Add the key to the users home directory
-in <path>~/.ssh/authorized_keys</path> and the user should be able to login.
+W wyniku tych czynności w katalogu <path>~/.ssh/</path> zostaną utworzone dwa
+pliki o nazwach <path>id_dsa</path> i <path>id_dsa.pub</path>. Plik o nazwie
+<path>id_dsa</path> to prywatny klucz i nie powinien być przekazywany innym
+osobom. Natomiast drugi plik, <path>id_dsa.pub</path>, powinno umieścić się
+w <path>~/.ssh/authorized_keys</path> na każdym serwerze, na który zamierzamy
+się logować.
 </p>
 
 <p>
-Now your users should guard this private key well. Put it on a media that they
-always carry with them or keep it on their workstation (put this in the <uri
-link="?part=1&amp;chap=1#security_policies">password</uri> policy).
+Użytkownicy powinni pilnować swoich prywatnych kluczy i przechowywać je
+wyłącznie na nośnikach, które będą zawsze mieć przy sobie lub na swoich
+stacjach roboczych. Informację o tym należy umieścić w <uri
+link="#security_policies">polityce</uri> bezpieczeństwa dotyczącej haseł.
 </p>
 
 <p>
-For more information go to the <uri
-link="http://www.openssh.org">OpenSSH</uri> web site.
+Więcej informacji na ten temat można znaleźć na stronie projektu <uri
+link="http://www.openssh.org">OpenSSH</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Using xinetd</title>
+<title>Używanie xinetd</title>
 <body>
 
 <p>
-xinetd is a replacement for <c>inetd</c> (which Gentoo does not have), 
-the Internet services daemon. It supports access control based on the address of
-the remote host and the time of access. It also provide extensive logging 
-capabilities, including server start time, remote host address, remote user 
-name, server run time, and actions requested.
+xintetd to zastępstwo dla demona usług internetowych - <c>inetd</c> (którego nie
+ma w Gentoo). Umożliwia kontrolę dostępu na podstawie adresu i czasu tego
+dostępu. Posiada również szerokie możliwości logowania, obejmujące między
+innymi czas uruchomienia serwera, zdalne adresy hostów, zdalnych użytkowników,
+czas działania serwera i wszystkie zgłoszone żądania.
 </p>
 
 <p>
-As with all other services it is important to have a good default configuration.
-But since <c>xinetd</c> is run as root and supports protocols
-that you might not know how they work, we recommend not to use it. But if you
-want to use it anyway, here is how you can add some security to it:
+Jak w przypadku wszystkich innych usług ważną rzeczą jest tu bardzo uważna
+konfiguracja. Ponieważ jednak <c>xinetd</c> jest uruchamiane z konta
+roota i obsługuje wiele protokołów, których działanie nie jest powszechnie
+znane, odradzamy jego używanie. Jeśli jednak koniecznie chcecie go używać oto
+jak należy go zabezpieczyć:
 </p>
 
-<pre caption="Install xinetd">
+<pre caption="Instalowanie xinetd">
 # <i>emerge xinetd tcp-wrappers</i>
 </pre>
 
 <p>
-And edit the configuration file:
+Następnie edytujemy plik konfiguracyjny:
 </p>
 
 <pre caption="/etc/xinetd.conf">
@@ -524,7 +546,7 @@ service cvspserver
 </pre>
 
 <p>
-For more information read <c>man 5 xinetd.conf</c>.
+Więcej informacji znajduje się w <c>man 5 xinetd.conf</c>.
 </p>
 
 </body>
@@ -535,33 +557,38 @@ For more information read <c>man 5 xinetd.conf</c>.
 <body>
 
 <p>
-By default Xorg is configured to act as an Xserver. This can be dangerous since
-X uses unencrypted TCP connections and listens for xclients.
+Domyślnie Xorg jest skonfigurowany jako serwer X. Może to być niebezpieczne,
+ponieważ X używa nieszyfrowanych połączeń TCP i oczekuje na połączenia od
+xklientów.
 </p>
 
 <impo>
-If you do not need this service disable it! 
+Jeśli ta usługa nie jest niezbędna należy ją po prostu wyłączyć.
 </impo>
 
 <p>
-But if you depend on using your workstation as a Xserver use the 
-<c>/usr/X11R6/bin/xhost</c> command with caution. This command allows clients 
-from other hosts to connect and use your display. This can become handy if you 
-need an X application from a different machine and the only way is through the 
-network, but it can also be exploited by an attacker. The syntax of this
-command is <c>/usr/X11R6/bin/xhost +hostname</c>
+Jeśli jednak komputer ma działać jako serwer X należy używać polecenia
+<c>/usr/X11R6/bin/xhost</c> z ostrożnością. Polecenie to umożliwia łączenie się
+z naszym serwerem klientom z innych hostów i używanie naszego ekranu. Może to
+być pomocne, jeśli chcemy użyć aplikacji opartej na X na innym komputerze, do
+którego dostęp mamy jedynie przez sieć, ale może również zostać wykorzystane w
+niecnych celach przez włamywaczy. Składnia dla tej komendy to
+<c>/usr/X11R6/bin/xhost +hostname</c>.
 </p>
 
 <warn>
-Do not ever use the <c>xhost +</c> feature! This will allow any client to 
-connect and take control of your X. If an attacker can get access to your X, 
-he can log your keystrokes and take control over your desktop. If you have to 
-use it always remember to specify a host.
+Nie wolno używać składni <c>xhost +</c>! Umożliwi to połączenie z serwerem i
+przejęcie nad nim kontroli dowolnemu klientowi. Jeśli włamywacz uzyska dostęp do
+X może bez trudu logować sekwencje klawiszy wpisywane przez użytkowników, poznać
+ich hasła i w efekcie tego przejąć całkowitą kontrolę nad maszyną. Jeśli
+używanie X jako serwera jest konieczne należy zawsze wyszczególnić prawidłowe
+hosty.
 </warn>
 
 <p>
-A more secure solution is to disable this feature completely by starting X with 
-<c>startx -- -nolisten tcp</c> or disable it permanently in the configuration. 
+Dużo bezpieczniejszym rozwiązaniem jest nie korzystanie z tej możliwości np.
+poprzez uruchamianie serwera X poleceniem <c>startx -- -nolisten tcp</c> lub
+całkowite jej wyłączenie w plikach konfiguracyjnych.
 </p>
 
 <pre caption="/usr/X11R6/bin/startx">
@@ -569,9 +596,9 @@ defaultserverargs="-nolisten tcp"
 </pre>
 
 <p>
-To make sure that <path>startx</path> does not get overwritten when emerging a
-new version of Xorg you must protect it. Add the following line to
-<path>/etc/make.conf</path>:
+Aby uniemożliwić nadpisanie pliku <path>startx</path> w trakcie emergowania
+nowych wersji Xorg należy dodać go do listy plików chronionych, dokonuje się
+tego poprzez dopisanie następującej linii do pliku <path>/etc/make.conf</path>:
 </p>
 
 <pre caption = "/etc/make.conf">
@@ -579,11 +606,11 @@ CONFIG_PROTECT_MASK="/usr/X11R6/bin/startx"
 </pre>
 
 <p>
-If you use a graphical login manager you need a different approach.
+Graficzny menedżer logowania wymaga nieco innego podejścia:
 </p>
 
 <p>
-For <c>gdm</c> (Gnome Display Manager)
+Dla <c>gdm</c> (Gnome Display Manager):
 </p>
 
 <pre caption="/etc/X11/gdm/gdm.conf">
@@ -592,7 +619,7 @@ command=/usr/X11R6/bin/X -nolisten tcp
 </pre>
 
 <p>
-For <c>xdm</c> (X Display Manager) and <c>kdm</c> (Kde Display Manager)
+Dla <c>xdm</c> (X Display Manager) i <c>kdm</c> (Kde Display Manager):
 </p>
 
 <pre caption="/etc/X11/xdm/Xservers">
