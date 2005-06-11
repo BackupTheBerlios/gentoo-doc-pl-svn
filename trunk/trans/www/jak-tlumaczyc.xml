@@ -12,8 +12,8 @@
   <mail link="sekretarz@gentoo.org">sekretarz</mail>
 </author>
 
-<version>2.2</version>
-<date>2005-06-10</date>
+<version>2.3</version>
+<date>2005-06-11</date>
 
 <abstract>
 Przewodnik dla tłumaczy dokumentacji Gentoo na język polski.
@@ -22,7 +22,7 @@ Przewodnik dla tłumaczy dokumentacji Gentoo na język polski.
 <license/>
 
 <chapter>
-<title>Wprowadzenie.</title>
+<title>Wprowadzenie</title>
 <section>
 <body>
 
@@ -117,6 +117,13 @@ odpowiednie poprawki. Jak to zrobić? Zamieniając angielski tekst polskim i
 starając się jednocześnie nie naruszyć składni xml.
 </p>
 
+<warn>
+Dokumenty MUSZĄ być pisane w formie bezosobowej: "należy", "trzeba", "warto",
+którą czasami można poprzeć także liczbą mnogą "robimy", "instalujemy", "klikamy"
+itp. Absolutnie zabronione jest pisanie per "ty", NAWET jeśli taka forma jest
+używana w oryginale.
+</warn>
+
 <p>
 Kilka przykładów:
 </p>
@@ -152,8 +159,9 @@ see a listing of available stages, use &lt;c&gt;ls&lt;/c&gt;:
 <comment>Po:</comment>
 
 &lt;p&gt;
-Pliki stage umieszczone są w katalogu &lt;path&gt;/mnt/cdrom/stages&lt;/path&gt; na CD.
-Do przejrzenia ich spisu używamy polecenia &lt;c&gt;ls&lt;/c&gt;:
+Pliki "stage" znajdują się w katalogu &lt;path&gt;/mnt/cdrom/stages&lt;/path&gt;
+ma płycie instalacyjnej. Do przejrzenia ich spisu używamy polecenia
+&lt;c&gt;ls&lt;/c&gt;:
 &lt;p&gt;
 </pre>
 
@@ -174,6 +182,8 @@ właściwy sposób również w odpowiednich fragmentach przetłumaczonego tekstu
 &lt;!-- Title: PRZETŁUMACZONY TYTUŁ DOKUMENTU --&gt;
 &lt;!-- Status: DO KOREKTY --&gt;
 
+&lt;!DOCTYPE guide SYSTEM "/dtd/guide.dtd"&gt;
+
 &lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
 &lt;!-- See http://creativecommons.org/licenses/by-sa/1.0 --&gt;
 &lt;!-- $Id: $ --&gt;
@@ -190,9 +200,8 @@ Uwagi:
 </p>
 
 <p>
-To jest wzór nagłówka jaki powinien mieć <e>KAŻDY</e> przetłumaczony dokument.
-Należy zamienić odpowiednie wpisy swoimi danymi lub danymi dokumentu, gdyż bez
-tego dokumenty wrócą do autora w celu poprawienia.
+To jest wzór nagłówka jaki powinien mieć KAŻDY przetłumaczony dokument.
+Wszystkie pola należy wypełnić specyficznymi dla tłumacza i dokumentu danymi,
 </p>
 
 <p>
