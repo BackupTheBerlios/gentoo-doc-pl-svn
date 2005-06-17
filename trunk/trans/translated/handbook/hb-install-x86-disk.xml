@@ -148,16 +148,18 @@ link="#fdisk">partycjonowania dysku przy pomocy fdisk</uri>.
 <body>
 
 <p>
-Ilość partycji ściśle zależy od naszego środowiska. Na przykład jeśli
-administrujemy systemem mającym wielu użytkowników prawdopodobnie uznamy za
-stosowne oddzielenie <path>/home</path>, co poprawi bezpieczeństwo i uprości
-proces tworzenia kopii zapasowych. Jeżeli docelowym zastosowaniem instalowanego
-systemu jest serwer pocztowy to na osobnej partycji należy umieścić
-<path>/var</path> gdzie przechowywane są listy. Dobry wybór systemu plików może
-tu znacznie zwiększyć wydajność. Za to oddzielenie <path>/opt</path> jest
-dobrym rozwiązaniem na serwerach gier, gdyż większość używanego oprogramowania
-będzie instalowana właśnie tam. Powodami przyjęcia takiego rozwiązania są również
-bezpieczeństwo i łatwość tworzenia kopii zapasowych.
+Ilość partycji ściśle zależy od danego środowiska. Na przykład, jeśli
+administrujesz systemem mającym wielu użytkowników, prawdopodobnie uznasz za
+stosowne oddzielenie <path>/home</path> aby poprawić bezpieczeństwo i uprościć
+tworzenie kopii zapasowych. Jeżeli docelowym zastosowaniem Gentoo jest serwer
+poczty, na osobnej partycji powinieneś umieścić <path>/var</path>, gdzie
+przechowywane są listy. Dobry wybór systemu plików może znacznie zwiększyć
+wydajność. Oddzielenie <path>/opt</path> jest dobrym rozwiązaniem na serwerach
+gier, gdyż większość używanego oprogramowania zostanie tam zainstalowana. Powód
+jest podobny jak przy <path>/home</path>: bezpieczeństwo i kopie zapasowe.  Na
+pewno warto zapewnić dużo wolnego miejsca na <path>/usr</path>, ponieważ będą
+tam się znajdowały nie tylko dane wszystkich zainstalowanych pakietów, ale
+również ważące 500 MB drzewo Portage i kody źródłowe programów.
 </p>
 
 <p>
