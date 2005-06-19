@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding="UTF-8"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.12 -->
+<!-- Orig revision: 1.13 -->
 <!-- Translator: Squeeze <squeeze@tvk.wroc.pl> -->
 <!-- Title: Przewodnik po LTSP -->
 <!-- Status: Ukończono -->
@@ -246,17 +246,17 @@ Uważam, że jest to najtrudniejszy krok. Musisz stworzyć działający konfig D
 </p>
 
 <pre caption = "dhcpd.conf">
-<codenote>Podstawowe opcje</codenote>
+<comment>Podstawowe opcje</comment>
 default-lease-time            21600;
 max-lease-time                21600;
 use-host-decl-names           on;
 ddns-update-style             ad-hoc;
 
-<codenote>Opcje Bootp</codenote>
+<codemment>Opcje Bootp</comment>
 allow booting;
 allow bootp;
 
-<codenote>Opcje sieci</codenote>
+<comment>Opcje sieci</comment>
 option subnet-mask            255.255.255.0;
 option broadcast-address      192.168.0.255;
 option routers                192.168.0.254;
@@ -264,12 +264,12 @@ option domain-name-servers    192.168.0.254;
 option log-servers            192.168.0.254;
 option domain-name            "yourdomain.com";
 
-<codenote>Opcje ścieżki LTSP</codenote>
+<comment>Opcje ścieżki LTSP</comment>
 option root-path              "192.168.0.254:/opt/ltsp-4.1/i386";
 filename                      "/lts/vmlinuz-2.4.26-ltsp-2";
 
-<codenote>Jeśli twoja stacja robocza posiada NIC ISA, usuń znak komentarza</codenote>
-<codenote>sprzed linii, ustaw sterownik oraz IO</codenote>
+<comment>Jeśli twoja stacja robocza posiada NIC ISA, usuń znak komentarza</comment>
+<comment>sprzed linii, ustaw sterownik oraz IO</comment>
 #option option-128 code 128 = string;
 #option option-129 code 129 = text;
 #option option-128 e4:45:74:68:00:00;
@@ -277,9 +277,9 @@ filename                      "/lts/vmlinuz-2.4.26-ltsp-2";
 
 shared-network WORKSTATIONS {
   subnet 192.168.0.0 netmask 255.255.255.0 {
-    <codenote>Udostępnianie stacjom roboczym dynamicznych adresów IP</codenote>
+    <comment>Udostępnianie stacjom roboczym dynamicznych adresów IP</comment>
     range dynamic-bootp 192.168.0.1 192.168.0.16;
-    <codenote>Konfiguracja stacji roboczych do używania bootowania PXE</codenote>
+    <comment>Konfiguracja stacji roboczych do używania bootowania PXE</comment>
     #host ws001 {
     #  hardware ethernet     00:E0:06:E8:00:84;
     #  fixed-address         192.168.0.1;
