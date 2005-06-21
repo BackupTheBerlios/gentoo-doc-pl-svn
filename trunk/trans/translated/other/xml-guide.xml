@@ -8,7 +8,7 @@
 <!-- $Id$ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license-->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
 <guide link="/doc/pl/xml-guide.xml" lang="pl">
 <title>Gentoo Linux XML Guide</title>
@@ -43,8 +43,8 @@ Przewodnik zakłada podstawową wiedzę roboczą o XML i HTML.
 <!-- See http://creativecommons.org/licenses/by-sa/2.0 -->
 <license/>
 
-<version>2.13</version>
-<date>2005-02-14</date>
+<version>2.22</version>
+<date>2005-06-09</date>
 
 <chapter>
 <title>Podstawy</title>
@@ -94,9 +94,10 @@ znaczników używanych w dokumentach XML:
 </p>
 
 <pre caption="Początkowa część dokumentu guide XML">
-&lt;?xml version='1.0' encoding="UTF-8"?&gt;
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!DOCTYPE guide SYSTEM "/dtd/guide.dtd"&gt;
-&lt;guide link="<i>względna/ścieżka/do/twojego/guide.xml</i>" lang="<i>pl</i>"&gt;
+&lt;!-- &#36;Header&#36; --&gt;
+&lt;guide link="<i>/doc/pl/guide.xml</i>" lang="<i>pl</i>"&gt;
 &lt;title&gt;<i>Gentoo Linux Documentation Guide</i>&lt;/title&gt;
 &lt;author title="<i>Author</i>"&gt;
   &lt;mail link="<i>yourname@gentoo.org</i>"&gt;<i>Twoje nazwisko</i>&lt;/mail&gt;
@@ -109,7 +110,7 @@ Linux, a dokument ten sam został stworzony przy użyciu GuideXML.</i>
 &lt;/abstract&gt;
 
 &lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
-&lt;!-- See http://creativecommons.org/licenses/by-sa/2.0 --&gt;
+&lt;!-- See http://creativecommons.org/licenses/by-sa/2.5 --&gt;
 &lt;license/&gt;
 
 &lt;version&gt;<i>1.0</i>&lt;/version&gt;
@@ -118,16 +119,17 @@ Linux, a dokument ten sam został stworzony przy użyciu GuideXML.</i>
 
 <p>
 W pierwszym wierszu widzimy obowiązkowy znacznik, który mówi, że jest to
-dokument XML.  Dalej znajduje się znacznik <c>&lt;guide&gt;</c> -- cały dokument
-przewodnika jest zamknięty wewnątrz pary <c>&lt;guide&gt; &lt;/guide&gt;</c>.
-Atrybut <c>link</c> jest obowiązkowy i powinien zawierać względną ścieżkę do
-dokumentu. Używa się go głównie do
-tworzenia linka do wersji dokumentu nadającej się do druku.
-Jeśli podasz złą wartość, link do drukowalnej wersji nie będzie działać albo
-wydrukuje zły dokument. Atrybut <c>lang</c> podaje kod języka twojego
-dokumentu. Używany jest do formatowania daty i wstawiania słów takich jak
-"<e>Uwaga</e>", "<e>Zawartość</e>", itp. w podanym języku. Językiem domyślnym
-jest angielski.
+dokument XML. Linia  <c>&lt;!-- &#36;Header&#36; --&gt;</c> zostanie
+zmodyfikowana automatycznie przez serwer CVS, służy ona do przechowywania
+informacji o wersji dokumentu.  Dalej znajduje się znacznik <c>&lt;guide&gt;</c>
+-- cały dokument przewodnika jest zamknięty wewnątrz pary <c>&lt;guide&gt;
+&lt;/guide&gt;</c>. Atrybut <c>link</c> jest obowiązkowy i powinien zawierać
+absolutną ścieżkę do dokumentu, względnie do katalogu głównego. Używa się go
+głównie do tworzenia odnośnika do wersji dokumentu nadającej się do druku. eśli
+podasz złą wartość, link do drukowalnej wersji nie będzie działać albo wydrukuje
+zły dokument. Atrybut <c>lang</c> podaje kod języka twojego okumentu. Używany
+jest do formatowania daty i wstawiania słów takich jak <e>Uwaga</e>",
+"<e>Zawartość</e>", itp. w podanym języku. Językiem domyślnym est angielski.
 </p>
 
 <p>
@@ -166,7 +168,7 @@ znajdowały się przed treścią dokumentu.
 W końcu mamy znacznik <c>&lt;license/&gt;</c>, publikujący dokument
 zgodnie z licencją <uri link="http://creativecommons.org/licenses/by-sa/2.0/">Creative 
 Commons - Attribution / Share Alike</uri>, której wymaga <uri 
-link="/doc/en/doc-policy.xml">Documentation Policy</uri>.
+link="/proj/en/gdp/doc/doc-policy.xml">Documentation Policy</uri>.
 </p>
 
 </body>
@@ -176,16 +178,16 @@ link="/doc/en/doc-policy.xml">Documentation Policy</uri>.
 <body>
 
 <p>
-Gdy znasz już znaczniki podstawowe, jesteś gotów, by dodać do
-dokumentu elementy strukturalne.  Przewodniki podzielone są na rozdziały, każdy
-rodział może mieć jedną lub więcej sekcji. Każdy rozdział i każda sekcja ma
-swój tytuł. Oto przykład rozdziału z jedną sekcją, zawierającą jeden akapit.
-Jeśli dadasz ten XML do kodu z <uri link="#doc_chap2_pre1">poprzedniego przykładu</uri>
-i na końcu dołożysz <c>&lt;/guide&gt;</c> będziesz mieć poprawny, choć najmniejszy
+Gdy znasz już znaczniki podstawowe, jesteś gotów, by dodać do dokumentu elementy
+strukturalne.  Przewodniki podzielone są na rozdziały, każdy rodział może mieć
+jedną lub więcej sekcji. Każdy rozdział i każda sekcja ma swój tytuł. Oto
+przykład rozdziału z jedną sekcją, zawierającą jeden akapit. Jeśli dadasz ten
+XML do kodu z <uri link="#doc_chap2_pre1">poprzedniego przykładu</uri> i na
+końcu dołożysz <c>&lt;/guide&gt;</c> będziesz mieć poprawny, choć najmniejszy
 dokument przewodnika:
 </p>
 
-<pre>
+<pre caption="Przykładowe guide">
 &lt;chapter&gt;
 &lt;title&gt;<i>Oto mój rozdział</i>&lt;/title&gt;
 &lt;section&gt;
@@ -230,7 +232,7 @@ Nadszedł czas nauczyć się, jak wprowadzać właściwą treść. Oto przykład
 z elementem <c>&lt;body&gt;</c>:
 </p>
 
-<pre>
+<pre caption="Przykładowy tag body">
 &lt;p&gt;
 Oto akapit.  &lt;path&gt;/etc/passwd&lt;/path&gt; jest zbiorem.
 &lt;uri&gt;http://forums.gentoo.org&lt;/uri&gt; jest moją ulubioną stroną WWW.
@@ -244,7 +246,7 @@ To jest wyjście tekstowe lub kod.
 Uczyń HTML/XML bardziej czytelnym dzięki wyróżnieniom:
 &lt;foo&gt;&lt;i&gt;bar&lt;/i&gt;&lt;/foo&gt;
 
-&lt;codenote&gt;Tak trzeba umieszczać uwagi wewnątrz bloku kodu&lt;/codenote&gt;
+&lt;comment&gt;Tak trzeba umieszczać uwagi wewnątrz bloku kodu&lt;/comment&gt;
 &lt;/pre&gt;
 
 &lt;note&gt;
@@ -270,14 +272,14 @@ Oto akapit.  <path>/etc/passwd</path> jest zbiorem.
 Napisz <c>ls</c> jeśli czujesz podobnie.  Ja <e>naprawdę</e> chcę już spać.
 </p>
 
-<pre>
+<pre caption="Przykadowy kod">
 To jest wyjście tekstowe lub kod.
 # <i>to jest wprowadzane przez użytkownika</i>
 
 Uczyń HTML/XML bardziej czytelnym dzięki wyróżnieniom:
 &lt;foo&gt;<i>bar</i>&lt;/foo&gt;
 
-<codenote>Tak trzeba umieszczać notatki wewnątrz bloku kodu</codenote>
+<comment>Tak trzeba umieszczać notatki wewnątrz bloku kodu</comment>
 </pre>
 
 <note>
@@ -354,6 +356,10 @@ Unikanie zbędnych cudzysłowów czyni dokument bardziej czytelnym i przejrzysty
 </p>
 
 <p>
+Do podświetlania poleceń wewnątrz <c>&lt;pre&gt;</c> używa się <c>&lt;i&gt;</c>.
+</p>
+
+<p>
 <c>&lt;e&gt;</c> używane jest do wyróżnienia słowa lub frazy; na przykład:
 <e>Rzeczywiście</e> dużo częściej powinienem używać średnika.  Jak możesz
 zobaczyć, tekst ten różni się od zwykłego akapitu wyróżnieniem.  Pomaga to
@@ -412,7 +418,7 @@ i podpis.  Niezbyt trudne :)  Obsługujemy również standardowy w HTMLu
 <body>
 
 <p>
-Przewodnik obsługuje uproszczoną składnię tabel, podobną do tej z HTML.  Aby
+Przewodnik obsługuje uproszczoną składnię tabel, podobną do tej z XHTML.  Aby
 zacząć tabelę, napisz znacznik <c>&lt;table&gt;</c>.  Rozpocznij wiersz
 znacznikiem <c>&lt;tr&gt;</c>.  Do wstawiania rzeczywistych danych tablicy,
 <e>nie</e> używamy znacznika HTML &lt;td&gt;; zamiast niego piszemy
@@ -420,7 +426,8 @@ znacznikiem <c>&lt;tr&gt;</c>.  Do wstawiania rzeczywistych danych tablicy,
 Możesz napisać <c>&lt;th&gt;</c> wszędzie tam, gdzie możesz użyć <c>&lt;ti&gt;</c>
 -- nie jest wymagane, żeby elementy <c>&lt;th&gt;</c> występowały tylko w
 pierwszym wierszu.  Aktualnie, znaczniki te nie mają żadnych atrybutów, ale
-wkrótce jakieś będą dodane (takie jak atrybut <c>caption=</c> dla <c>&lt;table&gt;</c>).
+wkrótce jakieś będą dodane (takie jak atrybut <c>caption=</c> dla
+<c>&lt;table&gt;</c>). Każdy znacznik należy zamknąć (wymóg XML).
 </p>
 
 <p>
@@ -444,9 +451,9 @@ link="#doc_chap1"&gt;pierwszego rozdziału&gt;</c>.  Aby wskazać <uri
 link="#doc_chap1_sect2">drugą sekcję Rozdziału pierwszego</uri>, 
 napisz <c>&lt;uri link="#doc_chap1_sect2"&gt;drugą sekcję Rozdziału pierszego&lt;/uri&gt;</c>.  
 Aby wskazać na ilustrację 3 w rozdziale 1, wpisz <c>&lt;uri
-link="doc_chap1_fig3"&gt;rys. 1.3&lt;/uri&gt;</c>.  Albo, aby odnieść się do <uri 
+link="#doc_chap1_fig3"&gt;rys. 1.3&lt;/uri&gt;</c>.  Albo, aby odnieść się do <uri 
 link="#doc_chap2_pre2">listingu 2 w rozdziale 2</uri>, napisz <c>&lt;uri 
-link="doc_chap2_pre2"&gt;listing 2.2&lt;/uri&gt;</c>.  Wkrótce dodamy nowe
+link="#doc_chap2_pre2"&gt;listing 2.2&lt;/uri&gt;</c>.  Wkrótce dodamy nowe
 możliwości auto-linków (takie jak obsługa tablic).
 </p>
 
@@ -501,7 +508,7 @@ musi występować <b>nowa linia</b>, za wyjątkiem znaczników:
 <c>&lt;th&gt;</c>, <c>&lt;ti&gt;</c>,
 <c>&lt;li&gt;</c>, <c>&lt;i&gt;</c>, <c>&lt;e&gt;</c>,
 <c>&lt;uri&gt;</c>, <c>&lt;path&gt;</c>, <c>&lt;b&gt;</c>,
-<c>&lt;comment&gt;</c>, <c>&lt;codenote&gt;</c>, <c>&lt;mail&gt;</c>.
+<c>&lt;comment&gt;</c>, <c>&lt;mail&gt;</c>.
 </p>
 
 <p>
@@ -607,7 +614,7 @@ link="http://forums.gentoo.org">Gentoo Forums</uri> niż
 
 <p>
 Jeśli wstawiasz komentarz wewnątrz konstrukcji <c>&lt;pre&gt;</c>, używaj
-<c>&lt;codenote&gt;</c> jeśli zawartość jest fragmentem kodu C or C++. W
+<c>&lt;coodenote&gt;</c> jeśli zawartość jest fragmentem kodu C or C++. W
 przeciwnym przypadku użyj <c>&lt;comment&gt;</c> i nawiasów. Używaj również
 komentarz <e>przed</e> tematem komentarza.
 </p>
@@ -649,6 +656,7 @@ dokumentacji. Składnia niewiele różni się od tej z GuideXML.
 <pre caption="Przykład książki">
 &lt;?xml version='1.0' encoding='UTF-8'?&gt;
 &lt;!DOCTYPE book SYSTEM "/dtd/book.dtd"&gt;
+&lt;!-- &#36;Header&#36; --&gt;
 
 &lt;<i>book</i> link="example.xml"&gt;
 &lt;title&gt;Przykładowa książka&lt;/title&gt;
@@ -724,6 +732,7 @@ Zawartość każdego rozdziału ma następującą strukturę:
 <pre caption="Składnia rozdziału">
 &lt;?xml version='1.0' encoding='UTF-8'?&gt;
 &lt;!DOCTYPE sections SYSTEM "/dtd/book.dtd"&gt;
+&lt;!-- &#36;Header&#36; --&gt;
 
 &lt;!--  The content of this document is licensed under the CC-BY-SA license --&gt;
 &lt;!--  See http://creativecommons.org/licenses/by-sa/2.0 --&gt;
@@ -762,7 +771,7 @@ przeglądania każdej części książki.
 
 <p>
 Przewodnik został zaprojektowany jako "gotowy do pracy", żeby developer mógł
-więcej czasu spędzić pisząc dokumentację, a mniej ucząc się składni XML. 
+więcej czasu spędzić pisząc dokumentację, a mniej ucząc się składni xml. 
 Mamy nadzieję,  że pozwoli to developerom, którzy zwykle nie są miłośnikami
 pisania dokumentacji, na napisanie sensownej dokumentacji Gentoo Linux.
 Może zaciekawią cię nasze <uri
