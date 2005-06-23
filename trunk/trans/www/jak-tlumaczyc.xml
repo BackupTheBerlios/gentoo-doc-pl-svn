@@ -9,10 +9,10 @@
 </author>
 
 <author title="Autor">
-  <mail link="sekretarz@gentoo.org">sekretarz</mail>
+  <mail link="sekretarz@gentoo.org">Karol Wojtaszek</mail>
 </author>
 
-<version>2.5</version>
+<version>3.0</version>
 <date>2005-06-23</date>
 
 <abstract>
@@ -40,9 +40,9 @@ obowiązujących obecnych członków naszego zespołu.
 </p>
 
 <p>
-Wszelkie propozycje poprawek do tego tekstu prosimy postulować na naszą listę
+Wszelkie propozycje zmian tego tekstu prosimy postulować na naszą listę
 mailową - nasz jedyny oficjalny kanał komunikacji. To jak się do niej dostać
-omówimy w dalszej części tego przewodnika.
+omówimy w dalszej części tego tekstu.
 </p>
 
 <p>
@@ -62,8 +62,8 @@ Najpierw musimy pobrać i rozpakować plik z angielską dokumentacją:
 </p>
 
 <pre caption="Pobieranie i rozpakowywanie dokumentacji w języku angielskim">
-$ wget http://wren.gentoo.org/dyn/doc-snapshots/docs-latest-en.tar.bz2
-$ tar xvjf docs-latest-en.tar.bz2
+$ <i> wget http://wren.gentoo.org/dyn/doc-snapshots/docs-latest-en.tar.bz2</i>
+$ <i> tar xvjf docs-latest-en.tar.bz2</i>
 </pre>
 
 <p>
@@ -107,8 +107,8 @@ hb-install-stage.xml:
 </p>
 
 <pre caption="Edytowanie dokumentu">
-$ cd en/handbook
-$ vim hb-install-stage.xml
+$ <i> cd en/handbook</i>
+$ <i> vim hb-install-stage.xml</i>
 </pre>
 
 <p>
@@ -117,12 +117,12 @@ odpowiednie poprawki. Jak to zrobić? Zamieniając angielski tekst polskim i
 starając się jednocześnie nie naruszyć składni xml.
 </p>
 
-<warn>
-Dokumenty MUSZĄ być pisane w formie bezosobowej: "należy", "trzeba", "warto",
+<note>
+Dokumenty muszą być pisane w formie bezosobowej: "należy", "trzeba", "warto",
 którą czasami można poprzeć także liczbą mnogą "robimy", "instalujemy", "klikamy"
-itp. Absolutnie zabronione jest pisanie per "ty", NAWET jeśli taka forma jest
+itp. Absolutnie zabronione jest pisanie per "ty", nawet jeśli taka forma jest
 używana w oryginale.
-</warn>
+</note>
 
 <p>
 Kilka przykładów:
@@ -218,7 +218,7 @@ Jeśli program nie wydrukuje żadnych komunikatów o błędach możemy przystąp
 do (niezbędnej przed wysłaniem dokumentu w świat) korekty.
 </p>
 
-<pre caption="Otwarcie pliku tłumaczenia">
+<pre caption="Otwieranie pliku tłumaczenia">
 $ <i>vim hb-install-stage.xml</i>
 </pre>
 
@@ -239,23 +239,24 @@ tłumaczenia. Wszelkie wątpliwości pomogą nam rozwiać:
     (poniżej).
   </li>
   <li>
-    Informacje zebrane na <uri
-    link="http://venus.ci.uw.edu.pl/~milek/slowniki/zasady.htm"> stronie Marcina
-    Miłkowskiego</uri>.</li>
+    Informacje zebrane na stronie <uri
+    link="http://venus.ci.uw.edu.pl/~milek/slowniki/zasady.htm"> Marcina
+    Miłkowskiego</uri>.
+  </li>
   <li>
     <uri link="http://helion.pl/autor/6slown.htm">Zalecenia wydawnictwa
     Helion</uri> dotyczące tłumaczenia wybranych terminów informatycznych.
    </li>
   <li>
     Zawierający mnóstwo praktycznych porad 
-    <uri link="http://www.piotr.kresak.pl/konwen222.htm">Poradnik dla
-    tłumaczących oprogramowanie firmy Lotus</uri>, który powinien być lekturą
-    obowiązkową dla każdego tłumacza dokumentacji oprogramowania.
+    <uri link="http://www.piotr.kresak.pl/konwen222.htm">poradnik</uri> dla
+    tłumaczących oprogramowanie firmy Lotus.
   </li>
   <li>
     Świetny angielskojęzyczny serwis <uri
     link="http://answers.com">answers.com</uri> zawierający ogromny zbiór
-    definicji z wielu różnych dziedzin.
+    definicji z wielu różnych dziedzin, w tym tej najbardziej nas interesującej
+    - informatyki.
   </li>
   <li>
     Mała powtórka z <uri link="http://aula.home.pl/tekst.htm#znaki_interp">
@@ -270,6 +271,16 @@ w kontrowersyjnej sprawie. Możemy również zapisać się i wysłać maila na l
 dyskusyjną tłumaczy Gentoo - o której opowiemy nieco później.
 </p>
 
+<p>
+Oto polecenia umożliwiające w większości klientów, np. w <c>irssi</c> połączenie
+się z siecią <e>Freenode</e> i wejście na kanał projektu:
+</p>
+
+<pre caption="Wchodzenie na kanał #gentoo-doc-pl">
+<i>/connect irc.freenode.net</i>
+<i>/join #gentoo-doc-pl</i>
+</pre>
+
 </body>
 </section>
 </chapter>
@@ -280,8 +291,8 @@ dyskusyjną tłumaczy Gentoo - o której opowiemy nieco później.
 
 <p>
 Ekipa Gentoo Linux promuje Unicode (UTF-8) jako oficjalny standard kodowania
-znaków. Definiuje on litery narodowe niemal wszystkich języków świata. Niestety
-w Polsce wciąż najpopularniejszy jest standard ISO8859-2.
+znaków. Definiuje on litery narodowe niemal wszystkich języków świata i napisana
+jest w nim cała dokumentacja Gentoo. 
 </p>
 
 <p>
@@ -293,17 +304,17 @@ prawidłowym kodowaniu jest skorzystanie z programu do konwersji o nazwie
 
 <pre caption="Konwersja dokumentów z ISO8859-2 na UTF-8 i na odwrót">
 <comment>Należy zastąpić index-iso.xml oraz index-utf.xml odpowiednimi nazwami plików</comment>
-Konwersja z ISO8859-2 na UTF-8:
-# iconv -fISO8859-2 -tUTF-8 -o index-utf.xml index-iso.xml
-Konwersja z UTF-8 na ISO8859-2:
-# iconv -fUTF-8 -tISO8859-2 -o index-iso.xml index-utf.xml
+<comment>Konwersja z ISO8859-2 na UTF-8:</comment>
+<i># iconv -fISO8859-2 -tUTF-8 -o index-utf.xml index-iso.xml</i>
+<comment>Konwersja z UTF-8 na ISO8859-2:</comment>
+<i># iconv -fUTF-8 -tISO8859-2 -o index-iso.xml index-utf.xml</i>
 </pre>
 
 <p>
-Kiedy skończymy tłumaczenie wysyłamy spakowany plik na adres tlumaczenia@gentoo.pl
-skąd zostanie wysłany najpierw do repozytorium SVN Projektu Tłumaczeń, a
-następnie, po weryfikacji przez wykwalifikowany personel, trafi na gentoo.org i
-zapewni nam sławę po wieki.
+Kiedy skończymy tłumaczenie wysyłamy spakowany plik na adres
+<c>tlumaczenia@gentoo.pl</c> skąd zostanie wysłany najpierw do repozytorium SVN
+Projektu Tłumaczeń, a następnie, po weryfikacji przez wykwalifikowany personel,
+trafi na gentoo.org i zapewni nam sławę po wieki.
 </p>
 
 </body>
@@ -366,9 +377,9 @@ www, czy szukanie w normalnym słowniku.
 
 <pre caption="Przykład użycia tlumacza">
 <comment>Najpierw nadajemy programowi atrybut wykonywalności.</comment>
-$ chmod +x tlumacz
+<i>$ chmod +x tlumacz</i>
 <comment>Następnie możemy przystąpić do wyszukiwania znaczeń interesujących nas słówek.</comment>
-$ ./tlumacz emerge
+<i>$ ./tlumacz emerge</i> 
 ang-pol
    emerge [29](Ectaco-Poland)
       v,
