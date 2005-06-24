@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.71 -->
+<!-- Orig revision: 1.80 -->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Instalacja systemu podstawowego -->
 <!-- Status: Release -->
@@ -14,8 +14,8 @@
 
 <sections>
 
-<version>2.5</version>
-<date>2005-05-17</date>
+<version>2.7</version>
+<date>2005-06-09</date>
 
 <section>
 <title>Praca w chroot.</title>
@@ -134,19 +134,19 @@ jeszcze kilka rozdziałów Podręcznika. :]
 <body>
 
 <p>
-Powinneś teraz uaktualnić drzewo Portage. Dokonujemy tego poleceniem 
+Należy teraz uaktualnić drzewo Portage. Dokonujemy tego poleceniem 
 <c>emerge --sync</c>. 
 </p>
 
 <pre caption="Aktualizowanie drzewa Portage">
 # <i>emerge --sync</i>
- <comment>(Dla wolnych terminali, takich jak konsola bufora ramki, należy dodać parametr --quiet dla przyspieszenia całego procesu) </comment>	
+<comment>(Dla wolnych terminali, takich jak konsola bufora ramki, należy dodać parametr --quiet dla przyspieszenia całego procesu) </comment>	
 # <i>emerge --sync --quiet</i>
 </pre>
 
 <p>
 Portage używa protokołu RSYNC do uaktualniania drzewa pakietów. Jeżeli powyższe
-polecenie zakończy się niepowodzeniem (np. z winy firewall'a) używamy polecenia
+polecenie zakończy się niepowodzeniem (np. z winy firewalla) używamy polecenia
 <c>emerge-webrsync</c>, które ściąga i instaluje snapshot drzewa Portage przy
 za pomocą protokołu HTTP.
 </p>
@@ -160,6 +160,62 @@ Jeśli otrzymamy ostrzeżenie, że dostępna jest nowa wersja programu Portage i
 należy dokonać jego aktualizacji, możemy je zignorować. Portage zostanie
 zaktualizowane nieco później.
 </p>
+
+</body>
+</subsection>
+<subsection>
+<title>Wybór odpowiedniego profilu</title>
+<body>
+
+<p>
+Najpierw mała definicja.
+</p>
+
+<p>
+Profil jest cegiełką budującą system Gentoo. Nie tylko określa domyślne
+wartości dla CHOST, CFLAGS i innych ważnych zmiennych, ale również ogranicza
+wersje pakietów jakie mogą zostać zainstalowane w systemie.  Wszystkie te
+informacje są utrzymywane przez developerów Gentoo.
+</p>
+
+<p>
+Dawniej, użytkownik w bardzo małym stopniu miał wpływ na profil. Jednakże
+ostatnio użytkownicy architektur x86, hppa i alpha mogą wybierać między
+dwoma profilami, jednym dla jąder serii 2.4 i drugim dla jąder serii 2.6.
+Wymaganie takie wynikło z potrzeby lepszej integracji jąder serii 2.6.
+</p>
+
+<p>
+Aktualnie używany profil można sprawdził za pomocą poniższego polecenia:
+</p>
+
+<pre caption="Sprawdzanie profilu systemowego.">
+# <i>ls -l /etc/make.profile</i>
+lrwxrwxrwx 1 root root 48 Mar 7 11:55 /etc/make.profile ->
+../usr/portage/profiles/default-linux/x86/2005.0
+</pre>
+
+<p>
+W przypadku jednej z trzech wspomnianych wcześniej architektur zostanie
+wyświetlony dodatkowy profil w dowiązaniu symbolicznym
+<path>make.profile</path>.
+</p>
+
+<pre caption="Sprawdzanie, czy istnieje dodatkowy profil.">
+# <i>ls -F /etc/make.profile/</i>
+2.4/ packages parent virtuals
+</pre>
+
+<p>
+Jak można zobaczyć w powyższym przykładzie, istnieje podkatalog 2.4.
+Oznacza to, iż aktualnie używanym profilem jest 2.6; aby uzyskać system
+oparty o jądro serii 2.4 należy utworzyć ponownie dowiązanie symboliczne
+<path>make.profile</path>.
+</p>
+<pre caption="Ponowne tworzenie dowiązania symbolicznego dla profilu.">
+# <i>ln -snf /usr/portage/profiles/default-linux/x86/2005.0/2.4
+/etc/make.profile</i>
+</pre>
 
 </body>
 </subsection>
