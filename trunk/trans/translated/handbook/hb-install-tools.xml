@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.33 -->
+<!-- Orig revision: 1.34 -->
 <!-- Translator: aye <aye@gentoo.pl> -->
 <!-- Title: Instalacja dodatkowych narzędzi -->
 <!-- Status: Release -->
@@ -14,9 +14,27 @@
 
 <sections>
 
-<version>2.1</version>
-<date>2005-04-20</date>
+<version>2.2</version>
+<date>2005-05-20</date>
 
+<section>
+<title>Menedżer urządzeń</title>
+<body>
+  	 
+<p>
+Użytkownicy jąder 2.4 instalujący Gentoo z etapu trzeciego <e>muszą</e> na
+początek odinstalować udev i zainstalować devfsd. Jest to niezbędne w związku z
+tym, że Gentoo domyślnie korzysta z systemu udev niedostępnego na jądrach 2.4.
+</p>
+  	 
+<pre caption="Instalowane devfsd">
+<comment>(Dla użytkowników jąder 2.4.x używających stage 3)</comment>
+# <i>emerge --unmerge udev</i>
+# <i>emerge devfsd</i>
+</pre>
+  	 
+</body>
+</section>
 <section>
 <title>Program logujący.</title>
 <body>
