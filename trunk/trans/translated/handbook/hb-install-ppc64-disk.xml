@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.18 -->
+<!-- Orig revision: 1.19 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Przygotowanie dysków dla PPC64 -->
 <!-- Status: Release -->
@@ -14,8 +14,8 @@
 
 <sections>
 
-<version>1.10</version>
-<date>2005-02-20</date>
+<version>2.3</version>
+<date>2005-05-16</date>
 
 <section>
 <title>Wprowadzenie do urządzeń blokowych.</title>
@@ -130,12 +130,15 @@ link="#parted">IBM pSeries: Partycjonowanie dysku przy pomocy fdisk</uri>.
 Ilość partycji ściśle zależy od danego środowiska. Na przykład, jeśli
 administrujesz systemem mającym wielu użytkowników, prawdopodobnie uznasz za
 stosowne oddzielenie <path>/home</path> aby poprawić bezpieczeństwo i uprościć
-tworzenie kopii zapasowych. Jeżeli docelowym zastosowaniem świeżego Gentoo jest
-serwer poczty, na osobnej partycji powinieneś umieścić <path>/var</path>, gdzie
-przechowywane są listy. Dobry wybór systemu plików może tu znacznie zwiększyć
+tworzenie kopii zapasowych. Jeżeli docelowym zastosowaniem Gentoo jest serwer
+poczty, na osobnej partycji powinieneś umieścić <path>/var</path>, gdzie
+przechowywane są listy. Dobry wybór systemu plików może znacznie zwiększyć
 wydajność. Oddzielenie <path>/opt</path> jest dobrym rozwiązaniem na serwerach
 gier, gdyż większość używanego oprogramowania zostanie tam zainstalowana. Powód
-jest podobny do <path>/home</path>: bezpieczeństwo i kopie zapasowe.
+jest podobny jak przy <path>/home</path>: bezpieczeństwo i kopie zapasowe.  Na
+pewno warto zapewnić dużo wolnego miejsca na <path>/usr</path>, ponieważ będą
+tam się znajdowały nie tylko dane wszystkich zainstalowanych pakietów, ale
+również ważące 500 MB drzewo Portage i kody źródłowe programów.
 </p>
 
 <p>
