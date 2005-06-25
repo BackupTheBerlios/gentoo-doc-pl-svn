@@ -10,19 +10,19 @@
 <guide link="/doc/pl/ipv6.xml" lang="pl">
 
 <title>Przewodnik po budowie routera IPv6 w Gentoo.</title>
-<author title="Deweloper">
+<author title="Developer">
   <mail link="latexer@gentoo.org">Peter Johanson</mail>
 </author>
-<author title="Edytor">
+<author title="Redaktor">
   <mail link="peesh@gentoo.org">Jorge Paulo</mail>
 </author>
-<author title="Edytor, Reviewer">
+<author title="Redaktor, Reviewer">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
-<author title="Edytor">
+<author title="Redaktor">
   <mail link="cam@gentoo.org">Camille Huot</mail>
 </author>
-<author title="Edytor">
+<author title="Redaktor">
   <mail link="okun@hack.fi">Pasi Valminen</mail>
 </author>
 <author title="Tłumaczenie">
@@ -459,14 +459,14 @@ Przypuszczając, że zainstalowaliśmy <c>tinydns</c> w <path>/var/tinydns</path
 </p>
 
 <pre caption="Przykładowy plik data">
-<codenote>*.ipv6-rules.com jest przypisane do 192.168.0.1</codenote>
+<comment>*.ipv6-rules.com jest przypisane do 192.168.0.1</comment>
 .ipv6-rules.com:192.168.0.1:a:259200
-<codenote>Odwrócony DNS jest przypisany do 2001:470:1f00:296::/64</codenote>
+<comment>Odwrócony DNS jest przypisany do 2001:470:1f00:296::/64</comment>
 .6.9.2.0.0.0.f.1.0.7.4.0.1.0.0.2.ip6.arpa:192.168.0.1:a
-<codenote>Przypisanie adresów IP do hostów</codenote>
+<comment>Przypisanie adresów IP do hostów</comment>
 6host1.ipv6-rules.com:200104701f0002960000000000000001:86400
 6host2.ipv6-rules.com:200104701f0002960000000000000002:86400
-<codenote>Dowiązanie www do host1</codenote>
+<comment>Dowiązanie www do host1</comment>
 3www.ipv6-rules.com:200104701f0002960000000000000002:86400
 </pre>
 
@@ -536,11 +536,11 @@ Po zainstalowaniu radvd musimy stworzyć plik <path>/etc/radvd/radvd.conf</path>
 <pre caption="Przykładowy plik radvd.conf">
 interface eth1
 {
-        <codenote>Wysłanie informacji do innych hostów</codenote>
+        <comment>Wysłanie informacji do innych hostów</comment>
         AdvSendAdvert on;
         AdvLinkMTU 1280;
         MaxRtrAdvInterval 300;
-        <codenote>Prefiks podsieci, który został nam przydzielony przez PoP</codenote>
+        <comment>Prefiks podsieci, który został nam przydzielony przez PoP</comment>
         prefix 2001:470:1F00:296::/64
         {
                 AdvOnLink on;
