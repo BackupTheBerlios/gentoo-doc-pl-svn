@@ -247,8 +247,8 @@ INTFTPD_OPTS="-u ${INTFTPD_USER} -l -vvvvvv -p -c -s ${INTFTPD_PATH}"
 # <i>tar zxvf grub-0.92.tar.gz</i>
 # <i>cd grub-0.92</i>
 # <i>./configure --help</i>
-<codenote>W opcjach najdziesz liste wspomaganych sterowników interfejsów sieciowych. </codenote>
-<codenote>Wybierz sterownik Twojej karty sieciowej. Herein poleca sterownik $nic</codenote>
+<comment>W opcjach najdziesz liste wspomaganych sterowników interfejsów sieciowych. </comment>
+<comment>Wybierz sterownik Twojej karty sieciowej. Herein poleca sterownik $nic</comment>
 # <i>./configure --enable-diskless --enable-$nic</i>
 # <i>make</i>
 # <i>cd stage2</i>
@@ -264,8 +264,8 @@ title=Diskless Gentoo
 root (nd)
 kernel /eta/bzImage ip=dhcp root=/dev/nfs nfsroot=<i>ip.add.re.ss</i>:/diskless/eta
 
-<codenote>Dla opcji nfsroot, adres IP i katalog jest dla jednego serwera</codenote>
-<codenote>gdzie znajdują się pliki do bezdyskowego klienta (na serwerze).</codenote>
+<comment>Dla opcji nfsroot, adres IP i katalog jest dla jednego serwera</comment>
+<comment>gdzie znajdują się pliki do bezdyskowego klienta (na serwerze).</comment>
 </pre>
 
 <p>Konfiguracja NFS: NFS jest dość prosty w konfiguracji. Musisz tylko dodać jedną linie do pliku <path>/etc/exports</path>:</p>
