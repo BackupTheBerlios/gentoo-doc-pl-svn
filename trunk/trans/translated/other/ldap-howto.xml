@@ -2,7 +2,7 @@
 <!-- $Id$ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.17 -->
+<!-- Orig revision: 1.27 -->
 <!-- Translator: ShadoWW <damian@lezajsk.info> -->
 <!-- Title: Praca z LDAP -->
 <!-- Status: Ukończono -->
@@ -14,21 +14,21 @@
 <guide link="/doc/pl/ldap-howto.xml" lang="pl">
 <title>Przewodnik Gentoo po autoryzacji OpenLDAP.</title>
 
-<author title="Author">
+<author title="Autor">
   <mail link="sj7trunks@gentoo.org">Benjamin Coles</mail>
 </author>
-
-<author title="Editor">
+<author title="Redaktor">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
-
-<author title="Editor">
+<author title="Redaktor">
   <mail link="tseng@gentoo.org">Brandon Hale</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="bennyc@gentoo.org">Benny Chuang</mail>
 </author>
-
+<author title="Tłumacz">
+  Damian Kuras
+</author>
 
 <abstract>
 Ten przewodnik przedstawia podstawy LDAP i pokazuje w jaki sposób skonfigurować
@@ -37,8 +37,8 @@ OpenLDAP w celu autoryzacji w grupach komputerów z Gentoo.
 
 <license/>
 
-<version>0.11</version>
-<date>2005-01-22</date>
+<version>0.18.2</version>
+<date>2005-06-10</date>
 
 <chapter>
 <title>Wprowadzenie do OpenLDAP.</title>
@@ -64,7 +64,31 @@ X.500.
 
 </body>
 </section>
-
+<section>
+<title>Zatem... Po co to wszystko?</title>
+  	 <body>
+  	 
+<p>
+LDAP można używać do kilku rzeczy. W tym dokumencie opisujemy scentralizowane
+zarządzanie kontami użytkowników poprzez przechowywanie ich w jednym miejscu (co
+nie znaczy, że znajdują się na jednym serwerze, LDAP pozwala na rozdysponowanie
+tej informacji na wielu serwerach). Za pomocą LDAP można dokonać jednak
+znacznie więcej.
+</p>
+  	 
+<ul>
+  <li>Zarządzanie infrastrukturą kluczy publicznych</li>
+  <li>Wspólny harmonogram</li>
+  <li>Wspólna książka adresów</li>
+  <li>Przechowywanie informacji DHCP i DNS</li>
+  <li>
+    Zarządzanie konfiguracjami serwerów
+  </li>
+  <li>...</li>
+</ul>
+  	 
+</body>
+</section>
 <section>
 <title>Nie rozumiem. Co to jest katalog?</title>
 <body>
@@ -155,8 +179,8 @@ include         /etc/openldap/schema/cosine.schema
 include         /etc/openldap/schema/inetorgperson.schema
 include         /etc/openldap/schema/nis.schema
 
-<comment># Użycie funkcji crypt, aby ukryć hasło.</comment>
-password-hash {crypt}
+<comment># Użycie funkcji md5, aby ukryć hasło.</comment>
+password-hash {md5}
 
 <comment># Zdefiniowanie właściwości SSL i TLS (opcja).</comment>
 TLSCertificateFile /etc/ssl/ldap.pem
@@ -283,20 +307,27 @@ Teraz dodajemy te pliki do naszego katalogu:
 # <i>ldapadd -D "cn=Manager,dc=genfic,dc=com" -W -f /tmp/hosts.ldif</i>
 </pre>
 
+<p>
+Jeśli w plikach ldif pojawi się błąd można wznowić pracę od momentu, w którym
+pojawił się błąd za pomocą polecenia <c>ldapadd -c</c>.
+</p>
+
 </body>
 </section>
 </chapter>
 
 <chapter>
-<title>Konfigurowanie uwierzytelniania.</title>
+<title>Konfigurowanie klienta</title>
 <section>
 <title>Konfigurowanie PAM.</title>
 <body>
 
 <p>
 Następnie należy skonfigurować PAM tak, aby zezwalała na autoryzację LDAP.
-W tym celu edytujemy <path>/etc/pam.d/system-auth</path> tak, aby wyglądał jak
-poniżej:
+Po pierwsze należy zainstalować <c>net-libs/pam_ldap</c>, co umożliwi współpracę
+PAM z LDAP oraz <c>net-libs/nss_ldap</c>, dzięki czemu system może pobierać z
+innych komputerów informacje o LDAP (z czego korzysta
+<path>nsswitch.conf</path>).
 </p>
 
 <pre caption="/etc/pam.d/system-auth">
@@ -305,9 +336,9 @@ auth    sufficient  /lib/security/pam_unix.so likeauth nullok shadow
 auth    sufficient  /lib/security/pam_ldap.so use_first_pass
 auth    required    /lib/security/pam_deny.so
 
-account sufficient  /lib/security/pam_unix.so
-account sufficient  /lib/security/pam_ldap.so
-account required    /lib/security/pam_deny.so
+account required  /lib/security/pam_unix.so
+account required  /lib/security/pam_ldap.so
+account required  /lib/security/pam_deny.so
 
 password    required /lib/security/pam_cracklib.so retry=3
 password    sufficient /lib/security/pam_unix.so nullok use_authtok shadow md5
@@ -349,6 +380,16 @@ scope one
 </pre>
 
 <p>
+Następnie kopiujemy plik <path>ldap.conf</path> z serwera do klientów tak, aby
+były w stanie dostrzec, że znajdują się w środowisku LDAP.
+</p>
+
+<pre caption="Kopiowanie ldap.conf dla OpanLDAP">
+<comment>(Należy zastąpić ldap-server nazwą serwera LDAP)</comment>
+# <i>scp ldap-server:/etc/openldap/ldap.conf /etc/openldap</i>
+</pre>
+
+<p>
 Na koniec konfigurujemy swoich klientów tak, aby sprawdzały LDAP dla kont
 systemowych:
 </p>
@@ -385,7 +426,10 @@ dokonuję zmian i zaraz po ich wprowadzeniu je usuwam.
 
 </body>
 </section>
-
+</chapter>
+	   	 
+<chapter>
+<title>Ustawienia bezpieczeństwa dla OpenLDAP</title>
 <section>
 <title>Zezwolenia OpenLDAP.</title>
 <body>
@@ -421,7 +465,7 @@ użytkownikom dostęp do ukrytych haseł innych osób:
 </p>
 
 <pre caption="/etc/openldap/slapd.conf">
-access to attribute="userPassword"
+access to attrs="userPassword"
   by dn="uid=root,ou=people,dc=genfic,dc=com" write
   by dn="uid=John,ou=People,dc=genfic,dc=com" write
   by anonymous auth

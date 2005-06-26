@@ -1,20 +1,23 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.8 -->
+<!-- Orig revision: 1.14 -->
 <!-- Translator: volt3r <volt3r@pf.pl> -->
 <!-- Title: Przewodnik po konfiguracji serwera X. -->
 <!-- Status: Do korekty -->
 <!-- $Id$ -->
 
-<guide link="xorg-config.xml" lang="pl">
+<guide link="/doc/pl/xorg-config.xml" lang="pl">
 
 <title>Przewodnik po konfiguracji serwera X.</title>
 
-<author title="Author">
+<author title="Autor">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
-
+<author title="Tłumacz">
+  Robert Frączek
+</author>
+  
 <abstract>
 Xorg jest serwerem X Window, który pozwala użytkownikom na posiadanie
 graficznego środowiska. Ten przewodnik wyjaśnia czym tak naprawdę jest Xorg, jak
@@ -25,8 +28,8 @@ go zainstalować i jakie są różne warianty jego konfiguracji.
 <!-- See http://creativecommons.org/licenses/by-sa/2.0 -->
 <license/>
 
-<version>1.7</version>
-<date>2005-02-07</date>
+<version>1.12</version>
+<date>2005-05-23</date>
 
 <chapter>
 <title>Czym jest serwer X Window?</title>
@@ -177,16 +180,11 @@ testów. Więc nie czekajmy i bierzmy się wkońcu za testy :)
 </pre>
 
 <p>
-Jeśli wszystko poszło zgodnie z planem, na ekranie powinien ukazać się brzydki, 
-szpetny, odrażający i całkowicie odrażający menedżer okien zwany <c>twm</c>, 
-prawdopodobnie najmniejszy z dostępnych menedżerów okien. Spróbuj teraz ruszyć
-myszką, poklikać na klawiaturze i zobacz czy wszystko działa jak należy. W
-następnej sekcji tego poradnika, zoptymalizujemy nasz <path>xorg.conf</path>
-tak, aby mógł w pełni wykorzystywać możliwości naszego sprzętu. Więc, udajemy 
-się do jednego z naszych terminali i wpisujemy <c>exit</c> (lub wciskamy Ctrl-D) dopóki
-Xorg nie zakończy swojego działania. Jeżeli nie jesteś w stanie użyć myszy aby
-przekazać fokus terminalom, możesz także użyć kombinacji Ctrl-Alt-Backspace, aby
-zabić serwer X.
+Jeśli wszystko poszło dobrze powinien pojawić się prosty czarno-biały obraz.
+Należy sprawdzić czy działa myszka oraz czy ustawiono prawidłową rozdzielczość.
+Nie można wprawdzie dokładnie stwierdzić jaka jest używana, ale na pewno
+łatwo zauważyć, że jest za niska. W każdej chwili można opuścić to środowisko
+przy pomocy kombinacji klawiszy Ctrl-Alt-Backspace.
 </p>
 
 <p>
@@ -214,13 +212,22 @@ odpowienio plik <path>xorg.conf</path>.
 # <i>xorgconfig</i>
 </pre>
 
+<p>
+Kolejnym narzędziem, także wchodzącym w skład pakietu Xorg jest <c>xorgcfg</c>,
+który najpierw uruchamia <c>Xorg -configure</c>, a następnie uruchamia serwer X
+umożliwiając tym samym dodatkowe zmiany. 
+</p>
+
+<pre caption="Użycie xorgcfg">
+# <i>xorgcfg</i>
+<comment>(Jeśli X się nie uruchomi prawidłowo:)</comment>
+# <i>xorgcfg -textmode</i>
+</pre>
+
 </body>
 </section>
-</chapter>
-<chapter>
-<title>Dopracowywanie pliku xorg.conf.</title>
 <section>
-<title>Kopiowanie pliku xorg.conf.</title>
+<title>Kopiowanie pliku xorg.conf</title>
 <body>
 
 <p>
@@ -233,20 +240,52 @@ Na początek nadpiszmy naszym nowym plikiem <path>xorg.conf.new</path> plik
 # <i>cp /root/xorg.conf.new /etc/X11/xorg.conf</i>
 </pre>
 
+</body>
+</section>
+<section id="using_startx">
+<title>Użycie startx</title>
+<body>
+
 <p>
-Teraz, aby uruchomić serwer X wykonaj <c>startx</c>. Użyje on świeżo
-nadpisanego pliku konfiguracyjnego. Aby zakończyć sesję X, wpisz <c>exit</c> 
-lub naciskaj Ctrl-D na xtermach, które właśnie się pojawiły. Możesz też zabić
-serwer X poprzez znaną już kombinację Ctrl-Alt-Backspace. To wprawdzie bardzo
-niepoprawnie, jednak jeżeli bardzo chcesz to wiedz, że nic się nie zepsuje :)
+Następnie wpisujemy polecenie <c>startx</c> w celu uruchomienia serwera.
+<c>startx</c> to skrypt który uruchamia <e>sesję X</e>, która zajmuje się
+uruchamianie poszczególnych serwerów, a na nich poszczególnych aplikacji. Wybór
+aplikacji dokonywany jest na podstawie:
 </p>
+	 
+<ul>
+  <li>
+    Jeśli w katalogu domowym użytkownika znajduje się plik o nazwie
+    <path>.xinitrc</path> zostaną uruchomione polecenia znajdujące się w nim. 
+  </li>
+  <li>
+    W innym przypadku zostanie wczytana wartość zmiennej XSESSION i zostanie
+    uruchomiona jedna z sesji z pliku <path>/etc/X11/Sessions/</path>. Wartość
+    zmiennej XSESSION można skonfigurować w pliku <path>/etc/rc.conf</path>, co
+    uczyni ją domyślną dla wszystkich użytkowników.
+  </li>
+  <li>
+    Jeśli obie metody zawiodą zostanie uruchomiony prosty menedżer okien,
+    najprawdopodobniej <c>twm</c>.
+  </li>
+</ul>
 
 <pre caption="Uruchomienie serwera X">
 # <i>startx</i>
 </pre>
 
+<p>
+Jeśli na ekranie pojawi się bardzo brzydki menedżer okien to jest to <c>twm</c>.
+Aby zamknąć jego sesję należy wpisać <c>exit</c> lub wcisnąć CTRL+D w xtermie,
+który się pojawi. Można również zamknąć go za pomocą kombinacji
+Ctrl-Alt-Backspace, nie jest to jednak najbardziej elegancka metoda.
+</p>
+
 </body>
 </section>
+</chapter>
+<chapter>
+<title>Konfigurowanie xorg.conf</title>
 <section>
 <title>Ustawiamy rozdzielczość.</title>
 <body>
@@ -333,16 +372,17 @@ EndSection
 <body>
 
 <p>
-Jeżeli twoja mysz nie działa, po pierwsze konieczne będzie sprawdzenie czy jest
-ona wykrywana przez jądro. Myszy PS/2 są (w pojęciu urządzeń linuksa)
-widziane jako <path>/dev/psaux</path>. Pozostałe (jak np. USB) jako
-<path>/dev/input</path> (lub <path>/dev/input/mice</path>). Możesz teraz
-sprawdzić czy wyjście pliku odpowiadające twojemu urządzeniu coś pokazuje w
-momencie ruchu myszą. Aby zakończyć naciśnij <c>Ctrl-C</c>.
+Jeżeli mysz nie działa, po pierwsze konieczne będzie sprawdzenie czy jest
+ona wykrywana przez jądro. Myszy są (w pojęciu urządzeń Linuksa)
+widziane jako <path>/dev/input/mouse0</path> (lub <path>/dev/input/mice</path>,
+jeśli jest ich kilka). W niektórych przypadkach system może również korzystać z
+<path>/dev/psaux</path>. Tego które z tych urządzeń jest właściwe można się
+dowiedzieć dzięki zawartości tych plików w trakcie poruszania myszką. Aby
+zakończyć zabawę należy nacisnąć <c>Ctrl-C</c>.
 </p>
 
 <pre caption="Sprawdzanie pliku urządzenia">
-# <i>cat /dev/input</i>
+ # <i>cat /dev/input/mouse0</i>
 <comment>(Pamiętaj, że aby zakończyć należy użyć kombinacji Ctrl-C)</comment>
 </pre>
 
@@ -365,7 +405,7 @@ Section "InputDevice"
   Identifier  "TouchPad Mouse"
   Driver    "mouse"
   Option    "CorePointer"
-  <i>Option    "Device"    "/dev/psaux"</i>
+  <i>Option    "Device"    "/dev/input/mouse0"</i>
   <i>Option    "Protocol"    "IMPS/2"</i>
   <i>Option    "ZAxisMapping"    "4 5"</i>
 EndSection

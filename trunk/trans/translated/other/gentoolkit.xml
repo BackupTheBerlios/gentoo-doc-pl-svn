@@ -13,20 +13,26 @@
 <author title="Autor">
   <mail link="mbutcher@aleph-null.tv">Matt Butcher</mail>
 </author>
-<author title="Edytor">
+<author title="Redaktor">
   <!-- zhen@gentoo.org -->John P. Davis
 </author>
-<author title="Edytor">
+<author title="Redaktor">
   <mail link="erwin@gentoo.org">Erwin</mail>
 </author>
-<author title="Edytor">
-  <mail link="fox2mike@gmail.com">Shyam Mani</mail>
+<author title="Redaktor">
+  <mail link="fox2mike@gentoo.org">Shyam Mani</mail>
 </author>
-<author title="Edytor">
+<author title="Redaktor">
   <mail link="neysx@gentoo.org">Xavier Neys</mail>
 </author>
+<author title="Redaktor">
+  <mail link="karltk@gentoo.org">Karl Trygve</mail>
+</author>
+<author title="Redaktor">
+  <mail link="yoswink@gentoo.org">José Luis Rivero</mail>
+</author>
 <author title="Tłumacz">
-  <mail link="marek.wiecek@gmail.com">Marek Wiecek</mail>
+  Marek Wiecek
 </author>
 
 <!-- Licensed under GFDL -->
@@ -37,8 +43,8 @@ Niniejszy dokument opisuje podstawy kilku z nadzędzi dostępnych w pakiecie
 Gentoolkit.
 </abstract>
 
-<version>1.5</version>
-<date>2004-12-27</date>
+<version>1.8</version>
+<date>2005-06-07</date>
 
 <chapter>
 <title>Wprowadzenie</title>
@@ -60,7 +66,10 @@ W chwili obecnej występują dwie wersje pakietu gentoolkit:
 <c>app-portage/gentoolkit</c> oraz <c>app-portage/gentoolkit-dev</c>. Pierwszy
 z nich zawiera skrypty administracyjne, drugi zawiera szczególne skrypty
 wspomagające rozwój/programowanie na Gentoo. Niniejszy dokument skupi się
-jedynie na pakiecie gentoolkit.
+jedynie na pakiecie gentoolkit. Developerzy mogą zgłosić własne skrypty do osoby
+zarządzającej pakietem gentoolkit, jeśli tylko czują potrzebę podzielenia się
+nimi z innymi uczestnikami projektu. W tym dokumencie omawiamy jedynie zwykłą
+wersję gentoolkit. 
 </note>
 
 <p>
@@ -115,12 +124,20 @@ Dokumentacja (poza stronami podręcznika man) przechowywana jest w katalogu
 Narzędzie <c>equery</c> zawiera w sobie funkcje programu <c>epm</c> (jak i
 przestarzałego <c>qpkg</c>). Posiada również inne własności, dzięki którym
 jest użyteczne. <c>equery --help</c> wyświetla jego pełny zestaw opcji.
-<c>equery</c> może w przyszłości zastąpić program <c>etcat</c>.
+<c>equery</c> zastąpi program <c>etcat</c> wraz z kolejnym wydaniem gentoolkit.
 </p>
 
 <note>
 Niektóre opcje wyświetlane przez <c>equery --help</c> nie zostały jeszcze
-zaimplementowane.
+zaimplementowane. Warto również zwrócić uwagę, że każde polecenie posiada
+skróconą wersję, np. <c>b</c> to skrót do <c>belongs</c>.
+</note>
+
+<note>
+Warto zwrócić uwagę, że equery przekierowuje wynik polecenie do potoku, dzięki
+czemu łatwiej go przetwarzać za pomocą różnych narzędzi. Jest to jednak mało
+popularna metoda i zapewne zostanie to wkrótce zmienione. Osoby piszący skrypty
+do gentoolkit powinny o tym pamiętać.
 </note>
 
 </body>
