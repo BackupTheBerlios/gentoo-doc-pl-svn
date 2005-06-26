@@ -16,7 +16,7 @@
   <mail link="vapier@gentoo.org">Mike Frysinger</mail>
 </author>
 <author title="Tłumacz">
-  <mail link="marek.wiecek@gmail.com">Marek Więcek</mail>
+  Marek Więcek
 </author>
 <author title="Korekta">
   <mail link="sekretarz@gentoo.org">Karol Wojtaszek</mail>
@@ -28,8 +28,8 @@ nastupujące programy: qmail, vpopmail, courier-imap, mysql oraz imp z pakietu
 horde.
 </abstract>
 
-<version>1.10</version>
-<date>Dec 19, 2004</date>
+<version>1.11</version>
+<date>2005-04-24</date>
 
 <chapter>
 <title>Wprowadzenie</title>
@@ -230,7 +230,7 @@ pocztta.domena.org
 </pre>
 
 <impo>
-Niniejszy przewodnik został oparty o vpopmail-5.4.0_rc1 lub nowszy. 
+Niniejszy przewodnik został napisany dla vpopmail-5.4.6 i nowszych. 
 Czy zadziała z wcześniejszymi wersjami? Może. Czy należy uaktualnić? 
 Jeśli chcesz mieć pewność, że przewodnik zadziała, to tak.
 </impo>
@@ -320,7 +320,7 @@ zostanie skompilowany moduł authvchkpw wykorzystywany przez courier-imap.
 </impo>
 
 <impo>
-Niniejszy przewodnik został oparty o net-mail/courier-imap-2.1.2-r1 lub
+Niniejszy przewodnik został oparty o net-mail/courier-imap-3.0.7 lub
 nowszy. Czy zadziała z wcześniejszymi wersjami? Może. Czy należy 
 uaktualnić? Jeśli chcesz mieć pewność, że przewodnik zadziała, to tak.
 </impo>
@@ -333,9 +333,9 @@ listingów opuszczając za każdym razem "-ssl" w skrypcie startowym.
 </p>
 
 <pre caption="Błyskawiczna konfiguracja POP3/SSL">
-# <i>cd /etc/courier-imap</i>
-# <i>nano authdaemonrc</i>
+# <i>nano /etc/courier/authlib/authdaemonrc</i>
 <comment>(Upewnij się, że zmienna authmodulelist zawiera tylko "authvchkpw")</comment>
+# <i>cd /etc/courier-imap</i>
 # <i>nano pop3d.cnf</i> 
 <comment>(Wypełnij sekcję [ req_dn ])</comment>
 # <i>mkpop3dcert</i>
