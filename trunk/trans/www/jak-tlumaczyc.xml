@@ -298,24 +298,58 @@ jest w nim cała dokumentacja Gentoo.
 <p>
 Wcześniej, w paragrafie dotyczącym środowiska pracy zachęcaliśmy do
 przestawienia edytora na pracę w UTF-8. Inną metodą otrzymania tekstu w
-prawidłowym kodowaniu jest skorzystanie z programu do konwersji o nazwie
-<c>iconv</c>.
+prawidłowym kodowaniu jest skorzystanie z odpowiedniego do tego programu.
 </p>
 
-<pre caption="Konwersja dokumentów z ISO8859-2 na UTF-8 i na odwrót">
-<comment>Należy zastąpić index-iso.xml oraz index-utf.xml odpowiednimi nazwami plików</comment>
-<comment>Konwersja z ISO8859-2 na UTF-8:</comment>
-<i># iconv -fISO8859-2 -tUTF-8 -o index-utf.xml index-iso.xml</i>
-<comment>Konwersja z UTF-8 na ISO8859-2:</comment>
-<i># iconv -fUTF-8 -tISO8859-2 -o index-iso.xml index-utf.xml</i>
+<p>
+Bardzo prostym i wygodnym programem służącym do konwersji kodowanie jest
+<c>app-text/recode</c>.
+</p>
+
+<p>
+Przed użyciem trzeba go zainstalować.
+</p>
+
+<pre caption="Instalowanie recode">
+# <i>emerge app-text/recode</i>
 </pre>
 
 <p>
-Kiedy skończymy tłumaczenie wysyłamy spakowany plik na adres
-<c>tlumaczenia@gentoo.pl</c> skąd zostanie wysłany najpierw do repozytorium SVN
-Projektu Tłumaczeń, a następnie, po weryfikacji przez wykwalifikowany personel,
-trafi na gentoo.org i zapewni nam sławę na wieki.
+Następnie można skorzystać z niego do zmiany kodowania na takie, jakie jest
+wymagane przez Projekt:
 </p>
+
+<pre caption="Zmiana kodowania pliku za pomocą recode">
+$ <i>recode l2..u8 plik.xml</i>
+</pre>
+
+<p>
+Takie polecenie spowoduje zamianę kodowania pliku <path>plik.xml</path> z
+<path>l2</path> (oznaczającego iso8859-2) na <path>u8</path> (skrót kodowania
+UTF-8). 
+</p>
+
+<p>
+Pełną listę dostępnych kodowań pomiędzy którymi można konwertować pliki uzyskamy 
+dzięki poleceniu <c>recode -l</c>. Więcej informacji na temat programu
+<c>recode</c> można znaleźć w jego manualu.
+</p>
+
+<pre caption="Dodatkowe informacje o pracy z recode">
+$ <i>recode -l</i>
+$ <i>man recode</i>
+</pre>
+
+<p>
+Kiedy skończymy tłumaczenie wysyłamy spakowany za pomocą <c>bzip2</c> plik na
+adres <c>tlumaczenia@gentoo.pl</c> skąd zostanie wysłany najpierw do
+repozytorium SVN Projektu Tłumaczeń, a następnie, po weryfikacji przez
+wykwalifikowany personel, trafi na gentoo.org i zapewni nam sławę na wieki.
+</p>
+
+<pre caption="Pakowanie pliku za pomocą bzip2">
+$ <i>bzip2 file.xml</i>
+</pre>
 
 </body>
 </section>
