@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.8 -->
+<!-- Orig revision: 1.10 -->
 <!-- Translator: sekretarz <sekretarz@dukato.net> -->
 <!-- Title: Pliki Portage -->
 <!-- Status: Release -->
@@ -14,8 +14,8 @@
 
 <sections>
 
-<version>1.5</version>
-<date>2004-12-26</date>
+<version>1.7</version>
+<date>2005-06-27</date>
 
 <section>
 <title>Pliki Portage.</title>
@@ -221,6 +221,31 @@ przechowywany w zmiennej RPMDIR.
 </subsection>
 </section>
 <section>
+<subsection>
+<title>Baza Portage</title>
+<body>
+  	 
+<p>
+Lista pakietów zainstalowanych w systemie znajduje się w pliku
+<path>/var/db/pkg</path>. Pod żadnym pozorem <e>nie należy</e> zmieniać ręcznie
+jego zawartości. Może to poważnie zepsuć Portage.
+</p>
+  	 
+</body>
+</subsection>
+<subsection>
+<title>Cache Portage</title>
+<body>
+  	 
+<p>
+Cache Portage (informacje o zmianach w plikach, virtualach, drzewie zależności
+itp.) znajduje się w katalogu <path>/var/cache/edb</path>. Katalog ten można
+wyczyścić tylko wtedy, gdy nie jest uruchomiona żadna związana z pracą z Portage
+aplikacja.
+</p>
+  	 
+</body>
+</subsection>
 <title>Budowanie programów.</title>
 <subsection>
 <title>Tymczasowe pliki Portage.</title>
