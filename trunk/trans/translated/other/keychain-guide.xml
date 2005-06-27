@@ -20,8 +20,8 @@
 </author>
 
 <abstract>
-Ten dokument opisuje jak używać współdzielonych kluczy ssh z wykorzystaniem 
-programu keychain; zawiera również podstawową wiedzę na temat kryptografii.
+Dokument opisuje używanie współdzielonych kluczy SSH za pomocą programu
+keychain. Zawiera również podstawową wiedzę na temat kryptografii.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -38,10 +38,10 @@ programu keychain; zawiera również podstawową wiedzę na temat kryptografii.
 <body>
 
 <p>
-Jeśli wszystkie twoje maszyny działają pod kontrolą Gentoo, a każda z nich
-ma uruchomionego demona ssh trochę kłopotliwe wydaje się
-bieganie między nimi i podawanie na każdej hasła. Możliwe, że masz jakiś
-skrypt albo, że ustawiłeś zadanie na cron'ie, które ładnie łączy się przez ssh.
+Jeśli wszystkie komputery działają pod kontrolą Gentoo i każdy z nich
+ma uruchomionego demona ssh to trochę kłopotliwe wydaje się
+bieganie między nimi i podawanie na każdym hasła. Możliwe, że masz jakiś
+skrypt albo, że ustawiłeś zadanie na cronie, które ładnie łączy się przez ssh.
 Jest też inne rozwiązanie tego problemu, polegające na na uwierzytelnianiu 
 za pomocą kluczy publicznych.
 </p>
@@ -49,16 +49,15 @@ za pomocą kluczy publicznych.
 </body>
 </section>
 <section>
-<title>Jak działa uwierzytelnianie za pomocą kluczy publicznych ?</title>
+<title>Jak działa uwierzytelnianie za pomocą kluczy publicznych?</title>
 <body>
 
 <p>
 Załóżmy, że mamy klienta próbującego połączyć się z serwerem. Klient generuje
 parę kluczy i wysyła jeden z nich (klucz publiczny) serwerowi. Następnie serwer
 odsyła wezwanie zaszyfrowane za pomocą owego klucza publicznego klientowi, który
-próbuje sie połączyć. Jak pewnie się domyślasz, jedynie posiadać prywatnego 
-klucza (klient) jest wstanie odszyfrować wezwanie, poprawna odpowiedź prowadzi do
-udanego uwierzytelnienia.
+próbuje sie połączyć. Jedynie posiadacz prywatnego klucza (klient) jest wstanie
+odszyfrować wezwanie, poprawna odpowiedź prowadzi do udanego uwierzytelnienia.
 </p>
 
 </body>
