@@ -10,7 +10,7 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.0 -->
 
-<guide link="kernel-upgrade.xml" lang="pl">
+<guide link="/doc/en/kernel-upgrade.xml">
 <title>Przewodnik aktualizacji jądra Gentoo Linux'a.</title>
 <author title="Author">
   <mail link="dsd@gentoo.org">Daniel Drake</mail>
@@ -25,8 +25,8 @@ Ten dokument opisuje proces aktualizacji jądra systemu.
 
 <license/>
 
-<version>0.1.1</version>
-<date>2004-12-06</date>
+<version>0.1.5</version>
+<date>2005-05-25</date>
 
 <chapter>
 <title>Wprowadzenie.</title>
@@ -34,7 +34,7 @@ Ten dokument opisuje proces aktualizacji jądra systemu.
 <body>
 
 <p>
-Jądro jest jednym z niewielu rodzajów paczek w portage, które wymagają
+Jądro jest jednym z niewielu rodzajów pakietów w portage, które wymagają
 interwencji użytkownika do zakończenia procesu aktualizacji. Portage ściągnie i
 zainstaluje źródła jądra za ciebie, jednak od tego momentu to użytkownik przed
 osiągnieciem jakichkolwiek zauważalnych zmian musi skompilować jądro samodzielnie.
@@ -47,8 +47,8 @@ przechodzących z jednego rodzaju jądra na inny.
 </p>
 
 <p>
-<c>gentoo-dev-sources</c> są użyte jako przykład w tym dokumencie, jednak
-wszelakie instrukcje można również użyć do innych paczek, które znajdują się 
+<c>gentoo-sources</c> są użyte jako przykład w tym dokumencie, jednak
+wszelakie instrukcje można również użyć do innych pakietów, które znajdują się 
 w naszym drzewie.
 </p>
 
@@ -62,14 +62,15 @@ w naszym drzewie.
 <body>
 
 <p>
-Generalnie aktualizacja jądra nie przyniesie większych zmian. Powodem dla,
-którego aktualizujemy jądra może być chęć poznania nowych funkcji lub nowego
-sterownika. Może to być również potrzeba ochrony przed słabymi punktami w
-bezpieczeństwie lub po prostu chęć posiadania stabilnego i aktualnego systemu.
+Generalnie aktualizacja jądra nie przyniesie większych zmian. Jest klika
+powodów, dla których powinniśmy przeprowadzić aktualizację jądra. Jednym z nich
+jest chęć poznania nowej funkcji lub skorzystania z nowego sterownika, kolejnym
+jest potrzeba ochrony przed słabym punktami w bezpieczeństwie lub ostatecznie,
+posiadanie stabilnego i aktualnego systemu.
 </p>
 
 <p>
-Nawet jeśli nie zechcesz aktualizować jądra za każdym razem gdy wyjdzie nowa
+Nawet jeśli nie zechcemy aktualizować jądra za każdym razem gdy wyjdzie nowa
 wersja, zalecane jest robienie tego od czasu do czasu. W przypadku gdy nowe
 aktualizacje wnoszą poprawki związane z bezpieczeństwem aktualizacja jest
 bezwzględnie zalecana.
@@ -86,22 +87,28 @@ bezwzględnie zalecana.
 
 <p>
 Jądro systemu aktualizujemy tak samo jak inne programy - używając
-<c>emerge</c>. Prawdopodobnie zechcesz to zrobić, gdy pozycja ta pojawi się
+<c>emerge</c>. Prawdopodobnie zechcemy to zrobić, gdy pozycja ta pojawi się
 na liście aktualizacji world. Dla przykładu:
 </p>
 
 <pre caption="Nowe źródła jądra pojawiły się na liście aktualizacji">
 # <i>emerge -Dup world</i>
 Calculating dependencies ...done!
-[ebuild     U ] sys-kernel/gentoo-dev-sources-2.6.9-r2 [2.6.8-r5]
+[ebuild   NS ] sys-kernel/gentoo-sources-2.6.9-r2 [2.6.8-r5]
 </pre>
 
+<note>
+Etykieta "NS" w powyższym wyniku polecenia oznacza, że nowe jądro zostanie
+zainstalowane w nowym slocie (New Slot). Znaczy to tyle, że źródłą starego jądra
+będą w systemie dopóki nie usuniemy ich ręcznie.
+</note>
+
 <p>
-Możesz wtedy zainstalować aktualizację, np.:
+Kontynując, możesz zainstalować aktualizację, np.:
 </p>
 
 <pre caption="Aktualizacja źródeł jądra">
-# <i>emerge -u gentoo-dev-sources</i>
+# <i>emerge -u gentoo-sources</i>
 </pre>
 
 <p>
@@ -120,7 +127,7 @@ powyższym przykładzie będzie to katalog <path>/usr/src/linux-2.6.9-gentoo-r2<
 
 <p>
 Gentoo wymaga, aby zachować dowiązanie symboliczne znajdujące się w
-<path>/usr/src/linux</path>. Powinno ono prowadzić do jądra, którego używasz.
+<path>/usr/src/linux</path>. Powinno ono prowadzić do jądra, którego używamy.
 Idąc dalej:
 </p>
 
@@ -139,10 +146,10 @@ Idąc dalej:
 <body>
 
 <p>
-Przy każdej z tych operacji powinnieneś się odnosić do instrukcji, które
-zawarte są w <uri link="http://ww.gentoo.org/doc/pl/handbook/index.xml">
-Handbooku Gentoo</uri> wzorująca się na <e>Konfiguracja jądra</e> i 
-<e>Konfiguracja bootloadera</e>. Poniżej napisane jest w skrócie jak to zrobić.
+Przy każdej z tych operacji powinniśmy się odnosić do instrukcji, które
+zawarte są w <uri link="/doc/pl/handbook/index.xml"> Handbooku Gentoo
+</uri> wzorująca się na <e>Konfiguracja jądra</e> i <e>Konfiguracja 
+bootloadera</e>. Poniżej napisane jest w skrócie jak to zrobić.
 </p>
 
 </body>
@@ -152,22 +159,26 @@ Handbooku Gentoo</uri> wzorująca się na <e>Konfiguracja jądra</e> i
 <body>
 
 <p>
-Jeżeli używasz genkernel, musisz jedynie powtórzyć to co robiłeś gdy pierwszy
-raz instalowałeś jądro systemu.
+Jeżeli używamy genkernel, musimy jedynie powtórzyć to co robiliśmy gdy pierwszy
+raz instalowaliśmy jądro systemu.
 </p>
 
 <p>
-Po prostu uruchom genkernel w normlany sposób:
+Po prostu uruchamiamy genkernel w normlany sposób:
 </p>
 
 <pre caption="Uruchamianie genkernel">
+<comment>(Dla jąder serii 2.4:)</comment>
 # <i>genkernel all</i>
+
+<comment>(Dla jąder serii 2.6:)</comment>
+# <i>genkernel --udev all</i>
 </pre>
 
 <p>
-Możesz również użyć dodatkowych parametrów jeżeli zechcesz skonfigurować dodatkowe
-opcje jądra przy pomocy <c>menuconfig</c> i chcesz by genkernel automatycznie
-zaaktualizował konfigurację gruba, wtedy uruchom genkernel w podany niżej
+Możemy również użyć dodatkowych parametrów jeżeli zechcemy skonfigurować dodatkowe
+opcje jądra przy pomocy <c>menuconfig</c> i chcemy by genkernel automatycznie
+zaaktualizował konfigurację gruba, wtedy uruchamiamy genkernel w podany niżej
 sposób:
 </p>
 
@@ -176,9 +187,11 @@ sposób:
 </pre>
 
 <p>
-Więcej infomacji znajdziesz w
-<uri link="http://www.gentoo.org/doc/pl/genkernel.xml">Gentoo Linux Genkernel
-Guide</uri> lub handbooku Gentoo.
+Więcej infomacji znajdziemy w
+<uri link="/doc/en/genkernel.xml">Gentoo Linux Genkernel
+Guide</uri> lub w <uri link="/doc/pl/handbook/index.xml">Handbooku Gentoo</uri>.
+Dużą część opcji możemy ustawić w pliku konfiguracyjnym <c>genkernela</c>, czyli
+<path>/etc/genkernel.conf</path>.
 </p>
 
 </body>
@@ -188,7 +201,7 @@ Guide</uri> lub handbooku Gentoo.
 <body>
 
 <p>
-Aby rozpocząć uruchom <c>menuconfig</c> w katalogu źródeł jądra:
+Aby rozpocząć uruchamiamy <c>menuconfig</c> w katalogu źródeł jądra:
 </p>
 
 <pre caption="Uruchamianie menuconfig">
@@ -197,16 +210,20 @@ Aby rozpocząć uruchom <c>menuconfig</c> w katalogu źródeł jądra:
 </pre>
 
 <p>
-Wybierz opcje, które są wymagane przez twoje urządzenia i środowisko, w którym
-będziesz pracował. Jeśli chcesz wiedzieć więcej na ten temat, odwołaj się do
-<e>Handbooka Gentoo</e>.
+Wybieramy opcje, które są wymagane przez urządzenia i środowisko, w którym
+będziemy pracować. Po dodatkowe informacje dotyczące konfiguracji jądra,
+zaglądamy do rodziału <e>Konfiguracja Jądra</e> w <uri
+link="/doc/pl/handbook/index.xml">Handbooku Gentoo</uri>.
 </p>
 
 <p>
-Następnie skompiluj jądro i przekopiuj je do partcyji /boot. Pownownie
-skorzystaj z intrukcji zawartych w handbooku pamiętając o zamontowaniu partycji
-/boot w pierwszej kolejności. Przy początkowej instalacji miałbyś tą partycję
-zamontowaną dużo wcześniej.
+Następnie kompilujemy jądro i kopiujemy je do partcyji /boot. Ponownie
+korzystamy z instrukcji zawartych w <uri link="/doc/pl/handbook/index.xml">
+Handbooku Gentoo</uri> w rozdziale <e>Konfiguracja bootloadera</e>. Jeżeli 
+<path>/boot</path> znajduje się na oddzielnej partycji, upewniamy się iż 
+jest ona zamontowa przed skopiowaniem skompilowanego jądra do niej! 
+Nie zrobienie tego powinno powstrzymać nas od uruchamiania systemu z nowy 
+jądrem.
 </p>
 
 <pre caption="Kompilacja i instalacja nowego jądra">
@@ -217,10 +234,11 @@ zamontowaną dużo wcześniej.
 </pre>
 
 <p>
-Na koniec powinnieneś zaktualizować konfigurację programu ładującego dodając
-pozycję dotyczącą nowego jądra (nie kasuj jeszcze starej!) i odmontuj partycję
-<path>/boot</path>. Ponownie odnieś się do handbooka do instrukcji zawartych
-tutaj.
+Na koniec powinniśmy zaktualizować konfigurację bootloadera dodając pozycję 
+dotyczącą nowego jądra (nie kasujmy jeszcze starej!) i odmontujemy partycję 
+<path>/boot</path>. Ponownie odnosimy się do <uri
+link="/doc/pl/handbook/index.xml">Handbooka Gentoo</uri> po dokładniejsze
+instrukcji opisanego tutaj postępowania. 
 </p>
 
 </body>
@@ -233,15 +251,17 @@ tutaj.
 <body>
 
 <p>
-Jeśli używasz dodatkowych modułów, które nie są zawarte w źródłach jądra (np.
-sterowniki graficzne Nvidia lub ATI) ale znajdują się w portage, muszą być
+Jeśli używamy dodatkowych modułów, które nie są zawarte w źródłach jądra (np.
+sterowniki graficzne NVIDIA lub ATI) ale znajdują się w portage, muszą być
 ponownie zainstalowane po każdej aktualizacjia jądra systemu. Jest to tak samo
-proste jak ponowna instalacja innych paczek. Ponownie odnieś się do rozdziału<uri
-link="http://www.gentoo.org/doc/pl/handbook/index.xml">Handbooka Gentoo</uri>
-<e>Konfiguracja jądra</e> chcąc uzyskać więcej inforamcji. Ponowne zainstalowanie
-tych paczek zagwarantuje również ich zbudowanie w źródła jądra znajdujące się w
-<path>/usr/src/linux</path> - dlatego będą one aktualnie instalowane dla nowego
-jądra, które własnie skompilowaliśmy.
+proste jak ponowna instalacja innych pakietów. Po bardziej szczegółowe
+instrukcje odnosimy się <uri link="/doc/pl/handbook/index.xml">Handbooka 
+Gentoo</uri> do rozdziału <e>Konfiguracja jądra</e>. Aby zagwarantować iż
+pakiety te zbudują się na źródła znajdujące się w <path>/usr/src/linux</path>, 
+powinniśmy odinstalować pakiety, następnie ponownie je zemergować. Jeżeli 
+stare źródła dla tego pakietu są utrzymywane przez portage, takie postępowanie
+zagwarantuje nam iż przebudowane pakiety będą poprawnie działały z nowy 
+jądrem. 
 </p>
 
 </body>
@@ -254,26 +274,26 @@ jądra, które własnie skompilowaliśmy.
 <body>
 
 <p>
-Następnie zamknij wszystkie aplikacje i uruchom ponownie system. Jeśli
-postępowałeś zgodnie z instrukcjami, które są zamieszczone powyżej na liście
-programu ładującego zobaczysz pozycję odnoszącą się do nowego jądra. Wybierz ją
-i uruchom system.
+Następnie zamykamy wszystkie aplikacje i uruchamiamy ponownie system. Jeśli
+postępowaliśmy zgodnie z instrukcjami, które są zamieszczone powyżej na liście
+bootloadera zobaczymy pozycję odnoszącą się do nowego jądra. Wybieramy ją
+i uruchamiamy system.
 </p>
 
 <p>
-Jeżeli wszystko dobrze skonfigurowałeś twój system uruchomi się bez żadnych problemów i
-będziesz się mógł do niego zalogować oraz rozpocząć pracę. I na tym kończy się
-proces aktualizacji jądra.
+Jeżeli wszystko dobrze skonfigurowaliśmy twój system uruchomi się z nowym 
+jądrem bez żadnych problemów i będziemy mogli się do niego zalogować oraz 
+rozpocząć pracę. I na tym kończy się proces aktualizacji jądra.
 </p>
  
 <p>
-Jeżeli popełniłeś błąd i system nie wystartował z nowym jądrem, wtedy po prostu
-uruchom go ponownie wykorzystując poprzednie działające jądro. Następnie
-przechodzisz ponownie do <uri link="#install">Konfiguracji, kompilacj i 
-instalacji nowego jądra</uri> - wprowadzasz odpowiednie poprawki, aby poprawić 
-swoje pomyłki. W niektórych przypadkach (np. po prostu nie zaznaczyłeś 
-sterownika karty sieciowej) nie będziesz nawet musiał uruchamiac ponownie 
-komputera aby to zrobić.
+Jeżeli popełniliśmy błąd i system nie wystartował z nowym jądrem, wtedy po prostu
+uruchamiamy go ponownie wybierając w bootloaderze wpis, który odpowiada ostatnio
+działającej wersji jądra. Następnie przechodzimy z powrotem do 
+<uri link="#install">Konfiguracji, kompilacji i instalacji nowego jądra</uri> - 
+wprowadzamy odpowiednie poprawki, aby poprawić błędy. W niektórych przypadkach 
+(np. po prostu nie zaznaczyliśmy sterownika karty sieciowej, urządzenia audio 
+itp.) nie będziemy musieli nawet uruchamiać ponownie komputera aby to zrobić.
 </p>
 
 </body>
@@ -287,16 +307,16 @@ komputera aby to zrobić.
 
 <p>
 Zdążyłeś zapewne zauważyć, że instalując źródła dla nowego jądra, źródła
-jądra którego aktualnie używałeś nie zostały usunięte. Jest to zamierzone
-działanie i pozwala Ci w prosty sposób przełączać się uruchamiając różne jądra.
+jądra którego aktualnie używaliśmy nie zostały usunięte. Jest to zamierzone
+działanie i pozwala w prosty sposób przełączać się, uruchamiając różne jądra.
 </p>
 
 <p>
 Przełączanie między różnymi jądrami jest związane z  pozostawieniem źródeł
 jądra w <path>/usr/src</path> oraz pozostawieniem pliku obrazu
 <path>bzImage</path> w partycji typu <path>/boot</path> (nawiązując do wpisów w
-konfiguracji programu ładującego). Za każdy razem gdy będziesz uruchamiał
-system, będziesz proszony o wybór wersji jądra, która ma być użyta.
+konfiguracji bootloadera). Za każdy razem gdy będziemy uruchamiali system, 
+będziemy proszeni o wybór wersji jądra, która ma być użyta.
 </p>
 
 </body>
@@ -309,41 +329,87 @@ system, będziesz proszony o wybór wersji jądra, która ma być użyta.
 <body>
 
 <p>
-Kontynując poprzedni wątek, po aktualizacji możesz być całkowicie zadowolony z
+Kontynując poprzedni wątek, po aktualizacji możemy być całkowicie zadowoleni z
 nowego jądra i nie potrzebować starej wersji. Prostym sposobem na usunięcie
-wszystkich źródeł z określonym wyjątkiem dla najnowszych jest użycie opcji
-<e>prune</e> emerge'a. W dalszych ciągu w przykładzie używamy
-gentoo-dev-sources:
+wszystkich źródeł z wyjątkiem tych najnowszych jest użycie opcji <e>prune</e> 
+emerge'a. W dalszych ciągu w przykładzie używamy gentoo-sources:
 </p>
 
 <pre caption="Usuwanie starych wersji">
-# <i>emerge -P gentoo-dev-sources</i>
+# <i>emerge -P gentoo-sources</i>
 </pre>
 
 <p>
-W większości przypadków, pliki tymaczasowe używane podczas kompilacji będa nadal
+W większości przypadków, pliki tymaczasowe używane podczas kompilacji będą nadal
 zapisane w odpowiednim podkatalogu w katalogu <path>/usr/src</path>. Bezpiecznym
 rozwiązaniem jest usunięcie ich poprzez użycie polecenia <c>rm</c>.
 </p>
 
 <p>
-Możesz również bezpiecznie usunąć moduły, które były używane przez poprzednie
+Możemy również bezpiecznie usunąć moduły, które były używane przez poprzednie
 jądro. Można to osiągnąć poprzeż usunięcie właściwych katalogów w
-<path>/lib/modules</path> odnoszących się do jądra, które właśnie usuwasz. Bądź
-ostrożny aby nie usunąć modułów należacych do jądra aktualnie używanego!
+<path>/lib/modules</path> odnoszących się do jądra, które właśnie usuwasz.
+Bądźmy ostrożni aby nie usunąć modułów należacych do jądra aktualnie używanego!
 </p>
 
 <p>
-Na koniec możesz zamontować swoją partycję <path>/boot</path> i usunąć pliki
+Na koniec możemy zamontować swoją partycję <path>/boot</path> i usunąć pliki
 <path>bzImage</path> oraz <path>System.map</path> jąder systemowych, które
-chesz usunąć. Powinnieneś także wyedytować konfigurację bootloadera tak by
-nie było już odwołań do tego jądra.
+usuwamy. Powinniśmy także wyedytować konfigurację bootloadera tak by
+nie było już odwołań do tych jąder.
 </p>
 
 </body>
 </section>
 </chapter>
+<chapter>
+<title>Zaawansowane: Użycie starego pliku .config do konfiguracji nowego jądra.</title>
+<section>
+<body>
 
+<p>
+Czasami możliwe jest zaoszczędzenie czasu jeżeli użyjemy ponownie pliku
+konfiguracyjnego ze starego jądra kiedy będziemy konfigurować nowe. Zauważmy
+jednak iż jest to generalnie niebezpieczne -- między kolejnymi wydaniami,
+wprowadzanych jest tak dużo zmian aby uznać taką metodę za rzetelną.
+</p>
+
+<p>
+Jedyną sytuacją kiedy takie postępowanie jest uzasadnione jest przypadek gdy
+aktualizujemy jądro z jednej wersji Gentoo do innej. Dla przykładu, różnice
+pomiędzy <c>gentoo-sources-2.6.9-r1</c>, a <c>gentoo-sources-2.6.9-r2</c> 
+będą bardzo małe, więc użycie opisywanej metody nie powinno przysporzyć 
+problemów. Jednak nie jest wskazane używanie tej metody w przypadku 
+aktualizacji z wersji 2.6.8 do 2.6.9. Zbyt wiele zmian jest pomiędzy 
+oficjalnymi wersjami oraz opisana  poniżej metoda nie wykazuje tych zmian, 
+co często prowadzi do dodatkowych problemów dla użytkownika poprzez 
+wyłączenie opcji, których wcale nie chciał wyłączać.
+</p>
+
+<p>
+Aby ponownie użyć starego pliku <path>.config</path> po prostu nadpisujemy go i
+uruchamiamy polecenie <c>make oldconfig</c>. W tym przykładzie, skopiujemy ten
+plik z <c>gentoo-sources-2.6.9-r1</c> i zaimportujemy go do
+<c>gentoo-sources-2.6.9-r2</c>.
+</p>
+
+<pre caption="Ponowne użycie starej konfiguracji">
+# <i>cd /usr/src/linux-2.6.9-gentoo-r2</i>
+# <i>cp ../linux-2.6.9-gentoo-r1/.config .</i>
+# <i>make oldconfig</i>
+</pre>
+
+<p>
+W tym momencie możemy zostać poproszeni o udzielenie odpowiedz na kilka pytań
+dotyczących konfiguracji, która zmieniła się pomiędzy tymi dwoma wydaniami.
+Kiedy to zrobimy, będziemy mogli skompilować i zainstalować jądro w taki sposób
+w jaki zazwyczaj to czynimy, pomijając jednak proces konfiguracji uruchamiany
+poleceniem <c>menuconfig</c>.
+</p>
+
+</body>
+</section>
+</chapter>
 <chapter>
 <title>Problemy po aktualizacji jądra?</title>
 <section>
@@ -351,10 +417,10 @@ nie było już odwołań do tego jądra.
 
 <p>
 W szybko rozwijanym jądrze Linuxa nieuniknione jest, że zmiany poczynione między
-jedną wersją a drugą będą sprawiały jakieś problemy. Jeżeli masz jakieś
+jedną wersją a drugą będą sprawiały jakieś problemy. Jeżeli mamy jakieś
 rozwiązania pojawiających się problemów z ostatnimi wersjami <uri
-link="http://www.gentoo.org/doc/pl/gentoo-kernel.xml#doc_chap2">jąder wspieranych
-przez Gentoo </uri> napisz raport o tym rozwiązaniu do nas.
+link="/doc/pl/gentoo-kernel.xml#doc_chap2">jąder wspieranych przez Gentoo </uri> 
+napisz raport o tym rozwiązaniu do nas.
 </p>
 
 </body>
