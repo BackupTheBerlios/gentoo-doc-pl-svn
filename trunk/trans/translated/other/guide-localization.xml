@@ -9,23 +9,23 @@
 <!-- $Header$ -->
 
 <guide link="/doc/pl/guide-localization.xml" lang="pl">
-<title>Gentoo Linux Lokalizacja Przewodnik</title>
-<author title="Author">
+<title>Lokalizacja Gentoo Linux</title>
+<author title="Autor">
   Alexander Holler
 </author>
-<author title="Translator/Editor">
+<author title="Tłumacz/Redaktor">
   <mail link="slucy@uchicago.edu">Steven Lucy</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="bennyc@gentoo.org">Benny Chuang</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="pylon@gentoo.org">Lars Weiler</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="dertobi123@gentoo.org">Tobias Scherbaum</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="flammie@gentoo.org">Flammie Pirinen</mail>
 </author>
 <author title="Tłumaczenie">
@@ -33,11 +33,11 @@
 </author>
 
 <abstract>
-Ten podręcznik powinien pomóc w zlokalizowaniu dystrybucji Gentoo Linux.
+Tekst opisujący wszystkie czynności związane ze spolszczeniem Gentoo Linux.
 </abstract>
 
-<version>1.13</version>
-<date>2005-02-05</date>
+<version>1.19</version>
+<date>2005-06-24</date>
 
 <chapter>
 <title>Strefa Czasowa</title>
@@ -75,15 +75,15 @@ przypadku
 </chapter>
 
 <chapter>
-<title>Zegar Systemowy</title>
+<title>Zegar sprzętowy</title>
 <section>
 <body>
 
 <p>
-W większosci instalacji Gentoo Linux, twoj zegar systemowy jest ustawiony na
-UTC (lub GMT, Greenwhich Mean Time) i wtedy twoja strefa czasowa jest branado
-twojego konta żeby ustalić aktualną strefę czasową. Jeżeli z nieznanych powodów,
-twój zegar systemowy nie jest ustawiony na UTC, to musisz edytować
+W większosci instalacji Gentoo Linux, zegar sprzętowy jest ustawiony na
+UTC (lub GMT, Greenwhich Mean Time) i wtedy twoja strefa czasowa jest brana do
+konta żeby ustalić aktualną strefę czasową. Jeżeli z nieznanych powodów,
+zegar sprzętowy nie jest ustawiony na UTC, to musisz edytować
 <path>/etc/rc.conf</path> i zmienić wartość <c>CLOCK</c>.
 </p>
 
@@ -192,6 +192,11 @@ locale w <c>ab_CD</c> format podany wyżej.
 </tr>
 </table>
 
+<note>
+Mimo, że większość programów współpracuje jedynie z LC_ALL warto również ustawić
+zmienną LANG, bez której część z nich może się dziwnie zachowywać.
+</note>
+
 <p>
 Większość użytkowników tylko ustawia zmienną LANG i pomimo zmienna LC_CTYPE na
 poziomie użytkownika przez dodawanie definicji do skryptów startowych shelli
@@ -203,7 +208,7 @@ export LANG="pl_PL@euro"
 </pre>
 
 <note>
-Dodając <c>@euro</c> do twojego locale jeżeli chcesz używać waluty Euro (&#8364;)
+Dodając <c>@euro</c> do twojego locale jeżeli chcesz używać waluty euro (&#8364;)
 </note>
 
 <p>
@@ -281,7 +286,7 @@ jak nowsze <c>glibc</c> będzie dostępne.
 
 <p>
 Ustawienie klawiatury używane przez konsole jest ustawione w
-<path>/etc/rc.conf</path> przez<c>KEYMAP</c> zmienną.
+<path>/etc/conf.d/keymaps</path> przez<c>KEYMAP</c> zmienną.
 Poprawne wartości możesz znależć w 
 <path>/usr/share/keymaps/<c>{arch}</c>/</path>.
 <path>i386</path> ma subdywizje 
@@ -305,7 +310,7 @@ KEYMAP="pl"
 
 <p>
 Mapowanie klawiatury używane przez X serwer jest wpisane w
-<path>/etc/X11/XF86Config</path> w  <c>XkbLayout</c>
+<path>/etc/X11/xorg.conf</path> w  <c>XkbLayout</c>
 option.
 </p>
 
@@ -332,7 +337,9 @@ Dla KDE musisz zainstalować kde-i18n pakiet z odpowiednią zmienna LINGUAS:
 </p>
 
 <pre caption="KDE Instalowanie lokalizacji">
-# <i>LINGUAS="pl" emerge kde-i18n</i>
+# <i>nano -w /etc/make.conf</i>
+<comment>(Dodajemy zmienną LINGUAS. Na przykład dla języka polskiego:)</comment>
+LINGUAS="pl"
 </pre>
 
 </body>
@@ -427,7 +434,7 @@ Symbol w [] jest symbolem Euro.
 </body>
 </section>
 <section>
-<title>Język dla OpenOffice</title>
+<title>Język dla OpenOffice.org</title>
 <body>
 
 <note>
@@ -436,14 +443,16 @@ openoffice-bin jest ENUS.
 </note>
 
 <p>
-Prosze zanotować to że ten pakiet teraz używa zmiennej LINGUAS to lokalizacji.
+Proszę zanotować to że ten pakiet teraz używa zmiennej LINGUAS to lokalizacji.
 Stary LANGUAGE=ENUS|PORT system <e>nie</e> pracuje już więcej. Głównym jezykiem
 dla OpenOffice jest ustawiony jako "US English". Jeżeli życzysz sobie zmienić
 język w OpenOffice sprawdz ebuild za głównym kodem języka.
 </p>
 
 <pre caption="Przykład: emerge openoffice dla polskiego środowiska">
-# <i>LINGUAS="pl" emerge openoffice</i>
+# <i>nano -w /etc/make.conf</i>
+<comment>(Dodajemy zmienną LINGUAS. Na przykład dla języka polskiego:)</comment>
+LINGUAS="pl"
 </pre>
 
 </body>

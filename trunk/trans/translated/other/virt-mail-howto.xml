@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<!-- Orig revision: 1.44 -->
+<!-- Orig revision: 1.45 -->
 <!-- Translator: aleander <aleander@gmail.com> -->
 <!-- Title: Hosting poczty -->
 <!-- Status: Finished -->
@@ -22,17 +22,20 @@
 <author title="Redaktor">
   <mail link="klasikahl@gentoo.org">Zack Gilburd</mail>
 </author>
+<author title="Redaktor">
+  <mail link="seather@scygro.za.net">Scygro</mail>
+</author>
 <author title="Tłumacz">
-  <mail link="aleander@gmail.com">Aleksander Modzelewski</mail>
+  Aleksander Modzelewski
 </author>
 
 <abstract>
 Ten dokument opisuje budowę systemu wirtualnego hostingu poczty opartego o
-Postfiksa, mysql-a, courier-IMAP oraz cyrus-sasl.
+Postfix, mysql, courier-IMAP oraz cyrus-sasl.
 </abstract>
 
-<version>1.0.21</version>
-<date>2005-05-23</date>
+<version>1.0.22</version>
+<date>2005-05-29</date>
 
 <!--
 Contents
@@ -118,13 +121,13 @@ Warto zapoznać się zatem z projektami opisanymi na stronach
 
 <p>
 W tym rozwiązaniu wykorzystane będą następujące pakiety: apache, courier-IMAP,
-pam_mysql, postfix, mod_php, phpmyadmin, squirrelmail, cyrus-sasl, mysql, php
+courier-authlib, postfix, mod_php, phpmyadmin, squirrelmail, cyrus-sasl, mysql, php
 oraz mailman.
 </p>
 
 <p>
 Należy się upewnić, że przed kompilacją zostały włączone następujące flagi USE
-<path>/etc/make.conf</path>: <c>USE="mysql pam-mysql IMAP libwww maildir sasl
+<path>/etc/make.conf</path>: <c>USE="mysql imap libwww maildir sasl
 ssl"</c>. W przeciwnym wypadku konieczna może okazać się rekompilacja w celu
 uzyskania obsługi wszystkich protokołów. Warto też wyłączyć pozostałe opcje
 poczty oraz sieci - na przykład ipv6.
@@ -252,8 +255,8 @@ przejściem do czynności opisanych w dalszej części tekstu.
 <section>
 <body>
 
-<pre caption="Instalacja Courier-IMAP">
-# <i>emerge courier-IMAP</i>
+<pre caption="Emergowanie courier-imap i courier-authlib">
+# <i>emerge courier-imap courier-authlib</i>
 </pre>
 
 <pre caption="Konfiguracja Courier-IMAP">
@@ -296,8 +299,8 @@ działają przed kontynuacją.
 <body>
 
 <p>
-Następnie zainstalowany zostanie Cyrus-sasl. SASL służy do przekazywania
-parametrów uwierzytelniających do PAM, który z kolei przekaże je do MySQL w celu
+Następnie zainstalowany zostanie cyrus-sasl. SASL służy do przekazywania
+parametrów uwierzytelniających do courier-auth, który z kolei przekaże je do MySQL w celu
 uwierzytelnienia użytkowników SMTP. W tym podręczniku nawet nie spróbujemy
 sprawdzić czy SASL działa przed instalacją MySQL oraz założeniem testowego konta
 użytkownika. Nie stanowi to problemu, bo w ostateczności autoryzacja
@@ -318,7 +321,7 @@ Następnie należy zmodyfikować <path>/etc/sasl2/smtpd.conf</path>.
 mech_list: PLAIN LOGIN
 pwcheck_method: saslauthd
 # <i>nano -w /etc/conf.d/saslauthd</i>
-SASLAUTHD_OPTS="${SASLAUTH_MECH} -a pam -r"
+SASLAUTHD_OPTS="${SASLAUTH_MECH} pam -r"
 # <i>/etc/init.d/saslauthd start</i>
 </pre>
 
@@ -953,7 +956,6 @@ to konieczne dla współpracy z Postfiksem.)</comment>
 <pre caption="Instalacja mailmana">
 # <i>emerge mailman</i>
 <comment>(Ten pakiet jest aktualnie zamaskowany
-<!-- [EDIT] Nieprawda! Jest tylko ~x86! -->
 więc należy go odmaskować albo podać emerge dokładną ścieżkę do pliku ebuild. Po
 instalacji należy postępować zgodnie z zaleceniami znajdującymi się w
 README.gentoo.gz *poza* dodaniem aliasów do /etc/mail/aliases. Za miast tego

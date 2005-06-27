@@ -2,18 +2,19 @@
 
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.8 -->
+<!-- Orig revision: 1.10 -->
 <!-- Translator: Jerzy Pawelec <niegdysiejszy.blondyn@interia.pl> -->
 <!-- Title: Przewodnik po systemie plików devfs -->
 <!-- Status: Ukończono -->
 <!-- $Id$ -->
+<!-- $Header$ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license-->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 <guide link="/doc/pl/devfs-guide.xml" lang="pl">
 
-<title>Device File System Guide</title>
+<title>System plików urządzeń (Device File System)</title>
 
 <author title="Author">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
@@ -24,23 +25,30 @@
 </author>
 
 <author title="Tłumacz">
-  <mail link="niegdysiejszy.blondyn@interia.pl">Jerzy Pawelec</mail>
+  Jerzy Pawelec
 </author>
 
 <abstract>
-Z tego dokumentu dowiesz się, co to naprawdę jest devfs i jak z tym pracować.
+Z tego dokumentu dowiemy się co to jest devfs i jak z nim pracować.
 </abstract>
 
 <license/>
 
-<version>0.3</version>
-<date>2005-02-14</date>
+<version>0.4</version>
+<date>2005-06-20</date>
 
 <chapter>
 <title>Co to jest devfs?</title>
 <section>
 <title>Stare (dobre?) czasy</title>
 <body>
+
+<warn>
+devfs jest <e>przestarzały</e> i zostanie wkrótce usunięty ze źródeł kernela
+serii 2.6. Użytkownicy jąder 2.6 powinni przemigrować na system udev. Informacje
+o nim można znaleźć w <uri link="/doc/pl/udev-guide.xml">udev guide</uri>.
+</warn>
+
 
 <p>
 Tradycyjne implementacje Linuxa dostarczają użytkownikom abstrakcyjną ścieżkę
@@ -156,7 +164,8 @@ ponieważ nie ma już ograniczeń (liczby zawsze mają granice :)
 Choć devfs ma swoje własne problemy; dla użytkowników końcowych nie są one w
 istocie widoczne, ale dla programiści jądra uznali te problemy za wystarczająco
 duże, aby oznaczyć devfs jako <e>obsolete</e> na korzyść <uri
-link="udev-guide.xml">udev</uri> (które Gentoo też obsługuje:).
+link="udev-guide.xml">udev</uri> (które Gentoo też obsługuje) i który jest
+domyślny na większości architektur dla jądra 2.6, począwszy od wydania 2005.0.
 </p>
 
 <p>
