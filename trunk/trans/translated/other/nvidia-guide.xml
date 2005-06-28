@@ -13,7 +13,7 @@
 
 <guide link="/doc/pl/nvidia-guide.xml" lang="pl">
 
-<title>Konfiguracji kart nVidia w Gentoo Linux</title>
+<title>Konfiguracja kart nVidia w Gentoo</title>
 
 <author title="Author">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
@@ -159,6 +159,25 @@ direct rendering: Yes
 Aby sprawdzić ilość FPS uruchom program <c>glxgears</c>. 
 </p>
 
+<section>
+<title>Włączanie obsługi nvidia</title>
+<body>
+  	 
+<p>
+Niektóre programy, takie jak np. <c>mplayer</c> czy <c>xine-lib</c> wykorzystują
+flagę USE o nazwie "nvidia", która włącza obsługę XvMCNVIDIA, przydatną podczas
+oglądania filmów w bardzo dużej rozdzielczości. Aby ją uaktywnić należy dodać
+wpis "nvidia" do listy zmiennych w pliku <path>/etc/make.conf</path> lub dodać
+jako flagę wyłącznie dla <c>media-video/mplayer</c> lub
+<c>media-libs/xine-lib</c> w pliku <path>/etc/portage/package.use</path>.
+</p>
+  	 
+<p>
+Następnie należy wpisać polecenie <c>emerge -uD --newuse world</c>, które
+przebuduje wszystkie programy, tak by mogły korzystać z nowych ustawień flag
+USE.
+</p>
+  	 
 </body>
 </section>
 <section>
