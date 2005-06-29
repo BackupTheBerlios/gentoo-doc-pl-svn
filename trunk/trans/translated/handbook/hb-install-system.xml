@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.80 -->
+<!-- Orig revision: 1.81-->
 <!-- Translator: veng <veng@gentoo.pl> -->
 <!-- Title: Instalacja systemu podstawowego -->
 <!-- Status: Release -->
@@ -14,11 +14,11 @@
 
 <sections>
 
-<version>2.7</version>
-<date>2005-06-09</date>
+<version>2.8</version>
+<date>2005-06-28</date>
 
 <section>
-<title>Praca w chroot.</title>
+<title>Praca w chroot</title>
 <subsection>
 <title>Opcjonalnie: Wybieranie serwerów lustrzanych.</title>
 <body>
@@ -26,9 +26,9 @@
 <p>
 Aby móc szybko ściągać źródła programów musisz wybrać szybki serwer lustrzany.
 Portage używa serwerów zawartych w zmiennej GENTOO_MIRRORS, która znajduje się 
-w pliku <path>make.conf</path>. Aby zobaczyć liste serwerów, które znajdują się
+w pliku <path>make.conf</path>. Aby zobaczyć listę serwerów, które znajdują się
 niedaleko ciebie możesz wejść na strone <uri link="/main/en/mirrors.xml">
-mirror list</uri> lub użyć sympatycznego narzedzia <c>mirrorselect</c>, który
+mirror list</uri> lub użyć sympatycznego narzędzia <c>mirrorselect</c>, który
 udostępnia prosty sposób wyboru serwerów lustrzanych
 </p>
 
@@ -37,7 +37,8 @@ udostępnia prosty sposób wyboru serwerów lustrzanych
 </pre>
 
 <warn>
-Nie wybieraj żanych serwerów IPv6. Nasze pliki stage aktualnie nie wspierają IPv6.
+Nie wybieraj żadnych serwerów IPv6. Nasze pliki stage aktualnie nie wspierają
+IPv6.
 </warn>
 
 <p>
@@ -245,7 +246,8 @@ W zmiennych <c>USE</c> definiujesz słowa kluczowe zamieniane następnie na
 opcje kompilowania. Na przykład dodanie do zmiennej <e>ssl</e> włączy obsługę SSL w programach,
 które go wykorzystują. <e>-X</e> usunie wsparcie dla serwera X (zwróć uwagę na znak
 minusa z przodu). Ustawienie <e>gnome gtk -kde -qt</e> zaowocuje wsparciem dla GNOME
-(oraz gtk), ale nie dla KDE (i związanym z nim ściścle qt), znakomicie przygotowując grunt
+(oraz gtk), ale nie dla KDE (i związanym z nim ściśle qt), znakomicie
+przygotowując grunt
 pod GNOME.
 </p>
 
@@ -348,10 +350,18 @@ ma on wpływ na nasze działania.
   ze Stage2 do Stage3</uri>).
 </li>
 <li>
+  Instalacja z etapu trzeciego (<e>stage3</e>) wymaga  <uri
+link="#upgrade-baselayout">aktualizacji pakietu
+baselayout</uri>.
+</li>
+<!-- KEEP THIS FOR 2005.1
+    <li>
   Jeżeli zaczynasz od <e>stage3</e>, możesz pominąć
   obydwa kroki i przejść do następnego rozdziału, czyli
   <uri link="?part=1&amp;chap=7">Konfiguracji jądra</uri>.
 </li>
+-->
+
 </ul>
 
 </body>
@@ -393,7 +403,7 @@ link="#bootstrap">Bootstrap systemu</uri>.
 Jeśli wcześniej nie przekopiowano kodu źródłowego skrypt bootstrap
 pobierze wszystkie potrzebne pliki. Jeśli zamierzamy najpierw ściągnąć 
 źródła, a dopiero potem wykonać bootstrap systemu (np. dlatego,
-że nie chcemy mieć otwartego połaczenia z Internetem podczas kompilowania)
+że nie chcemy mieć otwartego połączenia z Internetem podczas kompilowania)
 używamy przełącznika <e>-f</e> skryptu bootstrap, co spowoduje pobranie
 wszystkich niezbędnych plików.
 </p>
@@ -410,7 +420,8 @@ wszystkich niezbędnych plików.
 <body>
 
 <p>
-W porządku, zatem chwytamy klawiaturę i wstukujemy kilka kolejnych poleceń - zaczynamy
+W porządku, zatem chwytamy klawiaturę i wpisujemy kilka kolejnych poleceń -
+zaczynamy
 bootstrap.  Następnie możemy poszukać rozrywki przy czymś innym, ponieważ
 ukończeniu tego etapu zajmie mnóstwo czasu.
 </p>
@@ -516,13 +527,34 @@ to wystarczy tu parametr --newuse
 Na typ etapie można jeszcze bezpiecznie zignorować ostrzeżenia o
 nowszych wersjach plików konfiguracyjnych (i potrzebie uruchomienia
 <c>etc-update</c>). W przyszłości, kiedy Gentoo zostanie już zainstalowane i
-uruchomione polecamy przeczytanie naszej dokumentacji dotyczącecej <uri
+uruchomione polecamy przeczytanie naszej dokumentacji dotyczącej <uri
 link="?part=3&amp;chap=2#doc_chap3">Ochrony plików konfiguracyjnych</uri>.
 </p>
 
+</body>
+</subsection>
+</section>
+<section id="upgrade-baselayout">
+<title>Uaktualnianie pakietu baselayout</title>
+<subsection>
+<body>
+
 <p>
-Kiedy proces budowania się zakończy, przejdź do 
-<uri link="?part=1&amp;chap=7">Konfiguracji jądra</uri>.
+Pakiet <c>baselayout</c> znacząco zmienił się od czasu wydania Gentoo 2005.0.
+Niektóre pliki konfiguracyjne używają zupełnie innej składni, inne zmieniły
+miejsce rezydowania w systemie. W Podręczniku omawiamy proces instalacji na
+podstawie nowych plików konfiguracyjnych, dlatego zaleca się zaktualizowanie
+<c>baselayout</c> przed przejściem do dalszych etapów instalacji.
+</p>
+
+<pre caption="Uaktualnianie baselayout">
+# <i>rm /etc/conf.d/net</i>
+# <i>CONFIG_PROTECT="-*" emerge baselayout</i>
+</pre>
+
+<p>
+Kolejny etap instalacji to <uri link="?part=1&amp;chap=7">Konfiguracja
+jądra</uri>
 </p>
 
 </body>
