@@ -2,7 +2,7 @@
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/2.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
 <!-- Orig revision: 1.5 -->
 <!-- Translator: muchar <muchar@gentoo.pl> -->
@@ -12,8 +12,8 @@
 <!-- $Header$ -->
 
 <sections>
-<version>0.1</version>
-<date>2005-03-17</date>
+<version>1.1</version>
+<date>2005-06-14</date>
 
 <section>
 <title>Moduły sieciowe</title>
@@ -45,14 +45,13 @@ modules_eth0=( "udhcpc" )
 <comment># Możliwe jest również określenie których modułów nie używać wcale -
 # przykładowo może być używana kliencka lub kontrolowana przez linux-wlan-ng
 # konfiguracja wifi, jednakże zachodzi potrzeba skonfigurowania własnych
-# ustawień sieciowych dla każdeg ESSID-a z którym sieć jest powiązana osobno.
+# ustawień sieciowych dla każdego ESSID-a z którym sieć jest powiązana osobno.
 </comment>
 modules=( "!iwconfig" )
 </pre>
 
 </body>
 </section>
-
 <section>
 <title>Kontrolery sieciowe</title>
 <body>
@@ -65,7 +64,7 @@ skonfigurować na urządzeniu sieciowym.
 
 <p>
 Domyślnie w Gentoo używane jest ifconfig i jest dostępny w profilu
-systemowym. iproute2 jest potężniejszejszy i elastyczniejszy, ale nie jest
+systemowym. iproute2 jest potężniejszy i elastyczniejszy, ale nie jest
 załączany domyślnie.
 </p>
 
@@ -94,7 +93,6 @@ config_eth0=( "192.168.0.2 netmask 255.255.255.0 broadcast 192.168.0.255" )
 
 </body>
 </section>
-
 <section>
 <title>DHCP</title>
 <body>
@@ -114,60 +112,60 @@ Każdy z nich posiada swoje zalety i wady. Oto krótkie wprowadzenie.
 </p>
 
 <table>
-  <tr>
-    <th>Moduł DHCP</th>
-    <th>Paczka</th>
-    <th>Zaleta</th>
-    <th>Wada</th>
-  </tr>
-  <tr>
-    <ti>dhclient</ti>
-    <ti>net-misc/dhcp</ti>
-    <ti>
-        Stworzone przez ISC, te same osoby które stworzyły BIND DNS
-	Bardzo konfigurowalne.
-    </ti>
-    <ti>
-        Konfiguracja jest bardzo skomplikowana, oprogramowanie jest dość duże,
-	nie można otrzymać serwerów NTP z DHCP i domyślnie nie jest wysyłana nazwa
-	hosta.
-    </ti>
-  </tr>
-  <tr>
-    <ti>dhcpcd</ti>
-    <ti>net-misc/dhcpcd</ti>
-    <ti>
-        Przez długi czas jako domyślny w Gentoom, nie związany z zewnętrznymi
-	narzędziami
-    </ti>
-    <ti>
-        Brak wsparcia ze strony twórców, bywa że jest powolne, nie zawsze
-	potrafi przechodzić w tryb demona.
-    </ti>
-  </tr>
-  <tr>
-    <ti>pump</ti>
-    <ti>net-misc/pump</ti>
-    <ti>
-        Niewielkie rozmiary, nie związany z zewnętrznymi narzędziami
-    </ti>
-    <ti>
-        Brak wsparcia ze strony twórców, źle działa przy połączeniach
-	modemowych, nie można otrzymać serwerów NIS z DHCP
-    </ti>
-  </tr>
-  <tr>
-    <ti>udhcpc</ti>
-    <ti>net-misc/udhcp</ti>
-    <ti>
-        Niewielkie rozmiary - najmniejszy dostępny klient dhcpd, stworzony dla
-	systemów wbudowanych
-    </ti>
-    <ti>
-        Żadna dystrybucja nie używa go jako domyślnego, nie można ustawić czasu
-	wygaśnięcia dłuższego niż 3 sekundy
-    </ti>
-  </tr>
+<tr>
+  <th>Moduł DHCP</th>
+  <th>Paczka</th>
+  <th>Zaleta</th>
+  <th>Wada</th>
+</tr>
+<tr>
+  <ti>dhclient</ti>
+  <ti>net-misc/dhcp</ti>
+  <ti>
+    Stworzone przez ISC, te same osoby które stworzyły BIND DNS
+    Bardzo konfigurowalne.
+  </ti>
+  <ti>
+    Konfiguracja jest bardzo skomplikowana, oprogramowanie jest dość duże,
+    nie można otrzymać serwerów NTP z DHCP i domyślnie nie jest wysyłana nazwa
+    hosta.
+  </ti>
+</tr>
+<tr>
+  <ti>dhcpcd</ti>
+  <ti>net-misc/dhcpcd</ti>
+  <ti>
+    Przez długi czas jako domyślny w Gentoom, nie związany z zewnętrznymi
+    narzędziami
+  </ti>
+  <ti>
+    Brak wsparcia ze strony twórców, bywa że jest powolne, nie zawsze
+    potrafi przechodzić w tryb demona.
+  </ti>
+</tr>
+<tr>
+  <ti>pump</ti>
+  <ti>net-misc/pump</ti>
+  <ti>
+    Niewielkie rozmiary, nie związany z zewnętrznymi narzędziami
+  </ti>
+  <ti>
+    Brak wsparcia ze strony twórców, źle działa przy połączeniach
+    modemowych, nie można otrzymać serwerów NIS z DHCP
+  </ti>
+</tr>
+<tr>
+  <ti>udhcpc</ti>
+  <ti>net-misc/udhcp</ti>
+  <ti>
+    Niewielkie rozmiary - najmniejszy dostępny klient dhcpd, stworzony dla
+    systemów wbudowanych
+  </ti>
+  <ti>
+    Żadna dystrybucja nie używa go jako domyślnego, nie można ustawić czasu
+    wygaśnięcia dłuższego niż 3 sekundy
+  </ti>
+</tr>
 </table>
      
 <p>
@@ -210,7 +208,6 @@ wobec czego nie trzeba tego definiować.
 
 </body>
 </section>
-
 <section>
 <title>Modem ADSL</title>
 <body>
@@ -224,8 +221,8 @@ Na początek należy zainstalować oprogramowanie do ADSL-a.
 </pre>
 
 <warn>
-baselayout-1.11.x wspiera jedynie PPPOE<br/>
-Być może w przyszłości będzie również wsparcie dla PPPOA<br/>
+baselayout-1.11.x wspiera jedynie PPPOE Być może w przyszłości będzie również
+wsparcie dla PPPOA.
 </warn>
 
 <p>
@@ -245,12 +242,11 @@ Na końcu należy ustawić nazwę użytkownika oraz hasło w
 
 <pre caption="sample /etc/ppp/pap-secrets">
 <comment># Znak * jest ważny</comment>
-"użytkownik"	*	"hasło"
+"użytkownik"  *  "hasło"
 </pre>
 
 </body>
 </section>
-
 <section>
 <title>APIPA {Automatyczne prywatne adresowanie IP (ang. Automatic Private IP Addressing)}</title>
 <body>
@@ -261,10 +257,14 @@ poprzez losowe odpytywanie sieci za pomocą danego interfejsu. Jeżeli nie ma
 żadnej odpowiedzi, taki adres jest przypisywany do interfejsu.
 </p>
 
-<p>
+<!-- BEZ SENSU
+ <p>
+Przydaje się to jedynie w sieciach LAN, w których nie ma serwera DHCP. 
+których nie ma bezpośrednio połącz
 This is only useful for LANs where there is no DHCP server and you don't
 connect directly to the internet and all other computers use APIPA.
 </p>
+-->
 
 <p>
 Aby było wsparcie dla APIPA, należy zainstalować net-misc/iputils lub net-analyzer/arping
@@ -282,7 +282,6 @@ config_eth0=( "apipa" )
 
 </body>
 </section>
-
 <section>
 <title>Wiązanie urządzeń sieciowych</title>
 <body>
@@ -309,13 +308,12 @@ config_bond0=( "null" )
 <comment># Zależne od eth0, eth1 oraz eth2 jako, że mogą wymagać dodatkowej
 #konfiguracji</comment>
 depend_bond0() {
-	need net.eth0 net.eth1 net.eth2
+  need net.eth0 net.eth1 net.eth2
 }
 </pre>
 
 </body>
 </section>
-
 <section>
 <title>Mostkowanie (wsparcie dla 802.1d)</title>
 <body>
@@ -350,14 +348,51 @@ config_br0=( "192.168.0.1/24" )
 
 <comment># Należy zależeć od eth0 oraz eth1 jako że mogą wymagać dodatkowej
 # konfiguracji</comment>
-depend_bond0() {
-	need net.eth0 net.eth1
+depend_br0() {
+  need net.eth0 net.eth1
 }
+</pre>
+
+<impo>
+Aby korzystać z niektórych ustawień mostków, warto zajrzeć do dokumentacji
+opisującej <uri link="?part=3&amp;chap=2#variable_name">nazwy zmiennych</uri>.
+</impo>
+
+</body>
+</section>
+<section>
+<title>Adresy MAC</title>
+<body>
+
+<p>
+Nie trzeba niczego instalować aby zmieniać adresy MAC interfejsów sieciowych,
+jeżeli nastąpi zmiana do konkretnego adresu. Jednakże, jeżeli zachodzi
+potrzebazamiany adresu na losowy, lub losowy adres konkretnego rodzaju, należy
+zainstalować net-analyzer/macchanger.
+</p>
+
+<pre caption="Przykład zmiany adresu MAC">
+<comment># Aby przypisać adres MAC konkretnemu urządzeniu</comment>
+mac_eth0="00:11:22:33:44:55"
+
+<comment># Aby tylko ostatnie trzy bajty były losowe</comment>
+mac_eth0="random-ending"
+
+<comment># Aby wybierać losowo pomiędzy tym samym fizycznym połączeniem (np.
+# światłowód, miedź lub bezprzewodowo), wszyscy producenci</comment>
+mac_eth0="random-samekind"
+
+<comment># Aby wybierać losowo pomiędzy różnymi fizycznymi połączeniami (np.
+światłowód, miedź lub bezprzewodowo), wszyscy producenci</comment>
+mac_eth0="random-anykind"
+
+<comment># Pełna losowość - UWAGA: niektóre adresy MAC wygenerowane w ten sposób
+mogą zachowywać się inaczej niż powinny</comment>
+mac_eth0="random-full"
 </pre>
 
 </body>
 </section>
-
 <section>
 <title>Tunelowanie</title>
 <body>
@@ -391,7 +426,7 @@ Aby posiadać wsparcie dla VLAN'ów, należy zainstalować net-misc/vconfig
 
 <p>VLAN to grupa urządzeń sieciowych które zachowują się tak, jakby były
 podłączone do jednego segmentu sieciowego - nawet jeśli tak nie jest.
-Człownkowie VLAN-u mogą jedynie widzieć innych członków VLAN-u, nawet jeśli
+Członkowie VLAN-u mogą jedynie widzieć innych członków VLAN-u, nawet jeśli
 współdzielą sieć z innymi urządzeniami.
 </p>
 
@@ -410,6 +445,12 @@ vconfig_vlan1=( "set_flag 1" "set_egress_map 2 6" )
 config_vlan1=( "172.16.3.1 netmask 255.255.254.0" )
 config_vlan2=( "172.16.2.1 netmask 255.255.254.0" )
 </pre>
+
+<impo>
+Aby używać niektórych ustawień VLAN, może zajść potrzeba zajrzenia do
+dokumentacji opisującej 
+<uri link="?part=3&amp;chap=2#variable_name">nazwy zmiennych</uri>.
+</impo>
 
 </body>
 </section>

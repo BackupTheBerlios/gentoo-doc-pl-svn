@@ -12,8 +12,8 @@
 
 <sections>
 
-<version>0.2</version>
-<date>2005-04-06</date>
+<version>1.1</version>
+<date>2005-06-14</date>
 
 <section>
 <title>Początek</title>
@@ -27,7 +27,7 @@ może to być również eth1, wlan0, etc.
 </note>
 
 <note>
-Przy pisaniu dokumentu zakładamy, że jest zainstalowany baselayout-1.11.10-r6
+Przy pisaniu dokumentu zakładamy, że jest zainstalowany baselayout-1.11.11
 lub nowszy.
 </note>
 
@@ -37,7 +37,7 @@ RC w Gentoo. Jest to realizowane poprzez stworzenie linku symbolicznego z
 <c>net.lo</c>  do <c>net.eth0</c> w <path>/etc/init.d</path>.
 </p>
 
-<pre>
+<pre caption="Tworzenie połączenia symbolicznego między net.eth0 i net.lo">
 # <i>cd /etc/init.d</i>
 # <i>ln -s net.lo net.eth0</i>
 </pre>
@@ -45,8 +45,8 @@ RC w Gentoo. Jest to realizowane poprzez stworzenie linku symbolicznego z
 <p>
 System RC w Gentoo już wie o tym interfejsie. Musi również wiedzieć jak
 skonfigurować nowy interfejs. Wszystkie interfejsy sieciowe są konfigurowane w
-<path>/etc/conf.d/net</path>.<br/>
-Poniżej znajduje się przykładowa konfigurcja dla DHCP oraz statycznych adresów.
+<path>/etc/conf.d/net</path>. Poniżej znajduje się przykładowa konfiguracja dla
+DHCP oraz statycznych adresów.
 </p>
 
 <pre caption="Przykłady dla /etc/conf.d/net">
@@ -74,8 +74,8 @@ popularności Internetu i teraz stoi przed obliczem utraty unikalnych adresów I
 CIDR pozwala użyć jednego schematu adresowania w celu użyciajednego adresu IP do
 reprezentowania wielu adresów. Adres IP w notacji CIDR wygląda jak zwykły adres
 IP, z tą różnicą, że kończy się ukośnikiem za którym znajduje się liczba. Dla
-przykładu, 192.168.0.0/16. CIDR jest dokładnie opisany w <uri
-link="http://rfc.net/rfc1519.html">RFC 1519</uri>.
+przykładu, 192.168.0.0/16. CIDR jest dokładnie opisany w 
+<uri link="http://rfc.net/rfc1519.html">RFC 1519</uri>.
 </note>
 
 <p>
@@ -99,7 +99,7 @@ co się dzieje.
 Teraz, gdy już udało się uruchomić oraz zatrzymać urządzenie sieciowe, należałoby
 dodać je do domyślnych skryptów startowych Gentoo. Poniżej opisane jest jak tego
 dokonać. Ostatnie polecenie "rc" powoduje uruchomienie tych skryptów w danym
-runlevelu, które jeszcze nie zostały jeszcze uruchomione.
+poziomie uruchomieniowym, które jeszcze nie zostały jeszcze uruchomione.
 </p>
 
 <pre caption="Konfiguracja interfejsu sieciowego, aby uruchamiał się przy
