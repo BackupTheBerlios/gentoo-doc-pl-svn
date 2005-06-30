@@ -440,7 +440,7 @@ do nagrania obrazy płyt CD.
 </p>
 
 <p>
-    Aby zweryfikować poprawność pobranych plików ISO należy porównać ich sumy
+Aby zweryfikować poprawność pobranych plików ISO należy porównać ich sumy
 MD5 z tymi znajdującymi się na naszym serwerze lustrzanym (np. w pliku o nazwie
 <path>install-x86-minimal-2005.0.iso.md5</path>). Sumy MD5 dla pobranych plików
 można wygenerować przy pomocy narzędzia <c>md5sum</c> dla Linuksa, lub jego <uri
@@ -659,7 +659,7 @@ są obsługiwane)</comment>
 Następnie ładujemy wybraną mapę klawiszy:
 </p>
 
-<pre caption="Loading a keymap">
+<pre caption="Ładowanie mapy klawiszy">
 # <i>loadkeys be-latin1</i>
 </pre>
 
@@ -722,14 +722,60 @@ wydajność:</comment>
 
 </body>
 </subsection>
-<subsection>
-<title>Opcjonalnie: Dostęp do dokumentacji w trakcie instalacji</title>
+<subsection id="useraccounts">
+<title>Opcjonalnie: Konta użytkowników.</title>
 <body>
 
 <p>
-Jeśli zamierzamy  korzystać z Podręcznika Gentoo podczas instalacji (obojętnie
+Jeśli planujemy umożliwienie innym osobom dostępu do środowiska instalacyjnego
+lub zamierzamy korzystać z <c>irssi</c> nie uruchomionego z przywilejami roota
+musimy stworzyć dodatkowe konta.
+</p>
+
+<p>
+Najpierw jednak należy zmienić hasło roota. Dokonuje się tego przy pomocy
+polecenia <c>passwd</c>:
+</p>
+
+<pre caption="Zmiana hasła roota">
+# <i>passwd</i>
+New password: <comment>(Podajemy nowe hasło)</comment>
+Re-enter password: <comment>(Potwierdzamy nowe hasło)</comment>
+</pre>
+
+<p>
+Aby stworzyć konto użytkownika musimy najpierw podać jego parametry, a
+następnie ustawić hasło. Skorzystamy przy tym z poleceń <c>useradd</c> oraz
+<c>passwd</c>. W przykładzie stworzymy użytkownika o nazwie &quot;rane&quot;.
+</p>
+
+<pre caption="Tworzenie konta użytkownika">
+# <i>useradd rane</i>
+# <i>passwd rane</i>
+New password: <comment>(Podajemy hasło)</comment>
+Re-enter password: <comment>(Potwierdzamy hasło)</comment>
+</pre>
+
+
+<p>
+Aby przełączyć się z konta roota na nowoutworzone konto użytkownika korzystamy
+z polecenia <c>su</c>:
+</p>
+
+<pre caption="Przełączanie użytkownika">
+# <i>su - rane</i>
+</pre>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Dostęp do dokumentacji podczas instalowania Gentoo.</title>
+<body>
+
+<p>
+Jeśli zamierzamy podczas instalacji korzystać z Podręcznika Gentoo (obojętnie
 czy nagranego na CD czy znajdującego się w Internecie) powinniśmy dodać do tych
-celów konto zwykłego użytkownika, tak jak opisano to przed chwilą, a
+celów konto zwykłego użytkownika, tak jak opisaliśmy to przed chwilą, a
 następnie przejść przy pomocy kombinacji klawiszy <c>Alt-F2</c> na nowy terminal
 i tam się zalogować.
 </p>
@@ -761,15 +807,16 @@ Na pierwszy terminal powracamy przy pomocy kombinacji klawiszy <c>Alt-F1</c>.
 </body>
 </subsection>
 <subsection>
-<title>Opcjonalnie: Uruchamianie demona SSH</title>
+<title>Opcjonalnie: Uruchamianie demona SSH.</title>
 <body>
 
 <p>
-Aby umożliwić innym osobom dostęp do naszego komputera podczas instalacji (by
-mogły nam pomóc w konfigurowaniu Gentoo. lub nawet przeprowadzić cały proces  
-za nas) musimy dodać im odpowiednie konta użytkowników lub nawet podać hasło
-roota (nie należy tego robić jeśli nie jest to osoba, której ufa się
-<e>całkowicie</e>).
+Aby umożliwić innym osobom dostęp do naszego komputera podczas instalacji
+(by mogły nam pomóc w konfigurowaniu Gentoo. lub nawet przeprowadzić cały proces
+za
+nas) musimy dodać im odpowiednie konta użytkowników lub nawet podać hasło roota
+(nie należy tego robić jeśli nie jest to osoba, której ufa
+się<e>całkowicie</e>).
 </p>
 
 <p>
@@ -782,13 +829,12 @@ Demona SSH uruchamia się następującym poleceniem:
 
 <p>
 Korzystanie z sshd jest możliwe tylko wtedy, gdy komputer jest połączony z
-Internetem. Połączenie nawiążemy dzięki wskazówkom spisanym w rozdziale
-zatytułowanym <uri link="?part=1&amp;chap=3">konfiguracja sieci</uri>.
+Internetem. Połączenie nawiążemy dzięki wskazówkom spisany, w
+rozdziale zatytułowanym <uri link="?part=1&amp;chap=3">konfiguracja
+sieci</uri>.
 </p>
 
 </body>
 </subsection>
 </section>
 </sections>
-
-
