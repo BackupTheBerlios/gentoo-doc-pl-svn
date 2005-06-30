@@ -3,17 +3,21 @@
 
 <guide>
 
-<title>Polski Projekt Tłumaczenia Dokumentacji Gentoo</title>
+<title>Polski projekt tłumaczenia dokumentacji Gentoo</title>
+
+<author title="Autor">
+  <mail link="rane@gentoo.pl">Łukasz Damentko</mail>
+</author>
 
 <author title="Autor">
   <mail link="lucass@gentoo.pl">Łukasz Strzygowski</mail>
 </author>
 
-<version>1.2</version>
-<date>2005-06-23</date>
+<version>1.3</version>
+<date>2005-06-29</date>
 
 <abstract>
-Strona polskiego projektu tłumaczenia dokumentacji Gentoo.
+Oficjalna strona polskiego projektu tłumaczenia dokumentacji Gentoo.
 </abstract>
 
 <chapter>
@@ -21,10 +25,11 @@ Strona polskiego projektu tłumaczenia dokumentacji Gentoo.
 <body>
 
 <p>
-Głównym celem Polskiego Projektu Tłumaczenia Dokumentacji Gentoo jest przetłumaczenie jak największej
-części dokumentacji Gentoo Linux. Umożliwi to korzystanie z naszej dystrybucji także użytkownikom nie 
-znającym języka angielskiego lub znającym go słabo. Na stronie tej przedstawimy status tłumaczeń,
-oraz niezbędne informacje dla ludzi chętnych do współpracy.
+Głównym celem polskiego projektu tłumaczenia dokumentacji Gentoo jest
+przetłumaczenie jak największej części dokumentacji Gentoo Linux. Umożliwi to
+korzystanie z naszej dystrybucji także użytkownikom nie znającym języka
+angielskiego lub znającym go słabo. Na tej stronie przedstawimy status
+tłumaczeń oraz wszelkie niezbędne informacje dla ludzi chętnych do współpracy.
 </p>
 
 </body>
@@ -36,7 +41,14 @@ oraz niezbędne informacje dla ludzi chętnych do współpracy.
 <p>
 Wszystkie informacje z jakimi powinni zapoznać się tłumacze spisaliśmy w osobnym
 <uri link="jak-tlumaczyc.html">dokumencie</uri>. Jest on obowiązkową lekturą dla
-każdego, kto zamierza przyłączyć się do naszego projektu.
+każdego, kto zamierza dołączyć do naszego projektu.
+</p>
+
+<p>
+Po zapoznaniu się z powyższym tekstem wystarczy wysłać zgłoszenie pod adres
+<mail link="tlumaczenia@gentoo.pl">tlumaczenie@gentoo.pl</mail>. Na adres ten
+można również wysyłać wszelkie pytania i sugestie dotyczące projektu oraz już
+przetłumaczonej dokumentacji.
 </p>
 
 </body>
@@ -45,9 +57,22 @@ każdego, kto zamierza przyłączyć się do naszego projektu.
 <title>Aktualny status</title>
 <body>
 
+
 <p>
-Poniższa tabela prezentuje listę dokumentów już przetłumaczonych, czekających
-na tłumaczenie oraz będących w jego trakcie.
+Większość wymienionych poniżej dokumentów opublikowano już na stronie <uri
+link="http://gentoo.org">gentoo.org</uri>. Pełną ich listę można uzyskać pod
+adresem <uri
+link="http://www.gentoo.org/doc/pl/index.xml">http://www.gentoo.org/doc/pl/index.xml</uri>.
+Początkujących użytkowników Gentoo szczególnie gorąco zachęcamy do przeczytania
+<uri link="http://www.gentoo.org/doc/pl/handbook/handbook-x86.xml">Podręcznika
+Gentoo</uri>.
+</p>
+
+<p>
+Poniższa tabela ma charakter informacyjny, jest narzędziem dla uczestników
+projektu i pokazuje, które dokumenty już zostały przetłumaczone oraz które
+wymagają uaktualnienia. W celu przyglądania polskiej dokumentacji Gentoo należy
+udać się pod jeden z powyższych adresów. 
 </p>
 
 <table>
@@ -62,125 +87,6 @@ na tłumaczenie oraz będących w jego trakcie.
 &doctable;
 </table>
 
-<!-- przesunięte do góry
-<chapter>
-<title>Informacje dla tłumaczy</title>
-<section>
-<body>
-
-<p>
-Wszystkie informacje z jakimi powinni zapoznać się tłumacze spisaliśmy w osobnym
-<uri link="jak-tlumaczyc.html">dokumencie</uri>.
-Jest on obowiązkową lekturą dla każdego, kto zamierza przyłączyć się do
-naszego projektu.
-</p>
--->
-<!-- STARA WERSJA, informacje przeniesione do jak-tlumaczyc.xml.
-<p>
-Podstawową rzeczą obowiązującą każdego tłumacza jest dobra znajomość języka
-angielskiego. Bardzo ważne jest tu słownictwo techniczne dotyczące systemu
-Linux, oprogramowania, sprzętu oraz samego Gentoo. Oprócz tego
-każdy chętny powinien posiadać wiedzę i doświadczenie w używaniu naszej
-dystrybucji.
-</p>
-<p>
-Koordynator Projektu Dokumentacji Gentoo, <mail link="swift@gentoo.org">Sven Vermeulen</mail>
-stworzył dwa dokumenty przeznaczone dla tłumaczy. Z pierwszym z nich, <uri
-link="http://www.gentoo.org/proj/en/gdp/translators-howto.xml">Translators Howto</uri>
-powinni zapoznać się wszyscy członkowie projektu oraz kandydaci. Drugi - <uri
-link="tipsntricks.html">Sztuczki i Kruczki</uri>
-zawiera bardzo przydatne informacje dotyczące między innymi konwersji dokumentów
-XML do HTML.
-</p>
-</body>
-</section>
-<section>
-<title>Format XML</title>
-<body>
-<p>
-W związku z tym, że dokumenty źródłowe są w formacie XML, zasadniczą sprawą 
-jest umiejętność sprawnego posługiwania się nim. Podstawowe informacje na ten temat
-znajdziesz w stosownej 
-<uri link="http://www.gentoo.org/doc/en/xml-guide.xml">dokumentacji</uri>. W razie 
-wszelkich wątpliwości, skontaktuj się z innym uczestnikiem projektu. 
-</p>
-</body>
-</section>
-<section>
-<title>Serwer CVS</title>
-<body>
-<p>
-W celu łatwego zarządzania tłumaczonymi plikami, dysponujemy serwerem CVS.
-Łączenie się z nim i pobieranie aktualnego repozytorium pokażemy na przykładzie
-użytkownika <e>john</e> z hasłem <e>a-B12c3</e>.
-</p>
-
-<pre caption="Obsługa serwera CVS">
-# <i>export CVSROOT=:pserver:john@cvs.gentoo-doc-pl.berlios.de:/cvsroot/gentoo-doc-pl</i>
-# <i>cvs login</i>
-Logging in to :pserver:john@gentoo.pl:2401/tlumaczenia
-CVS password: <i>a-B12c3</i>
-# <i>cvs checkout trans</i>
-cvs checkout: Updating trans</pre>
-<p>W kolejnym przykładzie pokażemy podstawowe operacje na CVS'ie:</p>
-<pre caption="Podstawowe operacje na CVS">
-<comment>Dodawanie nowego pliku do repozytorium</comment>
-# <i>cvs add index.xml</i>
-<comment>Aktualizacja pliku w repozytorium</comment>
-# <i>cvs up index.xml</i>
-<comment>Usuwanie pliku z repozytorium</comment>
-# <i>rm index.xml</i>
-# <i>cvs remove index.xml</i>
-<comment>Aby powyższe polecenia odniosły skutek, należy je jeszcze ostatecznie potwierdzić</comment>
-# <i>cvs commit -m "Dodałem/zaktualizowałem/usunąłem index.xml"</i>
-</pre>
-
-<p>
-Jeśli nie posiadasz jeszcze swojego konta, a uważasz że będzie ci potrzebne,
-skontaktuj się z <mail link="matti@gentoo.pl">matti'm</mail>.
-</p>
-</body>
-</section>
-<section>
-<title>Kodowanie UTF-8</title>
-<body>
-<p>
-Ekipa Gentoo Linux promuje <e>Unicode</e> (UTF-8) jako oficjalny standard kodowania znaków.
-Definiuje on litery narodowe niemal wszystkich języków świata. Niestety w Polsce
-wciąż najpopularniejszy jest standard ISO8859-2. Dokumenty można konwertować
-z jednego na drugi za pomocą programu <e>iconv</e>:
-</p>
-
-<pre caption="Konwersja dokumentów z ISO8859-2 na UTF-8 i na odwrót">
-<comment>Zastąp index-iso.xml oraz index-utf.xml odpowiednimi nazwami plików</comment>
-<comment>Konwersja z ISO8859-2 na UTF-8</comment>
-# <i>iconv -fISO8859-2 -tUTF-8 -o index-utf.xml index-iso.xml</i>
-<comment>Konwersja z UTF-8 na ISO8859-2</comment>
-# <i>iconv -fUTF-8 -tISO8859-2 -o index-iso.xml index-utf.xml</i></pre>
-</body>
-</section>
-<section>
-<title>Nagłówki dokumentów</title>
-<body>
-<p>
-Aby umożliwić automatyczne generowanie strony z aktualną listą dokumentów,
-postanowiliśmy wprowadzić do każdego z nich nagłówki zawierające odpowiednie 
-informacje. Nakleżą do nich: tytuł, informacja o autorze, aktualny status (na przykład
-Ukończono lub W trakcie) oraz wersja oryginału. Wszystkie z nich są niezbędne
-i każdy tłumacz ma obowiązek ich wstawienia do swoich dokumentów. Poniżej
-prezentujemy przykładowe:
-</p>
-<pre caption="Przykładowe nagłówki tłumaczonych dokumentów">
-&lt;?xml version='1.0' encoding='UTF-8'?&gt;
-&lt;!DOCTYPE sections SYSTEM "/dtd/book.dtd"&gt;
-
-&lt;!- Orig revision: 1.11 -&gt;
-&lt;!- Translator: lucass &lt;lucass@gentoo.pl&gt; -&gt;
-&lt;!- Title: O instalacji Gentoo Linux -&gt;
-&lt;!- Status: Ukończono -&gt;
-&lt;!- &#36;Header: &#36; -&gt;
-</pre>
--->
 </body>
 </chapter>
 </guide>
