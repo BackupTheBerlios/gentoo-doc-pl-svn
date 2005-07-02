@@ -1,91 +1,96 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.21 -->
-<!-- Translator: volt3r <volt3r@pf.pl> -->
-<!-- Title: Domowy router - przewodnik. -->
-<!-- Status: Do korekty -->
+<!-- Orig revision: 1.27 -->
+<!-- Translator: rane <rane@gentoo.pl> -->
+<!-- Title: Konfiguracja routera -->
+<!-- Status: Release -->
 <!-- $Id$ -->
+<!-- $Header$ -->
 
 <guide link="/doc/pl/home-router-howto.xml" lang="pl">
 
-<title>Domowy router - przewodnik.</title>
+<title>Konfiguracja routera</title>
 
 <author title="Autor">
   <mail link="vapier@gentoo.org">Mike Frysinger</mail>
 </author>
+<author title="Tłumaczenie">
+  <mail link="rane@gentoo.pl">Łukasz Damentko</mail> 
+</author>
 
 <abstract>
-Ten dokument opisuje jak zamienić starą maszynę z Gentoo w router
-łączący domową sieć z internetem.
+Krótki opis umożliwiający skonfigurowanie routera łączącego domową sieć z
+Internetem.
 </abstract>
 
-<version>1.2</version>
-<date>Wrzesień 22, 2004</date>
+<version>1.7</version>
+<date>2005-06-16</date>
 
 <chapter>
-<title>Wprowadzenie.</title>
+<title>Wprowadzenie</title>
 <section>
 <body>
 
 <p>
-Budowa własnego routera ze starych niepotrzebnych części ma 
-wiele zalet nad kupnem gotowego rozwiązania np. firmy Linksys. Największą chyba 
-zaletą jest całkowita kontrola nad połączeniem. Pozostałe zależą tylko 
-od naszej wyobraźni.
+Budowa własnego routera ze starych niepotrzebnych części to spora oszczędność w
+porównaniu z kupnem gotowego rozwiązania, np. firmy Linksys. Największą zaletą
+takiej decyzji jest niemal całkowita kontrola nad połączeniem. Pozostałe
+możliwości są zależne tylko od naszej wyobraźni.
 </p>
 
 <p>
-Ten przewodnik pokaże jak skonfigurować translację adresów (NAT) 
-na routerze (jądro oraz iptables), dodać i skonfigurować podstawowe 
-usługi (serwer nazw (DNS) przez dnsmasq, dhcp przez dhcpd, ADSL przez 
-rp-pppoe), a kończąc na bardziej wyszukanych i zabawnych rzeczach 
-jak (przekazywanie portów, kształtowanie ruchu, serwery proxy/cachowanie, itp...).
+W tym tekście omówimy konfigurowanie translacji adresów (NAT) na routerze (jądro
+oraz iptables), dodawanie i konfigurację podstawowych usług (serwer nazw (DNS)
+przez dnsmasq, dhcp przez dhcpd, ADSL przez rp-pppoe), a zakończymy na bardziej
+wyszukanych i dających więcej satysfakcji usługach jak przekazywanie portów,
+kształtowanie ruchu, serwery proxy/cachowanie, itp.
 </p>
 
 <p>
-Zanim zaczniemy, jest kilka podstawowych wymagań które musisz poznać. 
-Po pierwsze, potrzebny będzie komputer z co najmniej dwiema kartami 
-sieciowymi (NICs). Następnie potrzebne będą ustawienia dla połączenia 
-internetowego (mogą one zawierać np. IP/DNS/adres bramki/nazwę użytkownika/hasło). 
-Definitywnie potrzebne będzie troche wolnego czasu oraz trochę miłości do 
-Gentoo.
+Jest kilka podstawowych wymagań jakie trzeba poznać przed rozpoczęciem pracy. Po
+pierwsze potrzebny będzie komputer z co najmniej dwiema kartami sieciowymi. Do
+tego przyda się znajomość ustawień połączenia sieciowego (IP, DNS, adres bramy,
+nazwa użytkownika i hasło). Niezbędna jest również odrobina wolnego czasu i
+zamiłowanie do Gentoo.
 </p>
 
 <p>
-Konwencje używane w tym przewodniku:
+Konwencje użyte w tekście:
 </p>
+
 <ul>
- <li>eth0 - NIC podłączona do sieci lokalnej (LAN)</li>
- <li>eth1 - NIC podłączona do sieci rozległej (WAN)</li>
- <li>LAN korzysta z prywatnych adresów 192.168.0.xxx</li>
- <li>router ma przypisany adres 192.168.0.1</li>
- <li>router pracuje na jądrze Linux 2.4 lub 2.6; w przypadku 2.0/2.2 jesteś
-	 zdany na siebie</li>
+  <li>eth0 - NIC podłączona do sieci lokalnej (LAN)</li>
+  <li>eth1 - NIC podłączona do sieci rozległej (WAN)</li>
+  <li>LAN korzysta z prywatnych adresów 192.168.0.xxx</li>
+  <li>Router ma przypisany adres 192.168.0.1</li>
+  <li>
+    Router pracuje na jądrze Linux 2.4 lub 2.6. Jąder 2.0 i 2.2 nie
+    wspieramy. 
+  </li>
 </ul>
 
 <impo>
-W związku z zachowaniem środków ostrożności, zalecane jest wyłączenie 
-wszystkich niepotrzebnych usług na routerze, zanim nie uruchomimy zapory 
-ogniowej. Żeby zobaczyć aktualnie uruchomione usługi, należy wykonać 
-polecenie <c>rc-status</c>.
+W związku z zachowaniem środków ostrożności, zalecane jest wyłączenie wszystkich
+niepotrzebnych usług na routerze do czasu uruchomienia firewalla. Aby przejrzeć
+aktualnie uruchomione usługi, należy wykonać polecenie <c>rc-status</c>.
 </impo>
 
 </body>
 </section>
 </chapter>
-
 <chapter>
-<title>Konfiguracja jądra.</title>
+<title>Konfiguracja jądra</title>
 <section>
 <body>
 
 <p>
-Twoje jądro potrzebuje sterowników dla obydwu kart sieciowych. Aby 
-zobaczyć czy karty sieciowe są skonfigurowane, należy wykonać polecenie 
-<c>ifconfig</c>. Wynik polecenia może się nieco różnić od podanego 
-poniżej, ale nic nie szkodzi. Najważniejsze aby interfesy zostały wyświetlone.
+Jądro powinno posiadać sterowniki dla wszystkich używanych kart sieciowych. W
+celu sprawdzenia czy odpowiednie sterowniki są włączone należy wykonać polecenie
+<c>ifconfig</c>. Jego wynik może nieco różnić się od tego podanego poniżej, nie
+jest to jednak wielkim problemem. Najważniejsze, że wyświetlą się interfejsy.
 </p>
+
 <pre caption="Sprawdzanie kart sieciowych">
 # <i>ifconfig -a</i>
 eth0      Link encap:Ethernet  HWaddr 00:60:F5:07:07:B8
@@ -104,23 +109,24 @@ eth1      Link encap:Ethernet  HWaddr 00:60:F5:07:07:B9
           RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
           Interrupt:10 Base address:0x9400 
 </pre>
+
 <p>
-Jeżeli nie widzisz swoich obydwu kart, oraz nie jesteś pewien jakiego 
-rodzaju karty posiadasz, spróbuj uruchomić program <c>lspci</c>. Możesz go 
-zainstalować wykonując <c>emerge pciutils</c>. W wyniku polecenia należy 
-szukać wyrażenia "Ethernet controller". Jeżeli już posiadasz tą informację, 
-przejdź do konfiguracji jądra i dodaj obsługę odpowiedniego sterownika.
+Jeśli nie pojawią się interfejsy obu kart sieciowych i nie jest się pewnym jakie
+to są karty, warto uruchomić program <c>lspci</c> (instalowany poleceniem
+<c>emerge pciutils</c>) i w jego wyniku poszukać wyrażenia "Ethernet
+controller". Potem należy przejść do konfiguracji jądra i dodać obsługę
+odpowiedniego sterownika.
 </p>
 
 <p>
-Kolejną rzeczą jakiej będziemy potrzebować jest wsparcie dla iptables i NAT 
-(ewentualnie dla kształtowania ruchu). Poniższa lista jest podzielona na opcje 
-wymagane (*), zalecane (x) oraz dotyczące kształtowania ruchu (s). Nie ma 
-znaczenia czy opcje zostaną wbudowane w jądro czy zostaną zbudowane jako 
-moduły, ponieważ jeżeli tylko jakaś funkcja będzie potrzebna odpowiedni 
-moduł(y) zostanie załadowany (ładowanie modułów pozostawimy czytelnikowi jako 
-bądź co bądź zabawne ćwiczenie).
+Kolejne niezbędne moduły to obsługa iptables i NAT oraz - opcjonalnie -
+kształtowania ruchu. Na liście poniżej znajdują się opcje wymagane (*), zalecane
+(x) oraz dotyczące kształtowania ruchu (s). Bez znaczenia jest fakt, czy
+wbudujemy je na stałe, czy też zbudujemy w postaci modułów. Jeśli jakiś moduł
+będzie potrzebny to powinien zostać załadowany automatycznie. Sprawdzanie czy
+wszystko co potrzebne się ładuje pozostawiamy jako rozrywkę dla czytelnika.
 </p>
+
 <pre caption="Opcje sieciowe">
 <i>Networking options  ---&gt;</i>
 <i>   [*] TCP/IP networking</i>
@@ -151,114 +157,111 @@ bądź co bądź zabawne ćwiczenie).
 <i>         [s] HTB packet scheduler</i>
 <i>         [s] Ingress Qdisc</i>
 </pre>
+
 <note>
-Mogą występować nieznaczne różnice pomiędzy jądrami 2.4 i 2.6, ale bez problemów 
-będziesz w stanie sobie z nimi poradzić :).
+Pomiędzy jądrami serii 2.4 i 2.6 mogą pojawić się nieznaczne różnice, wierzymy
+jednak, że czytelnicy poradzą sobie z nimi wszystkimi. ;)
 </note>
 
 </body>
 </section>
 </chapter>
-
 <chapter>
-<title>Ogarnąć WAN (czytaj Internet).</title>
-
+<title>WAN (czyli Internet)</title>
 <section>
-<title>Wstęp.</title>
+<title>Wstęp</title>
 <body>
+
 <p>
-Jest wiele sposobów połączenia się z internetem, zajmiemy się jednak tylko 
-jednym z którym jestem obyty. W ten sposób pozostaje nam ADSL (PPPoE) i 
-modem kablowy (statyczny/dynamiczny). Jeżeli są inne metody, nie wahaj 
-się wysłać mi e-mailem małego sprawozdania. Jeżeli jakaś z następujących 
-sekcji tego rozdziału Cię nie dotyczy poprostu ją pomiń. Ten rozdział 
-mówi o podłączeniu routera do internetu poprzez interfejs eth1.
+Istnieje wiele różnych sposobów na łączenie się z Internetem, zajmiemy się
+jednak tylko tym, na którym znam się najlepiej, czyli ADSL (PPPoE). Jeśli ktoś
+posiada rozsądny opis związany z innymi typami połączeń może mi go podesłać.
+Niektóre akapity mogą nie dotyczyć określonej sytuacji, należy je wtedy po
+prostu pominąć. W tym rozdziale opowiemy o podłączaniu routera do Internetu
+poprzez interfejs eth1.
 </p>
+
 </body>
 </section>
-
 <section>
-<title>ADSL i PPPoE.</title>
+<title>ADSL i PPPoE</title>
 <body>
 
 <p>
-W dzisiejszych czasach całe oprogramowanie PPPoE zostało zebrane w jedną małą 
-i przyjemną paczkę zwaną <uri link="http://www.roaringpenguin.com/">Roaring 
-Penguin</uri>. Proste <c>emerge rp-pppoe</c> załatwi sprawę. Pamiętasz 
-jak mówiłem że będziesz potrzebował nazwę użytkownika i hasło ? Więc, nie 
-kłamałem i mam nadzieję, że już je masz! Otwórz 
-<path>/etc/ppp/pppoe.conf</path> w swoim ulubionym edytorze i dokonaj 
-odpowienich zmian.
+Całe oprogramowanie dla PPPoE znajduje się w jednym małym pakiecie - <uri
+link="http://www.roaringpenguin.com/">Roaring Penguin</uri>. Jego instalacja w
+Gentoo odbywa się za pomocą polecenia <c>emerge rp-pppoe</c>. Na początku
+dokumentu wspominaliśmy o nazwie użytkownika i haśle, należy je umieścić w pliku
+<path>/etc/ppp/pppoe.conf</path>.
 </p>
 
 <note>
-Poniższe instrukcje będą działały, jedynie w przypadku posiadania w systemie
-paczki baselayout w wersji 1.10.1 lub nowszej.
+Aby poniższe instrukcje zadziałały potrzebny będzie pakiet baselayout w wersji
+1.10.1 lub nowszy.
 </note>
 
 <pre caption="Konfiguracja interfejsu eth1">
-<comment>(Zamień 'vla9h924' na swoją nazwę użytkownika oraz 'password' na swoje hasło)</comment>
+<comment>(Zamieniamy 'vla9h924' na odpowiednią nazwę 
+użytkownika, a 'password' na odpowiednie hasło)</comment>
 
 # <i>nano /etc/ppp/pppoe.conf</i>
-<comment># Karta sieciowa podłączona do modemu ADSL
+<comment># Karta sieciowa podłączona do modemu ADSL</comment>
 ETH=eth1
-# Nazwa użytkownika ADSL
-USER=vla9h924</comment>
+<comment># Nazwa użytkownika ADSL</comment>
+USER=vla9h924
 # <i>nano /etc/ppp/pap-secrets</i>
-<comment># Hasło
-"vla9h924" * "password"</comment>
+<comment># Kolejno: Klient, serwer, tajemnica:</comment>
+"vla9h924" * "password"
 # <i>nano /etc/conf.d/net</i>
-<comment># Dodaj wpis dla ifconfig_eth1 i przypisz go do adsl:
-ifconfig_eth1=( "adsl" )</comment>
+<comment># Wpis dla ifconfig_eth1 przypisujący go do adsl:</comment>
+ifconfig_eth1=( "adsl" )
 # <i>ln -s net.eth0 /etc/init.d/net.eth1</i>
 # <i>rc-update add net.eth1 default</i>
 # <i>/etc/init.d/net.eth1 start</i>
 </pre>
 
 <warn>
-Kiedy interfejs DSL wstanie, stworzy on nowy ppp0. Co prawda karta sieciowa 
-jest nazywana eth1, jednakże adres IP jest aktualnie związany z ppp0. Od 
-teraz, kiedy zobaczysz przykłady, które używają 'eth1' utożsamiaj je z 'ppp0'.
+Przy podnoszeniu interfesju DSL zostanie utworzone ppp0. Jest to dość mylące,
+gdyż karta sieciowa tego interfejsu nazywa się eth1. Od tej pory w przykładach
+utożsamiamy eth1 z ppp0.
 </warn>
 
 </body>
 </section>
-
 <section>
-<title>Modem kablowy i dynamiczne/statyczne IP.</title>
+<title>Modem kablowy i dynamiczne/statyczne IP</title>
 <body>
 
 <p>
-Jeżeli posiadasz statyczne IP, potrzebne będzie troche więcej detali 
-niż w przypadku posiadania IP przydzielanego dynamicznie. Dla użytkowników 
-posiadających statyczne IP, będą potrzebne: adres IP, adres bramki, oraz 
-adresy serwerów DNS.
+Posiadacze statycznych adresów IP potrzebują paru informacji więcej niż
+użytkownicy adresów przydzielanych dynamicznie. Będą im potrzebne następujące
+dane: adres IP, adres bramki i adresy serwerów DNS.
 </p>
 
 <pre caption="Konfiguracja interfejsu eth1">
 <comment>Użytkownicy posiadający adres IP przydzielany dynamicznie:</comment>
 # <i>emerge dhcpcd</i>
 # <i>nano /etc/conf.d/net</i>
-<comment>Potrzebny będzie wpis:
-ifconfig_eth1=( "dhcp" )</comment>
+<comment>Potrzebny będzie wpis:</comment>
+ifconfig_eth1=( "dhcp" )
 
 <comment>Użytkownicy posiadający statyczny adres IP:</comment>
 # <i>nano /etc/conf.d/net</i>
-<comment>Potrzebny będzie wpis:
+<comment>Potrzebny będzie wpis:</comment>
 ifconfig_eth1=( "66.92.78.102 broadcast 66.92.78.255 netmask 255.255.255.0" )
-routes_eth1=( "default gw 66.92.78.1" )</comment>
+routes_eth1=( "default gw 66.92.78.1" )
 # <i>nano /etc/resolv.conf</i>
-<comment>Dodajemy jeden serwer na jedną linię:
-nameserver 123.123.123.123</comment>
+<comment>Dodajemy jeden serwer na linię:</comment>
+nameserver 123.123.123.123
 
-<comment>Ustawienia dynamiczne/statyczne: </comment>
+<comment>Polecenia dla wszystkich:</comment>
 # <i>ln -s net.eth0 /etc/init.d/net.eth1</i>
 # <i>rc-update add net.eth1 default</i>
 # <i>/etc/init.d/net.eth1 start</i>
 </pre>
 
 <p>
-Teraz już każdy powinien być gotów.
+I na tym kończą się nasze przygotowania.
 </p>
 
 </body>
@@ -266,18 +269,19 @@ Teraz już każdy powinien być gotów.
 </chapter>
 
 <chapter>
-<title>Ogarnąć LAN (zapraszamy przyjaciół).</title>
+<title>LAN</title>
 <section>
 <body>
 
 <p>
-Ten krok to pestka w porównaniu do poprzedniego.
+Czynności opisane w tym akapicie w porównaniu z tymi z poprzedniej części są
+banalnie proste do przeprowadzenia.
 </p>
 
 <pre caption="Konfiguracja interfejsu eth0">
 # <i>nano /etc/conf.d/net</i>
-<comment>Dodajemy linijkę jak poniżej:
-ifconfig_eth0=( "192.168.0.1 broadcast 192.168.0.255 netmask 255.255.255.0" )</comment>
+<comment>Dodajemy tam:</comment>
+ifconfig_eth0=( "192.168.0.1 broadcast 192.168.0.255 netmask 255.255.255.0" )
 # <i>rc-update add net.eth0 default</i>
 # <i>/etc/init.d/net.eth0 start</i>
 </pre>
@@ -285,37 +289,33 @@ ifconfig_eth0=( "192.168.0.1 broadcast 192.168.0.255 netmask 255.255.255.0" )</c
 </body>
 </section>
 </chapter>
-
 <chapter>
-<title>Usługi LAN (ponieważ jesteśmy miłymi ludźmi).</title>
-
+<title>Usługi w LAN-ie</title>
 <section>
-<title>Serwer DHCP.</title>
+<title>Serwer DHCP</title>
 <body>
+
 <p>
-Założę się, że było by miło gdyby wszyscy pozostali w Twoim domu mogli 
-poprostu podłączyć swoje komputery do sieci i już wszystko by działało. 
-Bez potrzeby pamiętania tych wszystkich liczb lub gapienia się w pokręcone 
-ekrany konfiguracyjne! Życie może być piękne czyż nie? Przedstawiamy 
-protokół dynamicznej konfiguracji stacji (DHCP) i powody dla których 
-powinieneś zawracać sobie nim głowę.
+Byłoby miło gdyby użytkownicy sieci mieli wszystko automatycznie konfigurowane
+zaraz po włączeniu komputera bez potrzeby jakiejkolwiek ingerencji z ich strony.
+Nie musieliby pamiętać tych wszystkich liczb, ani gubić się w zakręconych
+plikach konfiguracyjnych. Życie byłoby wtedy znacznie prostsze i piękniejsze. I
+wlaśnie taki stan powszechnej szczęśliwości może nam zapewnić serwer DHCP.
 </p>
 
 <p>
-DHCP jest dokładnie tym co znaczy jego nazwa. To protokół pozwalający 
-na dynamiczną konfigurację innych komputerów w pełni automatycznie. 
-Należy tylko uruchomić serwer DHCP na routerze (dhcpd), przekazać mu wszystkie 
-informacje na temat swojej sieci (dopuszczalne adresy IP, adresy serwerów 
-DNS, bramek, itp...) i w tym momencie jeżeli jakiś inny komputer będzie 
-uruchomiany, odpali on klienta DHCP który sam wszystko skonfiguruje. 
-Jeżeli potrzebujemy więcej informacji na temat DHCP, zawsze możemy 
-odwiedzić serwis <uri link="http://en.wikipedia.org/wiki/DHCP">Wikipedia</uri>.
+DHCP to protokół umożliwiający dynamiczną i w pełni automatyczną konfigurację
+innych komputerów. Wystarczy uruchomić na routerze serwer DHCP, podać mu
+wszystkie informacje o potencjalnych klientach (adresy IP, adresy serwerów DNS,
+bram sieciowych itp.), a komputer podłączony do serwera zostanie dobrze
+skonfigurowany już przy starcie systemu. Więcej informacji o DHCP znajduje się w
+<uri link="http://en.wikipedia.org/wiki/DHCP">Wikipedii</uri>.
 </p>
 
 <pre caption="Konfiguracja dhcpd">
 # <i>emerge dhcp</i>
 # <i>nano /etc/dhcp/dhcpd.conf</i>
-<comment>Tutaj mamy przykładowy plik konfiguracyjny:
+<comment>Przykładowy plik konfiguracyjny:</comment>
 authoritative;
 ddns-update-style ad-hoc;
 subnet 192.168.0.0 netmask 255.255.255.0 {
@@ -327,7 +327,6 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
 	option routers 192.168.0.1;
 	option domain-name-servers 192.168.0.1;
 }
-</comment>
 # <i>nano /etc/conf.d/dhcp</i>
 <comment>Set IFACE="eth0"</comment>
 # <i>rc-update add dhcp default</i>
@@ -335,104 +334,100 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
 </pre>
 
 <p>
-W tym momencie nasz router jest najprawdziwszym serwerem DHCP! Podłącz 
-tylko swoje komputery do sieci i spójrz, że to naprawdę działa! W przypadku 
-systemów Windows należy zajrzeć do właściwości TCP/IP i wybrać 'Pobierz 
-adres IP automatycznie' oraz 'Pobierz adresy serwerów DNS automatycznie'. 
-Czasami zmiany nie są natychmiastowe i konieczne będzie uruchomienie 
-wiersza poleceń i wydanie polecenia <c>ipconfig /release</c> oraz 
-<c>ipconfig /renew</c>. Ale skończmy już o Windowsie i wróćmy do 
-naszego ulubionego pingwina.
+I tak nasz mały router stał się najprawdziwszym serwerem DHCP! Teraz wystarczy
+podłączyć komputery do sieci i sprawdzić, czy wszystko działa jak należy. Jeśli
+chodzi o systemy Windows to musimy przejść do właściwości protokołu TCP/IP i
+zaznaczyć tam opcję 'Pobierz adresy serwerów DNS automatycznie'. Czasami zmiany
+nie są wczytywane automatycznie i natychmiastowo, dlatego konieczne może okazać
+się przejście do wiersza poleceń i wpisanie tam poleceń <c>ipconfig /release</c>
+oraz <c>ipconfig /renew</c>. To tyle o Windowsie - wracamy do Gentoo.
 </p>
+
 </body>
 </section>
-
 <section>
-<title>Serwer DNS.</title>
+<title>Serwer DNS</title>
 <body>
+
 <p>
-Ludzie odwiedzając różne miejsca w internecie, pamiętają tylko 
-nazwy, a nie ciągi bezużytecznych liczb. Wkońcu, co jest prostsze do 
-zapamiętania, ebay.com czy 66.135.192.87? W tym właśnie momencie do akcji 
-wkracza serwer DNS. Serwery DNS są uruchomione w całym internecie i 
-kiedykolwiek ktokolwiek będzie chciał odwiedzić 'ebay.com', zamienią one 
-'ebay.com' (co my rozumiemy) na '66.135.192.87' (co rozumie komputer). 
-Jeżeli potrzebujemy więcej informacji na temat DNS, zawsze możemy 
-odwiedzić serwis <uri link="http://en.wikipedia.org/wiki/DNS">Wikipedia</uri>.
+Ludzie nie lubią zapamiętywać liczb, znacznie lepiej przyswają zwykłe nazwy,
+dlatego łatwiej zapamiętać adres ebay.com niż 66.135.192.8. W związku z tym
+istnieje zapotrzebowanie na coś takiego jak serwer DNS. Serwery DNS znajdują się
+w całym Internecie, a ich zadaniem jest zwracanie ciągu '66.135.192.87' za
+każdym razem gdy ktoś będzie chciał odwiedzić stronę ebay.com. Więcej informacji
+o DNS można znaleźć w  <uri
+link="http://en.wikipedia.org/wiki/DNS">Wikipedii</uri>.
 </p>
 
 <p>
-Pamiętasz zapewne, że w poprzedniej sekcji powiedzieliśmy klientom DHCP o 
-serwerze DNS pod adresem 192.168.0.1. Pamiętasz też, że 192.168.0.1 
-to właśnie nasz mały router, który właśnie konfigurujemy. Ja nie bardzo 
-pamiętam żebyśmy skonfigurowali serwer DNS ... więc zróbmy to teraz!
+W poprzednim akapicie skonfigurowaliśmy klientom DHCP serwer o adresie
+192.168.0.1, który jest przypisany do naszego routera. Teraz pora skonfigurować
+serwer DNS.
 </p>
 
 <pre caption="Konfiguracja dnsmasq">
 # <i>emerge dnsmasq</i>
 # <i>nano /etc/conf.d/dnsmasq</i>
-<comment>Add "-i eth0" to DNSMASQ_OPTS</comment>
+<comment>Dodajemy "-i eth0" do DNSMASQ_OPTS</comment>
 # <i>rc-update add dnsmasq default</i>
 # <i>/etc/init.d/dnsmasq start</i>
 </pre>
 
 <p>
-To było bardzo proste, ale co tak naprawdę zrobiliśmy? Najlepszą sprawą jest to, 
-że nie musieliśmy robić zbyt wiele! Możesz bez przeszkód wybrać inny serwer DNS 
-jeżeli uważasz, że będzie wygodniejszy, jednak powód dla którego dnsmasq 
-jest najodpowiednieszy to taki, że robi on dokładnie to czego potrzebujemy i 
-nic więcej. To mały cachująco/przekazujący serwer DNS dla sieci lokalnych. 
-Nie próbujemy tutaj utrzymywać serwera DNS dla naszej własnej domeny, a jedynie 
-zapewnić prostą usługę DNS dla każdej osoby z naszej sieci LAN.
+To było szybkie i bezbolesne i raczej nie musieliśmy zmieniać zbyt wiele.
+Oczywiście można wybrać inne serwery DNS niż dnsmasq, ale w naszej sytuacji jest
+on najbardziej odpowiedni, gdyż posiada tylko niezbędne dla nas funkcje. Jest to
+po prostu mały przekazujący informacje serwer zapewniający usługę DNS dla
+wszystkich osób z naszej sieci LAN.
 </p>
 
 </body>
 </section>
-
 <section>
-<title>NAT (czytaj: maskarada IP).</title>
+<title>NAT (maskarada IP)</title>
 <body>
 
 <p>
-W tym momencie, ludzie z naszej sieci mogą rozmawiać między sobą, oraz 
-rozszyfrowywać nazwy hostów poprzez serwer DNS, ale ciągle nie mogą się 
-połączyć z internetem. Możesz uważać, że to wspaniale (wkońcu więcej 
-przepustowości łącza dla Ciebie!), jednak założę się, że oni nie są 
-jak narazie zbyt szczęśliwi.
+W tym momencie użytkownicy naszej sieci mogą komunikować się między sobą oraz
+przeszukiwać bazę domen, ale wciąż tak naprawdę nie mogą swobodnie łączyć się z
+Internetem. Administrator może być z tego powodu zadowolony (bo ma nieobciążone
+łącze), ale użytkownicy na pewno zbyt długo takiego stanu rzeczy nie będą
+znosić.
 </p>
 
 <p>
-I w tym momencie do akcji wkracza NAT. NAT to sposób na połączenie wielu 
-komputerów w prywatnej sieci LAN do internetu, w momencie gdy dysponujesz 
-małą ilościa publicznych adresów IP. Zwykle dostajemy 1 publiczny adres IP 
-od naszego ISP, ale chcielibyśmy żeby wszyscy nasi domownicy mogli korzystać 
-z internetu. NAT to właśnie takie czary-mary, które to umożliwiają. Po więcej 
-informacji na temat NAT zawsze możesz zajrzeć tutaj: 
-<uri link="http://en.wikipedia.org/wiki/NAT">Wikipedia</uri>.
+W celu umożliwienia użytkownikom prywatnego LAN-u łączenia się z Internetem
+musimy skonfigurować NAT. Rozwiązanie to przydaje się zwłaszcza wtedy, gdy mamy
+do dyspozycji tylko jeden zewnętrzny adres IP (co jest bardzo częstym
+przypadkiem u wielu ISP), a chcemy podłączyć do Internetu komputery w całym
+domu. Więcej informacji o NAT można znaleźć w <uri
+link="http://en.wikipedia.org/wiki/NAT">Wikipedii</uri>.
 </p>
 
 <note>
-Zanim zaczniemy, należy się upewnić, że mamy zainstalowy pakiet iptables 
-w naszym systemie. Aczkolwiek jest on automatycznie instalowany w większości 
-systemów, możesz go nie posiadać. Jeżeli tak właśnie jest poprostu wykonaj 
+Zanim zaczniemy, należy się upewnić, że mamy zainstalowy pakiet iptables. W
+większości systemów jest instalowany automatycznie, ale może również się
+zdarzyć, że go brakuje. Jeśli go nie ma to instalujemy go za pomocą polecenia
 <c>emerge iptables</c>.
 </note>
 
 <pre caption="Konfiguracja iptables">
-<comment>Na początek wyczyścimy regułki:</comment>
+<comment>Na początek czyścimy regułki:</comment>
 # <i>iptables -F</i>
 # <i>iptables -t nat -F</i>
 
-<comment>Następnie zablokujemy nasze usługi tak, że będą dostępne tylko dla sieci LAN</comment>
+<comment>
+Potem blokujemy usługi tak, aby były dostępne tylko dla sieci LAN
+</comment>
 # <i>iptables -I INPUT 1 -i eth0 -j ACCEPT</i>
 # <i>iptables -I INPUT 1 -i lo -j ACCEPT</i>
 # <i>iptables -A INPUT -p UDP --dport bootps -i ! eth0 -j REJECT</i>
 # <i>iptables -A INPUT -p UDP --dport domain -i ! eth0 -j REJECT</i>
 
-<comment>(Opcjonalnie) Pozwalamy na dostęp do naszego serwera ssh z sieci WAN</comment>
+<comment>(Opcjonalnie) Pozwalamy na dostęp do naszego serwera SSH z Internetu</comment>
 # <i>iptables -A INPUT -p TCP --dport ssh -i eth1 -j ACCEPT</i>
 
-<comment>Porzucamy pakiety TCP / UDP dla uprzywilejowanych portów</comment>
+<comment>Upuszczamy pakiety TCP/UDP dla uprzywilejowanych portów</comment>
 # <i>iptables -A INPUT -p TCP -i ! eth0 -d 0/0 --dport 0:1023 -j DROP</i>
 # <i>iptables -A INPUT -p UDP -i ! eth0 -d 0/0 --dport 0:1023 -j DROP</i>
 
@@ -441,68 +436,67 @@ systemów, możesz go nie posiadać. Jeżeli tak właśnie jest poprostu wykonaj
 # <i>iptables -A FORWARD -i eth0 -s 192.168.0.0/255.255.0.0 -j ACCEPT</i>
 # <i>iptables -A FORWARD -i eth1 -d 192.168.0.0/255.255.0.0 -j ACCEPT</i>
 # <i>iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE</i>
-<comment>Informujemy jądro, o chęci przekazywania IP</comment>
+<comment>Informujemy jądro o chęci przekazywania IP</comment>
 # <i>echo 1 > /proc/sys/net/ipv4/ip_forward</i>
 # <i>for f in /proc/sys/net/ipv4/conf/*/rp_filter ; do echo 1 > $f ; done</i>
 
-<comment>Poniższe polecenia sprawią, że przy każdym uruchomieniu routera nie będziemy 
-musieli wpisywać ręcznie tych wszystkich regułek</comment>
+<comment>Poniższe polecenia sprawią, że przy każdym uruchomieniu routera 
+nie będziemy musieli wpisywać ręcznie wszystkich regułek</comment>
 # <i>/etc/init.d/iptables save</i>
 # <i>rc-update add iptables default</i>
 # <i>nano /etc/sysctl.conf</i>
-<comment>Dodaj/odkomentuj następujące linijki:
+<comment>Dodajemy przez odkomentowanie następujące linijki:</comment>
 net.ipv4.ip_forward = 1
-net.ipv4.conf.default.rp_filter = 1</comment>
+net.ipv4.conf.default.rp_filter = 1
 </pre>
 
 <p>
-Kiedy już wykonaliśmy powyższe instrukcje, reszta naszej sieci powinna 
-mieć dostęp do internetu tak samo jak gdyby sami byli bezpośrednio podłączeni.
+Po wykonaniu powyższych poleceń komputery z naszej małej sieci powinny mieć
+dostęp do Internetu równie swobodny, jak gdyby były podłączone do niej
+bezpośrednio.
 </p>
 
 </body>
 </section>
 </chapter>
-
 <chapter>
-<title>Zabawniejsze rzeczy: (na deszczowe dni).</title>
-
+<title>Zabawki (coś na długie deszczowe dni)</title>
 <section>
 <title>Wstęp</title>
 <body>
+
 <p>
-Możesz wierzyć lub nie, ale udało się :). Odtąd już do końca, będę się 
-zajmował garścią ogólnych tematów, które mogą Cię zainteresować. Wszystko 
-w tym rozdziale jest całkowicie opcjonalne.
+Wierzycie czy nie - to już wszystko. Teraz zajmiemy się dodatkowymi gadżetami,
+które na pewno zainteresują wiele osób. Wszystkie są całkowicie opcjonalne.
 </p>
+
 </body>
 </section>
-
 <section>
 <title>Przekazywanie portów.</title>
 <body>
+
 <p>
-Czasami możesz mieć ochotę udostępniać jakieś usługi na komputerze stojącym za 
-routerem, albo poprostu ułatwić sobie życie kiedy łączysz się zdalnie.
-Być może chcesz uruchomić serwer FTP, HTTP, SSH lub VNC na jednym lub
-więcej komputerów stojących za routerem i być w stanie połączyć się z nimi
-wszystkimi. Jedyne ograniczenie jest takie, że można mieć tylko jedną parę
-usługa/maszyna na port. Na przykład, nie ma takiej możliwości żeby
-skonfigurować trzy serwery FTP za routerem i łączyć się na nie przez port 21;
-tylko jeden może być na porcie 21, kiedy pozostałe mogłyby być powiedzmy na
-portach 123 i 567.
+Czasem zachodzi potrzeba uruchomienia jakichś usług na komputerze znajdującym
+się za routerem lub też umożliwienie zdalnego do niego łączenia. Może chodzić
+np. o uruchomienie na jednym lub kilku, komputerach za NAT-em serwera FTP, HTTP,
+SSH lub VNC. Jedynym ograniczeniem wtedy jest to, że można mieć tylko jedną taką
+usługę na każdym porcie naszego routera. Na przykład nie ma możliwości
+przekazywania połączeń na trzy serwery FTP za routerem i łączenia się przez nie
+poprzez port 21. Jeśli jednak to konieczne, zawsze można uruchomić pozostałe na
+innych portach - np. 123 czy 567.
 </p>
 
 <p>
-Wszystkie regułki przekazywania portów mają postać <c>iptables -t nat -A
-PREROUTING [-p protokół] --dport [zewnętrzny port na routerze] -i eth1 -j DNAT 
---to [ip/port na które chcemy przekazywać]</c>. Iptables nie dopuszcza nazw 
-hostów w przypadku przekazywania portów. Jeżeli przekazujesz zewnętrzny port 
-na ten sam port na wewnętrznej maszynie nie ma potrzeby podawania portu 
-docelowego. Po więcej informacji zajrzyj na stronę 8 manuala iptables.
+Każda regułka dla przekazywania portów ma postać <c>iptables -t nat -A
+PREROUTING [-p protokół] --dport [zewnętrzny port na routerze] -i eth1 -j DNAT
+-to [ip/port na które chcemy przekazywać]</c>. Iptables nie przekazuje nazw
+hostów, nie trzeba też podawać portu docelowego na wewnętrznym komputerze.
+Zawsze jest to ten sam port co na komputerze przekierowującym. Więcej informacji
+na ten temat znajduje się w man iptables.
 </p>
 
-<pre>
+<pre caption="Przekazywanie portów">
 <comment>Przekazywanie portu 2 dla ssh na wewnętrznym hoście</comment>
 # <i>iptables -t nat -A PREROUTING -p tcp --dport 2 -i eth1 -j DNAT --to 192.168.0.2:22</i>
 
@@ -529,20 +523,21 @@ docelowego. Po więcej informacji zajrzyj na stronę 8 manuala iptables.
 </pre>
 
 <note>
-Jeżeli posiadasz jakieś inne standardowe lub ciekawsze przykłady: 
-<uri link="mailto:vapier@gentoo.org">napisz do mnie</uri>.
+Inne ciekawe przykłady przekazywania portów można przysyłać bezpośrednio do <uri
+link="mailto:vapier@gentoo.org">mnie</uri>, postaram się je zamieścić na tej
+stronie.
 </note>
+
 </body>
 </section>
-
 <section>
-<title>Identd (dla IRC).</title>
+<title>Identd (dla IRC)</title>
 <body>
+
 <p>
-IRC dosyć mocno korzysta z usługi ident. Teraz kiedy klienci IRC są za
-routerem, potrzebujemy sposób na identyfikację zarówno routera jak i naszych
-komputerów klienckich. Jednym z serwerów stworzonych w tym celu jest
-<c>midentd</c>.
+Usługa ident jest bardzo silnie wykorzystywana przez IRC. Teraz, gdy użytkownicy
+sieci znaleźli się za routerem należy zapewnić identyfikację zarówno im jak i
+naszemu routerowi. Jednym z serwerów stworzonych w tym celu jest <c>midentd</c>.
 </p>
 
 <pre caption="Konfiguracja ident">
@@ -552,9 +547,10 @@ komputerów klienckich. Jednym z serwerów stworzonych w tym celu jest
 </pre>
 
 <p>
-Jest kilka innych serwerów ident w portage. Zależnie od potrzeb, mogę
-zarekomendować <c>oidentd</c> lub <c>fakeidentd</c>.
+W Portage znajduje się jeszcze kilka innych serwerów tego typu. Zależnie od
+potrzeb warto zwrócić uwagę na <c>oidentd</c> lub <c>fakeidentd</c>.
 </p>
+
 </body>
 </section>
 
@@ -633,76 +629,81 @@ tc qdisc add dev $DEV parent 1:10 handle 10: sfq
 -->
 
 <section>
-<title>Serwer czasu.</title>
+<title>Serwer czasu</title>
 <body>
+
 <p>
-Posiadanie poprawnego czasu w systemie jest niezbędne do utrzymywania zdrowego
-systemu. Jedną z dróg do tego celu jest sieciowy protokół czasu (NTP) oraz
-paczka ntp (która dostarcza zarówno serwer czasu jak i klienta).
+Prawidłowe ustawienie czasu na serwerze również może dać nam wiele korzyści.
+Jednym ze sposobów osiągnięcia tego może być sieciowy protokół czasu (NTP), z
+którego można zacząć korzystać po zainstalowaniu pakietu ntp, zawierającego
+zarówno serwer jak i program kliencki.
 </p>
 
 <p>
-Większość ludzi uruchamia na swoich komputerach klienta ntp. Oczywiście, im
-więcej klientów na świecie, tym większe obciążenie serwery ntp muszą wytrzymać.
-W środowisku takim jak sieć domowa, możemy pomóc odciążyć publiczne serwery,
-samemu dostarczając aktualny czas do wszystkich naszych komputerów. Jako
-dodatkowy bonus, aktualizacje czasu będą w tym przypadku dużo szybsze także dla
-naszych klientów! Wszystko co musimy zrobić to uruchomić na naszym routerze
-serwer czasu, który będzie się synchronizował z publicznymi serwerami czasu w
-internecie jednocześnie dostarczając poprawny czas do reszty komputerów w sieci.
-Na początek wykonajmy <c>emerge ntp</c> na routerze.
+Większość ludzi uruchamia na swoich komputerach tylko program kliencki ntp.
+Oczywiście, im więcej klientów na świecie, tym większe obciążenie serwery ntp
+muszą wytrzymać. W warunkach domowych możemy trochę odciążyć publiczne serwery,
+samodzielnie dostarczając aktualny czas do wszystkich naszych komputerów.
+Dodatkową korzyścią może być również to, że aktualizacje czasu będą w tym
+przypadku znacznie szybsze. Wszystko co musimy zrobić to uruchomić na naszym
+routerze serwer czasu, który będzie się synchronizował z publicznymi serwerami w
+Internecie, jednocześnie dostarczając poprawny czas do reszty naszych
+komputerów. Pierwsze polecenie jakie należy wykonać to <c>emerge ntp</c> na
+routerze. 
 </p>
 
-<pre caption="Setting up the NTP server">
+<pre caption="Konfigurowanie serwera NTP">
 # <i>nano /etc/conf.d/ntp-client</i>
-<comment>Domyślne ustawienia powinny być dobre, ale jeśli chcesz, dostosuj je do swoich potrzeb</comment>
+<comment>Domyślne ustawienia powinny być dobre, ale można 
+również  dostosować je do indywidualnych potrzeb</comment>
 # <i>rc-update add ntp-client default</i>
 
 # <i>nano /etc/ntp.conf</i>
-<comment>Dodaj następujące linie:
+<comment>Dodajemy następujące linie:</comment>
 restrict default ignore
 restrict 192.168.0.0 mask 255.255.255.0 notrust nomodify notrap
 To pozwoli na korzystanie z Twojego serwera ntp tylko klientom, którzy posiadają
-adres IP z zakresu 192.168.0.xxx</comment>
+adres IP z zakresu 192.168.0.xxx
 # <i>nano /etc/conf.d/ntpd</i>
-<comment>Domyślne ustawienia powinny być dobre, ale jeśli chcesz, dostosuj je do swoich potrzeb</comment>
+<comment>Domyślne ustawienia powinny być dobre, ale można również
+dostosować je do indywidualnych potrzeb:</comment>
 # <i>rc-update add ntpd default</i>
-
 # <i>/etc/init.d/ntp-client start</i>
 # <i>/etc/init.d/ntpd start</i>
 </pre>
 
 <p>
-Teraz na swoich komputerach klienckich wykonaj tak samo <c>emerge ntp</c>. 
-Jednakże u nich uruchomimy tylko klienta ntp więc konfiguracja będzie dużo prostsza.
+Następnie na wszystkich komputerach należących do sieci należy wykonać polecenie
+<c>emerge ntp</c>.  Ich konfiguracja będzie znacznie prostsza.
 </p>
 
 <pre caption="Konfiguracja klienta NTP">
 # <i>nano /etc/conf.d/ntp-client</i>
-<comment>Zmień wartość NTPCLIENT_OPTS z 'pool.ntp.org' na '192.168.0.1'</comment>
+<comment>Należy dokonać zmiany NTPCLIENT_OPTS 
+z 'pool.ntp.org' na'192.168.0.1'</comment>
 # <i>rc-update add ntp-client default</i>
 # <i>/etc/init.d/ntp-client start</i>
 </pre>
+
 </body>
 </section>
-
 <section>
-<title>Serwer pocztowy.</title>
+<title>Serwer pocztowy</title>
 <body>
+
 <p>
-Czasami miło jest uruchomić na routerze swój własny prosty protokół transferu 
-poczty (SMTP). Możesz mieć własny powód żeby to zrobić, natomiast ja go
-uruchomiłem, aby użytkownicy widzieli swoje maile jako wysłane natychmiastowo i
-cała praca nad powtarzaniem/routowaniem została zrzucona na serwer poczty.
-Niektórzy usługodawcy internetowi nie pozwalają przekazywać poczty dla kont,
-które nie są częścią ich sieci (np. Verizon). Możesz także łatwo dławić
-dostarczanie poczty, tak aby duże załączniki nie spowodowały poważnych opóźnień
-na łączu przez pół godziny.
+Czasami miło jest uruchomić na routerze własny prosty serwer poczty (SMTP). Ja
+go uruchomiłem, aby użytkownicy widzieli swoje maile jako wysłane natychmiastowo
+i aby cała praca nad ponownym przesyłaniem czy routowaniem została przeniesiona
+na serwer pocztowy. Warto zwrócić uwagę, że niektórzy usługodawcy Internetowi
+nie pozwalają na przekazywanie poczty dla kont, które nie są częścią ich sieci
+(np. Verizon). Wartościową opcją jest możliwość kontrolowania wielkości
+przesyłanych załączników tak, aby zbyt duże pliki nie blokowały łącza.
 </p>
 
 <pre caption="Konfiguracja SMTP">
 # <i>emerge qmail</i>
-<comment>Upewnij się, że wynik polecenia `hostname` jest poprawny</comment>
+<comment>Wynik polecenia `hostname` musi być poprawny</comment>
 # <i>ebuild /var/db/pkg/*-*/qmail-1.03-r*/*.ebuild config</i>
 # <i>iptables -I INPUT -p tcp --dport smtp -i ! eth0 -j REJECT</i>
 # <i>ln -s /var/qmail/supervise/qmail-send /service/qmail-send</i>
@@ -724,12 +725,13 @@ na łączu przez pół godziny.
 </pre>
 
 <p>
-Jestem osobiście dużym fanem programu qmail, ale nie krępuj się wybierając innego
-mta :). Konfigurując pocztę na komputerach swojej sieci, ustaw jako serwer SMTP
-192.168.1.0 i wszystko powinno być dobrze. Możesz w tym momencie odwiedzić <uri
-link="http://qmail.org/">stronę domową projektu qmail</uri> i tam zasięgnąc
-więcej informacji.
+Osobiście jestem wielkim fanem programu qmail, ale jego wybór nie jest tu
+obowiązkowy i można swobodnie wybrać inny MTA. Podczas konfiguracji poczty
+należy ustawić jako serwer adres 192.168.1.0 i wszystko powinno działać
+prawidłowo. Więcej informacji na ten temat znajduje się na stronie domowej
+projektu <uri link="http://qmail.org/">Qmail</uri>.
 </p>
+
 </body>
 </section>
 
@@ -743,7 +745,6 @@ użytkowników, ale nie chcesz instalować skanera na każdej pojedyńczej maszy
 wtedy <c>pop3vscan</c> może być rozwiązaniem którego potrzebujesz; przeźroczysty 
 skaner protokołu pocztowego.
 </p>
-
 <pre caption="Konfiguracja pop3vscan">
 TODO
 </pre>
@@ -755,17 +756,85 @@ TODO
 </chapter>
 
 <chapter>
+<title>Debugowanie</title>
+<section>
+<title>Przydatne narzędzia</title>
+<body>
+
+<p>
+W przypadku problemów z komunikacją pomiędzy komputerami warto skorzystać z
+następujących, znajdujących się w kategorii <c>net-analyzer</c> drzewa Portage,
+narzędzi:
+</p>
+
+<table>
+  <tr>
+    <th>Program</th>
+    <th>Opis</th>
+  </tr>
+  <tr>
+    <ti>ethereal</ti>
+    <ti>Narzędzie z interfejsem graficznym pozwalające na podglądanie danych
+    przesyłanych w sieci w oparciu o zestaw filtrów.</ti>
+  </tr>
+  <tr>
+    <ti>tcpdump</ti>
+    <ti>Konsolowy program do podglądania ruchu pakietów, również oparty o zestaw
+    filtrów</ti>
+  </tr>
+  <tr>
+    <ti>iptraf</ti>
+    <ti>Monitor sieci LAN oparty o biblioteki graficzne ncurses</ti>
+  </tr>
+  <tr>
+    <ti>ettercap</ti>
+    <ti>Program do kontroli i monitorowania sieci, również oparty na
+    ncurses</ti>
+  </tr>
+</table>
+
+</body>
+</section>
+<section>
+<title>Niewłaściwy rozmiar MTU</title>
+<body>
+
+<p>
+W przypadku dziwnych błędów (np. gdy tylko niektóre strony się wczytują) warto
+sprawdzić czy nie wystąpił problem z wielkością MTU. Szybki sposób na
+sprawdzenie tego to wykonanie następującego polecenia:
+</p>
+
+<pre caption="Rozwiązywanie problemów z MTU">
+# <i>iptables -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS
+--clamp-mss-to-pmtu</i>
+</pre>
+
+<p>
+Będzie to miało wpływ tylko na nowe połączenia, dlatego należy odświeżyć strony,
+które wcześniej się nie ładowały w celu przetestowania nowych ustawień. W
+naprawie może pomóc informacja, że standardowa wartość MTU dla połączenia do 100
+Mbit to <c>1492</c> Więcej informacji znajduje się w 15 rozdziale tekstu <uri
+link="http://lartc.org/howto/">Linux Advanced Routing &amp; Traffic Control
+HOWTO</uri>.
+</p>
+
+</body>
+</section>
+</chapter>
+<chapter>
 <title>Podsumowanie</title>
 <section>
 <body>
+
 <p>
-Jedyne co mogę tu napisać to tyle, że jeśli masz jakieś problemy z tym
-przewodnikiem skontaktuj się <mail link="vapier@gentoo.org">ze mną</mail> lub
-wypełnij zgłoszenie błędu na stronie <uri link="http://bugs.gentoo.org/">Gentoo
-Bugzilla</uri>. Jeżeli masz jakieś interesujące informacje i uważasz, że
-mogłyby one rozwinąć temat tego przewodnika w jakikolwiek sposób, wyślij mi je 
-abym mógł je dołączyć.
+Na koniec warto jeszcze wspomnieć, że wszystkie problemy z przeprowadzaniem
+czynności opisanych w tym tekście można zgłaszać bezpośrednio <mail
+link="vapier@gentoo.org">do mnie</mail> lub do naszego systemu raportowania
+błędów, <uri link="http://bugs.gentoo.org/">Gentoo Bugzilla</uri>. Proszę
+również o wszelkie dodatkowe informacje i sugestie dotyczące tego tekstu.
 </p>
+
 </body>
 </section>
 </chapter>
