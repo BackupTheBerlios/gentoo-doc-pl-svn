@@ -237,7 +237,7 @@ nią innymi usługamii) należy użyć odpowiednio <c>start</c>, <c>stop</c> i
 <note>
 Wyłączane lub przeładowywane są tylko te usługi,, które tego wymagają.
 Inne, które są powiązane z przeładowywaną usługą, jeśli
-nie ma takiej potrzeby, nie są restartowane.			 
+nie ma takiej potrzeby, nie są restartowane.       
 </note>
 
 <p>
@@ -684,7 +684,7 @@ Jako przykład stworzymy katalog <path>offline</path>:
 <pre caption="Tworzenie katalogu poziomu działania">
 # <i>mkdir /etc/runlevels/offline</i>
 </pre>
-	     
+       
 <p>
 Dodaj potrzebne skrypty startowe do nowoutworzonego katalogu. Na przykład, jeżeli
 chcesz mieć dokładną kopię aktualnego <c>domyślnego</c> poziomu działania, wyłączając <c>net.eth0</c>:
@@ -699,23 +699,23 @@ chcesz mieć dokładną kopię aktualnego <c>domyślnego</c> poziomu działania,
 <comment>(Pokaż wszystkie aktywne usługi dla runlevela offline</comment>
 # <i>rc-update show offline</i>
 <comment>(Częściowe wyjście)</comment>
-  	                acpid | offline
-  	           domainname | offline
-     	                local | offline
-  	             net.eth0 |
+                    acpid | offline
+               domainname | offline
+                       local | offline
+                 net.eth0 |
 </pre>
 
 <p>
 Teraz wyedytuj pliki konfiguracyjne Twojego bootloadera i dodaj wpis dla poziomu działania <c>offline</c>.
 Dla przykładu w <path>/boot/grub/grub.conf</path>: 
 </p>
-	         
+           
 <pre caption="Dodawanie wpisu dla poziomu działania offline">
 title Gentoo Linux Offline Usage
 root (hd0,0)
 kernel (hd0,0)/kernel-2.4.25 root=/dev/hda3 <i>softlevel=offline</i>
 </pre>
-					     
+               
 <p>
 Teraz już jest wszystko ustawione. Jeżeli wystartujesz system i wybierzesz dodaną przed chwilą pozycję,
 zamiast <c>domyślnego</c> poziomu działania będzie używany poziom <c>offline</c>.
@@ -726,13 +726,13 @@ zamiast <c>domyślnego</c> poziomu działania będzie używany poziom <c>offline
 <subsection>
 <title>Używanie bootlevela.</title>
 <body>
-		     
+         
 <p>
 Używanie <c>bootlevela</c> jest analogiczne do <c>softlevela</c>. Jedyną różnicą
 jest definiowanie drugiego "rozruchowego" poziomu uruchamiania zamiast drugiego
 "domyślnego" poziomu uruchamiania.
 </p>
-				         
+                 
 </body>
 </subsection>
 </section>
