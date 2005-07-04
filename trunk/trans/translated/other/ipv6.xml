@@ -303,15 +303,18 @@ Dla ułatwienia procesu re-emergowania pakietów, wykonaj poniższe polocenie:
 </pre>
 
 <p>
-Następnie zedytuj plik <path>packages</path> aby usunąć pakiety, których nie chcesz re-emergować:
+Następnie edytujemy plik <path>packages</path>, aby usunąć pakiety, których nie
+chcemy re-emergować:
 </p>
 
-<pre>
+<pre caption="Instalowanie pakietów z pliku packages"> 
 # <i>emerge `cat packages`</i>
 </pre>
 
 <note>
-Niektóre pakiety wykrywają wsparcie IPv6 automatycznie bez względu na flagę ipv6 w zmiennej USE. Tak więc nie wszystkie pakiety, które powinny posiadać wsparcie dla IPv6 będą je miały, jeżeli w jądrze nie będzie wkompilowana obsługa IPv6.
+Niektóre pakiety wykrywają wsparcie IPv6 automatycznie bez względu na flagę ipv6
+w zmiennej USE. Tak więc nie wszystkie pakiety, które powinny posiadać wsparcie
+dla IPv6 będą je miały, jeżeli w jądrze nie będzie wkompilowana obsługa IPv6.
 </note>
 
 </body>

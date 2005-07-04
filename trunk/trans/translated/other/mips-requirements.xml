@@ -10,7 +10,7 @@
 <!-- $Id$ -->
 
 <guide link="/doc/pl/mips-requirements.xml" lang="pl">
-				
+        
 <title>Wymagania sprzętowe dla Gentoo/MIPS Linux</title>
 
 <author title="Autor">
@@ -96,7 +96,7 @@ ta instalowana przez Windows.
 
 <p>
 Jako pomoc dla projektu powstała <uri
-	link="http://stuartl.longlandclan.hopto.org/gentoo/mips/">baza danych wsparcia
+  link="http://stuartl.longlandclan.hopto.org/gentoo/mips/">baza danych wsparcia
 technicznego</uri>. Zadaniem tej bazy danych jest w szybki i prosty sposób
 dostarczać informacji o tym, jak dobrze obsługiwane są poszczególne konfiguracje
 sprzętowe. System pozwala ludziom także pisanie komentarzy oraz udostępnianie
@@ -140,7 +140,7 @@ komputerów.
     </ul>
   </li>
   <li>
-		<b>Obsługa przez jądro:</b>
+    <b>Obsługa przez jądro:</b>
     <ul>
       <li>Linux 2.4: <e>Stabilna</e></li>
       <li>Linux 2.6: <e>Eksperymentalna</e></li>
@@ -150,7 +150,7 @@ komputerów.
     <b>Obsługa architektury przez jądro:</b>
     <ul>
       <li>32-bit: <e>Stabilna</e></li>
-			<li>64-bit: <e>Eksperymentalna</e></li>
+      <li>64-bit: <e>Eksperymentalna</e></li>
     </ul>
   </li>
   <li>
@@ -164,29 +164,29 @@ komputerów.
   <li>
     <b>Uwagi:</b>
     <ol>
-			<li>
-				Na dzień dzisiejszy tylko framebuffer Newport (XL) graphics jest
-				wspierany przez Linuksa. Z tego powodu w komputerach, które potrzebują
-				innego framebuffer'a wymagane jest używanie
-				konsoli szeregowych.
+      <li>
+        Na dzień dzisiejszy tylko framebuffer Newport (XL) graphics jest
+        wspierany przez Linuksa. Z tego powodu w komputerach, które potrzebują
+        innego framebuffer'a wymagane jest używanie
+        konsoli szeregowych.
       </li>
-			<li>
-				W Challenge S złącze RJ-45 znajduje się na pochodnej płycie (Mezz)
-				połączonej przez niewspierany adapter SCSI - WD33C95A. Aby połączenie
-				sieciowe działało poprawnie, musisz włączyć magistrale SCSI,
-				jednak nie jest ona jeszcze obsługiwana przez
-				Linuksa. Jako rezultat tego, Challenge S może łączyć się z siecią 
-				tylko przez złącze AUI.
+      <li>
+        W Challenge S złącze RJ-45 znajduje się na pochodnej płycie (Mezz)
+        połączonej przez niewspierany adapter SCSI - WD33C95A. Aby połączenie
+        sieciowe działało poprawnie, musisz włączyć magistrale SCSI,
+        jednak nie jest ona jeszcze obsługiwana przez
+        Linuksa. Jako rezultat tego, Challenge S może łączyć się z siecią 
+        tylko przez złącze AUI.
       </li>
-			<li>
-				W Indigo2 obsługa EISA jest <e>mocno</e> eksperymentalna. Nie jest
-				jeszcze dobrze przetestowana i może nie działać z każdym urządzeniem.
-				Istnieje lista obsługiwanego sprzętu i wraz z dodaniem obsługi nowych
-				urządzeń lista ta będzie rozszerzana. Należy pamiętać o tym, że
-				urządzenia, które wymagają obsługi DMA obecnie nie działają poprawnie.
-				Do urządzeń tych zaliczają się karty dźwiękowe oparte na architekturze
-				EISA/ISA. Katy graficzne EISA wymagające BIOSu kompatybilnego z
-				architekturą x86 także nie funkcjonują poprawnie.
+      <li>
+        W Indigo2 obsługa EISA jest <e>mocno</e> eksperymentalna. Nie jest
+        jeszcze dobrze przetestowana i może nie działać z każdym urządzeniem.
+        Istnieje lista obsługiwanego sprzętu i wraz z dodaniem obsługi nowych
+        urządzeń lista ta będzie rozszerzana. Należy pamiętać o tym, że
+        urządzenia, które wymagają obsługi DMA obecnie nie działają poprawnie.
+        Do urządzeń tych zaliczają się karty dźwiękowe oparte na architekturze
+        EISA/ISA. Katy graficzne EISA wymagające BIOSu kompatybilnego z
+        architekturą x86 także nie funkcjonują poprawnie.
       </li>
     </ol>
   </li>
@@ -232,21 +232,21 @@ komputerów.
   <li>
     <b>Uwagi:</b>
     <ol>
-			<li>
-				Procesor RM7000 znajdujący się w O2 jest obecnie ograniczany przez
-				Linuksa, ponieważ wymaga dosyć nowej wersji jądra (&gt;2.6.7) oraz przy
-				pracy z tym procesorem pojawiają się warte odnotowania problemy.
-				Pierwszym problemem jest obsługa SCSI. Obecnie niemożliwia jest praca z
-				wewnętrznymi dyskami. Cache trzeciego poziomu także nie jest używany, z
-				powodu braku obsługi tej pamięci przez jądro system.
+      <li>
+        Procesor RM7000 znajdujący się w O2 jest obecnie ograniczany przez
+        Linuksa, ponieważ wymaga dosyć nowej wersji jądra (&gt;2.6.7) oraz przy
+        pracy z tym procesorem pojawiają się warte odnotowania problemy.
+        Pierwszym problemem jest obsługa SCSI. Obecnie niemożliwia jest praca z
+        wewnętrznymi dyskami. Cache trzeciego poziomu także nie jest używany, z
+        powodu braku obsługi tej pamięci przez jądro system.
       </li>
-			<li>
-				Prosimy być swiadomym tego, że uwaga ta tyczy się tylko oficjalnych
-				maszyn SGI RM7000 pracujących z częstotliwością 350MHz, nie dotyczy
-				600MHz modelu RM7000, ponieważ korzysta on z płyty RM5200. Te 
-				"zmodowane" moduły CPU dla komputerów opartych na O2 nie są
-				obsługiwane/przetestowane, ale teoretycznie powinny działać
-				poprawnie. Mogą jednak występować na nich problemy opisane powyżej.
+      <li>
+        Prosimy być swiadomym tego, że uwaga ta tyczy się tylko oficjalnych
+        maszyn SGI RM7000 pracujących z częstotliwością 350MHz, nie dotyczy
+        600MHz modelu RM7000, ponieważ korzysta on z płyty RM5200. Te 
+        "zmodowane" moduły CPU dla komputerów opartych na O2 nie są
+        obsługiwane/przetestowane, ale teoretycznie powinny działać
+        poprawnie. Mogą jednak występować na nich problemy opisane powyżej.
       </li>
     </ol>
   </li>
@@ -257,7 +257,7 @@ komputerów.
 </chapter>
 
 <chapter>
-	<title>Eksperymentalne/niestabilne komputery Silicon Graphics.</title>
+  <title>Eksperymentalne/niestabilne komputery Silicon Graphics.</title>
 <section>
 <body>
 
@@ -276,7 +276,7 @@ przejażdżka.
 
 <ul>
   <li>
-		<b><e>Eksperymentalne</e> rodzaje procesorów:</b>
+    <b><e>Eksperymentalne</e> rodzaje procesorów:</b>
     R10000, R12000
   </li>
   <li>
@@ -311,7 +311,7 @@ przejażdżka.
 
 <ul>
   <li>
-		<b><e>Eksperymentalne</e> rodzaje procesorów:</b>
+    <b><e>Eksperymentalne</e> rodzaje procesorów:</b>
     R10000
   </li>
   <li>
@@ -339,20 +339,20 @@ przejażdżka.
   <li>
     <b>Uwagi:</b>
     <ol>
-			<li>
-				Obsługa IP28 Indigo2 Impact (sklasyfikowany jako Indigo2 z
-				procesorem R10000) jest <e>mocno eksperymentalna</e>. Większość pracy
-				jest obecie wykonywana przez Peter'a Fuerst'a, który opiekuje się
-				łatkami jądra dla tego komputera na swojej <uri
-					link="http://home.alphastar.de/fuerst/download.html">stronie</uri>.
-				Jądro to <e>NIE</e> jest przeznaczone do stabilnego, codziennego użytku.
-				Komputer Indigo2 IP28 cierpi z powodu błędu zwanego <e>Spekulacyjne
-				Wywołanie</e> (Speculative Execution) - funkcja procesora R10000, która
-				jest problematyczna na maszynach <e>zgodnych z brakiem cache'u</e> (Non
-				Cache Coherent), takich jak IP28 Indigo2 oraz systemach	IP32 O2 opartych
-				na procesorach R10000/R12000. Szczegóły co do natury Spekulacyjnego
-				Wykonania i zagrożeń jakie ze sobą niesie dla Indigo2 są dostępne pod
-				poniższymi adresami:
+      <li>
+        Obsługa IP28 Indigo2 Impact (sklasyfikowany jako Indigo2 z
+        procesorem R10000) jest <e>mocno eksperymentalna</e>. Większość pracy
+        jest obecie wykonywana przez Peter'a Fuerst'a, który opiekuje się
+        łatkami jądra dla tego komputera na swojej <uri
+          link="http://home.alphastar.de/fuerst/download.html">stronie</uri>.
+        Jądro to <e>NIE</e> jest przeznaczone do stabilnego, codziennego użytku.
+        Komputer Indigo2 IP28 cierpi z powodu błędu zwanego <e>Spekulacyjne
+        Wywołanie</e> (Speculative Execution) - funkcja procesora R10000, która
+        jest problematyczna na maszynach <e>zgodnych z brakiem cache'u</e> (Non
+        Cache Coherent), takich jak IP28 Indigo2 oraz systemach  IP32 O2 opartych
+        na procesorach R10000/R12000. Szczegóły co do natury Spekulacyjnego
+        Wykonania i zagrożeń jakie ze sobą niesie dla Indigo2 są dostępne pod
+        poniższymi adresami:
 
         <ul>
           <li>
@@ -402,19 +402,19 @@ przejażdżka.
   <li>
     <b>Uwagi:</b>
     <ol>
-			<li>
-				Obsługa Octane ze strony Linuksa powinna być traktowana jako
-				eksperymentalna. Obsługa tej konkretnej maszyny SGI rozwija się
-				burzliwie, a jądro działa rozsądnie dobrze na tym komputerze.
-				Aktualny stan prac nad obsługą tych komputerów może być znaleziony na
-				<uri link="http://helios.et.put.poznan.pl/~sskowron/ip30/">stronie
-				Stanisława Skowronka</uri>. Szersza obsługa od strony Gentoo dla tych
-				komputerów będzie dostępna w przyszłości.
+      <li>
+        Obsługa Octane ze strony Linuksa powinna być traktowana jako
+        eksperymentalna. Obsługa tej konkretnej maszyny SGI rozwija się
+        burzliwie, a jądro działa rozsądnie dobrze na tym komputerze.
+        Aktualny stan prac nad obsługą tych komputerów może być znaleziony na
+        <uri link="http://helios.et.put.poznan.pl/~sskowron/ip30/">stronie
+        Stanisława Skowronka</uri>. Szersza obsługa od strony Gentoo dla tych
+        komputerów będzie dostępna w przyszłości.
       </li>
-			<li>
-				Porty szeregowe na Octane obecnie obsługują tylko prędkość nadawania
-				9600, architekturę 8-bitową, brak bitu parzystości, 1 bit stopu. 
-				Na chwile obecną inne prędkości nadawania nie działają.
+      <li>
+        Porty szeregowe na Octane obecnie obsługują tylko prędkość nadawania
+        9600, architekturę 8-bitową, brak bitu parzystości, 1 bit stopu. 
+        Na chwile obecną inne prędkości nadawania nie działają.
       </li>
     </ol>
   </li>
@@ -469,7 +469,7 @@ stylu zobacz-i-zostaw. Poniższa tabela zawiera poziom obsługi każdego urządz
   <tr>
     <th>Obsługa stabilna</th>
     <th>Obsługa eksperymentalna</th>
-		<th>Nieobsługiwane/nieprzetestowane</th>
+    <th>Nieobsługiwane/nieprzetestowane</th>
   </tr>
   <tr>
     <ti>Indy/Indigo2: Karta graficzna XL (Newport)</ti>
@@ -548,7 +548,7 @@ endian</e> (<c>mipsel</c>) w przeciwieństwie do <e>big endian</e>
 
 <p>
 Komputery te sprzedawane były także dla innych firm na licencji OEM, przykładem
-są Gateway Microserver (Qube 2) oraz Seagate NasRaQ (RaQ 2).	
+są Gateway Microserver (Qube 2) oraz Seagate NasRaQ (RaQ 2).  
 </p>
 
 </body>

@@ -230,7 +230,7 @@ najmniej jeden wpis dla użytkownika root, taki jak <c>root: twój@adres.email</
 # <i>/usr/bin/newaliases</i>
 <comment>(To spowoduje zainstalowanie nowych aliasów. Trzeba to robić tylko po
 aktualizacji lub dodaniu aliasów.</comment>
-		
+    
 # <i>/etc/init.d/postfix start</i>
 </pre>
 
@@ -411,10 +411,10 @@ pusta, w przeciwnym wypadku bowiem nazwy będą modyfikowane i Postfiks nie
 będzie w stanie ich autentykować.)</comment>
 
 smtpd_recipient_restrictions =
-	permit_sasl_authenticated,
-	permit_mynetworks,
-	reject_unauth_destination
-	
+  permit_sasl_authenticated,
+  permit_mynetworks,
+  reject_unauth_destination
+  
 
 smtpd_use_tls = yes
 #smtpd_tls_auth_only = yes
@@ -497,11 +497,11 @@ przeciwnym wypadku baza danych będzie otwarta na świat.)</comment>
 
 # <i>mysql -u root -p mysql</i>
 mysql> <i>GRANT SELECT,INSERT,UPDATE,DELETE</i>
-	->     <i>ON mailsql.*</i>
-	->     <i>TO mailsql@localhost</i>
-	->     <i>IDENTIFIED BY '$password';</i>
+  ->     <i>ON mailsql.*</i>
+  ->     <i>TO mailsql@localhost</i>
+  ->     <i>IDENTIFIED BY '$password';</i>
 
-	->     <i>quit</i>
+  ->     <i>quit</i>
 <comment>(Należy upewnić się, że użytkownik mailsql może połączyć się z
 serwerem.)</comment>
 
@@ -533,11 +533,11 @@ id   alias    destination
 <pre caption="Przykładowa tabela użytkowników">
 <comment>(Wiersze zostały zawinięte dla przejrzystości.)</comment>
 id email            clear     name     uid     gid     homedir     \
-	maildir                                quota  postfix
+  maildir                                quota  postfix
 10 foo@virt-bar.org $password realname virtid  virtid  /home/vmail \
-	/home/vmail/virt-bar.org/foo/.maildir/        y
+  /home/vmail/virt-bar.org/foo/.maildir/        y
 13 foo@bar.com      $password realname localid localid /home/foo   \
-	/home/foo/.maildir/                           y
+  /home/foo/.maildir/                           y
 </pre>
 
 <p>
@@ -750,65 +750,65 @@ do współpracy z bazą danych dla wszystkich potrzeb transportowych.
 # <i>nano -w /etc/postfix/mysql-aliases.cf</i>
 # mysql-aliases.cf
 
-user         	= mailsql
-password     	= $password
-dbname       	= mailsql
-table        	= alias
-select_field 	= destination
-where_field  	= alias
-hosts        	= unix:/var/run/mysqld/mysqld.sock
+user           = mailsql
+password       = $password
+dbname         = mailsql
+table          = alias
+select_field   = destination
+where_field    = alias
+hosts          = unix:/var/run/mysqld/mysqld.sock
 </pre>
 
 <pre caption="/etc/postfix/mysql-relocated.cf">
 # <i>nano -w /etc/postfix/mysql-relocated.cf</i>
 # mysql-relocated.cf
 
-user         	= mailsql
-password     	= $password
-dbname       	= mailsql
-table        	= relocated
-select_field 	= destination
-where_field  	= email
-hosts        	= unix:/var/run/mysqld/mysqld.sock
+user           = mailsql
+password       = $password
+dbname         = mailsql
+table          = relocated
+select_field   = destination
+where_field    = email
+hosts          = unix:/var/run/mysqld/mysqld.sock
 </pre>
 
 <pre caption="/etc/postfix/mysql-transport.cf (opcjonalnie)">
-# <i>nano -w /etc/postfix/mysql-transport.cf</i>		
+# <i>nano -w /etc/postfix/mysql-transport.cf</i>    
 # mysql-transport.cf
 
-user         	= mailsql
-password     	= $password
-dbname       	= mailsql
-table        	= transport
-select_field 	= destination
-where_field  	= domain
-hosts        	= unix:/var/run/mysqld/mysqld.sock
+user           = mailsql
+password       = $password
+dbname         = mailsql
+table          = transport
+select_field   = destination
+where_field    = domain
+hosts          = unix:/var/run/mysqld/mysqld.sock
 </pre>
 
 <pre caption="/etc/postfix/mysql-virtual-gid.cf (opcjonalnie)">
 # <i>nano -w /etc/postfix/mysql-virtual-gid.cf</i>
 #myql-virtual-gid.cf
 
-user          	= mailsql
+user            = mailsql
 password        = $password
-dbname        	= mailsql
+dbname          = mailsql
 table           = users
 select_field    = gid
 where_field     = email
 additional_conditions = and postfix = 'y'
-hosts         	= unix:/var/run/mysqld/mysqld.sock
+hosts           = unix:/var/run/mysqld/mysqld.sock
 </pre>
 
 <pre caption="/etc/postfix/mysql-virtual-maps.cf">
 # <i>nano -w /etc/postfix/mysql-virtual-maps.cf</i>
 #myql-virtual-maps.cf
 
-user        	= mailsql
+user          = mailsql
 password        = $password
 dbname          = mailsql
 table           = users
 select_field    = maildir
-where_field   	= email
+where_field     = email
 additional_conditions = and postfix = 'y'
 hosts           = unix:/var/run/mysqld/mysqld.sock
 </pre>
@@ -822,7 +822,7 @@ password        = $password
 dbname          = mailsql
 table           = users
 select_field    = uid
-where_field    	= email
+where_field      = email
 additional_conditions = and postfix = 'y'
 hosts           = unix:/var/run/mysqld/mysqld.sock
 </pre>
@@ -831,13 +831,13 @@ hosts           = unix:/var/run/mysqld/mysqld.sock
 # <i>nano -w /etc/postfix/mysql-virtual.cf</i>
 # mysql-virtual.cf
 
-user         	= mailsql
-password     	= $password
-dbname       	= mailsql
-table        	= virtual
-select_field 	= destination
-where_field  	= email
-hosts        	= unix:/var/run/mysqld/mysqld.sock
+user           = mailsql
+password       = $password
+dbname         = mailsql
+table          = virtual
+select_field   = destination
+where_field    = email
+hosts          = unix:/var/run/mysqld/mysqld.sock
 </pre>
 
 <p>
@@ -854,8 +854,8 @@ local_recipient_maps = $alias_maps $virtual_mailbox_maps unix:passwd.byname
 
 virtual_transport = virtual
 virtual_mailbox_domains =
-	virt-bar.com,
-	$inna-domena-wirtualna.com
+  virt-bar.com,
+  $inna-domena-wirtualna.com
 
 virtual_minimum_uid = 1000
 virtual_gid_maps = static:$vmail-gid
@@ -975,7 +975,7 @@ DEFAULT_URL_HOST = 'www.domain.com'
 <pre caption="Konfiguracja mailmana: mm_cfg.py">
 # <i>nano -w /var/mailman/Mailman/mm_cfg.py</i>
 MTA = "Postfix"
-POSTFIX_STYLE_VIRTUAL_DOMAINS = ['virt-domain.com', 'virt.domain2.com']	
+POSTFIX_STYLE_VIRTUAL_DOMAINS = ['virt-domain.com', 'virt.domain2.com']  
 add_virtualhost('www.virt.domain.com', 'virt.domain.com')
 add_virtualhost('www.virt.domain2.com', 'virt.domain2.com')
 <comment>(Jest to konieczne dla działania domen wirtualnych.)</comment>
@@ -1023,12 +1023,12 @@ recipient_delimiter = +
 <comment>(W pliku README.POSTFIX.gz znajdują się dalsze szczegóły)</comment>
 
 alias_maps     =
-	hash:/var/mailman/data/aliases,
-	mysql:/etc/postfix/mysql-aliases.cf
+  hash:/var/mailman/data/aliases,
+  mysql:/etc/postfix/mysql-aliases.cf
 
 virtual_alias_maps =
-	hash:/var/mailman/data/virtual-mailman,
-	mysql:/etc/postfix/mysql-virtual.cf
+  hash:/var/mailman/data/virtual-mailman,
+  mysql:/etc/postfix/mysql-virtual.cf
 <comment>(W ten sposób dodaje się wsparcie Mailmana do Postfiksa. Oczywiście
 można w tym celu wykorzystać tabele MySQL, ale autor naprawdę nie lubi robienia
 tego ręcznie. Poza tym jeżeli domeny wirtualne nie są wykorzystane, dodawanie

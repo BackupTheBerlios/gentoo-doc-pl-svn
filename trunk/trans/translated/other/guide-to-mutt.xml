@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding="UTF-8"?>
+<!-- $Header$ -->
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+
 <!-- Orig revision: 1.12 -->
 <!-- Translator: Jerzy Pawelec <niegdysiejszy.blondyn@interia.pl> -->
 <!-- Title: Guide to Mutt -->
 <!-- Status: Do korekty -->
 <!-- $Id$ -->
-<!-- $Header$ -->
 
-<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 <guide link="/doc/pl/guide-to-mutt.xml"  lang="pl">
-<title>QuickStart Guide to Mutt E-Mail</title>
+<title>Czytanie poczty za pomocą Mutt</title>
 
 <author title="Autor">
   <mail link="mikpolniak@adelphia.net">Mike Polniak</mail>
@@ -24,24 +25,27 @@
 </author>
 
 <abstract>
-Przewodnik pokaże jak zacząć używać silnych narzędzi wiersza poleceń dla
-poczty: fetchmail, procmail, mutt, nbsmtp, msmtp.
+Krótki opis konfiguracji programów służących do odbioru i czytania poczty pod
+konsolą, takich jak: fetchmail, procmail, mutt, nbsmtp, msmtp.
 </abstract>
 
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.05-->
 <license/>
 
 <version>1.3</version>
 <date>2004-12-26</date>
 
 <chapter>
-<title>Wprowadzenie do poczty elektronicznej</title>
+<title>Wprowadzenie</title>
 <section>
 <body>
 
 <p>
 Jeśli nie jesteś wielbicielem klientów pocztowych o wymyślnych środowiskach
 graficznych  albo po prostu chcesz sprawdzić inne systemy, zanim zdecydujesz,
-który z nich jest najlepszy dla ciebie, oto prosta droga, byś rozpoczął używać silnych narzędzi wiersza poleceń:
+który z nich jest najlepszy dla ciebie, oto prosta droga, byś rozpoczął używać
+silnych narzędzi wiersza poleceń:
 </p>
 
 <p>
@@ -71,7 +75,7 @@ I nie musimy już używać złożonego MTA do wysyłania prostej poczty wychodz�
 Oto programy, których potrzebujesz, aby twoja poczta działała.
 </p>
 
-<pre>
+<pre caption="Instalowanie niezbędnych programów">
 # <i>emerge fetchmail procmail mutt nbsmtp</i>
 </pre> 
 
@@ -112,7 +116,7 @@ chmod zmienić prawa dostępu do niego. Plik może czytać tylko jego
 właściel. Ustaw prawa dostępu nastepującym poleceniem:
 </p>
 
-<pre>
+<pre caption="Poprawianie praw dostępu">
 # <i>chmod 600 .fetchmailrc</i>
 </pre>
 
@@ -319,11 +323,11 @@ set folder_format="%2C %t %8s %d %N %f"
 
 set record="$HOME/MuttMail/sent"        #poczta wysłana, pamiętana jest tutaj
 set delete=yes                          #usuwaj bez potwierdzania
-set include=yes				#cytuj wiadomość w odpowiedzi
-set fast_reply=yes			#bez potwierdzania w przy odpowiedzi
-set beep=no				#bez brzęczyka
-set markers=no				#bez + w zawijanych wierszach
-set confirmappend=no			#bez potwierdzania zapisywania w =keep           
+set include=yes        #cytuj wiadomość w odpowiedzi
+set fast_reply=yes      #bez potwierdzania w przy odpowiedzi
+set beep=no        #bez brzęczyka
+set markers=no        #bez + w zawijanych wierszach
+set confirmappend=no      #bez potwierdzania zapisywania w =keep           
 set to_chars=" +TCF"                    #bez L dla list pocztowych
 
 set folder = $HOME/MuttMail
@@ -343,7 +347,7 @@ mailboxes =keep
 save-hook .* =keep        #domyślny mbox do zapamiętywanej (s) poczty to =keep
 subscribe gentoo-user gentoo-dev        #subskrybuj te listy
 
-bind pager h display-toggle-weed	#przełączaj nagłówmki klawiszem h
+bind pager h display-toggle-weed  #przełączaj nagłówmki klawiszem h
 
 # symulacja starego menu menu url
 macro index \cb |urlview\n 'call urlview to extract URLs out of a message'
@@ -377,31 +381,31 @@ color quoted1 magenta blue
 #te kolory skopiowane są z /etc/mutt/Muttrc.color
 #jeśli wolisz kolory domyślne z /etc/mutt/Muttrc, zakomentuj to
 # Je vois la vie en rose :-) 
-color	hdrdefault	brightcyan	blue
-color	header		brightwhite	blue "^from:"
-color   header          brightwhite    	blue   "^subject:"
+color  hdrdefault  brightcyan  blue
+color  header    brightwhite  blue "^from:"
+color   header          brightwhite      blue   "^subject:"
 
 color   quoted          brightgreen     blue
-color   signature       brightwhite	blue
+color   signature       brightwhite  blue
 
-color   indicator       blue	        green
+color   indicator       blue          green
 
 color   error           red             black
 mono    error           bold
 color   status          black cyan
-mono	status		bold
-color   tree            yellow   	blue
+mono  status    bold
+color   tree            yellow     blue
 
 color   tilde           brightmagenta   blue
-color	body	brightwhite		blue	"[-a-z_0-9.]+@[-a-z_0-9.]+"
+color  body  brightwhite    blue  "[-a-z_0-9.]+@[-a-z_0-9.]+"
 mono    body    bold                    "[-a-z_0-9.]+@[-a-z_0-9.]+"
 color   body            brightyellow    black   "^Good signature"
 mono    body            bold                    "^Good signature"
 color   body            brightwhite     red     "^Bad signature from.*"
 mono    body            bold                    "^Bad signature from.*"
-color   normal          white		blue
-color	message		green	black
-color	attachment	brightgreen	blue
+color   normal          white    blue
+color  message    green  black
+color  attachment  brightgreen  blue
 
 # Koniec, ale można tak dłuuuuuuuuuuuugo....:)
 </pre>
@@ -491,7 +495,7 @@ Jest jeszcze jeden program, który pewnie będziesz chciał dodać. Urlview wyod
 url w tekstach wiadomości i wysyła je do twojej przeglądarki.
 </note>
 
-<pre>
+<pre caption="Emergowanie urlview">
 # <i>emerge urlview</i> 
 </pre>
 

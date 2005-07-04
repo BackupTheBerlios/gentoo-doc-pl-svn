@@ -127,24 +127,24 @@ Oto krótka lista korzyści z przejścia na rozdzielone ebuildy:
     
     <ul>
       <li>
-	Zależy im na czasie kompilacji. <c>emerge kdebase kdepim kdenetwork</c>
-	trwa strasznie długo, a tak naprawdę potrzebne im są jedynie konqueror,
-	kmail i kopete.
+  Zależy im na czasie kompilacji. <c>emerge kdebase kdepim kdenetwork</c>
+  trwa strasznie długo, a tak naprawdę potrzebne im są jedynie konqueror,
+  kmail i kopete.
       </li>
       <li>
-	Zależy im na niezaśmiecaniu dysku. Każda nieużywana aplikacja sprawia, że
-	cenne megabajty się marnują. Dysk z większą ilością wolnego miejsca
-	też wtedy oddycha swobodniej; jest szybszym i szczęśliwszym dyskiem.
+  Zależy im na niezaśmiecaniu dysku. Każda nieużywana aplikacja sprawia, że
+  cenne megabajty się marnują. Dysk z większą ilością wolnego miejsca
+  też wtedy oddycha swobodniej; jest szybszym i szczęśliwszym dyskiem.
       </li>
       <li>
-	Troszczą się o bezpieczeństwo systemu. Każde zainstalowane
-	oprogramowanie jest potencjalnym celem ataku i dlatego nie należy
-	instalować niczego co nie jest potrzebne.
+  Troszczą się o bezpieczeństwo systemu. Każde zainstalowane
+  oprogramowanie jest potencjalnym celem ataku i dlatego nie należy
+  instalować niczego co nie jest potrzebne.
       </li>
       <li>
-	Dokładnie poznali <uri link="/main/en/philosophy.xml">
-	filozofię Gentoo</uri> i nie mogą znieść tak wielu programów ściśniętych
-	w jeden pakiet? My też nie możemy.
+  Dokładnie poznali <uri link="/main/en/philosophy.xml">
+  filozofię Gentoo</uri> i nie mogą znieść tak wielu programów ściśniętych
+  w jeden pakiet? My też nie możemy.
       </li>
     </ul>
   </li>
@@ -165,7 +165,7 @@ Rozdzielone i monolityczne ebuildy mogą swobodnie razem współpracować. Jedyn
 ograniczeniem jest to, że ebuild monolityczny nie może być jednocześnie
 zainstalowany razem z rozdzielonym pochodzącym od niego. W ebuildach KDE
 istnieją mechanizmy blokowania nie zezwalające na to, zatem można robić
-wszystko na co tylko emerge pozwoli.	
+wszystko na co tylko emerge pozwoli.  
 </p>
 
 <p>
@@ -437,7 +437,7 @@ a więc potrzebujemy innego rozwiązania.
 
 <p>
 Dobre rozwiązane tego problemu wymaga modyfikacji Portage. Jedno z możliwych
-wyjść jest opisane w <uri 
+wyjść jest opisane w <uri
 link="http://www.gentoo.org/proj/en/glep/glep-0021.html">GLEP 21</uri>. Jednak
 zanim zostanie to zaimplementowane musimy skorzystać ze skryptów takich jak ten
 poniżej.
@@ -449,7 +449,7 @@ ebuildy w katalogu kde-base pochodzą z kde.org). Zatem poprawny jest poniższy
 kod:
 </p>
 
-<pre>
+<pre caption="Usuwanie aplikacji z KDE">
 # <i>for x in `ls /usr/portage/kde-base`; do</i>
 > <i>if [ "$x" != "CVS" ]; then</i>
 > <i>echo -n "=kde-base/$x-3.4* "</i>
@@ -485,7 +485,7 @@ funkcje są poprawnym rozwiązaniem dla postawionego problemu i mogą zostać
 wykonane z jakiegoś ebuilda albo zewnętrznego skryptu bash. Na przykład:
 </p>
 
-<pre>
+<pre caption="Implementacja eclass KDE">
 $ <i>function die() { echo $@; } # pokazuj błędy</i>
 $ <i>source /usr/portage/eclass/kde-functions.eclass</i>
 $ <i>get-parent-package konqueror # nie zadziała, potrzebna jest pełna nazwa</i>
