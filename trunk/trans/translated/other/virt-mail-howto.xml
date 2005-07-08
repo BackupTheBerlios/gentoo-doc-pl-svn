@@ -1,14 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
 <!-- Orig revision: 1.45 -->
 <!-- Translator: aleander <aleander@gmail.com> -->
-<!-- Title: Hosting poczty -->
-<!-- Status: Finished -->
-<!-- $Id$ -->
 
-<!-- $Header$ -->
-
-<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/virt-mail-howto.xml,v 1.2 2005/07/04 23:24:50 neysx Exp $ -->
 
 <guide link="/doc/pl/virt-mail-howto.xml" lang="pl">
 <title>Wirtualny system pocztowy oparty o Postfix</title>
@@ -199,7 +195,7 @@ myhostname = $host.domain.name
 mydomain = $domain.name
 inet_interfaces = all
 mydestination = $myhostname, localhost.$mydomain $mydomain
-mynetworks = numer.mojej.sieci.ip/24, 127.0.0.0/8 
+mynetworks = numer.mojej.sieci.ip/24, 127.0.0.0/8
 home_mailbox = .maildir/
 local_destination_concurrency_limit = 2
 default_destination_concurrency_limit = 10
@@ -230,7 +226,7 @@ najmniej jeden wpis dla użytkownika root, taki jak <c>root: twój@adres.email</
 # <i>/usr/bin/newaliases</i>
 <comment>(To spowoduje zainstalowanie nowych aliasów. Trzeba to robić tylko po
 aktualizacji lub dodaniu aliasów.</comment>
-    
+
 # <i>/etc/init.d/postfix start</i>
 </pre>
 
@@ -414,7 +410,6 @@ smtpd_recipient_restrictions =
   permit_sasl_authenticated,
   permit_mynetworks,
   reject_unauth_destination
-  
 
 smtpd_use_tls = yes
 #smtpd_tls_auth_only = yes
@@ -478,9 +473,8 @@ informacje związane z autentykacją oraz wirtualnymi domenami.
 <body>
 
 <p>
-Następnie zainstalujemy oraz skonfigurujemy MySQL. W tym kroku niezbędny
-będzie plik <uri
-link="http://www.gentoo.org/doc/en/files/genericmailsql.sql">genericmailsql.sql</uri>
+Następnie zainstalujemy oraz skonfigurujemy MySQL. W tym kroku niezbędny będzie
+plik <uri link="/doc/en/files/genericmailsql.sql">genericmailsql.sql</uri>
 </p>
 
 <pre caption="Instalacja oraz konfiguracja MySQL">
@@ -773,7 +767,7 @@ hosts          = unix:/var/run/mysqld/mysqld.sock
 </pre>
 
 <pre caption="/etc/postfix/mysql-transport.cf (opcjonalnie)">
-# <i>nano -w /etc/postfix/mysql-transport.cf</i>    
+# <i>nano -w /etc/postfix/mysql-transport.cf</i>
 # mysql-transport.cf
 
 user           = mailsql
@@ -789,14 +783,14 @@ hosts          = unix:/var/run/mysqld/mysqld.sock
 # <i>nano -w /etc/postfix/mysql-virtual-gid.cf</i>
 #myql-virtual-gid.cf
 
-user            = mailsql
-password        = $password
-dbname          = mailsql
-table           = users
-select_field    = gid
-where_field     = email
+user           = mailsql
+password       = $password
+dbname         = mailsql
+table          = users
+select_field   = gid
+where_field    = email
 additional_conditions = and postfix = 'y'
-hosts           = unix:/var/run/mysqld/mysqld.sock
+hosts          = unix:/var/run/mysqld/mysqld.sock
 </pre>
 
 <pre caption="/etc/postfix/mysql-virtual-maps.cf">
@@ -804,11 +798,11 @@ hosts           = unix:/var/run/mysqld/mysqld.sock
 #myql-virtual-maps.cf
 
 user          = mailsql
-password        = $password
-dbname          = mailsql
-table           = users
-select_field    = maildir
-where_field     = email
+password      = $password
+dbname        = mailsql
+table         = users
+select_field  = maildir
+where_field   = email
 additional_conditions = and postfix = 'y'
 hosts           = unix:/var/run/mysqld/mysqld.sock
 </pre>
@@ -822,7 +816,7 @@ password        = $password
 dbname          = mailsql
 table           = users
 select_field    = uid
-where_field      = email
+where_field     = email
 additional_conditions = and postfix = 'y'
 hosts           = unix:/var/run/mysqld/mysqld.sock
 </pre>
@@ -831,13 +825,13 @@ hosts           = unix:/var/run/mysqld/mysqld.sock
 # <i>nano -w /etc/postfix/mysql-virtual.cf</i>
 # mysql-virtual.cf
 
-user           = mailsql
-password       = $password
-dbname         = mailsql
-table          = virtual
-select_field   = destination
-where_field    = email
-hosts          = unix:/var/run/mysqld/mysqld.sock
+user         = mailsql
+password     = $password
+dbname       = mailsql
+table        = virtual
+select_field = destination
+where_field  = email
+hosts        = unix:/var/run/mysqld/mysqld.sock
 </pre>
 
 <p>
@@ -975,7 +969,7 @@ DEFAULT_URL_HOST = 'www.domain.com'
 <pre caption="Konfiguracja mailmana: mm_cfg.py">
 # <i>nano -w /var/mailman/Mailman/mm_cfg.py</i>
 MTA = "Postfix"
-POSTFIX_STYLE_VIRTUAL_DOMAINS = ['virt-domain.com', 'virt.domain2.com']  
+POSTFIX_STYLE_VIRTUAL_DOMAINS = ['virt-domain.com', 'virt.domain2.com']
 add_virtualhost('www.virt.domain.com', 'virt.domain.com')
 add_virtualhost('www.virt.domain2.com', 'virt.domain2.com')
 <comment>(Jest to konieczne dla działania domen wirtualnych.)</comment>

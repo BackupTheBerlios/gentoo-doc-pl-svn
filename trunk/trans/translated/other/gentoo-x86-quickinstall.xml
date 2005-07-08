@@ -1,9 +1,8 @@
 <?xml version='1.0' encoding="UTF-8"?>
-<!-- $Header$ -->
-
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/gentoo-x86-quickinstall.xml,v 1.1 2005/07/04 16:09:31 neysx Exp $ -->
 
-<!-- Orig revision: 1.37 -->
+<!-- Orig revision 1.37 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
 <!-- Title: Szybka instalacja Gentoo na x86 -->
 <!-- Status: Release -->
@@ -126,12 +125,12 @@ definiowane przez developerów Gentoo.
 
 <pre caption="Instalowanie Gentoo">
 (Weryfikowanie obecnego profilu)  # <i>ls -l /etc/make.profile</i>
-(Zmiana TYLKO dla użytkowników jądra 2.4)   
+(Zmiana TYLKO dla użytkowników jądra 2.4)
                                   # <i>ln -snf /usr/portage/profiles/default-linux/x86/2005.0/2.4 /etc/make.profile</i>
-(Należy zmienić USE, CFLAGS i CXXFLAGS. Jeśli to instalacja ze stage1 to należy zmienić również CHOST)  
+(Należy zmienić USE, CFLAGS i CXXFLAGS. Jeśli to instalacja ze stage1 to należy zmienić również CHOST)
                                   # <i>nano -w /etc/make.conf</i>
 (Tylko stage1: bootstrap systemu) # <i>cd /usr/portage; scripts/bootstrap.sh</i>
-(Dla stage1 i stage2: Instalacja systemu podstawowego. Należy użyć --emptytree jeśli modyfikowano zmienną CFLAGS, 
+(Dla stage1 i stage2: Instalacja systemu podstawowego. Należy użyć --emptytree jeśli modyfikowano zmienną CFLAGS,
 --newuse jeśli modyfikowano zmienną USE. Jedno z nich jest konieczne.
                                   # <i>emerge --emptytree system</i> <comment>lub</comment> <i>emerge --newuse system</i>
 </pre>
@@ -167,13 +166,13 @@ Kolejny etap to instalacja jądra:
 
 <pre caption="Instalowanie jądra">
 (Instalowanie źródeł jądra)    # <i>emerge <comment>&lt;pakiet-źródeł-jądra&gt;</comment></i>
-(Konfigurowanie jądra za pomocą programu genkernel...) 
+(Konfigurowanie jądra za pomocą programu genkernel...)
                                 # <i>emerge genkernel; genkernel --udev --menuconfig all</i>
 (<comment>lub</comment> (1) ręczna konfiguracja jądra)
                                 # <i>cd /usr/src/linux; make menuconfig;</i>
 (   (2) Włączenie systemów plików VM i /proc)
-(   (3) Kompilowanie jądra) 
-           (dla jądra 2.6)      # <i>make &amp;&amp; make modules_install</i>   
+(   (3) Kompilowanie jądra)
+           (dla jądra 2.6)      # <i>make &amp;&amp; make modules_install</i>
            (dla jądra 2.4)      # <i>make dep &amp;&amp; make clean bzImage modules modules_install</i>
 (   (4) Kopiowanie jądra)       # <i>cp arch/i386/boot/bzImage /boot; cp System.map /boot</i>
 </pre>
@@ -183,21 +182,21 @@ Później trzeba zainstalować rozmaite programy systemowe:
 </p>
 
 <pre caption="Instalowanie narzędzi systemowych">
-(Instalowanie loggera systemowego. Należy wybrać pomiędzy: sysklogd, metalog, msyslog i syslog-ng) 
+(Instalowanie loggera systemowego. Należy wybrać pomiędzy: sysklogd, metalog, msyslog i syslog-ng)
                                           # <i>emerge syslog-ng </i>
 (Automatyczne uruchamienie loggera systemowego przy uruchamianiu systemu)
                                           # <i>rc-update add syslog-ng default</i>
-(Instalowanie demona cron, Należy wybrać pomiędzy: vixie-cron, dcron, fcron)                
+(Instalowanie demona cron, Należy wybrać pomiędzy: vixie-cron, dcron, fcron)
                                           # <i>emerge vixie-cron</i>
-(Automatyczne uruchamienie demona cron przy uruchamianiu systemu)                   
-                                          # <i>rc-update add vixie-cron default</i>   
+(Automatyczne uruchamienie demona cron przy uruchamianiu systemu)
+                                          # <i>rc-update add vixie-cron default</i>
 (dla użytkowników genkernel: instalacja *plug)
                                           # <i>emerge coldplug hotplug</i>
 (dla użytkowników genkernel: automatyczne uruchamianie coldplug przy uruchamianiu systemu)
                                           # <i>rc-update add coldplug boot</i>
-(Dla użytkowników systemów plików innych niż ext2,ext3. Instalacja odpowiednio: reiserfsprogs, xfsprogs lub jfsutils)  
+(Dla użytkowników systemów plików innych niż ext2,ext3. Instalacja odpowiednio: reiserfsprogs, xfsprogs lub jfsutils)
                                           # <i>emerge reiserfsprogs</i>
-(Opcjonalnie: Instalacja klienta DHCP)    # <i>emerge dhcpcd</i> 
+(Opcjonalnie: Instalacja klienta DHCP)    # <i>emerge dhcpcd</i>
 (Skrypt startowy dla nazw domen)          # <i>rc-update add domainname default</i>
 </pre>
 
@@ -220,25 +219,25 @@ Finalizowanie instalacji Gentoo:
 (Hasło dla niego)            # <i>passwd nazwa_użytkownika</i>
 (Ustawienie hostname)        # <i>echo mymachine &gt; /etc/hostname</i>
 (Ustawienie domainname)      # <i>echo mydomain.com &gt; /etc/dnsdomainname</i>
-(Ustawienie w pliku host, np. "127.0.0.1 localhost mymachine")  
+(Ustawienie w pliku host, np. "127.0.0.1 localhost mymachine")
                              # <i>nano -w /etc/hosts</i>
-(Konfigurowanie podstawowych ustawień systemu, na podstawie komentarzy wewnątrz pliku)       
+(Konfigurowanie podstawowych ustawień systemu, na podstawie komentarzy wewnątrz pliku)
                              # <i>nano -w /etc/rc.conf</i>
 </pre>
 
 <pre caption="Konfigurowanie połączenia sieciowego">
-(Konfiguracja sieci: użytkownicy dhcp powinni ustawić iface_eth0="dhcp")      
+(Konfiguracja sieci: użytkownicy dhcp powinni ustawić iface_eth0="dhcp")
                               # <i>nano -w /etc/conf.d/net</i>
 (Lista modułów jakie mają być ładowane w trakcie uruchamiania systemu)
                               # <i>nano -w /etc/modules.autoload.d/kernel-<comment>&lt;wersja&gt;</comment></i>
 (Jeśli nie ma PCMCIA - uruchamianie sieci przy starcie komputera)
 # <i>rc-update add net.eth0 default</i>
 (Dla kilku interfejsów sieciowych)
-   (1) Tworzenie skryptu startowego dla każdego interfejsu)                    
+   (1) Tworzenie skryptu startowego dla każdego interfejsu)
                               # <i>ln -s /etc/init.d/net.eth0 /etc/init.d/net.ethx</i>
    (2) Automatyczne uruchamianie przy starcie, dla kart nie na PCMCIA)
                               # <i>rc-update add net.ethx default</i>
-(Dla PCMCIA: sprawdzanie /etc/conf.d/pcmcia i ładowanie PCMCIA przy uruchomieniu komputera) 
+(Dla PCMCIA: sprawdzanie /etc/conf.d/pcmcia i ładowanie PCMCIA przy uruchomieniu komputera)
                               # <i>rc-update add pcmcia default</i>
 </pre>
 
@@ -274,7 +273,7 @@ prompt
 timeout=50
 default=gentoo
 
-image=/boot/kernel-<comment>&lt;wersja jądra&gt;</comment> 
+image=/boot/kernel-<comment>&lt;wersja jądra&gt;</comment>
   label=gentoo
   read-only
   <comment># użytkownicy genkernel:</comment>
@@ -296,12 +295,12 @@ Następnie odmontowujemy wszystkie partycje i ponownie uruchamiamy komputer:
 (Opuszczanie chroota)        # <i>exit</i>
                              # <i>cd /</i>
 (Odmontowywanie partycji)    # <i>umount /mnt/gentoo/boot /mnt/gentoo/proc /mnt/gentoo</i>
-(Ponowne uruchomienie komputera, należy wyjąć płytę z napędu) 
+(Ponowne uruchomienie komputera, należy wyjąć płytę z napędu)
                              # <i>reboot</i>
 (Po ponownym uruchomieniu)
 (dla użytkowników ADSL)      # <i>adsl-setup</i>
 (Dla korzystających z GRP)
-  (1) Montowanie Package CD  # <i>mount /dev/cdrom /mnt/cdrom</i>  
+  (1) Montowanie Package CD  # <i>mount /dev/cdrom /mnt/cdrom</i>
   (2) Kopiowanie pakietów    # <i>mkdir /usr/portage/packages</i>
                              # <i>cp -a /mnt/cdrom/* /usr/portage/packages/</i>
   (3) Instalowanie dodatkowych programów

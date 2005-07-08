@@ -1,14 +1,12 @@
 <?xml version='1.0' encoding="UTF-8"?>
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
 <!-- Translator: krissn <krissn@op.pl> -->
 <!-- Orig revision: 1.36 -->
-<!-- Title: Wprowadzenie do Prelink w Gentoo -->
-<!-- Status: Finished -->
 
-<!-- $Id$ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/prelink-howto.xml,v 1.2 2005/07/04 23:24:50 neysx Exp $ -->
 
-<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
-<guide link="prelink-howto.xml" lang="pl">
+<guide link="/doc/pl/prelink-howto.xml" lang="pl">
 
 <title>Wprowadzenie do Prelink w Gentoo</title>
 
@@ -99,7 +97,7 @@ prelinkowany program.
     czasowych plików wykonywalnych, dokonane w wyniku użycia <c>prelink</c>.
   </li>
   <li>
-    Nie ma potrzeby dopisywania <c>FEATURES=&quot;prelink&quot;</c> do pliku
+    Nie ma potrzeby dopisywania <c>FEATURES="prelink"</c> do pliku
     <path>make.conf</path>. Portage automatycznie użyje prelinkowania, jeżeli
     znajdzie w systemie zainstalowane polecenie <c>prelink</c>.
   </li>
@@ -121,7 +119,7 @@ instalacji wykonywana jest seria testów, które mają na celu określenie, czy
 korzystanie z prelinkowania na danym systemie będzie w pełni bezpieczne.
 </p>
 
-<pre caption = "Instalacja polecenia Prelink">
+<pre caption="Instalacja polecenia Prelink">
 # <i>emerge prelink</i>
 </pre>
 
@@ -156,9 +154,9 @@ link="cretin@gentoo.org">Stefana Jonesa</mail>.
 <body>
 
 <p>
-Następnie należy aktywować flagę &quot;pic&quot; w USE w pliku
+Następnie należy aktywować flagę "pic" w USE w pliku
 <path>/etc/make.conf</path>, po czym konieczne jest przebudowanie całego systemu
-poleceniem <c>emerge --update --deep --newuse world</c>, aby wszystkie 
+poleceniem <c>emerge --update --deep --newuse world</c>, aby wszystkie
 zainstalowane pakiety skorzystały z nowej flagi USE.
 </p>
 
@@ -216,7 +214,7 @@ Do prelinkowania wszystkich programów w katalogach wymienionych w pliku
 <path>/etc/prelink.conf</path> można użyć polecenia:
 </p>
 
-<pre caption = "Prelinkowanie wyszczególnionych programów">
+<pre caption="Prelinkowanie wyszczególnionych programów">
 # <i>prelink -amR</i>
 </pre>
 
@@ -235,7 +233,7 @@ dyskach, wywołując <c>df -h</c>.
 </tr>
 <tr>
   <th>-a</th>
-  <ti>&quot;All&quot;: prelinkuje wszystkie programy.</ti>
+  <ti>"All": prelinkuje wszystkie programy.</ti>
 </tr>
 <tr>
   <th>-m</th>
@@ -274,7 +272,7 @@ już potrzebny.
 
 <p>
 Aby tego dokonać, wystarczy umieścić wiersz
-<c>KDE_IS_PRELINKED=&quot;true&quot;</c> w pliku
+<c>KDE_IS_PRELINKED="true"</c> w pliku
 <path>/etc/env.d/99kde-env</path>.
 </p>
 
@@ -285,7 +283,7 @@ Aby tego dokonać, wystarczy umieścić wiersz
 <chapter>
 <title>Znane problemy i ich rozwiązania</title>
 <section>
-<title>&quot;Cannot prelink against non-PIC shared library&quot; (Nie można
+<title>"Cannot prelink against non-PIC shared library" (Nie można
 prelinkować z biblioteką, skompilowaną bez opcji PIC)</title>
 <body>
 
@@ -331,27 +329,27 @@ plików systemowych. Oto, jak problem wyjaśnił Dick Howell:
 </p>
 
 <p>
-&quot;Pomysł ze statycznie skompilowanymi programami ma na celu uniezależnienie
+"Pomysł ze statycznie skompilowanymi programami ma na celu uniezależnienie
 ich od zainstalowanych w systemie bibliotek. Niestety w Linuxie oraz, jak
 sądzę, w innych systemach opartych o GLIBC, nie jest to do końca możliwe. Jest
-np. sprawa biblioteki &quot;libnss&quot; (Name Service Switch, przez niektórych
+np. sprawa biblioteki "libnss" (Name Service Switch, przez niektórych
 nie wiedzieć czemu, nazywana Network Security System), która udostępnia
 interfejs dostępu do różnych baz danych uwierzytelniania, informacji sieciowych
 i wielu innych rzeczy. Ma to na celu uniezależnienie aplikacji od konfiguracji
 sieciowej konkretnego systemu. Pomysł jest niezły, jednak zmiany w GLIBC mogą
 powodować problemy z jej załadowaniem. Nie można statycznie włączyć biblioteki
-&quot;libnss&quot;, ponieważ dla każdego systemu jest ona inaczej
+"libnss", ponieważ dla każdego systemu jest ona inaczej
 skonfigurowana. Problem wydaje się leżeć w statycznym linkowaniu innych
-bibliotek składowych GLIBC, np. &quot;libpthread&quot;, &quot;libm&quot; oraz
-&quot;libc&quot;, w wyniku czego powstają niekompatybilne odwołania do funkcji
-biblioteki &quot;libnss&quot;.&quot;
+bibliotek składowych GLIBC, np. "libpthread", "libm" oraz
+"libc", w wyniku czego powstają niekompatybilne odwołania do funkcji
+biblioteki "libnss"."
 </p>
 
 </body>
 </section>
 <section>
-<title>Prelink kończy z błędem &quot;prelink: dso.c:306: fdopen_dso: Assertion
-`j == k' failed.&quot;</title>
+<title>Prelink kończy z błędem "prelink: dso.c:306: fdopen_dso: Assertion
+`j == k' failed."</title>
 <body>
 
 <p>
@@ -379,7 +377,7 @@ polecenia <c>chpax</c>, jednak plik nie może być danym momencie używany przez
 </p>
 
 </body>
-</section>    
+</section>
 </chapter>
 
 <chapter>

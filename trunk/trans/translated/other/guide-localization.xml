@@ -1,12 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.28 -->
+<!-- Orig revision: 1.19 -->
 <!-- Translator: en0x <portman@en0x.net> -->
-<!-- Title: Linux Lokalizacja Przewodnik -->
-<!-- Status: Do korekty -->
-<!-- $Id$ -->
-<!-- $Header$ -->
+
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/guide-localization.xml,v 1.2 2005/07/04 23:24:50 neysx Exp $ -->
 
 <guide link="/doc/pl/guide-localization.xml" lang="pl">
 <title>Lokalizacja Gentoo Linux</title>
@@ -46,7 +44,7 @@ Tekst opisujący wszystkie czynności związane ze spolszczeniem Gentoo Linux.
 
 <p>
 Żeby trzymac poprawny czas na komputerze, <path>/etc/localtime</path> musi sie
-odwoływac do poprawnego pliku ze strefą czasową.  Poszukaj w 
+odwoływac do poprawnego pliku ze strefą czasową.  Poszukaj w
 <path>/usr/share/zoneinfo/</path> i wybierz odpowiedni plik ze strefa
 odpowiadającą twojemu krajowi lub twojej najbliższej większej miejscowości.
 </p>
@@ -108,7 +106,7 @@ CLOCK="local"
 Locale jest zbiorem informacji dla większości programow do ustalenia kraju i
 języka. Locales i ich informacje sa częścią biblioteki systemowej i możesz ją
 znaleźć w <path>/usr/share/locale</path> w większości systemow. Nazwa locale
-jest generalnie nazwana <c>ab_CD</c >gdzie <c>ab</c> jest dwu  (lub trzy)
+jest generalnie nazwana <c>ab_CD</c>gdzie <c>ab</c> jest dwu  (lub trzy)
 literowym kodem języka (jak określono w ISO-639) i <c>CD</c> w twoim dwu
 literowym kodzie kraju (jak określono ISO-3199).
 </p>
@@ -186,7 +184,7 @@ locale w <c>ab_CD</c> format podany wyżej.
 <tr>
   <ti>LANG</ti>
   <ti>
-    Definiuje wszystkie lokalne ustawienia. Te ustawienia mogą być nadpisane przez 
+    Definiuje wszystkie lokalne ustawienia. Te ustawienia mogą być nadpisane przez
     indywidualne ustawienia LC_* powyżej lub nawet przez LC_ALL.
    </ti>
 </tr>
@@ -287,10 +285,10 @@ jak nowsze <c>glibc</c> będzie dostępne.
 <p>
 Ustawienie klawiatury używane przez konsole jest ustawione w
 <path>/etc/conf.d/keymaps</path> przez<c>KEYMAP</c> zmienną.
-Poprawne wartości możesz znależć w 
+Poprawne wartości możesz znależć w
 <path>/usr/share/keymaps/<c>{arch}</c>/</path>.
-<path>i386</path> ma subdywizje 
-(<path>qwerty/</path>, <path>azerty/</path>, itp.).  
+<path>i386</path> ma subdywizje
+(<path>qwerty/</path>, <path>azerty/</path>, itp.).
 Niektóre języki maja kilka opcji, to musisz poeksperymentować żeby zdecydowac
 które ci najbardziej odpowiadają.
 </p>
@@ -333,7 +331,7 @@ option.
 <body>
 
 <p>
-Dla KDE musisz zainstalować kde-i18n pakiet z odpowiednią zmienna LINGUAS: 
+Dla KDE musisz zainstalować kde-i18n pakiet z odpowiednią zmienna LINGUAS:
 </p>
 
 <pre caption="KDE Instalowanie lokalizacji">
@@ -353,7 +351,7 @@ LINGUAS="pl"
 
 <p>
 Żeby móc wyświetlić symbol Euro, musisz ustawic <c>CONSOLEFONT</c> w
-<path>/etc/rc.conf</path> do pliku znaleźionego w 
+<path>/etc/rc.conf</path> do pliku znaleźionego w
 <path>/usr/share/consolefonts/</path> (bez
 <c>.psfu.gz</c>).  <c>lat9w-16</c> ma symbol Euro.
 </p>
