@@ -4,12 +4,13 @@
 <!DOCTYPE metadoc SYSTEM "/dtd/metadoc.dtd">
 
 <metadoc lang="pl" parent="/doc/en/metadoc.xml">
-<version>1.8</version>
+<version>1.11</version>
   <members>
     <member mail="rane@gentoo.pl" fullname="Łukasz Damentko">rane</member>
     <member>sekretarz</member>
     <member mail="muchar@gentoo.pl" fullname="Robert Muchacki">muchar</member>
     <member mail="yarel@o2.pl" fullname="Paweł Kwiatkowski">yarel</member>
+    <member mail="damian@lezajsk.info" fullname="Damian Kuras">ShadoWW</member>
   </members>
   <categories>
     <cat id="faq">Często zadawane pytania</cat>
@@ -20,6 +21,7 @@
     <cat id="gentoo_portage"     parent="gentoo">Dokumentacja dla Portage</cat>
     <cat id="gentoo_configuring" parent="gentoo">Konfiguracja Gentoo</cat>
     <cat id="gentoo_choices"     parent="gentoo">Możliwości Gentoo</cat>
+    <cat id="articles_linux"     parent="articles">Artykuły dotyczące nauki Linuksa</cat>
     <cat id="sysadmin">Dokumentacja administracyjna Gentoo</cat>
     <cat id="sysadmin_general"  parent="sysadmin">Ogólna dokumentacja</cat>
     <cat id="sysadmin_specific" parent="sysadmin">Konkretne przewodniki dla administratorów</cat>
@@ -48,6 +50,8 @@
     <file id="art-mk-distro-p1">/doc/en/articles/making-the-distro-p1.xml</file>
     <file id="art-mk-distro-p2">/doc/en/articles/making-the-distro-p2.xml</file>
     <file id="art-mk-distro-p3">/doc/en/articles/making-the-distro-p3.xml</file>
+    <file id="art-lpi-101-fundamentals-p1">/doc/en/articles/lpi-101-fundamentals-p1.xml</file>
+    <file id="bugzie-howto">/doc/en/bugzilla-howto.xml</file>
     <file id="utf-8">/doc/en/utf-8.xml</file>
     <file id="cron-guide">/doc/pl/cron-guide.xml</file>
     <file id="ldap-howto">/doc/pl/ldap-howto.xml</file>
@@ -316,6 +320,14 @@
       <memberof>articles_gentoo</memberof>
       <fileid>art-mk-distro-p3</fileid>
     </doc>
+    <doc id="art-lpi-101-fundamentals-p1">
+      <memberof>articles_linux</memberof>
+      <fileid>art-lpi-101-fundamentals-p1</fileid>
+    </doc>
+    <doc id="bugzilla-howto">
+      <memberof>other</memberof>
+      <fileid>bugzie-howto</fileid>
+    </doc>
     <doc id="utf-8">
       <memberof>sysadmin_general</memberof>
       <memberof>desktop_config</memberof>
@@ -472,9 +484,6 @@
     <doc id="printing-howto">
       <memberof>sysadmin_specific</memberof>
       <fileid>printing-howto</fileid>
-      <bugs>
-        <bug>62622</bug>
-      </bugs>
     </doc>
     <doc id="openafs">
       <memberof>sysadmin_specific</memberof>
