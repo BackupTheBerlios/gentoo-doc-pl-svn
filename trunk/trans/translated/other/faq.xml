@@ -45,6 +45,9 @@
 <author title="Tłumaczenie">
   Artur Niedźwiedź
 </author>
+<author title="Korekta">
+  Kuba Flis
+</author>
 
 <abstract>
 To FAQ jest zbiorem pytań i odpowiedzi zebranych na liście mailowej gentoo-dev
@@ -249,7 +252,7 @@ sobie dzięki temu odpowiedzieć samodzielnie. :]
 
 <p>
 <e>Gentoo</e> jest gatunkiem szybkiego pingwina, po polsku wymawiamy to
-słowo"dżentu". Łacińska nazwa tego pingwina to <e>Pygoscelis papua</e>. Nazwę
+słowo "dżentu". Łacińska nazwa tego pingwina to <e>Pygoscelis papua</e>. Nazwę
 <e>Gentoo</e> nadali mu mieszkańcy Falklandów (Islas Malvinas).
 </p>
 
@@ -316,7 +319,7 @@ Przed zgłoszeniem nieprawidłowości należy przekompilować kod z flagami
 <body>
 
 <p>
-Możemy skorzystać z omendy <c>passwd</c> żeby zmienić hasło zalogowanego
+Możemy skorzystać z polecenia <c>passwd</c> żeby zmienić hasło zalogowanego
 użytkownika. Jako root możemy zmienić hasło dowolnego użytkownika komendą
 <c>passwd nazwa_uzytkownika</c> Dodatkowe opcje opisane są w podręczniku
 systemowym <c>man passwd</c>.
@@ -359,7 +362,7 @@ wpisujemy:
 </p>
 
 <pre caption="Dodawanie użytkownika do grupy wheel">
-# <i>gpasswd -a nazwa_urzytkownika wheel</i>
+# <i>gpasswd -a nazwa_użytkownika wheel</i>
 </pre>
 
 </body>
@@ -386,7 +389,7 @@ Czy mogę uaktualnić wersję Gentoo bez jego ponownej instalacji?
 
 <p>
 W gruncie rzeczy nie ma różnicy między wersją aktualną, a tą która jest
-zainstalowana. Gentoo 1.4 i późniejsz oparte są na <c>glibc-2.3.x</c>. Po
+zainstalowana. Gentoo 1.4 i nowsze oparte są na <c>glibc-2.3.x</c>. Po
 wykonaniu komend <c>emerge --sync &amp;&amp; emerge -uDN world</c> system
 zostanie uaktualniony do "obecnej wersji Gentoo". Więcej informacji o
 aktualizacji systemu znajduje się w  <uri
@@ -423,7 +426,8 @@ instalujemy Gentoo na podanych niżej partycjach <path>/dev/hda1</path> (/boot) 
 # <i>make &amp;&amp; make modules_install</i>
 <comment>Skopiujemy obraz bzImage do katalogu /boot:</comment>
 # <i>cp arch/i386/boot/bzImage /boot</i>
-<comment>Użytkownicy LILO muszą wykonać polecenie /sbin/lilo -v, nie dotyczy to urzytkowników programu GRUB:</comment>
+<comment>Użytkownicy LILO muszą wykonać polecenie /sbin/lilo -v, nie dotyczy to
+użytkowników programu GRUB:</comment>
 # <i>/sbin/lilo</i>
 <comment>Wychodzimy z chroot, odmontowujemy partycje i restartujemy komputer.</comment>
 # <i>exit</i>
@@ -493,7 +497,7 @@ najpopularniejsze z nich uwzględniając kilkaa systemów operacyjnych:
   <li>
     W K3B wybieramy <c>Tools</c> &gt; <c>CD</c> &gt; <c>Burn CD Image</c>.
     Odszukujemy nasz plik ISO z 'Image to Burn'. Naciskamy przycisk
-    <c>Start</c>aby rozpocząc proces nagrywania.
+    <c>Start</c>, aby rozpocząc proces nagrywania.
   </li>
   <li>
     W Mac OS X Panther uruchamiamy <c>Disk Utility</c> z
@@ -511,7 +515,7 @@ najpopularniejsze z nich uwzględniając kilkaa systemów operacyjnych:
 </body>
 </section>
 <section id="cpus">
-<title>Którego CD i której sceny [stage] użyć dla mojego procesora?</title>
+<title>Którego CD i którego pliku etapowego użyć dla mojego procesora?</title>
 <body>
 
 <p>
@@ -525,7 +529,7 @@ link="http://www.google.com">Google</uri>.
 <p>
 Jeśli nie jesteśmy pewni na który etap [stage] się zdecydować, należy wybrać
 drugi - zwykle i686 lub nawet x86 (odpowiednik architektury). Sprawi to, że
-system będzie zachowywał się poprawnie, ale nie bedzie też niestety tak szybki
+system będzie zachowywał się poprawnie, ale nie będzie też niestety tak szybki
 jak mógłby być.
 </p>
 
@@ -678,7 +682,7 @@ jego wyczyszczeniem.
 <body>
 
 <p>
-Edytujemy zawarotść zmiennej <c>KEYMAP</c> w pliku <path>/etc/rc.conf</path>.
+Edytujemy zawartość zmiennej <c>KEYMAP</c> w pliku <path>/etc/rc.conf</path>.
 Zmiany pojawią się po ponownym uruchomieniu komputera - czego dokonuje się
 poleceniem <c>reboot</c> - albo po restarcie skrytyu odpowiedzialnego za
 ustawienia klawiatury:
@@ -808,7 +812,7 @@ na <c>#gentoo</c> w sieci IRC.
 <body>
 
 <p>
-Pakiety w Gentoo są uaktualniane niedługo po wypuszczniu nowego kodu przez
+Pakiety w Gentoo są uaktualniane niedługo po wypuszeczniu nowego kodu przez
 autorów oprogramowania. Dla Gentoo "jako takiego" również są wypuszczane
 uaktualnienia w postaci nowych plików etapowych [stage], profili oraz plików
 ISO. Informacje o nich ukazują się na stronie projektu <uri
