@@ -1,65 +1,72 @@
 <?xml version='1.0' encoding="UTF-8"?>
+<!-- Orig revision: 1.1 -->
+<!-- Translator: Paweł Kwiatkowski <yarel@o2.pl> -->
+<!-- Title: Wprowadzenie do Gentoo Hardened -->
+<!-- Status: W TLUMACZENIU (DO KOREKTY) -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
-<guide link="/proj/en/hardened/primer.xml">
-  <title>Introduction to Hardened Gentoo</title>
-  <author title="Author">
+<!-- $Id: $ -->
+<!-- $Header$ -->
+<guide link="/proj/pl/hardened/primer.xml" lang="pl">
+  <title>Wprowadzenie do Gentoo Hardened</title>
+  <author title="Autor">
     <mail link="method@gentoo.org">Joshua Brindle</mail>
   </author>
-  <author title="Contributor">
+  <author title="Współpracownik">
     <mail link="tocharian@gentoo.org">Adam Mondl</mail>
   </author>
-  <author title="Editor">
+  <author title="Redaktor">
     <mail link="solar@gentoo.org">Ned Ludd</mail>
   </author>
-  <abstract>A Primer on Hardened Gentoo.</abstract>
+  <abstract>Podstawy Gentoo Hardened.</abstract>
   <version>1.1</version>
   <date>2005-01-19</date>
   <chapter>
-    <title>Introduction</title>
+    <title>Wprowadzenie</title>
     <section>
       <body>
         <p>
-	This guide is meant for anyone unsure about the offerings of the
-	Hardened Gentoo project, how to use them together, and what their
-	respective roles in the project are.
+	Niniejszy przewodnik powstał z myślą o tych, którzy nie są pewni
+	co tak naprawdę oferuje projekt Gentoo Hardened, jak korzystać
+	z dostępnych opcji i jakie role pełnią one w projekcie.
 	</p>
         <p>
-	The basic security principle that we emphasize is layers of security.
-	Layers are fundamental in ensuring a users machine is not compromised,
-	and if it is, minimizing the damages done.  By combining a series of
-	dissimilar, though security related technologies, we make an attacker
-	jump through additional hoops before a compromise may occur. For this
-	reason we always recommended that you decide what your specific needs
-	are and combine those solutions to protect your system. We will try to
-	explain the options and how they can be used together in  this
-	document.
+	Opieramy się na filarze jaki stanowią warstwy bezpieczeństwa. Warstwy
+	te, mają zapewnić że maszyna użytkownika nie zostanie skompromitowana,
+	a jeśli już, to uszkodzenia zostaną zminimalizowane. Łączac szereg
+	różnorodnych, choć powiązanych z bezpieczeńswem technologii, sprawiamy,
+	że agresor będzie musiał pokonać dodatkowe przeszkody, by był w stanie
+	skompromitować system. Sugerujemy, by określić wymagania, a następnie
+	wykorzystać przedstawione rozwiązania do zabezpieczenia systemu. W tym
+	podręczniku staramy się wyjaśnić dostępne możliwości oraz narkeślić
+	sposoby w jakie mogą zostać użyte.
 	</p>
         <p> 
-	Hardened Gentoo is not a product or solution in itself, it is merely a
-	project with a group of developers all working toward the same goal of
-	very proactive security. The sub-projects contained in Hardened Gentoo
-	aren't related in any more way than they are hosted within the same
-	project.  You might think of it as the same way KDE and GNOME are both
-	part of the desktop project, and both have a common goal but are
-	otherwise unrelated to each other.
+	Gentoo Hardened, samo w sobie, nie jest produktem, ani rozwiązaniem.
+  Jest to po prostu projekt zrzeszający grupę developerów, którzy dążą
+	do tego samego celu, jakim jest niezwykle prewencyjne bezpieczeństwo.
+	Podprojekty Gentoo Hardened nie są ze sobą bardziej powiązane, niż
+	przez sam fakt umieszczenia w jednym projekcie. Można o tym myśleć
+	w ten sam sposób jak o KDE i GNOME. Obydwa stanowią część projektu
+	dekstop, obydwa mają wspólne cele, lecz pod innymi względami nie są
+	ze sobą powiązane.
 	</p> 
 	<note> 
-	Asking for help installing or support of your 'Hardened Gentoo' machine
-	is not clear and should always be clarified by saying you have a
-	SELinux problem, PIE/SSP problem, and so on.
+	Prośby o pomoc podczas instalacji lub pytania o 'Gentoo Hardened',
+	są niejasne i zawsze poiwnny być uściślone, np. przez wskazanie, że
+	chodzi o problem z SELinux, PIE/SSP itp.
 	</note>
       </body>
     </section>
   </chapter>
   <chapter>
-    <title>Technologies Offered</title>
+    <title>Dostępne technologie</title>
     <section>
       <title>PaX</title>
       <body>
 	<p>
-	At the heart of the project is PaX.  PaX is a kernel patch
-	that allows you to protect against buffer and heap overflows and
-	similar attacks.  PaX is your first line of defense.
+	Serce projektu stanowi PaX. PaX jest łatą na kernel, która pozwala
+	zabezpieczyć się przed atakami opartymi o przepełnienie bufora,
+	sterty i podobnymi. PaX jest pierwszą linią obrony.
         </p>
 
         <p>Because of badly
@@ -194,19 +201,19 @@
     </section>
   </chapter>
   <chapter>
-      <title>Resources</title> 
+      <title>Zasoby</title> 
           <section>
 		<body>
 			<table>
 				<tr>
 					<th>
-						Project
+						Projekt
 					</th>
 					<th>
-						Project homepage
+						Strona domowa projektu
 					</th>
 					<th>
-						Gentoo project page
+						Strona domowa projektu w Gentoo
 					</th>
 				</tr>
 				<tr>
@@ -225,10 +232,10 @@
 						PIE
 					</ti>
 					<ti>
-						Not Available
+						brak
 					</ti>
 					<ti>
-						Not Available
+						brak
 					</ti>
 				</tr>
 				<tr>
@@ -239,7 +246,7 @@
 						<uri link="http://www.trl.ibm.com/projects/security/ssp/">http://www.trl.ibm.com/projects/security/ssp/</uri>
 					</ti>
 					<ti>
-						Not available
+						brak
 					</ti>
 				</tr>
 				<tr>
