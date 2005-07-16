@@ -1,22 +1,27 @@
 <?xml version='1.0' encoding="UTF-8"?>
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/hardened/pax-quickstart.xml,v 1.7 2005/07/12 01:02:46 solar Exp $ -->
+<!-- Orig revision: 1.3 -->
+<!-- Translator: Paweł Kwiatkowski <yarel@o2.pl> -->
+<!-- Title: Szybkie wprowadzenie do PaX w Gentoo Hardened -->
+<!-- Status: DO KOREKTY -->
+<!-- $Id$ -->
+<!-- $Header$ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<guide link="/proj/en/hardened/pax-quickstart.xml">
-<title>Hardened Gentoo PaX Quickstart</title>
+<guide link="/proj/pl/hardened/pax-quickstart.xml">
+<title>Szybkie wprowadzenie do PaX w Gentoo Hardened</title>
 
-<author title="Author">
+<author title="Autor">
   <mail link="tseng@gentoo.org">Brandon Hale</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="blackace@gentoo.org">Blackace</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="solar@gentoo.org">solar</mail>
 </author>
 
 <abstract>
-A quickstart covering PaX and Hardened Gentoo.
+Szybkie spojrzenie na PaX i Gento Hardened.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -27,15 +32,15 @@ A quickstart covering PaX and Hardened Gentoo.
 <date>2005-07-11</date>
 
 <chapter>
-<title>What is Hardened Gentoo?</title>
+<title>Czym jest Gentoo Hardened?</title>
 <section>
 <body>
 
 <p>
-Hardened Gentoo is a project interested in the hardening of a Gentoo system.
-Several different solutions are supported by us and there is a fair bit of
-flexibility to create your own setup. At the heart of a common Hardened Gentoo 
-setup is <e>PaX</e>.
+Gentoo Hardened to projekt mający na celu ulepszenie zabezpieczeń systemu
+opartego o Gentoo. Prezentujemy kilka różnorodnych rozwiązań, które można
+dostosować do własnych potrzeb. W sercu typowej konfiguracji Gentoo Hardened
+znajduje się <e>PaX</e>.
 </p>
 
 </body>
@@ -43,12 +48,13 @@ setup is <e>PaX</e>.
 </chapter>
 
 <chapter>
-<title>What is PaX?</title>
+<title>Czym jest PaX?</title>
 <section>
 <body>
 
 <p>
-PaX is a patch to the Linux kernel that provides hardening in two ways.
+PaX jest łatą na linuksowy kernel, która ulepsza zabezpieczenia w dwojaki
+sposób.
 </p>
 
 <p>
@@ -70,7 +76,7 @@ homepage can be found at <uri>http://pax.grsecurity.net</uri>.
 </chapter>
 
 <chapter>
-<title>An Introduction to PIE and SSP</title>
+<title>Wprowadzenie do PIE i SSP</title>
 <section>
 <body>
 
@@ -133,7 +139,7 @@ normally would for the target machine.
 In <c>Security Options -&gt; PaX</c>, apply the options as shown below.
 </p>
 
-<pre caption="Kernel configuration">
+<pre caption="Konfiguracja kernela">
 [*] Enable various PaX features
 
 PaX Control -&gt;
