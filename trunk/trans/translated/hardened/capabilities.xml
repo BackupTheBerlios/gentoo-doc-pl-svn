@@ -139,9 +139,9 @@ set of distinct privileges
 
 <pre caption="CAP_SETGID">
   <i>CAP_SETGID</i>
-	Allows setgid(2) manipulation;
-	Allows setgroups(2);
-	Allows forged gids on socket credentials passing.
+	Pozwala nas setgid(2) manipulation;
+	Pozwala nas setgroups(2);
+	Pozwala nas forged gids on socket credentials passing.
 </pre>
 
 </body>
@@ -155,8 +155,8 @@ set of distinct privileges
 
 <pre caption="CAP_SETUID">
   <i>CAP_SETUID</i>
-	Allows set*uid(2) manipulation (including fsuid);
-	Allows forged pids on socket credentials passing.
+	Pozwala nas set*uid(2) manipulation (including fsuid);
+	Pozwala nas forged pids on socket credentials passing.
 </pre>
 
 </body>
@@ -184,7 +184,7 @@ set of distinct privileges
 
 <pre caption="CAP_LINUX_IMMUTABLE">
   <i>CAP_LINUX_IMMUTABLE</i>
-	Allow modification of S_IMMUTABLE and S_APPEND file attributes.
+	Pozwala na modification of S_IMMUTABLE and S_APPEND file attributes.
 </pre>
 
 </body>
@@ -198,8 +198,8 @@ set of distinct privileges
 
 <pre caption="CAP_NET_BIND_SERVICE">
   <i>CAP_NET_BIND_SERVICE</i>
-	Allows binding to TCP/UDP sockets below 1024;
-	Allows binding to ATM VCIs below 32.
+	Pozwala nas binding to TCP/UDP sockets below 1024;
+	Pozwala nas binding to ATM VCIs below 32.
 </pre>
 
 </body>
@@ -213,7 +213,7 @@ set of distinct privileges
 
 <pre caption="CAP_NET_BROADCAST">
   <i>CAP_NET_BROADCAST</i>
-	Allow broadcasting, listen to multicast.
+	Pozwala na broadcasting, listen to multicast.
 </pre>
 
 </body>
@@ -227,18 +227,18 @@ set of distinct privileges
 
 <pre caption="CAP_NET_ADMIN">
   <i>CAP_NET_ADMIN</i>
-	Allow interface configuration;
-	Allow administration of IP firewall, masquerading and accounting;
-	Allow setting debug option on sockets;
-	Allow modification of routing tables;
-	Allow setting arbitrary process / process group ownership on sockets;
-	Allow binding to any address for transparent proxying;
-	Allow setting TOS (type of service);
-	Allow setting promiscuous mode;
-	Allow clearing driver statistics;
-	Allow multicasting;
-	Allow read/write of devicespecific registers;
-	Allow activation of ATM control sockets.
+	Pozwala na interface configuration;
+	Pozwala na administration of IP firewall, masquerading and accounting;
+	Pozwala na setting debug option on sockets;
+	Pozwala na modification of routing tables;
+	Pozwala na setting arbitrary process / process group ownership on sockets;
+	Pozwala na binding to any address for transparent proxying;
+	Pozwala na setting TOS (type of service);
+	Pozwala na setting promiscuous mode;
+	Pozwala na clearing driver statistics;
+	Pozwala na multicasting;
+	Pozwala na read/write of devicespecific registers;
+	Pozwala na activation of ATM control sockets.
 </pre>
 
 </body>
@@ -252,8 +252,8 @@ set of distinct privileges
 
 <pre caption="CAP_NET_RAW">
   <i>CAP_NET_RAW</i>
-	Allow use of RAW sockets;
-	Allow use of PACKET sockets.
+	Pozwala na use of RAW sockets;
+	Pozwala na use of PACKET sockets.
 </pre>
 
 </body>
@@ -267,8 +267,8 @@ set of distinct privileges
 
 <pre caption="CAP_IPC_LOCK">
   <i>CAP_IPC_LOCK</i>
-	Allow locking of shared memory segments;
-	Allow mlock and mlockall (which doesn't really have anything to do with IPC).
+	Pozwala na tworzenie blokady na segmentach pamięci współdzielonej;
+	Pozwala na wykonanie mlock/mlockall (co nie ma nic wspólnego z IPC).
 </pre>
 
 </body>
@@ -311,8 +311,8 @@ set of distinct privileges
 
 <pre caption="CAP_SYS_RAWIO">
   <i>CAP_SYS_RAWIO</i>
-	Allow ioperm/iopl access;
-	Allow sending USB messages to any device via /proc/bus/usb.
+	Pozwala na ioperm/iopl access;
+	Pozwala na sending USB messages to any device via /proc/bus/usb.
 </pre>
 
 </body>
@@ -326,7 +326,7 @@ set of distinct privileges
 
 <pre caption="CAP_SYS_CHROOT">
   <i>CAP_SYS_CHROOT</i>
-	Allow use of chroot().
+	Pozwala na korzystanie z chroot().
 </pre>
 
 </body>
@@ -340,7 +340,7 @@ set of distinct privileges
 
 <pre caption="CAP_SYS_PTRACE">
   <i>CAP_SYS_PTRACE</i>
-	Allow ptrace() of any process.
+	Pozwala na ptrace() of any process.
 </pre>
 
 </body>
@@ -355,7 +355,7 @@ set of distinct privileges
 
 <pre caption="CAP_SYS_PACCT">
   <i>CAP_SYS_PACCT</i>
-	Allow configuration of process accounting.
+	Pozwala na konfigurację zarządzania procesami.
 </pre>
 
 </body>
@@ -369,36 +369,36 @@ set of distinct privileges
 
 <pre caption="CAP_SYS_ADMIN">
   <i>CAP_SYS_ADMIN</i>
-	Allow configuration of the secure attention key;
-	Allow administration of the random device;
-	Allow examination and configuration of disk quotas;
-	Allow configuring the kernel's syslog (printk behaviour);
-	Allow setting the domainname;
-	Allow setting the hostname;
-	Allow calling bdflush();
-	Allow mount() and umount(), setting up new smb connection;
-	Allow some autofs root ioctls;
-	Allow nfsservctl; Allow VM86_REQUEST_IRQ;
-	Allow to read/write pci config on alpha; Allow irix_prctl on mips (setstacksize);
-	Allow flushing all cache on m68k (sys_cacheflush);
-	Allow removing semaphores; Used instead of CAP_CHOWN to "chown" IPC message queues, semaphores and shared memory;
-	Allow locking/unlocking of shared memory segment;
-	Allow turning swap on/off;
-	Allow forged pids on socket credentials passing;
-	Allow setting readahead and flushing buffers on block devices;
-	Allow setting geometry in floppy driver;
-	Allow turning DMA on/off in xd driver;
-	Allow administration of md devices (mostly the above, but some extra ioctls);
-	Allow tuning the ide driver;
-	Allow access to the nvram device;
-	Allow administration of apm_bios, serial and bttv (TV) device;
-	Allow manufacturer commands in isdn CAPI support driver;
-	Allow reading nonstandardized portions of pci configuration space;
-	Allow DDI debug ioctl on sbpcd driver;
-	Allow setting up serial ports;
-	Allow sending raw qic117 commands;
-	Allow enabling/disabling tagged queuing on SCSI controllers and sending arbitrary SCSI commands;
-	Allow setting encryption key on loopback filesystem.
+	Pozwala na configuration of the secure attention key;
+	Pozwala na administration of the random device;
+	Pozwala na examination and configuration of disk quotas;
+	Pozwala na configuring the kernel's syslog (printk behaviour);
+	Pozwala na ustawianie nazwy domeny;
+	Pozwala na ustawianie nazwy hosta;
+	Pozwala na wywoływanie bdflush();
+	Pozwala na mount() and umount(), setting up new smb connection;
+	Pozwala na some autofs root ioctls;
+	Pozwala na nfsservctl; Pozwala na VM86_REQUEST_IRQ;
+	Pozwala na to read/write pci config on alpha; Pozwala na irix_prctl on mips (setstacksize);
+	Pozwala na flushing all cache on m68k (sys_cacheflush);
+	Pozwala na removing semaphores; Used instead of CAP_CHOWN to "chown" IPC message queues, semaphores and shared memory;
+	Pozwala na locking/unlocking of shared memory segment;
+	Pozwala na włączanie/wyłączanie swapu;
+	Pozwala na forged pids on socket credentials passing;
+	Pozwala na setting readahead and flushing buffers on block devices;
+	Pozwala na setting geometry in floppy driver;
+	Pozwala na turning DMA on/off in xd driver;
+	Pozwala na administration of md devices (mostly the above, but some extra ioctls);
+	Pozwala na tuning the ide driver;
+	Pozwala na access to the nvram device;
+	Pozwala na administration of apm_bios, serial and bttv (TV) device;
+	Pozwala na manufacturer commands in isdn CAPI support driver;
+	Pozwala na reading nonstandardized portions of pci configuration space;
+	Pozwala na DDI debug ioctl on sbpcd driver;
+	Pozwala na setting up serial ports;
+	Pozwala na sending raw qic117 commands;
+	Pozwala na enabling/disabling tagged queuing on SCSI controllers and sending arbitrary SCSI commands;
+	Pozwala na setting encryption key on loopback filesystem.
 </pre>
 
 </body>
@@ -412,7 +412,7 @@ set of distinct privileges
 
 <pre caption="CAP_SYS_BOOT">
   <i>CAP_SYS_BOOT</i>
-	Allow use of reboot().
+	Pozwala na wywoływanie reboot().
 </pre>
 
 </body>
@@ -426,8 +426,9 @@ set of distinct privileges
 
 <pre caption="CAP_SYS_NICE">
   <i>CAP_SYS_NICE</i>
-	Allow raising priority and setting priority on other (different UID) processes;
-	Allow use of FIFO and roundrobin (realtime) scheduling on own processes and setting 
+	Pozwala na podwyższanie priorytetu i ustawianie priorytetu dla innych
+	procesów (inny UID);
+	Pozwala na use of FIFO and roundrobin (realtime) scheduling on own processes and setting 
 	the scheduling algorithm used by another process.
 </pre>
 
@@ -449,7 +450,7 @@ set of distinct privileges
 	(uses journaling resources); NOTE: ext2 honors fsuid when checking for
 	resource overrides, so you can override using fsuid too;
 	Override size restrictions on IPC message queues;
-	Allow more than 64hz interrupts from the realtime clock;
+	Pozwala na more than 64hz interrupts from the realtime clock;
 	Override max number of consoles on console allocation;
 	Override max number of keymaps.
 </pre>
@@ -465,9 +466,9 @@ set of distinct privileges
 
 <pre caption="CAP_SYS_TIME">
   <i>CAP_SYS_TIME</i>
-	Allow manipulation of system clock;
-	Allow irix_stime on mips;
-	Allow setting the realtime clock.
+	Pozwala na manipulacje zegarem systemowym;
+	Pozwala na wywołąnie irix_stime na architekturze mips;
+	Pozwala na ustawienie zegara czasu rzeczywistego.
 </pre>
 
 </body>
@@ -481,7 +482,8 @@ set of distinct privileges
 
 <pre caption="CAP_SYS_TTY_CONFIG">
   <i>CAP_SYS_TTY_CONFIG</i>
-	Allow configuration of tty devices; Allow vhangup() of tty.
+	Pozwala na konfigurację urządzeń tty; Pozwala na wywoałanie vhangup()
+	dla tty.
 </pre>
 
 </body>
@@ -495,7 +497,7 @@ set of distinct privileges
 
 <pre caption="CAP_MKNOD">
   <i>CAP_MKNOD</i>
-	Allow the privileged aspects of mknod().
+	Pozwala na the privileged aspects of mknod().
 </pre>
 
 </body>
@@ -509,7 +511,7 @@ set of distinct privileges
 
 <pre caption="CAP_LEASE">
   <i>CAP_LEASE</i>
-	Allow taking of leases on files.
+	Pozwala na taking of leases on files.
 </pre>
 
 </body>
