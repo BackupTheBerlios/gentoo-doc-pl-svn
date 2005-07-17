@@ -1,22 +1,23 @@
 <?xml version='1.0' encoding="UTF-8"?>
+<!-- $Header$ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.9 -->
+<!-- Orig revision: 1.13 -->
 <!-- Translator: volt3r <volt3r@pf.pl> -->
 <!-- Title: Instalacja LVM2 w Gentoo. -->
-<!-- Status: Do korekty -->
+<!-- Status: Finished -->
 
 <!-- $Id$ -->
 
 <guide link = "/doc/pl/lvm2.xml" lang="pl">
 <title>Instalacja LVM2 w Gentoo.</title>
-<author title="Author">
+<author title="Autor">
   <mail link="avi@CFFtechnologies.com">Avi Schwartz</mail>
 </author>
-<author title="Contributor">
+<author title="Współpracownik">
   <mail link="rajiv@gentoo.org">Rajiv Manglani</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="neysx@gentoo.org">Xavier Neys</mail>
 </author>
 
@@ -27,11 +28,11 @@ Manager" w wersji drugiej (LVM2).
 
 <license/>
 
-<version>2.0.6</version>
-<date>2004-11-21</date>
+<version>2.0.9</version>
+<date>2005-07-02</date>
 
 <chapter>
-<title>Wstęp.</title>
+<title>Wstęp</title>
 <section>
 <body>
 
@@ -57,7 +58,7 @@ stronę <uri>http://tldp.org/HOWTO/LVM-HOWTO</uri>
 </body>
 </section>
 <section>
-<title>Podstawowe wymagania.</title>
+<title>Podstawowe wymagania</title>
 <body>
 
 <p>
@@ -72,19 +73,27 @@ powinny być obsługiwane.
 <p>
 Jeżeli instalujesz LVM2 na części wolnego dysku działającego już systemu, 
 musisz mieć skompilowany moduł LVM2 (<path>dm-mod</path>). Moduł ten jest
-dostępny w <path>gentoo-sources</path>, w
-<path>development-sources</path> i w <path>gentoo-dev-sources</path>. Kompilacja
-jądra i konfiguracja LVM2 jest opisana w dalszej części tego przewodnika.
+dostępny w <path>gentoo-sources</path> i w <path>vanilla-sources</path>.
+Kompilacja jądra i konfiguracja LVM2 jest opisana w dalszej części tego
+przewodnika.
 </p>
 
 <p>
 Nie każde jądro z serii 2.4 dostępne w Gentoo posiada obsługę LVM2!
 </p>
 
+<warn>
+LVM2 dostępne na płytach instalacyjnych wydania 2005.0 jest błędnie połączone z
+biblioteką (libgpm) znajdującą się w <path>/usr</path>. Oznacza to, że w
+środowisku LVM nie może znajdować się katalog <path>/usr</path>. Należy albo
+zainstalować najnowszą wersję albo wersję 2.0.33 (nie -r1), obie są budowane
+statycznie.
+</warn>
+
 </body>
 </section>
 <section>
-<title>Partycje.</title>
+<title>Partycje</title>
 <body>
 
 <p>
@@ -172,7 +181,7 @@ partycję na każdym i ustaw im ten sam typ (8e).
 </p>
 
 <note>
-Wobec tego, że dzisiejsze dyski mają ogromne pojemności, możesz wziąść pod uwagę
+Wobec tego, że dzisiejsze dyski mają ogromne pojemności, możesz wziąć pod uwagę
 podział swoich dysków na mniejsze partycje, zamiast tworzyć jedną dużą, która
 będzie dodana do wolumenu grup jako jeden blok. LVM2 umożliwia łatwe
 rozszerzanie wolumenów. W ten sposób pozostanie Ci miejsce, które możesz kiedyś
@@ -436,7 +445,41 @@ podmontowane.
 </chapter>
 
 <chapter>
-<title>Źródła dokumentacji.</title>
+<title>Continuing After a Reboot</title>
+<section>
+<body>
+
+<p>
+Aby wznowić instalację po przerwaniu należy najpierw utworzyć odpowiednie
+wezły dla urządzeń.
+</p>
+ 
+<pre caption="Reaktywowanie woluminów">
+# <i>vgscan --mknodes</i>
+</pre>
+
+<p>
+Płyty instalacyjne ze starszymi narzędziami czasem wymagają przy odzyskiwaniu
+następującej procedury:
+</p>
+
+<pre caption="Reaktywowanie woluminów">
+<comment>(Po pierwsze wszystkie deaktywujemy)</comment>
+# <i>vgchange -a n</i>
+<comment>(Eksportujemy je)</comment>
+# <i>vgexport -a vg</i>
+<comment>(Importujemy wszystkie woluminy)</comment>
+# <i>vgimport -a vg</i>
+<comment>(Reaktywujemy wszystkie woluminy)</comment>
+# <i>vgchange -a y</i>
+</pre>
+
+</body>
+</section>
+</chapter>
+
+<chapter>
+<title>Zasoby</title>
 <section>
 <body>
 
@@ -469,7 +512,7 @@ podmontowane.
 <body>
 
 <p>
-Dziękuję  <mail link="bangert@gentoo.org">Thilo Bangert</mail> oraz
+Dziękuję <mail link="bangert@gentoo.org">Thilo Bangert</mail> oraz
 <mail link="terjekv@math.uio.no">Terje Kvernes</mail> za ich pomoc i uwagi
 dotyczące tego dokumentu.
 </p>

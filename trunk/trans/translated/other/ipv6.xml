@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header$ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.17 -->
+<!-- Orig revision: 1.18 -->
 <!-- Translator: Sir_emak <sir_emak@go2.pl> -->
-<!-- Title: Przewodnik po budowie routera IPv6 w Gentoo -->
-<!-- Status: Ukończono -->
+<!-- Status: Finished -->
 <!-- $Id$ -->
 
 <guide link="/doc/pl/ipv6.xml" lang="pl">
 
-<title>Przewodnik po budowie routera IPv6 w Gentoo.</title>
-<author title="Developer">
+<title>Konfiguracja routera IPv6 na Gentoo</title>
+<author title="Deweloper">
   <mail link="latexer@gentoo.org">Peter Johanson</mail>
 </author>
 <author title="Redaktor">
@@ -30,22 +30,28 @@
 </author>
 
 <abstract>
-Ten przewodnik pokazuje jak skonfigurować IPv6 w Gentoo. Znajdziesz tutaj również informacje na temat: tworzenia tunelu przy pomocy "pośrednika tuneli", podstawowej konfiguracji DNS oraz konfiguracji klientów w sieci IPv6.
+Ten przewodnik pokazuje jak skonfigurować IPv6 w Gentoo. Znajdziesz tutaj
+również informacje na temat: tworzenia tunelu przy pomocy "pośrednika tuneli",
+podstawowej konfiguracji DNS oraz konfiguracji klientów w sieci IPv6.
 </abstract>
 
 <license/>
 
-<version>1.1.3</version>
-<date>2005-04-25</date>
+<version>1.1.4</version>
+<date>2005-07-02</date>
 
 <chapter>
 <title>Przygotowania.</title>
 <section>
-<title>Podstawowa konfiguracja jądra.</title>
+<title>Podstawowa konfiguracja jądra</title>
 <body>
 
 <p>
-Wszystkie wersje jądra z serii 2.4 i 2.6 dostępne w Gentoo wsparają połączeńczenia IPv6. Nowy patch USAGI IPv6 jest zintegrowany z jądrem Linuxa począwszy od wersji 2.4.22 i 2.6.0. Również starsze wersje jądra, czyli <b>alpha-sources-2.4.21</b> i <b>gentoo-sources-2.4.20</b> mogą zawierać patch USAGI, jeśli tylko włączona jest flaga <e>usagi</e> w zmiennej USE.
+Wszystkie wersje jądra z serii 2.4 i 2.6 dostępne w Gentoo wsparają
+połączeńczenia IPv6. Nowy patch USAGI IPv6 jest zintegrowany z jądrem Linuxa
+począwszy od wersji 2.4.22 i 2.6.0. Również starsze wersje jądra, czyli
+<b>alpha-sources-2.4.21</b> i <b>gentoo-sources-2.4.20</b> mogą zawierać patch
+USAGI, jeśli tylko włączona jest flaga <e>usagi</e> w zmiennej USE.
 </p>
 
 <pre caption="Instalowanie jądra">
@@ -65,11 +71,13 @@ Teraz jesteśmy gotowi, aby włączyć odpowiednie opcje w konfiguracji jądra.
 </pre>
 
 <note>
-Zakładając, że dowiązanie symboliczne <path>/usr/src/linux</path> wskazuje na źródła, z których będziesz korzystał(a).
+Zakładając, że dowiązanie symboliczne <path>/usr/src/linux</path> wskazuje na
+źródła, z których będziesz korzystać).
 </note>
 
 <note>
-Upewnij się, że masz ustawione <path>Prompt for development and/or incomplete code/drivers</path> w konfiguracji jądra.
+Upewnij się, że masz ustawione <path>Prompt for development and/or incomplete
+code/drivers</path> w konfiguracji jądra.
 </note>
 
 <pre caption="Opcje 'make menuconfig'">
@@ -77,7 +85,8 @@ Device Drivers ---&gt;
 Networking support ---&gt;
 Networking options ---&gt;
    &lt;*&gt; The IPv6 protocol (EXPERIMENTAL)
-<comment>(Poniższe opcje IPv6 mogą być przydatne do wielu niestandardowych zastosowań, lecz nie są potrzebne do podstawowej konfiguracji)</comment>
+<comment>(Poniższe opcje IPv6 mogą być przydatne do wielu niestandardowych zastosowań,
+lecz nie są potrzebne do podstawowej konfiguracji)</comment>
 
 <comment>(Ta opcja jest wymagana jedynie w przypadku, kiedy używasz ptrtd do konwersji 6to4)</comment>
 [*] Network device support
@@ -92,23 +101,30 @@ Networking options ---&gt;
 <body>
 
 <p>
-Po ustawieniu rekomendowanych opcji, przekompiluj jądro i uruchom ponownie system.
+Po ustawieniu rekomendowanych opcji, przekompiluj jądro i uruchom ponownie
+system.
 </p>
 
 <p>
-Jeżeli nie posiadasz jeszcze zainstalowanego <b>iproute2</b> zalecamy zrobić to teraz. Iproute2 jest najwygodniejszym konfiguratorem sieci opartej o <c>ip</c>. Bardzo dobra alternatywa dla <c>ifconfig</c>, <c>route</c>, <c>iptunnel</c> i innych...
-</p>
+Jeżeli nie posiadasz jeszcze zainstalowanego <b>iproute2</b> zalecamy zrobić to
+teraz. Iproute2 jest najwygodniejszym konfiguratorem sieci opartej o <c>ip</c>.
+Bardzo dobra alternatywa dla <c>ifconfig</c>, <c>route</c>, <c>iptunnel</c> i
+innych...</p>
 
 <pre caption="Instalowanie iproute2">
 # <i>emerge sys-apps/iproute2</i>
 </pre>
 
 <warn>
-Używanie narzędzia ifconfig w przypadku, kiedy posiadasz tunel zbudowany z wielu urządzeń może być bardzo niewygodne. Będziesz zmuszony do usuwania tunelu w odwrotnej kolejności. To znaczy, że połączenia stworzone najpóźniej muszą zostać usunięte w pierwszej kolejności. Zwróć na to uwagę!
+Używanie narzędzia ifconfig w przypadku, kiedy posiadasz tunel zbudowany z wielu
+urządzeń może być bardzo niewygodne. Będziesz zmuszony do usuwania tunelu w
+odwrotnej kolejności. To znaczy, że połączenia stworzone najpóźniej muszą zostać
+usunięte w pierwszej kolejności. Zwróć na to uwagę!
 </warn>
 
 <p>
-Jeżeli IPv6 działa poprawnie to interfejs pętli zwrotnej (ang. loopback device) powinien pokazać adres IPv6.
+Jeżeli IPv6 działa poprawnie to interfejs pętli zwrotnej (ang. loopback device)
+powinien pokazać adres IPv6.
 </p>
 
 <pre caption="Sprawdzenie interfejsu urządzenia zapętlającego(ang. loopback device)">
@@ -120,7 +136,9 @@ Jeżeli IPv6 działa poprawnie to interfejs pętli zwrotnej (ang. loopback devic
 </pre>
 
 <p>
-Zanim przejdziemy dalej upewnij się, że dodałeś/aś flagę <e>ipv6</e> do zmiennej USE w pliku <path>make.conf</path>. Dzięki temu, później emergowane pakiety będą posiadały wsparcie dla IPv6.
+Zanim przejdziemy dalej upewnij się, że dodałeś/aś flagę <e>ipv6</e> do zmiennej
+USE w pliku <path>make.conf</path>. Dzięki temu, później emergowane pakiety będą
+posiadały wsparcie dla IPv6.
 </p>
 
 </body>
@@ -134,35 +152,41 @@ Zanim przejdziemy dalej upewnij się, że dodałeś/aś flagę <e>ipv6</e> do zm
 <body>
 
 <p>
-Większość dostawców internetu nie oferuje rodzimych połączeń IPv6. Aby ominąć te ograniczenie, można skożystać z tzw. "pośredników tunelowych" oferujących darmowe tunele IPv6. Dzięki temu możesz tunelować wszystkie swoje połączenia IPv6 do sieci IPv4.
+Większość dostawców internetu nie oferuje rodzimych połączeń IPv6. Aby ominąć te
+ograniczenie, można skożystać z tzw. "pośredników tunelowych" oferujących
+darmowe tunele IPv6. Dzięki temu możesz tunelować wszystkie swoje połączenia
+IPv6 do sieci IPv4.
 </p>
 
 <table>
-<tr><th>Pośrednik</th><th>Lokalizacja</th></tr>
-<tr>
-  <ti><uri link="http://tunnelbroker.net/">Hurricane Electric</uri></ti>
-  <ti>US/Kanada</ti>
-</tr>
-<tr>
-  <ti><uri link="http://www.freenet6.net/">Freenet6</uri></ti>
-  <ti>US</ti>
-</tr>
-<tr>
-  <ti><uri link="http://www.sixxs.net/">Sixxs</uri></ti>
-  <ti>Europa</ti>
-</tr>
-<tr>
-  <ti><uri link="http://tunnel-broker.singnet.com.sg/">Singnet</uri></ti>
-  <ti>Singapur</ti>
-</tr>
-<tr>
-  <ti><uri link="http://broker.aarnet.net.au/">Aarnet</uri></ti>
-  <ti>Australia/Południowy Pacyfik</ti>
-</tr>
+  <tr>
+    <th>Pośrednik</th>
+    <th>Lokalizacja</th></tr>
+  <tr>
+    <ti><uri link="http://tunnelbroker.net/">Hurricane Electric</uri></ti>
+    <ti>US/Kanada</ti>
+  </tr>
+  <tr>
+    <ti><uri link="http://www.freenet6.net/">Freenet6</uri></ti>
+    <ti>US</ti>
+  </tr>
+  <tr>
+    <ti><uri link="http://www.sixxs.net/">Sixxs</uri></ti>
+    <ti>Europa</ti>
+  </tr>
+  <tr>
+    <ti><uri link="http://tunnel-broker.singnet.com.sg/">Singnet</uri></ti>
+    <ti>Singapur</ti>
+  </tr>
+  <tr>
+    <ti><uri link="http://broker.aarnet.net.au/">Aarnet</uri></ti>
+    <ti>Australia/Południowy Pacyfik</ti>
+  </tr>
 </table>
 
 <p>
-Poniżej przedstawiamy dwie przykładowe konfiguracje tuneli korzystających z Hurricane Electric (analogiczne do Sixxs) oraz Freenet6.
+Poniżej przedstawiamy dwie przykładowe konfiguracje tuneli korzystających z
+Hurricane Electric (analogiczne do Sixxs) oraz Freenet6.
 </p>
 
 </body>
@@ -173,7 +197,10 @@ Poniżej przedstawiamy dwie przykładowe konfiguracje tuneli korzystających z H
 <body>
 
 <p>
-Hurricane Electric (zwane dalej HE) oferuje darmowe tunele IPv6  oraz przydziela maske /64 na Twoje adresy. Umożliwia również konfigurację odwrotnego DNS. Rejestracja tunelu HE jest bardzo prosta, wystarczy wypełnić formularz znajdujący się pod tym adresem: <uri>http://www.tunnelbroker.net/</uri>
+Hurricane Electric (zwane dalej HE) oferuje darmowe tunele IPv6  oraz przydziela
+maske /64 na Twoje adresy. Umożliwia również konfigurację odwrotnego DNS.
+Rejestracja tunelu HE jest bardzo prosta, wystarczy wypełnić formularz
+znajdujący się pod tym adresem: <uri>http://www.tunnelbroker.net/</uri>.
 </p>
 
 <note>
@@ -185,14 +212,28 @@ Aktywacja tunelu HE trwa 24 godziny.
 </warn>
 
 <p>
-Jeżeli tunel został zatwierdzony i przydzielono tobie maske /64, możesz przejść do konfiguracji systemu. HE dostarcza wzór konfiguracji opartej o narzędzia ifconfig i iproute. Następne dwa przykłady zakładają, że masz taką konfiguracje:
+Jeżeli tunel został zatwierdzony i przydzielono tobie maske /64, możesz przejść
+do konfiguracji systemu. HE dostarcza wzór konfiguracji opartej o narzędzia
+ifconfig i iproute. Następne dwa przykłady zakładają, że masz taką konfiguracje:
 </p>
 
 <table>
-<tr><ti>Lokalny adres IPv4 (eth0)</ti><ti>68.36.91.195</ti></tr>
-<tr><ti>Adres IPv4 HE</ti><ti>64.71.128.82</ti></tr>
-<tr><ti>Adres lokalnego tunelu IPv6</ti><ti>2001:470:1F00:FFFF::189</ti></tr>
-<tr><ti>Blok IPv6</ti><ti>2001:470:1F00:296::/64</ti></tr>
+  <tr>
+    <ti>Lokalny adres IPv4 (eth0)</ti>
+    <ti>68.36.91.195</ti>
+  </tr>
+  <tr>
+    <ti>Adres IPv4 HE</ti>
+    <ti>64.71.128.82</ti>
+  </tr>
+  <tr>
+    <ti>Adres lokalnego tunelu IPv6</ti>
+    <ti>2001:470:1F00:FFFF::189</ti>
+  </tr>
+  <tr>
+    <ti>Blok IPv6</ti>
+    <ti>2001:470:1F00:296::/64</ti>
+  </tr>
 </table>
 
 <p>
@@ -220,14 +261,21 @@ Używając narzędzia iproute2 i komendy <c>ip</c>, wykanaj poniższe polecenia:
 <body>
 
 <p>
-<uri link="http://www.freenet6.net/">Freenet6</uri> jest alternatywnym darmowym pośrednikiem tuneli. Podczas procesu rejestracji wymagane jest jedynie podanie nazwy użytkownika araz prawidłowego adresu e-mail. Funkcjonowanie tunelu odbywa się na zasadzie klient/serwer. Klient nosi nazwę <c>tspc</c> i jest dostępny w portage. Aby go zainstalować wystarczy:</p>
+<uri link="http://www.freenet6.net/">Freenet6</uri> jest alternatywnym darmowym
+pośrednikiem tuneli. Podczas procesu rejestracji wymagane jest jedynie podanie
+nazwy użytkownika araz prawidłowego adresu e-mail. Funkcjonowanie tunelu odbywa
+się na zasadzie klient/serwer. Klient nosi nazwę <c>tspc</c> i jest dostępny w
+portage. Aby go zainstalować wystarczy:
+</p>
 
 <pre caption="Instalacja klienta Freenet6">
 # <i>emerge freenet6</i>
 </pre>
 
 <p>
-Pozostało nam tylko zedytowanie pliku <path>/etc/freenet6/tspc.conf</path> w celu dokończenia instalacji. Musimy zmienić pola <e>userid</e> i <e>passwd</e> na te, które dostarczyło nam Freenet6. Poniżej  przykładowy plik konfiguracyjny:
+Pozostało nam tylko zedytowanie pliku <path>/etc/freenet6/tspc.conf</path> w
+celu dokończenia instalacji. Musimy zmienić pola <e>userid</e> i <e>passwd</e>
+na te, które dostarczyło nam Freenet6. Poniżej  przykładowy plik konfiguracyjny:
 </p>
 
 <pre caption="Przykładowy plik tspc.conf">
@@ -251,7 +299,8 @@ if_tunnel=sit3
 <body>
 
 <p>
-Teraz tunel jest skonfigurowany i możesz go przetestować. Do tego celu zalecamy użycie narzędzia <c>ping6</c>. Wystarczy zpingować dowolny host z adresem IPv6.
+Teraz tunel jest skonfigurowany i możesz go przetestować. Do tego celu zalecamy
+użycie narzędzia <c>ping6</c>. Wystarczy spingować dowolny host z adresem IPv6.
 </p>
 
 <pre caption="Testowanie połączenia">
@@ -270,23 +319,27 @@ rtt min/avg/max/mdev = 277.040/281.041/290.046/4.699 ms
 </pre>
 
 <p>
-Prowadzone są ciągłe prace nad udoskonaleniem wsparcie IPv6 dla sieciowych skryptów init. Jeżeli chcesz się dowiedzieć czegoś więcej o postępie prac lub udzielić cennych wskazówek wyślij e-maila pod adres: <mail link="latexer@gentoo.org">latexer@gentoo.org</mail>.
+Prowadzone są ciągłe prace nad udoskonaleniem wsparcie IPv6 dla sieciowych
+skryptów init. Jeżeli chcesz się dowiedzieć czegoś więcej o postępie prac lub
+udzielić cennych wskazówek wyślij e-maila pod adres: <mail
+link="latexer@gentoo.org">latexer@gentoo.org</mail>.
 </p>
 
 </body>
 </section>
-
 </chapter>
+
 <chapter>
-
 <title>Wsparcie IPv6 w aplikacjach.</title>
-
 <section>
 <title>Re-emergowanie pakietów.</title>
 <body>
 
 <p>
-Jeżeli przed konfiguracą systemu flaga <e>USE="ipv6"</e> była wyłączona, należy re-emergować niektóre pakiety w celu wkompilowania wsparcia dla IPv6. Aby zdobyć liste wszystkich zainstalowanych pakietów, których działanie zależy od opcji <e>ipv6</e> w zmiennej USE, możesz wykonać poniższe polecenie:
+Jeżeli przed konfiguracą systemu flaga <e>USE="ipv6"</e> była wyłączona, należy
+re-emergować niektóre pakiety w celu wkompilowania wsparcia dla IPv6. Aby zdobyć
+liste wszystkich zainstalowanych pakietów, których działanie zależy od opcji
+<e>ipv6</e> w zmiennej USE, możesz wykonać poniższe polecenie:
 </p>
 
 <pre caption="Potencjalne pakiety do re-emergowania">
@@ -325,7 +378,8 @@ dla IPv6 będą je miały, jeżeli w jądrze nie będzie wkompilowana obsługa I
 <body>
 
 <p>
-Istnieje pare pakietów, które zostały napisane pod kątem IPv6. Większość z nich można znaleźć w katalogu <path>/usr/portage/net-misc</path>.
+Istnieje pare pakietów, które zostały napisane pod kątem IPv6. Większość z nich
+można znaleźć w katalogu <path>/usr/portage/net-misc</path>.
 </p>
 
 <table>
@@ -357,22 +411,28 @@ Istnieje pare pakietów, które zostały napisane pod kątem IPv6. Większość 
 <body>
 
 <p>
-DNS dla przechowywania adresów IPv4 używa rekordów A,a dla IPv6 AAAA. (Wynika to z tego, że wielkość adresu IPv4 wynosi 2^32, a IPv6 2^128). Dla odwróconego DNS(ang. reverse DNS) standard INT wypierany jest przez nowy ARPA, mimo to ciągle szeroko wspierany. Ten rozdział jest pisany pod kątem ARPA.
+DNS dla przechowywania adresów IPv4 używa rekordów A,a dla IPv6 AAAA. (Wynika to
+z tego, że wielkość adresu IPv4 wynosi 2^32, a IPv6 2^128). Dla odwróconego
+DNS(ang. reverse DNS) standard INT wypierany jest przez nowy ARPA, mimo to
+ciągle szeroko wspierany. Ten rozdział jest pisany pod kątem ARPA.
 </p>
 
 </body>
 </section>
-
 <section>
 <title>Konfiguracja programu BIND.</title>
 <body>
 
 <p>
-Nowe wersje narzędzia BIND posiadają doskonałe wsparcie dla IPv6. Ten rozdział zakłada, że posiadasz minimalną wiedzę na temat jego konfiguracji i używania programu BIND. Jeżeli uruchamiasz BINDa po przez chrootowanie musisz dodać odpowiedni prefiks do większości scieżek w tej części.
+Nowe wersje narzędzia BIND posiadają doskonałe wsparcie dla IPv6. Ten rozdział
+zakłada, że posiadasz minimalną wiedzę na temat jego konfiguracji i używania
+programu BIND. Jeżeli uruchamiasz BINDa po przez chrootowanie musisz dodać
+odpowiedni prefiks do większości scieżek w tej części.
 </p>
 
 <p>
-Na początek musisz dodać odpowiednie wpisy dla obu stref DNS(zwykłej i odwrotenj(ang. forward and reverse)) w pliku <path>/etc/bind/named.conf</path>.
+Na początek musisz dodać odpowiednie wpisy dla obu stref DNS(zwykłej i
+odwrotenj(ang. forward and reverse)) w pliku <path>/etc/bind/named.conf</path>.
 </p>
 
 <pre caption="Wpisy do named.conf">
@@ -395,7 +455,8 @@ zone "6.9.2.0.0.0.f.1.0.7.4.0.1.0.0.2.ip6.arpa" {
 </pre>
 
 <p>
-Teraz musimy stworzyć plik ze strefą i dodać odpowiednie wpisy dla wszystkich naszych hostów:
+Teraz musimy stworzyć plik ze strefą i dodać odpowiednie wpisy dla wszystkich
+naszych hostów:
 </p>
 
 <pre caption="pri/ipv6-rules.com">
@@ -438,11 +499,15 @@ $ORIGIN 6.9.2.0.0.0.f.1.0.7.4.0.1.0.0.2.ip6.arpa.
 <body>
 
 <p>
-Pod adresem <uri link="http://www.fefe.de/dns/">http://www.fefe.de/dns/</uri> są dostępne patche do DJBDNS, które pozwalają na tworzenie domen IPv6. Podczas emergowania DJBDNS z ustawioną flagą <e>ipv6</e> w zmiennej USE, patche zostaną automatycznie zainstalowane.
+Pod adresem <uri link="http://www.fefe.de/dns/">http://www.fefe.de/dns/</uri> są
+dostępne patche do DJBDNS, które pozwalają na tworzenie domen IPv6. Podczas
+emergowania DJBDNS z ustawioną flagą <e>ipv6</e> w zmiennej USE, patche zostaną
+automatycznie zainstalowane.
 </p>
 
 <warn>
-Na chwilę obecną nie wszystkie typy rekordów są obsługiwane przez te patche, jak np. niektóre rekordy NS i MX.
+Na chwilę obecną nie wszystkie typy rekordów są obsługiwane przez te patche, jak
+np. niektóre rekordy NS i MX.
 </warn>
 
 <pre caption="Instalowanie djbdns">
@@ -450,7 +515,9 @@ Na chwilę obecną nie wszystkie typy rekordów są obsługiwane przez te patche
 </pre>
 
 <p>
-Po zakończeniu instalacji, djbdns może być skonfigurowane poprzez uruchomienie <c>tinydns-setup</c> i odpowiedzenie na pare prostych pytań takich jak: gdzie zainstalować tinydns itp.
+Po zakończeniu instalacji, djbdns może być skonfigurowane poprzez uruchomienie
+<c>tinydns-setup</c> i odpowiedzenie na pare prostych pytań takich jak: gdzie
+zainstalować tinydns itp.
 </p>
 
 <pre caption="Ustawianie tinydns">
@@ -458,7 +525,10 @@ Po zakończeniu instalacji, djbdns może być skonfigurowane poprzez uruchomieni
 </pre>
 
 <p>
-Przypuszczając, że zainstalowaliśmy <c>tinydns</c> w <path>/var/tinydns</path>, możemy teraz zedytować <path>/var/tinydns/root/data</path>. Ten plik będzie zawierał wszystkie niezbędne informacje potrzebne do prawidłowego funkcjonowania DNS IPv6.
+Przypuszczając, że zainstalowaliśmy <c>tinydns</c> w <path>/var/tinydns</path>,
+możemy teraz zedytować <path>/var/tinydns/root/data</path>. Ten plik będzie
+zawierał wszystkie niezbędne informacje potrzebne do prawidłowego funkcjonowania
+DNS IPv6.
 </p>
 
 <pre caption="Przykładowy plik data">
@@ -474,7 +544,13 @@ Przypuszczając, że zainstalowaliśmy <c>tinydns</c> w <path>/var/tinydns</path
 </pre>
 
 <p>
-Wiersze z prefiksem <c>6</c> stworzyły oba rekordy AAAA i PTR. Te z prefiksem <c>3</c> stworzą tylko rekord AAAA. Jednak zamiast edytowania pliku <path>data</path> ręcznie, możesz użyć gotowych skryptów <c>add-host6</c> i <c>add-alias6</c> do tworzenia wpisów. Po dokonaniu zmian w pliku <path>data</path> po postu uruchom <c>make</c> z <path>/var/tinydns/root</path>. Stworzony zostanie plik <path>/var/tinydns/root/data.cfb</path>, którego tinydns będzie używało jako źródło informacji dla zapytań DNS.
+Wiersze z prefiksem <c>6</c> stworzyły oba rekordy AAAA i PTR. Te z prefiksem
+<c>3</c> stworzą tylko rekord AAAA. Jednak zamiast edytowania pliku
+<path>data</path> ręcznie, możesz użyć gotowych skryptów <c>add-host6</c> i
+<c>add-alias6</c> do tworzenia wpisów. Po dokonaniu zmian w pliku
+<path>data</path> po postu uruchom <c>make</c> z <path>/var/tinydns/root</path>.
+Stworzony zostanie plik <path>/var/tinydns/root/data.cfb</path>, którego tinydns
+będzie używało jako źródło informacji dla zapytań DNS.
 </p>
 
 </body>
@@ -488,7 +564,9 @@ Wiersze z prefiksem <c>6</c> stworzyły oba rekordy AAAA i PTR. Te z prefiksem <
 <body>
 
 <p>
-Poniższa konfiguracja jest wymagana w przypadku kiedy zamierzasz uruchomić router kożystający z ipv6. Musimy włączyć forwardowanie pakietów IPv6. Można zrobić to na dwa sposoby.
+Poniższa konfiguracja jest wymagana w przypadku kiedy zamierzasz uruchomić
+router kożystający z ipv6. Musimy włączyć forwardowanie pakietów IPv6. Można
+zrobić to na dwa sposoby.
 </p>
 
 <pre caption="Włączenie forwardowania">
@@ -498,11 +576,13 @@ lub
 </pre>
 
 <warn>
-Skrypt init dla radvd włącza(i wyłącza) forwardowanie, przez co następny krok można pominąć.
+Skrypt init dla radvd włącza(i wyłącza) forwardowanie, przez co następny krok
+można pominąć.
 </warn>
 
 <p>
-Aby włączyć forwardowanie przy starcie systemu musimy zedytować plik <path>/etc/sysctl.conf</path> i dodać poniższy wiersz.
+Aby włączyć forwardowanie przy starcie systemu musimy zedytować plik
+<path>/etc/sysctl.conf</path> i dodać poniższy wiersz.
 </p>
 
 <pre caption="Edycja sysctl.conf">
@@ -514,18 +594,24 @@ Teraz ruch pakietów powinien przebiegać przez tunel, który stworzyliśmy.
 </p>
 
 <p>
-Specyfikacja IPv6 dopuszcza przypisywanie adresów IP na dwa sposoby: "stateful" i "stateless". Przypisywanie typu "statless" używa procesu zwanego "Router Advertisement". Klient otrzymuje adres IP odrazu po włączeniu interfejsu sieciowego. Przypisanie takie nazywane jest "stateless", ponieważ nie tworzone są rekordy, w których przechowuje się informacje o klientach i ich adresach IP. Przypisanie typu "stateful" jest używane przez DHCPv6. Nazywa się "stateful", gdyż pamiętane są informacje o poszczególnym kliencie i jego adresie IP.
+Specyfikacja IPv6 dopuszcza przypisywanie adresów IP na dwa sposoby: "stateful"
+i "stateless". Przypisywanie typu "statless" używa procesu zwanego "Router
+Advertisement". Klient otrzymuje adres IP odrazu po włączeniu interfejsu
+sieciowego. Przypisanie takie nazywane jest "stateless", ponieważ nie tworzone
+są rekordy, w których przechowuje się informacje o klientach i ich adresach IP.
+Przypisanie typu "stateful" jest używane przez DHCPv6. Nazywa się "stateful",
+gdyż pamiętane są informacje o poszczególnym kliencie i jego adresie IP.
 </p>
 
 </body>
 </section>
-
 <section>
 <title>Konfiguracja typu Stateless.</title>
 <body>
 
 <p>
-Konfiguracja tego typu jest stosowana przez Router Advertisement Daemon, lub radvd.
+Konfiguracja tego typu jest stosowana przez Router Advertisement Daemon, lub
+radvd.
 </p>
 
 <pre caption="Konfigurowanie radvd">
@@ -533,7 +619,10 @@ Konfiguracja tego typu jest stosowana przez Router Advertisement Daemon, lub rad
 </pre>
 
 <p>
-Po zainstalowaniu radvd musimy stworzyć plik <path>/etc/radvd/radvd.conf</path>, który będzie zawierał informacje dotyczące bloku IP, z którego przypisywane są adresy IP. Poniżej przedstawiamy przykładowy plik <path>radvd.conf</path> z prefixem, który został nam przydzielony przez naszego pośrednika tunelowego.
+Po zainstalowaniu radvd musimy stworzyć plik <path>/etc/radvd/radvd.conf</path>,
+który będzie zawierał informacje dotyczące bloku IP, z którego przypisywane są
+adresy IP. Poniżej przedstawiamy przykładowy plik <path>radvd.conf</path> z
+prefixem, który został nam przydzielony przez naszego pośrednika tunelowego.
 </p>
 
 <pre caption="Przykładowy plik radvd.conf">
@@ -553,11 +642,13 @@ interface eth1
 </pre>
 
 <warn>
-Upewnij się, że interfejs w pierwszym wierszu (w tym przypadku eth1) jest skierowany do sieci wewnętrznej a nie do dostawcy internetu!
+Upewnij się, że interfejs w pierwszym wierszu (w tym przypadku eth1) jest
+skierowany do sieci wewnętrznej a nie do dostawcy internetu!
 </warn>
 
 <p>
-Więcej informacji można znaleźć wywołując <c>man radvd.conf</c>. Możemy teraz uruchomić radvd i ustawić automatyczne bootowanie podczas startu systemu.
+Więcej informacji można znaleźć wywołując <c>man radvd.conf</c>. Możemy teraz
+uruchomić radvd i ustawić automatyczne bootowanie podczas startu systemu.
 </p>
 
 <pre caption="Uruchamianie radvd">
@@ -573,7 +664,8 @@ Więcej informacji można znaleźć wywołując <c>man radvd.conf</c>. Możemy t
 <body>
 
 <p>
-Jeżeli chcesz używać konfiguracji tego typu, musisz zainstalować i skonfigurować dhcpv6.
+Jeżeli chcesz używać konfiguracji tego typu, musisz zainstalować i skonfigurować
+dhcpv6.
 </p>
 
 <pre caption="Instalowanie dhcpv6">
@@ -608,7 +700,8 @@ interface eth1 {
 </pre>
 
 <p>
-Możemy teraz uruchomić dhcp6s i ustawic automatyczne bootowanie podczas startu systemu.
+Możemy teraz uruchomić dhcp6s i ustawic automatyczne bootowanie podczas startu
+systemu.
 </p>
 
 <pre caption="Uruchamianie dhcp6s">
@@ -627,7 +720,9 @@ Możemy teraz uruchomić dhcp6s i ustawic automatyczne bootowanie podczas startu
 <body>
 
 <p>
-Klienci podłączeni do tego typu routera powinni już uzyskać swoje adresy IPv6 (jeżeli tylko zgłosili rządanie) i mieć możliwość kożystania z sieci. (Prawdopodobnie również posiadasz juz adres IPv6 dzięki skryptom init net.ethX)
+Klienci podłączeni do tego typu routera powinni już uzyskać swoje adresy IPv6
+(jeżeli tylko zgłosili rządanie) i mieć możliwość kożystania z sieci.
+(Prawdopodobnie również posiadasz juz adres IPv6 dzięki skryptom init net.ethX)
 </p>
 
 <pre caption="Połączenie przez IPv6">
@@ -651,7 +746,9 @@ Klienci podłączeni do tego typu routera powinni już uzyskać swoje adresy IPv
 <body>
 
 <p>
-Jeżeli na Twoim routerze jest uruchomiony DHCPv6 każdy klient powinien mieć zainstalowany pakiet dhcpv6. Poniżej przedstawiamy przykładowy plik konfiguracyjny klienta <path>/etc/dhcp6c.conf</path>.
+Jeżeli na routerze jest uruchomiony DHCPv6 każdy klient powinien mieć
+zainstalowany pakiet dhcpv6. Poniżej przedstawiamy przykładowy plik
+konfiguracyjny klienta <path>/etc/dhcp6c.conf</path>.
 </p>
 
 <pre caption="Przykładowy plik dhcp6c.conf">
@@ -677,7 +774,9 @@ interface eth0 {
 <body>
 
 <p>
-Konwersja 6to4 może być użyta w przypadku komunikacji z adresem IPv4 przez połączenie IPv6. Tak więc w sieci opartej o IPv6 można również używać adresów IPv4 do komunikacji z resztą Świata.
+Konwersja 6to4 może być użyta w przypadku komunikacji z adresem IPv4 przez
+połączenie IPv6. Tak więc w sieci opartej o IPv6 można również używać adresów
+IPv4 do komunikacji z resztą Świata.
 </p>
 
 </body>
@@ -688,11 +787,15 @@ Konwersja 6to4 może być użyta w przypadku komunikacji z adresem IPv4 przez po
 <body>
 
 <p>
-Aby uruchomić konwersję 6to4 należy uruchomić proxy DNS, <c>totd</c>, tak aby zamieniało adresy IPv4 na adresy IPv6. Ta konwersja będzie służyła jedynie do komunikacji z konwerterem proxy 6to4.
+Aby uruchomić konwersję 6to4 należy uruchomić proxy DNS, <c>totd</c>, tak aby
+zamieniało adresy IPv4 na adresy IPv6. Ta konwersja będzie służyła jedynie do
+komunikacji z konwerterem proxy 6to4.
 </p>
 
 <p>
-Jeżeli <c>totd</c> jest zamaskowane dla architektory <c>~x86</c>, musisz wpisać poniższą linijkę do pliku <path>/etc/portage/package.keywords</path>. (Więcej informacji o tym pliku uzyskasz wpisując 'man portage') oraz Podręczniku Gentoo.
+Jeżeli <c>totd</c> jest zamaskowane dla architektory <c>~x86</c>, musisz wpisać
+poniższą linijkę do pliku <path>/etc/portage/package.keywords</path>. (Więcej
+informacji o tym pliku uzyskasz wpisując 'man portage') oraz Podręczniku Gentoo.
 </p>
 
 <pre caption="Trwałe odmaskowanie totd w package.keywords">
@@ -708,7 +811,8 @@ Teraz wykonaj zwykłe emergowanie:
 </pre>
 
 <p>
-Następnie musimy ustawić parę podstawowych opcji w pliku <path>/etc/totd.conf</path>.
+Następnie musimy ustawić parę podstawowych opcji w pliku
+<path>/etc/totd.conf</path>.
 </p>
 
 <pre caption="Przykładowy plik /etc/totd.conf">
@@ -725,18 +829,19 @@ stf
 </pre>
 
 <note>
-Jeżeli port 53 jest już używany przez inny program należy zmienić ten dla <c>totd</c>.
+Jeżeli port 53 jest już używany przez inny program należy zmienić ten dla
+<c>totd</c>.
 </note>
 
 </body>
 </section>
-
 <section>
 <title>Proxy 6to4.</title>
 <body>
 
 <p>
-<c>ptrtd</c> będzie używane jako proxy 6to4, umożliwiając komunikacje pomiędzy wewnętrznym hostem IPv6 a zewnętrznym IPv4.
+<c>ptrtd</c> będzie używane jako proxy 6to4, umożliwiając komunikacje pomiędzy
+wewnętrznym hostem IPv6 a zewnętrznym IPv4.
 </p>
 
 <pre caption="Instalowanie ptrtd">
@@ -744,7 +849,10 @@ Jeżeli port 53 jest już używany przez inny program należy zmienić ten dla <
 </pre>
 
 <p>
-Teraz musimy ustawić w <c>ptrtd</c>, który prefiks (ten który ustawiliśmy w <c>totd</c>) jest nieprawdziwy i służy do konwersji 6to4. Zedytuj <path>/etc/conf.d/ptrtd</path> i ustaw <c>IPV6_PREFIX</c>. Musi być to ten sam prefix, który ustawiliśmy w <c>totd</c>.
+Teraz musimy ustawić w <c>ptrtd</c>, który prefiks (ten który ustawiliśmy w
+<c>totd</c>) jest nieprawdziwy i służy do konwersji 6to4. Zedytuj
+<path>/etc/conf.d/ptrtd</path> i ustaw <c>IPV6_PREFIX</c>. Musi być to ten sam
+prefix, który ustawiliśmy w <c>totd</c>.
 </p>
 
 <pre caption="Przykładowy plik /etc/ptrtd.conf">
@@ -752,7 +860,8 @@ IPV6_PREFIX="3ffe:abcd:1234:9876::"
 </pre>
 
 <p>
-Możesz teraz uruchomić totd i ustawić automatyczne bootowanie przy starcie systemu.
+Możesz teraz uruchomić totd i ustawić automatyczne bootowanie przy starcie
+systemu.
 </p>
 
 <pre caption="Uruchamienie totd">
@@ -762,13 +871,16 @@ Możesz teraz uruchomić totd i ustawić automatyczne bootowanie przy starcie sy
 
 </body>
 </section>
-
 <section>
 <title>Konfiguracja i testowanie klienta.</title>
 <body>
 
 <p>
-Teraz klienci mogą korzystać z dwóch typów adresów IPv4 oraz IPv6 przez połączenie IPv6. Zakładając, że uzyskali adresy IPv6 od radvd, musimy dodać odpowiedni wpis do DNS i ustalić domyślny cel dla adresów z fałszywym prefixem (tym z totd i ptrtd). W pliku <path>/etc/resolv.conf</path> należy dodać adres komputera, na którym uruchomiony jest <c>totd</c>.
+Teraz klienci mogą korzystać z dwóch typów adresów IPv4 oraz IPv6 przez
+połączenie IPv6. Zakładając, że uzyskali adresy IPv6 od radvd, musimy dodać
+odpowiedni wpis do DNS i ustalić domyślny cel dla adresów z fałszywym prefixem
+(tym z totd i ptrtd). W pliku <path>/etc/resolv.conf</path> należy dodać adres
+komputera, na którym uruchomiony jest <c>totd</c>.
 </p>
 
 <pre caption="Przykładowy plik /etc/resolv.conf">
@@ -776,7 +888,8 @@ nameserver 2001:470:1f00:296::1 <comment>(Serwer z uruchomionym totd)</comment>
 </pre>
 
 <p>
-Aby przetestować działanie konwersji 6to4, sprawdź domene, której znasz adres IPv4.
+Aby przetestować działanie konwersji 6to4, sprawdź domene, której znasz adres
+IPv4.
 </p>
 
 <pre caption="Testowanie przykładowej domeny">
@@ -796,7 +909,8 @@ Teraz ustawiamy domyślny kierunek dla wszystkich adresów z fałszywym prefikse
 </pre>
 
 <p>
-Na koniec użyj narzędzia <c>ping6</c> aby zpingować np. google.com i zobaczyć czy wszystko działa prawidłowo.
+Na koniec użyj narzędzia <c>ping6</c> aby zpingować np. google.com i zobaczyć
+czy wszystko działa prawidłowo.
 </p>
 
 <pre caption="Testowanie 6to4">
@@ -811,7 +925,8 @@ rtt min/avg/max/mdev = 0.090/0.098/0.106/0.008 ms
 </pre>
 
 <note>
-Aktualnie router z zainstalowanym <c>ptrtd</c> daje odpowiedź na naszego pinga, lecz to wystarczy aby stwierdzić, że wszystko działa poprawnie.
+Aktualnie router z zainstalowanym <c>ptrtd</c> daje odpowiedź na naszego pinga,
+lecz to wystarczy aby stwierdzić, że wszystko działa poprawnie.
 </note>
 
 </body>
@@ -824,7 +939,8 @@ Aktualnie router z zainstalowanym <c>ptrtd</c> daje odpowiedź na naszego pinga,
 <body>
 
 <p>
-Istnieje wiele doskonałych stron związanych z tematyką IPv6. Poniżej prezentujemy niektóre z nich.
+Istnieje wiele doskonałych stron związanych z tematyką IPv6. Poniżej
+prezentujemy niektóre z nich.
 </p>
 
 <table>
@@ -856,7 +972,10 @@ Istnieje wiele doskonałych stron związanych z tematyką IPv6. Poniżej prezent
 </table>
 
 <p>
-Zapraszamy również na IRCowe kanały <c>#gentoo-ipv6</c> lub <c>#ipv6</c> w sieci <uri link="http://www.freenode.net/">Freenode</uri>. Sieć Freenode obsługuje również klientów łączących się bezpośrednio przez IPv6 (<b>irc.ipv6.freenode.net</b>).
+Zapraszamy również na IRCowe kanały <c>#gentoo-ipv6</c> lub <c>#ipv6</c> w sieci
+<uri link="http://www.freenode.net/">Freenode</uri>. Sieć Freenode obsługuje
+również klientów łączących się bezpośrednio przez IPv6
+(<b>irc.ipv6.freenode.net</b>).
 </p>
 
 </body>
