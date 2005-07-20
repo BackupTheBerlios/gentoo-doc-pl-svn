@@ -1,24 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
-
-<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/kde-config.xml,v 1.11 2005/07/01 05:23:58 swift Exp $ -->
-
+<!-- $Header$ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<guide link="/doc/pl/kde-config.xml">
+<!-- Orig revision: 1.12 -->
+<!-- Translator: Robert Muchacki <muchar@gentoo.pl> -->
+<!-- Status: Finished -->
 
-<title>Konfiguracja KDE HOWTO</title>
+<!-- $Id: $ -->
+
+<guide link="/doc/pl/kde-config.xml" lang="pl">
+
+<title>Konfiguracja KDE</title>
 
 <author title="Autor">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
-<author title="Tłumacz">
+<author title="Tłumaczenie">
   <mail link="muchar@gentoo.pl">Robert Muchacki</mail>
 </author>
 
 <abstract>
-Jedno z najpopularniejszych środowisk graficznych to KDE. Ten przewodnik 
-opisuje prawie wszystkie aspekty KDE, włączając instalację, konfigurację,
-użytkowanie, ...
+KDE to jedno z najpopularniejszych środowisk graficznych. Ten przewodnik opisuje
+prawie wszystkie aspekty KDE, włączając instalację, konfigurację i pracę w nim.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -35,13 +38,13 @@ użytkowanie, ...
 <body>
 
 <p>
-<uri link="http://www.kde.org">Projekt KDE</uri> to projekt który ma na celu
+<uri link="http://www.kde.org">Projekt KDE</uri> to projekt, który ma na celu
 tworzenie darmowego oprogramowania dedykowanego dla środowiska KDE, graficznego
-środowiska o otwartym kodzie przeznaczonego dla stacji roboczych Linux oraz
+środowiska o otwartym kodzie, przeznaczonego dla stacji roboczych Linux oraz
 UNIX. Rozwijaniem projektu zajmuje się klkuset inżynierów oprogramowania z
 całego świata, którzy zgodzili się za darmo pracować dla projektu. Można również
 zobaczyć <uri link="http://www.kde.org/whatiskde/project.php">czym jest projekt
-KDE</uri> na stronach KDE aby uzyskać więcej informacji.
+KDE</uri> na stronach KDE, aby uzyskać więcej informacji.
 </p>
 
 </body>
@@ -52,11 +55,11 @@ KDE</uri> na stronach KDE aby uzyskać więcej informacji.
 
 <p>
 K Desktop Environment to proste w użyciu środowisko graficzne zbudowane na
-dobrze przemyślanym szkieletem programowym, który pozwala na współdziałanie
-między aplikacjami, "przeciągnij i upuść", etc. Oprócz obowiązkowych komponentów
+dobrze przemyślanym szkielecie programowym, który pozwala na współdziałanie
+między aplikacjami "przeciągnij i upuść", etc. Oprócz obowiązkowych komponentów
 wymaganych przez środowisko KDE zapewnia również odpowiednie aplikacje do setek
 zastosowań: zarządzanie plikami, przeglądanie stron WWW, narzędzia biurowe,
-klienty poczty elektronicznej, ... Wszystko znajduje się w projekcie KDE.
+czy klienty poczty elektronicznej. Wszystko to znajduje się w projekcie KDE.
 </p>
 
 <p>
@@ -94,8 +97,8 @@ link="http://www.kde.org/family/">rodziny KDE</uri>.
 <body>
 
 <p>
-Jeśli jest się zainteresowanym w zainstalowaniu KDE (lub wsparcie dla KDE),
-należy mieć pewność iż w flagach USE będą ustawione flagi <c>kde</c> oraz
+Jeśli jest się zainteresowanym zainstalowaniem KDE (lub wsparciem dla KDE),
+należy mieć pewność, że we flagach USE będą ustawione flagi <c>kde</c> oraz
 <c>qt</c>. Dla osób zainteresowanych, Qt jest to biblioteka graficzna potrzebna
 dla poprawnego działania KDE.
 </p>
@@ -119,8 +122,8 @@ domyślnie włączona).
 
 <p>
 Po drugie, należy zastanowić się co zainstalować z oprogramowania KDE. Jak
-wspomniane wcześniej, w skład KDE wchodzi wiele programów bogatych w liczne
-funkcje. Niedowiarki mogą samodzielnie to sprawdzić :)
+wspominaliśmy wcześniej, w skład KDE wchodzi wiele programów bogatych w liczne
+funkcje. Niedowiarki mogą samodzielnie to sprawdzić. :)
 </p>
 
 <pre caption="Przedstawianie wszystkich paczek które zostaną zainstalowane z
@@ -129,10 +132,10 @@ KDE">
 </pre>
 
 <p>
-Jeśli nie muszą być instalowane wszystkie paczki, można zainstalować
-poszczególne osobno. Na pewno powinna być zainstalowana paczka <c>kdebase</c>,
+Jeśli nie muszą być instalowane wszystkie pakiety, można zainstalować
+poszczególne osobno. Na pewno należy mieć zainstalowany pakiet <c>kdebase</c>,
 jako że zawiera trzon KDE oraz wszystkie potrzebne składniki do uruchomienia
-czegokolwiek z KDE. Poniżej znajduje się tabela z dostępnymi paczkami które
+czegokolwiek z KDE. Poniżej znajduje się tabela z dostępnymi pakietami które
 można zainstalować.
 </p>
 
@@ -193,10 +196,11 @@ można zainstalować.
 <tr>
   <ti>kde-i18n</ti>
   <ti>
-    Pliki związane z tłumaczeniami KDE. Paczka ta zawiera pliki dzięki którym
-    KDE może pokazywać się w różnych jezykach (z różnymi formatami dat, numerów,
-    ...) oraz dokumentacja. Pod adresem <uri link="http://i18n.kde.org">KDE
-    i18n</uri> można znaleźć więcej informacji na ten temat.
+    Pliki związane z tłumaczeniami KDE. Pakiet ten zawiera pliki dzięki którym
+    KDE wraz z dokumentacją może wyświetlać się w różnych jezykach (z różnymi
+    formatami dat, numerów, ...). Pod adresem <uri
+    link="http://i18n.kde.org">KDE i18n</uri> można znaleźć więcej informacji na
+    ten temat.
   </ti>
 </tr>
 <tr>
@@ -212,7 +216,7 @@ można zainstalować.
   <ti>kdenetwork</ti>
   <ti>
     Oprogramowanie związane z siecią, takie jak <c>kppp</c> (modemy) oraz
-    <c>lisa</c> (sieci). Należy zwrócić uwagę na to, iż <c>konqueror</c>
+    <c>lisa</c> (sieci). Należy zwrócić uwagę na to, że <c>konqueror</c>
     (menedżer plików <e>oraz</e> przeglądarka WWW) jest częścią <c>kdebase</c>!
   </ti>
 </tr>
@@ -263,7 +267,7 @@ oraz czynnościami administracyjnymi:
 </pre>
 
 <p>
-W przypadku wątpliwości: kompilacja KDE troszkę trwa :)
+W przypadku wątpliwości: kompilacja KDE troszkę trwa. :)
 </p>
 
 </body>
@@ -274,16 +278,16 @@ W przypadku wątpliwości: kompilacja KDE troszkę trwa :)
 
 <p>
 Nowsze wersje KDE (od wersji 3.4 wzwyż) są obecnie reprezentowane poprzez wiele 
-<uri link="/doc/pl/kde-split-ebuilds.xml">rozdzielonych paczek</uri> powodując
-trudności w przypadku podejmowania decyzji co instalować, a co nie. Gentoo
-udostępnia kilka meta-paczek, które zainstalują pewną ilość paczek KDE
+<uri link="/doc/pl/kde-split-ebuilds.xml">rozdzielonych ebuildów</uri>, co
+powoduje trudności w przypadku podejmowania decyzji co instalować, a co nie.
+Gentoo udostępnia kilka meta-pakietów, które zainstalują pewną ilość paczek KDE
 automatycznie:
 </p>
 
 <ul>
   <li>
     W przypadku zapotrzebowania na pełną instalację KDE, należy zainstalować
-    <c>kde-meta</c>. Ta paczka zainstaluje wszyskie aplikacje KDE jako
+    <c>kde-meta</c>. Ten pakiet zainstaluje wszyskie aplikacje KDE jako
     zależności.
   </li>
   <li>
@@ -293,26 +297,26 @@ automatycznie:
 </ul>
 
 <p>
-Powyższe dwie to skrajne możliwości. Najlepszym rozwiązaniem byłoby zastosowanie
-bezpiecznej mieszanki obu :) Aby ułatwić proces podejmowania decyzji, poniższa
-tabela przedstawia krótki, niekompletny jeszcze przegląd niektórych dostępnych
-paczek KDE.
+Powyższe dwie opcje to skrajne możliwości. Najlepszym rozwiązaniem byłoby
+zastosowanie bezpiecznej mieszanki obu. Aby ułatwić proces podejmowania decyzji,
+poniższa tabela przedstawia krótki, niekompletny jeszcze przegląd niektórych
+dostępnych pakietów KDE.
 </p>
 
 <p>
-Te paczki <e>nie są</e> częścią instalacji <c>kdebase-startkde</c>.
+Te pakiety <e>nie są</e> częścią instalacji <c>kdebase-startkde</c>.
 </p>
 
 <table>
 <tr>
-  <th>Nazwa paczki</th>
+  <th>Nazwa pakietu</th>
   <th>Opis</th>
 </tr>
 <tr>
   <ti><c>amarok</c></ti>
   <ti>
-    Instalujac <uri link="http://amarok.kde.org/">amaroK'a</uri> zdobywa się
-    potężny odtwarzacz muzyki dla *NIX.
+    Instalując <uri link="http://amarok.kde.org/">amaroK</uri> uzyskuje się
+    świetny odtwarzacz muzyki dla *NIX
   </ti>
 </tr>
 <tr>
@@ -327,7 +331,7 @@ Te paczki <e>nie są</e> częścią instalacji <c>kdebase-startkde</c>.
   <ti><c>kaffeine</c></ti>
   <ti>
     <uri link="http://kaffeine.sourceforge.net/">Kaffeine</uri> to pełne
-    narzędie do odtwarzania multimediów przeznaczone dla KDE.
+    narzędzie do odtwarzania multimediów przeznaczone dla KDE.
   </ti>
 </tr>
 <tr>
@@ -368,8 +372,8 @@ Te paczki <e>nie są</e> częścią instalacji <c>kdebase-startkde</c>.
 <tr>
   <ti><c>konqueror</c></ti>
   <ti>
-    Dzięki <uri link="http://konqueror.kde.org/">Konqueror'owi</uri> zyskuje się
-    w pełni funkcjonalnego zarządcę plików oraz przeglądarkę stron WWW.
+    <uri link="http://konqueror.kde.org/">Konqueror</uri> to
+    w pełni funkcjonalny menedżer plików oraz dobra przeglądarka stron WWW.
   </ti>
 </tr>
 <tr>
@@ -383,16 +387,14 @@ Te paczki <e>nie są</e> częścią instalacji <c>kdebase-startkde</c>.
   <ti><c>kontact</c></ti>
   <ti>
     <uri link="http://kontact.kde.org/">Kontact</uri> to menedżer informacji
-    osobistych przeznaczony dla KDE, pozwalający zarządzać łatwiej swoimi
-    kontaktami, oraz zorganizować wspólną pracę aby przebiegała szybciej i
-    sprawniej.
-  </ti>
+    osobistych przeznaczony dla KDE, pozwalający zarządzać łatwiej kontaktami,
+    oraz zorganizować wspólną pracę aby przebiegała szybciej i sprawniej.  </ti>
 </tr>
 <tr>
   <ti><c>kopete</c></ti>
   <ti>
     <uri link="http://kopete.kde.org/index.php">Kopete</uri> to komunikator
-    przeznaczony dla KDE wspierający wszystkie znane protkokoły różnych
+    przeznaczony dla KDE wspierający wszystkie znane protokoły różnych
     komunikatorów.
   </ti>
 </tr>
@@ -407,7 +409,7 @@ Te paczki <e>nie są</e> częścią instalacji <c>kdebase-startkde</c>.
   <ti><c>kpdf</c></ti>
   <ti>
     Przy pomocy <uri link="http://kpdf.kde.org/">KPDF</uri> można przeglądać i
-    pracować z plikami PDF. Posiada bardzi unikalne cechy, które znacznie
+    pracować z plikami PDF. Posiada bardzo unikalne cechy, które znacznie
     ułatwiają przyjemność przeglądania plików.
   </ti>
 </tr>
@@ -445,18 +447,18 @@ Aby poderzeć co zainstaluje emerge, należy użyć <c>emerge -p</c> z pomocą
 </p>
 
 <pre caption="Podglądanie instalacji kde">
-<comment>(Można wstawić własny wybur paczki(paczek))</comment>
+<comment>(Należy wstawić wybrane pakiety)</comment>
 # <i>emerge -p kdebase-startkde kicker | less</i>
 </pre>
 
 <p>
 Jeśli rezultat jest w porządku, wystarczy usunąć <c>-p</c>. Kompilacja zapewne
 troszeczkę potrwa, gdyż KDE jest olbrzymim środowiskiem, więc nie ma się co
-dziwić, że skompilowane zostanie od razu ;-)
+dziwić, że nie zostanie skompilowane w ciągu kilku minut. ;-)
 </p>
 
 <p>
-Jeśli KDE ma automatycznie montować urządzenia, należy zainstalować paczki
+Jeśli KDE ma automatycznie montować urządzenia, należy zainstalować pakiety
 <c>dbus</c>, <c>hal</c> oraz <c>ivman</c>. Po instalacji należy dodać każdy z
 nich do domyślnego poziomu rozruchowego:
 </p>
@@ -476,12 +478,12 @@ nich do domyślnego poziomu rozruchowego:
 
 <p>
 Spójrzmy teraz na rezultat. Należy przetrzegać tego czego mama od zawsze
-nauczała o pracy na koncie root'a. Dlatego też należałoby posłuchać rad mamy i
+nauczała o pracy na koncie roota. Dlatego też należałoby posłuchać rad mamy i
 uruchomić KDE na koncie zwykłego użytkownika. Trzeba skonfigurować sesję aby
 system uruchamiał KDE po wpisaniu <c>startx</c> w linii poleceń. Wystarczy
-wpisać <c>exec starkde</c> w <path>~/.xinitrc</path> (więcej informacji w <uri
-link="/doc/pl/xorg-config.xml#using_startx">Using startx</uri> w <uri
-link="/doc/pl/xorg-config.xml">X Server Configuration Howto</uri>):
+wpisać <c>exec starkde</c> w <path>~/.xinitrc</path> (więcej informacji w
+akapicie <uri link="/doc/pl/xorg-config.xml#using_startx">Używanie startx</uri>
+w dokumencie <uri link="/doc/pl/xorg-config.xml">Konfiguracja serwera X</uri>):
 </p>
 
 <pre caption="Konfigurowanie lokalnej sesji">
@@ -489,7 +491,7 @@ $ <i>echo "exec startkde" &gt; ~/.xinitrc</i>
 </pre>
 
 <p>
-Teraz trzeba wpisć <c>startx</c> w linii poleceń aby uruchomić środowisko
+Teraz trzeba wpisć <c>startx</c> w linii poleceń, aby uruchomić środowisko
 graficzne.
 </p>
 
@@ -512,8 +514,8 @@ trzeba tylko skonfigurować KDE...
 <body>
 
 <p>
-KPersonalizer to aplikacja która dokonuje konfiguracji KDE. Jest to bardzo
-przydatny kreator który pozwala w szybki sposób zmienić KDE do własnych
+KPersonalizer to aplikacja, która dokonuje konfiguracji KDE. Jest to bardzo
+przydatny kreator, który pozwala w szybki sposób zmienić KDE do własnych
 potrzeb. Przy pierwszym uruchomieniu KDE, KPersonalizer jest uruchamiane
 automatycznie.
 </p>
@@ -528,7 +530,7 @@ tym przejmować, gdyż język będzie można później zmienić.
 <p>
 Kolejny wybór jaki jest przedstawiany to <e>sposób zachowania się systemu</e>. W
 tym zachowanie się okien, wybór myszą, itd. Przy wybieraniu danego zachowania,
-jego opis jest przestawiany aby pomóc przy dokonywaniu wyboru. W razie
+jego opis jest przestawiany, aby pomóc przy dokonywaniu wyboru. W razie
 niepewności, nie ma co panikować -- można zmienić to zachowanie w dowolnym
 momencie.
 </p>
@@ -544,7 +546,7 @@ graficznych nadal pozwala na w miarę wygodną pracę.
 <p>
 Ostatecznie, KDE pyta o styl jaki ma być używany. Styl opisuje dekorację okna,
 temat, wygląd przycisków itd. Małe okienko pozwala zorientować się w ich
-wyglądzie. Czy wspomniane już było, że KDE jest w pełni konfigurowalne?
+wyglądzie. Czy wspominaliśmy już, że KDE jest bardzo konfigurowalne?
 </p>
 
 <p>
@@ -568,28 +570,27 @@ jak zainstalować inne języki.
 Paczki językowe znajdują się w paczce <c>kde0i18n</c>. Aby zainstalować wybrany
 pakiet lokalizacyjny, należy ustawić zmienną <c>LINGUAS</c> aby wskazywała na
 odpowiedni(e) język(i). Rozsądne jest aby umieścić to w
-<path>/etc/make.conf</path>, tak aby aktualizacja systemu nie usuwała pożądanych
-paczek językowych.
+<path>/etc/make.conf</path> tak, aby aktualizacja systemu nie usuwała pożądanych
+pakietów językowych.
 </p>
 
 <pre caption="Ustawianie LINGUAS w /etc/make.conf">
 # <i>nano -w /etc/make.conf</i>
-<comment>(Jako przykład, zostaną zainstalowane paczki dla języka polskiego (pl) 
+<comment>(Jako przykład, zostaną zainstalowane pakiety dla języka polskiego (pl) 
  oraz  francuskiego (fr))</comment>
 LINGUAS="pl fr"
 </pre>
 
 <p>
-Teraz trzeba uruchomić <c>emerge kde-i18n</c> abu zainstalować odpowiednie
-paczki. Po instalacji, wystarczy ponownie uruchomić KDE, przejść do Centrum
-Sterowania KDE (K-menu &gt; Settings &gt; Control Center) <!-- SPECJALNIE
-ZOSTAWIŁEM PO ANGIELSKU - PRZECIEŻ DOPIERO ZMIENIAMY JĘZYK!! -->. Jest to
-miejsce w którym można kontrolować niemalże każdą część KDE. Jest znacznie
-bardziej rozbudowany niż KPersonalizer.
+Teraz trzeba wpisać <c>emerge kde-i18n</c>, aby zainstalować odpowiednie
+pakiety. Po instalacji, wystarczy ponownie uruchomić KDE, przejść do Centrum
+Sterowania KDE (K-menu &gt; Settings &gt; Control Center) . Jest to miejsce w
+którym można kontrolować niemalże każdą część KDE. Jest znacznie bardziej
+rozbudowany niż KPersonalizer.
 </p>
 
 <p>
-Aby zmienić jezyk, należy wejść do <c>Regional &amp; Accessibility</c>,
+Aby zmienić język, należy wejść do <c>Regional &amp; Accessibility</c>,
 <c>Country/Region &amp; Languages</c>. Tam należy dodać wybrane języki. Aby
 ujrzeć zlokalizowane KDE, wystarczy uruchomić go ponownie.
 </p>
@@ -601,16 +602,16 @@ ujrzeć zlokalizowane KDE, wystarczy uruchomić go ponownie.
 <body>
 
 <p>
-Aby używać <c>kdm</c> jako graficznego menedżera logowania (co oznacza że nie
+Aby używać <c>kdm</c> jako graficznego menedżera logowania (co oznacza, że nie
 trzeba będzie logować się do terminala i wpisywać <c>startx</c> za każdym
-razem), trzeba zmienić jeden plik konfiguracyjny i ustawić system aby uruchamiał
-się w trybie graficznym tuż po uruchomieniu się, zgodnie z opisane znajdującym
-się oniżej.
+razem), trzeba zmienić jeden plik konfiguracyjny i ustawić system, aby
+uruchamiał się w trybie graficznym tuż po uruchomieniu się, zgodnie z opisane
+znajdującym się poniżej.
 </p>
 
 <p>
-W <path>/etc/rc.conf</path>, trzeba ustawić zmienną <c>DISPLAYMANAGER</c> jako
-<c>kdm</c>.
+W pliku <path>/etc/rc.conf</path>, trzeba ustawić zmienną <c>DISPLAYMANAGER</c>
+jako <c>kdm</c>.
 </p>
 
 <pre caption="Ustawianie zmiennej DISPLAYMANAGER w /etc/rc.conf">
@@ -632,10 +633,11 @@ Po ponownym rozruchu systemu, KDM zostanie użyte jako graficzny ekran logowania
 </p>
 
 <p>
-KDM will provide a list of available sessions to choose from, including KDE -
-of course - and including all the other sessions installed on your system,
-which KDM finds by looking in <path>/usr/share/xsessions/</path>. Thus, if you
-use KDM, you don't need to edit <path>~/.xinitrc</path>.
+KDM wyświetli listę dostępnych do uruchomienia sesji, jedną z nich oczywiście
+będzie KDE, pozostałe pozycje będą zależne od zainstalowanego w systmemie
+oprogramowania. Sesje dla wszystkich menedżerów okien znajdują się w katalogu
+<path>/usr/share/xsessions/</path>. Jeśli korzysta się z KDM nie trzeba zmieniać
+pliku <path>~/.xinitrc</path>.
 </p>
 
 </body>
@@ -649,7 +651,7 @@ use KDM, you don't need to edit <path>~/.xinitrc</path>.
 <body>
 
 <p>
-Trzeba upewnić się że plik <path>/etc/hosts</path> jest prawidłowy:
+Trzeba upewnić się, że plik <path>/etc/hosts</path> jest prawidłowy:
 </p>
 
 <ul>
@@ -660,12 +662,12 @@ Trzeba upewnić się że plik <path>/etc/hosts</path> jest prawidłowy:
   <li>
     W przypadku adresu przydzielanego dynamicznie lub gdy nie ma w ogóle
     dodatkowych interfejsów, należy dodać nazwę hosta w linijce z adresem
-    localhost'a, np. <c>127.0.0.1 localhost tux</c>
+    localhost, np. <c>127.0.0.1 localhost tux</c>
   </li>
 </ul>
 
 <p>
-Należy upewnić się że DMA jest uruchomione dla dysków:
+Należy upewnić się, że dla dysków uruchomione jest DMA:
 </p>
 
 <pre caption="Sprawdzanie ustawień DMA">
