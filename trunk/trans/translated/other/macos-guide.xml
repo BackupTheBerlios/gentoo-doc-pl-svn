@@ -2,7 +2,7 @@
 <!-- $Header$ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.5 -->
+<!-- Orig revision: 1.8 -->
 <!-- Translator: edi15ta <edi15ta@gazeta.pl> -->
 <!-- Status: Finished -->
 
@@ -37,11 +37,11 @@ instalację oraz używanie narzędzia portage na Mac OS X.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <license/>
 
-<version>1.3</version>
-<date>2004-11-25</date>
+<version>1.6</version>
+<date>2005-06-20</date>
 
 <chapter>
 <title>Instalacja</title>
@@ -55,7 +55,7 @@ oprogramowanie:
 </p>
 
 <ul>
-  <li>Mac OS w wersji 10.2 lub nowszy</li>
+  <li>Mac OS w wersji 10.3 lub nowszy</li>
   <li>XCode Tools w wersji 1.2 lub nowsze</li>
 </ul>
 
@@ -227,8 +227,8 @@ potrzebujemy.
 <p>
 Można zainstalować każdą kombinację pakietów, które zostały przetestowane oraz
 przystosowane do pracy z systemem Mac OS. Obecnie, bardzo mała liczba pakietów
-nie jest zamaskowana. Jeśli ebuild nie ma dodanego słowa kluczowego macos, wtedy
-zostanie wyświetlony podobny komunikat do poniższego.
+nie jest zamaskowana. Jeśli ebuild nie ma dodanego słowa kluczowego ppc-macos,
+wtedy zostanie wyświetlony podobny komunikat do poniższego.
 </p>
 
 <pre caption="Przykład zamaskowanego pakietu">
@@ -253,7 +253,7 @@ Można sprawdzić samodzielnie czy jakiś pakiet działa, bez względu na to czy
 pakiet jest zamaskowany czy nie. Użytkownicy, którzy chcą pomóc deweloperom przy
 testowaniu pakietów mogą je odmaskować i przetestować na swoim komputerze.
 Nie polecamy tego mniej doświadczonym osobom. Tę operację można wykonać poprzez
-dodanie słowa kluczowego 'macos' do pliku informacyjnego lub do ebuildu. Aby
+dodanie słowa kluczowego ppc-macos do pliku informacyjnego lub do ebuildu. Aby
 dodać słowo kluczowe do ebuildu należy użyć programu 'ekeyword', który jest
 cześcią pakietu gentoolkit-dev.
 </p>
@@ -265,6 +265,7 @@ cześcią pakietu gentoolkit-dev.
 <pre caption="Dodawanie słowa kluczowego do pakietu">
 # <i>cd /usr/portage/games-misc/cowsay</i>
 # <i>ekeyword ppc-macos cowsay-3.03.ebuild</i>
+# <i>ebuild cowsay-3.03.ebuild digest</i>
 </pre>
 
 <p>
@@ -306,6 +307,7 @@ pakiet jest już zainstalowany.
 </p>
 
 <pre caption="Dodawanie pakietu do pliku package.provided">
+# <i>mkdir -p /etc/portage/profile/</i>
 # <i>echo cat-name/package-x.y.z >> /etc/portage/package.provided</i>
 </pre>
 
@@ -493,7 +495,7 @@ Mac OS X.
 </p>
 
 <p>
-Według polityki Gentoo pod Mac OS X, przed dopisaniem słowa kluczowego 'macos'
+Według polityki Gentoo pod Mac OS X, przed dopisaniem słowa kluczowego 'ppc-macos'
 ebuildy, które instalują biblioteki muszą być sprawdzone to be in working order.
 Większość bibliotek po prostu odnosi się do złych ścieżek, co sprawia, że po
 prostu nie działają. Dla użytkowników lubiących przygody jest prosty sposób,
