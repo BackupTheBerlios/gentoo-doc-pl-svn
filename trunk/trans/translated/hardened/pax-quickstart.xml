@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding="UTF-8"?>
-<!-- Orig revision: 1.3 -->
-<!-- Translator: Paweł Kwiatkowski <yarel@o2.pl> -->
-<!-- Title: Szybkie wprowadzenie do PaX w Gentoo Hardened -->
-<!-- Status: DO KOREKTY -->
-<!-- $Id$ -->
 <!-- $Header$ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<guide link="/proj/pl/hardened/pax-quickstart.xml">
-<title>Szybkie wprowadzenie do PaX w Gentoo Hardened</title>
+<!-- Orig revision: XXX -->
+<!-- Translator: Paweł Kwiatkowski <yarel@o2.pl> -->
+<!-- Status: Finished -->
+
+<!-- $Id$ -->
+
+<guide link="/proj/pl/hardened/pax-quickstart.xml" lang="pl">
+<title>Krótkie wprowadzenie do PaX w Gentoo Hardened</title>
 
 <author title="Autor">
   <mail link="tseng@gentoo.org">Brandon Hale</mail>
@@ -24,11 +25,11 @@
 </author> 
 
 <abstract>
-Szybkie spojrzenie na PaX i Gento Hardened.
+Krótkie omówienie PaX i Gento Hardened.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/2.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <license/>
 
 <version>1.3</version>
@@ -40,8 +41,8 @@ Szybkie spojrzenie na PaX i Gento Hardened.
 <body>
 
 <p>
-Gentoo Hardened to projekt mający na celu ulepszenie zabezpieczeń systemu
-opartego o Gentoo. Prezentujemy kilka różnorodnych rozwiązań, które można
+Gentoo Hardened to projekt mający na celu ulepszenie zabezpieczeń systemów
+opartych o Gentoo. Prezentujemy kilka różnorodnych rozwiązań, które można
 dostosować do własnych potrzeb. W sercu typowej konfiguracji Gentoo Hardened
 znajduje się <e>PaX</e>.
 </p>
@@ -65,8 +66,8 @@ Pierwszy z nich, <e>ASLR</e> (Address Space Layout Randomization - losowy
 rozkład przestrzeni adresowej) dostarcza środków do wprowadzenia losowości do
 schematu adresowania wszystkich danych, które są ładowane do pamięci. Kiedy
 aplikacja jest budowana jako <e>PIE</e> (Position Independent Executable -
-binaria z możliwością relokacji kodu), to dodatkowo PaX jest w stanie wygenerować
-losowy adres bazowy dla aplikacji.
+binaria z możliwością relokacji kodu), to dodatkowo PaX jest w stanie
+wygenerować losowy adres bazowy dla aplikacji.
 </p>
 
 <p>
@@ -87,38 +88,38 @@ strona domowa znajduje się pod adresem <uri>http://pax.grsecurity.net</uri>.
 <body>
 
 <p>
-Jak już wspomniano powyżej, PaX jest uzupełniany przez PIE. Ta metoda, budowania
-plików wykonywalnych, przechowuje informacje potrzebne do relokacji części
+Jak już wspomniano powyżej, PaX jest uzupełniany przez PIE. Ta metoda budowania
+plików wykonywalnych przechowuje informacje potrzebne do relokacji części
 binariów w pamięci, stąd nazwa <e>Position Independent</e> (niezależność od
 pozycji).
 </p>
 
 <p>
-<e>SSP</e> (Stack Smashing Protector) jest drugą, uzupełniającą technologią,
-którą wprowadzamy podczas budowania binariów. Po raz pierwszy, SSP zostało
-przedstawione przez IBM, pod nazwą <e>ProPolice</e>. Rozwiązanie polegało na
-modyfikacji kompilatora C, tak by do funkcji tworzących bufory w pamięci,
+<e>SSP</e> (Stack Smashing Protector) jest drugą uzupełniającą technologią,
+którą wprowadzamy podczas budowania binariów. Po raz pierwszy SSP zostało
+przedstawione przez IBM pod nazwą <e>ProPolice</e>. Rozwiązanie polegało na
+modyfikacji kompilatora C tak, aby do funkcji tworzących bufory w pamięci
 dodawany był kod inicjalizujący. 
 </p>
 
 <note>
 W nowszych wersjach SSP, możliwe jest zastosowanie SSP do wszystkich funkcji,
-wliczając w to ochronę funkcji, dla których rozmiar bufora jest zazwyczaj mniejszy
-niż limit ustalony dla SSP. Jest to włączane przez flagę CFLAG
--fstack-protector-all.
+wliczając w to ochronę funkcji, dla których rozmiar bufora jest zazwyczaj
+mniejszy niż limit ustalony dla SSP. Jest to włączane przez flagę CFLAG
+<c>-fstack-protector-all</c>.
 </note>
 
 <p>
 W trakcie działania programu, podczas tworzenie bufora, SSP dodaje na końcu
 bufora, sekretną wartość losową, tzw. znacznik. Kiedy funkcja kończy działanie,
-to SSP sprawdza, czy znacznik jest nietknięty. Jeśli agresor próbowałby
-przepełnić bufor, to nadpisałby wartość znacznika i tym samym wyzwolił funkcję
-ochrony stosu. Obecnie, funkcja ta,  zabija docelowy proces.
+SSP sprawdza, czy znacznik jest nietknięty. Jeśli agresor próbowałby przepełnić
+bufor, to nadpisałby wartość znacznika i tym samym wyzwolił funkcję ochrony
+stosu. Obecnie funkcja ta zabija docelowy proces.
 </p>
 
 <p>
 <uri link="http://www.trl.ibm.com/projects/security/ssp/">Dalsza lektura na
-temat SSP.</uri>
+temat SSP</uri>.
 </p>
 
 </body>
@@ -131,22 +132,22 @@ temat SSP.</uri>
 <body>
 
 <p>
-Kilka z kerneli, oferowanych w Gentoo, posiada już łatę PaX.
+Kilka z kerneli oferowanych w Gentoo posiada już PaX.
 </p>
 
 <p>
-Dla maszyn opartych o wersji 2.4/2.6, zaleca się użycie kerneli z pakietu
-<c>hardened-sources</c>.
+Dla komputerów opartych o jądra w wersji 2.4 i2.6 zaleca się użycie kerneli z
+pakietu <c>hardened-sources</c>.
 </p>
 
 <p>
-Wybieramy jeden z zalecanych kerneli lub aplikujemy, na nasz kernel, odpowiednią
-łatę z <uri>http://pax.grsecurity.net</uri>, a następnie przeprowadzamy
+Wybieramy jeden z zalecanych kerneli lub aplikujemy na nasz kernel, odpowiednią
+łatę ze strony <uri>http://pax.grsecurity.net</uri>, a następnie przeprowadzamy
 standardową konfigurację.
 </p>
 
 <p>
-W sekcji <c>Security Options -&gt; PaX</c>, zaznaczamy poniższe opcje.
+W sekcji <c>Security Options -&gt; PaX</c> zaznaczamy poniższe opcje.
 </p>
 
 <pre caption="Konfiguracja kernela">
@@ -162,23 +163,23 @@ PaX Control -&gt;
 Non-executable page -&gt;
 
  [*] Enforce non-executable pages
- [*]   Paging based non-executable pages
- [*]   Segmentation based non-executable pages
+ [*] Paging based non-executable pages
+ [*] Segmentation based non-executable pages
  [*] Emulate trampolines
  [*] Restrict mprotect()
- [ ]   Disallow ELF text relocations
+ [ ] Disallow ELF text relocations
 
 Address Space Layout Randomization -&gt;
 
  [*] Address Space Layout Randomization
- [*]   Randomize kernel stack base
- [*]   Randomize user stack base
- [*]   Randomize mmap() base
- [*]     Randomize ET_EXEC base
+ [*] Randomize kernel stack base
+ [*] Randomize user stack base
+ [*] Randomize mmap() base
+ [*] Randomize ET_EXEC base
 </pre>
 
 <p>
-Budujemy standardowo kernel i umieszczamy w lokalizacji <path>/boot</path>.
+Budujemy standardowo kernel i umieszczamy go w katalogu <path>/boot</path>.
 </p>
 
 </body>
@@ -192,33 +193,32 @@ Budujemy standardowo kernel i umieszczamy w lokalizacji <path>/boot</path>.
 
 <p>
 Gentoo Hardened dostarcza wsparcia dla przezroczystego budowania binariów
-z PIE/SPP, przez plik specyfikacji GCC. Oznacza to, że użytkownicy aktualizujący
-starsze wersje instalacji Hardened, powinni usunąć flagi LDFLAGS lub CFLAGS,
-które wyzwalały PIE/SSP. Ponadto, pakiet <c>hardened-gcc</c> jest teraz
-przestarzały i powinien zostać odinstalowany (wersja 5.0 jest pakietem atrapą).
-Jeśli chcemy mieć aktualne GCC, to dodajemy <c>USE="hardened pic"</c> do
-<path>/etc/make.conf</path>, o ile nie używamy profilu hardened.
+z PIE/SPP poprzez plik specyfikacji GCC. Oznacza to, że użytkownicy
+aktualizujący starsze wersje instalacji Hardened, powinni usunąć flagi LDFLAGS
+lub CFLAGS, które wyzwalały PIE/SSP. Ponadto pakiet <c>hardened-gcc</c> jest
+teraz przestarzały i powinien zostać odinstalowany (wersja 5.0 jest pakietem
+atrapą). Jeśli chcemy mieć aktualne GCC, to dodajemy <c>USE="hardened pic"</c>
+do pliki <path>/etc/make.conf</path>, o ile nie używamy profilu hardened.
 </p>
 
 <p>
-Dla utrzymanie spójnego toolchaina, na początku wykonujemy <c>emerge binutils gcc virtual/libc</c>.
-Następnie, musimy przebudować cały system <c>emerge -e world</c>. Wszystkie
-przyszłe pakiety zostaną zbudowane z PIE/SSP.
+Dla utrzymanie spójnego toolchaina, na początku wykonujemy polecenie <c>emerge
+binutils gcc virtual/libc</c>. Następnie musimy przebudować cały system
+poleceniem <c>emerge -e world</c>. Wszystkie później instalowane pakiety zostaną
+zbudowane z PIE/SSP.
 </p>
 
 <warn>
 PIE i SSP są znane z tego, że powodują problemy przy niektórych pakietach. Jeśli
-napotkamy problem z kompilacją pakietu, to powinniśmy zgłosić szczegółowy raport
-błędu, zawierający log z kompilacji oraz wynik polecenia <c>emerge info</c>, na 
-<uri>http://bugs.gentoo.org/</uri>.
+napotkamy problem z kompilacją pakietu, powinniśmy zgłosić szczegółowy raport
+błędu (zawierający log z kompilacji oraz wynik polecenia <c>emerge info</c>) na
+stronie <uri>http://bugs.gentoo.org/</uri>.
 </warn>
 
 <p>
-Możliwe, że będziemy chcieli zainstalować pakiet pax-utils. Często, ELF posiada
-relokacje w segmencie text i może to być przyczyną problemów.
-scanelf -BRylptq
+Możliwe, że będziemy chcieli zainstalować pakiet pax-utils. Często ELF posiada
+relokacje w segmencie text i może to być przyczyną problemów. scanelf -BRylptq
 </p>
-
 
 </body>
 </section>
@@ -230,14 +230,14 @@ scanelf -BRylptq
 <body>
 
 <p>
-Czasem aplikacje, w trakcie działania,  podejmują próby wygenerowania kodu,
-który jest wykonywany poza pamięcią.  PaX, naturalnie, nie pozwoli na takie
-zachowanie i natychmiast zakończy działanie występnego programu.
+Czasem aplikacje w trakcie działania podejmują próby wygenerowania kodu, który
+jest wykonywany poza pamięcią. PaX naturalnie nie pozwoli na takie zachowanie i
+natychmiast zakończy działanie występnego programu.
 </p>
 
 <note>
-Najbardziej godne uwagi z tego rodzaju aplikacji, wydają się XFree/Xorg, mpalyer
-i narzędzia dla multimediów, oparte o xine-lib. Najprostszy sposób na
+Najbardziej godne uwagi z tego rodzaju aplikacji, wydają się XFree, Xorg,
+mpalyer i narzędzia dla multimediów oparte o xine-lib. Najprostszy sposób na
 rozwiązanie problemów to wyłączenie zabezpieczeń PaX.
 </note>
 
@@ -251,7 +251,7 @@ pokazywany jest po wydaniu polecenia <c>paxctl -h</c>.
 <note>
 Jeśli posiadamy starszą wersję pakietu binutils, to będziemy musieli skorzystać
 z programu <e>chpax</e>, który modyfikuje starsze znaczniki PaX. Korzystanie z
-chpax jest w dużej mierze podobne do paxctl. Dodatkowo, wymagane jest wsparcie
+chpax jest w dużej mierze podobne do paxctl. Dodatkowo wymagane jest wsparcie
 kernela dla zapisu znaczników.
 </note>
 
@@ -276,7 +276,7 @@ flagi dla wskazanego pliku wykonywalnego.
 </p>
 
 <pre caption="paxctl -v">
-shell user # paxctl -v /usr/bin/Xorg
+shell user # <i>paxctl -v /usr/bin/Xorg</i>
 PaX control v0.2
 Copyright 2004 PaX Team &lt;pageexec@freemail.hu&gt;
 
@@ -295,26 +295,27 @@ wyłączone.
 </p>
 
 <p>
-Do ustawienia flag na pliku binarnym, korzystamy z opcji <c>-z</c>, która
+Do ustawienia flag na pliku binarnym korzystamy z opcji <c>-z</c>, która
 przywraca domyślne flagi.
 </p>
 
 <p>
-By wyłączyć zabezpieczenia dla Xorg, wykonujemy <c>paxctl -zpeMRxs /usr/bin/Xorg</c>.
+By wyłączyć zabezpieczenia dla Xorg wykonujemy polecenie <c>paxctl -zpeMRxs
+/usr/bin/Xorg</c>.
 </p>
 
 <p>
 Próbujemy włączać/wyłączać zabezpieczenia, by zobaczyć jaki zestaw opcji pozwoli
-na działanie programu. Często zdarzy się, że będziemy potrzebować kombinacji
-opcji -m -sp. 
+na działanie programu. Często zdarza się, że potrzebna jest kombinacja
+opcji <c>-m</c> i <c>-sp</c>.
 </p>
 
 <p>
 Podczas instalacji pakietu chpax, instalowany jest również standardowy skrypt
-init/conf.d, który ze względu na dobrze znane problemy, ustawia uzasadnione opcje 
-domyślne. Chcąc włączyć ustawianie tych uprawnień, przy każdym uruchomieniu
-systemu, należy wykonać następującą komendę:
-<c>emerge chpax ; rc-update add chpax default ; /etc/inid.d/chpax start</c>
+init/conf.d, który ze względu na dobrze znane problemy, ustawia uzasadnione
+opcje domyślne. Chcąc włączyć ustawianie tych uprawnień, przy każdym
+uruchomieniu systemu, należy wykonać następującą komendę: <c>emerge chpax ;
+rc-update add chpax default ; /etc/inid.d/chpax start</c>.
 </p>
 
 </body>
