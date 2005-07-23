@@ -1,11 +1,10 @@
 <?xml version='1.0' encoding="UTF-8"?>
+<!-- $Header -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.8 -->
-<!-- Title: Wymagania sprzętowe dla Gentoo/MIPS Linux -->
+<!-- Orig revision: 1.11 -->
 <!-- Translator: YANOUSHek <yanoushek@emil.teleton.pl> -->
-<!-- Status: Done -->
-<!-- $Header -->
+<!-- Status: Finished -->
 
 <!-- $Id$ -->
 
@@ -17,9 +16,9 @@
   <mail link="kumba@gentoo.org">Joshua Kinard</mail>
 </author>
 <author title="Redaktor">
-  <mail link="stuartl@longlandclan.hopto.org">Stuart Longland</mail>
+   <mail link="redhatter@gentoo.org">Stuart Longland</mail>
 </author>
-<author title="Tłumacz">
+<author title="Tłumaczenie">
   Janusz Bossy
 </author>
 
@@ -30,17 +29,17 @@ należy zgłaszać do autora lub edytora tekstu.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/2.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <license />
 
-<version>0.6</version>
-<date>2005-03-14</date>
+<version>0.7</version>
+<date>2005-07-05</date>
 
 <chapter>
-<title>Ogólne wymagania.</title>
+<title>Ogólne wymagania</title>
 
 <section>
-<title>Wymagania sprzętowe.</title>
+<title>Wymagania sprzętowe</title>
 <body>
 
 <p>
@@ -70,11 +69,9 @@ instalacji Gentoo. Poniższa tabela zawiera przybliżone dane.
 </table>
 
 </body>
-
 </section>
-
 <section>
-<title>Wzmianka o konsolach szeregowych.</title>
+<title>Wzmianka o konsolach szeregowych</title>
 <body>
 
 <p>
@@ -84,8 +81,8 @@ m. in. <c>minicom</c> i <c>xc</c>, natomiast dla systemu Windows -
 <c>HyperTerminal</c> i <c>Tera Term Pro</c>. Jeśli pracujesz na systemie Windows
 i planujesz używać HyperTerminal, to zalecamy używanie najnowszej wersji klienta
 dostępnej na  stronie programu zamiast wersji instalowanej domyślnie z systemem.
-Nowsza wersja klienta dostarcza dużo lepszą obsługę konsoli szeregowej, niż
-ta instalowana przez Windows.
+Nowsza wersja klienta dostarcza dużo lepszą obsługę konsoli szeregowej, niż ta
+instalowana przez Windows.
 </p>
 
 </body>
@@ -472,68 +469,61 @@ stylu zobacz-i-zostaw. Poniższa tabela zawiera poziom obsługi każdego urządz
     <th>Nieobsługiwane/nieprzetestowane</th>
   </tr>
   <tr>
-    <ti>Indy/Indigo2: Karta graficzna XL (Newport)</ti>
-    <ti>Indy: podsystem I2C/VINO i IndyCam</ti>
-    <ti>Indy/Indigo2: Impact i Extreme/XZ chipset graficzny</ti>
-  </tr>
-  <tr>
-    <ti>Indy/Indigo2: SGI Seeq Ethernet 10Mbps</ti>
-    <ti>O2: framebuffer GBE</ti>
-    <ti>Indy: Phobos G130 10/100Mbps NIC</ti>
-  </tr>
-  <tr>
-    <ti>Indy/Indigo2: WD33C93 SCSI</ti>
-    <ti>O2: Sloty PCI</ti>
-    <ti>Indigo2: Sloty GIO64</ti>
-  </tr>
-  <tr>
-    <ti>Indy/Indigo2: HAL2 Dźwięk/Muzyka</ti>
-    <ti>Octane: Klawiatura</ti>
-    <ti>Indigo2: Phobos G160 10/100Mbps NIC</ti>
-  </tr>
-  <tr>
-    <ti>Indy/Indigo2: Port równoległy</ti>
-    <ti>Octane: układ graficzny Mardi Gras (MGRAS)</ti>
-    <ti>Challenge S: Adapter SCSI - WD33C95A/potomna karta RJ-45</ti>
-  </tr>
-  <tr>
-    <ti>Indy/Indigo2: Port szeregowy</ti>
-    <ti>Octane: QLogic ISP1040B SCSI</ti>
-    <ti>O2: podsystem VICE</ti>
-  </tr>
-  <tr>
-    <ti>O2: SGI MACE Ethernet 10/100Mbps</ti>
-    <ti>Octane: Karta audio RAD1</ti>
-    <ti>Octane: wsparcie SMP</ti>
-  </tr>
-  <tr>
-    <ti>O2: Adaptec AIC7880 SCSI</ti>
-    <ti>Origin: IOC3 Ethernet 10/100Mbps</ti>
-    <ti>Octane: Karty graficzne V6/V8/V10/V12 (Odyssey)</ti>
-  </tr>
-  <tr>
-    <ti>O2: Port szeregowy</ti>
-    <ti>Origin: QLogic ISP1020 SCSI</ti>
-    <ti/>
-  </tr>
-  <tr>
-    <ti>Indigo2 ISA: Karta z portem równoległym (PC-Style)</ti>
-    <ti>Indigo2 EISA: 3COM 3c597 10/100Mbps</ti>
-    <ti/>
-  </tr>
-  <tr>
-    <ti>Indigo2 ISA: NE2000 Compatible 10Mbps NIC (RTL8019)</ti>
-    <ti>O2 PCI: ALi 5273 USB 2.0 (Wymaga jądra &gt;=2.6.8.1)</ti>
-    <ti/>
+    <ti>
+      Indy/Indigo2: XL Karta graficzna (Newport)<br/>
+      Indy/Indigo2: SGI Seeq Ethernet 10Mbps<br/>
+      Indy/Indigo2: WD33C93 SCSI<br/>
+      Indy/Indigo2: HAL2 Dźwięk/Muzyka<br/>
+      Indy/Indigo2: Port równoległy<br/>
+      Indy/Indigo2: Port szeregowy<br/>
+      O2: SGI MACE Ethernet 10/100Mbps<br/>
+      O2: Adaptec AIC7880 SCSI<br/>
+      O2: Port szeregowy<br/>
+      Indigo2 ISA: Indigo2 ISA: Karta z portem równoległym<br/>
+      Indigo2 ISA: NE2000 Compatible 10Mbps NIC (RTL8019)
+    </ti>
+    <ti>
+      Indy: I2C/VINO subsystem &amp; IndyCam<br/>
+      Indigo2 EISA: 3COM 3c597 10/100Mbps<br/>
+      O2: GBE Framebuffer<br/>
+      O2: PCI Slot<br/>
+      Octane: Keyboard<br/>
+      Octane: Mardi Gras (MGRAS) Graphics<br/>
+      Octane: QLogic ISP1040B SCSI<br/>
+      Octane: RAD1 Audio<br/>
+      Octane: SMP Support<br/>
+      Octane: V6/V8/V10/V12 Graphics (Odyssey)<br/>
+      Origin: IOC3 Ethernet 10/100Mbps<br/>
+      Origin: QLogic ISP1020 SCSI<br/>
+      O2 PCI: ALi 5273 USB 2.0 (Wymaga kernela &gt;=2.6.8.1)
+    </ti>
+    <ti>
+      (1)Indy/Indigo2: Impact &amp; Extreme/XZ chipset graficzny<br/>
+      Indy: Phobos G130 10/100Mbps NIC<br/>
+      Indigo2: GIO64 Slots<br/>
+      Indigo2: Phobos G160 10/100Mbps NIC<br/>
+      Challenge S: WD33C95A SCSI Adapter/RJ-45 potomna karta<br/>
+      O2: VICE Subsystem
+    </ti>
   </tr>
 </table>
+
+<note>
+(1) Rozpoczęły się prace związane z przenoszeniem ImpactSR na komputery Indigo2
+Impact (IP28). W tym momencie jest to projekt mocno rozwojowy i sterownik nie
+jest jeszcze w pełni funkcjonalny. Może się to jednak zmienić w najbliższych
+miesiącach.<br/> Tak samo z grafiką Extreme... Kilka osób zajmuje się pisaniem
+sterowników dla tego chipsetu. Nic jeszcze nie zostało wydane, ale w niedalekiej
+przyszłości może się to zmienić na lepsze.<br/> Ta strona zostanie
+zaktualizowana jak tylko pojawią się nowe sterowniki.
+</note>
 
 </body>
 </section>
 </chapter>
 
 <chapter>
-<title>Stabilne serwery Cobalt.</title>
+<title>Stabilne serwery Cobalt</title>
 <section>
 <body>
 
