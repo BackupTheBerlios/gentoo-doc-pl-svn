@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding="utf-8"?>
-<!-- Orig revision: 1.2 -->
+<!-- Orig revision: 1.7 -->
 <!-- Translator: Paweł Kwiatkowski <yarel@o2.pl> -->
 <!-- Title: POSIX Capabilities -->
 <!-- Status: tlumaczenie -->
@@ -48,9 +48,9 @@ przywilejów.
 
 <pre caption="CAP_DAC_OVERRIDE">
   <i>CAP_DAC_OVERRIDE</i>
-	Override all DAC access, including ACL execute access 
-	if [_POSIX_ACL] is defined. 
-	Excluding DAC access covered by CAP_LINUX_IMMUTABLE.
+	Likwiduje całkowicie dostęp DAC i jeśli zdefiniowane jest [_POSIX_ALC],
+	to również likwiduje klauzulę ACL dotyczącą prawa wykonywania.
+	Nie dotyczy praw DAC objętych CAP_LINUX_IMMUTABLE.
 </pre>
 
 </body>
@@ -116,8 +116,7 @@ przywilejów.
 
 <pre caption="CAP_FS_MASK">
   <i>CAP_FS_MASK</i>
-	TODO:
-	Used to decide between falling back on the old suser() or fsuser().
+	Używane do określenia czy używać starego suser() czy fsuser().
 </pre>
 
 </body>
@@ -178,6 +177,7 @@ przywilejów.
 
 <pre caption="CAP_SETPCAP">
   <i>CAP_SETPCAP</i>
+	TODO:
 	Transfer any capability in your permitted set to any pid, remove any capability in your permitted set from any pid.
 </pre>
 
@@ -240,13 +240,13 @@ przywilejów.
 	Pozwala na ustawianie opcji debug dla gniazd;
 	Pozwala na modyfikacje tabeli routingu;
 	Pozwala na przypisanie procesowi/grupie procesów prawa własności do gniazd;
-	Pozwala na binding to any address for transparent proxying; TODO:
+	Pozwala na przywiązanie do dowolnego adresu dla przezroczystego proxy;
 	Pozwala na ustawianie TOS ([ang.] type of service);
 	Pozwala na ustawianie trybu promiscuous;
-	Pozwala na czysczenie statystyk sterownika;
+	Pozwala na czyszczenie statystyk sterownika;
 	Pozwala na multicasting;
 	Pozwala na odczyt/zapis, specyficznych dla urządzenia, rejestrów;
-	Pozwala na activation of ATM control sockets. TODO:
+	Pozwala na aktywację gniazd kontrolnych ATM control.
 </pre>
 
 </body>
@@ -377,7 +377,7 @@ przywilejów.
 
 <pre caption="CAP_SYS_ADMIN">
   <i>CAP_SYS_ADMIN</i>
-	Pozwala na configuration of the secure attention key; TODO:
+        Pozwala na konfigurację specjalnej kombinacji klawiszy ([przyp. tłum.]	np. Ctrl-Alt-Del, SysRq);
 	Pozwala na zarządzaniem urządzeniem random;
 	Pozwala na monitorowanie i konfigurawanie limitu miejsca na dysku;
 	Pozwala na konfigurację logowaniem kernela (zachowaniem printk);
@@ -385,7 +385,7 @@ przywilejów.
 	Pozwala na ustawianie nazwy hosta;
 	Pozwala na wywoływanie bdflush();
 	Pozwala na mount() i umount(), ustanownienie nowego połączenia smb;
-	Pozwala na some autofs root ioctls; TODO:
+	Pozwala na niektóre wywołania ioctl dotyczące autofs;
 	Pozwala na nfsservctl; Pozwala na VM86_REQUEST_IRQ;
 	Pozwala na czytać/zapisywać konfigurację pci na architekturze alpha; Pozwala na irix_prctl na architekturze mips (setstacksize);
 	Pozwala na opróżnienie całej pamięci cache na architekturze m68k (sys_cacheflush);
@@ -395,17 +395,17 @@ przywilejów.
 	Pozwala na forged pids on socket credentials passing;
 	Pozwala na ustawianie opcji wyprzedzania odczytu (ang. readahead) i na opróżnianie buforów dla urządzeń blokowych;
 	Pozwala na ustawianie geometrii w stacji dysków;
-	Pozwala na włączanie/wyłązcanie DMA dla xd driver; TODO:
+	Pozwala na włączanie/wyłązcanie DMA dla sterownika xd;
 	Pozwala na zarządzanie urządzeniami md (w większości to co powyżej, plus kilka dodatkowych ioctl);
 	Pozwala na tuning sterownika ide;
 	Pozwala na dostęp do urządzenia nvram;
 	Pozwala na zarządzanie apm_bios, urządzeniami szeregowymi i bttv (TV);
-	Pozwala na manufacturer commands in isdn CAPI support driver; TODO:
-	Pozwala na reading nonstandardized portions of pci configuration space;	TODO:
-	Pozwala na DDI debug ioctl on sbpcd driver; TODO:
+	Pozwala na wykonywanie komend producenta dla sterownika isdn CAPI;
+	Pozwala na czytanie nieustandaryzowanych fragmentów z przestrzeni konfiguracji PCI;
+	Pozwala na wywołania ioctl typu DDI debug dla sterownika sbpcd;
 	Pozwala na konfigurację portów szeregowych;
 	Pozwala na wysyłanie nieprzetworzonych (ang. raw) komend qic117;
-	Pozwala na enabling/disabling tagged queuing on SCSI controllers and sending arbitrary SCSI commands; TODO:
+	Pozwala na włączanie/wyłączanie markoanego kolejkoania dla kontrolerów SCSI i wysyłanie dowolnych komend SCSI; 
 	Pozwala na ustawienie klucza szyfrującego na systemie plików loopback.
 </pre>
 
@@ -436,8 +436,9 @@ przywilejów.
   <i>CAP_SYS_NICE</i>
 	Pozwala na podwyższanie priorytetu i ustawianie priorytetu dla innych
 	procesów (inny UID);
-	Pozwala na use of FIFO and roundrobin (realtime) scheduling on own processes and setting 
-	the scheduling algorithm used by another process.
+	Pozwala na wykorzystanie FIFO i planowania algorytmem roundrobin (w
+	czasie rzeczywistym) dla własnych procesów oraz na ustawiania algorytmu
+	szeregującego używanego przez inny proces.
 </pre>
 
 </body>
@@ -451,16 +452,19 @@ przywilejów.
 
 <pre caption="CAP_SYS_RESOURCE">
   <i>CAP_SYS_RESOURCE</i> 
-	Likwiduje limit dla zasobów. Set resource limits;
-	Likiwduje limit quota;
-	Override reserved space on ext2 filesystem;
+	Likwidacja limitu dla zasobów. Ustawianie ograniczenia dla zasobów;
+	Likiwdacja limitu quota;
+	Ignorowanie zarezerwowanej przestrzeni na systemie plików ext2;
+	Modyfikacja trybu pracy dziennika dla systemu plików ext3 (wykorzystanie
+	zasobów dziennika); UWAGA: ext2 uwzględnia fsuid podczas sprawdzania czy
+	TODO:
 	Modify data journaling mode on ext3 filesystem 
 	(uses journaling resources); NOTE: ext2 honors fsuid when checking for
 	resource overrides, so you can override using fsuid too;
-	Likwiduje ograniczenie rozmiaru na kolejki wiadomości IPC;
+	Likwidacja ograniczenia rozmiaru na kolejki wiadomości IPC;
 	Pozwala na częstsze niż 64hz, generowanie przerwań przez zegar czasu rzeczywistego;
-	Override max number of consoles on console allocation;
-	Likwiduje maks. liczbę map klawiatury.
+	Likwidacja ograniczenia na maks. liczbę konsol przy przydzielaniu kolejnej;
+	Likwidacja ograniczenia na maks. liczbę map klawiatury.
 </pre>
 
 </body>
@@ -505,7 +509,7 @@ przywilejów.
 
 <pre caption="CAP_MKNOD">
   <i>CAP_MKNOD</i>
-	Pozwala na the privileged aspects of mknod().
+	Pozwala na wykorzystanie uprzywilejowanych ustawień mknod().
 </pre>
 
 </body>
@@ -519,7 +523,7 @@ przywilejów.
 
 <pre caption="CAP_LEASE">
   <i>CAP_LEASE</i>
-	Pozwala na taking of leases on files.
+	Pozwala na wynajmowanie plików ([ang.] file lease).
 </pre>
 
 </body>
