@@ -1,11 +1,13 @@
 <?xml version='1.0' encoding="utf-8"?>
+<!-- $Header: $ -->
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+
 <!-- Orig revision: 1.9  -->
 <!-- Translator: Paweł Kwiatkowski <yarel@o2.pl> -->
-<!-- Status: Do korekty -->
-<!-- $Id$ -->
-<!-- $Header: $ -->
+<!-- Status: Finished -->
 
-<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+<!-- $Id$ -->
+
 <guide link="/proj/pl/hardened/grsecurity2.xml" lang="pl">
 
 <title>Przewodnik po Gentoo Grsecurity v2</title>
@@ -37,16 +39,17 @@ Wszystko to po to, by nasz system osiągnął wyższe standardy bezpieczeństwa.
 
 <p>
 Projekt grsecurity, dostępny na <uri>http://wwww.grsecurity.org</uri>, dostarcza
-na jądro Linuksa, różnorodne poprawki, które podnoszą ogólne bezpieczeństwo
-systemu. Różnorodne funkcjonalności, wprowadzone przez grsecurity, są omawiane w
-następnym rozdziale; wyczerpująca lista dostępna jest na <uri 
-link="http://www.grsecurity.org/features.php">stronie funkcjonalności grsecurity</uri>.
+różnorodne poprawki dla jądra Linux, które podnoszą ogólne bezpieczeństwo
+systemu. Różnorodne funkcje wprowadzone przez grsecurity omawiamy w następnym
+rozdziale; wyczerpująca lista dostępna jest na <uri
+link="http://www.grsecurity.org/features.php">stronie omawiającej funkcje
+grsecurity</uri>.
 </p>
 
 <p>
-Funkcjonalności dostarczane przez grsecurity opierają się przeważnie o jądro.
-Większa część tego dokumentu dotyczy różnych opcji jądra i odpowiadających im
-operacjom sysctl (o ile dają się zastosować).
+Funkcje dostarczane przez grsecurity opierają się przeważnie o jądro. Większa
+część tego dokumentu dotyczy różnych opcji jądra i odpowiadającym im operacjom
+sysctl (o ile dają się zastosować).
 </p>
 
 </body>
@@ -57,8 +60,8 @@ operacjom sysctl (o ile dają się zastosować).
 
 <p>
 <uri link="http://hardened.gentoo.org">Projekt Gentoo Hardened</uri> dotyczy
-utrzymania funkcjonalności związanych ze zwiększeniem bezpieczeństwa w Gentoo.
-Zawiera grsecurity, lecz nie ogranicza się tylko do tego. 
+utrzymania funkcji związanych ze zwiększeniem bezpieczeństwa w Gentoo. Zawiera
+grsecurity, lecz nie ogranicza się tylko do niego.
 </p>
 
 </body>
@@ -68,9 +71,9 @@ Zawiera grsecurity, lecz nie ogranicza się tylko do tego.
 <body>
 
 <p>
-W obrębie tego dokumentu będziemy mówić o konfiguracji jądra używając zmiennych
-kernela, typu <c>CONFIG_GRKERNSEC_PAX_NO_ACL_FLAGS</c>. Są to zmienne używane
-podczas procesu budowania jądra, do określenia czy dana funkcjonalność ma być
+W obrębie tego dokumentu będziemy mówić o konfiguracji jądra za pomocą zmiennych
+kernela typu <c>CONFIG_GRKERNSEC_PAX_NO_ACL_FLAGS</c>. Są to zmienne używane
+podczas procesu budowania jądra do określenia czy dana funkcja ma być
 skompilowana.
 </p>
 
@@ -84,7 +87,7 @@ konfiguracyjnej, to zobaczymy nazwę odpowiadającej jej zmiennej kernela.
 <p>
 Możemy nadal konfigurować jądro, tak jak nam się podoba - z odrobiną
 zastanowienia. Jeśli nie możemy znaleźć konkretnej opcji, to zawsze istnieje
-możliwość ręcznej zmiany w  pliku <path>/usr/src/linux/.config</path> :)
+możliwość ręcznej zmiany pliku <path>/usr/src/linux/.config</path>. :)
 </p>
 
 <p>
@@ -116,10 +119,12 @@ Pax</uri> wskazuje na trzy możliwe techniki wykorzystania błędów:
 </p>
 
 <ol>
-  <li>wprowadzenie/wykonanie dowolnego kodu</li>
-  <li>wykonanie istniejącego kodu w sposób nie wynikający z oryginalnego
-  zachowania programu</li>
-  <li>wykonanie istniejącego kodu dla dowolnych danych</li>
+  <li>Wprowadzenie/wykonanie dowolnego kodu</li>
+  <li>
+    Wykonanie istniejącego kodu w sposób nie wynikający z oryginalnego
+    zachowania programu
+  </li>
+  <li>Wykonanie istniejącego kodu dla dowolnych danych</li>
 </ol>
 
 <p>
@@ -130,36 +135,37 @@ procesowi, który potrzebuje pięciu obszarów pamięci:
 
 <ol>
   <li>
-    <e>sekcji danych</e> zawierającej globalne i statycznie przydzielone dane
+    <e>Sekcji danych</e> zawierającej globalne i statycznie przydzielone dane
   </li>
   <li>
-    <e>obszaru BSS</e> (Block Started by Symbol) zawierającego informacje o
+    <e>Obszaru BSS</e> (Block Started by Symbol) zawierającego informacje o
     danych procesu, które zostały zainicjalizowane zerami
   </li>
   <li>
-    <e>obszaru kodu</e> zwanego także <e>segmentem text</e>, który zawiera
+    <e>Obszaru kodu</e> zwanego także <e>segmentem text</e>, który zawiera
     wykonywalne instrukcje
   </li>
   <li>
-    <e>sterty</e> zawierającej dynamicznie przydzielaną pamięć
+    <e>Sterty</e> zawierającej dynamicznie przydzielaną pamięć
   </li>
   <li>
-    <e>stosu</e> zawierającego zmienne lokalne
+    <e>Stosu</e> zawierającego zmienne lokalne
   </li>
 </ol>
 
 <p>
 Pierwsza z metod zapobiegawczych PaX nosi nazwę <b>NOEXEC</b>. Powstała z myślą
 o tym, by kontrolować generowanie kodu w trakcie działania procesu. Strony
-pamięci, które nie zawierają kodu wykonywalnego oznaczane są atrybutem
+pamięci, które nie zawierają kodu wykonywalnego mają przypisany atrybut
 non-executable. Oznacza to, że sterta i stos, które zawierają dane i nie powinny
-zawierać kodu zostają oznaczone jako non-executable. Programy ([ang.] exploits),
-które umieszczają kod w tych obszarach z zamiarem wykonania, nie zadziałają.
+zawierać kodu są traktowane jako niewykonywalne. Programy ([ang.] exploits),
+które umieszczają kod w tych obszarach z zamiarem wykonania nie zadziałają.
 </p>
 
 <p>
-W rzeczywistości NOEXEC ma większe znaczenie, zainteresowani czytelnicy powinni
-skupić uwagę na <uri link="http://pax.grsecurity.net/docs/noexec.txt">dokumentacji NOEXEC w PaX
+W rzeczywistości NOEXEC ma większe znaczenie, zainteresowani tematem czytelnicy
+powinni skorzystać z <uri
+link="http://pax.grsecurity.net/docs/noexec.txt">dokumentacji NOEXEC w PaX
 </uri>.
 </p>
 
@@ -168,7 +174,7 @@ Drugą zapobiegawczą metodą PaX jest <b>ASLR</b> (Address Space Layout
 Randomization - losowy rozkład przestrzeni adresowej). Wprowadza ona element
 losowości do żądań przydziału pamięci. Tam, gdzie poprzednio pamięć była
 przydzielana w sposób ciągły (co oznacza, że programy, próbujące wykorzystać
-błędy, wiedziały gdzie usytuowane są obszary pamięci procesu), ASLR wprowadza
+błędy wiedziały gdzie usytuowane są obszary pamięci procesu), ASLR wprowadza
 element losowości do przydziału pamięci, sprawiając tym samym, że techniki
 wykorzystujące takie informacje stały się bezużyteczne.
 </p>
@@ -220,7 +226,7 @@ CONFIG_GRKERNSEC_HIDESYM=y
 </pre>
 
 <p>
-Na systemach non-x86 można zauważyć, że nie istnieje flaga
+Na systemach innych niż x86 można zauważyć, że nie istnieje flaga
 CONFIG_GRKERNSEC_PAX_NOEXEC. Zamiast niej należy wybrać
 CONFIG_GRKERNSEC_PAX_PAGEEXEC, gdyż poprzednia opcja stanowi obejście
 implementacyjne braku bita non-exec.
@@ -233,7 +239,7 @@ implementacyjne braku bita non-exec.
 <body>
 
 <p>
-Nie wszystkie Linuksowe aplikacje działają przy ograniczeniach wprowadzonych
+Nie wszystkie linuksowe aplikacje działają przy ograniczeniach wprowadzonych
 przez PaX. Wśród nich znajdują się xorg-x11, java, mplayer, xmms i inne. Jeśli
 zamierzamy z nich korzystać, to możemy zmienić poziom zabezpieczeń dla tych
 aplikacji wykorzystując <c>chpax</c> oraz <c>paxctl</c>.
@@ -245,7 +251,7 @@ aplikacji wykorzystując <c>chpax</c> oraz <c>paxctl</c>.
 </pre>
 
 <p>
-chpax dostarcza skryptu startowego, który obsługuje za nas większość znanych
+Z chpax dostarczany jest skrypt startowy, który obsługuje większość znanych
 ustawień aplikacji:
 </p>
 
@@ -273,7 +279,7 @@ Wśród interesujących narzędzi znajdują się <c>scanelf</c> oraz <c>pspax</c
     skład idealnie działającej konfiguracji pax/grsec
   </li>
   <li>
-    <c>pspax</c> pozwala na wyświetlenie PaXowych flag/capabilities/xattr, tak
+    <c>pspax</c> pozwala na wyświetlenie PaX-owych flag/capabilities/xattr, tak
     jak są widziane przez jądro
   </li>
 </ul>
@@ -335,10 +341,10 @@ W powyższym przykładzie z testów, możemy zauważyć że:
     technologii takich jak <uri link="/proj/en/hardened/propolice.xml">ProPolice/SSP</uri>
   </li>
   <li>
-    brakuje losowości dla PAGEEXEC. Jest to normalne, gdyż zalecana przez nas
-    konfiguracja jądra x86, nie zawiera ustawień dla PAGEEXEC. Jednakże na
+    Brakuje losowości dla PAGEEXEC. Jest to normalne, gdyż zalecana przez nas
+    konfiguracja jądra x86 nie zawiera ustawień dla PAGEEXEC. Jednakże na
     architekturach, które wspierają prawdziwy bit NX (non-executable) (a
-    większość tak robi, łacinie z x86_64), PAGEEXEC jest jedyną metodą dostępną
+    większość tak robi, łącznie z x86_64), PAGEEXEC jest jedyną metodą dostępną
     NOEXEC, która nie generuje narzutu na wydajność.
   </li>
 </ul>
@@ -368,7 +374,7 @@ Wsparcie grsecurity dla implementacji MAC zwane jest Role Based Access Control
 (kontrola dostępu oparta na rolach). RBAC kojarzy wszystkich użytkowników z
 <e>rolami</e>. Każda z ról definiuje operacje jakie mogą być wykonywane na
 określonych obiektach. Posiadając dobrze napisany zbiór ról i operacji jesteśmy
-pewni, że użytkownicy będą mogli wykonywać tylko zadania, do których mają prawo.
+pewni, że użytkownicy będą mogli wykonywać tylko zadania do których mają prawo.
 Domyślne ustawienie "deny-all" zapewnia, że użytkownicy nie będą mogli wykonać
 akcji, o których nie pomyśleliśmy. 
 </p>
@@ -423,15 +429,15 @@ włączeniem systemu RBAC należy ustawić hasło dla administratora.
 <pre caption="Aktywacja systemu RBAC">
 # <i>gradm -P admin</i>
 Setting up grsecurity RBAC password
-Password: <comment>(Enter a well-chosen password)</comment>
-Re-enter Password: <comment>(Enter the same password for confirmation)</comment>
+Password: <comment>(Dobrze wybrane hasło)</comment>
+Re-enter Password: <comment>(Ponownie to samo hasło)</comment>
 Password written in /etc/grsec/pw
 # <i>gradm -E</i>
 </pre>
 
 <p>
 Do wyłaczenie systemu RBAC wykorzystujemy polecenie <c>gradm -D</c>. Jeśli nie
-możemy tego wykonać, to wcześniej musimy przełączyć się do roli administratora:
+możemy go wykonać, to wcześniej musimy przełączyć się do roli administratora:
 </p>
 
 <pre caption="Wyłączanie systemu RBAC">
@@ -642,7 +648,7 @@ sposób:
 
 <p>
 Grsecurity2 zawiera wiele poprawek, które uniemożliwiają użytkownikom uzyskanie
-zbytecznej wiedzy o systemie. W ich skład wchodzą ograniczenia na wykorzystanie
+nadmiernej wiedzy o systemie. W ich skład wchodzą ograniczenia na wykorzystanie
 <path>/proc</path>, chrootowania, linkowania, itp. 
 </p>
 
@@ -691,13 +697,14 @@ CONFIG_GRKERNSEC_CHROOT_CAPS=y
 <body>
 
 <p>
-Jeśli korzystamy z jądra skompilowanego z powyższą (lub podobną)
-konfiguracją, to będziemy mieli możliwość włączania/wyłączania wielu ustawień
-przez system plików <path>/proc</path> lub przez wywołania <c>sysctl</c>.
+Jeśli korzystamy z jądra skompilowanego z powyższą (lub podobną) konfiguracją,
+to będziemy mieli możliwość włączania/wyłączania wielu ustawień przez system
+plików <path>/proc</path> lub przez wywołania <c>sysctl</c>.
 </p>
 
 <p>
-Poniższy przykład pokazuje fragment typowego pliku <path>/etc/sysctl.conf</path>:
+Poniższy przykład pokazuje fragment typowego pliku
+<path>/etc/sysctl.conf</path>:
 </p>
 
 <pre caption="Przykładowe ustawienia w /etc/sysctl.conf">
@@ -717,7 +724,7 @@ kernel.grsecurity.chroot_deny_shmat = 1
 </pre>
 
 <p>
-Jeśli tylko chcemy, to możemy włączać, bądź wyłączać ustawienia. W tym celu
+Jeśli tylko chcemy, to możemy włączać bądź wyłączać ustawienia. W tym celu
 korzystamy z komendy <c>sysctl</c>:
 </p>
 
@@ -729,7 +736,7 @@ korzystamy z komendy <c>sysctl</c>:
 </pre>
 
 <p>
-Istnieje bardzo ważne ustawienie sysctl, wchodzące w skład grsecurity. Chodzi o 
+Istnieje bardzo ważne ustawienie sysctl, wchodzące w skład grsecurity. Chodzi o
 <c>kernel.grsecurity.grsec_lock</c>. Kiedy zostanie włączone, to nie będziemy w
 stanie zmieniać innych ustawień.
 </p>
@@ -761,7 +768,7 @@ aplikacje uruchamiają się, urządzenia są montowane itp.
 <body>
 
 <p>
-Do włączenia ustawień audytu jądra, można użyć poniższych opcji konfiguracyjnych
+Do włączenia ustawień audytu jądra można użyć poniższych opcji konfiguracyjnych
 kernela:
 </p>
 
@@ -795,8 +802,8 @@ CONFIG_GRKERNSEC_AUDIT_TEXTREL=y
 
 <p>
 Grsecurity pozwala na ograniczenie praw dla plików wykonywalnych. Ze względu na
-to, że większość exploitów wykorzystuje uruchomione procesy, takie zabezpieczenie
-pomaga zachować system w pełnej sprawności. 
+to, że większość exploitów wykorzystuje uruchomione procesy takie
+zabezpieczenie pomaga zachować system w pełnej sprawności. 
 </p>
 
 </body>
@@ -883,14 +890,14 @@ Jeśli nie chcemy korzystać z tego profilu, to dodajemy do zmiennej USE w
 
 <ul>
   <li><uri link="http://grsecurity.net/">Strona domowa Grsecurity</uri></li>
-  <li><uri link="http://forums.grsecurity.net/">Fora Grsecurity</uri></li>
+  <li><uri link="http://forums.grsecurity.net/">Forum Grsecurity</uri></li>
   <li>
     <uri link="http://grsecurity.net/researchpaper.pdf">Poprawienie wydajności 
     i rozdrobnienia w Role-Based Access Control Systems</uri>
   </li>
   <li>
-    <uri link="http://www.gentoo.org/proj/en/hardened/capabilities.xml">
-    Nazwy i opisy capabilities</uri>
+    <uri link="http://www.gentoo.org/proj/en/hardened/capabilities.xml"> Nazwy i
+    opisy możliwości</uri>
   </li>
   <li>
     <uri link="http://grsecurity.net/quickstart.pdf">Szybkie wprowadzenie do
@@ -906,7 +913,7 @@ Jeśli nie chcemy korzystać z tego profilu, to dodajemy do zmiennej USE w
     MAC w Gentoo 1.9.x</uri> (Stare)
   </li>
   <li>
-    <uri link="http://grsecurity.net/PaX-presentation_files/frame.htm">PaX:  
+    <uri link="http://grsecurity.net/PaX-presentation_files/frame.htm">PaX:
     Gwarantowany koniec wykonywania dowolnego kodu</uri>
   </li>
   <li>
