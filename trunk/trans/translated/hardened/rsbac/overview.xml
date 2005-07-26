@@ -1,22 +1,27 @@
 <?xml version='1.0' encoding="UTF-8"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd"> 
+<!-- $Header:$ -->
+<guide link="overview.xml" lang="pl">
+<!-- Orig revision: 1.4 -->
+<!-- Translator: -->
+<!-- Status: do korekty -->
 
-<guide link="overview.xml">
-	
-<title>Rule Set Based Access Control (RSBAC) for Linux - Overview</title>
+<!-- $Id: $ -->
 
-<author title="Author">
+<title>Rule Set Based Access Control (RSBAC) w Linuksie - przegląd</title>
+
+<author title="Autor">
   <mail link="ao@rsbac.org">Amon Ott</mail>
 </author>
-<author title="Editor"> 
+<author title="Redaktor"> 
   <mail link="albeiro@gentoo.pl">Michal Purzynski</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="kang@gentoo.org">Guillaume Destuynder</mail>
 </author>  
 
 <abstract>
-This document should give you an overview of RSBAC access control system.
+Dokument daje ogląd RSBAC, tj. mechanizmu kontroli dostępu.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -27,20 +32,21 @@ This document should give you an overview of RSBAC access control system.
 <date>08 April 2005</date>
 
 <chapter>
-<title>Key features</title>
+<title>Kluczowe cechy</title>
 
 <section>
 <body>
 
 <ul>
-<li>Free Open Source (GPL) Linux kernel security extension</li>
-<li>Independent of governments and big companies</li>
-<li>Several well-known and new security models, including MAC, ACL and RC</li>
-<li>Control over individual users and program network accesses</li>
-<li>Any combination of models is possible</li>
-<li>Easily extensible: write your own model for runtime registration</li>
-<li>Supports all the current kernels</li>
-<li>Stable for production use</li>
+<li>rozszerzenie mechanizmu bezpieczeństwa jądra na zasadach Free Open Source (GPL)</li>
+<li>niezależność od rządów i wielkich firm</li>
+<li>kilka dobrze znanych modeli bezpieczeństwa, włączając w to MAC, ACL i RC</li>
+<li>kontrola dostępu sieciowego na poziomie poszczególnych programów i
+użytkowników</li>
+<li>możliwość zastosowania dowolnej kombinacji modeli</li>
+<li>łatwa rozszerzalność: piszemy własny model do wykorzystania w trakcie działania</li>
+<li>wsparcie dla wszystkich bieżących jąder</li>
+<li>stabilność dla produkcyjnego użycia</li>
 </ul>
 
 </body>
@@ -48,53 +54,59 @@ This document should give you an overview of RSBAC access control system.
 </chapter>
 
 <chapter>
-<title>What is RSBAC?</title>
+<title>Czym jest RSBAC?</title>
 <section>
 <body>
 
 <p>	
-RSBAC is a flexible, powerful and fast open source access control
-framework for current Linux kernels, which has been in stable production
-use since January 2000 (version 1.0.9a). The full developement has been done independentely, and no existing access control code has been reused.
+RSBAC jest elastycznym, potężnym i szybkim systemem kontroli dostępu z otwartym
+kodem źródłowym dla obecnych jąder Linuksa. Wersja stabilna wykorzystywana jest
+w warunkach produkcyjnych od stycznia 2000 (ver. 1.0.9a). Cały proces
+developmentu został przeprowadzony niezależnie i nie wykorzystany przy tym
+dostępnych implementacji systemów kontroli dostępu.
 </p>
 
 <p>
-The standard package includes a range of access control models like MAC,
-RC, ACL (see below). Furthermore, the runtime registration facility
-(REG) makes it easy to implement your own access control model as a kernel
-module and get it registered at runtime.
+Standardowy pakiet zawiera zbiór modeli kontroli dostępu takich jak MAC, RC,
+ACL (opis poniżej). Co więcej, udogodnienie w postaci możliwości rejestracji
+modułu w trakcie działania systemu (REG) ułatwia zaimplementowanie własnego
+modelu kontroli dostępu jako modułu jądra i załadowanie go w trakcie działania
+systemu. 
 </p>
 
 <p>
-The RSBAC framework is based on the <uri link="http://www.acsac.org/secshelf/book001/09.pdf">Generalized Framework for Access Control (GFAC)</uri> by Abrams and LaPadula. All security relevant system calls
-are extended by security enforcement code. This code calls the central
-decision component, which in turn calls all active decision modules and
-generates a combined decision. This decision is then enforced by the
-system call extensions.
+RSBAC oparte jest na pomyśle <uri link="http://www.acsac.org/secshelf/book001/09.pdf">Generalized 
+Framework for Access Control (GFAC)</uri> autorstwa Abramsa i LaPaduli.
+Wszystkie wywołania systemowe związane z bezpieczeństwem są rozszerzone przez
+kod egzekwujący bezpieczeństwo. Ten kod wywołuje centralny komponent decyzyjny,
+który z kolei wywołuje wszystkie aktywne moduły decyzyjne i na podstawie
+poszczególnych wyników generuje łączną decyzję. Następnie ta decyzja jest
+wykorzystywana przez mechanizm rozszerzający wywołania systemowe.
 </p>
 
 <p>
-Decisions are based on the type of access (request type), the access
-target and on the values of attributes attached to the subject calling and
-to the target to be accessed. Additional independent attributes can be
-used by individual modules, e.g. the privacy module (<uri link="#doc_chap3_sect4">PM</uri>). All attributes
-are stored in fully protected directories, one on each mounted device.
-Thus changes to attributes require special system calls provided.
+Decyzje podejmowane są na podstawie rodzaju dostępu (typu żądania), obiektu
+docelowego i wartości atrybutów związanych z podmiotem wywołującym oraz obiektem
+docelowym. Dodatkowe niezależne atrybuty mogą być wykorzystane przez własne
+moduły, np. moduł poufności (<uri link="#doc_chap3_sect4">PM</uri>). Wszystkie
+atrybuty przechowywane są w pełni zabezpieczonym katalogu, jednym dla każdego
+zamontowanego urządzenia. Dlatego zmiany atrybutów wymagają dostarczenia
+specjalnych wywołań systemowych.
 </p>
 
 <p>
-From version 1.2.0, all types of network accesses can be controlled
-individually for all users and programs. This gives you full control over
-their network behaviour and makes unintended network accesses easier to
-prevent and detect.
+Od wersji 1.2.0 wszystkie rodzaje dostępu sieciowego mogą być kontrolowane
+osobno dla wszystkich użytkowników i programów. Daje nam to pełną kontrolę nad
+ich sieciowym zachowaniem i sprawia, że łatwiej jest wykryć i zapobiec
+niechciane próby dostępu sieciowego. 
 </p>
 
 <p>
-As all types of access decisions are based on general decision requests,
-many different security policies can be implemented as a decision module.
-Apart from the builtin models shown below, the optional Module
-Registration (REG) allows for registration of additional, individual
-decision modules at runtime.
+Jako że wszystkie rodzaje decyzji o przyznaniu dostępu bazowane są na ogólnych
+regułach decyzyjnych dla żądań, to wiele różnych polityk bezpieczeństwa może
+zostać zaimplementowanych jako moduły decyzyjne. Pomijając wbudowane modele
+pokazane poniżej, rejestracja modułów (REG) pozwala na na dodanie w trakcie
+działania systemu nowych, własnych modułów decyzyjnych.
 </p>
 
 </body>
@@ -102,13 +114,13 @@ decision modules at runtime.
 </chapter>
 
 <chapter>
-<title>Implemented models</title>
+<title>Zaimplementowane modele</title>
 <section>
 <body>
 
 <p>
-In the RSBAC version 1.2.3, the following modules are included. Please
-note that all modules are optional.
+W wersji 1.2.3 RSBAC dostępne są poniższe moduły. Należy zauważyć, że wszystkie
+są opcjonalne.
 </p>
 
 </body>
@@ -118,7 +130,7 @@ note that all modules are optional.
 <title>MAC</title>	
 <body>
 <p>
-Bell-LaPadula Mandatory Access Control
+Bell-LaPadula's Mandatory Access Control - obowiązkowa kontrola dostępu
 </p>
 </body>
 </section>
@@ -127,9 +139,9 @@ Bell-LaPadula Mandatory Access Control
 <title>UM</title>
 <body>
 <p>
-The User Management in RSBAC is kernel based and complements or totally replace 
-Linux’s subsystem.
-Administration of users is enforced with granularity and flexibility.
+Zarządzanie użytkownikami (User Managerment) w RSBAC jest oparte o jądro i
+uzupełnia lub zupełnie zastępuje podsystem linuksowy. Administracja
+użytkownikami jest wymuszona przez szczegółowość i elastyczność.
 </p>
 </body>
 </section>
@@ -138,9 +150,9 @@ Administration of users is enforced with granularity and flexibility.
 <title>FC</title>	
 <body>
 <p>
-Functional Control. A simple role based model, restricting access
-to security information to security officers and access to system
-information to administrators.
+Kontrola funkcjonalna (Functional Control) jest prostym modelem opartym o role,
+ograniczającym dostęp do poufnych informacji, tylko dla inspektorów
+bezpieczeństwa, zaś dostęp do informacji systemowych, tylko dla administratorów.
 </p>
 </body>
 </section>
@@ -149,8 +161,9 @@ information to administrators.
 <title>SIM</title>
 <body>
 <p>
-Security Information Modification. Only security administrators
-are allowed to modify data labeled as security information
+Modyfikacji informacji poufnych (Security Information Modification). Jedynie
+administratorzy zajmujący się bezpieczeństwem są upoważnieni do modyfikacji
+danych oznaczonych jako informacje poufne.
 </p>
 </body>
 </section>
@@ -159,9 +172,10 @@ are allowed to modify data labeled as security information
 <title>PM</title>
 <body>
 <p>
-Privacy Model. <uri link="http://www.cs.kau.se/~simone/">Simone Fischer-Huebner</uri>'s Privacy Model in its
-first implementation. See RSBAC <uri link="http://rsbac.org/doc/media/niss98.php">paper on PM implementation</uri>
-for the National Information Systems Security Conference (NISSC 98)
+Model poufności (Privacy Model). Model poufności autorstwa <uri link="http://www.cs.kau.se/~simone/">Simone Fischer-Huebner</uri>
+w pierwszej implementacji. Publikacja z konferencji National Infomramtion
+Systems Security (NISSC 98) <uri link="http://rsbac.org/doc/media/niss98.php">dotycząca implementacji PM</uri>
+dostępna jest online.
 </p>
 </body>
 </section>
@@ -170,8 +184,9 @@ for the National Information Systems Security Conference (NISSC 98)
 <title>Dazuko</title>
 <body>
 <p>
-This is not really an access control model, but rather a system protection module against
-malware. Execution and reading of malware infected files can be prevented.
+Tak na prawdę nie jest to model kontroli dostępu, ale raczej mechanizm ochrony
+systemu przed złośliwym oprogramowaniem. Może zapobiec uruchomieniu i wczytaniu
+zainfekowanych plików.
 </p>
 </body>
 </section>
@@ -180,12 +195,12 @@ malware. Execution and reading of malware infected files can be prevented.
 <title>FF</title>	
 <body>
 <p>
-File Flags. Provide and use flags for dirs and files, currently
-execute_only (files), read_only (files and dirs), search_only
-(dirs), secure_delete (files), no_execute (files), add_inherited
-(files and dirs), no_rename_or_delete (files and dirs, no
-inheritance) and append_only(files and dirs). Only FF security
-officers may modify these flags.
+Flagi plikowe (File Flag). Dostarcza i wykorzystuje flagi dla katalogów i
+plików. Obecnie execute_only (pliki), read_only (pliki i katalogi), search_only
+(katalogi), secure_delete (pliki), no_execute (pliki), add_inherited (pliki i
+katalogi), no_rename_or_delete (pliki i katalogi, bez dziedziczenia) oraz
+append_only (pliki i katalogi). Flagi plikowe mogą być modyfikowane tylko przez
+inspektorów bezpieczeństwa.
 </p>
 </body>
 </section>
@@ -194,13 +209,14 @@ officers may modify these flags.
 <title>RC</title>
 <body>
 <p>
-Role Compatibility. Defines roles and types for each target type
-(file, dir, dev, ipc, scd, process). For each role, compatibility
-to all types and to other roles can be set individually and with
-request granularity. For administration there is a fine grained
-separation-of-duty. Granted rights can have a time limit. Please
-also refer to the <uri link="http://rsbac.org/doc/media/rc-nordsec2002/index.html">Nordsec 2002 RC Paper</uri> for the detailed model
-design and specification.
+Role Compatibility (zgodność ról). Definiuje role i typy dla każdego rodzaju
+obiektu (pliku, katalogu, urządzenia, ipc, scd, procesu). Zgodność ze wszystkimi
+typami i innymi rolami może być ustawiona osobno dla każdej roli z żądanym
+poziomem szczegółowości. Dla celów administracyjnych istnieje precyzyjne
+rozdzielenie obowiązków. Przypisywane uprawnienia mogą posiadać limit czasowy.
+Szczegółowa specyfikacja i projekt modelu są opisane w publikacji 
+<uri link="http://rsbac.org/doc/media/rc-nordsec2002/index.html">Nordsec 2002 RC
+Paper</uri>.
 </p>
 </body>
 </section>
@@ -209,11 +225,11 @@ design and specification.
 <title>AUTH</title>	
 <body>
 <p>
-Authorization enforcement. Controls all CHANGE_OWNER requests for
-process targets, only programs/processes with general setuid
-allowance and those with a capability for the target user ID may
-setuid. Capabilities can be controlled by other
-programs/processes, e.g. authentication daemons.
+Wymuszenie autoryzacji (Authorization enforcement). Kontroluje wszystkie żądania
+zmiany właściciela dla procesów docelowych. Tylko programy/procesy z ogólnym
+pozwoleniem na setuid i te posiadające capability dla zmiany ID użytkownika
+docelowego procesu, mogą to robić. Capabilities mogą być kontrolowane przez inne
+procesy/programy, np. demony autentykujące. 
 </p>
 </body>
 </section>
@@ -222,17 +238,16 @@ programs/processes, e.g. authentication daemons.
 <title>ACL</title>
 <body>
 <p>
-Access Control Lists. For every object there is an Access Control
-List, defining which subjects may access this object with which
-request types. Subjects can be of type user, RC role and ACL
-group. Objects are grouped by their target type, but have
-individual ACLs. If there is no ACL entry for a subject at an
-object, rights are inherited from parent objects, restricted by an
-inheritance mask. Direct (user) and indirect (role, group) rights
-are accumulated. For each object type there is a default ACL on
-top of the normal hierarchy. Group management has been added in
-version 1.0.9a. Granted rights and group memberships can have a
-time limit.
+Listy kontroli dostępu (Access Control Lists). Dla każdego obiektu istnieje
+lista kontroli dostępu, definiująca które podmioty i z jakimi prawami mogą
+odwoływać się do obiektu. Podmiotami mogą być użytkownicy, role RC oraz grupy
+ACL. Obiekty grupowane są na podstawie typu, lecz mają osobne ACLe. Jeśli dla
+podmiotu odwołującego się do obiektu nie istnieje wpis ACL, to prawa
+dziedziczone są z obiektów nadrzędnych przy uwzględnieniu maski dziedziczenia
+(inheritance mask). Prawa bezpośrednie (użytkownika) i pośrednie (role, grupy)
+są łączone.  Dla każdego typu obiektu istnieje domyślny ACL na szczycie
+normalnej hierarchii. Zarządzani grupami zostało dodane w wersji 1.0.9a. Nadane
+uprawnienia i przynależność do grup mogą posiadać ograniczenia czasowe.
 </p>
 </body>
 </section>
@@ -241,11 +256,11 @@ time limit.
 <title>CAP</title>	
 <body>
 <p>
-Linux Capabilities (new in 1.2.0). For all users and programs you
-can define a minimum and a maximum Linux capability set ("set of
-root special rights"). This lets you e.g. run server programs as
-normal user, or restrict rights of root programs in the standard
-Linux way.
+Linux Capabilities (nowość w 1.2.0). Dla wszystkich użytkowników i programów
+można zdefiniować minimalny i maksymalny zbiór możliwości ("zbiór specjalnych
+uprawnień użytkownika root"). Pozwala to na np. uruchamianie serwerów z poziomu
+zwykłego użytkownika lub ograniczenia, w standardowy dla Linuksa sposób,
+uprawnień programów działających z użytkownika root.
 </p>
 </body>
 </section>
@@ -254,11 +269,11 @@ Linux way.
 <title>JAIL</title>	
 <body>
 <p>
-Process Jails (new in 1.2.1). This module adds a new system call
-rsbac_jail, which is basically a superset of the FreeBSD jail
-system call. It encapsulates the calling process and all
-subprocesses in a chroot environment with a fixed IP address and a
-lot of further restrictions.
+Więzienie dla procesów (process jails; nowość w 1.2.1). Moduł dostarcza nowego
+wywołania systemowego rsbac_jail, które jest po prostu nadzbiorem znanego z
+FreeBSD wywołania systemowego jail. Opakowuje wywołujący proces i wszystkie
+podprocesy w środowisku chroot z ustalonym adresem IP i wieloma innymi
+ograniczeniami.
 </p>
 </body>
 </section>
@@ -267,11 +282,10 @@ lot of further restrictions.
 <title>RES</title>	
 <body>
 <p>
-Linux Resources (new in 1.2.2). For all users and programs you can
-define a minimum and a maximum Linux process resource set (e.g.
-memory size, number of open files, number of processes per user).
-Internally, these sets are applied to the standard Linux resource
-flags.
+Linux Resources (nowość w 1.2.2). Dla wszystkich użytkowników i programów można
+zdefiniować minimalny i maksymalny zbiór zasobów procesów (np. rozmiar pamięci,
+liczba otwartych plików, liczba procesów dla użytkownika). Wewnętrznie te
+ustawienia stosowane są do standardowych linuksowych flag dotyczących zasobów.
 </p>
 </body>
 </section>
@@ -279,15 +293,15 @@ flags.
 <section>
 <body>
 <p>	   
-All decision modules are described in detail on the module description
-page.
+Wszystkie moduły decyzyjne są szczegółowo opisane na stronie z dokumentacją dla
+modułów.
 </p>
 
 <p>
-A general goal of RSBAC design has been to some day reach the (obsolete)
-Orange Book (TCSEC) B1 level. Now it is mostly targeting to be useful as
-secure and multi-purposed networked system, with special interest in
-firewalls.
+Głównym celem projektu RSBAC było osiągnięcie (przestarzałego) poziomu B1 z
+Orange Book (TCSEC). Obecne wysiłki zostały skupione na tym, by był to
+bezpieczny i wielofunkcyjny system sieciowy. Szczególny nacisk został położony
+na firewalle.
 </p>
 
 </body>
