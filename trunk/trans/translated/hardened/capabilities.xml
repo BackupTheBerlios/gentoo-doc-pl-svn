@@ -1,14 +1,12 @@
 <?xml version='1.0' encoding="utf-8"?>
 <!-- Orig revision: 1.7 -->
-<!-- Translator: Paweł Kwiatkowski <yarel@o2.pl> -->
+<!-- Translator: yarel <yarel@o2.pl> -->
 <!-- Title: POSIX Capabilities -->
-<!-- Status: tlumaczenie -->
+<!-- Status: do korekty  -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 <!-- $Id$ -->
 <!-- $Header$ -->
 
-
-<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 <guide link="/proj/pl/hardened/capabilities.xml" lnag="pl">
 <title>Możliwości zdefiniowane w standardzie POSIX (POSIX Capabilities)</title>
 <author title="Autor">
@@ -148,7 +146,7 @@ przywilejów.
   <i>CAP_SETGID</i>
 	Pozwala obsługiwać setgid(2);
 	Pozwala na wywoływanie setgroups(2);
-	Pozwala na forged gids on socket credentials passing. TODO:
+	Pozwala na zmianę gid dla gniazda przy przekazywaniu danych uwierzytleniających.
 </pre>
 
 </body>
@@ -163,7 +161,8 @@ przywilejów.
 <pre caption="CAP_SETUID">
   <i>CAP_SETUID</i>
 	Pozwala na set*uid(2) manipulation (włącznie z fsuid);
-	Pozwala na forged pids on socket credentials passing. TODO:
+	Pozwala na zmianę pid dla gniazda przy przekazywaniu danych
+	uwierzytleniających.
 </pre>
 
 </body>
@@ -457,10 +456,7 @@ przywilejów.
 	Ignorowanie zarezerwowanej przestrzeni na systemie plików ext2;
 	Modyfikacja trybu pracy dziennika dla systemu plików ext3 (wykorzystanie
 	zasobów dziennika); UWAGA: ext2 uwzględnia fsuid podczas sprawdzania czy
-	TODO:
-	Modify data journaling mode on ext3 filesystem 
-	(uses journaling resources); NOTE: ext2 honors fsuid when checking for
-	resource overrides, so you can override using fsuid too;
+	zasoby są ignorowane, więc do zmian można wykorzystać fsuid;
 	Likwidacja ograniczenia rozmiaru na kolejki wiadomości IPC;
 	Pozwala na częstsze niż 64hz, generowanie przerwań przez zegar czasu rzeczywistego;
 	Likwidacja ograniczenia na maks. liczbę konsol przy przydzielaniu kolejnej;
