@@ -2,7 +2,7 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/faq.xml,v 1.3 2005/07/08 19:24:38 neysx Exp $ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.95 -->
+<!-- Orig revision: 1.96 -->
 <!-- Translator: misi0r <apn@o2.pl> -->
 <!-- Title: Gentoo FAQ -->
 <!-- Status: Done -->
@@ -58,8 +58,8 @@ oraz na kanałach IRC.
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <license/>
 
-<version>3.0.6</version>
-<date>2005-07-14</date>
+<version>3.0.7</version>
+<date>2005-07-26</date>
 
 <chapter>
 <title>Pytania:</title>
@@ -69,7 +69,7 @@ oraz na kanałach IRC.
 
 <p>
 Należy zauważyć, że wiele zawartych tutaj rozwiązań znajduje się w dokumentacji
-Gentoo oraz w różnego rodzaju paradnikach. To jest po prostu lista pytań, które
+Gentoo oraz w różnego rodzaju poradnikach. To jest po prostu lista pytań, które
 się najczęściej powtarzają. Aby poznać i zrozumieć sposób działania Linuksa
 należy przeczytać dokumentację i podręczniki man. Na wiele pytań można
 sobie dzięki temu odpowiedzieć samodzielnie.
@@ -140,7 +140,7 @@ sobie dzięki temu odpowiedzieć samodzielnie.
     <uri link="#configure">Wolę korzystać z ./configure. Czy mogę?</uri>
   </li>
   <li>
-    <uri link="#firewall">Jak korzystaś z komendy emerge, gdy jestem za
+    <uri link="#firewall">Jak korzystać z komendy emerge, gdy jestem za
     firewallem?</uri>
   </li>
   <li>
@@ -177,7 +177,7 @@ sobie dzięki temu odpowiedzieć samodzielnie.
     <uri link="#crontab">Dlaczego nie mogę korzystać z crontab?</uri>
   </li>
   <li>
-    <uri link="#numlock">Co zrobić, aby numlock byl domyślnie włączony podczas
+    <uri link="#numlock">Co zrobić, aby numlock był domyślnie włączony podczas
     startu systemu?</uri>
   </li>
   <li>
@@ -357,7 +357,7 @@ uprawnieniami.
 <body>
 
 <p>
-Z powodów bezpiczeństwa, użytkownicy mogą korzystać z polecenia <c>su</c> tylko
+Z powodów bezpieczeństwa, użytkownicy mogą korzystać z polecenia <c>su</c> tylko
 wtedy, gdy należą do grupy wheel. Aby nadać im taki przywilej, jako root
 wpisujemy:
 </p>
@@ -438,7 +438,7 @@ użytkowników programu GRUB:</comment>
 
 <p>
 Jeśli od samego początku pojawia problem z uruchamianiem systemu należy
-przeczytać jeszcze raz poprzedni rozdział, szczególnie część dotyczacą
+przeczytać jeszcze raz poprzedni rozdział, szczególnie część dotyczącą
 konfiguracji programu ładującego. Ponowna kompilacja kernela nie jest
 potrzebna.
 </p>
@@ -455,9 +455,9 @@ zdefiniować odpowiednie zmienne w pliku <path>/etc/make.conf</path>:
 </p>
 
 <pre caption="/etc/make.conf">
-HTTP_PROXY="http://nazwa_uzytkownika:haslo_uzytkownika@twoje_proxy.org:port"
-FTP_PROXY="http://nazwa_uzytkownika:haslo_uzytkownika@twoje_proxy.org:port"
-RSYNC_PROXY="http://nazwa_uzytkownika:haslo_uzytkownika@twoje_proxy.org:port"
+HTTP_PROXY="http://nazwa_użytkownika:hasło_użytkownika@proxy.org:port"
+FTP_PROXY="http://nazwa_użytkownika:hasło_użytkownika@proxy.org:port"
+RSYNC_PROXY="http://nazwa_użytkownika:hasło_użytkownika@proxy.org:port"
 </pre>
 
 </body>
@@ -498,7 +498,7 @@ najpopularniejsze z nich, uwzględniając kilka systemów operacyjnych:
   <li>
     W K3B wybieramy <c>Tools</c> &gt; <c>CD</c> &gt; <c>Burn CD Image</c>.
     Odszukujemy nasz plik ISO z 'Image to Burn'. Naciskamy przycisk
-    <c>Start</c>, aby rozpocząc proces nagrywania.
+    <c>Start</c>, aby rozpocząć proces nagrywania.
   </li>
   <li>
     W Mac OS X Panther uruchamiamy <c>Disk Utility</c> z
@@ -582,7 +582,7 @@ RPM-ów.
 <p>
 Tak, ale nie jest to ani łatwe, ani przyjemne, ani zalecane. Metoda ta wymaga
 dobrego rozumienia zasady działania Portage oraz znajomości bardzo
-zawansowanych komend. W tym przypadku radzimy dokonać zmian w pliku
+zaawansowanych komend. W tym przypadku radzimy dokonać zmian w pliku
 ebuild (właśnie po to on istnieje). Jest to <e>o wiele</e> lepsze rozwiązanie
 związane nie tylko z zarządzaniem pakietami, ale również z prostotą wykonania.
 Więcej informacji znajduje się w dokumencie <uri
@@ -812,7 +812,7 @@ na <c>#gentoo</c> w sieci freenode.
 <body>
 
 <p>
-Pakiety w Gentoo są uaktualniane niedługo po wypuszeczniu nowego kodu przez
+Pakiety w Gentoo są uaktualniane niedługo po wypuszeczeniu nowego kodu przez
 autorów oprogramowania. Dla Gentoo "jako takiego" również są wypuszczane
 uaktualnienia w postaci nowych plików etapowych [stage], profili oraz plików
 ISO. Informacje o nich ukazują się na stronie projektu <uri
@@ -850,7 +850,8 @@ wykonać następującą czynność:
 </pre>
 
 <p>
-Musimy zastąpić /dev/vc/1 terminalem, na którym mają być wyłączone dzwięki.
+Musimy zastąpić <path>/dev/vc/1</path> terminalem, na którym mają być wyłączone
+dźwięki.
 </p>
 
 </body>
@@ -865,7 +866,7 @@ Musimy zastąpić /dev/vc/1 terminalem, na którym mają być wyłączone dzwię
 
 <p>
 Oficjalna dokumentacja znajduje się na stronie
-<uri>http://docs.gentoo.org</uri>.
+<uri>http://www.gentoo.org/doc/pl/</uri>.
 </p>
 
 </body>
