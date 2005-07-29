@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<!-- Orig revision: 1.22 -->
+<!-- Orig revision: 1.23 -->
 <!-- Translator: flamenco108 <smirnow@data.pl> -->
 <!-- Title: Przewodnik po sprzętowej akceleracji 3D -->
 <!-- Status: Ukończono -->
@@ -29,12 +29,11 @@ Linuksie Gentoo z Xorg.
 
 <license/>
 
-<version>1.0.10</version>
-<date>2005-07-13</date>
+<version>1.0.11</version>
+<date>2005-07-27</date>
 
 <chapter>
-<title>Wprowadzenie.</title>
-<section>
+<title>Wprowadzenie</title><section>
 <title>Sprzętowa akceleracja 3D - czym jest i po co?</title>
 <body>
 
@@ -78,7 +77,7 @@ które mają na celu lepiej wspierać możliwości wideo ATI.
 <p>
 Direct Rendering Infrastructure (<uri
 link="http://dri.sourceforge.net">dri.sourceforge.net</uri>), czyli
-Infrastruktura Bezpośredniego Odtwarzania, znana jako DRI, jest szkieletem dla
+Infrastruktura Bezpośredniego Renderowania, znana jako DRI, jest szkieletem dla
 bezpośredniego dostępu do sprzętu graficznego w sposób wydajny i bezpieczny.
 Zawiera modyfikacje dla serwera X, bibliotek klient-serwer oraz jądra.
 Najważniejszym zastosowaniem DRI jest tworzenie środowiska do szybkiej
@@ -105,20 +104,20 @@ bezpośredniego renderingu.
 
 <p>
 Przewodnik ten jest dla tych, którzy nie mogą uzyskać bezpośredniego renderingu
-z samym serwerem Xorg. X11-DRM działa ze sterownikami serii 3dfx, gamma, i8x0, matrox, rage128,
-radeon, mach64 oraz sis300. Więcej informacji pod adresem<uri
+z samym serwerem Xorg. X11-DRM działa ze sterownikami serii 3dfx, gamma, i8x0,
+matrox, rage128, radeon, mach64 oraz sis300. Więcej informacji pod adresem<uri
 link="http://dro.sourceforge.net">strony DRI</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Pytania, sugestie, propozycje.</title>
+<title>Pytania, sugestie, propozycj</title>>
 <body>
 
 <p>
-Wszelkie pytania, sugestie i propozycje prosimy zgłaszać na
-adres <mail link="spyderous@gentoo.org">Donniego Berkholza</mail>.
+Wszelkie pytania, sugestie i propozycje prosimy zgłaszać na adres <mail
+link="spyderous@gentoo.org">Donniego Berkholza</mail>.
 </p>
 
 </body>
@@ -126,20 +125,20 @@ adres <mail link="spyderous@gentoo.org">Donniego Berkholza</mail>.
 </chapter>
 
 <chapter>
-<title>Instalaowanie Xorg i konfiguracja jądra systemu.</title>
+<title>Instalaowanie Xorg i konfiguracja jądra system</title>>
 <section>
-<title>Instalowanie Xorg.</title>
+<title>Instalowanie Xor</title>>>
 <body>
 
 <p>
-Aby uruchomić Xorg, należy przeczytać <uri link="/doc/pl/xorg-config.xml">Przewodnik po
-konfiguracji Xorg</uri>.
+Aby uruchomić Xorg, należy przeczytać <uri
+link="/doc/pl/xorg-config.xml">Przewodnik po konfiguracji Xorg</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Konfiguracja jądra.</title>
+<title>Konfiguracja jądra</title>>
 <body>
 
 <p>
@@ -149,7 +148,7 @@ Należy zaznaczyć odpowiednią dla posiadanego chipsetu opcję.
 <pre caption="Sprawdzanie chipsetu AGP">
 # <i>emerge pciutils; lspci | grep AGP</i>
 # <i>00:01.0 PCI bridge: Intel Corp. 440BX/ZX/DX - 82443BX/ZX/DX AGP bridge (rev 03)</i>
-<comment>(Wyniki sprawdzenia mogą być różne zależnie od sprzętu.)</comment>
+<comment>(Wyniki sprawdzenia mogą być różne zależnie od sprzętu)</comment>
 </pre>
 
 <p>
@@ -168,7 +167,7 @@ systemu. Zostały one skonfigurowane z użyciem gentoo-sources-2.4.20-r5.
 <pre caption="Konfiguracja jądra systemu.">
 # <i>ls -l /usr/src/linux </i>
 lrwxrwxrwx    1 root     root           22 May 29 18:20 /usr/src/linux -> linux-2.4.20-gentoo-r5
-<comment>(Należy się upewnić, że /usr/src/linux to link symboliczny do aktualnego kernela.)</comment>
+<comment>(Należy się upewnić, że /usr/src/linux to dowiązanie symboliczne do aktualnego kernela)</comment>
 # <i>cd /usr/src/linux</i>
 # <i>make menuconfig</i>
 </pre>
@@ -180,20 +179,20 @@ Character devices ---&gt;
 &lt;M&gt; /dev/agpgart (AGP Support)
 [*] Intel 440LX/BX/GX and I815/I820/I830M/I830MP/I840/I845/I850/I860 support
 <comment>(Należy wybrać swój chipset zamiast powyższego)</comment>
-[ ] Direct Rendering Manager (XFree86 DRI support)
+&lt; &gt; Direct Rendering Manager (XFree86 4.1.0 and higher DRI support)
 </pre>
 
 <p>
 Posiadacze jądra serii 2.4 muszą się upewnić, że Direct Rendering
 Manager (DRM) jest wyłączony (<e>off</e>). Pakiet X11-DRM sam to ustawi.
-Użytkownicy kernela serii 2.6 powinni uruchomić (<e>enable</e>) DRM ręcznie,
+Użytkownicy jądra serii 2.6 powinni uruchomić (<e>enable</e>) DRM ręcznie,
 ponieważ jak dotychczas pakiet X11-DRM nie jest obsługiwany w serii 2.6.
 </p>
 
 </body>
 </section>
 <section>
-<title>Kompilowanie i instalacja jądra systemu.</title>
+<title>Kompilowanie i instalacja jądra systemu</title>>
 <body>
 
 <pre caption="Kompilacja i instalacja jądra systemu">
@@ -214,9 +213,9 @@ przypadku LILO, trzeba jeszcze wczytać konfigurację przy pomocy polecenia
 </section>
 </chapter>
 <chapter>
-<title>Instalowanie X11-DRM i konfiguracja direct rendering.</title>
+<title>Instalowanie X11-DRM i konfiguracja direct rendering</title>>
 <section>
-<title>Instalowanie X11-DRM.</title>
+<title>Instalowanie X11-DRM</title>>
 <body>
 
 <warn>
@@ -231,15 +230,15 @@ Użytkownicy jąder serii 2.6 mogą pominąć tę część i przejść bezpośre
 </body>
 </section>
 <section id="configure_xorg">
-<title>Konfigurowanie xorg.conf.</title>
+<title>Konfigurowanie xorg.conf</title>>
 <body>
 
 <p>
-Na niektórych chipsetach konieczne będzię przebudowanie pakietu <c>xorg-x11</c>
-z flagą <c>USE="insecure-drivers"</c>. Dotyczy to układów mach64, unichrome i
-savage na xorg-x11-6.8.2 oraz mach64 i unichrome na xorg-x11-6.8.99.x.
-Posiadacze układów Savage nie powinni korzystać z xorg-x11-6.8.99.x, ponieważ
-jego obsługa tam jest zepsuta.
+Na niektórych chipsetach konieczne będzie przekompilowanie pakietu
+<c>xorg-x11</c> z flagą <c>USE="insecure-drivers"</c>. Dotyczy to układów
+mach64, unichrome i savage na xorg-x11-6.8.2 oraz mach64 i unichrome na
+xorg-x11-6.8.99.x. Posiadacze układów Savage nie powinni korzystać z
+xorg-x11-6.8.99.x, ponieważ jego obsługa tam jest zepsuta.
 </p>
   
 <pre caption="Ponowna kompilacja xorg-x11">
@@ -273,7 +272,7 @@ EndSection
 </pre>
 
 <p>
-Użytkownicy innych sterowników muszą odpowiedno zmodyfikować wpis "radeon".
+Użytkownicy innych sterowników muszą odpowiednio zmodyfikować wpis "radeon".
 </p>
 
 </body>
@@ -281,14 +280,14 @@ Użytkownicy innych sterowników muszą odpowiedno zmodyfikować wpis "radeon".
 </chapter>
 
 <chapter>
-<title>Testowanie akceleracji 3D.</title>
+<title>Testowanie akceleracji 3D</title>>
 <section>
-<title>Ponowne uruchomienie systemu z użyciem nowego jądra.</title>
+<title>Ponowne uruchomienie systemu z użyciem nowego jądra</title>>
 <body>
 
 <p>
-Po ponownym uruchomieniu systemu należy sprawdzić czy direct
-rendering został zainstalowany i czy dobrze działa.
+Po ponownym uruchomieniu systemu należy sprawdzić czy direct rendering został
+zainstalowany i czy dobrze działa.
 </p>
 
 <pre caption="Testowanie renderingu">
@@ -299,7 +298,7 @@ direct rendering: Yes
 <comment>(Jeżeli odpowiedź brzmi: "No", akcelaracja 3D nie została zainstalowana)</comment>
 # <i>glxgears</i>
 <comment>(Test ilości ramek na sekundę (FPS) w domyślnej wielkości. Liczba powinna być)</comment>
-<comment>(znacząco wyższa niż przed instalacją x11-drm. Test należy wykonać w czasie, kiedy procesor możliwie nie jest zajęty innymi zadaniami.)</comment>
+<comment>(znacząco wyższa niż przed instalacją x11-drm. Test należy wykonać w czasie, kiedy procesor możliwie nie jest zajęty innymi zadaniami)</comment>
 </pre>
 
 </body>
@@ -307,7 +306,7 @@ direct rendering: Yes
 </chapter>
 
 <chapter>
-<title>Używanie źródeł z CVS.</title>
+<title>Używanie źródeł z CVS</title>>
 <section>
 <body>
 
@@ -318,7 +317,7 @@ Nie należy ich używać jeżeli pakiet działa prawidłowo.
 </body>
 </section>
 <section>
-<title>Czy CVS jest potrzebny?</title>
+<title>Czy CVS jest potrzebny</title>>
 <body>
 
 <p>
@@ -331,7 +330,7 @@ sterownika.
 </body>
 </section>
 <section>
-<title>Czy źródła CVS obsługują daną kartę?</title>
+<title>Czy źródła CVS obsługują daną kartę</title>>
 <body>
 
 <p>
@@ -368,25 +367,23 @@ may not need the patch.
 </body>
 </section>
 <section>
-<title>Podążanie za instrukcjami CVS.</title>
+<title>Podążanie za instrukcjami CVS</title>>
 <body>
 
 <p>
 Projekt DRI posiada <uri
 link="http://dri.sourceforge.net/cgi-bin/moin.cgi/Building">dokumentację</uri>
-na temat kompilowania CVS. Należy wybrać odpowiednią instrukcję:
-<e>Instalacja dla XFree86</e> lub
-<e>Instalacja dla X.org</e>.
+na temat kompilowania CVS. Należy wybrać instrukcję <e>Instalacja dla X.org</e>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Instalowanie CVS.</title>
+<title>Instalowanie CVS</title>>
 <body>
 
 <p>
-Należy sprawdzić czy moduły DRI kernela zostały zbudowane:
+Należy sprawdzić czy moduły DRI jądra zostały zbudowane:
 </p>
 
 <pre caption="Weryfikacja">
@@ -396,16 +393,15 @@ Należy sprawdzić czy moduły DRI kernela zostały zbudowane:
 <p>
 Dla 3dfx Voodoo powinno być <path>tdfx.o</path>. W przypadku Matroxa
 G200/G400, <path>mga.o</path>. Dla Ati Rage 128, powinno być
-<path>r128.o</path>. W przypadku Ati Radeona
-<path>radeon.o</path>. Dla Intela i810, powinno być <path>i810.o</path>.
-Jeżeli nie udało się zbudować modułu DRI kernela należy sprawdzić, czy
-używana jest właściwa wersja jądra Linux. Zwykle najnowsze jądra nie
-obsługują DRI.
+<path>r128.o</path>. W przypadku Ati Radeona <path>radeon.o</path>. Dla Intela
+i810, powinno być <path>i810.o</path>.  Jeżeli nie udało się zbudować modułu DRI
+jądra należy sprawdzić, czy używana jest właściwa wersja jądra Linux. Zwykle
+najnowsze jądra nie obsługują DRI.
 </p>
 
 <p>
-Kolejnym krok to instalacja na XFree86 lub X.org. Po pierwsze trzeba wykonać kopię
-zapasową xfree lub xorg-x11.
+Kolejny krok to instalacja X.org. Po pierwsze trzeba wykonać kopię zapasową
+pakietu xorg-x11.
 </p>
 
 <pre caption="Kopia zapasowa Xorg">
@@ -419,16 +415,15 @@ Powrót do instrukcji "Konfiguracja Xorg" powyżej.
 </p>
 
 <p>
-Aby załadować właściwy moduł DRM do działającego jądra systemu, należy
-skopiować moduł kernela do <path>/lib/modules/`uname -r`/kernel/drivers/char/drm/</path>.
-Następnie uruchomić <c>modules-update</c> i zrestartować serwer X. Jeżeli nie jest
-uruchamiany kernel z wbudowanym tym elementem, zamiast <c>`uname -r`</c> należy
-użyć nazwy jądra.
-
+Aby załadować właściwy moduł DRM do działającego jądra systemu, należy skopiować
+moduł jądra do <path>/lib/modules/`uname -r`/kernel/drivers/char/drm/</path>.
+Następnie uruchomić <c>modules-update</c> i zrestartować serwer X. Jeżeli nie
+jest uruchamiany kernel z wbudowanym tym elementem, zamiast <c>`uname -r`</c>
+należy użyć nazwy jądra.
 </p>
 
 <warn>
-Należy się upewnić że wszystkie wcześniejsze wersje modułów DRI zostały
+Należy się upewnić, że wszystkie wcześniejsze wersje modułów DRI zostały
 odłączone. Z drugiej strony niektóre moduły DRM wymagają wcześniejszego
 załadowania agpart.
 </warn>
@@ -438,14 +433,14 @@ załadowania agpart.
 </chapter>
 
 <chapter>
-<title>Ulepszanie działania.</title>
+<title>Ulepszanie działania</title>
 <section>
-<title>Przyspieszanie direct renderingu.</title>
+<title>Przyspieszanie direct renderingu</title>
 <body>
 
 <p>
-Kilka odpowiednio ustawionych opcji może zwiększyć wydajność nawet o
-30 procent. Ustawia się je w <path>/etc/X11/xorg.conf</path>.
+Kilka odpowiednio ustawionych opcji może zwiększyć wydajność nawet o 30 procent.
+Ustawia się je w <path>/etc/X11/xorg.conf</path>.
 </p>
 
 <pre caption="xorg.conf">
@@ -463,8 +458,8 @@ EndSection
 
 <p>
 Aby poznać więcej opcji należy przeczytać ich <uri
-link="http://dri.sourceforge.net/doc/dri_driver_features.phtml">listę
-</uri> na stronie DRI.
+link="http://dri.sourceforge.net/doc/dri_driver_features.phtml">listę </uri> na
+stronie DRI.
 </p>
 
 </body>
@@ -472,32 +467,32 @@ link="http://dri.sourceforge.net/doc/dri_driver_features.phtml">listę
 </chapter>
 
 <chapter>
-<title>Rozwiązywanie problemów.</title>
+<title>Rozwiązywanie problemów</title>
 <section>
-<title>Sterowniki przestały działać po wymianie jądra na nowsze.</title>
+<title>Sterowniki przestały działać po wymianie jądra na nowsze</title>
 <body>
 
 <p>
-Za każdym razem gdy rekompiluje się jądro lub nawet przełącza się na nowe,
-należy przebudować również jego moduły. Nie ma potrzeby ponownego instalowania
-xfree, czy xorg-11, ale niezbędne będzie przemergowanie x11-drm.
+Za każdym razem gdy ponownie kompiluje się jądro lub nawet przełącza się na
+nowe, należy przebudować również jego moduły. Nie ma potrzeby ponownego
+instalowania xfree, czy xorg-11, ale niezbędne będzie przemergowanie x11-drm.
 </p>
 
 </body>
 </section>
 <section>
-<title>Nie działa rendering, nie wiem dlaczego.</title>
+<title>Nie działa rendering, nie wiadomo dlaczego</title>
 <body>
 
 <p>
-Spróbuj <c>insmod radeon</c> przed wystartowaniem serwera X. Spróbuj
-również wbudować agpgart do kernela, zamiast ładować go jako moduł.
+Należy wpisać <c>insmod radeon</c> przed wystartowaniem serwera X. Warto również
+wbudować agpgart do kernela, zamiast ładować go jako moduł.
 </p>
 
 </body>
 </section>
 <section>
-<title>Kiedy wpiszę startx, wyskakuje błąd: "[drm] failed to load kernel module agpgart".</title>
+<title>Po wpisaniu startx, wyskakuje błąd: "[drm] failed to load kernel module agpgart"</title>
 <body>
 
 <p>
@@ -509,18 +504,18 @@ ten komunikat.
 </body>
 </section>
 <section>
-<title>Direct rendering nie działa, a w /var/log/Xorg.0.log widzę komunikat błędu o zbyt starej wersji sterownika.</title>
+<title>Direct rendering nie działa, a w /var/log/Xorg.0.log pojawia się komunikat błędu o zbyt starej wersji sterownika</title>
 <body>
 
 <p>
-Nie używasz sterownika x11-drm. Sprawdź, czy masz skompilowany DRM oraz
-sterownik w jądrze. Prawdopodobnie nie masz.
+Nie używamy sterownika x11-drm. Sprawdzamy, czy mamy skompilowany DRM oraz
+sterownik w jądrze. Prawdopodobnie go nie ma.
 </p>
 
 </body>
 </section>
 <section>
-<title>Mam Radeona, chcę mieć TV-Out.</title>
+<title>Mam Radeona, chcę mieć TV-Out</title>
 <body>
 
 <p>
@@ -530,7 +525,7 @@ Spróbuj sterowników ati-gatos. <c>emerge -s gatos</c>.
 </body>
 </section>
 <section>
-<title>To nie działa. Moja karta jest bardzo nowa i w ogóle nie jest wspierana.</title>
+<title>To nie działa. Karta jest bardzo nowa i w ogóle nie jest wspierana</title>
 <body>
 
 <p>
@@ -542,7 +537,7 @@ pomoże, użyj fbdev. Jest powolny, ale działa.
 </body>
 </section>
 <section>
-<title>Mam kartę PCI i nic nie działa. Pomocy!</title>
+<title>Mam kartę PCI i nic nie działa. Pomocy</title>
 <body>
 
 <p>
@@ -558,17 +553,17 @@ Option "ForcePCIMode" "True"
 </chapter>
 
 <chapter>
-<title>Podziękowania.</title>
+<title>Podziękowania</title>
 <section>
 <body>
 
 <ol>
   <li>
-  Dla Christophera Webbera za sugestię podpowiedzi na temat zmiany lub
-  rekompilacji kernela.
+    Dla Christophera Webbera za sugestię podpowiedzi na temat zmiany lub
+    rekompilacji kernela.
   </li>
   <li>
-  Dla Steve'a, za zwrócenie uwagi na wypadki dri oraz DRI w XF86Config.
+    Dla Steve'a, za zwrócenie uwagi na wypadki dri oraz DRI w XF86Config.
   </li>
 </ol>
 
@@ -577,7 +572,7 @@ Option "ForcePCIMode" "True"
 </chapter>
 
 <chapter>
-<title>Przydatne adresy.</title>
+<title>Przydatne adresy</title>
 <section>
 <body>
 

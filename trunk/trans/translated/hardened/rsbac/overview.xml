@@ -1,10 +1,12 @@
 <?xml version='1.0' encoding="UTF-8"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd"> 
 <!-- $Header:$ -->
-<guide link="overview.xml" lang="pl">
+
+<guide link="/proj/pl/hardened/rsbac/overview.xml" lang="pl">
+
 <!-- Orig revision: 1.4 -->
-<!-- Translator: -->
-<!-- Status: do korekty -->
+<!-- Translator: Paweł Kwiakowski <yarel@o2.pl>-->
+<!-- Status: Finished -->
 
 <!-- $Id$ -->
 
@@ -14,18 +16,18 @@
   <mail link="ao@rsbac.org">Amon Ott</mail>
 </author>
 <author title="Redaktor"> 
-  <mail link="albeiro@gentoo.pl">Michal Purzynski</mail>
+  <mail link="albeiro@gentoo.pl">Michał Purzyński</mail>
 </author>
 <author title="Redaktor">
   <mail link="kang@gentoo.org">Guillaume Destuynder</mail>
 </author>  
 
 <abstract>
-Dokument daje ogląd RSBAC, tj. mechanizmu kontroli dostępu.
+Krótkie omówienie RSBAC, czyli mechanizmu kontroli dostępu.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <license/>
 
 <version>1.1</version> 
@@ -38,15 +40,23 @@ Dokument daje ogląd RSBAC, tj. mechanizmu kontroli dostępu.
 <body>
 
 <ul>
-<li>rozszerzenie mechanizmu bezpieczeństwa jądra na zasadach Free Open Source (GPL)</li>
-<li>niezależność od rządów i wielkich firm</li>
-<li>kilka dobrze znanych modeli bezpieczeństwa, włączając w to MAC, ACL i RC</li>
-<li>kontrola dostępu sieciowego na poziomie poszczególnych programów i
-użytkowników</li>
-<li>możliwość zastosowania dowolnej kombinacji modeli</li>
-<li>łatwa rozszerzalność: piszemy własny model do wykorzystania w trakcie działania</li>
-<li>wsparcie dla wszystkich bieżących jąder</li>
-<li>stabilność dla produkcyjnego użycia</li>
+  <li>
+    Rozszerzenie mechanizmu bezpieczeństwa jądra na zasadach Free Open Source (GPL)
+  </li>
+  <li>Niezależność od rządów i wielkich firm</li>
+  <li>
+    Kilka dobrze znanych modeli bezpieczeństwa, włączając w to MAC, ACL i RC
+  </li>
+  <li>
+    Kontrola dostępu sieciowego na poziomie poszczególnych programów i
+    użytkowników
+  </li>
+  <li>możliwość zastosowania dowolnej kombinacji modeli</li>
+  <li>
+    Łatwa rozszerzalność: piszemy własny model do wykorzystania w trakcie działania
+  </li>
+  <li>Wsparcie dla wszystkich bieżących jąder</li>
+  <li>Stabilność dla produkcyjnego użycia</li>
 </ul>
 
 </body>
@@ -58,11 +68,11 @@ użytkowników</li>
 <section>
 <body>
 
-<p>	
+<p>
 RSBAC jest elastycznym, potężnym i szybkim systemem kontroli dostępu z otwartym
 kodem źródłowym dla obecnych jąder Linuksa. Wersja stabilna wykorzystywana jest
 w warunkach produkcyjnych od stycznia 2000 (ver. 1.0.9a). Cały proces
-developmentu został przeprowadzony niezależnie i nie wykorzystany przy tym
+rozwijania został przeprowadzony niezależnie i nie wykorzystany przy tym
 dostępnych implementacji systemów kontroli dostępu.
 </p>
 
@@ -96,9 +106,9 @@ specjalnych wywołań systemowych.
 
 <p>
 Od wersji 1.2.0 wszystkie rodzaje dostępu sieciowego mogą być kontrolowane
-osobno dla wszystkich użytkowników i programów. Daje nam to pełną kontrolę nad
-ich sieciowym zachowaniem i sprawia, że łatwiej jest wykryć i zapobiec
-niechciane próby dostępu sieciowego. 
+osobno dla wszystkich użytkowników i programów. Daje to pełną kontrolę nad ich
+sieciowym zachowaniem i sprawia, że łatwiej jest wykryć i zapobiec niechciane
+próby dostępu sieciowego. 
 </p>
 
 <p>
@@ -127,73 +137,83 @@ są opcjonalne.
 </section>
 
 <section>
-<title>MAC</title>	
+<title>MAC</title>
 <body>
+
 <p>
 Bell-LaPadula's Mandatory Access Control - obowiązkowa kontrola dostępu
 </p>
+
 </body>
 </section>
-
 <section>
 <title>UM</title>
 <body>
+
 <p>
 Zarządzanie użytkownikami (User Managerment) w RSBAC jest oparte o jądro i
 uzupełnia lub zupełnie zastępuje podsystem linuksowy. Administracja
 użytkownikami jest wymuszona przez szczegółowość i elastyczność.
 </p>
+
 </body>
 </section>
-
 <section>
-<title>FC</title>	
+<title>FC</title>
 <body>
+
 <p>
 Kontrola funkcjonalna (Functional Control) jest prostym modelem opartym o role,
 ograniczającym dostęp do poufnych informacji, tylko dla inspektorów
 bezpieczeństwa, zaś dostęp do informacji systemowych, tylko dla administratorów.
 </p>
+
 </body>
 </section>
 
 <section>
 <title>SIM</title>
 <body>
+
 <p>
 Modyfikacji informacji poufnych (Security Information Modification). Jedynie
 administratorzy zajmujący się bezpieczeństwem są upoważnieni do modyfikacji
 danych oznaczonych jako informacje poufne.
 </p>
+
 </body>
 </section>
 
 <section>
 <title>PM</title>
 <body>
+
 <p>
-Model poufności (Privacy Model). Model poufności autorstwa <uri link="http://www.cs.kau.se/~simone/">Simone Fischer-Huebner</uri>
-w pierwszej implementacji. Publikacja z konferencji National Infomramtion
-Systems Security (NISSC 98) <uri link="http://rsbac.org/doc/media/niss98.php">dotycząca implementacji PM</uri>
-dostępna jest online.
+Model poufności (Privacy Model). Model poufności autorstwa <uri
+link="http://www.cs.kau.se/~simone/">Simone Fischer-Huebner</uri> w pierwszej
+implementacji. Publikacja z konferencji National Infomramtion Systems Security
+(NISSC 98) <uri link="http://rsbac.org/doc/media/niss98.php">dotycząca
+implementacji PM</uri> dostępna jest online.
 </p>
+
 </body>
 </section>
-
 <section>
 <title>Dazuko</title>
 <body>
+
 <p>
-Tak na prawdę nie jest to model kontroli dostępu, ale raczej mechanizm ochrony
+Tak naprawdę nie jest to model kontroli dostępu, ale raczej mechanizm ochrony
 systemu przed złośliwym oprogramowaniem. Może zapobiec uruchomieniu i wczytaniu
 zainfekowanych plików.
 </p>
+
 </body>
 </section>
-
 <section>
-<title>FF</title>	
+<title>FF</title>
 <body>
+
 <p>
 Flagi plikowe (File Flag). Dostarcza i wykorzystuje flagi dla katalogów i
 plików. Obecnie execute_only (pliki), read_only (pliki i katalogi), search_only
@@ -202,12 +222,13 @@ katalogi), no_rename_or_delete (pliki i katalogi, bez dziedziczenia) oraz
 append_only (pliki i katalogi). Flagi plikowe mogą być modyfikowane tylko przez
 inspektorów bezpieczeństwa.
 </p>
+
 </body>
 </section>
-
 <section>
 <title>RC</title>
 <body>
+
 <p>
 Role Compatibility (zgodność ról). Definiuje role i typy dla każdego rodzaju
 obiektu (pliku, katalogu, urządzenia, ipc, scd, procesu). Zgodność ze wszystkimi
@@ -218,25 +239,27 @@ Szczegółowa specyfikacja i projekt modelu są opisane w publikacji
 <uri link="http://rsbac.org/doc/media/rc-nordsec2002/index.html">Nordsec 2002 RC
 Paper</uri>.
 </p>
+
 </body>
 </section>
-
 <section>
-<title>AUTH</title>	
+<title>AUTH</title>
 <body>
+
 <p>
 Wymuszenie autoryzacji (Authorization enforcement). Kontroluje wszystkie żądania
 zmiany właściciela dla procesów docelowych. Tylko programy/procesy z ogólnym
 pozwoleniem na setuid i te posiadające capability dla zmiany ID użytkownika
 docelowego procesu, mogą to robić. Capabilities mogą być kontrolowane przez inne
-procesy/programy, np. demony autentykujące. 
+procesy/programy, np. demony uwierzytelniające. 
 </p>
+
 </body>
 </section>
-
 <section>
 <title>ACL</title>
 <body>
+
 <p>
 Listy kontroli dostępu (Access Control Lists). Dla każdego obiektu istnieje
 lista kontroli dostępu, definiująca które podmioty i z jakimi prawami mogą
@@ -249,12 +272,13 @@ są łączone.  Dla każdego typu obiektu istnieje domyślny ACL na szczycie
 normalnej hierarchii. Zarządzani grupami zostało dodane w wersji 1.0.9a. Nadane
 uprawnienia i przynależność do grup mogą posiadać ograniczenia czasowe.
 </p>
+
 </body>
 </section>
-
 <section>
-<title>CAP</title>	
+<title>CAP</title>
 <body>
+
 <p>
 Linux Capabilities (nowość w 1.2.0). Dla wszystkich użytkowników i programów
 można zdefiniować minimalny i maksymalny zbiór możliwości ("zbiór specjalnych
@@ -262,12 +286,14 @@ uprawnień użytkownika root"). Pozwala to na np. uruchamianie serwerów z pozio
 zwykłego użytkownika lub ograniczenia, w standardowy dla Linuksa sposób,
 uprawnień programów działających z użytkownika root.
 </p>
+
 </body>
 </section>
 
 <section>
-<title>JAIL</title>	
+<title>JAIL</title>
 <body>
+
 <p>
 Więzienie dla procesów (process jails; nowość w 1.2.1). Moduł dostarcza nowego
 wywołania systemowego rsbac_jail, które jest po prostu nadzbiorem znanego z
@@ -275,24 +301,27 @@ FreeBSD wywołania systemowego jail. Opakowuje wywołujący proces i wszystkie
 podprocesy w środowisku chroot z ustalonym adresem IP i wieloma innymi
 ograniczeniami.
 </p>
+
 </body>
 </section>
 
 <section>
-<title>RES</title>	
+<title>RES</title>
 <body>
+
 <p>
 Linux Resources (nowość w 1.2.2). Dla wszystkich użytkowników i programów można
 zdefiniować minimalny i maksymalny zbiór zasobów procesów (np. rozmiar pamięci,
 liczba otwartych plików, liczba procesów dla użytkownika). Wewnętrznie te
 ustawienia stosowane są do standardowych linuksowych flag dotyczących zasobów.
 </p>
+
 </body>
 </section>
-
 <section>
 <body>
-<p>	   
+
+<p>
 Wszystkie moduły decyzyjne są szczegółowo opisane na stronie z dokumentacją dla
 modułów.
 </p>
@@ -309,4 +338,3 @@ na firewalle.
 </chapter>
 
 </guide>
-
