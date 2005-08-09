@@ -1,9 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.69 -->
+<!-- Orig revision: 1.2 -->
 <!-- Translator: sekretarz <sekretarz@gentoo.org> -->
-<!-- Title: Konfiguracja systemu -->
 <!-- Status: Release -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -14,8 +13,8 @@
 
 <sections>
 
-<version>2.10</version>
-<date>2005-06-28</date>
+<version>5.0</version>
+<date>2005-08-08</date>
 
 <section>
 <title>Informacje o systemach plików</title>
@@ -25,8 +24,8 @@
 
 <p>
 W Linuksie wszystkie używane przez system partycje powinny być
-wpisane do <path>/etc/fstab</path>. Plik ten zawiera informacje o tym gdzie
-w strukturze katalogów), z jakimi opcjami i kiedy (automatycznie przy starcie
+wpisane do <path>/etc/fstab</path>. Plik ten zawiera informacje o tym gdzie w
+strukturze katalogów), z jakimi opcjami i kiedy (automatycznie przy starcie
 systemu, czy nie, przez zwykłych użytkowników, czy nie itd.) mają zostać
 zamontowane.
 </p>
@@ -72,8 +71,9 @@ określoną funkcję:
 </ul>
 
 <p>
-Domyślny <path>/etc/fstab</path> dostarczany przez Gentoo <e> nie jest poprawnym plikiem fstab</e>,
-uruchom więc <c>nano</c> (lub swój ulubiony edytor) i utwórz swój własny plik <path>/etc/fstab</path>:
+Domyślny <path>/etc/fstab</path> dostarczany przez Gentoo <e> nie jest poprawnym
+plikiem fstab</e>, uruchom więc <c>nano</c> (lub swój ulubiony edytor) i utwórz
+swój własny plik <path>/etc/fstab</path>:
 </p>
 
 <pre caption="Tworzenie /etc/fstab">
@@ -81,15 +81,14 @@ uruchom więc <c>nano</c> (lub swój ulubiony edytor) i utwórz swój własny pl
 </pre>
 
 <p>
-Spójrzmy jak zapisać opcje partycji <path>/boot</path>.
-To tylko przykład, nie musisz go przepisywać jeśli twoja
-architektura jej nie wymaga (np. <b>PPC</b>).
+Spójrzmy jak zapisać opcje partycji <path>/boot</path>.  To tylko przykład, nie
+musisz go przepisywać jeśli twoja architektura jej nie wymaga (np. <b>PPC</b>).
 </p>
 
 <p>
-W naszym przykładowym schemacie (dla x86) <path>/boot</path> znajduje się
-na <path>/dev/hda1</path> i używa systemu plików <c>ext2</c>, która
-ma być sprawdzana podczas rozruchu;
+W naszym przykładowym schemacie (dla x86) <path>/boot</path> znajduje się na
+<path>/dev/hda1</path> i używa systemu plików <c>ext2</c>, która ma być
+sprawdzana podczas rozruchu;
 </p>
 
 <pre caption="Przykładowy wpis do /etc/fstab dla /boot">
@@ -104,9 +103,9 @@ partycję za każdym razem kiedy chcesz jej użyć.
 </p>
 
 <p>
-Aby poprawić wydajność, większość użytkowników zapewne zechce dodać
-opcję <c>noatime</c>. Dzięki niej nie są rejestrowane czasy dostępów
-(których zazwyczaj nie potrzebujesz):
+Aby poprawić wydajność, większość użytkowników zapewne zechce dodać opcję
+<c>noatime</c>. Dzięki niej nie są rejestrowane czasy dostępów (których
+zazwyczaj nie potrzebujesz):
 </p>
 
 <pre caption="Poprawiony wpis /boot do /etc/fstab">
