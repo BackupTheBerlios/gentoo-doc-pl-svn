@@ -1,23 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- Orig revision: 1.35 -->
+<!-- Orig revision: 1.2 -->
 <!-- Translator: lucass <lucass@gentoo.pl> -->
-<!-- Title: O instalacji Gentoo Linux -->
 <!-- Status: Release -->
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/handbook/hb-install-about.xml,v 1.9 2005/07/04 22:59:48 neysx Exp $ -->
+<!-- $Header: $ -->
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
 <!-- $Id: hb-install-about.xml 1257 2005-07-07 09:02:11Z rane $ -->
 
 <sections>
 
-<version>2.1</version>
-<date>2005-03-30</date>
+<version>5.0</version>
+<date>2005-08-08</date>
 
 <section>
-<title>Wprowadzenie.</title>
+<title>Wprowadzenie</title>
 <subsection>
 <title>Witaj!</title>
 <body>
@@ -129,18 +128,17 @@ inną uruchamialną płytę (np. Knoppix), środowisko uruchamiane z sieci
 </p>
 
 <p>
-W Podręczniku omawiamy instalację przy użyciu płyt Gentoo LiveCD oraz,
-w pewnych przypadkach, rozruchu z sieci (netboot). Generalnie zakładamy, że
-użytkownik zamierza zainstalować najnowsze dostępne wersje pakietów. Instalację
-bez dostępu do Internetu omawiamy w <uri link="2005.0/index.xml">Podręcznikach
-Gentoo 2005.0</uri>.
+W tym Podręczniku omawiamy proces instalacji za pomocą uniwersalnych płyt,
+zawierających źródła programów umożliwiające instalację Gentoo bez dostępu do
+sieci. Opcjonalnie można też skorzystać z płyt z prekompilowanymi pakietami,
+które znacznie przyspieszą proces instalacji.
 </p>
 
 <p>
-W przypadku instalacji przy pomocy GRP (Gentoo Reference Platform - kolekcja
-prekompilowanych pakietów służących do błyskawicznego instalowania Gentoo)
-<e>trzeba</e> skorzystać z instrukcji w <uri
-link="2005.0/index.xml">Podręcznikach Gentoo 2005.0</uri>.
+Takie podejście powoduje jednak, że nie zostaną zainstalowane najnowsze wersje
+używanych pakietów. Jeśli ma to być instalacja z użyciem sieci, należy
+skorzystać z podstawowego <uri link="/doc/pl/handbook/index.xml">Podręcznika
+Gentoo</uri>.
 </p>
 
 <p>
@@ -159,8 +157,8 @@ dokumentacji</uri>.
 Możliwości wyboru nie kończą się na medium instalacyjnym. Możliwe jest
 skompilowanie całego systemu od podstaw lub wykorzystanie do jego budowy
 prekompilowanych pakietów, co zaoszczędzi mnóstwo czasu. Oczywiście są także
-rozwiązania mieszane, dzięki którym nie trzeba kompilować wszystkiego i
-można zacząć od częściowo przygotowanego systemu.
+rozwiązania mieszane, dzięki którym nie trzeba kompilować wszystkiego i można
+zacząć od częściowo przygotowanego systemu.
 </p>
 
 </body>
@@ -172,14 +170,13 @@ można zacząć od częściowo przygotowanego systemu.
 <p>
 Jeśli w czasie instalacji pojawi się jakiś problem (lub wystąpią błędy w
 dokumentacji) zachęcamy do odwiedzenia naszej <uri
-link="http://bugs.gentoo.org">bugzilli</uri> i sprawdzenia czy został
-on już zgłoszony. Jeśli jeszcze o nim nie wiemy prosimy o wypełnienie
-i wysłanie odpowiedniego formularza. Nie należy się bać developerów, do których
-zostanie przypisany raport, zwykle nie gryzą.
+link="http://bugs.gentoo.org">bugzilli</uri> i sprawdzenia czy został on już
+zgłoszony. Jeśli jeszcze o nim nie wiemy prosimy o wypełnienie i wysłanie
+odpowiedniego formularza. Nie należy się bać developerów, do których zostanie
+przypisany raport, zwykle nie gryzą.
 </p>
 
 <p>
-<!-- rane/tlumacz: strasznie pomotane zdanie, piszę po swojemu, osądzą mnie Bóg i historia-->
 Pomimo, że spora część Podręcznika jest wspólna dla wszystkich architektur
 istnieją w nim również odnośniki do poszczególnych z nich. Staramy się
 ograniczać to zjawisko do minimum, aby uniknąć dezorientowania czytelników.
@@ -204,11 +201,98 @@ w żadnym z nich zawsze można zapytać maniaków przesiadujących na kanale #ge
 <!-- info o tym gdzie zgłaszać błędy związane z tłumaczeniami-->
 <p>
 W przypadku błędów związanych z tłumaczeniem Podręcznika należy kontaktować się
-z osobami wymienionymi w prawym górnym rogu strony jako główni tłumacze. Można
-wysłać do nich list, ale najszybszą metodą jest zwykle kontakt bezpośredni na
-ircu, gdzie przesiadują w przerwach między kolejnymi chłostami za literówki w
-tekstach. Najczęściej można ich spotkać na kanałach #gentoo-doc-pl w sieci
-freenode i #gentoo.pl na ircnecie.
+z osobami wymienionymi w prawym górnym rogu strony jako tłumacze poprzez pocztę
+elektroniczną.
+</p>
+
+</body>
+</subsection>
+</section>
+<section>
+<title>Szybka instalacja za pomocą GRP (Gentoo Reference Platform)</title>
+<subsection>
+<title>Co to jest GRP?</title>
+<body>
+
+<p>
+GRP to zestaw prekompilowanych pakietów, których można użyć podczas instalacji
+Gentoo do znacznego przyspieszenia tego procesu. W skład tego zestawu wchodzą
+wszystkie pakiety niezbędne do prawidłowej pracy systemu. Nie są to jednak
+jedynie pakiety systemowe, w zestawie dostarczamy także wiele innych programów,
+zwłaszcza tych, których kompilacja zajmuje wyjątkowo dużo czasu, jak KDE,
+xorg-x11, GNOME, OpenOffice, czy Mozilla.
+</p>
+
+<p>
+Pakiety te nie są aktualizowane przez cały czas, zawsze są to wersje używane w
+czasie, gdy wychodziło określone wydanie Gentoo. Po zainstalowaniu systemu warto
+je zaktualizować do najnowszych wersji.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Jak Portage obsługuje pakiety GRP?</title>
+<body>
+
+<p>
+Drzewo Portage to kolekcja plików <e>ebuild</e> (zawierających informacje o
+danym pakiecie, takie jak jego opis, adres strony internetowej, adres kodów
+źródłowych, opis procesu kompilacji i zależności). Przed skorzystaniem z GRP
+drzewo musi być zsynchronizowane z ich zestawem. Wersje ebuildów i pakietów GRP
+muszą wzajemnie sobie odpowiadać.
+</p>
+
+<p>
+W związku z tym z GRP najlepiej korzystać tuż po wydaniu Gentoo. Pakiety te nie
+są dostępne gdy instaluje się nowsze wersje niż te, które były dostępne podczas
+wydawania Gentoo.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Czy GRP są dostępne?</title>
+<body>
+
+<p>
+Nie na wszystkich architekturach. Nie oznacza to, że nie ma ich tam wcale,
+tylko, że zabrakło zasobów do ich zbudowania.
+</p>
+
+<p>
+Obecnie dostarczamy GRP dla następujących architektur:
+</p>
+
+<ul>
+  <li>
+    <b>x86</b> (x86, athlon-xp, pentium3, pentium4). Uwaga: płyta instalacyjna
+    z pakietami dla x86 (packages-x86-2005.1.iso) jest dostępna na serwerach
+    lustrzanych, a płyty dla pentium3, pentium4 i athlon-xp można pobrać za
+    pomocą bittorrent.
+  </li>
+  <li>
+    Architektura <b>amd64</b> (amd64)
+  </li>
+  <li>
+    Architektura <b>sparc</b> (parc64)
+  </li>
+  <li>
+    Architektura <b>ppc</b> (G3, G4, G5)
+  </li>
+  <li>
+    Architektura <b>alpha</b>
+  </li>
+</ul>
+
+<p>
+Jeśli używana architektura nie znajduje się na powyższej liście, to nie można
+skorzystać z opcjonalego ułatwienia związanego z instalacją za pomocą GRP.
+</p>
+
+<p>
+Zacznijmy zatem instalację od <uri
+link="?part=1&amp;chap=2">Uruchomienia uniwersalnej płyty instalacyjnej</uri>.
 </p>
 
 </body>
