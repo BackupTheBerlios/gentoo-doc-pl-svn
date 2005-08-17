@@ -8,12 +8,8 @@
   <mail link="rane@gentoo.pl">Łukasz Damentko</mail>
 </author>
 
-<author title="Autor">
-  <mail link="sekretarz@gentoo.org">Karol Wojtaszek</mail>
-</author>
-
-<version>3.1</version>
-<date>2005-07-08</date>
+<version>4.0</version>
+<date>2005-15-08</date>
 
 <abstract>
 Przewodnik dla tłumaczy dokumentacji Gentoo na język polski.
@@ -40,9 +36,9 @@ obowiązujących obecnych członków naszego zespołu.
 </p>
 
 <p>
-Wszelkie propozycje zmian tego tekstu prosimy postulować na naszą listę
-mailową - nasz jedyny oficjalny kanał komunikacji. To jak się do niej dostać
-omówimy w dalszej <uri link="#list">części</uri> tego tekstu.
+Wszelkie propozycje zmian tego tekstu prosimy postulować na naszą listę mailową
+- nasz jedyny oficjalny kanał komunikacji. To jak się do niej dostać omówimy w
+dalszej <uri link="#list">części</uri> tego tekstu.  
 </p>
 
 <p>
@@ -58,19 +54,25 @@ Zacznijmy od omówienia procesu tłumaczenia dokumentu:
 <body>
 
 <p>
-Najpierw musimy pobrać i rozpakować plik z angielską dokumentacją:
+Najpierw musimy pobrać angielski plik:
 </p>
 
 <pre caption="Pobieranie i rozpakowywanie dokumentacji w języku angielskim">
-$ <i> wget http://gentoo.org/dyn/doc-snapshots/docs-latest-en.tar.bz2</i>
-$ <i> tar xvjf docs-latest-en.tar.bz2</i>
+$ <i> wget http://dev.gentoo.org/~rane/docget.py</i>
+$ <i> chmod +x docget.py
+$ <i> ./docget.py ${plik}.xml
 </pre>
 
 <p>
-Następnie wchodzimy do katalogu, który powstanie w wyniku wykonania tych poleceń
-i odszukujemy w nim dokument, który chcemy przetłumaczyć. Najpierw jednak
-przygotujemy sobie najlepszy w świecie edytor, vim, do pracy w kodowaniu UTF-8 i
-nauczymy go odpowiednio zawijać długie wiersze.
+Program docget został napisany przez <mail link="lucass@gentoo.org">Łukasza
+Strzygowskiego</mail> na potrzeby polskiego projektu tłumaczenia dokumentacji
+Gentoo i służy do pobierania angielskich plików dokumentacji w formacie xml.
+</p>
+
+<p>
+Następnie w katalogu, w którym wykonaliśmy polecenie docget odszukujemy plik do
+tłumaczenia. Najpierw jednak przygotujemy sobie najlepszy w świecie edytor, vim,
+do pracy w kodowaniu UTF-8 i nauczymy go odpowiednio zawijać długie wiersze.
 </p>
 
 <p>
@@ -92,6 +94,11 @@ set encoding=utf-8
 set textwidth=80
 </pre>
 
+<p>
+Oczywiście dokument można przetłumaczyć w dowolnym edytorze. Wciąż obowiązuje
+jednak zasada, że ma to być tekst zakodowany w UTF-8 i z wierszami zawiniętymi
+po 80 znaku.
+</p>
 
 </body>
 </section>
@@ -102,18 +109,17 @@ set textwidth=80
 <body>
 
 <p>
-Następnie wracamy do naszego dokumentu. Załóżmy, że chodzi o plik
-hb-install-stage.xml:
+Pora na przetłumaczenie czegoś, odnajdujemy nasz plik xml, np.
+<path>home-router-howto.xml</path>.
 </p>
 
 <pre caption="Edytowanie dokumentu">
-$ <i> cd en/handbook</i>
-$ <i> vim hb-install-stage.xml</i>
+$ <i> vim home-router-howto.xml</i>
 </pre>
 
 <p>
 Naszym oczom ukaże się ładnie pokolorowany plik, w którym musimy nanieść
-odpowiednie poprawki. Jak to zrobić? Zamieniając angielski tekst polskim i 
+odpowiednie poprawki. Jak to zrobić? Zamieniając angielski tekst polskim i
 starając się jednocześnie nie naruszyć składni xml.
 </p>
 
@@ -128,18 +134,34 @@ używana w oryginale.
 Kilka przykładów:
 </p>
 
-<pre caption="Tytuł">
-<comment>Przed:</comment>
+<pre caption="Nagłówek">
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;
+&lt;!DOCTYPE guide SYSTEM "/dtd/guide.dtd"&gt;
+&lt;!-- $Header$ --&gt;
 
-&lt;title&gt;Making your Choice&lt;/title&gt;
+&lt;guide link="/doc/pl/home-router-howto.xml" lang="pl"&gt;
+&lt;title>Konfiguracja routera&lt;/title&gt;
 
-<comment>Po:</comment>
+&lt;author title="Autor"&gt;
+  &lt;mail link="swift@gentoo.org"&gt;Sven Vermeulen&lt;/mail&gt;
+&lt;/author&gt;
+&lt;author title="Tłumaczenie"&gt;
+  &lt;mail link="rane@gentoo.pl">Łukasz Damentko&lt;/mail&gt;
+&lt;/author&gt;
 
-&lt;title&gt;Podejmowanie decyzji&lt;/title&gt;
+&lt;abstract&gt;
+Krótki opis umożliwiający skonfigurowanie routera łączącego domową sieć z
+Internetem.
+&lt;/abstract&gt;
+
+&lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
+&lt;!-- See http://creativecommons.org/licenses/by-sa/2.5 --&gt;
+&lt;license/&gt;
+
+&lt;version>1.10&lt;/version&gt;
+&lt;date>2005-08-14&lt;/date&gt;
 </pre>
 
-<p>
-Uwagi:
 </p>
 
 <p>
