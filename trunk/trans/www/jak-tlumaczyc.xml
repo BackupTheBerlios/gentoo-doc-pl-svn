@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE guide SYSTEM "guide.dtd">
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
 <guide link="jak-tlumaczyc.xml" lang="pl">
 <title>Przewodnik dla tłumaczy dokumentacji Gentoo na język polski</title>
@@ -8,14 +8,12 @@
   <mail link="rane@gentoo.pl">Łukasz Damentko</mail>
 </author>
 
-<version>4.0</version>
-<date>2005-15-08</date>
-
 <abstract>
 Przewodnik dla tłumaczy dokumentacji Gentoo na język polski.
 </abstract>
 
-<license/>
+<version>4.0</version>
+<date>2005-15-08</date>
 
 <chapter>
 <title>Wprowadzenie</title>
@@ -36,13 +34,13 @@ obowiązujących obecnych członków naszego zespołu.
 </p>
 
 <p>
-Wszelkie propozycje zmian tego tekstu prosimy postulować na naszą listę mailową
-- nasz jedyny oficjalny kanał komunikacji. To jak się do niej dostać omówimy w
-dalszej <uri link="#list">części</uri> tego tekstu.  
+Wszelkie propozycje zmian tego tekstu należy kierować do <mail
+link="rane@gentoo.org">koordynatora</mail> polskiego projektu tłumaczenia
+dokumentacji Gentoo.
 </p>
 
 <p>
-Zacznijmy od omówienia procesu tłumaczenia dokumentu:
+Zaczniemy od omówienia procesu tłumaczenia dokumentu:
 </p>
 
 </body>
@@ -59,14 +57,16 @@ Najpierw musimy pobrać angielski plik:
 
 <pre caption="Pobieranie i rozpakowywanie dokumentacji w języku angielskim">
 $ <i> wget http://dev.gentoo.org/~rane/docget.py</i>
-$ <i> chmod +x docget.py
-$ <i> ./docget.py ${plik}.xml
+$ <i> chmod +x docget.py</i>
+$ <i> ./docget.py ${plik}.xml</i>
 </pre>
 
 <p>
 Program docget został napisany przez <mail link="lucass@gentoo.org">Łukasza
 Strzygowskiego</mail> na potrzeby polskiego projektu tłumaczenia dokumentacji
 Gentoo i służy do pobierania angielskich plików dokumentacji w formacie xml.
+<c>${plik}.xml</c> to nazwa dokumentu, który chcemy pobrać, otrzymuje się ją
+zwykle w mailu zwrotnym po zgłoszeniu się do projektu.
 </p>
 
 <p>
@@ -76,7 +76,7 @@ do pracy w kodowaniu UTF-8 i nauczymy go odpowiednio zawijać długie wiersze.
 </p>
 
 <p>
-Otwieramy plik ~/.vimrc:
+Otwieramy plik <path>~/.vimrc</path>:
 </p>
 
 <pre caption="Otwieranie pliku ~/.vimrc">
@@ -109,7 +109,7 @@ po 80 znaku.
 <body>
 
 <p>
-Pora na przetłumaczenie czegoś, odnajdujemy nasz plik xml, np.
+Pora na przetłumaczenie czegoś, odnajdujemy i otwieramy nasz xml, np.
 <path>home-router-howto.xml</path>.
 </p>
 
@@ -120,15 +120,15 @@ $ <i> vim home-router-howto.xml</i>
 <p>
 Naszym oczom ukaże się ładnie pokolorowany plik, w którym musimy nanieść
 odpowiednie poprawki. Jak to zrobić? Zamieniając angielski tekst polskim i
-starając się jednocześnie nie naruszyć składni xml.
+starając się jednocześnie nie zrujnować składni xml.
 </p>
 
-<note>
+<impo>
 Dokumenty muszą być pisane w formie bezosobowej: "należy", "trzeba", "warto",
 którą czasami można poprzeć także liczbą mnogą "robimy", "instalujemy",
 "klikamy" itp. Zakazane jest pisanie per "ty", nawet jeśli taka forma jest
 używana w oryginale.
-</note>
+</impo>
 
 <p>
 Kilka przykładów:
@@ -139,51 +139,68 @@ Kilka przykładów:
 &lt;!DOCTYPE guide SYSTEM "/dtd/guide.dtd"&gt;
 &lt;!-- $Header$ --&gt;
 
-&lt;guide link="/doc/pl/home-router-howto.xml" lang="pl"&gt;
-&lt;title>Konfiguracja routera&lt;/title&gt;
+&lt;guide link="/doc/<i>pl</i>/home-router-howto.xml" <i>lang="pl"</i>&gt;
+&lt;title&gt;<i>Konfiguracja routera</i>&lt;/title&gt;
 
-&lt;author title="Autor"&gt;
+&lt;author title="<i>Autor</i>"&gt;
   &lt;mail link="swift@gentoo.org"&gt;Sven Vermeulen&lt;/mail&gt;
 &lt;/author&gt;
-&lt;author title="Tłumaczenie"&gt;
-  &lt;mail link="rane@gentoo.pl">Łukasz Damentko&lt;/mail&gt;
-&lt;/author&gt;
+<i>&lt;author title="Tłumaczenie"&gt;
+  &lt;mail link="rane@gentoo.org">Łukasz Damentko&lt;/mail&gt;
+&lt;/author&gt;</i>
 
 &lt;abstract&gt;
-Krótki opis umożliwiający skonfigurowanie routera łączącego domową sieć z
-Internetem.
+<i>Krótki opis umożliwiający skonfigurowanie routera łączącego domową sieć z
+Internetem.</i>
 &lt;/abstract&gt;
 
 &lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
 &lt;!-- See http://creativecommons.org/licenses/by-sa/2.5 --&gt;
 &lt;license/&gt;
 
-&lt;version>1.10&lt;/version&gt;
-&lt;date>2005-08-14&lt;/date&gt;
+&lt;version&gt;1.10&lt;/version&gt;
+&lt;date&gt;2005-08-14&lt;/date&gt;
 </pre>
 
+<p>
+Na niebiesko zaznaczono wszystkie zmiany jakie musi wprowadzić tłumacz:
 </p>
 
-<p>
-Tylko pierwsze słowo tytułu piszemy dużą literą, resztę małymi, jeśli tytuł to
-tylko jedno zdanie to rezygnujemy z kropki na końcu. Jeśli zdań jest kilka
-kropki musimy dodać.
-</p>
+<ol>
+  <li>
+    Zaczynamy od przetłumaczenia tytułu dokumentu - znajdującego się wewnątrz
+    taga <c>&lt;title&gt;</c>
+  </li>
+  <li>
+    W linii <c>&lt;guide&gt;</c> zmieniamy w ścieżce dokumentu wpis <c>en</c> na
+    <c>pl</c> i dodajemy parametr <c>lang="pl"</c>. Dzięki temu będzie
+    wyświetlana prawidłowa strona przeznaczona do druku oraz pojawi się polska
+    wersja daty i komentarzy w pliku (np. "Uwaga" zamiast "Warning").
+  </li>
+  <li>
+    Role wszystkich autorów oryginału należy przetłumaczyć na język polski.
+    Najczęściej występujące funkcje to "Autor" ("Author") i "Redaktor"
+    ("Editor").
+  </li>
+  <li>
+    Oczywiście należy się podpisać, obowiązuje zasada, że dokumenty podpisujemy
+    pełnym imieniem i nazwiskiem. Wzór wpisu znajduje się powyżej, adres e-mail
+    jest opcjonalny i jego dodanie zależy od woli tłumacza. Jeśli nie chcemy go
+    dodać usuwamy wpisy <c>&lt;mail link=""&gt;</c> i <c>&lt;/mail&gt;</c> wokół
+    nazwiska.
+  </li>
+  <li>
+    Należy także przetłumaczyć zawartość taga <c>&lt;abstract&gt;</c>. Jest ona
+    wyświetlana jako krótkie podsumowanie zawartości dokumentu w prawym górnym
+    rogu jego strony oraz we wszystkich spisach treści pod jego tytułem.
+  </li>
+</ol>
 
 <pre caption="Akapit">
-<comment>Przed:</comment>
-
 &lt;p&gt;
-The stages on the CD reside in the &lt;path&gt;/mnt/cdrom/stages&lt;/path&gt; directory. To
-see a listing of available stages, use &lt;c&gt;ls&lt;/c&gt;:
-&lt;/p&gt;
-
-<comment>Po:</comment>
-
-&lt;p&gt;
-Pliki "stage" znajdują się w katalogu &lt;path&gt;/mnt/cdrom/stages&lt;/path&gt;
-na płycie instalacyjnej. Do przejrzenia ich spisu używamy polecenia
-&lt;c&gt;ls&lt;/c&gt;:
+<i>Pliki "stage" znajdują się w katalogu
+&lt;path&gt;/mnt/cdrom/stages&lt;/path&gt; płyty instalacyjnej. Ich listę możemy
+uzyskać poleceniem &lt;c&gt;ls&lt;/c&gt;:</i>
 &lt;/p&gt;
 </pre>
 
@@ -192,48 +209,79 @@ Uwagi:
 </p>
 
 <p>
-Pamiętamy o wszystkich &lt;path&gt; i &lt;c&gt; z oryginału i podkreślamy je we
+Pamiętamy o wszystkich <c>&lt;path&gt;</c>, <c>&lt;c&gt;</c> i <c>&lt;e&gt;</c> z oryginału i podkreślamy je we
 właściwy sposób również w odpowiednich fragmentach przetłumaczonego tekstu.
 </p>
 
-<pre caption="Nagłówek">
-&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+<ul>
+  <li>
+    <c>&lt;path&gt;</c> powinnien obejmować wszystkie ścieżki i nazwy plików,
+  </li>
+  <li>
+    <c>&lt;c&gt;</c> służy do wyróżnienia na niebiesko poleceń wpisywanych przez
+    użytkownika,
+  </li>
+  <li>
+    <c>&lt;e&gt;</c> pozwala na wyróżnienie jakiegoś tekstu, który <e>musi</e>
+    być zauważony przez czytelnika.
+  </li>
+</ul>
 
-&lt;!-- Orig revision: WERSJA DOKUMENTU Z CVS GENTOO.ORG --&gt;
-&lt;!-- Translator: IMIĘ I NAZWISKO &lt;ADRES@MAIL.COM&gt; --&gt;
-&lt;!-- Title: PRZETŁUMACZONY TYTUŁ DOKUMENTU --&gt;
-&lt;!-- Status: DO KOREKTY --&gt;
+<pre caption="Przykład listingu">
+&lt;pre caption="<i>Edytowanie pliku client.conf</i>"&gt;
+# &lt;i&gt;vim /etc/cups/client.conf&lt;/i&gt;
 
-&lt;!DOCTYPE guide SYSTEM "/dtd/guide.dtd"&gt;
-
-&lt;!-- The content of this document is licensed under the CC-BY-SA license --&gt;
-&lt;!-- See http://creativecommons.org/licenses/by-sa/1.0 --&gt;
-&lt;!-- $Id: $ --&gt;
-&lt;!-- $Header$ --&gt;
-
-&lt;guide link="/doc/pl/nazwa-pliku.xml" lang="pl"&gt;
-
-&lt;title&gt;Przetłumaczony tytuł&lt;/title&gt;
-
+&lt;comment&gt;(<i>Oczywiście wpis printserver.mydomain należy zastąpić nazwą odpowiedniego serwera wydruku</i>)&lt;/comment&gt;
+ServerName &lt;i&gt;printserver.mydomain&lt;/i&gt;
+&lt;/pre&gt;
 </pre>
 
 <p>
-Uwagi:
+Tu również musimy zachować oryginalne tagi.
+</p>
+
+<ul>
+  <li>
+    <c>&lt;i&gt;</c> podkreśli polecenia wpisywane przez użytkownika na
+    niebiesko, jest to lokalny odpowiednik <c>&lt;c&gt;</c> z akapitu.
+  </li>
+  <li>
+    Zawartość <c>&lt;comment&gt;</c> trzeba przetłumaczyć, w dokumencie jest ona
+    wyświetlana na czerwono
+  </li>
+</ul>  
+
+<p>
+W ten sposób, <e>możliwie wiernie</e>, zdanie po zdaniu, tłumaczymy cały
+dokument. Nie wolno kopiować gramatyki i interpunkcji oryginału, język polski ma
+zupełnie inne zasady i ślepe tłumaczenie słowo po słowie zwykle kończy się
+katastrofą i obłożeniem klątwą do siódmego pokolenia (włącznie) przez dział
+korekty.
 </p>
 
 <p>
-To jest wzór nagłówka jaki powinien mieć KAŻDY przetłumaczony dokument.
-Wszystkie pola należy wypełnić specyficznymi dla tłumacza i dokumentu danymi.
-</p>
-
-<p>
-W ten sposób, możliwie wiernie, tłumaczymy cały dokument. Kiedy skończymy musimy
-sprawdzić jego składnię przy pomocy programu <c>xmllint</c>:
+Kiedy skończymy musimy sprawdzić czy nie zrujnowaliśmy składni xml - dokonuje
+się tego przy pomocy programu <c>xmllint</c>:
 </p>
 
 <pre caption="Sprawdzanie poprawności składni XML">
-$ <i>xmllint --noout hb-install-stage.xml</i>
+$ <i>xmllint --valid --noout ${plik}.xml</i>
 </pre>
+
+<note>
+Przed pierwszym użyciem <c>xmllint</c> należy dodać następujący wpis do pliku
+<path>/etc/xml/catalog</path>:
+</note>
+
+<pre caption="Plik /etc/xml/catalog">
+&lt;rewriteURI uriStartString="/dtd" rewritePrefix="/usr/portage/metadata/dtd/"/&gt;
+</pre>
+
+<p>
+W razie problemów z wpisaniem tej linii można skonsultować się z moim plikiem,
+który znajduje się pod adresem <uri>http://dev.gentoo.org/~rane/catalog.txt</uri>.
+</p>
+
 
 <p>
 Jeśli program nie wydrukuje żadnych komunikatów o błędach możemy przystąpić
@@ -241,7 +289,7 @@ do (niezbędnej przed wysłaniem dokumentu w świat) korekty.
 </p>
 
 <pre caption="Otwieranie pliku tłumaczenia">
-$ <i>vim hb-install-stage.xml</i>
+$ <i>vim ${plik}.xml</i>
 </pre>
 
 <p>
@@ -257,10 +305,6 @@ tłumaczenia. Wszelkie wątpliwości pomogą nam rozwiać:
     Serwis <uri link="http://polszczyzna.pwn.pl">polszczyzna.pwn.pl</uri>.
   </li>
   <li>
-    Słowniczek przygotowany specjalnie na potrzeby tłumaczeń dokumentacji Gentoo
-    (<uri link="#dict">poniżej</uri>).
-  </li>
-  <li>
     Informacje zebrane na stronie <uri
     link="http://venus.ci.uw.edu.pl/~milek/slowniki/zasady.htm"> Marcina
     Miłkowskiego</uri>.
@@ -270,7 +314,7 @@ tłumaczenia. Wszelkie wątpliwości pomogą nam rozwiać:
     Helion</uri> dotyczące tłumaczenia wybranych terminów informatycznych.
    </li>
   <li>
-    Zawierający mnóstwo praktycznych porad 
+    Zawierający mnóstwo praktycznych uwag
     <uri link="http://www.piotr.kresak.pl/konwen222.htm">poradnik</uri> dla
     tłumaczących oprogramowanie firmy Lotus.
   </li>
@@ -291,9 +335,9 @@ tłumaczenia. Wszelkie wątpliwości pomogą nam rozwiać:
 </ul>
 
 <p>
-Jeśli wciąż nie jesteśmy czegoś pewni odwiedzamy kanał #gentoo-doc-pl na sieci
-freenode i pytamy przebywających tam innych tłumaczy o ich zdanie
-w kontrowersyjnej sprawie. Możemy również zapisać się i wysłać maila na listę
+Jeśli wciąż nie jesteśmy czegoś pewni odwiedzamy kanał #gentoo-doc-pl w sieci
+freenode i pytamy przebywających tam innych tłumaczy o ich zdanie w
+kontrowersyjnej sprawie. Możemy również zapisać się i wysłać maila na listę
 dyskusyjną tłumaczy Gentoo - o której opowiemy nieco później.
 </p>
 
@@ -305,6 +349,16 @@ się z siecią <e>Freenode</e> i wejście na kanał projektu:
 <pre caption="Wchodzenie na kanał #gentoo-doc-pl">
 <i>/connect irc.freenode.net</i>
 <i>/join #gentoo-doc-pl</i>
+</pre>
+
+<p>
+Kiedy skończymy tłumaczenie wysyłamy spakowany za pomocą <c>bzip2</c> plik na
+adres <mail>rane@gentoo.org</mail> i czekamy aż po wnikliwej i bezlitosnej
+weryfikacji trafi na oficjalną stronę Gentoo i zapewni nam sławę na wieki.
+</p>
+
+<pre caption="Pakowanie pliku za pomocą bzip2">
+$ <i>bzip2 file.xml</i>
 </pre>
 
 </body>
@@ -351,8 +405,7 @@ $ <i>recode l2..u8 plik.xml</i>
 
 <p>
 Takie polecenie spowoduje zamianę kodowania pliku <path>plik.xml</path> z
-<path>l2</path> (oznaczającego iso8859-2) na <path>u8</path> (skrót kodowania
-UTF-8). 
+<c>l2</c> (oznaczającego iso8859-2) na <c>u8</c> (skrót kodowania UTF-8). 
 </p>
 
 <p>
@@ -366,37 +419,29 @@ $ <i>recode -l</i>
 $ <i>man recode</i>
 </pre>
 
-<p>
-Kiedy skończymy tłumaczenie wysyłamy spakowany za pomocą <c>bzip2</c> plik na
-adres <mail>tlumaczenia@gentoo.pl</mail> skąd zostanie wysłany najpierw do
-repozytorium SVN Projektu Tłumaczeń, a następnie, po weryfikacji przez
-wykwalifikowany personel, trafi na gentoo.org i zapewni nam sławę na wieki.
-</p>
-
-<pre caption="Pakowanie pliku za pomocą bzip2">
-$ <i>bzip2 file.xml</i>
-</pre>
-
 </body>
 </section>
 </chapter>
 <chapter id="dict">
-<title>Słowniczek</title>
+<title>Słownik</title>
 <section>
 <body>
 
 <p>
-Lista terminów, których tłumaczenie na podaną postać jest obowiązkowe:
+Dysponujemy słownikiem zawierającym ponad 13000 terminów informatycznych, w
+miarę możliwości należy wybierać słowa w nim się znajdujące.
 </p>
 
-<pre caption="Słowniczek">
-&dictionary;
-</pre>
+<p>
+Słownik można pobrać z mojej strony, później można go przeszukać za pomocą
+polecenia <c>grep</c>:
+</p>
 
-<note>
-Wszystkie sugestie dotyczące słowniczka prosimy kierować na listę dyskusyjną
-gentoo-doc-pl (informacje <uri link="#list">poniżej</uri>).
-</note>
+<pre caption="Praca ze słownikiem">
+$ <i>wget http://dev.gentoo.org/~rane/slownik.txt</i>
+$ <i>grep 'cross compiler' slownik.txt</i>
+cross compiler  kompilator skrośny
+</pre>
 
 </body>
 </section>
@@ -417,22 +462,23 @@ jak się zapisać. Jest to nasz oficjalny kanał wymiany informacji.
 </section>
 </chapter>
 <chapter>
-<title>Program tlumacz</title>
+<title>Program "tlumacz"</title>
 <section>
 <body>
 
 <p>
-Szukanie znaczenia wszelkich angielskich słówek ułatwia program "tlumacz by aye",
-napisany na licencji GPL, do pobrania w ten sposób:
+Szukanie znaczenia wszelkich angielskich słówek ułatwia skrypt "tlumacz"
+napisany na licencji GPL przez <mail link="aye@gentoo.pl">Marcina
+Kryczka</mail>.
 </p>
 
 <pre caption="Pobieranie tlumacza">
-$ <i>wget http://imdb.pl/~aye/tlumacz</i>
+$ <i>wget http://dev.gentoo.org/~rane/tlumacz</i>
 </pre>
 
 <p>
-Znajdowanie słówek jest banalnie proste, znacznie łatwiejsze niż grzebanie po
-www, czy szukanie w normalnym słowniku.
+Znajdowanie słówek jest banalnie proste, znacznie łatwiejsze niż szukanie na
+stronach internetowych, czy szukanie w normalnym słowniku.
 </p>
 
 <pre caption="Przykład użycia tlumacza">
