@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link title="new" rel="stylesheet" href="css/main.css" type="text/css">
+<link REL="shortcut icon" HREF="http://www.gentoo.org/favicon.ico" TYPE="image/x-icon">
+<title>Dokumentacja Gentoo Linux
+--
+  Aktualizacja tłumaczeń dokumentacji Gentoo</title>
+</head>
+<body style="margin:0px;" bgcolor="#ffffff"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td valign="top" height="125" bgcolor="#45347b"><a href="/"><img border="0" src="images/gtop-www.jpg" alt="Gentoo Logo"></a></td></tr>
+<tr><td valign="top" align="right" colspan="1" bgcolor="#ffffff"><table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>
+<td width="99%" class="content" valign="top" align="left">
+<br><h1>Aktualizacja tłumaczeń dokumentacji Gentoo</h1>
+<form name="contents" action="http://www.gentoo.org">
+<b>Spis treści</b>:
+        <select name="url" size="1" OnChange="location.href=form.url.options[form.url.selectedIndex].value" style="font-family:sans-serif,Arial,Helvetica"><option value="#doc_chap1">1. Wprowadzenie</option>
+<option value="#doc_chap2">2. Aktualizowanie dokumentu</option></select>
+</form>
+<p class="chaphead"><span class="chapnum"><a name="doc_chap1">1. </a></span>Wprowadzenie</p>
+
+<p>
+Postaram się tu możliwie krótko omówić proces aktualizowania polskiego dokumentu
+znajdującego się w <a href="http://gentoo.org/doc/pl/list.xml">zasobach
+dokumentacji Gentoo</a>.
+</p>
+
+<p>
+Aktualizowanie przetłumaczonej dokumentacji jest ważnym aspektem pracy nad nią i
+jest niezbędne, aby nadal była przydatna dla użytkowników naszej bardzo szybko
+rozwijającej się dystrybucji. Zajmuje zdecydowanie mniej czasu niż tłumaczenie
+dokumentów od zera, zwykle jest to kilka kosmetycznych poprawek, czasem trzeba
+dopisać jakiś akapit lub usunąć nieaktualne informacje. Jest to dobry wybór dla
+osób chcących nam pomóc, ale nie dysponujących zbyt dużą ilością wolnego czasu.
+</p>
+
+<p>
+Przy aktualizacji skorzystamy z kilku bardzo wygodnych i intuicyjnych narzędzi,
+które znacznie ułatwią naszą pracę. Przede wszystkim będzie to tabela znajdująca
+się na <a href="http://dev.gentoo.org/~rane/">oficjalnej stronie
+projektu</a>, która umożliwi wyświetlenie różnic pomiędzy wersjami
+angielskimi. Omówimy też proces tworzenia pliku diff zawierającego naszą
+aktualizację oraz sposoby podzielenia się nim ze społecznością Gentoo.
+</p>
+
+<p>
+Wszystkie pytania, uwagi i propozycje zmian tego tekstu należy zgłaszać do <a href="mailto:rane@gentoo.org">koordynatora</a> polskiego projektu tłumaczenia
+dokumentacji Gentoo.
+</p>
+
+<p>
+Jeśli będzie to pierwsza praca wykonywana przy dokumentacji Gentoo, warto
+przedtem zapoznać się z <a href="http://dev.gentoo.org/~rane/jak-tlumaczyc.html">przewodnikiem dla tłumaczy
+dokumentacji Gentoo na język polski</a>.
+</p>
+
+<p class="chaphead"><span class="chapnum"><a name="doc_chap2">2. </a></span>Aktualizowanie dokumentu</p>
+<p class="secthead"><a name="doc_chap2_sect1">Wybieranie dokumentu do aktualizacji i pobieranie go na dysk</a></p>
+
+<p>
+Zaczynamy od udania się pod adres <a href="http://dev.gentoo.org/~rane">http://dev.gentoo.org/~rane</a> i
+przyjrzenia się znajdującej się tam tabeli z listą dokumentów. Musimy wybrać
+tekst, który będziemy aktualizować. Na samym początku musimy znaleźć nieaktualny
+dokument, najłatwiej zrobić to przeglądając kolumnę zatytułowaną <span class="emphasis">Diff wersji
+angielskich</span>. Większość pól tej kolumny powinna być pusta, wpisy znajdują się
+tylko w wierszach z nieaktualnymi dokumentami. Również kolorowe kropki powinny
+ułatwić namierzenie takiego tekstu. Zielona oznacza, że dokument jest aktualny,
+a żółta, pomarańczowa i czerwona informują o tym, że nie został jeszcze
+poprawiony.
+</p>
+
+<p>
+Zatem wybieramy któryś z nieaktualnych plików (warto wybierać najpierw te z
+większą ilością kropek, są bardziej nieaktualne od pozostałych). Wyższy
+priorytet mają dokumenty z kropkami czerwonymi niż te z żółtymi.
+</p>
+
+<br><a name="doc_chap2_fig1"></a><table cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Ilustracja 2.1: Wycinek tabeli</p></td></tr>
+<tr><td align="center" bgcolor="#ddddff"><img src="images/tabela.jpg" alt="Fig. 1"></td></tr>
+</table>
+<br>
+
+<p>
+W celu pobrania tłumaczenia klikamy prawym klawiszem myszki we wpis <span class="code">(xml)</span>
+w kolumnie <span class="emphasis">Wersja polska</span> i zapisujemy plik na dysku.
+</p>
+
+<p class="secthead"><a name="doc_chap2_sect2">Znajdowanie różnic między wersjami angielskimi</a></p>
+
+<p>
+Sprawa jest prosta, wystarczy kliknąć w odnośnik w kolumnie zatytułowanej
+<span class="emphasis">Diff wersji angielskich</span>, a program view-cvs wyświetli nam ładnie
+pokolorowany plik, w którym zostaną wymienione wszystkie różnice między wersjami
+oryginału, które trzeba będzie nanieść na polskie tłumaczenie.  
+</p>
+
+<br><a name="doc_chap2_fig2"></a><table cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Ilustracja 2.2: Strona z diffem</p></td></tr>
+<tr><td align="center" bgcolor="#ddddff"><img src="images/diff.jpg" alt="Fig. 2"></td></tr>
+</table>
+<br>
+
+<p>
+W lewej kolumnie znajduje się wersja dokumentu, która była tłumaczona, a w
+prawej aktualna wersja. Linie zaznaczone na czerwono zostały usunięte z
+oryginału, żółte zostały zmienione, a zielone dodane. Warto zapoznać się
+pokrótce ze wszystkimi zmianami w dokumencie i poznać ich charakter przed
+przejściem do następnego kroku, czyli nanoszenia poprawek na tłumaczenie.
+</p>
+
+<p class="secthead"><a name="doc_chap2_sect3">Nanoszenie poprawek na tłumaczenie</a></p>
+
+<p>
+Otwieramy ściągnięty przed chwilą plik z polską wersją tekstu w ulubionym
+edytorze i zmieniamy w nim wszystkie wpisy, które uległy zmianie w oryginale.
+Zwykle tłumaczenia są bardzo wierne i nie ma problemu z namierzeniem
+odpowiednich akapitów, w których trzeba wprowadzić zmiany.
+</p>
+
+<p>
+Dodajemy, usuwamy lub zmieniamy wszystkie linie tak, aby polskie tłumaczenie
+znów odpowiadało wersji oryginalnej. Warto również przejrzeć jeszcze raz cały
+dokument i poprawić w nim ewentualne błędy oraz sprawdzić czy dodane zdania
+dobrze wkomponowały się w jego treść.
+</p>
+
+<p class="secthead"><a name="doc_chap2_sect4">Tworzenie i wysyłanie diffa</a></p>
+
+<p>
+Po zakończeniu prac nad aktualizacją należy utworzyć plik diff zawierający
+różnice między dokumentami i wysłać go pod adres <a href="mailto:">rane@gentoo.org</a>.
+</p>
+
+<a name="doc_chap2_pre1"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Listing 2.1: Tworzenie diffa</p></td></tr>
+<tr><td bgcolor="#ddddff"><pre>
+$ <span class="input">diff -Naur stary.xml nowy.xml &gt; plik.diff</span>
+</pre></td></tr>
+</table>
+
+<table class="ncontent" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td bgcolor="#ffffbb"><p class="note"><b>Ważne: </b>
+Żeby wszystko było jasne: <span class="code">stary.xml</span> to plik xml, który początkowo
+pobraliśmy na dysk, <span class="code">nowy.xml</span> to plik, na który naniesiono poprawki, a
+<span class="code">plik.diff</span> to plik zawierający aktualizację, który trzeba będzie wysłać na
+adres <a href="mailto:">rane@gentoo.org</a>.
+</p></td></tr></table>
+
+<table class="ncontent" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td bgcolor="#bbffbb"><p class="note"><b>Uwaga: </b>
+Program <span class="code">diff</span> jest częścią pakietu sys-apps/diffutils wchodzącego w skład
+kategorii "system" pakietów Gentoo. W związku z tym powinien być gotów do użycia
+bez żadnych dodatkowych instalacji i zmian w plikach konfiguracyjnych.
+</p></td></tr></table>
+
+<p>
+Przypominamy także, że wszystkie niejasności jakie pojawiły się przy lekturze
+tego tekstu można rozwiać zadając pytanie <a href="mailto:rane@gentoo.org">koordynatorowi</a> projektu. Z uczestnikami projektu
+można porozmawiać na kanale <a href="http://dev.gentoo.org/~rane/jak-tlumaczyc.html#doc_chap6">#gentoo-doc-pl</a>
+w sieci freenode lub na naszej <a href="http://dev.gentoo.org/~rane/jak-tlumaczyc.html#doc_chap6">liście
+mailingowej</a>.
+</p>
+
+<p class="secthead"><a name="doc_chap2_sect5">Kodowanie UTF-8</a></p>
+
+<p>
+Pewną trudnością może okazać się fakt, że cała dokumentacja Gentoo napisana jest
+w kodowaniu UTF-8, które wciąż nie jest w naszym kraju zbyt popularne.
+</p>
+
+<p>
+Można uporać się z tym na kilka sposobów, np. przestawiając edytor do pracy w
+kodowaniu UTF-8. Można również wykorzystać program <span class="code">recode</span>, który pozwala
+na łatwą konwersję między kodowaniami.
+</p>
+
+<a name="doc_chap2_pre2"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Listing 2.2: Zmiana kodowania dokumentu za pomocą programu recode</p></td></tr>
+<tr><td bgcolor="#ddddff"><pre>
+<span class="comment">(Zaczniemy od zainstalowania programu)</span>
+# <span class="input">emerge app-text/recode</span>
+<span class="comment">(Następnie przekonwertujemy plik z UTF-8 na ISO8859-2)</span>
+$ <span class="input">recode u8..l2 plik.xml</span>
+<span class="comment">(Po zakończonej pracy i przed przygotowaniem diffa konieczne będzie ponowne przejście na UTF-8)</span>
+$ <span class="input">recode l2..u8 plik.xml</span>
+</pre></td></tr>
+</table>
+
+<p>
+Obsługa programu jest intuicyjna, <span class="code">l2</span> oznacza kodowanie ISO8859-2,
+<span class="code">u8</span> kodowanie UTF-8. Jako parametr podajemy dodatkowo nazwę pliku xml,
+który będziemy aktualizować.
+</p>
+
+
+<br><br>
+</td>
+<td width="1%" bgcolor="#dddaec" valign="top"><table border="0" cellspacing="4px" cellpadding="4px">
+<tr><td class="topsep" align="center"><p class="altmenu"><a title="Zobacz wersję do druku" class="altlink" href="jak-aktualizowac.xml?style=printable">Drukuj</a></p></td></tr>
+<tr><td align="center" class="topsep"><p class="alttext">Zaktualizowano 2005-19-08</p></td></tr>
+<tr><td class="topsep"><p class="alttext"><b>Podsumowanie: </b>
+Opis dla osób chcących pomóc w aktualizowaniu polskich wersji dokumentów
+dostępnych na oficjalnych stronach Gentoo.
+</p></td></tr>
+<tr><td class="topsep"><p class="alttext">
+  <b><a class="altlink" href="mailto:rane@gentoo.pl">Łukasz Damentko</a></b>
+<br><i>Autor</i><br></p></td></tr>
+<tr><td align="center" class="topsep">
+<p class="alttext"><b>Donate</b> to support our development efforts.
+        </p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="paypal@gentoo.org"><input type="hidden" name="item_name" value="Gentoo Linux Support"><input type="hidden" name="item_number" value="1000"><input type="hidden" name="image_url" value="images/paypal.png"><input type="hidden" name="no_shipping" value="1"><input type="hidden" name="return" value="http://www.gentoo.org"><input type="hidden" name="cancel_return" value="http://www.gentoo.org"><input type="image" src="http://images.paypal.com/images/x-click-but21.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+</form>
+</td></tr>
+<tr><td align="center" class="topsep">
+<a href="http://www.tek.net" target="_top"><img src="images/tek-gentoo.gif" width="125" height="125" alt="Tek Alchemy" border="0"></a><p class="alttext">
+        Tek Alchemy offers dedicated servers and other hosting solutions running Gentoo Linux.
+      </p>
+</td></tr>
+<tr><td align="center" class="topsep">
+<a href="http://www.phparch.com/bannerclick.php?AID=68&amp;BID=1&amp;BT=127929" target="_top"><img src="images/phpa-gentoo.gif" width="125" height="144" alt="php|architect" border="0"></a><p class="alttext">
+    php|architect is the monthly magazine for PHP professionals, available worldwide in print and electronic format. A percentage of all the sales will be donated back into the Gentoo project.
+        </p>
+</td></tr>
+<tr><td align="center" class="topsep"><a href="http://store.gentoo.org"><img src="images/store.gif" alt="The Gentoo Linux Store" border="0"></a></td></tr>
+<tr><td align="center" class="topsep">
+<a href="http://www.sevenl.net" target="_top"><img src="images/sponsors/sevenl.gif" width="125" height="144" alt="SevenL.net" border="0"></a><p class="alttext">
+Seven L Networks provides customizable Dedicated Servers for your customized Gentoo install.  Colocation and other hosting services are also provided.
+      </p>
+</td></tr>
+<tr><td align="center" class="topsep">
+<a href="http://www.vr.org"><img src="images/vr-ad.png" alt="$99/mo dedicated servers" border="0"></a><p class="alttext">
+No BS Dedicated Gentoo Linux Servers from <a href="http://www.vr.org">vr.org</a>.
+        </p>
+</td></tr>
+<tr><td align="center" class="topsep"></td></tr>
+</table></td>
+</tr></table></td></tr>
+<tr><td colspan="2" align="right" class="infohead">
+      Copyright 2001-2005 Gentoo Foundation, Inc.  Questions, Comments, Corrections?  Email <a class="highlight" href="mailto:www@gentoo.org">www@gentoo.org</a>.
+    </td></tr>
+</table></body>
+</html>
