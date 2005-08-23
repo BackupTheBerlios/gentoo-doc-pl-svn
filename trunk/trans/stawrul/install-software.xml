@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- $Header:
+/var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/proj/pl/base/amd64/Attic/install-software.xml,v
+1.19 2005/08/24 11:42:41 blubb dead $ -->
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- The context of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommonds.org/licenses/by-sa/1.0 -->
+
+<sections>
+
+<section>
+	<title>Dostępne jądra</title>
+<subsection>
+	<title>Na LiveCD</title>
+<body>
+<p>
+Od czasu wydania Gentoo 2004.3, na LiveCD dostępne jest jedno jądro, którego
+można użyć do bootowania. Jest to jądro typu SMP i nazywa się <c>gentoo</c>.
+Komputery innego typu wciąż mogą z tego kernela korzystać.
+</body>
+</subsection>
+<subsection>
+	<title>Użycie prawidłowych źródeł jądra</title>
+<body>
+<impo>Należy korzystać z jąder linii <path>sys-kernel/gentoo-dev-sources</path>!
+Zawierają one łatki specyficzne dla AMD64 oraz inne dodatkowe rozszerzenia.
+Wykorzystanie innych kerneli nie jest wspierane.</impo>
+</body>
+</subsection>
+<subsection>
+	<title>Budowanie jądra dla laptopa eMachine</title>
+<body>
+<p>
+Przed wydaniem Gentoo 2004.3, w czasie konfiguracji jądra dla laptopa eMachine
+Mobile Athlon64 <e>konieczne</e> było wkompilowanie wsparcia dla USB. W
+przeciwnym razie generowany był błąd "unknown keypress" z pliku
+<path>atkbd.c</path>. Wyłączenie wparcia dla USB nie działało.
+</p>
+<p>
+Wszelkie problemu związane z pracą Gentoo 2004.3 na laptopach eMachine powinny
+być raportowane poprzez stronę bugs.gentoo.org.
+</p>
+</body>
+</subsection>
+ <subsection>
+	<title>Jądra 2.4.x oficjalnie zdeprecjonowane</title>
+<body>
+<p>
+<b>Linia jąder 2.4.x została oficjalnie zdeprecjonowana dla komputerów
+AMD64.</b> Gdy w jądrach wersji 2.4.23-pre7 zrezygnowano ze wsparcia dla devfs
+(zostało ono ukryte), pojawił się problem z zarządzaniem pamięcią, co było
+powodem dokonania deprecjacji. W Gentoo nie doświadczyliśmy tego typu problemów,
+jednak kernele linii 2.4 nie są dobrym rozwiązaniem ze względu na brak wsparcia
+dla devfs.
+</p>
+</body>
+</subsection>
+<subsection>
+	<title>gcc 3.3 oficjalnie zdeprecjonowane</title>
+<body>
+<p>
+<b>Od chwili wydania Gentoo 2004.3, gcc 3.3 zostało oficjalnie zdeprecjonowane
+dla komputerów AMD64.</b> Wszystkie wydania od 2004.3 opierają się na gcc 3.4.x.
+</p>
+</body>
+</subsection>
+</section>
+<section><title>Błędy w czasie uruchamiania systemu zgłaszane przez jądro</title>
+<body>
+<p>
+Jeśli w czasie uruchamiania systemu jądro zgłasza błędy (następuje kernel
+panic), zaleca się przekazanie parametru <c>idle=poll</c> jako opcji bootowania.
+Istnieje problem związany z wieloma BIOS-ami i wydaje się on dotykać głównie
+płyt głównych z chipsetem VIA. Dodanie powyższego parametru do opcji
+uruchamiania jądra może nastąpić jedynie <e>po</e> aktualizaji do najnowszej
+wersji BIOS-u, jaką udostępnia producent posiadanej płyty głównej. Być może uda
+się rozwiązać ten problem poprzez wyłączenie opcji "Legacy USB support" w
+BIOS-ie. Jeśli jednak jesteśmy zmuszeni to użycia parametru <c>idle-poll</c>,
+powinniśmy skontaktować się z producentem płyty głównej lub dostawcą BIOS-u, aby
+uzyskać informacje o rozwiązaniu problemu #93 z erraty CPU.
+</p>
+<p>
+Aby uzystać więcej informacji na ten temat, warto odwiedzić te archiwa list
+mailingowych:
+</p>
+<ul>
+	<li><uri>http://lists.suse.com/archive/suse-amd64/2003-Dec/0031.html</uri></li>
+	<li><uri>http://lists.suse.com/archive/suse-amd64/2003-Dec/0034.html</uri></li>
+</ul>
+<p>
+Widać na ich podstawie, że nie jest to problem specyficzny dla Gentoo.
+</p>
+</body>
+</section>
+
+<section><title>Wsparcie systemów plików</title>
+<body>
+<p>
+Mocno rekomendowane jest korzystanie z systemów plików ext2/ext3. Pojawiały się
+raporty o problemach z systemem plików reiserfs na komputerach AMD64, a także
+pojawiają się informacje o problemach z JFS na 64-bitowych systemach (co
+zdecydowanie należy określić jako dziwne, ponieważ ten system plików został
+zaprojektowany z myślą o komputerach 64-bitowych).
+</p>
+<table>
+<tr>
+ 	<th>System plików:</th>
+	<th>Status:</th>
+</tr>
+<tr>
+	<ti>ext2</ti>
+	<ti>STABILNY</ti>
+</tr>
+<tr>
+	<ti>ext3</ti>
+	<ti>STABILNY</ti>
+</tr>
+<tr>
+	<ti>XFS</ti>
+	<ti>STABILNY, >=gentoo-dev-sources-2.6.3</ti>
+</tr>
+<tr>
+	<ti>JFS</ti>
+	<ti>STABILNY, >=gentoo-dev-sources-2.6.7</ti>
+</tr>
+<tr>
+	<ti>reiserfs</ti>
+	<ti>STABILNY, >=gentoo-dev-sources-2.6.5</ti>
+</tr>
+<tr>
+	<ti>reiser4</ti>
+	<ti>NIE DZIAŁA NA AMD64, NIE JEST WSPIERANY NA ???ŻADNEJ??? ARCHTEKTURZE!</ti>
+</tr>
+</table>
+<p>
+ Prosimy o zgłaszanie wszelkich problemów z systemami plików na bugs.gentoo.org.
+</p>
+</body>
+</section>
+ 
+<section><title>Bootloader: kompilowanie grub</title>
+<body>
+<p>
+Grub will not build in a pure 64-bit environment.  It will only compile using a multilib
+gcc.  2004.3 includes multilib support by default.  If you choose to remove multilib support
+from gcc, then you most use <c>grub-static</c>.  <c>grub-static</c> can be installed using the
+following commands:
+</p>
+<pre>
+emerge grub-static
+cp -Rpv /usr/share/grub/i386-pc/* /boot/grub
+</pre>
+</body>
+</section>
+ 
+<section><title>Some Packages Are Still Masked</title>
+<body>
+<p>
+Some packages which are unmasked on other architectures are still masked on
+AMD64. This doesn't mean that they don't work. It simply means that no Gentoo
+developer has been able to test them on an AMD64 machine. Please test masked
+applications and <uri link="http://bugs.gentoo.org">submit a bug report</uri>
+letting the developers know whether a package works or not.
+</p>
+</body>
+</section>
+
+<section><title>Packages That Don't Work</title>
+<body>
+<p>
+Don't currently work: 
+</p>
+<ul>
+	<li>Firebird (the database, NOT the browser)</li>
+</ul>
+<p>
+Things that won't work in 64-bit mode, but WILL work in 32-bit mode (assuming
+app-emulation/emul-linux-x86-baselibs and friends are installed):
+</p>
+<ul>
+	<li>Any program that uses 32-bit dlls from windows (such as mplayer/xine support
+	for some proprietary formats)</li>
+	<li>Any programs that require 32-bit assembly</li>
+</ul>
+</body>
+</section>
+
+<section><title>Java Support</title>
+<body>
+<p>
+Blackdown released a native 64-bit Java for Linux on AMD64. It is a
+release candidate so do not expect it to be perfect. It is in portage as
+<path>blackdown-jdk-1.4.2</path> and <path>blackdown-jre-1.4.2</path>.
+</p>
+<p>
+Some people have noted that the 64-bit Java VM is slower than the 32-bit Java
+VM. Juergen Kreileder of Blackdown was kind enough to respond:
+</p>
+<pre>
+Actually the 64-bit VM is faster than the 32-bit VM in allmost all
+benchmarks.
+
+The difference they see is more likely to come from the different
+VMs:
+The i386 version comes with the HotSpot Client VM and the HotSpot
+Server VM, the Client VM gets used by default.  The AMD64 version
+only comes with the Server VM, the Client VM has not been ported yet.
+
+In general the Server VM is the faster VM.  Its compiler does more
+optimizations and is more aggressive than the Client VM's compiler.
+It usually generates much better code.
+The downside is that doing this optimizations takes CPU time and
+memory.  Because of this running GUI code in the Client VM often
+is faster (at least initially) than running it in the Server VM.
+
+In other words: It's not fair to compare i386-client with
+AMD64-server.  You have to compare i386-server (ie. "java -server
+...") with AMD64-server.
+</pre>
+<p>
+Also, he answered a question about a potential timeline that the client VM
+might be accomplished in:
+</p>
+<pre>
+It won't be in the final 1.4.2 release.  It's unlikely for 1.5.0 (both
+Sun and Blackdown), Sun is happy with the Server VM port and not
+really interested in getting the Client VM ported (the other 64-bit
+VMs, for IA64 &amp; SPARC64, are Server VM-only too).  And it's just too
+much work (I'd estimate 10-13 man weeks) to do it without payment.
+</pre>
+<p>
+So if you're going to run benchmarks, to be fair, run java -server on both
+arches, and don't expect the client vm to be done anytime too soon. ;-)
+</p>
+<p>
+Once you have java installed, the following symlink fix is required to 
+make it work with mozilla (and possibly konqueror):
+</p>
+<pre>
+/usr/lib/nsbrowser/plugins/libjavaplugin_oji.so -> /opt/blackdown-jdk-1.4.2_rc1/jre/plugin/amd64/mozilla/libjavaplugin_oji.so
+</pre>
+</body>
+</section>
+ 
+<section><title>Installing OpenOffice</title>
+<body>
+<p>
+OpenOffice is currently only available in 32-bit binary form, since OpenOffice 1.1.x will not compile on amd64. To install OpenOffice, emerge the <path>app-office/openoffice-bin</path> package.
+</p>
+<note>Don't even consider trying to get OpenOffice to compile from source. It is an effort in futility and will only lead to many sleepless nights.</note>
+</body>
+</section>
+
+<section><title>Properly Setting CFLAGS</title>
+<body>
+<p>
+Unlike gcc 3.3, gcc 3.4 requires that you set -march.  The most conservative (and supported)
+CFLAGS can be set as show below:
+</p>
+<pre caption="gcc-3.4 CFLAGS">
+...
+CFLAGS="-march=k8 -O2 -pipe"
+...
+</pre>
+<note>
+<c>-march=k8</c> equals <c>-march=athlon64</c> equals <c>-march=opteron</c>.
+</note>
+<p>
+There used to be issues with the lack of <c>-fPIC</c> being specified when
+building shared objects, the reasoning is in this mailing list post: 
+ <uri link="http://www.x86-64.org/lists/discuss/msg02621.html">Porting to
+Hammer</uri> -- scan down to "Shared libraries must be compiled with -fPIC". If
+you find any packages that complain about needing <c>-fPIC</c> to run/link
+properly, please notify us immediately, as we need to update that package.
+Please do not specify <c>-fPIC</c> in your global CFLAGS as that is not an
+acceptable solution and just a workaround.
+</p>
+<p>
+Please do not add <c>-m32</c> to your USE flags, as you do not want to compile
+the system in 32-bit mode, and by default Gentoo does not support compiling
+32-bit binaries. Use of the <c>-m64</c> flag is irrelevant as the compiler
+defaults to 64-bit mode and could have negative effects on code that may supply
+<c>-m32</c> internally to compile 32-bit assembly (such as newer releases of
+grub will do).
+</p>
+<warn>Don't use <c>-Os</c>. This has been known to prevent parts of KDE 3.2.0 from compiling.</warn>
+</body>
+</section>
+ 
+<section><title>USE Flags That Are Ignored</title>
+<body>
+<p>
+The <c>mmx</c>, <c>3dnow</c>, <c>sse</c> and <c>sse2</c> USE flags are ignored
+on AMD64, since all AMD64 processors support those instruction sets. The are
+ignored because they enable 32bit assembly optimisation for some packages.
+</p>
+</body>
+</section>
+ 
+<section><title>Reporting Bugs And Submitting Patches</title>
+<body>
+<p>
+If you an application that you've had problems with, have a patch to solve
+problems, or want to report a successful build so we can mark it as such in
+portage, please post a bug report on <uri
+link="http://bugs.gentoo.org">bugs.gentoo.org</uri>.
+</p>
+<note>You may also CC: <mail link="amd64@gentoo.org">amd64@gentoo.org</mail> if you wish.</note>
+<note>To submit a patch, you must first submit a bug report, then go back to
+the bug report and select "Create a new attachment".</note>
+</body>
+</section>
+
+</sections>
