@@ -18,6 +18,7 @@
 Od czasu wydania Gentoo 2004.3, na LiveCD dostępne jest jedno jądro, którego
 można użyć do bootowania. Jest to jądro typu SMP i nazywa się <c>gentoo</c>.
 Komputery innego typu wciąż mogą z tego kernela korzystać.
+</p>
 </body>
 </subsection>
 <subsection>
@@ -149,7 +150,7 @@ gcc wsparcia dla tego komponentu, konieczne będzie użycie programu
 <c>grub-static</c> zamiast gruba. <c>grub-static</c> instalujemy przy użyciu
 komend:
 </p>
-<pre>
+<pre caption="Instalacja grub-static">
 emerge grub-static
 cp -Rpv /usr/share/grub/i386-pc/* /boot/grub
 </pre>
@@ -202,7 +203,8 @@ Niektórzy użytkownicy zauważyli, że 64-bitowa Java VM jest wolniejsza od jej
 32-bitowego odpowiednika. Juergen Kreileder z Blackdown udzielił następujących
 informacji na ten temat:
 </p>
-<pre>
+<pre caption="Juergen Kreileder o różnicach w prędkości działania Javy w
+wersjach 64- i 32-bitowych">
 Obecnie 64-bitowa Java VM jest szysza od 32-bitowego odpowiednika w niemal
 wszystkich testach.
 
@@ -227,7 +229,7 @@ nie jest wymierne. Należałoby raczej porównać Server VM dla i386 (np.: "java
 Juergen Kreileder odpowiedział również na pytanie o potencjalny czas ukończenie
 Javy Client VM dla AMD64:
 </p>
-<pre>
+<pre caption="Juergen Kreileder o Java Client VM dla AMD64">
 Nie znajdzie się on w finalnej wersji 1.4.2. Nie jest on również przewidywany
 dla wersji 1.5.0 (zarówno firma Sun, jak i Blackdown nie są nim zainteresowane).
 Firma Sun jest zadowolona z Javy Server VM i tak na prawdę nie jest
@@ -245,7 +247,7 @@ Gdy java zostanie zainstalowana, wymagane jest stworzenie następującego
 dowiązania symbolicznego, aby pracowała ona z mozillą (i prawdopodobnie z
 konqueorem):
 </p>
-<pre>
+<pre caption="Dowiązanie symboliczne dla współpracy javy z mozillą">
 /usr/lib/nsbrowser/plugins/libjavaplugin_oji.so -> /opt/blackdown-jdk-1.4.2_rc1/jre/plugin/amd64/mozilla/libjavaplugin_oji.so
 </pre>
 </body>

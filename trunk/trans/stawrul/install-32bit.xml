@@ -17,7 +17,7 @@ Formats" W KONFIGURACJI JĄDRA!</impo>
 obecnie sposobem ustawienia 32-bitowego środowiska jest instalacja bibliotek
 emulacyjnych.
 </p>
-<pre>
+<pre caption="Instalacja bibliotek emulacyjnych">
 emerge app-emulation/emul-linux-x86-baselibs
 emerge app-emulation/emul-linux-x86-xlibs
 emerge app-emulation/emul-linux-x86-gtklibs
@@ -85,14 +85,14 @@ Kolejnym krokiem jest chrootowanie się do nowego środowiska. Wykonuje się to 
 zostało to opisane w podręczniku, jednak konieczne jest wykorzystanie programu
 linux32 aby zmienić 'uname -m' na 'i686'. Wpisujemy więc:
 </p>
-<pre>
+<pre caption="Przejście do środowiska chrootowanego">
 linux32 chroot /mnt/gentoo32 /bin/bash
 </pre>
 <p>
 W ten sposób znaleźliśmy się w chrootowanym środowisku. Polecenie 'uname -m' powinno
 zwrócić 'i686'. W pliku make.conf można użyć flag jak poniżej:
 </p>
-<pre>
+<pre caption="Przykładowa konfiguracja pliku make.conf">
 CHOST="i686-pc-linux-gnu"
 CFLAGS="-O2 -march=athlon-xp -msse2 -msse -pipe"
 ACCEPT_KEYWORDS="~x86"
@@ -118,7 +118,7 @@ aby obejść to ograniczenie. Można użyć gniazd TCP, jednak ich działanie b�
 wolniejsze. Najlepszym rozwiązaniem jest zamontowanie katalogu /tmp wewnątrz
 chroot. Wykonujemy to poleceniem (spoza środowiska chrootowanego):
 </p>
-<pre>
+<pre caption="Montowanie /tmp w środowisku chrootowanym">
 mount -o bind /tmp /mnt/gentoo32/tmp
 </pre>
 <p>
@@ -134,7 +134,7 @@ Aby przejść do środowiska chrootowanego, należy wykorzystać poniższą kome
 która pozwoli na prawidłowe ustawienie zmiennych środowiskowych wewnątrz tego
 środowiska.
 </p>
-<pre>
+<pre caption="Przejście do środowiska chrootowanego">
 linux32 chroot /mnt/32-bit /bin/bash --login
 </pre>
 </body>
