@@ -130,22 +130,24 @@ zaprojektowany z myślą o komputerach 64-bitowych).
 </tr>
 <tr>
 	<ti>reiser4</ti>
-	<ti>NIE DZIAŁA NA AMD64, NIE JEST WSPIERANY NA ???ŻADNEJ??? ARCHTEKTURZE!</ti>
+	<ti>NIE DZIAŁA NA AMD64, NIE JEST WSPIERANY NA ŻADNEJ ARCHITEKTURZE!</ti>
 </tr>
 </table>
 <p>
- Prosimy o zgłaszanie wszelkich problemów z systemami plików na bugs.gentoo.org.
+Prosimy o zgłaszanie wszelkich problemów z systemami plików na stronie bugs.gentoo.org.
 </p>
 </body>
 </section>
  
-<section><title>Bootloader: kompilowanie grub</title>
+<section><title>Bootloader: kompilowanie programu grub</title>
 <body>
 <p>
-Grub will not build in a pure 64-bit environment.  It will only compile using a multilib
-gcc.  2004.3 includes multilib support by default.  If you choose to remove multilib support
-from gcc, then you most use <c>grub-static</c>.  <c>grub-static</c> can be installed using the
-following commands:
+Instalacja programu grub nie jest możliwa w czystym 64-bitowym środowisku. Można
+go skompilować jedynie przy użyciu gcc ze wsparciem dla multilib. Gentoo 2004.3
+domyślnie dołącza wsparcie dla multilib. Jeśli zdecydujemy się na usunięcie z
+gcc wsparcia dla tego komponentu, konieczne będzie użycie programu
+<c>grub-static</c> zamiast gruba. <c>grub-static</c> instalujemy przy użyciu
+komend:
 </p>
 <pre>
 emerge grub-static
@@ -154,88 +156,94 @@ cp -Rpv /usr/share/grub/i386-pc/* /boot/grub
 </body>
 </section>
  
-<section><title>Some Packages Are Still Masked</title>
+<section><title>Dłuższe maskowanie niektórych pakietów</title>
 <body>
 <p>
-Some packages which are unmasked on other architectures are still masked on
-AMD64. This doesn't mean that they don't work. It simply means that no Gentoo
-developer has been able to test them on an AMD64 machine. Please test masked
-applications and <uri link="http://bugs.gentoo.org">submit a bug report</uri>
-letting the developers know whether a package works or not.
+Pewne pakiety, które zostały odmaskowane dla innych architektur, są wciąż
+zamaskowane dla AMD64. Nie oznacza to oczywiście, że pakiety te nie działają.
+Oznacza to jedynie, że żaden z developerów Gentoo nie mógł przetestować ich na
+komputerze AMD64. Prosimy w związku z tym o testowanie zamaskowanych aplikacji i 
+<uri link="http://bugs.gentoo.org">zgłaszanie raportów o błędach</uri>, aby
+poinformować developorów czy pakiety działają poprawnie, czy też nie.
 </p>
 </body>
 </section>
 
-<section><title>Packages That Don't Work</title>
+<section><title>Niedziałające pakiety</title>
 <body>
 <p>
-Don't currently work: 
+Aktualnie niedziałające pakiety: 
 </p>
 <ul>
-	<li>Firebird (the database, NOT the browser)</li>
+	<li>Firebird (baza danych, a NIE przeglądarka)</li>
 </ul>
 <p>
-Things that won't work in 64-bit mode, but WILL work in 32-bit mode (assuming
-app-emulation/emul-linux-x86-baselibs and friends are installed):
+Pakiety, które nie działają z trybie 64-bitowym, ale działają w trybie 32-bitowym
+(po instalacji app-emulation/emul-linux-x86-baselibs i pokrewnych):
 </p>
 <ul>
-	<li>Any program that uses 32-bit dlls from windows (such as mplayer/xine support
-	for some proprietary formats)</li>
-	<li>Any programs that require 32-bit assembly</li>
+	<li>Wszystkie programy, które korzystają z 32-bitowych plików dll z
+	Windows (jak na przykład wsparcie mplayer/xine dla własnych formatów);</li>
+	<li>Wszystkie programy, które wymagają 32-bitowego wsparcia.</li>
 </ul>
 </body>
 </section>
 
-<section><title>Java Support</title>
+<section><title>Wsparcie dla Javy</title>
 <body>
 <p>
-Blackdown released a native 64-bit Java for Linux on AMD64. It is a
-release candidate so do not expect it to be perfect. It is in portage as
-<path>blackdown-jdk-1.4.2</path> and <path>blackdown-jre-1.4.2</path>.
+Blackdown wypuścił własną 64-bitową werjsę Javy dla Linuksa na komputerach
+AMD64. Jest to warunkowo opublikowana edycja, więc nie należy oczekiwać, że
+będzie ona doskonale działać. W drzewie portage występuje ona jako
+<path>blackdown-jdk-1.4.2</path> i <path>blackdown-jre-1.4.2</path>.
 </p>
 <p>
-Some people have noted that the 64-bit Java VM is slower than the 32-bit Java
-VM. Juergen Kreileder of Blackdown was kind enough to respond:
-</p>
-<pre>
-Actually the 64-bit VM is faster than the 32-bit VM in allmost all
-benchmarks.
-
-The difference they see is more likely to come from the different
-VMs:
-The i386 version comes with the HotSpot Client VM and the HotSpot
-Server VM, the Client VM gets used by default.  The AMD64 version
-only comes with the Server VM, the Client VM has not been ported yet.
-
-In general the Server VM is the faster VM.  Its compiler does more
-optimizations and is more aggressive than the Client VM's compiler.
-It usually generates much better code.
-The downside is that doing this optimizations takes CPU time and
-memory.  Because of this running GUI code in the Client VM often
-is faster (at least initially) than running it in the Server VM.
-
-In other words: It's not fair to compare i386-client with
-AMD64-server.  You have to compare i386-server (ie. "java -server
-...") with AMD64-server.
-</pre>
-<p>
-Also, he answered a question about a potential timeline that the client VM
-might be accomplished in:
+Niektórzy użytkownicy zauważyli, że 64-bitowa Java VM jest wolniejsza od jej
+32-bitowego odpowiednika. Juergen Kreileder z Blackdown udzielił następujących
+informacji na ten temat:
 </p>
 <pre>
-It won't be in the final 1.4.2 release.  It's unlikely for 1.5.0 (both
-Sun and Blackdown), Sun is happy with the Server VM port and not
-really interested in getting the Client VM ported (the other 64-bit
-VMs, for IA64 &amp; SPARC64, are Server VM-only too).  And it's just too
-much work (I'd estimate 10-13 man weeks) to do it without payment.
+Obecnie 64-bitowa Java VM jest szysza od 32-bitowego odpowiednika w niemal
+wszystkich testach.
+
+Różnica zauważana przez użytkowników jest raczej efektem użycia różnych typów
+Javy VM. Wersja dla i386 obejmuje Javę HotSpot Client VM i HotSpot
+Server VM, przy czym domyślnie zostaje wykorzystany typ Client VM. Wersja dla
+AMD64 zawiera wyłącznie typ Server VM, gdyż Client VM nie został jeszcze
+przygotowany.
+
+Ogólnie rzecz biorąc Server VM jest szybszym typem. Jego kompilator
+wykonuje bardziej szczegółową optymalizację i jest bardziej agresywny niż
+kompilator typu Client VM. Dzięki temu zazwyczaj generuje on znacznie lepszy
+kod. Wadą jest natomist to, że tak szczegółowa optymalizacja obciąża procesor w
+większym stopniu. W związku z tym kod GUI jest w Client VM zazwyczaj
+przetwarzany szybciej (przynajmniej początkowo) niż na Server VM.
+
+Innymi słowy: porównywanie tupy Client VM dla i386 z typem Server VM dla AMD64
+nie jest wymierne. Należałoby raczej porównać Server VM dla i386 (np.: "java
+-server ...") z Server VM dla AMD64.
 </pre>
 <p>
-So if you're going to run benchmarks, to be fair, run java -server on both
-arches, and don't expect the client vm to be done anytime too soon. ;-)
+Juergen Kreileder odpowiedział również na pytanie o potencjalny czas ukończenie
+Javy Client VM dla AMD64:
+</p>
+<pre>
+Nie znajdzie się on w finalnej wersji 1.4.2. Nie jest on również przewidywany
+dla wersji 1.5.0 (zarówno firma Sun, jak i Blackdown nie są nim zainteresowane).
+Firma Sun jest zadowolona z Javy Server VM i tak na prawdę nie jest
+zainteresowana wdrożeniem Javy Client VM (na innych 64-bitowych maszynach, jak
+IA64 &amp; SPARC64, również dostępna jest tylko Java Server VM). Wprowadzenie
+wersji Client VM zajełoby zbyt dużo czasu, aby robić to bez zapłaty.
+</pre>
+<p>
+Tak więc, aby wyniki porównania były wymierne, konieczne jest przetestowanie na
+obu architekturach wersji Server, a wersji Client dla AMD64 nie należy się
+spodziewać zbyt szybko. ;-)
 </p>
 <p>
-Once you have java installed, the following symlink fix is required to 
-make it work with mozilla (and possibly konqueror):
+Gdy java zostanie zainstalowana, wymagane jest stworzenie następującego
+dowiązania symbolicznego, aby pracowała ona z mozillą (i prawdopodobnie z
+konqueorem):
 </p>
 <pre>
 /usr/lib/nsbrowser/plugins/libjavaplugin_oji.so -> /opt/blackdown-jdk-1.4.2_rc1/jre/plugin/amd64/mozilla/libjavaplugin_oji.so
@@ -243,20 +251,23 @@ make it work with mozilla (and possibly konqueror):
 </body>
 </section>
  
-<section><title>Installing OpenOffice</title>
+<section><title>Instalacja programu OpenOffice</title>
 <body>
 <p>
-OpenOffice is currently only available in 32-bit binary form, since OpenOffice 1.1.x will not compile on amd64. To install OpenOffice, emerge the <path>app-office/openoffice-bin</path> package.
+OpenOffice jest obecnie dostępny jedynie w 32-bitowej binarnej formie, gdyż
+wersje 1.1.x nie mogą zostać skompilowane na komputerach AMD64. Aby zainstalować
+OpenOfficea należy zemergować pakiet <path>app-office/openoffice-bin</path>.
 </p>
-<note>Don't even consider trying to get OpenOffice to compile from source. It is an effort in futility and will only lead to many sleepless nights.</note>
+<note>Nie warto nawet zastanawiać się nad instalacją OpenOfficea ze źródeł. Będą
+to daremne wysiłki, które zaowocują jedynie wieloma nieprzespanymi nocami.</note>
 </body>
 </section>
 
-<section><title>Properly Setting CFLAGS</title>
+<section><title>Prawidłowe ustawienie CFLAGS</title>
 <body>
 <p>
-Unlike gcc 3.3, gcc 3.4 requires that you set -march.  The most conservative (and supported)
-CFLAGS can be set as show below:
+W przeciwieństwie do gcc 3.3, gcc 3.4 wymaga ustawienia parametru -march.
+Najbardziej konserwatywnymi (i najlepiej wspieranymi) ustawieniami CFLAGS są:
 </p>
 <pre caption="gcc-3.4 CFLAGS">
 ...
@@ -264,7 +275,7 @@ CFLAGS="-march=k8 -O2 -pipe"
 ...
 </pre>
 <note>
-<c>-march=k8</c> equals <c>-march=athlon64</c> equals <c>-march=opteron</c>.
+<c>-march=k8</c> oznacza to samo co <c>-march=athlon64</c> oraz <c>-march=opteron</c>.
 </note>
 <p>
 There used to be issues with the lack of <c>-fPIC</c> being specified when
