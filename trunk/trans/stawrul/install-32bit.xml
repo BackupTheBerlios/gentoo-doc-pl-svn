@@ -1,75 +1,86 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header:
-/var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/proj/pl/base/amd64/Attic/install-32bit.xml,v
-1.7 2005/08/23 10:11:41 blubb dead $ -->
-<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+<?xml version='1.0' encoding='UTF-8'?> <!-- $Header$ --> <!DOCTYPE sections
+SYSTEM "/dtd/book.dtd">
 
 <!-- The context of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommonds.org/licenses/by-sa/1.0 -->
+<!-- See http://creativecommonds.org/licenses/by-sa/2.5 -->
 
 <sections>
 
-<section><title>Używanie 32-bitowych programów</title>
+<section>
+<title>Używanie 32-bitowych programów</title>
 <body>
-<impo>KONIECZNE JEST WŁĄCZENIE OPCJI "IA32 Emulation" W SEKCJI "Executable File
-Formats" W KONFIGURACJI JĄDRA!</impo>
-<p>Należy pamiętać, że wiele zmian jest cały czas wprowadzanych. Najłatwiejszym
+
+<impo>
+KONIECZNE JEST WŁĄCZENIE OPCJI "IA32 Emulation" W SEKCJI "Executable File
+Formats" W KONFIGURACJI JĄDRA!
+</impo>
+
+<p>
+Należy pamiętać, że wiele zmian jest cały czas wprowadzanych. Najłatwiejszym
 obecnie sposobem ustawienia 32-bitowego środowiska jest instalacja bibliotek
 emulacyjnych.
 </p>
-<pre caption="Instalacja bibliotek emulacyjnych">
-emerge app-emulation/emul-linux-x86-baselibs
-emerge app-emulation/emul-linux-x86-xlibs
-emerge app-emulation/emul-linux-x86-gtklibs
-emerge app-emulation/emul-linux-x86-qtlibs
+
+<pre caption="Instalacja bibliotek emulacyjnych"> 
+# <i>emerge app-emulation/emul-linux-x86-baselibs</i>
+# <i>emerge app-emulation/emul-linux-x86-xlibs </i>
+# <i>emerge app-emulation/emul-linux-x86-gtklibs</i>
+# <i>emerge app-emulation/emul-linux-x86-qtlibs</i>
 </pre>
-<p> 
+
+<p>
 Biblioteki emulacyjne stworzą katalog <path>/emul/linux/x86</path> i zainstalują
 większość bibliotek, jakie będą potrzebne do uruchomienia prekompilowanych
 32-bitowych aplikacji. Stworzą one również dowiązania symboliczne /lib32 i
 /usr/lib32 wskazujące na właściwy katalog /emul. Ponadto powstanie dowiązanie
 symboliczne w katalogu /lib wskazujące na
-<path>/emul/linux/x86/lib/ld-linux.so.2</path> (warianty 64-bitowe występują jako
-ld-linux-x86-64.so.2).
+<path>/emul/linux/x86/lib/ld-linux.so.2</path> (warianty 64-bitowe występują
+jako ld-linux-x86-64.so.2).
 </p>
+
 <p>
-Instalacja tych paczek pozwoli na uruchomienie większości 32-bitowych
+Instalacja tych pakietów pozwoli na uruchomienie większości 32-bitowych
 prekompilowanych aplikacji (np.: Java, Oracle 9i, Opera).
 </p>
+
 </body>
 </section>
-
 <section>
 <title>Kompilowanie 32-bitowych aplikacji w 64-bitowym środowisku (przy użyciu multilib)</title>
 <body>
+
 <p>
-Po pierwsze, konieczne jest posiadanie emulowanego 32-bitowego środowiska,
-które zostało opisane w poprzednim akapicie. Następnie należy dodać
-<c>multilib</c> do flag USE w pliku <path>/etc/make.conf</path> i zemergować lub
-reemergować <path>GCC</path>. W ten sposób zbudujemy GCC ze wsparciem dla
-multilib, co pozwoli na tworzenie 32-bitowych binariów przy użyciu ustawienia
-<c>-m32</c> w zmiennej CFLAGS. Posiadanie zainstalowanego multilib nie powinno
-wpłynąć na kompilacje 64-bitowe (możemy nawet dodać <c>-m64</c> jeśli z jakiś
-powodów chcemy uzyskać pewność w tym względzie).
+Po pierwsze, konieczne jest posiadanie emulowanego 32-bitowego środowiska, które
+zostało opisane w poprzednim akapicie. Następnie należy dodać <c>multilib</c> do
+flag USE w pliku <path>/etc/make.conf</path> i zemergować lub reemergować
+<path>GCC</path>. W ten sposób zbudujemy GCC ze wsparciem dla multilib, co
+pozwoli na tworzenie 32-bitowych binariów przy użyciu ustawienia <c>-m32</c> w
+zmiennej CFLAGS. Posiadanie zainstalowanego multilib nie powinno wpłynąć na
+kompilacje 64-bitowe (możemy nawet dodać <c>-m64</c> jeśli z jakiś powodów
+chcemy uzyskać pewność w tym względzie).
 </p>
-<note>Mocno odradzamy użytkownikom dodawanie <c>-m32</c> <e>kiedykolwiek</e> do
+
+<note>
+Mocno odradzamy użytkownikom dodawanie <c>-m32</c> <e>kiedykolwiek</e> do
 <path>/etc/make.conf</path> lub używanie <c>-m32</c> z portage w jakikolwiek
 inny sposób. Zalecane jest, aby 32-bitowe kompilacje przeprowadzać ręcznie, a
 nie przez system portage. Nie przywiązywanie uwagi do tej kwestii, może
 doprowadzić do poważnego uszkodzenia systemu zależności. Nie będziemy odpowiadać
 na pytania jak to naprawić - uszkodzenia powstaną wyłącznie z winy użytkownika.
 </note>
+
 </body>
 </section>
-
-<section><title>Tworzenie 32-bitowego chrootowanego środowiska</title>
+<section>
+<title>Tworzenie 32-bitowego chrootowanego środowiska</title>
 <body>
+
 <p>
 Po zainstalowaniu 32-bitowych bibliotek emulacyjnych, możliwe jest uruchomienie
 większości 32-bitowych programów wewnątrz 64-bitowego środowiska. Nie jest
 jednakże łatwe skompilowanie nowych aplikacji lub zainstalowanie 32-bitowych
-bibliotek. Przez to używanie programów takich jak Wine, czy
-wtyczki Flash Netscapea w Mozilli może być trudne. Rozwiązaniem jest stworzenie 32-bitowego
+bibliotek. Przez to używanie programów takich jak Wine, czy wtyczki Flash
+Netscapea w Mozilli może być trudne. Rozwiązaniem jest stworzenie 32-bitowego
 chrootowanego środowiska, które pozwoli na zastosowanie ulubionego menedżera
 paczek do instalacji 32-bitowych programów i bibliotek. Da ono również możliwość
 optymalizacji paczek tak, jak tego chcemy. Biblioteki emul są kompilowane tylko
@@ -77,31 +88,37 @@ w przypadku drugorzędnych optymalizacji, ponieważ wykorzystuje je również
 platforma IA64. Głównym mankamentem jest jednak ilość miejsca zajmowanego na
 dysku. Wszystkie biblioteki i programy zostaną instalowane dwukrotnie.
 </p>
+
 <p>
 Aby zbudować 32-bitowe środowisko chrootowane, najpierw musimy utworzyć katalog
 (lub partycję), na której chcemy je umieścić. Następnie umieszczamy tam stage
 x86 (nie należy korzystać tutaj ze stage AMD64) i montujemy system plików proc.
-Kolejnym krokiem jest chrootowanie się do nowego środowiska. Wykonuje się to tak, jak
-zostało to opisane w podręczniku, jednak konieczne jest wykorzystanie programu
-linux32 aby zmienić 'uname -m' na 'i686'. Wpisujemy więc:
+Kolejnym krokiem jest chrootowanie się do nowego środowiska. Wykonuje się to
+tak, jak zostało to opisane w podręczniku, jednak konieczne jest wykorzystanie
+programu linux32 aby zmienić 'uname -m' na 'i686'. Wpisujemy więc:
 </p>
+
 <pre caption="Przejście do środowiska chrootowanego">
-linux32 chroot /mnt/gentoo32 /bin/bash
+linux32 <i>chroot /mnt/gentoo32 /bin/bash</i>
 </pre>
+
 <p>
-W ten sposób znaleźliśmy się w chrootowanym środowisku. Polecenie 'uname -m' powinno
-zwrócić 'i686'. W pliku make.conf można użyć flag jak poniżej:
+W ten sposób znaleźliśmy się w chrootowanym środowisku. Polecenie 'uname -m'
+powinno zwrócić 'i686'. W pliku make.conf można użyć flag jak poniżej:
 </p>
+
 <pre caption="Przykładowa konfiguracja pliku make.conf">
 CHOST="i686-pc-linux-gnu"
 CFLAGS="-O2 -march=athlon-xp -msse2 -msse -pipe"
 ACCEPT_KEYWORDS="~x86"
 </pre>
+
 <p>
 Gdy ukaże się gcc-3.4, powinno być możliwe użycie flagi -march=k8 dla
 optymalizacji pod kątem amd64, jednak na liście zmian dla tej wersji gcc nie ma
 informacji, czy będzię to dostępne również dla 32-bitowych kompilacji.
 </p>
+
 <p>
 Następnie kontynuujemy instalację zgodnie z opisem w podręczniku. Pominąć można
 większość operacji po przejściu do stage3. Nie ma potrzeby instalowania drugiego
@@ -110,6 +127,7 @@ hostów i skonfigurowanie pliku resolv.conf. Po wykonaniu tych czynności
 32-bitowe chrootowane środowisko będzie gotowe do użytku. Niestety aby
 wykorzystać aplikacje X konieczne będzie wprowadzenie kilku dodatkowych zmian.
 </p>
+
 <p>
 Klient X korzysta z unixowych gniazd do komunikacji z serwerem X. Tymi gniazdami
 są pliki w katalogu /tmp poza środowiskiem chrootowanym. Oznacza to, że klient X
@@ -118,9 +136,11 @@ aby obejść to ograniczenie. Można użyć gniazd TCP, jednak ich działanie b�
 wolniejsze. Najlepszym rozwiązaniem jest zamontowanie katalogu /tmp wewnątrz
 chroot. Wykonujemy to poleceniem (spoza środowiska chrootowanego):
 </p>
+
 <pre caption="Montowanie /tmp w środowisku chrootowanym">
 mount -o bind /tmp /mnt/gentoo32/tmp
 </pre>
+
 <p>
 Oczywiście, aby połączyć się z serwerem X z wnętrza środowiska chrootowanego,
 konieczne będzie użycie <c>xhost local:localhost</c> poza nim. Możliwe jest
@@ -129,15 +149,18 @@ zaoszczędzenia miejsca na dyskach. Można postąpić tak z folderami
 <path>/home</path>, <path>/usr/portage/distfiles</path> i
 <path>/usr/share</path>.
 </p>
+
 <p>
 Aby przejść do środowiska chrootowanego, należy wykorzystać poniższą komendę,
 która pozwoli na prawidłowe ustawienie zmiennych środowiskowych wewnątrz tego
 środowiska.
 </p>
+
 <pre caption="Przejście do środowiska chrootowanego">
-linux32 chroot /mnt/32-bit /bin/bash --login
+linux32 <i>chroot /mnt/32-bit /bin/bash --login</i>
 </pre>
+
 </body>
 </section>
- 
+
 </sections>
