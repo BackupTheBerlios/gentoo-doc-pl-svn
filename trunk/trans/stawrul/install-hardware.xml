@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- $Header:
+/var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/proj/pl/base/amd64/Attic/install-hardware.xml,v
+1.10 2005/08/25 11:42:41 blubb dead $ -->
+<!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+
+<!-- The context of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommonds.org/licenses/by-sa/2.5 -->
+
+<sections>
+
+<section>
+	<title>Aktualizacja BIOS-u</title>
+<body>
+<p>
+Wielu producentów płyt głównych dla AMD64 narzeka na błędy w BIOS-ach. Należy
+zaktualizować posiadany BIOS do najnowszej dostępnej wersji, przed rozpoczęciem
+instalacji Gentoo. Aktualizacja BIOS-u może rozwiązać niektóre problemy oraz
+umożliwić dostęp do dodatkowych, właściwych komputerom AMD64, opcji (np.
+Coll'n'Quiet).
+</p>
+</body>
+</section>
+
+<section>
+	<title>Kontrolery SATA/PATA</title>
+<subsection>
+	<title>Kontrolery, statusy i typy</title>
+<body>
+<p>
+Poniżej znajduje się zestawienie powszechnie używanych kontrolerów SATA/PATA:
+</p>
+<table>
+<tr>
+	<th>Producent</th>
+	<th>Model</th>
+	<th>Typ RAID</th>
+	<th>Status</th>
+</tr>
+<tr>
+	<ti>VIA</ti>
+	<ti>8237</ti>
+	<ti>Software</ti>
+	<ti>DZIAŁA</ti>
+</tr>
+<tr>
+	<ti>Promise</ti>
+	<ti>PDC202xx/PDC203xx</ti>
+	<ti>Software</ti>
+	<ti>DZIAŁA</ti>
+</tr>
+<tr>
+	<ti>Silicon Image</ti>
+	<ti>3112[a],3512,3114</ti>
+	<ti>Software</ti>
+	<ti>DZIAŁA</ti>
+</tr>
+<tr>
+	<ti>Promise</ti>
+	<ti>SX4000 (PDC20621)</ti>
+	<ti>Hardware</ti>
+	<ti>DZIAŁA</ti>
+</tr>
+<tr>
+	<ti>3Ware</ti>
+	<ti>Escalade 7xxx and 8xxx</ti>
+	<ti>Hardware</ti>
+	<ti>DZIAŁA</ti>
+</tr>
+</table>
+</body>
+</subsection>
+
+<subsection>
+	<title>Różnice pomiędzy sprzętowym (hardware) i programowym (software) RAID-em</title>
+<body>
+<p>
+Sprzętowy kontroler RAID zawsze ma postać dodatkowej karty - nigdy nie jest
+częścią płyty głównej. Posiada on BIOS, który może zostać uruchomiony przed
+zbootowaniem systemu z dysku i zazwyczaj obsługuje przynajmniej wersje RAID 0,
+1, 1+0 i 5. Kontroler tego typu zawiera własny procesor, wykonujący wszystkie
+niezbędne kalkulacje oraz operacje wejścia/wyjścia, a także przekazujący do
+systemu operacyjnego informacje o dyskach tak, jak zostało to skonfigurowane
+przez użytkownika (np. jeśli wykorzystany zostanie RAID 5, łączący trzy dyski,
+system operacyjny będzi widział jeden duży dysk). Sprzętowy kontroler RAID
+zawsze jest szybszy od programowego odpowiednika, a ponadto w mniejszym
+stopniu obciąża procesor. Tego typu kontroler może opcjonalnie posiadać sloty
+DIMM dla cache oraz zapasowe zasilanie dla nich. Sprzętowy RAID zmniejsza
+również złożoność działań w systemie operacyjnym, gdyż kontroler pracuje na
+płaszczyźnie sprzętowej.
+</p>
+<p>
+Programowy kontroler RAID może być zarówno dodatkową kartą, jak i częścią płyty
+głównej. Tego typu kontroler, podobnie jak sprzętowy RAID, może posiadać BIOS,
+jednak nie jest to regułą. Funkcjonalność jest w tym przypadku zapewniana
+poprzez sterowniki w systemie operacyjnym. Z tego powodu nie istnieją programowe
+kontrolery RAID obsługujące bootowalny RAID 5. System operacyjny będzie widział
+każdy dysk jako zwykły dysk twardy - programowy kontroler nie przeprowadzi
+żadnego maskowania. W jądrach serii 2.4 znajduje się moduł <c>ataraid</c>, który
+może odczytać BIOS programowego kontrolera, ustawić kontroler RAID Linuksa
+tak, jak wskazuje BIOS i utworzyć pseudo napęd, co da efekt jak w przypadku
+użycia sprzętowego kontrolera. Moduł ten nie został dołączony od jąder serii
+2.6. Natomiast wersja dla jąder 2.4 nie obsługuje kontrolerów SATA, a wyłącze
+stare programowe kontrolery PATA. Aby powiedzieć dosadnie: programowy kontroler
+RAID nie jest niczym więcej niż standardowym kontrolerem SATA/PATA z opcjonalnym
+BIOS-em do ustawienia konfiguracji. To czyni je niezwykle tanimi w produkcji i
+zawazem powoduje, że są dołączane do wielu płyt głównych.
+</p>
+</body>
+</subsection>
+</section>
+
+<section>
+	<title>Kompatybilność kart Riser z kartami 3ware i płytami głównymi Tyan</title>
+<body>
+<p>
+Aby uzyskać więcej informacji o kompatybilności kart Riser z kartami 3ware i
+płytami głównymi Tyan, należy zapoznać się z <uri
+link="http://www.3ware.com/KB/article.aspx?id=10964">tym artykułem</uri>.
+</p>
+</body>
+</section>
+
+<section>
+	<title>Ogólne pytania na temat procesorów Opteron/Athlon64</title>
+<subsection>
+	<title>Czym różnią się Athlon64, Athlon64FX, i Opteron?</title>
+<body>
+<p>
+Athlon64 jest 754-pinowym procesorem z jednokanałową pamięcią, przeznaczonym do
+zastosowań biurkowych. Może być używany jedynie w trybie jednoprocesorowym.
+Athlon64FX jest 940-pinowym procesorem z dwukanałową pamięcią, dedykowanym dla
+stacji roboczych. Ten procesor również może być używany tylko w trybie
+jednoprocesorowym. Opteron jest 940-pinowym procesorem z dwukanałową pamięcią,
+przewidzianym do użytku na serwerach. Opteron dostępny jest w trzech wersjach:
+seria 1xx dla jednoprocesorowych systemów, seria 2xx dla dwuprocesorowych
+systemów, a także seria 8xx, która umożliwia działanie nawet w
+ośmioprocesorowych systemach (a przy użyciu pośredniego kontrolera w jeszcze
+bardziej złożonych). Poszczególne warianty nie odznaczają się różnicami w
+prędkości działania, a jedynie liczbą aktywnych chipów w hipertransportowych
+blokach. Wszystkie omawiane rodzaje procesorów cechują się takimi samymi
+możliwościami (poza ilością kanałów pamięci i rozmiarem cache, które wpływają na
+wydajność) i tak naprawdę Athlon64FX jest po prostu Opteronem serii 1xx ze
+zmienioną nazwą. W przyszłości procesory 754-pinowe zostaną zastąpione
+939-pinowymi, co połączy linie Athlon64 i Athlon64FX.
+</p>
+</body>
+</subsection>
+<subsection>
+	<title>Dlaczego Athlon64 3200+ i Athlon64 3000+ są taktowane z taką samą
+	predkością?</title>
+<body>
+<p>
+Athlon64 3000+ ma o połowę mniejszą pamięć cache niż Athlon64 3200+ (3000+ - 512kB
+i 3200+ - 1MB). Powoduje do zmniejszenie prędkości działania tego pierwszego (w
+rzeczywistości różnica wydajności nie przekracza 5%). 
+</p>
+</body>
+</subsection>
+<subsection>
+	<title>Czy 32-bitowe aplikacje są obsługiwane? Czy trudna jest ich
+	emulacja lub asymilacja?</title>
+<body>
+<p>
+Yes, 32bit applications are fully supported by the CPU, and are executed natively. A standard x86 OS can be installed on an amd64 processor, and can execute 32bit applications from a 64bit operating system if it is capable of mapping the 32bit syscalls to the kernel's 64bit interfaces (such as Linux is capable of doing if you enable it in the kernel). Please see the below section on 32bit support for further information. Please also note there is no performance penalty for running 32bit apps on an amd64 class processor, and will always be faster than the athlonxp line of processors running 32bit code (please note this is different than ia64 itanium processors!)
+</p>
+</body>
+</subsection>
+</section>
+
+<section>
+	<title>MPT Fusion SCSI Controllers</title>
+<body>
+<p>
+To make this scsi controller work, you must pass the following option to the kernel at boot time:
+</p>
+ <pre>
+iommu=merge
+</pre>
+</body>
+</section>
+
+<section>
+	<title>3D Video Acceleration Support</title>
+<subsection>
+	<title>ATI Radeon Cards</title>
+<body>
+<p>
+ATI has finally released 64-bit drivers for Radeon cards newer than the 
+9200. Use the command <c>ACCEPT_KEYWORDS="~amd64" emerge ati-drivers</c> 
+in order to install them.  If the proprietary drivers don't work 
+properly for you, then the development team suggests that you try the 
+open sourced "radeon" driver included with xorg. However, the "radeon" 
+driver only includes 2d Accelleration.
+</p>
+</body>
+</subsection>
+<subsection>
+	<title>nVidia GeForce</title>
+<body>
+<p>
+nVidia opublikowała sterowniki dla AMD64. Gentoo dostarcza odpowiednie dla nich
+ebuildy. Aby zainstalować obsługę urządzeń nVidia, należy wykonać następujące operacje:
+</p>
+<pre caption="Instalacja sterowników nVidia">
+# <i>emerge nvidia-kernel</i>
+# <i>emerge nvidia-glx</i>
+# <i>emerge nvidia-settings</i>
+</pre>
+<impo>Należy korzystać z jąder w wersji 2.6.7 lub nowszej. Rozwiązuje to problem
+niekontrolowanych restartów, jakiego doświadczyli niektórzy użytkownicy.</impo>
+<p>
+Gdy instalacja zakończy się, należy włączyć obsługę urządzeń nVidia w pliku
+<path>/etc/X11/XF86Config</path> zgodnie z dokumentacją dołączoną do
+zemergowanych pakietów.
+</p>
+</body>
+</subsection>
+<subsection>
+	<title>Matrox Video Cards</title>
+<body>
+<p>
+Many Matrox video cards require the proprietary 'mga_hal' module to enable dual-head support (G400 and earlier)
+or video capture capabilities.  Matrox has yet to release an amd64 compiled version of this module. This means
+for us that - while the card will work - you won't be able to use these extended features.
+</p>
+</body>
+</subsection>
+</section>
+
+<section>
+	<title>bcm/tigon3 Network Drivers</title>
+<body>
+<p>
+Many Opteron motherboards come with a built-in on-board network chip manufactured by Broadcom. We have provided both the standard in-kernel tg3 driver as well as the bcm5700 driver to support this card. The tg3 driver should be used if possible, as it is community-supported, and the bcm5700 driver only exists to aide those who have trouble with tg3.
+</p>
+</body>
+</section>
+
+</sections>
