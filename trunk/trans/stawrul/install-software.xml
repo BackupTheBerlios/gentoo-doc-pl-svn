@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- $Header:
 /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/proj/pl/base/amd64/Attic/install-software.xml,v
-1.19 2005/08/24 11:42:41 blubb dead $ -->
+1.19 2005/08/2 11:42:41 blubb dead $ -->
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
 <!-- The context of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommonds.org/licenses/by-sa/1.0 -->
+<!-- See http://creativecommonds.org/licenses/by-sa/2.5 -->
 
 <sections>
 
@@ -17,16 +17,16 @@
 <p>
 Od czasu wydania Gentoo 2004.3, na LiveCD dostępne jest jedno jądro, którego
 można użyć do bootowania. Jest to jądro typu SMP i nazywa się <c>gentoo</c>.
-Komputery innego typu wciąż mogą z tego kernela korzystać.
+Komputery innego typu wciąż mogą korzystać z tego kernela.
 </p>
 </body>
 </subsection>
 <subsection>
-	<title>Użycie prawidłowych źródeł jądra</title>
+	<title>Wykorzystanie prawidłowych źródeł jądra</title>
 <body>
 <impo>Należy korzystać z jąder linii <path>sys-kernel/gentoo-dev-sources</path>!
 Zawierają one łatki specyficzne dla AMD64 oraz inne dodatkowe rozszerzenia.
-Wykorzystanie innych kerneli nie jest wspierane.</impo>
+Wykorzystywanie innych kerneli nie jest zalecane.</impo>
 </body>
 </subsection>
 <subsection>
@@ -34,13 +34,14 @@ Wykorzystanie innych kerneli nie jest wspierane.</impo>
 <body>
 <p>
 Przed wydaniem Gentoo 2004.3, w czasie konfiguracji jądra dla laptopa eMachine
-Mobile Athlon64 <e>konieczne</e> było wkompilowanie wsparcia dla USB. W
+Mobile Athlon64 <e>konieczne</e> było wkompilowanie obsługi USB. W
 przeciwnym razie generowany był błąd "unknown keypress" z pliku
-<path>atkbd.c</path>. Wyłączenie wparcia dla USB nie działało.
+<path>atkbd.c</path>. Wyłączenie wparcia dla USB nie było możliwe.
 </p>
 <p>
-Wszelkie problemu związane z pracą Gentoo 2004.3 na laptopach eMachine powinny
-być raportowane poprzez stronę bugs.gentoo.org.
+Wszelkie problemy związane z pracą Gentoo 2004.3 na laptopach eMachine powinny
+być raportowane poprzez stronę <uri
+link="http://bugs.gentoo.org">bugs.gentoo.org</uri>.
 </p>
 </body>
 </subsection>
@@ -49,11 +50,11 @@ być raportowane poprzez stronę bugs.gentoo.org.
 <body>
 <p>
 <b>Linia jąder 2.4.x została oficjalnie zdeprecjonowana dla komputerów
-AMD64.</b> Gdy w jądrach wersji 2.4.23-pre7 zrezygnowano ze wsparcia dla devfs
-(zostało ono ukryte), pojawił się problem z zarządzaniem pamięcią, co było
-powodem dokonania deprecjacji. W Gentoo nie doświadczyliśmy tego typu problemów,
-jednak kernele linii 2.4 nie są dobrym rozwiązaniem ze względu na brak wsparcia
-dla devfs.
+AMD64.</b> Gdy w jądrach wersji 2.4.23-pre7 zrezygnowano z obsługi devfs
+(została ona ukryta), pojawił się problem z zarządzaniem pamięcią, co było
+bezpośrednim powodem dokonania deprecjacji. W Gentoo nie doświadczyliśmy tego
+typu problemów, jednak kernele linii 2.4 nie są dobrym rozwiązaniem ze względu
+na brak obsługi devfs.
 </p>
 </body>
 </subsection>
@@ -61,8 +62,8 @@ dla devfs.
 	<title>gcc 3.3 oficjalnie zdeprecjonowane</title>
 <body>
 <p>
-<b>Od chwili wydania Gentoo 2004.3, gcc 3.3 zostało oficjalnie zdeprecjonowane
-dla komputerów AMD64.</b> Wszystkie wydania od 2004.3 opierają się na gcc 3.4.x.
+<b>Wraz z wydaniem Gentoo 2004.3, gcc 3.3 zostało oficjalnie zdeprecjonowane dla
+komputerów AMD64.</b> Wszystkie wydania od 2004.3 opierają się na gcc 3.4.x.
 </p>
 </body>
 </subsection>
@@ -77,12 +78,12 @@ płyt głównych z chipsetem VIA. Dodanie powyższego parametru do opcji
 uruchamiania jądra może nastąpić jedynie <e>po</e> aktualizaji do najnowszej
 wersji BIOS-u, jaką udostępnia producent posiadanej płyty głównej. Być może uda
 się rozwiązać ten problem poprzez wyłączenie opcji "Legacy USB support" w
-BIOS-ie. Jeśli jednak jesteśmy zmuszeni to użycia parametru <c>idle-poll</c>,
+BIOS-ie. Jeśli jednak jesteśmy zmuszeni do użycia parametru <c>idle-poll</c>,
 powinniśmy skontaktować się z producentem płyty głównej lub dostawcą BIOS-u, aby
 uzyskać informacje o rozwiązaniu problemu #93 z erraty CPU.
 </p>
 <p>
-Aby uzystać więcej informacji na ten temat, warto odwiedzić te archiwa list
+Aby uzyskać więcej informacji na ten temat, warto odwiedzić archiwa list
 mailingowych:
 </p>
 <ul>
@@ -95,14 +96,13 @@ Widać na ich podstawie, że nie jest to problem specyficzny dla Gentoo.
 </body>
 </section>
 
-<section><title>Wsparcie systemów plików</title>
+<section><title>Obsługa systemów plików</title>
 <body>
 <p>
-Mocno rekomendowane jest korzystanie z systemów plików ext2/ext3. Pojawiały się
-raporty o problemach z systemem plików reiserfs na komputerach AMD64, a także
-pojawiają się informacje o problemach z JFS na 64-bitowych systemach (co
-zdecydowanie należy określić jako dziwne, ponieważ ten system plików został
-zaprojektowany z myślą o komputerach 64-bitowych).
+Mocno rekomendowane jest korzystanie z systemów plików ext2 i ext3. Pojawiają
+się raporty o problemach z systemami plików reiserfs i JFS na 64-bitowych
+komputerach (co w przypadku tego drugiego określić należy jako dziwne, ponieważ
+ten system plików został zaprojektowany z myślą o systemach 64-bitowych).
 </p>
 <table>
 <tr>
@@ -135,7 +135,8 @@ zaprojektowany z myślą o komputerach 64-bitowych).
 </tr>
 </table>
 <p>
-Prosimy o zgłaszanie wszelkich problemów z systemami plików na stronie bugs.gentoo.org.
+Prosimy o zgłaszanie wszelkich problemów z systemami plików na stronie <uri
+link="http://bugs.gentoo.org">bugs.gentoo.org</uri>.
 </p>
 </body>
 </section>
@@ -144,20 +145,20 @@ Prosimy o zgłaszanie wszelkich problemów z systemami plików na stronie bugs.g
 <body>
 <p>
 Instalacja programu grub nie jest możliwa w czystym 64-bitowym środowisku. Można
-go skompilować jedynie przy użyciu gcc ze wsparciem dla multilib. Gentoo 2004.3
-domyślnie dołącza wsparcie dla multilib. Jeśli zdecydujemy się na usunięcie z
-gcc wsparcia dla tego komponentu, konieczne będzie użycie programu
+go skompilować jedynie przy użyciu gcc z obsługą multilib. Gentoo 2004.3
+domyślnie dołącza obsługę multilib. Jeśli zdecydujemy się na usunięcie z
+gcc obsługi tego komponentu, konieczne będzie użycie programu
 <c>grub-static</c> zamiast gruba. <c>grub-static</c> instalujemy przy użyciu
 komend:
 </p>
 <pre caption="Instalacja grub-static">
-emerge grub-static
-cp -Rpv /usr/share/grub/i386-pc/* /boot/grub
+# <i>emerge grub-static</i>
+# <i>cp -Rpv /usr/share/grub/i386-pc/* /boot/grub</i>
 </pre>
 </body>
 </section>
  
-<section><title>Dłuższe maskowanie niektórych pakietów</title>
+<section><title>Dłuższe maskowanie niektórych pakietów dla AMD64</title>
 <body>
 <p>
 Pewne pakiety, które zostały odmaskowane dla innych architektur, są wciąż
@@ -176,7 +177,7 @@ poinformować developorów czy pakiety działają poprawnie, czy też nie.
 Aktualnie niedziałające pakiety: 
 </p>
 <ul>
-	<li>Firebird (baza danych, a NIE przeglądarka)</li>
+	<li>Firebird (baza danych, NIE przeglądarka)</li>
 </ul>
 <p>
 Pakiety, które nie działają z trybie 64-bitowym, ale działają w trybie 32-bitowym
@@ -184,18 +185,18 @@ Pakiety, które nie działają z trybie 64-bitowym, ale działają w trybie 32-b
 </p>
 <ul>
 	<li>Wszystkie programy, które korzystają z 32-bitowych plików dll z
-	Windows (jak na przykład wsparcie mplayer/xine dla własnych formatów);</li>
-	<li>Wszystkie programy, które wymagają 32-bitowego wsparcia.</li>
+	Windows (np.: obsługa własnych formatów w mplayer/xine);</li>
+	<li>Wszystkie programy, które wymagają obsługi 32-bitowej.</li>
 </ul>
 </body>
 </section>
 
-<section><title>Wsparcie dla Javy</title>
+<section><title>Obsługa Javy</title>
 <body>
 <p>
-Blackdown wypuścił własną 64-bitową werjsę Javy dla Linuksa na komputerach
+Blackdown wypuścił własną 64-bitową wersję Javy dla Linuksa na komputerach
 AMD64. Jest to warunkowo opublikowana edycja, więc nie należy oczekiwać, że
-będzie ona doskonale działać. W drzewie portage występuje ona jako
+będzie ona działać doskonale. W drzewie portage występuje ona jako
 <path>blackdown-jdk-1.4.2</path> i <path>blackdown-jre-1.4.2</path>.
 </p>
 <p>
@@ -210,20 +211,20 @@ wszystkich testach.
 
 Różnica zauważana przez użytkowników jest raczej efektem użycia różnych typów
 Javy VM. Wersja dla i386 obejmuje Javę HotSpot Client VM i HotSpot
-Server VM, przy czym domyślnie zostaje wykorzystany typ Client VM. Wersja dla
-AMD64 zawiera wyłącznie typ Server VM, gdyż Client VM nie został jeszcze
+Server VM, przy czym domyślnie zostaje wykorzystany Client VM. Wersja dla
+AMD64 zawiera wyłącznie Javę Server VM, gdyż Client VM nie został jeszcze
 przygotowany.
 
 Ogólnie rzecz biorąc Server VM jest szybszym typem. Jego kompilator
 wykonuje bardziej szczegółową optymalizację i jest bardziej agresywny niż
-kompilator typu Client VM. Dzięki temu zazwyczaj generuje on znacznie lepszy
+kompilator Client VM. Dzięki temu zazwyczaj generuje on znacznie lepszy
 kod. Wadą jest natomist to, że tak szczegółowa optymalizacja obciąża procesor w
-większym stopniu. W związku z tym kod GUI jest w Client VM zazwyczaj
+większym stopniu. W związku z tym, kod GUI jest w Client VM zazwyczaj
 przetwarzany szybciej (przynajmniej początkowo) niż na Server VM.
 
-Innymi słowy: porównywanie tupy Client VM dla i386 z typem Server VM dla AMD64
-nie jest wymierne. Należałoby raczej porównać Server VM dla i386 (np.: "java
--server ...") z Server VM dla AMD64.
+Innymi słowy: porównywanie Javy Client VM dla i386 z Javą Server VM dla AMD64
+nie da wymiernych rezultatów. Należałoby raczej porównać Server VM dla i386
+(np.: "java -server ...") z Server VM dla AMD64.
 </pre>
 <p>
 Juergen Kreileder odpowiedział również na pytanie o potencjalny czas ukończenie
@@ -231,21 +232,20 @@ Javy Client VM dla AMD64:
 </p>
 <pre caption="Juergen Kreileder o Java Client VM dla AMD64">
 Nie znajdzie się on w finalnej wersji 1.4.2. Nie jest on również przewidywany
-dla wersji 1.5.0 (zarówno firma Sun, jak i Blackdown nie są nim zainteresowane).
-Firma Sun jest zadowolona z Javy Server VM i tak na prawdę nie jest
-zainteresowana wdrożeniem Javy Client VM (na innych 64-bitowych maszynach, jak
-IA64 &amp; SPARC64, również dostępna jest tylko Java Server VM). Wprowadzenie
-wersji Client VM zajełoby zbyt dużo czasu, aby robić to bez zapłaty.
+dla wersji 1.5.0. Firma Sun jest zadowolona z Javy Server VM i tak naprawdę nie
+jest zainteresowana wdrożeniem Javy Client VM (dla innych 64-bitowych
+komputerów, jak IA64 &amp; SPARC64, również dostępna jest tylko Java Server VM).
+Wprowadzenie wersji Client VM zajełoby zbyt dużo czasu, aby robić to bez zapłaty.
 </pre>
 <p>
 Tak więc, aby wyniki porównania były wymierne, konieczne jest przetestowanie na
-obu architekturach wersji Server, a wersji Client dla AMD64 nie należy się
-spodziewać zbyt szybko. ;-)
+obu architekturach wersji Server, a wersji Client dla AMD64 nie należy
+spodziewać się zbyt szybko. ;-)
 </p>
 <p>
 Gdy java zostanie zainstalowana, wymagane jest stworzenie następującego
-dowiązania symbolicznego, aby pracowała ona z mozillą (i prawdopodobnie z
-konqueorem):
+dowiązania symbolicznego, aby pracowała ona z mozillą (prawdopodobnie z tego
+dowiązania korzysta też konqueor):
 </p>
 <pre caption="Dowiązanie symboliczne dla współpracy javy z mozillą">
 /usr/lib/nsbrowser/plugins/libjavaplugin_oji.so -> /opt/blackdown-jdk-1.4.2_rc1/jre/plugin/amd64/mozilla/libjavaplugin_oji.so
@@ -256,22 +256,23 @@ konqueorem):
 <section><title>Instalacja programu OpenOffice</title>
 <body>
 <p>
-OpenOffice jest obecnie dostępny jedynie w 32-bitowej binarnej formie, gdyż
-wersje 1.1.x nie mogą zostać skompilowane na komputerach AMD64. Aby zainstalować
-OpenOfficea należy zemergować pakiet <path>app-office/openoffice-bin</path>.
+OpenOffice dla AMD64 jest obecnie dostępny jedynie w 32-bitowej binarnej formie,
+gdyż wersje 1.1.x nie mogą zostać skompilowane na komputerach AMD64. Aby
+zainstalować OpenOfficea należy zemergować pakiet
+<path>app-office/openoffice-bin</path>.
 </p>
 <note>Nie warto nawet zastanawiać się nad instalacją OpenOfficea ze źródeł. Będą
 to daremne wysiłki, które zaowocują jedynie wieloma nieprzespanymi nocami.</note>
 </body>
 </section>
 
-<section><title>Prawidłowe ustawienie CFLAGS</title>
+<section><title>Prawidłowe ustawienia CFLAGS</title>
 <body>
 <p>
 W przeciwieństwie do gcc 3.3, gcc 3.4 wymaga ustawienia parametru -march.
-Najbardziej konserwatywnymi (i najlepiej wspieranymi) ustawieniami CFLAGS są:
+Najbardziej tradycyjne (i najlepiej wspierane) ustawienia CFLAGS to:
 </p>
-<pre caption="gcc-3.4 CFLAGS">
+<pre caption="CFLAGS dla AMD64 i gcc 3.4">
 ...
 CFLAGS="-march=k8 -O2 -pipe"
 ...
@@ -280,48 +281,55 @@ CFLAGS="-march=k8 -O2 -pipe"
 <c>-march=k8</c> oznacza to samo co <c>-march=athlon64</c> oraz <c>-march=opteron</c>.
 </note>
 <p>
-There used to be issues with the lack of <c>-fPIC</c> being specified when
-building shared objects, the reasoning is in this mailing list post: 
- <uri link="http://www.x86-64.org/lists/discuss/msg02621.html">Porting to
-Hammer</uri> -- scan down to "Shared libraries must be compiled with -fPIC". If
-you find any packages that complain about needing <c>-fPIC</c> to run/link
-properly, please notify us immediately, as we need to update that package.
-Please do not specify <c>-fPIC</c> in your global CFLAGS as that is not an
-acceptable solution and just a workaround.
+Pojawiały się pakiety, które powodowały zgłaszanie braku <c>-fPIC</c> w czasie
+tworzenia współdzielonych obiektów. Wyjaśnienie problemu znajduje się w
+poniższym poście z jednej z list mailingowych: <uri
+link="http://www.x86-64.org/lists/discuss/msg02621.html">Porting to Hammer</uri>
+- paragraf zatutyłowany "Shared libraries must be compiled with -fPIC".
+W przypadku natrafienia na programy, które zgłaszają w czasie działania brak
+<c>-fPIC</c>, prosimy o natychmiastowe powiadomienie nas - będzie aktualizować
+takie aplikacje. Nie należy dodawać <c>-fPIC</c> do globalnych flag CFLAGS,
+ponieważ nie jest to godne zaakceptowania rozwiązanie problemu, a jedynie jego
+obejście.
 </p>
 <p>
-Please do not add <c>-m32</c> to your USE flags, as you do not want to compile
-the system in 32-bit mode, and by default Gentoo does not support compiling
-32-bit binaries. Use of the <c>-m64</c> flag is irrelevant as the compiler
-defaults to 64-bit mode and could have negative effects on code that may supply
-<c>-m32</c> internally to compile 32-bit assembly (such as newer releases of
-grub will do).
+Nie należy dodawać <c>-m32</c> do flag USE, jeśli nie chcemy kompilować systemu
+w trybie 32-bitowym. Domyślnie Gentoo dla AMD64 nie obsługuje kompilowania
+32-bitowych programów. Używanie fagi <c>-m64</c> nie jest konieczne, ani nawet
+wskazane, ponieważ kompilator domyślnie używa trybu 64-bitowego i mogłoby to
+negatywnie wpłynąć na kompilację i działanie programów, które wewnętrznie dodają
+flagę <c>-m32</c>, w celu 32-bitowej instalacji (jak na przykład nowsze wersje
+gruba).
 </p>
-<warn>Don't use <c>-Os</c>. This has been known to prevent parts of KDE 3.2.0 from compiling.</warn>
+<warn>Nie należy używać flagi <c>-Os</c>. Uniemożliwia ona kompilację pewnych
+elementów KDE 3.2.0.</warn>
 </body>
 </section>
  
-<section><title>USE Flags That Are Ignored</title>
+<section><title>Ignorowane flagi USE</title>
 <body>
 <p>
-The <c>mmx</c>, <c>3dnow</c>, <c>sse</c> and <c>sse2</c> USE flags are ignored
-on AMD64, since all AMD64 processors support those instruction sets. The are
-ignored because they enable 32bit assembly optimisation for some packages.
+Flagi USE <c>mmx</c>, <c>3dnow</c>, <c>sse</c> i <c>sse2</c> są ignorowane na
+AMD64 od czasu, gdy wszystkie procesory tego typu obsługują zestawy instrukcji
+determinowane przez te flagi. Są one ignorowane ponieważ umożliwiają
+nieporządaną 32-bitową optymalizację niektórych programów.
 </p>
 </body>
 </section>
  
-<section><title>Reporting Bugs And Submitting Patches</title>
+<section><title>Raportowanie błędów i proponowanie łatek</title>
 <body>
 <p>
-If you an application that you've had problems with, have a patch to solve
-problems, or want to report a successful build so we can mark it as such in
-portage, please post a bug report on <uri
+Jeżeli istnieją łatki dla aplikacji, z którymi występują problemy, lub jakiś
+program może zostać oznaczony w drzewie portage jako poprawnie działający,
+prosimy o zgłoszenie raportu na stronie <uri
 link="http://bugs.gentoo.org">bugs.gentoo.org</uri>.
 </p>
-<note>You may also CC: <mail link="amd64@gentoo.org">amd64@gentoo.org</mail> if you wish.</note>
-<note>To submit a patch, you must first submit a bug report, then go back to
-the bug report and select "Create a new attachment".</note>
+<note>Można także wysłać e-maila na adres: <mail
+link="amd64@gentoo.org">amd64@gentoo.org</mail>.</note>
+<note>Aby zaproponować łatkę, należy najpierw zgłosić raport o błędzie, a
+następnie przejść do nowoutworzonego raportu i wybrać link "Create a new
+attachment".</note>
 </body>
 </section>
 
