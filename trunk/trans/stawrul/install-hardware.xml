@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- $Header:
 /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/proj/pl/base/amd64/Attic/install-hardware.xml,v
-1.10 2005/08/25 11:42:41 blubb dead $ -->
+1.10 2005/08/26 11:42:41 blubb dead $ -->
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
 <!-- The context of this document is licensed under the CC-BY-SA license -->
@@ -159,39 +159,49 @@ rzeczywistości różnica wydajności nie przekracza 5%).
 </subsection>
 <subsection>
 	<title>Czy 32-bitowe aplikacje są obsługiwane? Czy trudna jest ich
-	emulacja lub asymilacja?</title>
+	emulacja lub asymilacja w 64-bitowym środowisku?</title>
 <body>
 <p>
-Yes, 32bit applications are fully supported by the CPU, and are executed natively. A standard x86 OS can be installed on an amd64 processor, and can execute 32bit applications from a 64bit operating system if it is capable of mapping the 32bit syscalls to the kernel's 64bit interfaces (such as Linux is capable of doing if you enable it in the kernel). Please see the below section on 32bit support for further information. Please also note there is no performance penalty for running 32bit apps on an amd64 class processor, and will always be faster than the athlonxp line of processors running 32bit code (please note this is different than ia64 itanium processors!)
+Tak, 32-bitowe aplikacje są w pełni wspierane przez procesory 64-bitowe.
+Standardowy system operacyjny dla x86 może zostać zainstalowany na komputerze z
+procesorem AMD64 i może wykonywać 32-bitowe programy z 64-bitowego systemu,
+jeśli jest on zdolny do przemapowania 32-bitowych wywołań systemowych do
+64-bitowego interfejsu jądra (Linux posiada takie możliwości, jeśli zostaną one
+włączone w konfiguracji kernela). Prosimy o zapoznanie się z rozdziałem na temat
+obsługi 32-bitowych programów, aby uzyskać więcej informacji. Należy przy tym
+pamiętać, że nie występuje żaden spadek wydajności podczas używania 32-bitowych
+programów na procesorze klasy AMD64, a co więcej zawsze będzie to szybsze niż
+korzystanie z tych samych aplikacji na jednostkach lini AthonXP (inaczej niż w
+przypadku procesorów ia64 itanium).
 </p>
 </body>
 </subsection>
 </section>
 
 <section>
-	<title>MPT Fusion SCSI Controllers</title>
+	<title>Kontrolery SCSI MPT Fusion</title>
 <body>
 <p>
-To make this scsi controller work, you must pass the following option to the kernel at boot time:
+Aby kontrolery SCSI MPT Fusion działały, konieczne jest przekazanie do jądra
+następującego parametru bootowania:
 </p>
- <pre>
+<pre caption="Parametr bootowania dla kontrolerów SCSI MPT Fusion">
 iommu=merge
 </pre>
 </body>
 </section>
 
 <section>
-	<title>3D Video Acceleration Support</title>
+	<title>Obsługa akceleracji grafiki 3D</title>
 <subsection>
-	<title>ATI Radeon Cards</title>
+	<title>Karty ATI Radeon</title>
 <body>
 <p>
-ATI has finally released 64-bit drivers for Radeon cards newer than the 
-9200. Use the command <c>ACCEPT_KEYWORDS="~amd64" emerge ati-drivers</c> 
-in order to install them.  If the proprietary drivers don't work 
-properly for you, then the development team suggests that you try the 
-open sourced "radeon" driver included with xorg. However, the "radeon" 
-driver only includes 2d Accelleration.
+Firma ATI wypuściła w końcu 64-bitowe sterowniki dla kart Radeon nowszych niż
+9200. Aby je zainstalować należy użyć komendy: <c>ACCEPT_KEYWORDS="~amd64"
+emerge ati-drivers</c>. Jeśli sterowniki nie będą działać prawidłowo, sugerujemy
+skorzystanie ze sterwonia opec source <c>radeon</c> dołączonego do xorg.
+Jednakże sterownik ten obsługuje jedynie akcelerację dwuwymiarową (2D).
 </p>
 </body>
 </subsection>
@@ -217,22 +227,29 @@ zemergowanych pakietów.
 </body>
 </subsection>
 <subsection>
-	<title>Matrox Video Cards</title>
+	<title>Karty graficzne Matrox</title>
 <body>
 <p>
-Many Matrox video cards require the proprietary 'mga_hal' module to enable dual-head support (G400 and earlier)
-or video capture capabilities.  Matrox has yet to release an amd64 compiled version of this module. This means
-for us that - while the card will work - you won't be able to use these extended features.
+Wiele kart graficznych firmy Matrox wymaga prawnie zastrzeżonych modułów
+<c>mga_hal</c> aby możliwe było wykorzystanie obsługi *dual-head* (G400 i
+wcześniejsze) lub możliwości schwytania obrazu. Matrox nie wypuścił jeszcze
+jeszcze tego modułu dla AMD64. Oznacza to dla nas, że, choć karty te będą
+działać, to nie będziemy mogli korzystać z ich rozszerzonych możliwości.
 </p>
 </body>
 </subsection>
 </section>
 
 <section>
-	<title>bcm/tigon3 Network Drivers</title>
+	<title>Sterowniki sieciowe bcm/tigon3</title>
 <body>
 <p>
-Many Opteron motherboards come with a built-in on-board network chip manufactured by Broadcom. We have provided both the standard in-kernel tg3 driver as well as the bcm5700 driver to support this card. The tg3 driver should be used if possible, as it is community-supported, and the bcm5700 driver only exists to aide those who have trouble with tg3.
+Wiele płyt głównych, przeznaczonych dla procesorów Opteron, posiada zintegrowane
+karty sieciowe, produkowane przez firmę Broadcom. Gentoo dostarcza zarówno
+standardowe, będące częścią jądra, sterowniki tg3, jak i sterowniki bcm5700, do
+obsługi tych kart. Zaleca się stosowanie sterowników tg3, gdyż są one lepiej
+wspierane przez społeczność Gentoo. Sterwoniki bcm5700 przeznaczone są wyłącznie
+do użytku w sytuacji, gdy tg3 nie działają poprawnie.
 </p>
 </body>
 </section>
