@@ -1,7 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- $Header:
-/var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/proj/pl/base/amd64/Attic/install-hardware.xml,v
-1.10 2005/08/26 11:42:41 blubb dead $ -->
+<!-- $Header$ -->
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
 <!-- The context of this document is licensed under the CC-BY-SA license -->
@@ -10,71 +8,75 @@
 <sections>
 
 <section>
-	<title>Aktualizacja BIOS-u</title>
+<title>Aktualizacja BIOS-u</title>
 <body>
 
 <p>
-Wielu producentów płyt głównych dla AMD64 narzeka na błędy w BIOS-ach. Należy
-zaktualizować posiadany BIOS do najnowszej dostępnej wersji, przed rozpoczęciem
+Wiele płyt głównych dla AMD64 wciąż posiada błędy w BIOS-ach. Należy
+zaktualizować posiadany BIOS do najnowszej dostępnej wersji przed rozpoczęciem
 instalacji Gentoo. Aktualizacja BIOS-u może rozwiązać niektóre problemy oraz
-umożliwić dostęp do dodatkowych, właściwych komputerom AMD64, opcji (np.
-Coll'n'Quiet).
+umożliwić dostęp do dodatkowych, właściwych komputerom AMD64 opcji (np.
+Cool'n'Quiet).
 </p>
+
 </body>
 </section>
 
 <section>
-	<title>Kontrolery SATA/PATA</title>
+<title>Kontrolery SATA/PATA</title>
 <subsection>
-	<title>Kontrolery, statusy i typy</title>
+<title>Kontrolery, statusy i typy</title>
 <body>
+
 <p>
 Poniżej znajduje się zestawienie powszechnie używanych kontrolerów SATA/PATA:
 </p>
+
 <table>
 <tr>
-	<th>Producent</th>
-	<th>Model</th>
-	<th>Typ RAID</th>
-	<th>Status</th>
+  <th>Producent</th>
+  <th>Model</th>
+  <th>Typ RAID</th>
+  <th>Status</th>
 </tr>
 <tr>
-	<ti>VIA</ti>
-	<ti>8237</ti>
-	<ti>Software</ti>
-	<ti>DZIAŁA</ti>
+  <ti>VIA</ti>
+  <ti>8237</ti>
+  <ti>Software</ti>
+  <ti>DZIAŁA</ti>
 </tr>
 <tr>
-	<ti>Promise</ti>
-	<ti>PDC202xx/PDC203xx</ti>
-	<ti>Software</ti>
-	<ti>DZIAŁA</ti>
+  <ti>Promise</ti>
+  <ti>PDC202xx/PDC203xx</ti>
+  <ti>Software</ti>
+  <ti>DZIAŁA</ti>
 </tr>
 <tr>
-	<ti>Silicon Image</ti>
-	<ti>3112[a],3512,3114</ti>
-	<ti>Software</ti>
-	<ti>DZIAŁA</ti>
+  <ti>Silicon Image</ti>
+  <ti>3112[a],3512,3114</ti>
+  <ti>Software</ti>
+  <ti>DZIAŁA</ti>
 </tr>
 <tr>
-	<ti>Promise</ti>
-	<ti>SX4000 (PDC20621)</ti>
-	<ti>Hardware</ti>
-	<ti>DZIAŁA</ti>
+  <ti>Promise</ti>
+  <ti>SX4000 (PDC20621)</ti>
+  <ti>Hardware</ti>
+  <ti>DZIAŁA</ti>
 </tr>
 <tr>
-	<ti>3Ware</ti>
-	<ti>Escalade 7xxx and 8xxx</ti>
-	<ti>Hardware</ti>
-	<ti>DZIAŁA</ti>
+  <ti>3Ware</ti>
+  <ti>Escalade 7xxx and 8xxx</ti>
+  <ti>Hardware</ti>
+  <ti>DZIAŁA</ti>
 </tr>
 </table>
+
 </body>
 </subsection>
-
 <subsection>
-	<title>Różnice pomiędzy sprzętowym (hardware) i programowym (software) RAID-em</title>
+<title>Różnice pomiędzy sprzętowym (hardware) i programowym (software) RAID-em</title>
 <body>
+
 <p>
 Sprzętowy kontroler RAID zawsze ma postać dodatkowej karty - nigdy nie jest
 częścią płyty głównej. Posiada on BIOS, który może zostać uruchomiony przed
@@ -82,7 +84,7 @@ zbootowaniem systemu z dysku i zazwyczaj obsługuje przynajmniej wersje RAID 0,
 1, 1+0 i 5. Kontroler tego typu zawiera własny procesor, wykonujący wszystkie
 niezbędne kalkulacje oraz operacje wejścia/wyjścia, a także przekazujący do
 systemu operacyjnego informacje o dyskach tak, jak zostało to skonfigurowane
-przez użytkownika (np. jeśli wykorzystany zostanie RAID 5, łączący trzy dyski,
+przez użytkownika (np. jeśli wykorzystany zostanie RAID 5 łączący trzy dyski,
 system operacyjny będzi widział jeden duży dysk). Sprzętowy kontroler RAID
 zawsze jest szybszy od programowego odpowiednika, a ponadto w mniejszym
 stopniu obciąża procesor. Tego typu kontroler może opcjonalnie posiadać sloty
@@ -90,6 +92,7 @@ DIMM dla cache oraz zapasowe zasilanie dla nich. Sprzętowy RAID zmniejsza
 również złożoność działań w systemie operacyjnym, gdyż kontroler pracuje na
 płaszczyźnie sprzętowej.
 </p>
+
 <p>
 Programowy kontroler RAID może być zarówno dodatkową kartą, jak i częścią płyty
 głównej. Tego typu kontroler, podobnie jak sprzętowy RAID, może posiadać BIOS,
@@ -101,32 +104,34 @@ każdy dysk jako zwykły dysk twardy - programowy kontroler nie przeprowadzi
 może odczytać BIOS programowego kontrolera, ustawić kontroler RAID Linuksa
 tak, jak wskazuje BIOS i utworzyć pseudo napęd, co da efekt jak w przypadku
 użycia sprzętowego kontrolera. Moduł ten nie został dołączony od jąder serii
-2.6. Natomiast wersja dla jąder 2.4 nie obsługuje kontrolerów SATA, a wyłącze
-stare programowe kontrolery PATA. Aby powiedzieć dosadnie: programowy kontroler
-RAID nie jest niczym więcej niż standardowym kontrolerem SATA/PATA z opcjonalnym
-BIOS-em do ustawienia konfiguracji. To czyni je niezwykle tanimi w produkcji i
-zawazem powoduje, że są dołączane do wielu płyt głównych.
+2.6. Natomiast wersja dla jąder 2.4 nie obsługuje kontrolerów SATA, a wyłącza
+stare programowe kontrolery PATA. Mówiąc dosadnie: programowy kontroler RAID nie
+jest niczym więcej niż standardowym kontrolerem SATA/PATA z opcjonalnym BIOS-em
+do ustawienia konfiguracji. To czyni je niezwykle tanimi w produkcji i zawazem
+powoduje, że są dołączane do wielu płyt głównych.
 </p>
 </body>
 </subsection>
 </section>
 
 <section>
-	<title>Kompatybilność kart Riser z kartami 3ware i płytami głównymi Tyan</title>
+<title>Kompatybilność kart Riser z kartami 3ware i płytami głównymi Tyan</title>
 <body>
+
 <p>
 Aby uzyskać więcej informacji o kompatybilności kart Riser z kartami 3ware i
 płytami głównymi Tyan, należy zapoznać się z <uri
 link="http://www.3ware.com/KB/article.aspx?id=10964">tym artykułem</uri>.
 </p>
+
 </body>
 </section>
-
 <section>
-	<title>Ogólne pytania na temat procesorów Opteron/Athlon64</title>
+<title>Ogólne pytania na temat procesorów Opteron/Athlon64</title>
 <subsection>
-	<title>Czym różnią się Athlon64, Athlon64FX, i Opteron?</title>
+<title>Czym różnią się Athlon64, Athlon64FX, i Opteron?</title>
 <body>
+
 <p>
 Athlon64 jest 754-pinowym procesorem z jednokanałową pamięcią, przeznaczonym do
 zastosowań biurkowych. Może być używany jedynie w trybie jednoprocesorowym.
@@ -145,23 +150,28 @@ wydajność) i tak naprawdę Athlon64FX jest po prostu Opteronem serii 1xx ze
 zmienioną nazwą. W przyszłości procesory 754-pinowe zostaną zastąpione
 939-pinowymi, co połączy linie Athlon64 i Athlon64FX.
 </p>
+
 </body>
 </subsection>
 <subsection>
-	<title>Dlaczego Athlon64 3200+ i Athlon64 3000+ są taktowane z taką samą
-	predkością?</title>
+<title>Dlaczego Athlon64 3200+ i Athlon64 3000+ są taktowane z taką samą   predkością?</title>
 <body>
+
 <p>
-Athlon64 3000+ ma o połowę mniejszą pamięć cache niż Athlon64 3200+ (3000+ - 512kB
-i 3200+ - 1MB). Powoduje do zmniejszenie prędkości działania tego pierwszego (w
-rzeczywistości różnica wydajności nie przekracza 5%). 
+Athlon64 3000+ ma o połowę mniejszą pamięć cache niż Athlon64 3200+ (3000+ -
+512kB i 3200+ - 1MB). Powoduje do zmniejszenie prędkości działania tego
+pierwszego (w rzeczywistości różnica wydajności nie przekracza 5%). 
 </p>
+
 </body>
 </subsection>
 <subsection>
-	<title>Czy 32-bitowe aplikacje są obsługiwane? Czy trudna jest ich
-	emulacja lub asymilacja w 64-bitowym środowisku?</title>
+<title>
+Czy 32-bitowe aplikacje są obsługiwane? Czy trudna jest ich emulacja lub
+asymilacja w 64-bitowym środowisku?
+</title>
 <body>
+
 <p>
 Tak, 32-bitowe aplikacje są w pełni wspierane przez procesory 64-bitowe.
 Standardowy system operacyjny dla x86 może zostać zainstalowany na komputerze z
@@ -175,83 +185,98 @@ programów na procesorze klasy AMD64, a co więcej zawsze będzie to szybsze ni�
 korzystanie z tych samych aplikacji na jednostkach lini AthonXP (inaczej niż w
 przypadku procesorów ia64 itanium).
 </p>
+
 </body>
 </subsection>
 </section>
-
 <section>
-	<title>Kontrolery SCSI MPT Fusion</title>
+<title>Kontrolery SCSI MPT Fusion</title>
 <body>
+
 <p>
 Aby kontrolery SCSI MPT Fusion działały, konieczne jest przekazanie do jądra
 następującego parametru bootowania:
 </p>
+
 <pre caption="Parametr bootowania dla kontrolerów SCSI MPT Fusion">
 iommu=merge
 </pre>
+
 </body>
 </section>
-
 <section>
-	<title>Obsługa akceleracji grafiki 3D</title>
+<title>Obsługa akceleracji grafiki 3D</title>
 <subsection>
-	<title>Karty ATI Radeon</title>
+<title>Karty ATI Radeon</title>
 <body>
+
 <p>
 Firma ATI wypuściła w końcu 64-bitowe sterowniki dla kart Radeon nowszych niż
 9200. Aby je zainstalować należy użyć komendy: <c>ACCEPT_KEYWORDS="~amd64"
 emerge ati-drivers</c>. Jeśli sterowniki nie będą działać prawidłowo, sugerujemy
-skorzystanie ze sterwonia opec source <c>radeon</c> dołączonego do xorg.
-Jednakże sterownik ten obsługuje jedynie akcelerację dwuwymiarową (2D).
+skorzystanie ze sterwonia open source <c>radeon</c> dołączonego do xorg.
+Niestety sterownik ten obsługuje jedynie akcelerację dwuwymiarową (2D).
 </p>
+
 </body>
 </subsection>
 <subsection>
-	<title>nVidia GeForce</title>
+<title>nVidia GeForce</title>
 <body>
+
 <p>
-nVidia opublikowała sterowniki dla AMD64. Gentoo dostarcza odpowiednie dla nich
-ebuildy. Aby zainstalować obsługę urządzeń nVidia, należy wykonać następujące operacje:
+nVidia opublikowała sterowniki dla AMD64, a Gentoo dostarcza dla nich ebuildy.
+Aby zainstalować obsługę urządzeń nVidia, należy wykonać następujące operacje:
 </p>
+
 <pre caption="Instalacja sterowników nVidia">
 # <i>emerge nvidia-kernel</i>
 # <i>emerge nvidia-glx</i>
 # <i>emerge nvidia-settings</i>
 </pre>
-<impo>Należy korzystać z jąder w wersji 2.6.7 lub nowszej. Rozwiązuje to problem
-niekontrolowanych restartów, jakiego doświadczyli niektórzy użytkownicy.</impo>
+
+<impo>
+Należy korzystać z jąder w wersji 2.6.7 lub nowszej. Rozwiązuje to problem
+niekontrolowanych restartów, jakiego doświadczyli niektórzy użytkownicy.
+</impo>
+
 <p>
 Gdy instalacja zakończy się, należy włączyć obsługę urządzeń nVidia w pliku
 <path>/etc/X11/XF86Config</path> zgodnie z dokumentacją dołączoną do
 zemergowanych pakietów.
 </p>
+
 </body>
 </subsection>
 <subsection>
-	<title>Karty graficzne Matrox</title>
+<title>Karty graficzne Matrox</title>
 <body>
+
 <p>
 Wiele kart graficznych firmy Matrox wymaga prawnie zastrzeżonych modułów
-<c>mga_hal</c> aby możliwe było wykorzystanie obsługi *dual-head* (G400 i
+<c>mga_hal</c>, aby możliwe było wykorzystanie obsługi *dual-head* (G400 i
 wcześniejsze) lub możliwości schwytania obrazu. Matrox nie wypuścił jeszcze
-jeszcze tego modułu dla AMD64. Oznacza to dla nas, że, choć karty te będą
-działać, to nie będziemy mogli korzystać z ich rozszerzonych możliwości.
+jeszcze tego modułu dla AMD64. Oznacza to, że choć karty te będą działać, to nie
+będziemy mogli korzystać z ich rozszerzonych możliwości.
 </p>
+
 </body>
 </subsection>
 </section>
 
 <section>
-	<title>Sterowniki sieciowe bcm/tigon3</title>
+<title>Sterowniki sieciowe bcm/tigon3</title>
 <body>
+
 <p>
-Wiele płyt głównych, przeznaczonych dla procesorów Opteron, posiada zintegrowane
+Wiele płyt głównych przeznaczonych dla procesorów Opteron posiada zintegrowane
 karty sieciowe, produkowane przez firmę Broadcom. Gentoo dostarcza zarówno
 standardowe, będące częścią jądra, sterowniki tg3, jak i sterowniki bcm5700, do
 obsługi tych kart. Zaleca się stosowanie sterowników tg3, gdyż są one lepiej
-wspierane przez społeczność Gentoo. Sterwoniki bcm5700 przeznaczone są wyłącznie
+wspierane przez społeczność Gentoo. Sterowniki bcm5700 przeznaczone są wyłącznie
 do użytku w sytuacji, gdy tg3 nie działają poprawnie.
 </p>
+
 </body>
 </section>
 
