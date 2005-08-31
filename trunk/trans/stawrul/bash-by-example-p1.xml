@@ -2,8 +2,8 @@
 <!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/pl/articles/bash-by-example-p1.xml,v 1.4 2005/08/15 23:16:06 cam Exp $ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<guide link="/doc/pl/articles/bash-by-example-p1.xml">
-<title>Bash w przykładach, część pierwsza</title>
+<guide link="/doc/pl/articles/bash-by-example-p1.xml" lang="pl">
+<title>Bash w przykładach - część pierwsza</title>
 
 <author title="Autor">
   <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
@@ -18,8 +18,8 @@
 <abstract>
 Poprzez naukę języka skryptowego bash nasza codzienna praca z Linuksem stanie
 się przyjemniejsza i bardziej produktywna. Będziemy mogli zbudować na podstawie 
-standardowych UNIX-owych konstrukcji (jak potoki i przekierowania) to co już
-znamy i z czego korzystamy. W tym trzyczęściowym kursie Daniel Robbins uczy
+standardowych UNIX-owych konstrukcji (jak strumienie i przekierowania) wiele
+przydatnych skryptów. W tym trzyczęściowym kursie Daniel Robbins uczy
 programowania w bashu na przykładach. Przedstawia on absolutne podstawy (dzięki
 czemu jest to świetny poradnik dla początkujących), a także bardziej
 zaawansowane możliwości basha.
@@ -40,10 +40,10 @@ Gentoo Linux Documentation team -->
 <body>
 
 <note>
-Oryginalna werjsa tego artykułu została opublikowana w IBM developerWorks i jest
+Oryginalna wersja tego artykułu została opublikowana w IBM developerWorks i jest
 własnością Westtech Information Services. Poniższy dokument jest zaktualizowaną
-wersją oryginalnego artykułu i zawiera rozmaite ulepszenia wprowadzone przez
-Gentoo Linux Documentation team.
+wersją oryginalnego artykułu i zawiera rozmaite dodatki wprowadzone przez
+członków projektu Gentoo Linux Documentation.
 </note>
 
 <p>
@@ -59,12 +59,12 @@ powodów:
 
 <p>
 Gdybyśmy to sprawdzili, prawdopodobnie okazałoby się, że w tym momencie bash
-działa w naszym systemie. Nawet jeśli zmieniliśmy domyślnego shella, bash
+działa w naszym systemie. Nawet jeśli zmieniliśmy domyślną powłokę, bash
 prawdopodobnie i tak działa, ponieważ jest to standardowy shell Linuksa i system
 używa go do rozmaitych działań. W związku z tym, że bash już działa, wszystkie
 dodatkowe skrypty, jakie uruchomimy nie będą właściwie zajmowały dodatkowej
 pamięci, gdyż dzialą one pamięć z działającymi już procesami basha. Po co więc
-łądować zajmujący 500KB interpreter, jeśli już działa w naszym systemie coś, co
+ładować inny interpreter, jeśli już działa w naszym systemie coś, co
 wykona pracę i w dodatku zrobi to dobrze?
 </p>
 
@@ -78,13 +78,13 @@ wykona pracę i w dodatku zrobi to dobrze?
 Nie tylko bash działa w naszym systemie. Każdego dnia używamy go. Bash
 zawsze nam towarzyszy, więc warto nauczyć się wykorzystywać jego pełny
 potencjał. Dzięki temu korzystanie z systemu będzie przyjemniejsze i bardziej
-produktywne. Dlaczego jednak uczyć się programowania w bashy? To proste - już
-myślimy w kategoriach wykonywania komend, kopiowania plików, tworzenia potoków i
-przekierowań wyjścia programów. Warto jest uczyć się języka, który umożliwia
-wykorzystanie znanych nam już potężnych i pozwalających na oszczędzenie czasu
-narzędzi. Shelle udostępniają nam potencjał systemu UNIX, a bash jest shellem
-Linuksa. Jest wysokopoziomowy pośrednik pomiędzy nami i komputerem. Poszerzając
-wiedzę o bashu zwiększamy produktywność naszej pracy w systemach Linux i UNIX.
+produktywne. Dlaczego jednak uczyć się programowania w bashu? To proste - już
+myślimy w kategoriach wykonywania komend, kopiowania plików, tworzenia strumieni i
+przekierowań. Warto jest uczyć się języka, który umożliwia wykorzystanie znanych
+nam już potężnych i pozwalających na oszczędzenie czasu narzędzi. Powłoki
+udostępniają nam potencjał systemu UNIX, a bash jest powłoką Linuksa. Jest
+wysokopoziomowym pośrednikiem pomiędzy nami i komputerem. Poszerzając wiedzę o
+bashu zwiększamy produktywność naszej pracy w systemach Linux i UNIX.
 </p>
 
 </body>
@@ -94,7 +94,7 @@ wiedzę o bashu zwiększamy produktywność naszej pracy w systemach Linux i UNI
 <body>
 
 <p>
-Nauka basha w niewłaściwy sposób może  wywołać wrażenie pozornego nieładu w jego
+Nauka basha w niewłaściwy sposób może wywołać wrażenie pozornego nieładu w jego
 strukturach. Wielu początkujących użytkowników wpisuje <c>man bash</c> w celu
 wyświetlenia strony man basha. Jednak tam znajdują się lakoniczne i bardzo
 techniczne opisy jego funkcjonalności. Inni używają <c>info bash</c>, co daje
@@ -104,10 +104,10 @@ dokumentacji.
 
 <p>
 Choć początkujący użytkownicy mogą czuć się zawiedzeni, trzeba pamiętać, że
-dokumentacja basha nie możę być "wszystkim dla wszystkich" i jest skierowana do
-osób, które są już zaznajomione z programowaniem shella. Z całą pewnością strona
-man basha zawiera wiele doskonale przedstawionych informacji technicznych,
-jednak dla początkującego, są one niemal bezużyteczne.
+dokumentacja basha nie może być "wszystkim dla wszystkich" i jest skierowana do
+osób, które są już zaznajomione z programowaniem powłoki. Z całą pewnością strona
+man basha zawiera wiele przydatnych informacji technicznych, jednak dla
+początkującego użytkownika, są one niemal bezużyteczne.
 </p>
 
 <p>
@@ -117,7 +117,7 @@ skryptów. Zamiast technicznych opisów można tu znaleźć wyjaśnienia w przys
 języku, dzięki czemu nie tylko będziemy wiedzieli co robi dany element, ale
 także w jakich sytuacjach powinniśmy go stosować. Po przebrnięciu przez ten
 kurs, będziemy w stanie pisać własne złożone skrypty - osiągniemy poziom na
-którym korzystanie z basha stanie się dla nas komfortowe. Ponad to będziemy
+którym korzystanie z basha stanie się dla nas komfortowe. Ponadto będziemy
 mogli dalej rozwijać swoje umiejętności poprzez czytanie (i rozumienie)
 standardowej dokumentacji basha. Zaczynajmy.
 </p>
@@ -129,19 +129,19 @@ standardowej dokumentacji basha. Zaczynajmy.
 <body>
 
 <p>
-Korzystając z basha i prawie wszystkich innych shelli, użytkownik może
-definiować zmienne środowiskowe, które tworzeno są wewnętrznie jako łańcuchy
-ASCII. Jedną z najbardziej przydatnych właściwości zmiennych środowiskowych
-jest to, że są one standardową częścią modelu działania UNIX-a. Oznacza to, że
-zmienne środowiskowe są dostępne nie tylko dla skryptów shella, ale również mogą
-zostać wykorzystane przez skompilowane programy. Gdy wyeksportujemy zmienną
-środowiskową, każdy uruchomiony program będzie mógł odczytać nasze ustawienia,
-niezależnie od tego czy jest to skrypt shella czy nie. Dobrzym przykładem jest
-tu użycie komendy <c>vipw</c>, która pozwala użytkownikowi root edycję plików
-systemowych z hasłami. Poprzez ustawienie w zmiennej środowiskowej <c>EDITOR</c>
-nazwy ulubionego edytora, możemy skonfigurować <c>vipw</c>, aby korzystało z
-niego zamiast z vi. Jest to przydatne jeśli nie lubimy vi lub wolimy używać
-innego edytora.
+Korzystając z basha (i prawie wszystkich innych powłok), użytkownik może
+definiować zmienne środowiskowe, które tworzone są wewnętrznie jako łańcuchy
+znaków ASCII. Jedną z najbardziej przydatnych właściwości zmiennych
+środowiskowych jest to, że są one standardową częścią modelu działania UNIX-a.
+Oznacza to, że zmienne środowiskowe są dostępne nie tylko dla skryptów shella,
+ale również mogą zostać wykorzystane przez skompilowane programy. Gdy
+wyeksportujemy zmienną środowiskową, każdy uruchomiony program będzie mógł
+odczytać nasze ustawienia, niezależnie od tego czy jest to skrypt shella czy
+nie. Dobrym przykładem jest tu użycie komendy <c>vipw</c>, która pozwala
+użytkownikowi root edycję plików systemowych z hasłami. Poprzez ustawienie w
+zmiennej środowiskowej <c>EDITOR</c> nazwy ulubionego edytora, możemy
+skonfigurować <c>vipw</c>, aby korzystało w niego zamiast z vi. Jest to
+przydatne jeśli nie lubimy vi lub wolimy używać innego edytora.
 </p>
 
 <p>
@@ -156,16 +156,16 @@ $ <i>myvar='To moja zmienna środowiskowa!'</i>
 <p>
 Powyższa komenda definiuje zmienną środowiskową o nazwie "myvar", zawierającą
 łańcuch "To moja zmienna środowiskowa!". Należy zwrócić uwagę na kilka kwestii:
-po pierwsze, nie ma żadnych białych znaków (spacja, ank tabulacji) po obu
-stronach znaku "="; jakakolwiek przewra spowoduje błąd. Druga sprawa to
-możliwość pominięcia znaków *cudzysłowu* w sytuacji, gdy przypisujemy zmiennej
+po pierwsze, nie ma żadnych białych znaków (spacja, znak tabulacji) po obu
+stronach znaku <c>=</c>; jakakolwiek przewra spowoduje błąd. Druga sprawa to
+możliwość pominięcia znaków cudzysłowu w sytuacji, gdy przypisujemy zmiennej
 jako wartość jedno słowo (ciąg niezawierający białych znaków). Cudzysłów jest
 konieczny, jeśli wartość zmiennej zawiera więcej niż jedno słowo.
 </p>
 
 <note>
-Aby uzyskać bardzo szczegółowe informacje o użyciu znaków cudzysłowu w bashu,
-nalęzy zapoznać się z sekcją "QUOTING" na stronie man basha. Istnienie
+Aby uzyskać bardziej szczegółowe informacje o użyciu znaków cudzysłowu w bashu,
+należy zapoznać się z sekcją "QUOTING" na stronie man basha. Istnienie
 specjalnych sekwencji znaków, które bash zastępuje przez inne wartości,
 komplikuje obsługę łańcuchów. W tej serii artykułów przedstawimy tylko
 najczęściej używane fonkcjonalności znaków cudzysłowu.
@@ -177,12 +177,12 @@ pojedynczych, próba dokonania tego w powyższym przykładzie spowoduje błąd.
 Dlaczego? Ponieważ podwójne znaki cudzysłowu umożliwiają bashowi dokonanie
 ekspansji, podczas której specjalne znaki i sekwencje znaków zostają zastąpione
 odpowiednimi wartościami. Na rzykład znak "!" jest symbolem ekspansji historii
-basha i zazwyczaj zostaje zastepiony ostatnio wpisaną komendą (w tej serii
+basha i zazwyczaj zostaje zastąpiony ostatnio wpisaną komendą (w tej serii
 artykułów nie opiszemy możliwości ekspansji historii, ponieważ nie jest to
 często wykorzytywana właściwość basha; więcej informacji na ten temat można
-uzyskać w sekcji "HISTORY EXPANSION" na stronie man basha). Funkcje macro mogą
-być bardzo pomocne, jednak w tym momencie zależy nam na umieszczeniu prostego
-literału na końcu zmiennej środowiskowej.
+uzyskać w sekcji "HISTORY EXPANSION" na stronie man basha). Funkcje te (nazywane
+funkcjami macro) mogą być bardzo pomocne, jednak w tym momencie zależy nam na
+umieszczeniu prostego literału na końcu zmiennej środowiskowej.
 </p>
 
 <p>
@@ -212,7 +212,7 @@ Chcieliśmy uzyskać na wyjściu napis "fooTo moja zmienna środowiskowa!bar",
 jednak polecenie nie powiodło się. Co poszło źle? Ekspansja zmiennych nie była w
 stanie poprawnie zadziałać. Nie było możliwe określenie czy chcemy dokonać
 ekspansji zmiennej $,m ,$my, $myvar, $myvrbar czy jeszcze jakiejś innej. Musimy
-bardziej precyzyjnie określić o jaką zmienną nam chodzi. Spróbojmy wykonać
+bardziej precyzyjnie określić o jaką zmienną nam chodzi. Spróbujmy wykonać
 polecenie:
 </p>
 
@@ -236,14 +236,14 @@ klamrowe.
 Wspomnieliśmy wcześniej, że możliwe jest wyeksportowanie zmiennych. Gdy tego
 dokonujemy, zmienna staje się automatycznie dostępna dla wszystkich działających
 programów i skryptów. Te drugie mogą uzyskać dostęp do zmiennych środowiskowych
-poprzez ich obsługę  wbudowaną w shella. Natomiast programy w języku C mogą
+poprzez ich obsługę wbudowaną w powłokę. Natomiast programy w języku C mogą
 skorzystać z funkcji getenv(). Poniżej znajduje się przykładowy kod źródłowy,
 który warto przekopiować do pliku i skompilować - pozwala on na zrozumienie
 zagadnienia zmiennych środowiskowych z perspektywy języka C.
 </p>
 
-<pre caption="myvar.c - prosty program korzystający ze zmiennej środowiskowej w
-języku C">
+<pre caption="myvar.c - prosty program w języku C korzystający ze zmiennej
+środowiskowej">
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
@@ -255,7 +255,7 @@ int main(void) {
 
 <p>
 Zapiszmy powyższy kod źródłowy w pliku o nazwie <path>myenv.c</path> i
-skompilujmy do przy użyciu komend:
+skompilujmy do przy użyciu komendy:
 </p>
 
 <pre caption="Kompilacja powyższego programu">
@@ -265,7 +265,7 @@ $ <i>gcc myenv.c -o myenv</i>
 <p>
 Teraz w aktualnym katalogu znajduje się program, który po uruchomieniu wyświetli
 wartość zmiennej środowiskowej <c>EDITOR</c>, jeśli została ona określona. Na
-moim komputerze daj to efekt:
+moim komputerze daje to efekt:
 </p>
 
 <pre caption="Uruchomienie powyższego programu">
@@ -275,7 +275,7 @@ Zmienna środowiskowa EDITOR posiada wartość (null)
 
 <p>
 Ponieważ wartość zmiennej środowiskowej <c>EDITOR</c> nie została określona,
-program otrzymuje pusty łąńcuch. Spróbujmy ustawić wartość dla zmiennej
+program otrzymuje pusty łańcuch. Spróbujmy ustawić wartość dla zmiennej
 <c>EDITOR</c> i jeszcze raz uruchomić program:
 </p>
 
@@ -291,7 +291,7 @@ wartość pustą. Stało się tak, ponieważ nie wyeksportowaliśmy zmiennej
 <c>EDITOR</c>. Tym razem powinno się udać:
 </p>
 
-<pre caption="Wywołanie programu po wyeksportowanie zmiennej">
+<pre caption="Wywołanie programu po wyeksportowaniu zmiennej">
 $ <i>export EDITOR</i>
 $ <i>./myenv</i>
 Zmienna środowiskowa EDITOR posiada wartość xemacs
@@ -311,7 +311,7 @@ $ <i>export EDITOR=xemacs</i>
 
 <p>
 Działa to identycznie jak dwie oddzielne komendy. Przyszedł czas na
-przedstawienie sposoby na usuniędzie wartości zmiennej środowiskowej przy użyciu
+przedstawienie sposoby na usunięcie wartości zmiennej środowiskowej przy użyciu
 polecenia <c>unset</c>:
 </p>
 
@@ -328,15 +328,15 @@ Zmienna środowiskowa EDITOR posiada wartość (null)
 <body>
 
 <p>
-Chopping strings -- that is, splitting an original string into smaller, separate
-chunk(s) -- is one of those tasks that is performed daily by your average shell
-script. Many times, shell scripts need to take a fully-qualified path, and find
-the terminating file or directory. While it's possible (and fun!) to code this
-in bash, the standard <c>basename</c> UNIX executable performs this extremely
-well:
+Rozrywanie łańcuchów - dzielenie ich na mniejsze, oddzielne fragmenty - jest
+jednym z tych zadań, które jest wykonywane każdego dnia przez skrypty powłoki.
+Wiele razy sprypt pobiera pełną ścieżkę, aby określić nazwę wykonywanego pliku
+lub katalogu, w którym się on znajduje. Podczas gdy jest możliwe (i przyjemne!)
+napisanie tego w bashu, standardowa komenda UNIX-a <c>basename</c> radzi sobie
+w tej sytuacji idealnie:
 </p>
 
-<pre caption="Using basename">
+<pre caption="Używanie basename">
 $ <i>basename /usr/local/share/doc/foo/foo.txt</i>
 foo.txt
 $ <i>basename /usr/home/drobbins</i>
@@ -344,12 +344,12 @@ drobbins
 </pre>
 
 <p>
-<c>basename</c> is quite a handy tool for chopping up strings. It's companion, called
-<c>dirname</c>, returns the "other" part of the path that <c>basename</c> throws
-away:
+<c>basename</c> jest bardzo przydatnym narzędziem do dzielenia łańcuchów. Jego
+przeciwieństwo, czyli <c>dirname</c> zwraca pozostałą część ściżki, którą
+odrzuca <c>basename</c>:
 </p>
 
-<pre caption="Using dirname">
+<pre caption="Używanie dirname">
 $ <i>dirname /usr/local/share/doc/foo/foo.txt</i>
 /usr/local/share/doc/foo
 $ <i>dirname /usr/home/drobbins/</i>
@@ -357,50 +357,54 @@ $ <i>dirname /usr/home/drobbins/</i>
 </pre>
 
 <note>
-Both <c>dirname</c> and <c>basename</c> do not look at any files or directories
-on disk; they are purely string manipulation commands.
+Zarówno działanie <c>dirname</c> jak i <c>basename</c> nie odnosi się do żadnych
+istniejących (lub nie) katalogów i plików na dysku. Polecenia te wyłącznie
+manipulują łańcuchami, jakie otrzymają w postaci argumentu.
 </note>
 
 </body>
 </section>
 <section>
-<title>Command substitution</title>
+<title>Podstawianie komend</title>
 <body>
 
 <p>
-One very handy thing to know is how to create an environment variable that
-contains the result of an executable command. This is very easy to do:
+Inną bardzo przydatną umiejętnością jest przekazanie rezultatu wykonania komendy
+do zmiennej środowiskowej. Jest to bardzo proste do zrobienia:
 </p>
 
-<pre caption="Creating an environment variable containing command result">
+<pre caption="Tworzenie zmiennej środowiskowej zawierającej wynik działania
+komendy">
 $ <i>MYDIR=`dirname /usr/local/share/doc/foo/foo.txt`</i>
 $ <i>echo $MYDIR</i>
 /usr/local/share/doc/foo
 </pre>
 
 <p>
-What we did above is called <e>command substitution</e>. Several things are worth
-noticing in this example. On the first line, we simply enclosed the command we
-wanted to execute in back quotes. Those are not standard single quotes, but
-instead come from the keyboard key that normally sits above the Tab key. We can
-do exactly the same thing with bash's alternate command substitution syntax:
+To co zrobiliśmy powyżej nazywane jest podstawianiem komend. Warto zwrócić tutaj
+uwagę na kilka rzeczy. W pierwszej linii objeliśmy podstawianą komendę
+odwróconymi apostrofami. Nie jest to zwykły pojedynczy cudzysłów, ale symbol,
+który na klawiaturze znajduje się zazwyczaj na przyciskiem tabulacji (na tym
+samym klawiszu co tylda). Możemy wykonać dokładnie to samo działanie przy użyciu
+alternatywnej składni podstawiania poleceń basha:
 </p>
 
-<pre caption="Alternate command substitution syntax">
+<pre caption="Alternatywna składnia podstawiania poleceń">
 $ <i>MYDIR=$(dirname /usr/local/share/doc/foo/foo.txt)</i>
 $ <i>echo $MYDIR</i>
 /usr/local/share/doc/foo
 </pre>
 
 <p>
-As you can see, bash provides multiple ways to perform exactly the same thing.
-Using command substitution, we can place any command or pipeline of commands in
-between <e>` `</e> or <e>$( )</e> and assign it to an environment variable.
-Handy stuff!  Here's an example of how to use a pipeline with command
-substitution:
+Jak widać bash dostarcza wielu sposobów na wykonanie dokładnie tych samych
+działań. Używając podstawiania komend możemy umieścić dowolną komendę lub
+strumień komend pomiędzy znakami <e>` `</e> lub <e>$( )</e> i przypisać dzięki
+temu ich wynik do zmiennej środowiskowej. To bardzo przydatna właściwość!
+Poniżej znajduje się przykład wykorzystania podstawiania komend w odniesieniu
+do strumieni:
 </p>
 
-<pre caption="Pipeline command substitution">
+<pre caption="Podstawianie strumienia komend">
 $ <i>MYFILES=$(ls /etc | grep pa)</i>
 $ <i>echo $MYFILES</i>
 pam.d passwd
@@ -409,20 +413,20 @@ pam.d passwd
 </body>
 </section>
 <section>
-<title>Chopping strings like a pro</title>
+<title>Zaawansowane rozrywanie łańcuchów</title>
 <body>
 
 <p>
-While <c>basename</c> and <c>dirname</c> are great tools, there are times where
-we may need to perform more advanced string "chopping" operations than just
-standard pathname manipulations. When we need more punch, we can take advantage
-of bash's advanced built-in variable expansion functionality. We've already used
-the standard kind of variable expansion, which looks like this: ${MYVAR}. But
-bash can also perform some handy string chopping on its own. Take a look at
-these examples:
+<c>basename</c> i <c>dirname</c> to bardzo przydatne narzędzia, jednak może
+zdarzyć się tak, że będziemy potrzebować bardziej zaawansowanych funkcji
+dzielenia łańchuchów, niż zwykłe manipulacje na ścieżkach. W takiej sytuacji
+możemy skorzystać z zaawansowanych możliwości basha w dziedzinie ekspansji
+zmiennych. Używaliśmy już standardowego sposobu ekspansji zmiennych, który ma
+postać <c>${MYVAR}</c>. Bash oferuje jednak kilka przydatnych spsobów rozrywania
+zmiennych poddawanych ekspansji. Popatrzmy na następujące przykłady:
 </p>
 
-<pre caption="Examples of strings chopping">
+<pre caption="Przykłady rozrywania łańcuchów">
 $ <i>MYVAR=foodforthought.jpg</i>
 $ <i>echo ${MYVAR##*fo}</i>
 rthought.jpg
@@ -431,24 +435,25 @@ odforthought.jpg
 </pre>
 
 <p>
-In the first example, we typed ${MYVAR##*fo}. What exactly does this mean?
-Basically, inside the ${ }, we typed the name of the environment variable, two
-##s, and a wildcard ("*fo"). Then, bash took <c>MYVAR</c>, found the longest substring
-from the beginning of the string "foodforthought.jpg" that matched the wildcard
-"*fo", and chopped it off the beginning of the string. That's a bit hard to
-grasp at first, so to get a feel for how this special "##" option works, let's
-step through how bash completed this expansion. First, it began searching for
-substrings at the beginning of "foodforthought.jpg" that matched the "*fo"
-wildcard. Here are the substrings that it checked:
+W pierwszym przykładzie nakazaliśmy wyświetlenie efektu działnia ekspansji
+zdefiniowanej jako <c>${MYVAR##*fo}</c>. Co dokładnie oznacza tego typu
+ekspansja zmiennej? Wewnątrz ${ } wpisaliśmy nazwę zmiennej środowiskowej, znaki
+<c>##</c> i wyrażenie <c>*fo</c>. Bash odnalazł w zmiennej <c>MYVAR</c>
+najdłuższy ciąg znaków pasujący do wyrażenia <c>*fo</c> i usunął go z początku
+łańcucha. Jest to nieco trudne do zrozumienia za pierwszym razem, więc aby
+poznać działanie znaków <c>##</c> przyjrzyjmy się w jaki sposób bash
+przeprowadził tą ekspansję. Zaczął on sprawdzać od początku łańcuch
+"foodforthought.jpg" w poszukiwaniu fragmentów, które pasują do wyrażenia
+<c>.*fo</c>. Oto kolejne etapy sprawdzania zmiennej środowiskowej:
 </p>
 
-<pre caption="Substrings being checked">
+<pre caption="Sprawdzanie łańcucha">
 f       
-fo              MATCHES *fo
+fo              ODPOWIADA *fo
 foo     
 food
 foodf           
-foodfo          MATCHES *fo
+foodfo          ODPOWIADA *fo
 foodfor
 foodfort        
 foodforth
@@ -462,37 +467,36 @@ foodforthought.jpg
 </pre>
 
 <p>
-After searching the string for matches, you can see that bash found two. It
-selects the longest match, removes it from the beginning of the original string,
-and returns the result.
+Jak widać, bash znalazł dwa fragmenty odpowiadające naszemu wyrażeniu.
+Wykorzystanie znaków <c>##</c> podczas ekspansji zmiennej nakazuje wybranie
+najdłuższego z pasujących ciągów. Gdy został on prawidłowo zidentyfikowany, bash
+usunął go z początku zmiennej i zwrócił pozostałą część.
 </p>
 
 <p>
-The second form of variable expansion shown above appears identical to the
-first, except it uses only one "#" -- and bash performs an almost identical
-process. It checks the same set of substrings as our first example did, except
-that bash removes the shortest match from our original string, and returns the
-result. So, as soon as it checks the "fo" substring, it removes "fo" from our
-string and returns "odforthought.jpg".
+Drugi przykład ekspansji zmiennej jest taki sam jak pierwszy poza wykorzystaniem
+pojedynczego znaku <c>#</c>, zamiast dwóch takich znaków w pierwszym przypadku. Bash
+przeprowadza tutaj niemal identyczny proces. Sprawdzane są te same fragmenty
+łańcucha co poprzednio, jednak z początku zmiennej usunięty zostaje najkrótszy
+ciąg pasujący do wyrażenia <c>*fo</c>. Więc gdy tylko bash sprawdzi fragment "fo",
+usuwa go i zwraca "odforthought.jpg".
 </p>
 
 <p>
-This may seem extremely cryptic, so I'll show you an easy way to remember this
-functionality. When searching for the longest match, use ## (because ## is
-longer than #). When searching for the shortest match, use #. See, not that hard
-to remember at all! Wait, how do you remember that we are supposed to use the
-'#' character to remove from the *beginning* of a string? Simple! You will
-notice that on a US keyboard, shift-4 is "$", which is the bash variable
-expansion character. On the keyboard, immediately to the left of "$" is "#". So,
-you can see that "#" is "at the beginning" of "$", and thus (according to our
-mnemonic), "#" removes characters from the beginning of the string. You may
-wonder how we remove characters from the end of the string. If you guessed that
-we use the character immediately to the right of "$" on the US keyboard ("%"),
-you're right! Here are some quick examples of how to chop off trailing portions
-of strings:
+Początkowo trudnym do zapamiętania może wydawać się kiedy korzystamy z <c>#</c>, a
+kiedy z <c>##</c>. Istnieje prosty sposób aby to przyswoić. Szukając
+najdłuższego fragmentu łańcuch, używamy <c>##</c>, bo jest dłuższe niż <c>#</c>.
+Analogicznie najkrótszy fragment odnajdziemy przy użyciu <c>#</c>. Jednak w jaki
+sposób zapamiętać, że <c>#</c> usunie znaki z początku zmiennej? Bardzo prosto -
+na klawiaturach typu us wciśnięcie shift+4 daje znak $, symbolizyjący
+ekspansję zmiennych. Na lewo od tego znaku na klawiaturze znajduje się znak #.
+Widać że # jest "na początku" $, więc służy on do usuwania znaków z początku
+zmiennej. Jeśli zastanawiamy się w jaki sposób usunąć znaki z końca łańcucha
+wystarczy spojrzeć na prawo od znaku $ na klawiaturze - służy do tego znak
+<c>%</c>. Poniżej kilka przykładów jego wykorzystania:
 </p>
 
-<pre caption="">
+<pre caption="Inny sposób dzielenia łańcuchów">
 $ <i>MYFOO="chickensoup.tar.gz"</i>
 $ <i>echo ${MYFOO%%.*}</i>
 chickensoup
@@ -501,31 +505,32 @@ chickensoup.tar
 </pre>
 
 <p>
-As you can see, the % and %% variable expansion options work identically to #
-and ##, except they remove the matching wildcard from the end of the string.
-Note that you don't have to use the "*" character if you wish to remove a
-specific substring from the end:
+Jak widać, opcje ekspansji zmiennych <c>%</c> i <c>%%<c/> działają tak, jak
+<c>#</c> oraz <c>##</c>, jednak usuwają pasujący do podanego wyrażenia fragment
+zmiennej z jej końca. Należy przy tym pamiętać, że nie jest konieczne użycie
+znaku <c>*</c>, jeśli chcemy usunąć ściśle określony fragment zmiennej.
 </p>
 
-<pre caption="Removing substrings from the end">
+<pre caption="Usuwanie znaków z końca łańcucha">
 <i>MYFOOD="chickensoup"</i>
 $ <i>echo ${MYFOOD%%soup}</i>
 chicken
 </pre>
 
 <p>
-In this example, it doesn't matter whether we use "%%" or "%", since only one
-match is possible. And remember, if you forget whether to use "#" or "%", look
-at the 3, 4, and 5 keys on your keyboard and figure it out.
+W tym przypadku nie ma znaczenia czy użyjemy <c>%%</c> czy <c>%</c>, gdyż tylko
+jeden fragment odpowiada podanemy wyrażeniu. Jeśli nie będziemy pamiętali czy
+powinniśmy użyć <c>#</c> czy <c>%</c>, można spojrzeć na klawisze 3, 4, 5 -
+układ znaków symbolicznie odpowiada funkcjom przez nie pełnionym. 
 </p>
 
 <p>
-We can use another form of variable expansion to select a specific substring,
-based on a specific character offset and length. Try typing in the following
-lines under bash:
+Ekspansja zmiennych pozwala także na pobranie określonego przez nas fragmentu
+łańcucha, na podstawie indeksu pierwszego znaku jaki ma znaleźć się w wycinku i
+jego długości. Spróbujmy wprowadzić następujące komendy:
 </p>
 
-<pre caption="Selecting a specific substring">
+<pre caption="Wybór fragmentu łańcucha">
 $ <i>EXCLAIM=cowabunga</i>
 $ <i>echo ${EXCLAIM:0:3}</i>
 cow
@@ -534,132 +539,143 @@ abunga
 </pre>
 
 <p>
-This form of string chopping can come in quite handy; simply specify the
-character to start from and the length of the substring, all separated by
-colons.
+Ten sposób dzielenia łańcuchów może okazać się bardzo przydatny. Wystarczy podać
+indeks znaku od którego zacznie się tworzenie wycinka (pierwszy znak ma indeks
+0 - jak w pierwszym przykładzie) i ilość znaków jaką ma on zawierać (wszystkie
+informacje rozdzielone dwukropkami).
 </p>
 
 </body>
 </section>
 <section>
-<title>Applying string chopping</title>
+<title>Implementacja rozrywania łańcuchów</title>
 <body>
 
 <p>
-Now that we've learned all about chopping strings, let's write a simple little
-shell script. Our script will accept a single file as an argument, and will
-print out whether it appears to be a tarball. To determine if it is a tarball,
-it will look for the pattern ".tar" at the end of the file. Here it is:
+Gdy poznaliśmy sposoby rozrywania łańcuchów, napiszmy prosty skrypt. Nasz skrypt
+będzie przyjmował jeden argument w postaci nazwy pliku i wyświetlał informacje
+czy jest to tarball, czy też nie. Plik jest tarballem, jeśli na końcu jego nazwy
+znajduje się ciąg ".tar". Oto skrypt:
 </p>
 
-<pre caption="mytar.sh -- a sample script">
+<pre caption="mytar.sh - przykładowy skrypt">
 #!/bin/bash
 
 if [ "${1##*.}" = "tar" ]
 then
-       echo This appears to be a tarball.
+       echo Plik jest tarballem.
 else
-       echo At first glance, this does not appear to be a tarball.
+       echo Na pierwszy rzut oka plik nie wygląda na tarballa.
 fi
 </pre>
 
 <p>
-To run this script, enter it into a file called <path>mytar.sh</path>, and type
-<c>chmod 755 mytar.sh</c> to make it executable. Then, give it a try on a
-tarball, as follows:
+Aby wykonać skrypt, należy skopiwać jego kod do pliku <path>mytar.sh</path> i
+wykonać komendę <c>chmod 755 mytar.sh</c>, co nada mu prawo do wykonywania.
+Następnie wykonujemy skrypt jak poniżej:
 </p>
 
-<pre caption="Trying the script">
+<pre caption="Wypróbowanie skryptu">
 $ <i>./mytar.sh thisfile.tar</i>
-This appears to be a tarball.
+Plik jest tarballem.
 $ <i>./mytar.sh thatfile.gz</i>
-At first glance, this does not appear to be a tarball.
+Na pierwszy rzut oka plik nie wygląda na tarballa.
 </pre>
 
 <p>
-OK, it works, but it's not very functional. Before we make it more useful, let's
-take a look at the "if" statement used above. In it, we have a boolean
-expression. In bash, the "=" comparison operator checks for string equality. In
-bash, all boolean expressions are enclosed in square brackets. But what does the
-boolean expression actually test for? Let's take a look at the left side.
-According to what we've learned about string chopping, "${1##*.}" will remove
-the longest match of "*." from the beginning of the string contained in the
-environment variable "1", returning the result. This will cause everything after
-the last "." in the file to be returned. Obviously, if the file ends in ".tar",
-we will get "tar" as a result, and the condition will be true.
+Skrypt działa, jednak nie jest zbyt funkcjonalny. Zanim sprawimy, że stanie się
+on bardziej przydatny, przyjrzyjmy się konstrukcji if w kodzie skryptu. Znajduje
+się w niej wyrażenie typu boolean. W bashu operator porównania <c>=</c>
+sprawdza, czy łańcuchy po obu jego stronach są takie same. Wszystkie wyrażenia
+typu boolean należy umieszczać w nawiasach kwadratowych. Co dokładnie jest
+obiektem wyrażenia typu boolean? Popatrzmy na jego lewą stronę. Zgodnie z tym
+czego się do tej pory nauczyliśmy, konstrukcja <c>${1##*.}<c/> usunie z początku
+łańcucha, znajdującego się w zmiennej środowiskowej 1, najdłuższy fragment
+pasujący do wzorca <c>*.</c> i zwróci pozostałą jego część. Otrzymamy w ten sposób
+znaki snajdujące się po ostatniej kropce. Oczywiste jest, że jeśli nazwa pliku
+kończy się ciągiem ".tar", wynikiem tej operacji będzie ciąg "tar", który w
+porównaniu z p-wartością (wartością po prawej stronie operatora porównania) da
+wynik całego wyrażenia w postaci prawdy.
 </p>
 
 <p>
-You may be wondering what the "1" environment variable is in the first place.
-Very simple -- $1 is the first command-line argument to the script, $2 is the
-second, etc. OK, now that we've reviewed the function, we can take our first
-look at "if" statements.
+Być może nie jest do końca jasne czym tak naprawdę jest zmienna środowiskowa o
+nazwie <c>1</c>. To bardzo proste - $1 to pierwszy argument skryptu podany w wierszu
+poleceń, $2 to drugi argument itd. Przeanalizowaliśmy już wyrażenie typu
+boolean, jakie pojawiło się z naszym skrypcie. Przyjrzyjmy się teraz bliżej
+konstrukcji if.
 </p>
 
 </body>
 </section>
 <section>
-<title>If statements</title>
+<title>Konstrukcja if</title>
 <body>
 
 <p>
-Like most languages, bash has its own form of conditional. When using them,
-stick to the format above; that is, keep the "if" and the "then" on separate
-lines, and keep the "else" and the terminating and required "fi" in horizontal
-alignment with them. This makes the code easier to read and debug. In addition
-to the "if,else" form, there are several other forms of "if" statements:
+Jak większość języków, bash ma swoje własne konstrukcje warunkowe. Podczas ich
+używania należy trzymać się formatu jaki pokazano w przykładzie powyżej:
+<c>if</c> oraz <c>then</c> muszą znajdować się w oddzielnych liniach, ponadto te
+słowa kluczowe oraz <c>else</c> i <c>fi</c> (które <e>musi</e> znaleźć się na
+końcu każdej konstrukcji warunkowej), należy wyrównać w ten sam sposób. Czyni to
+kod łatwiejszym do czytania i debugowania. Poza podstawową formą "if,else",
+konstrukcja warunkowa może przyjmować bardziej złożone postacie.
 </p>
 
-<pre caption="Basic form of if statement">
-if      [ condition ]
+<pre caption="Podstawowa forma konstrukcji if">
+if      [ warunek ]
 then
-        action
+        akcja
 fi
 </pre>
 
 <p>
-This one performs an action only if condition is true, otherwise it performs no
-action and continues executing any lines following the "fi".
+Konstrukcja if w takiej formie wykona jakąś akcję tylko jeśli warunek jest
+prawdziwy, w przeciwnym razie nie zostaną podjęte żadne czynności i wykonanie
+skryptu będzie kontynuowane w liniach po kończącym <c>fi</c>.
 </p>
 
-<pre caption="Checking condition before conituing with commands following fi">
-if [ condition ]
+<pre caption="Sprawdzanie dodatkowych warunków">
+if [ warunek ]
 then 
-        action
-elif [ condition2 ]
+        akcja
+elif [ warunek2 ]
 then
-        action2
+        akcja2
 .
 .
 .
-elif [ condition3 ]
+elif [ warunek3 ]
 then
-
+        akcja3
 else
-        actionx
+        akcjax
 fi
 </pre>
 
 <p>
-The above "elif" form will consecutively test each condition and execute the
-action corresponding to the first true condition. If none of the conditions are
-true, it will execute the "else" action, if one is present, and then continue
-executing lines following the entire "if,elif,else" statement.
+Zastosowana powyżej formuła <c>elif</c> będzie sprawdzać kolejne warunki i
+wykona akcje odpowiadające pierwszemu warunkowi, który zostanie określony jako
+prawdziwy. Gdy żaden z warunków nie będzie prawdziwy, wykonane zostaną akcje z
+sekcji<c>else</c>, jeśli taka występuje (w powyższym przykadzie występuje). Po
+tych czynościach wykonanie skryptu będzie kontynuowane w liniach znajdujących
+się po całej konstrukcji "if,elif,else".
 </p>
 
 </body>
 </section>
 <section>
-<title>Next time</title>
+<title>Kolejna część kursu</title>
 <body>
 
 <p>
-Now that we've covered the most basic bash functionality, it's time to pick up
-the pace and get ready to write some real scripts. In the next article, I'll
-cover looping constructs, functions, namespace, and other essential topics.
-Then, we'll be ready to write some more complicated scripts. In the third
-article, we'll focus almost exclusively on very complex scripts and functions,
-as well as several bash script design options. See you then!
+Kiedy poznaliśmy już podstawowe funkcjonalności basha, czas podnieść poprzeczkę
+i przygotować się do pisania prawdziwych skryptów. W drugim artykule z tej serii
+przedstawimy pętle, funkcje, przestrzenie nazw i inne fundamentalne zagadnienia.
+Dzięki temu będziemy gotowi do pisania bardziej złożonych skryptów. Trzeci (i
+zarazem ostatni) artykuł tego kursu skupia się niemal wyłącznie na
+skomplikowanych skryptach i funkcjach, a także na opisie kilku strategii
+projektowych.
 </p>
 
 </body>
@@ -667,25 +683,24 @@ as well as several bash script design options. See you then!
 </chapter>
 
 <chapter>
-<title>Resources</title>
+<title>Zasoby informacji</title>
 <section>
-<title>Useful links</title>
+<title>Przydatne linki</title>
 <body>
 
 <ul>
   <li>
-    Read <uri
-    link="http://www.gentoo.org/doc/en/articles/bash-by-example-p2.xml">Bash by
-    example: Part 2</uri>.
+    <uri
+    link="http://www.gentoo.org/doc/en/articles/bash-by-example-p2.xml">Bash w
+    przykładach - część druga</uri>.
   </li>
   <li>
-    Read <uri
-    link="http://www.gentoo.org/doc/en/articles/bash-by-example-p3.xml">Bash by
-    example: Part 3</uri>.
+    <uri
+    link="http://www.gentoo.org/doc/en/articles/bash-by-example-p3.xml">Bash w
+    przykładach - część trzecia</uri>.
   </li>
   <li>
-    Visit <uri link="http://www.gnu.org/software/bash/bash.html">GNU's bash home
-    page</uri>
+    <uri link="http://www.gnu.org/software/bash/bash.html">Strona GNU bash</uri>
   </li>
 </ul>
 
@@ -693,30 +708,4 @@ as well as several bash script design options. See you then!
 </section>
 </chapter>
 </guide>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
