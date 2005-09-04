@@ -15,8 +15,6 @@
 </author>
 
 <abstract>
-<!-- [WARNING] His five year mission - to marketeese where no marketoid -->
-<!-- [WARNING] has marketeesed before -->
 W tej części serii artykułów Daniel Robbins kontynuuje odkrywanie awk,
 wspaniałego języka o dziwnej nazwie. Daniel pokaże jak obsługiwać rekordy
 zawarte w kilku wierszach, wykorzystywać pętle oraz tworzyć i używać tablice.
@@ -28,11 +26,6 @@ możliwości awk i być gotowym do pisania własnych, potężnych skryptów.
 and is property of Westtech Information Services. This document is an updated
 version of the original article, and contains various improvements made by the
 Gentoo Linux Documentation team -->
-
-<!-- The contents of this document is licensed under CC-BY-SA license -->
-<!-- See http://creativecommons.org/license/by-sa/2.5 -->
-<license/>
-<!-- [WARNING] Powyższe wobec powyżej powyższego prawdą nie jest, prawda? -->
 
 <version>1.1</version>
 <date>2005-08-03</date>
@@ -72,8 +65,6 @@ printf("%s uzyskał/a %d podczas ostatniego testu\n","Jim",83)
 myout=sprintf("%s-%d",b,x)
 print myout
 </pre>
-<!-- [WARNING] W oryginale był błąd, zamiast myout=sprintf(...) było -->
-<!-- myout=(...) -->
 
 <p>
 Ten kod da w wyniku:
@@ -91,11 +82,11 @@ foo-1
 <body>
 
 <p>
-Awk dysponuje bardzo szerokim zestawem funkcji narzędziowych przeznaczonych
-do obsługi łańcuchów. To bardzo korzystne, tym bardziej, że w tym języku są
-one naprawdę potrzebne, gdyż nie można w nim tratować łańcucha jako tablicy
-znaków w taki sposób, jak robi się to w C, C++ oraz Python. Na przykład,
-jeżeli spróbuje się wykonać następujący kod:
+Awk dysponuje bardzo szerokim zestawem funkcji narzędziowych przeznaczonych do
+obsługi łańcuchów. To bardzo korzystne, tym bardziej, że w tym języku są one
+naprawdę potrzebne, gdyż nie można w nim tratować łańcucha jako tablicy znaków w
+taki sposób, jak robi się to w C, C++ oraz Python. Na przykład, jeżeli spróbuje
+się wykonać następujący kod:
 </p>
 
 <pre caption="Przykład">
@@ -104,8 +95,7 @@ print mystring[3]
 </pre>
 
 <p>
-To w rezultacie nastąpi następujący błąd:
-You'll receive an error that looks something like this:
+To w rezultacie pojawi się błąd:
 </p>
 
 <pre caption="Przykładowy błąd">
@@ -113,7 +103,7 @@ awk: string.gawk:59: fatal: attempt to use scalar as array
 </pre>
 
 <p>
-No cóż. Wprawdzie nie są takie wygodne jak Pythonowe typy sekwencyjne, ale
+No cóż. Wprawdzie nie są takie wygodne jak pythonowe typy sekwencyjne, ale
 funkcje narzędziowe spełniają swoje zadanie. Przyjrzyjmy się im.
 </p>
 
@@ -135,7 +125,7 @@ Kod da następujący wynik:
 </pre>
 
 <p>
-Kolejną funkcja nazywa się index, i zwraca pozycję wystąpienia podłańcucha w
+Kolejna funkcja nazywa się index i zwraca pozycję wystąpienia podłańcucha w
 łańcuchu lub 0, jeżeli nie można go odnaleźć:
 </p>
 
@@ -152,8 +142,8 @@ Awk napisze:
 </pre>
 
 <p>
-Kolejne dwie proste funkcje, tolower() oraz toupper(), służą do zmiany liter
-na odpowiednio małe oraz wielkie. Funkcje te zwracają nowy łańcuch, a nie
+Kolejne dwie proste funkcje, tolower() oraz toupper(), służą do zmiany liter na
+odpowiednio małe oraz wielkie. Funkcje te zwracają nowy łańcuch, a nie
 modyfikują starego. Ten kod:
 </p>
 
@@ -172,13 +162,10 @@ jak się dzisiaj masz?
 JAK SIĘ DZISIAJ MASZ?
 Jak się dzisiaj masz?
 </pre>
-<!-- [WARNING] Tak, awk bardzo ładnie obsługuje locale i utf -->
-<!-- [WARNING] gawk, anyway -->
 
 <p>
-Jak na razie dobrze, ale jak wybrać podłańcuch albo pojedyńczy znak z
-łańcucha? Do tego celu potrzebna jest funckja substr(), wykorzystywana w ten
-sposób:
+Jak na razie dobrze, ale jak wybrać podłańcuch albo pojedyńczy znak z łańcucha?
+Do tego celu potrzebna jest funckja substr(), wykorzystywana w ten sposób:
 </p>
 
 <pre caption="Przykład substr()">
@@ -186,12 +173,11 @@ mysub=substr(mystring,startpos,maxlen)
 </pre>
 
 <p>
-mystring powinno być zmienną łańcuchową albo literałem z którego trzeba
-uzyskać podłańcuch. startpos powinno być pozycją pierwszego znaku, natomiast
-maxlen powinnno zawierać maksymalną długość uzyskanego łańcucha. Jeżeli
+mystring powinno być zmienną łańcuchową albo literałem z którego trzeba uzyskać
+podłańcuch. startpos powinno być pozycją pierwszego znaku, natomiast maxlen
+powinnno zawierać maksymalną długość uzyskanego łańcucha. Jeżeli
 lenght(mystring) jest mniejsza niż startpos+maxlen to wynik będzie skrócony.
-substr() nie modyfikuje oryginalnego łańcucha, jedynie zwraca nowy. Na
-przykład:
+substr() nie modyfikuje oryginalnego łańcucha, jedynie zwraca nowy. Na przykład:
 </p>
 
 <pre caption="Kolejny przykład">
@@ -199,15 +185,12 @@ print substr(mystring,5,4)
 </pre>
 
 <p>
-Awk will print:
+Awk pokaże:
 </p>
 
 <pre caption="Awk napisze tak">
 się
 </pre>
-<!-- [WARNING] O, a to chyba bug w gawk. Dobrze zmienia rozmiar Ę, -->
-<!-- [WARNING] ale w substr ę to dwa znaki -->
-<!-- [WARNING] Podobnie ma length -->
 
 <p>
 Warto zapamiętać, że substr() jest dla awk substytutem popularnego w innych
@@ -219,14 +202,14 @@ na łańcuchach to funkcja ta jest bardzo często używana.
 <p>
 Teraz przejdziemy do ciekawszych funkcji, przy czym pierwszą z nich będzie
 match(). Jest ona podobna do index() tyle, że zamiast wyszukiwać podłańcuch
-wykorzystuje wyrażenia regularne. Zwraca pozycję znalezionego podłańcucha
-lub zero jeżeli wyszukiwanie się nie powiodło. Dodatkowo match() ustawia
-dwie zmienne, RSTART oraz RLENGTH. RSTART jest taka sama jak zwrócona
-wartość (pozycja pierwszego znalezionego podciągu pasującego do wyrażenia),
-natomiast RLENGTH określa jego rozmiar (lub -1 jeżeli nic nie znaleziono).
-Wykorzystując RSTART, RLENGTH, substr() oraz małą pętlę można łatwo iterować
-po wszystkich pasujących podciągach w łańcuchu. Poniżej znajduje się
-przykład wywołania match():
+wykorzystuje wyrażenia regularne. Zwraca pozycję znalezionego podłańcucha lub
+zero jeżeli wyszukiwanie się nie powiodło. Dodatkowo match() ustawia dwie
+zmienne, RSTART oraz RLENGTH. RSTART jest taka sama jak zwrócona wartość
+(pozycja pierwszego znalezionego podciągu pasującego do wyrażenia), natomiast
+RLENGTH określa jego rozmiar (lub -1 jeżeli nic nie znaleziono).  Wykorzystując
+RSTART, RLENGTH, substr() oraz małą pętlę można łatwo iterować po wszystkich
+pasujących podciągach w łańcuchu. Poniżej znajduje się przykład wywołania
+match():
 </p>
 
 <pre caption="Przykładowe wywołanie match()">
@@ -248,9 +231,9 @@ Awk napisze:
 <body>
 
 <p>
-Teraz opiszę kilka funkcji służących do podmiany łańcuchów, sub() oraz
-gsub(). Te funkcje różnią się od poprzednich tym, że modyfikują oryginalny
-łańcuch. Poniżej podany jest przykład użycia sub():
+Teraz opiszę kilka funkcji służących do podmiany łańcuchów, sub() oraz gsub().
+Te funkcje różnią się od poprzednich tym, że modyfikują oryginalny łańcuch.
+Poniżej podany jest przykład użycia sub():
 </p>
 
 <pre caption="Przykład użycia sub()">
@@ -258,13 +241,12 @@ sub(regexp,replstring,mystring)
 </pre>
 
 <p>
-Przy wywyołaniu sub() znajdowana jest pierwsza sekwencja znaków w mystring
-jaka pasuje do regexp, następnie zastępowana jest ona przez replstring.
-sub() oraz gsub() mają takie same argumenty; jedyną różnicą jest to, że
-su() zastąpi tylko pierwsze wystąpienie regexp, natomiast gsub dokona
-globalnego podstawienia, zamieniając wszystkie dopasowane fragmenty
-łańcucha. Poniżej znajduje się przykład wykorzystania sub() oraz
-gsub():
+Przy wywołaniu sub() znajdowana jest pierwsza sekwencja znaków w mystring jaka
+pasuje do regexp, następnie zastępowana jest ona przez replstring.  sub() oraz
+gsub() mają takie same argumenty; jedyną różnicą jest to, że su() zastąpi tylko
+pierwsze wystąpienie regexp, natomiast gsub dokona globalnego podstawienia,
+zamieniając wszystkie dopasowane fragmenty łańcucha. Poniżej znajduje się
+przykład wykorzystania sub() oraz gsub():
 </p>
 
 <pre caption="Przykładowe wykorzystanie sub() oraz gsub()">
@@ -287,16 +269,14 @@ Jak sIę dzIsIaj masz?
 </pre>
 
 <p>
-Oczywiście są również dopuszczalne bardziej skomplikowane wyrażenia
-regularne. Przetestowanie ich pozostawione zostaje jako ćwiczenie dla
-uważnego czytelnika.
+Oczywiście są również dopuszczalne bardziej skomplikowane wyrażenia regularne.
+Przetestowanie ich pozostawione zostaje jako ćwiczenie dla uważnego czytelnika.
 </p>
-<!-- [WARNING] HA! Udało mi się dowcip matematyczny upchnąć! -->
 
 <p>
-Zakończymy opis funkcji obsługujących łańcuchy przez zademonstrowanie
-funkcji split(). Dzieli ona łańcuch na kawałki i rozmieszcza go w tablicy
-indeksowanej liczbami. Poniżej znajduje się przykładowe wywołanie split():
+Zakończymy opis funkcji obsługujących łańcuchy przez zademonstrowanie funkcji
+split(). Dzieli ona łańcuch na kawałki i rozmieszcza go w tablicy indeksowanej
+liczbami. Poniżej znajduje się przykładowe wywołanie split():
 </p>
 
 <pre caption="Przykładowe wywołanie split()">
@@ -305,11 +285,10 @@ numelements=split("sty,lut,mar,kwi,maj,cze,lip,sie,wrz,paź,lis,gru",mymonths,",
 
 <p>
 Przy wywołaniu split() pierwszy argument zawiera literał lub zmienną
-przeznaczoną do podzielenia. Następnym argumentem jest nazwa tablicy w
-której znajdą się wyniki podziału, ostatnim natomiast jest separator pól. Po
-zakończeniu split() zwraca ilość uzyskanych elementów i umieszcza
-poszczególne fragmenty w tablicy, zaczynając od indeksu jeden. Tak więc
-poniższy kod:
+przeznaczoną do podzielenia. Następnym argumentem jest nazwa tablicy w której
+znajdą się wyniki podziału, ostatnim natomiast jest separator pól. Po
+zakończeniu split() zwraca ilość uzyskanych elementów i umieszcza poszczególne
+fragmenty w tablicy, zaczynając od indeksu jeden. Tak więc poniższy kod:
 </p>
 
 <pre caption="Przykład">
@@ -317,7 +296,7 @@ print mymonths[1],mymonths[numelements]
 </pre>
 
 <p>
-....da w wyniku:
+...da w wyniku:
 </p>
 
 <pre caption="Wynik przykładu">
@@ -328,14 +307,12 @@ Sty gru
 </section>
 <section>
 <title>Specjalne formy łańcuchowe</title>
-<!-- [WARNING] GIGO -->
 <body>
 
 <p>
-Szybka uwaga -- po wywołaniu length(), sub() lub gsub() można odrzucić
-ostatni argument a awk zastąpi go $0 (aktualna linia w całości). Można, na
-przykład, wypisać długości każdego wiersza w pliku, przy użyciu
-następującego skryptu:
+Szybka uwaga -- po wywołaniu length(), sub() lub gsub() można odrzucić ostatni
+argument a awk zastąpi go $0 (aktualna linia w całości). Można, na przykład,
+wypisać długości każdego wiersza w pliku, przy użyciu następującego skryptu:
 </p>
 
 <pre caption="Kod wypisujący długość wszystkich wierszy pliku">
@@ -351,26 +328,25 @@ następującego skryptu:
 <body>
 
 <p>
-Kilka tygodni temu postanowiłem napisać własny program do bilansowania
-wydatków. Zdecydowałem się na wykorzystanie prostego pliku tekstowanego z
-polami rozdzielanymi tabulacją, w którym mógłbym wpisywać moje wydatki oraz
-dochody. Założeniem było przekazywanie tego pliku do skryptu awk który
-automatycznie sumowałby wartości i podawałby mój bilans. Poniżej znajduje
-się przykładowy wpis w mojej "Książeczce wydatków w ASCII":
+Kilka tygodni temu postanowiłem napisać własny program do bilansowania wydatków.
+Zdecydowałem się na wykorzystanie prostego pliku tekstowanego z polami
+rozdzielanymi tabulacją, w którym mógłbym wpisywać moje wydatki oraz dochody.
+Założeniem było przekazywanie tego pliku do skryptu awk który automatycznie
+sumowałby wartości i podawałby mój bilans. Poniżej znajduje się przykładowy wpis
+w mojej "Książeczce wydatków w ASCII":
 </p>
 
 <pre caption="Książeczka wydatków w ASCII">
-
 23 sie 2000    jedz    -    -    Y    Bufet Jimmy'ego    30.25
 </pre>
 
 <p>
-Każde pole w tym pliku rozdzielone jest co najmniej jedną tabulacją. Po
-dacie (pole 1, $1) znajdują się dwa pola, "kategoria wydatków" oraz
-"kategoria przychodów". Kiedy podaję w powyższej linii wydatki w pole exp
-wpisuję czteroliterowy skrót, natomiast w następnym polu wpisuję "-" (pusty
-wpis). W ten sposób oznaczam tę konkretną pozycję jako "wydatek na jedzenie".
-Z kolei wpłata wygląda tak:
+Każde pole w tym pliku rozdzielone jest co najmniej jedną tabulacją. Po dacie
+(pole 1, $1) znajdują się dwa pola, "kategoria wydatków" oraz "kategoria
+przychodów". Kiedy podaję w powyższej linii wydatki w pole exp wpisuję
+czteroliterowy skrót, natomiast w następnym polu wpisuję "-" (pusty wpis). W ten
+sposób oznaczam tę konkretną pozycję jako "wydatek na jedzenie".  Z kolei wpłata
+wygląda tak:
 </p>
 
 <pre caption="Przykładowa wpłata">
@@ -379,23 +355,23 @@ Z kolei wpłata wygląda tak:
 
 <p>
 W tym przypadku umieszczam "-" (puste) w kategorii wydatków oraz "doch" w
-kategorii dochodów. "doch" jest moim skrótem dla ogólnych dochodów (w
-rodzaju pensji). Za pomocą skrótów kategorii mogę rozdzielić moje dochody i
-wydatki na kategorie. Przeznaczenie pozostałych pól powinno być oczywiste.
-Pole "zatwierdzone?" ("Y" lub "N") zapisuje, czy transakcja została
-przestałane na moje konto. Poza tym zapisany jest opis transakcji oraz
-dodatnia wartość w dolarach.
+kategorii dochodów. "doch" jest moim skrótem dla ogólnych dochodów (w rodzaju
+pensji). Za pomocą skrótów kategorii mogę rozdzielić moje dochody i wydatki na
+kategorie. Przeznaczenie pozostałych pól powinno być oczywiste.  Pole
+"zatwierdzone?" ("Y" lub "N") zapisuje, czy transakcja została przestałane na
+moje konto. Poza tym zapisany jest opis transakcji oraz dodatnia wartość w
+dolarach.
 </p>
 
 <p>
-Algorytm wykorzystany do wyliczenia aktualnego bilansu nie jest zbyt
-złożony. AWK po prostu wczytuje kolejne linie. Jeżeli wymieniona jest tylko
-kategoria wydatków to mamy doczynienia z wypłatą, jeżeli tylko dochodów, to
-jest to dochód, a jeżeli wymienione są obie kategorie są wymienione, to mamy
-doczynienia z "transferem między kategoriami"; to znaczy, wymieniona ilość
-pieniędzy jest odejmowana z kategorii wydatków i dodawana do kategorii
-dochodów. Wszystkie kategorie są umowne ale nadal bardzo praktyczne do
-śledzenia wydatków i dochodów oraz do wyliczania budżetu.
+Algorytm wykorzystany do wyliczenia aktualnego bilansu nie jest zbyt złożony.
+AWK po prostu wczytuje kolejne linie. Jeżeli wymieniona jest tylko kategoria
+wydatków to mamy doczynienia z wypłatą, jeżeli tylko dochodów, to jest to
+dochód, a jeżeli wymienione są obie kategorie są wymienione, to mamy doczynienia
+z "transferem między kategoriami"; to znaczy, wymieniona ilość pieniędzy jest
+odejmowana z kategorii wydatków i dodawana do kategorii dochodów. Wszystkie
+kategorie są umowne ale nadal bardzo praktyczne do śledzenia wydatków i dochodów
+oraz do wyliczania budżetu.
 </p>
 
 </body>
@@ -415,7 +391,6 @@ BEGIN {
     FS="\t+"
     months="sty lut mar kwi maj cze lip sie wrz paz lis gru"
 }
-<!-- [WARNING] paz a nie paź bo monthdigit robi /4 -->
 
 function monthdigit(mymonth) {
     return (index(months,mymonth)+3)/4
@@ -432,15 +407,15 @@ dalej funkcję monthdigit().
 </p>
 
 <p>
-Ostatnie trzy wiersze pokazują jak zdefiniować własną funkcję awk. Składnia
-jest prosta -- należy napisać "function", następnie nazwę funkcji a potem
-w nawiasach nazwy parametrów rozdzielone przecinkami. W końcu następuje blok
-kodu zawarty w nawiasach klamrowych, opisujący kod który funkcja powinna
-wykonywać. Każda funkcja może korzystać ze zmiennych globalnych (takich jak
-zmienna months). Dodatkowo awk zapewnia instrukcję "return" która pozwala
-funkcji zwrócić fartość i działa podobnie do swojego odpowiednika w C,
-Pythonie oraz innych językach. Ta konkretna funkcja przyjmuje 3-literowy
-skrót nazwy miesiąca i zwraca odpowiednik liczbowy. Na przykład:
+Ostatnie trzy wiersze pokazują jak zdefiniować własną funkcję awk. Składnia jest
+prosta -- należy napisać "function", następnie nazwę funkcji a potem w nawiasach
+nazwy parametrów rozdzielone przecinkami. W końcu następuje blok kodu zawarty w
+nawiasach klamrowych, opisujący kod który funkcja powinna wykonywać. Każda
+funkcja może korzystać ze zmiennych globalnych (takich jak zmienna months).
+Dodatkowo awk zapewnia instrukcję "return" która pozwala funkcji zwrócić fartość
+i działa podobnie do swojego odpowiednika w C, Pythonie oraz innych językach. Ta
+konkretna funkcja przyjmuje 3-literowy skrót nazwy miesiąca i zwraca odpowiednik
+liczbowy. Na przykład:
 </p>
 
 <pre caption="Przykładowe wywołanie monthdigit()">
@@ -465,26 +440,23 @@ Przejdźmy teraz do kolejnych funkcji.
 <title>Funkcje finansowe</title>
 <body>
 
-<!-- [WARNING] Musiał wyrobić normę ilości znaków, prawda? -->
-<!-- [WARNING] Przeklęci stachanowcy... -->
-
 <p>
 Kolejne trzy funkcje obsługują naszą księgowość. W głównym bloku następuje
 sekwencyjne przetwarzanie każdej linii wejścia, w trakcie czego następuje
-wywołanie jednej z tych funkcji tak, żeby właściwe transakcje zostały
-zapisane w tablicy awk. Istnieją trzy podstawowe rodzaje transakcji, wpłata
-(doincome), wypłata (doexpense) oraz transfer (dotransfer). Wszystkie trzy
-funkcje przyjmują jeden argument, mybalance. Jest to nazwa dwuwymiarowej
-tablicy w której przechowywane będą wyniki transakcji. Jak do tej pory nie
-pokazałem tablic wielowymiarowych, są one jednak dość proste -- należy po
-prostu rozdzileić wymiary przecinkiem.
+wywołanie jednej z tych funkcji tak, żeby właściwe transakcje zostały zapisane w
+tablicy awk. Istnieją trzy podstawowe rodzaje transakcji, wpłata (doincome),
+wypłata (doexpense) oraz transfer (dotransfer). Wszystkie trzy funkcje przyjmują
+jeden argument, mybalance. Jest to nazwa dwuwymiarowej tablicy w której
+przechowywane będą wyniki transakcji. Jak do tej pory nie pokazałem tablic
+wielowymiarowych, są one jednak dość proste -- należy po prostu rozdzileić
+wymiary przecinkiem.
 </p>
 
 <p>
-Informację zapisujemy w "mybalance" jak następuje. Pierwszy wymiar tablicy
-ma zakres od 0 do 12 i wyznacza miesiąc, lub zero dla oznaczenia całego
-roku. Drugim wymiarem jest czteroliterowy skrót kategorii, na przykład
-"jedz" lub "doch". Tak więc całoroczny bilans jedzeniowy zawarty jest w
+Informację zapisujemy w "mybalance" jak następuje. Pierwszy wymiar tablicy ma
+zakres od 0 do 12 i wyznacza miesiąc, lub zero dla oznaczenia całego roku.
+Drugim wymiarem jest czteroliterowy skrót kategorii, na przykład "jedz" lub
+"doch". Tak więc całoroczny bilans jedzeniowy zawarty jest w
 mybalance[0,"jedz"]. Przychód w czerwcu znajduje sięw mybalance[6,"doch"].
 </p>
 
@@ -511,17 +483,17 @@ function dotransfer(mybalance) {
 <p>
 Po wywołaniu którekolwiek z powyższych funkcji transakcja zostaje zapisana w
 dwóch miejscach -- mybalance[0,category] oraz mybalance[curmonth,category],
-odpowiednio w bilansie całego roku oraz bierzącego miesiąca. Dzięki temu 
-łatwo jest później wykonać rozlicenie roczne lub miesięczne.
+odpowiednio w bilansie całego roku oraz bierzącego miesiąca. Dzięki temu łatwo
+jest później wykonać rozlicenie roczne lub miesięczne.
 </p>
 
 <p>
-Analizując powyższe funkcje można zauważyć, że tablica wymieniona w
-mybalance jest przekazywana przez referencję. Poza tym odwołujemy się do
-kilku zmiennych globalnych: curmonth (aktualny miesiąc w postaci liczbowej),
-$2 (kategoria wydatków), $3 (kategoria dochodów) oraz amount ($7, wartość w
-dolarach). Przy wywołaniu doincome() oraz jej podobnych wszystkie te zmienne
-są już właściwie ustawione dla aktualnie przetwarzanego wiersza.
+Analizując powyższe funkcje można zauważyć, że tablica wymieniona w mybalance
+jest przekazywana przez referencję. Poza tym odwołujemy się do kilku zmiennych
+globalnych: curmonth (aktualny miesiąc w postaci liczbowej), $2 (kategoria
+wydatków), $3 (kategoria dochodów) oraz amount ($7, wartość w dolarach). Przy
+wywołaniu doincome() oraz jej podobnych wszystkie te zmienne są już właściwie
+ustawione dla aktualnie przetwarzanego wiersza.
 </p>
 
 </body>
@@ -532,10 +504,9 @@ są już właściwie ustawione dla aktualnie przetwarzanego wiersza.
 
 <p>
 Poniżej znajduje się główny blok kodu który przetwarza każdą linię danych.
-Ponieważ FS zostało prawidłowo ustawione, możemy do pierwszego pola
-odwoływać się przez $1, drugiego przez $2 i tak dalej. Przy wywołaniu
-funkcji doincome() i podobnych dostępne są wartości curmonth, $2, $3 oraz
-amount.
+Ponieważ FS zostało prawidłowo ustawione, możemy do pierwszego pola odwoływać
+się przez $1, drugiego przez $2 i tak dalej. Przy wywołaniu funkcji doincome() i
+podobnych dostępne są wartości curmonth, $2, $3 oraz amount.
 </p>
 
 <pre caption="Bilans, część trzecia">
@@ -576,38 +547,36 @@ amount.
 </pre>
 
 <p>
-W głównym bloku pierwsze dwa wiersze ustawiają curmonth na liczbę pomiędzy 1
-a 12 oraz amount na wartość pola 7 (aby kod był łatwiejszy do zrozumienia).
+W głównym bloku pierwsze dwa wiersze ustawiają curmonth na liczbę pomiędzy 1 a
+12 oraz amount na wartość pola 7 (aby kod był łatwiejszy do zrozumienia).
 Następnie w czterech wierszach zapisujemy wartości do tablicy globcat.
 globcat (global categories czyli kategorie globalne) wykorzystana jest do
 zapisania wszystkich kategorii napotkanych w pliku -- "doch", "różn",
 "jedz", "narz" i tak dalej. Na przykład, jeżeli $2 == "doch", to ustawiamy
-globcat["doch"] na "tak". Później możemy iterować po liście kategorii za
-pomocą prostej pętli "for (x in globcat)".
+globcat["doch"] na "tak". Później możemy iterować po liście kategorii za pomocą
+prostej pętli "for (x in globcat)".
 </p>
 
 <p>
 W kolejnych wierszach analizowana jest zawartość pół $2 oraz $3 po czym
-transakcja jest odpowiednio zapisywana. Jeżeli $2=="-" a $3!="-" to
-otrzymaliśmy dochów, więc wywołujemy doincome(). W przypadku odwrotnym
-wywołujemy doexpense(). Jeżeli zarówno $2 jak i $3 zawierają kategorie to
-wywołujemy dotransfer. W każdym wypadku przekazujemy do wywołanej funkcji
-tablicę "balance" więc tam zostaną zapisane informacje.
+transakcja jest odpowiednio zapisywana. Jeżeli $2=="-" a $3!="-" to otrzymaliśmy
+dochów, więc wywołujemy doincome(). W przypadku odwrotnym wywołujemy
+doexpense(). Jeżeli zarówno $2 jak i $3 zawierają kategorie to wywołujemy
+dotransfer. W każdym wypadku przekazujemy do wywołanej funkcji tablicę "balance"
+więc tam zostaną zapisane informacje.
 </p>
 
 <p>
-W kilku miejscach znajduje się również polecenie "if ($5 == "Y") to zapisz
-tę samą transakcję w "balance2". W polu $5 zapisywano "Y" lub "N", oznaczając
-przez "Y" transakcje które zostały wysłane na konto. Ponieważ w "balance2"
-zapisujemy tylko takie transakcje, to balance2 będzie zawierało aktualny
-bilans konta, natomiast "balance" zapisuje wszystkie transakcje, niezależnie
-od tego, czy zostały już przesłane. "balance2" można wykorzystać do
-zweryfikowania wpisanych danych (ponieważ powinien się zgadzaćze stanem
-konta według banku), natomiast "balance" można wykorzystać aby uniknąć
-deba=etu na koncie (ponieważ bierze pod uwagę wypisane czeki które nie
-zostały jeszcze zrealizowane).
+W kilku miejscach znajduje się również polecenie "if ($5 == "Y") to zapisz tę
+samą transakcję w "balance2". W polu $5 zapisywano "Y" lub "N", oznaczając przez
+"Y" transakcje które zostały wysłane na konto. Ponieważ w "balance2" zapisujemy
+tylko takie transakcje, to balance2 będzie zawierało aktualny bilans konta,
+natomiast "balance" zapisuje wszystkie transakcje, niezależnie od tego, czy
+zostały już przesłane. "balance2" można wykorzystać do zweryfikowania wpisanych
+danych (ponieważ powinien się zgadzaćze stanem konta według banku), natomiast
+"balance" można wykorzystać aby uniknąć deba=etu na koncie (ponieważ bierze pod
+uwagę wypisane czeki które nie zostały jeszcze zrealizowane).
 </p>
-<!-- [WARNING] Czeki?! Mamusiu, cofnęło mnie do XIX wieku!!!  -->
 
 </body>
 </section>
@@ -616,10 +585,10 @@ zostały jeszcze zrealizowane).
 <body>
 
 <p>
-Po tym, jak główny blok przetworzy wszystkie wpisy z wejścia, dysponujemy
-dość dokładnym zapisem wypłat oraz wpłat, podzielonych na kategorie oraz
-miesiące. Teraz musimy jeszcze zdefiniować blok END, który wygeneruje
-raport, w tym przypadku dość skromny:
+Po tym jak główny blok przetworzy wszystkie wpisy z wejścia, dysponujemy dość
+dokładnym zapisem wypłat oraz wpłat, podzielonych na kategorie oraz miesiące.
+Teraz musimy jeszcze zdefiniować blok END, który wygeneruje raport, w tym
+przypadku dość skromny:
 </p>
 
 <pre caption="Generowanie raportu końcowego">
@@ -647,12 +616,12 @@ Bilans konta:         2399.33
 <p>
 W bloku END wykorzystaliśmy pętlę "for (x in globcat)" do iterowania przez
 wszystkie kategorie, zliczając główny bilans oparty na wszystkich zapisanych
-transakcjach. Ostatecznie wyliczyliśmy obydwa bilansy, dla dostępnych
-funduszy oraz bilansu konta. Aby wykonać program oraz przetworzyć własne
-wydatki zapisane w <path>mycheckbook.txt</path>, należy zapisać powyższy kod
-w pliku <path>balance</path>, wykonać <c>chmod +x balance</c> a następnie
-wykonać "<c>./balance mycheckbook.txt</c>". Skrypt zsumuje wszystkie
-transakcje i wypisze dwuwierszowe podsumowanie.
+transakcjach. Ostatecznie wyliczyliśmy obydwa bilansy, dla dostępnych funduszy
+oraz bilansu konta. Aby wykonać program oraz przetworzyć własne wydatki zapisane
+w <path>mycheckbook.txt</path>, należy zapisać powyższy kod w pliku
+<path>balance</path>, wykonać <c>chmod +x balance</c> a następnie wykonać
+"<c>./balance mycheckbook.txt</c>". Skrypt zsumuje wszystkie transakcje i
+wypisze dwuwierszowe podsumowanie.
 </p>
 
 </body>
@@ -673,7 +642,7 @@ ulepszyć blok END.
 </p>
 
 <p>
-Mam nadzieję, że sera spełniła swoje zadanie. Poniżej wyliczone są dodatkowe
+Mam nadzieję, że seria spełniła swoje zadanie. Poniżej wyliczone są dodatkowe
 zasoby, w których można znaleźć więcej informacji o awk.
 </p>
 
@@ -688,11 +657,10 @@ zasoby, w których można znaleźć więcej informacji o awk.
 <body>
 
 <ul>
-
   <li>
     Inne artykuły o Awk autorstwa Daniela na developerWorks: Common threads: Awk
-    by example, <uri link="l-awk2.xml">Cześć druga</uri> oraz<uri
-    link="l-awk3.xml">Część trzecia</uri>.
+    by example, <uri link="l-awk1.xml">Cześć pierwsza</uri> oraz<uri
+    link="l-awk2.xml">Część druga</uri>.
   </li>
   <li>
     Książka O'Reilly's <uri link="http://www.oreilly.com/catalog/sed2/">sed

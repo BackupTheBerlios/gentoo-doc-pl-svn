@@ -16,8 +16,6 @@
 </author>
 
 <abstract>
-<!-- [WARNING] His five year mission - to marketeese where no marketoid -->
-<!-- [WARNING] has marketeesed before -->
 W tej części serii artykułów Daniel Robbins kontynuuje odkrywanie awk,
 wspaniałego języka o dziwnej nazwie. Daniel pokaże jak obsługiwać rekordy
 zawarte w kilku wierszach, wykorzystywać pętle oraz tworzyć i używać tablice.
@@ -29,11 +27,6 @@ możliwości awk i być gotowym do pisania własnych, potężnych skryptów.
 and is property of Westtech Information Services. This document is an updated
 version of the original article, and contains various improvements made by the
 Gentoo Linux Documentation team -->
-
-<!-- The contents of this document is licensed under CC-BY-SA license -->
-<!-- See http://creativecommons.org/license/by-sa/2.5 -->
-<license/>
-<!-- [WARNING] Powyższe wobec powyżej powyższego prawdą nie jest, prawda? -->
 
 <version>1.0</version>
 <date>2005-07-27</date>
@@ -74,10 +67,8 @@ zaczyna następny.
 Jako przykład spróbujemy poradzić sobie z przetwarzaniem listy adresów
 uczestników Federalnego Programu Ochrony Świadków:
 </p>
-<!-- [WARNING] Dramatyzm tego odcinka jest wprost przytłaczający -->
 
-<pre caption="Przykładowy wpis na liście uczestników Federalnego Programu
-Ochrony Świadków">
+<pre caption="Przykładowy wpis na liście uczestników Federalnego Programu Ochrony Świadków">
 Jimmy Łasica
 Ulica Przyjemności 100
 San Francisco, CA 12345
@@ -86,7 +77,6 @@ Duży Tony
 Aleja Incognito 200
 Przedmiasteczko, WA 67890
 </pre>
-<!-- [WARNING] Przetłumaczyłem adresy. BP, MSPANC -->
 
 <p>
 W idealnym przypadku chcielibyśmy, aby awk rozpoznawał każdy  3-wierszowy adres
@@ -146,13 +136,6 @@ Uzyskaliśmy w ten sposób oczekiwany efekt ale kod wygląda brzydko. Zamiast
 wstawiać literał ", " pomiędzy pola możemy sprawić, aby awk zrobił to za
 nas. Robi się to przez ustawienie zmiennej specjalnej OFS, na przykład:
 </p>
-<!-- [WARNING] Mam dziwne przeczucie, więc tłumaczę: -->
-<!-- [WARNING] Literał NIE jest głupim tłumaczeniem 'literal' -->
-<!-- [WARNING] Literał oznacza stałą łańcuchową podaną wprost, np. "dupa" -->
-<!-- [WARNING] Masz to nawet w słowniczku -->
-<!-- [WARNING] Jak jestem uczulony po pluskwie, -->
-<!-- [WARNING] którą TEŻ masz w słowniczku -->
-<!-- [WARNING] (ale bez rozćtapania :() -->
 
 <pre caption="Wycinek kodu">
 print "Hello", "there", "Jim!"
@@ -303,7 +286,6 @@ nie jest spełniony.
 Awk pozwala na tworzenie pętli for, które, podobnie jak pętle while, są
 identyczne jak ich odpowiedniki w C:
 </p>
-<!-- [WARNING] Jow! Gajz! Ale wiecie, że w C też jest do...while? -->
 
 <pre caption="Przykładowa pętla">
 for ( wstępne przypisanie; warunek; modyfikacja ) {
@@ -351,9 +333,8 @@ while (1) {
 </pre>
 
 <p>
-Ponieważ 1 zawsze jest prawdziwe ta pętla jest nieskończona.
-<!-- Ale nowoczesne kompilatory wykonują ją w trzech cyklach -->
-Poniżej znajduje się pętla która zostanie wykonana dziesięć razy:
+Ponieważ 1 zawsze jest prawdziwe ta pętla jest nieskończona.  Poniżej znajduje
+się pętla która zostanie wykonana dziesięć razy:
 </p>
 
 <pre caption="Pętla, której kod wykonuje się tylko 10 raz">
@@ -372,25 +353,9 @@ Tutaj polecenie break służy do "wyrwania się" z njbardziej zagnieżdżonej
 pętli. "break" powoduje, że pętla natychmiast zostaje zakończona i wykonanie
 kodu jest wznawiane od linii następującej po kodzie pętli.
 </p>
-<!-- [WARNING]
-while(1) { print "dudu" ; break } print "bubu"
-print "duba duba zoot zoot"
-
-Zgodnie z opisem wynikiem powinno być
-dudu
-duba duba zoot zoot
-
-Ale, oczywiście, jest
-dudu
-bubu
-duba duba zoot zoot
-
-Ech...
--->
 
 <p>
 Polecenie continue uzupełnia break i działa tak:
-The continue statement complements break, and works like this:
 </p>
 
 <pre caption="Instrukcja continue uzupełniająca break">
@@ -412,7 +377,7 @@ while (1) {
 Ten kod napisze "iteracja 1" - "iteracja 21", pomijając "iteracja 4". Jeżeli
 x jest równe 4, to x jest zwiększane po czym wykonywana jest instrukcja
 continue, co sprawia że awk natychmiast rozpoczyna kolejne wykonanie pętli -
-pomija więc resztę kodu. Instruckja ta działa dla każdego rodzaju pętli w
+pomija więc resztę kodu. Instrukcja ta działa dla każdego rodzaju pętli w
 awk, tak samo jak break. Kiedy zostanie wykonana w pętli for zmienna
 kontrolna zostanie automatycznie zwiększona. Poniżej znajduje się
 przykładowa pętla for:
@@ -431,9 +396,6 @@ for ( x=1; x&lt;=21; x++ ) {
 Zwiększenie x nie było konieczne, ponieważ pętla for automatycznie zwiększa
 x.
 </p>
-<!-- [WARNING] Grrr, nic się nie dzieje automatycznie -->
-<!-- [WARNING] Natomiast IMHO warto zauważyć, że w pętli do ... while -->
-<!-- [WARNING] continue nie pomija sprawdzenia warunku -->
 
 </body>
 </section>
@@ -443,7 +405,7 @@ x.
 
 <p>
 Dobrą wiadomością jest z pewnością to, że w awk dostępne są tablice. W awk
-jest natomiast zwyczajem rozpoczynanie indeksu dablicy od 1 a nie od 0.
+zwyczajem jest rozpoczynanie indeksu tablicy od 1 a nie od 0.
 </p>
 
 <pre caption="Przykładowe tablice w awk">
@@ -452,7 +414,7 @@ myarray[2]=456
 </pre>
 
 <p>
-Kiedy awk napotyka pierwsze przypisanie tablica myarray jest tworzona i jej
+Kiedy awk napotyka pierwsze przypisanie, tablica myarray jest tworzona i jej
 element myarray[1] jest ustawiany na wartość "jim". Po wykonaniu drugiego
 przypisaniu tablica ma już dwa elementy.
 </p>
@@ -469,7 +431,7 @@ for ( x in myarray ) {
 </pre>
 
 <p>
-Ten kod wypisze wszystkie elementry tablicy myarray. Przy wykonywanu tej
+Ten kod wypisze wszystkie elementy tablicy myarray. Przy wykonywanu tej
 formy pętli for awk będzie przypisywało każdy istniejący indeks myarray do x
 (zmiennej kontrolnej) po kolei, dla każdej wartości raz wykonując zawartość
 bloku. Jest to wprawdzie bardzo praktyczne, ale składnia ta ma pewną wadę --
@@ -517,13 +479,11 @@ c=a+b+3
 </pre>
 
 <p>
-Po wykonaniu tego kodu c jest równe 6. Ponieważ awk jest "łańcuchowe"
-<!-- [WARNING] Nie, nie stringowe, zboczeńcy -->
-dodawanie łańcuchów "1" oraz "2" jest w zasadzie tym samym co dodawanie
-liczb 1 oraz 2. W obydwu przypadkach awk dokona prawidłowego dodawania.
-Łańcuchowa natura awk bywa dość intrygująca -- na przykład, co się stanie,
-gdy wykorzystamy łańcuch do indeksowania tablic? Na przykład, w poniższym
-kodzie:
+Po wykonaniu tego kodu c jest równe 6. Ponieważ awk jest "łańcuchowe" dodawanie
+łańcuchów "1" oraz "2" jest w zasadzie tym samym co dodawanie liczb 1 oraz 2. W
+obydwu przypadkach awk dokona prawidłowego dodawania.  Łańcuchowa natura awk
+bywa dość intrygująca -- na przykład, co się stanie, gdy wykorzystamy łańcuch do
+indeksowania tablic? Na przykład, w poniższym kodzie:
 </p>
 
 <pre caption="Przykład">
@@ -532,8 +492,8 @@ print myarr["1"]
 </pre>
 
 <p>
-Zgodnie z oczekiwaniami kod wypisze "Mr. Whipple". Co się stanie, gdy
-pominiemy cudzysłowy wokół jedynki w indeksie?
+Zgodnie z oczekiwaniami kod wypisze "Mr. Whipple". Co się stanie, gdy pominiemy
+cudzysłowy wokół jedynki w indeksie?
 </p>
 
 <pre caption="Pomijamy cudzysłowy">
@@ -543,19 +503,17 @@ print myarr[1]
 
 
 <p>
-Odgadnięcie wyniku tego fragmentu może być nieco trudniejsze.
-<!-- [WARNING] Uff, aż się spociłem -->
-Czy rozróżnia myarr["1"] od myarr[1]? Odpowiedzią jest nie, awk uważa, że
-jedna i druga forma odnosi się do tego samego elementu i awk napisze "Mr.
-Whipple", dokładnie tak samo jak w pierwszym fragmencie. Może się to wydawać
-dziwne, ale awk zawsze wykorzystuje łańcuchy do indeksowania tablic.
+Odgadnięcie wyniku tego fragmentu może być nieco trudniejsze.  Czy rozróżnia
+myarr["1"] od myarr[1]? Odpowiedzią jest nie, awk uważa, że jedna i druga forma
+odnosi się do tego samego elementu i awk napisze "Mr.  Whipple", dokładnie tak
+samo jak w pierwszym fragmencie. Może się to wydawać dziwne, ale awk zawsze
+wykorzystuje łańcuchy do indeksowania tablic.
 </p>
 
 <p>
 Po poznaniu tej dziwnej właściwości niektórzy z nas mogą skusić się na
 przetestowanie dziwacznego kodu, który wygląda tak:
 </p>
-<!-- [WARNING] Uff, Archiwum X wersus Flintstonowie -->
 
 <pre caption="Dziwaczny kod">
 myarr["name"]="Mr. Whipple"
@@ -571,7 +529,6 @@ razem, kiedy wykorzystujemy nie-liczbowe indeksy tablic, takie jak
 myarr["name"], wykorzystujemy tablice asocjacyjne. Technicznie rzecz biorąc
 awk nie robi jednak wtedy nic szczególnego (ponieważ awk traktuje indeksy
 "liczbowe" jak łańcuchy).
-<!-- [WARNING] Wycięłem poklepywanie po ramieniu -->
 </p>
 
 </body>
@@ -602,8 +559,6 @@ delete fooarray[1]
 Jeżeli chcemy sprawdzić, czy konkretny element tablicy istnieje, to można
 wykorzystać specjalny operator "in":
 </p>
-<!-- [WARNING] I nie, to nie jest operator boolowski, on nie operuje na -->
-<!-- [WARNING] zmiennych logicznych, dammit -->
 
 <pre caption="Sprawdzanie, czy dany element tablicy istnieje">
 if ( 1 in fooarray ) {
@@ -620,12 +575,12 @@ if ( 1 in fooarray ) {
 <body>
 
 <p>
-W tym artykule wykonaliśmy sporo pracy. W następnym odcinku podsumuję
-pokazaną wiedzę o awk przez pokazanie jak wykorzystywać zawarte w awk
-funkcje do obsługi łańcuchów oraz matematyki oraz jak tworzyć własne
-funkcje. Następnie przeprowadzę czytelnika przez program do obsługi finansów
-osobistych. Do tego czasu zachęcam do pisania własnych programów oraz
-przejrzenia następujących zasobów.
+W tym artykule wykonaliśmy sporo pracy. W następnym odcinku podsumuję pokazaną
+wiedzę o awk przez pokazanie jak wykorzystywać zawarte w awk funkcje do obsługi
+łańcuchów oraz matematyki oraz jak tworzyć własne funkcje. Następnie
+przeprowadzę czytelnika przez program do obsługi finansów osobistych. Do tego
+czasu zachęcam do pisania własnych programów oraz przejrzenia następujących
+zasobów.
 </p>
 
 </body>
@@ -639,8 +594,8 @@ przejrzenia następujących zasobów.
 
 <ul>
   <li>
-    Inne artykuły o Awk autorstwa Daniela na developerWorks: Common threads: Awk
-    by example, <uri link="l-awk2.xml">Cześć druga</uri> oraz<uri
+    Inne artykuły o Awk autorstwa Daniela z developerWorks Awk
+    w przykładach, <uri link="l-awk1.xml">Część pierwsza</uri> oraz<uri
     link="l-awk3.xml">Część trzecia</uri>.
   </li>
   <li>
@@ -674,4 +629,3 @@ przejrzenia następujących zasobów.
 </chapter>
 
 </guide>
-
