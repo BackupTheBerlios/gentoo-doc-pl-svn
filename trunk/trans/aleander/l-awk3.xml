@@ -1,23 +1,27 @@
 <?xml version='1.0' encoding="UTF-8"?>
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/articles/l-awk3.xml,v 1.3 2005/08/15 23:16:06 cam Exp $ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<guide link="/doc/en/articles/l-awk3.xml">
-<title>Awk by example, Part 3</title>
+<guide link="/doc/pl/articles/l-awk3.xml" lang="pl">
+<title>Awk w przykładach, część trzecia</title>
 
-<author title="Author">
+<author title="Autor">
   <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="rane@gentoo.org">Łukasz Damentko</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="aleander@gmail.com">Aleksander Kamil Modzelewski</mail>
 </author>
 
 <abstract>
-In this sequel to his previous intro to awk, Daniel Robbins continues to explore
-awk, a great language with a strange name. Daniel will show you how to handle
-multi-line records, use looping constructs, and create and use awk arrays. By
-the end of this article, you'll be well versed in a wide range of awk features,
-and you'll be ready to write your own powerful awk scripts.
+<!-- [WARNING] His five year mission - to marketeese where no marketoid -->
+<!-- [WARNING] has marketeesed before -->
+W tej części serii artykułów Daniel Robbins kontynuuje odkrywanie awk,
+wspaniałego języka o dziwnej nazwie. Daniel pokaże jak obsługiwać rekordy
+zawarte w kilku wierszach, wykorzystywać pętle oraz tworzyć i używać tablice.
+Po przeczytaniu tego artykułu czytelnik powinien być zaznajomiony z szeroką gamą
+możliwości awk i być gotowym do pisania własnych, potężnych skryptów.
 </abstract>
 
 <!-- The original version of this article was published on IBM developerWorks,
@@ -25,51 +29,57 @@ and is property of Westtech Information Services. This document is an updated
 version of the original article, and contains various improvements made by the
 Gentoo Linux Documentation team -->
 
+<!-- The contents of this document is licensed under CC-BY-SA license -->
+<!-- See http://creativecommons.org/license/by-sa/2.5 -->
+<license/>
+<!-- [WARNING] Powyższe wobec powyżej powyższego prawdą nie jest, prawda? -->
+
 <version>1.1</version>
 <date>2005-08-03</date>
 
 <chapter>
-<title>String functions and ... checkbooks?</title>
+<title>Łańcuchy, funkcje i... książeczki czekowe?</title>
 <section>
-<title>Formatting output</title>
+<title>Formatowanie wyjścia</title>
 <body>
 
 <note>
-The original version of this article was published on IBM developerWorks,
-and is property of Westtech Information Services. This document is an updated
-version of the original article, and contains various improvements made by the
-Gentoo Linux Documentation team.
+Oryginalna wersja tego artykułu została wydana przez IBM developerWorks i jest
+własnością Westtech Information Services. To wydanie jest jego aktualizacją i
+zawiera rozliczne poprawki dokonane przez zespół dokumentacji Gentoo Linux.
 </note>
 
 <p>
-While awk's print statement does do the job most of the time, sometimes more is
-needed. For those times, awk offers two good old friends called printf() and
-sprintf(). Yes, these functions, like so many other awk parts, are identical to
-their C counterparts. printf() will print a formatted string to stdout, while
-sprintf() returns a formatted string that can be assigned to a variable. If
-you're not familiar with printf() and sprintf(), an introductory C text will
-quickly get you up to speed on these two essential printing functions. You can
-view the printf() man page by typing "man 3 printf" on your Linux system.
+O ile przez większość czasu intrukcja print wykonuje świetną robotę to
+czasem potrzebne jest jednak więcej. Dla takich sytuacji awk udostępnia dwie
+dobrze znane funkcje - printf() oraz sprintf(). Tak, te funkcje, podobnie
+jak wiele innych fragmentów awk, są identyczne jak ich odpowiedniki w C.
+printf() wydrukuje sformatowany łańcuch na standardowym wyjściu, a sprintf
+zwróci go jako nowy łańcuch. Opis tych funkcji można znaleźć we wprowadzeniu
+do języka C, ewentualnie można obejrzeć Uniksową stronę manuala o printf
+pisząc "man 3 printf".
 </p>
 
 <p>
-Here's some sample awk sprintf() and printf() code. As you can see, everything
-looks almost identical to C.
+Poniżej znajduje się przykładowy kod wykorzystujący sprintf() oraz printf().
+Jak widać, wszystko działa niemal identycznie jak w C.
 </p>
 
-<pre caption="Sample awk sprintf() and printf() code">
+<pre caption="Przykładowy skrypt awk wykorzystujący printf() oraz sprintf()">
 x=1
 b="foo"
-printf("%s got a %d on the last test\n","Jim",83)
-myout=("%s-%d",b,x)
+printf("%s uzyskał/a %d podczas ostatniego testu\n","Jim",83)
+myout=sprintf("%s-%d",b,x)
 print myout
 </pre>
+<!-- [WARNING] W oryginale był błąd, zamiast myout=sprintf(...) było -->
+<!-- myout=(...) -->
 
 <p>
-This code will print:
+Ten kod da w wyniku:
 </p>
 
-<pre caption="Code output">
+<pre caption="Wynik">
 Jim got a 83 on the last test
 foo-1
 </pre>
@@ -77,247 +87,258 @@ foo-1
 </body>
 </section>
 <section>
-<title>String functions</title>
+<title>Funkcje łańcuchowe</title>
 <body>
 
 <p>
-Awk has a plethora of string functions, and that's a good thing. In awk, you
-really need string functions, since you can't treat a string as an array of
-characters as you can in other languages like C, C++, and Python. For example,
-if you execute the following code:
+Awk dysponuje bardzo szerokim zestawem funkcji narzędziowych przeznaczonych
+do obsługi łańcuchów. To bardzo korzystne, tym bardziej, że w tym języku są
+one naprawdę potrzebne, gdyż nie można w nim tratować łańcucha jako tablicy
+znaków w taki sposób, jak robi się to w C, C++ oraz Python. Na przykład,
+jeżeli spróbuje się wykonać następujący kod:
 </p>
 
-<pre caption="Example code">
-mystring="How are you doing today?"
+<pre caption="Przykład">
+mystring="Jak się dzisiaj masz?"
 print mystring[3]
 </pre>
 
 <p>
+To w rezultacie nastąpi następujący błąd:
 You'll receive an error that looks something like this:
 </p>
 
-<pre caption="Example code error">
+<pre caption="Przykładowy błąd">
 awk: string.gawk:59: fatal: attempt to use scalar as array
 </pre>
 
 <p>
-Oh, well. While not as convenient as Python's sequence types, awk's string
-functions get the job done. Let's take a look at them.
+No cóż. Wprawdzie nie są takie wygodne jak Pythonowe typy sekwencyjne, ale
+funkcje narzędziowe spełniają swoje zadanie. Przyjrzyjmy się im.
 </p>
 
 <p>
-First, we have the basic length() function, which returns the length of a
-string. Here's how to use it:
+Po pierwsze dysponujemy funkcją length(), która zwraca długość łańcucha.
+Wykorzystujemy ją w następujący sposób:
 </p>
 
-<pre caption="length() function example">
+<pre caption="Przykład wykorzystania length()">
 print length(mystring)
 </pre>
 
 <p>
-This code will print the value:
+Kod da następujący wynik:
 </p>
 
-<pre caption="Printed value">
-24
+<pre caption="Wypisana wartość">
+22
 </pre>
 
 <p>
-OK, let's keep going. The next string function is called index, and will return
-the position of the occurrence of a substring in another string, or it will
-return 0 if the string isn't found. Using mystring, we can call it this way:
+Kolejną funkcja nazywa się index, i zwraca pozycję wystąpienia podłańcucha w
+łańcuchu lub 0, jeżeli nie można go odnaleźć:
 </p>
 
-<pre caption="index() funtion example">
-print index(mystring,"you")
+<pre caption="Przykład działania index()">
+print index(mystring,"się")
 </pre>
 
 <p>
-Awk prints:
+Awk napisze:
 </p>
 
-<pre caption="Function output">
-9
+<pre caption="Wynik funkcji">
+5
 </pre>
 
 <p>
-We move on to two more easy functions, tolower() and toupper(). As you might
-guess, these functions will return the string with all characters converted to
-lowercase or uppercase respectively. Notice that tolower() and toupper() return
-the new string, and don't modify the original. This code:
+Kolejne dwie proste funkcje, tolower() oraz toupper(), służą do zmiany liter
+na odpowiednio małe oraz wielkie. Funkcje te zwracają nowy łańcuch, a nie
+modyfikują starego. Ten kod:
 </p>
 
-<pre caption="Converting strings to lower or uppercase">
+<pre caption="Konwersja łańcucha na małe i wielkie litery">
 print tolower(mystring)
 print toupper(mystring)
 print mystring
 </pre>
 
 <p>
-....will produce this output:
+...da następujący wynik:
 </p>
 
 <pre caption="Output">
-how are you doing today?
-HOW ARE YOU DOING TODAY?
-How are you doing today?
+jak się dzisiaj masz?
+JAK SIĘ DZISIAJ MASZ?
+Jak się dzisiaj masz?
 </pre>
+<!-- [WARNING] Tak, awk bardzo ładnie obsługuje locale i utf -->
+<!-- [WARNING] gawk, anyway -->
 
 <p>
-So far so good, but how exactly do we select a substring or even a single
-character from a string? That's where substr() comes in. Here's how to call
-substr():
+Jak na razie dobrze, ale jak wybrać podłańcuch albo pojedyńczy znak z
+łańcucha? Do tego celu potrzebna jest funckja substr(), wykorzystywana w ten
+sposób:
 </p>
 
-<pre caption="substr() function example">
+<pre caption="Przykład substr()">
 mysub=substr(mystring,startpos,maxlen)
 </pre>
 
 <p>
-mystring should be either a string variable or a literal string from which you'd
-like to extract a substring. startpos should be set to the starting character
-position, and maxlen should contain the maximum length of the string you'd like
-to extract. Notice that I said maximum length; if length(mystring) is shorter
-than startpos+maxlen, your result will be truncated. substr() won't modify the
-original string, but returns the substring instead. Here's an example:
+mystring powinno być zmienną łańcuchową albo literałem z którego trzeba
+uzyskać podłańcuch. startpos powinno być pozycją pierwszego znaku, natomiast
+maxlen powinnno zawierać maksymalną długość uzyskanego łańcucha. Jeżeli
+lenght(mystring) jest mniejsza niż startpos+maxlen to wynik będzie skrócony.
+substr() nie modyfikuje oryginalnego łańcucha, jedynie zwraca nowy. Na
+przykład:
 </p>
 
-<pre caption="Another example">
-print substr(mystring,9,3)
+<pre caption="Kolejny przykład">
+print substr(mystring,5,4)
 </pre>
 
 <p>
 Awk will print:
 </p>
 
-<pre caption="What awk prints">
-you
+<pre caption="Awk napisze tak">
+się
+</pre>
+<!-- [WARNING] O, a to chyba bug w gawk. Dobrze zmienia rozmiar Ę, -->
+<!-- [WARNING] ale w substr ę to dwa znaki -->
+<!-- [WARNING] Podobnie ma length -->
+
+<p>
+Warto zapamiętać, że substr() jest dla awk substytutem popularnego w innych
+językach dostępu za pośrednictwem indeksów tablic. Będzie potrzebny do
+wybierania pojedyńczych znaków oraz podłańcuchów; ponieważ awk jest bazowany
+na łańcuchach to funkcja ta jest bardzo często używana.
+</p>
+
+<p>
+Teraz przejdziemy do ciekawszych funkcji, przy czym pierwszą z nich będzie
+match(). Jest ona podobna do index() tyle, że zamiast wyszukiwać podłańcuch
+wykorzystuje wyrażenia regularne. Zwraca pozycję znalezionego podłańcucha
+lub zero jeżeli wyszukiwanie się nie powiodło. Dodatkowo match() ustawia
+dwie zmienne, RSTART oraz RLENGTH. RSTART jest taka sama jak zwrócona
+wartość (pozycja pierwszego znalezionego podciągu pasującego do wyrażenia),
+natomiast RLENGTH określa jego rozmiar (lub -1 jeżeli nic nie znaleziono).
+Wykorzystując RSTART, RLENGTH, substr() oraz małą pętlę można łatwo iterować
+po wszystkich pasujących podciągach w łańcuchu. Poniżej znajduje się
+przykład wywołania match():
+</p>
+
+<pre caption="Przykładowe wywołanie match()">
+print match(mystring,/się/), RSTART, RLENGTH
 </pre>
 
 <p>
-If you regularly program in a language that uses array indices to access parts
-of a string (and who doesn't), make a mental note that substr() is your awk
-substitute. You'll need to use it to extract single characters and substrings;
-because awk is a string-based language, you'll be using it often.
+Awk napisze:
 </p>
 
-<p>
-Now, we move on to some meatier functions, the first of which is called match().
-match() is a lot like index(), except instead of searching for a substring like
-index() does, it searches for a regular expression. The match() function will
-return the starting position of the match, or zero if no match is found. In
-addition, match() will set two variables called RSTART and RLENGTH. RSTART
-contains the return value (the location of the first match), and RLENGTH
-specifies its span in characters (or -1 if no match was found). Using RSTART,
-RLENGTH, substr(), and a small loop, you can easily iterate through every match
-in your string. Here's an example match() call:
-</p>
-
-<pre caption="Example match() call">
-print match(mystring,/you/), RSTART, RLENGTH
-</pre>
-
-<p>
-Awk will print:
-</p>
-
-<pre caption="Above function output">
-9 9 3
+<pre caption="Wynik powyższej funkcji">
+5 5 4
 </pre>
 
 </body>
 </section>
 <section>
-<title>String substitution</title>
+<title>Podmiana łańcuchów</title>
 <body>
 
 <p>
-Now, we're going to look at a couple of string substitution functions, sub() and
-gsub(). These guys differ slightly from the functions we've looked at so far in
-that they actually modify the original string. Here's a template that shows how
-to call sub():
+Teraz opiszę kilka funkcji służących do podmiany łańcuchów, sub() oraz
+gsub(). Te funkcje różnią się od poprzednich tym, że modyfikują oryginalny
+łańcuch. Poniżej podany jest przykład użycia sub():
 </p>
 
-<pre caption="sub() function template">
+<pre caption="Przykład użycia sub()">
 sub(regexp,replstring,mystring)
 </pre>
 
 <p>
-When you call sub(), it'll find the first sequence of characters in mystring
-that matches regexp, and it'll replace that sequence with replstring. sub() and
-gsub() have identical arguments; the only way they differ is that sub() will
-replace the first regexp match (if any), and gsub() will perform a global
-replace, swapping out all matches in the string. Here's an example sub() and
-gsub() call:
+Przy wywyołaniu sub() znajdowana jest pierwsza sekwencja znaków w mystring
+jaka pasuje do regexp, następnie zastępowana jest ona przez replstring.
+sub() oraz gsub() mają takie same argumenty; jedyną różnicą jest to, że
+su() zastąpi tylko pierwsze wystąpienie regexp, natomiast gsub dokona
+globalnego podstawienia, zamieniając wszystkie dopasowane fragmenty
+łańcucha. Poniżej znajduje się przykład wykorzystania sub() oraz
+gsub():
 </p>
 
-<pre caption="Sample both sub() and gsub() function call">
-sub(/o/,"O",mystring)
+<pre caption="Przykładowe wykorzystanie sub() oraz gsub()">
+sub(/i/,"I",mystring)
 print mystring
-mystring="How are you doing today?"
-gsub(/o/,"O",mystring)
+mystring="Jak się dzisiaj masz?"
+gsub(/i/,"I",mystring)
 print mystring
 </pre>
 
 <p>
-We had to reset mystring to its original value because the first sub() call
-modified mystring directly. When executed, this code will cause awk to output:
+Ustawiliśmy mystring na oryginalną wartość ponieważ pierwsze wywołanie sub()
+bezpośrednio zmodyfikowało mystring. Po wykonaniu kod ten spowoduje, że awk
+napisze:
 </p>
 
-<pre caption="awk output">
-HOw are you doing today?
-HOw are yOu dOing tOday?
+<pre caption="Wyjście awk">
+Jak sIę dzisiaj masz?
+Jak sIę dzIsIaj masz?
 </pre>
 
 <p>
-Of course, more complex regular expressions are possible. I'll leave it up to
-you to test out some complicated regexps.
+Oczywiście są również dopuszczalne bardziej skomplikowane wyrażenia
+regularne. Przetestowanie ich pozostawione zostaje jako ćwiczenie dla
+uważnego czytelnika.
 </p>
+<!-- [WARNING] HA! Udało mi się dowcip matematyczny upchnąć! -->
 
 <p>
-We wrap up our string function coverage by introducing you to a function called
-split(). split()'s job is to "chop up" a string and place the various parts into
-an integer-indexed array. Here's an example split() call:
+Zakończymy opis funkcji obsługujących łańcuchy przez zademonstrowanie
+funkcji split(). Dzieli ona łańcuch na kawałki i rozmieszcza go w tablicy
+indeksowanej liczbami. Poniżej znajduje się przykładowe wywołanie split():
 </p>
 
-<pre caption="Example split() call">
-numelements=split("Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec",mymonths,",")
+<pre caption="Przykładowe wywołanie split()">
+numelements=split("sty,lut,mar,kwi,maj,cze,lip,sie,wrz,paź,lis,gru",mymonths,",")
 </pre>
 
 <p>
-When calling split(), the first argument contains the literal string or string
-variable to be chopped. In the second argument, you should specify the name of
-the array that split() will stuff the chopped parts into. In the third element,
-specify the separator that will be used to chop the strings up. When split()
-returns, it'll return the number of string elements that were split. split()
-assigns each one to an array index starting with one, so the following code:
+Przy wywołaniu split() pierwszy argument zawiera literał lub zmienną
+przeznaczoną do podzielenia. Następnym argumentem jest nazwa tablicy w
+której znajdą się wyniki podziału, ostatnim natomiast jest separator pól. Po
+zakończeniu split() zwraca ilość uzyskanych elementów i umieszcza
+poszczególne fragmenty w tablicy, zaczynając od indeksu jeden. Tak więc
+poniższy kod:
 </p>
 
-<pre caption="Example code">
+<pre caption="Przykład">
 print mymonths[1],mymonths[numelements]
 </pre>
 
 <p>
-....will print:
+....da w wyniku:
 </p>
 
-<pre caption="Example output">
-Jan Dec
+<pre caption="Wynik przykładu">
+Sty gru
 </pre>
 
 </body>
 </section>
 <section>
-<title>Special string forms</title>
+<title>Specjalne formy łańcuchowe</title>
+<!-- [WARNING] GIGO -->
 <body>
 
 <p>
-A quick note -- when calling length(), sub(), or gsub(), you can drop the last
-argument and awk will apply the function call to $0 (the entire current line).
-To print the length of each line in a file, use this awk script:
+Szybka uwaga -- po wywołaniu length(), sub() lub gsub() można odrzucić
+ostatni argument a awk zastąpi go $0 (aktualna linia w całości). Można, na
+przykład, wypisać długości każdego wiersza w pliku, przy użyciu
+następującego skryptu:
 </p>
 
-<pre caption="Code printing the length of every line in a file">
+<pre caption="Kod wypisujący długość wszystkich wierszy pliku">
 {
     print length() 
 }
@@ -326,76 +347,75 @@ To print the length of each line in a file, use this awk script:
 </body>
 </section>
 <section>
-<title>Financial fun</title>
+<title>Zabawa finansowa</title>
 <body>
 
 <p>
-A few weeks ago, I decided to write my own checkbook balancing program in awk. I
-decided that I'd like to have a simple tab-delimited text file into which I can
-enter my most recent deposits and withdrawals. The idea was to hand this data to
-an awk script that would automatically add up all the amounts and tell me my
-balance. Here's how I decided to record all my transactions into my "ASCII
-checkbook":
+Kilka tygodni temu postanowiłem napisać własny program do bilansowania
+wydatków. Zdecydowałem się na wykorzystanie prostego pliku tekstowanego z
+polami rozdzielanymi tabulacją, w którym mógłbym wpisywać moje wydatki oraz
+dochody. Założeniem było przekazywanie tego pliku do skryptu awk który
+automatycznie sumowałby wartości i podawałby mój bilans. Poniżej znajduje
+się przykładowy wpis w mojej "Książeczce wydatków w ASCII":
 </p>
 
-<pre caption="ASCII checkbox to record transactions">
+<pre caption="Książeczka wydatków w ASCII">
 
-23 Aug 2000    food    -    -    Y    Jimmy's Buffet    30.25
+23 sie 2000    jedz    -    -    Y    Bufet Jimmy'ego    30.25
 </pre>
 
 <p>
-Every field in this file is separated by one or more tabs. After the date (field
-1, $1), there are two fields called "expense category" and "income category".
-When I'm entering an expense like on the above line, I put a four-letter
-nickname in the exp field, and a "-" (blank entry) in the inc field. This
-signifies that this particular item is a "food expense" :) Here's what a deposit
-looks like:
+Każde pole w tym pliku rozdzielone jest co najmniej jedną tabulacją. Po
+dacie (pole 1, $1) znajdują się dwa pola, "kategoria wydatków" oraz
+"kategoria przychodów". Kiedy podaję w powyższej linii wydatki w pole exp
+wpisuję czteroliterowy skrót, natomiast w następnym polu wpisuję "-" (pusty
+wpis). W ten sposób oznaczam tę konkretną pozycję jako "wydatek na jedzenie".
+Z kolei wpłata wygląda tak:
 </p>
 
-<pre caption="Deposit sample entry">
-
-23 Aug 2000    -    inco    -    Y    Boss Man        2001.00
+<pre caption="Przykładowa wpłata">
+23 sie 2000    -    doch    -    Y    Szefunio        2001.00
 </pre>
 
 <p>
-In this case, I put a "-" (blank) in the exp category, and put "inco" in the inc
-category. "inco" is my nickname for generic (paycheck-style) income. Using
-category nicknames allows me to generate a breakdown of my income and
-expenditures by category. As far as the rest of the records, all the other
-fields are fairly self-explanatory. The cleared? field ("Y" or "N") records
-whether the transaction has been posted to my account; beyond that, there's a
-transaction description, and a positive dollar amount.
+W tym przypadku umieszczam "-" (puste) w kategorii wydatków oraz "doch" w
+kategorii dochodów. "doch" jest moim skrótem dla ogólnych dochodów (w
+rodzaju pensji). Za pomocą skrótów kategorii mogę rozdzielić moje dochody i
+wydatki na kategorie. Przeznaczenie pozostałych pól powinno być oczywiste.
+Pole "zatwierdzone?" ("Y" lub "N") zapisuje, czy transakcja została
+przestałane na moje konto. Poza tym zapisany jest opis transakcji oraz
+dodatnia wartość w dolarach.
 </p>
 
 <p>
-The algorithm used to compute the current balance isn't too hard. Awk simply
-needs to read in each line, one by one. If an expense category is listed but
-there is no income category (it's "-"), then this item is a debit. If an income
-category is listed, but no expense category ("-") is there, then the dollar
-amount is a credit. And, if there is both an expense and income category listed,
-then this amount is a "category transfer"; that is, the dollar amount will be
-subtracted from the expense category and added to the income category. Again,
-all these categories are virtual, but are very useful for tracking income and
-expenditures, as well as for budgeting.
+Algorytm wykorzystany do wyliczenia aktualnego bilansu nie jest zbyt
+złożony. AWK po prostu wczytuje kolejne linie. Jeżeli wymieniona jest tylko
+kategoria wydatków to mamy doczynienia z wypłatą, jeżeli tylko dochodów, to
+jest to dochód, a jeżeli wymienione są obie kategorie są wymienione, to mamy
+doczynienia z "transferem między kategoriami"; to znaczy, wymieniona ilość
+pieniędzy jest odejmowana z kategorii wydatków i dodawana do kategorii
+dochodów. Wszystkie kategorie są umowne ale nadal bardzo praktyczne do
+śledzenia wydatków i dochodów oraz do wyliczania budżetu.
 </p>
 
 </body>
 </section>
 <section>
-<title>The code</title>
+<title>Kod</title>
 <body>
 
 <p>
-Time to look at the code. We'll start off with the first line, the BEGIN block
-and a function definition:
+Spójrzmy na poniższy kod. Zacznijmy od pierwszej linii, bloku BEGIN oraz
+definicji funkcji:
 </p>
 
-<pre caption="Balance, part 1">
+<pre caption="Bilans, część pierwsza">
 #!/usr/bin/env awk -f
 BEGIN {
     FS="\t+"
-    months="Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec"
+    months="sty lut mar kwi maj cze lip sie wrz paz lis gru"
 }
+<!-- [WARNING] paz a nie paź bo monthdigit robi /4 -->
 
 function monthdigit(mymonth) {
     return (index(months,mymonth)+3)/4
@@ -403,72 +423,72 @@ function monthdigit(mymonth) {
 </pre>
 
 <p>
-Adding the first "#!..." line to any awk script will allow it to be directly
-executed from the shell, provided that you "chmod +x myscript" first. The
-remaining lines define our BEGIN block, which gets executed before awk starts
-processing our checkbook file. We set FS (the field separator) to "\t+", which
-tells awk that the fields will be separated by one or more tabs. In addition, we
-define a string called months that's used by our monthdigit() function, which
-appears next.
+Dodanie wiersza z wpisem "#!..." pozwala na uruchamianie skryptu
+bezpośrednio z wiersza poleceń o ile wcześniej wykonano na nim "chmod +x
+myscript". Pozostałe wiersze definiują blok BEGIN który zostanie wykonany
+zanim awk zacznie przetwarzać plik z danymi. Dodatkowo definiujemy łańcuch
+nazwany months (miesiące) który zostanie wykorzystany przez zdefiniowaną
+dalej funkcję monthdigit().
 </p>
 
 <p>
-The last three lines show you how to define your own awk function. The format is
-simple -- type "function", then the function name, and then the parameters
-separated by commas, inside parentheses. After this, a "{ }" code block contains
-the code that you'd like this function to execute. All functions can access
-global variables (like our months variable). In addition, awk provides a
-"return" statement that allows the function to return a value, and operates
-similarly to the "return" found in C, Python, and other languages. This
-particular function converts a month name in a 3-letter string format into its
-numeric equivalent. For example, this:
+Ostatnie trzy wiersze pokazują jak zdefiniować własną funkcję awk. Składnia
+jest prosta -- należy napisać "function", następnie nazwę funkcji a potem
+w nawiasach nazwy parametrów rozdzielone przecinkami. W końcu następuje blok
+kodu zawarty w nawiasach klamrowych, opisujący kod który funkcja powinna
+wykonywać. Każda funkcja może korzystać ze zmiennych globalnych (takich jak
+zmienna months). Dodatkowo awk zapewnia instrukcję "return" która pozwala
+funkcji zwrócić fartość i działa podobnie do swojego odpowiednika w C,
+Pythonie oraz innych językach. Ta konkretna funkcja przyjmuje 3-literowy
+skrót nazwy miesiąca i zwraca odpowiednik liczbowy. Na przykład:
 </p>
 
-<pre caption="monthdigit() sample call">
-print monthdigit("Mar")
+<pre caption="Przykładowe wywołanie monthdigit()">
+print monthdigit("mar")
 </pre>
 
 <p>
-....will print this:
+...zwróci to:
 </p>
 
-<pre caption="monthdigit() sample output">
+<pre caption="Przykładowe wyjście z monthdigit()">
 3
 </pre>
 
 <p>
-Now, let's move on to some more functions.
+Przejdźmy teraz do kolejnych funkcji.
 </p>
 
 </body>
 </section>
 <section>
-<title>Financial functions</title>
+<title>Funkcje finansowe</title>
 <body>
 
+<!-- [WARNING] Musiał wyrobić normę ilości znaków, prawda? -->
+<!-- [WARNING] Przeklęci stachanowcy... -->
+
 <p>
-Here are three more functions that perform the bookkeeping for us. Our main code
-block, which we'll see soon, will process each line of the checkbook file
-sequentially, calling one of these functions so that the appropriate
-transactions are recorded in an awk array. There are three basic kinds of
-transactions, credit (doincome), debit (doexpense) and transfer (dotransfer).
-You'll notice that all three functions accept one argument, called mybalance.
-mybalance is a placeholder for a two-dimensional array, which we'll pass in as
-an argument. Up until now, we haven't dealt with two-dimensional arrays;
-however, as you can see below, the syntax is quite simple. Just separate each
-dimension with a comma, and you're in business.
+Kolejne trzy funkcje obsługują naszą księgowość. W głównym bloku następuje
+sekwencyjne przetwarzanie każdej linii wejścia, w trakcie czego następuje
+wywołanie jednej z tych funkcji tak, żeby właściwe transakcje zostały
+zapisane w tablicy awk. Istnieją trzy podstawowe rodzaje transakcji, wpłata
+(doincome), wypłata (doexpense) oraz transfer (dotransfer). Wszystkie trzy
+funkcje przyjmują jeden argument, mybalance. Jest to nazwa dwuwymiarowej
+tablicy w której przechowywane będą wyniki transakcji. Jak do tej pory nie
+pokazałem tablic wielowymiarowych, są one jednak dość proste -- należy po
+prostu rozdzileić wymiary przecinkiem.
 </p>
 
 <p>
-We'll record information into "mybalance" as follows. The first dimension of the
-array ranges from 0 to 12, and specifies the month, or zero for the entire year.
-Our second dimension is a four-letter category, like "food" or "inco"; this is
-the actual category we're dealing with. So, to find the entire year's balance
-for the food category, you'd look in mybalance[0,"food"]. To find June's income,
-you'd look in mybalance[6,"inco"].
+Informację zapisujemy w "mybalance" jak następuje. Pierwszy wymiar tablicy
+ma zakres od 0 do 12 i wyznacza miesiąc, lub zero dla oznaczenia całego
+roku. Drugim wymiarem jest czteroliterowy skrót kategorii, na przykład
+"jedz" lub "doch". Tak więc całoroczny bilans jedzeniowy zawarty jest w
+mybalance[0,"jedz"]. Przychód w czerwcu znajduje sięw mybalance[6,"doch"].
 </p>
 
-<pre caption="Finding out information about incomes">
+<pre caption="Zapisywanie informacji o przychodach i dochodach">
                 
 function doincome(mybalance) {
     mybalance[curmonth,$3] += amount
@@ -489,39 +509,36 @@ function dotransfer(mybalance) {
 </pre>
 
 <p>
-When doincome() or any of the other functions are called, we record the
-transaction in two places -- mybalance[0,category] and mybalance[curmonth,
-category], the entire year's category balance and the current month's category
-balance, respectively. This allows us to easily generate either an annual or
-monthly breakdown of income/expenditures later on.
+Po wywołaniu którekolwiek z powyższych funkcji transakcja zostaje zapisana w
+dwóch miejscach -- mybalance[0,category] oraz mybalance[curmonth,category],
+odpowiednio w bilansie całego roku oraz bierzącego miesiąca. Dzięki temu 
+łatwo jest później wykonać rozlicenie roczne lub miesięczne.
 </p>
 
 <p>
-If you look at these functions, you'll notice that the array referenced by
-mybalance is passed in my reference. In addition, we also refer to several
-global variables: curmonth, which holds the numeric value of the month of the
-current record, $2 (the expense category), $3 (the income category), and amount
-($7, the dollar amount). When doincome() and friends are called, all these
-variables have already been set correctly for the current record (line) being
-processed.
+Analizując powyższe funkcje można zauważyć, że tablica wymieniona w
+mybalance jest przekazywana przez referencję. Poza tym odwołujemy się do
+kilku zmiennych globalnych: curmonth (aktualny miesiąc w postaci liczbowej),
+$2 (kategoria wydatków), $3 (kategoria dochodów) oraz amount ($7, wartość w
+dolarach). Przy wywołaniu doincome() oraz jej podobnych wszystkie te zmienne
+są już właściwie ustawione dla aktualnie przetwarzanego wiersza.
 </p>
 
 </body>
 </section>
 <section>
-<title>The main block</title>
+<title>Blok główny</title>
 <body>
 
 <p>
-Here's the main code block that contains the code that parses each line of input
-data. Remember, because we have set FS correctly, we can refer to the first
-field as $1, the second field as $2, etc. When doincome() and friends are
-called, the functions can access the current values of curmonth, $2, $3 and
-amount from inside the function. Take a look at the code and meet me on the
-other side for an explanation.
+Poniżej znajduje się główny blok kodu który przetwarza każdą linię danych.
+Ponieważ FS zostało prawidłowo ustawione, możemy do pierwszego pola
+odwoływać się przez $1, drugiego przez $2 i tak dalej. Przy wywołaniu
+funkcji doincome() i podobnych dostępne są wartości curmonth, $2, $3 oraz
+amount.
 </p>
 
-<pre caption="Balance, part 3">
+<pre caption="Bilans, część trzecia">
                 
 {
     curmonth=monthdigit(substr($1,4,3))
@@ -536,7 +553,7 @@ other side for an explanation.
     #tally up the transaction properly
     if ( $2 == "-" ) {
         if ( $3 == "-" ) {
-            print "Error: inc and exp fields are both blank!"
+            print "Błąd: pola kategorii zarówno dochodów jak i przychodów są puste!"
             exit 1
         } else {
             #this is income
@@ -559,51 +576,53 @@ other side for an explanation.
 </pre>
 
 <p>
-In the main block, the first two lines set curmonth to an integer between 1 and
-12, and set amount to field 7 (to make the code easier to understand). Then, we
-have four interesting lines, where we write values into an array called
-globcat. globcat, or the global categories array, is used to record all those
-categories encountered in the file -- "inco", "misc", "food", "util", etc. For
-example, if $2 == "inco", we set globcat["inco"] to "yes". Later on, we can
-iterate through our list of categories with a simple "for (x in globcat)" loop.
+W głównym bloku pierwsze dwa wiersze ustawiają curmonth na liczbę pomiędzy 1
+a 12 oraz amount na wartość pola 7 (aby kod był łatwiejszy do zrozumienia).
+Następnie w czterech wierszach zapisujemy wartości do tablicy globcat.
+globcat (global categories czyli kategorie globalne) wykorzystana jest do
+zapisania wszystkich kategorii napotkanych w pliku -- "doch", "różn",
+"jedz", "narz" i tak dalej. Na przykład, jeżeli $2 == "doch", to ustawiamy
+globcat["doch"] na "tak". Później możemy iterować po liście kategorii za
+pomocą prostej pętli "for (x in globcat)".
 </p>
 
 <p>
-On the next twenty or so lines, we analyze fields $2 and $3, and record the
-transaction appropriately. If $2=="-" and $3!="-", we have some income, so we
-call doincome(). If the situation is reversed, we call doexpense(); and if both
-$2 and $3 contain categories, we call dotransfer(). Each time, we pass the
-"balance" array to these functions so that the appropriate data is recorded
-there.
+W kolejnych wierszach analizowana jest zawartość pół $2 oraz $3 po czym
+transakcja jest odpowiednio zapisywana. Jeżeli $2=="-" a $3!="-" to
+otrzymaliśmy dochów, więc wywołujemy doincome(). W przypadku odwrotnym
+wywołujemy doexpense(). Jeżeli zarówno $2 jak i $3 zawierają kategorie to
+wywołujemy dotransfer. W każdym wypadku przekazujemy do wywołanej funkcji
+tablicę "balance" więc tam zostaną zapisane informacje.
 </p>
 
 <p>
-You'll also notice several lines that say "if ( $5 == "Y" ), record that same
-transaction in balance2". What exactly are we doing here? You'll recall that $5
-contains either a "Y" or a "N", and records whether the transaction has been
-posted to the account. Because we record the transaction to balance2 only if the
-transaction has been posted, balance2 will contain the actual account balance,
-while "balance" will contain all transactions, whether they have been posted or
-not. You can use balance2 to verify your data entry (since it should match with
-your current account balance according to your bank), and use "balance" to make
-sure that you don't overdraw your account (since it will take into account any
-checks you have written that have not yet been cashed).
+W kilku miejscach znajduje się również polecenie "if ($5 == "Y") to zapisz
+tę samą transakcję w "balance2". W polu $5 zapisywano "Y" lub "N", oznaczając
+przez "Y" transakcje które zostały wysłane na konto. Ponieważ w "balance2"
+zapisujemy tylko takie transakcje, to balance2 będzie zawierało aktualny
+bilans konta, natomiast "balance" zapisuje wszystkie transakcje, niezależnie
+od tego, czy zostały już przesłane. "balance2" można wykorzystać do
+zweryfikowania wpisanych danych (ponieważ powinien się zgadzaćze stanem
+konta według banku), natomiast "balance" można wykorzystać aby uniknąć
+deba=etu na koncie (ponieważ bierze pod uwagę wypisane czeki które nie
+zostały jeszcze zrealizowane).
 </p>
+<!-- [WARNING] Czeki?! Mamusiu, cofnęło mnie do XIX wieku!!!  -->
 
 </body>
 </section>
 <section>
-<title>Generating the report</title>
+<title>Generowanie raportu</title>
 <body>
 
 <p>
-After the main block repeatedly processes each input record, we now have a
-fairly comprehensive record of debits and credits broken down by category and by
-month. Now, all we need to do is define an END block that will generate a
-report, in this case a modest one:
+Po tym, jak główny blok przetworzy wszystkie wpisy z wejścia, dysponujemy
+dość dokładnym zapisem wypłat oraz wpłat, podzielonych na kategorie oraz
+miesiące. Teraz musimy jeszcze zdefiniować blok END, który wygeneruje
+raport, w tym przypadku dość skromny:
 </p>
 
-<pre caption="Generating final report">
+<pre caption="Generowanie raportu końcowego">
 END {
     bal=0
     bal2=0        
@@ -611,53 +630,51 @@ END {
         bal=bal+balance[0,x]
         bal2=bal2+balance2[0,x]    
     }
-    printf("Your available funds: %10.2f\n", bal)
-    printf("Your account balance: %10.2f\n", bal2)        
+    printf("Dostępne fundusze: %10.2f\n", bal)
+    printf("Bilans konta:      %10.2f\n", bal2)        
 }
 </pre>
 
 <p>
-This report prints out a summary that looks something like this:
+Ten raport wypisuje podsumowanie które wygląda tak:
 </p>
 
-<pre caption="Final report">
-Your available funds:    1174.22
-Your account balance:    2399.33
+<pre caption="Ostateczny raport">
+Dostępne fundusze:    1174.22
+Bilans konta:         2399.33
 </pre>
 
 <p>
-In our END block, we used the "for (x in globcat)" construct to iterate through
-every category, tallying up a master balance based on all the transactions
-recorded. We actually tally up two balances, one for available funds, and
-another for the account balance. To execute the program and process your own
-financial goodies that you've entered into a file called
-<path>mycheckbook.txt</path>, put all the above code into a text file called
-<path>balance</path> and done <c>chmod +x balance</c>, and then type
-"<c>./balance mycheckbook.txt</c>". The balance script will then add up all
-your transactions and print out a two-line balance summary for you.
+W bloku END wykorzystaliśmy pętlę "for (x in globcat)" do iterowania przez
+wszystkie kategorie, zliczając główny bilans oparty na wszystkich zapisanych
+transakcjach. Ostatecznie wyliczyliśmy obydwa bilansy, dla dostępnych
+funduszy oraz bilansu konta. Aby wykonać program oraz przetworzyć własne
+wydatki zapisane w <path>mycheckbook.txt</path>, należy zapisać powyższy kod
+w pliku <path>balance</path>, wykonać <c>chmod +x balance</c> a następnie
+wykonać "<c>./balance mycheckbook.txt</c>". Skrypt zsumuje wszystkie
+transakcje i wypisze dwuwierszowe podsumowanie.
 </p>
 
 </body>
 </section>
 <section>
-<title>Upgrades</title>
+<title>Ulepszenia</title>
 <body>
 
 <p>
-I use a more advanced version of this program to manage my personal and
-business finances. My version (which I couldn't include here due to space
-limitations) prints out a monthly breakdown of income and expenses, including
-annual totals, net income and a bunch of other stuff. Even better, it outputs
-the data in HTML format, so that I can view it in a Web browser :) If you find
-this program useful, I encourage you to add these features to this script. You
-won't need to configure it to record any additional information; all the
-information you need is already in balance and balance2. Just upgrade the END
-block, and you're in business!
+Wykorzystuję bardziej zaawansowaną wersję tego programu do zarządzania
+funduszami osobistymi oraz finansowymi. Moja wersja (której nie mogłem tutaj
+zamieścić ze względu na ograniczenia rozmiaru) wypisuje rozliczenie
+miesięczne, uwzględniając obroty, dochód ogólny oraz kilka innych rzeczy. Co
+więcej, raport zapisany jest w HTML, tak więc mogę go przeglądać w
+przeglądarce. Zachęcam do ulepszania programu we własnym zakresie. Cała
+potrzebna informacja jest już zawarta w balance oraz balance2 - trzeba tylko
+ulepszyć blok END.
 </p>
 
 <p>
-I hope you've enjoyed this series. For more information on awk, check out the
-resources listed below.
+Mam nadzieję, że sera spełniła swoje zadanie. Poniżej wyliczone są dodatkowe
+zasoby, w których można znaleźć więcej informacji o awk.
 </p>
 
 </body>
@@ -665,38 +682,41 @@ resources listed below.
 </chapter>
 
 <chapter>
-<title>Resources</title>
+<title>Zasoby</title>
 <section>
+<title>Przydatne odnośniki</title>
 <body>
 
 <ul>
+
   <li>
-    Read Daniel's other awk articles on developerWorks: Common threads: Awk by
-    example, <uri link="l-awk1.xml">Part 1</uri> and <uri link="l-awk2.xml">Part
-    2</uri>.
+    Inne artykuły o Awk autorstwa Daniela na developerWorks: Common threads: Awk
+    by example, <uri link="l-awk2.xml">Cześć druga</uri> oraz<uri
+    link="l-awk3.xml">Część trzecia</uri>.
   </li>
   <li>
-    If you'd like a good old-fashioned book, O'Reilly's <uri
-    link="http://www.oreilly.com/catalog/sed2/">sed &amp; awk, 2nd
-    Edition</uri> is a wonderful choice.
+    Książka O'Reilly's <uri link="http://www.oreilly.com/catalog/sed2/">sed
+    &amp; awk, 2nd Edition</uri> jest doskonałym wyborem dla tych, którzy wolą
+    papier.
   </li>
   <li>
-    Be sure to check out the <uri
-    link="http://www.faqs.org/faqs/computer-lang/awk/faq/">comp.lang.awk
-    FAQ</uri>. It also contains lots of additional awk links.
+    Konieczne należy odwierdzić <uri
+    link="http://www.faqs.org/faqs/computer-lang/awk/faq/">FAQ
+    comp.lang.awk</uri>. Zawiera ono również mnóstwo dodatkowych linków
+    związanych z Awk.
   </li>
   <li>
-    Patrick Hartigan's <uri link="http://sparky.rice.edu/~hartigan/awk.html">awk
-    tutorial</uri> is packed with handy awk scripts.
-  </li>
+    <uri link="http://sparky.rice.edu/~hartigan/awk.html">Samouczek AWK</uri>
+    Patricka Hartigana zawiera mnóstwo przydatnych skryptów</li>
 <!-- FIXME 404 - i looked around google for it, no success
   <li>
-    <uri link="http://www.teleport.com/~thompson">Thompson's TAWK Compiler</uri>    compiles awk scripts into fast binary executables. Versions are available
+    <uri link="http://www.teleport.com/~thompson">Thompson's TAWK Compiler</uri>
+    compiles awk scripts into fast binary executables. Versions are available
     for Windows, OS/2, DOS, and UNIX.
   </li>-->
   <li>
-    <uri link="http://www.gnu.org/software/gawk/manual/gawk.html">The GNU Awk
-    User's Guide</uri> is available for online reference.
+    <uri link="http://www.gnu.org/software/gawk/manual/gawk.html">Podręcznik
+    użytkownika GNU Awk</uri> zawiera informator.
   </li>
 </ul>
 
