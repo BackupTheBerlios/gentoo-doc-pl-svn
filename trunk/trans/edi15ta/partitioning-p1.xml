@@ -16,11 +16,10 @@
 </author>
 
 <abstract>
-W tej nowej serii wskazówek Daniel Robbins pokazuje jak zmieni¿ organizacj¿
+W tej nowej serii wskazówek Daniel Robbins pokazuje jak zmieniæ organizacjê
 partycji z systemie. Ten dokument pokrywa równie¿ kilka sztuczek the trade to
-minimize downtime i pokazuje równie¿ jak zapobiec pope¿nieniu kosztownych
-pomy¿ek. W tej szczególnej wskazówce poka¿e on jak przenie¿¿ katalog /home na
-inn¿ partycj¿.
+minimize downtime i pokazuje jak zapobiec pope¿nieniu kosztownych pomy³ek. W tej
+szczególnej wskazówce poka¿e on jak przenie¶æ katalog /home na inn± partycjê.
 </abstract>
 
 <!-- The original version of this article was first published on IBM
@@ -38,51 +37,51 @@ various improvements made by the Gentoo Linux Documentation team -->
 <body>
 
 <note>
-Oryginalna wersja tego artyku¿u by¿a najpierw opublikowana na IBM developerWorks
-i jest w¿asno¿ci¿ Westtech Information Services. Ten dokument jest
-zaktualizowan¿ wersj¿ oryginalnego artyku¿u i zawiera ró¿ne ulepszenia wykonane
-przez zespó¿ dokumentcji Gentoo.
+Oryginalna wersja tego artyku³u by³a najpierw opublikowana na IBM developerWorks
+i jest w³asno¶ci± Westtech Information Services. Ten dokument jest
+zaktualizowan± wersj± oryginalnego artyku³u i zawiera ró¿ne ulepszenia wykonane
+przez zespó³ dokumentcji Gentoo.
 </note>
 
 <p>
-Partycja <path>/home</path> jest jedn¿ z najcz¿¿ciej przenoszonych partycji.
-Czasami ca¿a przestrze¿ w <path>/home</path> zostaje wykorzystana i wymagany
+Partycja <path>/home</path> jest jedn± z najczê¶ciej przenoszonych partycji.
+Czasami ca³a przestrzeñ w <path>/home</path> zostaje wykorzystana i wymagany
 jest dodatkowy dysk twardy. Innym razem <path>/home</path> jest ustawiony jako
-cz¿¿¿ partycji g¿ównego systemu pliku i mo¿e by¿ konieczne przeniesienie go, aby
-zwi¿kszy¿ wydajno¿¿ lub u¿atwi¿ tworzenie kopii zapasowych. W którymkolwiek z
-tych przypadków poka¿¿ jak przenie¿¿ <path>/home</path> bezpiecznie i wydajnie. 
+czê¶æ partycji g³ównego systemu plików i mo¿e byæ konieczne przeniesienie go,
+aby zwiêkszyæ wydajno¶æ lub u³atwiæ tworzenie kopii zapasowych. W którymkolwiek
+z tych przypadków poka¿ê jak przenie¶æ <path>/home</path> bezpiecznie i wydajnie. 
 </p>
 
 <warn>
-Nast¿puj¿ca technika opisuje jak przenie¿¿ partycj¿ (partycje). Jednka¿e ta
+Nastêpuj±ca technika opisuje jak przenie¶æ partycjê (partycje). Jednka¿e ta
 technika jest zaprojektowana po to, aby you can "back out" of a failed partition
-move i nie chroni ona przed b¿¿dem u¿ytkownika. Innymi s¿owy w dowolnym
-momencie, kiedy formatujemy partycje lub kopiujemy du¿e ilo¿ci plików, istnieje
-mo¿liwo¿¿, ¿e wpiszemy z¿e polecenie, powoduj¿c tym samym zniszczenie du¿ej
-ilo¿ci danych. Z tego powodu bardzo si¿ zaleca, aby <e>podj¿¿ odpowiednie kroki,
-aby przed przej¿ciem dalej stworzy¿ kopi¿ zapasow¿ wszystkich niezb¿dnych plików</e>.
+move i nie chroni ona przed b³êdem u¿ytkownika. Innymi s³owy w dowolnym
+momencie, kiedy formatujemy partycje lub kopiujemy du¿e ilo¶ci plików, istnieje
+mo¿liwo¶æ, ¿e wpiszemy z³e polecenie, powoduj±c tym samym zniszczenie du¿ej
+ilo¶ci danych. Z tego powodu bardzo siê zaleca, aby <e>podj±æ odpowiednie kroki,
+aby przed przej¶ciem dalej stworzyæ kopiê zapasow± wszystkich niezbêdnych plików</e>.
 </warn>
 
 <p>
-Teraz jeste¿my przygotowani, jeste¿my gotowi, aby zacz¿¿ przenosiny
-<path>/home</path>. Konkretne kroki zale¿¿ od tego czy obecnie
-<path>/home</path> znajduje si¿ na osobnej partycji lub czy jest umieszczony na
-partycji g¿ównego systemu plików. Nale¿y mie¿ to na uwadze kiedy b¿dziemy
-wykonywali odpowiednie kroki (zrobi¿ uwagi gdzie b¿dzie potrzeba). Teraz, je¿li
-przenosimy <path>/home</path> na nowy dysk twardy, to powinien on by¿
+Teraz jeste¶my przygotowani, jeste¶my gotowi, aby zacz±æ przenosiny
+<path>/home</path>. Konkretne kroki zale¿± od tego czy obecnie
+<path>/home</path> znajduje siê na osobnej partycji lub czy jest umieszczony na
+partycji g³ównego systemu plików. Nale¿y mieæ to na uwadze kiedy bêdziemy
+wykonywali odpowiednie kroki (zwrócê uwagê gdzie bêdzie trzeba). Teraz, je¶li
+przenosimy <path>/home</path> na nowy dysk twardy, to powinien on byæ
 zainstalowany w komputerze.
 </p>
 
 <p>
-Je¿li przenosimy <path>/home</path> na istniej¿c¿ partycj¿ (nie musi to by¿
-ext2, pod warunkiem, ¿e istnieje docelowa partycja g¿ówna lub rozszerzona), to
-mo¿emy przej¿¿ do <uri link="#step2">kroku 2</uri>.
+Je¿li przenosimy <path>/home</path> na istniej±c± partycjê (nie musi to byæ
+ext2, pod warunkiem, ¿e istnieje docelowa partycja g³ówna lub rozszerzona), to
+mo¿emy przej¶æ do <uri link="#step2">kroku 2</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Je¿li konieczne, tworzymy now¿ partycj¿</title>
+<title>Je¶li konieczne, tworzymy now± partycjê</title>
 <body>
 
 <p>
