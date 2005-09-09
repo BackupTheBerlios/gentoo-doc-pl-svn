@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
-<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/articles/partitioning-p1.xml,v 1.2 2005/08/18 20:01:55 neysx Exp $ -->
+<!-- $Header: $ -->
 
-<guide link="/doc/en/articles/partitioning-p1.xml" lang="en">
-<title>Partitioning in action, Part 1</title>
+<guide link="/doc/pl/articles/partitioning-p1.xml" lang="pl">
+<title>Dzielenie dysku na partycje, cz¿¿¿ 1</title>
 
-<author title="Author">
+<author title="Autor">
   <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="jackdark@gmail.com">Joshua Saddler</mail>
+</author>
+<author title="T¿umaczenie">
+  <mail link="edi15ta@gazeta.pl">Mateusz Kotyrba</mail>
 </author>
 
 <abstract>
-In this new series of tips, Daniel Robbins shows you how to change partition
-layout on a running system. He'll also cover several tricks of the trade to
-minimize downtime and avoid making costly mistakes. In this particular tip,
-he'll show you how to move /home to another partition.
+W tej nowej serii wskazówek Daniel Robbins pokazuje jak zmieni¿ organizacj¿
+partycji z systemie. Ten dokument pokrywa równie¿ kilka sztuczek the trade to
+minimize downtime i pokazuje równie¿ jak zapobiec pope¿nieniu kosztownych
+pomy¿ek. W tej szczególnej wskazówce poka¿e on jak przenie¿¿ katalog /home na
+inn¿ partycj¿.
 </abstract>
 
 <!-- The original version of this article was first published on IBM
@@ -28,56 +32,57 @@ various improvements made by the Gentoo Linux Documentation team -->
 <date>2005-08-18</date>
 
 <chapter>
-<title>Moving /home</title>
+<title>Przenoszenie /home</title>
 <section>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <note>
-The original version of this article was first published on IBM developerWorks,
-and is property of Westtech Information Services. This document is an updated
-version of the original article, and contains various improvements made by the
-Gentoo Linux Documentation team.
+Oryginalna wersja tego artyku¿u by¿a najpierw opublikowana na IBM developerWorks
+i jest w¿asno¿ci¿ Westtech Information Services. Ten dokument jest
+zaktualizowan¿ wersj¿ oryginalnego artyku¿u i zawiera ró¿ne ulepszenia wykonane
+przez zespó¿ dokumentcji Gentoo.
 </note>
 
 <p>
-The partition <path>/home</path> is one of the most-often-moved partitions.
-Sometimes, all the space in <path>/home</path> becomes exhausted, and an
-additional hard drive is required. Other times, <path>/home</path> is set up as
-part of the root partition, and it may need to be moved to improve performance
-or facilitate backup. Whatever the case, I'll show you how to move
-<path>/home</path> safely and efficiently.
+Partycja <path>/home</path> jest jedn¿ z najcz¿¿ciej przenoszonych partycji.
+Czasami ca¿a przestrze¿ w <path>/home</path> zostaje wykorzystana i wymagany
+jest dodatkowy dysk twardy. Innym razem <path>/home</path> jest ustawiony jako
+cz¿¿¿ partycji g¿ównego systemu pliku i mo¿e by¿ konieczne przeniesienie go, aby
+zwi¿kszy¿ wydajno¿¿ lub u¿atwi¿ tworzenie kopii zapasowych. W którymkolwiek z
+tych przypadków poka¿¿ jak przenie¿¿ <path>/home</path> bezpiecznie i wydajnie. 
 </p>
 
 <warn>
-The following technique describes how to move a partition(s). Although this
-technique is designed so that you can "back out" of a failed partition move, it
-doesn't protect against user error. In other words, any time that you format
-partitions or copy large numbers of files, there's a possibility that you will
-type the wrong thing, causing lots of data to be destroyed. For this reason,
-it's highly recommended that you <e>take appropriate steps to back up all
-critical files before proceeding</e>.
+Nast¿puj¿ca technika opisuje jak przenie¿¿ partycj¿ (partycje). Jednka¿e ta
+technika jest zaprojektowana po to, aby you can "back out" of a failed partition
+move i nie chroni ona przed b¿¿dem u¿ytkownika. Innymi s¿owy w dowolnym
+momencie, kiedy formatujemy partycje lub kopiujemy du¿e ilo¿ci plików, istnieje
+mo¿liwo¿¿, ¿e wpiszemy z¿e polecenie, powoduj¿c tym samym zniszczenie du¿ej
+ilo¿ci danych. Z tego powodu bardzo si¿ zaleca, aby <e>podj¿¿ odpowiednie kroki,
+aby przed przej¿ciem dalej stworzy¿ kopi¿ zapasow¿ wszystkich niezb¿dnych plików</e>.
 </warn>
 
 <p>
-Now that you're prepared, we're ready to start moving <path>/home</path>. The
-exact steps you will take depend on whether <path>/home</path> currently
-resides on its own separate partition, or whether it is located on the root
-partition. Keep this in mind as we go through the steps (I'll make notes where
-necessary). Right now, if you are moving <path>/home</path> to a new hard
-drive, it should be physically installed in your system.
+Teraz jeste¿my przygotowani, jeste¿my gotowi, aby zacz¿¿ przenosiny
+<path>/home</path>. Konkretne kroki zale¿¿ od tego czy obecnie
+<path>/home</path> znajduje si¿ na osobnej partycji lub czy jest umieszczony na
+partycji g¿ównego systemu plików. Nale¿y mie¿ to na uwadze kiedy b¿dziemy
+wykonywali odpowiednie kroki (zrobi¿ uwagi gdzie b¿dzie potrzeba). Teraz, je¿li
+przenosimy <path>/home</path> na nowy dysk twardy, to powinien on by¿
+zainstalowany w komputerze.
 </p>
 
 <p>
-If you are moving <path>/home</path> to an existing partition (it doesn't need
-to be ext2, as long as the target primary or extended partition exists), you
-can proceed to <uri link="#step2">step 2</uri>.
+Je¿li przenosimy <path>/home</path> na istniej¿c¿ partycj¿ (nie musi to by¿
+ext2, pod warunkiem, ¿e istnieje docelowa partycja g¿ówna lub rozszerzona), to
+mo¿emy przej¿¿ do <uri link="#step2">kroku 2</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Create a new partition, if necessary</title>
+<title>Je¿li konieczne, tworzymy now¿ partycj¿</title>
 <body>
 
 <p>
