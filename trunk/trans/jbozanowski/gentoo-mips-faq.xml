@@ -2,17 +2,20 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/gentoo-mips-faq.xml,v 1.1 2005/09/06 17:59:53 swift Exp $ -->
 
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
-<guide link="/doc/en/draft/gentoo-mips-faq.xml">
+<guide link="/doc/pl/draft/gentoo-mips-faq.xml" lang="pl">
 
-<title>Gentoo Linux/MIPS Frequently Asked Questions</title>
+<title>Gentoo Linux/MIPS Często zadawane pytania</title>
 
-<author title="Author">
+<author title="Autor">
   <mail link="redhatter@gentoo.org">Stuart Longland</mail>
+</author>
+<author title="Tłumaczenie">
+  <mail link="jbozanowski@gmail.com">Kuba Bożanowski</mail>
 </author>
 
 <abstract>
-This FAQ is intended to answer some of the most frequently asked questions 
-relating to Gentoo/MIPS and Linux/MIPS in general.
+Zadaniem niniejszego dokumentu jest odpowiedzieć na niektóre z często
+zadawanych pytań na temat systemu Gentoo/MIPS i ogólnie Linux/MIPS.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -23,86 +26,91 @@ relating to Gentoo/MIPS and Linux/MIPS in general.
 <date>2005-09-06</date>
 
 <chapter>
-<title>About this document</title>
+<title>O tym dokumencie</title>
 <section>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-This FAQ is intended to answer frequently asked questions about Gentoo/MIPS and
-Linux/MIPS that we receive from various users.  It's aimed at both new users
-and experienced users alike.  It has been split into a number of categories 
-to make navigation easier.
+Dokument ten ma za zadanie odpowiedzieć na często zadawane pytania 
+na temat systemów Gentoo/MIPS i Linux/MIPS. Skierowany jest zarówno 
+do początkujących, jak i doświadczonych użytkowników. Został podzielony 
+na kilka kategorii w celu ułatwienia nawigacji.
 </p>
 
 <p>
-If you have anything to contribute to the FAQ or, having read this guide, you
-still have questions that are left unanswered, feel free to
-<uri link="http://mips.gentoo.org">drop us a line</uri>.
+Jeśli chciałbyś coś wnieść do tego dokumentu, lub po jego przeczytaniu wciąż
+masz jakieś pytania, <uri link="http://mips.gentoo.org">napisz do nas</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Content</title>
+<title>Zawartość</title>
 <body>
 
 <p>
-<b>About the Gentoo/MIPS project</b>
+<b>O projekcie Gentoo/MIPS</b>
 </p>
 
 <ul>
-  <li><uri link="#what">What is Gentoo/MIPS?</uri></li>
-  <li><uri link="#why">Why install Gentoo Linux on MIPS?</uri></li>
-  <li>
-    <uri link="#port">Why don't you port Gentoo to NetBSD/MIPS or IRIX?</uri>
+  <li><uri link="#what">Czym jest Gentoo/MIPS?</uri></li>
+  <li><uri link="#why">Dlaczego warto instalować system Gentoo Linux na 
+	platformie MIPS?</uri>
+  </li>
+  <li><uri link="#port">A może by tak przenieść system Gentoo na platformę 
+	NetBSD/MIPS lub IRIX?</uri>
   </li>
 </ul>
 
 <p>
-<b>MIPS Hardware FAQs</b>
+<b>Pytania o sprzęt MIPS</b>
 </p>
 
 <ul>
-  <li><uri link="#hw-what">What is MIPS?</uri></li>
+  <li><uri link="#hw-what">Czym jest MIPS?</uri></li>
   <li>
-    <uri link="#hardware">What sort of hardware uses MIPS processors?</uri>
+    <uri link="#hardware">Jaki sprzęt wykorzystuje procesory MIPS?</uri>
   </li>
-  <li><uri link="#supported">Is my machine supported?</uri></li>
-  <li><uri link="#support_X">Why don't you support machine X</uri></li>
+  <li><uri link="#supported">Czy mój komputer jest obsługiwany?</uri></li>
+  <li><uri link="#support_X">Czemu maszyna X nie jest obsługiwana?</uri></li>
 </ul>
 
 <p>
-<b>MIPS Software FAQs</b>
+<b>Pytania o oprogramowanie MIPS</b>
 </p>
 
 <ul>
-  <li><uri link="#stage">Which stage tarball do I use?</uri></li>
+  <li><uri link="#stage">Którego pliku stage należy użyć?</uri></li>
   <li>
-    <uri link="#chroot">I got told "illegal instruction" or "Cannot Execute
-    Binary File" when chrooting. What did I do wrong?</uri>
-  </li>
-</ul>
-
-<p>
-<b>Silicon Graphics Specific FAQs</b>
-</p>
-
-<ul>
-  <li><uri link="#netboot">Why doesn't my SGI machine netboot?</uri></li>
-  <li>
-    <uri link="#serial">The machine downloads the kernel, but then "hangs"
-    (using a monitor and keyboard -- not serial console)</uri>
+    <uri link="#chroot">Gdzie należy szukać błędu, jeśli podczas użycia 
+    komendy chroot otrzymujemy komunikaty "Illegal instruction" lub 
+    "Cannot Execute Binary File"?</uri>
   </li>
 </ul>
 
 <p>
-<b>Cobalt Specific FAQs</b>
+<b>Pytania specyficzne dla platformy Silicon Graphics</b>
 </p>
 
 <ul>
-  <li><uri link="#cobaltboot">Why won't my Cobalt machine boot?</uri></li>
-  <li><uri link="#qube2700">Why don't you support the Qube 2700?</uri></li>
+  <li><uri link="#netboot">Dlaczego mój komputer SGI nie uruchamia się przez
+      sieć?</uri></li>
+  <li>
+    <uri link="#serial">Komputer pobiera plik jądra, lecz następnie "zawiesza
+	    się" (gdy używany jest monitor i klawiatura, a nie konsola
+	    szeregowa)</uri>
+  </li>
+</ul>
+
+<p>
+<b>Pytania specyficzne dla platformy Cobalt</b>
+</p>
+
+<ul>
+  <li><uri link="#cobaltboot">Czemu na moim komputerze Cobalt nie uruchamia się
+		  system?</uri></li>
+  <li><uri link="#qube2700">Dlaczego Qube 2700 nie jest obsługiwany?</uri></li>
 </ul>
     
   
@@ -111,67 +119,71 @@ still have questions that are left unanswered, feel free to
 </chapter>
 
 <chapter>
-<title>About the Gentoo/MIPS Project</title>
+<title>O projekcie Gentoo/MIPS</title>
 <section id="what">
-<title>What is Gentoo/MIPS?</title>
+<title>Czym jest Gentoo/MIPS?</title>
 <body>
 
 <p>
-Gentoo/MIPS is a small project within the Gentoo Foundation, responsible for
-looking after the MIPS port of Gentoo Linux.  We currently look after two main
-sub architectures of the MIPS family specifically: Silicon Graphics systems and
-MIPS-based Cobalt servers.
+Gentoo/MIPS to niewielki projekt wewnątrz Fundacji Gentoo, zajmujący się
+przenoszeniem systemu Gentoo Linux na platformę MIPS. Aktualnie opiekujemy się
+dwiema podarchitekturami rodziny MIPS: systemami Silicon Graphics, oraz
+bazującymi na architekturze MIPS serwerami Cobalt.
 </p>
 
 </body>
 </section>
 <section id="why">
-<title>Why install Gentoo Linux on MIPS?</title>
+<title>Dlaczego warto instalować system Gentoo Linux na platformie MIPS?</title>
 <body>
 
 <p>
-Okay, sure, some MIPS machines aren't the fastest boxes on the block these days.
-However, despite the age of some of these beasts, they still can make very
-functional, useful machines.  A Cobalt Qube 2 could make a very nice broadband
-Internet router, capable of hosting websites, email, IRC and numerous other
-tasks.  There are a number of reasons why you'd want to install Linux on this
-sort of hardware.
+To prawda, niektóre komputery MIPS zostają dziś nieco w tyle pod względem
+wydajności, jednakże pomimo swojego wieku mogą być wciąż bardzo użyteczne. 
+Komputer Cobalt Qube 2 można wykorzystać jako szerokopasmowy router do
+Internetu, serwer stron internetowych, poczty elektronicznej, IRC-a, oraz do
+wielu innych zadań. Istnieje kilka powodów, dla których warto zainstalować 
+system Linux na takim sprzęcie.
 </p>
 
 <ul>
   <li>
-    It teaches you a lot about computer hardware by giving you an alternate
-    frame of reference
+    Można wiele nauczyć się o sprzęcie komputerowym, mając do czynienia z
+    alternatywną platformą
   </li>
   <li>
-    It allows you to turn what would otherwise be useless junk into a very
-    functional system
+    Coś, co wcześniej było bezużytecznym złomem może zmienić się w bardzo
+    funkcjonalny system.
   </li>
   <li>
-    Status Symbol: Linux on x86 is so common these days it's not funny.
-    However, Linux on MIPS is a lot less common and quite a talking point.
+    Symbol statusu: Linux na platformie x86 jest dziś już tak powszechny, że
+    nie ma się czym chwalić. Natomiast platforma MIPS jest rzadziej spotykana,
+    zyskujemy więc temat do rozmów.
   </li>
 </ul>
 
 </body>
 </section>
 <section id="port">
-<title>Why don't you port Gentoo to NetBSD/MIPS or IRIX?</title>
+<title>A może by tak przenieść system Gentoo na platformę NetBSD/MIPS lub IRIX?</title>
 <body>
 
 <p>
-Hey, great idea.  Unfortunately, a lot of the Gentoo/MIPS team already have
-their hands full looking after Linux/MIPS as well as other commitments.
-However, you're welcome to give it a try.  May I suggest raising this on the
-<uri link="http://forums.gentoo.org/viewforum-f-32.html">Gentoo Forums</uri> and
-see what the interest is first.  Also, have a look at some of the other threads
-on porting Gentoo to other architectures such as
+To świetny pomysł. Niestety, większość członków zespołu Gentoo/MIPS jest już
+zajęta pracami przy platformie Linux/MIPS, często mając również inne 
+zobowiązania. Zachęcamy za to do spróbowania samemu. Najpierw jednak warto
+poruszyć tę kwestię na <uri 
+link="http://forums.gentoo.org/viewforum-f-32.html">Forum Gentoo</uri> 
+i dowiedzieć się jakie będzie zainteresowanie. Wskazówki na temat początków
+takiego przedsięwzięcia można znaleźć w licznych wątkach poświęconych
+przenoszeniu Gentoo na inne architektury, na przykład 
 <uri link="http://forums.gentoo.org/viewtopic-t-113387.html">Solaris/SPARC</uri>, 
-<uri link="http://forums.gentoo.org/viewtopic-t-319607.html">IBM OS/2</uri> and
-<uri link="http://forums.gentoo.org/viewtopic-t-319691.html">Microsoft Services
-For Unix</uri> for hints on how to proceed.  If after some hacking you get
-something useful out of it... chances are a few developers will pick up on this
-and help you get it to the next stage.
+<uri link="http://forums.gentoo.org/viewtopic-t-319607.html">IBM OS/2</uri> 
+oraz <uri 
+link="http://forums.gentoo.org/viewtopic-t-319691.html">Microsoft Services 
+For Unix</uri>. Jeśli po pewnym czasie powstanie coś użytecznego, można liczyć
+na przyłączenie się kilku deweloperów i pomoc w osiągnięciu następnych etapów 
+rozwoju projektu.
 </p>
 
 </body>
@@ -179,46 +191,49 @@ and help you get it to the next stage.
 </chapter>
 
 <chapter>
-<title>MIPS Hardware FAQs</title>
+<title>Pytania na temat sprzętu MIPS</title>
 <section id="hw-what">
-<title>What is MIPS?</title>
+<title>Czym jest MIPS?</title>
 <body>
 
 <p>
-<uri link="http://www.mips.com">MIPS Technologies</uri> is a company that
-produce a number of RISC CPU cores which implement the MIPS Instruction Set
-Architecture.  These processors appear in all sorts of hardware ranging from
-small embedded devices to large servers.
+<uri link="http://www.mips.com">MIPS Technologies</uri> to firma produkująca
+kilka rodzajów rdzeni procesorów RISC, w których wykorzystana jest architektura
+zestawu instrukcji MIPS. Procesory te są używane w szerokiej gamie sprzętu
+komputerowego, począwszy od niewielkich urządzeń typu embedded, aż po 
+duże serwery.
 </p>
 
 <p>
-It also happens to be an acronym; <b>M</b>illions of <b>I</b>nstructions
-<b>P</b>er <b>S</b>econd.
+Oprócz tego jest to skrót pochodzący od wyrażenia "miliony instrukcji na 
+sekundę" (ang. <b>M</b>illions of <b>I</b>nstructions <b>P</b>er 
+<b>S</b>econd).
 </p>
 
 </body>
 </section>
 <section id="hardware">
-<title>What sort of hardware uses MIPS processors?</title>
+<title>Jaki sprzęt wykorzystuje procesory MIPS?</title>
 <body>
 
 <p>
-Good question.  In short... Heaps.  MIPS Processors see use inside all sorts
-of machines, ranging from small PDAs (such as the early Windows CE powered Casio
-PDAs), X Terminals (e.g. Tektronix TekXPress XP330 series), through to
-workstations such as the Silicon Graphics Indy and O2 and even high end servers
-such as the Silicon Graphics Origin 2000.
+Dobre pytanie. W skrócie... jest go mnóstwo. Procesorów MIPS używa się w różnego
+rodzaju urządzeniach, od niewielkich palmtopów (jak na przykład wczesne Casio 
+z systemem Windows CE), terminali X (linia Tektronix TekXPress XP330), aż po
+stacje robocze, takie jak Silicon Graphics Indy i O2, a nawet wysokiej klasy
+serwery, na przykład Silicon Graphics Origin 2000.
 </p>
 
 <p>
-Here is a list of some of the more famous MIPS-based systems in use.  A more
-comprehensive list can be found on the
-<uri link="http://www.linux-mips.org/wiki/index.php/Systems">Linux/MIPS website</uri>
+Oto lista niektórych spośród bardziej znanych spośród będących w użyciu 
+systemów opartych na architekturze MIPS. Bardziej wyczerpującą listę można 
+znaleźć na <uri link="http://www.linux-mips.org/wiki/index.php/Systems">stronie
+poświęconej Linux/MIPS</uri>.
 </p>
 
 <table>
 <tr>
-  <th>Sony Game Consoles</th>
+  <th>Konsole do gier firmy Sony</th>
   <ti>
     <uri link="http://www.linux-mips.org/wiki/index.php/PS1">
     PlayStation</uri><br />
@@ -229,7 +244,7 @@ comprehensive list can be found on the
   </ti>
 </tr>
 <tr>
-  <th>Nintendo Game Consoles</th>
+  <th>Konsole do gier firmy Nintendo</th>
   <ti>
     <uri link="http://www.linux-mips.org/wiki/index.php/Nintendo_64">
       Nintendo 64
@@ -237,7 +252,7 @@ comprehensive list can be found on the
   </ti>
 </tr>
 <tr>
-  <th>Silicon Graphics Machines</th>
+  <th>Komputery Silicon Graphics</th>
   <ti>
     <uri link="http://www.linux-mips.org/wiki/index.php/IP12">
     Iris Indigo</uri><br />
@@ -276,7 +291,7 @@ comprehensive list can be found on the
   </ti>
 </tr>
 <tr>
-  <th>DECStations</th>
+  <th>Komputery DECStation</th>
   <ti>
     <uri link="http://www.linux-mips.org/wiki/index.php/Deskstation_rPC44">
     rPC44</uri><br />
@@ -285,7 +300,7 @@ comprehensive list can be found on the
   </ti>
 </tr>
 <tr>
-  <th>Cobalt Microservers</th>
+  <th>Mikroserwery Cobalt</th>
   <ti>
     <uri link="http://www.linux-mips.org/wiki/index.php/Cobalt">
     Qube 2700</uri><br />
@@ -299,8 +314,8 @@ comprehensive list can be found on the
 </tr>
 <tr>
   <th>
-    Broadcom-based 802.11g<br />
-    Broadband Internet Routers
+    Szerokopasmowe routery internetowe<br />
+    802.11g, oparte na chipsecie Broadcom
   </th>
   <ti>
     <uri link="http://openwrt.org/">Linksys WRT54G</uri>
@@ -309,66 +324,67 @@ comprehensive list can be found on the
 </table>
 
 <p>
-... and that's only just scratching the surface.  These machines are wide and
-varied.  Many of them do not currently run Linux.  Of those that do, we only
-support a handful, although you're welcome to port Gentoo/MIPS to any MIPS
-machine if you so wish.  Some of these machines are also the focus of the <uri
-link="http://embedded.gentoo.org">Embedded Gentoo Project</uri> such as the
-Linksys WRT54G.
+...a to zaledwie początek. Maszyn tych jest wiele i są szeroko
+rozpowszechnione, na wielu z nich jednak aktualnie nie da się uruchomić systemu
+Linux, zaś nie wszystkie z tych, na których jest to możliwe są przez nas
+obsługiwane. Zachęcamy jednak do przeniesienia Gentoo/MIPS na dowolny system
+MIPS. Niektóre z nich, jak na przykład Linksys WRT54G, wzbudzają również
+zainteresowanie projektu <uri link="http://embedded.gentoo.org">Embedded 
+Gentoo</uri>.
 </p>
 
 </body>
 </section>
 <section id="supported">
-<title>Is my machine supported?</title>
+<title>Czy mój komputer jest obsługiwany?</title>
 <body>
 
 <p>
-This question is difficult to answer.  Your machine could fall into one of three
-different baskets:
+Trudno jest jednoznacznie odpowiedzieć na to pytanie. Sprzęt może zaliczać się
+do jednej z trzech poniższych kategorii: 
 </p>
 
 <ul>
-  <li>Your machine is supported by Gentoo/MIPS</li>
-  <li>Your machine is supported by Linux/MIPS, but not by Gentoo/MIPS (yet)</li>
-  <li>Your machine is not supported by Linux/MIPS</li>
+  <li>Maszyna jest obsługiwana przez Gentoo/MIPS</li>
+  <li>Maszyna jest obsługiwana przez Linux/MIPS, lecz (jeszcze) nie przez Gentoo/MIPS</li>
+  <li>Maszyna nie jest w ogóle obsługiwana przez Linux/MIPS</li>
 </ul>
 
 <p>
-For the first one an easy way to find out is to have a look at the
-<uri link="/doc/en/mips-requirements.xml">Gentoo/MIPS
-requirements page</uri>.  This will tell you if the system you've got can
-theoretically run Gentoo/MIPS.  Stuart has also written a
-<uri link="http://stuartl.longlandclan.hopto.org/gentoo/mips/">hardware support
-database</uri> in which users may contribute their experiences.  This can help
-measure how well Gentoo/MIPS runs on a particular machine.
+W pierwszym przypadku najłatwiej jest się przekonać, zaglądając na <uri 
+link="/doc/en/mips-requirements.xml">stronę z wymaganiami Gentoo/MIPS</uri>. Tam
+można się dowiedzieć, czy na posiadanym przez nas sprzęcie teoretycznie można
+uruchomić system Gentoo/MIPS. Stuart stworzył też <uri 
+link="http://stuartl.longlandclan.hopto.org/gentoo/mips/">bazę danych
+obsługiwanego sprzętu</uri>, gdzie użytkownicy mogą podzielić się swoimi
+doświadczeniami. To powinno pomóc w oszacowaniu na ile dobrze system Gentoo/MIPS
+działa na danej maszynie.
 </p>
 
 <p>
-If you don't find your machine listed there, you may wish to have a look on the
-<uri link="http://www.linux-mips.org/wiki/index.php/Systems">Linux/MIPS
-website</uri> to find it there.  Installation won't be straightforward however,
-as the actual process of producing a kernel and suitable boot media for your
-hardware will have to be done largely by yourself.  Naturally though, we'll try
-to help where we can.
+Jeśli nie znajdziemy tam naszego komputera, można poszukać go na <uri 
+link="http://www.linux-mips.org/wiki/index.php/Systems">stronie
+Linux/MIPS</uri>. W tym przypadku jednak instalacja może przysporzyć nieco 
+problemów, ponieważ trzeba będzie głównie samemu przygotować jądro i nośnik 
+rozruchowy. Rzecz jasna postaramy się pomóc w miarę możliwości.
 </p>
 
 </body>
 </section>
 <section id="support_X">
-<title>Why don't you support machine X</title>
+<title>Czemu maszyna X nie jest obsługiwana?</title>
 <body>
 
 <p>
-If you've looked at the Gentoo/MIPS Hardware Requirements page, you've probably
-noticed there are a LOT of machines we don't support.  In the case of SGI
-hardware, very little is known about some of them, not enough
-to successfully port Linux to them.
+Przeglądając stronę z wymaganiami sprzętowymi systemu Gentoo/MIPS łatwo
+zauważyć, że nie obsługujemy bardzo wielu maszyn. Bardzo niewiele wiadomo o
+sprzęcie SGI, za mało, aby przenieść na niego Linuksa.
 </p>
 
 <p>
-If you managed to get Linux working on a box currently listed as
-<e>unsupported</e> however, feel free to tell us.  We'd be interested to know.
+Jeśli udało ci się uruchomić system Linux na sprzęcie, który aktualnie
+oznaczony jest jako <e>nieobsługiwany</e>, daj nam znać, chcielibyśmy o tym
+wiedzieć.
 </p>
 
 </body>
@@ -376,69 +392,71 @@ If you managed to get Linux working on a box currently listed as
 </chapter>
 
 <chapter>
-<title>MIPS Software FAQs</title>
+<title>Pytania o oprogramowanie MIPS</title>
 <section id="stage">
-<title>Which stage tarball do I use?</title>
+<title>Którego pliku stage należy użyć?</title>
 <body>
 
 <p>
-This will depend on the CPU type running in your system.  The stage filename is
-named as follows:
+To zależy od typu procesora użytego w systemie. Plik stage nazwany jest według
+następującej konwencji:
 </p>
 
-<pre caption="Stage Tarball Naming Scheme">
+<pre caption="Konwencja Nazywania Pliku Stage">
   stage3-mipsel4-2005.0.tar.bz2
   \____/ \_____/ \____/
      |      |       |
-     |      |       `--- Gentoo Release (e.g. 1.4, 2004.3, 2005.0)
+     |      |       `--- Gentoo Release (np. 1.4, 2004.3, 2005.0)
      |      |
-     |      `----------- Endianness and ISA Level
+     |      `----------- Endianness i poziom ISA
      |                     mips   ==> Big Endian
      |                     mipsel ==> Little Endian
      |
-     |                     R3xxx and earlier: ISA Level 1
-     |                     R4xxx series:      ISA Level 3
-     |                     R5000 and above:   ISA Level 4
+     |                     R3xxx i wcześniejsze: ISA poziom 1
+     |                     Linia R4xxx:          ISA poziom 3
+     |                     R5000 i wyżej:        ISA poziom 4
      |
-     `------------------ Stage Tarball type: 1, 2 or 3.
+     `------------------ Plik Stage numer 1, 2 lub 3.
 </pre>
 
 <p>
-So for those of you who are running R4000-class CPUs, try a <c>mips3</c> or
-<c>mipsel3</c> stage tarball.
+Jeśli używamy procesora klasy R4000, należy wybrać plik stage <c>mips3</c> 
+lub <c>mipsel3</c>.
 </p>
 
 <p>
-For those running R5000-class or later CPUs, try a <c>mips4</c> or
-<c>mipsel4</c> stage tarball.
+Jeśli używamy procesora klasy R5000 lub późniejszych, należy wybrać plik 
+stage <c>mips4</c> lub <c>mipsel4</c>.
 </p>
 
 <p>
-Sometimes the filename will have <c>n32</c> or <c>n64</c> in the filename as
-well.  These refer to 64-bit userland images.  At the moment, support for 64-bit
-userlands is still quite flaky and a lot of packages are broken.  I'd suggest
-leaving these alone unless you're particularly brave and don't mind a rather
-bumpy ride.
+Czasem nazwa pliku może zawierać również <c>n32</c> lub <c>n64</c>. Oznacza
+to, iż mamy do czynienia z plikiem zawierającym środowisko 64-bitowe. Aktualnie
+obsługa takich środowisk wciąż pozostawia wiele do życzenia i wiele paczek 
+zawiera błędy. Instalowanie ich jest zalecane tylko w przypadku wyjątkowej
+determinacji.
 </p>
 
 </body>
 </section>
 <section id="chroot">
-<title>I got told "Illegal Instruction" or "Cannot Execute Binary
-File" when chrooting.  What did I do wrong?</title>
+<title>Gdzie należy szukać błędu, jeśli podczas użycia komendy chroot 
+otrzymujemy komunikaty "Illegal instruction" lub "Cannot Execute 
+Binary File"?</title>
 <body>
 
 <p>
-This is generally caused by using the wrong stage tarball.  If you try to run a
-<c>mips4</c> userland on a <c>mips3</c> CPU, you'll get an <e>illegal
-instruction</e> error message.  Likewise, if you have a Big Endian CPU and you
-try running Little Endian code on it, you'll get told <e>cannot execute binary
-file</e>.
+Zwykle dzieje się tak wskutek użycia niewłaściwego pliku stage. Komunikat 
+o błędzie <e>illegal instruction</e> ukaże się w przypadku próby
+uruchomienia środowiska <c>mips4</c> na procesorze <c>mips3</c>. Podobnie
+będzie, jeśli spróbujemy uruchomić kod typu Little Endian na procesorze typu 
+Big Endian. W tym przypadku komunikat błędu to <e>cannot execute binary file</e>.
 </p>
 
 <p>
-The fix is simple... clean out your partition, then unpack the correct tarball.
-Which one is that I hear you ask?  Have a read of the previous FAQ entry.
+Rada na to jest prosta... należy wyczyścić zawartość partycji, po czym
+rozpakować odpowiedni plik stage. W poprzednej sekcji można przeczytać w jaki
+sposób rozpoznać, który z nich będzie dla nas właściwy.
 </p>
 
 </body>
@@ -446,88 +464,94 @@ Which one is that I hear you ask?  Have a read of the previous FAQ entry.
 </chapter>
 
 <chapter>
-<title>Silicon Graphics Specific FAQs</title>
+<title>Pytania specyficzne dla maszyn Silicon Graphics</title>
 <section id="netboot">
-<title>Why doesn't my SGI machine netboot?</title>
+<title>Dlaczego mój komputer SGI nie uruchamia się przez sieć?</title>
 <body>
 
 <p>
-This could be for any number of reasons, ranging from cabling issues, through to
-issues on the server.  The best way to troubleshoot any problem is a 
-step-by-step approach...
+Może to być spowodowane wieloma czynnikami, od problemów z okablowaniem, aż po
+problemy z serwerem. Problemy najlepiej jest rozwiązywać krok po kroku...
 </p>
 
 <ol>
   <li>
-    <b>Have you got the SGI machine (and server) plugged into the right
-    network ports?</b><br />
-    Make sure the network is cabled correctly.  Also note that some machines
-    have special needs. For instance the Challenge S cannot obtain network 
-    connectivity under Linux via its UTP port, you need to use the AUI port 
-    via a transceiver.
+    <b>Czy komputer SGI (oraz serwer) podłączone są do właściwych portów
+    sieciowych?</b><br />
+    Należy się upewnić czy sieć została prawidłowo okablowana, a także zwrócić
+    uwagę na specjalne potrzeby niektórych maszyn. Na przykład Challenge S nie
+    potrafi uzyskać połączenia sieciowego pod Linuksem poprzez swój port UTP.
+    W tym celu musimy użyć portu AUI poprzez nadajnik-odbiornik.
   </li>
   <li>
-    <b>Are there any firewalls in use?</b><br />
-    Make sure your firewall is not blocking DHCP/BOOTP requests (ports 67 and
-    68 on UDP) or TFTP (port 69 on UDP).<br />
-    <c>iptables -I INPUT 1 -p udp --dport 67:69 -j ACCEPT</c> should get things
-    rolling.
+    <b>Czy używamy zapór ogniowych?</b><br />
+    Musimy się upewnić, że nasza zapora ogniowa nie blokuje żądań DHCP/BOOTP
+    (porty 67 i 68 protokołu UDP) ani TFTP (port 69 protokołu UDP).<br />
+    Polecenie <c>iptables -I INPUT 1 -p udp --dport 67:69 -j ACCEPT</c> powinno
+    załatwić sprawę.
   </li>
   <li>
-    <b>Have you disabled packet MTU discovery and set the port range?</b><br />
-    SGI boxes require <path>/proc/sys/net/ipv4/ip_no_pmtu_disc</path> = 1 and
-    <path>/proc/sys/net/ipv4/ip_local_port_range</path> = "2048 32767".  See <uri
-    link="/doc/en/handbook/handbook-mips.xml?part=1&amp;chap=2#doc_chap4">the
-    Gentoo/MIPS handbook</uri>.
+    <b>Czy rozpoznawanie MTU pakietu zostało wyłączone i ustawiony został zakres
+    portów?</b><br />
+    Komputery SGI wymagają ustawienia 
+    <path>/proc/sys/net/ipv4/ip_no_pmtu_disc</path> = 1 oraz 
+    <path>/proc/sys/net/ipv4/ip_local_port_range</path> = "2048 32767".
+    Dodatkowe informacje można znaleźć w <uri
+    link="/doc/en/handbook/handbook-mips.xml?part=1&amp;chap=2#doc_chap4">FIXME
+    Podręczniku (handbook) Gentoo/MIPS</uri>.
   </li>
   <li>
-    <b>Is the server giving out the correct details via BOOTP?</b><br />
-    Double check your <path>/etc/dhcp/dhcpd.conf</path>.  ISC's dhcpd won't dish
-    out addressing information via BOOTP unless the machine has been statically
-    defined with a fixed address.
+    <b>Czy serwer rozsyła poprawne szczegóły poprzez BOOTP?</b><br />
+    Należy dokładnie sprawdzić plik <path>/etc/dhcp/dhcpd.conf</path>. dhcpd w
+    ISC nie poda informacji adresowania przez BOOTP, dopóki maszyna nie zostanie
+    statycznie zdefiniowana przy pomocy stałego adresu.
   </li>
   <li>
-    <b>Which TFTP server are you using?</b><br />
-    <c>tftp-hpa</c> and <c>netkit-tftp</c> are known to work.  <c>atftp</c> is a
-    lot more advanced, this can cause problems.  If in doubt, try installing
-    <c>tftp-hpa</c> and see if the problem clears up.
+    <b>Którego serwera TFTP używamy?</b><br />
+    <c>tftp-hpa</c> i <c>netkit-tftp</c> powinny działać. <c>atftp</c> jest dużo
+    bardziej zaawansowany, co może sprawić problemy. W razie jakichkolwiek
+    wątpliwości należy spróbować zaintalować <c>tftp-hpa</c> i sprawdzić, czy
+    problem zniknął.
   </li>
   <li>
-    <b>Are the daemons running?</b><br />
-    <c>dhcpd</c> should show up when typing <c>ps ax</c>.  As for TFTP, it'll
-    largely depend on whether its a standalone server, or if its running from
-    <c>(x)inetd</c>.  <c>tftp-hpa</c> runs as a process called <c>in.tftpd</c>.
-    Look for that in the <c>ps ax</c> output and start any services not
-    currently running.
+    <b>Czy demony działają?</b><br />
+    <c>dhcpd</c> powinien się ukazać po wydaniu komendy <c>ps ax</c>, jednak 
+    w przypadku TFTP zależy to od tego, czy pracuje on w trybie samodzielnego
+    serwera, czy też został uruchomiony z <c>(x)inetd</c>. <c>tftp-hpa</c>
+    natomiast działa jako proces o nazwie <c>in.tftpd</c>. Poszukajmy go w
+    wyjściu polecenia <c>ps ax</c> i włączmy wszelkie usługi, które jeszcze nie
+    są uruchomione.
   </li>
   <li>
-    <b>Does the kernel exist in <path>/tftpboot</path>?</b><br />
-    Make sure you place the kernel image to be booted in this directory and
-    that it is world-readable.  (<c>chmod 644 /tftpboot/foo</c>)  Also, in your
-    <path>/etc/dhcp/dhcpd.conf</path>, note that the path to the kernel will be
-    relative to the <path>/tftpboot</path> directory if you're using
-    <c>tftp-hpa</c>.
+    <b>Czy plik jądra znajduje się w katalogu <path>/tftpboot</path>?</b><br />
+    Należy upewnić się, że obraz jądra, z którego chcemy uruchomić system jest
+    umieszczony w tym katalogu, oraz uprawnienia pliku pozwalają wszystkim na
+    odczyt (<c>chmod 644 /tftpboot/plik_jadra</c>). Zwróćmy też uwagę, że jeśli
+    używamy <c>tftp-hpa</c>, ścieżka do obrazu jądra w pliku 
+    <path>/etc/dhcp/dhcpd.conf</path> będzie względna w stosunku do katalogu 
+    <path>/tftpboot</path>.
   </li>
   <li>
-    <b>Have you unset the <c>netaddr</c> and <c>dlserver</c> PROM
-    variables?</b><br />
-    Try running <c>unsetenv netaddr</c> and <c>unsetenv dlserver</c>.
+    <b>Czy zmienne PROM <c>netaddr</c> i <c>dlserver</c> zostały wyłączone?</b>
+    <br />
+    Aby to zrobić, należy wykonać polecenia <c>unsetenv netaddr</c> i 
+    <c>unsetenv dlserver</c>.
   </li>
 </ol>
 
 </body>
 </section>
 <section id="serial">
-<title>The machine downloads the kernel, but then "hangs" (using a monitor and
-keyboard -- not serial console)</title>
+<title>Komputer pobiera plik jądra, lecz następnie "zawiesza się" (gdy używany
+jest monitor i klawiatura, a nie konsola szeregowa)</title>
 <body>
 
 <p>
-Unfortunately, not all graphics frame buffers are supported under Linux yet.
-This doesn't mean you can't use the machine... it just means you'll need a
-null-modem serial cable to interact with it.  It is quite possible that the
-machine is in fact running, however, the system is outputting to the serial
-console rather than the screen.
+Niestety, jeszcze nie wszystkie karty graficzne są obsługiwane pod Linuksem. Nie
+oznacza to, że nie da się używać komputera... należy w tym celu jedynie 
+wykorzystać kabel szeregowy modemu zerowego. Bardzo możliwe również, że maszyna 
+w rzeczywistości pracuje, jednakże system wypisuje dane na konsolę szeregową,
+zamiast na ekran.
 </p>
 
 </body>
@@ -535,72 +559,75 @@ console rather than the screen.
 </chapter>
 
 <chapter>
-<title>Cobalt Specific FAQs</title>
+<title>Pytania specyficzne dla komputerów Cobalt</title>
 <section id="cobaltboot">
-<title>Why won't my Cobalt machine boot?</title>
+<title>Czemu na moim komputerze Cobalt nie uruchamia się system?</title>
 <body>
 
 <p>
-This could be for a number of reasons.  Our easiest bet however is to run
-through a checklist and make sure everything is correct.
+Może się tak dziać z wielu powodów. Najpewniej jednak będzie sprawdzić wszystko
+po kolei i przekonać się, czy wszystko jest w porządku.
 </p>
 
 <ol>
+
   <li>
-    <b>Have you got the Cobalt machine (and server) plugged into the right
-    network ports?</b><br />
-    Make sure the network is cabled correctly.  Please note, the Cobalt firmware
-    will only boot via the Primary network port.
+    <b>Czy komputer Cobalt (oraz serwer) podłączone są do właściwych portów
+    sieciowych?</b><br />
+    Należy się upewnić czy sieć została prawidłowo okablowana. Zwróćmy też
+    uwagę, że oprogramowanie sprzętowe komputera Cobalt uruchomi się jedynie
+    poprzez główny port sieciowy.
   </li>
   <li>
-    <b>Are there any firewalls in use?</b><br />
-    Make sure your firewall is not blocking DHCP/BOOTP requests (ports 67 and
-    68 on UDP) or RPC/Portmap (port 111 on UDP and TCP).<br />
-    <c>iptables -I INPUT 1 -p udp --dport 67:68 -j ACCEPT</c><br />
+    <b>Czy używamy zapór ogniowych?</b><br />
+    Musimy się upewnić, że nasza zapora ogniowa nie blokuje żądań DHCP/BOOTP
+    (porty 67 i 68 protokołu UDP) ani RPC/Portmap (port 111 protokołów UDP i TCP).<br />
+    Polecenia <c>iptables -I INPUT 1 -p udp --dport 67:68 -j ACCEPT</c><br />
     <c>iptables -I INPUT 1 -p udp --dport 111 -j ACCEPT</c><br />
     <c>iptables -I INPUT 1 -p tcp --dport 111 -j ACCEPT</c>
-    should get things rolling.
+    powinny załatwić sprawę.
   </li>
   <li>
-    <b>Is the server giving out the correct details via BOOTP?</b><br />
-    Double check your <path>/etc/dhcp/dhcpd.conf</path>.  ISCs dhcpd won't dish
-    out addressing information via BOOTP unless the machine has been statically
-    defined with a fixed address.
+    <b>Czy serwer rozsyła poprawne szczegóły poprzez BOOTP?</b><br />
+    Należy dokładnie sprawdzić plik <path>/etc/dhcp/dhcpd.conf</path>. dhcpd w
+    ISC nie poda informacji adresowania przez BOOTP, dopóki maszyna nie zostanie
+    statycznie zdefiniowana przy pomocy stałego adresu.
   </li>
   <li>
-    <b>Are you exporting <path>/nfsroot</path> in your
+    <b>Czy katalog <path>/nfsroot</path> jest eksportowany w pliku 
     <path>/etc/exports</path>?</b><br />
-    Make sure you are exporting that to the Cobalt machine.  It only needs
-    read-only access.  Also remember to run <c>exportfs -av</c> after you edit
-    the file.
+    Musimy się upewnić, że eksportujemy go do komputera Cobalt. Wystarczy dostęp
+    tylko do odczytu. Należy pamiętać też o uruchomieniu polecenia 
+    <c>exportfs -av</c> po zakończonej edycji pliku.
   </li>
   <li>
-    <b>Are the daemons running?</b><br />
-    <c>dhcpd</c> should show up when typing <c>ps ax</c>.  Likewise with
-    <c>portmap</c> and the other RPC daemons.  The following commands should
-    look after this for you:<br />
+    <b>Czy demony działają?</b><br />
+    <c>dhcpd</c> powinien się ukazać po wydaniu komendy <c>ps ax</c>.
+    Analogicznie będzie w przypadku <c>portmap</c> i innych demonów RPC.
+    Następujące komendy zajmą się nimi za nas:<br />
     <c>/etc/init.d/dhcp start</c><br />
     <c>/etc/init.d/nfs start</c>
   </li>
   <li>
-    <b>Does the kernel exist in <path>/nfsroot</path>?</b><br />
-    Make sure you place the kernel image to be booted in this directory and
-    that it is world-readable.  (<c>chmod 644 /nfsroot/foo</c>)
+    <b>Czy plik jądra znajduje się w katalogu <path>/nfsroot</path>?</b><br />
+    Należy upewnić się, że obraz jądra, z którego chcemy uruchomić system jest
+    umieszczony w tym katalogu, oraz uprawnienia pliku pozwalają wszystkim na
+    odczyt (<c>chmod 644 /tftpboot/plik_jadra</c>).
   </li>
 </ol>
 
 </body>
 </section>
 <section id="qube2700">
-<title>Why don't you support the Qube 2700?</title>
+<title>Dlaczego Qube 2700 nie jest obsługiwany?</title>
 <body>
 
 <p>
-The Qube 2700 was the first of the Cobalt servers.  While they are very nice
-machines, unfortunately, they lack a serial port.  In other words, any
-interaction with the machine has to be done through a network.  At present, our
-netboot images do not support this, although plans are in the works that may
-enable support for this machine.
+Komputery Qube 2700 są pierwszymi serwerami z serii Cobalt. Pomimo iż są
+niezłymi maszynami, nie posiadają portu szeregowego. Innymi słowy, wszelka
+interakcja z nimi musi się odbywać poprzez sieć. Aktualnie nasze obrazy służące
+do uruchamiania systemu przez sieć nie obsługują tego, jednakże trwają prace,
+które być może zaowocują wsparciem dla tego komputera.
 </p>
 
 </body>
