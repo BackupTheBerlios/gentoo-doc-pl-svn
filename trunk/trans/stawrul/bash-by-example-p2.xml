@@ -2,7 +2,7 @@
 <!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/pl/articles/bash-by-example-p2.xml,v 1.1 2005/08/15 23:16:06 cam Exp $ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<guide link="/doc/pl/articles/bash-by-example-p2.xml">
+<guide link="/doc/pl/articles/bash-by-example-p2.xml" lang="pl">
 <title>Bash w przykładach - część druga</title>
 
 <author title="Author">
@@ -58,8 +58,7 @@ ze zmiennych <c>$2</c>, <c>$3</c> itd., odwołujących się kolejnych argumentó
 jakie przekażemy skryptowi. Oto przykład:
 </p>
 
-<pre caption="Odwoływanie się do argumentów z linii komend - przykładowy
-skrypt">
+<pre caption="Odwoływanie się do argumentów z linii komend - przykładowy skrypt">
 #!/usr/bin/env bash
 
 echo nazwa skryptu to $0
@@ -112,10 +111,10 @@ problemu - opisy są szczegółowe i opatrzone przykładami, które pozwolą na
 <p>
 Jeśli pisaliśmy programy operujące na plikach w języku C, wiemy że sprawdzenie
 czy jakiś plik jest nowszy od innego wymaga tam poświęcenia sporo uwagi. Jest
-tak ponieważ C nie posiada żadnej wbudowanej składni dla przeprowadzenia takich
+tak, ponieważ C nie posiada żadnej wbudowanej składni dla przeprowadzenia takich
 porównań. Zamiast tego trzeba użyć dwukrotnie funkcji <c>stat()</c> i porównać
 wyniki ręcznie. Bash, w przeciwieństwie do C, posiada wbudowane operatory
-sprawdzania właściwości plików (wszystkich właściwości - nie tylko użytej w
+sprawdzania właściwości plików (wszystkich właściwości -a nie tylko użytej w
 przykładzie daty modyfikacji). Tak więc sprawdzenie czy plik
 <path>/tmp/myfile</path> jest odczytywalny jest tak proste jak spawdzenie czy
 wartość zmiennej <c>$myvar</c> jest większa niż 4.
