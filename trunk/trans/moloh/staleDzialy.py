@@ -76,8 +76,8 @@ Gentoo Linux funkcję:'''),
 (r'The Gentoo community uses Bugzilla \(<uri link="http://bugs.gentoo.org" >bugs.gentoo.org</uri>\) to record and track bugs, notifications, suggestions and other interactions with the development team.  Between (.*) and (.*), activity on the site has resulted in:',
  r'''Społeczność Gentoo używa Bugzilli (<uri
 link="http://bugs.gentoo.org/">bugs.gentoo.org</uri>) do zgłaszania i śledzenia
-błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami.
-Pomiędzy \1 a \2 aktywność w serwisie przedstawiała się następująco:'''),
+błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomiędzy
+\1 a \2 aktywność w serwisie przedstawiała się następująco:'''),
 
 (r'<li>(\d*) new bugs during this period</li>',
  r'<li>zgłoszono \1 nowych bugów</li>'),
@@ -89,8 +89,8 @@ Pomiędzy \1 a \2 aktywność w serwisie przedstawiała się następująco:'''),
  r'<li>\1 uprzednio zamkniętych bugów zostało ponownie otwartych</li>'),
 
 (r'Of the (\d*) currently open bugs: (\d*) are labeled \'blocker\', (\d*) are labeled \'critical\', and (\d*) are labeled \'major\'.',
- r"""Spośród \1 obecnie otwartych bugów: \2 oznaczono jako 'blocker',
-\3 jako 'critical', a \4 jako 'major'."""),
+ r"""Spośród \1 obecnie otwartych bugów: \2 oznaczono jako 'blocker', \3 jako
+'critical', a \4 jako 'major'."""),
 
 (r'<title>Closed bug rankings</title>', r'<title>Zamknięte Bugi</title>'),
 
@@ -105,8 +105,8 @@ tygodniu, to:'''),
  r'<title>Nowe Bugi</title>'),
 
 (r'The developers and teams who have been assigned the most new bugs during this period are:',
- r'''Deweloperzy oraz zespoły, którym przydzielono najwięcej bugów w minionym
-tygodniu, to:'''),
+ r'''Deweloperzy oraz zespoły, którym przydzielono najwięcej bugów w minionym tygodniu,
+to:'''),
 
 (r' with (\d*)([^>]*>)new bugs',
  r' \1 \2nowych bugów'),
@@ -125,11 +125,11 @@ Uwagi dotyczące tłumaczenia tygodnika można zgłaszać na adres
 
 (r'To subscribe to the Gentoo Weekly Newsletter, send a blank email to <mail link="gentoo-gwn\+subscribe@gentoo.org">gentoo-gwn\+subscribe@gentoo.org</mail>.',
  r'''Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego e-maila na adres
-<mail>gentoo-gwn+subscribe@gentoo.org</mail>.'''),
+<mail>gentoo-gwn-pl+subscribe@gentoo.org</mail>.'''),
 
 (r'To unsubscribe to the Gentoo Weekly Newsletter, send a blank email to <mail link="gentoo-gwn\+unsubscribe@gentoo.org">gentoo-gwn\+unsubscribe@gentoo.org</mail> from the email address you are subscribed under.',
  r'''Aby zrezygnować z subskrypcji, należy wysłać pustego e-maila na adres <mail>
-gentoo-gwn+unsubscribe@gentoo.org</mail> z konta, na które jest zarejestrowana.'''),
+gentoo-gwn-pl+unsubscribe@gentoo.org</mail> z konta, na które jest zarejestrowana.'''),
 
 (r'<title>Other languages</title>',
  r'<title>Inne języki</title>'),
