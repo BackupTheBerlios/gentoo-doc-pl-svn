@@ -32,81 +32,82 @@
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>Major package updates for Apache</title>
+<title>Aktualizacja ważnych pakietów Apache</title>
 <body>
 <p>
-The Gentoo Apache Team is pleased to announce the stabilizing of package
-updates that have been in the works for over a year. Some of the major
-changes include:
+Zespół Apache Gentoo ma przyjemność poinformować o poprawie stabilności
+poprawek do pakietów, nad którymi prace trwały ponad rok. Wśród
+najważniejszych zmian można wymienić:
 </p>
 <ul>
 <li>
-New configuration and configuration locations to more closely match
-upstream and reduce confusion for users coming from other
-distributions.
+Nowe pliki konfiguracyjne oraz ich lokalizacja, bardziej odpowiadająca
+oficjalnym standardom. Zmiany te z pewnością pozwolą ułatwić migrację
+użytkownikom innych dystrybucji
 </li>
 <li>
-Modules now use a centralized <path>eclass</path> that builds, installs, and
-displays standard information on enabling the module. This allows
-easier maintenance of existing modules, and allows us to more rapidly
-develop ebuilds for modules that are not yet in the tree.
+Moduły używają teraz scentralizowanego pliku <path>eclass</path>, który buduje,
+instaluje i wyświetla standardowe informacje. Pozwala to na ułatwienie
+zarządzania istniejącymi pakietami oraz na szybsze i bardziej dokładne
+testowanie nowych, jeszcze nie znajdujących się w drzewie portage.
 </li>
 <li>
-Expanded USE flags to let you choose which MPM is compiled.
+Rozszerzony wybór flag USE, pozwalający wybrać rodzaj kompilowanego MPM.
 </li>
 <li>
-A new <path>gentoo-webroot</path> that will eventually provide a gentoo-themed
-icon-set, error documents, and default website. This has been put in
-it's own package, and includes a USE-flag to not install the
-<path>gentoo-webroot</path> into <path>/var/www/localhost</path> - useful if you put your own
-website there.
+Nowy pakiet <path>gentoo-webroot</path>, zawierający standardowe ikony Gentoo,
+strony opisujące występujące błędy oraz domyślną stronę www. Będzie on zawiera
+flagę USE umożliwiającą zablokowanie instalacji strony do katalogu
+<path>/var/www/localhost</path> co jest szczególnie ważne, gdy zawiera on
+już jakiś serwis internetowy.
 </li>
 <li>
-And much more, including the fixing of many many bugs.
+I znacznie, znacznie więcej, wliczając w to poprawki masy błędów.
 </li>
 </ul>
 <p>
-These changes will stabilized on Sunday, September 18th. These changes
-have been throughly tested and given a thumbs up by many many users.
-They also allow you to use the new php (including support for php5)
-ebuilds when they become fully available.
+Zmiany ustabilizują się w niedziele, 18 września. Wszystkie modyfikacje zostały
+dokładnie przetestowane oraz pozytywnie ocenione przez wielu użytkowników
+Umożliwiają one także użycie nowych ebuildów php (włączają także wsparcie
+dla php5) kiedy będą one już w pełni dostępne.
 </p>
 <p>
-Because of these changes and improvements, when you upgrade to the new
-revision of Apache, you will need to take care of some things. These are
-fully documented in our <uri
-link="http://www.gentoo.org/doc/en/apache-upgrading.xml">Upgrading
-Apache</uri> document, but in summary, this is what you will need to do:
+W związku z tymi zmianami i ulepszeniami, po aktualizacji Apache należy zadbać
+o kilka rzeczy. Dokładne instrukcje zostały już opublikowane w dokumencie <uri
+link="http://www.gentoo.org/doc/pl/apache-upgrading.xml">Aktualizacja
+serwera Apache</uri>. Wszystkie wymagane czynności można podsumować:
 </p>
 <ol>
-<li>Merge any customizations that you have made to the Apache
-configuration into the new configuration at <path>/etc/apache2/httpd.conf</path>
-(The configuration file location has changed). Note that the init
-script for <c>apache</c> checks for a configuration in the old location and
-refuses to start if you haven't moved/removed it - this is to avoid
-the possibility of moving to a configuration that isn't right for
-your machine.
+<li>
+Zainstalować wszystkie dodatki, które są wpisane do pliku konfiguracyjnego
+Apache (<path>/etc/apache2/httpd.conf</path> - jego lokalizacja została
+zmieniona). Należy zauważyć, że skrypt init dla <c>apache</c> sprawdza
+także obecność pliku w starej lokacji i w przypadku jego wykrycia, nie
+uruchamia się - ma to zapobiec użyciu nieprawidłowej dla danej maszyny
+konfiguracji.
 </li>
 <li>
-Update any modules that you used to revisions that support the new
-<path>eclass</path>. Older modules will not work due to location changes.
+Następnie należy zaktualizować wszystkie moduły, tak by ich wersje były
+wspierane przez nową <path>eclass</path>. Stare moduły nie będą działały ze
+względu na zmiany w lokalizacji plików konfiguracyjnych.
 </li>
 <li>
-Restart Apache
+Uruchomić ponownie Apache
 </li>
 </ol>
 <p>
-We have done our best to make it easy to migrate, but if you have
-problems, feel free to visit us in <path>#gentoo-apache</path> on
-<path>irc.freenode.net</path> or on our mailing list
-<path>gentoo-web-user@gentoo.org</path>
-and we'll be glad to help.
+Dołożyliśmy wszelkich starań, aby ułatwić proces migracji, jednak w razie
+jakichkolwiek problemów zapraszamy do odwiedzenia
+kanału <path>#gentoo-apache</path> na serwerze <path>irc.freenode.net</path> lub
+naszej listy mailingowej <path>gentoo-web-user@gentoo.org</path>, gdzie z
+chęcią udzielimy wszelkiej możliwej pomocy
 </p>
 </body>
 </section>
 </chapter>
+
 <!-- Future zone -->
 <!-- User Stories -->
 <!-- Gentoo Stories -->
