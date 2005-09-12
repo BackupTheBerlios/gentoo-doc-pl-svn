@@ -3,8 +3,8 @@
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 <!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/bluetooth-guide.xml,v 1.2 2005/08/27 09:19:30 swift Exp $ -->
 
-<guide link="/doc/en/bluetooth-guide.xml">
-<title>Gentoo Linux Bluetooth Guide</title>
+<guide link="/doc/pl/bluetooth-guide.xml" lang="pl">
+<title>Bluetooth w Gentoo Linux</title>
 
 <author title="Author">
   <mail link="deathwing00@gentoo.org">Ioannis Aslanidis</mail>
@@ -15,7 +15,7 @@
 <author title="Contributor">
   <mail link="marcel@holtmann.org">Marcel Holtmann</mail>
 </author>
-<author title="Author/Editor">
+<author title="Author">
   <mail link="fox2mike@gentoo.org">Shyam Mani</mail>
 </author>
 <author title="Editor">
@@ -24,9 +24,10 @@
 <author title="Tłumacz">Damian Kuras</author>
 
 <abstract>
-This guide will explain how to successfully install a host Bluetooth device,
-configure the kernel properly, explain all the possibilities that the Bluetooth
-interconnection offers and how to have some fun with Bluetooth.  
+W przewodniku tym wyjaśniono w jaki sposób zainstalować urządzenie hosta
+Bluetooth, w jaki sposób skonfigurować poprawnie jądro oraz opisano wszystkie
+możliwości jakie oferuje Bluetooth wraz z tym jak czerpać trochę przyjemności z
+technologii Bluetooth.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -37,42 +38,44 @@ interconnection offers and how to have some fun with Bluetooth.
 <date>2005-08-25</date>
 
 <chapter id="introduction">
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <section>
-<title>What is Bluetooth?</title>
+<title>Co to jest Bluetooth?</title>
 <body>
 
 <p>
-Bluetooth is an industrial specification that provides users a way to connect
-and exchange information between devices like personal computers, PDAs or
-mobile phones. Using the Bluetooth technology, users can achieve wireless voice
-and data transmission between devices at a low cost. Bluetooth also offers the
-possibility to create small wireless LANs and to synchronize devices.
+Bluetooth jest przemysłową specyfikacją, która umożliwia użytkownikom łączenie i
+wymianę informacji pomiędzy urządzeniami takimi jak komputery osobiste, PDA czy
+telefony komórkowe. Używając tej technologii użytkownik może osiągnąć
+bezprzewodowy dźwięk i transmisję danych pomiędzy dwoma urządzeniami po niskich
+kosztach. Bluetooth oferuje również możliwość stworzenia małych bezprzewodowych
+sieci LAN oraz pozwala na synchronizację urządzeń.
 </p>
 
 </body>
 </section>
 <section>
-<title>About the content of this guide</title>
+<title>O zawartości tego przewodnika</title>
 <body>
 
 <p>
-The first part of this guide is to identify qualified and non-qualified devices
-that support the Bluetooth technology. This way, users can purchase Bluetooth
-devices that are known to work. After that, the guide explains how to configure
-the system kernel, identify the Bluetooth devices installed on the system and
-detected by the kernel and install the necessary basic Bluetooth tools.
+W pierwszej części tego przewodnika opisano sposób identyfikacji urządzeń,
+które wspierają technologię Bluetooth. Dzięki temu użytkownik może zamówić
+urządzenie Bluetooth, które będzie działało poprawnie. W częsci tej
+wytłumaczono również w jaki sposób skonfigurować jądro systemu, zidentyfikować
+urządzenia Bluetooth zainstalowane w komputerze i wykryte przez jądro oraz
+zainstalować podstawowe narzędzia Bluetooth.
 </p>
 
 <p>
-The second part covers how to detect remote devices and how to establish a
-connection from or to them by either setting up radio frequency communication
-(RFCOMM) or by setting up a personal area network (PAN).
+W drugiej części opisano jak wykrywać zdalne urządzenia i w jaki sposób
+uaktywnić połączenie do lub z nich poprzez ustawienie częstotliwości
+komunikacji radiowej lub ustawienie sieci prywatnej (PAN).
 </p>
 
 <p>
-The last part of the guide lists in detail applications that can take
-advantage of all the possibilities offered by the Bluetooth technology.
+W ostatniej części znajduje się szczegółowa lista aplikacji, które pomogą
+skorzystać z wszystkich możliwości oferowanych przez technologię Bluetooth.
 </p>
 
 </body>
@@ -80,20 +83,21 @@ advantage of all the possibilities offered by the Bluetooth technology.
 </chapter>
 
 <chapter id="devices">
-<title>Supported Devices</title>
+<title>Wspierane urządzenia</title>
 <section>
-<title>Qualified and non-qualified devices that support Bluetooth</title>
+<title>Urządzenia uznane za wspierane i niewspierane Bluetooth</title>
 <body>
 
 <impo>
-These products might work even though some are not qualified Bluetooth
-products. Gentoo does not support them in any way, they might just work.
+Urządzenia te mogą działać nawet wtedy, gdy nie są uznane za takie, które
+działają poprawnie. Gentoo nie zapewnia żadnego wsparcia dla takich nich.
 </impo>
 
 <p>
-A list of the currently supported devices can be found at: <uri
-link="http://www.holtmann.org/linux/bluetooth/features.html">Bluetooth device
-features and revision information by Marcel Holtmann</uri>.
+Listę aktualnie wspieranych urządzeń można znaleźć na stronie Marcela
+Holtmann'a: <uri
+link="http://www.holtmann.org/linux/bluetooth/features.html">Funkcje urządzeń
+Bluetooth oraz informacje na temat wersji</uri>.
 </p>
 
 </body>
@@ -101,20 +105,22 @@ features and revision information by Marcel Holtmann</uri>.
 </chapter>
 
 <chapter id="kernel">
-<title>Configuring the system</title>
+<title>Konfiguracja systemu</title>
 <section>
-<title>Kernel Configuration</title>
+<title>konfiguracja jądra</title>
 <body>
 
 <p>
-As the latest Linux stable kernel is 2.6, the configuration will be done for
-these series of the kernel. Most Bluetooth devices are connected to a USB port,
-so USB will be enabled too. If you want, you can use hotplugging in case you
-want to use modules instead of compiling support built into the kernel. Please,
-refer to the <uri link="/doc/en/usb-guide.xml"> Gentoo Linux USB Guide</uri>.
+Jako, że ostatnim stabilnym jądrem Linuksa jest jądro serii 2.6, konfigurację
+przeprowadzimy używając tej serii. Większość urządzeń Bluetooth podłączamy do
+portu USB, zatem USB należy również uaktywnić. Można użyć hotpluga w przypadku
+kiedy chcemy używać modułów zamiast wkompilować wsparcie dla USB bezpośrednio do
+jądra. Prosimy zapoznać się z przewodnikiem
+<uri link="/doc/pl/usb-guide.xml">Konfiguracja urządzeń USB w Gentoo 
+Linux</uri>.
 </p>
 
-<pre caption="Configuration for 2.6 kernels">
+<pre caption="Konfiguracja jądra serii 2.6">
 Device Drivers  ---&gt;
   Networking Support  ---&gt;
 
@@ -140,18 +146,19 @@ Bluetooth device drivers  ---&gt;
 &lt;M&gt; HCI BCM203x USB driver
 &lt;M&gt; HCI BPA10x USB driver
 &lt;M&gt; HCI BlueFRITZ! USB driver
-<comment>(The four drivers below are for PCMCIA Bluetooth devices and will only
-show up if you have also selected PCMCIA support in your kernel.)</comment>
+<comment>(Poniższe cztery sterowniki są stworzone dla urządzeń Bluetooth
+komunikujących się przez złącze PCMCIA i pojawią się one tylko w wypadku
+gdy jest wybrane wsparcie dla PCMCIA w jądrze)</comment>
 &lt;M&gt; HCI DTL1 (PC Card) driver
 &lt;M&gt; HCI BT3C (PC Card) driver
 &lt;M&gt; HCI BlueCard (PC Card) driver
 &lt;M&gt; HCI UART (PC Card) device driver   
-<comment>(The driver below is intended for HCI Emulation software.)</comment>
+<comment>(Poniższy sterownik przeznaczony jest dla programu HCI Emulation)</comment>
 &lt;M&gt; HCI VHCI (Virtual HCI device) driver
 
-<comment>(Move back three levels to Device Drives and then check if USB is
-enabled. This is required if you use a Bluetooth dongle, which are mostly USB
-based.)</comment>
+<comment>(Należy cofnąć się trzy poziom do góry, do sekcji Device Drivers i
+sprawdzić czy wsparcie dla USB jest uaktywnione. Jest to wymagane w przypadku
+kiedy używamy nadajnika Bluetooth, w postaci klucza USB)</comment>
 USB support  ---&gt;
 
 &lt;*&gt; Support for Host-side USB
@@ -165,24 +172,25 @@ USB support  ---&gt;
 </pre>
 
 <p>
-Now we'll reboot with our new kernel. If everything went fine, we will have a
-system that is Bluetooth ready.
+Należy uruchomić ponownie komputer wykorzystując nowe jądro. Jeżeli wszystko
+poszło dobrze, nasz system będzie gotowy do współpracy z urządzeniami 
+Bluetooth.
 </p>
 
 <impo>
-Your USB device may have two modes the default of which may not be HCI, but HID.
-If this is your case, use <c>hid2hci</c> to switch to HCI mode. Your system
-will not remember this change when you next reboot.
+Urządzenie USB może posiadać dwa tryby, a domyślnym będzie nie HCI, a HDI. W
+tym wypadku należy użyć polecenia <c>hid2hci</c>, aby przełączyć urządzenie do
+trybu HCI. System zapamięta te ustawienia przy następnym ponownym uruchomieniu.
 </impo>
 
-<pre caption="Checking the Bluetooth devices">
-<comment>(One way to check for the device)</comment>
+<pre caption="Sprawdzanie urządzeń Bluetooth">
+<comment>(Jeden ze sposobów sprawdzenia urządzeń)</comment>
 # <i>cat /proc/bus/usb/devices | grep -e^[TPD] | grep -e Cls=e0 -B1 -A1</i>
-<comment>(The Cls=e0(unk. ) identifies the Bluetooth adapter.)</comment>
+<comment>(Wpis Cls=e0(unk. ) identyfikuje urządzenie Bluetooth).</comment>
 T:  Bus=02 Lev=02 Prnt=03 Port=00 Cnt=01 Dev#=  4 Spd=12  MxCh= 0
 D:  Ver= 1.10 Cls=e0(unk. ) Sub=01 Prot=01 MxPS=64 #Cfgs=  1
 P:  Vendor=0a12 ProdID=0001 Rev= 5.25 
-<comment>(Some might show up on lsusb from sys-apps/usbutils)</comment>
+<comment>(Niektóre można wykryć przy pomocy lsusb z pakietu sys-apps/usbutils)</comment>
 # <i>lsusb</i>
 Bus 003 Device 002: ID 046d:c00e Logitech, Inc. Optical Mouse
 Bus 003 Device 001: ID 0000:0000
@@ -194,36 +202,36 @@ Bus 002 Device 002: ID 0db0:1967 Micro Star International Bluetooth Dongle
 </chapter>
 
 <chapter id="bluez">
-<title>BlueZ - The Bluetooth Stack</title>
+<title>BlueZ - Stos Bluetooth</title>
 <section>
-<title>Installing BlueZ</title>
+<title>Instalacja BlueZ</title>
 <body>
 
 <p>
-Now that the device is detected by the kernel, we need a layer that lets
-applications communicate with the Bluetooth device. BlueZ provides the official
-Linux Bluetooth stack. The ebuilds that provide what we need are
-<c>bluez-libs</c> and <c>bluez-utils</c>. Devices that need Broadcom firmware
-files or the like may need <c>bluez-firmware</c>.
+Kiedy już urządzenie jest wykrywane przez jądro, potrzebujemy warstwy, która
+pozwoli aplikacjom na komunikację z urządzeniem Bluetooth. BlueZ jest
+oficjalnym stosem Bluetooth Linuksa. Potrzebujemy dwóch pakietów,
+<c>bluez-libs</c> i <c>bluez-utils</c>. Urządzenia potrzebujące oprogramowania
+firmware Broadcom lub podobne mogą wymagać pakietu <c>bluez-firmware</c>.
 </p>
 
-<pre caption="Installing bluez-libs and bluez-utils">
+<pre caption="Instalacja bluez-libs i bluez-utils">
 # <i>emerge net-wireless/bluez-libs net-wireless/bluez-utils</i>
 </pre>
 
 <warn>
-Do not emerge <c>bluez-kernel</c> or <c>bluez-sdp</c> as they will break
-<c>bluez-utils</c>!
+Nie należy emergować <c>bluez-kernel</c> lub <c>bluez-sdp</c> ponieważ będą one
+kolidowały z pakietem <c>bluez-utils</c>!
 </warn>
 
 <p>
-Additionally, as we have compiled the Bluetooth subsystem as modules, we will
-need hotplug and coldplug, which are explained in the <uri
-link="http://www.gentoo.org/doc/en/usb-guide.xml#doc_chap4_sect2">Gentoo Linux
-USB Guide</uri>.
+Dodatkowo, gdy już skompilowaliśmy podsystem Bluetooth będziemy również
+potrzebowali hotpluga i coldpluga, które szczegółowo objaśniono w <uri
+link="http://www.gentoo.org/doc/en/usb-guide.xml#doc_chap4_sect2">Konfiguracji
+urządzeń USB w Gentoo Linux</uri>.
 </p>
 
-<pre caption="Emerging hotplug and coldplug">
+<pre caption="Emegrowanie hotpluga i coldpluga">
 # <i>emerge hotplug coldplug</i>
 # <i>rc-update add coldplug boot</i>
 </pre>
@@ -231,16 +239,16 @@ USB Guide</uri>.
 </body>
 </section>
 <section>
-<title>BlueZ configuration and PIN pairing</title>
+<title>Konfiguracja BlueZ i łączenie w pary PIN-ów</title>
 <body>
 
 <p>
-Now it's time to see if the Bluetooth device is being picked up correctly by the
-system. We start up the required Bluetooth services first.
+Pora na sprawdzenie czy system poprawnie uruchamia urządzenia Bluetooth. Należy
+najpierw uruchomić potrzebne serwisy Bluetooth.
 </p>
 
-<pre caption="Running hciconfig">
-<comment>(Start up Bluetooth)</comment>
+<pre caption="Uruchamianie hciconfig">
+<comment>(Uruchamianie Bluetooth)</comment>
 # <i>/etc/init.d/bluetooth start</i>
 * Starting Bluetooth ...
 *     Starting hcid ...                                                 [ ok ]
@@ -256,17 +264,18 @@ hci0:   Type: USB
 </pre>
 
 <p>
-This shows that the Bluetooth device has been recognised. As you might have
-noticed the device is <e>DOWN</e>. Let's configure it so that we can bring it
-up. The configuration file is at <path>/etc/bluetooth/hcid.conf</path>. The
-required changes to the config file are shown below. For additional details
-please refer to <c>man hcid.conf</c>.
+Pokazuje to iż urządzenie Bluetooth zostało rozpoznane. Jak możemy zauważyć
+urządzenie jest wyłączone (<e>DOWN</e>). Należy je skonfigurować tak, aby
+uruchamiało się właczone. Plik konfiguracyjny znaduję się w 
+<path>/etc/bluetooth/hcid.conf</path>. Wymagane zmiany, które należy wprowadzić
+pokazane są poniżej. Dodatkowych szczegółów można szukać w manualu wydając
+komendę <c>man hcid.conf</c>.
 </p>
 
-<pre caption="Editing /etc/bluetooth/hcid.conf">
-<comment>(Recommended changes to be made to the file are shown)</comment>
+<pre caption="Edycja /etc/bluetooth/hcid.conf">
+<comment>(Wymagane zmiany pokazane są poniżej)</comment>
 
-<comment>(Change security to "auto")</comment>
+<comment>(Należy zmienić zabezpieczenie na tryb "auto")</comment>
         # Security Manager mode
         #   none - Security manager disabled
         #   auto - Use local PIN for incoming connections
@@ -274,17 +283,18 @@ please refer to <c>man hcid.conf</c>.
         #
         security auto;
 
-<comment>(Change pin_helper to use /etc/bluetooth/pin-helper)</comment>
+<comment>(Należy zmienić zmienną pin_helper na wartość /etc/bluetooth/pin-helper)</comment>
         # PIN helper
         pin_helper /etc/bluetooth/pin-helper;
-
-<comment>(Set your device name here, you can call it anything you want)</comment>
+	
+<comment>(Należy ustawić nazwę urządzenia, można je nazwać jak chcemy)</comment>
         # Local device name
         #   %d - device id
         #   %h - host name
         name "BlueZ at %h (%d)";
 
-<comment>(Leave as is, if you don't know what exactly these do)</comment>
+<comment>(Jeżeli nie wiemy do czego służą poniższe zmienne należy ich nie
+zmieniać)</comment>
         # Authentication and Encryption (Security Mode 3)
         #auth enable;
         #encrypt enable;
@@ -292,57 +302,58 @@ please refer to <c>man hcid.conf</c>.
 </pre>
 
 <p>
-After that, we have to configure the Bluetooth device PIN. That will help in
-pairing this device with another one.
+Następnie należy skonfigurować PIN urządzenia Bluetooth. Pomoże nam to przy
+łączeniu w parę tego urządzenia z innym.
 </p>
 
 <note>
-You can choose from different pin helpers, depending on what you want to use.
-Available pin helpers are: <c>/usr/lib/kdebluetooth/kbluepin</c>
-(net-wireless/kdebluetooth), <c>/usr/bin/bluepin</c> or
-<c>/etc/bluetooth/pin-helper</c> among others.
+Możemy wybierać spośród różnych pomocników pin, zależnie od tego, którego
+chcemy używać. Dostępnymi pomocnikami pin są: 
+<c>/usr/lib/kdebluetooth/kbluepin</c>
+(net-wireless/kdebluetooth), <c>/usr/bin/bluepin</c> lub
+<c>/etc/bluetooth/pin-helper</c>.
 </note>
 
-<pre caption="Editing /etc/bluetooth/pin">
-<comment>(Change 123456 with your desired pin number.)</comment>
+<pre caption="Edycja /etc/bluetooth/pin">
+<comment>(Należy zmienić wpis 123456 na wybrany przez nas numer pin)</comment>
 123456
 </pre>
 
 <impo>
-This number (of your choice) must be the same in all your hosts with Bluetooth
-devices so they can be paired. This number must also be kept secret since anyone
-with knowledge of this number can essentially establish connections with your
-devices.
+Numer ten (wybrany przez nas) musi być taki sam we wszystkich hostach z
+urządzeniami Bluetooth tak, aby można było je połączyć w pary. Należy również
+pamiętać, aby numer ten trzymać w tajemnicy, gdyż teoretycznie każda osoba
+znająca go będzie mogła ustanowić połączenie z naszym urządzeniem.
 </impo>
 
 </body>
 </section>
 <section>
-<title>Services configuration</title>
+<title>Konfiguracja serwisów</title>
 <body>
 
 <p>
-Now that we have concluded with the configuration of BlueZ, it's time to restart
-the necessary services.
+Kiedy już pomyślnie zakończymy konfigurację BlueZ, należy uruchomić ponownie
+potrzebne serwisy.
 </p>
 
-<pre caption="Starting the Bluetooth daemons">
+<pre caption="Uruchamianie demonów Bluetooth">
 # <i>/etc/init.d/bluetooth restart</i>
-<comment>(We can also add it to the default runlevel.)</comment>
+<comment>(Można dodać go do domyślnego poziomu uruchomieniowego)</comment>
 # <i>rc-update add bluetooth default</i>
  * bluetooth added to runlevel default
  * rc-update complete.
 </pre>
 
 <p>
-Let's be sure that the Bluetooth daemons started correctly. If we can see that
-both <c>hcid</c> and <c>sdpd</c> are running, then we configured Bluetooth the
-right way. After that, we can see if the decices are now up and running with
-the configured options.
+Należy się upewnić czy demony Bluetooth zostały uruchomione w poprawny sposób.
+Jeżeli widzimy, że zarówno <c>hcid</c> i <c>sdpd</c> są uruchomione i działają,
+znaczy to, że Bluetooth jest dobrze skonfigurowany. Po tym, możemy zobaczyć
+czy urządzenia działają ze skonfigurowanymi przez nas opcjami.
 </p>
 
-<pre caption="Checking whether Bluetooth daemons started correctly">
-<comment>(Check to see if the services are running)</comment>
+<pre caption="Sprawdzanie czy demony Bluetooth uruchomiły się poprawnie">
+<comment>(Należy sprawdzić czy serwisy działają)</comment>
 # <i>ps -ae | grep hcid</i>
 26050 ?        00:00:00 hcid
 # <i>ps -ae | grep sdpd</i>
@@ -372,24 +383,24 @@ hci0:   Type: USB
 </chapter>
 
 <chapter id="detect">
-<title>Detecting and Connecting to Remote Devices</title>
+<title>Wykrywanie i łączenie do zdalnego urządzenia</title>
 <section>
-<title>Detecting Bluetooth devices in other hosts</title>
+<title>Wykrywanie urządzeń Bluetooth na innych hostach</title>
 <body>
 
 <p>
-At this point we are now ready to detect Bluetooth devices installed in other
-machines. This is independent of the host Operating System. We will make use of
-the <c>hcitool</c> command for the same.
+W tym momencie jesteśmy gotowi, aby wykryć urządzenia Bluetooth zainstalowane
+na innych komputerach. This is independent of the host Operating System.
+Użyjemy polecenia <c>hcitool</c> do tego celu.
 </p>
 
-<pre caption="Checking for local devices">
+<pre caption="Sprawdzanie lokalnych urządzeń">
 # <i>hcitool dev</i>
 Devices:
         hci0    00:01:02:03:04:05
 </pre>
 
-<pre caption="Scanning for remote devices">
+<pre caption="Skanowanie zdalnych urządzeń">
 # <i>hcitool scan</i>
 Scanning ...
         00:0A:0B:0C:0D:0E       Grayhat 
@@ -402,11 +413,11 @@ Inquiring ...
 </pre>
 
 <p>
-Now that we now the MAC address of the remote Bluetooth devices, we can check
-if we paired them correctly.
+Kiedy już znamy adres MAC zdalnego urządzenia Bluetooth, możemy sprawdzić czy
+zostały one poprawnie połączone w parę.
 </p>
 
-<pre caption="Running l2ping">
+<pre caption="Uruchamianie l2ping">
 # <i>l2ping 00:0A:0B:0C:0D:0E</i>
 Ping: 00:0A:0B:0C:0D:0E from 00:01:02:03:04:05 (data size 20) ...
 20 bytes from 00:0A:0B:0C:0D:0E id 200 time 69.85ms
@@ -419,143 +430,146 @@ Ping: 00:0A:0B:0C:0D:0E from 00:01:02:03:04:05 (data size 20) ...
 </body>
 </section>
 <section>
-<title>Setting up Radio Frequency Communication (RFCOMM)</title>
+<title>Ustawianie częstotliwości komunikacji (RFCOMM)</title>
 <body>
 
-<note>
-Please note that setting up radio frequency communication is optional.
+<note>		
+Należy wiedzieć, że ustawianie częstotliwości komunikacji radiowej jest krokiem
+opcjonalnym.
 </note>
 
 <p>
-We can establish a radio frequency connection to another Bluetooth device using
-the <c>rfcomm</c> command. To make things a little easier especially for users
-with multiple devices that support Bluetooth, it is advisable to make a few
-changes to the default rfcomm config at <path>/etc/bluetooth/rfcomm.conf</path>.
+Możemy nawiązać połączenie w częstotliwości radiowej do innego urządzenia,
+używając polecenia <c>rfcomm</c>. Aby ułatwić zadanie użytkownikom, szczególnie
+tym, którzy posiadają kilka urządzeń wspierających Bluetooth, wskazane będzie
+zmodyfikowanie domyślnej konfiguracji rfcomm znajdującej się w pliku
+<path>/etc/bluetooth/rfcomm.conf</path>.
 </p>
 
 <p>
-The whole segment of the config starting from <c>rfcomm0 {</c> and ending with
-<c>}</c> is the config for the device that will establish a connection at
-<path>/dev/rfcomm0</path>. In this case, we will only show one example, rfcomm0.
-You can add more devices as you see fit.
+Cały fragment konfiguracji zaczynający się od <c>rfcomm0 {</c>, a kończący na
+<c>}</c>, jest konfiguracją urządzenia, które ustanowi połączenie w
+<path>/dev/rfcomm0</path>. W tym przypadku pokażemy tylko jeden przykład,
+rfcomm0. Nic jednak nie stoi na przeszkodzie, aby dodać więcej urządzeń.
 </p>
 
-<pre caption="Editing /etc/bluetooth/rfcomm.conf">
-<comment>(Only changes that might be needed are shown)</comment>
+<pre caption="Edycja pliku /etc/bluetooth/rfcomm.conf">
+<comment>(Pokazano jedynie zmiany, które mogą okazać się potrzebne)</comment>
 rfcomm0 {
         # Automatically bind the device at startup
-        <comment>(Creates the device node, /dev/rfcomm0 at start up)</comment>
+        <comment>(Tworzymy węzeł urządzenia, /dev/rfcomm0 na początku)</comment>
         bind yes;
 
         # Bluetooth address of the device
-        <comment>(Enter the address of the device you want to connect to)</comment>
+        <comment>(Należy wpisać adres urządzenia do, którego chcemy się łączyć)</comment>
         device 00:0A:0B:0C:0D:0E;
 
 } 
 </pre>
 
 <p>
-After configuring RFCOMM, we can connect to any device. Since we've made the
-required settings to the <path>/etc/bluetooth/rfcomm.conf</path> file, we just
-issue the command shown below. In case you've not made changes to the config
-file, an alternative method is also shown in the code listing that follows
+Po konfiguracji RFCOMM, możemy połączyć się z każdym urządzeniem. Od kiedy
+ustawiliśmy odpowiednie opcje w pliku 
+<path>/etc/bluetooth/rfcomm.conf</path> musimy jedynie wydać poniższe
+polecenia. W przypadku gdy nie poczyniliśmy odpowiednich zmian w pliku
+konfiguracyjnym, pokazano również alternatywną metodę w code listingu.
 </p>
 
-<pre caption="Establishing an RFCOMM connection">
-<comment>(The 0 refers to the rfcomm0 in the config file)</comment>
+<pre caption="Ustanawianie połączenia RFCOMM">
+<comment>(0 odnosi się do wpisu rfcomm0 w pliku konfiguracyjnym)</comment>
 # <i>rfcomm connect 0 </i>
 Connected /dev/rfcomm0 to 00:0A:0B:0C:0D:0E on channel 1
 Press CTRL-C for hangup
 
-<comment>(If you did not edit /etc/bluetooth/rfcomm.conf)</comment>
+<comment>(Jeżeli nie edytowaliśmy pliku /etc/bluetooth/rfcomm.conf)</comment>
 # <i>rfcomm connect 0 00:0A:0B:0C:0D:0E 1</i>
 Connected /dev/rfcomm0 to 00:0F:DE:69:50:24 on channel 1
 Press CTRL-C for hangup
 </pre>
 
 <p>
-The first parameter after the connect command is the RFCOMM TTY device node
-that will be used (usually 0). The second parameter is the MAC address of the
-remote device. The third parameter is optional and specifies the channel to be
-used. Please, note that in order to connect to a device, that device must be
-listening for incoming connections. To do that, we have to explicitly tell it
-to listen. We can cancel the communication at any moment by just hitting
-CTRL+C.
+Pierwszy parametrem po komendzie wywołującej połączenie jest węzeł urządzenia TTY
+RFCOMM, który zostanie użyty (zazwyczaj 0). Drugim parametrem jest adres MAC
+zdalnego urządzenia. Trzeci parametr jest opcjonalny i określa kanał, który ma
+być używany. Należy zauważyć, że aby połączyć się z danym urządzeniem, to
+urządzenie musi oczekiwać na przychodzące połączenia. Aby przerwać połączenie
+wystarczy wcisnąć kombinacje klawiszy CTRL+C.
 </p>
 
-<pre caption="Listening for incoming RFCOMM connections">
+<pre caption="Nasłuchiwanie przychodzących połączeń RFCOMM">
 # <i>rfcomm listen 0 1</i>
 Waiting for connection on channel 1 
 </pre>
 
 <p>
-In a similar way to the connect command, the listen command can receive two
-parameters. The first one explicits the RFCOMM TTY device node (usually 0) that
-will be used to accept a connection, while the second is the channel that will
-be used. 
+W podobny sposób jak komenda połączenia, można podawać parametry przy
+komendzie odbioru. Pierwsza uwyraźnia węzeł urządzenia RFCOMM (zazwyczaj 0),
+które zostanie użyte do akceptacji połączenia. Natomiast drugi parametr określa
+kanał, który będzie użyty.
 </p>
 
 <p>
-Each time you call the <c>rfcomm</c> command, you can also specify the physical
-device you want to use. Below you can see a small example specifiying the
-physical device on the above two commands.
+Za każdym razem gdy wywołujemy komendę <c>rfcomm</c>, można również określić
+fizyczne urządzenie, którego chcemy używać. Poniżej można zobaczyć na
+przykładzie dwóch powyższych komend wybór fizycznego urządzenia.
 </p>
 
-<pre caption="RFCOMM connections specifying physical device">
+<pre caption="Wybór fizycznego urządzenia do połączenia RFCOMM">
 # <i>rfcomm -i hci0 listen 0 1</i>
 Waiting for connection on channel 1
-<comment>(To listen to a determined device) </comment>
+<comment>(Nasłuchiwanie określonego urządzenia) </comment>
 # <i>rfcomm -i hci0 connect 0 00:0A:0B:0C:0D:0E 1</i>
-<comment>(To use a determined device when connecting to another one)</comment>
+<comment>(Używanie określonego urządzenia do połączenia się z innym)</comment>
 </pre>
 
 </body>
 </section>
 <section>
-<title>Setting up a Personal Area Network (PAN)</title>
+<title>Ustawianie sieci prywatnej (Personal Area Network)</title>
 <body>
 
 <note>
-Please note that setting up a Personal Area Network is optional. This section
-describes how to set up and connect to a Network Access Point, though setting
-up a Group Ad-Hoc Network follows a similar way.
+Należy mieć na uwadze, że ustawianie sieci prywatnej (PAN) jest krokiem
+opcjonalnym. W rozdziale tym opisano jak połączyć się do sieciowego punktu
+dostępowego, choć ustawianie grupy sieci typu Ad-Hoc przebiega w podobny
+sposób.
 </note>
 
 <p>
-First of all, we need the <c>bnep</c> module loaded. And probably we want it
-loaded each time the computer starts.
+Należy załadować moduł <c>bnep</c>. Prawdopodobnie też będziemy chcieli, aby
+ładował się on przy każdym uruchomieniu komputera.
 </p>
 
-<pre caption="Loading the bnep module">
+<pre caption="Ładowanie modułu bnep">
 # <i>modprobe bnep</i>
 # <i>echo "bnep" &gt;&gt; /etc/modules.autoload.d/kernel-2.6</i>
 </pre>
 
 <p>
-We have to start the <c>pand</c> daemon in the host that will provide the NAP.
-We'll have to specify that we want to provide a NAP service and that this host
-will be the master, thus the other hosts that connect to it, the slaves.
-Another possible service is GN (Group ad-hoc Network).
+Należy uruchomić demona <c>pand</c> na hoście, który dostarczy nam NAP-a.
+Musimy uściślić czy chcemy serwis NAP-a. Host ten będzie komputerem głównym
+(master) podczas gdy inne, podłączające się do niego, będą podrzędnymi (slave).
+Inny możliwym serwisem jest GN (sieć grupowa typu ad-hoc).
 </p>
 
-<pre caption="Running the pand daemon">
+<pre caption="Uruchamianie demona pand">
 # <i>pand --listen --role NAP --master --autozap</i>
 </pre>
 
 <p>
-After doing that, we have a host listening, so the rest of hosts just have to
-connect to that one.
+Po wykonaniu powyższych czynności będziemy posiadać nasłuchującego host, a więc
+reszta komputerów będzie musiała jedynie się z nim połączyć.
 </p>
 
-<pre caption="Connecting to the Network Access Point">
+<pre caption="Łączenie do sieciowego punkto dostępowego">
 # <i>pand --connect 00:0A:0B:0C:0D:0E --service NAP --autozap</i>
 </pre>
 
 <p>
-If everything went fine, we can now configure the IP addresses of our hosts.
+Jeżeli wszystko poszło dobrze możemy skonfigurować adresy IP naszego hosta.
 </p>
 
-<pre caption="bnep IP address configuration">
+<pre caption="konfiguracja adresów IP modułu bnep">
 host0 #<i> ifconfig bnep0 192.168.2.1</i>
 host1 #<i> ifconfig bnep0 192.168.2.2</i>
 
@@ -581,7 +595,7 @@ bnep0     Link encap:Ethernet  HWaddr 00:01:02:03:04:05
 </pre>
 
 <p>
-Finally, we can do a simple test to see that the network is working fine.
+Na koniec, można przeprowadzić test i sprawdzić czy sieć działa poprawnie.
 </p>
 
 <pre caption="IP ping between bnep interfaces">
@@ -600,133 +614,141 @@ rtt min/avg/max/mdev = 34.045/35.690/37.336/1.656 ms
 </chapter>
 
 <chapter id="apps">
-<title>Desktop Applications for Bluetooth</title>
+<title>Aplikacje Desktop dla Bluetooth</title>
 <section>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-We have quite a few Bluetooth applications that run on the desktop and this
-chapter has been divided into 3 parts, one each for Gnome, KDE and Miscellaneous
-applications.
+Posiadamy dość sporo aplikacji Bluetooth, który można uruchomić na pulpicie.
+Rozdział ten został podzielony na trzy części, pierwsza przeznaczona na opis
+aplikacji dla Gnome, druga dla KDE, a ostatnia na temat różnorodnych 
+aplikacji.
 </p>
 
 </body>
 </section>
 <section>
-<title>For Gnome</title>
+<title>Gnome</title>
 <body>
 
 <p>
-If you are a gnome user, you will most probably go with <c>gnome-bluetooth</c>.
-It provides the most basic yet most used functionalities, as you can see below.
+Jeżeli jesteśmy użytkownikami środowiska Gnome, najprawdpodobniej będziemy używać
+<c>gnome-bluetooth</c>. Posiada on najbardziej podstawowe i najbardziej
+funkcjonalne opcję, takie jak podano poniżej.
 </p>
 
 <ul>
-  <li><c>gnome-bluetooth-manager</c>: To manage Bluetooth remote devices.</li>
-  <li><c>gnome-obex-send</c>: To send files to other devices.</li>
-  <li><c>gnome-obex-server</c>: To receive files.</li>
+  <li><c>gnome-bluetooth-manager</c>: Do zarządzania zdalnymi urządzeniami 
+Bluetooth.</li>
+  <li><c>gnome-obex-send</c>: Do wysyłania plików na inne urządzenia.</li>
+  <li><c>gnome-obex-server</c>: Do odbioru plików.</li>
 </ul>
 
-<pre caption="Installing gnome-bluetooth">
+<pre caption="Instalacjag gnome-bluetooth">
 # <i>emerge gnome-bluetooth</i>
 </pre>
 
 <p>
-This adds menu entries under Applications &gt; System Tools from where you can
-easily start up the manager or File sharing to transfer files between devices.
+Do menu w sekcji Aplikacje &gt; Narzędzia systemowe zostaną dodane wpisy,
+dzięki którym można będzie w łatwy sposób uruchomić menedżera lub udostępnianie
+plików do transferu danych pomiędzy dwoma urządzeniami.
 </p>
 
 <p>
-To transfer files (the easy way): 
+Aby przesyłać pliki (prosty sposób): 
 </p>
 
 <ul>
   <li>
-    From the Phone to the Computer - Send the file from the phone via Bluetooth
-    and it will be picked up and saved to your <path>/home</path> always.
+    Z telefonu do komputera, należy wysłać plik przy pomocy Bluetooth z
+    telefonu, a zostanie on odebrany i będzie zawsze zapisywany w katalogu 
+    <path>/home</path>.
   </li>
-<!--FIXME : Doesn't work on Nautilus 2.10.x. Bug #103464 for details -->
+<!--FIXME : Nie działa na Nautilus 2.10.x. Bug #103464 for details -->
 <!--
   <li>
-    From the Computer to the Phone - Fire up <c>nautilus</c> and select the
-    file you want to send and right click on it. Select the Send via Bluetooth
-    option and ask your phone to accept the file.
+    Z komputera do telefonu, należy uruchomić program <c>nautilus</c> kilkając
+    na niego prawym przyciskiem myszki na pliku który chcemy wysłać. Z menu
+    wybieramy opcję wyślij przez Bluetooth i akceptujemy na telefonie odbiór
+    pliku.
   </li>
 -->
 </ul>
 
 <p>
-<c>gnome-phone-manager</c> is a nifty app that you can use to send and receive
-messages to and from your phone, using only your system. You do not have to
-touch your phone to read or send messages since all that happens through the
-application. You are also notified of a new message on your screen if the option
-is enabled under Preferences. Installation is a breeze as always.
+<c>gnome-phone-manager</c> jest świetną aplikacją, którą możemy używać do
+wysyłanie i czytania wiadomości tekstowych SMS, używając wyłącznie systemu. 
+Nie musimy nawet dotykać telefonu, gdyż czytanie czy wysyłanie wiadomości
+realizowane jest przez samą aplikację. Możemy być również powiadamiani o nowej 
+wiadomości na ekranie, jeśli ta opcja jest uaktywniona w ustawieniach. 
+Instalacja samego programu jest prosta jak zawsze.
 </p>
 
-<pre caption="Installing gnome-phone-manager">
+<pre caption="Instalacja gnome-phone-manager">
 # <i>emerge gnome-phone-manager</i>
 </pre>
 
 </body>
 </section>
 <section>
-<title>For KDE</title>
+<title>KDE</title>
 <body>
 
 <p>
-KDE makes use of <c>kdebluetooth</c> and provides more utilities than its Gnome
-counterpart as seen below.
+KDE korzysta z <c>kdebluetooth</c>, który jest dostarczany z większą ilością
+programów niż jego odpowiednik w Gnome.
 </p>
 
 <ul>
-  <li><c>kbluetoothd</c>: Bluetooth Meta Server.</li>
-  <li><c>kbtsearch</c>: Bluetooth device/service search utility.</li>
-  <li><c>khciconfig</c>: KDE Bluetooth Monitor.</li>
-  <li><c>kioclient</c>: KIO command line client.</li>
-  <li><c>qobexclient</c>: Swiss army knife for obex testing/development.</li>
-  <li><c>kbtobexclient</c>: A KDE Bluetooth Framework Application.</li>
+  <li><c>kbluetoothd</c>: Meta serwer Bluetooth</li>
+  <li><c>kbtsearch</c>: Narzędzie do wyszukiwania urządzeń/serwisów Bluetooth</li>
+  <li><c>khciconfig</c>: Monitor KDE Bluetooth</li>
+  <li><c>kioclient</c>: Klient lini poleceń KIO</li>
+  <li><c>qobexclient</c>: Zestaw narzędzi dla testowania obex</li>
+  <li><c>kbtobexclient</c>: Aplikacja struktury Bluetooth KDE</li>
   <li><c>kioobex_start</c></li>
   <li><c>kbtserialchat</c></li>
-  <li><c>kbemusedsrv</c>: KDE Bemused Server.</li>
-  <li><c>kbtobexsrv</c>: KDE OBEX Push Server for Bluetooth.</li>
-  <li><c>kbluepin</c>: A KDE KPart Application.</li>
+  <li><c>kbemusedsrv</c>: Serwer Bemused KDE</li>
+  <li><c>kbtobexsrv</c>: Ofensywny serwer OBEX KDE dla Bluetooth</li>
+  <li><c>kbluepin</c>: Aplikacja KDE KPart</li>
   <li>
-    <c>auth-helper</c>: A helper program for kbtobexsrv that sends an
-    authentication request for a given ACL link.
+    <c>auth-helper</c>: Program pomocniczy dla kbtobexsrv, który wysyła prośbę
+    o autoryzację dla danego linku ACL.
   </li>
 </ul>
 
-<pre caption="Installing kdebluetooth">
+<pre caption="Instalacja kdebluetooth">
 # <i>emerge kdebluetooth</i>
 </pre>
 
 </body>
 </section>
 <section>
-<title>Other Interesting Applications</title>
+<title>Inne interesujące aplikacje</title>
 <body>
 
 <ul>
   <li>
-    <c>app-mobilephone/obexftp</c>: File transfer over OBEX for mobile phones
+    <c>app-mobilephone/obexftp</c>: Transfer plików do telefonów przez OBEX
   </li>
   <li>
-    <c>app-mobilephone/bemused</c>: Bemused is a system which allows you to
-    control your music collection from your phone, using Bluetooth.
+    <c>app-mobilephone/bemused</c>: Bemused jest systemem, który pozwala
+    kontrolować naszą kolekcję muzyki przy pomocy telefonu, używająć Bluetooth
   </li>
   <li>
-    <c>app-pda/multisync</c>: Multisync allows you to sync contacts, calendar
-    entries and notes from your mobile phone with your computer, over a
-    Bluetooth connection (amongst other things). It includes such features as
-    backing up this information and restoring it later, and syncing with the
-    Evolution e-mail client. You will need the <c>irmc</c> USE flag set to
-    ensure that <c>multisync</c> has Bluetooth support.
+    <c>app-pda/multisync</c>: Multisync pozwala synchronizować kontakty,
+    kalendarz i notatki między naszym telefonem komórkowym, a komputerem
+    poprzez połączenie Bluetooth. Posiadam między innymi takie funkcję jak
+    tworzenie kopii zapasowej i jej późniejsze przywracanie oraz synchronizację
+    z klientem poczty elektronicznej Evolution. Należy ustawić flagę USE
+    <c>irmc</c> dla <c>multisync</c>, aby mieć pewność, że posiada wsparcie dla
+    Bluetooth.
   </li>
   <li>
-    <c>media-plugins/xmms-btexmms</c>: Btexmms is an XMMS plugin that allows
-    you to use your Bluetooth-enabled (Sony) Ericsson mobile phone as a remote
-    control for XMMS.
+    <c>media-plugins/xmms-btexmms</c>: Btexmms jest wtyczką do XMMS, która
+    pozwala kontrolować przy pomocy telefonu Bluetooth-ready (Sony) Ericsson
+    kontrolować zdalnie XMMS-a.
   </li>
 </ul>
 
@@ -735,15 +757,16 @@ counterpart as seen below.
 </chapter>
 
 <chapter>
-<title>Acknowledgements</title>
+<title>Podziękowania</title>
 <section>
 <body>
 
 <p>
-Special thanks to <mail link="marcel@holtmann.org">Marcel Holtmann</mail>
-for his time and dedication to the Bluetooth development and for reviewing this
-guide. And big thanks to <mail link="puggy@gentoo.org">Douglas Russell</mail>
-for performing additional hardware tests and improving this guide.
+Specjalne podziękowania dla <mail link="marcel@holtmann.org">Marcela 
+Holtmanna</mail> za jego czas i oddanie przy pracy nad Bluetooth i za recenzję
+tego przewodnika. Duże podziękowania należą się także 
+<mail link="puggy@gentoo.org">Douglasowi Russellowi</mail> za wykonanie
+dodatkowych testów sprzętowych oraz za poprawki do tego przewodnika.
 </p>
 
 </body>
