@@ -34,8 +34,8 @@ technologii Bluetooth.
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <license/>
 
-<version>1.0</version>
-<date>2005-08-25</date>
+<version>1.1</version>
+<date>2005-08-31</date>
 
 <chapter id="introduction">
 <title>Wprowadzenie</title>
@@ -47,9 +47,9 @@ technologii Bluetooth.
 Bluetooth jest przemysłową specyfikacją, która umożliwia użytkownikom łączenie i
 wymianę informacji pomiędzy urządzeniami takimi jak komputery osobiste, PDA czy
 telefony komórkowe. Używając tej technologii użytkownik może osiągnąć
-bezprzewodowy dźwięk i transmisję danych pomiędzy dwoma urządzeniami po niskich
-kosztach. Bluetooth oferuje również możliwość stworzenia małych bezprzewodowych
-sieci LAN oraz pozwala na synchronizację urządzeń.
+bezprzewodowy dźwięk i transmisję danych pomiędzy dwoma urządzeniami, nie
+wydając ogromnych sum pieniędzy. Bluetooth oferuje również możliwość stworzenia 
+małych bezprzewodowych sieci LAN oraz pozwala na synchronizację urządzeń.
 </p>
 
 </body>
@@ -61,7 +61,7 @@ sieci LAN oraz pozwala na synchronizację urządzeń.
 <p>
 W pierwszej części tego przewodnika opisano sposób identyfikacji urządzeń,
 które wspierają technologię Bluetooth. Dzięki temu użytkownik może zamówić
-urządzenie Bluetooth, które będzie działało poprawnie. W częsci tej
+urządzenie Bluetooth, które będzie działało poprawnie. W części tej
 wytłumaczono również w jaki sposób skonfigurować jądro systemu, zidentyfikować
 urządzenia Bluetooth zainstalowane w komputerze i wykryte przez jądro oraz
 zainstalować podstawowe narzędzia Bluetooth.
@@ -90,7 +90,8 @@ skorzystać z wszystkich możliwości oferowanych przez technologię Bluetooth.
 
 <impo>
 Urządzenia te mogą działać nawet wtedy, gdy nie są uznane za takie, które
-działają poprawnie. Gentoo nie zapewnia żadnego wsparcia dla takich nich.
+działają poprawnie. Gentoo nie zapewnia żadnego wsparcia dla tego typu 
+urządzeń.
 </impo>
 
 <p>
@@ -158,7 +159,7 @@ gdy jest wybrane wsparcie dla PCMCIA w jądrze)</comment>
 
 <comment>(Należy cofnąć się trzy poziom do góry, do sekcji Device Drivers i
 sprawdzić czy wsparcie dla USB jest uaktywnione. Jest to wymagane w przypadku
-kiedy używamy nadajnika Bluetooth, w postaci klucza USB)</comment>
+kiedy używamy nadajnika Bluetooth, w postaci klucza USB).</comment>
 USB support  ---&gt;
 
 &lt;*&gt; Support for Host-side USB
@@ -212,7 +213,7 @@ Kiedy już urządzenie jest wykrywane przez jądro, potrzebujemy warstwy, która
 pozwoli aplikacjom na komunikację z urządzeniem Bluetooth. BlueZ jest
 oficjalnym stosem Bluetooth Linuksa. Potrzebujemy dwóch pakietów,
 <c>bluez-libs</c> i <c>bluez-utils</c>. Urządzenia potrzebujące oprogramowania
-firmware Broadcom lub podobne mogą wymagać pakietu <c>bluez-firmware</c>.
+firmware Broadcom lub podobnego mogą wymagać pakietu <c>bluez-firmware</c>.
 </p>
 
 <pre caption="Instalacja bluez-libs i bluez-utils">
@@ -266,7 +267,7 @@ hci0:   Type: USB
 <p>
 Pokazuje to iż urządzenie Bluetooth zostało rozpoznane. Jak możemy zauważyć
 urządzenie jest wyłączone (<e>DOWN</e>). Należy je skonfigurować tak, aby
-uruchamiało się właczone. Plik konfiguracyjny znaduję się w 
+uruchamiało się włączone. Plik konfiguracyjny znaduję się w 
 <path>/etc/bluetooth/hcid.conf</path>. Wymagane zmiany, które należy wprowadzić
 pokazane są poniżej. Dodatkowych szczegółów można szukać w manualu wydając
 komendę <c>man hcid.conf</c>.
@@ -287,13 +288,13 @@ komendę <c>man hcid.conf</c>.
         # PIN helper
         pin_helper /etc/bluetooth/pin-helper;
 	
-<comment>(Należy ustawić nazwę urządzenia, można je nazwać jak chcemy)</comment>
+<comment>(Należy ustawić nazwę urządzenia. Można je nazwać jak chcemy)</comment>
         # Local device name
         #   %d - device id
         #   %h - host name
         name "BlueZ at %h (%d)";
 
-<comment>(Jeżeli nie wiemy do czego służą poniższe zmienne należy ich nie
+<comment>(Jeżeli nie wiemy do czego służą poniższe zmienne nie należy ich
 zmieniać)</comment>
         # Authentication and Encryption (Security Mode 3)
         #auth enable;
@@ -390,7 +391,7 @@ hci0:   Type: USB
 
 <p>
 W tym momencie jesteśmy gotowi, aby wykryć urządzenia Bluetooth zainstalowane
-na innych komputerach. This is independent of the host Operating System.
+na innych komputerach. Jest to niezależne od hosta systemu operacyjnego. 
 Użyjemy polecenia <c>hcitool</c> do tego celu.
 </p>
 
@@ -406,7 +407,7 @@ Scanning ...
         00:0A:0B:0C:0D:0E       Grayhat 
 </pre>
 
-<pre caption="Inquiring remote devices">
+<pre caption="Dociekanie zdalnych urządzeń">
 # <i>hcitool inq</i>
 Inquiring ...
         00:0A:0B:0C:0D:0E       clock offset: 0x5579    class: 0x72010c 
