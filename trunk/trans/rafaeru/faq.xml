@@ -7,14 +7,17 @@
 <author title="Autor">John P. Davis</author>
 <author title="Autor">Daniel Robbins</author>
 <author title="Współpracownik">William Kilian</author>
-<author title="Editor">Chris Gianelloni</author>
+<author title="Edytor">Chris Gianelloni</author>
+<author title="Tłumaczenie">
+<mail link="rafaeru@o2.pl">Rafał Stolarski</mail>
+</author>
 
 <abstract>
 Najczęściej zadawane pytania związane z programem Catalyst.
 </abstract>
 
 <version>1.0</version>
-<date>3 October 2004</date>
+<date>3 październik 2004</date>
 
 <chapter>
 <title>Najczęściej Zadawane Pytania</title>
@@ -27,7 +30,7 @@ Najczęściej zadawane pytania związane z programem Catalyst.
 	<p>O: Po pierwsze, należy się upewnić, czy sprzęt na którym pracujemy odpowiada konfiguracji, na którą przygotowujemy stage.
 	Tworzenie stage dla <c>pentium4</c>
 	musi zostać wykonane na systemie opartym o Pentium 4 lub AMD64/Opteron. 
-	Nie jest mozliwe utworzenie stage dla <c>pentium4</c> na systemie opartym o Athlon XP,
+	Nie jest możliwe utworzenie stage dla <c>pentium4</c> na systemie opartym o Athlon XP,
 	jako że procesory Athlon XP nie wpsierają instrukcji SSE2, dostępnych w stage dla
 	<c>pentium4</c>. Podobnie rzecz ma się w przypadku,
 	gdy chcemy budować system dla <c>g4</c>. Można tego dokonać jedynie na systemach wspierających PowerPC G4 lub G5.</p>
@@ -41,67 +44,65 @@ Najczęściej zadawane pytania związane z programem Catalyst.
 
 	<p><b>P: Jak zbudować system wpierających wiele procesorów? Jak tego dokonać?</b></p>
 	<p>O: Na początku należy zbudować ogólny stage1. Następnie używamy utworzone stage1 do zbudowania konkretnych wersji stage2 i stage3. 
-	Następnie używamy stage1 ponownie by utworzyć kolejne wyspecjalizowane wersje stage2 i stage3. Stage1 nie musi być tworzone od nowa 
+	Używamy stage1 ponownie by utworzyć kolejne wyspecjalizowane wersje stage2 i stage3. Stage1 nie musi być tworzone od nowa 
 	-- wszystkie zbudowane stage 2 i stage3 mogą używać tego samego stage1 jako źródła.</p>
 
-	<p><b>P: Czy mogę zbudować stage1 dla nietypowej wersji procesora?</b></p>
+	<p><b>P: Czy można zbudować stage1 dla nietypowej wersji procesora?</b></p>
 	<p>O: Nie jest to najlepszy pomysł, jako że stage1 uznaje się za wersję pracującą z każdym typem procesorów.
 	Dzięki temu, można go uruchamiać
 	na każdym sprzęcie. Musimy uważać, by nie "zanieczyścić" naszego stage1 
 	specyficznym kodem nietypowych procesorów.
 	Do tworzenia nowej wersji stage1 używamy "ogólnych" wersji stage2 i stage3.</p>
 
-	<p><b>Q: I thought that catalyst was able to build stages "from scratch." If catalyst builds 
-	stages from scratch, then why does it need a "seed stage"?</b></p>
-	<p>A: Good question. As you know, a stage2 and stage3 are dependent on
-	previous stages for building, which is expected
-	and made clear by their name (ie. a "stage2" implies that there was a "stage1".)
-	However, catalyst does need a seed stage for building a stage1, so in regards to building
-	a stage1 it's worth looking into why this is necessary. When building
-	a stage1, catalyst uses the seed (stage2 or stage3) to set up a chroot environment.
-	Inside the chroot environment, the new stage1 is built by setting the <c>ROOT</c> environment
-	variable to <path>/tmp/stage1root</path>. This instructs Portage
-	to merge all new packages not to the current filesystem, but to the filesystem in
+	<p><b>P: Czy catalyst może budować każdy stage od początku?." Jeżeli catalyst posiada taką mozliwość, 
+	dlaczego za każdym razem potrzebna jest wersja stage na której budujemy inne?"</b></p>
+	<p>O: Dobre pytanie. Jak wiadomo, stage2 i stage3 są zależne od poprzednich stage przy budowaniu, 
+	o czym świadczą ich nazwy (np. "stage2" sugeruje istnienie "stage1".)
+	Mimo to, catalyst potrzebuje podstawowego stage by utworzyć stage1, tak więc mając na celu zbudowanie
+	stage1, warto wiedzieć dlaczego jest to tak ważne. Budując stage1,
+	catalyst korzysta ze źródłowego stage (stage2 lub stage3) by utworzyć środowisko chroot.
+	Wewnątrz środowiska chroot, nowe stage1 jest tworzone poprzez ustawienie zmiennej środowiska <c>ROOT</c>
+	na <path>/tmp/stage1root</path>. Zmienna ta instruuje Portage
+	by pominęło obecny system plików i łączyło wszystkie nowe pakiety z systemem umiejscowionym w
 	<path>/tmp/stage1root</path>. <path>/tmp/stage1root</path>
-	is then tarred up and becomes the target stage1. What this means is that when catalyst
-	builds a stage1, the stage1 itself does not
-	inherit any binaries or libraries from the seed that is used. The seed that is used <e>does</e>
-	impact the target stage1 somewhat -- the Linux headers on the seed are used for building the stage1's
-	glibc, and the compilers on the seed are used to compile all the
-	programs on the stage1. The seed stage is used to isolate the stage1 build process from your local system,
-	and also allows for x86 stage1s to be built on amd64 systems, for example.</p>
+	jest wtedy pakowane i staje się docelowym stage1. Oznacza to, że gdy catalyst tworzy stage1,
+	samo stage1 nie dziedziczy żadnych binariów ani bibliotek
+	ze źródłowego stage, które jest używane podczas tworzenia. Jednakże używane stage <e>wpływa</e>
+	w pewnym stopniu na docelowe stage1 -- Pliki nagłówkowe Linux (Linux headers) w używanym stage są użyte do budowania glibc w stage1,
+	tak więc kompilatory w stage użytym do budowy stage1 są używane do kompilacji wszystkich
+	programów w stage1. Źródłowe stage jest używane do odizolowania procesu budowy stage1 od lokalnego systemu,
+	oraz umożliwienia budowania stage1 w wersji x86 na systemach amd64, dla przykładu.</p>
 
-	<p><b>Q: Is there an official HOWTO for Catalyst?</b></p>
-	<p>Currently, there is no official HOWTO. If you are interested in writing one though, please
-	file a bug with the HOWTO attached to it. The lack of an official HOWTO does not mean that
-	Catalyst is completely undocumented though. If Catalyst is emerged with the <c>doc</c> USE flag set,
-	well commented example specfiles are installed to <path>/usr/share/doc/catalyst-$version/examples</path>.
+	<p><b>P: Czy istnieje oficjalne HOWTO dla Catalyst?</b></p>
+	<p>O: Obecenie, nie. Wszyscy zainteresowani napisaniem takiego przewodnika, mogą wysłać swe prace tak jak w przypadku
+	raportowania błędów. Brak oficjalnego HOWTO, nie oznacza że Catalyst nie posiada żadnej dokumentacji. 
+	Jeżeli zaemergujemy Catalyst z flagą USE <c>doc</c>,
+	przykładowe pliki z instrukcjami zostaną zainstalowane w <path>/usr/share/doc/catalyst-$version/examples</path>.
 	</p>
 
-	<p>If you still have questions after reading through the examples, feel free to subscribe to the 
-	gentoo-catalyst mailing list.</p>
+	<p>Jeżeli potrzebujemy odpowiedzi na inne pytania, pomocne może okazać się zapisanie do listy mailowej gentoo-catalyst.</p>
 
-	<p><b>Q: Where do I put per-package use flags, mask settings, etc.?</b></p>
-	<p>Catalyst supports the configuration files in /etc/portage. Just add the
-	following to your spec file, and make sure that you use the same <c>portage_confdir</c>
-	setting for your seed stages as well:</p>
+	<p><b>P: Gdzie należy umieszczać per-package flagi use, ustawienia maskowania, itp.?</b></p>
+	<p>O: Catalyst wpiera pliki konfiguracyjne znajdujące się w /etc/portage. Wystarczy dodać
+	wybrane flagi w pliku specyfikacji, i upewnić się czy źródłowe stage uzywają tej samej opcji <c>portage_confdir</c>
+	co system lokalny:</p>
 
 	<p>portage_confdir: /path/to/custom/etc/portage</p>
 
-	<p><b>Q: Should I really build my own stage1 or just use one from a Gentoo mirror?</b></p>
+	<p><b>P: Budować własne stage1, czy użyć wersji dostępnej w Gentoo mirror?</b></p>
 
-	<p>Stages from the latest Gentoo release should suffice, unless you are planning to do a hardened build
-	or wish to change profile settings (i.e. USE flags, CFLAGS, etc).</p>
+	<p>O: Stage pochodzące z najnowszych wersji Gentoo mogą zostać użyte, chyba że mamy zamiar budować wersję "hardened",
+	lub chcemy mieć możliwość zmiany ustawień profilu (np. flagi USE, CFLAGS, itp).</p>
 
-	<p><b>Q: How do I keep my GRP/stages/LiveCD packages updated?</b></p>
+	<p><b>P: W jaki sposób utrzymywać pakiety GRP/stages/LiveCD zawsze w najnowszej wersji?</b></p>
 
-	<p>Catalyst uses Portage for all of the building work, so all that you have to do is regenerate your
-	Portage snapshot and rebuild your GRP/stages/LiveCD. Portage will follow all of its normal rules for
-	deciding which packages to update.</p>
+	<p>O: Catalyst uzywa Portage podczas pracy, tak więc wystarczy regenerować snapshot Portage
+	i przebudowywać GRP/stages/LiveCD. Portage przeprowadzi update pakietów tak jak to ma miesjce 
+	w zwykłym systemie.</p>
 
-	<p><b>Q: Does Catalyst use any special USE flag syntax?</b></p>
+	<p><b>P: Czy Catalyst używa sopecjalnej składni dla flag USE?</b></p>
 
-	<p>No, Catalyst's USE flag syntax is exactly the same as Portage's.</p>
+	<p>O: Nie, flagi USE w Catalyst są identyczne jak w Portage.</p>
 
 	</body>
 	</section>
