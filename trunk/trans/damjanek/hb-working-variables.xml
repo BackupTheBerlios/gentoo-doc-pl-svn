@@ -175,13 +175,14 @@ LDPATH="/usr/lib/gcc-lib/i686-pc-linux-gnu/3.2.3"
 </pre>
 
 <p>
-W innych dystrybucjach musiałbyś zmienić lub dodać definicje powyższych zmiennych systemowych
-do pliku <path>/etc/profile</path> lub w inne miejsce. W Gentoo jest to znacznie
+W innych dystrybucjach trzeba by zmienić lub dodać definicje powyższych zmiennych systemowych
+do pliku <path>/etc/profile</path> lub w innym miejscu. W Gentoo jest to znacznie
 prostsze i nie wymaga w zasadzie igerencji użytkownika.
 </p>
 
 <p>
-W przypadku, kiedy <c>gcc</c> jest uaktualniane, uaktualniany jest także plik <path>/etc/rnv.d/05gcc</path>.
+W przypadku, kiedy <c>gcc</c> jest uaktualniane, uaktualniany jest także plik
+<path>/etc/env.d/05gcc</path>.
 Dzieje się to bez udziału użytkownika.
 </p>
 
@@ -209,7 +210,7 @@ na w te zmienne, które zdefiniowałeś samodzielnie.
 
 <p>
 Kilka plików w katalogu <path>/etc/env.d</path> definiuje zmienną <c>PATH</c>. Nie jest to błędem.
-Kiedy wykonasz <c>env-update</c>, to skrypt ten doda do siebie wszystkie definicje tej samej zmiennej,
+Kiedy wykonane zostanie <c>env-update</c>, to skrypt ten doda do siebie wszystkie definicje tej samej zmiennej,
 uaktualniając na koniec zmienne środowiskowe w systemie. Daje to możliwość dodawania własnych zmiennych
 środowiskowych bez obawy przed tym, że zmodyfikowana zostanie już istniejąca zmienna (pozbawiając ją
 dotychczasowej wartości).
@@ -239,13 +240,13 @@ alfabetycznej w katalogu <path>/etc/env.d</path>).
 Uruchomienie skryptu <c>env-update</c> powoduje utworzenie zmiennych systemowych i umieszczenie ich w pliku
 <path>/etc/profile.env</path> (z którego korzysta <path>/etc/profile</path>). Skrypt ten pobiera także informacje
 z (opisanej wcześniej) zmiennej <c>LDPATH</c> i używa ich do utworzenia pliku <path>/etc/ld.so.conf</path>.
-Po wykonaniu tej czynności uruchamia polecenie ldconfig w celu odbudowania wspomnianego pliku
+Po wykonaniu tej czynności uruchamia polecenie <c>ldconfig</c> w celu odbudowania wspomnianego pliku
 <path>/etc/ld.so.cache</path>, który jest używany przez konsolidator.
 </p>
 
 <p>
-Jeśli chcesz zaobserwować efekt, jaki przynosi wykonanie polecenia <c>env-update</c>,
-uruchom następujące polecenia w celu uaktualnienia zmiennych środowiskowych.
+Jeśli chcemy zaobserwować efekt, jaki przynosi wykonanie polecenia <c>env-update</c>,
+należy uruchomić następujące polecenia w celu uaktualnienia zmiennych środowiskowych.
 Użytkownicy mający już pierwszą instalację Gentoo za sobą pewnie pamiętają polecenie:
 
 
@@ -277,7 +278,7 @@ nowymi zmiennymi.
 <p>
 Nie zawsze użytkownik chce aby zdefiniowane przez niego zmienne miały charakter globalny
 (były dostępne dla innych użytkowników w systemie). Na przykład może zechcieć dodać
-katalog <path>/home/my_user/bin</path> i katalog, w którym obecnie się znajduje
+katalog <path>/home/moj_uzytkownik/bin</path> i katalog, w którym obecnie się znajduje
 do zmiennej <c>PATH</c>, lecz nie chce aby była ona dostępna dla pozostałych.
 Aby zdefiniować taką zmienną środowiskową lokalną, do pliku
 <path>~/.bashrc</path> lub <path>~/.bash_profile</path> należy dodać następującą
