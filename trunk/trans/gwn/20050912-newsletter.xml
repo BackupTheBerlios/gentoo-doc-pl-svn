@@ -58,7 +58,7 @@ Rozszerzony wybór flag USE, pozwalający wybrać rodzaj kompilowanego MPM.
 </li>
 <li>
 Nowy pakiet <path>gentoo-webroot</path>, zawierający standardowe ikony Gentoo,
-strony opisujące występujące błędy oraz domyślną stronę www. Będzie on zawiera
+strony opisujące występujące błędy oraz domyślną stronę www. Będzie on posiadał
 flagę USE umożliwiającą zablokowanie instalacji strony do katalogu
 <path>/var/www/localhost</path> co jest szczególnie ważne, gdy zawiera on
 już jakiś serwis internetowy.
@@ -68,25 +68,24 @@ I znacznie, znacznie więcej, wliczając w to poprawki masy błędów.
 </li>
 </ul>
 <p>
-Zmiany ustabilizują się w niedziele, 18 września. Wszystkie modyfikacje zostały
-dokładnie przetestowane oraz pozytywnie ocenione przez wielu użytkowników
-Umożliwiają one także użycie nowych ebuildów php (włączają także wsparcie
-dla php5) kiedy będą one już w pełni dostępne.
+Zmiany ustabilizują się w niedzielę, 18 września. Wszystkie modyfikacje zostały
+dokładnie przetestowane oraz pozytywnie ocenione przez wielu użytkowników.
+Umożliwiają one także użycie nowych ebuildów php (włączają także wsparcie dla
+php5), kiedy będą one już w pełni dostępne.
 </p>
 <p>
-W związku z tymi zmianami i ulepszeniami, po aktualizacji Apache należy zadbać
-o kilka rzeczy. Dokładne instrukcje zostały już opublikowane w dokumencie <uri
-link="http://www.gentoo.org/doc/pl/apache-upgrading.xml">Aktualizacja
-serwera Apache</uri>. Wszystkie wymagane czynności można podsumować:
+W związku z tymi zmianami i ulepszeniami, po aktualizacji Apache należy zadbać o
+kilka rzeczy. Dokładne instrukcje zostały już opublikowane w dokumencie <uri
+link="/doc/pl/apache-upgrading.xml">Aktualizacja serwera Apache</uri>. Wszystkie
+wymagane czynności można podsumować:
 </p>
 <ol>
 <li>
 Zainstalować wszystkie dodatki, które są wpisane do pliku konfiguracyjnego
 Apache (<path>/etc/apache2/httpd.conf</path> - jego lokalizacja została
-zmieniona). Należy zauważyć, że skrypt init dla <c>apache</c> sprawdza
-także obecność pliku w starej lokacji i w przypadku jego wykrycia, nie
-uruchamia się - ma to zapobiec użyciu nieprawidłowej dla danej maszyny
-konfiguracji.
+zmieniona). Należy zauważyć, że skrypt init dla <c>apache</c> sprawdza także
+obecność pliku w starej lokacji i w przypadku jego wykrycia, nie uruchamia się -
+ma to zapobiec użyciu nieprawidłowej dla danej maszyny konfiguracji.
 </li>
 <li>
 Następnie należy zaktualizować wszystkie moduły, tak by ich wersje były
@@ -94,15 +93,15 @@ wspierane przez nową <path>eclass</path>. Stare moduły nie będą działały z
 względu na zmiany w lokalizacji plików konfiguracyjnych.
 </li>
 <li>
-Uruchomić ponownie Apache
+Uruchomić ponownie Apache.
 </li>
 </ol>
 <p>
 Dołożyliśmy wszelkich starań, aby ułatwić proces migracji, jednak w razie
-jakichkolwiek problemów zapraszamy do odwiedzenia
-kanału <path>#gentoo-apache</path> na serwerze <path>irc.freenode.net</path> lub
-naszej listy mailingowej <path>gentoo-web-user@gentoo.org</path>, gdzie z
-chęcią udzielimy wszelkiej możliwej pomocy
+jakichkolwiek problemów zapraszamy do odwiedzenia kanału
+<path>#gentoo-apache</path> w sieci <path>irc.freenode.net</path> lub naszej
+listy mailingowej <path>gentoo-web-user@gentoo.org</path>, gdzie z chęcią
+udzielimy wszelkiej możliwej pomocy.
 </p>
 </body>
 </section>
@@ -129,9 +128,9 @@ rozwiązań oraz czemu opisana modyfikacja źródeł jądra jest raczej złym po
 <ul>
 <li><uri
 link="http://thread.gmane.org/gmane.linux.gentoo.devel/31146">USE="minimal"
-for kernel sources </uri></li>
+for kernel sources</uri></li>
 </ul>
-<p><b>[Podsumowanie] Wstępny glep zespołu x86</b></p>
+<p><b>[Podsumowanie] Wstępny GLEP zespołu x86</b></p>
 <p>
 <mail link="chriswhite@gentoo.org">Chris White</mail> ponownie stworzył
 podsumowanie jednego z tych piekielnie długich wątków, które czynią
@@ -154,10 +153,10 @@ link="http://thread.gmane.org/gmane.linux.gentoo.devel/31169">
 <title>ComputerWorld (9 września 2005)</title>
 <body>
 <p>
-"Wygląda na to, że jeden z najgłośniejszych rzeczników ruchu open
-source, <uri link="http://www.catb.org/~esr/">Eric S. Raymond</uri> ledwie
-uniknął bycia zwabionym na podobne stanowisko w firmie Microsoft, jakie obecnie
-piastuje założyciel Gentoo, Daniel Robbins", pisze Robert McMillan w  <uri
+"Wygląda na to, że jeden z najgłośniejszych rzeczników ruchu open source, <uri
+link="http://www.catb.org/~esr/">Eric S. Raymond</uri> ledwie uniknął bycia
+zwerbowanym na podobne stanowisko w firmie Microsoft, jakie obecnie piastuje
+założyciel Gentoo, Daniel Robbins", pisze Robert McMillan w  <uri
 link="http://www.computerworld.com/softwaretopics/software/story/0,10801,104530,
 00.html"> artykule w piśmie Computerworld</uri>. Biorąc pod uwagę fakt, że autor
 dokumentów Halloween mógłby czuć się bardzo nieswojo w firmie, z którą walczy od
@@ -190,8 +189,8 @@ zarówno pod Gentoo, jak i Debianem. Jest ono gotowe do pobrania.
 <body>
 <p>
 W ostatnim numerze zamieściliśmy <uri
-link="/news/pl/gwn/20050905-newsletter.xml#doc_chap6">sztuczkę dotyczącą
-funkcji szukania</uri> w <c>make menuconfig</c>. Kontynuując tematykę dotyczącą
+link="/news/pl/gwn/20050905-newsletter.xml#doc_chap6">sztuczkę dotyczącą funkcji
+szukania</uri> w <c>make menuconfig</c>. Kontynuując tematykę dotyczącą
 konfigurowania jądra, w tym tygodniu pokażemy w jaki sposób można poradzić sobie
 z nieznanymi zależnościami. Przykładowo, gdy chcemy zmienić budowę jądra z
 modularnej na monolityczną, często możemy mieć problem ze modyfikacją opcji.
@@ -251,10 +250,8 @@ tygodniu:
 </p>
 <ul>
 <li>Matti Bickel (mabi) - Tester architektury PPC</li>
-<li>Christian Hartmann (ian) - Oficjalny zespół (moderator globalnego
-forum)</li>
-<li>Mauricio Lima Pilla (pilla) - Oficjalny zespół (moderator globalnego
-forum)</li>
+<li>Christian Hartmann (ian) - globalny moderator forum</li>
+<li>Mauricio Lima Pilla (pilla) - globalny moderator forum</li>
 </ul>
 </body>
 </section>
@@ -292,10 +289,8 @@ link="/security/en/glsa/glsa-200509-03.xml">komunikacie GLSA</uri>
 <title>phpLDAPadmin: Authentication bypass</title>
 <body>
 <p>
-
-A flaw in phpLDAPadmin may allow attackers to bypass security restrictions
-and connect anonymously.
-
+Błąd w phpLDAPadmin umożliwia atakującemu obejście zabezpieczeń i anonimowe
+połączenie się.
 </p>
 <p>
 Więcej informacji można znaleźć w <uri
@@ -473,9 +468,9 @@ link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&
 <section>
 <body>
 <p>
-Jeśli chcesz, aby ten magazyn był jeszcze lepszy, podziel się z
-<mail link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat.
-Uwagi dotyczące tłumaczenia tygodnika można zgłaszać na adres
+Jeśli chcesz, aby ten magazyn był jeszcze lepszy, podziel się z <mail
+link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat. Uwagi
+dotyczące tłumaczenia tygodnika można zgłaszać na adres
 <mail>rane@gentoo.org</mail>.
 </p>
 </body>
