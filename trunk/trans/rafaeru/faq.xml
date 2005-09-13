@@ -42,7 +42,7 @@ Najczęściej zadawane pytania związane z programem Catalyst.
 	budowy stage3. Oczywiście wybieramy stage3 z odpowiednią dla procesora opcją <c>subarch</c>, tak
 	by pokrywała się ona z opcją stage2.</p>
 
-	<p><b>P: Jak zbudować system wpierających wiele procesorów? Jak tego dokonać?</b></p>
+	<p><b>P: Jak zbudować system z wieloma stage-ami wpierającymi różnorodne procesory?</b></p>
 	<p>O: Na początku należy zbudować ogólny stage1. Następnie używamy utworzone stage1 do zbudowania konkretnych wersji stage2 i stage3. 
 	Używamy stage1 ponownie by utworzyć kolejne wyspecjalizowane wersje stage2 i stage3. Stage1 nie musi być tworzone od nowa 
 	-- wszystkie zbudowane stage 2 i stage3 mogą używać tego samego stage1 jako źródła.</p>
@@ -54,8 +54,8 @@ Najczęściej zadawane pytania związane z programem Catalyst.
 	specyficznym kodem nietypowych procesorów.
 	Do tworzenia nowej wersji stage1 używamy "ogólnych" wersji stage2 i stage3.</p>
 
-	<p><b>P: Czy catalyst może budować każdy stage od początku?." Jeżeli catalyst posiada taką mozliwość, 
-	dlaczego za każdym razem potrzebna jest wersja stage na której budujemy inne?"</b></p>
+	<p><b>P: Czy catalyst może budować każdy stage od początku?. Jeżeli catalyst posiada taką mozliwość, 
+	dlaczego za każdym razem potrzebna jest wersja stage na której budujemy inne?</b></p>
 	<p>O: Dobre pytanie. Jak wiadomo, stage2 i stage3 są zależne od poprzednich stage przy budowaniu, 
 	o czym świadczą ich nazwy (np. "stage2" sugeruje istnienie "stage1".)
 	Mimo to, catalyst potrzebuje podstawowego stage by utworzyć stage1, tak więc mając na celu zbudowanie
@@ -82,7 +82,7 @@ Najczęściej zadawane pytania związane z programem Catalyst.
 
 	<p>Jeżeli potrzebujemy odpowiedzi na inne pytania, pomocne może okazać się zapisanie do listy mailowej gentoo-catalyst.</p>
 
-	<p><b>P: Gdzie należy umieszczać per-package flagi use, ustawienia maskowania, itp.?</b></p>
+	<p><b>P: Gdzie należy umieszczać flagi use dla poszczególnych pakietów, ustawienia maskowania, itp.?</b></p>
 	<p>O: Catalyst wpiera pliki konfiguracyjne znajdujące się w /etc/portage. Wystarczy dodać
 	wybrane flagi w pliku specyfikacji, i upewnić się czy źródłowe stage uzywają tej samej opcji <c>portage_confdir</c>
 	co system lokalny:</p>
@@ -96,7 +96,7 @@ Najczęściej zadawane pytania związane z programem Catalyst.
 
 	<p><b>P: W jaki sposób utrzymywać pakiety GRP/stages/LiveCD zawsze w najnowszej wersji?</b></p>
 
-	<p>O: Catalyst uzywa Portage podczas pracy, tak więc wystarczy regenerować snapshot Portage
+	<p>O: Catalyst używa Portage podczas pracy, tak więc wystarczy regenerować snapshot Portage
 	i przebudowywać GRP/stages/LiveCD. Portage przeprowadzi update pakietów tak jak to ma miesjce 
 	w zwykłym systemie.</p>
 
