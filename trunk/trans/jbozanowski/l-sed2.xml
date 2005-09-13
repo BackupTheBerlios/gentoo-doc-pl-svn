@@ -45,7 +45,7 @@ Gentoo Linux Documentation team -->
 Pierwotna wersja tego artykułu została opublikowana przez IBM
 developerWorks i jest własnością Westtech Information Services. Niniejszy
 dokument jest uaktualnioną wersją pierwotnego artykułu i zawiera liczne
-usprawnienia dokonane przez zespół Dokumentacji systemu Gentoo Linux. FIXME
+usprawnienia dokonane przez Zespół Dokumentacji systemu Gentoo Linux. FIXME
 </note>
 
 <p>
@@ -57,20 +57,19 @@ elementarnego zastosowania tej komendy:
 
 <pre caption="Najbardziej elementarne zastosowanie komendy podstawienia">
 $ <i>sed -e 's/cos/cosinnego/' mojplik.txt</i>
-$ <i>sed -e 's/foo/bar/' myfile.txt</i>
 </pre>
 
 <p>
 Powyższe polecenie wypisze na standardowe wyjście zawartość pliku FIXME 
-myfile.txt, zastępując w każdej linii pierwsze wystąpienie napisu 'foo' 
-(o ile w ogóle wystąpi) napisem 'bar'. Zauważmy, że napisałem o pierwszym
+mojplik.txt, zastępując w każdej linii pierwsze wystąpienie napisu 'cos' 
+(o ile w ogóle wystąpi) napisem 'cosinnego'. Zauważmy, że napisałem o pierwszym
 wystąpieniu w każdej linii, pomimo iż zwykle nie o to nam chodzi. Najczęściej
 gdy wykonuję podstawienie napisu, chcę tego dokonać globalnie. Oznacza to, że
 chcę zastąpić wszystkie wystąpienia napisu w każdej linii, w ten sposób:
 </p>
 
 <pre caption="Zastępowanie wszystkich wystąpień w każdej linii">
-$ <i>sed -e 's/foo/bar/g' myfile.txt</i>
+$ <i>sed -e 's/cos/cosinnego/g' mojplik.txt</i>
 </pre>
 
 <p>
@@ -87,21 +86,21 @@ sposób:
 </p>
 
 <pre caption="Określanie wierszy, do których komenda zostanie zastosowana">
-$ <i>sed -e '1,10s/enchantment/entrapment/g' myfile2.txt</i>
+$ <i>sed -e '1,10s/zaczarowanie/zablokowanie/g' mojplik2.txt</i>
 </pre>
 
 <p>
-Powyższy przykład sprawi, że wszystkie wystąpienia wyrazu 'enchantment' zostaną
-zastąpione wyrazem 'entrapment', ale tylko w wierszach od pierwszego do
+Powyższy przykład sprawi, że wszystkie wystąpienia wyrazu 'zaczarowanie' zostaną
+zastąpione wyrazem 'zablokowanie', ale tylko w wierszach od pierwszego do
 dziesiątego włącznie.
 </p>
 
 <pre caption="Podawanie dalszych opcji">
-$ <i>sed -e '/^$/,/^END/s/hills/mountains/g' myfile3.txt</i>
+$ <i>sed -e '/^$/,/^END/s/wzgórza/góry/g' mojplik3.txt</i>
 </pre>
 
 <p>
-W tym przykładzie wyraz 'hills' zostanie zastąpiony wyrazem 'mountains', ale
+W tym przykładzie wyraz 'wzgórza' zostanie zastąpiony wyrazem 'góry', ale
 tylko w tych blokach tekstu, które zaczynają się pustą linią, a kończą linią
 zaczynającą się od liter 'END' włącznie. 
 </p>
@@ -116,7 +115,7 @@ w którym zamienimy wszystkie wystąpienia <path>/usr/local</path> na
 </p>
 
 <pre caption="Zamiana wszystkich wystąpień napisu innym napisem">
-$ <i>sed -e 's:/usr/local:/usr:g' mylist.txt</i>
+$ <i>sed -e 's:/usr/local:/usr:g' mojalista.txt</i>
 </pre>
 
 <note>
@@ -128,7 +127,7 @@ odwrotnym ukośnikiem.
 </body>
 </section>
 <section>
-<title>FIXME Regexp snafus</title>
+<title>Pułapki wyrażeń regularnych</title>
 <body>
 
 <p>
@@ -140,7 +139,7 @@ zostanie skasowana (zastąpiona pustym napisem):
 </p>
 
 <pre caption="Kasowanie podanej frazy">
-$ <i>sed -e 's/&lt;.*&gt;//g' myfile.html</i>
+$ <i>sed -e 's/&lt;.*&gt;//g' mojplik.html</i>
 </pre>
 
 <p>
@@ -156,7 +155,7 @@ zamieni poniższą linię:
 </p>
 
 <pre caption="Przykładowy kod HTML">
-&lt;b&gt;This&lt;/b&gt; is what &lt;b&gt;I&lt;/b&gt; meant.
+&lt;b&gt;Właśnie&lt;/b&gt; o to &lt;b&gt;mi&lt;/b&gt; chodziło.
 </pre>
 
 <p>
@@ -164,7 +163,7 @@ W tę:
 </p>
 
 <pre caption="Niepożądany wynik">
-meant.
+chodziło.
 </pre>
 
 <p>
@@ -172,7 +171,7 @@ Zamiast w tę, czyli w to, co chcieliśmy osiągnąć:
 </p>
 
 <pre caption="Pożądany wynik">
-This is what I meant.
+Właśnie o to mi chodziło.
 </pre>
 
 <p>
@@ -185,7 +184,7 @@ powinno wyglądać tak:
 </p>
 
 <pre caption="">
-$ <i>sed -e 's/&lt;[^&gt;]*&gt;//g' myfile.html</i>
+$ <i>sed -e 's/&lt;[^&gt;]*&gt;//g' mojplik.html</i>
 </pre>
 
 <p>
@@ -198,7 +197,7 @@ przeglądając wyniki za pomocą programu more.
 </body>
 </section>
 <section>
-<title>FIXME More character matching</title>
+<title>FIXME Dopasowywanie większej ilości znaków</title>
 <body>
 
 <p>
@@ -226,11 +225,11 @@ dostępnych klas znakowych.
   </tr>
   <tr>
     <ti>[:alnum:]</ti>
-    <ti>Alfanumeryczne [a-z A-Z 0-9]</ti>
+    <ti>Znaki alfanumeryczne [a-z A-Z 0-9]</ti>
   </tr>
   <tr>
     <ti>[:alpha:]</ti>
-    <ti>Alfabetyczne [a-z A-Z]</ti>
+    <ti>Znaki alfabetyczne [a-z A-Z]</ti>
   </tr>
   <tr>
     <ti>[:blank:]</ti>
@@ -287,98 +286,112 @@ znaków (uwzględniając znaki akcentowane, itd).
 <body>
 
 <p>
-We've looked at how to perform simple and even reasonably complex straight
-substitutions, but sed can do even more. We can actually refer to either parts
-of or the entire matched regular expression, and use these parts to construct
-the replacement string. As an example, let's say you were replying to a message.
-The following example would prefix each line with the phrase "ralph said: ":
+Do tej pory przyjrzeliśmy się prostym i w miarę złożonym podstawieniom, ale sed
+potrafi jeszcze więcej. Możemy odnosić się do dowolnej części lub całości
+tekstu odnalezionego przez wyrażenie regularne i użyć jej do stworzenia
+podstawianego napisu. Przykładowo, załóżmy że chcemy odpowiedzieć na wiadomość.
+Poniższa komenda poprzedzi każdą linię wyrażeniem "ralph powiedział: ":
 </p>
 
 <pre caption="Prefixing each line with certain string">
-$ <i>sed -e 's/.*/ralph said: &amp;/' origmsg.txt</i>
+$ <i>sed -e 's/.*/ralph powiedział: &amp;/' oryginalnawiadomosc.txt</i>
 </pre>
 
 <p>
-The output will look like this:
+Oto wynik jej działania:
 </p>
 
 <pre caption="Output of the above command">
-ralph said: Hiya Jim,
-ralph said:
-ralph said: I sure like this sed stuff!
-ralph said:
+ralph powiedział: Cześć Jim,
+ralph powiedział:
+ralph powiedział: Bardzo podoba mi się ta lekcja seda!
+ralph powiedział:
 </pre>
 
 <p>
-In this example, we use the '&amp;' character in the replacement string,
-which tells sed to insert the entire matched regular expression. So, whatever
-was matched by '.*' (the largest group of zero or more characters on the line,
-or the entire line) can be inserted anywhere in the replacement string, even
-multiple times. This is great, but sed is even more powerful.
+W powyższym przykładzie wykorzystaliśmy znak '&amp;' w podstawianym napisie.
+Mówi on sedowi, aby wstawić w tym miejscu cały tekst znaleziony przez wyrażenie
+regularne. Tak więc, cokolwiek zostało znalezione przez '.*' (największa grupa
+zera lub więcej znaków w linii lub cała linia) może zostać podstawione w
+dowolnym miejscu podstawianego tekstu nawet kilka razy. Całkiem nieźle, ale sed
+potrafi jeszcze więcej.
 </p>
 
 </body>
 </section>
 <section>
-<title>Those wonderful backslashed parentheses</title>
+<title>Dyskretny urok nawiasów poprzedzonych odwrotnymi ukośnikami</title>
 <body>
 
 <p>
-Even better than '&amp;', the <c>s///</c> command allows us to define regions in
-our regular expression, and we can refer to these specific regions in our
-replacement string. As an example, let's say we have a file that contains the
-following text:
+Komenda <c>s///</c> pozwala nam na definiowanie regionów w wyrażeniu regularnym,
+do których możemy się następnie odwoływać w podstawianym tekście. W ramach
+przykładu przyjrzyjmy się następującemu tekstowi:
 </p>
 
-<pre caption="Sample text">
-foo bar oni
-eeny meeny miny
+<pre caption="Przykładowy tekst">
+bla ble bli
+ele mele dudki
+FIXME
 larry curly moe
 jimmy the weasel
 </pre>
 
 <p>
-Now, let's say we wanted to write a sed script that would replace "eeny meeny
-miny" with "Victor eeny-meeny Von miny", etc. To do this, first we would write a
-regular expression that would match the three strings, separated by spaces:
+Załóżmy teraz, że chcemy napisać skrypt w sedzie, który zamieni "ele mele dudki"
+na "Victor ele-mele Von dudki", i tak dalej. Aby tego dokonać najpierw
+powinniśmy napisać wyrażenie regularne, które odnajdzie nasze trzy wyrazy
+oddzielone spacjami:
 </p>
 
-<pre caption="Matching regular expression">
+<pre caption="Odpowiednie wyrażenie regularne">
 '.* .* .*'
 </pre>
 
 <p>
-There. Now, we will define regions by inserting backslashed parentheses around
-each region of interest:
+Właśnie tak. Następnie zdefiniujmy regiony, umieszczając wokół każdego
+interesującego nas miejsca nawiasy poprzedzone wstecznym ukośnikiem:
 </p>
 
-<pre caption="Defining regions">
+<pre caption="Definiowanie regionów">
 '\(.*\) \(.*\) \(.*\)'
 </pre>
 
 <p>
-This regular expression will work the same as our first one, except that it will
-define three logical regions that we can refer to in our replacement string.
-Here's the final script:
+Powyższe wyrażenie regularne zadziała indentycznie jak pierwsze. Jedyną różnicą
+będzie fakt, iż definiuje ono trzy logiczne regiony, do których będziemy mogli
+odnieść się w naszym podstawianym napisie. Oto ostateczny skrypt:
 </p>
 
-<pre caption="Final script">
-$ <i>sed -e 's/\(.*\) \(.*\) \(.*\)/Victor \1-\2 Von \3/' myfile.txt</i>
+<pre caption="Ukończony skrypt">
+$ <i>sed -e 's/\(.*\) \(.*\) \(.*\)/Victor \1-\2 Von \3/' mojplik.txt</i>
 </pre>
 
 <p>
-As you can see, we refer to each parentheses-delimited region by typing '\x',
-where x is the number of the region, starting at one. Output is as follows:
+Jak widać, odnosimy się do każdego obszaru ograniczonego nawiasami za pomocą
+wyrażenia '\x', gdzie x jest numerem regionu, zaczynając od jedynki. Efekt 
+działania skryptu będzie następujący:
 </p>
 
-<pre caption="Output of the above command">
-Victor foo-bar Von oni
-Victor eeny-meeny Von miny
+<pre caption="Wynik powyższej komendy">
+Victor bla-ble Von bli
+Victor ele-mele Von dudki
+FIXME
 Victor larry-curly Von moe
 Victor jimmy-the Von weasel
 </pre>
 
 <p>
+FIXME (bratanie się)
+W miarę jak poznajemy seda coraz bliżej możliwe staje się dokonywanie 
+skomplikowanych operacji na tekście przy minimum wysiłku. Warto zastanowić 
+się nad rozwiązaniem powyższego problemu za pomocą dowolnego języka 
+skryptowego -- czy udałoby się równie łatwo zmieścić rozwiązanie w jednej 
+linijce?
+</p>
+
+<p>
+FIXME (j/w)
 As you become more familiar with sed, you will be able to perform fairly
 powerful text processing with a minimum of effort. You may want to think about
 how you'd have approached this problem using your favorite scripting language --
@@ -388,65 +401,63 @@ could you have easily fit the solution in one line?
 </body>
 </section>
 <section>
-<title>Mixing things up</title>
+<title>FIXME Mixing things up</title>
 <body>
 
 <p>
-As we begin creating more complex sed scripts, we need the ability to enter more
-than one command. There are several ways to do this. First, we can use
-semicolons between the commands. For example, this series of commands uses the
-'=' command, which tells sed to print the line number, as well as the <c>p</c>
-command, which explicitly tells sed to print the line (since we're in '-n'
-mode):
+Gdy zaczynamy tworzyć bardziej złożone skrypty, potrzebujemy możliwości
+wpisywania więcej niż jednej komendy na raz. Można tego dokonać na kilka
+sposobów. Po pierwsze, możemy rozdzielić komendy średnikami. Na przykład ten
+zestaw poleceń używa komendy '=', która każe sedowi wypisać numer linii, oraz
+komendy <c>p</c>, która specjalnie instruuje seda, aby wypisał linię (ponieważ
+pracujemy w trybie '-n'):
 </p>
 
-<pre caption="First method, semicolons">
-$ <i>sed -n -e '=;p' myfile.txt</i>
+<pre caption="Pierwszy sposób, średniki">
+$ <i>sed -n -e '=;p' mojplik.txt</i>
 </pre>
 
 <p>
-Whenever two or more commands are specified, each command is applied (in order)
-to every line in the file. In the above example, first the '=' command is
-applied to line 1, and then the <c>p</c> command is applied. Then, sed proceeds
-to line 2, and repeats the process. While the semicolon is handy, there are
-instances where it won't work. Another alternative is to use two -e options to
-specify two separate commands:
+Gdy podajemy dwie lub więcej komend, każda z nich jest zastosowana (po kolei) do
+każdej linii pliku. W powyższym przykładzie na pierwszej linii zostanie użyta 
+komenda '=', a następnie <c>p</c>. Sed wówczas przechodzi do drugiej linii i
+proces powtarza się. Pomimo iż średnik okazał się być przydatny, w niektórych
+sytuacjach nie zadziała. Alternatywą będzie użycie dwóch parametrów -e w celu
+podania dwóch osobnych komend:
 </p>
 
-<pre caption="Second method, multiple -e">
-$ <i>sed -n -e '=' -e 'p' myfile.txt</i>
+<pre caption="Drugi sposób, wiele parametrów -e">
+$ <i>sed -n -e '=' -e 'p' mojplik.txt</i>
 </pre>
 
 <p>
-However, when we get to the more complex append and insert commands, even
-multiple '-e' options won't help us. For complex multiline scripts, the best way
-is to put your commands in a separate file. Then, reference this script file
-with the -f options:
+Jednak gdy tylko dojdziemy do bardziej złożonych poleceń dodawania i wstawiania,
+nawet wiele parametrów '-e' nam nie pomoże. Wówczas najlepiej zrobimy zapisując
+wszystkie komendy w osobnym pliku, a następnie wywołując go parametrem -f:
 </p>
 
-<pre caption="Third method, external file with commands">
-$ <i>sed -n -f mycommands.sed myfile.txt</i>
+<pre caption="Trzeci sposób, zewnętrzny plik zawierający komendy">
+$ <i>sed -n -f mojekomendy.sed mojplik.txt</i>
 </pre>
 
 <p>
-This method, although arguably less convenient, will always work.
+Ten sposób, choć mniej wygodny, nigdy nas nie zawiedzie.
 </p>
 
 </body>
 </section>
 <section>
-<title>Multiple commands for one address</title>
+<title>Wiele komend wykonanych na jednym adresie</title>
 <body>
 
 <p>
-Sometimes, you may want to specify multiple commands that will apply to a single
-address. This comes in especially handy when you are performing lots of
-<c>s///</c> to transform words or syntax in the source file. To perform multiple
-commands per address, enter your sed commands in a file, and use the '{ }'
-characters to group commands, as follows:
+Czasem zajdzie potrzeba wykonania kilku poleceń na jednym przedziale.
+Szczególnie jest to przydatne gdy chcemy wykonać wiele komend <c>s///</c> w celu
+przekształcenia wyrazów lub składni w pliku źródłowym. Aby wykonać wiele komend
+na jednym adresie zapiszmy je w pliku i użyjmy znaków '{ }' do pogrupowania ich:
 </p>
 
-<pre caption="Entering multiple commands per address">
+<pre caption="Podawanie wielu komend dla jednego adresu">
 1,20{
 	s/[Ll]inux/GNU\/Linux/g
 	s/samba/Samba/g
@@ -455,12 +466,12 @@ characters to group commands, as follows:
 </pre>
 
 <p>
-The above example will apply three substitution commands to lines 1 through 20,
-inclusive. You can also use regular expression addresses, or a combination of
-the two:
+Powyższe polecenia zastosują trzy podstawienia w liniach od pierwszej do
+dwudziestej włącznie. Jako adresów moglibyśmy również użyć wyrażenia regularnego
+lub połączyć jedno z drugim:
 </p>
 
-<pre caption="Combination of both methods">
+<pre caption="Połączenie obu sposobów">
 1,/^END/{
         s/[Ll]inux/GNU\/Linux/g 
         s/samba/Samba/g 
@@ -470,93 +481,94 @@ the two:
 </pre>
 
 <p>
-This example will apply all the commands between '{ }' to the lines starting at
-1 and up to a line beginning with the letters "END", or the end of file if
-"END" is not found in the source file.
+W powyższym przykładzie wszystkie komendy między znakami '{ }' zostaną
+użyte na tekście od pierwszej linii aż po linię, która zaczyna się literami
+"END" lub, w przypadku braku takowej, aż po koniec pliku.
 </p>
 
 </body>
 </section>
 <section>
-<title>Append, insert, and change line</title>
+<title>Dołączanie, wstawianie i zmienianie linii</title>
 <body>
 
 <p>
-Now that we're writing sed scripts in separate files, we can take advantage of
-the append, insert, and change line commands. These commands will insert a line
-after the current line, insert a line before the current line, or replace the
-current line in the pattern space. They can also be used to insert multiple
-lines into the output. The insert line command is used as follows:
+Teraz gdy już piszemy skrypty seda w osobnych plikach, możemy wykorzystać
+polecenia dołączania, wstawiania i zmiany linii. Polecenia te wstawią wiersz 
+po aktualnej linii, przed aktualną linią, lub zastąpią ją. Można ich także
+używać do wstawiania wielu wierszy jednocześnie. Komendy wstawiania używa się w
+następujący sposób:
 </p>
 
-<pre caption="Using the insert line command">
+<pre caption="Użycie komendy wstawiania wiersza">
 i\
-This line will be inserted before each line
+Ten wiersz zostanie wstawiony przed każdą linią
 </pre>
 
 <p>
-If you don't specify an address for this command, it will be applied to each
-line and produce output that looks like this:
+Jeśli nie podamy adresu dla tej komendy, zostanie ona zastosowana do każdej
+linii, a wynik jej działania będzie podobny do poniższego:
 </p>
 
-<pre caption="Output of the above command">
-This line will be inserted before each line
-line 1 here
-This line will be inserted before each line
-line 2 here
-This line will be inserted before each line
-line 3 here
-This line will be inserted before each line
-line 4 here
+<pre caption="Efekt działania powyższego polecenia">
+Ten wiersz zostanie wstawiony przed każdą linią
+oto linia 1
+Ten wiersz zostanie wstawiony przed każdą linią
+oto linia 2
+Ten wiersz zostanie wstawiony przed każdą linią
+oto linia 3
+Ten wiersz zostanie wstawiony przed każdą linią
+oto linia 4
 </pre>
 
 <p>
-If you'd like to insert multiple lines before the current line, you can add
-additional lines by appending a backslash to the previous line, like so:
+Jeśli zechcemy wstawić więcej niż jeden wiersz przed aktualną linią, wystarczy
+że dopiszmy je, dodając odwrotny ukośnik na końcu każdej poprzedniej:
 </p>
 
-<pre caption="Inserting multiple lines before the current one">
+<pre caption="Wstawianie wielu wierszy przed aktualną linią">
 i\
-insert this line\
-and this one\
-and this one\
-and, uh, this one too.
+wstaw ten wiersz\
+i ten\
+i ten\
+o, nie zapomnijmy tez o tym.
 </pre>
 
 <p>
-The append command works similarly, but will insert a line or lines after the
-current line in the pattern space. It's used as follows:
+Komenda dołączania działa podobnie, tylko dołącza wiersz lub wiersze po
+aktualnej linii. Oto przykład:
 </p>
 
-<pre caption="Appending lines after the current one">
+<pre caption="Dołączanie wiersza po aktualnej linii">
 a\
-insert this line after each line.  Thanks! :)
+proszę wstawić ten wiersz po każdej linii. Z góry dziękuję! :)
 </pre>
 
 <p>
-On the other hand, the "change line" command will actually replace the current
-line in the pattern space, and is used as follows:
+Z kolei polecenie "zmień linię" podmieni ją na nową. 
 </p>
 
+FIXME (brak przykładu?)
+
 <p>
-Because the append, insert, and change line commands need to be entered on
-multiple lines, you'll want to type them in to text sed scripts and tell sed to
-source them by using the '-f' option. Using the other methods to pass commands
-to sed will result in problems.
+Ze względu na to, iż komendy dołączania, wstawiania i zamiany linii muszą być
+podawane w kilku wierszach, należy wpisywać je w plikach tekstowych i podawać
+sedowi za pomocą parametru '-f'. Pozostałe metody wpisywania komend zaowocują
+problemami.
 </p>
 
 </body>
 </section>
 <section>
-<title>Next time</title>
+<title>W następnym odcinku</title>
 <body>
 
 <p>
-Next time, in the final article of this series on sed, I'll show you lots of
-excellent real-world examples of using sed for many different kinds of tasks.
-Not only will I show you what the scripts do, but why they do what they do.
-After you're done, you'll have additional excellent ideas of how to use sed in
-your various projects. I'll see you then!
+W następnym artykule, który będzie już ostatnim na temat seda, ukazane zostaną
+znakomite przykłady z życia wzięte na zastosowanie seda do wielu różnych zadań.
+Nie tylko dowiemy się co skrypty robią, ale w jaki sposób działają. Z pewnością
+zaowocuje to wieloma pomysłami na zastosowanie seda w rozmaitych projektach. Do
+zobaczenia w następnym odcinku!
 </p>
 
 </body>
@@ -564,28 +576,30 @@ your various projects. I'll see you then!
 </chapter>
 
 <chapter>
-<title>Resources</title>
+<title>Zasoby</title>
 <section>
-<title>Useful links</title>
+<title>Przydatne odnośniki</title>
 <body>
 
 <ul>
   <li>
-    Read Daniel's other sed articles from developerWorks: Common threads: Sed by
-    example, <uri link="l-sed1.xml">Part 1</uri> and <uri
-    link="l-sed3.xml">Part 3</uri>.
+    Warto przeczytać pozostałe artykuły Daniela na temat seda, napisane dla 
+    develperWorks: Sed w przykładach, <uri 
+    link="l-sed1.xml">Część pierwsza</uri> i <uri link="l-sed3.xml">Część
+    trzecia</uri>.
   </li>
   <li>
-     Check out Eric Pement's excellent <uri
-     link="http://www.student.northpark.edu/pemente/sed/sedfaq.html">sed
-     FAQ</uri>.
+     Eric Pement napisał znakomity dokument <uri
+     link="http://www.student.northpark.edu/pemente/sed/sedfaq.html">FAQ na
+     temat seda</uri>.
   </li>
   <li>
-     You can find the sources to sed 3.02 at
+     Źródła seda w wersji 3.02 można znaleźć pod adresem 
      <uri>ftp://ftp.gnu.org/pub/gnu/sed</uri>.
   </li>
   <li>
-     You'll find the nice, new sed 3.02.80 at <uri>ftp://alpha.gnu.org</uri>.
+     Najnowsza wersja 3.02.80 dostępna jest na stronie 
+     <uri>ftp://alpha.gnu.org</uri>.
   </li>
   <li>
     Eric Pement also has a handy list of <uri
