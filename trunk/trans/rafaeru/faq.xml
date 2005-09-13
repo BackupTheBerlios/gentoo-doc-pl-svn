@@ -10,46 +10,46 @@
 <author title="Editor">Chris Gianelloni</author>
 
 <abstract>
-Frequently asked questions relating to the Catalyst tool.
+Najczęściej zadawane pytania związane z programem Catalyst.
 </abstract>
 
 <version>1.0</version>
 <date>3 October 2004</date>
 
 <chapter>
-<title>Frequently Asked Questions</title>
+<title>Najczęściej Zadawane Pytania</title>
 
 <section>
 	<title>Catalyst FAQ</title>
 	<body>
-	<p><b>Q: How do I build a stage2 and stage3 tarball for a non-generic CPU type,
-	such as <c>pentium4</c> or <c>g4</c>?</b></p>
-	<p>A: First, make sure that your hardware is capable of building such a stage.
-	If you want to build a <c>pentium4</c> stage,
-	you will need to build on a Pentium 4 or AMD64/Opteron system. 
-	You can't build a <c>pentium4</c> stage on an Athlon XP system,
-	as Athlon XP CPUs do not support SSE2 instructions, and SSE2 instructions will be enabled for
-	<c>pentium4</c> stages. Likewise,
-	if you want to build a <c>g4</c> stage, you will need to do this on a PowerPC G4 or G5 system.</p>
-	<p>Once you've made sure that you're building on the right hardware, simply follow the steps
-	above, but for building the stage2,
-	simply change the <c>subarch</c> setting to a valid 
-	non-generic subarchitecture (ie. <c>pentium4</c>.) Then your stage2 will
-	be built for the subarchitecture that you specify. Then, use this stage2 as the "seed" stage to
-	build your stage3. Of course, you will also want to modify the <c>subarch</c> setting in your stage3
-	spec to match what you used in your stage2 spec.</p>
+	<p><b>P: Jak utworzyć tarballe stage2 i stage3 dla nietypowych procesorów,
+	takich jak <c>pentium4</c> czy <c>g4</c>?</b></p>
+	<p>O: Po pierwsze, należy się upewnić, czy sprzęt na którym pracujemy odpowiada konfiguracji, na którą przygotowujemy stage.
+	Tworzenie stage dla <c>pentium4</c>
+	musi zostać wykonane na systemie opartym o Pentium 4 lub AMD64/Opteron. 
+	Nie jest mozliwe utworzenie stage dla <c>pentium4</c> na systemie opartym o Athlon XP,
+	jako że procesory Athlon XP nie wpsierają instrukcji SSE2, dostępnych w stage dla
+	<c>pentium4</c>. Podobnie rzecz ma się w przypadku,
+	gdy chcemy budować system dla <c>g4</c>. Można tego dokonać jedynie na systemach wspierających PowerPC G4 lub G5.</p>
+	<p>Gdy mamy pewność, że budujemy system na właściwym sprzęcie, można rozpocząć instalację, 
+	jednakże by zbudować system od stage2,
+	należy wybrać stage z opcją <c>subarch</c> odpowiadającą  
+	naszemu procesorowi (np. <c>pentium4</c>.) Tylko wtedy stage2 zostanie zbudowane dla wybranej przez nas wersji
+	procesora. Następnie wykorzystujemy stage2 do 
+	budowy stage3. Oczywiście wybieramy stage3 z odpowiednią dla procesora opcją <c>subarch</c>, tak
+	by pokrywała się ona z opcją stage2.</p>
 
-	<p><b>Q: I want to build a bunch of stages for various subarches. How should I do this?</b></p>
-	<p>A: First, build a generic stage1. Then use this stage1 to build a specialized stage2 and stage3. 
-	Use the stage1 again to build another specialized stage2 and stage3. You do not need to re-build the 
-	stage1 -- all your specialized stage2s and stage3s can use the same "seed" stage1.</p>
+	<p><b>P: Chcę zbudować system wpierających wiele procesorów. Jak mam tego dokonać?</b></p>
+	<p>O: Na początku należy zbudować ogólny stage1. Następnie używamy utworzone stage1 do zbudowania konkretnych wersji stage2 i stage3. 
+	Następnie używamy stage1 ponownie by utworzyć kolejne wyspecjalizowane wersje stage2 i stage3. Stage1 nie musi być tworzone od nowa 
+	-- wszystkie zbudowane stage 2 i stage3 mogą używać tego samego stage1 jako źródła.</p>
 
-	<p><b>Q: Can I build a stage1 for a non-generic CPU type?</b></p>
-	<p>A: This is a very bad idea, as users expect stage1's to work on any type of sub-architecture.
-	This way, they can use
-	the stage1 on any system without worries. You should be sure to not "pollute" your stage1 with 
-	non-generic-CPU-specific code.
-	Always use a "generic" stage2 or stage3 to build a new stage1.</p>
+	<p><b>P: Czy mogę zbudować stage1 dla nietypowej wersji procesora?</b></p>
+	<p>O: Nie jest to najlepszy pomysł, jako że stage1 uznaje się za wersję pracującą z każdym typem procesorów.
+	Dzięki temu, można go uruchamiać
+	na każdym sprzęcie. Musimy uważać, by nie "zanieczyścić" naszego stage1 
+	specyficznym kodem nietypowych procesorów.
+	Do tworzenia nowej wersji stage1 używamy "ogólnych" wersji stage2 i stage3.</p>
 
 	<p><b>Q: I thought that catalyst was able to build stages "from scratch." If catalyst builds 
 	stages from scratch, then why does it need a "seed stage"?</b></p>
