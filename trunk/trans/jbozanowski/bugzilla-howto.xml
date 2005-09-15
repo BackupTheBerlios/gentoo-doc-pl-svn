@@ -2,18 +2,22 @@
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 <!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/bugzilla-howto.xml,v 1.6 2005/08/30 02:51:12 vapier Exp $ -->
 
-<guide link="/doc/en/bugzilla-howto.xml">
-<title>Gentoo Bug Reporting Guide</title>
+<guide link="/doc/pl/bugzilla-howto.xml" lang="pl">
+<title>Przewodnik po zgłaszaniu błędów w Gentoo</title>
 
-<author title="Author">
+<author title="Autor">
   <mail link="chriswhite@gentoo.org">Chris White</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="fox2mike@gentoo.org">Shyam Mani</mail>
+</author>
+<author title="Tłumaczenie">
+  <mail link="jbozanowski@gmail.com">Kuba Bożanowski</mail>
 </author>
 
 <abstract>
-This document shows the proper method of reporting bugs using Bugzilla.
+Niniejszy dokument przedstawia prawidłowy sposób zgłaszania błędów przy użyciu
+Bugzilli.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -24,38 +28,39 @@ This document shows the proper method of reporting bugs using Bugzilla.
 <date>2005-08-29</date>
 
 <chapter>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <section>
-<title>Preface</title>
+<title>Przedmowa</title>
 <body>
 
 <p>
-One of the factors that delay a bug being fixed is the way it is reported. By
-creating this guide, we hope to help improve the communication between
-developers and users in bug resolution. Getting bugs fixed is an important, if
-not crucial part of the quality assurance for any project and hopefully this
-guide will help make that a success.
+Jeden z czynników, ktory opóźnia naprawienie błędu to sposób, w jaki błąd został
+zgłoszony. Tworzymy ten przewodnik z myślą o usprawnieniu komunikacji między 
+deweloperami a użytkownikami przy poprawianiu błędów, ponieważ jest to ważna, o
+ile nie najważniejsza część procesu zapewniania jakości w każdym projekcie. Mamy
+nadzieję, że niniejszy przewodnik przyczyni się do jego sukcesu.
 </p>
 
 </body>
 </section>
 <section>
-<title>Bugs!!!!</title>
+<title>Błędy!!!!</title>
 <body>
 
 <p>
-You're emerge-ing a package or working with a program and suddenly the worst
-happens -- you find a bug. Bugs come in many forms like emerge failures or
-segmentation faults. Whatever the cause, the fact still remains that such a bug
-must be fixed. Here is a few examples of such bugs.
+Instalujemy paczkę lub pracujemy z programem i nagle staje się najgorsza rzecz
+-- znajdujemy błąd. Jest wiele rodzajów błędów, jak na przykład awarie
+instalacji przy użyciu narzędzia emerge albo naruszenia ochrony pamięci (ang.
+segmentation fault). Cokolwiek jest przyczyną ich wystąpienia, pozostaje 
+fakt, iż muszą one zostać poprawione. Oto kilka przykładów takich błędów.
 </p>
 
-<pre caption="A run time error">
+<pre caption="Błąd podczas wykonywania">
 $ <i>./bad_code `perl -e 'print Ax100'`</i>
 Segmentation fault
 </pre>
 
-<pre caption="An emerge failure">
+<pre caption="Awaria w czasie działania narzędzia emerge">
 /usr/lib/gcc-lib/i686-pc-linux-gnu/3.3.2/include/g++-v3/backward/backward_warning.h:32:2:
 warning: #warning This file includes at least one deprecated or antiquated
 header. Please consider using one of the 32 headers found in section 17.4.1.2 of
@@ -86,11 +91,11 @@ make: *** [shared] Error 2
 </pre>
 
 <p>
-These errors can be quite troublesome. However, once you find them, what do you
-do? The following sections will look at two important tools for handling run
-time errors. After that, we'll take a look at compile errors, and how to handle
-them. Let's start out with the first tool for debugging run time errors --
-<c>gdb</c>.
+Błędy te mogą przysporzyć wielu problemów. Co jednak należy zrobić gdy już się
+je spotka? W tym rozdziale przyjrzymy się dwóm ważnym narzędziom do obsługi
+błędów występujących podczas wykonywania kodu (ang. runtime error). Następnie 
+omówimy błędy kompilacji i jak sobie z nimi poradzić. Zacznijmy jednak od 
+pierwszego narzędzia do "odpluskwiania" działającego kodu -- <c>gdb</c>
 </p>
 
 </body>
@@ -99,96 +104,99 @@ them. Let's start out with the first tool for debugging run time errors --
 
 
 <chapter>
-<title>Debugging using GDB</title>
+<title>Debugowanie przy pomocy GDB</title>
 <section>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-GDB, or the (G)NU (D)e(B)ugger, is a program used to find run time errors that
-normally involve memory corruption. First off, let's take a look at what
-debugging entails. One of the main things you must do in order to debug a
-program is to <c>emerge</c> the program with <c>FEATURES="nostrip"</c>. This
-prevents the stripping of debug symbols. Why are programs stripped by default?
-The reason is the same as that for having gzipped man pages -- saving space.
-Here's how the size of a program varies with and without debug symbol stripping.
+GDB, czyli (G)NU (D)e(B)ugger to narzędzie do znajdywania błędów w uruchomionym
+programie. Zwykle błędy te wynikają z naruszeń pamięci. Najpierw przyjrzyjmy się
+FIXME at what debugging entails FIXME. Jedną z podstawowych czynności, jakie
+należy wykonać, FIXME(przecinek) aby móc debugować program jest skompilowanie go
+narzędziem <c>emerge</c> ze zmienną <c>FEATURES="nostrip"</c>. Zapobiega to
+usunięciu symboli debugowania. Dlaczego symbole te domyślnie usuwa się z
+programów? Powód jest ten sam jak w przypadku kompresowania stron man programem
+gzip -- oszczędność miejsca. Oto jak zmienia się rozmiar programu z symbolami 
+debugowania pozostawionymi i usuniętymi.
 </p>
 
-<pre caption="Filesize Comparison">
-<comment>(debug symbols stripped)</comment>
+<pre caption="Porównanie rozmiaru pliku">
+<comment>(symbole debugowania usunięte)</comment>
 -rwxr-xr-x  1 chris users 3140  6/28 13:11 bad_code
-<comment>(debug symbols intact)</comment>
+<comment>(symbole debugowania pozostawione)</comment>
 -rwxr-xr-x  1 chris users 6374  6/28 13:10 bad_code
 </pre>
 
 <p>
-Just for reference, <e>bad_code</e> is the program we'll be debugging with
-<c>gdb</c> later on. As you can see, the program without debugging symbols is
-3140 bytes, while the program with them is 6374 bytes. That's close to double
-the size! Two more things can be done for debugging. The first is adding ggdb3
-to your CFLAGS and CXXFLAGS. This flag adds more debugging information than is
-generally included. We'll see what that means later on. This is how
-<path>/etc/make.conf</path> <e>might</e> look with the newly added flags.
+Nawiasem mówiąc, program <e>FIXME bad_code</e> jest tym samym, który będziemy 
+później debugować za pomocą narzędzia <c>gdb</c>. Jak widać, program bez
+symboli debugowania zajmuje 3140 bajtów, podczas gdy z nimi ma już 6374
+bajty. To prawie dwa razy więcej! Możemy zrobić jeszcze dwie rzeczy z myślą o
+debugowaniu. Pierwszą z nich jest dodanie FIXME(3?) ggdb3 do zmiennych CFLAGS i
+CXXFLAGS.  Flaga ta dodaje więcej informacji przydatnych przy debugowaniu niż
+jest zwykle dodawanych. Wkrótce dowiemy się co to oznacza. Oto jak <e>może</e>
+wyglądać plik <path>/etc/make.conf</path> z nowo dodanymi flagami.
 </p>
 
-<pre caption="make.conf settings">
+<pre caption="ustawienia w pliku make.conf">
 CFLAGS="-O1 -pipe -g -ggdb"
 CXXFLAGS="${CFLAGS}"
 </pre>
 
 <p>
-Lastly, you can also add debug to the package's USE flags. This can be done
-with the <path>package.use</path> file.
+Wreszcie, możemy dodać flagę USE debug dla danej paczki. Dokonamy tego FIXME za
+pomocą pliku <path>package.use</path>. 
 </p>
 
-<pre caption="Using package.use to add debug USE flag">
-# <i>echo "category/package debug" >> /etc/portage/package.use</i>
+<pre caption="Użycie pliku package.use w celu dodania flagi USE debug">
+# <i>echo "kategoria/paczka debug" >> /etc/portage/package.use</i>
 </pre>
 
 <note>
-The directory <path>/etc/portage</path> does not exist by default and you may
-have to create it, if you have not already done so. If the package already has
-USE flags set in <path>package.use</path>, you will need to manually modify them
-in your favorite editor.
+Domyślnie katalog <path>/etc/portage</path> nie istnieje i możliwe, że będziemy
+musieli go utworzyć, jeśli jeszcze tego nie zrobiliśmy. Jeśli zaś paczka już ma
+ustawione flagi USE w pliku <path>package.use</path>, trzeba będzie ręcznie
+zmodyfikować je za pomocą ulubionego edytora tekstu.
 </note>
 
 <p>
-Then we re-emerge the package with the modifications we've done so far as shown
-below.
+Następnie ponownie instalujemy paczkę wraz z dokonanymi wyżej modyfikacjami.
 </p>
 
-<pre caption="Re-emergeing a package with debugging">
+<pre caption="Ponowna instalacja paczki z włączonym debugowaniem">
 # <i>FEATURES="nostrip" emerge package</i>
 </pre>
 
 <p>
-Now that debug symbols are setup, we can continue with debugging the program.
+Teraz gdy symbole debugowania są już na miejscu, możemy przejść do debugowania
+programu.
 </p>
 
 </body>
 </section>
 <section>
-<title>Running the program with GDB</title>
+<title>Uruchamianie programu przez GDB</title>
 <body>
 
 <p>
-Let's say we have a program here called "bad_code". Some person claims that the
-program crashes and provides an example. You go ahead and test it out:
+Załóżmy, że mamy program nazywający się "FIXME bad_code". Ktoś twierdzi, że program 
+ten FIXME crashes i podaje jak to zrobić. Spróbujmy więc:
 </p>
 
-<pre caption="Breaking The Program">
+<pre caption="Psucie programu">
 $ <i>./bad_code `perl -e 'print Ax100'`</i>
 Segmentation fault
 </pre>
 
 <p>
-It seems this person was right. Since the program is obviously broken, we have
-a bug at hand. Now, it's time to use <c>gdb</c> to help solve this matter. First
-we run <c>gdb</c> with <c>--args</c>, then give it the full program with
-arguments like shown:
+Wygląda na to, że ten ktoś miał rację. Skoro program rzeczywiście jest wadliwy,
+znaleźliśmy błąd. Czas więc użyć <c>gdb</c> aby pomógł nam rozwiązać ten
+problem. Uruchamiamy więc program <c>gdb</c> z parametrem <c>--args</c>, podając
+mu następnie pełną nazwę programu wraz z argumentami, jak podano poniżej:
 </p>
 
-<pre caption="Running Our Program Through GDB">
+<pre caption="Uruchamianie naszego programu poprzez GDB">
 $ <i>gdb --args ./bad_code `perl -e 'print Ax100'`</i>
 GNU gdb 6.3
 Copyright 2004 Free Software Foundation, Inc.
@@ -200,18 +208,20 @@ This GDB was configured as "i686-pc-linux-gnu"...Using host libthread_db library
 </pre>
 
 <note>
-One can also debug with core dumps. These core files contain the same
-information that the program would produce when run with gdb.  In order to debug
-with a core file with bad_code, you would run <c>gdb ./bad_code core</c> where
-core is the name of the core file.
+Można także debugować przy pomocy zrzutów core (ang. core dumps). Pliki te
+zawierają te same informacje, które podał by program uruchomiony przez gdb. 
+Chcąc debugować program FIXME bad_code przy pomocy zrzutu core, należałoby 
+wykonać polecenie <c>gdb ./bad_code core</c>, gdzie core to nazwa pliku 
+ze zrzutem.
 </note>
 
 <p>
-You should see a prompt that says "(gdb)" and waits for input. First, we have to
-run the program. We type in <c>run</c> at the command and receive a notice like:
+Powinniśmy teraz ujrzeć działający program czekający na nasze polecenia po znaku
+zachęty "(gdb)". Najpierw uruchamiamy program. W tym celu należy wpisać
+polecenie <c>run</c>, co zaowocuje informacją podobną do poniższej:
 </p>
 
-<pre caption="Running the program in GDB">
+<pre caption="Uruchamianie programu przez GDB">
 (gdb) <i>run</i>
 Starting program: /home/chris/bad_code
 
@@ -220,19 +230,21 @@ Program received signal SIGSEGV, Segmentation fault.
 </pre>
 
 <p>
-Here we see the program starting, as well as a notification of SIGSEGV, or
-Segmentation Fault. This is GDB telling us that our program has crashed. It
-also gives the last run function it could trace when the program crashes.
-However, this isn't too useful, as there could be multiple strcpy's in the
-program, making it hard for developers to find which one is causing the issue.
-In order to help them out, we do what's called a backtrace. A backtrace runs
-backwards through all the functions that occurred upon program execution, to the
-function at fault. Functions that return (without causing a crash) will not show
-up on the backtrace. To get a backtrace, at the (gdb) prompt, type in <c>bt</c>.
-You will get something like this:
+Widzimy tu uruchamianie programu, a także powiadomienie go o sygnale SIGSEGV,
+czyli błąd segmentacji (ang. segmentation fault). W ten sposób GDB mówi nam, że
+program FIXME crashed. Dostajemy także informację o ostatniej funkcji, jaką
+można było wyśledzić, kiedy program kończył działanie. Niestety, niekoniecznie
+będzie to użyteczna informacja, ponieważ w programie może być wiele funkcji
+strcpy, co utrudni deweloperom odnalezienie tej, w której rzeczywiście wystąpił
+błąd. Aby pomóc im w tym, wykonujemy coś, co określa się jako śledzenie wsteczne
+(ang. backtrace). Poprzez śledzenie wsteczne poruszamy się do tyłu poprzez 
+wszystkie funkcje, które zostały wywołane w trakcie pracy programu, aż do tej,
+w której wystąpił błąd. Funkcje, które zwracają dane (i nie powodują awarii
+programu) nie pojawią się. Aby dokonać śledzenia wstecznego należy wpisać w gdb
+polecenie <c>bt</c>. Otrzymamy wynik zbliżony do tego:
 </p>
 
-<pre caption="Program backtrace">
+<pre caption="Backtrace programu">
 (gdb) <i>bt</i>
 #0  0xb7ec6dc0 in strcpy () from /lib/libc.so.6
 #1  0x0804838c in run_it ()
@@ -240,15 +252,15 @@ You will get something like this:
 </pre>
 
 <p>
-You can notice the trace pattern clearly. main() is called first, followed by
-run_it(), and somewhere in run_it() lies the strcpy() at fault. Things such as
-this help developers narrow down problems. There are a few exceptions to the
-output. First off is forgetting to enable debug symbols with
-<c>FEATURES="nostrip"</c>. With debug symbols stripped, the output looks something
-like this:
+Teraz łatwo zobaczyć co się dzieje. Najpierw wywoływana jest funkcja main(),
+następnie run_it(), a gdzieś w run_it() nasz winowajca, czyli funkcja 
+strcpy(). To właśnie w ten sposób możemy naprowadzić deweloperów na konkretny
+ślad błędu. Należy zwrócić jednak uwagę na kilka rzeczy. Po pierwsze, jeśli
+zapomnimy o włączeniu symboli debugowania za pomocą <c>FEATURES="nostrip"</c>,
+gdb wypisze nam coś takiego:
 </p>
 
-<pre caption="Program backtrace With debug symbols stripped">
+<pre caption="Backtrace programu bez symboli debugowania">
 (gdb) <i>bt</i>
 #0  0xb7e2cdc0 in strcpy () from /lib/libc.so.6
 #1  0x0804838c in ?? ()
@@ -278,14 +290,14 @@ like this:
 </pre>
 
 <p>
-This backtrace contains a large number of ?? marks. This is because without
-debug symbols, <c>gdb</c> doesn't know how the program was run. Hence, it is
-crucial that debug symbols are <e>not</e> stripped. Now remember a while ago we
-mentioned the -ggdb flag. Let's see what the output looks like with the flag
-enabled:
+Powyższe śledzenie wsteczne zawiera wiele podwójnych znaków zapytania. Dzieje
+się tak, ponieważ bez symboli debugowania <c>gdb</c> nie wie jak program był
+wykonywany. Dlatego tak bardzo ważne jest, aby ich <e>nie</e> usuwać. Teraz
+przypomnijmy sobie o fladze -ggdb, o której wspominaliśmy nie tak dawno.
+Zobaczmy co wypisze gdb, jeśli ją włączymy:
 </p>
 
-<pre caption="Program backtrace with -ggdb3">
+<pre caption="Śledzenie wsteczne programu z flagą -ggdb3">
 (gdb) <i>bt</i>
 #0  0xb7e4bdc0 in strcpy () from /lib/libc.so.6
 #1  0x0804838c in run_it (input=0x0) at bad_code.c:7
@@ -293,44 +305,47 @@ enabled:
 </pre>
 
 <p>
-Here we see that a lot more information is available for developers. Not only is
-function information displayed, but even the exact line numbers of the source
-files. This method is the most preferred if you can spare the extra space.
-Here's how much the file size varies between debug, strip, and -ggdb enabled
-programs.
+Na powyższym przykładzie widać o ile więcej informacji dostępnych jest dla
+deweloperów. Wyświetlane są nie tylko informacje o funkcjach, ale także numery
+linii plików źródłowych. Jeśli jesteśmy sobie w stanie pozwolić na zużycie
+większej ilości miejsca na dysku przez program, jest to zdecydowanie najlepsza
+metoda. Oto jak zmienia się rozmiar pliku binarnego w zależności od sposobu
+kompilacji.
 </p>
 
-<pre caption="Filesize differences With -ggdb flag">
-<comment>(debug symbols stripped)</comment>
+<pre caption="Różnice w rozmiarze z flagą -ggdb">
+<comment>(bez symboli debugowania)</comment>
 -rwxr-xr-x  1 chris users 3140  6/28 13:11 bad_code
-<comment>(debug symbols enabled)</comment>
+<comment>(z symbolami debugowania)</comment>
 -rwxr-xr-x  1 chris users 6374  6/28 13:10 bad_code
-<comment>(-ggdb flag enabled)</comment>
+<comment>(włączona flaga -ggdb)</comment>
 -rwxr-xr-x  1 chris users 19552  6/28 13:11 bad_code
 </pre>
 
 <p>
-As you can see, -ggdb adds about <e>13178</e> more bytes to the file size over the one
-with debugging symbols. However, as shown above, this increase in file size can
-be worth it if presenting debug information to developers. The backtrace can be
-saved to a file by copying and pasting from the terminal (if it's a non-x based
-terminal, you can use gpm. To keep this doc simple, I recommend you read up on
-the documentation for gpm to see how to copy and paste with it). Now that we're
-done with <c>gdb</c>, we can quit.
+Jak widać, włączenie flagi -ggdb dodaje około <e>13178</e> bajtów do rozmiaru
+pliku w stosunku do pliku, w którym włączone są jedynie symbole debugowania.
+Jednakże, jak pokazaliśmy wyżej, ten wzrost rozmiaru jest usprawiedliwiony,
+jeśli chcemy pokazać efekty debugowania deweloperom. Wynik śledzenia wstecznego
+może być zapisany do pliku poprzez skopiowanie i wklejenie z terminala (możemy
+użyć gpm, jeśli nie korzystamy z terminala pod x. Aby nie komplikować
+niniejszego dokumentu, sugerujemy poszukać dodatkowych informacji o kopiowaniu i
+wklejaniu za pomocą gpm w jego dokumentacji). Zakończyliśmy już pracę z
+<c>gdb</c>, możemy więc go wyłączyć.
 </p>
 
-<pre caption="Quitting GDB">
+<pre caption="Wyłączanie GDB">
 (gdb) <i>quit</i>
 The program is running. Exit anyway? (y or n) <i>y</i>
 $
 </pre>
 
 <p>
-This ends the walk-through of <c>gdb</c>. Using <c>gdb</c>, we hope that you will
-be able to use it to create better bug reports. However, there are other types
-of errors that can cause a program to fail during run time. One of the other
-ways is through improper file access. We can find those using a nifty little
-tool called <c>strace</c>.
+W ten oto sposób zakończyliśmy nasz krótki kurs korzystania z narzędzia
+<c>gdb</c>. Mamy nadzieję, że dzięki niemu powstaną lepsze raporty o błędach. Są
+jednakże inne typy błędów, które mogą spowodować awarię programu w trakcie jego
+działania. Może się to stać na przykład na skutek niewłaściwego odwoływania się
+do pliku. Takie błędy odnajdziemy przy pomocy narzędzia o nazwie <c>strace</c>. 
 </p>
 
 </body>
@@ -338,77 +353,80 @@ tool called <c>strace</c>.
 </chapter>
 
 <chapter>
-<title>Finding file access errors using strace</title>
+<title>Znajdywanie błędów w dostępie do plików przy pomocy strace</title>
 <section>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-Programs often use files to fetch configuration information, access hardware or
-write logs. Sometimes, a program attempts to reach such files incorrectly. A
-tool called <c>strace</c> was created to help deal with this. <c>strace</c>
-traces system calls (hence the name) which include calls that use the memory and
-files. For our example, we're going to take a program foobar2. This is an
-updated version of foobar. However, during the change over to foobar2, you notice
-all your configurations are missing!  In foobar version 1, you had it setup to
-say "foo", but now it's using the default "bar".
+Programy często korzystają z plików w celu odczytywania konfiguracji, uzyskania
+dostępu do sprzętu lub zapisywania logów. Czasem program próbuje odwołać się do
+takich plików w niewłaściwy sposób. Narzędzie o nazwie <c>strace</c> stworzono
+właśnie po to, by radzić sobie z takimi błędami. Śledzi ono wywołania systemowe
+(ang. "to trace" -- śledzić, tropić -- stąd nazwa), a więc odwołania do pamięci
+i plików. W ramach przykładu użyjemy programu blabla2, który jest nowszą wersją
+programu blabla. Jednakże po przesiadce na blabla2 zauważamy brak naszej
+konfiguracji! W pierwszej wersji programu ustawiliśmy go tak, aby wypisywał
+napis "bla", jednak teraz wypisuje domyślne "fuj".
 </p>
 
-<pre caption="Foobar2 With an invalid configuration">
-$ <i>./foobar2</i>
-Configuration says: bar
+<pre caption="blabla2 z niewłaściwią konfiguracją">
+$ <i>./blabla2</i>
+Konfiguracja mówi: fuj
 </pre>
 
 <p>
-Our previous configuration specifically had it set to foo, so let's use
-<c>strace</c> to find out what's going on.
+W poprzedniej konfiguracji ta sama opcja miała wartość bla, użyjmy więc
+narzędzia <c>strace</c> aby dowiedzieć się o co chodzi.
 </p>
 
 </body>
 </section>
 <section>
-<title>Using strace to track the issue</title>
+<title>Użycie programu strace do znalezienia błędu</title>
 <body>
 
 <p>
-We make <c>strace</c> log the results of the system calls. To do this, we run
-<c>strace</c> with the -o[file] arguments. Let's use it on foobar2 as shown.
+Chcemy, aby <c>strace</c> zalogował resultat wywołań systemowych. Aby tego
+dokonać uruchamiamy program <c>strace</c> z parametrem -o[plik]. Wypróbujmy to
+na programie blabla2.
 </p>
 
-<pre caption="Running foobar2 through strace">
-# <i>strace -ostrace.log ./foobar2</i>
+<pre caption="Uruchamianie blabla2 poprzez strace">
+# <i>strace -ostrace.log ./blabla2</i>
 </pre>
 
 <p>
-This creates a file called <path>strace.log</path> in the current directory. We
-check the file, and shown below are the relevant parts from the file.
+W bieżącym katalogu powstaje plik <path>strace.log</path>. Oglądamy jego
+zawartość. Poniżej znajdują się najistotniejsze dla naszej sytuacji wiersze. 
 </p>
 
-<pre caption="A Look At the strace Log">
-open(".foobar2/config", O_RDONLY)       = 3
-read(3, "bar", 3)                       = 3
+<pre caption="Zaglądamy do pliku z logiem strace">
+open(".blabla2/config", O_RDONLY)       = 3
+read(3, "fuj", 3)                       = 3
 </pre>
 
 <p>
-Aha! So There's the problem. Someone moved the configuration directory to
-<path>.foobar2</path> instead of <path>.foobar</path>. We also see the program
-reading in "bar" as it should. In this case, we can recommend the ebuild
-maintainer to put a warning about it. For now though, we can copy over the
-config file from <path>.foobar</path> and modify it to produce the correct
-results.
+Acha! Więc w tym tkwi problem. Ktoś zmienił katalog z konfiguracją z 
+<path>.blabla</path> na <path>.blabla2</path>. Widzimy także, że program
+prawidłowo czyta "ble" z pliku. W tym przypadku najlepiej będzie powiadomić
+osobę, która odpowiada za plik ebuild, aby dodała ostrzeżenie o tej zmianie.
+Jednak na razie możemy skopiować plik konfiguracyjny z katalogu 
+<path>.foobar</path> we właściwe miejsce. 
 </p>
 
 </body>
 </section>
 <section>
-<title>Conclusion</title>
+<title>Podsumowanie</title>
 <body>
 
 <p>
-Now we've taken care of finding run time bugs. These bugs prove to be
-problematic when you try and run your programs. However, run time errors are
-the least of your concerns if your program won't compile at all. Let's take a
-look at how to address <c>emerge</c> compile errors.
+W ten sposób zakończyliśmy temat błędów pojawiających się w czasie działania
+programu. Jednak, pomimo iż błędy te przysparzają wielu problemów, będą one
+naszym ostatnim zmartwieniem, gdy program nie będzie się nawet kompilował.
+Przyjrzyjmy się więc jak można poradzić sobie z błędami kompilacji w czasie 
+używania narzędzia <c>emerge</c>. 
 </p>
 
 </body>
@@ -416,138 +434,140 @@ look at how to address <c>emerge</c> compile errors.
 </chapter>
 
 <chapter>
-<title>Handling emerge Errors</title>
+<title>Jak poradzić sobie z błędami emerge</title>
 <section>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-<c>emerge</c> errors, such as the one displayed earlier, can be a major cause
-of frustration for users. Reporting them is considered crucial for maintaining
-the health of Gentoo. Let's take a look at a sample ebuild, foobar2, which
-contains some build errors.
+Błędy przy używaniu <c>emerge</c>, jak ten, który pokazaliśmy na początku, mogą
+być główną przyczyną frustracji użytkowników. Zgłaszanie ich jest uznawane za
+jeden z najważniejszych sposobów trosczenia się o Gentoo. Przyjrzyjmy się zatem
+przykładowemu procesowi instalacji programu blabla2, w czasie którego wystąpią
+błędy kompilacji.
 </p>
 
 </body>
 </section>
 <section id="emerge_error">
-<title>Evaluating emerge Errors</title>
+<title>Szacowanie błędów emerge</title>
 <body>
 
 <p>
-Let's take a look at this very simple <c>emerge</c> error:
+Zwróćmy uwagę na ten prosty błąd <c>emerge</c>:
 </p>
 
-<pre caption="emerge Error">
-gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o foobar2-7.o foobar2-7.c
-gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o foobar2-8.o foobar2-8.c
-gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o foobar2-9.o foobar2-9.c
-gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o foobar2.o foobar2.c
-foobar2.c:1:17: ogg.h: No such file or directory
-make: *** [foobar2.o] Error 1
+<pre caption="Błąd emerge">
+gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o blabla2-7.o blabla2-7.c
+gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o blabla2-8.o blabla2-8.c
+gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o blabla2-9.o blabla2-9.c
+gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o blabla2.o blabla2.c
+blabla2.c:1:17: ogg.h: No such file or directory
+make: *** [blabla2.o] Error 1
 
-!!! ERROR: sys-apps/foobar2-1.0 failed.
+!!! ERROR: sys-apps/blabla2-1.0 failed.
 !!! Function src_compile, Line 19, Exitcode 2
 !!! Make failed!
 !!! If you need support, post the topmost build error, NOT this status message
 </pre>
 
 <p>
-The program is compiling smoothly when it suddenly stops and presents an error message. This
-particular error can be split into 3 different sections, The compile messages, the build
-error, and the emerge error message as shown below.
+Program kompilował się bez problemów, do czasu gdy nagle przedstawił nam
+komunikat błędu. Ten konkretny komunikat możemy podzielić na trzy sekcje,
+przedstawione poniżej: komunikaty kompilatora, błąd budowania i komunikat błędu
+emerge.
 </p>
 
-<pre caption="Parts of the error">
-<comment>(Compilation Messages)</comment>
-gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o foobar2-7.o foobar2-7.c
-gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o foobar2-8.o foobar2-8.c
-gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o foobar2-9.o foobar2-9.c
-gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o foobar2.o foobar2.c
+<pre caption="Części błędu">
+<comment>(Komunikaty kompilacji)</comment>
+gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o blabla2-7.o blabla2-7.c
+gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o blabla2-8.o blabla2-8.c
+gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o blabla2-9.o blabla2-9.c
+gcc -D__TEST__ -D__GNU__ -D__LINUX__ -L/usr/lib -I/usr/include -L/usr/lib/nspr/ -I/usr/include/fmod   -c -o blabla2.o blabla2.c
 
-<comment>(Build Error)</comment>
-foobar2.c:1:17: ogg.h: No such file or directory
-make: *** [foobar2.o] Error 1
+<comment>(Błąd budowania)</comment>
+blabla2.c:1:17: ogg.h: No such file or directory
+make: *** [blabla2.o] Error 1
 
-<comment>(emerge Error)</comment>
-!!! ERROR: sys-apps/foobar2-1.0 failed.
+<comment>(Błąd emerge)</comment>
+!!! ERROR: sys-apps/blabla2-1.0 failed.
 !!! Function src_compile, Line 19, Exitcode 2
 !!! Make failed!
 !!! If you need support, post the topmost build error, NOT this status message
 </pre>
 
 <p>
-The compilation messages are what lead up to the error. Most often, it's good to
-at least include 10 lines of compile information so that the developer knows
-where the compilation was at when the error occurred.
+Komunikaty kompilatora poprzedzają wystąpienie błędu. Najczęściej dobrze będzie
+dołączyć przynajmniej 10 ostatnich linii informacji o kompilacji, aby deweloper
+wiedział w którym momencie tego procesu wystąpił błąd. 
 </p>
 
 <p>
-Make errors are the actual error and the information the developer needs. When
-you see "make: ***", this is often where the error has occurred. Normally, you
-can copy and paste 10 lines above it and the developer will be able to address
-the issue. However, this may not always work and we'll take a look at an
-alternative shortly.
+Błędy w działaniu Make to błędy właściwe i właśnie tej informacji potrzebuje
+deweloper. Widząc napis "make: ***" najczęściej możemy poznać miejsce
+wystąpienia błędu. Zwykle wystarczy, że skopiujemy 10 linijek powyżej tego
+miejsca i deweloper poradzi sobie z naprawieniem problemu. Czasem jednak okaże
+się, że to za mało i wkrótce przyjrzymy się alternatywom.
 </p>
 
 <p>
-The emerge error is what <c>emerge</c> throws out as an error. Sometimes, this
-might also contain some important information. Often people make the mistake of
-posting the emerge error and that's all. This is useless by itself, but with
-make error and compile information, a developer can get what application and
-what version of the package is failing. As a side note, make is commonly used as
-the build process for programs (<b>but not always</b>). If you can't find a
-"make: ***" error anywhere, then simply copy and paste 20 lines before the
-emerge error. This should take care of most all build system error messages. Now
-let's say the errors seem to be quite large. 10 lines won't be enough to catch
-everything. That's where PORT_LOGDIR comes into play.
+Ostatni komunikat jest błędem zgłaszanym przez <c>emerge</c>. Czasami on również
+zawiera przydatne informacje, jednak często się zdarza, że zgłaszany jest tylko
+ten komunikat i nic więcej. To za mało, jednak mając jeszcze komunikat błędu
+make i komunikaty kompilatora deweloper zorientuje się jaka aplikacja i która
+wersja paczki jest wadliwa. Na marginesie, make jest najczęściej używanym
+narzędziem do budowania programów, <b>jednak nie zawsze</b>. Jeśli nie widać
+nigdzie komunikatu "make: ***", należy po prostu przekopiować 20 linijek przed
+komunikatem emerge. Ten sposób powinien wystarczyć w przypadku większości
+komunikatów o błędach. Jeśli jednak jest ich bardzo wiele, 10 linii może nie
+objąć wszystkiego. Wówczas musimy zainteresować się zmienną PORT_LOGDIR.
 </p>
 
 </body>
 </section>
 <section>
-<title>emerge and PORT_LOGDIR</title>
+<title>emerge i zmienna PORT_LOGDIR</title>
 <body>
 
 <p>
-PORT_LOGDIR is a portage variable that sets up a log directory for separate
-emerge logs. Let's take a look and see what that entails. First, run your
-emerge with PORT_LOGDIR set to your favorite log location. Let's say we have a
-location <path>/var/log/portage</path>. We'll use that for our log directory:
+PORT_LOGDIR to zmienna systemu portage, która definiuje katalog z logami
+narzędzia emerge. Zobaczmy co to oznacza (FIXME: entails). Najpierw spróbujmy
+uruchomić proces instalacji ze zmienną PORT_LOGDIR ustawioną na nasz ulubiony
+katalog z logami. Załóżmy, że istnieje katalog <path>/var/log/portage</path>.
+Użyjemy go jako nasze miejsce na logi:
 </p>
 
 <note>
-In the default setup, <path>/var/log/portage</path> does not exist, and you will
-most likely have to create it. If you do not, portage will fail to write the
-logs.
+Domyślnie katalog <path>/var/log/portage</path> nie istnieje i należy utworzyć
+go ręcznie. Jeśli tego nie zrobimy, portage nie zapisze logów.
 </note>
 
-<pre caption="emerge-ing With PORT_LOGDIR">
-# <i>PORT_LOGDIR=/var/log/portage emerge foobar2</i>
+<pre caption="Instalowanie ze zmienną PORT_LOGDIR">
+# <i>PORT_LOGDIR=/var/log/portage emerge blabla2</i>
 </pre>
 
 <p>
-Now the emerge fails again. However, this time we have a log we can work with,
-and attach to the bug later on. Let's take a quick look at our log directory.
+Oczywiście proces znowu kończy się niepowodzeniem, tym razem jednak mamy log,
+który możemy potem dołączyć do buga. Zajrzyjmy do katalogu.
 </p>
 
-<pre caption="PORT_LOGDIR Contents">
+<pre caption="Zawartość katalogu PORT_LOGDIR">
 # <i>ls -la /var/log/portage</i>
 total 16
 drwxrws---   2 root root 4096 Jun 30 10:08 .
 drwxr-xr-x  15 root root 4096 Jun 30 10:08 ..
--rw-r--r--   1 root root 7390 Jun 30 10:09 2115-foobar2-1.0.log
+-rw-r--r--   1 root root 7390 Jun 30 10:09 2115-blabla2-1.0.log
 </pre>
 
 <p>
-The log files have the format [counter]-[package name]-[version].log. Counter
-is a special variable that is meant to state this package as the n-th package
-you've emerged. This prevents duplicate logs from appearing. A quick look at
-the log file will show the entire emerge process. This can be attached later
-on as we'll see in the bug reporting section. Now that we've safely obtained
-our information needed to report the bug we can continue to do so. However,
-before we get started on that, we need to make sure no one else has reported
-the issue. Let's take a look at searching for bugs.
+Pliki logów mają format [licznik]-[nazwa-paczki]-[wersja].log. Licznik to
+specjalna zmienna, dzięki której wiemy, że ta paczka jest n-tą, którą
+instalowaliśmy. Dzięki temu nie pojawiają się powielone pliki z logami. Jeśli
+zajrzymy do pliku, ujrzymy cały proces instalacji. Później dowiemy się jak
+dołączyć go przy zgłaszaniu błędu. Teraz jednak, skoro mamy już informacje
+potrzebne do zgłoszenia buga, możemy się za to zabrać. Najpierw musimy się tylko
+upewnić, czy nikt nie zgłosił już tego problemu przed nami. Przyjrzyjmy się więc
+procesowi szukania błędów.
 </p>
 
 </body>
@@ -555,18 +575,19 @@ the issue. Let's take a look at searching for bugs.
 </chapter>
 
 <chapter>
-<title>Searching Using Bugzilla</title>
+<title>Przeszukiwanie Bugzilli</title>
 <section>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-<uri link="http://www.bugzilla.org">Bugzilla</uri> is what we at Gentoo use to
-handle bugs. Gentoo's Bugzilla is reachable by HTTPS and HTTP. HTTPS is
-available for those on insecure networks or simply paranoid :). For the sake of
-consistency, we will be using the HTTPS version in the examples to follow. Head
-over to <uri link="https://bugs.gentoo.org">Gentoo Bugs</uri> to see how it
-looks.
+W projekcie Gentoo używamy <uri link="http://www.bugzilla.org">Bugzilli</uri> do
+zgłaszania błędów. Nasza Bugzilla dostępna jest przez protokoły HTTPS i HTTP.
+HTTPS dostępne jest głównie dla osób w niezabezpieczonych sieciach lub dla
+paranoików, jednak aby zachować spójność, w następnych przykładach będziemy
+używać właśnie tej wersji. Zajrzyjmy teraz na stronę <uri
+link="https://bugs.gentoo.org">Gentoo Bugs</uri>, aby zapoznać się z jej
+wyglądem.
 </p>
 
 <p>
