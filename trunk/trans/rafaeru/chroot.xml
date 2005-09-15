@@ -16,7 +16,7 @@
 <title>Wprowadzenie do 64-bitowego systemu</title>
 <body>
 <p>
-Przewodnik The Gentoo Linux 32bits chroot pomaga ustawić prawdziwy 32-bitowy chroot na systemie Gentoo/AMD64. 
+Przewodnik dla 32-bitowego chroot'a w Gentoo Linux pomaga ustawić prawdziwy 32-bitowy chroot na systemie Gentoo/AMD64. 
 </p>
 <p>
 Jak wiemy systemy 64-bitowe nie obsługują jeszcze 32-bitowych aplikacji (przynajmniej nie z portage), więc będziemy musieli skożystać z bibliotek emulacji by zmusić je do działania, bądź też stworzyć prawdziwy 32-bitowy system wewnątrz chroot'a, by zainstalować i uruchamiać 32-bitowe aplikacje. Dla zwykłych potrzeb nie musimy budować prawdziwego 32-bitowego systemu wewnątrz chroot'a. Jednakże, jeżeli chcemy uruchamiać aplikacje, które nie posiadają binariów umozliwiających pracę z 32-bitowymi bibliotekami, musimy skożystać 32-bitowego chroot'a. Przewodnik ten uczy jak utworzyć 32-bitowy chroot oraz jak zainstalować i uruchamiać w nim aplikacje.
@@ -31,9 +31,9 @@ Jak wiemy systemy 64-bitowe nie obsługują jeszcze 32-bitowych aplikacji (przyn
 <title>Instalacja 32-bitowego chroot'a</title>
 <body>
 <p>
-By zainstalować 32-bitowy chroot podążamy radami jakimi kierujemy się podczas instalacji Gentoo Linux na systemie x86. W tej chwili potrzebujemy najnowszego stage3, dostępnego na <uri link="http://www.gentoo.org/main/en/mirrors.xml">Gentoo mirrors</uri>.
+By zainstalować 32-bitowy chroot podążamy radami jakimi kierujemy się podczas instalacji Gentoo Linux na systemie x86. W tej chwili potrzebujemy najnowszego stage3, dostępnego w <uri link="http://www.gentoo.org/main/en/mirrors.xml">Gentoo mirrors</uri>.
 </p>
-<pre caption="ściąganie stage3 z gentoo mirror">
+<pre caption="ściąganie stage3 z gentoo mirrors">
 $ cd /home/user/downloads
 $ wget -c http://distfiles.gentoo.org/releases/x86/2005.0/stages/athlon-xp/stage3-athlon-xp-2005.0.tar.bz2
 </pre>
@@ -47,7 +47,7 @@ $ su root <i>wprowadzamy hasło root'a</i>
 # mkdir gentoo32
 </pre>
 <p>
-Następnie przenosimy ściągnięty stage, rozpakowujemy i instalujemy według przykładu.
+Następnie przenosimy ściągnięty stage, rozpakowujemy i instalujemy go według przykładu.
 </p>
 <pre caption="instalacja ze stage3">
 # cd /mnt/gentoo32
@@ -80,9 +80,9 @@ CXXFLAGS="${CFLAGS}"
 MAKEOPTS="-j2"
 </pre>
 <p>
-teraz montujemy various bogus file systems:
+Teraz montujemy różne fikcyjne systemy plików:
 </p>
-<pre caption="Mount virtual file systems">
+<pre caption="Montujemy wirtualne systemy plików">
 # mount -o bind /dev /mnt/gentoo32/dev
 # mount -o bind /dev/pts /mnt/gentoo32/dev/pts
 # mount -o bind /dev/shm /mnt/gentoo32/dev/shm
@@ -91,43 +91,43 @@ teraz montujemy various bogus file systems:
 # mount -o bind /sys /mnt/gentoo32/sys
 </pre>
 <p>
-Now you have a true 32bit chroot installed in your 64bits system which is almost ready for use. Next, you need to create a link from your portage available in your 64bit system to your chroot. This way, you only need to update it in one installation instead of duplicating a lot of data.
+W tym momencie mamy prawdziwy 32-bitowy chroot zainstalowany na 64-bitowym systemie, który jest już praktycznie gotowy do użycia. Następnie musimy stworzyć link z portage dostępnego w 64-bitowym systemie do chroot'a. Dzieki temu można wykonać update w jednej instalacji dla obydwu systemów zamiast kopiować wiele danych.
 </p>
-<pre caption="Link portage to /usr/portage inside the 32bits chroot">
+<pre caption="Łączymy portage z /usr/portage wewnątrz 32-bitowego chroot'a">
 # mkdir -p /mnt/gentoo32/usr/portage/
 # mount -o bind /usr/portage /mnt/gentoo32/usr/portage/
 </pre>
-<note>Everytime you update your portage by doing a emerge sync, you update your 32bit chroot's portage as well.</note>
+<note>Za każdym razem gdy wykonamy update portage poleceniem emerge sync, zupdatujemy również portage 32-bitowego chroota'a.</note>
 <p>
-If you want to run 32bit applications which use X, you also need to mount /tmp.
+Jeżeli chcemy uruchomić 32-bitowe aplikacje wymagające X, musimy zamontować /tmp.
 </p>
-<pre caption="Mount /tmp for applications with a GUI">
+<pre caption="Montujemy /tmp dla aplikacji posiadających GUI">
 # mount -o bind /tmp /mnt/gentoo32/tmp
 </pre>
 <p>
-Now we're ready to switch inside the chroot.
+Teraz możemy przejść do wnętrza chroot'a.
 </p>
-<pre caption="Changing inside the chroot">
-<i>(Only perform this step if you don't have linux32 already installed)</i>
+<pre caption="Przechodzimy do środowiska utworzonego chroot'a">
+<i>(Krok ten wykonujemy tylko i wyłącznie wtedy, gdy nie mamy zainstalowanego linux32)</i>
 # emerge linux32
 # linux32 chroot /mnt/gentoo32 /bin/bash
-<i>(Make sure we have a i686 setup)</i>
+<i>(Upewaniamy się czy nasza konfiguracja to i686)</i>
 # uname -m
 Linux mysystem 2.6.12-gentoo-r1 #1 Mon Jun 27 02:41:55 GMT 2005 i686 AMD Athlon(tm) 64 Processor 3500+ AuthenticAMD GNU/Linux
 </pre>
-<warn>The <c>linux32</c> util is needed to change the CHOST value. If you forget it, you're likely to be unable to compile anything inside the chroot environment.</warn>
+<warn>Narzędzie <c>linux32</c> jest potrzebne do zmiany wartości CHOST. Jeżeli je pominiemy, nie będzie możliwa kompilacja wewnątrz chroot'a.</warn>
 <p>
-Now you have a new 32bits chroot system ready to be updated. Follow the next steps to update it.
+W tej chwili mamy w swoich rękach 32-bitowy chroot gotowy do aktualizacji. Kolejne kroki przeprowadzą nas przez update.
 </p>
-<pre caption="Updating your new 32bits chroot">
+<pre caption="Update nowego, 32-bitowego chroot'a">
 # source /etc/profile
 # env-update
 # emerge -au world
 </pre>
 <p>
-After this you basically have finished the setup of your 32bits chroot. To make things more suitable, we are going to set up a new file in your 64bit system to enable the 32bits chroot when booting.
+Po tej czynności mamy praktycznie gotowy 32-bitowy chroot. By dopasować wszystkie opcje, utworzymy nowy plik w 64-bitowym systemie, by udostępnić 32-bitowy chroot podczas uruchamiania systemu.
 </p>
-<pre caption="creating a new file in /etc/init.d">
+<pre caption="Tworzymy nowy plik w /etc/init.d">
 # nano -w /etc/init.d/gentoo32
 #!/sbin/runscript
 
@@ -172,54 +172,53 @@ stop() {
 }
 </pre>
 <p>
-Now you only need to run <c>rc-update add gentoo32 default</c> to run it at boot time.
+Teraz wystarczy uruchomić <c>rc-update add gentoo32 default</c> by chroot odpalał się przy starcie.
 </p>
 <p>
-Whenever you want to switch to your chroot environment, you only need to run the following command: <c>linux32 chroot /mnt/gentoo32 /bin/bash</c>. 
+Jeżeli zechcemy przełączyć się do środowiska chroot, wystarczy skożystać z następującej komendy: <c>linux32 chroot /mnt/gentoo32 /bin/bash</c>. 
 </p>
 <p>
-Now you have your 32bit chroot ready to install new applications.
+Nasz 32-bitowy chroot jest w tej chwili przygotowany do instalacji nowych aplikacji.
 </p>
 </body>
 </subsection>
 </section>
 
 <section>
-<title>Applications</title>
+<title>Aplikacje</title>
 <subsection>
-<title>Installing new applications in your chroot</title>
+<title>Instalowanie nowych aplikacji w chroot'cie</title>
 <body>
 <p>
-Now that you have a fully functional 32bits chroot you can install every application in 32bits mode. Let's see how you can install new packages on your 32bits chroot.
+Teraz, kiedy mamy w pełni funkcjonalny 32-bitowy chroot, możemy zainstalować każdą 32-bitową aplikację. Sprawdźmy jak przebiega instalacja nowych pakietów.
 </p>
-<pre caption="Install foo inside the chroot">
+<pre caption="Instalujemy foo wewnątrz chroot'a">
 # linux32 chroot /mnt/gentoo32 /bin/bash
 # source /etc/profile
 # env-update
 # emerge foo
 </pre>
-<note>Always remember to do <c>source /etc/profile</c> and <c>env-update</c> after switching inside the chroot.</note>
+<note>Należy pamietać o wykonaniu <c>source /etc/profile</c> oraz <c>env-update</c> po przełączeniu się na chroot'a.</note>
 <p>
-You now have installed a new package in your 32bit chroot. If you want to run your new package you need to run it inside of your chroot. If you want to run 
-X applications the best solution to run it is doing the <c>xhost</c> trick. Everytime you need to run a X application run the this command in your 64bit environment:
+Zainstalowaliśmy nowy pakiet na 32-bitowym chroot'cie. Jeżeli chcemy go uruchomić, musimy zainicjować go wewnątrz chroot'a. Jeżeli chcemy uruchomić aplikację korzystającą z X, najlepszym rozwiązaniem jest <c>xhost</c>. Za każdym razem gdy chcemy uruchomić aplikację wykorzystującą X, wykonujemy następujące polecenie w naszym 64-bitowym systemie:
 </p>
-<pre caption="Xhost trick">
+<pre caption="Xhost">
 # xhost local:localhost
 </pre>
 <p>
-After this get inside your chroot again and you should be able to run every X application you build inside your 32bits chroot.
+Po tym przechodzimy spowrotem do chroot'a i możemy uruchamiać każdą aplikację wymagającą X, wcześniej skompilowaną wewnątrz chroot'a.
 </p>
 </body>
 </subsection>
 </section>
 
 <section>
-<title>Conclusion</title>
+<title>Podsumowanie</title>
 <subsection>
-<title>Conclusion of this guide</title>
+<title>Podsumowanie poradnika</title>
 <body>
 <p>
-With this chroot you can install many packages available only for x86 arch. Some packages like <c>OpenOffice</c> can be installed by using the binary available for Gentoo/AMD64. Some of the codecs available for <c>MPlayer</c> need this 32bit chroot to so you can install <c>win32codecs</c> with this chroot.
+Dzięki chroot'owi możemy instalować wiele pakietów normalnie dostępnych tylko dla systemów x86. Niektóre pakiety takie jak <c>OpenOffice</c> mogą zostać zainstalowane przy pomocy binariów dostępnych dla Gentoo/AMD64. Niektóre z kodeków dostępnych dla programu <c>MPlayer</c> również wymagają 32-bitowego chroota, więc umożliwia on instalację pakietu <c>win32codecs</c>.
 </p>
 </body>
 </subsection>
