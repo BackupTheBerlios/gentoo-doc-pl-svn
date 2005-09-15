@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding="UTF-8"?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/base/amd64/howtos/2005.0-upgrade-amd64.xml,v 1.21 2005/09/10 18:56:26 eradicator Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/pl/base/amd64/howtos/2005.0-upgrade-amd64.xml,v 1.21 2005/09/10 18:56:26 eradicator Exp $ -->
 
 <!-- The context of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommonds.org/licenses/by-sa/1.0 -->
@@ -11,20 +11,20 @@
 <date>2005-09-10</date>
 
 <section>
-<title>Updating to 2005.0 multilib</title>
+<title>Update do 2005.0 multilib</title>
 <body>
 <p>
-Multilib is now forced on in the base 2005.0 profile.  If you wish to have a pure-64bit system, you can use the 2005.0/no-multilib profile.  This guide will show you how to upgrade a prior installation to a system that uses our new profile. There are two ways of upgrading: the easy and scripted way, or the longer way by hand.
+Multilib jest w tej chwili wymagany dla profilu 2005.0.  Jeżeli chcemy posiadać całkowicie 64-bitowy system, możemy użyć profilu 2005.0/no-multilib.  W tym poradniku dowiemy się jak zupgrade'ować wcześniejszą instalację do systemu używającego nasz nowy profil. Istnieją dwie możliwości upgrade'u: łatwa, oparta na skryptach, i długa, przeprowadzana manualnie.
 </p>
 </body>
 
 <subsection>
-<title>Scripted upgrade</title>
+<title>Upgrade za pomocą skryptów</title>
 <body>
 <p>
-We recommend using the upgrade script to make this process easier.
+Zaleca się używanie skryptów, by ułatwić sobie cały proces upgradowania.
 </p>
-<pre caption="Scripted Upgrade">
+<pre caption="Upgrade za pomocą skryptów">
 # <i>cd /usr/portage/profiles/default-linux/amd64/2005.0/scripts</i>
 # <i>sh ./2004.3-2005.0upgrade.sh</i>
 # <i>emerge -upv system</i>
@@ -34,63 +34,63 @@ We recommend using the upgrade script to make this process easier.
 </subsection>
 
 <subsection>
-<title>Upgrading by hand</title>
+<title>Ręczny upgrade</title>
 <body>
 <p>
-If you currently have USE=-multilib, you need to set multilib in USE and re-emerge gcc.
+Jeżeli obecnie posiadamy USE=-multilib, musimy ustawić opcję multilib w USE i ponownie zaemergować gcc.
 </p>
-<pre caption="Emerge a multilib compiler">
+<pre caption="Emerge kompilatora multilib">
 # <i>USE=multilib emerge gcc</i>
-<comment>If you get an error about not having a multilib sandbox, you need to set FEATURES=-sandbox</comment>
+<comment>Jeżeli napotkamy błąd mówiący o braku sandbox'a multilib, należy ustawić opcję FEATURES=-sandbox</comment>
 # <i>FEATURES=-sandbox USE=multilib emerge gcc</i>
 </pre>
 
 <p>
-Additionally, you need to make sure you have the required versions of toolchain/portage packages as these are needed to properly rebuild glibc after switching the profile.
+Dodatkowo, musimy upewnić się, czy nasz system zawiera wymagane wersje pakietów toolchain/portage, jako że są one potrzebne do poprawnej przebudowy glibc po zmianie profilu.
 </p>
-<pre caption="Ensure youu have a multilib toolchain">
+<pre caption="Upewniamy się o obecności multilib toolchain w systemie">
 # <i>emerge -v --oneshot '>=sys-apps/portage-2.0.51-r9'</i>
-# <i>emerge -v --oneshot 'sys-apps/sandbox'</i> <comment>Only if you are in ~amd64</comment>
+# <i>emerge -v --oneshot 'sys-apps/sandbox'</i> <comment>Tylko jeżeli jesteśmy w ~amd64</comment>
 # <i>emerge -v --oneshot '>=sys-devel/gcc-config-1.3.9'</i>
 # <i>emerge -v --oneshot '>=sys-devel/distcc-2.18.3-r1'</i>
 # <i>emerge -v --oneshot '>=linux-headers-2.6.8.1-r4'</i>
 </pre>
 <p>
-Next, make sure our 32bit glibc version is up to date.  This version is needed to bootstrap the 32bit glibc build after the profile switch.
+Kolejnym krokiem jest upewnienie sie czy mamy najnowszą wersję 32-bitowego glibc.  Wersja ta jest wymagana do bootstrap'u 32-bitowego glibc po zmianie profilu.
 </p>
-<pre caption="Get the latest 32bit glibc">
+<pre caption="Zdobywamy najnowsze 32-bitowe glibc">
 # <i>emerge -v --oneshot '>=emul-linux-x86-glibc-2.3.4.20041102'</i>
 </pre>
 <p>
-2005.0 doesn't use symlinks from /lib32 and /usr/lib32 to the emul directories, so we need to change them into directories and copy over some important files.
+2005.0 nie używa symlink'ów z /lib32 oraz /usr/lib32 do katalogów emul, więc musimy zamienić je na katalogi i skopiować do nich najważniejsze pliki.
 </p>
-<pre caption="Manually prepare /lib32 and /usr/lib32">
+<pre caption="Przygotowujemy ręcznie /lib32 i /usr/lib32">
 # <i>rm /lib32 /usr/lib32</i>
 # <i>mkdir /lib32 /usr/lib32</i>
-# <i>cp /emul/linux/x86/lib32/libsandbox.so /usr/lib32</i> <comment>If you are using the stable branch</comment>
-# <i>cp /emul/linux/x86/usr/lib32/libsandbox.so /usr/lib32</i> <comment>If you are in ~amd64</comment>
+# <i>cp /emul/linux/x86/lib32/libsandbox.so /usr/lib32</i> <comment>Jeżeli używamy stabilnej wersji</comment>
+# <i>cp /emul/linux/x86/usr/lib32/libsandbox.so /usr/lib32</i> <comment>Jeżeli jesteśmy w ~amd64</comment>
 # <i>cp /emul/linux/x86/usr/lib32/libc.so /usr/lib32</i>
 # <i>cp /emul/linux/x86/usr/lib32/libpthread.so /usr/lib32</i>
 # <i>cp /emul/linux/x86/usr/lib32/*crt*.o /usr/lib32</i>
 # <i>env-update</i>
 </pre>
 <p>
-Now, we need to make sure our baselayout is up to date, so we can gurantee /etc/env.d/04multilib exists.
+Teraz musimy upewnić się czy nasz baselayout jest w najnowszej wersji, aby można było zagwarantować istnienie /etc/env.d/04multilib.
 </p>
-<pre caption="Update baselayout">
+<pre caption="Update'ujemy baselayout">
 # <i>emerge -v --oneshot baselayout</i>
 </pre>
 <p>
-We are now ready to actually switch the profile to 2005.0
+W tym momencie możemy przełączyć się na profil 2005.0
 </p>
-<pre caption="Change your profile">
+<pre caption="Zmiana profilu">
 # <i>rm /etc/make.profile</i>
 # <i>ln -s /usr/portage/profiles/default-linux/amd64/2005.0 /etc/make.profile</i>
 </pre>
 <p>
-Now just build glibc, unmerge the (obsolete) emul-linux-x86-glibc and update the base system.  You should emerge the same version of glibc as the one currently on your system to avoid possible compilation problems (which result in emerge exiting with an error message).
+Wystarczy teraz zbudować glibc, wykonać unmerge (przestarzałego) emul-linux-x86-glibc i wykonać update podstawowego systemu.  Należy zaemergować taką samą wersję glibc, jaka znajduję się obecnie w systemie, by zapobiec możliwym problemom podczas kompilacji (czego wynikiem jest zakończenie emerge z informacjami o błędach).
 </p>
-<pre caption="Finish the update">
+<pre caption="Finalizowanie update'u">
 # <i>emerge -v --oneshot emerge -v --oneshot sys-libs/glibc</i>
 # <i>emerge unmerge emul-linux-x86-glibc</i>
 # <i>rm /emul/linux/x86/usr/lib/libsandbox.*</i>
@@ -101,53 +101,52 @@ Now just build glibc, unmerge the (obsolete) emul-linux-x86-glibc and update the
 </subsection>
 
 <subsection>
-<title>Common Problems</title>
+<title>Najczęstsze Problemy</title>
 <body>
-<p><b>Initial USE=multilib emerge gcc (or sandbox) gives 'skipping incompatible /usr/lib/libc.so when searching for -lc'</b></p>
-<p>This problem is usually corrected by doing 'emerge -v --oneshot emul-linux-x86-glibc'</p>
+<p><b>Wstępne USE=multilib emerge gcc (lub sandbox) daje rezultat w postaci: 'skipping incompatible /usr/lib/libc.so when searching for -lc'</b></p>
+<p>Problem ten jest zazwyczaj naprawiany za pomocą 'emerge -v --oneshot emul-linux-x86-glibc'</p>
 <p><b>Cannot compute sizeof (long double)</b></p>
-<p>If you get a problem when ./configure is running on glibc, and it dies at 'checking size of long double... configure: error: cannot compute sizeof (long double), 77', check the config.log, and look for the error.  This is the first time your toolchain is used to create and execute a 32bit application.  The problems and associated causes you will see are:</p>
+<p>Jeżeli problem napotykamy podczas polecenia ./configure na glibc, i zostaje ono zakończone podczas 'checking size of long double... configure: error: cannot compute sizeof (long double), 77', musimy sprawdzić config.log, i odnaleźć błąd.  Jest to pierwszy moment, kiedy nasz toolchain zostaje użyty do tworzenia i uruchamiania 32-bitowych aplikacji.  Problemy i powiązane z nimi powody jakie możemy napotkać to:</p>
 <pre caption="cannot compute size of long double">
-<comment>Can't find libc.so</comment>
-	Something is messed up with your installed emul-linux-x86-glibc.
-	Follow these steps:
+<comment>Cannot find libc.so</comment>
+	Prawdopodobnie zainstalowane emul-linux-x86-glibc posiada błędy.
+	Należy postępować według podanych kroków:
 		# <i>rm -rf /lib32 /usr/lib32</i>
 		# <i>rm /etc/make.profile</i>
-		# <i>ln -s /usr/portage/profiles/default-linux/amd64/2004.3 /etc/make.profile</i> <comment>Or 2003.4/lib64 if that was your original profile</comment>
-		# <i>emerge --sync</i> <comment>You need a portage snapshot from atleast July 12, 2200 UTC</comment>
+		# <i>ln -s /usr/portage/profiles/default-linux/amd64/2004.3 /etc/make.profile</i> <comment>Lub 2003.4/lib64 jeżeli taki był nasz orginalny profil</comment>
+		# <i>emerge --sync</i> <comment>Potrzebujemy snapshot'a portage przynajmniej z 12 Lipca, 2200 UTC</comment>
 		# <i>emerge -v --oneshot '>=emul-linux-x86-glibc-2.3.4.20041102'</i>
 
-		<comment>If using the scripted upgrade:</comment>
+		<comment>Jeżeli używamy skryptów do update'u:</comment>
 		# <i>rm /var/tmp/2005.0_upgrade/step[34]</i>
 		# <i>cd /usr/portage/profiles/default-linux/amd64/2005.0/scripts</i>
 		# <i>sh ./2004.3-2005.0upgrade.sh</i>
 
-		<comment>If using the manual upgrade:</comment>
-		Continue from the codeblock where you remove the /lib32 and /usr/lib32 symlinks.
+		<comment>Jeżeli update'ujemy ręcznie:</comment>
+		Należy kontynuować codeblock w miejscu gdzie symlinki /lib32 i /usr/lib32 zostały usunięte.
 
-<comment>Can't find libsandbox.so</comment>
-	You probably don't have a multilib sandbox or portage.  The easiest
-	way around this is to use FEATURES=-sandbox for the duration of the
-	upgrade, then emerge portage and sandbox after completion.
+<comment>Cannot find libsandbox.so</comment>
+	Prawdopodobnie nie posiadamy sandbox'a multilib lub portage.  Najłatwiejszym
+	rozwiązaniem jest użycie FEATURES=-sandbox na czas upgrade'u,
+	następnie emergujemy portage i po zakończeniu instalujemy sandbox'a.
 
 <comment>./conftest: cannot execute binary file</comment>
-	You probably need to enable support for 32bit executables in your
-	kernel.
+	Prawdopodobnie należy uruchomić wsparcie dla 32-bitowych plików wykonawczych w jądrze.
 </pre>
 <p><b>Unresolved symbols during compilation/linking of glibc</b></p>
-<p>If you get unresolved sybmols during an emerge of glibc, emerge --sync and try again.  You'll need a portage snapshot of atleast Aug 20, 2005.  If you are stuck with a snapshot before Aug 20, just emerge the same version of glibc as is already on your system, then upgrade to a newer glibc version after completing the 2005.0 upgrade.</p>
+<p>Jeżeli otrzymamy taką informację podczas emergowania glibc, wykonujemy emerge --sync i próbujemy ponownie.  Będziemy potrzebować snapshot'a portage przynajmniej z 20 Września 2005.  Jeżeli jednak nie możemy zdobyć snapshot'a nowszego niż ten z 20 września, wystarczy emerge tej samej wersji glibc jaka jest już zainstalowana w systemie, następnie upgrade'ujemy glibc do nowszej wersji po przejściu na profil 2005.0.</p>
 </body>
 </subsection>
 
 </section>
 
 <section>
-<title>Updating to the 2005.0/no-multilib (64bit only) profile</title>
+<title>Update'owanie do profilu 2005.0/no-multilib (tylko 64bit)</title>
 <body>
 <p>
-Use this profile if you don't want any 32bit applications installed on your system.  This means you won't be able to play x86 games, use openoffice-bin, mplayer-bin, mozilla-bin (flash), acroread, etc.
+Uzywamy tego profilu, jeżeli nie chcemy instalować żadnych 32-bitowych aplikacji.  Oznacza to, iż nie będzie możliwe uruchomienie gier z wersji x86, uzywanie openoffice-bin, mplayer-bin, mozilla-bin (flash), acroread, itd.
 </p>
-<pre caption="Switch profile and update system">
+<pre caption="Zmieniamy profil i update'ujemy system">
 # <i>rm /etc/make.profile</i>
 # <i>ln -s /usr/portage/profiles/default-linux/amd64/2005.0/no-multilib /etc/make.profile</i>
 # <i>emerge -upv system</i>
