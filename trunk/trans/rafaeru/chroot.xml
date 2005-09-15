@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/base/amd64/howtos/chroot.xml,v 1.5 2005/08/31 15:47:25 metalgod Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/pl/base/amd64/howtos/chroot.xml,v 1.5 2005/08/31 15:47:25 metalgod Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
@@ -11,76 +11,76 @@
 <date>2005-08-31</date>
 
 <section>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <subsection>
-<title>Introduction to 64bit system</title>
+<title>Wprowadzenie do 64-bitowego systemu</title>
 <body>
 <p>
-The Gentoo Linux 32bits chroot guide will help you setting up a true 32bit chroot for your Gentoo/AMD64 system. 
+Przewodnik The Gentoo Linux 32bits chroot pomaga ustawić prawdziwy 32-bitowy chroot na systemie Gentoo/AMD64. 
 </p>
 <p>
-As you know 64bit systems don't run 32bits applications natively yet (at least not with portage) so you need to use emulation libraries to make them working or create a true 32bit system inside a chroot to install and run native 32bit applications. For the most common uses you do not need do build a 32bits chroot system. However, if you want to run applications that don't have a binary available to run with 32bits libraries, you should use a 32bit chroot. This guide will teach you how to set up a 32bit chroot and how to install and run applications inside the chroot.
+Jak wiemy systemy 64-bitowe nie obsługują jeszcze 32-bitowych aplikacji (przynajmniej nie z portage), więc będziemy musieli skożystać z bibliotek emulacji by zmusić je do działania, bądź też stworzyć prawdziwy 32-bitowy system wewnątrz chroot'a, by zainstalować i uruchamiać 32-bitowe aplikacje. Dla zwykłych potrzeb nie musimy budować prawdziwego 32-bitowego systemu wewnątrz chroot'a. Jednakże, jeżeli chcemy uruchamiać aplikacje, które nie posiadają binariów umozliwiających pracę z 32-bitowymi bibliotekami, musimy skożystać 32-bitowego chroot'a. Przewodnik ten uczy jak utworzyć 32-bitowy chroot oraz jak zainstalować i uruchamiać w nim aplikacje.
 </p>
 </body>
 </subsection>
 </section>
 
 <section>
-<title>Installation</title>
+<title>Instalacja</title>
 <subsection>
-<title>Installation of your 32bit chroot</title>
+<title>Instalacja 32-bitowego chroot'a</title>
 <body>
 <p>
-To install a 32bit chroot you need to follow many footsteps that you use to install Gentoo Linux on a x86 computer. For now you need the latest stage3 available on our <uri link="http://www.gentoo.org/main/en/mirrors.xml">mirrors</uri>.
+By zainstalować 32-bitowy chroot podążamy radami jakimi kierujemy się podczas instalacji Gentoo Linux na systemie x86. W tej chwili potrzebujemy najnowszego stage3, dostępnego na <uri link="http://www.gentoo.org/main/en/mirrors.xml">Gentoo mirrors</uri>.
 </p>
-<pre caption="downloading stage3 from a gentoo mirror">
+<pre caption="ściąganie stage3 z gentoo mirror">
 $ cd /home/user/downloads
 $ wget -c http://distfiles.gentoo.org/releases/x86/2005.0/stages/athlon-xp/stage3-athlon-xp-2005.0.tar.bz2
 </pre>
-<note>Note that we dowload a stage for x86, <c>not</c> for AMD64.</note>
+<note>Należy zwrócić uwagę, iż ściągamy wersję stage dla x86, <c>nie</c> dla AMD64.</note>
 <p>
-After downloading the stage3 you need to create a new directory to build your new chroot.
+Po ukończeniu ściągania musimy stworzyć miejsce dla nowego chroot'a.
 </p>
-<pre caption="creating directory for 32bits chroot">
-$ su root <i>insert your root password</i>
+<pre caption="tworzenie katalogu dla 32-bitowego chroot'a">
+$ su root <i>wprowadzamy hasło root'a</i>
 # cd /mnt
 # mkdir gentoo32
 </pre>
 <p>
-Then move the stage you have already downloaded, unpack it and setup it like this example.
+Następnie przenosimy ściągnięty stage, rozpakowujemy i instalujemy według przykładu.
 </p>
-<pre caption="installing from stage3">
+<pre caption="instalacja ze stage3">
 # cd /mnt/gentoo32
 # tar -xvjpf /home/user/downloads/stage3-athlon-xp-2005.0.tar.bz2
 # cp -L /etc/resolv.conf /mnt/gentoo32/etc/
 # cp -L /etc/passwd /mnt/gentoo32/etc/
 </pre>
 <p>
-Now you have the chroot ready for setup. Read the next chapter to learn how to set it up.
+W tej chwili mamy gotowy do tworzenia chroot. Kolejny rozdział pokazuje jak to się odbywa.
 </p>
 </body>
 </subsection>
 </section>
 
 <section>
-<title>Setup</title>
+<title>Tworzenie</title>
 <subsection>
-<title>Doing a setup for your new 32bit chroot</title>
+<title>Tworzenie 32-bitowego chroot'a</title>
 <body>
 <p>
-If everything went well until here now you will be able to set up your new 32bit chroot and finishing installation of this chroot.
+Jeżeli nie napotkaliśmy żadnych błędów, możemy śmiało rozpocząć tworzenie i sfinalizować instalację 32-bitowego chroot'a.
 </p>
 <p>
-The next step is setup your new <c>/mnt/gentoo32/etc/make.conf</c>.
+Kolejnym krokiem jest utworzenie nowego <c>/mnt/gentoo32/etc/make.conf</c>.
 </p>
-<pre caption="Configuring your new make.conf">
+<pre caption="Konfiguracja nowego make.conf">
 CFLAGS="-O2 -march=athlon-xp -msse2 -pipe -fomit-frame-pointer"
 CHOST="i686-pc-linux-gnu"
 CXXFLAGS="${CFLAGS}"
 MAKEOPTS="-j2"
 </pre>
 <p>
-Now mount the various bogus file systems:
+teraz montujemy various bogus file systems:
 </p>
 <pre caption="Mount virtual file systems">
 # mount -o bind /dev /mnt/gentoo32/dev
