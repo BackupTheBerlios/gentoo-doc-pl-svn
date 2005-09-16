@@ -34,17 +34,18 @@ Bugzilli.
 <body>
 
 <p>
-Jeden z czynników, ktory opóźnia naprawienie błędu to sposób, w jaki błąd został
-zgłoszony. Tworzymy ten przewodnik z myślą o usprawnieniu komunikacji między 
-deweloperami a użytkownikami przy poprawianiu błędów, ponieważ jest to ważna, o
-ile nie najważniejsza część procesu zapewniania jakości w każdym projekcie. Mamy
-nadzieję, że niniejszy przewodnik przyczyni się do jego sukcesu.
+Jeden z czynników, który opóźnia naprawienie błędu to sposób, w jaki błąd
+został zgłoszony. Tworzymy ten przewodnik z myślą o usprawnieniu komunikacji
+między deweloperami a użytkownikami przy poprawianiu błędów, ponieważ jest to
+ważna, o ile nie najważniejsza część procesu zapewniania jakości w każdym
+projekcie. Mamy nadzieję, że niniejszy przewodnik przyczyni się do jego
+sukcesu.
 </p>
 
 </body>
 </section>
 <section>
-<title>Błędy!!!!</title>
+<title>Błędy!!!</title>
 <body>
 
 <p>
@@ -102,7 +103,6 @@ pierwszego narzędzia do "odpluskwiania" działającego kodu -- <c>gdb</c>
 </section>
 </chapter>
 
-
 <chapter>
 <title>Debugowanie przy pomocy GDB</title>
 <section>
@@ -111,13 +111,13 @@ pierwszego narzędzia do "odpluskwiania" działającego kodu -- <c>gdb</c>
 
 <p>
 GDB, czyli (G)NU (D)e(B)ugger to narzędzie do znajdywania błędów w uruchomionym
-programie. Zwykle błędy te wynikają z naruszeń pamięci. Najpierw przyjrzyjmy się
-co debugowanie za sobą pociąga. Jedną z podstawowych czynności, jakie
-należy wykonać aby móc debugować program jest skompilowanie go
-narzędziem <c>emerge</c> ze zmienną <c>FEATURES="nostrip"</c>. Zapobiega to
-usunięciu symboli debugowania. Dlaczego symbole te domyślnie usuwa się z
-programów? Powód jest ten sam jak w przypadku kompresowania stron man programem
-gzip -- oszczędność miejsca. Oto jak zmienia się rozmiar programu z symbolami 
+programie. Zwykle błędy te wynikają z naruszeń pamięci. Najpierw przyjrzyjmy
+się co debugowanie za sobą pociąga. Jedną z podstawowych czynności, jakie
+należy wykonać aby móc debugować program jest skompilowanie go narzędziem
+<c>emerge</c> ze zmienną <c>FEATURES="nostrip"</c>. Zapobiega to usunięciu
+symboli debugowania. Dlaczego symbole te domyślnie usuwa się z programów? Powód
+jest ten sam jak w przypadku kompresowania stron man programem gzip --
+oszczędność miejsca. Oto jak zmienia się rozmiar programu z symbolami
 debugowania pozostawionymi i usuniętymi.
 </p>
 
@@ -180,8 +180,8 @@ programu.
 <body>
 
 <p>
-Załóżmy, że mamy program nazywający się "zepsuty_kod". Ktoś twierdzi, że program 
-ten wywala się i podaje jak to zrobić. Spróbujmy więc:
+Załóżmy, że mamy program nazywający się "zepsuty_kod". Ktoś twierdzi, że
+program ten wywala się i podaje jak to zrobić. Spróbujmy więc:
 </p>
 
 <pre caption="Psucie programu">
@@ -192,8 +192,9 @@ Segmentation fault
 <p>
 Wygląda na to, że ten ktoś miał rację. Skoro program rzeczywiście jest wadliwy,
 znaleźliśmy błąd. Czas więc użyć <c>gdb</c> aby pomógł nam rozwiązać ten
-problem. Uruchamiamy więc program <c>gdb</c> z parametrem <c>--args</c>, podając
-mu następnie pełną nazwę programu wraz z argumentami, jak podano poniżej:
+problem. Uruchamiamy więc program <c>gdb</c> z parametrem <c>--args</c>,
+podając mu następnie pełną nazwę programu wraz z argumentami, jak podano
+poniżej:
 </p>
 
 <pre caption="Uruchamianie naszego programu poprzez GDB">
@@ -209,15 +210,14 @@ This GDB was configured as "i686-pc-linux-gnu"...Using host libthread_db library
 
 <note>
 Można także debugować przy pomocy zrzutów core (ang. core dumps). Pliki te
-zawierają te same informacje, które podałby program uruchomiony przez gdb. 
-Chcąc debugować program zepsuty_kod przy pomocy zrzutu core, należałoby 
-wykonać polecenie <c>gdb ./zepsuty_kod core</c>, gdzie core to nazwa pliku 
-ze zrzutem.
+zawierają te same informacje, które podałby program uruchomiony przez gdb.
+Chcąc debugować program zepsuty_kod przy pomocy zrzutu core, należałoby wykonać
+polecenie <c>gdb ./zepsuty_kod core</c>, gdzie core to nazwa pliku ze zrzutem.
 </note>
 
 <p>
-Powinniśmy teraz ujrzeć działający debugger czekający na nasze polecenia po znaku
-zachęty "(gdb)". Najpierw uruchamiamy program. W tym celu należy wpisać
+Powinniśmy teraz ujrzeć działający debugger czekający na nasze polecenia po
+znaku zachęty "(gdb)". Najpierw uruchamiamy program. W tym celu należy wpisać
 polecenie <c>run</c>, co zaowocuje informacją podobną do poniższej:
 </p>
 
