@@ -23,7 +23,7 @@ Przewodnik dla 32-bitowego chroota w Gentoo Linux pomaga ustawić prawdziwy
 
 <p>
 Jak wiemy systemy 64-bitowe nie obsługują jeszcze 32-bitowych aplikacji
-(przynajmniej nie z portage), więc będziemy musieli skorzystać z bibliotek
+(przynajmniej nie z Portage), więc będziemy musieli skorzystać z bibliotek
 emulacji by zmusić je do działania, bądź też stworzyć prawdziwy 32-bitowy
 system wewnątrz chroota, by zainstalować i uruchamiać 32-bitowe aplikacje. Dla
 zwykłych potrzeb nie musimy budować prawdziwego 32-bitowego systemu wewnątrz
@@ -45,27 +45,27 @@ jak zainstalować i uruchamiać w nim aplikacje.
 <p>
 By zainstalować 32-bitowy chroot podążamy radami jakimi kierujemy się podczas
 instalacji Gentoo Linux na systemie x86. W tej chwili potrzebujemy najnowszego
-stage3, dostępnego w <uri
-link="http://www.gentoo.org/main/en/mirrors.xml">Gentoo mirrors</uri>.
+stage3, dostępnego na <uri link="/main/en/mirrors.xml">serwerach lustrzanych
+Gentoo</uri>.
 </p>
 
-<pre caption="ściąganie stage3 z gentoo mirrors">
-$ cd /home/user/downloads
-$ wget -c http://distfiles.gentoo.org/releases/x86/2005.0/stages/athlon-xp/stage3-athlon-xp-2005.0.tar.bz2
+<pre caption="Ściąganie stage3">
+$ <i>cd /home/user/downloads</i>
+$ <i>wget -c http://distfiles.gentoo.org/releases/x86/2005.0/stages/athlon-xp/stage3-athlon-xp-2005.0.tar.bz2</i>
 </pre>
 
 <note>
-Należy zwrócić uwagę, iż ściągamy wersję stage dla x86, <c>nie</c> dla AMD64.
+Należy zwrócić uwagę, że ściągamy wersję stage dla x86, <c>nie</c> dla AMD64.
 </note>
 
 <p>
-Po ukończeniu ściągania musimy stworzyć miejsce dla nowego chroot'a.
+Po ukończeniu ściągania musimy stworzyć miejsce dla nowego chroota.
 </p>
 
-<pre caption="tworzenie katalogu dla 32-bitowego chroot'a">
-$ su root <i>wprowadzamy hasło root'a</i>
-# cd /mnt
-# mkdir gentoo32
+<pre caption="Tworzenie katalogu dla 32-bitowego chroota">
+$ <i>su root</i> <comment>wprowadzamy hasło root'a</comment>
+# <i>cd /mnt</i>
+# <i>mkdir gentoo32</i>
 </pre>
 
 <p>
@@ -73,11 +73,11 @@ Następnie przenosimy ściągnięty stage, rozpakowujemy i instalujemy go wedłu
 przykładu.
 </p>
 
-<pre caption="instalacja ze stage3">
-# cd /mnt/gentoo32
-# tar -xvjpf /home/user/downloads/stage3-athlon-xp-2005.0.tar.bz2
-# cp -L /etc/resolv.conf /mnt/gentoo32/etc/
-# cp -L /etc/passwd /mnt/gentoo32/etc/
+<pre caption="Instalacja ze stage3">
+# <i>cd /mnt/gentoo32</i>
+# <i>tar -xvjpf /home/user/downloads/stage3-athlon-xp-2005.0.tar.bz2</i>
+# <i>cp -L /etc/resolv.conf /mnt/gentoo32/etc/</i>
+# <i>cp -L /etc/passwd /mnt/gentoo32/etc/</i>
 </pre>
 
 <p>
@@ -91,7 +91,7 @@ się odbywa.
 <section>
 <title>Tworzenie</title>
 <subsection>
-<title>Tworzenie 32-bitowego chroot'a</title>
+<title>Tworzenie 32-bitowego chroota</title>
 <body>
 
 <p>
@@ -126,8 +126,8 @@ Teraz montujemy różne fikcyjne systemy plików:
 <p>
 W tym momencie mamy prawdziwy 32-bitowy chroot zainstalowany na 64-bitowym
 systemie, który jest już praktycznie gotowy do użycia. Następnie musimy
-stworzyć link z portage dostępnego w 64-bitowym systemie do chroot'a. Dzieki
-temu można wykonać update w jednej instalacji dla obydwu systemów zamiast
+stworzyć link z portage dostępnego w 64-bitowym systemie do chroota. Dzięki
+temu można wykonać aktualizację w jednej instalacji dla obydwu systemów zamiast
 kopiować wiele danych.
 </p>
 
@@ -137,13 +137,13 @@ kopiować wiele danych.
 </pre>
 
 <note>
-Za każdym razem gdy wykonamy update portage poleceniem emerge sync, zupdatujemy
-również portage 32-bitowego chrootaa.
+Za każdym razem gdy wykonamy aktualizację Portage poleceniem emerge sync,
+uaktualnimy również portage 32-bitowego chrootaa.
 </note>
 
 <p>
 Jeżeli chcemy uruchomić 32-bitowe aplikacje wymagające X, musimy zamontować
-/tmp.
+<path>/tmp</path>.
 </p>
 
 <pre caption="Montujemy /tmp dla aplikacji posiadających GUI">
@@ -151,7 +151,7 @@ Jeżeli chcemy uruchomić 32-bitowe aplikacje wymagające X, musimy zamontować
 </pre>
 
 <p>
-Teraz możemy przejść do wnętrza chroot'a.
+Teraz możemy przejść do wnętrza chroota.
 </p>
 
 <pre caption="Przechodzimy do środowiska utworzonego chroot'a">
@@ -267,13 +267,13 @@ każdą 32-bitową aplikację. Sprawdźmy jak przebiega instalacja nowych pakiet
 </pre>
 
 <note>
-Należy pamietać o wykonaniu <c>source /etc/profile</c> oraz <c>env-update</c>
-po przełączeniu się na chroot'a.
+Należy pamiętać o wykonaniu <c>source /etc/profile</c> oraz <c>env-update</c>
+po przełączeniu się na chroota.
 </note>
 
 <p>
-Zainstalowaliśmy nowy pakiet na 32-bitowym chroot'cie. Jeżeli chcemy go
-uruchomić, musimy zainicjować go wewnątrz chroot'a. Jeżeli chcemy uruchomić
+Zainstalowaliśmy nowy pakiet na 32-bitowym chroocie. Jeżeli chcemy go
+uruchomić, musimy zainicjować go wewnątrz chroota. Jeżeli chcemy uruchomić
 aplikację korzystającą z X, najlepszym rozwiązaniem jest <c>xhost</c>. Za
 każdym razem gdy chcemy uruchomić aplikację wykorzystującą X, wykonujemy
 następujące polecenie w naszym 64-bitowym systemie:
@@ -284,7 +284,7 @@ następujące polecenie w naszym 64-bitowym systemie:
 </pre>
 
 <p>
-Po tym przechodzimy spowrotem do chroot'a i możemy uruchamiać każdą aplikację
+Po tym przechodzimy z powrotem do chroota i możemy uruchamiać każdą aplikację
 wymagającą X, wcześniej skompilowaną wewnątrz chroota.
 </p>
 
