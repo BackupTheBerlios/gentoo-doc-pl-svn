@@ -3,38 +3,45 @@
 <!DOCTYPE mainpage SYSTEM "/dtd/guide.dtd">
 
 <mainpage id="contract">
-<title>The Philosophy of Gentoo</title>
+<title>Filozofia Gentoo</title>
 <author title="Author">
   <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
 </author>
 
 <abstract>
-This document explains the philosophy behind Gentoo.
+Dokumenta wyjaśnia filozofię Gentoo.
 </abstract>
 
 <version>1.1</version>
 <date>2003-10-27</date>
 
 <chapter>
-<title>Gentoo Linux Social Contract</title>
+<title>Umowa społeczna Gentoo</title>
 <section>
 <body>
 
 <p>
-Our <b><uri link="/main/en/contract.xml">social contract</uri></b> is intended
-to clearly describe the overall development policies and standards of the
-Gentoo Linux development team.
+W naszej <b><uri link="/main/pl/contract.xml">Umowie społecznej</uri></b>
+znajdują się informacje o zasadach i standardach tworzenia Gentoo.
 </p>
 
 </body>
 </section>
 </chapter>
 <chapter>
-<title>The Philosophy of Gentoo</title>
+<title>Filozofia Gentoo</title>
 <section>
 <body>
 
 <p>
+Stworzyłem Gentoo, ponieważ nie mogłem znaleźć dystrybucja Linuksa, która by mi
+odpowiadała. Powszechnym zjawiskiem w dystrybucjach Linuksa jest fakt, że
+narzędzia dla nich specyficzne, te które służą do zarządzania systemem i które
+mają <e>ułatwiać</e> pracę, wymagały poświęcania ogromnych ilości czasu i
+wręcz przeszkadzały w wykonywaniu codziennych zadań w sposób w jaki chciałem je
+wykonywać. To ja chciałem decydować co mają robić, tymczasem to one mną
+dyrygowały zmuszając mnie do wykonywania zadań przez nie narzucanych.
+
 I created Gentoo because I couldn't find a Linux distribution that I liked.
 The one predominant thing that I experienced with Linux distributions is that
 the "distro tools" that managed the entire system -- the tools that were
@@ -45,6 +52,12 @@ of attention and really got in the way of what I wanted to do. I wanted to tell
 </p>
 
 <p>
+Zatem stworzyłem Gentoo Linux i zaprojektowałem Portage, aby było znacznie
+wygodniejszym narzędziem niż te, które istniały przed nim. Osiągnąłem to dzięki
+temu, że uczyniłem je maksymalnie elastycznym, co pozwalało mi na wykonywanie
+codziennych zadań w sposób jaki by mi odpowiadał. Dodałem też funkcje, które
+uznałem za użyteczne dla innych ludzi.
+
 So, I created Gentoo Linux, and designed Portage to be a more perfect tool than
 what had existed before it. To do this, I made it very flexible in allowing me
 to do what I wanted to do, and also tried to make it flexible to allow others
@@ -52,6 +65,14 @@ to do what I thought they might want to do.
 </p>
 
 <p>
+Jeśli użytkownik zechce dowiedzieć się w jaki sposób budowany jest określony
+pakiet, wystarczy, że przeczyta plik ebuild, w którym znajdują się wszystkie
+informacje na ten temat. Jeśli zapragnie dostosować go do swoich indywidualnych
+potrzeb, może to uczynić zmieniając ustawienia flag USE. Jeśli zechce dodać
+jakiś nowy pakiet, doda ebuild do istniejącego drzewa. Jeśli zapragnie
+skorzytać z jakiegoś programu, zainstaluje go za pomocą polecenia emerge, które
+jednocześnie zadba o spełnienie wszystkich jego zależności.
+
 If others wanted to see how a package got built, they could look at a
 relatively easy-to-understand ebuild file and learn from it. If they wanted to
 tweak how it got built, they took advantage of USE variables. If they wanted to
@@ -60,6 +81,13 @@ package, they simply emerged it and dependencies were automatically resolved.
 </p>
 
 <p>
+Ludziom spodobał się pomysł Portage i Gentoo rosło gwałtownie. Stało się znane
+jako dystrybucja "oparta na źródłach", ale nie to było naszym głównym celem.
+Oczywiście własnoręczne kompilowanie programów jest jednym z najważniejszych
+pomysłów w Gentoo, ale znacznie bardziej liczy się dla nas to, abyśmy zarówno
+my jak i użytkownicy naszej dystrybucji mogli robić dokładnie to co zechcą, bez
+żadnych ograniczeń.
+
 People liked the Portage concept, and Gentoo Linux grew rapidly. We have become
 known as a "from source" distribution, but the heart of the Gentoo concept is
 not "from source." "From source" is an important and key aspect of Gentoo, and
@@ -70,6 +98,9 @@ without restriction.</e>
 </p>
 
 <p>
+Dobrym podsumowaniem może być taki przykład. Wyobraźmy sobie użytkownika
+pracującego z Linuksem. Na czym mu zależy? 
+
 To summarize the heart of Gentoo, imagine a user sitting in front of a Linux
 system. What does he or she want to do? The Gentoo philosophy is to allow this
 user to do what he or she wants to do, without getting in the way.
