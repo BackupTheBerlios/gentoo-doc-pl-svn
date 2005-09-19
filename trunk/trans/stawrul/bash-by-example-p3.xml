@@ -1,0 +1,890 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/articles/bash-by-example-p3.xml,v 1.3 2005/08/15 23:16:06 cam Exp $ -->
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+
+<guide link="/doc/en/articles/bash-by-example-p3.xml">
+<title>Bash by example, Part 3</title>
+
+<author title="Autor">
+  <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
+</author>
+<author title="Redaktor">
+  <mail link="rane@gentoo.org">Łukasz Damentko</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="stawrul@boo.pl">Waldemar Korłub</mail>
+</author>
+
+
+
+<abstract>
+W trzecim z serii artykułów o bashu Daniel Robbins opisuje system ebuildów
+Linuksa Gentoo, który stanowi świetny przykład możliwości powłoki bash. Krok po
+kroku opisuje on jak system ebuildów został zaimplementowany i pokazuje wiele
+przydatnych technik i strategii projektowych. Po przeczytaniu tego artykułu
+czytelnik będzie miał przejrzysty pogląd na to, co składa się na tworzenie
+dobrej aplikacji w bashu i będzie mógł zacząć kodowanie własnego systemu na
+kształt systemu ebuildów w Gentoo.
+</abstract>
+
+<!-- The original version of this article was published on IBM developerWorks,
+and is property of Westtech Information Services. This document is an updated
+version of the original article, and contains various improvements made by the
+Gentoo Linux Documentation team -->
+
+<version>1.1</version>
+<date>2005-08-03</date>
+
+<chapter>
+<title>Poznawanie systemu ebuildów</title>
+<section>
+<title>Enter the ebuild system</title>
+<body>
+
+<note>
+Oryginalna wersja tego artykułu została opublikowana w IBM developerWorks i jest
+własnością Westtech Information Services. Poniższy dokument jest zaktualizowaną
+wersją oryginalnego artykułu i zawiera rozmaite dodatki wprowadzone przez
+członków projektu Gentoo Linux Documentation.
+</note>
+
+<p>
+Po zapoznaniu się z podstawami programowania w bashu poprzez <uri
+link="/doc/pl/articles/bash-by-example-p1.xml">pierwszą</uri> i <uri
+link="/doc/pl/articles/bash-by-example-p2.xml">drugą</uri> część cyklu <e>Bash w
+przykładach</e>, możemy zagłębić się w bardziej zaawansowane tematy, jak
+strategie projektowy, czy programowanie prawdziwych aplikacji. W tym artykule
+otrzymamy słuszną dawkę praktycznych doświadczeń projektowych. Będą one
+przedstawione w oparciu o opis projekty, nad którym autor tego artykułu spędził
+wiele godzin, kodując go i ulepszająć. Projektem tym jest system ebuildów
+Linuksa Gentoo.
+</p>
+
+<p>
+Autor artykułu jest głównym architektem Linuksa Gentoo - systemu operacyjnego
+nowej generacji. Jednym z jego głównych zadań jest zapewnienie aby wszystkie
+binarne pakiety (podobne do pamietów RPM) były poprawnie tworzone i mogły
+właściwie ze sobą współpracować. Jak prawdopodobnie wiemy, standardowe systemy
+Linuksowe nie składają się z pojedynczego jednolitego drzewa źródłowego (jak
+BSD), lecz budowane są z ponad 25 pakietów, które pracując razem tworzą rdzeń
+systemu. Oto niektóre z tych pakietów:
+</p>
+
+<table>
+  <tr>
+    <th>Pakiet</th>
+    <th>Opis</th>
+  </tr>
+  <tr>
+    <ti>linux</ti>
+    <ti>Jądro systemu</ti>
+  </tr>
+  <tr>
+    <ti>util-linux</ti>
+    <ti>Kolekcja różnorodnych programów poziązanych z Linuksem</ti>
+  </tr>
+  <tr>
+    <ti>e2fsprogs</ti>
+    <ti>Kolekcja programłó powiązanych z systemem plików ext2</ti>
+  </tr>
+  <tr>
+    <ti>glibc</ti>
+    <ti>Biblioteka GNU C</ti>
+  </tr>
+</table>
+
+<p>
+Każdy pakiet znajduje się w oddzielnym tarballu i jest utrzymywany przez
+niezależnych deweloperów, lub ich grupy. Zbudowanie systemu polega na pobraniu
+wszystkich pakietów, ich kompilacji i łączeniu w systemie. Za każdym razem gdy
+pakiet musi zostać naprawiony, zaktualizowany lub ulepszony, konieczne jest
+powtorzenie kompilacji i łączenia (a zdarza się to naprawdę często). Aby
+wyeliminować konieczność powtarzania tych samych kroków w celu budowania i
+tworzenia systemu, stworzony został system ebuildów. Został on napisany niemal
+całkowicie w bashu. Aby zwiększyć naszą wiedzę o bashu, przyjrzymy się jak krok
+po kroku zostały zaimplementowane funkcje odpowiedzialne za rozpakowywanie
+archiwów i kompilowanie źródeł. Wyjaśniając każdy etap, omówimy dlaczego podjęte
+zostały pewne decyzje projektowe. Po przeczytaniu tego artykułu nie tylko
+poznamy techniki programowania na dużą skalę, ale również zaimplementujemy spory
+fragment kompletnego systemu automatycznej kompilacji.
+</p>
+
+</body>
+</section>
+<section>
+<title>Dlaczego bash?</title>
+<body>
+
+<p>
+Bash stanowi podstawę systemu ebuidów Linuksa Gentoo. Został on wybrany ze
+względu na wiele jego przydatnych cech. Po pierwsze, posiada on nieskomplikowaną
+i intuicyjną składnię, która szczególnie dobrze nadaje się do wywoływania
+zewnętrznych programów. System automatycznej kompilacji w głównej mierze
+wywołuje inne aplikacje, więc bash nadaje się doskonale do jego implementacji.
+Po drugie, obsługa funkcji pozwoliła na stworzenie modularnego i łatwego w
+czytaniu kodu. Po trzecie, system ebuildów wykorzystuje obsługę zmiennych
+środowiskowych w bashu, co poznawala konserwatorom i deweloperom na łatwe
+konfigurowanie pakietów w locie.
+</p>
+
+</body>
+</section>
+<section>
+<title>Build process review</title>
+<body>
+
+<p>
+Zanim zagłębimy się w system ebuildów, zastanówmy się jakie działania składają
+się na kompilację i instalację pakietów. Jako przykład wykorzystamy pakiet
+programu sed - standardowego narzędzia strumieniowej edycji tekstu, będącego
+częścią wszystkich dystrybucji Linuksa. Pierwszym krokiem jest pobranie tarballa
+ze źródłami (<path>sed-3.02.tar.gz</path>, poprzez dział <uri
+link="#resources">Źródła informacji</uri>). Umieścimy to archiwum w katalogu
+<path>/usr/src/distfiles</path>, który jest wskazywany przez zmienną
+środowiskową <c>$DISTDIR</c>. W tym katalogu przechowywane są wszystkie nasze
+tarballe ze źródłami; jest to swoisty magazyn źródeł.
+</p>
+
+<p>
+Kolejny etap to stworzenie tymczasowego katalogu o nazwie <path>work</path>, w
+którym umieścimy rozpakowane źródła. Będziemy odwoływać się do tego katalogu
+przy użyciu zmiennej środowiskowej <c>$WORKDIR</c>. Aby tego dokonać przejdźmy
+do katalogu, w którym mamy prawo do zapisu i wykonajny polecenia:
+</p>
+
+<pre caption="Rozpakowanie źródeł programy sed do tymczasowego katalogu">
+$ <i>mkdir work</i>
+$ <i>cd work</i>
+$ <i>tar xzf /usr/src/distfiles/sed-3.02.tar.gz</i>
+</pre>
+
+<p>
+Źródła z tarballa zostaną rozpakowane do katalogu <path>sed-3.02</path>.
+Będziemy się do niego odwoływać poprzez zmienną środowiskową <c>$SRCDIR</c>. Aby
+skompilować program wykonajmy komendy:
+</p>
+
+<pre caption="Kompilacja programu sed">
+$ <i>cd sed-3.02</i>
+$ <i>./configure --prefix=/usr</i>
+<comment>(autoconf generuje właściwy plik make; może to zająć trochę czasu)</comment>
+
+$ <i>make</i>
+
+<comment>(kompilacja źródeł; również może zająć trochę czasu)</comment>
+</pre>
+
+<p>
+Nie uwzględniamy tutaj komendy <c>make install</c>, ponieważ artykuł ten dotyczy
+wyłącznie rozpakowywania i kompilacji. Gdybyśmy napisali skrypt basha, który
+wykonałby wszystkie dotychczasowe kroki, wyglądałby on mniej więcej tak:
+</p>
+
+<pre caption="Przykładowy skrypt wykonujący rozpakowywanie i kompilację programu">
+#!/usr/bin/env bash
+
+if [ -d work ]
+then
+<comment># usunięcie starego katalogu work, jeśli taki istnieje</comment>
+      rm -rf work
+fi
+mkdir work
+cd work
+tar xzf /usr/src/distfiles/sed-3.02.tar.gz
+cd sed-3.02
+./configure --prefix=/usr
+make
+</pre>
+
+</body>
+</section>
+<section>
+<title>Generalizacja kodu</title>
+<body>
+
+<p>
+Chociaż powyższy skrypt działa poprawnie, nie jest on zbyt przydatny ze względu
+na małą elastyczność. Zasadniczo zawiera on jedynie listę komend jakie
+wpisaliśmy w linii poleceń. Rozwiązanie jest poprawne, jednak lepiej byłoby
+stworzyć bardziej ogólny skrypt, który możnaby łatwo skonfigurować do
+rozpakowania i kompilacji dowolnego pakietu poprzez zmianę kilku linijek. W ten
+sposób konserwator pakietu może znacznie szybciej i prościej dodać nową wersję
+do dystrybucji. Pierwszym krokiem ku temu jest wykorzystanie kilku zmiennych
+środowiskowych do przedstawienia danych zależnych od programu, co sprawi że
+zkrypt będzie bardzie zgeneralizowany:
+</p>
+
+<pre caption="Bardziej zgeneralizowana wersja skryptu">
+#!/usr/bin/env bash
+
+<comment># P jest nazwą pakietu</comment>
+
+P=sed-3.02
+
+<comment># A to nazwa archiwum</comment>
+
+A=${P}.tar.gz
+
+export ORIGDIR=`pwd`
+export WORKDIR=${ORIGDIR}/work
+export SRCDIR=${WORKDIR}/${P}
+
+if [ -z "$DISTDIR" ]
+then
+<comment># ustawiamy DISTDIR jako /usr/src/distfiles jeśli nie zostało to
+zrobione wcześniej</comment>
+        DISTDIR=/usr/src/distfiles
+fi
+export DISTDIR
+
+if [ -d ${WORKDIR} ]
+then    
+<comment># usuwamy stary katalog work jeśli istnieje</comment>
+        rm -rf ${WORKDIR}
+fi
+
+mkdir ${WORKDIR}
+cd ${WORKDIR}
+tar xzf ${DISTDIR}/${A}
+cd ${SRCDIR}
+./configure --prefix=/usr
+make
+</pre>
+
+<p>
+Dodaliśmy sporo zmiennych środowiskowych do skryptu, jednak generalnie wciąż
+wykonuje on te same zadania. Natomiast teraz, aby skompilować jakiś program 
+oparty o autoconf wystarczy skopiować powyższy skrypt do nowego pliku (o
+właściwej nazwie, która będzie nawiązywała do pakietu jakie instalujemy) i
+zmienić wartości zmiennych <c>$A</c> i <c>$P</c>. Wszystkie inne zmienne
+środowiskowe automatycznie dopasują się do nowych wartości i skrypt zadziała
+zgodnie z oczekiwaniami. Jest to bardzo poręczne, jednak można bardziej ulepszyć
+nasz skrypt. Obecnie kod jest znacznie dłuższy od jego początkowej wersji.
+Jednym z głównym celów każdego projektu programistycznego powinna być redukcja
+nadmiernej złożoności kodu. Dobrze byłoby więc odchudzić skrypt lub przynajmniej
+lepiej do zorganizować. Możemy tego dokonać poprzez pewien zgrabny wybieg -
+rozdzielimy kod na dwa pliki. Poniższy fragment zapiszmy jako
+<path>sed-3.02.ebuild</path>:
+</p>
+
+<pre caption="sed-3.02.ebuild">
+<comment># plik ebuild programu sed - niezwykle prosty!</comment>
+P=sed-3.02
+A=${P}.tar.gz
+</pre>
+
+<p>
+Pierwszy plik jest trywialny i zawiera tylko dwie zmiennej jakie muszą być
+modyfikowane dla różnych pakietów. Poniżej znajduje się drugi plik, zawierający
+zasadniczą część operacji. Zapiszmy go pod nazwą <path>ebuild</path> i nadajmy
+mu prawa do wykonywania:
+</p>
+
+<pre caption="Skrypt ebuild">
+#!/usr/bin/env bash
+
+
+if [ $# -ne 1 ]
+then
+        echo "Oczekiwano jednego argumentu."
+        exit 1
+fi
+
+if [ -e "$1" ]
+then
+        source $1
+else
+        echo "Plik ebuild $1 nie został odnaleziony."
+        exit 1
+fi
+
+export ORIGDIR=`pwd`
+export WORKDIR=${ORIGDIR}/work
+export SRCDIR=${WORKDIR}/${P}
+
+if [ -z "$DISTDIR" ]
+then
+        <comment># ustawiamy DISTDIR jako /usr/src/distfiles jeśli nie zostało
+	to wcześniej zrobione</comment>
+        DISTDIR=/usr/src/distfiles
+fi
+export DISTDIR
+
+if [ -d ${WORKDIR} ]
+then    
+        # usuwamy stary katalog work jeśli istnieje 
+        rm -rf ${WORKDIR}
+fi
+
+mkdir ${WORKDIR}
+cd ${WORKDIR}
+tar xzf ${DISTDIR}/${A}
+cd ${SRCDIR}
+./configure --prefix=/usr
+make
+</pre>
+
+<p>
+W ten sposób podzieliliśmy nasz skrypt na dwie części. Jak on teraz działa? Aby
+skompilować program sed należy wykonać komendę:
+</p>
+
+<pre caption="Testowanie powyższego skryptu">
+$ <i>./ebuild sed-3.02.ebuild</i>
+</pre>
+
+<p>
+Gdy wykonujemy skrypt, próbuje ona wykonać polecenie <c>source</c> z parametrem
+<c>$1</c>. Co to oznacza? Zgodnie z wcześniejszymi artykułami o bashu, zmienna
+<c>$1</c> odwołuje się do pierwszego argumentu wywołania skryptu - w tym
+przypadku do łańcucha <path>sed-3.02.ebuild</path>. Komenda <c>source</c> czyta
+zawartość tego pliku i wykonuje ją tak, jakby pojawiła się w miejscu wywołania
+<c>source</c>, więc <c>source ${1}</c> spowoduje wykonanie zawartości pliku
+<path>sed-3.02.ebuild</path>, czyli zainicjowanie zmiennych <c>$P</c> i
+<c>$A</c>. Jest to bardzo poręczna zmiana, gdyż jeśli będziemy chcieli
+skompilować inny program zamiast sed, wystarczy, że stworzymy nowy plik
+<path>.ebuild</path> i przekażemy jego nazwę jako argument do skryptu ebuild.
+Dzięki temy pliki <path>.ebuild</path> są bardzo proste, a wszystkie operacje
+wykonywane są w innym miejscu - w skrypcie ebuild. W ten sposób możemy
+aktualizować i rozbudowywać system ebuildów poprzez edytowanie skryptu ebuild,
+utrzymując cały czas szczegóły implementacji poza plikiem <path>.ebuild</path>.
+Oto przykładowy plik <path>.ebuild</path> dla programu <c>gzip</c>:
+</p>
+
+<pre caption="gzip-1.2.4a.ebuild">
+<comment>#kolejny niezwykle prosty skrypt ebuild!</comment>
+P=gzip-1.2.4a
+A=${P}.tar.gz
+</pre>
+
+</body>
+</section>
+<section>
+<title>Zwiększanie funkcjonalności</title>
+<body>
+
+<p>
+Zrobiliśmy już spory postęp, jednak jest kilka dodatkowych funkcjonalności,
+które warto byłoby dodać. Jedną z takich funkcjonalności jest obsługa drugiego
+parametru wywołania, który może przyjmować wartość <c>compile</c>, <c>unpack</c>
+lub <c>all</c>. Będzie on decydował, które etapy procesu mają zostać
+przeprowadzone. Dzięki temu będziemu mogli nakazać skryptowi aby rozpakował
+archiwum, ale nie kompilował źródeł (gdybyś chcieli przejrzeć kod przed jego
+kompilacją). Dodamy tą funkcję wykorzystując konstrukcję case, która sprawdzi
+wartość zmiennej <c>$2</c> i wykonana różne czynności w zależności od jej
+wartości. Obecnie kod ma postać:
+</p>
+
+<pre caption="ebuild, wersja wersja">
+#!/usr/bin/env bash
+
+if [ $# -ne 2 ]
+then
+        echo "Proszę podać dwa argumenty - nazwą pliku .ebuild oraz unpack, compile
+	lub all"
+        exit 1
+fi
+
+
+if [ -z "$DISTDIR" ]
+then
+<comment> # ustawiamy DISTDIR jako /usr/src/distfiles</comment>
+        DISTDIR=/usr/src/distfiles
+fi
+export DISTDIR
+
+ebuild_unpack() {
+        <comment> #upewnijmy się, że jesteśmy we właściwym katalogu</comment>
+        cd ${ORIGDIR}
+        
+        if [ -d ${WORKDIR} ]
+        then    
+                rm -rf ${WORKDIR}
+        fi
+
+        mkdir ${WORKDIR}
+        cd ${WORKDIR}
+        if [ ! -e ${DISTDIR}/${A} ]
+        then
+            echo "${DISTDIR}/${A} nie istnieje. Najpierw pobierz ten plik."
+            exit 1
+        fi    
+        tar xzf ${DISTDIR}/${A}
+        echo "Rozpakowany ${DISTDIR}/${A}."
+        #źródła zostały rozpakowane
+}
+
+
+ebuild_compile() {
+        
+        <comment> #upewnijmy się, że jesteśmy we właściwym katalogu</comment>
+        cd ${SRCDIR}
+        if [ ! -d "${SRCDIR}" ]
+        then
+                echo "${SRCDIR} nie istnieje - najpierw rozpakuj źródła."
+                exit 1
+        fi
+        ./configure --prefix=/usr
+        make     
+}
+
+export ORIGDIR=`pwd`
+export WORKDIR=${ORIGDIR}/work
+
+if [ -e "$1" ]
+then
+        source $1
+else
+        echo "Plik ebuild $1 nie istnieje."
+        exit 1
+fi
+
+export SRCDIR=${WORKDIR}/${P}
+
+case "${2}" in
+        unpack)
+                ebuild_unpack
+                ;;
+        compile)
+                ebuild_compile
+                ;;
+        all)
+                ebuild_unpack
+                ebuild_compile
+                ;;
+        *)
+                echo "Użyj unpack, compile lub all jako drugiego argumentu."
+                exit 1
+                ;;
+esac
+</pre>
+
+<p>
+Wprowadziliśmy wiele zmien - przyjrzymy się im dokładnie. Po pierwsze, etapy
+rozpakowywania i kompilacji znajdują się teraz w oddzielnych funkcjach o nazwach
+<c>ebuild_compile()</c> i<c>ebuild_unpack()</c>. Jest dobry krok, ponieważ kod
+robi się coraz bardziej skomplikowany, a funkcję dają modularność pomocną w
+organizacji programu. W pierwszej linii każdej funkcji wykonujemy komendę
+<c>cd</c> z parametrem w postaci katalogu, w którym chcemy operować. Warto jest
+zastosować ten element, ponieważ im bardziej kod jest modularny i
+zgeneralizowany, tym łatwiej jest pomylić się w czasie jego wywoływania i zrobić
+to z innego miejsca niż powinniśmy. Komenda <c>cd</c> przenosi nas dokładnie
+tam, gdzie powinniśmy być i chroni tym samym przed kolejnymi błędami. Jest to
+bardzo ważne, szczególnie jeśli w przyszłości dodamy do funkcji komendy
+usuwające pliki.
+</p>
+
+<p>
+Na początku funkcji <c>ebuild_compile()</c> dodaliśmy również warunek
+sprawdzający, czy istnieje katalogu <c>$SRCDIR</c>, a jeśli nie istnieje
+drukujący komunikat o błędzie i kończący wykonanie skryptu. Jeśli chcemy możemy
+zmienić to zachowanie na przykład tak, aby skrypt automatycznie wypakowywał
+źródła jeśli nie zostało to zrobione wcześniej. Zrobimy zmieniając aktualną
+wersję funkcji <c>ebuild_compile()</c> poniższym kodem:
+</p>
+
+<pre caption="Alternatywna wersja funkcji ebuild_compile()">
+ebuild_compile() {
+        <comment>#make sure we're in the right directory</comment>
+        if [ ! -d "${SRCDIR}" ]
+        then
+                ebuild_unpack
+        fi
+        cd ${SRCDIR}
+        ./configure --prefix=/usr
+        make     
+}
+</pre>
+
+<p>
+One of the most obvious changes in our second version of the ebuild script is
+the new case statement at the end of the code. This case statement simply checks
+the second command-line argument, and performs the correct action, depending on
+its value. If we now type:
+</p>
+
+<pre caption="Default action">
+$ <i>ebuild sed-3.02.ebuild</i>
+</pre>
+
+<p>
+We'll actually get an error message. ebuild now wants to be told what to do, as
+follows:
+</p>
+
+<pre caption="Unpacking">
+$ <i>ebuild sed-3.02.ebuild unpack</i>
+</pre>
+
+<p>
+or:
+</p>
+
+<pre caption="Compiling">
+$ <i>ebuild sed-3.02.ebuild compile</i>
+</pre>
+
+<p>
+or:
+</p>
+
+<pre caption="Unpacking and compiling">
+$ <i>ebuild sed-3.02.ebuild all</i>
+</pre>
+
+<impo>
+If you provide a second command-line argument, other than those listed above,
+you get an error message (the * clause), and the program exits.
+</impo>
+
+</body>
+</section>
+<section>
+<title>Modularizing the code</title>
+<body>
+
+<p>
+Now that the code is quite advanced and functional, you may be tempted to create
+several more ebuild scripts to unpack and compile your favorite programs. If you
+do, sooner or later you'll come across some sources that do not use autoconf
+(<c>./configure</c>) or possibly others that have non-standard compilation
+processes.  We need to make some more changes to the ebuild system to
+accommodate these programs. But before we do, it is a good idea to think a bit
+about how to accomplish this.
+</p>
+
+<p>
+One of the great things about hard-coding <c>./configure --prefix=/usr; make</c>
+into our compile stage is that, most of the time, it works. But, we must also
+have the ebuild system accommodate sources that do not use autoconf or normal
+Makefiles. To solve this problem, I propose that our ebuild script should, by
+default, do the following:
+</p>
+
+<ol>
+  <li>
+    If there is a configure script in <c>${SRCDIR}</c>, execute it as follows:
+   <c>./configure --prefix=/usr</c>. Otherwise, skip this step.
+  </li>
+  <li>Execute the following command: make</li>
+</ol>
+
+<p>
+Since ebuild only runs configure if it actually exists, we can now automatically
+accommodate those programs that don't use autoconf and have standard makefiles.
+But what if a simple "make" doesn't do the trick for some sources? We need a way
+to override our reasonable defaults with some specific code to handle these
+situations. To do this, we'll transform our <c>ebuild_compile()</c> function
+into two functions. The first function, which can be looked at as a "parent"
+function, will still be called <c>ebuild_compile()</c>. However, we'll have a
+new function, called <c>user_compile()</c>, which contains only our reasonable
+default actions:
+</p>
+
+<pre caption="ebuild_compile() split into two functions">
+user_compile() {
+        <comment>#we're already in ${SRCDIR}</comment>
+        if [ -e configure ]
+        then
+                #run configure script if it exists
+                ./configure --prefix=/usr
+        fi
+        #run make
+        make
+}              
+
+ebuild_compile() {
+        if [ ! -d "${SRCDIR}" ]
+        then
+                echo "${SRCDIR} does not exist -- please unpack first."
+                exit 1
+        fi
+        <comment>#make sure we're in the right directory</comment>
+        cd ${SRCDIR}
+        user_compile
+}
+</pre>
+
+<p>
+It may not seem obvious why I'm doing this right now, but bear with me. While
+the code works almost identically to our previous version of ebuild, we can now
+do something that we couldn't do before -- we can override <c>user_compile()</c>
+in <path>sed-3.02.ebuild</path>. So, if the default <c>user_compile()</c>
+function doesn't meet our needs, we can define a new one in our
+<path>.ebuild</path> file that contains the commands required to compile the
+package. For example, here's an ebuild file for <c>e2fsprogs-1.18</c>, which
+requires a slightly different <c>./configure</c> line:
+</p>
+
+<pre caption="e2fsprogs-1.18.ebuild">
+<comment>#this ebuild file overrides the default user_compile()</comment>
+P=e2fsprogs-1.18
+A=${P}.tar.gz
+ 
+user_compile() {
+       ./configure --enable-elf-shlibs
+       make
+}
+</pre>
+
+<p>
+Now, <c>e2fsprogs</c> will be compiled exactly the way we want it to be. But,
+for most packages, we can omit any custom <c>user_compile()</c> function in the
+<path>.ebuild</path> file, and the default <c>user_compile()</c> function is
+used instead.
+</p>
+
+<p>
+How exactly does the ebuild script know which <c>user_compile()</c> function to
+use? This is actually quite simple. In the ebuild script, the default
+<c>user_compile()</c> function is defined before the
+<path>e2fsprogs-1.18.ebuild</path> file is sourced. If there is a
+<c>user_compile()</c> in <path>e2fsprogs-1.18.ebuild</path>, it overwrites the
+default version defined previously. If not, the default <c>user_compile()</c>
+function is used.
+</p>
+
+<p>
+This is great stuff; we've added a lot of flexibility without requiring any
+complex code if it's not needed. We won't cover it here, but you could also make
+similar modifications to <c>ebuild_unpack()</c> so that users can override the
+default unpacking process. This could come in handy if any patching has to be
+done, or if the files are contained in multiple archives. It is also a good idea
+to modify our unpacking code so that it recognizes bzip2-compressed tarballs by
+default.
+</p>
+
+</body>
+</section>
+<section>
+<title>Configuration files</title>
+<body>
+
+<p>
+We've covered a lot of sneaky bash techniques so far, and now it's time to cover
+one more. Often, it's handy for a program to have a global configuration file
+that resides in <path>/etc</path>. Fortunately, this is easy to do using bash.
+Simply create the following file and save it as <path>/etc/ebuild.conf</path>:
+</p>
+
+<pre caption="/ect/ebuild.conf">
+<comment># /etc/ebuild.conf: set system-wide ebuild options in this file</comment>
+
+<comment># MAKEOPTS are options passed to make</comment>
+MAKEOPTS="-j2"
+</pre>
+
+<p>
+In this example, I've included just one configuration option, but you could
+include many more. One of the beautiful things about bash is that this file can
+be parsed by simply sourcing it. This is a design trick that works with most
+interpreted languages. After <path>/etc/ebuild.conf</path> is sourced,
+<c>$MAKEOPTS</c> is defined inside our ebuild script. We'll use it to allow the
+user to pass options to make. Normally, this option would be used to allow the
+user to tell ebuild to do a parallel make. This is explained below.
+</p>
+
+<note>
+<b>What is a parallel make?</b> To speed compilation on multiprocessor systems,
+make supports compiling a program in parallel. This means that instead of
+compiling just one source file at a time, make compiles a user-specified number
+of source files simultaneously (so those extra processors in a multiprocessor
+system are used). Parallel makes are enabled by passing the <c>-j #</c> option
+to make, as follows: <c>make -j4 MAKE="make -j4"</c>. This code instructs make
+to compile four programs simultaneously. The <c>MAKE="make -j4"</c> argument
+tells make to pass the <c>-j4</c> option to any child make processes it
+launches.
+</note>
+
+<p>
+Here's the final version of our ebuild program:
+</p>
+
+<pre caption="ebuild, the final version">
+#!/usr/bin/env bash
+
+if [ $# -ne 2 ]
+then
+        echo "Please specify ebuild file and unpack, compile or all"
+        exit 1
+fi
+
+source /etc/ebuild.conf
+
+if [ -z "$DISTDIR" ]
+then
+        <comment># set DISTDIR to /usr/src/distfiles if not already set</comment>
+        DISTDIR=/usr/src/distfiles
+fi
+export DISTDIR
+
+ebuild_unpack() {
+        <comment>#make sure we're in the right directory</comment>
+        cd ${ORIGDIR}
+        
+        if [ -d ${WORKDIR} ]
+        then    
+                rm -rf ${WORKDIR}
+        fi
+
+        mkdir ${WORKDIR}
+        cd ${WORKDIR}
+        if [ ! -e ${DISTDIR}/${A} ]
+        then
+                echo "${DISTDIR}/${A} does not exist.  Please download first."
+                exit 1
+        fi
+        tar xzf ${DISTDIR}/${A}
+        echo "Unpacked ${DISTDIR}/${A}."
+        <comment>#source is now correctly unpacked</comment>
+}
+
+user_compile() {
+        <comment>#we're already in ${SRCDIR}</comment>
+        if [ -e configure ]
+        then
+                <comment>#run configure script if it exists</comment>
+                ./configure --prefix=/usr
+        fi
+        <comment>#run make</comment>
+        make $MAKEOPTS MAKE="make $MAKEOPTS"  
+} 
+
+ebuild_compile() {
+        if [ ! -d "${SRCDIR}" ]
+        then
+                echo "${SRCDIR} does not exist -- please unpack first."
+                exit 1
+        fi
+        <comment>#make sure we're in the right directory</comment>
+        cd ${SRCDIR}
+        user_compile
+}
+
+export ORIGDIR=`pwd`
+export WORKDIR=${ORIGDIR}/work
+
+if [ -e "$1" ]
+then
+        source $1
+else
+        echo "Ebuild file $1 not found."
+        exit 1
+fi
+
+export SRCDIR=${WORKDIR}/${P}
+
+case "${2}" in
+        unpack)
+                ebuild_unpack
+                ;;
+        compile)
+                ebuild_compile
+                ;;
+        all)
+                ebuild_unpack
+                ebuild_compile
+                ;;
+        *)
+                echo "Please specify unpack, compile or all as the second arg"
+                exit 1
+                ;;
+esac
+</pre>
+
+<p>
+Notice <path>/etc/ebuild.conf</path> is sourced near the beginning of the file.
+Also, notice that we use <c>$MAKEOPTS</c> in our default <c>user_compile()</c>
+function. You may be wondering how this will work -- after all, we refer to
+<c>$MAKEOPTS</c> before we source <path>/etc/ebuild.conf</path>, which actually
+defines <c>$MAKEOPTS</c> in the first place.  Fortunately for us, this is OK
+because variable expansion only happens when <c>user_compile()</c> is executed.
+By the time <c>user_compile()</c> is executed, <path>/etc/ebuild.conf</path> has
+already been sourced, and <c>$MAKEOPTS</c> is set to the correct value.
+</p>
+
+</body>
+</section>
+<section>
+<title>Wrapping it up</title>
+<body>
+
+<p>
+We've covered a lot of bash programming techniques in this article, but we've
+only touched the surface of the power of bash. For example, the production
+Gentoo Linux ebuild system not only automatically unpacks and compiles each
+package, but it can also:
+</p>
+
+<ul>
+  <li>
+  Automatically download the sources if they are not found in <c>$DISTDIR</c>
+  </li>
+  <li>
+  Verify that the sources are not corrupted by using MD5 message digests
+  </li>
+  <li>
+     If requested, install the compiled application into the live filesystem,
+     recording all installed files so that the package can be easily
+     uninstalled at a later date.
+  </li>
+  <li>
+    If requested, package the compiled application in a tarball (compressed the
+    way you like it) so that it can be installed later, on another computer, or
+    during the CD-based installation process (if you are building a distribution
+    CD)
+  </li>
+</ul>
+
+<p>
+In addition, the production ebuild system has several other global configuration
+options, allowing the user to specify options such as what optimization flags to
+use during compilation, and whether optional support for packages like GNOME and
+slang should be enabled by default in those packages that support it.
+</p>
+
+<p>
+It's clear that bash can accomplish much more than what I've touched on in this
+series of articles. I hope you've learned a lot about this incredible tool, and
+are excited about using bash to speed up and enhance your development projects.
+</p>
+
+</body>
+</section>
+</chapter>
+
+<chapter id="resources">
+<title>Resources</title>
+<section>
+<title>Useful links</title>
+<body>
+
+<ul>
+  <li>
+     Download the source tarball (<path>sed-3.02.tar.gz</path>) from
+     <uri>ftp://ftp.gnu.org/pub/gnu/sed</uri>
+  </li>
+  <li>
+    Read <uri link="/doc/en/articles/bash-by-example-p1.xml">Bash by example:
+    Part 1</uri>. 
+  </li>
+  <li>
+    Read <uri link="/doc/en/articles/bash-by-example-p2.xml">Bash by example:
+    Part 2</uri>.
+  </li>
+  <li>
+    Visit the home page of the <uri link="http://gentoo.org">Gentoo
+    Project</uri>
+  </li>
+  <li>
+    Check out the <uri
+    link="http://www.gnu.org/software/bash/manual/bash.html">bash
+    online reference manual</uri>.
+  </li>
+</ul>
+
+</body>
+</section>
+</chapter>
+</guide>
+
