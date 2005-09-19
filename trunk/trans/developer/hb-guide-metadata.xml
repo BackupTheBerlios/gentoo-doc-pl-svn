@@ -5,26 +5,25 @@
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
 <!-- This document was last synched to:
-     cvs://gentoo/gentoo/xml/htdocs/doc/en/metadata.xml :: R1.4.
+     cvs://gentoo/gentoo/xml/htdocs/doc/pl/metadata.xml :: R1.4.
 -->
 
 <sections>
 
 <section>
-<title>Why the need for metadata.xml?</title>
+<title>Dlaczego metadata.xml jest potrzebne?</title>
 <subsection>
 <body>
 
 <p>
-The <c>metadata.xml</c> file has as its purpose to give extra information about
-ebuilds. The <c>metadata.xml</c> file should exist in every package directory.
-A skel file can be found as <c>skel.metadata.xml</c> in the portage tree.
+Plik <c>metadata.xml</c> udostępnia dodatkowe informacje o
+ebuildach. Plik <c>metadata.xml</c> powinien istnieć w każdym katalogu z pakietem.
+Plik skel odnajdujemy jako <c>skel.metadata.xml</c> w drzewie portage.
 </p>
 
 <note>
-Please run <c>xmllint --valid metadata.xml</c> before committing a
-<c>metadata.xml</c> file.  We hope to add support for <c>metadata.xml</c> to 
-repoman soon.
+Musimy użyć polecenia <c>xmllint --valid metadata.xml</c> zanim zaakceptujemy
+plik <c>metadata.xml</c>.  Już niebawem repoman powinien zawierać wsparcie dla <c>metadata.xml</c>.
 </note>
 
 </body>
@@ -32,28 +31,28 @@ repoman soon.
 </section>
 
 <section>
-<title>Metadata Structure</title>
+<title>Struktura pliku Metadata</title>
 <subsection>
 <body>
 
 <p>
-A <c>metadata.xml</c> file can contain a number of tags:
+Plik <c>metadata.xml</c> może zawierać kilka etykiet:
 </p>
 
 <table>
 <tr>
-  <th>tag</th>
-  <th>description</th>
+  <th>etykieta</th>
+  <th>opis</th>
 </tr>
 <tr>
   <ti>
     <brite>&lt;pkgmetadata&gt;</brite>
   </ti>
   <ti>
-    This is the root element of the metadata.xml file for packages. It has 
-    no attributes. Its required subtag is: <brite>&lt;herd&gt;</brite>. 
-    Furthermore, the following subtags are allowed: <brite>&lt;email&gt;</brite> 
-    for a general herd email address, <brite>&lt;maintainer&gt;</brite>, and 
+    Jest to źródłowy element pliku metadata.xml dla pakietów. Nie posiada 
+    żadnych atrybutów. Wymagana, drugorzędna etykieta tego pliku to: <brite>&lt;herd&gt;</brite>. 
+    Następujące podrzędne etykiety są dozwolone: <brite>&lt;email&gt;</brite> 
+    dla adresu e-mail podstawowej herd, <brite>&lt;maintainer&gt;</brite>, oraz 
     <brite>&lt;longdescription&gt;</brite>.
   </ti>
 </tr>
@@ -62,11 +61,10 @@ A <c>metadata.xml</c> file can contain a number of tags:
     <brite>&lt;catmetadata&gt;</brite>
   </ti>
   <ti>
-    This is the root element of the metadata.xml file for categories as per 
-    <uri link="/proj/en/glep/glep-0034.html">GLEP 34</uri>. It has 
-    no attributes. It contains a number of 
-    <brite>&lt;longdescription&gt;</brite> tags, each for a different 
-    language.
+    Jest to główny element pliku metadata.xml dla kategorii, tak jak w 
+    <uri link="/proj/en/glep/glep-0034.html">GLEP 34</uri>. Nie posiada on  
+    atrybutów. Zawiera pewną ilość etykiet
+    <brite>&lt;longdescription&gt;</brite>, każda dla innego języka.
   </ti>
 </tr>
 <tr>
@@ -74,10 +72,10 @@ A <c>metadata.xml</c> file can contain a number of tags:
     <brite>&lt;herd&gt;</brite>
   </ti>
   <ti>
-    There must at least be one herd subtag. The contents of this tag should be 
-    the name of be a herd as specified in the <uri 
-    link="http://www.gentoo.org/cgi-bin/viewcvs.cgi/misc/herds.xml?rev=HEAD;cvsroot=gentoo;content-type=text/plain">herds.xml</uri>
-    file. It must occur at least once.
+    Musi istnieć przynajmniej jedna "podetykieta" herd. Zawartość tej etykiety musi składać się z 
+    nazwy herd, jak przedstawia plik <uri 
+    link="http://www.gentoo.org/cgi-bin/viewcvs.cgi/misc/herds.xml?rev=HEAD;cvsroot=gentoo;content-type=text/plain">herds.xml</uri>. 
+    Opcja ta musi sie pojawić przynajmniej raz.
   </ti>
 </tr>
 <tr>
@@ -85,52 +83,51 @@ A <c>metadata.xml</c> file can contain a number of tags:
     <brite>&lt;maintainer&gt;</brite>
   </ti>
   <ti>
-    Besides being member of a herd, a package can also be maintained directly. 
-    The maintainers of a package can be specified with the 
-    <brite>&lt;maintainer&gt;</brite> tag. This tag has one required subtag: 
-    <brite>&lt;email&gt;</brite>. It has two optional subtags:
-    <brite>&lt;name&gt;</brite>, and <brite>&lt;description&gt;</brite>.
+    Poza członkostwem w herd, pakiet może również być zarządzany bezpośrednio. 
+    Zarządzający pakietem mogą zostać określeni za pomocą etykiety 
+    <brite>&lt;maintainer&gt;</brite>. Ta etykieta nie musi zawierać "podetykiet": 
+    <brite>&lt;email&gt;</brite>. Posiada dwie opcjonalna "podetykiety":
+    <brite>&lt;name&gt;</brite>, oraz <brite>&lt;description&gt;</brite>.
   </ti>
 </tr>
 <tr>
   <ti><brite>&lt;email&gt;</brite></ti>
   <ti>
-    This contains the e-mail address of the maintainer. It is required.
+    Tutaj znajduje się adres e-mail osoby zarządzającej. Opcja wymagana.
   </ti>
 </tr>
 <tr>
   <ti><brite>&lt;name&gt;</brite></ti>
   <ti>
-    This contains freetext with the name of the maintainer. It is optional.
+    Ta etykieta zawiera imię i nazwisko osoby zarządzającej. Jest opcjonalna.
   </ti>
 </tr>
 <tr>
   <ti><brite>&lt;description&gt;</brite></ti>
   <ti>
-    The description tag contains a description of the maintainership, or for 
-    example a remark that someone interested can take over the maintainership. 
-    It is optional.
+    Etykieta opisu zawiera opis zarządzania, lub dla przykładu, informacja o tym, iż zainsteresowani moga przejąć zarządzanie. 
+    Opcja nie jest wymagana.
   </ti>
 </tr>
 <tr>
   <ti><brite>&lt;longdescription&gt;</brite></ti>
   <ti>
-    This tag contains a description of the package. This is to augment the 
-    DESCRIPTION field in the ebuilds themselves.
+    Ta etykieta zawiera opis pakietu. Służy ona do powiększania 
+    pola OPISU w ebuildach.
   </ti>
 </tr>
 </table>
 
 <p>
-There are also some attributes that can be used with these tags. They are all
-optional:
+Istnieją również pewne atrybuty, których możemy uzyć z tymi etykietami. Wszystkie są
+opcjonalne:
 </p>
 
 <table>
 <tr>
-  <th>attribute</th>
-  <th>tags</th>
-  <th>description</th>
+  <th>atrybut</th>
+  <th>etykiety</th>
+  <th>opis</th>
 </tr>
 <tr>
   <ti>lang</ti>
@@ -138,12 +135,11 @@ optional:
     <brite>&lt;description&gt;</brite>, <brite>&lt;longdescription&gt;</brite>
   </ti>
   <ti>
-    In every case where a description is required, there must be at
-    <e>least</e> an english description.  If an additional description in
-    another language is given, this attribute is used to specify the language
-    used.  The format is the two-character language code as defined by the <uri
-    link="http://www.w3.org/WAI/ER/IG/ert/iso639.htm#2letter">ISO-639-1</uri>
-    norm.
+    W każdym przypadku, gdy opis jest wymagany, musi istnieć
+    <e>przynajmniej</e> anglojęzyczny opis.  Jeżeli podano dodatkowy opis w
+    innym języku, atrybut ten jest używany do określenia języka w jakim został
+    napisany.  Format języka jest dwu-znakowy, co jest definiowane normą <uri
+    link="http://www.w3.org/WAI/ER/IG/ert/iso639.htm#2letter">ISO-639-1</uri>.
   </ti>
 </tr>
 <tr>
@@ -153,17 +149,17 @@ optional:
     <brite>&lt;longdescription&gt;</brite>
   </ti>
   <ti>
-    The restrict attribute allows to restrict the application of certain tags 
-    to certain versions of a package. When this attribute is used, a tag 
-    without this attribute must also exist. That tag without the restrict 
-    attribute will serve as the default. The format of the restrict attribute 
-    is that of the DEPEND flag, except that &quot;&lt;&quot; and 
-    &quot;&gt;&quot; need to be specified by &amp;lt; and &amp;gt;.<br />
+    Atrybut restrict pozwala na ograniczanie aplikacji z konkretnymi etykietami dla 
+    konkretnych wersji pakietu. Kiedy atrybut ten zostanie użyty, etykieta 
+    bez atrybutu musi zostać utworzona. Etykieta bez atrybutu restrict 
+    posłuży nam jako domyślny przykład. Format atrybutu restrict 
+    jest taki sam jak format flagi DEPEND, z wyjątkiem &quot;&lt;&quot; i 
+    &quot;&gt;&quot;, które muszą być określone poprzez &amp;lt; i &amp;gt;.<br />
     <br />
-    For example in the db package 
+    Dla przykładu, w pakiecie db 
     <c>restrict="&gt;=sys-libs/db-3.2.9-r5"</c> 
-    on the maintainer tag shows that I'm currently maintaining all versions 
-    bigger then 3.2.9-r5.
+    na etykiecie maintainer wskazuje, iż zarządzający administruje w tej chwili wszystkimi wersjami 
+    większymi od 3.2.9-r5.
   </ti>
 </tr>
 </table>
@@ -173,18 +169,18 @@ optional:
 </section>
 
 <section>
-<title>Metadata Examples</title>
+<title>Przykłady Metadata</title>
 <subsection>
-<title>First Example</title>
+<title>Pierwszy przykład</title>
 <body>
 
 <p>
-In this first example we provide you with the <path>metadata.xml</path> for 
-OpenOffice of which the ebuilds are completely managed by a herd called
+W pierwszym przykładzie widzimy plik <path>metadata.xml</path> dla pakietu 
+OpenOffice, którego ebuildy są całkowicie zarządzalne przez herd o nazwie
 <c>openoffice</c>:
 </p>
 
-<pre caption="Herd-managed package">
+<pre caption="Pakiety zarządzane przez herd">
 &lt;?xml version='1.0' encoding='UTF-8'?&gt;
 &lt;!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd"&gt;
 &lt;pkgmetadata&gt;
@@ -200,15 +196,15 @@ OpenOffice of which the ebuilds are completely managed by a herd called
 </pre>
 
 <p>
-The <c>openoffice</c> herd is defined in <path>herds.xml</path> by the
-<uri link="/proj/en/metastructure">Gentoo Metastructure Project</uri>:
+Herd <c>openoffice</c> jest zdefiniowane w pliku <path>herds.xml</path> przez
+<uri link="/proj/en/metastructure">Projekt Metastruktury Gentoo</uri>:
 </p>
 
 <note>
-This example may be outdated when you read it. It's just an example!
+Ten przykład może być przestarzały w momencie czytania. To tylko przykład!
 </note>
 
-<pre caption="OpenOffice Herd Example">
+<pre caption="Przykład OpenOffice herd">
 &lt;herd&gt;
   &lt;name&gt;openoffice&lt;/name&gt;
   &lt;email&gt;openoffice@gentoo.org&lt;/email&gt;
@@ -219,27 +215,26 @@ This example may be outdated when you read it. It's just an example!
 </pre>
 
 <p>
-If you want to add (or remove) yourself from a herd, edit <path>herds.xml</path>
-located in <path>[gentoo]/misc</path> in Gentoo's CVS repository. Make sure you
-know the e-mail alias the herd listens to (for instance the "sound" herd has
-<mail link="sound@gentoo.org">sound@gentoo.org</mail>) and add yourself to the
-alias (by editing <path>/var/mail/alias/misc/&lt;alias name&gt;</path> on 
+Jeżeli chcemy dodać (lub usunąć) siebie z herd, edytujemy <path>herds.xml</path>
+znajdujący się w <path>[gentoo]/misc</path> w repozytorium Gentoo CVS. Musimy znać
+aliasy e-maili, którymi posługuje się herd (na przykład herd "sound" posiada
+<mail link="sound@gentoo.org">sound@gentoo.org</mail>) i dodać się do
+aliasu (edytując <path>/var/mail/alias/misc/&lt;alias name&gt;</path> na 
 dev.gentoo.org).
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Second Example</title>
+<title>Drugi przykład</title>
 <body>
 
 <p>
-As second example we view the <path>metadata.xml</path> of <c>mirrorselect</c>.
-This ebuild is maintained by the <c>tools-portage</c> herd, but has a separate
-maintainer.
+W drugim przykładzie przeglądamy plik <path>metadata.xml</path> dla <c>mirrorselect</c>.
+Ebuild jest zarządzany przez <c>tools-portage</c> herd, jednak posiada oddzielnych zarządzających.
 </p>
 
-<pre caption="Herd &amp; individually maintained package">
+<pre caption="Pakiet zarządzany indywidualnie i przez herd">
 &lt;?xml version='1.0' encoding='UTF-8'?&gt;
 &lt;!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd"&gt;
 &lt;pkgmetadata&gt;
