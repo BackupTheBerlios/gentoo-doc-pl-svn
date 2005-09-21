@@ -8,26 +8,26 @@
 
 <sections>
 <section>
-<title>Using CVS</title>
+<title>Praca w CVS</title>
 <subsection>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-This guide is not intended to be a manual on using CVS; for that, take a look at
-the CVS info page or <uri>http://www.gentoo.org/doc/en/cvs-tutorial.xml</uri>.
-Instead, this guide focuses specifically on using CVS and Repoman in Gentoo's
-ebuild tree.
+Nie jest to dokładny opis pracy w CVS, od tego mamy tekst
+<uri>http://www.gentoo.org/doc/en/cvs-tutorial.xml</uri> i stronę info dla CVS.
+Tu skoncentrujemy się na zadaniach jakie wykonuje się w drzewie ebuildów we
+współpracy z programem repoman.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Configuration</title>
+<title>Konfiguracja</title>
 <body>
 
 <p>
-Typically, you'll want something along these lines in your <path>~/.cvsrc</path>:
+Warto do pliku <path>~/.cvsrc</path> dodać następujące wpisy:
 </p>
 
 <pre caption="~/.cvsrc">
@@ -38,36 +38,40 @@ update -d -P
 </pre>
 
 <p>
-In order to make sure digests are correct, please put <c>cvs</c> in your <c>FEATURES</c> setting.
+Dodanie wpisu <c>cvs</c> do zmiennej <c>FEATURES</c> sprawi, że sumy kontrolne
+będą zliczane prawidłowo.
 </p>
 
 <p>
-Finally, many people using CVS like to use compression (-z#). We ask that
-developers who are not on dialup connections please use -z0 - with the contents
-of our CVS repository and the load on our CVS server, you actually experience a 
-speed <e>increase</e> without compression.
+Wiele osób korzystających z CVS używa kompresji (-z#). Nalegamy, aby
+deweloperzy z szybszymi łączami korzystali z opcji -z0, ponieważ wysłanie
+nieskompresowanych danych jest w tym przypadku dużo szybsze i mniej obciąża
+serwer.
 </p>
 
 </body>
 </subsection>
 
 <subsection>
-<title>Checking out</title>
+<title>Pobieranie repozytorium</title>
 <body>
 
 <p>
-There are a few useful modules in Gentoo's CVS repository. Ebuilds are kept in
-the <path>gentoo-x86</path> module. <path>gentoo-src</path> contains various
-projects - some useful, some inactive. <path>gentoo</path> contains the XML
-for the website, documentation, developer directories, developer pictures,
-and so on.
+Repozytorium CVS Gentoo jest podzielone na kilka modułów. Pliki ebuild znajdują
+się w module <path>gentoo-x86</path>. <path>gentoo-src</path> zawiera kilka
+użytecznych projektów, z których kilka nie jest już rozwijanych. W
+<path>gentoo</path> znajdują się pliki XML naszej strony internetowej,
+dokumentacja, katalogi poszczególnych projektów, nasze zdjęcia i tym podobne
+dane.
 </p>
 
-<pre caption="Checking out gentoo-x86">
-# cvs -d username@cvs.gentoo.org:/var/cvsroot co gentoo-x86
+<pre caption="Pobieranie modułu gentoo-x86">
+$ <i>cvs -d username@cvs.gentoo.org:/var/cvsroot co gentoo-x86</i>
 </pre>
 
 <p>
+
+
 Before working in the tree at any time, it's always a good idea to do an update to check
 for changes and prevent conflicts. You can update in any subdirectory of the tree if you
 don't want to wait for a tree-wide update, but from time to time it's a good idea to update
