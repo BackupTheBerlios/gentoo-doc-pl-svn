@@ -70,208 +70,210 @@ $ <i>cvs -d username@cvs.gentoo.org:/var/cvsroot co gentoo-x86</i>
 </pre>
 
 <p>
-
-
-Before working in the tree at any time, it's always a good idea to do an update to check
-for changes and prevent conflicts. You can update in any subdirectory of the tree if you
-don't want to wait for a tree-wide update, but from time to time it's a good idea to update
-your entire tree:
+Podczas pracy z drzewem należy często aktualizować informacje w nim się
+znajdujące. Zmniejszy to ryzyko pojawienia się konfliktów. Można uniknąć
+ściągania całego repozytorium aktualizując tylko niektóre jego części. Od czasu
+do czasu warto jednak zaktualizować całe drzewo.
 </p>
 		
-<pre caption="Updating in gentoo-x86">
-# cd gentoo-x86
-# cvs update
+<pre caption="Aktualizacja modułu gentoo-x86">
+# <i>cd gentoo-x86</i>
+# <i>cvs update</i>
 </pre>
 
 </body>
 </subsection>
-
 <subsection>
-<title>Updating Portage</title>
+<title>Aktualizowanie Portage</title>
 <body>
 
 <p>
-If you want to use CVS as your primary Portage tree, you can add the following
-lines to <path>/etc/make.conf</path>, replacing <c>you</c> with your username:
+Można korzystać z CVS jako głównego źródła, z którego pobiera się drzewo
+Portage. Dokonuje się tego dodając następujące linie do pliku
+<path>/etc/make.conf</path> (i zamieniając wpis "ja" odpowiednią nazwą
+użytkownika):
 </p>
 
-<pre caption="Changing /etc/make.conf for use with CVS">
+<pre caption="Zmiany w /etc/make.conf do pobierania drzewa przez CVS">
 SYNC="cvs://you@cvs.gentoo.org:/var/cvsroot"
 CVSROOT=":ext:you@cvs.gentoo.org:/var/cvsroot"
 </pre>
 
 <p>
-Whether you wish to use a CVS checkout as your primary Portage tree or not,
-you should ensure that <c>cvs</c> is in your <c>FEATURES</c> in
-<path>/etc/make.conf</path>. This makes sure Portage downloads all the
-files an ebuild references in its <c>SRC_URI</c> when making a digest.
+Bez względu na to czy drzewo Portage pobiera się za pomocą CVS czy nie, należy
+dodać <c>cvs</c> do zmiennej <c>FEATURES</c> w pliku
+<path>/etc/make.conf</path>. Spowoduje to pobranie wszystkich plików związanych
+z ebuildem podczas wykonywania kodu z <c>SRC_URI</c> podczas wykonywania
+polecenia digest.
 </p>
 
 <p>
-You can add <c>digest</c> to your <c>FEATURES</c>, letting
-Portage automatically create new digests. You can also add
-<c>autoaddcvs</c> so <c>repoman</c>, the tool which you will use to
-commit in ebuilds, would automatically add missing digests for you into CVS.
+Do zmiennej <c>FEATURES</c> można również dodać wpis <c>digest</c>. Dzięki temu
+Portage automatycznie będzie wykonywało to polecenie. Można tam też dodać
+<c>autoaddcvs</c>, aby <c>repoman</c>, narzędzie, którego używa się do
+dodawania nowych ebuildów do repozytorium, automatycznie dodawał brakujące sumy
+kontrolne.
 </p>
 
 <p>
-On supported architectures, you should also have <c>sandbox</c> in your
-<c>FEATURES</c> to ensure ebuilds do not modify the root filesystem
-directly.
-</p>
-
-</body>
-</subsection>
-
-<subsection>
-<title>Adding/Removing</title>
-<body>
-
-<p>
-Say you're ready to add a brand new package, <c>foo</c>, in app-misc:
-</p>
-
-<pre>
-<comment>(Replace CVSROOT with the location of your checked-out CVS tree.)</comment>
-# cd $CVSROOT/app-misc
-<comment>(Always update before working in part of the CVS tree!)</comment>
-# cvs update
-# mkdir foo
-<comment>(Here, we add the package directory foo to the CVS repository.)</comment>
-# cvs add foo
-# cd foo
-<comment>(It's better to keep in-progress ebuilds in an overlay outside of your CVS tree.)</comment>
-# cp /path/to/foo-1.0.ebuild ./
-<comment>[Don't forget to create a ChangeLog - see the man page for echangelog.]</comment>
-<comment>(Make sure PORTDIR_OVERLAY is set to the CVS directory when creating digests.)</comment>
-# ebuild foo-1.0.ebuild digest
-# cvs add foo-1.0.ebuild ChangeLog files
-<comment>(FEATURES=autoaddcvs will do this for you...)</comment>
-# cvs add files/digest-foo-1.0
-</pre>
-
-<p>
-Remember to also add a metadata.xml file with maintainer
-information. See the <uri link="?part=2&amp;chap=4">Gentoo
-Metadata</uri> section for more information.
-</p>
-
-<p>
-At this point, you're ready to commit (see the section on Commits
-below). But what if you want to remove foo-1.0 when foo-1.1 is out?
-</p>
-
-<pre>
-# cd CVSROOT/app-misc/foo
-# cvs update
-# rm foo-1.0.ebuild files/digest-foo-1.0 <comment>(Files should be deleted first...)</comment>
-# cvs remove foo-1.0.ebuild files/digest-foo-1.0
-</pre>
-
-<p>
-And now you're ready to commit (see the section on Commits below).
+Do zmiennej <c>FEATURES</c>, na architekturach na których to działa, należy
+dodać również <c>sandbox</c>, co uniemożliwi modyfikację lokalnego systemu
+plików przez ebuildy.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Commits</title>
+<title>Dodawanie i usuwanie</title>
 <body>
 
 <p>
-Always use <c>repoman commit</c> rather than <c>cvs commit</c>. Repoman is a quality assurance (QA)
-tool that performs basic checks and creates Manifests. If any part of repoman's output is unclear,
-please see <c>man repoman</c>. Additionally, you may tire of entering your key passphrase repeatedly;
-keychain (<uri>http://www.gentoo.org/proj/en/keychain.xml</uri>) can help you.
+Załóżmy, że chcemy dodać nowy pakiet o nazwie <c>foo</c> do katalogu app-misc:
 </p>
-		
+
 <pre>
-<comment>[Make sure there are no root-owned files present prior to running repoman!]</comment>
-<comment>("scan" scans the current directory for QA issues. "full" is more complete.)</comment>
-# repoman scan
-<comment>("commit" does a scan, then commits, while also updating digests. Make sure you
- add a verbose and useful CVS ChangeLog message...)</comment>
-# repoman commit
+<comment>(Zamieniamy CVSROOT na miejsce, w którym znajduje się drzewo pobrane za pomocą CVS)</comment>
+# <i>cd $CVSROOT/app-misc</i>
+<comment>(Zawsze przed rozpoczęciem pracy aktualizujemy daną gałąź drzewa!)</comment>
+# <i>cvs update</i>
+# <i>mkdir foo</i>
+<comment>(Dodajemy do repozytorium katalog dla nowego pakietu)</comment>
+# <i>cvs add foo</i>
+# <i>cd foo</i>
+<comment>(Ebuildy, które nie są jeszcze gotowe do dodania trzymamy poza drzewem)</comment>
+# <i>cp /ścieżka/do/foo-1.0.ebuild ./</i>
+<comment>[Należy utworzyć plik ChangeLog - więcej informacjie w manie echangelog]</comment>
+<comment>(Zmienna PORTDIR_OVERLAY musi zgadzać się z katalogiem CVS podczas tworzenia sum kontrolnych)</comment>
+# <i>ebuild foo-1.0.ebuild digest</i>
+# <i>cvs add foo-1.0.ebuild ChangeLog files</i>
+<comment>(FEATURES=autoaddcvs zrobi to automatycznie...)</comment>
+# <i>cvs add files/digest-foo-1.0</i>
+</pre>
+
+<p>
+Należy dodać również plik <path>metadata.xml</path> z informacjami na temat
+opiekuna pakietu. Więcej informacji znajduje się w rozdziale o pliku <uri
+link="?part=2&amp;chap=4">metadata</uri>.
+</p>
+
+<p>
+W tym momencie jesteśmy gotowi do dodania plików. Akapit o tym jak się tego
+dokonuje znajduje się poniżej. Najpierw jednak w związku z wyjściem nowej
+wersji usuniemy pakiet foo-1.0.  
+</p>
+
+<pre>
+# <i>cd CVSROOT/app-misc/foo</i>
+# <i>cvs update</i>
+# <i>rm foo-1.0.ebuild files/digest-foo-1.0</i> <comment>(Najpierw usuwamy pliki...)</comment>
+# <i>cvs remove foo-1.0.ebuild files/digest-foo-1.0</i>
+</pre>
+
+<p>
+Teraz wysyłamy wszystkie dokonane zmiany.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Wysyłanie</title>
+<body>
+
+<p>
+Zawsze należy korzystać z polecenia <c>repoman commit</c>, nigdy z <c>cvs
+commit</c>. Program repoman to narzędzie QA ("quality assurance" - zapewniające
+jakość), które sprawdza dodawane pliki oraz tworzy pliki Manifest. Jeśli jakaś
+część wyniku polecenia repoman jest niejasna, to wyjaśnienia należy szukać na
+stronie man tego programu. Aby uniknąć ciągłego wpisywania hasła, można
+skorzystać ze wskazówek spisanych w tekście
+<uri>http://www.gentoo.org/proj/pl/keychain.xml</uri>.
+</p>
+	
+<pre caption="Praca z repomanem">
+<comment>[Należy się upewnić, że żadne ze sprawdzanych plików nie należą do roota!]</comment>
+<comment>("scan" sprawdza katalog pod kątem występowania błędów QA. "full" jest bardziej uniwersalny)</comment>
+# <i>repoman scan</i>
+<comment>("commit" dokonuje sprawdzenia, a następnie wysyła pliki, aktualizując przy okazji sumy kontrolne. 
+Warto dodać opcję "verbose", aby zobaczyć informacje zwracane przez CVS...)</comment>
+# <i>repoman commit</o>
 </pre>
 
 </body>
 </subsection>
 </section>
-
 <section>
-<title>Miscellaneous</title>
+<title>Dodatki</title>
 <subsection>
-<title>Putting files on mirrors</title>
+<title>Umieszczanie plików na serwerach lustrzanych</title>
 <body>
 
 <p>
-The procedure for dropping a new file in distfiles on Gentoo mirrors is very simple: 
-copy it to <path>/space/distfiles-local</path> on <path>dev.gentoo.org</path>.
+Algorytm jest prosty. Kopiujemy plik do katalogu
+<path>/space/distfiles-local</path> na serwerze <path>dev.gentoo.org</path>.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Mail</title>
+<title>Poczta</title>
 <body>
 
 <p>
-Our infrastructure allows developers to manage their own mail.
-<uri>http://www.gentoo.org/proj/en/infrastructure/dev-email.xml</uri>
-contains instructions on configuring your gentoo.org mail.
+Wszyscy deweloperzy mogą mieć konta pocztowe na naszych serwerach. Instrukcje
+umożliwiające korzystanie z takiej poczty znajduję się pod adresem
+<uri>http://www.gentoo.org/proj/en/infrastructure/dev-email.xml</uri>.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Planet Gentoo "blogging"</title>
+<title>Blog na stronie Planet Gentoo</title>
 <body>
 
 <p>
-We run a service, <uri link="http://planet.gentoo.org">Planet Gentoo</uri>, which
-aggregates articles written by contributing developers. This is optional, but it
-is encouraged that you participate. It helps communication between developers and
-users find it to be an interesting read too.
+Na stronie <uri link="http://planet.gentoo.org">Planet Gentoo</uri> znajduje
+się zbiór krótkich artykułów pisanych przez deweloperów Gentoo. Nie jest to
+obowiązkowe, ale gorąco zachęcamy do udzielania się w tym serwisie. Poprawia to
+komunikację pomiędzy deweloperami i użytkownikami oraz bardzo często może być
+interesującą lekturą na długie zimowe wieczory.
 </p>
 
 <p>
-In order to post content to the planet, you need to have your own weblog
-("blog"). Many sites provide this as a free service, or you can host it
-yourself (if you have the resources). Alternatively, we can host a blog for
-you.
+Aby dodać tam jakiś post, należy posiadać własny blog. Wiele serwisów oferuje
+taką możliwość za darmo, można również (jeśli ma się takie zasoby) hostować go
+samodzielnie. Można również taki blog opublikować na naszych stronach.
 </p>
 
 <p>
-We aim to keep Planet Gentoo's content relevant to Gentoo and/or Gentoo-related
-developments and events.
+Zawartość Planet Gentoo powinna być związana z naszą dystrybucją i jej
+rozwijaniem. 
 </p>
 
 <p>
-If we host your blog for you, you are expected to keep the content on-topic
-(Gentoo and Gentoo-related articles). You also need to understand that if you
-ever lose or drop your developer status, you will no longer be able to write
-articles on your blog.
+Jeśli blog znajduje się na serwerach Gentoo, jego zawartość musi być z Gentoo
+ściśle związana. Po utracie statusu dewelopera Gentoo znika możliwość dodawania
+nowych artykułów do takiego bloga.
 </p>
 
 <p>
-If you have a blog elsewhere, then it needs to be able to provide an XML
-content feed. If you blog into categories, we need to be able to get an XML
-feed which covers your "Gentoo" category but no others. This is probably a
-non-issue, as almost all blogs provide standardised feeds like this.
+Jeśli blog znajduje się w zewnętrznym serwisie, musi on dawać możliwość
+korzystania z formatu XML. Jeśli jest podzielony na kilka kategorii, chcemy
+mieć dostęp tylko do tej, która jest związana z Gentoo. Większość serwisów
+posiada takie usługi w domyślnej konfiguracji.
 </p>
 
 <p>
-Although this is somewhat common sense, please be careful with what you write
-about. Your views may be inappropriately interpreted as the views of Gentoo.
-Please be careful not to damage our image.
+Należy zachować zdrowy rozsądek i uważnie dobierać tematy, na które się pisze.
+Poglądy dewelopera mogą zostać mylnie wzięte za oficjalne stanowisko wszystkich
+osób pracujących nad Gentoo i nie radzimy psuć jego wizerunku.
 </p>
 
 <p>
-If you are interested in contributing to Planet Gentoo, please write to
-<uri link="mailto:user-relations@gentoo.org">user-relations@gentoo.org</uri>,
-either requesting a weblog to be hosted by Gentoo, or giving details of your
-already existing weblog. We'll then work out the details and get you up and
-running.
+Osoby zainteresowane dodawaniem artykułów do serwisu Planet Gentoo powinny
+zgłosić się pod adres <mail>user-relations@gentoo.org</mail> i napisać czy
+potrzebny im jest blog na naszych serwerach czy też chcą dodawać posty z
+jakiegoś zewnętrznego serwisu. Dokładnie omówimy wtedy wszystkie szczegóły i
+odpowiednio skonfigurujemy całą usługę dla niego.
 </p>
 
 </body>
