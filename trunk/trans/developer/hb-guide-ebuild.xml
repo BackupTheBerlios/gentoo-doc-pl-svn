@@ -13,172 +13,176 @@
 <date>2005-07-02</date>
 
 <section>
-<title>The Portage tree</title>
+<title>Drzewo Portage</title>
 <subsection>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-The Portage tree is typically found at <path>/usr/portage</path> and is 
-organized in a hierarchical structure consisting of category directories, 
-followed by specific package directories.  Here's an example; you can find
-the <path>util-linux-2.11y.ebuild</path> file in the 
-<path>/usr/portage/sys-apps/util-linux</path> directory.  There may be 
-several other versions of <c>util-linux</c> ebuilds alongside 
-<path>util-linux-2.11y.ebuild</path>.  This is because <e>all ebuilds for 
-a particular package (regardless of version)</e>, share the same 
-<path>mycat/mypkg</path> directory in <path>/usr/portage</path>.
+Drzewo Portage zwykle znajduje się w katalogu <path>/usr/portage</path> i jest
+ułożone w hierarchicznej strukturze, składającej się z katalogów kategorii, w
+których znajdują się katalogi paczek. Oto przykład: plik 
+<path>util-linux-2.11y.ebuild</path> można znaleźć w katalogu 
+<path>/usr/portage/sys-apps/util-linux</path>. W tym samym katalogu może
+znajdować się kilka innych wersji <c>util-linux</c> razem z wersją 
+<path>util-linux-2.11y.ebuild</path>. Jest tak ponieważ <e>wszystkie pliki
+ebuild danej paczki (niezależnie od wersji)</e> mają wspólny katalog 
+<path>kategoria/paczka</path> w głównym katalogu <path>/usr/portage</path>.
 </p>
 
 </body>
 </subsection>
 
 <subsection>
-<title>Checking Out the Portage Tree from CVS</title>
+<title>Pobieranie drzewa Portage z CVS</title>
 <body>
 
 <p>
-If you are unfamiliar with the CVS system, please read the
-<uri link="http://www.gentoo.org/doc/en/cvs-tutorial.xml">CVS Tutorial</uri>
-for more information.
+W razie jakichkolwiek wątpliwości co do systemu CVS, należy przeczytać <uri 
+link="http://www.gentoo.org/doc/en/cvs-tutorial.xml">Samouczek CVS</uri>, gdzie
+znajdziemy więcej informacji.
 </p>
 
 <p>
-The Portage tree can be found in the <c>gentoo-x86</c> module of the 
-Gentoo Linux tree.  To check out the module (about 350 megabytes) you 
-would first set up CVS via the above guide, then check out the 
-<c>gentoo-x86</c> module.
+Drzewo Portage można znaleźć w module <c>gentoo-x86</c> drzewa systemu Gentoo
+Linux. Aby pobrać moduł (około 350 megabajtów) najpierw należy skonfigurować CVS
+za pomocą powyższego samouczka, a następnie pobrać moduł <c>gentoo-x86</c>
+komendą checkout.
 </p>
 
 </body>
 </subsection>
 
 <subsection>
-<title>What (not) to put in the Portage tree</title>
+<title>Co umieszczać (a czego nie) w drzewie Portage</title>
 <body>
 
 <p>
-Before writing any ebuild, check <uri 
-link="http://bugs.gentoo.org/">bugs.gentoo.org</uri> for an ebuild 
-corresponding to the ebuild you want to write, but that has not yet been put 
-into the Portage tree.  Go to <uri 
-link="http://bugs.gentoo.org/">bugs.gentoo.org</uri>, choose query; as product 
-select <e>Gentoo Linux</e>, as component select <e>ebuilds</e>. In the search 
-field put the name of the ebuild and as status select NEW, ASSIGNED, REOPENED 
-and RESOLVED (RESOLVED is important), then submit the query.  For you lazy 
-people, click <uri link="http://bugs.gentoo.org/query.cgi?product=Gentoo%20Linux&amp;component=Ebuilds&amp;bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=RESOLVED">here</uri>.
+Przed napisaniem jakiegokolwiek ebuilda powinniśmy przejrzeć <uri
+link="http://bugs.gentoo.org/">bugs.gentoo.org</uri> w poszukiwaniu
+niezamieszczonego jeszcze w drzewie Portage pliku ebuild do paczki, do której
+sami chcieliśmy go pisać. W tym celu należy wejść na stronę <uri
+link="http://bugs.gentoo.org/">bugs.gentoo.org</uri>, wybrać "query", jako
+produkt (product) wybrać <e>Gentoo Linux</e>, jako składnik (component)
+<e>ebuilds</e>. W polu tekstowym powinniśmy wpisać nazwę ebuilda, a jako status
+wybrać "NEW", "ASSIGNED", "REOPENED" i "RESOLVED" (to ostatnie jest ważne), a
+następnie zatwierdzić zapytanie. Leniwi niech po prostu klikną <uri
+link="http://bugs.gentoo.org/query.cgi?product=Gentoo%20Linux&amp;component=Ebuilds&amp;bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=RESOLVED">tutaj</uri>.
 </p>
 
 <p>
-In general, the Portage tree should only be used for storing 
-<path>.ebuild</path> files, as well as any relatively small companion
-files, such as patches or sample configuration files.  These types of
-files should be placed in the <path>/usr/portage/mycat/mypkg/files</path>
-directory to keep the main <path>mycat/mypkg</path> directory uncluttered.
-Exceptions to this rule are for larger patch files (we recommend this for patches
-above 20KB) which should be put onto the Gentoo mirrors so that people
-do not waste excessive amounts of bandwidth and hard drive
-space. Also, in general, it's not a good idea for developers to add
-binary (non-ASCII) files to CVS.  However, if this is necessary (for
-example, if you need to add a small PNG graphic for whatever reason,
-be sure to add it to CVS by using the <c>-kb</c> option, like so:
+Drzewo Portage powinno przede wszytkim być używane do przechowywania plików
+<path>.ebuild</path>, a także wszelkich względnie małych plików
+pomocniczych, takich jak łatki lub przykładowe pliki konfiguracyjne. Pliki
+pomocniczne powinny być umieszczane w katalogu
+<path>/usr/portage/kategoria/paczka/files</path>, aby nie zaśmiecać głównego
+katalogu <path>kategoria/paczka</path>. Wyjątkiem od tej reguły są większe 
+pliki łatek (zalecamy przyjąć granicę przy 20KB), które powinny zostać
+umieszczone na serwerach lustrzanych Gentoo, aby użytkownicy nie marnowali
+przepustowości ani przestrzeni dyskowej. Odradzamy też deweloperom umieszczanie
+w CVS plików binarnych (nie-ASCII). Jeśli jednak jest to konieczne (gdybyśmy na
+przykład chcieli zamieścić niewielki plik graficzny PNG), należy dodać go do CVS
+przy użyciu opcji <c>-kb</c>, tak jak poniżej:
 </p>
 
-<pre caption="Adding binary files to CVS">
-# <i>cvs add -kb myphoto.png</i>
+<pre caption="Dodawanie pliku binarnego do CVS">
+# <i>cvs add -kb mojobrazek.png</i>
 </pre>
 
 <p>
-The <c>-kb</c> option tells CVS that <path>myphoto.png</path> is a binary
-file and should be treated specially.  For example, merging the 
-differences between two different versions of this file should not be 
-allowed to happen, for obvious reasons.  Also, speaking of merging 
-changes, any patches you add to Portage should generally <e>not</e> be 
-compressed.  This will allow CVS to merge changes and correctly inform 
-developers of conflicts.
+Opcja <c>-kb</c> instruuje CVS, iż plik <path>mojobrazek.png</path> to plik
+binarny i powinien być specjalnie traktowany. Nie powinno się na przykład z
+oczywistych względów pozwolić na łączenie różnic między dwiema wersjami tego
+pliku. Skoro już mowa o łączeniu zmian, pliki poprawek zamieszczane w Portage
+nie powinny być kompresowane. Dzięki temu system CVS będzie mógł łączyć zmiany i
+poprawnie informować deweloperów o konfliktach.
 </p>
 
 <p>
-Remember, the packages that you commit must be <e>ready</e> <e>out of the 
-box</e> for end users when committed as stable.  Make sure that you have a good 
-set of default settings that will satisfy the majority of systems and 
-users that will use your package.  If your package is broken, and you are 
-not sure how to get it to work, check some other distributions that have 
-done their own versions of the package.  You can check 
-<uri link="http://cvs.mandriva.com/cgi-bin/cvsweb.cgi/SPECS/">Mandriva</uri>
-or <uri link="http://www.debian.org/distrib/packages">Debian</uri> or 
-<uri link="http://cvs.fedora.redhat.com/">Fedora</uri> for some 
-examples.
+Należy pamiętać, iż paczki, które FIXME (zatwierdzamy?) wrzucamy muszą być
+<e>gotowe</e> do <e>natychmiastowego użycia</e> przez końcowych użytkowników,
+jeśli zgłaszamy je jako stabilne. Musimy upewnić się, że posiadamy dobry zestaw
+domyślnych ustawień, który zadowoli większość systemów i użytkowników naszej
+paczki. Jeśli zaś nasza paczka nie działa i nie mamy pomysłu jak sprawić, by
+działała, warto zajrzeć jak poradzili sobie z nią deweloperzy innych
+dystrybucji. Przykładów możemy szukać choćby w repozytoriach <uri
+link="http://cvs.mandriva.com/cgi-bin/cvsweb.cgi/SPECS/">Mandrivy</uri>, <uri
+link="http://www.debian.org/distrib/packages">Debiana</uri> lub <uri
+link="http://cvs.fedora.redhat.com/">Fedory</uri>.
 </p>
 
 <p>
-When committing to CVS, all developers should use <c>repoman commit</c> 
-instead of <c>cvs commit</c> to submit their ebuilds.  Before committing, 
-please run <c>repoman full</c> to make sure you didn't forget something.
+FIXME (zatwierdzając?) Zamieszczając pliki ebuild w CVS wszyscy deweloperzy
+powinni używać polecenia <c>repoman commit</c> zamiast <c>cvs commit</c>. Przed
+samym zamieszczeniem należy wykonać polecenie <c>repoman full</c>, aby upewnić
+się, że o niczym nie zapominamy.
 </p>
 
 </body>
 </subsection>
 
 <subsection>
-<title>CVS Commit Policy</title>
+<title>Polityka FIXME (zatwierdzania [commit]?) zamieszczania w CVS</title>
 <body>
 
 <ul>
-<li>Always run <c>repoman scan</c> before you commit.</li>
-<li>Please run <c>repoman full</c> before you commit.</li>
-<li>Always test that <path>package.mask</path> is okay by doing 
-<c>emerge --pretend mypkg</c> before you commit and check 
-that it doesn't contain any conflicts.</li>
-<li>Always update the <path>ChangeLog</path> before you commit.</li>
-<li>Always commit the updated <path>package.mask</path> before 
-the updated package, in case conflicts occur while you commit 
-<path>package.mask</path>.</li>
-<li>Always do atomic commits; if you commit a package with a new license, 
-or that is masked, then first commit the revised <path>package.mask</path> and/or license, 
-then commit the ebuild, <path>ChangeLog</path>, patches
-and <uri link="?part=2&amp;chap=4">metadata.xml</uri> all in <b>one</b> go
-to avoid breaking users' installations.</li>
+<li>Zawsze należy wykonać polecenie <c>repoman scan</c> zanim dokonamy
+zatwierdzenia.</li>
+<li>Zawsze należy wykonać polecenie <c>repoman full</c> zanim dokonamy
+zatwierdzenia.</li>
+<li>Zawsze powinniśmy sprawdzić poprawność pliku <path>package.mask</path> przez
+wykonanie <c>emerge --pretend mypkg</c> przed zatwierdzeniem i sprawdzenie czy
+nie zawiera konfliktów.</li>
+<li>Zawsze należy uaktualnić plik <path>ChangeLog</path> zanim dokonamy
+zatwierdzenia.</li>
+<li>Zawsze powinniśmy zatwierdzić uaktualniony plik <path>package.mask</path>
+przed uaktualnioną paczką, w razie gdyby wystąpiły konflikty podczas
+zatwierdzania pliku <path>package.mask</path>.</li>
+<li>Zawsze powinniśmy wykonywać zatwierdzenia atomowe; jeśli zatwierdzamy paczkę
+z nową licencją albo taką, która jest zamaskowana, najpierw należy zatwierdzić
+uaktualniony plik <path>package.mask</path> i/lub licencję, następnie plik
+ebuild, <path>ChangeLog</path>, łatki i plik <uri
+link="?part=2&amp;chap=4">metadata.xml</uri> wszystkie za jednym razem, aby
+uniknąć uszkodzenia użytkownikom systemów.
 </ul>
 
 </body>
 </subsection>
 
 <subsection>
-<title>The files Directory</title>
+<title>Katalog files</title>
 <body>
 
 <p>
-As noted earlier, under each package subdirectory is
-a <path>files/</path> directory. Any patches, configuration files, or
-other ancillary files your package might require should be added to
-this directory; any files bigger than 20KB-or-so should go to the
-mirrors to lower the amount of (unneeded) files our users have to
-download. You may want to consider naming patches you create yourself
-just to get your package to build with a version-specific name, such
-as <path>mypkg-1.0-gentoo.diff</path>, or more
-simply, <path>1.0-gentoo.diff</path>.  Also note that the
-<path>gentoo</path> extension informs people that this patch was created 
-by us, the Gentoo Linux developers, rather than having been grabbed from a 
-mailing list or somewhere else. Again, you should not compress these 
-patches because CVS does not play well with binary files.
+Jak wpomniano wcześniej, w każdym podkatalogu paczki znajduje się podkatalog
+<path>files/</path>. W nim należy umieszczać wszelkie łatki, pliki
+konfiguracyjne lub inne pliki pomocnicze; pliki większe niż około 20KB powinny
+być zamieszczane na serwerach lustrzanych, aby zmniejszyć ilość (niepotrzebnych)
+plików, które nasi użytkownicy będą musieli ściągnąć. Warto rozważyć nazywanie
+tworzonych przez siebie poprawek, dzięki którym paczka w ogóle się zbuduje,
+uwzględniając wersję w nazwie, na przykład <path>paczka-1.0-gentoo.diff</path>,
+or more simply, <path>1.0-gentoo.diff</path>. Przy okazji człon
+<path>gentoo</path> informuje że poprawka ta została stworzona przez nas,
+deweloperów Gentoo, a nie pobrana z listy dyskusyjnej albo innego miejsca. Raz
+jeszcze, nie należy kompresować tych plików, ponieważ CVS nie radzi sobie zbyt
+dobrze z binarnymi plikami.
 </p>
 
 <p>
-Consider prefixing or suffixing (such as <path>mypkg-1.0</path>) every file 
-you put into the <path>files/</path> directory, so that the files used for 
-each individual version on an ebuild are distinguishable from one another, and 
-so that the changes between different revisions are visible.  This is generally 
-a really good idea :).  You may want to use a different suffix if you wish to 
-convey more meaning with the patch name.
+Warto rozważyć dodawanie przedrostka lub przyrostka (na przykład
+<path>mypkg-1.0</path>) do wszystkich plików, które umieszczamy w katalogu
+<path>files/</path>, aby pliki wykorzystywane z konkretną wersją ebuilda można
+było łatwo odróżnić od siebie, co powoduje też widoczność zmian pomiędzy każdą
+poprawką. Ogólnie jest to dobry pomysł. :) Możemy użyć innego przyrostka, jeśli
+chcemy, aby nazwa pliku łatki przekazywała więcej informacji.
 </p>
 
 <p>
-If you have many files that should go into the <path>files/</path> directory, 
-consider creating subdirectories such as <path>files/1.0/</path> and putting the
-relevant files in the appropriate subdirectory.  If you use this method, 
-you do not need to add version information to the names of the files, 
-which is often more convenient.
+Jeśli w katalogu <path>files/</path> chcemy umieścić więcej plików, warto
+stworzyć podkatalogi, na przykład <path>files/1.0/</path> i umieszczać
+odpowiednie pliki w swoich własnych katalogach. Gdy używamy tej metody, nie jest
+już konieczne dodawanie informacji o wersji do nazw plików. Często jest to
+więc bardziej wygodne.
 </p>
 
 </body>
@@ -186,238 +190,240 @@ which is often more convenient.
 </section>
 
 <section>
-<title>Ebuild scripts</title>
+<title>Skrypty ebuild</title>
 <subsection>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-Ebuild scripts are the basis for the entire portage system.  They contain 
-all the information required to download, unpack, compile and install a 
-set of sources, as well as how to perform any optional pre/post 
-install/removal or configuration steps.  While most of Portage is 
-written in Python, the ebuild scripts themselves are written in bash, 
-since using bash allows us to call commands as we would from the 
-command-line.  One of the important design principles behind ebuild scripts 
-is to have the commands therein be analogs of those one would type on the 
-command-line if installing the package manually.  For this purpose, using 
-bash syntax is a very good thing.
+Skrypty ebuild są podstawą całego systemu portage. Zawierają one wszelkie
+informacje potrzebne do pobrania, rozpakowania, skompilowania i instalacji
+zestawu źródeł, a także wykonania ewentualnych czynności poprzedzających i/lub
+następujących po instalacji i/lub deinstalacji. Pomimo iż większość Portage
+napisana jest w języku Python, same skrypty ebuild napisane są w bashu, ponieważ
+wykorzystanie języka skryptowego powłoki pozwala nam na wykonywanie komend tak
+samo jak z wiersza poleceń. Jednym z najważniejszych założeń projektowych
+skryptów ebuild jest nazwanie zawartych w nim poleceń analogicznie do tych,
+które wypisywalibyśmy, instalując paczkę ręcznie poprzez wiersz poleceń. Również
+z tego względu użycie składni basha jest bardzo wskazane.
 </p>
 
 <p>
-Ebuild scripts are interpreted by the <c>ebuild</c> and <c>emerge</c> 
-commands.  Think of the <c>ebuild</c> command as a low-level building 
-tool.  It can build and install a single ebuild, but no more.  It will 
-check to see if dependencies are satisfied, but it will not attempt to 
-auto-resolve them.  On the other hand <c>emerge</c> is a high level engine 
-for <c>ebuild</c>, and has the ability to auto-merge dependencies if 
-needed, perform <e>pretend</e> merges so that user can see what ebuilds 
-would be merged, and more.  Generally, <c>emerge</c> blows 
-<c>ebuild</c> out of the water except in one area.  With <c>ebuild</c>, 
-you can incrementally step through the various parts of a package 
-emerge (fetching, unpacking, compiling, installing and merging) one at a 
-time.  For developers, this is an invaluable debugging tool, because it 
-allows you to isolate ebuild problems to a specific portion of the ebuild.
+Skrypty ebuild są interpretowane przez komendy <c>ebuild</c> i <c>emerge</c>.
+Wyobraźmy sobie polecenie <c>ebuild</c> jako niskopoziomowe narzędzie, służące
+do budowania. Potrafi zbudować i zainstalować pojedynczy ebuild, ale nic poza
+tym. Sprawdzi czy zależności są spełnione, ale nie będzie próbować ich
+automatycznie spełnić. Z drugiej strony polecenie <c>emerge</c> jest
+wysokopoziomowym "silnikiem" dla polecenia <c>ebuild</c> i potrafi w razie
+potrzeby automatycznie zainstalować zależności, wykonać instalacje symulowane
+<e>pretend</e>, aby użytkownik mógł dowiedzieć się jakie paczki zostaną
+zainstalowane i dużo więcej. Ogólnie polecenie <c>emerge</c> jest lepsze od
+<c>ebuild</c> pod każdym względem oprócz jednego. Za pomocą <c>ebuild</c> możemy
+stopniowo i pojedynczo wykonywać poszczególne fazy instalacji paczki (pobieranie
+źródeł, rozpakowanie, kompilacja, instalacja i osadzenie paczki w systemie).
+Jest to nieocenione narzędzie do debugowania dla deweloperów, ponieważ umożliwia
+zawężenie problemu z ebuildem do konkretnego fragmentu pliku ebuild.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Naming ebuild files</title>
+<title>Nazewnictwo plików ebuild</title>
 <body>
 
-<p>Ebuild file names consist of four logical subsections:</p>
+<p>Nazwa pliku ebuild składa się z czterech logicznych podsekcji:</p>
 
 <p><c>pkg-ver{_suf{#}}{-r#}.ebuild</c></p>
 
-<note>The brackets (<c>{}</c>) delineate optional fields and do not appear in
-the literal package name. <c>#</c> represents any non-zero positive
-integer.</note>
+<note>
+FIXME "Wąsy" (<c>{}</c>) otaczają opcjonalne pola i same nie występują w nazwie
+paczki. Znak "<c>#</c> oznacza dowolną dodatnią liczbę różną od zera.
+</note>
 
 <p>
-The first subsection, <c>pkg</c>, is the package name, which should
-only contain lowercase letters, the digits 0-9, and any number of
-single hyphen (<c>-</c>), underscore (<c>_</c>) or plus (<c>+</c>)
-characters. Examples: <c>util-linux</c>,
-<c>sysklogd</c> and <c>gtk+</c>. We have some packages in Portage that 
-don't follow these rules, but <e>your</e> packages should.
+Pierwsza podsekcja, <c>pkg</c> oznacza nazwę paczki. Powinna ona zawierać
+jedynie małe litery, cyfry od 0 do 9 oraz dowolną liczbę pojedynczych znaków
+myślnika (<c>-</c>), podkreślenia (<c>_</c>) lub znaku plus (<c>+</c>).
+Przykłady: <c>util-linux</c>, <c>sysklogd</c> i <c>gtk+</c>. W Portage można
+znaleźć kilka paczek, które nie spełniają tych wymogów, ale FIXME (lepiej:
+nowe?) <e>nasze</e> paczki muszą je spełniać.
 </p>
 
 <p>
-The second subsection, <c>ver</c>, is the version of the package,
-which should normally be same as the version on the main source
-tarball. The version is normally made up of two or three (or more)
-numbers separated by periods, such as <c>1.2</c> or <c>4.5.2</c>, and
-may have a single letter immediately following the last digit;
-e.g., <c>1.4b</c> or <c>2.6h</c>. The package version is joined to the
-package name with a hyphen. For example:
-<c>foo-1.0</c>, <c>bar-2.4.6</c>.
+Druga podsekcja, <c>ver</c> oznacza wersję paczki, która zwykle powinna
+odpowiadać wersji głównego archiwum ze źródłami. Najczęściej wersja składa się z
+dwóch lub trzech (czasem więcej) liczb oddzielonych kropkami, na przykład w ten
+sposób: <c>1.2</c> lub <c>4.5.2</c>. Czasem bezpośrednio za ostatnią liczbą może
+pojawić się pojedyncza litera, na przykład <c>1.4b</c> lub <c>2.6h</c>. Wersja
+paczki połączona jest myślnikiem z nazwą paczki. Przykładowo: <c>coś-1.0</c>,
+<c>bla-2.4.6</c>.
 </p>
 
 <impo>
-If you're thinking of using a trailing letter in your version string, note 
-that the trailing letter should <e>not</e> be used to signify alpha or beta 
-status for the package, since alphas and betas are <e>prereleases</e> and 
-letter revisions are <e>newer versions</e>.  This is an important 
-distinction because Portage uses an ebuild's version number to determine 
-if it is newer or older than other packages with the same category and 
-name.  It's very important that version numbers faithfully represent the 
-version of the package so that Portage properly performs its dependency 
-checking duties.
+Chcąc użyć litery poprzedzającej numer wersji należy mieć na uwadze, że <e>nie
+powinna</e> ona oznaczać statusu alpha lub beta paczki, ponieważ alpha i beta to
+<e>wersje zapoznawcze</e> (ang. prerelease), natomiast wersje z literą na
+początku to <e>nowsze wersje</e>. To istotne rozróżnienie, ponieważ Portage
+używa numeru wersji ebuilda do określenia czy jest on nowszy czy starszy od
+pozostałych paczek o tej samej nazwie w tej samej kategorii. Jest więc bardzo
+ważne, aby numery wersji wiernie odzwierciedlały wersję paczki i Portage
+właściwie wykonywał sprawdzanie zależności.
 </impo>
 
 <p>
-The third subsection, <c>{_suf{#}}</c>, is optional may contain one of 
-these predefined suffixes, listed in least-recent to most-recent order:
+Trzecia podsekcja, <c>{_suf{#}}</c> jest opcjonalna i może zawierać jeden z
+następujących przyrostków, wymienionych w kolejności od oznaczających najstarsze
+wydanie po najnowsze:
 </p>
 
 <table>
- <tr><th>Suffix</th><th>Meaning</th></tr>
- <tr><ti><c>_alpha</c></ti><ti>Alpha release</ti></tr>
- <tr><ti><c>_beta</c></ti><ti>Beta release</ti></tr>
- <tr><ti><c>_pre</c></ti><ti>Prerelease</ti></tr>
- <tr><ti><c>_rc</c></ti><ti>Release candidate</ti></tr>
- <tr><ti>(none)</ti><ti>Normal release</ti></tr>
- <tr><ti><c>_p</c></ti><ti>Patch level (normally accompanied by trailing integer)</ti></tr>
+ <tr><th>Przyrostek</th><th>Znaczenie</th></tr>
+ <tr><ti><c>_alpha</c></ti><ti>Wydanie alpha</ti></tr>
+ <tr><ti><c>_beta</c></ti><ti>Wydanie beta</ti></tr>
+ <tr><ti><c>_pre</c></ti><ti>Wersja zapoznawcza (prerelase)</ti></tr>
+ <tr><ti><c>_rc</c></ti><ti>FIXME Testowe wydanie finalne (Release candidate)</ti></tr>
+ <tr><ti>(none)</ti><ti>Oficjalne wydanie</ti></tr>
+ <tr><ti><c>_p</c></ti><ti>FIXME (patch level) Etap poprawek (zwykle za
+ przyrostkiem występuje liczba całkowita)</ti></tr>
 </table>
 
 <p> 
-Any of these suffixes may be immediately followed by a non-zero positive
-integer, e.g., <c>linux-2.4.0_pre10</c>. Assuming identical version parts, the
-suffixes are ordered as follows (lower means older): <c>_alpha</c> &lt;
-<c>_beta</c> &lt; <c>_pre</c> &lt; <c>_rc</c> &lt; (no suffix) &lt;
+Po każdym z tych przyrostków może zostać dodana dodatnia liczba całkowita różna
+od zera, na przykład <c>linux-2.4.0_pre10</c>. Zakładając identyczne wersje,
+przyrostki są ułożone następująco (niższy oznacza starszy): <c>_alpha</c> &lt;
+<c>_beta</c> &lt; <c>_pre</c> &lt; <c>_rc</c> &lt; (brak przyrostka) &lt;
 <c>_p</c>.
 </p>
        
 <p>
-When comparing identical suffixes with trailing integers, the one with the
-larger integer will be considered most recent. Example: <c>foo-1.0_alpha4</c>
-is more recent than <c>foo-1.0_alpha3</c>.
+Podczas porównywania liczb poprzedzonych identycznymi przyrostkami za nowszą
+zostanie uznana większa liczba całkowita. Przykład: <c>bla-1.0_alpha4</c>
+jest nowsza niż <c>bla-1.0_alpha3</c>.
 </p>
 
 <p>
-The fourth subsection of the package name is the Gentoo Linux-specific revision
-number (<c>{-r#}</c>). This subsection, like the suffix, is also optional.
-<c>#</c> is a non-zero positive integer; e.g.,  <c>package-4.5.3-r3</c>. 
+Czwarta podsekcja nazwy paczki oznacza wewnętrzny numer rewizji 
+specyficznej dla systemu Gentoo Linux. Jest on opcjonalny, podobnie jak
+przyrostek. Znak <c>#</c> jest dodatnią liczbą całkowitą różną od zera, na
+przykład <c>paczka-4.5.3-r3</c>.
 </p>
 
 <p>
-This revision number is independent of the version of the source tarball and
-is used to inform people that a new and improved Gentoo Linux revision of a
-particular package is available. Initial releases of ebuilds must have no
-revision number; e.g., <c>package-4.5.3</c> and are considered by 
-Portage to have a revision number of zero. This means that counting goes 
-as follows: <c>1.0</c> (initial version), <c>1.0-r1</c>, <c>1.0-r2</c>, 
-etc. 
+Numer rewizji jest niezależny od wersji archiwum źródłowego i informuje, iż
+dostępna jest nowa i poprawiona wersja danej paczki, specyficzna dla systemu
+Gentoo Linux. Pierwsze wydania paczek nie mają numeru rewizji, co oznacza, że
+paczkę <c>package-4.5.3</c> Portage potraktuje jak mającą zerowy numer rewizji.
+Oznacza to, że paczki zliczane będą w następującej kolejności: <c>1.0</c> (wersja
+początkowa), <c>1.0-r1</c>, <c>1.0-r2</c>, itd. 
 </p>
 
 <p>
-If you make non-trivial improvements to an existing ebuild file, you 
-should copy the ebuild file to a new file with the revision number 
-incremented by 1. Remember to <e>always</e> make mentions of your changes in
-the <path>ChangeLog</path> when you bump a revision <b>and</b> in
-your CVS commit message; not doing so is against policy.
+Dokonując niebanalnych zmian w istniejącym pliku ebuild powinniśmy skopiować go
+do nowego pliku z numerem rewizji zwiększonym o 1. Należy pamiętać, aby zawsze
+odnotowywać zmiany <e>zarówno</e> w pliku <path>ChangeLog</path>, jak i w komunikacie
+zatwierdzenia; pominięcie choć jednego jest wbrew FIXME (policy) regułom.
 </p>
 
 <p>
-... and I suppose that we actually have a <e>fifth</e> section of the 
-ebuild name as well -- the <c>.ebuild</c> extension itself.
+...w zasadzie to mamy też <e>piątą</e> sekcję nazwy pliku ebuild -- samo
+rozszerzenie <c>.ebuild</c>.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Contents of an ebuild file</title>
+<title>Zawartość pliku ebuild</title>
 <body>
 
 <p>
-This section is an introduction to ebuilds.  For the full listing of everything 
-possible in an ebuild, there is a manpage which talks about the internal 
-format, variables, and functions in an ebuild script: <c>man 5 ebuild</c>.
+W tej części zajmiemy się wprowadzeniem do plików ebuild. Aby zobaczyć listę
+wszystkiego, co można w nich zrobić, warto przeczytać stronę podręcznika
+systemowego man, gdzie są informacje na temat formatu skryptów ebuild, ich
+zmiennych i funkcji: <c>man 5 ebuild</c>.
 </p>
 
-<p><b>Headers</b></p>
+<p><b>Nagłówki</b></p>
 
 <p>
-When you submit your ebuilds, the header should be <e>exactly</e> the same as
-the one in <path>/usr/portage/header.txt</path>. Most importantly, do not
-modify it in anyway and make sure that the <c>&#36;Header: &#36;</c> line is
-intact.
+Nagłówek FIXME submitowanego pliku ebuild powinien być <e>dokładnie</e> taki sam
+jak ten w pliku <path>/usr/portage/header.txt</path>. Nie należy modyfikować go
+w żaden sposób, a przede wszytkim upewnić się, że linia zawierająca napis
+<c>&#36;Header: &#36;</c> jest nienaruszona.
 </p>
 
 <p>
-The first three lines should look something like this:
+Pierwsze trzy linie powinny wyglądać mniej-więcej tak:
 </p>
 
-<pre caption="Valid Header">
+<pre caption="Poprawny nagłówek">
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # &#36;Header: &#36;
 </pre>
 
-<p><b>Variables</b></p>
+<p><b>Zmienne</b></p>
 
 <p>
-The first part of every ebuild file is made up of a number of variables.  
-They fall under 3 categories (and are marked below):
+Pierwsza część każdego pliku ebuild składa się z kilku zmiennych. Dzielą się one
+na trzy kategorie wymienione poniżej:
 </p>
 
 <ul>
-<li>READ: variables you can utilize but <e>never set</e></li>
-<li>MUST: variables you <e>must always set</e></li>
-<li>OPT: variables that you should set</li>
+<li>READ: zmiennych tych możemy użyć, ale <e>nie wolno</e> ich ustawiać</li>
+<li>MUST: zmienne, które <e>koniecznie należy ustawić</e></li>
+<li>OPT: zmienne, które powinniśmy ustawić</li>
 </ul>
 
 <table>
 <tr>
-  <th>Variable</th>
-  <th>Usage</th>
-  <th>Description</th>
+  <th>Zmienna</th>
+  <th>FIXME (Usage) Kateogira</th>
+  <th>Opis</th>
 </tr>
 <tr>
   <ti><c>P</c></ti>
   <ti>READ</ti>
-  <ti>The name and version of the package.</ti>
+  <ti>Nazwa i wersja paczki.</ti>
 </tr>
 <tr>
   <ti><c>PN</c></ti>
   <ti>READ</ti>
-  <ti>The name of the package.</ti>
+  <ti>Nazwa paczki.</ti>
 </tr>
 <tr>
   <ti><c>PV</c></ti>
   <ti>READ</ti>
-  <ti>The version of the package.</ti>
+  <ti>Wersja paczki.</ti>
 </tr>
 <tr>
   <ti><c>PR</c></ti>
   <ti>READ</ti>
-  <ti>Contains the revision number or <c>r0</c> if no revision number exists.</ti>
+  <ti>Zawiera numer rewizji lub <c>r0</c>, jeśli numeru tego nie ma.</ti>
 </tr>
 <tr>
   <ti><c>PVR</c></ti>
   <ti>READ</ti>
-  <ti>Contains the version number with the revision.</ti>
+  <ti>Zawiera numer wersji razem z numerem rewizji.</ti>
 </tr>
 <tr>
   <ti><c>PF</c></ti>
   <ti>READ</ti>
-  <ti>Contains the full package name <c>${PN}-${PVR}</c>.</ti>
+  <ti>Zawiera pełną nazwę paczki <c>${PN}-${PVR}</c>.</ti>
 </tr>
 <tr>
   <ti><c>A</c></ti>
   <ti>READ</ti>
   <ti>
-    Space delimited list of the filenames in <c>SRC_URI</c>.  This does not 
-    contain the URL paths, just the filename.
+    Rozdzielona spacjami lista nazw plików z <c>SRC_URI</c>. Nie uwzględnia
+    ścieżek URL, tylko same nazwy plików.
   </ti>
 </tr>
 <tr>
   <ti><c>DISTDIR</c></ti>
   <ti>READ</ti>
   <ti>
-    Contains the path to the <path>distfiles</path> directory where all the
-    files fetched for a package are stored. Typically, this is
+    Zawiera ścieżkę do katalogu <path>distfiles</path>, w którym zwykle są
+    przechowywane wszystkie pobrane pliki paczek. Zwykle jest to ścieżka
     <path>/usr/portage/distfiles</path>.
   </ti>
 </tr>
@@ -425,256 +431,258 @@ They fall under 3 categories (and are marked below):
   <ti><c>FILESDIR</c></ti>
   <ti>READ</ti>
   <ti>
-  Contains the path to the <path>files</path> sub folder in the package specific
-  location in the portage tree. Do not modify this variable.
+  Zawiera ścieżkę do podkatalogu <path>files</path> z katalogu danej paczki w
+  drzewie portage. Nie wolno modyfikować tej zmiennej.
   </ti>
 </tr>
 <tr>
   <ti><c>WORKDIR</c></ti>
   <ti>READ</ti>
   <ti>
-    Base of the build root for the ebuild.  Nothing should be built outside of 
-    this directory.
+    Katalog główny katalogu roboczego danego ebuilda. Nic nie powinno być
+    budowane na zewnątrz tego katalogu.
   </ti>
 </tr>
 <tr>
   <ti><c>S</c></ti>
   <ti>OPT</ti>
   <ti>
-    The source directory for your package; commonly <c>${WORKDIR}/${P}</c>.  
-    Portage will default to this value so you may not have to set it!
+    Katalog źródłowy naszej paczki; zwykle jest to <c>${WORKDIR}/${P}</c>.
+    Portage przyjmie tę wartość jako domyślną, nie trzeba jej więc ustawiać
+    samemu.
   </ti>
 </tr>
 <tr>
   <ti><c>T</c></ti>
   <ti>READ</ti>
   <ti>
-    The temporary directory for your package.  It is used as a virtual 
-    <path>/tmp</path> directory while processing the ebuild.
+    Katalog tymczasowy na naszą paczkę. Jest on używany jako wirtualny katalog
+    <path>/tmp</path> podczas przetwarzania skryptu ebuild.
   </ti>
 </tr>
 <tr>
   <ti><c>D</c></ti>
   <ti>READ</ti>
   <ti>
-    The root directory that the package is installed to, treat it as the 
-    virtual <path>/</path>.
+    Katalog główny, do którego paczka zostanie zainstalowana. Należy traktować
+    go jako wirtualny katalog <path>/</path>.
   </ti>
 </tr>
 <tr>
   <ti><c>SLOT</c></ti>
   <ti>MUST</ti>
   <ti>
-    Portage handles different versions of the same installed programs.  If you 
-    would want, say GCC 2.95 and GCC 3.2 installed at the same time, you would 
-    specify the <c>SLOT</c> in each ebuild.  Here we would set the <c>SLOT</c> 
-    of GCC 2.95 to <c>2</c> while we would set the <c>SLOT</c> of GCC 3.2 to 
-    <c>3</c>.
+    Portage obsługuje instalowanie jednocześnie różnych wersji tego samego
+    programu. Na przykład jeśli chcielibyśmy zainstalować jednocześnie GCC 2.95
+    i GCC 3.2, należałoby ustawić zmienną <c>SLOT</c> w każdym pliku ebuild. W
+    tym przypadku dla GCC 2.95 ustawilibyśmy zmienną <c>SLOT</c> na <c>2</c>, a
+    dla GCC 3.2 na <c>3</c>.
     <br/>
-    <b>Note</b>: Using <c>0</c> as the <c>SLOT</c> value signifies that this
-    package only has 1 <c>SLOT</c> setting (in other words, this package is not
-    SLOTable).
+    <b>Uwaga</b>: Podanie <c>0</c> jako wartość zmiennej <c>SLOT</c> oznacza, że
+    dana paczka ma tylko jedno możliwe ustawienie <c>SLOT</c> (innymi słowy, nie
+    da się jej "SLOTować").
   </ti>
 </tr>
 <tr>
   <ti><c>LICENSE</c></ti>
   <ti>MUST</ti>
   <ti>
-    This variable specifies what license the program is covered under, i.e. 
-    GPL-2, BSD, etc...  This field must be set to a valid license (which is 
-    any license found in <path>/usr/portage/license/</path>).  If the license 
-    does not already exist there, it must be added before the ebuild can be 
-    added to the portage tree. If the license does not allow redistribution,
-    make sure you place <c>RESTRICT</c>="nomirror" in the ebuild.
+    Zmienna ta określa jaką licencją objęty jest program, na przykład GPL-2,
+    BSD, itp... Zawartością tej zmiennej musi być poprawna licencja (jest nią
+    dowolna licencja z pliku <path>/usr/portage/license/</path>). Jesli danej
+    licencji nie ma w tym pliku, musi zostać tam dodana zanim plik ebuild będzie
+    mógł być dodany do drzewa portage. Jeśli licencja nie zezwala na
+    redystrybucję programu, należy dodać <c>RESTRICT</c>="nomirror" do pliku
+    ebuild.
   </ti>
 </tr>
 <tr>
   <ti><c>KEYWORDS</c></ti>
   <ti>MUST</ti>
   <ti>
-    This variable now supports a couple of different functions.  First
-    of all, this variable specifies what architecture the ebuild is
-    meant for. Some example keywords include: <e>x86, ppc, sparc,
-    mips, alpha, arm, hppa, amd64 and ia64</e>. See the
-    profiles/arch.list file in the Portage tree for more
-    details. Obviously, you would set this to reflect the architecture
-    of the target machine. Portage will not allow an x86 machine to
-    build anything but x86, as specified by the <c>KEYWORDS</c>
-    variable. Packages that do not support the native architecture are
-    automatically masked by Portage. If the <c>KEYWORDS</c> flag has
-    a preceding <e>~</e>, then that indicates that the particular
-    ebuild works, but needs to be tested in several environments
-    before being moved to the stable profile with the given keyword.
-    If the <c>KEYWORDS</c> flag has a preceding <e>-</e>, then the
-    package does not work with the given keyword.  If there is nothing
-    leading <c>KEYWORDS</c>, then the package is considered stable.
-    You can allow installation of these different types of packages
-    through the <c>ACCEPT_KEYWORDS</c> variable in
-    <path>make.conf</path>.
+    Zmienna ta pełni teraz kilka funkcji. Przede wszystkim określa na jakie
+    architektury sprzętowe przeznaczony jest dany ebuild. Przykładowe wartości
+    to: <e>x86, ppc, sparc, mips, alpha, arm, hppa, amd64 and ia64</e>. Więcej
+    szczegółów można znaleźć w pliku profiles/arch.list. Jak nietrudno się
+    domyślić, zmienną tę ustawiamy zgodnie z architekturą docelowej maszyny.
+    Portage nie zezwoli maszynie x86 budować paczek innych niż x86, zgodnie z
+    tym, co jest podane w zmiennej <c>KEYWORDS</c>. Paczki, które nie wspierają
+    FIXME natywnej architektury są automatycznie maskowane przez Portage. Jeśli
+    flaga <c>KEYWORDS</c> posiada przedrostek <e>~</e>, oznacza to, że dany
+    ebuild działa, ale powinien zostać przetestowany w kilku środowiskach, zanim
+    może zostać uznany za stabilny. Jeśli zaś przed flagą <c>KEYWORDS</c>
+    występuje znak <e>-</e>, dana paczka nie będzie działać z tym konkretnym
+    oznaczeniem. Paczka jest uznawana za stabilną, jeśli nic nie poprzedza
+    zmiennych zawartych w <c>KEYWORDS</c>. Ustawiając odpowiednio zmienną
+    <c>ACCEPT_KEYWORDS</c> w pliku <path>make.conf</path> definiujemy jakim
+    z powyższych typów paczek zezwalamy na instalację.
   </ti>
 </tr>
 <tr>
   <ti><c>DESCRIPTION</c></ti>
   <ti>MUST</ti>
-  <ti>A <e>short</e>, one line description of your package.</ti>
+  <ti><e>Krótki</e>, mieszczący się w jednej linii opis paczki.</ti>
 </tr>
 <tr>
   <ti><c>SRC_URI</c></ti>
   <ti>MUST</ti>
   <ti>
-    The URLs for every source file in your package, separated by
-    whitespace. You should try not to include version numbers in the
-    SRC_URI and S. Always try to use ${PV} or ${P}, and if a version
-    number is not consistant with the name of the source package, make
-    a ${MY_P} variable and use that instead.
+    URL-e każdego pliku ze źródłami paczki, rozdzielone białym znakiem. W
+    zmiennych SRC_URI i S nie powinno się umieszczać numerów wersji. Powinniśmy
+    zawsze stosować zmienne ${PV} lub ${P}, a jeśli numer wersji nie pokrywa się z nazwą
+    pliku zawierającego źródła, należy stworzyć zmienną ${MY_P} i użyć jej
+    zamiast dwóch poprzednich.
   </ti>
 </tr>
 <tr>
   <ti><c>HOMEPAGE</c></ti>
   <ti>MUST</ti>
   <ti>
-    The homepage of the package. If you are unable to locate an official one, 
-    try to provide a link from <uri link="http://freshmeat.net/">freshmeat.net</uri>
-    or a similar package tracking site. Never refer to a variable name in
-    the string; include only raw text.
+    Strona domowa paczki. Jeśli nie możemy znaleźć oficjalnej strony, można
+    podać odnośnik z <uri link="http://freshmeat.net/">freshmeat.net</uri>, lub
+    podobnej strony z bazą danych programów. Nigdy nie należy odnosić się do
+    innej zmiennej wewnątrz tej; musi ona zawierać tylko czysty tekst.
   </ti>
 </tr>
 <tr>
   <ti><c>IUSE</c></ti>
   <ti>MUST</ti>
   <ti>
-    This is set to whatever <c>USE</c> variables your package utilizes.  
-    Remember that <c>KEYWORDS</c> should not be listed in here!
+    W zmiennej tej zamieszczamy zmienne <c>USE</c>, z jakich korzysta nasza
+    paczka. Należy pamiętać, że nie wolno tutaj umieścić <c>KEYWORDS</c>!
   </ti>
 </tr>
 <tr>
   <ti><c>DEPEND</c></ti>
   <ti>OPT</ti>
   <ti>
-    The package's build dependencies are listed here.  See the section 
-    <uri link="#doc_chap5">Package Dependencies</uri> for more details on 
-    proper syntax.
+    Tutaj wymieniamy zależności potrzebne do zbudowania paczki. Więcej
+    informacji na temat składni znajdziemy w sekcji <uri
+    link="#doc_chap5">Zależności paczki</uri>.
   </ti>
 </tr>
 <tr>
   <ti><c>RDEPEND</c></ti>
   <ti>OPT</ti>
   <ti>
-    The package's runtime dependencies are listed here.  Once again, see
-    <uri link="#doc_chap5">Package Dependencies</uri> for more details.
+    Tutaj wymieniamy zależności potrzebne do uruchomienia programu z paczki. Jak
+    wspomnnieliśmy wyżej, więcej szczegółów można znaleźć w sekcji <uri
+    link="#doc_chap5">Zależności paczki</uri>.
   </ti>
 </tr>
 </table>
 
-<p><b>Functions</b></p>
+<p><b>Funkcje</b></p>
 
 <p>
-There are a number of different functions that you can define in ebuild 
-files that control the building and installation process of your package.
+W plikach ebuild można zdefiniować wiele różnych funkcji, które kontrolują
+proces budowania i instalacji naszej paczki.
 </p>
 
 <table>
 <tr>
-  <th>Function</th>
-  <th>Purpose</th>
+  <th>Funkcja</th>
+  <th>Zastosowanie</th>
 </tr>
 <tr>
   <ti><c>pkg_setup</c></ti>
   <ti>
-    Use this function to perform any miscellaneous prerequisite
-    tasks. This might include checking for an existing configuration
-    file. If it is necessary to add users here, you must also do this
-    check in <c>pkg_preinst()</c> before the package gets installed.
+    Funkcja ta służy do wykonywania wszelkich wstępnych czynności. Może to
+    obejmować sprawdzenie czy istnieje już plik konfiguracyjny. Jeśli w tym
+    miejscu konieczne jest dodanie użytkowników, należy również sprawdzić to 
+    w funkcji <c>pkg_preinst()</c> zanim paczka zostanie zainstalowana.
   </ti>
 </tr>
 <tr>
   <ti><c>pkg_nofetch</c></ti>
   <ti>
-    Inform the user about required actions if for some reason (such as 
-    licensing issues) the sources may not be downloaded by Portage 
-    automatically.  Use this in conjunction with 
-    <c>RESTRICT=&quot;fetch&quot;</c>.  
-    You only should display messages in this function, never call <c>die</c>.
+    W tym miejscu informujemy użytkownika o tym, co musi zrobić, jeśli z
+    jakiegoś powodu (na przykład licencji) źródła nie mogą zostać automatycznie
+    pobrane przez Portage. Jednocześnie należy ustawić zmienną
+    <c>RESTRICT=&quot;fetch&quot;</c>. W niniejszej funkcji wolno jedynie
+    wyświetlać komunikaty, nie należy wywoływać FIXME polecenia <c>die</c>.
   </ti>
 </tr>
 <tr>
   <ti><c>src_unpack</c></ti>
   <ti>
-    Use this function to unpack your sources, apply patches, and run 
-    auxiliary programs such as the autotools.  By default, this function 
-    unpacks the packages listed in <c>A</c>.  The initial working directory is 
-    defined by <c>WORKDIR</c>.
+    Tej funkcji należy użyć, aby rozpakować źródła naszej paczki, nałożyć
+    poprawki i uruchomić zewnętrzne programy, na przykład autotools. Domyślnie
+    funkcja ta rozpakuje pliki wymienione w zmiennej <c>A</c>. Początkowy
+    katalog roboczy definiuje zmienna <c>WORKDIR</c>.
   </ti>
 </tr>
 <tr>
   <ti><c>src_compile</c></ti>
   <ti>
-    Use this function to configure and build the package.  The initial working 
-    directory is <c>S</c>.
+    Za pomocą tej funkcji konfigurujemy i budujemy paczkę. Początkowy
+    katalog roboczy definiuje zmienna <c>S</c>.
   </ti>
 </tr>
 <tr>
   <ti><c>src_install</c></ti>
   <ti>
-    Use this function to install the package to an image in <c>D</c>.  If 
-    your package uses automake, you can do this simply with 
-    <c>make DESTDIR=${D} install</c>.  <e>Make sure your package installs all 
-    its files using <c>D</c> as the root!</e>  The initial working directory is
-    <c>S</c>. 
+    Tej funkcji użyjemy, aby zainstalować paczkę w katalogu określonym przez
+    zmienną <c>D</c>. Jesli nasza paczka korzysta z automake, możemy tego łatwo
+    dokonać poprzez <c>make DESTDIR=${D} install</c>. <e>Należy upewnić się, że
+    paczka wszystkie swoje pliki zainstaluje używając <c>D</c> jako katalogu
+    głównego!</e> Początkowy katalog roboczy definiuje zmienna <c>S</c>.
   </ti>
 </tr>
 <tr>
   <ti><c>src_test</c></ti>
   <ti>
-    Executed only when <c>FEATURES="maketest"</c> is set
-    and <c>RESTRICT="maketest"</c> is unset, the default of this
-    function executes an available testing function from any Makefiles
-    in the <c>${S}</c> directory, running either "make test" or "make
-    check" depending on what is provided. It can be overriden to
-    create a custom test setup.
+    Funkcja ta jest wykonywana tylko wtedy, gdy zmienna
+    <c>FEATURES="maketest"</c> jest ustawiona, a zmienna
+    <c>RESTRICT="maketest"</c> nie jest ustawiona. Domyślnie wywołuje 
+    dostępną funkcję testującą z plików Makefile, znajdujących się w
+    katalogu zdefiniowanym przez zmienną <c>${S}</c>, uruchamiając albo "make
+    test" albo "make check", w zależności od tego, co jest dostępne. Funkcję tę
+    można nadpisać i zaimplementować własną metodę testowania paczki.
   </ti>
 </tr>
 <tr>
   <ti><c>pkg_preinst</c></ti>
   <ti>
-    The commands in this function are run just <e>prior to merging</e> a 
-    package image into the file system.
+    Polecenia zawarte w tej funkcji zostaną wykonane tuż <e>przed
+    zintegrowaniem</e> obrazu paczki z systemem plików.
   </ti>
 </tr>
 <tr>
   <ti><c>pkg_postinst</c></ti>
   <ti>
-    The commands in this function are run just <e>following merging</e> a 
-    package image into the file system.
+    Polecenia zawarte w tej funkcji zostaną wykonane tuż <e>po
+    zintegrowaniu</e> obrazu paczki z systemem plików.
   </ti>
 </tr>
 <tr>
   <ti><c>pkg_prerm</c></ti>
   <ti>
-    The commands in this function are run just <e>prior to unmerging</e> a 
-    package image from the file system.
+    Polecenia zawarte w tej funkcji zostaną wykonane tuż <e>przed 
+    odinstalowaniem</e> obrazu paczki z systemu plików.
   </ti>
 </tr>
 <tr>
   <ti><c>pkg_postrm</c></ti>
   <ti>
-    The commands in this function are run just <e>following unmerging</e> a 
-    package image from the file system.
+    Polecenia zawarte w tej funkcji zostaną wykonane tuż <e>po 
+    odinstalowaniu</e> obrazu paczki z systemu plików.
   </ti>
 </tr>
 <tr>
   <ti><c>pkg_config</c></ti>
   <ti>
-    You use this function to setup an initial configuration for the package 
-    after it's installed.  All paths in this function should be prefixed with 
-    <c>ROOT</c> which points to user-specified install root which may not
-    happen to be <path>/</path>. This function is <e>only</e> executed if and
-    when the user runs: <c>ebuild /var/db/pkg/${CATEGORY}/${PF}/${PF}.ebuild config</c>.
+    Za pomocą tej funkcji możemy przygotować początkową konfigurację paczki tuż
+    po jej instalacji. Wszystkie ścieżki w obrębie tej funkcji powinny być
+    poprzedzone zmienną <c>ROOT</c>, wskazującą podany przez użytkownika
+    katalog instalacji, który niekoniecznie musi być katalogiem <path>/</path>.
+    Funkcja ta wykonywana jest <e>tylko i wyłącznie</e> wtedy, gdy użytkownik
+    wyda polecenie: <c>ebuild /var/db/pkg/${CATEGORY}/${PF}/${PF}.ebuild config</c>.
   </ti>
 </tr>
 </table>
 
-<p><b>Helper Functions</b></p>
+<p><b>Funkcje pomocnicze</b></p>
 
 <p>
 You can also use the following helper functions in your ebuilds.
@@ -1919,7 +1927,7 @@ For you down and dirty people, look at the scripts themselves in
 </subsection>
 </section>
 <section>
-<title>Package Dependencies</title>
+<title>Zależności paczki</title>
 <subsection>
 <title>Why dependencies are important</title>
 <body>
