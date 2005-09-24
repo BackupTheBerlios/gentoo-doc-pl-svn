@@ -7,10 +7,10 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/hardened/selinux/hb-selinux-howto.xml,v 1.2 2004/11/16 03:33:08 pebenito Exp $ -->
 
 <sections>
-<section><title>Load policy into a running SELinux kernel</title>
+<section><title>Załadowanie polityki do działającego jądra SELinux</title>
 <subsection><body>
 <p>
-  This requires you to be in the <c>sysadm_r</c> role.
+  Należy posiadać rolę <c>sysadm_r</c>, aby tego dokonać.
 </p>
 <pre>
 # <i>cd /etc/security/selinux/src/policy</i>
@@ -19,11 +19,11 @@
 </body></subsection>
 </section>
 
-<section><title>Change roles</title>
+<section><title>Zmiana ról</title>
 <subsection><body>
 <p>
-  This requires your user have access to the target role.  This example
-  is for changing to the <c>sysadm_r</c> role.
+To wymaga aby dany użytkownik posiadał dostęp do docelowej roli. Poniższy
+przykład pokazuje jak zmienić bieżącą rolę do <c>sysadm_r</c>.
 </p>
 <pre>
 # <i>newrole -r sysadm_r</i>
@@ -31,26 +31,26 @@
 </body></subsection>
 </section>
 
-<section><title>Specify available roles for a user</title>
+<section><title>Wyznaczanie dostępnych ról dla użytkownika</title>
 <subsection><body>
 <p>
-  The SELinux identity determines the roles available to a user.  Modify the
-  users file (/etc/security/selinux/src/policy/users).  For example, to allow
-  the user <c>pebenito</c> the ability to have roles <c>staff_r</c> and <c>sysadm_r</c>,
-  add to the file:
+Dostępne role dla danego użytkownika są określane za pomocą tożsamości SELinux.
+Można zmienić dostępne role w pliku /etc/security/selinux/src/policy/users. Dla
+przykładu, aby udostępnić użytkownikowi <c>pebenito</c> możliwość posiadania ról
+<c>staff_r</c> oraz <c>sysadm_r</c>, należy dodać do powyższego pliku:
 </p>
 <pre>user pebenito roles { staff_r sysadm_r };</pre>
 <p>
-  Then <uri link="#doc_chap1">load</uri> the policy.  See the 
-  SELinux Overview for additional information on SELinux identities.
+Potem <uri link="#doc_chap1">załadować</uri> politykę. W Przeglądzie SELinux
+można znaleźć więcej informacji na temat dostępnych tożsamości SELinuxa.
 </p>
 </body></subsection>
 </section>
 
-<section><title>Relabel filesystems</title>
+<section><title>Znakowanie plików</title>
 <subsection><body>
 <p>
-  This requires you to be in the <c>sysadm_r</c> role.
+To działanie wymaga, aby posiadać rolę <c>sysadm_r</c>.
 </p>
 <pre>
 # <i>cd /etc/security/selinux/src/policy</i>
@@ -59,30 +59,30 @@
 </body></subsection>
 </section>
 
-<section><title>Relabel an individual package</title>
+<section><title>Znakowanie pojedyńczej paczki</title>
 <subsection><body>
 <p>
-   In addition to relabeling entire filesystems, individual portage packages
-   can be relabeled.  This requires you to be in the <c>sysadm_r</c> role.
+Oprócz znakowania całego systemu plików, poszczególne paczki portage mogą być
+znakowane osobno. To działanie wymaga, aby posiadać rolę <c>sysadm_r</c>.
 </p>
-<pre caption="rlpkg example">
+<pre caption="przykład użycia rlpkg">
 # <i>rlpkg pam-login sash</i>
 </pre>
 <p>
-   The script rlpkg is used, and any number of packages can be specified
-   on the command line.
+Skrypt rlpkg jest używany, zaś dowolna liczba pakietów może być wypisana w linii
+poleceń.
 </p>
 </body></subsection>
 </section>
 
-<section><title>Start daemons in the correct domain</title>
+<section><title>Uruchomienie demonów w odpowiedniej domenie</title>
 <subsection><body>
 <p>
-  Controlling daemons that have init scripts in /etc/init.d is slightly
-  different in SELinux.  The <c>run_init</c> command must be used to run
-  the scripts, to ensure they are ran in the correct domain.  The command
-  can be ran normally, except the command is prefixed with <c>run_init</c>.
-  This requires you to be in the <c>sysadm_r</c> role.
+Kontrola nad demonami które posiadają skrypty inicjujące w /etc/init.d różni się
+nieco w SELinux. Musi zostać użyte polecenie <c>run_init</c> aby uruchomić
+skrypty, aby być pewnym że są one uruchamiane w odpowiedniej domenie. Polecenie
+może zostać uruchomione normalnie, jednakże jest on poprzedzony przez
+<c>run_init</c>. To działanie wymaga, aby posiadać rolę <c>sysadm_r</c>.
 </p>
 <pre caption="run_init examples">
 # <i>run_init /etc/init.d/ntpd start</i>
@@ -90,13 +90,14 @@
 # <i>run_init /etc/init.d/named stop</i>
 </pre>
 </body></subsection>
-<subsection><title>Gentoo run_init integration</title><body>
+<subsection><title>Integracja run_init w Gentoo</title><body>
 <p>
-  <c>run_init</c> has been integrated into Gentoo's init script system.  With
-  SELinux installed, services can be started and stopped as usual, but will
-  now authenticate the user.
+  <c>run_init</c> zostało zintegrowane z systemem skryptów inicjujących w
+  Gentoo. Mając zaisntalowanego SELinuxa, usługi mogą być uruchamiane i
+  zatrzymywane tak jak zwykle, jednakże będą wymagały autoryzacji użytkownika
+  przy pomocy hasła.
 </p>
-<pre caption="Integrated run_init example">
+<pre caption="Przykład użycia zintegrowanego run_init">
 # <i>/etc/init.d/sshd restart</i>
 Authenticating root.
 Password:
@@ -106,78 +107,79 @@ Password:
 </body></subsection>
 </section>
 
-<section><title>Switch between enforcing and permissive modes</title>
+<section><title>Przełączanie pomiędzy trybami wymuszonym (enforcing) i
+pobłażliwym (permissive)</title>
 <subsection><body>
 <p>
-  Switching between modes in SELinux is very simple.  Write a 1 for
-  enforcing, or 0 for permissive to /selinux/enforce to set the mode.
-  The current mode can be queried by reading /selinux/enforce; 0 means
-  permissive mode, and 1 means enforcing mode.  If the kernel option
-  "NSA SELinux Development Support" is turned off, the system will always
-  be in enforcing mode, and cannot be switched to permissive mode.
+Przełączanie pomiędzy trybami w SELinux jest bardzo proste. Wystarczy zapisać 1
+dla trybu wymuszonego oraz 0 dla pobłażliwego w pliku /selinux/enforce aby
+ustawić odpowiedni tryb. Obecny tryb może być sprawdzony poprzez odczytanie
+/selinux/enforce; 0 oznacza pobłażliwy, zaś 1 oznacza wymuszony. Jeśli opcja
+"NSA SELinux Development Support" w jądrze jest wyłączona, system zawsze będzie
+w trybie wymuszonym i nie będzie można przełączyć się do trybu pobłażliwego.
 </p>
 <pre>
-<comment>Query current mode</comment>
+<comment>Sprawdzenie bieżącego trybu</comment>
 # <i>cat /selinux/enforce</i>
-<comment>Switch to enforcing mode</comment>
+<comment>Zmiana do trybu wymuszonego</comment>
 # <i>echo 1 > /selinux/enforce</i>
-<comment>Switch to permissive mode</comment>
+<comment>Zmiana do trybu pobłażliwego</comment>
 # <i>echo 0 > /selinux/enforce</i>
 </pre>
 <p>
-  The old SELinux API had commands <c>avc_enforcing</c> and <c>avc_toggle</c>
-  for querying the current mode and toggling between modes, respectively.
-  <c>avc_toggle</c> will display the mode that the machine is switching to
-  (not the former mode).  For backwards compatability, scripts that replicate
-  these programs are installed by policycoreutils.
+Stary API SELinuxa posiadał polecenia <c>avc_enforcing</c> oraz
+<c>avc_toggle</c> aby sprawdzić obecny tryb i odpowiednio przełączać się
+pomiędzy trybami. <c>avc_toggle</c> wyświetli obecny tryb do którego system się
+przełącza (nie bieżący tryb). Dla zachowania kompatybilności, skrypty które
+powielają te czynności są instalowane razem z policycoreutils.
 </p>
 <p>
-  A machine with development support turned on can be started in enforcing
-  mode by adding <c>enforcing=1</c> to the kernel command line, in the
-  bootloader (GRUB, lilo, etc).
+System z włączonym trybem deweloperskim może zostać uruchomiony w trybie
+wymuszonym poprzez dodanie <c>enforcing=1</c> do linii poleceń jądra w programie
+rozruchowym (GRUB, lilo, etc).
 </p>
 </body></subsection>
 </section>
 
-<section><title>Understand sestatus output</title>
+<section><title>Rozumienie wyników polecenia sestatus</title>
 <subsection><body>
 <p>
-  The <c>sestatus</c> tool can be used to determine detailed SELinux-specific
-  status information about the system.  The <c>-v</c> option provides extra
-  detail about the context of processes and files.  The output will be
-  divided into four sections.  Sestatus only provides complete information
-  for a user logged in as root (or su/sudo), in the <c>sysadm_r</c> role.
+Narzędzie <c>sestatus</c> może być używane aby określić szczegółowe, związane z
+SELinux informacje o systemie. Opcja <c>-v</c> pozwala otrzymać więcej
+szczegółów o obecnym kontekście procesów lub plików. Wynik będzie podzielony na
+cztery sekcje. Sestatus udostępnia te informacje tylko użytkownikowi
+zalogowanemu jako root (lub poprzez su/sudo) posiadającemu rolę <c>sysadm_r</c>.
 </p>
-<pre caption="Status example">
+<pre caption="Przykład statusu">
 SELinux status:         enabled
 SELinuxfs mount:        /selinux
 Current mode:           enforcing
 Policy version:         18
 </pre>
 <p>
-  The main status information is provided in the first section.  The first
-  line shows if SELinux kernel functions exists and are enabled.  If the
-  status is disabled, either the kernel does not have SELinux support, or
-  the policy is not loaded.  The second line shows the mount point for
-  the SELinux filesystem.  During the normal use, the filesystem should be
-  mounted at the default location of <c>/selinux</c>.  The third line
-  shows the current SELinux mode, either enforcing or permissive.  The fourth
-  line shows the policy database version supported by the currently running
-  kernel.
+Główne informacje na temat systemu znajdują się w pierwszej sekcji. Pierwsza
+linijka pokazuje czy funkcje SELinux są w jądrze i czy są włączone. Jeśli status
+jest wyłączony, oznacza to że albo jądro nie posiada wsparcia dla SELinux, lub
+polityka nie jest załadowana. Druga linijka pokazuje miejsce zamontowania dla
+systemu plików SELinux. Podczas normalnego używania, powinno to być w domyślnej
+lokalizacji, czyli <c>/selinux</c>. Trzecia linijka pokazuje bieżący tryb
+SELinuxa, który może być albo wymuszony (enforcing) albo pobłażliwy
+(permissive). Czwarta linijka pokazuje wersję polityki którą udostępnia bieżące
+jądro.
 </p>
-<pre caption="Booleans example">
+<pre caption="Przykład włączonych zmiennych">
 Policy booleans:
 secure_mode             inactive
 ssh_sysadm_login        inactive
 user_ping               inactive
 </pre>
 <p>
-  The second section displays the status of the conditional policy booleans.  The
-  left column is the name of boolean.  The right column is the status of the
-  boolean, either active, or inactive.  This section will not be shown on
-  policy version 15 kernels, as they do not support conditional policy.
+Druga sekcja udostępnia informacje na temat włączonych zmiennych polityki. Lewa
+kolumna przedstawia zmienną. Prawa kolumna pokazuje status danej zmeinnej -
+albo aktywna (active), albo nieaktywna (inactive). Ta sekcja nie będzie pokazana
+w wersji 15 polityki, jako że nie wspiera ona polityki zmiennych.
 </p>
-<pre caption="Process context example">
+<pre caption="Przykład kontekstów procesów">
 Process contexts:
 Current context:        pebenito:sysadm_r:sysadm_t
 Init context:           system_u:system_r:init_t
@@ -185,11 +187,11 @@ Init context:           system_u:system_r:init_t
 /usr/sbin/sshd          system_u:system_r:sshd_t
 </pre>
 <p>
-  The third section displays the context of the current process, and of several
-  key processes.  If a process is running in the incorrect context, it will not
-  function correctly.
+Trzecia sekcja pokazuje kontekst danego procesu oraz wielu ważnych procesów.
+Jeśli proces będzie uruchomiony w złym kontekście, nie będzie prawidłowo
+działał.
 </p>
-<pre caption="File context example">
+<pre caption="Przykład kontekstów plików">
 File contexts:
 Controlling term:       pebenito:object_r:sysadm_devpts_t
 /sbin/init              system_u:object_r:init_exec_t
@@ -209,11 +211,11 @@ Controlling term:       pebenito:object_r:sysadm_devpts_t
 /lib/ld-linux.so.2      system_u:object_r:lib_t -> system_u:object_r:shlib_t
 </pre>
 <p>
-  The fourth section displays the context of the current process's controlling
-  terminal, and of several key files.  For symbolic links, the context of
-  the link and then the context of the link target is displayed.  If a file has
-  an incorrect context, the file may be inaccessable or have incorrect
-  permissions for a particular process.
+Czwarta sekcja przedstawia konteksty terminala bieżącego procesu oraz wielu
+ważnych plików. Dla powiązań symbolicznych, pokazany jest kontekst powiązania, a
+potem kontekst docelowego pliku. Jeśli plik posiada niewłaściwy kontekst, może
+on być niedostępny lub może spowodować iż proces zostanie uruchomiony w
+niewłaściwym kontekście.
 </p>
 </body></subsection>
 </section>
