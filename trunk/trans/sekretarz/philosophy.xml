@@ -4,12 +4,12 @@
 
 <mainpage id="contract">
 <title>Filozofia Gentoo</title>
-<author title="Author">
+<author title="Autor">
   <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
 </author>
 
 <abstract>
-Dokumenta wyjaśnia filozofię Gentoo.
+Filozofia dzięki której powstało Gentoo.
 </abstract>
 
 <version>1.1</version>
@@ -22,7 +22,7 @@ Dokumenta wyjaśnia filozofię Gentoo.
 
 <p>
 W naszej <b><uri link="/main/pl/contract.xml">Umowie społecznej</uri></b>
-znajdują się informacje o zasadach i standardach tworzenia Gentoo.
+znajdują się podstawowe informacje o zasadach i standardach tworzenia Gentoo.
 </p>
 
 </body>
@@ -34,34 +34,21 @@ znajdują się informacje o zasadach i standardach tworzenia Gentoo.
 <body>
 
 <p>
-Stworzyłem Gentoo, ponieważ nie mogłem znaleźć dystrybucja Linuksa, która by mi
-odpowiadała. Powszechnym zjawiskiem w dystrybucjach Linuksa jest fakt, że
+Stworzyłem Gentoo, ponieważ nie mogłem znaleźć dystrybucji Linuksa, która by mi
+odpowiadała. Powszechnym zjawiskiem w systemach operacyjnych jest fakt, że
 narzędzia dla nich specyficzne, te które służą do zarządzania systemem i które
-mają <e>ułatwiać</e> pracę, wymagały poświęcania ogromnych ilości czasu i
-wręcz przeszkadzały w wykonywaniu codziennych zadań w sposób w jaki chciałem je
-wykonywać. To ja chciałem decydować co mają robić, tymczasem to one mną
-dyrygowały zmuszając mnie do wykonywania zadań przez nie narzucanych.
-
-I created Gentoo because I couldn't find a Linux distribution that I liked.
-The one predominant thing that I experienced with Linux distributions is that
-the "distro tools" that managed the entire system -- the tools that were
-supposed to make everything <e>easier</e> to use -- really seemed to want a lot
-of attention and really got in the way of what I wanted to do. I wanted to tell
-<e>them</e> what I wanted to do, but they seemed more interested in telling
-<e>me</e> what <e>they</e> wanted me to do.
+mają <e>ułatwiać</e> pracę, wymagają poświęcania ogromnych ilości czasu i wręcz
+przeszkadzają w wykonywaniu codziennych zadań w sposób, w jaki chcemy je
+wykonywać. To ja chcę decydować co mają robić, tymczasem to one mną
+dyrygują, zmuszając do wykonywania zadań przez nie narzucanych.
 </p>
 
 <p>
-Zatem stworzyłem Gentoo Linux i zaprojektowałem Portage, aby było znacznie
-wygodniejszym narzędziem niż te, które istniały przed nim. Osiągnąłem to dzięki
-temu, że uczyniłem je maksymalnie elastycznym, co pozwalało mi na wykonywanie
-codziennych zadań w sposób jaki by mi odpowiadał. Dodałem też funkcje, które
-uznałem za użyteczne dla innych ludzi.
-
-So, I created Gentoo Linux, and designed Portage to be a more perfect tool than
-what had existed before it. To do this, I made it very flexible in allowing me
-to do what I wanted to do, and also tried to make it flexible to allow others
-to do what I thought they might want to do.
+Stworzyłem Gentoo i zaprojektowałem Portage, aby było znacznie wygodniejszym
+narzędziem niż te, które istniały przed nim. Osiągnąłem to dzięki temu, że
+uczyniłem je maksymalnie elastycznym, co pozwaliło mi na wykonywanie
+codziennych zadań w sposób jaki mi odpowiadał. Dodałem też funkcje, które
+miałem nadzieję, że będą użyteczne dla innych ludzi.
 </p>
 
 <p>
@@ -69,100 +56,80 @@ Jeśli użytkownik zechce dowiedzieć się w jaki sposób budowany jest określo
 pakiet, wystarczy, że przeczyta plik ebuild, w którym znajdują się wszystkie
 informacje na ten temat. Jeśli zapragnie dostosować go do swoich indywidualnych
 potrzeb, może to uczynić zmieniając ustawienia flag USE. Jeśli zechce dodać
-jakiś nowy pakiet, doda ebuild do istniejącego drzewa. Jeśli zapragnie
-skorzytać z jakiegoś programu, zainstaluje go za pomocą polecenia emerge, które
-jednocześnie zadba o spełnienie wszystkich jego zależności.
-
-If others wanted to see how a package got built, they could look at a
-relatively easy-to-understand ebuild file and learn from it. If they wanted to
-tweak how it got built, they took advantage of USE variables. If they wanted to
-add a package, they created a new ebuild for the tree. If they wanted to use a
-package, they simply emerged it and dependencies were automatically resolved.
+nowy pakiet, doda ebuild do istniejącego drzewa. Jeśli zapragnie skorzystać z
+jakiegoś programu, zainstaluje go za pomocą polecenia emerge, które
+jednocześnie zadba o spełnienie wszystkich zależności tego programu.
 </p>
 
 <p>
-Ludziom spodobał się pomysł Portage i Gentoo rosło gwałtownie. Stało się znane
-jako dystrybucja "oparta na źródłach", ale nie to było naszym głównym celem.
-Oczywiście własnoręczne kompilowanie programów jest jednym z najważniejszych
-pomysłów w Gentoo, ale znacznie bardziej liczy się dla nas to, abyśmy zarówno
-my jak i użytkownicy naszej dystrybucji mogli robić dokładnie to co zechcą, bez
-żadnych ograniczeń.
-
-People liked the Portage concept, and Gentoo Linux grew rapidly. We have become
-known as a "from source" distribution, but the heart of the Gentoo concept is
-not "from source." "From source" is an important and key aspect of Gentoo, and
-something that was and will continue to be necessary for Gentoo, but it is not
-the only issue or most fundamental issue. <e>The most fundamental issue is
-designing a technology that allows us and others to do what they want to do,
-without restriction.</e>
+Ludziom spodobał się pomysł Portage i Gentoo rozwijało się w zawrotnym tempie.
+Stało się znane jako dystrybucja "oparta na źródłach", ale nie to było naszym
+głównym celem.  Oczywiście własnoręczne kompilowanie programów jest jednym z
+najważniejszych pomysłów w Gentoo, ale znacznie bardziej liczy się dla nas to,
+abyśmy zarówno my, jak i użytkownicy naszej dystrybucji mogli robić dokładnie
+to co zechcemy, bez żadnych ograniczeń.
 </p>
 
 <p>
-Dobrym podsumowaniem może być taki przykład. Wyobraźmy sobie użytkownika
-pracującego z Linuksem. Na czym mu zależy? 
-
-To summarize the heart of Gentoo, imagine a user sitting in front of a Linux
-system. What does he or she want to do? The Gentoo philosophy is to allow this
-user to do what he or she wants to do, without getting in the way.
+Podsumowując, wyobraźmy sobie użytkownika pracującego z Linuksem. Na czym mu
+zależy? Nasza filozofia zakłada, że będzie mógł wykonać wszystko czego tylko
+zapragnie.
 </p>
 
 <p>
-At around the time Gentoo was born, the thing that got in the way was the lack
-of an easy way to build packages from source, to a user's specifications.
-Currently, we've done that very well, but what we haven't done very well is
-support pre-built packages, even though Portage has supported building binary
-packages almost since its inception. So we are doing that now.
+W momencie kiedy rodziło się Gentoo nie było prostej metody budowania programów
+ze źródeł i dostosowywania ich do indywidualnych potrzeb każdego użytkownika.
+Udało nam się stworzyć taki system, ale nie powiodły się plany połączenia go z
+systemem prekompilowanych pakietów, chociaż zaimplementowaliśmy taką obsługę w
+Portage. Teraz jest jednym z naszych planów na przyszłość.
 </p>
 
 <p>
-It's important that our tools support binary packages, because binary packages
-are widely used and widely in demand in the Linux community. If our tools don't
-support binary packages, then we can't claim that our tools are designed to
-allow a user to do anything he or she might want to do. If we purposely choose
-to exclude binary support, then we are attempting to interfere with how users
-might choose to approach particular problems, by instead imposing our own will
-or view of how they should approach a problem. And if we do not build binary
-packages, then we are not taking any steps to ensure that our tools actually
-work well with binary packages, nor are we taking steps to ensure that others
-can build binary packages, nor are we able to *demonstrate* that our tools work
-well with binary packages. Besides these philosophical reasons, there are many
-practical reasons to create binary packages.
+Obsługa prekompilowanych pakietów jest ważną częścią naszego oprogramowania,
+ponieważ takie pakiety są bardzo popularne i domaga się ich bardzo wielu
+użytkowników. Jeżeli nasze narzędzia nie będą współpracowały z takimi
+pakietami, nie będziemy mogli mówić o tym, że dajemy użytkownikom możliwość
+wyboru.  Kiedy świadomie usuniemy taką obsługę, podejmiemy decyzję w imieniu
+użytkownika, zamiast wskazać mu kilka możliwości i pozwolić na wybranie tej,
+która mu najbardziej odpowiada. Ponadto jeśli nie będziemy budować programów,
+nie będziemy w stanie sprawdzić czy nasze narzędzia dobrze to robią. Poza
+argumentami ideologicznymi mamy zatem również argumenty praktyczne na
+potwierdzenie tezy, że obsługa prekompilowanych pakietów jest potrzebna.
 </p>
 
 <p>
-The Gentoo philosophy, in a paragraph, is this. Every user has work they need
-to do. The goal of Gentoo is to design tools and systems that allow a user to
-do their work pleasantly and efficiently as possible, as <e>they</e> see fit.
-Our tools should be a joy to use, and should help the user to appreciate the
-richness of the Linux and free software community, and the flexibility of free
-software. This is only possible when the tool is designed to reflect and
-transmit the will of the user, and leave the possibilities open as to the final
-form of the raw materials (the source code.) If the tool forces the user to do
-things a particular way, then the tool is working against, rather than for, the
-user. We have all experienced situations where tools seem to be imposing their
-respective wills on us. This is backwards, and contrary to the Gentoo
-philosophy.
+W skrócie nasza filozofia wygląda następująco. Użytkownik ma do wykonania
+określone zadania. Celem Gentoo jest stworzenie narzędzi i systemów, które
+pozwolą mu wykonać tę pracę w komfortowych warunkach i możliwie wydajnie. Nasze
+oprogramowanie musi być przyjemne w pracy i ma pomagać użytkownikom w
+docenieniu bogactwa zasobów Linuksa i ogólnie wolnego oprogramowania. Dokonanie
+tego jest możliwe tylko wtedy, gdy narzędzia projektuje się tak, aby spełniały
+wszystkie życzenia użytkowników, przedstawiając im cały wachlarz możliwości
+rozwiązania ich problemów. Gdy narzędzie ma wymuszać na użytkowniku określone
+zachowanie, wtedy jest narzędziem, które przeszkadza mu w pracy
+zamiast w niej pomagać. Wszyscy znamy przykłady narzędzi, które podejmują
+decyzje w imieniu użytkowników. Są one przeciwieństwem filozofii Gentoo.
 </p>
 
 <p>
-Put another way, the Gentoo philosophy is to create better tools. When a tool
-is doing its job perfectly, you might not even be very aware of its presence,
-because it does not interfere and make its presence known, nor does it force
-you to interact with it when you don't want it to. The tool serves the user
-rather than the user serving the tool.
+Filozofia Gentoo opiera się zatem na projektowaniu lepszych narzędzi. Kiedy
+narzędzie doskonale spełnia zadania przed nim stawiane, można nawet nie
+zauważać jego obecności, ponieważ nie zmusza ono do po żadnego wysiłku, po
+prostu spełniając wszystkie życzenia użytkownika. Narzędzie służy wtedy
+użytkownikowi, nie na odwrót.
 </p>
 
 <p>
-The future goal of Gentoo is to continue to strive to create near-ideal tools.
-Tools that can accomodate the needs of many different users (all with divergent
-goals) with ease are extremely powerful. Don't you love it when you find a tool
-that does exactly what you want to do? Doesn't it feel great? Our mission is to
-give that sensation to as many people as possible.
+Przyszłość Gentoo to dążenie do tworzenia niemal idealnych narzędzi. Narzędzi,
+które zaspokoją potrzeby wielu różnych użytkowników (i o różnych potrzebach)  w
+sposób prosty, ale bardzo kompleksowy. To wspaniałe uczucie, gdy znajduje się
+program, który potrafi po prostu spełnić zadania, jakie się przed nim stawia.
+Naszą misją jest tworzenie takich programów.
 </p>
 
 <p>
 Daniel Robbins<br/>
-Dawny główny architekt
+dawny Główny Architekt Gentoo.
 </p>
 
 </body>
