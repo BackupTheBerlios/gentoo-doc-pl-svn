@@ -10,110 +10,112 @@
 
 <sections>
 <section>
-<title>Common Ebuild Writing Mistakes</title>
+<title>Częste błędy podczas pisania ebuildów</title>
 <subsection>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-Here is a list of common ebuild mistakes that are common in
-user-submitted ebuilds. Please make sure the ebuilds you submit don't
-violate any of these. Before submitting any ebuilds, make sure you
-read the <uri link="?part=3&amp;chap=1">Gentoo ebuild Development
-Policy</uri> and the <uri link="?part=2&amp;chap=1">Gentoo
-ebuild HOWTO</uri>. Also, make sure you read a couple (eg. more than
-one or two) of the ebuilds in the tree to make sure you know the style
-that ebuilds are written in.
+Dokument przedstawia listę powszechnych błędów, jakie często występują w
+ebuildach użytkowników. Należy upewnić się, że ebuildy jakie dodajemy nie
+zawierają żadnego z tych błędów. Przed rozpoczęciem dodawania ebuildów konieczne
+jest zapoznanie się z dokumentem <uri link="?part=3&amp;chap=1">Gentoo ebuild
+Development Policy</uri> i <uri link="?part=2&amp;chap=1">Gentoo ebuild
+HOWTO</uri>. Ponadto należy przejrzeć kilka (więcej niż jeden czy dwa) ebuildów,
+aby poznać styl, w jakim są one napisane.
 </p>
 
 <p>
-Also it would be useful to read a couple of ebuilds that use eclasses and
-understand how to use them by reading the <uri
-link="?part=2&amp;chap=2">Eclass HOWTO</uri>. Finally, you must read the
-<uri link="/doc/en/ebuild-submit.xml">Contributing Ebuilds Guide</uri> carefully
-before submitting your ebuild(s).
+Warto również zapoznać się z ebuildami, które wykorzystują eclass i przeczytać
+dokument <uri link="?part=2&amp;chap=2">Eclass HOWTO</uri>, aby zrozumieć sposób
+ich działania. Poza tym konieczne jest szczegółowe zapoznanie się z dokumentem
+<uri link="/doc/en/ebuild-submit.xml">Contributing Ebuilds Guide</uri>, przed
+dodaniem jakiegokolwiek ebuilda.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Missing/Invalid/Broken Header</title>
+<title>Brakujący/niepoprawny/popsuty nagłówek</title>
 <body>
 
 <p>
-When you submit your ebuilds, the header should be <e>exactly</e> the same as
-the one in <path>/usr/portage/skel.ebuild</path>. Most importantly, do not
-modify it in anyway and make sure that the <c>&#36;Header: &#36;</c> line is 
-intact.
+Dodając ebuilda, należu upewnić się, że nagłówek jest <e>dokładnie</e> taki, jak
+w pliku <path>/usr/portage/skel.ebuild</path>. Nie wolno modyfikować go w żaden
+sposób, a w szczególności linia <c>&#36;Header: &#36;</c> musi pozostać
+nietknięta.
 </p>
 
 <p>
-The first three lines <e>must</e> look like this:
+Pierwsze trzy linie <e>muszą</e> wyglądać jak poniżej:
 </p>
 
-<pre caption="Valid Header">
+<pre caption="Poprawny nagłówek">
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # &#36;Header: &#36;
 </pre>
 
 <p>
-Only if you are submitting a patched or version bumped ebuild, should you not
-need to modify the <c>&#36;Header: &#36;</c> line. But the line must be present.
-When we check the ebuild into CVS, it will modify that header with the 
-appropriate version and date information. So there is no need for you to 
-manually modify it.
+Jeśli dodajemy łatkę lub nowszą wersję ebuilda, nie musimy modyfikować
+linii <c>&#36;Header: &#36;</c>. Wciąż jednak linia ta musi być obecna. Gdy
+dodajemy ebuilda do repozytorium CVS, nagłówek zostanie automatycznie
+zmodyfikowany - pojawią się w nim odpowiednie informacje o wersji i dacie. Nie
+ma więc żadnego powodu, aby ręcznie zmieniać te dane.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>IUSE Missing</title>
+<title>Brak IUSE</title>
 <body>
 
 <p>
-By far the most common omission is the IUSE variable. You must (according to the
-<uri link="?part=2&amp;chap=1">Gentoo ebuild HOWTO</uri>) include the IUSE
-variable even if there are no USE flags in use. If there are no USE flags
-supported, then just add the following:
+Najczęściej brakującą zmienną w ebuildach jest IUSE. Musi ona zostać
+dołączona (zgodnie z dokumentem <uri link="?part=2&amp;chap=1">Gentoo ebuild
+HOWTO</uri>) nawet jeśli pakiet nie korzysta z żadnych flag USE. W takiej
+sytuacji wystarczy dodać poniższą linię:
 </p>
 
-<pre caption="Empty IUSE">
+<pre caption="Pusta zmienna IUSE">
 IUSE=""
 </pre>
 
 </body>
 </subsection>
 <subsection>
-<title>Redefined P, PV, PN, PF</title>
+<title>Redefiniowanie zmiennych P, PV, PN, PF</title>
 <body>
 
 <p>
-You should never redefine those variables. Always use MY_P, MY_PN, MY_PV,
-P0, etc. See other ebuilds that do it in portage for more information. Most
-ebuilds use bash "Parameter Expansion". Please read the man page for bash to
-understand how "Parameter Expansion" works.
+Nigdy nie należy redefiniować zmiennych P, PV, PN, PF. Zamiast tego zaleca się
+korzystanie ze zmiennych MY_P, MY_PN, MY_PV, P0, itd. Aby uzyskać więcej
+informacji na ten temat warto przejrzeć ebuildy w drzewie Portage, które używają
+tych zmiennych. Większość ebuildów wykorzystuje ekspansję zmiennych. Warto
+zapoznać się ze stronami man basha, aby zrozumieć jak ona przebiega.
 </p>
 
 <p>
-By the way, if you find a package that re-defines it, don't copy it. Submit a
-bug about that ebuild.
+Jeśli spotkamy jakiś pakiet, który redefiniuje wyżej wspomniane zmienne, należy
+zgłosić raport o błędzie.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Including version numbers in SRC_URI and S</title>
+<title>Dołączanie oznaczenia wersji w zmiennych SRC_URI i S</title>
 <body>
 
 <p>
-You should try not to include version numbers in the SRC_URI and S. Always try
-to use ${PV} or ${P}. It makes maintaining the ebuild much easier. If a version
-number is not consistant with the tarball/source, then use MY_P. An example
-dev-python/pyopenal fetches a tarball called PyOpenAL, so we redefine it like:
+Zaleca się, aby unikać dodawania oznaczenia wersji w zmiennych SRC_URI i S.
+Zawsze należy korzystać ze zmiennej ${PV} lub ${P}. Dzięki temu utrzymywanie
+zbioru ebuildów jest znacznie łatwiejsze. Jeśli oznaczenie wersji nie jest stałe
+w obrębie tarballa/źródeł, powinniśmy użyć zmiennej MY_P. Przykładowo
+dev-python/pyopenal odwołuje się do tarballa o nazwie PyOpenAL, więc zmieniamy
+ebuilda do postaci:
 </p>
 
-<pre caption="Example versioning redefinition">
+<pre caption="Przykładowa redefinicja oznaczenia wersji">
 MY_P=${P/pyopenal/PyOpenAL}
 SRC_URI="http://oomadness.tuxfamily.org/downloads/${MY_P}.tar.gz"
 S=${WORKDIR}/${MY_P}
@@ -122,188 +124,197 @@ S=${WORKDIR}/${MY_P}
 </body>
 </subsection>
 <subsection>
-<title>DEPEND has syntactical errors</title>
+<title>Błędy składniowe w DEPEND</title>
 <body>
 
 <p>
-There are many things that go wrong with user submitted DEPEND and RDEPEND
-fields. Here are some important points to follow when you write the dependency
-part.
+Często Występują błędy w sekcjach DEPEND i RDEPEND. Poniżej znajduje się kilka
+spraw, o których należy pamiętać w czasie uzupełniania zależności programu.
 </p>
 
 <ul>
   <li>
-    <e>Always include the CATEGORY.</e><br />
-    For example, use <c>&gt;=x11-libs/gtk+-2</c> and not <c>&gt;=gtk+-2</c>.
+    <e>Zawsze należy dołączyć kategorię.</e><br />
+    Przykładowo używamy <c>&gt;=x11-libs/gtk+-2</c> zamiast <c>&gt;=gtk+-2</c>.
   </li>
   <li>
-    <e>Do not put an asterisk (*) for &gt;= dependencies.</e><br />
-    For example, it should be <c>&gt;=x11-libs/gtk+-2</c> rather than
+    <e>Nie należy umieszczać gwiazdki (*) w zależnościach oznaczonych znakiem &gt;=.</e><br />
+    Przykładowo poprawna jest forma <c>&gt;=x11-libs/gtk+-2</c>, a nie
     <c>&gt;=x11-libs/gtk+-2*</c>.
   </li>
-  <li><e>GTK specific. Always use =x11-libs/gtk+-1.2* for GTK+1 apps.</e></li>
+  <li><e>Dla pakietów korzystających z GTK: konieczne jest stosowanie
+  =x11-libs/gtk+-1.2* dla programów zależnych od GTK+1.</e></li>
   <li>
-    <e>Never depend on a meta package.</e><br />
-    So don't depend on gnome-base/gnome, always depend on the specific
-    libraries like libgnome.
+    <e>Zależnością nigdy nie może być meta pakiet.</e><br />
+    Nie można uzależnić programu od gnome-base/gnome, lecz od specyficznych
+    bibliotek - na przykład libgnome.
   </li>
   <li>
-    <e>One dependency per line.</e><br />
-    Don't put multiple dependency on the same line. It makes it ugly to read 
-    and hard to follow.
+    <e>Jedna zależność w linii.</e><br />
+    Nie zaleca się umieszczania wielu zalezności w jednej linii. Jest to trudne
+    do czytania i obsługi.
   </li>
 </ul>
 
 </body>
 </subsection>
 <subsection>
-<title>DEPEND is incomplete</title>
+<title>DEPEND jest niekompletne</title>
 <body>
 
 <p>
-This is another very common error. The ebuild submitter submits and ebuild
-that "just works" without checking if the dependencies are correct. Here are
-some tips on how to find the correct dependencies.
+Jest to kolejny bardzo częsty błąd. Osoba przesyłająca ebuilda przekazuje nam
+coś, co "po prostu działa", bez sprawdzenia, czy zależności są prawidłowe.
+Poniżej znajduje się kilka porad jak prawidłowo określić zależności.
 </p>
 
 <ul>
   <li>
-    <e>Look in configure.in or configure.ac</e><br />
-    Look for checks for packages in here. Things to look out for are pkg-config
-    checks or AM_* functions that check for a specific version.
+    <e>Sprawdźmy pliki configure.in lub configure.ac</e><br />
+    Sprawdźmy czy jest tam sprawdzana obecność innych pakietów. Szczególnie
+    poszukajmy testów pkg-config i funkcji AM_*, które sprawdzają obecność
+    określonej wersji jakiegoś programu.
   </li>
   <li>
-    <e>Look at included .spec files</e><br />
-    A good indication of dependencies is to look at the included .spec files
-    for relevant deps. However, do not trust them to be the definitive complete
-    list of dependencies
+    <e>Sprawdźmy dołączone pliki .spec</e><br />
+    Dobrym sposobem na odnaleziemie zależności jest przejrzenie dołączonych
+    plików .spec. Jednak trzeba pamiętać, że nie musi się w nich znajdować
+    kompletna lista zależności.
   </li>
   <li>
-    <e>Look at the application/library website</e><br />
-    Check the application website for possible dependencies that they suggest
-    are needed.
+    <e>Sprawdźmy stronę internetową programu/biblioteki</e><br />
+    Poszukajmy na stornie internetowej programu jakie zależności określają jego
+    twórcy.
   </li>
   <li>
-    <e>Read the README and INSTALL for the package</e><br />
-    They usually also contain useful information about building and installing
-    packages.
+    <e>Przeczytajmy pliki README i INSTALL</e><br />
+    Zazwyczaj pliki te zawierają przydatne informacje o budowaniu i instalowaniu
+    pakietu.
   </li>
   <li>
-    <e>Remember non-binary dependencies such as pkg-config, doc generation
-    programs, etc.</e><br />
-    Usually the build process requires some dependencies such as intltool,
-    libtool, pkg-config, doxygen, scrollkeeper, gtk-doc, etc. Make sure those
-    are clearly stated.
+    <e>Pamiętajmy o niebinarnych zależnościach jak pkg-config, programy do
+    generacji dokumentacji, itp.</e><br />
+    Zazwyczaj w procesie budowania aplikacji potrzebne są pakiety takie jak
+    intltool, libtool, pkg-config, doxygen, scrollkeeper, gtk-doc, itp.
+    Upewnijmy się, że wymagania te zostały jasno określone.
   </li>
 </ul>
 
 </body>
 </subsection>
 <subsection>
-<title>LICENSE Invalid</title>
+<title>Niepoprawne LICENSE</title>
 <body>
 
 <p>
-Another common mistake users make when submitting ebuilds is supplying an
-invalid license. For example, <c>GPL</c> is not a valid license. You need to 
-specify <c>GPL-1</c> or <c>GPL-2</c>. Same with <c>LGPL</c>. Make sure the 
-license you use in the <c>LICENSE</c> field is something that exists in 
-<path>/usr/portage/licenses</path>. As a tip, check the <path>COPYING</path> 
-in a source tarball for the license. If a package does not specify it
-uses <c>GPL-1</c> or <c>GPL-2</c>, it is very likely it uses <c>GPL-2</c>.
+Innym częstym błędem w ebuildach użytkowników jest podawanie niepoprawnej
+licencji. Przykładowo <c>GPL</c> nie jest poprawną wartością. Konieczne jest
+sprecyzowanie czy chodzi o <c>GPL-1</c> czy <c>GPL-2</c>. Podobnie sprawa
+wygląda w przypadku <c>LGPL</c>. Należy upewnić się, że licencja umieszczona w
+<c>LICENSE</c> istnieje w katalogu <path>/usr/portage/licenses</path>. Licencję
+na jakiej rozpowszechniany jest program można odnaleźć w <path>COPYING</path> w
+tarballu z jego źródłami. Jeśli nie zostało sprecyzowane czy program korzysta z
+licencji <c>GPL-1</c> czy <c>GPL-2</c>, zazwyczaj używa <c>GPL-2</c>.
 </p>
 
 <p>
-If the license for the package you submit is unique and not in
-<path>/usr/portage/licenses/</path>, then you must submit the new license in a 
-separate file.
+Jeśli licencja na jakiej rozpowszechniany jest pakiet nie znajduje się w
+katalogu <path>/usr/portage/licenses/</path>, konieczne jest dodanie tam
+odpowiedniego pliku.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Untested ARCHs in KEYWORDS</title>
+<title>Nieprzetestowane architektury w KEYWORDS</title>
 <body>
 
 <p>
-Please do not add other ARCHs into KEYWORDS unless the ebuild has been tested on
-that ARCH. Also all new ebuilds should be ~x86 or whatever architecture it is.
-Make sure when you bump a version, the stable KEYWORDS are all marked as
-<c>~</c>.
+Nie należy dodawać do KEYWORDS żadnych architektury, na których ebuild nie
+został przetestowany. Ponadto wszystkie nowe ebuildy powinny zostać oznaczone
+jako ~x86 lub  adekwatnie do architektury - zawsze z uwzględnieniem, iż jest to
+wersja testowa. Podnosząc wersję programu, zawsze oznaczamy stabilne
+architektury znakiem <c>~</c>.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>SLOT missing</title>
+<title>Brakująca zmienna SLOT</title>
 <body>
 
 <p>
-Make sure you have the SLOT variable in the ebuild. If you don't plan to use it,
-don't remove it. Put in:
+Wymagana jest obecność zmiennej SLOT w ebuildzie. Nawet jeśli nie planujemy jej
+używać, nie usuwajmy jej. Przypiszmy jej wartość:
 </p>
 
-<pre caption="Default SLOT variable">
+<pre caption="Domyślne ustawienie SLOT">
 SLOT="0"
 </pre>
 
 </body>
 </subsection>
 <subsection>
-<title>DESCRIPTION and HOMEPAGE wrong</title>
+<title>Niewłaściwe wartości zmiennych DESCRIPTION i HOMEPAGE</title>
 <body>
 
 <p>
-Please check the if the HOMEPAGE variable is right and leads users to the right
-page if they want to find out more about the package. And make sure the
-DESCRIPTION is not overly long. Good descriptions will describe the main
-function of the package in a sentence.
+Należy zweryfikować poprawność zmiennej HOMEPAGE. Adres w niej zawarty musi
+prowadzić do właściwej strony, na wypadek gdyby użytkownicy chceli uzyskać
+więcej informacji o programie. Trzeba również sprawdzić, czy opis w zmiennej
+DESCRIPTION nie jest zbyt długi. Dobry opis to taki, który przedstawia główne
+funkcje pakietu w jednym zdaniu.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Wrongfully used spaces instead of TABS</title>
+<title>Niewłaściwie użyte spacje zamiast znaków tabulacji</title>
 <body>
 
 <p>
-It is no fun reformatting lines of ebuilds because the submitter did not follow
-the guidelines to use TABS rather than spaces. So <e>please</e> use tabs!
+Poprawianie formatowania linii tylko dlatego, bo użytkownik przysyłający ebuilda
+nie postępował zgodnie ze wskazówkami dotyczącymi używania znaków tabulacji
+zamist spacji, nie sprawia nikomu przyjemność. Używanie znaków tabulajci jest
+mocno zalecane.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Trailing whitespace</title>
+<title>Nadmiarowe białe znaki</title>
 <body>
 
 <p>
-I'm often guilty of this. Remember to run repoman over your ebuilds so it can
-tell you if there is trailing whitespace at the end of lines or on empty lines.
+Nadmiarowe białe znaki stanowią częsty problem. Pamiętajmy więc o użyciu
+programu repoman, który wskaże niepotrzebne białe znaki na końcach linii i w
+pustych liniach.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Adding redundant S=${WORKDIR}/${P}</title>
+<title>Nadmiarowe definicje S=${WORKDIR}/${P}</title>
 <body>
 
 <p>
-If <c>S=${WORKDIR}/${P}</c>, then you should not add it to your ebuild. This is 
-implied already, you should only add it if it is something other than 
-<c>${WORKDIR}/${P}</c>.
+Jeśli <c>S=${WORKDIR}/${P}</c> jest prawidłowe dla danego ebuildu, nie należy
+powtarzać tej definicji - jest ona standardowo zaimplementowana. Dodawanie
+definicji zmiennej <c>S</c> jest zasadne tylko w sytuacji, gdy powinna ona
+wskazywać na miejsce inne niż <c>${WORKDIR}/${P}</c>.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Documentation missing</title>
+<title>Brakująca dokumentacja</title>
 <body>
 
 <p>
-If your package has documentation, make sure you install it using <c>dodoc</c> 
-or in <path>/usr/share/doc/${PF}</path>. Remember to check for errors when 
-running <c>dodoc</c>/<c>doins</c>.
+Jeśli pakiet zawiera dokumentację, należy ją zainstalować przy użyciu
+<c>dodoc</c> lub do katalogu <path>/usr/share/doc/${PF}</path>. Pamiętajmy przy
+tym, aby sprawdzić czy nie wystąpiły błędy w czasie użycia
+<c>dodoc</c>/<c>doins</c>.
 </p>
 
 </body>
@@ -311,96 +322,98 @@ running <c>dodoc</c>/<c>doins</c>.
 </section>
 
 <section>
-<title>Common Ebuild Submission Mistakes</title>
+<title>Częste błędy podczas dodawania ebuildów</title>
 <subsection>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-Please submit ebuilds properly by following the <uri
-link="/doc/en/ebuild-submit.xml">Contributing Ebuild HOWTO</uri> on the <uri
-link="/doc/en/index.xml">Gentoo Docs Page</uri>.
+Proces dodawania ebuildów należy przeprowadzać zgodnie z dokumentem <uri
+link="/doc/pl/ebuild-submit.xml">Zasilanie zbioru ebuildów</uri> w <uri
+link="/doc/pl/index.xml">Centrum dokumentacji Gentoo</uri>.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Tarball'ing an ebuild</title>
+<title>Ebuild w postaci tarballa</title>
 <body>
 
 <p>
-Please please please do not attach ebuilds as tarballs. Attach patches
-seperately as well so we can easily examine them.
+Zdecydowanie nie zaleca się dodawania ebuildów w postaci tarballi. Łatki również
+należy dodawać oddzielnie, co pozwala na ich łatwe sprawdzenie.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Inlining Ebuilds</title>
+<title>Wstawianie zawartości ebuildów</title>
 <body>
 
 <p>
-Don't cut and paste an ebuild into bugzilla's comment field.
+Nie należy kopiować zawartości ebuildów do pola komentarza w bugzilli.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>No description on what the package is</title>
+<title>Brak opisu pakietu</title>
 <body>
 
 <p>
-Please let us know what the package is, and fill in the URL with the home page
-of the application, if any exists.
+Konieczne jest dołączenie opisu pakietu i uzupełnienie pola URL adresem strony
+dokowej programu jeśli taka istnieje.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Package updates without changing the ChangeLog</title>
+<title>Aktualizacja pakietu bez aktualizacji w logach zmian</title>
 <body>
 
 <p>
-If you submit a package update, then make sure you explain what changes you made
-to the ebuild. For example if a package introduces a new features/option and you
-use a USE flag, list it in your bug. Don't make us hunt for it.
+Gdy dodajemy zaktualizowany pakiet, musimy określić jakie zmiany w nim
+wprowadziliśmy. Przykładowo, jeśli pakiet zawiera nowe funkcje i są z nimi
+związane flagi USE, należy napisać o tym w raporcie błędu, jaki tworzymy dodając
+ebuilda.
 </p>
 
 <p>
-It is wise to submit a diff for a package update rather than the whole ebuild.
-The best way to generate it would be:
+Znacznie bardziej roztropne jest dodanie pliku zawierającego różnice pomiędzy
+poprzednią i aktualną wersją ebuilda, niż dodanie całego ebuilda. Różnice można
+uzyskać w następujący sposób:
 </p>
 
-<pre caption="Creating a diff">
+<pre caption="Generowanie różnic">
 $ <i>diff -u some-package-0.1.0.ebuild some-package-0.2.0.ebuild &gt; ~/some-package-0.2.0.diff</i>
 </pre>
 
 </body>
 </subsection>
 <subsection>
-<title>Submitting unchanged ebuilds for version bumps</title>
+<title>Dodawanie niezmienionych ebuildów dla nowych wersji programów</title>
 <body>
 
 <p>
-If you are submitting a new version for a package in portage, make sure the
-existing ebuild works and make sure changes are incorporated in the new ebuild
-(such as added documentation.) If there are no required changes to the ebuild
-from the previous version, then don't attach the ebuild. Just say so in the bug
-report that you copied the ebuild over and verified that the package works and
-installs properly.
+Gdy dodajemy nową wersję programu do drzewa portage, upewnijmy się, że istniejący
+ebuild działa i że odpowiednie zmiany zostały zarejestrowane w jego nowej wersji
+(np. dodana dokumentacja). Jeśli nowa wersja programu nie wymaga zmian w
+ebuildzie, nie należy dodawać jego niezmienionej wersji. Wystarczy w raporcie
+błędu dodać informację, że starsza wersja ebuilda po przekopiowaniu działa
+poprawnie.
 </p>
 
 </body>
 </subsection>
 </section>
 <section>
-<title>Comments and Suggestions</title>
+<title>Komentarze i sugestie</title>
 <subsection>
 <body>
 
 <p>
-Comments, corrections and suggestions should go to <mail 
-link="liquidx@gentoo.org">Alastair Tse</mail>.
+Komentarze, poprawki i sugestie powinny być przesyłane do <mail
+link="liquidx@gentoo.org">Alastaira Tse</mail>.
 </p>
 
 </body>
