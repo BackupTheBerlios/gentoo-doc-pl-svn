@@ -7,39 +7,38 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/hardened/selinux/hb-selinux-conv-reboot2.xml,v 1.2 2005/08/06 20:56:20 pebenito Exp $ -->
 
 <sections>
-<section><title>Merge SELinux Packages</title>
+<section><title>Instalowanie paczek SELinux</title>
 <subsection>
 <body>
-<p>Merge the libraries, utilities and base-policy.  The policy version may need
-   be adjusted, refer to the SELinux Overview
-   for more information on policy versions.  Then load the policy.</p>
+<p>Należy zainstalować biblioteki, użytki oraz podstawową politykę. Wersja
+polityki może wymagać dopracowania. W Przeglądzie SELinux można znaleźć więcej
+informacji na temat wersji polityk. Potem należy załadować politykę.</p>
 
-<pre caption="Merge base SELinux packages and policy">
+<pre caption="Instalowanie podstawowych pakietów SELinux oraz polityki">
 # <i>emerge libselinux checkpolicy policycoreutils</i>
 # <i>emerge selinux-base-policy</i>
 
 # <i>cd /etc/security/selinux/src/policy</i>
-<comment>Adjust the policy version now, if needed.</comment>
+<comment>Teraz należy załadować daną wersję polityki, jeśli zachodzi taka
+potrzeba</comment>
 # <i>make load</i>
 </pre>
 </body></subsection>
 </section>
 
-<section><title>Merge SELinux-patched packages</title>
+<section><title>Instalacja paczek przystosowanych do SELinux'a</title>
 <subsection><body>
-<p>
-  There are several system packages that have SELinux patches.  These patches
-  provide a variety of additional SELinux functionality, such as displaying
-  file contexts.
-</p>
+<p>Istnieje wiele paczek systemowych, które posiadają łatki dla SELinux. To
+oprogramowanie posiada szereg dodatkowych funkcjonalności przystosowanych dla
+SELinux, jak np. wyświetlanie kontektstów plików.</p>
 
-<pre caption="Remerge Packages">
+<pre caption="Przeinstalowanie oprogramowania">
 # <i>emerge sysvinit pam coreutils findutils openssh pam-login procps psmisc shadow util-linux python-selinux</i>
 </pre>
 
-<p>There are other packages that have SELinux patches, but are optional.  These
-should be remerged if they are already installed, so the SELinux patches are
-applied:</p>
+<p>Jest inne oprogramowanie które posiada łatki dla SELinux, jednakże są
+opcjonalne. Powinny one być przeinstalowane, jeśli są już zainstalowane, tak aby
+łatki SELinux zostały nałożone:</p>
 <ul>
 <li>app-admin/logrotate</li>
 <li>sys-apps/fcron</li>
@@ -48,67 +47,70 @@ applied:</p>
 <li>sys-libs/pwdb</li>
 </ul>
 <note>
-  Fcron and Vixie-cron are the only crons with SELinux support.
+  Fcron oraz Vixie-cron są jedynymi cronami ze wsparciem dla SELinux.
 </note>
 </body></subsection>
 </section>
 
-<section><title>Remove Unneeded Packages</title>
+<section><title>Usuwanie niepotrzebnego oprogramowania</title>
 <subsection><body>
-<p>SELinux does not use some packages that are used in standard Gentoo:</p> 	 
+<p>SELinux nie używa niektórych programów, które są używane w standardowej
+instalacji Gentoo:</p> 	 
   	 
-<pre caption="Remove unused packages from standard Gentoo">
+<pre caption="Usuwanie nieużywanych programów ze standardowej instalacji
+Gentoo">
 # <i>emerge -C textutils fileutils sh-utils</i>
 </pre>
 </body></subsection>
 </section>
 
-<section><title>Label Filesystems</title>
+<section><title>Znakowanie systemu plików</title>
 <subsection><body>
 
-<p>
-  Now label the filesystems.  This gives each of the files in the filesystems
-  a security label.  Keeping these labels consistent is important.
-</p>
+<p>Teraz należy oznakować systemy plików. Każdemu plikowi w systemi zostanie
+nadany odpowiedni znacznik bezpieczeństwa. Utrzymanie zgodności znaczników jest
+niezwykle ważne.</p>
 
-<pre caption="Label filesystems">
+<pre caption="Znakowanie systemu plików">
 # <i>cd /etc/security/selinux/src/policy</i>
 # <i>make relabel</i>
 </pre>
-<warn>
-  There is a known issue with older versions of GRUB
-  not being able to read symlinks that have been labeled.
-  Please make sure you have at least GRUB 0.94 installed.
-  Also rerun GRUB and reinstall it into the MBR to ensure
-  the updated code is in use.
-  You do have a LiveCD handy, right?
-</warn>
+<warn>Jest znany błąd ze starszymi wersjami GRUBa, który nie potrafił sobie
+poradzić z odczytywaniem dowiązań symbolicznych, które zostały oznakowane.
+Należy upewnyć się czy zainstalowany GRUB jest w wersji co najmniej 0.94. Należy
+również uruchomić GRUBa i nadinstalować go do sektora rozruchowego aby upewnić
+się że używa on uaktualnionych ustawień. 
+Gdzieś tam leży LiveCD w razie czego, prawda?</warn>
 
-<pre caption="Reinstall GRUB on the MBR (GRUB users only)">
+<pre caption="Przeinstalowanie GRUB w sektorze rozruchowym (tylko dla
+użytkowników GRUB'a)">
 # <i>grub</i>
 
-grub> root (hd0,0) <comment>(Your boot partition)</comment>
-grub> setup (hd0) <comment>(Where the boot record is installed; here, it is the MBR)</comment>
+grub> root (hd0,0) <comment>(Partycja [uruchomieniowa] Your boot partition)</comment>
+grub> setup (hd0) <comment>(Miejsce gdzie znajduje się rekord rozruchowy, tutaj
+jest on w MBR)</comment>
 </pre>
 </body></subsection>
 </section>
 
-<section><title>Final reboot</title>
+<section><title>Ostateczny ponowny rozruch</title>
 <subsection><body>
-<p>Reboot.  Log in, then relabel again to ensure all files
-are labeled correctly (some files may have been created during shutdown and
-reboot)</p>
-<pre caption="Relabel">
+<p>Należy komputer uruchomić ponownie. Potem należy się zalogować i ponownie
+dokonać znakowania systemu plików, aby upewnić się że wszystkie pliki są dobrze
+oznakowane (niektóre pliki mogły zostać utworzone podczas wyłączania i
+uruchamiania komputera)</p>
+<pre caption="Znakowanie plików">
 # <i>cd /etc/security/selinux/src/policy</i>
 # <i>make relabel</i>
 </pre>
 <note>
-  It is strongly suggested to <uri link="http://www.gentoo.org/main/en/lists.xml">subscribe</uri>
-  to the gentoo-hardened mail list.  It is generally a low traffic list, and 
-  SELinux announcements are made there.
+Jest mocno sugerowane aby <uri
+link="http://www.gentoo.org/main/pl/lists.xml">subskrybować</uri> się na liście
+dyskusyjnej gentoo-hardened. Na ogół niewiele się tam dzieje, jednakże
+ogłoszenia dotyczące SELinux są dokonywane właśnie tam.
 </note>
 <p>
-  SELinux is now installed!
+  SELinux jest zainstalowany!
 </p>
 </body></subsection>
 </section>
