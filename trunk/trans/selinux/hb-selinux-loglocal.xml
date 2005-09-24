@@ -7,19 +7,20 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/hardened/selinux/hb-selinux-loglocal.xml,v 1.4 2004/11/16 00:20:49 pebenito Exp $ -->
 
 <sections>
-<section><title>Begin Here</title>
+<section><title>Należy rozpocząć tutaj</title>
 <subsection><body>
 <p>
-  You must be in <c>sysadm_r</c> to perform these actions.
+  Należy posiadać rolę <c>sysadm_r</c>, aby dokonać tych czynności.
 </p>
 <p>
-  Run <c>sestatus -v</c>.  Click the first context that doesn't match:
+Trzeba wpisać <c>sestatus -v</c>, potem kliknąć na pierwszym kontekście, który
+nie pasuje:
 </p>
 <table>
-<tr><th>Process</th><th>Context</th></tr>
+<tr><th>Proces</th><th>Kontekst</th></tr>
 <tr><ti>Init context</ti><ti><uri link="#doc_chap2">system_u:system_r:init_t</uri></ti></tr>
 <tr><ti>/sbin/agetty</ti><ti><uri link="#doc_chap3">system_u:system_r:getty_t</uri></ti></tr>
-<tr><th>File</th><th>Context</th></tr>
+<tr><th>Plik</th><th>Kontekst</th></tr>
 <tr><ti>/bin/login</ti><ti><uri link="#doc_chap4">system_u:object_r:login_exec_t</uri></ti></tr>
 <tr><ti>/sbin/unix_chkpwd</ti><ti><uri link="#doc_chap5">system_u:object_r:chkpwd_exec_t</uri></ti></tr>
 <tr><ti>/etc/passwd</ti><ti><uri link="#doc_chap6">system_u:object_r:etc_t</uri></ti></tr>
@@ -29,25 +30,27 @@
 </body></subsection>
 </section>
 
-<section><title>Incorrect Init Context</title>
-<subsection><title>Verify Init Label</title>
+<section><title>Nieprawidłowy kontekst init'a</title>
+<subsection><title>Sprawdzenie znacznika inita</title>
 <body>
 <p>
-  There are several possible reasons why init may have the wrong context.
-  First, verify that init is labeled correctly, refer to the sestatus's output
-  for /sbin/init.  If it is not <c>system_u:object_r:init_exec_t</c>, relabel sysvinit.
+Istnieje wiele możliwości dla których init posiada niewłaściwy kontekst.
+Po pierwsze, należy sprawdzić czy init jest właściwie oznakowany. Wystarczy
+sprawdzić w wyniku polecenia sestatus'u dla /sbin/init. Jeśli nie jest to
+<c>system_u:object_r:init_exec_t</c>, należy dokonać ponownego oznakowania
+sysvinit'a.
 </p>
 <pre>
 # <i>rlpkg sysvinit</i>
 </pre>
 </body></subsection>
-<subsection><title>Verify Available Policy</title><body>
+<subsection><title>Sprawdzenie dostępnej polityki</title><body>
 <p>
-  An appropriate binary policy version must also be available in 
-  /etc/security/selinux.  For example, for policy version 17,
-  /etc/security/selinux/policy.17 must exist.  If it is missing, first adjust
-  the policy <uri link="?part=4&amp;chap=1#doc_chap6_sect3">Makefile</uri>.
-  Then compile and install the policy.
+Odpowiedni plik binarny polityki musi znajdować się w /etc/security/selinux. Dla
+przykładu polityki w wersji 17, musi istnieć plik
+/etc/security/selinux/policy.17. Jeśli go brakuje, należy dostosować plik <uri
+link="?part=4&amp;chap=1#doc_chap6_sect3">Makefile</uri>. Potem przekompilować i
+zainstalować politykę.
 </p>
 <pre>
 # <i>cd /etc/security/selinux/src/policy</i>
@@ -56,10 +59,12 @@
 </pre>
 </body>
 </subsection>
-<subsection><title>Verify Init Can Load the Policy</title><body>
+<subsection><title>Sprawdzenie czy init moze załadować daną
+politykę</title><body>
 <p>
-  The final check is to ensure init can load the policy.  Run <c>ldd</c> on
-  init, and if libselinux is not in the output, remerge sysvinit.
+Ostatecznym sprawdzianem jest upewnienie się że init może załadować politykę.
+Wystarczy uruchomić polecenie <c>ldd</c> na pliku init i sprawdzić czy
+libselinux znajduje się w wyniku. Jeśli nie, należy przeinstalować sysvinit.
 </p>
 <pre>
 # <i>ldd /sbin/init</i>
@@ -69,93 +74,97 @@
   /lib/ld-linux.so.2 => /lib/ld-linux.so.2 (0x40000000)
 </pre>
 <p>
-  Now reboot so init gains the correct context, and loads the policy.
+Teraz należy dokonać ponownego rozruchu aby init otrzymał prawidłowy kontekst i
+załadował politykę.
 </p>
 </body></subsection>
 </section>
 
-<section><title>Incorrect agetty Context</title>
+<section><title>Nieprawidłowy kontekst agetty</title>
 <subsection><body>
 <p>
-  Verify that agetty is labeled correctly. Refer to the sestatus's output
-  for /sbin/agetty.  If it is not <c>system_u:object_r:getty_exec_t</c>, relabel
-  util-linux.  Then restart all gettys.
+Należy sprawdzić czy agetty jest prawidłowo oznakowana. Wystarczy posłużyć się
+poleceniem sestatus dla pliku /sbin/agetty. Jeśli nie jest to
+<c>system_u:object_r:getty_exec_t</c>, należy dokonać ponownego oznakowania
+pakietu util-linux. Potem należy ponownie uruchomić wszystkie procesy agetty.
 </p>
 <pre>
 # <i>rlpkg util-linux</i>
-# <i>killall agetty</i> <comment>(they will respawn)</comment>
+# <i>killall agetty</i> <comment>(uruchomią się ponownie)</comment>
 </pre>
 <p>
-  All of the agettys should now be in the correct <c>system_u:object_r:getty_exec_t</c>
-  context.  Try logging in again.
+Wszystkie procesy agetty powinny posiadać poprawny kontekst
+<c>system_u:object_r:getty_exec_t</c>. Można spróbować ponownie się zalogować.
 </p>
 </body>
 </subsection>
 </section>
 
-<section><title>Incorrect Login Context</title>
+<section><title>Nieprawidłowy kontekst login</title>
 <subsection><body>
 <p>
-  The login program (/bin/login) is not labeled correctly.  Relabel pam-login.
+Program do logoawnia się (/bin/login) nie jest prawidłowo oznakowany. Należy
+dokonać ponownego oznakowania paczki pam-login.
 </p>
 <pre>
 # <i>rlpkg pam-login</i>
 </pre>
 <p>
-  /bin/login should now be <c>system_u:object_r:login_exec_t</c>.
-  Try logging in again.
+/bin/login powinien teraz posiadać kontekst
+<c>system_u:object_r:login_exec_t</c>. Mozna próbować ponownie się zalogować.
 </p>
 </body>
 </subsection>
 </section>
 
-<section><title>Incorrect PAM Context</title>
+<section><title>Nieprawidłowy kontekst PAM</title>
 <subsection><body>
 <p>
-  Sshd must be able to use PAM for authenticating the user.  The PAM password
-  checking program (/sbin/unix_chkpwd) must be labeled correctly so
-  sshd can transition to the password checking context.  Relabel PAM.
+Sshd powinien mieć możliwość użycia PAM do autoryzacji użytkownika. Program do
+sprawdzania hasła PAM'a (/sbin/unix_chkpwd) musi być odpowiednio oznakowany aby
+sshd mogło sprawdzić hasło. Wystarczy dokonać ponownego oznakowania PAM.
 </p>
 <pre>
 # <i>rlpkg pam</i>
 </pre>
 <p>
-  The password checking program should now be <c>system_u:object_r:chkpwd_exec_t</c>.
-  Try loggin in again.
+Program do sprawdzania haseł powinien posiadać kontekst
+<c>system_u:object_r:chkpwd_exec_t</c>. Można ponownie spróbować się zalogować.
 </p>
 </body></subsection>
 </section>
 
-<section><title>Incorrect Password File Contexts</title>
+<section><title>Nieprawidłowy kontekst plików związanych z hasłami</title>
 <subsection><body>
 <p>
-  The password file (/etc/passwd), and the shadow file (/etc/shadow) must
-  be labeled correctly, otherwise PAM will not be able to
-  authenticate your user.  Relabel the files.
+Pliki z hasłami (/etc/passwd oraz /etc/shadow) powinny być odpowiednio
+oznakowane. W innym przypadku PAM nie będzie w stanie poprawnie zautoryzować
+użytkowników. Należy dokonać ponownego oznakowania tych plików.
 </p>
 <pre>
 # <i>restorecon /etc/passwd /etc/shadow</i>
 </pre>
 <p>
-  The password and shadow files should now be <c>system_u:object_r:etc_t</c>
-  and <c>system_u:object_r:shadow_t</c>, respectively.  Try logging in again.
+Pliki passwd oraz shadow powinny posiadać teraz kontekst odpowiednio 
+<c>system_u:object_r:etc_t</c> oraz <c>system_u:object_r:shadow_t</c>. Można
+ponownie spróbować się zalogować.
 </p>
 </body>
 </subsection>
 </section>
 
-<section><title>Incorrect Bash File Context</title>
+<section><title>Nieprawidłowy kontekst bash'a</title>
 <subsection><body>
 <p>
-  Bash must be labeled correctly so the user can transition into the user
-  domain when logging in.  Relabel bash.
+Bash musi być odpowiednio oznakowany aby uzytkownik mógł się zalogować do
+odpowiedniej domeny. Należy dokonać ponownego oznakowania basha.
 </p>
 <pre>
 # <i>rlpkg bash</i>
 </pre>
 <p>
-  Bash (/bin/bash) should now be <c>system_u:object_r:shell_exec_t</c>.
-  Try logging in again.
+Bash (/bin/bash) powinien posiadać teraz kontekst
+<c>system_u:object_r:shell_exec_t</c>.  Można ponownie spróbować się zalogować.
 </p>
 </body>
 </subsection>
