@@ -7,33 +7,33 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/hardened/selinux/hb-selinux-conv-reboot1.xml,v 1.4 2005/08/06 20:56:20 pebenito Exp $ -->
 
 <sections>
-<section><title>Merge a SELinux Kernel</title>
+<section><title>Instalacja jądra SELinux</title>
 <subsection><body>
-<p>Merge an appropriate kernel.  A 2.6 kernel is required.  The
-   suggested kernel is hardened-sources.
+<p>Należy zainstalować odpowiednie jądro. Jądro z serii 2.6 są wymagane.
+Sugerowane jądro to hardened-sources.
 </p>
  
-<pre caption="Merge an appropriate kernel">
-<comment>Any 2.6 kernel</comment>
+<pre caption="Instalacja odpowiedniego jądra">
+<comment>Jakiekolwiek jądro z serii 2.6</comment>
 # <i>emerge hardened-sources</i>
 </pre>
 </body></subsection>
 </section>
 
-<section><title>Compile the Kernel with SELinux Options</title>
+<section><title>Kompilacja jądra z opcjami dla SELinux</title>
 <subsection><body>
-<p>The kernel must  be compiled with security module support, SELinux support,
-devpts, and extended attribute security labels.  Refer to the main installation
-guide for futher kernel options.</p>
+<p>Jądro musi być skompilowane z obsługą zabezpieczeń SELinux, devpts oraz
+rozszerzonymi atrybutami zabezpieczeń. W dokumentacji instalacji znajduje się
+więcej informacji na ten temat.</p>
 
-<pre caption="Location and required options under menuconfig">
-<comment>Under "Code maturity level options"</comment>
+<pre caption="Wymagane opcje w menuconfig oraz ich lokalizacja">
+<comment>Pod "Code maturity level options"</comment>
 [*] Prompt for development and/or incomplete code/drivers
 
-<comment>Under "General setup"</comment>
+<comment>Pod "General setup"</comment>
 [*] Auditing support
 
-<comment>Under "File systems"</comment>
+<comment>Pod "File systems"</comment>
 &lt;*&gt; Second extended fs support <comment>(If using ext2)</comment>
 [*]   Ext2 extended attributes
 [ ]     Ext2 POSIX Access Control Lists
@@ -60,7 +60,7 @@ guide for futher kernel options.</p>
 [*]   tmpfs Extended Attributes
 [*]     tmpfs Security Labels
 
-<comment>Under "Security options"</comment>
+<comment>Pod "Security options"</comment>
 [*] Enable different security models
 [*] Socket and Networking Security Hooks
 &lt;*&gt; Capabilities Support
@@ -72,51 +72,52 @@ guide for futher kernel options.</p>
 [ ]   NSA SELinux MLS policy (EXPERIMENTAL)
 </pre>
 <p>
-  The extended attribute security labels must be turned on for devpts and
-  your filesystem(s).  Devfs is no longer usable in SELinux, and can be
-  turned off.  Not all options exist on 2.4 kernels, and older 2.6 kernels,
-  such as Auditing support, and runtime disable.
+  Rozszerzone atrybuty zabezpieczeń muszą być włączone dla devpts oraz używanych
+  systemów plików. Devfs nie jest już używane w SELinux, wobec czego może być
+  wyłączone. Nie wszystkie powyższe opcje znajdują się w jądrach z serii 2.4
+  oraz starszych wersjach jąder z serii 2.6, jak na przykład Auditing support
+  lub runtime disable.
 </p>
 
 <note>
-  The available options may vary slightly depending on the kernel version
-  being used.  The other extended attribute options should be turned off.
+  Dostępne opcje mogą się niewiele różnić w zależności od używanego jądra. Inne
+  rozszerzone atrybuty powinny być wyłączone.
 </note>
 
 <warn>
-  Do not enable the SELinux MLS policy option, as it is not supported,
-  and will cause your machine to not start.
+  Nie należy włączać SELinux MLS policy, gdyż nie jest już wspierana i spowoduje
+  iż komputer nie uruchomi się.
 </warn>
 
 <p>
-  Now compile and install the kernel and modules, but do not reboot.
+  Teraz należy skompilować i zainstlować jądro oraz jego moduły, jednakże bez
+  dokonywania ponownego rozruchu.
 </p>
 </body></subsection>
 </section>
 
-<section><title>Update fstab</title>
+<section><title>Uaktualnianie fstab</title>
 <subsection><body>
 <p>
-  SElinuxfs must also be enabled to mount at boot.
-  Add this to /etc/fstab:
+  SELinuxfs musi również być włączone podczas uruchamiania. 
+  Należy dopisać poniższą linijkę do /etc/fstab:
 </p>
-<pre caption="Fstab settings for selinuxfs">
+<pre caption="Ustawienia fstab dla selinuxfs">
 none	/selinux	selinuxfs	defaults	0	0
 </pre>
 </body></subsection>
 </section>
 
-<section><title>Configure Baselayout</title>
+<section><title>Konfiguracja Baselayout</title>
 <subsection><body>
 <p>
-SELinux does not support devfs.  You must configure baselayout to
-use either static device nodes or udev.  If using udev, the
-device tarball must be disabled.  Edit the /etc/conf.d/rc file.
-Set RC_DEVICES to static or udev, and RC_DEVICE_TARBALL to no.
-If you have several custom device nodes, static is suggested,
-otherwise udev is suggested.
+SELinux nie wspiera devfs. Należy tak skonfigurować baselayout aby używało
+statycznego devfs lub udev. W przypadku używania udev, nalezy wyłączyć używanie
+RC_DEVICE_TARBALL. W pliku /etc/conf.d/rc należy ustawić RC_DEVICES jako static
+lub udev, zaś RC_DEVICES_TARBALL jako "no". Jeśli wykorzystywane są specyficzne
+urządzenia, sugerowane jest używanie static, w innym przypadku udev.
 </p>
-<pre caption="Init script configuration">
+<pre caption="Konfiguracja skryptów inicjujących">
 # Use this variable to control the /dev management behavior.
 #  auto   - let the scripts figure out what's best at boot
 #  devfs  - use devfs (requires sys-fs/devfsd)
@@ -135,17 +136,18 @@ otherwise udev is suggested.
 </body></subsection>
 </section>
 
-<section><title>Reboot</title>
+<section><title>Ponowny rozruch</title>
 <subsection><body>
 <p>
+  Należy stworzyć kilka katalogów przed ponownym rozruchem.
   We need to make some directories before we reboot.
 </p>
-<pre caption="Making Required Directories">
+<pre caption="Tworzenie wymaganych katalogów">
 # <i>mkdir /selinux</i>
 # <i>mkdir /sys</i>
 </pre>
 <p>
-  Now reboot.
+  Teraz dokonaj ponownego rozruchu.
 </p>
 </body></subsection>
 </section>
