@@ -4,11 +4,11 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/hb-install-alpha-kernel.xml,v 1.30 2005/08/21 17:47:46 neysx Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2005.1/hb-install-alpha-kernel.xml,v 1.4 2005/08/21 17:47:46 neysx Exp $ -->
 
 <sections>
 
-<version>2.8</version>
+<version>5.2</version>
 <date>2005-08-21</date>
 
 <section>
@@ -114,14 +114,9 @@ couple of kernels you don't even remember that it was difficult ;)
 
 <p>
 However, one thing <e>is</e> true: you must know your system when you start
-configuring a kernel manually. Most information can be gathered by emerging 
-pciutils (<c>emerge pciutils</c>) which contains <c>lspci</c>. You will now 
-be able to  use <c>lspci</c> within the chrooted environment. You may safely 
-ignore any <e>pcilib</e> warnings (like pcilib: cannot open 
-/sys/bus/pci/devices) that <c>lspci</c> throws out. Alternatively, you can run 
-<c>lspci</c> from a <e>non-chrooted</e> environment. The results are the same. 
-You can also run <c>lsmod</c> to see what kernel modules the Installation CD 
-uses (it might provide you with a nice hint on what to enable).
+configuring a kernel manually. You can run <c>lsmod</c> to see what kernel 
+modules the Installation CD uses (it might provide you with a nice hint on 
+what to enable).
 </p>
 
 <p>
@@ -161,10 +156,8 @@ General setup ---&gt;
 <p>
 Now go to <c>File Systems</c> and select support for the filesystems you use.
 <e>Don't</e> compile them as modules, otherwise your Gentoo system will not be
-able to mount your partitions. Also select <c>Virtual memory</c> and <c>/proc
-file system</c>.  If you are using a 2.4 kernel, you should also select the 
-<c>/dev file system</c> and <c>Automatically mount at boot</c> options, and 
-you should make sure to <c>emerge devfsd</c>.
+able to mount your partitions. Also select <c>Virtual memory</c>, <c>/proc
+file system</c>, (<c>/dev file system</c> + <c>Automatically mount at boot</c> only for 2.4 kernel):
 </p>
 
 <pre caption="Selecting necessary file systems">
@@ -413,7 +406,7 @@ your "real" system starts up.
 </p>
 
 <pre caption="Checking the created kernel image name and initrd">
-# <i>ls /boot/kernel* /boot/initramfs-*</i>
+# <i>ls /boot/kernel* /boot/initramfs*</i>
 </pre>
 
 <p>

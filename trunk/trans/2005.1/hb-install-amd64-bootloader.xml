@@ -4,11 +4,11 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/hb-install-amd64-bootloader.xml,v 1.33 2005/09/07 18:53:38 vanquirius Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2005.1/hb-install-amd64-bootloader.xml,v 1.4 2005/09/07 18:50:37 vanquirius Exp $ -->
 
 <sections>
 
-<version>2.5</version>
+<version>5.1</version>
 <date>2005-08-12</date>
 
 <section>
@@ -129,13 +129,13 @@ Remember (or write down) this setting; you will need it shortly.
 </p>
 
 <p>
-Now continue by installing <uri link="#grub">GRUB</uri>.
+Now continue by installing GRUB.
 </p>
 
 </body>
 </subsection>
 </section>
-<section id="grub">
+<section>
 <title>Using GRUB</title>
 <subsection>
 <title>Understanding GRUB's terminology</title>
@@ -201,7 +201,7 @@ editor):
 <p>
 Now we are going to write up a <path>grub.conf</path>. Below you'll
 find two possible <path>grub.conf</path> for the partitioning example we use 
-in this guide, with kernel image <path>kernel-2.6.11-gentoo-r3</path>. We've 
+in this guide, with kernel image <path>kernel-2.6.11-gentoo-r1</path>. We've 
 only extensively commented the first <path>grub.conf</path>. 
 </p>
 
@@ -230,10 +230,10 @@ timeout 30
 # Comment out if you don't have a graphics card installed</comment>
 splashimage=(hd0,0)/grub/splash.xpm.gz
 
-title=Gentoo Linux 2.6.11
+title=Gentoo Linux 2.6.11 Gentoo r1
 <comment># Partition where the kernel image (or operating system) is located</comment>
 root (hd0,0)
-kernel /kernel-2.6.11-gentoo-r3 root=/dev/hda3
+kernel /kernel-2.6.11-gentoo-r1 root=/dev/hda3
 
 <comment># The next four lines are only if you dualboot with a Windows system.</comment>
 <comment># In this case, Windows is hosted on /dev/hda6.</comment>
@@ -249,10 +249,10 @@ default 0
 timeout 30
 splashimage=(hd0,0)/grub/splash.xpm.gz
 
-title=Gentoo Linux 2.6.11
+title=Gentoo Linux 2.6.11-gentoo-r1
 root (hd0,0)
-kernel /kernel-2.6.11-gentoo-r3 root=/dev/ram0 init=/linuxrc ramdisk=8192 real_root=/dev/hda3 udev
-initrd /initramfs-genkernel-amd64-2.6.11-gentoo-r3
+kernel /kernel-2.6.11-gentoo-r1 root=/dev/ram0 init=/linuxrc ramdisk=8192 real_root=/dev/hda3 udev
+initrd /initramfs-genkernel-amd64-2.6.11-gentoo-r1
 
 <comment># Only in case you want to dual-boot</comment>
 title=Windows XP
@@ -261,11 +261,6 @@ makeactive
 chainloader +1
 </pre>
 
-<note>
-The <c>udev</c> mentioned at the end of the kernel line is needed to work around
-a bug in some genkernel versions <e>if</e> you use udev in the first place
-(which is the default behaviour).
-</note>
 
 <note>
 If you use a different partitioning scheme and/or kernel image, adjust 
@@ -286,8 +281,8 @@ previously.
 
 <p>
 <c>genkernel</c> users should know that their kernels use the same boot options
-as is used for the Installation CD. For instance, if you have SCSI devices, 
-you should add <c>doscsi</c> as kernel option.
+as is used for the Installation CD. For instance, if you have SCSI devices, you
+should add <c>doscsi</c> as kernel option.
 </p>
 
 <p>

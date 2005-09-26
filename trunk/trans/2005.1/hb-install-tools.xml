@@ -4,42 +4,16 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/hb-install-tools.xml,v 1.35 2005/07/30 15:23:06 swift Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2005.1/hb-install-tools.xml,v 1.2 2005/08/08 13:24:46 swift Exp $ -->
 
 <sections>
 
-<version>2.3</version>
-<date>2005-07-30</date>
-
-<section>
-<title>Device Manager</title>
-<body>
-
-<p>
-If you are using a 2.4 kernel <e>and</e> are installing Gentoo from stage 3, 
-there are a few things you <e>need</e> to do. Since Gentoo now uses udev by 
-default and udev is not supported by 2.4 kernels, you will have to make use of 
-devfsd and remove udev.
-</p>
-
-<pre caption="Installing devfsd">
-<comment>(For those using 2.4.x kernels with a stage 3 install)</comment>
-# <i>emerge --unmerge udev</i>
-# <i>emerge devfsd</i>
-</pre>
-
-</body>
-</section>
+<version>5.0</version>
+<date>2005-08-08</date>
 
 <section>
 <title>System Logger</title>
 <body>
-
-<p>
-When we mentioned what <e>stage3</e> was, we said that it contained all
-necessary system tools for which we cannot provide a choice to our users. We 
-also said that we would install the other tools later on. Well, here we are :)
-</p>
 
 <p>
 The first tool you need to decide on has to provide logging facilities for your
@@ -64,8 +38,7 @@ rotation mechanism for the log files.
 
 <!--
   Even though syslog-ng does not rotate the logs, it does conform to the syslog
-  RFC (http://www.faqs.org/rfcs/rfc3164.html) and is far more powerful than most
-  other system loggers. That and some architectures really prefer syslog-ng
+  RFC (http://www.faqs.org/rfcs/rfc3164.html) and is far more powerful than most  other system loggers. That and some architectures really prefer syslog-ng
   above others (metalog for instance doesn't work nicely with sparc all the
   time).
 -->
@@ -95,14 +68,6 @@ command regularly (for instance daily, weekly or monthly).
 </p>
 
 <p>
-Gentoo offers three possible cron daemons: <c>dcron</c>, <c>fcron</c> and
-<c>vixie-cron</c>. Installing one of them is similar to installing a system 
-logger. However, <c>dcron</c> and <c>fcron</c> require an extra configuration 
-command, namely <c>crontab /etc/crontab</c>. If you don't know what to choose, 
-use <c>vixie-cron</c>.
-</p>
-
-<p>
 We only provide <c>vixie-cron</c> for networkless installations. If you want
 another cron daemon you can wait and install it later on.
 </p>
@@ -110,7 +75,6 @@ another cron daemon you can wait and install it later on.
 <pre caption="Installing a cron daemon">
 # <i>emerge vixie-cron</i>
 # <i>rc-update add vixie-cron default</i>
-<comment>(Only if you have chosen dcron or fcron)</comment> # <i>crontab /etc/crontab</i>
 </pre>
 
 </body>
@@ -143,7 +107,8 @@ additional file systems etc.).
 
 <p>
 The following table lists the tools you need to install if you use a certain
-file system:
+file system. Not all filesystems are available for each and every architecture
+though.
 </p>
 
 <table>
@@ -170,7 +135,7 @@ file system:
 </table>
 
 <p>
-If you are an EVMS user, you also need to install <c>evms</c>:
+If you are an EVMS user, you need to install <c>emvs</c>:
 </p>
 
 <pre caption="Installing EVMS utilities">
@@ -222,23 +187,6 @@ The <c>USE="-X"</c> will prohibit xorg-x11 to be installed as a dependency
 recompile <c>rp-pppoe</c> later on or have xorg-x11 installed now -- which takes a
 long time to compile).
 </p>
-
-</body>
-</subsection>
-<subsection>
-<title>RAID utilities for IBM hardware</title>
-<body>
-
-<p>
-If you are using SCSI RAID on a POWER5-based system, you should consider 
-installing the <c>iprutils</c> which will allow you to work with the RAID disk 
-array, get status on the disks in the arrays, and update microcode among other 
-functions.
-</p>
-
-<pre caption="Installing iprutils">
-# <i>emerge iprutils</i>
-</pre>
 
 <p>
 Now continue with <uri link="?part=1&amp;chap=10">Configuring the

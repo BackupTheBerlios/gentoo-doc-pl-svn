@@ -4,11 +4,11 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/hb-install-ppc64-disk.xml,v 1.21 2005/08/25 19:22:50 neysx Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2005.1/hb-install-ppc64-disk.xml,v 1.2 2005/08/25 19:22:50 neysx Exp $ -->
 
 <sections>
 
-<version>2.5</version>
+<version>5.1</version>
 <date>2005-08-25</date>
 
 <section>
@@ -243,7 +243,8 @@ link="#filesystems">Creating Filesystems</uri>.
 <note>
 If you are planning to use a RAID disk array for your gentoo installation and 
 you are using POWER5-based hardware, you should now run <c>iprutils</c> to 
-format the disks to Advanced Function format and create the disk array.
+format the disks to Advanced Function format and create the disk array. You
+should also consider emerging this package after your install is complete.
 </note>
 
 <p>
@@ -559,9 +560,7 @@ Otherwise read on to learn about the available filesystems...
 <body>
 
 <note>
-Several filesystems are available. Ext2 and ext3 are found stable on the
-PPC64 architecture, reiserfs and xfs are in experimental stage. jfs is
-unsupported.
+Several filesystems are available.
 </note>
 
 <p>
@@ -607,8 +606,7 @@ system goes down unexpectedly.
 
 <p>
 <b>JFS</b> is IBM's high-performance journaling filesystem. It has recently 
-become production-ready and there hasn't been a sufficient track record to 
-comment positively nor negatively on its general stability at this point.
+become production-ready. 
 </p>
 
 </body>

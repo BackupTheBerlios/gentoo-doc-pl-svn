@@ -4,29 +4,21 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/hb-install-hppa-bootloader.xml,v 1.11 2005/08/09 09:43:58 swift Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2005.1/hb-install-hppa-bootloader.xml,v 1.2 2005/08/08 13:24:46 swift Exp $ -->
 
 <sections>
 
-<version>1.7</version>
-<date>2005-08-09</date>
+<version>5.0</version>
+<date>2005-08-08</date>
 
 <section>
 <title>Installing PALO</title>
 <body>
 
 <p>
-On the PA-RISC platform, the boot loader is called palo.  You may need to 
-emerge it on your machine first.
-</p>
-
-<pre caption="Installing palo">
-# <i>emerge palo</i>
-</pre>
-
-<p>
-You can find the configuration file in <path>/etc/palo.conf</path>.  Here is a 
-sample configuration:
+On the PA-RISC platform, the boot loader is called palo. You can find
+the configuration file in <path>/etc/palo.conf</path>. Here is a sample 
+configuration:
 </p>
 
 <pre caption = "/etc/palo.conf example">
@@ -36,16 +28,16 @@ sample configuration:
 </pre>
 
 <p>
-The first line tells palo the location of the kernel and which boot 
-parameters it must use.  <c>2/kernel-2.6.12.2-pa2</c> means the kernel named 
-<c>/kernel-2.6.12.2-pa2</c> resides on the second partition.  Beware, the path 
-to the kernel is relative to the boot partition, not to the root partition.
+The first line tells palo the location of the kernel and which boot
+parameters it must use. <c>2/kernel-2.6.12.2-pa2</c> means the kernel named
+<c>kernel-2.6.12.2-pa2</c> resides on the second partition. Beware, the path
+to the kernel is relative to the partition, not to the root of your filesystem.
 </p>
 
 <p>
-The second line indicates which recovery kernel to use.  If it is your
+The second line indicates which recovery kernel to use. If it is your
 first install and you do not have a recovery kernel, please comment this
-out.  The third line indicates on which disk palo will reside. 
+out. The third line indicates on which disk palo will reside. 
 </p>
 
 <p>

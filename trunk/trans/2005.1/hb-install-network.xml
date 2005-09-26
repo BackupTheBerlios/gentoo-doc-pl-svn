@@ -4,13 +4,71 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/hb-install-network.xml,v 1.45 2005/07/02 12:06:42 swift Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2005.1/hb-install-network.xml,v 1.2 2005/08/08 13:24:46 swift Exp $ -->
 
 <sections>
 
-<version>2.2</version>
-<date>2005-07-02</date>
+<version>5.0</version>
+<date>2005-08-08</date>
 
+<section>
+<title>Do you need Networking?</title>
+<subsection>
+<title>Who can do without?</title>
+<body>
+
+<p>
+Generally, you don't need a working network connection to install Gentoo using
+the Universal Installation CD. However, there are some circumstances where you
+do want to have a working Internet connection:
+</p>
+
+<ul>
+  <li>
+    The stage3 files that are stored in the Universal Installation CD do not 
+    match your architecture and you need to download the correct stage3 file
+  </li>
+  <li>
+    You need to install a specific networking application that will allow you to
+    connect to the Internet which isn't available on the Universal Installation 
+    CD but is supported by the Installation CD (i.e. you can connect to the 
+    Internet using the Installation CD but the necessary sources are not 
+    available on the Installation CD)
+  </li>
+  <li>
+    You want remote assistance during the installation (using SSH or through
+    direct conversations using IRC)
+  </li>
+</ul>
+
+</body>
+</subsection>
+<subsection>
+<title>Do I need Networking?</title>
+<body>
+
+<p>
+To find out if the stage3 file for your architecture is available, take a look
+inside <path>/mnt/cdrom/stages</path> and check if one of the available stages
+matches your architecture. If not, you can still opt for a stage3 file of an
+architecture compatible with yours.
+</p>
+
+<p>
+If you on the other hand want to use a stage3 file optimized for your
+architecture and the stage3 file of your choice is not available, then you will
+need networking to download the appropriate stage3 file.
+</p>
+
+<p>
+So, if you don't need networking, you can skip the rest of this chapter and 
+continue with <uri link="?part=1&amp;chap=4">Preparing the Disks</uri>.
+Otherwise, continue with the networking configuration sections below.
+</p>
+
+</body>
+</subsection>
+</section>
 <section>
 <title>Automatic Network Detection</title>
 <subsection>

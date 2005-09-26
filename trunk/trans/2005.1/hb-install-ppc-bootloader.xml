@@ -4,11 +4,11 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/hb-install-ppc-bootloader.xml,v 1.31 2005/09/09 07:49:22 fox2mike Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2005.1/hb-install-ppc-bootloader.xml,v 1.4 2005/09/05 15:08:54 neysx Exp $ -->
 
 <sections>
 
-<version>2.7</version>
+<version>5.2</version>
 <date>2005-09-05</date>
 
 <section>
@@ -19,7 +19,7 @@
 
 <p>
 Now that the kernel is configured and compiled, you'll need a <e>bootloader</e>
-to start your new Linux installation.  The <e>bootloader</e> that you use will 
+to start your new linux installation.  The <e>bootloader</e> that you use will 
 depend upon the type of PPC machine you have.
 </p>
 
@@ -41,7 +41,7 @@ The Pegasos does not require a bootloader, but you will need to emerge
 <body>
 
 <impo>
-yaboot can only be used on NewWorld Apple or IBM machines!
+yaboot can only be used on NewWorld Apple and IBM systems!
 </impo>
 
 <p>
@@ -50,7 +50,7 @@ filesystem.  To do this, you will need to "bind-map" the <path>/dev</path>
 filesystem from the Installation CD to <path>/dev</path> inside of the chroot.
 </p>
 
-<pre caption="Bind-mounting the /dev filesystem">
+<pre caption="Bind-mounting the /dev-filesystem">
 # <i>exit </i> # this will exit the chroot
 # <i>mount -o bind /dev /mnt/gentoo/dev</i>
 # <i>chroot /mnt/gentoo /bin/bash</i>
@@ -81,7 +81,7 @@ image=/boot/kernel-2.6.12
   root=/dev/ram0    <comment># If using genkernel this is /dev/ram0</comment>
   partition=3
   append="real_root=/dev/hda3 init=/linuxrc"  
-  <comment># You can add additional kernel arguments to be appended such as 
+  <comment># You can add additional kernel arguments to append such as 
   # rootdelay=10 for a USB/Firewire Boot</comment>
   read-only
 <comment>##########################################################</comment>
@@ -108,8 +108,8 @@ set up dual and triple boot combinations with Linux, Mac OS, and Mac OS X.
 <p>
 To use <c>yabootconfig</c>, your drive must have an Apple_Bootstrap partition,
 and <path>/etc/fstab</path> must be configured with your Linux partitions. Both
-of these steps should have been completed already.  First, make sure that you 
-have the latest version of <c>yaboot</c> installed.
+of these should have been done already in the steps above. To start, ensure that
+you have the latest <c>yaboot</c> installed.
 </p>
 
 <pre caption = "Installing yaboot with GRP">
@@ -117,23 +117,21 @@ have the latest version of <c>yaboot</c> installed.
 </pre>
 
 <p>
-Now, exit the chroot and run <c>yabootconfig --chroot /mnt/gentoo</c>.  It will
-ask you to confirm the location of the Apple_Bootstrap partition.  Type <c>Y</c>
-if it is correct. If not, check <path>/etc/fstab</path> and ensure that the 
-device paths are correct.  Once the bootstrap partition has been selected, 
-<c>yabootconfig</c> will scan your system setup, create 
-<path>/etc/yaboot.conf</path> and run <c>mkofboot</c>. <c>mkofboot</c>
-formats the Apple_Bootstrap partition, and installs the yaboot configuration 
-file onto it.  After this is complete, enter the chroot again.
+Now exit the chroot and run <c>yabootconfig --chroot /mnt/gentoo</c>. The
+program will run and it will confirm the location of the bootstrap partition.
+Type <c>Y</c> if it is correct. If not, double check <path>/etc/fstab</path>.
+yabootconfig will then scan your system setup, create
+<path>/etc/yaboot.conf</path> and run <c>mkofboot</c> for you. <c>mkofboot</c>
+is used to format the Apple_Bootstrap partition, and install the yaboot
+configuration file into it.  After this enter the chroot again.
 </p>
-
-<pre caption="Re-enter the chroot">
+<pre caption="enter chroot">
 # <i>chroot /mnt/gentoo /bin/bash</i>
 # <i>/usr/sbin/env-update &amp;&amp; source /etc/profile</i>
 </pre>
 
 <p>
-You may want to verify the contents of <path>/etc/yaboot.conf</path>. If you
+You might want to verify the contents of <path>/etc/yaboot.conf</path>. If you
 make changes to <path>/etc/yaboot.conf</path> (like setting the default/boot
 OS), make sure to rerun <c>ybin -v</c> to apply changes to the Apple_Bootstrap
 partition.
@@ -150,7 +148,8 @@ Now continue with <uri link="#reboot">Rebooting the System</uri>.
 <body>
 
 <p>
-First, make sure you have the latest version of <c>yaboot</c> installed.
+First make sure you have the latest <c>yaboot</c> installed on your
+system:
 </p>
 
 <pre caption = "Installing yaboot">
@@ -183,6 +182,7 @@ boot=/dev/hda2
 ## hd:X means /dev/sdaX (or /dev/hdaX).
 ## 
 ## G5 users should uncomment this line!!
+
 #ofboot=hd:2
 
 ## Users booting from firewire should use something like this line:
@@ -292,8 +292,8 @@ cdimage ~# <i>reboot</i>
 </pre>
 
 <p>
-Of course, don't forget to remove all bootable media, since MacOS needs to boot
-this time.
+Of course, don't forget to remove the bootable CD, otherwise the CD will be
+booted again instead of MacOS.
 </p>
 
 <p>
@@ -307,10 +307,10 @@ configuration, additional boot arguments may need to be applied.
 </p>
 
 <p>
-BootX can be configured to start Linux upon boot. If you chose to do this, the 
-computer will boot into MacOS and then, during startup, load BootX which in turn
-starts Linux. See the <uri link="http://penguinppc.org/bootloaders/bootx/">
-BootX home page</uri> for more information.
+BootX can be configured to start Linux upon boot. If you do this, you will first
+see your machine boot into MacOS then, during startup, BootX will load and start
+Linux. See the <uri link="http://penguinppc.org/bootloaders/bootx/">BootX home
+page</uri> for more information.
 </p>
 
 <p>
@@ -417,21 +417,22 @@ Now, continue the installation with
 <body>
 
 <impo>
-BootCreator will build a SmartFirmware boot menu written in Forth for the 
+BootCreator will build a nice SmartFirmware bootmenu written in Forth for the
 Pegasos.
 </impo>
 
 <p>
-First, ensure that you have <c>bootcreator</c> installed on your system:
+First make sure you have the latest <c>bootcreator</c> installed on your
+system:
 </p>
 
 <pre caption = "Installing bootcreator">
-# <i>emerge bootcreator</i>
+# <i>emerge --usepkg --update bootcreator</i>
 </pre>
 
 <p>
 Now copy the file <path>/etc/bootmenu.example</path> into
-<path>/etc/bootmenu</path> and edit it to suit your needs:
+<path>/etc/bootmenu</path> and edit it to your needs:
 </p>
 
 <pre caption = "Edit the bootcreator config file">
@@ -440,7 +441,8 @@ Now copy the file <path>/etc/bootmenu.example</path> into
 </pre>
 
 <p>
-An example <path>/etc/bootmenu</path> config file is included below.
+Below you find a completed <path>/etc/bootmenu</path> config file. Alter it at
+will.
 </p>
 
 <pre caption = "bootcreator config file">
@@ -473,9 +475,9 @@ ide:0 kernelz-2.6.12 root=/dev/ram0 real_root=/dev/hda3 init=/linuxrc
 </pre>
 
 <p>
-Finally, the <path>bootmenu</path> must be transformed into Forth and copied to
-your boot partition so the SmartFirmware can read it.  To do this, start 
-<c>bootcreator</c>:
+Finally the <path>bootmenu</path> must be transfered into Forth and copied to
+your boot partition, so that the SmartFirmware can read it.  Therefore you have
+to call <c>bootcreator</c>:
 </p>
 
 <pre caption = "Install the bootmenu">
@@ -483,13 +485,13 @@ your boot partition so the SmartFirmware can read it.  To do this, start
 </pre>
 
 <note>
-Be sure to check the SmartFirmware's settings when you reboot, and ensure that
+Be sure to have a look into the SmartFirmware's settings when you reboot, that
 <path>menu</path> is the file that will be loaded by default.
 </note>
 
 <p>
-Now, continue the installation with 
-<uri link="#reboot">Rebooting the System</uri>.
+For now, continue the installation with <uri link="#reboot">Rebooting the
+System</uri>.
 </p>
 
 
@@ -501,8 +503,8 @@ Now, continue the installation with
 <body>
 
 <p>
-Exit the chrooted environment and unmount all mounted partitions so we can
-reboot cleanly, then <c>reboot</c>.
+Exit the chrooted environment and unmount all mounted partitions. Then type in
+that one magical command you have been waiting for: <c>reboot</c>.
 </p>
 
 <pre caption="Exiting the chroot, unmounting all partitions and rebooting">
@@ -512,7 +514,7 @@ livecd ~# <i>reboot</i>
 </pre>
 
 <p>
-Once your new Gentoo installation has booted, finish up with <uri
+Once rebooted in your Gentoo installation, finish up with <uri
 link="?part=1&amp;chap=11">Finalizing your Gentoo Installation</uri>.
 </p>
 
