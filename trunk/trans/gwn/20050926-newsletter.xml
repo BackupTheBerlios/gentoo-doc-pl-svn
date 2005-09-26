@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="/xsl/guide.xsl" type="text/xsl"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
-<guide type="newsletter" link="20050926-newsletter.xml" lang="en">
-<title>Gentoo Weekly Newsletter</title>
-<subtitle>September 26th, 2005</subtitle>
-<author title="Editor">
+<guide type="newsletter" link="20050926-newsletter.xml" lang="pl">
+<title>Tygodnik Gentoo</title>
+<subtitle>26 września 2005</subtitle>
+<author title="Redaktor naczelny">
 <mail link="plate@gentoo.org">Ulrich Plate</mail>
 </author>
-<author title="Author">
+<author title="Redaktor">
 <mail link="tres@mindspring.com">Tres Melton</mail>
 </author>
-<abstract>This is the Gentoo Weekly Newsletter for the week of 26 September 2005.</abstract>
+<author title="Tłumacz">
+<mail link="jbozanowski@gmail.com">Jakub Bożanowski</mail>
+</author>
+<author title="Tłumacz">
+<mail link="linux_user@o2.pl">Michał Kurgan</mail>
+</author>
+
+<abstract>Wydanie Tygodnika Gentoo z 26 września 2005.</abstract>
 <summary/>
-<version>Volume 4, Issue 38</version>
+<version>Wolumin 4, numer 38</version>
 <date>2005-09-26</date>
 
 <!-- Gentoo News -->
@@ -22,19 +29,20 @@
 <title>New IRC channel for ebuilders</title>
 <body>
 <p>
-A new IRC channel, <path>#gentoo-dev-help</path>, is being officially 
-announced as a place for prospective developers, ebuild authors, bug 
+A new IRC channel, <path>#gentoo-dev-help</path>, is being officially
+announced as a place for prospective developers, ebuild authors, bug
 hunters, and the like to gather and trade tips and tricks about Gentoo's best
-practices. This channel has been newly established on <path>irc.freenode.net</path> 
-since many people don't have a voice in <path>#gentoo-dev</path>, and to 
-relieve the questions that are being posed in <path>#gentoo-portage</path>.  
-The creators hope to attract Gentoo users, potential developers, and 
-prospective arch testers who have questions that are more in-depth than a high 
-volume channel like <path>#gentoo</path> can answer, without distracting the 
-busy Gentoo developers from their core activities.  Any developers interested in 
-passing on their skills are welcome to come and join the new channel.  In the 
-interest of staying on topic all installation questions will be referred back to 
-<path>#gentoo</path>, but all other Gentoo-related issues are fair game. 
+practices. This channel has been newly established on
+<path>irc.freenode.net</path>
+since many people don't have a voice in <path>#gentoo-dev</path>, and to
+relieve the questions that are being posed in <path>#gentoo-portage</path>.
+The creators hope to attract Gentoo users, potential developers, and
+prospective arch testers who have questions that are more in-depth than a high
+volume channel like <path>#gentoo</path> can answer, without distracting the
+busy Gentoo developers from their core activities.  Any developers interested in
+passing on their skills are welcome to come and join the new channel.  In the
+interest of staying on topic all installation questions will be referred back to
+<path>#gentoo</path>, but all other Gentoo-related issues are fair game.
 </p>
 </body>
 </section>
@@ -45,70 +53,81 @@ interest of staying on topic all installation questions will be referred back to
 <!-- Developer of the week -->
 <!-- Heard in the community: gentoo-dev, gentoo-user, forums -->
 <chapter>
-<title>Heard in the community</title>
+<title>Społeczność Gentoo</title>
 <section>
-<title>Web forums</title>
+<title>Forum</title>
 <body>
-<p><b>Apache blowout</b></p>
+<p><b>Skutki aktualizacji apache</b></p>
 <p>
-Forum regular <uri link="https://forums.gentoo.org/profile.php?mode=viewprofile&amp;u=32005">loki99</uri> 
-had a busy Saturday trying to contain the fury of those who got angered by the 
-latest Apache upgrade in Gentoo Linux. Whether you agree with its provocative 
-title or not, the thread is definitely worth watching as it has Gentoo 
-developer <mail link="kloeri@gentoo.org">Bryan Østergaard</mail> chiming in 
-with a thorough explanation of what went up and why:
+Uczestnik forum, <uri
+link="https://forums.gentoo.org/profile.php?mode=viewprofile&amp;u=32005">loki99
+</uri>, miał zapracowaną niedzielę, kiedy to próbował uspokoić wielu
+użytkowników mających problemy po ostatniej aktualizacji apache. Niezależnie od
+tego czy zgadzamy się z tytułem wątku, czy też nie, jest on godny polecenia jako
+że znajdziemy tam uzasadnienie przeprowadzonych modyfikacji przedstawiony przez
+dewelopera Gentoo <mail link="kloeri@gentoo.org">Bryana Østergaarda</mail>.
 </p>
 <ul>
-<li><uri link="https://forums.gentoo.org/viewtopic-t-384368.html">Gentoo Apache2 Config Change Idiocy</uri></li>
+<li><uri link="https://forums.gentoo.org/viewtopic-t-384368.html">Gentoo Apache2
+Config Change Idiocy</uri></li>
 </ul>
-<p><b>KDE 3.5 beta-ebuilds test thread</b></p>
+<p><b>Nowe ebuildy wersji beta KDE 3.5</b></p>
 <p>
-Gentoo developer <mail link="chriswhite@gentoo.org">Chris White</mail> rounds 
-up a group of testers for the release of KDE 3.5, check the sticky mini-HOWTO 
-for details on how to participate:
+Deweloper Gentoo <mail link="chriswhite@gentoo.org">Chris White</mail>
+poszukuje testerów do nowego wydania środowiska do pracy biurkowej KDE 3.5.
+Wszyscy zainteresowani i chętni do pomocy są proszeni o przeglądnięcie
+przyklejonego wątku zawierającego więcej szczegółów:
 </p>
-<ul><li><uri link="https://forums.gentoo.org/viewtopic-t-380632.html">Testing kde-3.5_beta1 small howto</uri></li></ul>
+<ul><li><uri link="https://forums.gentoo.org/viewtopic-t-380632.html">Testing
+kde-3.5_beta1 small howto</uri></li></ul>
 </body>
 </section>
 <section>
-<title>gentoo-dev</title>
+<title>Lista dyskusyjna gentoo-dev</title>
 <body>
-<p><b>Marking packages stable on x86</b></p>
+<p><b>Oznaczanie stabilnych pakietów x86</b></p>
 <p>
-As a consequence of GLEP40 and the new x86 arch team the policy for
-stabling packages on x86 has changed. For endusers this will most likely
-have no side-effects except that packages are expected to become stable
-in a more timely fashion.
+Konsekwencją przyjęcia GLEP40 jest zmiana polityki oznaczania poszczególnych
+pakietów, wchodzących w skład architektury x86, jako stabilnych. Nie powinno
+to sprawiać żadnych problemów użytkownikom końcowym, a nawet spowoduje szybsze
+pojawianie się nowych, stabilnych, wersji oprogramowania w drzewie portage.
 </p>
 <ul>
-<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/31758">Marking packages stable on x86</uri></li>
+<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/31758">Marking
+packages stable on x86</uri></li>
 </ul>
 
-<p><b>Vice and virtues of static libraries</b></p>
+<p><b>Statyczne biblioteki kontra reszta świata</b></p>
 <p>
-A long thread about the pros and cons of having static libraries around,
-also some packages that show "unexpected" behaviour ("if static ncurses
-is unavailable, the bash ebuild will use the bundled gnutermcap (which
-is bad)"). You will also find a short discussion on whether to use a new
-USE-flag for it (or maybe abuse <path>USE="minimal"</path>?).
+W tym długim wątku znajdziemy interesującą dyskusję, zawierającą szereg
+argumentów za i przeciw używaniu statycznych wersji bibliotek oraz pewnych
+pakietów mogących reagować w sposób nieoczekiwany na związane z nimi problemy
+("jeśli statyczna wersja ncurses jest niedostępna, ebuild bash będzie używał
+załączonego gnutermcap (niezbyt dobre rozwiązanie)"). Poruszono także sprawę
+nowego słowa kluczowego <path>USE="minimal"</path>, czy przypadkiem nie powinno
+ono odejść w niepamięć?
 </p>
 <ul>
-<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/31726">Say no to static libraries! (?)</uri></li>
+<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/31726">Say no to
+static libraries! (?)</uri></li>
 </ul>
 
-
-<p><b>"Commercial" software in portage</b></p>
+<p><b>"Komercyjne" oprogramowanie w portage</b></p>
 <p>
-Every now and then GLEP 23 gets resurrected - which means that some
-people want to be able to disallow packagess based on the license.
-Especially non-free software with restrictions on the data files would
-be nice to have a warning ("You need the original Game-CD to install
-this!"), but as long as portage doesn't implement GLEP 23 any changes to
-current behaviour will be a bit patchy. Some ideas like overlays (split
-out all non-free ebuilds) were discussed and mostly dismissed.
+Co jakiś czas dochodzi do wznowienia dyskusji nad GLEP23 - co oznacza, że
+niektórych z użytkowników interesuje możliwości blokowania instalacji pakietów
+bazującej na rodzaju licencji. Dotyczy to w szczególności aplikacji wymagających
+dodatkowych danych, co dobrze byłoby wcześniej wiedzieć (np. "By zainstalować
+ten pakiet wymagane są pliki z oryginalnej płyty CD"). Jednak do momentu w
+którym portage będzie zawierał implementację GLEP23, wszystkie udostępniające
+taką funkcjonalność modyfikacje wymagają zastosowania rozmaitych poprawek. W
+wątku przedstawiono kilka takich pomysłów, jak użycie nakładek portage
+(zawierających wolne i nie-wolne oprogramowanie), i powody dlaczego ich nie
+stosować.
 </p>
 <ul>
-<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/">Commercial software in Portage</uri></li>
+<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/">Commercial
+software in Portage</uri></li>
 </ul>
 </body>
 </section>
@@ -120,10 +139,13 @@ out all non-free ebuilds) were discussed and mostly dismissed.
 <title>Germany: Gentoo developer conference call for papers</title>
 <body>
 <p>
-A reminder for all those actively considering a paper presentation at the <uri 
-link="http://conference.gentoo.org">European conference for Gentoo developers</uri> 
-in November: please submit your proposals before 30 September. The same <uri link="http://conference.gentoo.org/cgi-bin/registration.pl">form 
-used for registering to the event</uri> can be used for submissions of topics and 
+A reminder for all those actively considering a paper presentation at the <uri
+link="http://conference.gentoo.org">European conference for Gentoo
+developers</uri>
+in November: please submit your proposals before 30 September. The same <uri
+link="http://conference.gentoo.org/cgi-bin/registration.pl">form
+used for registering to the event</uri> can be used for submissions of topics
+and
 brief outlines of planned presentation.
 </p>
 </body>
@@ -136,16 +158,16 @@ brief outlines of planned presentation.
 <title>The Register (23 September 2005)</title>
 <body>
 <p>
-In a <uri link="http://www.theregister.co.uk/2005/09/23/letters_2309/">letter 
-to the editor</uri>, weathered sysadmin Eoin refutes the idea of a Windows-only 
-standard for operating systems on USB sticks that the The Register had been 
-reporting about earlier. "Your article regarding the new U3 standard was mostly 
-correct, baring your final assertion that Linux does not support this. As far 
-as I can tell the idea actually evolved from the Linux heads," writes Eoin, 
-happily acknowledging that whenever one of those Linux heads with distros on a 
-stick visits his offices, they generally know what they're doing: "These people 
-are using 2-4GB USB drives with almost complete versions of Gentoo and Red Hat 
-running on them - all very impressive and thankfully I don't need to attempt 
+In a <uri link="http://www.theregister.co.uk/2005/09/23/letters_2309/">letter
+to the editor</uri>, weathered sysadmin Eoin refutes the idea of a Windows-only
+standard for operating systems on USB sticks that the The Register had been
+reporting about earlier. "Your article regarding the new U3 standard was mostly
+correct, baring your final assertion that Linux does not support this. As far
+as I can tell the idea actually evolved from the Linux heads," writes Eoin,
+happily acknowledging that whenever one of those Linux heads with distros on a
+stick visits his offices, they generally know what they're doing: "These people
+are using 2-4GB USB drives with almost complete versions of Gentoo and Red Hat
+running on them - all very impressive and thankfully I don't need to attempt
 (and fail) to support them if something goes wrong."
 </p>
 </body>
@@ -154,36 +176,37 @@ running on them - all very impressive and thankfully I don't need to attempt
 <!-- Tips and Tricks -->
 <!-- Moves, adds, and changes -->
 <chapter>
-<title>Moves, adds, and changes</title>
+<title>Odeszli, przybyli, zmienili status</title>
 <section>
-<title>Moves</title>
+<title>Odeszli</title>
 <body>
 <p>
-The following developers recently left the Gentoo team:
+Następujący deweloperzy opuścili projekt Gentoo Linux w minionym tygodniu:
 </p>
 <ul>
-<li><e>None this week</e></li>
+<li><e>Nikt w tym tygodniu</e></li>
 </ul>
 </body>
 </section>
 <section>
-<title>Adds</title>
+<title>Przybyli</title>
 <body>
 <p>
-The following developers recently joined the Gentoo Linux team:
+Następujący deweloperzy przyłączyli się do projektu Gentoo Linux w minionym
+tygodniu:
 </p>
 <ul>
-<li><e>None this week</e></li>
+<li><e>Nikt w tym tygodniu</e></li>
 </ul>
 </body>
 </section>
 <section>
-<title>Changes</title>
+<title>Zmienili status</title>
 <body>
-<p>The following developers recently changed roles within the
-Gentoo Linux project:</p>
+<p>Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie
+Gentoo Linux funkcję:</p>
 <ul>
-<li>Daniel Gryniewicz (dang) - operational lead for AMD64 arch testers </li>
+<li>Daniel Gryniewicz (dang) - operacyjny szef testerów architektury AMD64</li>
 </ul>
 </body>
 </section>
@@ -191,90 +214,84 @@ Gentoo Linux project:</p>
 
 <!-- Gentoo security -->
 <chapter>
-<title>Gentoo Security</title>
+<title>Bezpieczeństwo Gentoo</title>
 <!-- paste from the script -->
 
 <section>
-<title>Apache, mod_ssl: Multiple vulnerabilities</title>
+<title>Apache, mod_ssl: Wiele usterek</title>
 <body>
 <p>
-
-mod_ssl and Apache are vulnerable to a restriction bypass and a potential
-local privilege escalation.
-
+Usterki w mod_ssl i Apache mogą doprowadzić do ominięcia zabezpieczeń, a w
+konsekwencji do lokalnego zwiększenia uprawnień.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200509-12.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200509-12.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>Clam AntiVirus: Multiple vulnerabilities</title>
+<title>Clam AntiVirus: Wiele usterek</title>
 <body>
 <p>
-
-Clam AntiVirus is subject to vulnerabilities ranging from Denial of Service
-to execution of arbitrary code when handling compressed executables.
-
+Clam AntiVirus zawiera szereg usterek umożliwiających przeprowadzenie
+różnorodnych ataków w tym, Denial of Service, wykonanie niepożądanego kodu w
+czasie pracy na zarchiwizowanymi plikami wykonywalnymi.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200509-13.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200509-13.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>Zebedee: Denial of Service vulnerability</title>
+<title>Zebedee: Atak Denial of Service</title>
 <body>
 <p>
-
-A bug in Zebedee allows a remote attacker to perform a Denial of Service
-attack.
-
+Błąd występujący w Zebedee umożliwia zdalnemu napastnikowi na przeprowadzenie
+ataku Denial of Service.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200509-14.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200509-14.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>util-linux: umount command validation error</title>
+<title>util-linux: Błąd walidacji umount</title>
 <body>
 <p>
-
-A command validation error in umount can lead to an escalation of
-privileges.
-
+Błąd w walidacji komendy umount może doprowadzić do zwiększenia uprawnień.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200509-15.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200509-15.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>Mantis: XSS and SQL injection vulnerabilities</title>
+<title>Mantis: XSS oraz SQL injection</title>
 <body>
 <p>
-
-Mantis is affected by an SQL injection and several cross-site scripting
-(XSS) vulnerabilities.
-
+Mantis jest podatny na atak SQL injection oraz zawiera szereg usterek XSS.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200509-16.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200509-16.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>Webmin, Usermin: Remote code execution through PAM authentication</title>
+<title>Webmin, Usermin: Zdalne wykonanie kodu przez autoryzację PAM</title>
 <body>
 <p>
-
-If Webmin or Usermin is configured to use full PAM conversations, it is
-vulnerable to the remote execution of arbitrary code with root privileges.
-
+W przypadku gdy Webmin lub Usermin zostały skonfigurowane aby używać
+autoryzacji PAM, możliwe jest zdalne wykonanie niepożądanego kodu z prawami
+administratora.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200509-17.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200509-17.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
@@ -285,102 +302,146 @@ For more information, please see the <uri link="/security/en/glsa/glsa-200509-17
 <chapter>
 <title>Bugzilla</title>
 <section>
-<title>Summary</title>
+<title>Podsumowanie</title>
 <body>
 <ul>
-<li><uri link="#doc_chap1_sect2">Statistics</uri></li>
-<li><uri link="#doc_chap1_sect3">Closed bug ranking</uri></li>
-<li><uri link="#doc_chap1_sect4">New bug rankings</uri></li>
+<li><uri link="#doc_chap1_sect2">Statystyki</uri></li>
+<li><uri link="#doc_chap1_sect3">Zamknięte bugi</uri></li>
+<li><uri link="#doc_chap1_sect4">Nowe bugi</uri></li>
 </ul>
 </body>
 </section>
 
 <section>
-<title>Statistics</title>
+<title>Statystyki</title>
 <body>
 <p>
-The Gentoo community uses Bugzilla (<uri
-link="http://bugs.gentoo.org">bugs.gentoo.org</uri>) to record and track
-bugs, notifications, suggestions and other interactions with the
-development team.  Between 18 September 2005
-and 25 September 2005, activity on the site has resulted in:
+Społeczność Gentoo używa Bugzilli (<uri
+link="http://bugs.gentoo.org/">bugs.gentoo.org</uri>) do zgłaszania i śledzenia
+błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomiędzy
+18 września 2005, a 25 września 2005 aktywność w serwisie przedstawiała się
+następująco:
 </p>
 <ul>
-<li>798 new bugs during this period</li>
-<li>366 bugs closed or resolved during this period</li>
-<li>39 previously closed bugs were reopened this period</li>
+<li>zgłoszono 798 nowych bugów</li>
+<li>zamknięto lub rozwiązano 366 bugów</li>
+<li>39 uprzednio zamkniętych bugów zostało ponownie otwartych</li>
 </ul>
 <p>
-Of the 8405 currently open bugs: 98 are labeled 'blocker', 189 are labeled 'critical', and 554 are labeled 'major'.
+Spośród 8405 obecnie otwartych bugów: 98 oznaczono jako 'blocker', 189 jako
+'critical', a 554 jako 'major'.
 </p>
 </body>
 </section>
 
 <section>
-<title>Closed bug rankings</title>
+<title>Zamknięte Bugi</title>
 <body>
 <p>
-The developers and teams who have closed the most bugs during this period are:
+Deweloperzy oraz zespoły, które zamknęły najwięcej bugów w minionym
+tygodniu, to:
 </p>
 <ul>
-<li><mail link="amd64@gentoo.org">AMD64 Porting Team</mail>, with 23
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;resolution=FIXED&amp;assigned_to=amd64@gentoo.org">closed bugs</uri>
+<li><mail link="amd64@gentoo.org">AMD64 Porting Team</mail>, 23 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=
+CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-
+25&amp;resolution=FIXED&amp;assigned_to=amd64@gentoo.org">zamknięte bugi</uri>
 </li>
-<li><mail link="kde@gentoo.org">Gentoo KDE team</mail>, with 22
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;resolution=FIXED&amp;assigned_to=kde@gentoo.org">closed bugs</uri>
+<li><mail link="kde@gentoo.org">Gentoo KDE team</mail>, 22 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=
+CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-
+25&amp;resolution=FIXED&amp;assigned_to=kde@gentoo.org">zamknięte bugi</uri>
 </li>
-<li><mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, with 18
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;resolution=FIXED&amp;assigned_to=gnome@gentoo.org">closed bugs</uri>
+<li><mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, 18
+<uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=
+CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-
+25&amp;resolution=FIXED&amp;assigned_to=gnome@gentoo.org">zamkniętych
+bugów</uri>
 </li>
-<li><mail link="ppc-macos@gentoo.org">Gentoo for Mac OS X</mail>, with 17
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;resolution=FIXED&amp;assigned_to=ppc-macos@gentoo.org">closed bugs</uri>
+<li><mail link="ppc-macos@gentoo.org">Gentoo for Mac OS X</mail>, 17 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=
+CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-
+25&amp;resolution=FIXED&amp;assigned_to=ppc-macos@gentoo.org">zamkniętych
+bugów</uri>
 </li>
-<li><mail link="security@gentoo.org">Gentoo Security</mail>, with 13
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">closed bugs</uri>
+<li><mail link="security@gentoo.org">Gentoo Security</mail>, 13 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=
+CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-
+25&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">zamkniętych
+bugów</uri>
 </li>
-<li><mail link="ml@gentoo.org">Gentoo Team for the ML programming language family</mail>, with 13
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;resolution=FIXED&amp;assigned_to=ml@gentoo.org">closed bugs</uri>
+<li><mail link="ml@gentoo.org">Gentoo Team for the ML programming language
+family</mail>, 13 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=
+CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-
+25&amp;resolution=FIXED&amp;assigned_to=ml@gentoo.org">zamkniętych bugów</uri>
 </li>
-<li><mail link="ppc@gentoo.org">PPC Porters</mail>, with 12
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;resolution=FIXED&amp;assigned_to=ppc@gentoo.org">closed bugs</uri>
+<li><mail link="ppc@gentoo.org">PPC Porters</mail>, 12 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=
+CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-
+25&amp;resolution=FIXED&amp;assigned_to=ppc@gentoo.org">zamkniętych bugów</uri>
 </li>
-<li><mail link="net-p2p@gentoo.org">Gentoo net-p2p team</mail>, with 12
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;resolution=FIXED&amp;assigned_to=net-p2p@gentoo.org">closed bugs</uri>
+<li><mail link="net-p2p@gentoo.org">Gentoo net-p2p team</mail>, 12 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=
+CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-
+25&amp;resolution=FIXED&amp;assigned_to=net-p2p@gentoo.org">zamkniętych
+bugów</uri>
 </li>
 </ul>
 </body>
 </section>
 
 <section>
-<title>New bug rankings</title>
+<title>Nowe Bugi</title>
 <body>
 <p>
-The developers and teams who have been assigned the most new bugs during this period are:
+Deweloperzy oraz zespoły, którym przydzielono najwięcej bugów w minionym
+tygodniu,
+to:
 </p>
 <ul>
-<li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New Packages</mail>, with 30
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;assigned_to=maintainer-wanted@gentoo.org">new bugs</uri>
+<li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New
+Packages</mail>, 30 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&
+amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;
+chfieldto=2005-09-25&amp;assigned_to=maintainer-wanted@gentoo.org">nowych
+bugów</uri>
 </li>
-<li><mail link="perl@gentoo.org">Perl Devs @ Gentoo</mail>, with 20
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;assigned_to=perl@gentoo.org">new bugs</uri>
+<li><mail link="perl@gentoo.org">Perl Devs @ Gentoo</mail>, 20 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&
+amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;
+chfieldto=2005-09-25&amp;assigned_to=perl@gentoo.org">nowych bugów</uri>
 </li>
-<li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, with 9
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;assigned_to=sound@gentoo.org">new bugs</uri>
+<li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, 9 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&
+amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;
+chfieldto=2005-09-25&amp;assigned_to=sound@gentoo.org">nowych bugów</uri>
 </li>
-<li><mail link="kde@gentoo.org">Gentoo KDE team</mail>, with 9
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;assigned_to=kde@gentoo.org">new bugs</uri>
+<li><mail link="kde@gentoo.org">Gentoo KDE team</mail>, 9 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&
+amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;
+chfieldto=2005-09-25&amp;assigned_to=kde@gentoo.org">nowych bugów</uri>
 </li>
-<li><mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, with 8
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;assigned_to=gnome@gentoo.org">new bugs</uri>
+<li><mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, 8 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&
+amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;
+chfieldto=2005-09-25&amp;assigned_to=gnome@gentoo.org">nowych bugów</uri>
 </li>
-<li><mail link="text-markup@gentoo.org">Text-Markup Team</mail>, with 7
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;assigned_to=text-markup@gentoo.org">new bugs</uri>
+<li><mail link="text-markup@gentoo.org">Text-Markup Team</mail>, 7 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&
+amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;
+chfieldto=2005-09-25&amp;assigned_to=text-markup@gentoo.org">nowych bugów</uri>
 </li>
-<li><mail link="games@gentoo.org">Gentoo Games</mail>, with 7
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;assigned_to=games@gentoo.org">new bugs</uri>
+<li><mail link="games@gentoo.org">Gentoo Games</mail>, 7 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&
+amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;
+chfieldto=2005-09-25&amp;assigned_to=games@gentoo.org">nowych bugów</uri>
 </li>
-<li><mail link="x11@gentoo.org">Gentoo X-windows packagers</mail>, with 6
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;chfieldto=2005-09-25&amp;assigned_to=x11@gentoo.org">new bugs</uri>
+<li><mail link="x11@gentoo.org">Gentoo X-windows packagers</mail>, 6 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&
+amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-09-18&amp;
+chfieldto=2005-09-25&amp;assigned_to=x11@gentoo.org">nowych bugów</uri>
 </li>
 </ul>
 </body>
@@ -388,82 +449,61 @@ The developers and teams who have been assigned the most new bugs during this pe
 </chapter>
 <!-- GWN feedback information -->
 <chapter>
-<title>GWN feedback</title>
+<title>Opinie czytelników</title>
 <section>
 <body>
 <p>
-Please send us your <mail link="gwn-feedback@gentoo.org">feedback</mail> and
-help make the GWN better.
+Jeśli chcesz, aby ten magazyn był jeszcze lepszy, podziel się z
+<mail link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat.
+Uwagi dotyczące tłumaczenia tygodnika można zgłaszać na adres
+<mail>rane@gentoo.org</mail>.
 </p>
 </body>
 </section>
 </chapter>
 <!-- GWN subscription information -->
 <chapter>
-<title>GWN subscription information</title>
+<title>Subskrypcja Tygodnika Gentoo</title>
 <section>
 <body>
-<p>To subscribe to the Gentoo Weekly Newsletter, send a blank email to
-<mail
-link="gentoo-gwn+subscribe@gentoo.org">gentoo-gwn+subscribe@gentoo.org</mail>.
-</p> 
-<p> To unsubscribe to the Gentoo Weekly Newsletter, send a blank email to
-<mail
-link="gentoo-gwn+unsubscribe@gentoo.org">gentoo-gwn+unsubscribe@gentoo.org</mail>
-from the email address you are subscribed under.</p>
+<p>
+Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego e-maila na adres
+<mail>gentoo-gwn-pl+subscribe@gentoo.org</mail>.
+</p>
+<p>
+Aby zrezygnować z subskrypcji, należy wysłać pustego e-maila na adres <mail>
+gentoo-gwn-pl+unsubscribe@gentoo.org</mail> z konta, na które jest
+zarejestrowana.</p>
 </body>
 </section>
 </chapter>
 
 <!-- Other Languages -->
 <chapter>
-<title>Other languages</title>
+<title>Inne języki</title>
 <section>
 <body>
-<p>The Gentoo Weekly Newsletter is also available in the following
-languages:</p>
+<p>
+Tygodnik Gentoo jest dostępny w następujących językach:
+</p>
+
 <ul>
-<li>
-<uri link="/news/da/gwn/gwn.xml">Danish</uri>
-</li>
-<li>
-<uri link="/news/nl/gwn/gwn.xml">Dutch</uri>
-</li>
-<li>
-<uri link="/news/en/gwn/gwn.xml">English</uri>
-</li>
-<li>
-<uri link="/news/de/gwn/gwn.xml">German</uri>
-</li>
-<li>
-<uri link="/news/fr/gwn/gwn.xml">French</uri>
-</li>
-<li>
-<uri link="/news/ja/gwn/gwn.xml">Japanese</uri>
-</li>
-<li>
-<uri link="/news/it/gwn/gwn.xml">Italian</uri>
-</li>
-<li>
-<uri link="/news/pl/gwn/gwn.xml">Polish</uri>
-</li>
-<li>
-<uri link="/news/pt_br/gwn/gwn.xml">Portuguese (Brazil)</uri>
-</li>
-<li>
-<uri link="/news/pt/gwn/gwn.xml">Portuguese (Portugal)</uri>
-</li>
-<li>
-<uri link="/news/ru/gwn/gwn.xml">Russian</uri>
-</li>
-<li>
-<uri link="/news/es/gwn/gwn.xml">Spanish</uri>
-</li>
-<li>
-<uri link="/news/tr/gwn/gwn.xml">Turkish</uri>
-</li>
+<li><uri link="http://www.gentoo.org/news/en/gwn/gwn.xml">angielskim</uri></li>
+<li><uri link="http://www.gentoo.org/news/da/gwn/gwn.xml">duńskim</uri></li>
+<li><uri link="http://www.gentoo.org/news/fr/gwn/gwn.xml">francuskim</uri></li>
+<li><uri link="http://www.gentoo.org/news/es/gwn/gwn.xml">hiszpańskim</uri></li>
+<li><uri link="http://www.gentoo.org/news/nl/gwn/gwn.xml">holenderskim</uri></li>
+<li><uri link="http://www.gentoo.org/news/ja/gwn/gwn.xml">japońskim</uri></li>
+<li><uri link="http://www.gentoo.org/news/de/gwn/gwn.xml">niemieckim</uri></li>
+<li><uri link="http://www.gentoo.org/news/pl/gwn/gwn.xml">polskim</uri></li>
+<li><uri link="http://www.gentoo.org/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
+<li><uri link="http://www.gentoo.org/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
+<li><uri link="http://www.gentoo.org/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
+<li><uri link="http://www.gentoo.org/news/tr/gwn/gwn.xml">tureckim</uri></li>
+<li><uri link="http://www.gentoo.org/news/it/gwn/gwn.xml">włoskim</uri></li>
 </ul>
 </body>
 </section>
 </chapter>
 </guide>
+
