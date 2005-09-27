@@ -8,7 +8,7 @@
 
 <sections>
 
-<version>1.20</version>
+<version>5.2</version>
 <date>2005-08-21</date>
 
 <section>
@@ -109,16 +109,9 @@ kilku kerneli zapomnicie, że kiedykowiek uważaliście to za trudne zadanie.
 
 <p>
 Nie sposób jednak zaprzeczyć, że należy dobrze znać swój komputer, aby móc
-prawidłowo skonfigurować jądro. Większość informacji można zdobyć poprzez
-zemergowanie pakietu pciutils (<c>emerge pciutils</c>) zawierającego program
-<c>lspci</c>. Dzięki temu będzie możliwe używanie <c>lspci</c> wewnątrz
-chrootowanego środowiska. Podczas pracy z tym programem możne bezpieczenie
-zignorować wszelkie ostrzeżenia związane z <e>pcilib</e> (jak np.
-"pcilib: cannot open /sys/bus/pci/devices). Ponadto można również uruchomić
-<c>lspci</c> poza środowiskiem chroot. Powinno dać to taki sam efekt. Dodatkowe
-informacje o sterownikach, które należy włączyć do jądra można uzyskać dzięki
-poleceniu <c>lsmod</c>, które pokaże listę modułów jakie załadował system płyty
-instalacyjnej.
+prawidłowo skonfigurować jądro. Informacje o sterownikach, które należy
+włączyć do jądra można uzyskać dzięki poleceniu <c>lsmod</c>, które pokaże
+listę modułów jakie załadował system płyty instalacyjnej.
 </p>
 
 <p>
@@ -162,8 +155,9 @@ Następnie przejdź do <c>File Systems</c> i wybierz wsparcie dla systemów plik
 których zamierzasz używać. Jeśli tego zaniedbasz Gentoo nie będzie w stanie
 zamontować partycji, a czasem nawet się nie uruchomi. Pamiętaj również, aby
 włączać te sterowniki na stałe do jądra, broń Boże nie kompiluj ich jako
-modułów. Przy okazji zaznacz też <c>Virtual memory</c>, <c>/proc file system</c>
-i <c>/dev file system</c> + <c>Automatically mount at boot</c>:
+modułów. Przy okazji zaznacz też <c>Virtual memory</c>, <c>/proc file
+system</c>. Użytkownicy jądra 2.4 dodatkowo wybierają opcje <c>/dev file
+system</c> oraz <c>Automatically mount at boot</c>:
 </p>
 
 <pre caption="Wybór potrzebnych systemów plików">
