@@ -14,7 +14,7 @@
 <body>
 
 <p>
-Nie jest to dokładny opis pracy w CVS, od tego mamy tekst
+Nie jest to dokładny opis pracy w CVS. Od tego mamy tekst
 <uri>http://www.gentoo.org/doc/en/cvs-tutorial.xml</uri> i stronę info dla CVS.
 Tu skoncentrujemy się na zadaniach jakie wykonuje się w drzewie ebuildów we
 współpracy z programem repoman.
@@ -27,7 +27,7 @@ współpracy z programem repoman.
 <body>
 
 <p>
-Warto do pliku <path>~/.cvsrc</path> dodać następujące wpisy:
+Warto dodać do pliku <path>~/.cvsrc</path> następujące wpisy:
 </p>
 
 <pre caption="~/.cvsrc">
@@ -95,7 +95,7 @@ użytkownika):
 </p>
 
 <pre caption="Zmiany w /etc/make.conf do pobierania drzewa przez CVS">
-SYNC="cvs://you@cvs.gentoo.org:/var/cvsroot"
+SYNC="cvs://ja@cvs.gentoo.org:/var/cvsroot"
 CVSROOT=":ext:you@cvs.gentoo.org:/var/cvsroot"
 </pre>
 
@@ -103,20 +103,20 @@ CVSROOT=":ext:you@cvs.gentoo.org:/var/cvsroot"
 Bez względu na to czy drzewo Portage pobiera się za pomocą CVS czy nie, należy
 dodać <c>cvs</c> do zmiennej <c>FEATURES</c> w pliku
 <path>/etc/make.conf</path>. Spowoduje to pobranie wszystkich plików związanych
-z ebuildem podczas wykonywania kodu z <c>SRC_URI</c> podczas wykonywania
+z ebuildem podczas wykonywania kodu funkcji <c>SRC_URI</c> w trakcie realizacji
 polecenia digest.
 </p>
 
 <p>
-Do zmiennej <c>FEATURES</c> można również dodać wpis <c>digest</c>. Dzięki temu
-Portage automatycznie będzie wykonywało to polecenie. Można tam też dodać
-<c>autoaddcvs</c>, aby <c>repoman</c>, narzędzie, którego używa się do
-dodawania nowych ebuildów do repozytorium, automatycznie dodawał brakujące sumy
+Do zmiennej <c>FEATURES</c> warto również dodać wpis <c>digest</c>. Dzięki temu
+Portage automatycznie będzie wykonywało to polecenie. Można również dodać
+<c>autoaddcvs</c>, aby <c>repoman</c> (narzędzie, którego używa się do
+dodawania nowych ebuildów do repozytorium) automatycznie dodawał brakujące sumy
 kontrolne.
 </p>
 
 <p>
-Do zmiennej <c>FEATURES</c>, na architekturach na których to działa, należy
+Do zmiennej <c>FEATURES</c> (na architekturach na których to działa) należy
 dodać również <c>sandbox</c>, co uniemożliwi modyfikację lokalnego systemu
 plików przez ebuildy.
 </p>
@@ -142,7 +142,7 @@ Załóżmy, że chcemy dodać nowy pakiet o nazwie <c>foo</c> do katalogu app-mi
 # <i>cd foo</i>
 <comment>(Ebuildy, które nie są jeszcze gotowe do dodania trzymamy poza drzewem)</comment>
 # <i>cp /ścieżka/do/foo-1.0.ebuild ./</i>
-<comment>[Należy utworzyć plik ChangeLog - więcej informacjie w manie echangelog]</comment>
+<comment>[Należy utworzyć plik ChangeLog - więcej informacji w manie echangelog]</comment>
 <comment>(Zmienna PORTDIR_OVERLAY musi zgadzać się z katalogiem CVS podczas tworzenia sum kontrolnych)</comment>
 # <i>ebuild foo-1.0.ebuild digest</i>
 # <i>cvs add foo-1.0.ebuild ChangeLog files</i>
@@ -158,8 +158,8 @@ link="?part=2&amp;chap=4">metadata</uri>.
 
 <p>
 W tym momencie jesteśmy gotowi do dodania plików. Akapit o tym jak się tego
-dokonuje znajduje się poniżej. Najpierw jednak w związku z wyjściem nowej
-wersji usuniemy pakiet foo-1.0.  
+dokonuje znajduje się poniżej. Najpierw jednak, w związku z wyjściem nowej
+wersji, usuniemy stary ebuild foo-1.0. 
 </p>
 
 <pre>
@@ -170,7 +170,7 @@ wersji usuniemy pakiet foo-1.0.
 </pre>
 
 <p>
-Teraz wysyłamy wszystkie dokonane zmiany.
+A potem umieszczamy na serwerze wszystkie dokonane zmiany.
 </p>
 
 </body>
@@ -183,7 +183,7 @@ Teraz wysyłamy wszystkie dokonane zmiany.
 Zawsze należy korzystać z polecenia <c>repoman commit</c>, nigdy z <c>cvs
 commit</c>. Program repoman to narzędzie QA ("quality assurance" - zapewniające
 jakość), które sprawdza dodawane pliki oraz tworzy pliki Manifest. Jeśli jakaś
-część wyniku polecenia repoman jest niejasna, to wyjaśnienia należy szukać na
+część wyniku polecenia repoman jest niejasna, wyjaśnienia należy szukać na
 stronie man tego programu. Aby uniknąć ciągłego wpisywania hasła, można
 skorzystać ze wskazówek spisanych w tekście
 <uri>http://www.gentoo.org/proj/pl/keychain.xml</uri>.
@@ -194,7 +194,7 @@ skorzystać ze wskazówek spisanych w tekście
 <comment>("scan" sprawdza katalog pod kątem występowania błędów QA. "full" jest bardziej uniwersalny)</comment>
 # <i>repoman scan</i>
 <comment>("commit" dokonuje sprawdzenia, a następnie wysyła pliki, aktualizując przy okazji sumy kontrolne. 
-Warto dodać opcję "verbose", aby zobaczyć informacje zwracane przez CVS...)</comment>
+Warto dodać opcję "verbose", dzięki temu wyświetlą się wszystkie informacje zwracane przez CVS...)</comment>
 # <i>repoman commit</o>
 </pre>
 
@@ -208,7 +208,7 @@ Warto dodać opcję "verbose", aby zobaczyć informacje zwracane przez CVS...)</
 <body>
 
 <p>
-Algorytm jest prosty. Kopiujemy plik do katalogu
+Sprawa jest prosta. Kopiujemy plik do katalogu
 <path>/space/distfiles-local</path> na serwerze <path>dev.gentoo.org</path>.
 </p>
 
@@ -220,7 +220,7 @@ Algorytm jest prosty. Kopiujemy plik do katalogu
 
 <p>
 Wszyscy deweloperzy mogą mieć konta pocztowe na naszych serwerach. Instrukcje
-umożliwiające korzystanie z takiej poczty znajduję się pod adresem
+umożliwiające korzystanie z takiej poczty znajdują się pod adresem
 <uri>http://www.gentoo.org/proj/en/infrastructure/dev-email.xml</uri>.
 </p>
 
@@ -232,16 +232,16 @@ umożliwiające korzystanie z takiej poczty znajduję się pod adresem
 
 <p>
 Na stronie <uri link="http://planet.gentoo.org">Planet Gentoo</uri> znajduje
-się zbiór krótkich artykułów pisanych przez deweloperów Gentoo. Nie jest to
-obowiązkowe, ale gorąco zachęcamy do udzielania się w tym serwisie. Poprawia to
-komunikację pomiędzy deweloperami i użytkownikami oraz bardzo często może być
-interesującą lekturą na długie zimowe wieczory.
+się zbiór krótkich artykułów pisanych przez deweloperów Gentoo. Wprawdzie nie
+jest to obowiązkowe, ale gorąco zachęcamy do udzielania się w tym serwisie.
+Poprawia to komunikację pomiędzy deweloperami i użytkownikami oraz dostarcza
+interesującej lektury na długie zimowe wieczory.
 </p>
 
 <p>
-Aby dodać tam jakiś post, należy posiadać własny blog. Wiele serwisów oferuje
-taką możliwość za darmo, można również (jeśli ma się takie zasoby) hostować go
-samodzielnie. Można również taki blog opublikować na naszych stronach.
+Aby dodać tam jakiś post, wystarczy posiadać własny blog. Wiele serwisów
+oferuje taką możliwość za darmo, można również (jeśli ma się takie zasoby)
+hostować go samodzielnie. Blog może również znajdować się na naszych stronach.
 </p>
 
 <p>
@@ -265,15 +265,15 @@ posiada takie usługi w domyślnej konfiguracji.
 <p>
 Należy zachować zdrowy rozsądek i uważnie dobierać tematy, na które się pisze.
 Poglądy dewelopera mogą zostać mylnie wzięte za oficjalne stanowisko wszystkich
-osób pracujących nad Gentoo i nie radzimy psuć jego wizerunku.
+osób pracujących nad Gentoo, co może zepsuć ich dobry wizerunek.
 </p>
 
 <p>
 Osoby zainteresowane dodawaniem artykułów do serwisu Planet Gentoo powinny
-zgłosić się pod adres <mail>user-relations@gentoo.org</mail> i napisać czy
-potrzebny im jest blog na naszych serwerach czy też chcą dodawać posty z
-jakiegoś zewnętrznego serwisu. Dokładnie omówimy wtedy wszystkie szczegóły i
-odpowiednio skonfigurujemy całą usługę dla niego.
+zgłosić się pod adres <mail>user-relations@gentoo.org</mail> i napisać czy jest
+im potrzebny blog na naszych serwerach, czy też chcą dodawać posty z jakiegoś
+zewnętrznego serwisu. Dokładnie omówimy wtedy wszystkie szczegóły i odpowiednio
+skonfigurujemy całą usługę dla niego.
 </p>
 
 </body>
