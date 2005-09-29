@@ -8,7 +8,7 @@
 
 <sections>
 
-<version>2.13</version>
+<version>5.2</version>
 <date>2005-08-21</date>
 
 <section>
@@ -82,7 +82,7 @@ części tego dokumentu. Poniżej zakładamy, że zainstalowano jądro
 <pre caption="Zmiana dowiązania symbolicznego do źródeł jądra">
 # <i>rm /usr/src/linux</i>
 # <i>cd /usr/src</i>
-
+# <i>ln -s linux-2.6.12-gentoo-r6 linux</i>
 </pre>
 
 <p>
@@ -186,9 +186,9 @@ File systems ---&gt;
     [*] Virtual memory file system support (former shm fs)
 
 <comment>(Wybieramy jedną lub kilka z tych opcji zależnie od używanych systemów plików.)</comment>
-  &lt;*&gt; Second extended fs support
-  &lt;*&gt; Ext3 journalling file system support
   &lt;*&gt; Reiserfs support  
+  &lt;*&gt; Ext3 journalling file system support
+  &lt;*&gt; Second extended fs support
   &lt;*&gt; XFS filesystem support
 </pre>
 
@@ -329,7 +329,7 @@ posłużył do zbudowania jądra.
 </p>
 
 <pre caption="Tworzenie kopii zapasowej konfiguracji jądra">
-# <i>cp .config /boot/config-2.6.12-gentoo-r4</i>
+# <i>cp .config /boot/config-2.6.12-gentoo-r6</i>
 </pre>
 
 <p>
@@ -446,7 +446,7 @@ Użytkownicy EVMS2 lub LVM2 powinni dodać również <c>--evms2</c> lub
 </p>
 
 <pre caption="Uruchamianie genkernel">
-# <i>genkernel all</i>
+# <i>genkernel --genzimage all</i>
 </pre>
 
 <pre caption="Na Pegasosach">
@@ -460,6 +460,8 @@ konfiguracji bootloadera do prawidłowego wypełnienia jego pliku
 konfiguracyjnego, więc warto je sobie zapisać. Przy następnym uruchomieniu
 komputera zostanie najpierw wykonany plik initrd, który wykryje cały dostępny
 sprzęt i wczyta odpowiednie moduły, a następnie uruchomi się właściwy system.
+Należy się upewnić, że zapisaliśmy poprawnie wymagane argumenty do załadowania
+systemu, bez nich system się nie uruchomi.
 </p>
 
 <pre caption="Sprawdzanie nazw utworzonych plików jądra">
@@ -469,15 +471,26 @@ sprzęt i wczyta odpowiednie moduły, a następnie uruchomi się właściwy syst
 <p>
 Następna czynność jeszcze bardziej upodobni nasz system do tego znajdującego się
 na płycie instalacyjnej. Zemergujemy <c>coldplug</c>, który działa na podobnej
-zasadzie jak initrd, wykrywający przy starcie wszystkie niezbędne do
-uruchomienia systemu urządzenia, z tym, że zajmuje się wszystkimi ich typami.
-Aby zemergować i uruchomić <c>coldplug</c> należy wykonać następujące
-polecenia:
+zasadzie jak initrd, który wykrywa przy starcie wszystkie niezbędne do
+uruchomienia systemu urządzenia, natomiast coldplug zajmuje się wszystkim innym.
+<c>coldplug</c> jest dostępny na płycie Package CD.
 </p>
 
 <pre caption="Emergowanie i uruchamianie coldplug">
-# <i>emerge coldplug</i>
+	<comment>(Należy to wykonać po instalacji, czyli w trakcie instalacji
+		według wskazówek GRP)</comment>	
+# <i>emerge -k coldplug</i>
 # <i>rc-update add coldplug boot</i>
+</pre>
+
+<p>
+Jeśli chcemy, aby system reagował na zdarzenia hotplug, wtedy powinniśmy
+zainstalować i ustawić <c>hotplug</c>:
+</p>
+
+<pre caption="Emerging and enabling hotplug">
+# <i>emerge hotplug</i>
+# <i>rc-update add hotplug default</i>
 </pre>
 
 <p>

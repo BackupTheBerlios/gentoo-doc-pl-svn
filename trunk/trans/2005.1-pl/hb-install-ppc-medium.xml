@@ -8,7 +8,7 @@
 
 <sections>
 
-<version>2.5</version>
+<version>5.1</version>
 <date>2005-08-25</date>
 
 <section>
@@ -77,7 +77,7 @@ link="/doc/pl/gentoo-ppc-faq.xml">Gentoo PPC FAQ</uri>.
 <!-- Część wspólna dla wszystkich architektur. -->
 <!-- START -->
 <section>
-<title>Metody instalacji Gentoo</title>
+<title>Płyta instalacji uniwersalnej</title>
 <subsection>
 <title>Wstęp</title>
 <body>
@@ -85,7 +85,7 @@ link="/doc/pl/gentoo-ppc-faq.xml">Gentoo PPC FAQ</uri>.
 <p>
 Gentoo można zainstalować przy pomocy jednego z trzech tarballi, tak zwanych
 etapów (stage). Każdy z nich to skompresowane archiwum zawierające minimalne
-środowisko pracy.  
+środowisko pracy.
 </p>
 
 <ul>
@@ -108,297 +108,57 @@ etapów (stage). Każdy z nich to skompresowane archiwum zawierające minimalne
 </ul>
 
 <p>
-Aby ułatwić wybór odpowiedniego do danej sytuacji pliku etapowego spisaliśmy
-główne wady i zalety każdego z nich.
+W tym dokumencie będziemy używali pliku stage3. Jeśli użytkownik zechce użyć
+pliku stage1 lub stage2, wtedy należy podążyć za wskazówkami instalacji z <uri
+	link="/doc/pl/handbook/handbook-ppc.xml">Podręcznika Gentoo</uri>.
+
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Etap pierwszy</title>
+<title>Płyta instalacji uniwersalnej</title>
 <body>
 
 <p>
-Z etapu pierwszego korzysta się w celu samodzielnej budowy całego systemu.
+Płyta instalacyjna jest bootowalna i zawiera w pełni funkcjonalne środowisko
+Gentoo. Pozwala to na uruchomienie Linuksa z płyty CD. Podczas ładowania
+wykrywany jest sprzęt zainstalowany w komputerze, a następnie odpowiednie
+moduły są ładowane. Płyty instalacyjne są tworzone przez deweloperów Gentoo.
 </p>
 
 <p>
-Etap ten pozwala na posiadanie pełnej kontroli nad optymalizacją systemu. Jest
-najbardziej odpowiedni dla bardziej doświadczonych użytkowników, którzy
-dokładnie wiedzą co jest im potrzebne. Jest również doskonałym sposobem by
-dość dokładnie dowiedzieć się jak działa Gentoo.
+Obecnie dostępne są następujące płyty instalacyjne:
 </p>
 
-<table>
-<tr>
-  <th>Etap pierwszy</th>
-  <th>Plusy i minusy</th>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>
-   Pozwala na pełną kontrolę nad konfiguracją i optymalizacją systemu.
-  </ti>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Jest odpowiedni dla doświadczonych użytkowników.</ti>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Pozwala na dokładniejsze poznanie mechanizmów działania Gentoo niż
-  pozostałe etapy.
-  </ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>Instalacja pochłania dużo czasu.</ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>
-    Jeśli nie poprawi się żadnych ustawień prawdopodobnie okaże się stratą
-    czasu.
-  </ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>
-    Wymaga działającego połączenia z Internetem.
-  </ti>
-</tr>
-</table>
-
-</body>
-</subsection>
-<subsection>
-<title>Etap drugi</title>
-<body>
-
-<p>
-Etap drugi to budowa całego systemu ze stanu tuż po bootstrapie.
-</p>
-
-<p>
-Instalacja z etapu drugiego pozwala na ominięcie czasochłonnego procesu
-bootstrapowania. Zwykle zaczynają z niego użytkownicy, którym
-odpowiadają wybrane przez nas przy budowie systemu podstawowego, ustawienia
-optymalizacji.
-</p>
-
-<table>
-<tr>
-  <th>Etap drugi.</th>
-  <th>Plusy i minusy.</th>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Nie trzeba przeprowadzać bootstrapu.</ti>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Instalacja zajmuje mniej czasu niż w przypadku etapu pierwszego.</ti>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Wciąż można poprawić dużo ustawień.</ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>Nie można poprawić tak dużo jak w przypadku etapu pierwszego.</ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>Wciąż nie jest najszybszą z dostępnych metod instalacji Gentoo.</ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>Trzeba zaakceptować domyślne ustawienia optymalizacji dla podstawowego
-  systemu.</ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>
-    Do instalacji z tego etapu potrzebne jest połączenie z Internetem.
-  </ti>
-</tr>
-</table>
-
-</body>
-</subsection>
-<subsection>
-<title>Etap trzeci</title>
-<body>
-
-<p>
-Pakiet etapu trzeciego to prekompilowane niemal całe podstawowe środowisko
-Gentoo. Do uruchomienia całego systemu niezbędna jest już tylko budowa kilku
-dodatkowych pakietów, o których wyborze nie chcemy decydować za użytkownika.
-</p>
-
-<p>
-Wybór etapu trzeciego pozwala na błyskawiczne zainstalowanie Gentoo, ale wiąże
-się również z koniecznością zaakceptowania ustawień optymalizacji dobranych
-przez developerów (są to dobrze wybrane ustawienia, poprawiają wydajność, nie
-zmniejszając jednocześnie stabilności systemu). Etap trzeci to konieczność przy
-instalowaniu Gentoo z prekompilowanych pakietów lub przy instalacji bez dostępu
-do sieci.
-</p>
-
-<table>
-<tr>
-  <th>Etap trzeci</th>
-  <th>Plusy i minusy</th>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Najszybsza metoda instalacji Gentoo.</ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>Nie można poprawiać systemu podstawowego - jest prekompilowany.</ti>
-</tr>
-</table>
-
-<p>
-Warto zauważyć, że po zainstalowaniu Gentoo użytkownicy mają możliwość
-wybrania swoich ustawień optymalizacji i przebudowania z nimi części lub nawet
-całości systemu.
-</p>
-
-</body>
-</subsection>
-</section>
-<section>
-<title>Płyty instalacyjne Gentoo</title>
-<subsection>
-<title>Wprowadzenie</title>
-<body>
-
-<p>
-Dzięki płytom instalacyjnym można uruchomić podstawowe środowisko służące do
-instalacji całego systemu Gentoo na dysk.  W czasie uruchamiania systemu z
-płyty zostanie wykryty sprzęt dostępny w komputerze, a Gentoo automatycznie
-załaduje odpowiednie dla niego sterowniki. Płyty te są tworzone i rozwijane
-przez developerów Gentoo.
-</p>
-
-<p>
-Wszystkie płyty instalacyjne pozwalają na uruchomienie środowiska
-instalacyjnego, skonfigurowanie ustawień sieciowych, utworzenie i aktywowanie
-partycji oraz rozpoczęcie instalowania Gentoo z użyciem Internetu. Są idealnym
-środkiem do zbudowania naszej dystrybucji, jeśli zakłada się instalowanie przy
-użyciu najnowszych pakietów pobieranych z sieci.
-</p>
-
-<p>
-Opis instalacji Gentoo bez dostępu do Internetu znajduje się na stronach <uri
-link="2005.1/index.xml">Gentoo 2005.1 Handbooks</uri>.
-</p>
-
-<p>
-Są dwa rodzaje płyt instalacyjnych:
-</p>
 
 <ul>
   <li>
-    "Gentoo <e>Minimal</e> Installation CD" - mała, uruchamialna płyta
-    instalacyjna zawierająca wszystko co niezbędne do uruchomienia środowiska,
-    z którego można następnie przystąpić do instalowania Gentoo.
-  </li>
+     "Gentoo <e>Universal</e> Installation CD" - zawiera wszystko co potrzeba do
+     instalacji Gentoo. Dostarcza ona pliki "stage" dla najpopularniejszych
+     architektur, kod źródłowy różnych aplikacji oraz instrukcje instalacji dla
+     naszej architektury
+      </li>
   <li>
-    "Gentoo <e>Universal</e> Installation CD" - uruchamialna płyta posiadająca
-    wszystkie funkcje swojego mniejszego odpowiednika, ale poszerzona o tarballe
-    z etapami instalacji (stage) optymalizowanymi pod różne podarchitektury.
-  </li>
+      "Gentoo <e>Minimal</e> Installation CD" - zawiera tylko minimalne
+      środowisko, które pozwala na załadowanie systemu oraz konfigurację sieci,
+      aby móc połączyć się z Internetem. Nie zawiera żadnych dodatkowych plików
+      i nie może być użyta podczas instalacji opartej na tym dokumencie.
+       </li>
 </ul>
 
 <p>
-Aby ułatwić wybór odpowiedniej płyty instalacyjnej omówimy plusy i minusy każdej
-z nich.
+	Gentoo również dostarcza tzw. Package CD. To nie jest płyta instalacyjna
+	ale dodatkowe źródło, które można wykorzystać podczas instalacji systemu
+	Gentoo.  Zawiera ona fabrycznie skompilowane pakiety (tzw. zbiór GRP),
+	które umożliwiają łatwą i szybką instalację dodatkowych aplikacji
+	(takich jak OpenOffice.org, KDE, GNOME,...) natychmiast po instalacji
+	Gentoo, ale tuż przed zuktualizowaniem drzewa Portage.
 </p>
 
-</body>
-</subsection>
-<subsection>
-<title>Gentoo Minimal Installation CD</title>
-<body>
 
 <p>
-Obraz tej płyty ma nazwę <c>install-ppc-minimal-2005.1.iso</c> i zajmuje
-jedynie 52 MB miejsca. Można go użyć do zainstalowania Gentoo wyłącznie jeśli
-posiada się połączenie z Internetem.
-</p>
-
-<table>
-<tr>
-  <th>Minimal Installation CD</th>
-  <th>Plusy i minusy</th>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Mała ilość danych do pobrania.</ti>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>
-    Można pobrać najnowsze pliki "stage" bezpośrednio z Internetu.
-  </ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>
-    Nie zawiera żadnych plików "stage", snapshotów drzewa Portage,
-    prekompilowanych pakietów i w związku z tym nie nadaje się do instalacji bez
-    dostępu do sieci.
-  </ti>
-</tr>
-</table>
-
-</body>
-</subsection>
-<subsection>
-<title>Gentoo Universal Installation CD</title>
-<body>
-
-<p>
-Obraz tej płyty ma nazwę <c>install-ppc-universal-2005.1.iso</c> i zajmuje
-około 650 MB miejsca. Można użyć go do zainstalowania Gentoo nawet bez dostępu
-do sieci.
-</p>
-
-<table>
-<tr>
-  <th>Universal Installation CD</th>
-  <th>Plusy i minusy</th>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>
-    Zawiera wszystko co jest potrzebne do zainstalowania Gentoo, nawet bez
-    dostępu do Internetu.
-  </ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>Duża ilość danych do pobrania.</ti>
-</tr>
-</table>
-
-</body>
-</subsection>
-<subsection>
-<title>Inne płyty</title>
-<body>
-
-<p>
-Na części naszych serwerów lustrzanych można napotkać płyty zatytułowane
-<e>Package CD</e>. Nie są to płyty instalacyjne. Zawierają jedynie
-prekompilowane pakiety (tak zwany zestaw pakietów GRP), dzięki którym można
-szybko i wygodnie zainstalować dodatkowe oprogramowanie zarówno podczas
-instalowania Gentoo bez dostępu do Internetu jak i w przypadku gdy po prostu
-chcemy szybko doinstalować któryś z długo kompilujących się programów (KDE,
-Gnome, OpenOffice.org ...).
+Jak użyć płytę Package CD zostanie wyjaśnione później w tym dokumencie.
 </p>
 
 </body>
@@ -407,40 +167,48 @@ Gnome, OpenOffice.org ...).
 <!-- STOP -->
 
 <section>
-<title>Pobieranie, nagrywanie i uruchamianie płyt instalacyjnych Gentoo</title>
+<title>Pobieranie, nagrywanie i uruchamianie uniwersalnej płyty instalacji
+Gentoo</title>
 <subsection>
-<title>Pobieranie i nagrywanie płyt instalacyjnych</title>
+<title>Pobieranie i nagrywanie płyty instalacyjnej</title>
 <body>
 
 <p>
-Po pierwsze musimy pobrać jeden z omawianych wcześniej obrazów płyt, żeby
-jednak to zrobić trzeba wiedzieć gdzie ich szukać.
+Wszystkie obrazy płyt instalacji uniwersalnej (również płyt Package CD) znajdują
+się na naszych <uri link="/main/en/mirrors.xml">serwerach lustrzanych</uri> w
+katalogu <path>releases/ppc/2005.1/installcd</path>; obraz płyt Package CD
+znajduje się w katalogu <path>releases/ppc/2005.1/packagecd</path>.
 </p>
 
 <p>
-Wszystkie obrazy płyt instalacyjnych znajdują się na naszych <uri
-link="/main/en/mirrors.xml">serwerach lustrzanych</uri> w katalogu
-<path>releases/ppc/2005.1/installcd</path>.
+Wewnątrz tych katalogów znajduje się zbiór plików ISO. Są to pełne i gotowe do
+nagrania obrazy płyt CD.
 </p>
 
 <p>
-Wewnątrz tego katalogu znajduje się zbiór plików ISO. Są to pełne i gotowe
-do nagrania obrazy płyt CD.
+Po ściągnięciu pliku należy sprawdzić czy nie zawiera żadnych błędów:
 </p>
 
-<p>
-Aby zweryfikować poprawność pobranych plików ISO należy porównać ich sumy
-MD5 z tymi znajdującymi się na naszym serwerze lustrzanym (np. w pliku o nazwie
-<path>install-ppc-minimal-2005.1.iso.md5</path>). Sumy MD5 dla pobranych plików
-można wygenerować przy pomocy narzędzia <c>md5sum</c> dla Linuksa, lub jego <uri
-link="http://www.etree.org/md5com.html">odpowiednika</uri> dla Windows.
-</p>
+<ul>
+<li>
+Weryfikujemy poprawność pobranych plików ISO za pomocą porównania ich sum MD5
+z tymi znajdującymi się na naszym serwerze lustrzanym (np. w pliku o nazwie
+<path>install-x86-minimal-2005.1.iso.md5</path>). Sumy MD5 dla pobranych
+plików można wygenerować przy pomocy narzędzia <c>md5sum</c> dla Linuksa, lub
+jego <uri link="http://www.etree.org/md5com.html">odpowiednika</uri> dla
+Windows. Sprawdzanie sum MD5 w Mac OS X jest opisane w dokumancie <uri
+link="/doc/pl/gentoo-ppc-faq.xml#doc_chap1">Gentoo PPC FAQ</uri>.
+</li>
 
-<p>
+<li>
 Innym sposobem sprawdzania poprawności pobranych plików jest weryfikacja ich
-kryptograficznych sygnatur przy pomocy GnuPG. Sygnatury poprawnych plików
-znajdują się w plikach z rozszerzeniem <path>.asc</path>. Najpierw pobieramy
-plik sygnatury, a następnie pozyskujemy klucz publiczny:
+kryptograficznych sygnatur przy pomocy GnuPG. Nalezy otrzymać klucz
+publiczny, którego my używamy (0x17072058) przed przejściem dalej.
+</li>
+</ul>
+
+<p>
+Pozyskujemy klucz publiczny za pomocą GnuPG:
 </p>
 
 <pre caption="Pozyskiwanie klucza publicznego">
@@ -452,14 +220,14 @@ Następnie weryfikujemy sygnaturę.
 </p>
 
 <pre caption="Weryfikowanie sygnatury plików">
-$ <i>gpg --verify &lt;plik sygnatury&gt; &lt;plik ISO&gt;</i>
+$ <i>gpg --verify &lt;plik sygnatury&gt; &lt;plik iso&gt;</i>
 </pre>
 
 <p>
 Pobrane pliki ISO należy nagrywać w trybie RAW. To jak się go włącza zależy od
-programu, którego używamy. W Podręczniku opiszemy nagrywanie za pomocą
-programów <c>cdrecord</c> i <c>K3B</c>. Więcej informacji można znaleźć w
-dokumencie <uri link="/doc/pl/faq.xml#isoburning">Gentoo FAQ</uri>.
+programu, którego używamy. W Podręczniku opiszemy nagrywanie za pomocą programów
+<c>cdrecord</c> i <c>K3B</c>. Więcej informacji można znaleźć w dokumencie <uri
+	link="/doc/pl/faq.xml#isoburning">Gentoo FAQ</uri>.
 </p>
 
 <ul>
@@ -471,7 +239,7 @@ dokumencie <uri link="/doc/pl/faq.xml#isoburning">Gentoo FAQ</uri>.
   <li>
       W K3B trzeba wybierać z menu kolejno zakładki <c>Tools</c> &gt; <c>CD</c>
       &gt; <c>Burn Image</c>. Następnie wskazujemy nasz plik ISO i klikamy w
-    przycisk <c>Start</c>.
+      przycisk <c>Start</c>.
   </li>
 </ul>
 
@@ -529,7 +297,7 @@ wybrane jądro. Są to:
 <tr>
   <ti><c>dofirewire</c></ti>
   <ti>
-    Włącza obsługę urządzeń z interfejsem IEEE1394 (FireWire), np. zewnętrznych
+    Włącza obsługę urządzeń z interfejsem IEEE1394 (FireWire), np.  zewnętrznych
     dysków.
   </ti>
 </tr>
@@ -582,7 +350,8 @@ instalacyjne, obecnie nie są one jednak dostępne.
 
 <p>
 Po pierwsze należy pobrać <uri
-link="http://penguinppc.org/projects/bootx/">BootX</uri> i rozpakować archiwum.
+link="http://penguinppc.org/projects/bootx/">BootX</uri> i rozpakować
+archiwum.
 Następnie należy skopiować  <c>BootX Extension</c> do katalogu <c>Extensions
 Folder</c> i panel sterowania BootX do katalogu <c>Control Panels</c>. Oba te
 katalogi znajdują się w katalogu systemowym MacOS. Następnie należy utworzyć
@@ -594,15 +363,18 @@ MacOS.
 
 <p>
 Aby przygotować BootX należy uruchomić jego panel sterowania i wybrać menu o
-nazwie "Options", w którym należy zaznaczyć opcję <c>Use Specified RAM Disk</c>
-i wybrać plik <c>G3G4.igz</c> z folderu systemowego. Następnie trzeba wrócić na
+nazwie "Options", w którym należy zaznaczyć opcję <c>Use Specified RAM
+Disk</c>
+i wybrać plik <c>G3G4.igz</c> z folderu systemowego. Następnie trzeba wrócić
+na
 początkowy ekran i upewnić się, że wybrany rozmiar ramdysku ma co najmniej
 <c>32000</c>. Na koniec można dodać jądru kilka parametrów argumentów, tak jak
 zrobimy to poniżej:
 </p>
 
 <pre caption="Parametry jądra podawane przez BootX">
-cdroot root=/dev/ram0 init=linuxrc loop=livecd.squashfs looptype=squashfs console=tty0 nodevfs udev
+cdroot root=/dev/ram0 init=linuxrc loop=livecd.squashfs looptype=squashfs
+console=tty0 nodevfs udev
 </pre>
 
 <note>
@@ -610,7 +382,8 @@ Można tu użyć wszystkich parametrów jądra z akapitu o yaboot.
 </note>
 
 <p>
-Następnie należy upewnić się, że wybrane ustawienia są prawidłowe i je zapisać.
+Następnie należy upewnić się, że wybrane ustawienia są prawidłowe i je
+zapisać.
 Oszczędza to trochę pisania w przypadku, gdy proces uruchamiania się nie
 powiedzie. Następnie należy wcisnąć przycisk Linux na górze okna w celu
 uruchomienia środowiska instalacyjnego z płyty i przejść do akapitu <uri
@@ -671,7 +444,9 @@ ręcznie załadować odpowiednie moduły.
 </p>
 
 <p>
-W poniższym przykładzie spróbujemy załadować moduł <c>airport</c>:
+W poniższym przykładzie spróbujemy załadować moduł <c>airport</c>. Ten moduł
+wspiera tylko stary karty Airport (b-net). W chwili obecnej AirportExtreme nie
+jest wspierana pod Linuksem:
 </p>
 
 <pre caption="Ładowanie modułu jądra">
@@ -688,7 +463,7 @@ W poniższym przykładzie spróbujemy załadować moduł <c>airport</c>:
 Zaawansowanych użytkowników na pewno zainteresuje możliwość zwiększenia
 wydajności dysków twardych IDE za pomocą programu <c>hdparm</c>. Obecną
 wydajność można przetestować za pomocą parametrów <c>-tT</c> (kilkukrotne
-wykonanie polecenia zwiększa precyzję pomiaru):
+wykonanie polecenia zwiększa precyzję pomiaru): 
 </p>
 
 <pre caption="Testowanie wydajności twardego dysku">
@@ -747,7 +522,8 @@ Re-enter password: <comment>(Potwierdzamy hasło)</comment>
 
 
 <p>
-Aby przełączyć się z konta roota na nowo utworzone konto użytkownika korzystamy
+Aby przełączyć się z konta roota na nowo utworzone konto użytkownika
+korzystamy
 z polecenia <c>su</c>:
 </p>
 
@@ -763,14 +539,17 @@ z polecenia <c>su</c>:
 
 <p>
 Jeśli zamierzamy podczas instalacji korzystać z Podręcznika Gentoo (obojętnie
-czy nagranego na CD czy znajdującego się w Internecie) powinniśmy dodać do tych
+czy nagranego na CD czy znajdującego się w Internecie) powinniśmy dodać do
+tych
 celów konto zwykłego użytkownika, tak jak opisaliśmy to przed chwilą, a
-następnie przejść przy pomocy kombinacji klawiszy <c>Alt-F2</c> na nowy terminal
+następnie przejść przy pomocy kombinacji klawiszy <c>Alt-F2</c> na nowy
+terminal
 i tam się zalogować.
 </p>
 
 <p>
-Do przeglądania dokumentacji nagranej na CD służy program <c>links2</c>:
+Do przeglądania dokumentacji nagranej na CD służą programy <c>links2</c> oraz
+<c>links -g</c>:
 </p>
 
 <pre caption="Przeglądanie dokumentacji na CD">
@@ -800,11 +579,11 @@ Na pierwszy terminal powracamy przy pomocy kombinacji klawiszy <c>Alt-F1</c>.
 <body>
 
 <p>
-Aby umożliwić innym osobom dostęp do naszego komputera podczas instalacji
-(by mogły nam pomóc w konfigurowaniu Gentoo lub nawet przeprowadzić cały proces
-za nas) musimy dodać im odpowiednie konta użytkowników lub nawet podać hasło
-roota (nie należy tego robić jeśli nie jest to osoba, której ufa się
-<e>całkowicie</e>).  
+Aby umożliwić innym osobom dostęp do naszego komputera podczas instalacji (by
+mogły nam pomóc w konfigurowaniu Gentoo lub nawet przeprowadzić cały proces za
+nas) musimy dodać im odpowiednie konta użytkowników lub nawet podać hasło roota
+(nie należy tego robić jeśli nie jest to osoba, której ufa się
+<e>całkowicie</e>).
 </p>
 
 <p>
@@ -817,9 +596,8 @@ Demona SSH uruchamia się następującym poleceniem:
 
 <p>
 Korzystanie z sshd jest możliwe tylko wtedy, gdy komputer jest połączony z
-Internetem. Połączenie nawiążemy dzięki wskazówkom spisany, w
-rozdziale zatytułowanym <uri link="?part=1&amp;chap=3">konfiguracja
-sieci</uri>.
+Internetem. Połączenie nawiążemy dzięki wskazówkom spisany, w rozdziale
+zatytułowanym <uri link="?part=1&amp;chap=3">konfiguracja sieci</uri>.
 </p>
 
 </body>
