@@ -7,7 +7,7 @@
 
 <sections>
 
-<version>2.5</version>
+<version>5.1</version>
 <date>2005-08-25</date>
 
 <section>
@@ -165,7 +165,6 @@ i <c>/dev file system</c> + <c>Automatically mount at boot</c>:
 </p>
 
 <pre caption="Wybór potrzebnych systemów plików">
-<comment>(dla kerneli 2.4.x)</comment>
 File systems ---&gt;
   [*] Virtual memory file system support (former shm fs)
   [*] /proc file system support
@@ -173,20 +172,9 @@ File systems ---&gt;
   [*]   Automatically mount at boot
   [ ] /dev/pts file system for Unix98 PTYs
 
-<comment>(dla kerneli 2.6.x)</comment>
-File systems ---&gt;
-  Pseudo Filesystems ---&gt;
-    [*] /proc file system support
-    [*] /dev file system support (OBSOLETE)
-    [*]   Automatically mount at boot
-    [*] Virtual memory file system support (former shm fs)
-
 <comment>(Wybierz jedną lub kilka z tych opcji zależnie od używanych systemów plików)</comment>
-  &lt; &gt; Reiserfs support
   &lt;*&gt; Ext3 journalling file system support
-  &lt; &gt; JFS filesystem support
   &lt;*&gt; Second extended fs support
-  &lt; &gt; XFS filesystem support
 </pre>
 
 <p>
@@ -195,19 +183,10 @@ będziesz musiał włączyć następujące opcje:
 </p>
 
 <pre caption="Sterowniki niezbędne dla użytkowników PPPoE">
-<comment>(dla kernela 2.4.x)</comment>
 Network device support ---&gt;
   &lt;*&gt; PPP (point-to-point protocol) support
   &lt;*&gt;   PPP support for async serial ports
   &lt;*&gt;   PPP support for sync tty ports
-
-<comment>(dla kernela 2.6.x)</comment>
-Device Drivers ---&gt;
-  Networking support ---&gt;
-    &lt;*&gt; PPP (point-to-point protocol) support
-    &lt;*&gt;   PPP support for async serial ports
-    &lt;*&gt;   PPP support for sync tty ports
-</pre>
 
 <p>
 Obie opcje dotyczące kompresji nie są wprawdzie wymagane, ale również nie
@@ -217,11 +196,7 @@ pracy w trybie jądra PPPoE.
 </p>
 
 <p>
-Nie zapomnij wkompilować sterownika dla swojej karty sieciowej.
-</p>
-
-<p>
-Zaznacz właściwe wsparcie dla bus:
+Zaznacz właściwe wsparcie dla magistrali:
 </p>
 
 <pre caption="Aktywowanie SBUS/UPA">
@@ -295,11 +270,6 @@ skompilowanie możliwie jak największej ilości sterowników jako moduły. Jeś
 zignorujesz tą radę to system się nie uruchomi.
 </p>
 
-<note>
-Jeśli używasz kernela 2.6.3, lub nowszego, to dla sparc64 możesz używać kernela
-o maksymalnym rozmiarze 7.5 MB.
-</note>
-
 <p>
 Jeśli kernel jest tylko odrobinę za duży możesz spróbować zmniejszyć go przy
 pomocy polecenia <c>strip</c>
@@ -322,17 +292,11 @@ kompilacji:
 </p>
 
 <pre caption="Kompilowanie kernela">
-<comment>(dla kernela 2.4, sparc32)</comment>
+<comment>(sparc32)</comment>
 # <i>make dep &amp;&amp; make clean vmlinux modules modules_install</i>
 
-<comment>(dla kernela 2.4, sparc64)</comment>
+<comment>(sparc64)</comment>
 # <i>make dep &amp;&amp; make clean vmlinux image modules modules_install</i>
-
-<comment>(dla kernela 2.6, sparc32)</comment>
-# <i>make &amp;&amp; make modules_install</i>
-
-<comment>(dla kernela 2.6, sparc64)</comment>
-# <i>make &amp;&amp; make image modules_install</i>
 </pre>
 
 <p>
@@ -341,17 +305,11 @@ Kiedy jądro skończy się kompilować przekopiuj jego obraz do katalogu
 </p>
 
 <pre caption="Instalowanie kernela">
-<comment>(dla kernela 2.4, sparc32)</comment>
+<comment>(sparc32)</comment>
 # <i>cp vmlinux /boot/kernel-2.4.29</i>
 
-<comment>(dla kernela 2.4, sparc64)</comment>
+<comment>(sparc64)</comment>
 # <i>cp arch/sparc64/boot/image /boot/kernel-2.4.29</i>
-
-<comment>(dla kernela 2.6, sparc32)</comment>
-# <i>cp arch/sparc/boot/image /boot/kernel-2.6.11</i>
-
-<comment>(dla kernela 2.6, sparc64)</comment>
-# <i>cp arch/sparc64/boot/image /boot/kernel-2.6.11</i>
 
 <comment>(Nie zapomnij o skopiowaniu pliku System.map)</comment>
 # <i>cp System.map /boot</i>
@@ -382,9 +340,8 @@ osobnych modułów jądra</uri>.
 
 <p>
 Lista modułów, które chcesz aby były automatycznie ładowane przy starcie systemu
-powinna znajdować się w pliku <path>/etc/modules.autoload.d/kernel-2.4</path>
-(lub <path>kernel-2.6</path>). Czasem jeśli chcesz możesz dodać kilka opcji dla
-modułów.
+powinna znajdować się w pliku <path>/etc/modules.autoload.d/kernel-2.4</path>.
+Jeśli chcesz możesz dodać kilka opcji dla modułów.
 </p>
 
 <p>
@@ -399,17 +356,15 @@ kernela.
 </pre>
 
 <p>
-Na przykład aby automatycznie ładować do pamięci moduł <c>3c59x.o</c> wyedytuj
-plik <path>kernel-2.4</path> lub <path>kernel-2.6</path> i wprowadź do niego
-nazwę tego modułu.
+Na przykład, aby automatycznie ładować do pamięci moduł <c>3c59x.o</c> edytujemy
+plik <path>kernel-2.4</path> i wprowadzamy do niego nazwę tego modułu.
 </p>
 
 <pre caption="Edycja /etc/modules.autoload.d/kernel-2.4">
-<comment>(przykład dla kerneli 2.4)</comment>
 # <i>nano -w /etc/modules.autoload.d/kernel-2.4</i>
 </pre>
 
-<pre caption="/etc/modules.autoload.d/kernel-2.4 lub kernel-2.6">
+<pre caption="/etc/modules.autoload.d/kernel-2.4">
 3c59x
 </pre>
 
