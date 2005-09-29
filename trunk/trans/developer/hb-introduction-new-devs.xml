@@ -75,7 +75,7 @@ znajdujące. Zmniejszy to ryzyko pojawienia się konfliktów. Można uniknąć
 ściągania całego repozytorium aktualizując tylko niektóre jego części. Od czasu
 do czasu warto jednak zaktualizować całe drzewo.
 </p>
-		
+	
 <pre caption="Aktualizacja modułu gentoo-x86">
 # <i>cd gentoo-x86</i>
 # <i>cvs update</i>
@@ -131,7 +131,7 @@ plików przez ebuildy.
 Załóżmy, że chcemy dodać nowy pakiet o nazwie <c>foo</c> do katalogu app-misc:
 </p>
 
-<pre>
+<pre caption="Dodawanie nowego pakietu do Portage">
 <comment>(Zamieniamy CVSROOT na miejsce, w którym znajduje się drzewo pobrane za pomocą CVS)</comment>
 # <i>cd $CVSROOT/app-misc</i>
 <comment>(Zawsze przed rozpoczęciem pracy aktualizujemy daną gałąź drzewa!)</comment>
@@ -162,7 +162,7 @@ dokonuje znajduje się poniżej. Najpierw jednak, w związku z wyjściem nowej
 wersji, usuniemy stary ebuild foo-1.0. 
 </p>
 
-<pre>
+<pre caption="Usuwanie starej wersji pakietu">
 # <i>cd CVSROOT/app-misc/foo</i>
 # <i>cvs update</i>
 # <i>rm foo-1.0.ebuild files/digest-foo-1.0</i> <comment>(Najpierw usuwamy pliki...)</comment>
@@ -195,7 +195,7 @@ skorzystać ze wskazówek spisanych w tekście
 # <i>repoman scan</i>
 <comment>("commit" dokonuje sprawdzenia, a następnie wysyła pliki, aktualizując przy okazji sumy kontrolne. 
 Warto dodać opcję "verbose", dzięki temu wyświetlą się wszystkie informacje zwracane przez CVS...)</comment>
-# <i>repoman commit</o>
+# <i>repoman commit</i>
 </pre>
 
 </body>
@@ -270,10 +270,11 @@ osób pracujących nad Gentoo, co może zepsuć ich dobry wizerunek.
 
 <p>
 Osoby zainteresowane dodawaniem artykułów do serwisu Planet Gentoo powinny
-zgłosić się pod adres <mail>user-relations@gentoo.org</mail> i napisać czy jest
-im potrzebny blog na naszych serwerach, czy też chcą dodawać posty z jakiegoś
-zewnętrznego serwisu. Dokładnie omówimy wtedy wszystkie szczegóły i odpowiednio
-skonfigurujemy całą usługę dla niego.
+zgłosić się pod adres <mail
+link="user-relations@gentoo.org">user-relations@gentoo.org</mail> i napisać czy
+jest im potrzebny blog na naszych serwerach, czy też chcą dodawać posty z
+jakiegoś zewnętrznego serwisu. Dokładnie omówimy wtedy wszystkie szczegóły i
+odpowiednio skonfigurujemy całą usługę dla niego.
 </p>
 
 </body>
