@@ -1,12 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
+<!-- $Header$ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
-
-<!-- This document was last synched to:
-     cvs://gentoo/gentoo/xml/htdocs/doc/en/gentoo-howto.xml :: R1.50.
--->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
 <sections>
 
@@ -21,38 +18,36 @@
 <p>
 Drzewo Portage zwykle znajduje się w katalogu <path>/usr/portage</path> i jest
 ułożone w hierarchicznej strukturze, składającej się z katalogów kategorii, w
-których znajdują się katalogi paczek. Oto przykład: plik 
-<path>util-linux-2.11y.ebuild</path> można znaleźć w katalogu 
+których znajdują się katalogi pakietów. Oto przykład: plik
+<path>util-linux-2.11y.ebuild</path> można znaleźć w katalogu
 <path>/usr/portage/sys-apps/util-linux</path>. W tym samym katalogu może
-znajdować się kilka innych wersji <c>util-linux</c> razem z wersją 
+znajdować się kilka innych wersji <c>util-linux</c> razem z wersją
 <path>util-linux-2.11y.ebuild</path>. Jest tak, ponieważ <e>wszystkie pliki
-ebuild danej paczki (niezależnie od wersji)</e> mają wspólny katalog 
-<path>kategoria/paczka</path> w głównym katalogu <path>/usr/portage</path>.
+ebuild danego pakietu (niezależnie od wersji)</e> mają wspólny katalog
+<path>kategoria/pakiet</path> w głównym katalogu <path>/usr/portage</path>.
 </p>
 
 </body>
 </subsection>
-
 <subsection>
 <title>Pobieranie drzewa Portage z CVS</title>
 <body>
 
 <p>
-W razie jakichkolwiek wątpliwości co do systemu CVS należy przeczytać
-dokument <uri link="http://www.gentoo.org/doc/pl/cvs-tutorial.xml">Praca z
-CVS w Gentoo</uri>, gdzie znajdziemy więcej informacji.
+W razie jakichkolwiek wątpliwości co do systemu CVS należy przeczytać dokument
+<uri link="/doc/pl/cvs-tutorial.xml">Praca z CVS w Gentoo</uri>, gdzie
+znajduje się znacznie więcej informacji na ten temat.
 </p>
 
 <p>
 Drzewo Portage można znaleźć w module <c>gentoo-x86</c> drzewa systemu Gentoo
-Linux. Aby pobrać moduł (około 350 megabajtów) najpierw należy skonfigurować CVS
-za pomocą powyższego samouczka, a następnie pobrać moduł <c>gentoo-x86</c>
-komendą checkout.
+Linux. Aby pobrać moduł (około 350 megabajtów), najpierw należy skonfigurować
+CVS za pomocą powyższego przewodnika, a następnie pobrać moduł
+<c>gentoo-x86</c> poleceniem checkout.
 </p>
 
 </body>
 </subsection>
-
 <subsection>
 <title>Co umieszczać (a czego nie) w drzewie Portage</title>
 <body>
@@ -60,7 +55,7 @@ komendą checkout.
 <p>
 Przed napisaniem jakiegokolwiek ebuilda powinniśmy przejrzeć <uri
 link="http://bugs.gentoo.org/">bugs.gentoo.org</uri> w poszukiwaniu
-niezamieszczonego jeszcze w drzewie Portage pliku ebuild do paczki, do której
+niezamieszczonego jeszcze w drzewie Portage pliku ebuild do pakietu, do którego
 sami chcieliśmy go pisać. W tym celu należy wejść na stronę <uri
 link="http://bugs.gentoo.org/">bugs.gentoo.org</uri>, wybrać "query", jako
 produkt (product) wybrać <e>Gentoo Linux</e>, jako składnik (component)
@@ -75,14 +70,14 @@ Drzewo Portage powinno przede wszystkim być używane do przechowywania plików
 <path>.ebuild</path>, a także wszelkich względnie małych plików
 pomocniczych, takich jak łatki lub przykładowe pliki konfiguracyjne. Pliki
 pomocnicze powinny być umieszczane w katalogu
-<path>/usr/portage/kategoria/paczka/files</path>, aby nie zaśmiecać głównego
-katalogu <path>kategoria/paczka</path>. Wyjątkiem od tej reguły są większe 
-pliki łatek (zalecamy przyjąć granicę przy 20KB), które powinny zostać
-umieszczone na serwerach lustrzanych Gentoo, aby użytkownicy nie marnowali
-przepustowości ani przestrzeni dyskowej. Odradzamy też deweloperom umieszczanie
-w CVS plików binarnych (nie-ASCII). Jeśli jednak jest to konieczne (gdybyśmy na
-przykład chcieli zamieścić niewielki plik graficzny PNG), należy dodać go do CVS
-przy użyciu opcji <c>-kb</c>, tak jak poniżej:
+<path>/usr/portage/kategoria/pakiet/files</path>, aby nie zaśmiecać głównego
+katalogu <path>kategoria/pakiet</path>. Wyjątkiem od tej reguły są większe 
+pliki łatek (zalecamy przyjąć górną granicę rozmiaru pliku na 20KB), które
+powinny zostać umieszczone na serwerach lustrzanych Gentoo, aby użytkownicy nie
+marnowali przepustowości ani przestrzeni dyskowej. Odradzamy też deweloperom
+umieszczanie w CVS plików binarnych (nie-ASCII). Jeśli jednak jest to konieczne
+(gdybyśmy na przykład chcieli zamieścić niewielki plik graficzny PNG), należy
+dodać go do CVS przy użyciu opcji <c>-kb</c>, tak jak poniżej:
 </p>
 
 <pre caption="Dodawanie pliku binarnego do CVS">
@@ -90,7 +85,7 @@ przy użyciu opcji <c>-kb</c>, tak jak poniżej:
 </pre>
 
 <p>
-Opcja <c>-kb</c> instruuje CVS, iż plik <path>mojobrazek.png</path> to plik
+Opcja <c>-kb</c> instruuje CVS, że plik <path>mojobrazek.png</path> to plik
 binarny i powinien być specjalnie traktowany. Nie powinno się na przykład z
 oczywistych względów pozwolić na łączenie różnic między dwiema wersjami tego
 pliku. Skoro już mowa o łączeniu zmian, pliki poprawek zamieszczane w Portage
@@ -99,90 +94,89 @@ poprawnie informować deweloperów o konfliktach.
 </p>
 
 <p>
-Należy pamiętać, iż paczki, które wysyłamy jako stabilne muszą być <e>gotowe</e>
-do <e>natychmiastowego użycia</e> przez końcowych użytkowników.  Musimy upewnić
-się, że posiadamy dobry zestaw domyślnych ustawień, który zadowoli większość
-systemów i użytkowników naszej paczki. Jeśli zaś nasza paczka nie działa i nie
-mamy pomysłu jak sprawić, by działała, warto spojrzeć jak poradzili sobie z nią
-deweloperzy innych dystrybucji. Przykładów możemy szukać choćby w repozytoriach
-<uri link="http://cvs.mandriva.com/cgi-bin/cvsweb.cgi/SPECS/">Mandrivy</uri>,
-<uri link="http://www.debian.org/distrib/packages">Debiana</uri> lub <uri
+Należy pamiętać, że pakiety, które wysyłamy jako stabilne muszą być
+<e>gotowe</e> do <e>natychmiastowego użycia</e> przez końcowych użytkowników.
+Musimy upewnić się, że posiadamy dobry zestaw domyślnych ustawień, który
+zadowoli większość z nich. Jeśli zaś nasz pakiet nie działa i nie mamy pomysłu
+jak sprawić, by działał, warto spojrzeć jak poradzili sobie z nią deweloperzy
+innych dystrybucji. Przykładów możemy szukać choćby w repozytoriach <uri
+link="http://cvs.mandriva.com/cgi-bin/cvsweb.cgi/SPECS/">Mandrivy</uri>, <uri
+link="http://www.debian.org/distrib/packages">Debiana</uri> lub <uri
 link="http://cvs.fedora.redhat.com/">Fedory</uri>.
 </p>
 
 <p>
-Wysyłając pliki ebuild do CVS wszyscy deweloperzy
-powinni używać polecenia <c>repoman commit</c> zamiast <c>cvs commit</c>. Przed
-samym zamieszczeniem należy wykonać polecenie <c>repoman full</c>, aby upewnić
-się, że o niczym nie zapominamy.
+Wysyłając pliki ebuild do CVS wszyscy deweloperzy powinni używać polecenia
+<c>repoman commit</c> zamiast <c>cvs commit</c>. Przed samym zamieszczeniem
+należy wykonać polecenie <c>repoman full</c>, aby upewnić się, że o niczym nie
+zapominamy.
 </p>
 
 </body>
 </subsection>
-
 <subsection>
 <title>Polityka wysyłania do CVS</title>
 <body>
 
 <ul>
-<li>Zawsze należy wykonać polecenie <c>repoman scan</c> przed wysłaniem.</li>
-<li>Zawsze należy wykonać polecenie <c>repoman full</c> przed wysłaniem.</li>
-<li>
-Zawsze powinniśmy sprawdzić poprawność pliku <path>package.mask</path> przed
-jego wysłaniem przez wykonanie <c>emerge --pretend mypkg</c> i sprawdzenie czy
-nie zawiera konfliktów.
-</li> 
-<li>Zawsze należy uaktualnić plik <path>ChangeLog</path> przed wysłaniem.</li> 
-<li>
-Zawsze powinniśmy wysłać uaktualniony plik <path>package.mask</path> przed
-uaktualnioną paczką, w razie gdyby wystąpiły konflikty podczas wysyłania pliku
-<path>package.mask</path>.
-</li> 
-<li>
-Zawsze powinniśmy wykonywać wysyłanie atomowe; jeśli wysyłamy paczkę z nową
-licencją albo taką, która jest zamaskowana, najpierw należy wysłać uaktualniony
-plik <path>package.mask</path> i/lub licencję, następnie plik ebuild,
-<path>ChangeLog</path>, łatki i plik <uri
-link="?part=2&amp;chap=4">metadata.xml</uri> wszystkie za jednym razem, aby
-uniknąć uszkodzenia systemów użytkowników.
-</li>
+  <li>Zawsze należy wykonać polecenie <c>repoman scan</c> przed wysłaniem</li>
+  <li>Zawsze należy wykonać polecenie <c>repoman full</c> przed wysłaniem</li>
+  <li>
+    Zawsze powinniśmy sprawdzić poprawność pliku <path>package.mask</path>
+    przed jego wysłaniem przez wykonanie <c>emerge --pretend mypkg</c> i
+    sprawdzenie czy nie zawiera konfliktów.
+  </li> 
+  <li>Zawsze należy uaktualnić plik <path>ChangeLog</path> przed wysłaniem</li> 
+  <li>
+    Zawsze powinniśmy wysłać uaktualniony plik <path>package.mask</path> przed
+    uaktualnionym pakietem, w razie gdyby wystąpiły konflikty podczas wysyłania
+    pliku <path>package.mask</path>.
+  </li> 
+  <li>
+    Zawsze powinniśmy wysyłać wszystkie pliki danego pakietu za jednym razem,
+    nie pojedyńczo.Jeśli wysyłamy pakiet z nową licencją albo taki, który jest
+    zamaskowana, najpierw należy wysłać uaktualniony plik
+    <path>package.mask</path> i/lub licencję, następnie plik ebuild,
+    <path>ChangeLog</path>, łatki i plik <uri
+    link="?part=2&amp;chap=4">metadata.xml</uri> wszystkie za jednym razem, aby
+    uniknąć uszkodzenia systemów użytkowników.
+  </li>
 </ul>
 
 </body>
 </subsection>
-
 <subsection>
 <title>Katalog files</title>
 <body>
 
 <p>
-Jak wspomniano wcześniej, w każdym podkatalogu paczki znajduje się podkatalog
+Jak wspominaliśmy wcześniej, w każdym katalogu pakietu znajduje się podkatalog
 <path>files/</path>. W nim należy umieszczać wszelkie łatki, pliki
-konfiguracyjne lub inne pliki pomocnicze; pliki większe niż około 20KB powinny
-być zamieszczane na serwerach lustrzanych, aby zmniejszyć ilość (niepotrzebnych)
-plików, które nasi użytkownicy będą musieli ściągnąć. Warto rozważyć takie
-nazywanie tworzonych przez siebie poprawek, dzięki którym paczka w ogóle się
-zbuduje, aby uwzględniały wersję w nazwie, na przykład
-<path>paczka-1.0-gentoo.diff</path>, lub prościej, <path>1.0-gentoo.diff</path>.
-Przy okazji człon <path>gentoo</path> informuje że poprawka ta została stworzona
-przez nas, deweloperów Gentoo, a nie pobrana z listy dyskusyjnej albo innego
-miejsca. Raz jeszcze: nie należy kompresować tych plików, ponieważ CVS nie radzi
-sobie dobrze z plikami binarnymi.
+konfiguracyjne lub inne pliki pomocnicze. Pliki większe niż około 20KB powinny
+być zamieszczane na serwerach lustrzanych, aby zmniejszyć ilość
+(niepotrzebnych) plików, które nasi użytkownicy będą musieli ściągnąć. Warto
+rozważyć taki schemat nazywania tworzonych poprawek, dzięki którym pakiet w
+ogóle się zbuduje, aby uwzględniały wersję w nazwie, na przykład
+<path>pakiet-1.0-gentoo.diff</path> lub prościej, <path>1.0-gentoo.diff</path>.
+Przy okazji człon <path>gentoo</path> informuje, że poprawka ta została
+stworzona przez nas, deweloperów Gentoo, a nie pobrana z listy dyskusyjnej albo
+innego miejsca. Raz jeszcze: nie należy kompresować tych plików, ponieważ CVS
+nie radzi sobie dobrze z plikami binarnymi.
 </p>
 
 <p>
 Warto rozważyć dodawanie przedrostka lub przyrostka (na przykład
 <path>mypkg-1.0</path>) do wszystkich plików, które umieszczamy w katalogu
-<path>files/</path> aby pliki wykorzystywane z konkretną wersją ebuilda można
-było łatwo odróżnić od siebie, co powoduje też widoczność zmian pomiędzy każdą
-poprawką. Ogólnie jest to dobry pomysł. :) Możemy użyć innego przyrostka, jeśli
-chcemy aby nazwa pliku łatki przekazywała więcej informacji.
+<path>files/</path>, aby pliki wykorzystywane z konkretną wersją ebuilda można
+było łatwo odróżnić od siebie. Ułatwia to porównywanie zmian pomiędzy
+poprawkami. Ogólnie jest to dobry pomysł. :) Możemy użyć innego przyrostka,
+jeśli chcemy, aby nazwa pliku łatki przekazywała więcej informacji.
 </p>
 
 <p>
 Jeśli w katalogu <path>files/</path> chcemy umieścić więcej plików, warto
 stworzyć podkatalogi, na przykład <path>files/1.0/</path> i umieszczać
-odpowiednie pliki w swoich własnych podkatalogach. Gdy używamy tej metody, nie
+odpowiednie pliki w ich własnych podkatalogach. Gdy używamy tej metody, nie
 jest już konieczne dodawanie informacji o wersji do nazw plików. Często jest to
 więc bardziej wygodne.
 </p>
@@ -190,7 +184,6 @@ więc bardziej wygodne.
 </body>
 </subsection>
 </section>
-
 <section>
 <title>Skrypty ebuild</title>
 <subsection>
@@ -198,33 +191,34 @@ więc bardziej wygodne.
 <body>
 
 <p>
-Skrypty ebuild są podstawą całego systemu Portage. Zawierają one wszelkie
+Skrypty ebuild są podstawą całego systemu Portage. Zawierają wszelkie
 informacje potrzebne do pobrania, rozpakowania, skompilowania i instalacji
 zestawu źródeł, a także wykonania ewentualnych czynności poprzedzających i/lub
 następujących po instalacji i/lub deinstalacji. Pomimo iż większość Portage
-napisana jest w języku Python, same skrypty ebuild napisane są w bashu, ponieważ
-wykorzystanie języka skryptowego powłoki pozwala nam na wykonywanie komend tak
-samo jak z wiersza poleceń. Jednym z najważniejszych założeń projektowych
-skryptów ebuild jest nazwanie zawartych w nim poleceń analogicznie do tych,
-które wypisywalibyśmy, instalując paczkę ręcznie poprzez wiersz poleceń. Również
-z tego względu użycie składni basha jest bardzo wskazane.
+napisana jest w języku Python, same skrypty ebuild napisane są w bashu,
+ponieważ wykorzystanie języka skryptowego powłoki pozwala nam na wykonywanie
+komend tak samo jak z wiersza poleceń. Jednym z najważniejszych założeń
+projektowych skryptów ebuild jest nazwanie zawartych w nim poleceń analogicznie
+do tych, które wypisywalibyśmy, instalując pakiet ręcznie poprzez wiersz
+poleceń. Również z tego względu użycie składni basha jest bardzo wskazane.
 </p>
 
 <p>
 Skrypty ebuild są interpretowane przez komendy <c>ebuild</c> i <c>emerge</c>.
 Wyobraźmy sobie polecenie <c>ebuild</c> jako niskopoziomowe narzędzie, służące
 do budowania. Potrafi zbudować i zainstalować pojedynczy ebuild, ale nic poza
-tym. Sprawdzi czy zależności są spełnione, ale nie będzie próbować ich
+tym. Sprawdzi czy zależności są spełnione, ale nie będzie próbowało ich
 automatycznie spełnić. Z drugiej strony polecenie <c>emerge</c> jest
 wysokopoziomowym "silnikiem" dla polecenia <c>ebuild</c> i potrafi w razie
 potrzeby automatycznie zainstalować zależności, wykonać instalacje symulowane
-<e>pretend</e>, aby użytkownik mógł dowiedzieć się jakie paczki zostaną
-zainstalowane i dużo więcej. Ogólnie polecenie <c>emerge</c> jest lepsze od
-<c>ebuild</c> pod każdym względem oprócz jednego. Za pomocą <c>ebuild</c> możemy
-stopniowo i pojedynczo wykonywać poszczególne fazy instalacji paczki (pobieranie
-źródeł, rozpakowanie, kompilacja, instalacja i integracja paczki z systemem).
-Jest to nieocenione narzędzie do debugowania dla deweloperów, ponieważ umożliwia
-zawężenie problemu z ebuildem do konkretnego fragmentu skryptu ebuild.
+<e>pretend</e>, aby użytkownik mógł dowiedzieć się jakie pakiety zostaną
+zainstalowane - i dużo więcej. Ogólnie polecenie <c>emerge</c> jest lepsze od
+<c>ebuild</c> pod każdym względem, oprócz jednego. Za pomocą <c>ebuild</c>
+możemy stopniowo i pojedynczo wykonywać poszczególne fazy instalacji pakietu
+(pobieranie źródeł, rozpakowanie, kompilacja, instalacja i integracja pakietu z
+systemem). Jest to nieocenione narzędzie do debugowania dla deweloperów,
+ponieważ umożliwia zawężenie problemu z ebuildem do konkretnego fragmentu
+skryptu ebuild.
 </p>
 
 </body>
@@ -233,43 +227,47 @@ zawężenie problemu z ebuildem do konkretnego fragmentu skryptu ebuild.
 <title>Nazewnictwo plików ebuild</title>
 <body>
 
-<p>Nazwa pliku ebuild składa się z czterech logicznych podsekcji:</p>
-
-<p><c>pkg-ver{_suf{#}}{-r#}.ebuild</c></p>
-
-<note>
-Nawiasy klamrowe (<c>{}</c>) otaczają opcjonalne pola i same nie występują w
-nazwie paczki. Znak "<c>#</c>" oznacza dowolną dodatnią liczbę różną od zera.
-</note>
-
 <p>
-Pierwsza podsekcja, <c>pkg</c> oznacza nazwę paczki. Powinna ona zawierać
-jedynie małe litery, cyfry od 0 do 9 oraz dowolną liczbę pojedynczych znaków
-minus (<c>-</c>), podkreślenia (<c>_</c>) lub plus (<c>+</c>).
-Przykłady: <c>util-linux</c>, <c>sysklogd</c> i <c>gtk+</c>. W Portage można
-znaleźć kilka paczek, które nie spełniają tych wymogów, ale <e>nasze</e> paczki
-muszą je spełniać.
+Nazwa pliku ebuild składa się z czterech logicznych podsekcji:
 </p>
 
 <p>
-Druga podsekcja, <c>ver</c> oznacza wersję paczki, która zwykle powinna
-odpowiadać wersji głównego archiwum ze źródłami. Najczęściej wersja składa się z
-dwóch lub trzech (czasem więcej) liczb oddzielonych kropkami, na przykład w ten
-sposób: <c>1.2</c> lub <c>4.5.2</c>. Czasem bezpośrednio za ostatnią liczbą może
+<c>pkg-ver{_suf{#}}{-r#}.ebuild</c>
+</p>
+
+<note>
+Nawiasy klamrowe (<c>{}</c>) otaczają opcjonalne pola i same nie występują w
+nazwie pakietu. Znak "<c>#</c>" oznacza dowolną dodatnią liczbę różną od zera.
+</note>
+
+<p>
+Pierwsza podsekcja, <c>pkg</c>, to nazwa pakietu. Powinna ona zawierać
+jedynie małe litery, cyfry od 0 do 9 oraz dowolną liczbę pojedynczych znaków
+minus (<c>-</c>), podkreślenia (<c>_</c>) lub plus (<c>+</c>).
+Przykłady: <c>util-linux</c>, <c>sysklogd</c> i <c>gtk+</c>. W Portage można
+znaleźć kilka pakietów, które nie spełniają tych wymogów, ale <e>nasze</e>
+pakiety muszą je spełniać.
+</p>
+
+<p>
+Druga podsekcja, <c>ver</c> to wersja pakietu, która zwykle powinna odpowiadać
+wersji głównego archiwum ze źródłami. Najczęściej wersja składa się z dwóch lub
+trzech (czasem więcej) liczb oddzielonych kropkami, na przykład w ten sposób:
+<c>1.2</c> lub <c>4.5.2</c>. Czasem bezpośrednio za ostatnią liczbą może
 pojawić się pojedyncza litera, na przykład <c>1.4b</c> lub <c>2.6h</c>. Wersja
-paczki połączona jest myślnikiem z nazwą paczki. Przykładowo: <c>coś-1.0</c>,
+pakietu połączona jest myślnikiem z jego nazwą. Przykładowo: <c>coś-1.0</c>,
 <c>bla-2.4.6</c>.
 </p>
 
 <impo>
 Chcąc użyć litery poprzedzającej numer wersji należy mieć na uwadze, że <e>nie
-powinna</e> ona oznaczać statusu alpha lub beta paczki, ponieważ alpha i beta to
-<e>wersje zapoznawcze</e> (ang. prerelease), natomiast wersje z literą na
+powinna</e> ona oznaczać statusu alpha lub beta pakietu, ponieważ alpha i beta
+to <e>wersje zapoznawcze</e> (ang. prerelease), natomiast wersje z literą na
 początku to <e>nowsze wersje</e>. To istotne rozróżnienie, ponieważ Portage
 używa numeru wersji ebuilda do określenia czy jest on nowszy czy starszy od
-pozostałych paczek o tej samej nazwie w tej samej kategorii. Jest więc bardzo
-ważne aby numery wersji wiernie odzwierciedlały wersję paczki i Portage
-właściwie wykonywał sprawdzanie zależności.
+pozostałych pakietów o tej samej nazwie i w tej samej kategorii. Jest więc
+bardzo ważne, aby numery wersji wiernie odzwierciedlały wersję pakietu i
+Portage właściwie wykonywał sprawdzanie zależności.
 </impo>
 
 <p>
@@ -279,15 +277,29 @@ wydanie po najnowsze:
 </p>
 
 <table>
- <tr><th>Przyrostek</th><th>Znaczenie</th></tr>
- <tr><ti><c>_alpha</c></ti><ti>Wydanie alpha</ti></tr>
- <tr><ti><c>_beta</c></ti><ti>Wydanie beta</ti></tr>
- <tr><ti><c>_pre</c></ti><ti>Wersja zapoznawcza (prerelease)</ti></tr>
- <tr><ti><c>_rc</c></ti><ti>Kadynat do wydania oficjalnego (Release
- candidate)</ti></tr>
- <tr><ti>(none)</ti><ti>Oficjalne wydanie</ti></tr>
- <tr><ti><c>_p</c></ti><ti>Etap poprawek (patch level) (zwykle za
- przyrostkiem występuje liczba całkowita)</ti></tr>
+<tr>
+  <th>Przyrostek</th><th>Znaczenie</th>
+</tr>
+<tr>
+  <ti><c>_alpha</c></ti><ti>Wydanie alpha</ti>
+</tr>
+<tr>
+  <ti><c>_beta</c></ti><ti>Wydanie beta</ti>
+</tr>
+<tr>
+  <ti><c>_pre</c></ti><ti>Wersja zapoznawcza (prerelease)</ti>
+</tr>
+<tr>
+  <ti><c>_rc</c></ti><ti>Kadynat do wydania oficjalnego (Release candidate)</ti>
+</tr>
+<tr>
+  <ti>(none)</ti><ti>Oficjalne wydanie</ti>
+</tr>
+<tr>
+  <ti>
+    <c>_p</c></ti><ti>Etap poprawek (patch level) (zwykle za przyrostkiem
+    występuje liczba całkowita)</ti>
+</tr>
 </table>
 
 <p> 
@@ -305,26 +317,26 @@ jest nowsza niż <c>bla-1.0_alpha3</c>.
 </p>
 
 <p>
-Czwarta podsekcja nazwy paczki oznacza wewnętrzny numer rewizji 
+Czwarta podsekcja nazwy pakietu oznacza wewnętrzny numer rewizji 
 specyficznej dla systemu Gentoo Linux. Jest on opcjonalny, podobnie jak
 przyrostek. Znak <c>#</c> jest dodatnią liczbą całkowitą różną od zera, na
-przykład <c>paczka-4.5.3-r3</c>.
+przykład <c>pakiet-4.5.3-r3</c>.
 </p>
 
 <p>
 Numer rewizji jest niezależny od wersji archiwum źródłowego i informuje, iż
-dostępna jest nowa i poprawiona wersja danej paczki, specyficzna dla systemu
+dostępna jest nowa i poprawiona wersja danego pakietu, specyficzna dla systemu
 Gentoo Linux. Pierwsze wydania paczek nie mają numeru rewizji, co oznacza, że
-paczkę <c>package-4.5.3</c> Portage potraktuje jak mającą zerowy numer rewizji.
-Oznacza to, że paczki zliczane będą w następującej kolejności: <c>1.0</c> (wersja
+pakiet <c>package-4.5.3</c> Portage potraktuje jak mającą zerowy numer rewizji.
+Oznacza to, że pakiety zliczane będą w następującej kolejności: <c>1.0</c> (wersja
 początkowa), <c>1.0-r1</c>, <c>1.0-r2</c>, itd. 
 </p>
 
 <p>
-Dokonując niebanalnych zmian w istniejącym pliku ebuild powinniśmy skopiować go
+Dokonując znacznych zmian w istniejącym pliku ebuild powinniśmy skopiować go
 do nowego pliku z numerem rewizji zwiększonym o 1. Należy pamiętać, aby zawsze
 odnotowywać zmiany <e>zarówno</e> w pliku <path>ChangeLog</path>, jak i w komunikacie
-wysyłania; pominięcie choć jednego jest wbrew regułom.
+wysyłania. Pominięcie choć jednego jest wbrew regułom.
 </p>
 
 <p>
@@ -345,7 +357,9 @@ systemowego man, gdzie są informacje na temat formatu skryptów ebuild, ich
 zmiennych i funkcji: <c>man 5 ebuild</c>.
 </p>
 
-<p><b>Nagłówki</b></p>
+<p>
+<b>Nagłówki</b>
+</p>
 
 <p>
 Nagłówek wysyłanego pliku ebuild powinien być <e>dokładnie</e> taki sam jak ten
@@ -364,7 +378,9 @@ Pierwsze trzy linie powinny wyglądać mniej-więcej tak:
 # &#36;Header: &#36;
 </pre>
 
-<p><b>Zmienne</b></p>
+<p>
+<b>Zmienne</b>
+</p>
 
 <p>
 Pierwsza część każdego pliku ebuild składa się z kilku zmiennych. Dzielą się one
@@ -372,9 +388,9 @@ na trzy kategorie wymienione poniżej:
 </p>
 
 <ul>
-<li>READ: zmiennych tych możemy użyć, ale <e>nie wolno</e> ich ustawiać</li>
-<li>MUST: zmienne, które <e>koniecznie należy ustawić</e></li>
-<li>OPT: zmienne, które powinniśmy ustawić</li>
+  <li>READ: zmiennych tych możemy użyć, ale <e>nie wolno</e> ich ustawiać</li>
+  <li>MUST: zmienne, które <e>koniecznie należy ustawić</e></li>
+  <li>OPT: zmienne, które powinniśmy ustawić</li>
 </ul>
 
 <table>
@@ -386,23 +402,24 @@ na trzy kategorie wymienione poniżej:
 <tr>
   <ti><c>P</c></ti>
   <ti>READ</ti>
-  <ti>Nazwa i wersja paczki.</ti>
+  <ti>Nazwa i wersja pakietu.</ti>
 </tr>
 <tr>
   <ti><c>PN</c></ti>
   <ti>READ</ti>
-  <ti>Nazwa paczki.</ti>
+  <ti>Nazwa pakietu.</ti>
 </tr>
 <tr>
   <ti><c>PV</c></ti>
   <ti>READ</ti>
-  <ti>Wersja paczki.</ti>
+  <ti>Wersja pakietu.</ti>
 </tr>
 <tr>
   <ti><c>PR</c></ti>
   <ti>READ</ti>
-  <ti>Zawiera numer rewizji lub <c>r0</c>, jeśli paczka nie posiada tego
-  numeru.</ti>
+  <ti>
+    Zawiera numer rewizji lub <c>r0</c>, jeśli pakiet nie posiada tego numeru.
+  </ti>
 </tr>
 <tr>
   <ti><c>PVR</c></ti>
@@ -412,7 +429,7 @@ na trzy kategorie wymienione poniżej:
 <tr>
   <ti><c>PF</c></ti>
   <ti>READ</ti>
-  <ti>Zawiera pełną nazwę paczki <c>${PN}-${PVR}</c>.</ti>
+  <ti>Zawiera pełną nazwę pakietu <c>${PN}-${PVR}</c>.</ti>
 </tr>
 <tr>
   <ti><c>A</c></ti>
@@ -427,16 +444,16 @@ na trzy kategorie wymienione poniżej:
   <ti>READ</ti>
   <ti>
     Zawiera ścieżkę do katalogu <path>distfiles</path>, w którym zwykle są
-    przechowywane wszystkie pobrane pliki ze źródłami paczek. Zwykle jest to
-    ścieżka <path>/usr/portage/distfiles</path>.
+    przechowywane wszystkie pobrane pliki ze źródłami programów. Zwykle jest to
+    katalog <path>/usr/portage/distfiles</path>.
   </ti>
 </tr>
 <tr>
   <ti><c>FILESDIR</c></ti>
   <ti>READ</ti>
   <ti>
-    Zawiera ścieżkę do podkatalogu <path>files</path> z katalogu danej paczki w
-    drzewie Portage. Nie wolno modyfikować tej zmiennej.
+    Zawiera ścieżkę do podkatalogu <path>files</path> z katalogu danego pakietu
+    w drzewie Portage. Nie wolno modyfikować tej zmiennej.
   </ti>
 </tr>
 <tr>
@@ -451,7 +468,7 @@ na trzy kategorie wymienione poniżej:
   <ti><c>S</c></ti>
   <ti>OPT</ti>
   <ti>
-    Katalog źródłowy naszej paczki; zwykle jest to <c>${WORKDIR}/${P}</c>.
+    Katalog źródłowy naszego pakietu. Zwykle jest to <c>${WORKDIR}/${P}</c>.
     Portage przyjmie tę wartość jako domyślną, nie trzeba jej więc ustawiać
     samemu.
   </ti>
@@ -460,7 +477,7 @@ na trzy kategorie wymienione poniżej:
   <ti><c>T</c></ti>
   <ti>READ</ti>
   <ti>
-    Katalog tymczasowy na naszą paczkę. Jest on używany jako wirtualny katalog
+    Katalog tymczasowy naszego pakietu. Jest on używany jako wirtualny katalog
     <path>/tmp</path> podczas przetwarzania skryptu ebuild.
   </ti>
 </tr>
@@ -468,7 +485,7 @@ na trzy kategorie wymienione poniżej:
   <ti><c>D</c></ti>
   <ti>READ</ti>
   <ti>
-    Katalog główny, do którego paczka zostanie zainstalowana. Należy traktować
+    Katalog główny, do którego pakiet zostanie zainstalowany. Należy traktować
     go jako wirtualny katalog <path>/</path>.
   </ti>
 </tr>
@@ -482,9 +499,9 @@ na trzy kategorie wymienione poniżej:
     tym przypadku dla GCC 2.95 ustawilibyśmy zmienną <c>SLOT</c> na <c>2</c>, a
     dla GCC 3.2 na <c>3</c>.
     <br/>
-    <b>Uwaga</b>: Podanie <c>0</c> jako wartość zmiennej <c>SLOT</c> oznacza, że
-    dana paczka ma tylko jedno możliwe ustawienie <c>SLOT</c> (innymi słowy, nie
-    da się jej "SLOTować").
+    <b>Uwaga</b>: Podanie <c>0</c> jako wartości zmiennej <c>SLOT</c> oznacza,
+    że dany pakiet ma tylko jedno możliwe ustawienie <c>SLOT</c> (innymi słowy,
+    nie da się jej "SLOT-ować").
   </ti>
 </tr>
 <tr>
@@ -494,10 +511,9 @@ na trzy kategorie wymienione poniżej:
     Zmienna ta określa jaką licencją objęty jest program, na przykład GPL-2,
     BSD, itp... Zawartością tej zmiennej musi być poprawna licencja (jest nią
     dowolna licencja z pliku <path>/usr/portage/license/</path>). Jesli danej
-    licencji nie ma w tym pliku, musi zostać tam dodana zanim plik ebuild będzie
-    mógł być dodany do drzewa Portage. Jeśli licencja nie zezwala na
-    redystrybucję programu, należy dodać <c>RESTRICT</c>="nomirror" do pliku
-    ebuild.
+    licencji nie ma w tym pliku, musi zostać tam dodana zanim plik ebuild
+    znajdzie się w drzewie Portage. Jeśli licencja nie zezwala na redystrybucję
+    programu, należy dodać <c>RESTRICT</c>="nomirror" do pliku ebuild.
   </ti>
 </tr>
 <tr>
@@ -509,51 +525,52 @@ na trzy kategorie wymienione poniżej:
     to: <e>x86, ppc, sparc, mips, alpha, arm, hppa, amd64 i ia64</e>. Więcej
     szczegółów można znaleźć w pliku profiles/arch.list. Jak nietrudno się
     domyślić, zmienną tę ustawiamy zgodnie z architekturą docelowej maszyny.
-    Portage nie zezwoli maszynie x86 budować paczek innych niż x86, zgodnie z
-    tym, co jest podane w zmiennej <c>KEYWORDS</c>. Paczki, które nie wspierają
+    Portage nie zezwoli maszynie x86 budować pakietów innych niż x86, zgodnie z
+    tym, co jest podane w zmiennej <c>KEYWORDS</c>. Pakiety, które nie wspierają
     architektury danego komputera są automatycznie maskowane przez Portage.
     Jeśli flaga <c>KEYWORDS</c> posiada przedrostek <e>~</e>, oznacza to, że
     dany ebuild działa, ale powinien zostać przetestowany w kilku środowiskach,
     zanim może zostać uznany za stabilny. Jeśli zaś przed flagą <c>KEYWORDS</c>
-    występuje znak <e>-</e>, dana paczka nie będzie działać na danej
-    architekturze. Paczka jest uznawana za stabilną, jeśli nic nie poprzedza
+    występuje znak <e>-</e>, dany pakiet nie będzie działać na danej
+    architekturze. Pakiety jest uznawany za stabilny, jeśli nic nie poprzedza
     zmiennych zawartych w <c>KEYWORDS</c>. Ustawiając odpowiednio zmienną
     <c>ACCEPT_KEYWORDS</c> w pliku <path>make.conf</path> definiujemy którym z
-    powyższych typów paczek zezwalamy na instalację.
+    powyższych typów pakietów zezwalamy na instalację.
   </ti>
 </tr>
 <tr>
   <ti><c>DESCRIPTION</c></ti>
   <ti>MUST</ti>
-  <ti><e>Krótki</e>, mieszczący się w jednej linii opis paczki.</ti>
+  <ti><e>Krótki</e>, mieszczący się w jednej linii opis pakietu.</ti>
 </tr>
 <tr>
   <ti><c>SRC_URI</c></ti>
   <ti>MUST</ti>
   <ti>
-    URL-e każdego pliku ze źródłami paczki, rozdzielone białym znakiem. W
-    zmiennych SRC_URI i S nie powinno się umieszczać numerów wersji. Powinniśmy
-    zawsze stosować zmienne ${PV} lub ${P}, a jeśli numer wersji nie pokrywa się z nazwą
-    pliku zawierającego źródła, należy stworzyć zmienną ${MY_P} i użyć jej
-    zamiast dwóch poprzednich.
+    URL-e każdego pliku ze źródłami pakietu, rozdzielone białym znakiem (np.
+    spacją, znakiem końca linii). W zmiennych SRC_URI i S nie powinno się
+    umieszczać numerów wersji. Powinniśmy zawsze stosować zmienne ${PV} lub
+    ${P}, a jeśli numer wersji nie pokrywa się z nazwą pliku zawierającego
+    źródła, należy stworzyć zmienną ${MY_P} i użyć jej zamiast dwóch
+    poprzednich.
   </ti>
 </tr>
 <tr>
   <ti><c>HOMEPAGE</c></ti>
   <ti>MUST</ti>
   <ti>
-    Strona domowa paczki. Jeśli nie możemy znaleźć oficjalnej strony, można
-    podać odnośnik z <uri link="http://freshmeat.net/">freshmeat.net</uri>, lub
+    Strona domowa pakietu. Jeśli nie możemy znaleźć oficjalnej strony, można
+    podać odnośnik z <uri link="http://freshmeat.net/">freshmeat.net</uri> lub
     podobnej strony z bazą danych programów. Nigdy nie należy odnosić się do
-    innej zmiennej wewnątrz tej; musi ona zawierać tylko czysty tekst.
+    innej zmiennej wewnątrz tej. Musi ona zawierać tylko czysty tekst.
   </ti>
 </tr>
 <tr>
   <ti><c>IUSE</c></ti>
   <ti>MUST</ti>
   <ti>
-    W zmiennej tej zamieszczamy zmienne <c>USE</c>, z jakich korzysta nasza
-    paczka. Należy pamiętać, że nie wolno tutaj umieścić <c>KEYWORDS</c>!
+    W zmiennej tej zamieszczamy zmienne <c>USE</c>, z jakich korzysta nasz
+    pakiet. Należy pamiętać, że nie wolno tutaj umieścić <c>KEYWORDS</c>!
   </ti>
 </tr>
 <tr>
