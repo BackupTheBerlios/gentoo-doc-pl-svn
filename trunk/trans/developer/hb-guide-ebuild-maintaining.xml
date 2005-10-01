@@ -2,7 +2,7 @@
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/devrel/handbook/hb-guide-ebuild-maintaining.xml,v 1.4 2005/07/27 12:49:40 plasmaroo Exp $ -->
 
@@ -13,20 +13,19 @@
 
 <p>
 Przewodnik wyjaśnia codzienne działania związane z utrzymywaniem ebuildów, a
-także inne, żadziej wykonywane czynności, z którymi niektórzy deweloperzy być
+także inne, rzadziej wykonywane czynności, z którymi niektórzy deweloperzy być
 może jeszcze się nie zapoznali.
 </p>
 
 </body>
 </section>
-
 <section>
 <title>Dodawanie nowych ebuildów</title>
 <body>
 
 <p>
 Dodając nowy ebuild, należy uwzględnić wartość <c>KEYWORDS</c> wyłącznie dla
-archtektury, na której go testowaliśmy. Poprzez dodanie nowego ebuilda
+architektury, na której go testowaliśmy. Poprzez dodanie nowego ebuilda
 potwierdzamy poprawność jego działania, a także fakt prawidłowej obsługi flag
 <c>USE</c> w pakietach generowanych do instalacji. Jeśli to możliwe, warto dodać
 również bieżące (i kompletne) biblioteki lub aplikacje testowe, gdyż deweloper
@@ -36,7 +35,7 @@ obejmujące sprawdzenie czy aplikacja uruchomi się bez błędów po zainstalowa
 </p>
 
 <p>
-Jeśli dodajemy ebuilda nadesłanego przez użytkownia, nie możemy zakładać, że
+Jeśli dodajemy ebuilda nadesłanego przez użytkownika, nie możemy zakładać, że
 został on przetestowny na różnych architekturach. Często wartości
 <c>KEYWORDS</c> są kopiowane pomiędzy pakietami lub generowane na podstawie
 dokumentacji pakietów źródłowych, co nie oznacza, że dane pakiety faktycznie
@@ -45,7 +44,6 @@ działają na architekturach, jakie im przypisano.
 
 </body>
 </section>
-
 <section>
 <title>Stabilizacja ebuildów</title>
 <body>
@@ -80,20 +78,19 @@ architekturach pakiet nie został jeszcze ustabilizowany.
 
 </body>
 </section>
-
 <section>
 <title>Reguły stabilizacji ebuildów</title>
 <body>
 
 <p>
-Architektura SPARC: potrzebe jest wcześniejsze pozwlenie od lidera zespołu tej
-architektury (aktualnie jest nim Weeve). Zazwyczaj wymagany jest dostęp do
+Architektura SPARC: potrzebne jest wcześniejsze pozwolenie od lidera zespołu
+tej architektury (aktualnie jest nim Weeve). Zazwyczaj wymagany jest dostęp do
 komputera o architekturze SPARC, jednak możliwe są inne ustalenia, jeśli
 pracujemy na małej grupie pakietów. 
 </p>
 
 <p>
-Architektura ALPHA: osoby utrzymujące pakiety mogą stalibizować swoje własne
+Architektura ALPHA: osoby utrzymujące pakiety mogą stabilizować swoje własne
 ebuildy, jednak muszą informować przy tym zespół architektury Alpha, aby jego
 członkowie mogli również testować ebuildy i wyłapywać ewentualne błędu.
 </p>
@@ -106,13 +103,12 @@ wymagany jest dostęp do wielu systemów MIPS.
 
 </body>
 </section>
-
 <section>
 <title>Aktualizacja ebuildów</title>
 <body>
 
 <p>
-Nowe ebuildy niezwykle żadko powinny pojawiać się ze słowem kluczowym
+Nowe ebuildy niezwykle rzadko powinny pojawiać się ze słowem kluczowym
 "<c>arch</c>". Każdy pakiet <e>musi</e> zostać przetestowany na wszystkich
 architekturach występujących w zmiennej <c>KEYWORDS</c> ebuilda.
 </p>
@@ -121,7 +117,7 @@ architekturach występujących w zmiennej <c>KEYWORDS</c> ebuilda.
 Wyjątkiem od powyższej zasady są poprawki błędów lub luk bezpieczeństwa. Jeśli
 starsza wersja ebuilda zawiera w zmiennej <c>KEYWORDS</c> architektury, dla
 których nie możemy jej przetestować, konieczne jest dokonanie jej deprecjacji
-poprzez zmienę wszystkich "<c>arch</c>" na "<c>~arch</c>". Jeśli nie mamy
+poprzez zmianę wszystkich "<c>arch</c>" na "<c>~arch</c>". Jeśli nie mamy
 pewności czy pakiet w ogóle będzie działał na jakiejś architekturze, lepiej nie
 umieszczać jej w <c>KEYWORDS</c> i poprosić odpowiedni zespół deweloperów o
 przeprowadzenie testów.
@@ -130,8 +126,8 @@ przeprowadzenie testów.
 <p>
 W przypadku gdy nowa wersja zawiera zależności niedostępne na pewnych
 architekturach, należy wypełnić raport o błędzie lub skontaktować się z
-deweloperami poprzez kanały IRC, przed aktualizacją pakietu. Jeśli konieczne
-jest szybkie dodanie ebuilda, na przykład dla usunięcią luk bezpieczeństaw,
+deweloperami poprzez kanały IRC przed aktualizacją pakietu. Jeśli konieczne
+jest szybkie dodanie ebuilda, na przykład dla usunięcia luk bezpieczeństwa,
 należy pominąć wszystkie architektury, które sprawiają problemy. Zespoły
 pominiętych architektur informujemy następnie raportując odpowiedni błąd.
 </p>
@@ -148,12 +144,11 @@ aktualizowanego pakietu w CVS.
 <warn>
 W czasie wykonywania commitu należy upewnić się, że informujemy o wszystkich
 błędach zarówno w logach zmian jak i w komunikatach CVS. Pomijanie tego jest
-działaniem w bardzo złym guście i może spowodować wyciągnięcie konsekwencji.
+złe i będziemy wyciągać konsekwencje gdy deweloperzy to pominą.
 </warn>
 
 </body>
 </section>
-
 <section>
 <title>Przenoszenie ebuildów</title>
 <body>
@@ -163,21 +158,21 @@ Przenoszenie ebuildów w dwóch krokach:
 </p>
 
 <p>
-Po pierwsze, musimy przenieść ebuilda w CVS. Robimy to kopiując go do nowej
-lokalizacji i wykonując commit jak w przypadku <uri
+Po pierwsze, musimy przenieść ebuild do lokalnej kopii repozytorium CVS. Robimy
+to kopiując go do nowej lokalizacji i wykonując commit jak w przypadku <uri
 link="?part=1&amp;chap=3">nowego ebuilda</uri>.
 </p>
 
 <p>
 Następnie konieczna jest modyfikacja wszystkich ebuildów, dla których
-zależnością (<c>DEPEND</c>) jest stary ebuild, tak aby zależały on od nowego
+zależnością (<c>DEPEND</c>) jest stary ebuild, tak aby zależały one od nowego
 ebuildu. Dopiero po wykonaniu tych czynności usuwamy plik ze starej lokalizacji
 poleceniem <c>cvs remove</c> i wykonujemy tam commit.
 </p>
 
 <note>
 CVS nie może usuwać katalogów - po prostu nie będą one odtwarzane, gdy są
-puste, jeśli używamy flagi <c>-P</c>.
+puste i używamy flagi <c>-P</c>.
 </note>
 
 <p>
@@ -191,7 +186,7 @@ epkgmove net-old/package net-new/package
 
 <p>
 Po przeniesieniu pakietu, konieczne jest dodanie wpisu do najnowszego pliku w
-katalgu <path>profiles/updates/</path> w drzewie Portage, zgodnie z następującym
+katalogu <path>profiles/updates/</path> w drzewie Portage, zgodnie z następującym
 formatem:
 </p>
 
@@ -201,15 +196,14 @@ move net-misc/fwbuilder net-firewall/fwbuilder
 
 <p>
 Powyższy przykład przeniósłby <path>net-misc/fwbuilder</path> do
-<path>net-firewall/fwbuilder</path>, gdyby użytkownik posidał zainstalowaną tą
+<path>net-firewall/fwbuilder</path>, gdyby użytkownik posiadał zainstalowaną tą
 aplikację. W ten sposób wszystkie aktualizacje
-<path>net-firewall/fwbuilder</path> będą automatycznie wykonywane na komputerach
-użytkowników.
+<path>net-firewall/fwbuilder</path> będą automatycznie wykonywane na
+komputerach użytkowników.
 </p>
 
 </body>
 </section>
-
 <section>
 <title>Usuwanie ebuildów</title>
 <body>
@@ -222,7 +216,7 @@ ebuild został usunięty.
 
 <p>
 Przed usunięciem pakietu konieczne jest upewnienie się, że przypadkowo nie
-usuwamy najnowszej lub jedynej stabilnej wersji ebuilu. Jeśli zależy nam na
+usuwamy najnowszej lub jedynej stabilnej wersji ebuildu. Jeśli zależy nam na
 oznaczeniu nowszej wersji jako stabilnej, powinniści wypełnić raport o błędzie
 lub skontaktować się z odpowiednimi deweloperami na kanałach IRC.
 </p>
@@ -235,5 +229,4 @@ oznaczenie najnowszej wersji jako "<c>~arch</c>", a potem usuwać zbędne ebuild
 
 </body>
 </section>
-
 </sections>
