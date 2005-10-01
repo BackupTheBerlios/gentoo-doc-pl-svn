@@ -16,21 +16,20 @@
 <body>
 
 <p>
-Dokument przedstawia listę powszechnych błędów, jakie często występują w
-ebuildach użytkowników. Należy upewnić się, że ebuildy jakie dodajemy nie
-zawierają żadnego z tych błędów. Przed rozpoczęciem dodawania ebuildów konieczne
-jest zapoznanie się z dokumentem <uri link="?part=3&amp;chap=1">Gentoo ebuild
-Development Policy</uri> i <uri link="?part=2&amp;chap=1">Gentoo ebuild
-HOWTO</uri>. Ponadto należy przejrzeć kilka (więcej niż jeden czy dwa) ebuildów,
-aby poznać styl, w jakim są one napisane.
+Dokument przedstawia listę często popełnianych w ebuildach błędów. Należy
+upewnić się, że ebuildy jakie dodajemy nie zawierają żadnego z tych błędów.
+Przed rozpoczęciem dodawania ebuildów konieczne jest zapoznanie się z <uri
+link="?part=3&amp;chap=1">zasadami pisania ebuildów</uri> i z <uri
+link="?part=2&amp;chap=1">Ebuild HOWTO</uri>.  Ponadto należy przejrzeć kilka
+(więcej niż jeden lub dwa) ebuildy, aby poznać styl, w jakim są one pisane.
 </p>
 
 <p>
 Warto również zapoznać się z ebuildami, które wykorzystują eclass i przeczytać
-dokument <uri link="?part=2&amp;chap=2">Eclass HOWTO</uri>, aby zrozumieć sposób
-ich działania. Poza tym konieczne jest szczegółowe zapoznanie się z dokumentem
-<uri link="/doc/en/ebuild-submit.xml">Contributing Ebuilds Guide</uri>, przed
-dodaniem jakiegokolwiek ebuilda.
+dokument <uri link="?part=2&amp;chap=2">Eclass HOWTO</uri>, aby zrozumieć
+sposób ich działania. Poza tym konieczne jest szczegółowe zapoznanie się z
+dokumentem opisującym <uri link="/doc/pl/ebuild-submit.xml">zasilanie zbioru
+ebuildów</uri>, przed dodaniem jakiegokolwiek ebuilda.
 </p>
 
 </body>
@@ -40,7 +39,7 @@ dodaniem jakiegokolwiek ebuilda.
 <body>
 
 <p>
-Dodając ebuilda, należu upewnić się, że nagłówek jest <e>dokładnie</e> taki, jak
+Dodając ebuild, należy upewnić się, że nagłówek jest <e>dokładnie</e> taki, jak
 w pliku <path>/usr/portage/skel.ebuild</path>. Nie wolno modyfikować go w żaden
 sposób, a w szczególności linia <c>&#36;Header: &#36;</c> musi pozostać
 nietknięta.
@@ -57,11 +56,11 @@ Pierwsze trzy linie <e>muszą</e> wyglądać jak poniżej:
 </pre>
 
 <p>
-Jeśli dodajemy łatkę lub nowszą wersję ebuilda, nie musimy modyfikować
-linii <c>&#36;Header: &#36;</c>. Wciąż jednak linia ta musi być obecna. Gdy
-dodajemy ebuilda do repozytorium CVS, nagłówek zostanie automatycznie
-zmodyfikowany - pojawią się w nim odpowiednie informacje o wersji i dacie. Nie
-ma więc żadnego powodu, aby ręcznie zmieniać te dane.
+Jeśli dodajemy łatkę lub nowszą wersję ebuilda, nie musimy modyfikować linii
+<c>&#36;Header: &#36;</c>. Wciąż jednak linia ta musi być obecna. Gdy dodajemy
+ebuild do repozytorium CVS, nagłówek zostanie automatycznie zmodyfikowany -
+pojawią się w nim odpowiednie informacje o wersji i dacie. Nie ma więc żadnego
+powodu, aby ręcznie zmieniać te dane.
 </p>
 
 </body>
@@ -72,7 +71,7 @@ ma więc żadnego powodu, aby ręcznie zmieniać te dane.
 
 <p>
 Najczęściej brakującą zmienną w ebuildach jest IUSE. Musi ona zostać
-dołączona (zgodnie z dokumentem <uri link="?part=2&amp;chap=1">Gentoo ebuild
+dołączona (zgodnie z dokumentem <uri link="?part=2&amp;chap=1">Ebuild
 HOWTO</uri>) nawet jeśli pakiet nie korzysta z żadnych flag USE. W takiej
 sytuacji wystarczy dodać poniższą linię:
 </p>
@@ -112,7 +111,7 @@ Zawsze należy korzystać ze zmiennej ${PV} lub ${P}. Dzięki temu utrzymywanie
 zbioru ebuildów jest znacznie łatwiejsze. Jeśli oznaczenie wersji nie jest stałe
 w obrębie tarballa/źródeł, powinniśmy użyć zmiennej MY_P. Przykładowo
 dev-python/pyopenal odwołuje się do tarballa o nazwie PyOpenAL, więc zmieniamy
-ebuilda do postaci:
+ebuild do postaci:
 </p>
 
 <pre caption="Przykładowa redefinicja oznaczenia wersji">
@@ -128,14 +127,14 @@ S=${WORKDIR}/${MY_P}
 <body>
 
 <p>
-Często Występują błędy w sekcjach DEPEND i RDEPEND. Poniżej znajduje się kilka
+Często występują błędy w sekcjach DEPEND i RDEPEND. Poniżej znajduje się kilka
 spraw, o których należy pamiętać w czasie uzupełniania zależności programu.
 </p>
 
 <ul>
   <li>
     <e>Zawsze należy dołączyć kategorię.</e><br />
-    Przykładowo używamy <c>&gt;=x11-libs/gtk+-2</c> zamiast <c>&gt;=gtk+-2</c>.
+    Czyli np. wpisać <c>&gt;=x11-libs/gtk+-2</c> zamiast <c>&gt;=gtk+-2</c>.
   </li>
   <li>
     <e>Nie należy umieszczać gwiazdki (*) w zależnościach oznaczonych znakiem &gt;=.</e><br />
@@ -145,13 +144,13 @@ spraw, o których należy pamiętać w czasie uzupełniania zależności program
   <li><e>Dla pakietów korzystających z GTK: konieczne jest stosowanie
   =x11-libs/gtk+-1.2* dla programów zależnych od GTK+1.</e></li>
   <li>
-    <e>Zależnością nigdy nie może być meta pakiet.</e><br />
+    <e>Zależnością nigdy nie może być metapakiet.</e><br />
     Nie można uzależnić programu od gnome-base/gnome, lecz od specyficznych
     bibliotek - na przykład libgnome.
   </li>
   <li>
     <e>Jedna zależność w linii.</e><br />
-    Nie zaleca się umieszczania wielu zalezności w jednej linii. Jest to trudne
+    Nie zaleca się umieszczania wielu zależności w jednej linii. Jest to trudne
     do czytania i obsługi.
   </li>
 </ul>
@@ -163,7 +162,7 @@ spraw, o których należy pamiętać w czasie uzupełniania zależności program
 <body>
 
 <p>
-Jest to kolejny bardzo częsty błąd. Osoba przesyłająca ebuilda przekazuje nam
+Jest to kolejny bardzo częsty błąd. Osoba przesyłająca ebuild przekazuje nam
 coś, co "po prostu działa", bez sprawdzenia, czy zależności są prawidłowe.
 Poniżej znajduje się kilka porad jak prawidłowo określić zależności.
 </p>
@@ -177,13 +176,13 @@ Poniżej znajduje się kilka porad jak prawidłowo określić zależności.
   </li>
   <li>
     <e>Sprawdźmy dołączone pliki .spec</e><br />
-    Dobrym sposobem na odnaleziemie zależności jest przejrzenie dołączonych
+    Dobrym sposobem na odnalezienie zależności jest przejrzenie dołączonych
     plików .spec. Jednak trzeba pamiętać, że nie musi się w nich znajdować
     kompletna lista zależności.
   </li>
   <li>
     <e>Sprawdźmy stronę internetową programu/biblioteki</e><br />
-    Poszukajmy na stornie internetowej programu jakie zależności określają jego
+    Poszukajmy na stronie internetowej programu jakie zależności określają jego
     twórcy.
   </li>
   <li>
@@ -193,7 +192,7 @@ Poniżej znajduje się kilka porad jak prawidłowo określić zależności.
   </li>
   <li>
     <e>Pamiętajmy o niebinarnych zależnościach jak pkg-config, programy do
-    generacji dokumentacji, itp.</e><br />
+    generowania dokumentacji, itp.</e><br />
     Zazwyczaj w procesie budowania aplikacji potrzebne są pakiety takie jak
     intltool, libtool, pkg-config, doxygen, scrollkeeper, gtk-doc, itp.
     Upewnijmy się, że wymagania te zostały jasno określone.
@@ -230,9 +229,9 @@ odpowiedniego pliku.
 <body>
 
 <p>
-Nie należy dodawać do KEYWORDS żadnych architektury, na których ebuild nie
+Nie należy dodawać do KEYWORDS żadnych architektur, na których ebuild nie
 został przetestowany. Ponadto wszystkie nowe ebuildy powinny zostać oznaczone
-jako ~x86 lub  adekwatnie do architektury - zawsze z uwzględnieniem, iż jest to
+jako ~x86 lub adekwatnie do architektury - zawsze z uwzględnieniem, iż jest to
 wersja testowa. Podnosząc wersję programu, zawsze oznaczamy stabilne
 architektury znakiem <c>~</c>.
 </p>
@@ -260,7 +259,7 @@ SLOT="0"
 
 <p>
 Należy zweryfikować poprawność zmiennej HOMEPAGE. Adres w niej zawarty musi
-prowadzić do właściwej strony, na wypadek gdyby użytkownicy chceli uzyskać
+prowadzić do właściwej strony, na wypadek gdyby użytkownicy chcieli uzyskać
 więcej informacji o programie. Trzeba również sprawdzić, czy opis w zmiennej
 DESCRIPTION nie jest zbyt długi. Dobry opis to taki, który przedstawia główne
 funkcje pakietu w jednym zdaniu.
@@ -273,9 +272,9 @@ funkcje pakietu w jednym zdaniu.
 <body>
 
 <p>
-Poprawianie formatowania linii tylko dlatego, bo użytkownik przysyłający ebuilda
+Poprawianie formatowania linii tylko dlatego, że użytkownik przysyłający ebuild
 nie postępował zgodnie ze wskazówkami dotyczącymi używania znaków tabulacji
-zamist spacji, nie sprawia nikomu przyjemność. Używanie znaków tabulajci jest
+zamiast spacji, nie sprawia nikomu przyjemności. Używanie znaków tabulacji jest
 mocno zalecane.
 </p>
 
@@ -320,7 +319,6 @@ tym, aby sprawdzić czy nie wystąpiły błędy w czasie użycia
 </body>
 </subsection>
 </section>
-
 <section>
 <title>Częste błędy podczas dodawania ebuildów</title>
 <subsection>
@@ -329,8 +327,8 @@ tym, aby sprawdzić czy nie wystąpiły błędy w czasie użycia
 
 <p>
 Proces dodawania ebuildów należy przeprowadzać zgodnie z dokumentem <uri
-link="/doc/pl/ebuild-submit.xml">Zasilanie zbioru ebuildów</uri> w <uri
-link="/doc/pl/index.xml">Centrum dokumentacji Gentoo</uri>.
+link="/doc/pl/ebuild-submait.xml">Zasilanie zbioru ebuildów</uri> znajdującym
+się w <uri link="/doc/pl/index.xml">dokumentacji Gentoo</uri>.
 </p>
 
 </body>
@@ -362,20 +360,20 @@ Nie należy kopiować zawartości ebuildów do pola komentarza w bugzilli.
 
 <p>
 Konieczne jest dołączenie opisu pakietu i uzupełnienie pola URL adresem strony
-dokowej programu jeśli taka istnieje.
+domowej programu jeśli taka istnieje.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Aktualizacja pakietu bez aktualizacji w logach zmian</title>
+<title>Aktualizacja pakietu bez aktualizacji pliku ChangeLog</title>
 <body>
 
 <p>
 Gdy dodajemy zaktualizowany pakiet, musimy określić jakie zmiany w nim
 wprowadziliśmy. Przykładowo, jeśli pakiet zawiera nowe funkcje i są z nimi
 związane flagi USE, należy napisać o tym w raporcie błędu, jaki tworzymy dodając
-ebuilda.
+ebuild.
 </p>
 
 <p>
