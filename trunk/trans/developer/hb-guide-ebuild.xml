@@ -326,7 +326,7 @@ przykład <c>pakiet-4.5.3-r3</c>.
 <p>
 Numer rewizji jest niezależny od wersji archiwum źródłowego i informuje, iż
 dostępna jest nowa i poprawiona wersja danego pakietu, specyficzna dla systemu
-Gentoo Linux. Pierwsze wydania paczek nie mają numeru rewizji, co oznacza, że
+Gentoo Linux. Pierwsze wydania pakietów nie mają numeru rewizji, co oznacza, że
 pakiet <c>package-4.5.3</c> Portage potraktuje jak mającą zerowy numer rewizji.
 Oznacza to, że pakiety zliczane będą w następującej kolejności: <c>1.0</c> (wersja
 początkowa), <c>1.0-r1</c>, <c>1.0-r2</c>, itd. 
@@ -548,7 +548,7 @@ na trzy kategorie wymienione poniżej:
   <ti>MUST</ti>
   <ti>
     URL-e każdego pliku ze źródłami pakietu, rozdzielone białym znakiem (np.
-    spacją, znakiem końca linii). W zmiennych SRC_URI i S nie powinno się
+    spacją lub znakiem końca linii). W zmiennych SRC_URI i S nie powinno się
     umieszczać numerów wersji. Powinniśmy zawsze stosować zmienne ${PV} lub
     ${P}, a jeśli numer wersji nie pokrywa się z nazwą pliku zawierającego
     źródła, należy stworzyć zmienną ${MY_P} i użyć jej zamiast dwóch
@@ -569,35 +569,37 @@ na trzy kategorie wymienione poniżej:
   <ti><c>IUSE</c></ti>
   <ti>MUST</ti>
   <ti>
-    W zmiennej tej zamieszczamy zmienne <c>USE</c>, z jakich korzysta nasz
-    pakiet. Należy pamiętać, że nie wolno tutaj umieścić <c>KEYWORDS</c>!
+    W zmiennej tej zamieszczamy flagi <c>USE</c> z jakich korzysta nasz pakiet.
+    Należy pamiętać, że nie wolno tutaj umieścić <c>KEYWORDS</c>!
   </ti>
 </tr>
 <tr>
   <ti><c>DEPEND</c></ti>
   <ti>OPT</ti>
   <ti>
-    Tutaj wymieniamy zależności potrzebne do zbudowania paczki. Więcej
+    Tutaj wymieniamy zależności potrzebne do zbudowania pakietu. Więcej
     informacji na temat składni znajdziemy w sekcji <uri
-    link="#doc_chap5">Zależności paczki</uri>.
+    link="#doc_chap5">Zależności pakietu</uri>.
   </ti>
 </tr>
 <tr>
   <ti><c>RDEPEND</c></ti>
   <ti>OPT</ti>
   <ti>
-    Tutaj wymieniamy zależności potrzebne do uruchomienia programu z paczki. Jak
-    wspomniano wyżej, więcej szczegółów można znaleźć w sekcji <uri
-    link="#doc_chap5">Zależności paczki</uri>.
+    Tutaj wymieniamy zależności potrzebne do uruchomienia programu z pakietu.
+    Jak wspomniano wyżej, więcej szczegółów można znaleźć w sekcji <uri
+    link="#doc_chap5">Zależności pakietu</uri>.
   </ti>
 </tr>
 </table>
 
-<p><b>Funkcje</b></p>
+<p>
+<b>Funkcje</b>
+</p>
 
 <p>
 W plikach ebuild można zdefiniować wiele różnych funkcji, które kontrolują
-proces budowania i instalacji naszej paczki.
+proces budowania i instalacji pakietu.
 </p>
 
 <table>
@@ -611,7 +613,7 @@ proces budowania i instalacji naszej paczki.
     Funkcja ta służy do wykonywania wszelkich wstępnych czynności. Może to
     obejmować sprawdzenie czy istnieje już plik konfiguracyjny. Jeśli w tym
     miejscu konieczne jest dodanie użytkowników, należy również sprawdzić to 
-    w funkcji <c>pkg_preinst()</c> zanim paczka zostanie zainstalowana.
+    w funkcji <c>pkg_preinst()</c> zanim pakiet zostanie zainstalowany.
   </ti>
 </tr>
 <tr>
@@ -627,26 +629,26 @@ proces budowania i instalacji naszej paczki.
 <tr>
   <ti><c>src_unpack</c></ti>
   <ti>
-    Tej funkcji należy użyć, aby rozpakować źródła naszej paczki, nałożyć
-    poprawki i uruchomić zewnętrzne programy, na przykład autotools. Domyślnie
-    funkcja ta rozpakuje pliki wymienione w zmiennej <c>A</c>. Początkowy
-    katalog roboczy definiuje zmienna <c>WORKDIR</c>.
+    Tej funkcji należy użyć, aby rozpakować źródła pakietu, nałożyć poprawki i
+    uruchomić zewnętrzne programy, na przykład autotools. Domyślnie funkcja ta
+    rozpakuje pliki wymienione w zmiennej <c>A</c>. Początkowy katalog roboczy
+    definiuje zmienna <c>WORKDIR</c>.
   </ti>
 </tr>
 <tr>
   <ti><c>src_compile</c></ti>
   <ti>
-    Za pomocą tej funkcji konfigurujemy i budujemy paczkę. Początkowy
-    katalog roboczy definiuje zmienna <c>S</c>.
+    Za pomocą tej funkcji konfigurujemy i budujemy pakiet. Początkowy katalog
+    roboczy definiuje zmienna <c>S</c>.
   </ti>
 </tr>
 <tr>
   <ti><c>src_install</c></ti>
   <ti>
-    Tej funkcji użyjemy, aby zainstalować paczkę w katalogu określonym przez
-    zmienną <c>D</c>. Jesli nasza paczka korzysta z automake, możemy tego łatwo
+    Tej funkcji użyjemy, aby zainstalować pakiet w katalogu określonym przez
+    zmienną <c>D</c>. Jesli pakiet korzysta z automake, możemy tego łatwo
     dokonać poprzez <c>make DESTDIR=${D} install</c>. <e>Należy upewnić się, że
-    paczka wszystkie swoje pliki zainstaluje używając <c>D</c> jako katalogu
+    pakiet wszystkie swoje pliki zainstaluje używając <c>D</c> jako katalogu
     głównego!</e> Początkowy katalog roboczy definiuje zmienna <c>S</c>.
   </ti>
 </tr>
@@ -655,50 +657,51 @@ proces budowania i instalacji naszej paczki.
   <ti>
     Funkcja ta jest wykonywana tylko wtedy, gdy zmienna
     <c>FEATURES="maketest"</c> jest ustawiona, a zmienna
-    <c>RESTRICT="maketest"</c> nie jest ustawiona. Domyślnie wywołuje 
-    dostępną funkcję testującą z plików Makefile, znajdujących się w
-    katalogu zdefiniowanym przez zmienną <c>${S}</c>, uruchamiając albo "make
-    test" albo "make check", w zależności od tego, co jest dostępne. Funkcję tę
-    można nadpisać i zaimplementować własną metodę testowania paczki.
+    <c>RESTRICT="maketest"</c> nie jest ustawiona. Domyślnie wywołuje dostępną
+    funkcję testującą z plików Makefile, znajdujących się w katalogu
+    zdefiniowanym przez zmienną <c>${S}</c>, uruchamiając albo "make test" albo
+    "make check", w zależności od tego, co jest dostępne. Funkcję tę można
+    nadpisać i zaimplementować własną metodę testowania pakietu.
   </ti>
 </tr>
 <tr>
   <ti><c>pkg_preinst</c></ti>
   <ti>
     Polecenia zawarte w tej funkcji zostaną wykonane tuż <e>przed
-    zintegrowaniem</e> obrazu paczki z systemem plików.
+    zintegrowaniem</e> obrazu pakietu z systemem plików.
   </ti>
 </tr>
 <tr>
   <ti><c>pkg_postinst</c></ti>
   <ti>
     Polecenia zawarte w tej funkcji zostaną wykonane tuż <e>po
-    zintegrowaniu</e> obrazu paczki z systemem plików.
+    zintegrowaniu</e> obrazu pakietu z systemem plików.
   </ti>
 </tr>
 <tr>
   <ti><c>pkg_prerm</c></ti>
   <ti>
     Polecenia zawarte w tej funkcji zostaną wykonane tuż <e>przed 
-    odinstalowaniem</e> obrazu paczki z systemu plików.
+    odinstalowaniem</e> obrazu pakietu z systemu plików.
   </ti>
 </tr>
 <tr>
   <ti><c>pkg_postrm</c></ti>
   <ti>
     Polecenia zawarte w tej funkcji zostaną wykonane tuż <e>po 
-    odinstalowaniu</e> obrazu paczki z systemu plików.
+    odinstalowaniu</e> obrazu pakietu z systemu plików.
   </ti>
 </tr>
 <tr>
   <ti><c>pkg_config</c></ti>
   <ti>
-    Za pomocą tej funkcji możemy przygotować początkową konfigurację paczki tuż
-    po jej instalacji. Wszystkie ścieżki w obrębie tej funkcji powinny być
+    Za pomocą tej funkcji możemy przygotować początkową konfigurację pakietu
+    tuż po jego instalacji. Wszystkie ścieżki w obrębie tej funkcji powinny być
     poprzedzone zmienną <c>ROOT</c>, wskazującą podany przez użytkownika
     katalog instalacji, który niekoniecznie musi być katalogiem <path>/</path>.
     Funkcja ta wykonywana jest <e>tylko i wyłącznie</e> wtedy, gdy użytkownik
-    wyda polecenie: <c>ebuild /var/db/pkg/${CATEGORY}/${PF}/${PF}.ebuild config</c>.
+    wyda polecenie: <c>ebuild /var/db/pkg/${CATEGORY}/${PF}/${PF}.ebuild
+    config</c>.
   </ti>
 </tr>
 </table>
@@ -727,16 +730,16 @@ W naszych skryptach ebuild możemy użyć także następujących funkcji pomocni
 <tr>
   <ti><c>has_version</c></ti>
   <ti>
-    Zwraca 1 jeśli w systemie jest żądana wersja danej paczki. Na przykład
+    Zwraca 1 jeśli w systemie jest żądana wersja danego pakietu. Na przykład
     <c>has_version >=sys-libs/glibc-2.3.0</c>.
   </ti>
 </tr>
 <tr>
   <ti><c>best_version</c></ti>
   <ti>
-    Zwraca <path>kategoria/paczka-wersja</path> danej paczki, podanej w formacie
-    <path>kategoria/paczka</path>. Na przykład <c>best_version
-    x11-libs/gtk+extra</c>.
+    Zwraca informację <path>kategoria/pakiet-wersja</path> danego pakietu,
+    podaną w formacie <path>kategoria/pakiet</path>. Na przykład
+    <c>best_version x11-libs/gtk+extra</c>.
   </ti>
 </tr>
 <tr>
@@ -754,7 +757,7 @@ W naszych skryptach ebuild możemy użyć także następujących funkcji pomocni
 <tr>
   <ti><c>use_enable</c></ti>
   <ti>
-    Tak samo jak przypadku <c>use_with</c>, lecz zwraca odpowiednio 
+    Tak samo jak w przypadku <c>use_with</c>, ale zwraca odpowiednio
     &quot;--enable-blabla&quot; lub &quot;--disable-blabla&quot;.
   </ti>
 </tr>
@@ -776,7 +779,7 @@ W naszych skryptach ebuild możemy użyć także następujących funkcji pomocni
     aby katalog ten nie został automatycznie usunięty. <e>Nigdy</e> nie należy
     tworzyć pliku <path>.keep</path> ręcznie. Jeśli zasada działania funkcji
     <c>keepdir</c> zmieni się w Portage, samodzielne tworzenie tego pliku
-    popsuje paczkę.
+    popsuje pakiet.
   </ti>
 </tr>
 <tr>
@@ -788,7 +791,7 @@ W naszych skryptach ebuild możemy użyć także następujących funkcji pomocni
     <c>./configure</c>, przekazując je funkcji <c>econf</c> przy wywołaniu, zaś
     użytkownicy w razie potrzeby mogą ustawić zmienną środowiskową
     <c>EXTRA_ECONF</c>. Opcje przekazane skryptowi configure przejmują
-    pierwszeństwo w odwrotnej kolejności niż jak zostały podane. Innymi słowy,
+    pierwszeństwo w odwrotnej kolejności niż zostały podane. Innymi słowy,
     pierwszy przekazany argument zostanie zawsze zastąpiony ostatnim.
   </ti>
 </tr>
@@ -799,7 +802,7 @@ W naszych skryptach ebuild możemy użyć także następujących funkcji pomocni
     ścieżkach (prefix, datadir, mandir, infodir, datadir, sysconfdir,
     localstatedir). Jak wyżej, można przekazać dodatkowe argumenty do komendy
     make, przekazując je funkcji <c>einstall</c> przy jej wywołaniu. Zauważmy
-    jednak, że preferowanym sposobem zainstalowania paczki jest wywołanie
+    jednak, że preferowanym sposobem zainstalowania pakietu jest wywołanie
     komendy <c>make install DESTDIR=${D}</c>, a nie za pomocą <c>einstall</c>.
     Komenda ta używana jest tylko zastępczo w przypadku popsutych plików make.
   </ti>
@@ -818,19 +821,21 @@ W naszych skryptach ebuild możemy użyć także następujących funkcji pomocni
   <ti><c>einfo</c></ti>
   <ti>
     Informuje użytkownika o czymś istotnym. Argument przekazany funkcji
-    <c>einfo</c> będzie komunikatem, który zobaczy użytkownik. Nie należy używać
-    tej funkcji aby wypisywać nagłówki w rodzaju
+    <c>einfo</c> będzie komunikatem, który zobaczy użytkownik. Nie należy
+    używać tej funkcji do wypisywania nagłówków w rodzaju
     &quot;*************************************&quot;. Sam fakt, że została
     użyta funkcja <c>einfo</c> wystarczy, aby przyciągnąć uwagę użytkownika.
   </ti>
 </tr>
 </table>
 
-<p><b>Funkcje pomocnicze dostarczone przez eutils.eclass</b></p>
+<p>
+<b>Funkcje pomocnicze dostarczone przez eutils.eclass</b>
+</p>
 
 <p>
 Możemy użyć następujących funkcji pomocniczych, które są dostępne w naszych
-ebuildach poprzez eklasę "eutils". Należy upewnić się, że użyliśmy instrukcji
+ebuildach poprzez eclass "eutils". Należy upewnić się, że użyliśmy instrukcji
 <c>inherit eutils</c>, inaczej funkcje te nie będą działać.
 </p>
 
@@ -877,7 +882,7 @@ ebuildach poprzez eklasę "eutils". Należy upewnić się, że użyliśmy instru
 <tr>
   <ti><c>mymktemp</c></ti>
   <ti>
-    Funkcja ta pełni rolę interfejsu dla mktemp, jeśli ten istnieje, lub
+    Funkcja ta pełni rolę interfejsu dla mktemp, jeśli ten istnieje lub
     zastępuje go, jeśli nie istnieje.
   </ti>
 </tr>
@@ -918,7 +923,7 @@ ebuildach poprzez eklasę "eutils". Należy upewnić się, że użyliśmy instru
   <ti>
     Tworzy wpis desktop wg standardu freedesktop.org. Pierwszy argument
     zawiera ścieżkę do pliku binarnego z programem. Dodatkowo drugi zawiera
-    nazwę pliku ikony - domyślna wartość to <c>${PN}</c>; trzeci może zawierać
+    nazwę pliku ikony - domyślna wartość to <c>${PN}</c>. Trzeci może zawierać
     ścieżkę do pliku ikony - względną do ścieżki <path>/usr/share/pixmaps</path>
     lub pełną ścieżkę. Wartość domyślna to <c>${PN}</c>.png; czwarty może
     zawierać <uri
@@ -942,7 +947,7 @@ ebuildach poprzez eklasę "eutils". Należy upewnić się, że użyliśmy instru
     musi zawierać nazwę pliku archiwum, drugi zaś wartość "off_t", którą należy
     wygenerować ręcznie: <c>strace -elseek ${plik}</c>, zaś dla przykładowego
     wywołania takiego jak to: "lseek(3, -4, SEEK_END)"  przekazalibyśmy wartość
-    "4". 
+    "4".
   </ti>
 </tr>
 <tr>
@@ -973,7 +978,7 @@ ebuildach poprzez eklasę "eutils". Należy upewnić się, że użyliśmy instru
   <ti><c>strip-linguas</c></ti>
   <ti>
     Zadaniem tej funkcji jest upewnienie się, że zmienna LINGUAS zawiera tylko
-    obsługiwane przez paczkę języki, podawane jako argumenty dla funkcji. Jeśli
+    obsługiwane przez pakiet języki, podawane jako argumenty dla funkcji. Jeśli
     pierwszym argumentem jest -i, tworzona jest lista plików .po w określonych
     katalogach i użyta jest część wspólna list. Jeśli zaś pierwszym
     argumentem jest -u, tworzona jest lista plików .po w określonych katalogach
@@ -982,14 +987,16 @@ ebuildach poprzez eklasę "eutils". Należy upewnić się, że użyliśmy instru
 </tr>
 </table>
 
-<p><b>Funkcje pomocnicze dostarczone przez flag-o-matic.eclass</b></p>
+<p>
+<b>Funkcje pomocnicze dostarczone przez flag-o-matic.eclass</b>
+</p>
 
 <p>
 Możemy użyć następujących funkcji pomocniczych, które są dostępne w naszych
-ebuildach poprzez eklasę "flag-o-matic". Należy upewnić się, że użyliśmy
+ebuildach poprzez eclass "flag-o-matic". Należy upewnić się, że użyliśmy
 instrukcji <c>inherit flag-o-matic</c>, inaczej funkcje te nie będą działać.
 Nigdy nie należy ręcznie modyfikować ustawień kompilatora, zamiast tego
-powinniśmy użyć funkcji z eklasy flag-o-matic do czynności typu odfiltrowanie
+powinniśmy użyć funkcji z eclass flag-o-matic do czynności typu odfiltrowanie
 sprawiających kłopoty flag.
 </p>
 
@@ -1083,136 +1090,100 @@ sprawiających kłopoty flag.
 </tr>
 </table>
 
-
-
 <p>
 Możemy użyć następujących funkcji pomocniczych, które są dostępne w naszych
-ebuildach poprzez eklasę "toolchain-funcs". Należy upewnić się, że użyliśmy
+ebuildach poprzez eclass "toolchain-funcs". Należy upewnić się, że użyliśmy
 instrukcji <c>inherit toolchain-funcs</c>, inaczej funkcje te nie będą działać.
-Nigdy nie należy ręcznie modyfikować ustawień kompilatora lub binutils, zamiast tego
-powinniśmy użyć funkcji z eklasy flag-o-matic aby określać kompilatory i
+Nigdy nie należy ręcznie modyfikować ustawień kompilatora lub binutils, zamiast
+tego powinniśmy użyć funkcji z eclass flag-o-matic do określenia kompilatorów i
 binutils.
 </p>
+
 <p>
 Poniższe funkcje stosuje się, aby wspierać kompilację skrośną i kompilator icc.
-Powinny być one używane gdy paczka wprost używa gcc, g++, ld, ranlib lub
-jakichkolwiek poniższych narzędzi. Na ogół paczki, które używają narzędzi do
+Powinny być one używane gdy pakiet wprost używa gcc, g++, ld, ranlib lub
+jakichkolwiek poniższych narzędzi. Na ogół pakiety, które używają narzędzi do
 autokonfiguracji wykrywają kompilację skrośną automatycznie i nie potrzebują
 poniższych funkcji.
 </p>
-  <table>
-    <tr>
-      <th>Funkcja</th>
-      <th>Zastosowanie</th>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-getAR</c>
-      </ti>
-      <ti>Zwraca nazwę archiwizatora.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-getAS</c>
-      </ti>
-      <ti>Zwraca nazwę asemblera.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-getCC</c>
-      </ti>
-      <ti>Zwraca nazwę kompilatora C.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-getCXX</c>
-      </ti>
-      <ti>Zwraca nazwę kompilatora C++.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-getLD</c>
-      </ti>
-      <ti>Zwraca nazwę linkera.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-getNM</c>
-      </ti>
-      <ti>Zwraca nazwę narzędzia do inspekcji symboli/obiektów.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-getRANLIB</c>
-      </ti>
-      <ti>Zwraca nazwę programu indeksującego archiwa</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-getF77</c>
-      </ti>
-      <ti>Zwraca nazwę kompilatora fortrana.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-getLD</c>
-      </ti>
-      <ti>Zwraca nazwę linkera.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-getGCJ</c>
-      </ti>
-      <ti>Zwraca nazwę kompilatora javy.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-getBUILD_CC</c>
-      </ti>
-      <ti>Zwraca nazwę kompilatora C do budowania.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>tc-is-cross-compiler</c>
-      </ti>
-      <ti>Prosty sposób na sprawdzenie czy używamy kompilatora skrośnego.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>gcc-fullversion</c>
-      </ti>
-      <ti>Zwraca wersję tak samo jak polecenie $($CC -dumpversion)</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>gcc-version</c>
-      </ti>
-      <ti>Zwraca tylko postać &lt;major>.&lt;minor> wersji.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>gcc-major-version</c>
-      </ti>
-      <ti>Zwraca część Major wersji.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>gcc-minor-version</c>
-      </ti>
-      <ti>Zwraca część Minor wersji.</ti>
-    </tr>
-    <tr>
-      <ti>
-        <c>gcc-micro-version</c>
-      </ti>
-      <ti>Zwraca część Micro wersji.</ti>
-    </tr>
-  </table>
 
+<table>
+<tr>
+  <th>Funkcja</th>
+  <th>Zastosowanie</th>
+</tr>
+<tr>
+  <ti><c>tc-getAR</c></ti>
+  <ti>Zwraca nazwę archiwizatora.</ti>
+</tr>
+<tr>
+  <ti><c>tc-getAS</c></ti>
+  <ti>Zwraca nazwę asemblera.</ti>
+</tr>
+<tr>
+  <ti><c>tc-getCC</c></ti>
+  <ti>Zwraca nazwę kompilatora C.</ti>
+</tr>
+<tr>
+  <ti><c>tc-getCXX</c></ti>
+  <ti>Zwraca nazwę kompilatora C++.</ti>
+</tr>
+<tr>
+  <ti><c>tc-getLD</c></ti>
+  <ti>Zwraca nazwę linkera.</ti>
+</tr>
+<tr>
+  <ti><c>tc-getNM</c></ti>
+  <ti>Zwraca nazwę narzędzia do inspekcji symboli/obiektów.</ti>
+</tr>
+<tr>
+  <ti><c>tc-getRANLIB</c></ti>
+  <ti>Zwraca nazwę programu indeksującego archiwa</ti>
+</tr>
+<tr>
+  <ti><c>tc-getF77</c></ti>
+  <ti>Zwraca nazwę kompilatora fortrana.</ti>
+</tr>
+<tr>
+  <ti><c>tc-getLD</c></ti>
+  <ti>Zwraca nazwę linkera.</ti>
+</tr>
+<tr>
+  <ti><c>tc-getGCJ</c></ti>
+  <ti>Zwraca nazwę kompilatora javy.</ti>
+</tr>
+<tr>
+  <ti><c>tc-getBUILD_CC</c></ti>
+  <ti>Zwraca nazwę kompilatora C do budowania.</ti>
+</tr>
+<tr>
+  <ti><c>tc-is-cross-compiler</c></ti>
+  <ti>Prosty sposób na sprawdzenie czy używamy kompilatora skrośnego.</ti>
+</tr>
+<tr>
+  <ti><c>gcc-fullversion</c></ti>
+  <ti>Zwraca wersję tak samo jak polecenie $($CC -dumpversion)</ti>
+</tr>
+<tr>
+  <ti><c>gcc-version</c></ti>
+  <ti>Zwraca tylko postać &lt;major>.&lt;minor> wersji.</ti>
+</tr>
+<tr>
+  <ti><c>gcc-major-version</c></ti>
+  <ti>Zwraca część Major wersji.</ti>
+</tr>
+<tr>
+  <ti><c>gcc-minor-version</c></ti>
+  <ti>Zwraca część Minor wersji.</ti>
+</tr>
+<tr>
+  <ti><c>gcc-micro-version</c></ti>
+  <ti>Zwraca część Micro wersji.</ti>
+</tr>
+</table>
 
 </body>
 </subsection>
-
 <subsection>
 <title>Zasady pisania plików ebuild</title>
 <body>
@@ -1261,7 +1232,7 @@ au BufRead,BufNewFile *.e{build,class} set ts=4 sw=4 noexpandtab
 </pre>
 
 <p>
-Jeśli używamy edytora Emacs możmy dodać następujący fragment do pliku .emacsrc
+Jeśli używamy edytora Emacs możemy dodać następujący fragment do pliku .emacsrc
 (w GNU Emacs) lub init.el (w XEmacs) aby upewnić się, że używamy poprawnych
 ustawień przy edycji plików Gentoo.
 </p>
@@ -1288,14 +1259,14 @@ tylko odkomentować sekcję dotyczącą ebuildów w pliku <path>/etc/nanorc</pat
 <body>
 
 <p>
-Dzięki zmiennym USE możliwe jest skonfigurowanie Portage aby globalnie i
-automatycznie włączał lub wyłączał pewne <e>opcjonalne, ustawiane przy
+Dzięki zmiennym USE możliwe jest skonfigurowanie Portage, aby globalnie i
+automatycznie włączało lub wyłączało pewne <e>opcjonalne, ustawiane przy
 budowaniu</e> funkcje programów. Oto przykład. Załóżmy, że jesteśmy fanami
 środowiska GNOME i chcielibyśmy, aby każdy ebuild, który daje możliwość
 wkompilowania opcjonalnej obsługi tego środowiska zrobił to. W tym przypadku
 należy dodać <c>gnome</c> do zmiennej <c>USE</c> w pliku
 <path>/etc/make.conf</path>, a Portage automatycznie będzie dodawał opcjonalną
-funkcjonalność GNOME do paczek, jeśli jest ona dostępna. Podobnie, jeśli nie
+funkcjonalność GNOME do pakietów, jeśli jest ona dostępna. Podobnie, jeśli nie
 chcemy funkcji GNOME w naszych ebuildach, wystarczy upewnić się, że <c>gnome</c>
 nie jest dodane do zmiennej <c>USE</c> w pliku <path>/etc/make.conf</path>.
 System Gentoo Linux ma niemal przytłaczającą ilość opcji USE, dzięki czemu
@@ -1304,9 +1275,9 @@ możemy skonfigurować go dokładnie tak jak chcemy.
 
 <note>
 Jeśli wyłączymy flagę USE (na przykład usuwając <c>gnome</c> ze zmiennej
-<c>USE</c>), poinstruuje to jedynie Portage aby wyłączyć <e>opcjonalne</e>
+<c>USE</c>), poinstruuje to jedynie Portage, aby wyłączyć <e>opcjonalne</e>
 wsparcie dla GNOME w czasie budowania. Jednakże jeśli instalujemy za pomocą
-narzędzia <c>emerge</c> ebuild, którzy <e>wymaga</e> GNOME, paczka ta oczywiście
+narzędzia <c>emerge</c> ebuild, którzy <e>wymaga</e> GNOME, pakiet ta oczywiście
 będzie zawierać obsługę tego środowiska. Oznacza to także, że GNOME zostanie
 automatycznie zainstalowane (jako zależność), jeśli wcześniej nie było go w
 systemie. Właśnie dlatego dobrze jest użyć polecenia <c>emerge --pretend</c>
@@ -1329,23 +1300,23 @@ fi
 
 <p>
 Zmiennych USE można również używać w celu ustawiania zależności. Na przykład
-chcielibyśmy aby pewna paczka była wymagana tylko jeśli ustawiona jest pewna
-zmienna USE. Możemy tego dokonać za pomocą składni <c>flaga? ( kategoria/paczka
+chcielibyśmy, aby pewien pakiet był wymagany tylko jeśli ustawiona jest pewna
+zmienna USE. Możemy tego dokonać za pomocą składni <c>flaga? ( kategoria/pakiet
 )</c> w zmiennej <c>DEPEND</c> naszego pliku ebuild. W tym przypadku
-<c>kategoria/paczka</c> będzie wymagana jedynie wtedy, gdy <c>flaga</c> będzie
+<c>kategoria/pakiet</c> będzie wymagana jedynie wtedy, gdy <c>flaga</c> będzie
 obecna w zmiennej <c>USE</c>. Możliwe jest także określenie jaka zależność ma
 zostać użyta jeśli pewna flaga USE <e>jest</e> ustawiona, a jaka ma zostać
-użyta, jeśli <e>nie jest</e> ustawiona: <c>flaga? ( kategoria/paczka )</c> i
-<c>!flaga? ( innakategoria/innapaczka )</c>. W tym przypadku jeśli <c>flaga</c>
-nie jest ustawiona, użyta zostanie <c>innakategoria/innapaczka</c> zamiast
-<c>kategoria/paczka</c>. Należy upewnić się, że nasze ebuildy używają powyższej
+użyta, jeśli <e>nie jest</e> ustawiona: <c>flaga? ( kategoria/pakiet )</c> i
+<c>!flaga? ( innakategoria/innypakiet )</c>. W tym przypadku jeśli <c>flaga</c>
+nie jest ustawiona, użyta zostanie <c>innakategoria/innypakiet</c> zamiast
+<c>kategoria/pakiet</c>. Należy upewnić się, że nasze ebuildy używają powyższej
 składni, a nie instrukcji warunkowych IF powłoki bash. Instrukcje warunkowe
 basha nie współpracują z cache'owaniem zależności przez Portage, więc używanie
 ich popsuje nasz ebuild.
 </p>
 
 <p>
-Oto ważna wskazówka jak używać zmiennej <c>USE</c>. Najczęściej paczki posiadają
+Oto ważna wskazówka jak używać zmiennej <c>USE</c>. Najczęściej pakiety posiadają
 skrypt <c>./configure</c>, za pomocą którego dokonuje się ich konfiguracji.
 Zwykle jeśli nasz ebuild używa <c>./configure</c>, wszelka opcjonalna
 funkcjonalność zostanie włączona lub wyłączona przy budowaniu przez przekazanie
@@ -1376,8 +1347,8 @@ o przejrzystości takiego kodu. :)
 </p>
 
 <p>
-Pod <uri link="http://www.gentoo.org/dyn/use-index.xml">tym adresem</uri> możemy
-obejrzeć stale uaktualnianą tabelę zmiennych USE.
+Pod <uri link="dyn/use-index.xml">tym adresem</uri> możemy obejrzeć stale
+uaktualnianą tabelę zmiennych USE.
 </p>
 
 </body>
@@ -1405,78 +1376,79 @@ omówione, a dokładniej nie ma o nich nawet wzmianki w aktualnej wersji FHS.
 </body>
 </subsection>
 <subsection>
-<title>Jak umieszczać paczki w systemie plików</title>
+<title>Jak umieszczać pakiety w systemie plików</title>
 <body>
 
 <p>
-Jeśli paczka używa autoconf i automake, domyślne katalogi docelowe przy
+Jeśli pakiet używa autoconf i automake, domyślne katalogi docelowe przy
 instalacji zwykle będą poprawne, z kilkoma wyjątkami:
 </p>
 
 <ul>
-<li>
-Jeśli instalujemy program w katalogu <path>/bin</path>, <path>/sbin</path>,
-<path>/usr/bin</path> lub <path>/usr/sbin</path>, dokumentacja man programu
-powinna zostać zainstalowana w katalogu <path>/usr/share/man</path>. Zwykle
-można to osiągnąć pisząc w skrypcie ebuild <c>./configure
---mandir=/usr/share/man</c>.
-</li>
-<li>
-Pliki dokumentacji GNU info zawsze powinny być instalowane w katalogu
-<path>/usr/share/info</path>, <e>nawet jeśli dokumentacja należy do programów
-specyficznych dla X11, GNOME lub KDE</e>. Zwróćmy uwagę: katalog
-<path>/usr/share/info</path> jest <e>jedynym</e> oficjalnym miejscem na pliki
-GNU info. Często skrypty <c>./configure</c> domyślnie instalują pliki GNU info w
-katalogu <c>/usr/info</c>. W tej sytuacji należy przekazać <c>./configure</c>
-parametr <c>--infodir=/usr/share/info</c>.
-</li>
-<li>
-Pliki dokumentacji są instalowane w katalogu <path>/usr/share/doc</path>, do
-podkatalogu, na którego nazwę składa się nazwa, wersja i rewizja danego
-programu. Dotyczy to wszystkich programów: GNOME, KDE, X11 i konsolowych.
-Niektóre programy jednak mogą dla swoich potrzeb instalować dodatkową
-dokumentację i pliki pomocnicze w hierarchii <path>/usr/share</path>. 
-</li>
-<li>
-Programy i biblioteki specyficzne dla X11 zawsze powinny być instalowane w
-katalogu <path>/usr</path>, a nie bezpośrednio w <path>/usr/X11R6</path>. Tę
-hierarchię katalogów rezerwujemy dla <e>samego</e> Systemu X Window w Wersji 11,
-Wydaniu 6. Jest to być może bardziej dosłowna interpretacja standardu FHS niż w
-przypadku wielu innych dystrybucji.
-</li>
-<li>
-Podobnie programy GNOME i KDE powinny być zawsze instalowane w katalogu
-<path>/usr</path>.
-</li>
+  <li>
+    Jeśli instalujemy program w katalogu <path>/bin</path>, <path>/sbin</path>,
+    <path>/usr/bin</path> lub <path>/usr/sbin</path>, dokumentacja man programu
+    powinna zostać zainstalowana w katalogu <path>/usr/share/man</path>. Zwykle
+    można to osiągnąć pisząc w skrypcie ebuild <c>./configure
+    --mandir=/usr/share/man</c>.
+  </li>
+  <li>
+    Pliki dokumentacji GNU info zawsze powinny być instalowane w katalogu
+    <path>/usr/share/info</path>, <e>nawet jeśli dokumentacja należy do
+    programów specyficznych dla X11, GNOME lub KDE</e>. Zwróćmy uwagę: katalog
+    <path>/usr/share/info</path> jest <e>jedynym</e> oficjalnym miejscem na
+    pliki GNU info. Często skrypty <c>./configure</c> domyślnie instalują pliki
+    GNU info w katalogu <c>/usr/info</c>. W tej sytuacji należy przekazać
+    <c>./configure</c> parametr <c>--infodir=/usr/share/info</c>.
+  </li>
+  <li>
+    Pliki dokumentacji są instalowane w katalogu <path>/usr/share/doc</path>,
+    do podkatalogu, na którego nazwę składa się nazwa, wersja i rewizja danego
+    programu. Dotyczy to wszystkich programów: GNOME, KDE, X11 i konsolowych.
+    Niektóre programy jednak mogą dla swoich potrzeb instalować dodatkową
+    dokumentację i pliki pomocnicze w hierarchii <path>/usr/share</path>. 
+  </li>
+  <li>
+    Programy i biblioteki specyficzne dla X11 zawsze powinny być instalowane w
+    katalogu <path>/usr</path>, a nie bezpośrednio w <path>/usr/X11R6</path>.
+    Tę hierarchię katalogów rezerwujemy dla <e>samego</e> Systemu X Window w
+    Wersji 11, Wydaniu 6. Jest to być może bardziej dosłowna interpretacja
+    standardu FHS niż w przypadku wielu innych dystrybucji.
+  </li>
+  <li>
+    Podobnie programy GNOME i KDE powinny być zawsze instalowane w katalogu
+    <path>/usr</path>.
+  </li>
 </ul>
 
 <impo>
 Niektóre dystrybucje instalują GNOME i KDE w katalogu <path>/opt</path>. Nie
 istnieje standard, który definiowałby gdzie należy umieszczać pliki tych
 środowisk graficznych. W imię prostoty i spójności zdecydowaliśmy umieszczać
-wszystkie paczki KDE i GNOME w hierarchii katalogów <path>/usr</path>.
+wszystkie pakiety KDE i GNOME w hierarchii katalogów <path>/usr</path>.
 </impo>
 
 <p>
 Ogólnie nasze ebuildy powinny instalować pliki w katalogu <path>/usr</path>.
 <e>Niektóre</e> programy mogą być kompilowane i linkowane z bibliotekami GNOME,
-KDE oraz X11, lub bez nich, co może powodować zamieszanie. Rozwiązanie, jakie
+KDE oraz X11 lub bez nich, co może powodować zamieszanie. Rozwiązanie, jakie
 proponujemy to instalowanie wszystkiego w katalogu <path>/usr</path>, dzięki
 czemu autorzy skryptów ebuild unikną niejednoznacznych sytuacji i niepotrzebnych
 komplikacji. Miejsce, w którym będziemy instalować pliki programu <e>nie
-może</e> zależeć od obecności lub nieobecności jakichś zmiennych <c>USE</c>.
+mogą</e> zależeć od obecności lub nieobecności jakichś zmiennych <c>USE</c>.
 Dlatego ebuildy w drzewie Portage <e>praktycznie zawsze</e> instalują swoje
 pliki wyłącznie w hierarchii katalogów <path>/usr</path>. 
 </p>
 
 <note>
-Katalog <path>/opt</path> jest w systemie Gentoo Linux zarezerwowany dla paczek
-binarnych, na przykład mozilla-bin, acroread, netscape i realplayer. Najczęściej
-paczki instalowane w tym katalogu wymagają dodatkowego pliku
+Katalog <path>/opt</path> jest w systemie Gentoo Linux zarezerwowany dla
+pakietów binarnych, na przykład mozilla-bin, acroread, netscape i realplayer.
+Najczęściej pakiety instalowane w tym katalogu wymagają dodatkowego pliku
 <path>/etc/env.d/coś</path>. Służy on do włączenia ścieżek i dodatkowych
 zmiennych do środowiska. Więcej informacji na temat katalogu
 <path>/etc/env.d</path> można znaleźć w <uri
-link="/doc/en/handbook/handbook-x86.xml?part=2&amp;chap=5">tym</uri> dokumencie.
+link="/doc/pl/handbook/handbook-x86.xml?part=2&amp;chap=5">tym</uri>
+dokumencie.
 </note>
 
 </body>
@@ -1489,21 +1461,21 @@ link="/doc/en/handbook/handbook-x86.xml?part=2&amp;chap=5">tym</uri> dokumencie.
 <body>
 
 <p>
-Są to skrypty używane przez administratora systemu do instalacji 
-i deinstalacji paczek, a także przy opiekowaniu się bazą danych paczek.
+Są to skrypty używane przez administratora systemu do instalacji i deinstalacji
+pakietów, a także przy opiekowaniu się bazą danych pakietów.
 </p>
 
 <p>
 Skrypt <c>ebuild</c> jest głównym "silnikiem" systemu Portage; za jego pomocą
 wykonujemy wszystkie główne zadania, na przykład rozpakowanie, kompilacja,
-instalacja, integracja z systemem i deinstalacja paczek. Używa się go w
-następujący sposób: <c>ebuild ścieżka/do/paczki.ebuild komenda</c>. Oto dostępne
-komendy:
+instalacja, integracja z systemem i deinstalacja pakietów. Używa się go w
+następujący sposób: <c>ebuild ścieżka/do/pakiet.ebuild komenda</c>. Oto
+dostępne polecenia:
 </p>
 
 <table>
 <tr>
-  <th>Komenda</th>
+  <th>Polecenie</th>
   <th>Opis</th>
   <th>Spokrewniona funkcja ze skryptów <c>ebuild</c></th>
 </tr>
@@ -1517,20 +1489,20 @@ komendy:
 </tr>
 <tr>
   <ti><c>depend</c></ti>
-  <ti>Wyświetla zależności niezbędne do zbudowania paczki.</ti>
+  <ti>Wyświetla zależności niezbędne do zbudowania pakietu.</ti>
   <ti>Nie dotyczy</ti>
 </tr>
 <tr>
   <ti><c>merge</c>*</ti>
   <ti>
-    Rozpakowuje, kompiluje, instaluje i integruje paczkę z systemem plików.
+    Rozpakowuje, kompiluje, instaluje i integruje pakiet z systemem plików.
   </ti>
   <ti>Nie dotyczy</ti>
 </tr>
 <tr>
   <ti><c>qmerge</c>*</ti>
   <ti>
-    Integruje paczkę z systemem plików, zakładając, że etapy rozpakowania,
+    Integruje pakiet z systemem plików, zakładając, że etapy rozpakowania,
     kompilacji i instalacji już zostały wykonane.
   </ti>
   <ti>Nie dotyczy</ti>
@@ -1544,79 +1516,80 @@ komendy:
 </tr>
 <tr>
   <ti><c>compile</c>*</ti>
-  <ti>Kompiluje paczkę.</ti>
+  <ti>Kompiluje pakiet.</ti>
   <ti><c>src_compile</c></ti>
 </tr>
 <tr>
   <ti><c>rpm</c></ti>
-  <ti>Tworzy pakiet RPM z paczki.</ti>
+  <ti>Tworzy RPM z pakietu.</ti>
   <ti>Nie dotyczy</ti>
 </tr>
 <tr>
   <ti><c>package</c></ti>
-  <ti>Creates a Gentoo <c>tbz2</c> package</ti>
   <ti>Tworzy pakiet Gentoo w formacie <c>tbz2</c>.</ti>
   <ti>Nie dotyczy</ti>
 </tr>
 <tr>
   <ti><c>prerm</c>*</ti>
-  <ti>Wykonuje etap przed usunięciem paczki.</ti>
+  <ti>Wykonuje etap przed usunięciem pakietu.</ti>
   <ti><c>pkg_prerm</c></ti>
 </tr>
 <tr>
   <ti><c>postrm</c>*</ti>
-  <ti>Wykonuje etap po usunięciu paczki.</ti>
+  <ti>Wykonuje etap po usunięciu pakietu.</ti>
   <ti><c>pkg_postrm</c></ti>
 </tr>
 <tr>
   <ti><c>preinst</c>*</ti>
-  <ti>Wykonuje etap przed zainstalowaniem paczki.</ti>
+  <ti>Wykonuje etap przed zainstalowaniem pakietu.</ti>
   <ti><c>pkg_preinst</c></ti>
 </tr>
 <tr>
   <ti><c>postinst</c>*</ti>
-  <ti>Wykonuje etap po zainstalowaniu paczki.</ti>
+  <ti>Wykonuje etap po zainstalowaniu pakietu.</ti>
   <ti><c>pkg_postinst</c></ti>
 </tr>
 <tr>
   <ti><c>config</c></ti>
-  <ti>Przygotowuje domyślną konfigurację gdy paczka została zainstalowana w
-  systemie plików.</ti>
+  <ti>
+    Przygotowuje domyślną konfigurację gdy pakiet został zainstalowana w
+    systemie plików.
+  </ti>
   <ti><c>pkg_config</c></ti>
 </tr>
 <tr>
   <ti><c>touch</c>*</ti>
-  <ti>Uaktualnia czasy modyfikacji każdego archiwum źródłowego paczki.</ti>
+  <ti>Uaktualnia czasy modyfikacji każdego archiwum źródłowego pakietu.</ti>
   <ti>Nie dotyczy</ti>
 </tr>
 <tr>
   <ti><c>clean</c>*</ti>
-  <ti>Czyści katalog roboczy paczki.</ti>
+  <ti>Czyści katalog roboczy pakietu.</ti>
   <ti>Nie dotyczy</ti>
 </tr>
 <tr>
   <ti><c>fetch</c>*</ti>
-  <ti>Pobiera pliki ze źródłami paczki.</ti>
+  <ti>Pobiera pliki ze źródłami pakietu.</ti>
   <ti>Nie dotyczy</ti>
 </tr>
 <tr>
   <ti><c>digest</c>*</ti>
-  <ti>Tworzy plik digest paczki.</ti>
+  <ti>Tworzy plik digest pakietu.</ti>
   <ti>Nie dotyczy</ti>
 </tr>
 <tr>
   <ti><c>test</c>*</ti>
-  <ti>Uruchamia funkcję autotestu paczki.</ti>
+  <ti>Uruchamia funkcję autotestu pakietu.</ti>
   <ti><c>src_test</c></ti>
 </tr>
 <tr>
   <ti><c>install</c>*</ti>
-  <ti>Instaluje paczkę w katalogu obrazu.</ti>
+  <ti>Instaluje pakiet w katalogu obrazu.</ti>
   <ti><c>src_install</c></ti>
 </tr>
 <tr>
   <ti><c>unmerge</c></ti>
-  <ti>Usuwa paczkę z systemu plików.</ti>
+  <ti>Usuwa pakiet z systemu plików.</ti>
   <ti>Nie dotyczy</ti>
 </tr>
 </table>
@@ -1626,7 +1599,7 @@ Komendy oznaczone gwiazdką (*) zwykle używane są tylko przez deweloperów.
 </note>
 
 <p>
-Narzędzie <c>emerge</c> rekursywnie instaluje paczkę i wszystkie jej zależności
+Narzędzie <c>emerge</c> rekursywnie instaluje pakiet i wszystkie jej zależności
 w systemie plików. Komenda ta ma wiele opcji, których listę możemy zobaczyć,
 wydając polecenie <c>emerge --help</c>.
 </p>
@@ -1634,7 +1607,7 @@ wydając polecenie <c>emerge --help</c>.
 <p>
 Narzędzie <c>env-update</c> uaktualnia pliki konfiguracyjne (w tym
 <path>/etc/ld.so.conf</path> i <path>/etc/profile.env</path>), aby uwzględniały
-zmiany wprowadzone przez zainstalowane paczki.
+zmiany wprowadzone przez zainstalowane pakiety.
 </p>
 
 </body>
@@ -1690,7 +1663,7 @@ zaglądając do katalogu <path>/usr/lib/portage/bin</path>.
   <ti><c>dodoc</c></ti>
   <ti>Nie dotyczy</ti>
   <ti>
-    Instaluje podane pliki w katalogu z dokumentacją paczki
+    Instaluje podane pliki w katalogu z dokumentacją pakietu
     (<path>/usr/share/doc/${PF}/DOCDESTTREE</path>)  (zob. <c>docinto</c>)
   </ti>
   <ti><c>dodoc README *.txt</c></ti>
@@ -1786,19 +1759,21 @@ zaglądając do katalogu <path>/usr/lib/portage/bin</path>.
 <tr>
   <ti><c>dosym</c></ti>
   <ti>Nie dotyczy</ti>
-  <ti>Tworzy dowiązanie symboliczne, automatycznie uwzględniając katalog
-  ${D}.</ti>
+  <ti>
+    Tworzy dowiązanie symboliczne, automatycznie uwzględniając katalog
+    ${D}.
+  </ti>
   <ti><c>dosym gzip /bin/zcat</c></ti>
 </tr>
 <tr>
   <ti><c>emake</c></ti>
   <ti>Nie dotyczy</ti>
   <ti>
-    Uruchamia make z argumentami <c>MAKEOPTS</c>. Niektórych paczek nie można
+    Uruchamia make z argumentami <c>MAKEOPTS</c>. Niektórych pakietów nie można
     kompilować równolegle; wówczas powinniśmy użyć <c>emake -j1</c>. Jeśli
     musimy przekazać jeszcze dodatkowe parametry do make, wystarczy przekazać je
     do polecenia emake jako parametry. Użytkownicy mogą ustawić zmienną
-    środowiskową <c>EXTRA_EMAKE</c> aby przekazywać dodatkowe flagi poleceniu
+    środowiskową <c>EXTRA_EMAKE</c>, aby przekazywać dodatkowe flagi poleceniu
     emake.
   </ti>
   <ti><c>emake</c></ti>
@@ -1837,8 +1812,10 @@ zaglądając do katalogu <path>/usr/lib/portage/bin</path>.
 <tr>
   <ti><c>insinto</c></ti>
   <ti><path>/usr</path></ti>
-  <ti>Ustawia katalog główny (<e>INSDESTTREE</e>) dla polecenia
-  <c>doins</c>.</ti>
+  <ti>
+    Ustawia katalog główny (<e>INSDESTTREE</e>) dla polecenia
+    <c>doins</c>.
+  </ti>
   <ti><c>insinto /usr/include</c></ti>
 </tr>
 <tr>
@@ -1964,7 +1941,7 @@ zaglądając do katalogu <path>/usr/lib/portage/bin</path>.
 </subsection>
 </section>
 <section>
-<title>Zależności paczki</title>
+<title>Zależności pakietu</title>
 <subsection>
 <title>Dlaczego zależności są ważne</title>
 <body>
@@ -1978,9 +1955,9 @@ skrypcie ebuild.
 
 <p>
 W oficjalnych ebuildach wszystkie zależności zostały już określone, więc gdy
-wydamy komendę <c>emerge net-www/mozilla/mozilla-1.0</c>, Portage dopilnuje by
-wszystkie zależności niezbędne do zbudowania i uruchomienia Mozilli zostały
-zainstalowane zanim zacznie kompilować samą Mozillę.
+wydamy komendę <c>emerge net-www/mozilla</c>, Portage dopilnuje by wszystkie
+zależności niezbędne do zbudowania i uruchomienia Mozilli zostały zainstalowane
+zanim zacznie kompilować samą Mozillę.
 </p>
 
 <p>
@@ -1994,17 +1971,16 @@ potrzebne do uruchamiania programów.
 </body>
 </subsection>
 <subsection>
-<title>Jak definiować zależności w naszych skryptach ebuild (czyli atomy
-DEPEND)</title>
+<title>Jak definiować zależności w naszych skryptach ebuild (czyli atomy DEPEND)</title>
 <body>
 
 <p>
 Zmienna <c>DEPEND</c> w naszym pliku <path>bla-x.y.z.ebuild</path> mówi Portage
-jakie paczki są potrzebne, aby zbudować program <path>bla</path>. Zmienna
-<c>RDEPEND</c> określa zaś jakie paczki są potrzebne, aby uruchomić
+jakie pakiety są potrzebne, aby zbudować program <path>bla</path>. Zmienna
+<c>RDEPEND</c> określa zaś jakie pakiety są potrzebne, aby uruchomić
 <path>bla</path>. Musimy podawać zmienną <c>RDEPEND</c> jedynie wtedy, gdy
 zależności potrzebne do uruchomienia różnią się od tych podanych w zmiennej
-<c>DEPEND</c>; jeśli zmienna <c>RDEPEND</c> nie zostanie określona, przyjmie ona
+<c>DEPEND</c>. Jeśli zmienna <c>RDEPEND</c> nie zostanie określona, przyjmie ona
 domyślnie wartość zmiennej <c>DEPEND</c>. <b>Nigdy</b> nie należy samemu
 przypisywać zmiennej <c>RDEPEND</c> wartości zmiennej <c>DEPEND</c>.
 </p>
@@ -2016,18 +1992,19 @@ RDEPEND="virtual/libc"
 </pre>
 
 <p>
-Ten przykład informuje Portage o fakcie, że aby zbudować paczkę
-<path>bla-x.y.z</path> potrzebne będą paczki <path>virtual/libc</path> (więcej o
-kategoriach wirtualnych wkrótce) i <path>sys-libs/zlib</path>. Nie jest podane
-jakie wersje glibc i zlib są potrzebne, co oznacza, że dobre będą wszystkie.
+Ten przykład informuje Portage o fakcie, że aby zbudować pakiet
+<path>bla-x.y.z</path> potrzebne będą pakiety <path>virtual/libc</path> (więcej
+o kategoriach wirtualnych wkrótce) i <path>sys-libs/zlib</path>. Nie jest
+podane jakie wersje glibc i zlib są potrzebne, co oznacza, że dobre będą
+wszystkie.
 </p>
 
 <p>
 Rzecz jasna, "dobre będą wszystkie" w większości wypadków nie wystarczy.
-Jedynie w przypadku głównych bibliotek takich jak glibc jest to
-wystarczające, ponieważ jego autorzy bardzo się starają aby był on zawsze w stu
-procentach binarnie kompatybilny. W przypadku innych bibliotek możemy oczywiście
-podać wersje zależności.
+Jedynie w przypadku głównych bibliotek takich jak glibc jest to wystarczające,
+ponieważ jego autorzy bardzo się starają, aby był on zawsze w stu procentach
+binarnie kompatybilny. W przypadku innych bibliotek możemy oczywiście podać
+wersje zależności.
 </p>
 
 <pre caption="Przykład wersji">
@@ -2040,7 +2017,8 @@ Znaki &gt;= i = oznaczają to, czego możemy się po nich spodziewać; wersja 1.
 lub nowsza programu sys-apps/bar będzie się nadawać (oznacza to, że również 
 wersja 2.0 sys-apps/bar też będzie odpowiednia), zaś wersja 1.0 programu
 sys-apps/baz będzie jedyną odpowiednią. Więcej informacji na temat wzorca wersji
-paczek można znaleźć wyżej w rozdziale <uri link="#doc_chap2_sect2">Nazewnictwo plików ebuild</uri>.
+pakietów można znaleźć wyżej w rozdziale <uri
+link="#doc_chap2_sect2">Nazewnictwo plików ebuild</uri>.
 </p>
 
 <p>
@@ -2064,12 +2042,11 @@ odpowiednie, zaś bla-1.3.3, bla-1.3.0 i bla-1.1.0 już nie.
 </p>
 
 <p>
-!sys-libs/gdbm uniemożliwi instalację tej paczki jeśli gdbm jest zainstalowane.
+!sys-libs/gdbm uniemożliwi instalację tego pakietu jeśli gdbm jest zainstalowane.
 </p>
 
 </body>
 </subsection>
-
 <subsection>
 <title>Ważne uwagi</title>
 <body>
@@ -2092,9 +2069,9 @@ kilka porad, dzięki którym możemy ich uniknąć.
     <c>&gt;=x11-libs/gtk+-2*</c>.
   </li>
   <li>
-    <e>Nie wolno definiować meta-paczki jako zależności.</e><br />
+    <e>Nie wolno definiować meta-pakietu jako zależności.</e><br />
     Nie powinniśmy więc określić zależności od gnome-base/gnome, zamiast tego
-    użyjmy konkretnej biblioteki, na przykład libgnome.
+    używamy konkretnej biblioteki, na przykład libgnome.
   </li>
   <li>
     <e>Podajemy jedną zależność na linię.</e><br />
@@ -2108,13 +2085,14 @@ kilka porad, dzięki którym możemy ich uniknąć.
 </ul>
 
 <p>
-Ponadto powinniśmy się upewnić, że podaliśmy wszystkie zależności naszej paczki:
+Ponadto powinniśmy się upewnić, że podaliśmy wszystkie zależności naszego
+pakietu:
 </p>
 
 <ul>
   <li>
     <e>Zajrzyjmy do plików configure.in lub configure.ac</e><br />
-    Poszukajmy w nich sprawdzania obecności paczek. Warto zwrócić uwagę na
+    Poszukajmy w nich sprawdzania obecności pakietów. Warto zwrócić uwagę na
     sprawdzenia pkg-config lub funkcje AM_*, które szukają konkretnej wersji.
   </li>
   <li>
@@ -2128,13 +2106,13 @@ Ponadto powinniśmy się upewnić, że podaliśmy wszystkie zależności naszej 
     program.
   </li>
   <li>
-    <e>Warto przeczytać pliki README i INSTALL dołączone do paczki</e><br />
+    <e>Warto przeczytać pliki README i INSTALL dołączone do pakietu</e><br />
     Zwykle zawierają one informacje przydatne przy budowaniu i instalowaniu
-    paczek.
+    pakietów.
   </li>
   <li>
     <e>Należy pamiętać o zależnościach innych niż binarne, takie jak pkg-config,
-    programy do generacji dokumentacji, itd.</e><br />
+    programy do generowania dokumentacji, itd.</e><br />
     Proces budowania zwykle wymaga zależności takich jak intltool, libtool,
     pkg-config, doxygen, scrollkeeper, gtk-doc itp. Upewnijmy się, że zostały
     one podane.
@@ -2149,7 +2127,6 @@ Aby zapoznać się z najnowszymi informacjami o atomach DEPEND, należy przeczyt
 </body>
 </subsection>
 </section>
-
 <section>
 <title>Testowanie i wdrożenie</title>
 <subsection>
@@ -2175,7 +2152,6 @@ na temat i unikać zbędnych technicznych szczegółów.
 
 </body>
 </subsection>
-
 <subsection>
 <title>Przechowywanie plików ebuild lokalnie</title>
 <body>
@@ -2203,16 +2179,16 @@ wciąż rozpoznawane przez Portage nawet gdy wykonamy polecenie <c>emerge sync</
 </subsection>
 
 <subsection>
-<title>Testowanie paczki</title>
+<title>Testowanie pakietów</title>
 <body>
 
 <p>
-Zastanówmy się w jaki sposób przetestować czy nasza paczka działa. Czasem
-deweloperzy od razu dołączyli polecenia <c>make test</c> lub
-<c>make check</c>, które sprawdzą podstawowe funkcje paczki. Jeśli tak, to
-uruchomienie <c>env FEATURES=maketest ebuild <path>bla-x.y.z.ebuild</path>
-test</c> wykona je. Jeśli polecenia te nie działają poprawnie, spróbujmy je
-naprawić (i wysłać łatki autorom programu). 
+Zastanówmy się w jaki sposób przetestować czy nasz pakiet działa. Czasem
+deweloperzy od razu dołączyli polecenia <c>make test</c> lub <c>make check</c>,
+które sprawdzą podstawowe funkcje pakietu. Jeśli tak, to uruchomienie <c>env
+FEATURES=maketest ebuild <path>bla-x.y.z.ebuild</path> test</c> wykona je.
+Jeśli polecenia te nie działają poprawnie, spróbujmy je naprawić (i wysłać
+łatki autorom programu).
 </p>
 
 <p>
@@ -2220,12 +2196,13 @@ Jeśli takich poleceń nie ma, należy rozważyć dodanie funkcji <c>src_test</c
 naszego skryptu ebuild. Jest ona wykonywana przed funkcją <c>src_install</c> i
 może być bardzo pomocna przy testowaniu działania programu na różnych
 architekturach. Deweloperzy innych architektur będą nam wdzięczni jeśli dodamy
-tę funkcję, dzięki czemu nie będą musieli zagłębiać się w funkcjonowanie paczki.
+tę funkcję, dzięki czemu nie będą musieli zagłębiać się w funkcjonowanie
+pakietu.
 </p>
 
 <p>
 Należy jednak pamiętać o ogólnej zasadzie działania plików ebuild. Funkcja
-<c>src_test</c> nie może być interaktywna. Jeśli wymaga ona innych paczek,
+<c>src_test</c> nie może być interaktywna. Jeśli wymaga ona innych pakietów,
 należy użyć flagi USE <c>maketest</c> w celu podania dodatkowych zależności
 kompilacji w zmiennej <c>DEPEND</c>. Weźmy też pod uwagę, że funkcje
 <c>src_test</c> nie są zalecane przy graficznych aplikacjach korzystających z X,
@@ -2235,7 +2212,6 @@ uruchomienia ich.
 
 </body>
 </subsection>
-
 <subsection>
 <title>Przydatne narzędzia testujące</title>
 <body>
@@ -2248,7 +2224,7 @@ się naszymi ebuildami.
 <table>
 <tr>
   <th>Narzędzie</th>
-  <th>Paczka</th>
+  <th>Pakiet</th>
   <th>Opis</th>
 </tr>
 <tr>
@@ -2265,7 +2241,7 @@ się naszymi ebuildami.
   <ti>dev-util/ccache</ti>
   <ti>
     Narzędzie to zachowuje przetworzone pliki robocze, aby <e>znacznie</e>
-    przyspieszyć kompilację. Pamiętajmy aby dodać <c>ccache</c> do zmiennej
+    przyspieszyć kompilację. Pamiętajmy, aby dodać <c>ccache</c> do zmiennej
     <c>FEATURES</c> w pliku <path>/etc/make.conf</path>!
   </ti>
 </tr>
@@ -2274,7 +2250,7 @@ się naszymi ebuildami.
   <ti>app-shells/sandboxshell</ti>
   <ti>
     Uruchamia powłokę, która tworzy środowisko sandbox. Przydatne jeśli chcemy
-    dostać się do tego samego środowiska, w którym Portage buduje paczki, a
+    dostać się do tego samego środowiska, w którym Portage buduje pakiety, a
     także jeśli chcemy coś ręcznie debugować.
   </ti>
 </tr>
