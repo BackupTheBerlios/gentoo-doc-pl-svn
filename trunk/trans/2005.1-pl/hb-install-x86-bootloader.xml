@@ -7,8 +7,8 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/handbook/hb-install-x86-bootloader.xml,v 1.12 2005/09/19 20:11:57 rane Exp $ -->
 
 <sections>
-<version>2.6</version>
-<date>2005-09-17</date>
+<version>5.0</version>
+<date>2005-08-08</date>
 
 <section>
 <title>Podejmowanie decyzji</title>
@@ -240,10 +240,10 @@ timeout 30
 # Zakomentuj jeśli nie masz zainstalowanej karty graficznej</comment>
 splashimage=(hd0,0)/grub/splash.xpm.gz
 
-title=Gentoo Linux 2.4.24
+title=Gentoo Linux 2.6.11-r11
 <comment># Partycja na której znajduje się obraz jądra (lub system operacyjny) </comment>
 root (hd0,0)
-kernel /kernel-2.4.24 root=/dev/hda3
+kernel /kernel-2.6.11-gentoo-r11 root=/dev/hda3
 
 <comment># Następne trzy linie są potrzebne tylko gdy będzie uruchamiany również system Windows.</comment>
 <comment># W tym przypadku Windows znajduje się na /dev/hda6.</comment>
@@ -257,10 +257,10 @@ default 0
 timeout 30
 splashimage=(hd0,0)/grub/splash.xpm.gz
 
-title=Gentoo Linux 2.4.24
+title=Gentoo Linux 2.6.11-r11
 root (hd0,0)
-kernel /kernel-genkernel-x86-2.6.11-gentoo-r3 root=/dev/ram0 init=/linuxrc ramdisk=8192 real_root=/dev/hda3 udev
-initrd /initramfs-genkernel-x86-2.6.11-gentoo-r3
+kernel /kernel-genkernel-x86-2.6.11-gentoo-r11 root=/dev/ram0 init=/linuxrc ramdisk=8192 real_root=/dev/hda3 udev
+initrd /initramfs-genkernel-x86-2.6.11-gentoo-r11
 
 <comment># Tylko, gdy będą uruchamiane dwa systemy</comment>
 title=Windows XP
@@ -483,6 +483,17 @@ zaprezentowany schemat partycjonowania. Przygotowane zostały dwie części:
   </li>
 </ul>
 
+<p>
+Należy upewnić się, że używamy nazwy <e>naszego</e> obrazu jądra oraz z nazwy
+<e>naszego</e> pliku initrd, jeśli z niego korzystamy.
+</p>
+
+<note>
+Jeśli system plików katalogu /root to JFS, <e>konieczne</e> jest dodanie linii
+<c>append="ro"</c> dla każdego obrazu jądra, ponieważ JFS musi odtworzyć swoje
+logi przez umożliwieniem zamontowania urządzenia do zapisu/odczytu.
+</note>
+
 <pre caption = "Przykładowy /etc/lilo.conf">
 boot=/dev/hda             <comment># Instalacja LILO w MBR</comment>
 prompt                    <comment># Dajemy użytkownikowi możliwość wyboru innej pozycji</comment>
@@ -492,30 +503,24 @@ default=gentoo            <comment># Kiedy oczekiwanie się zakończy, uruchamia
 vga=788                   <comment># Ustawienia bufora ramki. Można dopasować wedle uznania.</comment>
 
 <comment># Dla niekorzystających z genkernela</comment>
-image=/boot/kernel-2.4.24
+image=/boot/kernel-2.6.11-gentoo-r11
 label=gentoo            <comment># Nazwa, jaką mianujemy tę pozycję</comment>
 read-only               <comment># Zaczynamy z partycją root tylko do odczytu. Nie zmieniać!</comment>
 root=/dev/hda3          <comment># Umiejscowienie głównego systemu plików</comment>
 
 <comment># Dla użytkowników genkernela</comment>
-image=/boot/kernel-genkernel-x86-2.6.11-gentoo-r3
+image=/boot/kernel-genkernel-x86-2.6.11-gentoo-r11
 label=gentoo
 read-only
 root=/dev/ram0
 append="init=/linuxrc real_root=/dev/hda3"
-initrd=/boot/initramfs-genkernel-2.6.11-gentoo-r3
+initrd=/boot/initramfs-genkernel-2.6.11-gentoo-r11
 
 <comment># Następne dwie linie są podane na wypadek, gdybyśmy chcieli uruchamiać także system Windows.</comment>
 <comment># W tym przypadku, Windows mieści się na /dev/hda6.</comment>
 other=/dev/hda6
 label=windows
 </pre>
-
-<note>
-Parametr <c>udev</c> na końcu linii "append" jest niezbędny dla obejścia błędu
-w pewnych wersjach genkernela, występującego gdy używa się udev na pierwszym
-miejscu, co jest zresztą domyślnym ustawieniem.
-</note>
 
 <note>
 Jeśli używany jest inny schemat partycjonowania i/lub obrazu jądra, należy
@@ -529,7 +534,7 @@ do wyłączenia obsługi ACPI:
 </p>
 
 <pre caption="Dodawanie funkcji jądra poprzez linię append">
-image=/boot/kernel-2.4.26-gentoo-r6
+image=/boot/kernel-2.6.11-gentoo-r11
   label=gentoo
   read-only
   root=/dev/hda3

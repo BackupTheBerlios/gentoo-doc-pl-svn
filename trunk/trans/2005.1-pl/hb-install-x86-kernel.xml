@@ -7,7 +7,7 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/handbook/hb-install-x86-kernel.xml,v 1.14 2005/09/07 09:01:36 rane Exp $ -->
 <sections>
 
-<version>3.4</version>
+<version>5.2</version>
 <date>2005-08-12</date>
 
 <section>
@@ -47,10 +47,17 @@ Guide</uri>.
 </p>
 
 <p>
-Dla architektury x86 dostępne są następujące jądra: <c>vanilla-sources</c>
-(standardowe źródła serii 2.4 rozwijane przez deweloperów Linuksa),
-oraz nasze <c>gentoo-sources</c> (źródła z poprawkami zwiększającymi
-wydajność).
+Dla architektury x86 głównym wspieranym jądrem jest <c>gentoo-sources</c>. Jest
+ono oparte na oficjalnych źródłach Linuksa, jednak posiada poprawki związane ze
+stabilnością, bezpieczeństwem i kompatybilnoscią, wprowadzone przez deweloperów
+Gentoo. Alternatywnie można skorzystać ze źródeł pozbawionych poprawek. Znajdują
+się one w pakiecie <c>vanilla-sources</c>.
+</p>
+
+<p>
+Oba pakiety źródeł oprate są na jądrze serii 2.6. Jeśli chcemy użyć kernela
+serii 2.4, konieczne jest połączenie z internetem, gdyż te źródła nie znajdują
+się na płycie instalacyjnej.
 </p>
 
 <p>
@@ -151,17 +158,6 @@ opcje, które należy włączyć, aby Gentoo mogło prawidłowo funkcjonować.
 <body>
 
 <p>
-Przede wszystkim należy zapewnić sobie możliwość korzystania z rozwojowych i
-eksperymentalnych fragmentów kodu jądra. Jeśli się z tego zrezygnuje to
-zniknie kilka bardzo ważnych ustawień.
-</p>
-
-<pre caption="Wybieranie opcji experimental code/drivers, general setup">
-Code maturity level options ---&gt;
-  [*] Prompt for development and/or incomplete code/drivers
-</pre>
-
-<p>
 Wszystkie sterowniki potrzebne do wystartowania systemu
 (takie jak kontroler SCSI) muszą być <e>wkompilowane na stałe</e> w jądro - nie
 należy ich dodawać w formie modułów.
@@ -171,8 +167,11 @@ należy ich dodawać w formie modułów.
 Na samym początku należy wybrać odpowiednią dla posiadanego sprzętu rodzinę procesorów:
 </p>
 
-<pre caption="Wybór rodziny procesorów">
+<pre caption="Ogólne ustawienia; wybór rodziny procesorów">
+General setup  ---&gt;
+        [*] Support for hot-pluggable devices
 Processor type and features ---&gt;
+   Subarchitecture Type (PC-compatible)  ---&gt;
   <comment>(Change according to your system)</comment>
   (<i>Athlon/Duron/K7</i>) Processor family
 </pre>
@@ -182,30 +181,16 @@ Następnie przechodzimy do <c>File Systems</c> i wybieramy obsługę systemów
 plików, z których zamierzamy używać. Jeśli pominiemy ten krok, to Gentoo nie
 będzie w stanie zamontować niektórych partycji lub nawet się nie uruchomi.
 Sterowniki te również powinny być wkompilowane w jądro na stałe, nie należy ich
-dodawać w modułach. Oprócz tego zaznaczamy opcje <c>Virtual memory</c> i
-<c>/proc file system</c>. Użytkownicy jąder serii 2.6 <e>nie powinni</e>
-zaznaczać <c>/dev file system</c>, Gentoo korzysta teraz z systemu <c>udev</c>.
-Użytkownicy jąder 2.4 wciąż muszą korzystać z <c>/dev file system</c>, ponieważ
-jądra te nie obsługują <c>udev</c>.
+dodawać w modułach. Ponadto powinniśmy zaznaczyć opcje <c>/proc file system</c>
+i <c>Virtual memory</c>. <e>Nie należy</e> zaznaczać <c>/dev file system</c>.
 </p>
 
 <pre caption="Wybór potrzebnych systemów plików">
-<comment>(dla jąder 2.4.X)</comment>
-File systems ---&gt;
-  [*] Virtual memory file system support (former shm fs)
-  [*] /proc file system support
-  [*] /dev file system support (EXPERIMENTAL)
-  [*]   automatically mount /dev at boot
-  [ ] /dev/pts file system for Unix98 PTYs
-
-<comment>(Dla jąder 2.6.X)</comment>
-General setup  ---&gt;
-    [*] Support for hot-pluggable devices
 File systems ---&gt;
   Pseudo Filesystems ---&gt;
-    [*] /proc file system support
-    [ ] /dev file system support (OBSOLETE)
-    [*] Virtual memory file system support (former shm fs)
+    &lt;*&gt; /proc file system support
+    &lt; &gt; /dev file system support (OBSOLETE)
+    &lt;*&gt; Virtual memory file system support (former shm fs)
 
 <comment>(Zaznaczamy opcje odpowiednie dla używanych systemów plików)</comment>
   &lt;*&gt; Reiserfs support
@@ -213,22 +198,6 @@ File systems ---&gt;
   &lt;*&gt; JFS filesystem support
   &lt;*&gt; Second extended fs support
   &lt;*&gt; XFS filesystem support
-</pre>
-
-<p>
-Jeśli BIOS nie radzi sobie z dużymi dyskami i konieczne było ograniczenie
-maksymalnego ich rozmiaru przy pomocy jumpera warto zaznaczyć poniższą opcję,
-co umożliwi uzyskanie dostępu również do niewidocznej dla BIOS-u części
-urządzenia.
-</p>
-
-<pre caption="Zaznaczanie opcji Auto-Geometry Resizing">
-<comment>(wyłącznie dla jąder 2.4.X)</comment>
-ATA/IDE/MFM/RLL support ---&gt;
-  IDE, ATA and ATAPI Block devices ---&gt;
-    &lt;*&gt;   Include IDE/ATA-2 DISK support
-    [ ]     Use multi-mode by default
-    [*]     Auto-Geometry Resizing support
 </pre>
 
 <p>
@@ -248,13 +217,6 @@ zaznaczyć również:
 </p>
 
 <pre caption="Sterowniki niezbędne dla użytkowników PPPoE">
-<comment>(Dla jąder 2.4.x)</comment>
-Network device support ---&gt;
-  &lt;*&gt; PPP (point-to-point protocol) support
-  &lt;*&gt;   PPP support for async serial ports
-  &lt;*&gt;   PPP support for sync tty ports
-
-<comment>(Dla jąder 2.6.x)</comment>
 Device Drivers ---&gt;
   Networking support ---&gt;
     &lt;*&gt; PPP (point-to-point protocol) support
@@ -281,7 +243,7 @@ zadbać o to, aby została zaznaczona opcja "Symmetric multi-processing support"
 
 <pre caption="Włączanie obsługi SMP">
 Processor type and features  ---&gt;
-  [*] Symmetric multi-processing support
+  &lt;*&gt; Symmetric multi-processing support
 </pre>
 
 <p>
@@ -290,23 +252,20 @@ wymagają skompilowania właściwych sterowników:
 </p>
 
 <pre caption="Aktywowanie obsługi urządzeń wejściowych używających USB">
+Device Drivers ---&gt;
 USB Support ---&gt;
   &lt;*&gt;   USB Human Interface Device (full HID) support
+  [*]   HID input layer support
 </pre>
 
 <p>
-Posiadacze laptopów z PCMCIA <e>nie</e> powinni korzystać ze sterowników dla
-PCMCIA w jądrach 2.4. Nowsze sterowniki są dostępne w pakiecie <c>pcmcia-cs</c>, który
-zainstalujemy po skompilowaniu jądra. Podobnych problemów nie ma ze sterownikami PCMCIA
-jąder serii 2.6.
+Jeśli jesteśmy posiadaczami laptopa i potrzebujemy obsługi PCMCIA, musimy
+pamiętać o wkompilowaniu jej w jądro. Poza tym konieczne jest włączenie obsługi
+mostu PCMCIA znajdującego się w systemie (odpowiednie opcje występują w tym
+samym menu konfiguracji).
 </p>
 
-<p>
-Poza sterownikami PCMCIA użytkownicy jąder serii 2.6 muszą również wkompilować
-obsługę dla mostka posiadanej karty PCMCIA.
-</p>
-
-<pre caption="Włączanie obsługi PCMCIA w jądrach 2.6">
+<pre caption="Włączanie obsługi PCMCIA">
 Bus options (PCI, PCMCIA, EISA, MCA, ISA)  ---&gt;
   PCCARD (PCMCIA/CardBus) support  ---&gt;
     &lt;*&gt; PCCard (PCMCIA/CardBus) support
@@ -322,11 +281,6 @@ Bus options (PCI, PCMCIA, EISA, MCA, ISA)  ---&gt;
     &lt;*&gt; Databook TCIC host bridge support (NEW)
 </pre>
 
-<p>
-Po zakończeniu konfigurowania jądra przechodzimy do paragrafu <uri
-link="#compiling">kompilowanie i instalowanie</uri>.
-</p>
-
 </body>
 </subsection>
 <subsection id="compiling">
@@ -339,10 +293,6 @@ Opuszczamy program konfiguracyjny i rozpoczynamy proces kompilacji:
 </p>
 
 <pre caption="Kompilowanie jądra">
-<comment>(dla jąder 2.4)</comment>
-# <i>make dep &amp;&amp; make bzImage modules modules_install</i>
-
-<comment>(dla jąder 2.6)</comment>
 # <i>make &amp;&amp; make modules_install</i>
 </pre>
 
@@ -355,7 +305,6 @@ obrazu, będziemy jej używać wyłącznie przy konfigurowaniu bootloadera.
 
 <pre caption="Instalowanie jądra">
 # <i>cp arch/i386/boot/bzImage /boot/kernel-2.6.11-gentoo-r3</i>
-# <i>cp System.map /boot/System.map-2.6.11-gentoo-r3</i>
 </pre>
 
 <p>
@@ -405,19 +354,9 @@ jak go zainstalować:
 </pre>
 
 <p>
-Użytkownicy jąder serii 2.6 mogą od razu skopiować konfigurację z płyty
-instalacyjnej do miejsca skąd będzie mógł odczytać ją genkernel.
-</p>
-
-<pre caption="Kopiowanie konfiguracji genkernela z płyty instalacyjnej">
-<comment>(wyłącznie dla użytkowników jąder serii 2.6)</comment>
-# <i>zcat /proc/config.gz &gt; /usr/share/genkernel/x86/kernel-config-2.6</i>
-</pre>
-
-<p>
-Źródła skompilujemy przy pomocy polecenia <c>genkernel --udev all</c> (dla jąder
-2.6) lub <c>genkernel all</c> (dla jąder 2.4). Kompilowanie zajmie mnóstwo
-czasu, ponieważ <c>genkernel</c> zawiera niemal wszystkie dostępne sterowniki.
+Kompilujemy jądro przy pomocy polecenia <c>genkernel all</c>. Kompilowanie
+zajmie mnóstwo czasu, ponieważ <c>genkernel</c> zawiera niemal wszystkie
+dostępne sterowniki.
 </p>
 
 <p>
@@ -430,10 +369,6 @@ lub <c>--lvm2</c> do listy argumentów.
 </p>
 
 <pre caption="Uruchamianie genkernela">
-<comment>(dla jąder 2.6)</comment>
-# <i>genkernel --udev all</i>
-
-<comment>dla jąder 2.4)</comment>
 # <i>genkernel all</i>
 </pre>
 
@@ -454,8 +389,7 @@ sprzęt i wczyta odpowiednie moduły, a następnie uruchomi się właściwy syst
 Następna czynność jeszcze bardziej upodobni nasz system do tego dostępnego na
 płycie instalacyjnej, zemergujemy <c>coldplug</c>. Podczas gdy initrd automatycznie
 wykrywa sprzęt, co jest niezbędne do uruchomienia systemu, <c>coldplug</c>
-będzie wykrywał wszystko inne. Aby zemergować i uaktywnić <c>coldplug</c> należy
-wpisać:
+będzie wykrywał wszystko inne.
 </p>
 
 <pre caption="Instalacja i uruchamianie coldplug">
@@ -473,7 +407,7 @@ wpisać:
 
 <p>
 Moduły ładowane w czasie startu systemu muszą zostać dopisane do pliku
-<path>/etc/modules.autoload.d/kernel-2.4</path> (lub <path>kernel-2.6</path>).
+<path>/etc/modules.autoload.d/kernel-2.6</path> (lub <path>kernel-2.4</path>).
 Można tu również dodać dodatkowe opcje ich ładowania.
 </p>
 
@@ -488,15 +422,15 @@ składnią.
 
 <p>
 Dla przykładu, aby załadować moduł <c>3c59x.o</c> należy edytować plik
-<path>kernel-2.4</path> lub <path>kernel-2.6</path> i dodać tam jego nazwę.
+<path>kernel-2.6</path> (lub <path>kernel-2.4</path>) i dodać tam jego nazwę.
 </p>
 
-<pre caption="Edytowanie /etc/modules.autoload.d/kernel-2.4">
-<comment>(Przykład dla jąder 2.4)</comment>
-# <i>nano -w /etc/modules.autoload.d/kernel-2.4</i>
+<pre caption="Edytowanie /etc/modules.autoload.d/kernel-2.6">
+<comment>(Przykład dla jąder 2.6)</comment>
+# <i>nano -w /etc/modules.autoload.d/kernel-2.6</i>
 </pre>
 
-<pre caption="/etc/modules.autoload.d/kernel-2.4 lub kernel-2.6">
+<pre caption="/etc/modules.autoload.d/kernel-2.6">
 3c59x
 </pre>
 

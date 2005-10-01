@@ -6,7 +6,7 @@
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <sections>
 
-<version>2.8</version>
+<version>5.2</version>
 <date>2005-08-21</date>
 
 <section>
@@ -63,14 +63,14 @@ W katalogu <path>/usr/src</path> powinien być mniej więcej taki symlink, o
 nazwie <path>linux</path>, wskazujący na źródeł aktualnego kernela:
 </p>
 
-<pre caption="Podgląd symlinka do źródeł kernela">
+<pre caption="Podgląd dowiązania symbolicznego do źródeł kernela">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.6.12-gentoo-r6
+lrwxrwxrwx    1 root     root           12 Jul 28 11:04 /usr/src/linux -&gt; linux-2.6.12-gentoo-r6
 </pre>
 
 <p>
-Jeśli informacje z symlinka nie pokrywają się z rzeczywistością (np. wskazuje na
-inne źródła kernela) to będzie trzeba go poprawić zanim przejdziemy
+Jeśli informacje z symlinka nie pokrywają się z rzeczywistością (np. wskazuje on
+na inne źródła kernela) to będzie trzeba go poprawić zanim przejdziemy
 do dalszych części tego dokumentu.
 </p>
 
@@ -153,19 +153,10 @@ fragmentów kodu jądra. Jeśli tego nie zrobimy, nawet nie zobaczymy kilku
 bardzo ważnych opcji.
 </p>
 
-<pre caption="Wybieranie opcji experimental code/drivers">
+<pre caption="Wybieranie opcji experimental code/drivers; ogólne ustawienia">
 Code maturity level options ---&gt;
   [*] Prompt for development and/or incomplete code/drivers
-</pre>
-
-<p>
-Teraz przejdźmy do <c>General Setup</c>, aby włączyć opcję <c> support for
-hot-pluggable devices</c> dla udev, gdyż jądro z serii 2.6 jest teraz domyślnym
-i jedynym wspomaganym na architekturze amd64.
-</p>
-
-<pre caption="Główne opcje">
-   General setup ---&gt;
+General setup ---&gt;
      [*] Support for hot-pluggable devices
 </pre>
  
@@ -187,17 +178,16 @@ plików, których zamierzamy używać. Jeśli to zaniedbamy Gentoo nie będzie w
 stanie zamontować partycji, a czasem nawet się nie uruchomi. Pamiętać należy
 również, aby włączać te sterowniki na stałe do jądra, nie kompilować jako
 moduły. Przy okazji zaznaczamy też <c>Virtual memory</c> i <c>/proc file
-system</c>. Nie należy zaznaczać opcji <c>/dev file system support</c>, ponieważ
-Gentoo/AMD64 korzysta teraz wyłącznie z <c>udev</c>.
+system</c>. Nie należy zaznaczać opcji <c>/dev file system</c>, ponieważ
+Gentoo 2005.1/AMD64 korzysta domyślnie z <c>udev</c>.
 </p>
 
 <pre caption="Wybór potrzebnych systemów plików">
 File systems ---&gt;
   Pseudo Filesystems ---&gt;
-    [*] /proc file system support
-    [] /dev file system support (OBSOLETE)
-    [ ]   Automatically mount at boot
-    [*] Virtual memory file system support (former shm fs)
+    &lt;*&gt; /proc file system support
+    &lt; &gt; /dev file system support (OBSOLETE)
+    &lt;*&gt; Virtual memory file system support (former shm fs)
 
 <comment>(Wybierz jedną lub kilka z tych opcji zależnie od używanych systemów
 plików.)</comment>
@@ -384,7 +374,7 @@ automatycznie wykrywa sprzęt, co jest niezbędne do uruchomienia systemu,
 
 <p>
 Lista modułów, które chcemy aby były automatycznie ładowane przy starcie systemu
-powinna znajdować się w pliku <path>/etc/modules.autoload.d/kernel-2.6</path>.
+powinna znajdować się w pliku <path>/etc/modules.autoload.d/kernel-2.4</path>
 (lub <path>kernel-2.6</path>). Jeśli chcemy, można dodać kilka opcji dla
 modułów.  
 </p>
