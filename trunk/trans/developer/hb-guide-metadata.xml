@@ -2,11 +2,7 @@
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
-
-<!-- This document was last synched to:
-     cvs://gentoo/gentoo/xml/htdocs/doc/pl/metadata.xml :: R1.4.
--->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
 <sections>
 
@@ -16,20 +12,19 @@
 <body>
 
 <p>
-Plik <c>metadata.xml</c> udostępnia dodatkowe informacje o
-ebuildach. Plik <c>metadata.xml</c> powinien istnieć w każdym katalogu z pakietem.
-Plik skel odnajdujemy jako <c>skel.metadata.xml</c> w drzewie portage.
+Plik <c>metadata.xml</c> zawiera dodatkowe informacje o ebuildach i powinien
+istnieć w każdym katalogu z pakietem. Jego plik szkieletowy ma nazwę
+<c>skel.metadata.xml</c> i znajduje się w drzewie Portage.
 </p>
 
 <note>
-Musimy użyć polecenia <c>xmllint --valid metadata.xml</c> zanim zaakceptujemy
-plik <c>metadata.xml</c>.  Już niebawem repoman powinien zawierać wsparcie dla <c>metadata.xml</c>.
+Musimy użyć polecenia <c>xmllint --valid metadata.xml</c> zanim wyślemy plik
+<c>metadata.xml</c>. Już niebawem testy te będzie wykonywał repoman..
 </note>
 
 </body>
 </subsection>
 </section>
-
 <section>
 <title>Struktura pliku Metadata</title>
 <subsection>
@@ -49,10 +44,11 @@ Plik <c>metadata.xml</c> może zawierać kilka etykiet:
     <brite>&lt;pkgmetadata&gt;</brite>
   </ti>
   <ti>
-    Jest to źródłowy element pliku metadata.xml dla pakietów. Nie posiada 
-    żadnych atrybutów. Wymagana, drugorzędna etykieta tego pliku to: <brite>&lt;herd&gt;</brite>. 
-    Następujące podrzędne etykiety są dozwolone: <brite>&lt;email&gt;</brite> 
-    dla adresu e-mail podstawowej herd, <brite>&lt;maintainer&gt;</brite>, oraz 
+    Jest to źródłowy element pliku metadata.xml dla pakietów. Nie posiada
+    żadnych atrybutów. Wymagana, drugorzędna etykieta tego pliku to:
+    <brite>&lt;herd&gt;</brite>. Następujące podrzędne etykiety są dozwolone:
+    <brite>&lt;email&gt;</brite> czyli adres e-mail herdu,
+    <brite>&lt;maintainer&gt;</brite> oraz
     <brite>&lt;longdescription&gt;</brite>.
   </ti>
 </tr>
@@ -61,8 +57,8 @@ Plik <c>metadata.xml</c> może zawierać kilka etykiet:
     <brite>&lt;catmetadata&gt;</brite>
   </ti>
   <ti>
-    Jest to główny element pliku metadata.xml dla kategorii, tak jak w 
-    <uri link="/proj/en/glep/glep-0034.html">GLEP 34</uri>. Nie posiada on  
+    Jest to główny element pliku metadata.xml dla kategorii, tak jak w <uri
+    link="/proj/en/glep/glep-0034.html">GLEP 34</uri>. Nie posiada on
     atrybutów. Zawiera pewną ilość etykiet
     <brite>&lt;longdescription&gt;</brite>, każda dla innego języka.
   </ti>
@@ -72,9 +68,9 @@ Plik <c>metadata.xml</c> może zawierać kilka etykiet:
     <brite>&lt;herd&gt;</brite>
   </ti>
   <ti>
-    Musi istnieć przynajmniej jedna "podetykieta" herd. Zawartość tej etykiety musi składać się z 
-    nazwy herd, jak przedstawia plik <uri 
-    link="http://www.gentoo.org/cgi-bin/viewcvs.cgi/misc/herds.xml?rev=HEAD;cvsroot=gentoo;content-type=text/plain">herds.xml</uri>. 
+    Musi istnieć przynajmniej jedna "podetykieta" herd. Zawartość tej etykiety
+    musi składać się z nazwy herd, jak przedstawia plik <uri
+    link="http://www.gentoo.org/cgi-bin/viewcvs.cgi/misc/herds.xml?rev=HEAD;cvsroot=gentoo;content-type=text/plain">herds.xml</uri>.
     Opcja ta musi się pojawić przynajmniej raz.
   </ti>
 </tr>
@@ -83,11 +79,12 @@ Plik <c>metadata.xml</c> może zawierać kilka etykiet:
     <brite>&lt;maintainer&gt;</brite>
   </ti>
   <ti>
-    Poza członkostwem w herd, pakiet może również być zarządzany bezpośrednio. 
-    Zarządzający pakietem mogą zostać określeni za pomocą etykiety 
-    <brite>&lt;maintainer&gt;</brite>. Ta etykieta nie musi zawierać "podetykiet": 
-    <brite>&lt;email&gt;</brite>. Posiada dwie opcjonalna "podetykiety":
-    <brite>&lt;name&gt;</brite>, oraz <brite>&lt;description&gt;</brite>.
+    Poza przynależnością do herdu, pakiet może również być zarządzany
+    bezpośrednio. Zarządzający pakietem mogą zostać określeni za pomocą
+    etykiety <brite>&lt;maintainer&gt;</brite>. Ta etykieta nie musi zawierać
+    "podetykiet": <brite>&lt;email&gt;</brite>. Posiada dwie opcjonalna
+    "podetykiety": <brite>&lt;name&gt;</brite>, oraz
+    <brite>&lt;description&gt;</brite>.
   </ti>
 </tr>
 <tr>
@@ -105,22 +102,23 @@ Plik <c>metadata.xml</c> może zawierać kilka etykiet:
 <tr>
   <ti><brite>&lt;description&gt;</brite></ti>
   <ti>
-    Etykieta opisu zawiera opis zarządzania, lub dla przykładu, informację o tym, iż zainsteresowani moga przejąć zarządzanie. 
-    Opcja nie jest wymagana.
+    Etykieta opisu zawiera opis zarządzania lub na przykład informację o tym,
+    że jeśli pojawią się chętni, to mogą przejąć zarządzanie pakietem. Opcja
+    nie jest wymagana.
   </ti>
 </tr>
 <tr>
   <ti><brite>&lt;longdescription&gt;</brite></ti>
   <ti>
-    Ta etykieta zawiera opis pakietu. Służy ona do powiększania 
-    pola OPISU w ebuildach.
+    Ta etykieta zawiera opis pakietu. Służy ona do powiększania pola OPISU w
+    ebuildach.
   </ti>
 </tr>
 </table>
 
 <p>
-Istnieją również pewne atrybuty, których możemy uzyć z tymi etykietami. Wszystkie są
-opcjonalne:
+Istnieją również pewne atrybuty, których możemy uzyć z tymi etykietami.
+Wszystkie są opcjonalne:
 </p>
 
 <table>
@@ -138,28 +136,26 @@ opcjonalne:
     W każdym przypadku, gdy opis jest wymagany, musi istnieć
     <e>przynajmniej</e> anglojęzyczny opis.  Jeżeli podano dodatkowy opis w
     innym języku, atrybut ten jest używany do określenia języka w jakim został
-    napisany.  Format języka jest dwu-znakowy, co jest definiowane normą <uri
+    napisany.  Format języka jest dwuznakowy i jest definiowany normą <uri
     link="http://www.w3.org/WAI/ER/IG/ert/iso639.htm#2letter">ISO-639-1</uri>.
   </ti>
 </tr>
 <tr>
   <ti>restrict</ti>
   <ti>
-    <brite>&lt;herd&gt;</brite>, <brite>&lt;maintainer&gt;</brite>, 
+    <brite>&lt;herd&gt;</brite>, <brite>&lt;maintainer&gt;</brite>,
     <brite>&lt;longdescription&gt;</brite>
   </ti>
   <ti>
-    Atrybut restrict pozwala na ograniczanie aplikacji z konkretnymi etykietami dla 
-    konkretnych wersji pakietu. Kiedy atrybut ten zostanie użyty, etykieta 
-    bez atrybutu musi zostać utworzona. Etykieta bez atrybutu restrict 
-    posłuży nam jako domyślny przykład. Format atrybutu restrict 
-    jest taki sam jak format flagi DEPEND, z wyjątkiem &quot;&lt;&quot; i 
-    &quot;&gt;&quot;, które muszą być określone poprzez &amp;lt; i &amp;gt;.<br />
-    <br />
-    Dla przykładu, w pakiecie db 
-    <c>restrict="&gt;=sys-libs/db-3.2.9-r5"</c> 
-    na etykiecie maintainer wskazuje, iż zarządzający administruje w tej chwili wszystkimi wersjami 
-    większymi od 3.2.9-r5.
+    Atrybut restrict pozwala na ograniczanie aplikacji z konkretnymi etykietami
+    dla konkretnych wersji pakietu. Kiedy atrybut ten zostanie użyty, etykieta
+    bez atrybutu musi zostać utworzona. Etykieta bez atrybutu restrict posłuży
+    nam jako domyślny przykład. Format atrybutu restrict jest taki sam jak
+    format flagi DEPEND, z wyjątkiem &quot;&lt;&quot; i &quot;&gt;&quot;, które
+    muszą być określone poprzez &amp;lt; i &amp;gt;.<br /> <br /> Dla
+    przykładu, w pakiecie db <c>restrict="&gt;=sys-libs/db-3.2.9-r5"</c> na
+    etykiecie maintainer wskazuje, iż zarządzający administruje w tej chwili
+    wszystkimi wersjami większymi od 3.2.9-r5.
   </ti>
 </tr>
 </table>
@@ -167,7 +163,6 @@ opcjonalne:
 </body>
 </subsection>
 </section>
-
 <section>
 <title>Przykłady Metadata</title>
 <subsection>
@@ -175,9 +170,8 @@ opcjonalne:
 <body>
 
 <p>
-W pierwszym przykładzie widzimy plik <path>metadata.xml</path> dla pakietu 
-OpenOffice, którego ebuildy są całkowicie zarządzalne przez herd o nazwie
-<c>openoffice</c>:
+W pierwszym przykładzie widzimy plik <path>metadata.xml</path> dla pakietu
+OpenOffice, którego ebuildy należą do herdu o nazwie <c>openoffice</c>:
 </p>
 
 <pre caption="Pakiety zarządzane przez herd">
@@ -196,7 +190,7 @@ OpenOffice, którego ebuildy są całkowicie zarządzalne przez herd o nazwie
 </pre>
 
 <p>
-Herd <c>openoffice</c> jest zdefiniowane w pliku <path>herds.xml</path> przez
+Herd <c>openoffice</c> jest zdefiniowany w pliku <path>herds.xml</path> przez
 <uri link="/proj/en/metastructure">Projekt Metastruktury Gentoo</uri>:
 </p>
 
@@ -204,7 +198,7 @@ Herd <c>openoffice</c> jest zdefiniowane w pliku <path>herds.xml</path> przez
 Ten przykład może być przestarzały w momencie czytania. To tylko przykład!
 </note>
 
-<pre caption="Przykład OpenOffice herd">
+<pre caption="Przykład wpisu dla herdu OpenOffice">
 &lt;herd&gt;
   &lt;name&gt;openoffice&lt;/name&gt;
   &lt;email&gt;openoffice@gentoo.org&lt;/email&gt;
@@ -215,11 +209,12 @@ Ten przykład może być przestarzały w momencie czytania. To tylko przykład!
 </pre>
 
 <p>
-Jeżeli chcemy dodać (lub usunąć) siebie z herd, edytujemy <path>herds.xml</path>
-znajdujący się w <path>[gentoo]/misc</path> w repozytorium Gentoo CVS. Musimy znać
-aliasy e-maili, którymi posługuje się herd (na przykład herd "sound" posiada
-<mail link="sound@gentoo.org">sound@gentoo.org</mail>) i dodać się do
-aliasu (edytując <path>/var/mail/alias/misc/&lt;alias name&gt;</path> na 
+Jeżeli chcemy dodać (lub usunąć) siebie z herdu, edytujemy
+<path>herds.xml</path> znajdujący się w <path>[gentoo]/misc</path> w
+repozytorium Gentoo CVS. Musimy znać aliasy e-maili, którymi posługuje się herd
+(na przykład herd "sound" posiada <mail
+link="sound@gentoo.org">sound@gentoo.org</mail>) i dodać się do aliasu
+(edytując <path>/var/mail/alias/misc/&lt;alias name&gt;</path> na
 dev.gentoo.org).
 </p>
 
@@ -230,8 +225,9 @@ dev.gentoo.org).
 <body>
 
 <p>
-W drugim przykładzie przeglądamy plik <path>metadata.xml</path> dla <c>mirrorselect</c>.
-Ebuild jest zarządzany przez <c>tools-portage</c> herd, jednak posiada oddzielnych zarządzających.
+W drugim przykładzie przeglądamy plik <path>metadata.xml</path> dla
+<c>mirrorselect</c>. Ebuild jest zarządzany przez herd <c>tools-portage</c>,
+ale posiada oddzielnych zarządzających.
 </p>
 
 <pre caption="Pakiet zarządzany indywidualnie i przez herd">
