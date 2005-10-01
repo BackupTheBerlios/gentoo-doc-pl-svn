@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>2.5</version>
-<date>2005-08-21</date>
+<version>5.1</version>
+<date>2005-08-25</date>
 
 <section>
 <title>Wprowadzenie do urządzeń blokowych</title>
@@ -242,7 +242,8 @@ systemów plików</uri>.
 <note>
 Aby skorzystać z tablicy RAID podczas instalacji Gentoo na sprzęcie opartym na
 POWER-5 należy uruchomić <c>iprutils</c> i sformatować dyski do formatu
-"Advanced Function" i utworzyć na nich tablice dyskowe.
+"Advanced Function" i utworzyć na nich tablice dyskowe. Należy rozważyć
+zemergowanie tego pakietu po zakończeniu instalacji.
 </note>
 
 <p>
@@ -555,9 +556,7 @@ temat.
 <body>
 
 <note>
-Mamy do dyspozycji następujące systemy plików: ext2, ext3, ReiserFS i XFS.
-Wszystkie działają stabilnie na architekturze PPC. Na razie nie ma wsparcia dla
-JFS.
+Na archtiekturze PPC64 jest dostępnych kilkanaście systemów plików.
 </note>
 
 <p>
@@ -579,26 +578,29 @@ Księgowanie można włączyć dodając opcję <c>-O dir_index</c> do polecenia
 </p>
 
 <p>
-<b>ReiserFS</b> to system plików oparty na drzewie B*, oferujący
-dużą wydajność. Przy wielu małych plikach (poniżej 4k) może
-być szybszy od ext3 nawet piętnastokrotnie. ReiserFS jest
-wysoce skalowalny i posiada księgowanie, a począwszy od jądra 2.4.18,
-charakteryzuje go niezawodność i użyteczność zarówno na partycjach ogólnego
-przeznaczenia jak i w ekstremalnych przypadkach, takich jak ogromne
-partycje, operacje na wielu bardzo małych, lub bardzo dużych plikach czy też
-operacje na katalogach zawierających dziesiątki tysięcy plików.
+<b>ReiserFS</b> to system plików oparty na drzewie B*, oferujący dużą wydajność.
+Przy wielu małych plikach (poniżej 4k) może być szybszy od ext3 nawet
+piętnastokrotnie. ReiserFS jest wysoce skalowalny i posiada księgowanie, a
+począwszy od jądra 2.4.18, charakteryzuje go niezawodność i użyteczność zarówno
+na partycjach ogólnego przeznaczenia jak i w ekstremalnych przypadkach, takich
+jak ogromne partycje, operacje na wielu bardzo małych, lub bardzo dużych plikach
+czy też operacje na katalogach zawierających dziesiątki tysięcy plików.
 </p>
 
 <p>
-<b>XFS</b> to system plików z księgowaniem, w pełni wspierany
-w Gentoo Linux przez jądro xfs-sources. Jest bardzo funkcjonalny i
-zoptymalizowany
-do skalowalności. Zalecamy go wyłącznie do systemów z nowoczesnymi dyskami SCSI
-i/lub ciągłego zapisu danych z nieprzerwanym dostępem zasilania. Ponieważ
-XFS przechowuje dużo danych w pamięci RAM, źle zaprojektowane programy
-(te nie zachowujące odpowiednich środków ostrożności podczas zapisywania plików
-na dysk, których niestety jest sporo) mogą doprowadzić w razie awarii
-systemu do utraty danych.
+<b>XFS</b> to system plików z księgowaniem, w pełni wspierany w Gentoo Linux
+przez jądro xfs-sources. Jest bardzo funkcjonalny i zoptymalizowany do
+skalowalności. Zalecamy go wyłącznie do systemów z nowoczesnymi dyskami SCSI
+i/lub ciągłego zapisu danych z nieprzerwanym dostępem zasilania. Ponieważ XFS
+przechowuje dużo danych w pamięci RAM, źle zaprojektowane programy (te nie
+zachowujące odpowiednich środków ostrożności podczas zapisywania plików na dysk,
+których niestety jest sporo) mogą doprowadzić w razie awarii systemu do utraty
+danych.
+</p>
+
+<p>
+<b>JFS</b> jest wysokiej wydajności, księgującym systemem plików stworzonym
+przez firmę IBM. W ostatnim czasie został on uznany jako stabilny.
 </p>
 
 </body>

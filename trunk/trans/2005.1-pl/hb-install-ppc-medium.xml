@@ -88,6 +88,12 @@ etapów (stage). Każdy z nich to skompresowane archiwum zawierające minimalne
 środowisko pracy.
 </p>
 
+<p>
+Zespół Gentoo/PPC64 pozwala nam wybierać pomiędzy 32-bitową, a
+64-bitową przestrzenią użytkownika. Kompletny zbiór plików "stage" jest
+dostępny dla obydwu opcji.
+</p>
+
 <ul>
   <li>
      Plik etapu pierwszego (stage1) zawiera wyłącznie kompilator, Portage
@@ -110,7 +116,7 @@ etapów (stage). Każdy z nich to skompresowane archiwum zawierające minimalne
 <p>
 W tym dokumencie będziemy używali pliku stage3. Jeśli użytkownik zechce użyć
 pliku stage1 lub stage2, wtedy należy podążyć za wskazówkami instalacji z <uri
-	link="/doc/pl/handbook/handbook-ppc.xml">Podręcznika Gentoo</uri>.
+link="/doc/pl/handbook/handbook-ppc64.xml">Podręcznika Gentoo</uri>.
 
 </p>
 
@@ -148,12 +154,12 @@ Obecnie dostępne są następujące płyty instalacyjne:
 </ul>
 
 <p>
-	Gentoo również dostarcza tzw. Package CD. To nie jest płyta instalacyjna
-	ale dodatkowe źródło, które można wykorzystać podczas instalacji systemu
-	Gentoo.  Zawiera ona fabrycznie skompilowane pakiety (tzw. zbiór GRP),
-	które umożliwiają łatwą i szybką instalację dodatkowych aplikacji
-	(takich jak OpenOffice.org, KDE, GNOME,...) natychmiast po instalacji
-	Gentoo, ale tuż przed zuktualizowaniem drzewa Portage.
+        Gentoo również dostarcza tzw. Package CD. To nie jest płyta instalacyjna
+        ale dodatkowe źródło, które można wykorzystać podczas instalacji systemu
+        Gentoo.  Zawiera ona fabrycznie skompilowane pakiety (tzw. zbiór GRP),
+        które umożliwiają łatwą i szybką instalację dodatkowych aplikacji
+        (takich jak OpenOffice.org, KDE, GNOME,...) natychmiast po instalacji
+        Gentoo, ale tuż przed zuktualizowaniem drzewa Portage.
 </p>
 
 
@@ -227,7 +233,7 @@ $ <i>gpg --verify &lt;plik sygnatury&gt; &lt;plik iso&gt;</i>
 Pobrane pliki ISO należy nagrywać w trybie RAW. To jak się go włącza zależy od
 programu, którego używamy. W Podręczniku opiszemy nagrywanie za pomocą programów
 <c>cdrecord</c> i <c>K3B</c>. Więcej informacji można znaleźć w dokumencie <uri
-	link="/doc/pl/faq.xml#isoburning">Gentoo FAQ</uri>.
+        link="/doc/pl/faq.xml#isoburning">Gentoo FAQ</uri>.
 </p>
 
 <ul>
@@ -463,7 +469,7 @@ jest wspierana pod Linuksem:
 Zaawansowanych użytkowników na pewno zainteresuje możliwość zwiększenia
 wydajności dysków twardych IDE za pomocą programu <c>hdparm</c>. Obecną
 wydajność można przetestować za pomocą parametrów <c>-tT</c> (kilkukrotne
-wykonanie polecenia zwiększa precyzję pomiaru): 
+wykonanie polecenia zwiększa precyzję pomiaru):
 </p>
 
 <pre caption="Testowanie wydajności twardego dysku">

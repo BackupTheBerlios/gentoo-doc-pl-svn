@@ -15,8 +15,8 @@
 
 <sections>
 
-<version>2.2</version>
-<date>2005-04-20</date>
+<version>5.0</version>
+<date>2005-08-08</date>
 
 <section>
 <title>Podejmowanie decyzji</title>
@@ -45,8 +45,9 @@ dostępny grub2.
 <body>
 
 <impo>
-Zmuszeniu jesteśmy używać yaboot-static zamiast yaboot (ponieważ yaboot nie
-skompiluje się na PPC64).
+Na maszynach 64-bitowych zmuszeniu jesteśmy używać yaboot-static zamiast yaboot,
+ponieważ yaboot nie skompiluje się na PPC64. Użytkownicy systemów 32-bitowych
+używają normalnie yaboot.
 </impo>
 
 <p>
@@ -60,7 +61,34 @@ wyedytować wzorcowy plik już zainstalowany w systemie.
 </p>
 
 <impo>
-Yabootconfig/ybin nie działa na IBM. Należy go zainstalować w inny sposób:
+Jeśli instalujemy Gentoo na systemie G5 z dostępem do Internetu, a nie
+użyliśmy plików "stage" zoptymalizowanych pod G5 wtedy należy zmienić dowiązanie
+do profilu. Jeśli tego nie uczynimy, wtedy instalując yaboot nie zostaną
+zainstalowane właściwe zależności konieczne do uruchomienia systemu. W linii
+poleceń zastępujemy <c>(userland)</c> wybraną przez nas liczbą bitów. Jeśli
+instalujemy system na G5 bez dostępu do Internetu, wtedy należy poniższe pakiety
+zainstalować ręcznie.
+</impo>
+							   	 
+<pre caption = "(WYŁĄCZNIE UŻYTKOWNICY G5 Z DOSTĘPEM DO INTERNETU) Zmiana profilu">
+# <i>rm /etc/make.profile</i>
+# <i>ln -sf /usr/portage/profiles/default-linux/ppc/2005.1/ppc64/(userland)/970/pmac /etc/make.profile</i>
+</pre>
+												   	 
+<pre caption = "(WYŁĄCZNIE UŻYTKOWNICY G5 BEZ DOSTĘPU DO INTERNETU) Instalacja
+	wymaganych narzędzi systemu plików">
+# <i>emerge hfsutils hfsplusutils</i>
+</pre>
+																   	 
+<pre caption = "Instalacja bootloadera"> 
+	<comment>(64-bitowy userland)</comment>
+# <i>emerge --update yaboot-static</i>
+<comment>(32-bitowy userland)</comment>
+# <i>emerge --update yaboot</i>
+</pre>
+	
+<impo>
+yabootconfig/ybin nie działa na IBM. Należy go zainstalować w inny sposób:
 <uri link="#yaboot-ibm">Używanie yaboot na IBM</uri>
 </impo>
 
@@ -100,10 +128,6 @@ aktualna wersja będzie dostępna poprzez Portage, ale może jej jeszcze nie by�
 plikach stage.
 </p>
 
-<pre caption = "Instalacja yaboot-static">
-# <i>emerge --update yaboot-static</i>
-</pre>
-
 <p>
 Następnie należy wykonać polecenie <c>yabootconfig</c>. Uruchomi się program i
 potwierdzi lokalizację partycji bootstrap. Wciskamy <c>Y</c> jeśli wszystko
@@ -130,14 +154,6 @@ systemu</uri>.
 <subsection id="manual_yaboot">
 <title>Alternatywnie: Ręczna konfiguracja yaBoot</title>
 <body>
-
-<p>
-Po pierwsze należy upewnić się, że mamy zainstalowaną aktualną wersję
-<c>yaboot-static</c> </p>
-
-<pre caption = "Instalacja yaboot">
-# <i>emerge --update yaboot-static</i>
-</pre>
 
 <p>
 Poniżej znajduje się kompletny plik <path>yaboot.conf</path>. Dostosujmy go do
@@ -181,10 +197,9 @@ magicboot=/usr/lib/yaboot/ofboot
 ## Ta część może być powielona, jeśli mamy więcej niż jeden kernel lub zestaw
 ## parametrów startowych - należy podmienić 2.6.9 na wersję jądra w systemie
 #################</comment>
-image=/boot/kernel-2.6.9
+image=/boot/kernel-2.6.12-gentoo-r4
   label=Linux
   root=/dev/sda3
-  sysmap=/boot/System.map-2.6.9
   read-only
 
 macos=hd:13
@@ -248,11 +263,11 @@ następujących czynności:
 device=disk:
 partition=2
 root=/dev/sda2
-default=2.6.8-gentoo-r3
+default=2.6.12-gentoo-r4
 timeout=50
 
-image=/boot/vmlinux-2.6.8-gentoo-r3
-       label=2.6.8-gentoo-r3
+image=/boot/vmlinux-2.6.12-gentoo-r4
+       label=2.6.12-gentoo-r4
           append="console=ttyS0,9600"
           read-only
 </pre>
@@ -266,7 +281,7 @@ Powinien wtedy wystarczyć taki plik:
 <pre caption="yaboot.conf dla sprzętu PReP">
 default = linux
 timeout = 100
-image=/boot/vmlinux
+image=/boot/kernel-2.6.12-gentoo-r4
 label=linux
 read-only
 root = /dev/sda2

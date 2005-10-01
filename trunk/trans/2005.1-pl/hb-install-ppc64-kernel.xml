@@ -7,7 +7,7 @@
 
 <sections>
 
-<version>2.5</version>
+<version>5.1</version>
 <date>2005-08-21</date>
 
 <section>
@@ -58,10 +58,10 @@ W katalogu <path>/usr/src</path> powinieneś mieć mniej więcej taki symlink, o
 nazwie <path>linux</path>, wskazujący na źródła Twojego aktualnego kernela:
 </p>
 
-<pre caption="Podgląd symlinka do źródeł kernela">
+<pre caption="Podgląd dowiązania symbolicznego do źródeł jądra">
 # <i>ls -l /usr/src/linux</i>
 lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux
--&gt; linux-2.6.7-gentoo-r8
+-&gt; linux-2.6.12-gentoo-r4
 </pre>
 
 <p>
@@ -70,10 +70,10 @@ inne niż źródła kernela) to trzeba będzie go poprawić zanim przejdziemy do
 dalszych części tego dokumentu.  
 </p>
 
-<pre caption="Changing the kernel source symlink">
+<pre caption="Zmiana dowiązania symbolicznego źródeł jądra">
 # <i>rm /usr/src/linux</i>
 # <i>cd /usr/src</i>
-# <i>ln -s linux-2.6.7-gentoo-r8 linux</i>
+# <i>ln -s linux-2.6.12-gentoo-r4 linux</i>
 </pre>
 
 <p>
@@ -121,9 +121,20 @@ Kiedy już zbierzemy wszystkie informacje przechodzimy do katalogu ze
 konfiguracyjne oparte na ncurses.
 </p>
 
+<p>
+Podczas kompilacji jądra w 32-bitowej przestrzeni użytkownika dodajemy
+następującą linię do /etc/profile:
+</p>
+
+<pre caption="Tworzenie aliasu dla 32-bitowej przestrzeni użytkownika">
+# <i>echo 'alias ppc64make="make ARCH=ppc64 CROSS_COMPILE=powerpc64-unknown-linux-gnu-"' >> /etc/profile</i>
+# <i>source /etc/profile</i>
+</pre>
+
 <pre caption="Uruchamianie menuconfig">
 # <i>cd /usr/src/linux</i>
-# <i>make menuconfig</i>
+(64-bitowa przestrzeń użytkownika) # <i>make menuconfig</i>
+(32-bitowa przestrzeń użytkownika) # <i>ppc64make menuconfig</i>
 </pre>
 
 <p>
@@ -140,8 +151,8 @@ prawidłowe działanie Gentoo.
 
 <p>
 Po pierwsze włączymy możliwość korzystania z rozwojowych i eksperymentalnych
-fragmentów kodu jądra. Jeśli tego nie zrobimy, nawet nie zobaczymy kilku
-bardzo ważnych opcji.
+fragmentów kodu jądra. Jeśli tego nie zrobimy, nawet nie zobaczymy kilku bardzo
+ważnych opcji.
 </p>
 
 <pre caption="Wybieranie opcji experimental code/drivers oraz innych generalnych
@@ -158,17 +169,13 @@ plików, których zamierzamy używać. Jeśli zostanie to zaniedbane Gentoo nie
 będzie w stanie zamontować partycji, a czasem nawet się nie uruchomi. Pamiętajmy
 również, aby włączać te sterowniki na stałe do jądra, w żadnym wypadku nie
 kompilujemy ich jako moduły. Przy okazji zaznaczamy również <c>Virtual
-memory</c>, <c>/proc file system</c>.  <c>/dev file system</c> +
-<c>Automatically mount at boot</c> i <c>/dev/pts file system for Unix98
-PTYs</c>:
+memory</c>, <c>/proc file system</c> i <c>/dev/pts file system for Unix PTYs</c>:
 </p>
 
 <pre caption="Wybór potrzebnych systemów plików">
 File systems ---&gt;
   [*] Virtual memory file system support (former shm fs)
   [*] /proc file system support
-  [*] /dev file system support (EXPERIMENTAL)
-  [*]   Automatically mount at boot
   [*] /dev/pts file system for Unix98 PTYs
 
 <comment>(Wybieramy jedną lub kilka z tych opcji zależnie od używanych systemów
@@ -234,7 +241,8 @@ instalację. Opuszczamy program konfiguracyjny i rozpoczynamy proces kompilacji:
 </p>
 
 <pre caption="Kompilowanie kernela">
-(Apple/IBM)  # <i>make &amp;&amp; make modules_install</i>
+(32-bitowa przestrzeń użytkownika)  # <i>make &amp;&amp; make modules_install</i>
+(64-bitowa przestrzeń użytkownika)  # <i>ppc64make &amp;&amp; ppc64make modules_install</i>
 </pre>
 
 <p>
@@ -243,15 +251,7 @@ Kiedy jądro skończy się kompilować kopiujemy jego obraz do katalogu
 </p>
 
 <pre caption="Instalowanie kernela">
-(Apple/IBM)  # <i>cp vmlinux /boot/kernel-2.6.7-gentoo-r8</i>
-</pre>
-
-<p>
-Nie zapominamy również o skopiowaniu pliku System.map:
-</p>
-
-<pre caption="Kopiowanie System.map">
-# <i>cp System.map /boot/System.map-2.6.7</i>
+(Apple/IBM)  # <i>cp vmlinux /boot/kernel-2.6.12-gentoo-r4</i>
 </pre>
 
 <p>
@@ -260,7 +260,7 @@ posłużył do zbudowania jądra.
 </p>
 
 <pre caption="Tworzenie kopii zapasowej konfiguracji jądra">
-# <i>cp .config /boot/config-2.6.7-gentoo-r8</i>
+# <i>cp .config /boot/config-2.6.12</i>
 </pre>
 
 <p>
