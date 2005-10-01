@@ -2,7 +2,7 @@
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
 <sections>
 
@@ -26,13 +26,14 @@ Ustawianie klucza:
 
 <ul>
   <li>
-    <uri link="http://www.gentoo.org/doc/en/gnupg-user.xml#doc_chap2">Tworzymy</uri>
-    klucz DSA GnuPG o przynajmniej 1024 bitowej długości, data wygaśnięcia nie powinna
-    być dalsza niż 6 miesięcy, a samo hasło dosyć skomplikowane.
+    <uri
+    link="/doc/pl/gnupg-user.xml#doc_chap2">Tworzymy</uri> klucz DSA GnuPG o
+    przynajmniej 1024 bitowej długości, data wygaśnięcia nie powinna być dalsza
+    niż 6 miesięcy, a samo hasło dosyć skomplikowane.
   </li>
   <li>
-    <uri link="http://www.gentoo.org/doc/en/gnupg-user.xml#doc_chap3">Wrzucamy</uri>
-    klucz na serwer kluczy (keyserver).
+    <uri link="/doc/pl/gnupg-user.xml#doc_chap3">Wysyłamy</uri> klucz na serwer
+    kluczy (keyserver).
   </li>
 </ul>
 
@@ -50,8 +51,8 @@ Konfiguracja Portage:
 </ul>
 
 <p>
-Teraz możemy przypisywać nasze Manifesty do zatwierdzenia przez repomana. Repoman będzie
-prosił o hasło zanim zaakceptuje Manifest. Ten krok następuje
+Teraz możemy przypisywać nasze Manifesty do zatwierdzenia przez repomana.
+Repoman będzie prosił o hasło zanim zaakceptuje Manifest. Ten krok następuje
 <e>po</e> zatwierdzeniu innych plików. W tym momencie repoman nie sprawdza czy
 Manifest jest już przypisany, by inni mogli później "odpisać" nasz Manifest.
 Ta zmiana nastąpi zanim przypisanie zostanie wykonane.
@@ -60,21 +61,20 @@ Ta zmiana nastąpi zanim przypisanie zostanie wykonane.
 </body>
 </subsection>
 </section>
-
 <section>
 <title>Jak weryfikować Manifesty?</title>
 <subsection>
 <body>
 
 <p>
-W tej chwili portage nie posiada zintegrowanej weryfikacji.  Pierwszym krokiem do
-sprawdzenia Manifestu jest testowy skrypt dostępny
-<uri link="http://dev.gentoo.org/~genone/scripts/portage-gpg-verify.sh">tutaj</uri>.
-Jest to niekompletny skrypt, udostępniony tylko do testowania. Nie mamy żadnych gwarancji na powodzenie przy jego użyciu.
+W tej chwili portage nie posiada zintegrowanej weryfikacji.  Pierwszym krokiem
+do sprawdzenia Manifestu jest testowy skrypt dostępny <uri
+link="http://dev.gentoo.org/~genone/scripts/portage-gpg-verify.sh">tutaj</uri>.
+Jest to niekompletny skrypt, udostępniony tylko do testowania. Nie mamy żadnych
+gwarancji na powodzenie przy jego użyciu.
 </p>
 
 </body>
 </subsection>
 </section>
-
 </sections>
