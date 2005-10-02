@@ -3,12 +3,12 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/handbook/handbook-amd64.xml,v 1.12 2005/08/21 00:53:06 rane Exp $ -->
 
 <book link="/doc/pl/handbook/handbook-amd64.xml" lang="pl">
-<title>Gentoo Linux AMD64 Handbook</title>
+<title>Podręcznik Gentoo 2005.1 dla architektury AMD64</title>
 
 <author title="Autor">
     <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
-<author title="Author">
+<author title="Autor">
     <mail link="uberlord@gentoo.org">Roy Marples</mail>
 </author>
 <author title="Główny Architekt">
@@ -30,16 +30,16 @@
   Aron Griffis
 </author>
 -->
-<author title="Gentoo AMD64 Developer">
+<author title="Gentoo AMD64 Deweloper">
     <mail link="jhuebel@gentoo.org">Jason Huebel</mail>
 </author>
-<author title="Gentoo HPPA developer">
+<author title="Gentoo HPPA deweloper">
     <mail link="gmsoft@gentoo.org">Guy Martin</mail>
 </author>
-<author title="Gentoo PPC developer">
+<author title="Gentoo PPC deweloper">
     <mail link="pvdabeel@gentoo.org">Pieter Van den Abeele</mail>
 </author>
-<author title="Gentoo SPARC developer">
+<author title="Gentoo SPARC deweloper">
     <mail link="blademan@gentoo.org">Joe Kallar</mail>
 </author>
 <author title="Redaktor">
@@ -121,8 +121,8 @@ To jest Podręcznik Gentoo, próba scentralizowania informacji o Gentoo/Linux.
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <license/>
 
-<version>4.0</version>
-<date>2005-08-17</date>
+<version>5.1</version>
+<date>2005-08-08</date>
 
 <part>
 <title>Instalacja Gentoo</title>
@@ -140,11 +140,10 @@ tego Podręcznika.
 </chapter>
 
 <chapter>
-<title>Wybór medium instalacyjnego</title>
+<title>Uruchamianie systemu z uniwersalnej płyty instalacyjnej</title>
 <abstract>
-Wybierz w jaki sposób chcesz zainstalować Gentoo. W rozdziale tym szczegółowo
-omawiamy proces instalacji z minimalnych płyt instalacyjnych, możliwa jest
-również instalacja z płyty uniwersalnej.
+Dzięki uniwersalnej płycie instalacyjnej uruchomimy system podstawowy, za
+pomocą którego będzie można zainstalować Gentoo.
 </abstract>
   <include href="hb-install-amd64-medium.xml"/>
 </chapter>
@@ -152,7 +151,7 @@ również instalacja z płyty uniwersalnej.
 <chapter>
 <title>Konfiguracja sieci</title>
 <abstract>
-Aby mieć możliwość ściągnięcia najnowszych źródeł musisz najpierw skonfigurować połączenie sieciowe.
+W tym punkcie skonfigurujemy połączenie sieciowe.
 </abstract>
   <include href="hb-install-network.xml"/>
 </chapter>
@@ -160,7 +159,8 @@ Aby mieć możliwość ściągnięcia najnowszych źródeł musisz najpierw skon
 <chapter>
 <title>Przygotowanie dysków</title>
 <abstract>
-Aby instalacja Gentoo była możliwa musisz najpierw utworzyć odpowiednie partycje.
+Aby instalacja Gentoo była możliwa musisz najpierw utworzyć odpowiednie
+partycje.
 </abstract>
   <include href="hb-install-amd64-disk.xml"/>
 </chapter>
@@ -168,16 +168,17 @@ Aby instalacja Gentoo była możliwa musisz najpierw utworzyć odpowiednie party
 <chapter>
 <title>Wypakowanie plików instalacyjnych Gentoo</title>
 <abstract>
-Gentoo instaluje się przez tak zwane pliki stage. W tym rozdziale opiszemy
-jak wypakować pliki stage i skonfigurować Portage.
+W tym rozdziale opiszemy proces rozpakowywania pliku stage 3 oraz wstępnej
+konfiguracji Portage.
 </abstract>
   <include href="hb-install-stage.xml"/>
 </chapter>
 
 <chapter>
-<title>Instalacja systemu podstawowego</title>
+<title>Chrootowanie się do instalowanego systemu</title>
 <abstract>
-Niezależnie od wybranego stage'a zawsze musisz zainstalować system podstawowy.
+Po rozpakowaniu pliku stage chrootujemy się do instalowanego systemu i
+dostosowujemy flagi USE.
 </abstract>
   <include href="hb-install-system.xml"/>
 </chapter>
@@ -185,7 +186,8 @@ Niezależnie od wybranego stage'a zawsze musisz zainstalować system podstawowy.
 <chapter>
 <title>Konfiguracja jądra</title>
 <abstract>
-Jądro Linuxa jest rdzeniem każdej dystrybucji. W tym rozdziale wytłumaczymy jak je skonfigurować.
+Jądro Linuxa jest rdzeniem każdej dystrybucji. W tym rozdziale wytłumaczymy jak
+je skonfigurować.
 </abstract>
   <include href="hb-install-amd64-kernel.xml"/>
 </chapter>
@@ -193,7 +195,8 @@ Jądro Linuxa jest rdzeniem każdej dystrybucji. W tym rozdziale wytłumaczymy j
 <chapter>
 <title>Konfiguracja systemu</title>
 <abstract>
-Aby Twój system działał poprawnie musisz wyedytować kilka ważnych plików konfiguracyjnych.
+Aby system działał poprawnie trzeba wyedytować kilka ważnych plików
+konfiguracyjnych.
 </abstract>
   <include href="hb-install-config.xml"/>
 </chapter>
@@ -217,7 +220,8 @@ W tym rozdziale opiszemy GRUBa i przeprowadzimy Cię przez proces jego konfigura
 <chapter>
 <title>Zakończenie instalacji Gentoo</title>
 <abstract>
-Już prawie wszystko skończone. Musimy jeszcze tylko utworzyć jednego (lub więcej) użytkowników.
+Kończymy instalację Gentoo. Dodajemy kilka kont użytkowników i (opcjonalnie)
+doinstalowujemy prekompilowane pakiety.
 </abstract>
   <include href="hb-install-finalise.xml"/>
 </chapter>
@@ -243,7 +247,7 @@ zachowania Portage, itp.
 <abstract>
 Wszytko to, co musisz wiedzieć na temat Portage, aby móc skutecznie zarządzać systemem.
 </abstract>
-  <include href="hb-working-portage.xml"/>
+  <include href="../hb-working-portage.xml"/>
 </chapter>
 
 <chapter>
@@ -252,7 +256,7 @@ Wszytko to, co musisz wiedzieć na temat Portage, aby móc skutecznie zarządza�
 Flagi USE są bardzo ważnym aspektem Gentoo. W tym rozdziale nauczysz się pracy
 z nimi i zrozumiesz jak wpływają one na Twój system.
 </abstract>
-  <include href="hb-working-use.xml"/>
+  <include href="../hb-working-use.xml"/>
 </chapter>
 
 <chapter>
@@ -260,7 +264,7 @@ z nimi i zrozumiesz jak wpływają one na Twój system.
 <abstract>
 Odkryj funkcje, które posiada Portage!
 </abstract>
-  <include href="hb-working-features.xml"/>
+  <include href="../hb-working-features.xml"/>
 </chapter>
 
 <chapter>
@@ -269,7 +273,7 @@ Odkryj funkcje, które posiada Portage!
 Gentoo używa specjalnego formatu skryptów startowych, które pozwalają na budowanie zależności oraz
 zarządzanie wirtualnymi skryptami startowymi. Rozdział ten pokaże jak je tworzyć i nimi zarządzać.
 </abstract>
-  <include href="hb-working-rcscripts.xml"/>
+  <include href="../hb-working-rcscripts.xml"/>
 </chapter>
 
 <chapter>
@@ -277,7 +281,7 @@ zarządzanie wirtualnymi skryptami startowymi. Rozdział ten pokaże jak je twor
 <abstract>
 W Gentoo możesz łatwo zarządzać zmiennymi środowiskowymi. W tym rozdziale opiszemy najczęsciej używane zmienne oraz wytłumaczymy Ci jak je zmieniać.
 </abstract>
-  <include href="hb-working-variables.xml"/>
+  <include href="../hb-working-variables.xml"/>
 </chapter>
 </part>
 
@@ -293,7 +297,7 @@ programami Gentoo.
 <abstract>
 Musisz wiedzieć gdzie przechowywane są pliki Portage, aby poznać je "od kuchni".
 </abstract>
-    <include href="hb-portage-files.xml"/>
+    <include href="../hb-portage-files.xml"/>
 </chapter>
 
 <chapter>
@@ -301,7 +305,7 @@ Musisz wiedzieć gdzie przechowywane są pliki Portage, aby poznać je "od kuchn
 <abstract>
 Chcesz dostosować Portage pod swoje wymagania? Nic łatwiejszego, do tego posłużą Ci pliki konfiguracyjne oraz zmienne środowiskowe.
 </abstract>
-     <include href="hb-portage-configuration.xml"/>
+     <include href="../hb-portage-configuration.xml"/>
 </chapter>
 
 <chapter>
@@ -310,7 +314,7 @@ Chcesz dostosować Portage pod swoje wymagania? Nic łatwiejszego, do tego posł
 Gentoo posiada oprogramowanie podzielone na różne gałęzie, zależnie od stabilności i architektury.
 Rozdział ten mówi o konfiguracji owych gałęzi oraz dostosowywaniu ich do własnych potrzeb.
 </abstract>
-  <include href="hb-portage-branches.xml"/>
+  <include href="../hb-portage-branches.xml"/>
 </chapter>
 <chapter>
 <title>Dodatkowe narzędzia Portage</title>
@@ -318,7 +322,7 @@ Rozdział ten mówi o konfiguracji owych gałęzi oraz dostosowywaniu ich do wł
 Portage zawiera sporo narzędzi, które są bardzo przydatne w życiu codziennym.
 Przeczytaj ten rozdział, żeby dowiedzieć się jak używać dispatch-conf oraz innych narzędzi.
 </abstract>
-     <include href="hb-portage-tools.xml"/>
+     <include href="../hb-portage-tools.xml"/>
 </chapter>
 
 <chapter>
@@ -327,7 +331,7 @@ Przeczytaj ten rozdział, żeby dowiedzieć się jak używać dispatch-conf oraz
 Rozdział ten pokazuje kilka sztuczek związanych z codzienną pracą w Gentoo, m.in. jak używać swojego własnego drzewa Portage,
 synchronizować tylko te kategorie, które chcemy, aby były synchronizowane, czy injektować pakiety.
 </abstract>
-  <include href="hb-portage-diverttree.xml"/>
+  <include href="../hb-portage-diverttree.xml"/>
 </chapter>
 
 <chapter>
@@ -336,7 +340,7 @@ synchronizować tylko te kategorie, które chcemy, aby były synchronizowane, cz
 Rozdział "Program Ebuild" pokazuje jak Portage instaluje programy i jak możesz
 instalować pakiety "z palca" używając tego programu
 </abstract>
-  <include href="hb-portage-ebuild.xml"/>
+  <include href="../hb-portage-ebuild.xml"/>
 </chapter>
 </part>
 
@@ -350,7 +354,7 @@ instalować pakiety "z palca" używając tego programu
 <abstract>
 Opis szybkiego i sprawnego skonfigurowania interfejsu sieciowego w większości środowisk.
 </abstract>
-<include href="hb-net-start.xml"/>
+<include href="../hb-net-start.xml"/>
 </chapter>
 
 <chapter>
@@ -358,7 +362,7 @@ Opis szybkiego i sprawnego skonfigurowania interfejsu sieciowego w większości 
 <abstract>
 Przed przejściem do modularnej pracy w sieci musimy nauczyć się zasad działania konfiguracji.
 </abstract>
-<include href="hb-net-advanced.xml"/>
+<include href="../hb-net-advanced.xml"/>
 </chapter>
 
 <chapter>
@@ -367,7 +371,7 @@ Przed przejściem do modularnej pracy w sieci musimy nauczyć się zasad działa
 Gentoo zapewnia wiele różnych rozwiązań sieciowych, w tym rozdziale omawiamy
 konfigurację różnych klientów DHCP, bonding, bridging oraz sieci VLAN.
 </abstract>
-<include href="hb-net-modules.xml"/>
+<include href="../hb-net-modules.xml"/>
 </chapter>
 
 <chapter>
@@ -375,7 +379,7 @@ konfigurację różnych klientów DHCP, bonding, bridging oraz sieci VLAN.
 <abstract>
 To nie jest prosta sprawa, na szczeście zwykle udaje się jednak połączyć.
 </abstract>
-<include href="hb-net-wireless.xml"/>
+<include href="../hb-net-wireless.xml"/>
 </chapter>
 
 <chapter>
@@ -383,7 +387,7 @@ To nie jest prosta sprawa, na szczeście zwykle udaje się jednak połączyć.
 <abstract>
 Osoby czujące się na siłach mogą znacznie rozszerzyć funkcje swojej sieci.
 </abstract>
-<include href="hb-net-functions.xml"/>
+<include href="../hb-net-functions.xml"/>
 </chapter>
 
 <chapter>
@@ -392,7 +396,7 @@ Osoby czujące się na siłach mogą znacznie rozszerzyć funkcje swojej sieci.
 Dobry rozdział dla posiadaczy laptopów, którzy bez przerwy przemieszczają
 komputer między sieciami.
 </abstract>
-<include href="hb-net-management.xml"/>
+<include href="../hb-net-management.xml"/>
 </chapter>
 </part>
 
