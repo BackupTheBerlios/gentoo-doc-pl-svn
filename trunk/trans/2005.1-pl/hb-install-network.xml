@@ -8,9 +8,67 @@
 
 <sections>
 
-<version>2.2</version>
-<date>2005-07-02</date>
+<version>5.0</version>
+<date>2005-08-08</date>
 
+<section>
+<title>Czy potrzebujemy dostępu do sieci?</title>
+<subsection>
+<title>Kto nie potrzebuje dostępu do internetu?</title>
+<body>
+
+<p>
+Generalnie nie jest potrzebny dostęp do internetu, jeśli instalujemy Gentoo przy
+użyciu uniwersalnej płyty instalacyjnej. Istnieją jednak sytuacje, w który
+dostęp do sieci może być niezbędny:
+</p>
+
+<ul>
+  <li>
+    Pliki stage3 dostarczone na płycie nie odpowiadają naszej architekturze i
+    konieczne jest pobranie poprawnego pliku.
+  </li>
+  <li>
+    Musimy zainstalować specyficzny program do łączenia się z internetem, który
+    nie jest dostępny na uniwersalnej płycie instalacyjnej, a znajduje się na
+    płycie minimalnej (przykładowo można połączyć się z siecią przy użyciu tej
+    płyty, jednak nie ma na niej potrzebnych źródeł).
+  </li>
+  <li>
+    Potrzebujemy dodatkowego wsparcia w czasie instalacji systemu (z użyciem
+    SSH, czy też poprzez rozmowy na kanałach IRC).
+  </li>
+</ul>
+
+</body>
+</subsection>
+<subsection>
+<title>Czy potrzebujemy dostępu do sieci?</title>
+<body>
+
+<p>
+Sprawdźmy czy na płycie znajduje się odpowiedni dla naszej architektury plik
+stage3. Wszystkie pliki stage znajdują się w katalogu
+<path>/mnt/cdrom/stages</path>. Jeśli żaden plik nie odpowiada naszemu
+sprzętowi, możemy użyć innego przeznaczonego dla architektury kompatybilnej z
+naszą.
+</p>
+
+<p>
+Jeśli nie znajdziemy pliku stage3, który moglibyśmy wykorzystać, konieczne
+będzie połączenie z internetem, w celu jego pobrania.
+</p>
+
+<p>
+Podsumowując, jeśli nie potrzebujemy połaczenia z internetem, możemy pominąć
+pozostałą cześć tego dokumentu i przejść bezpośrednio do rozdziału <uri
+link="?part=1&amp;chap=4">Przygotowywanie dysków</uri>. W innym przypadku
+kontynuujemy lekturę tego rozdziału.
+</p>
+
+</body>
+</subsection>
+</section>
 <section>
 <title>Automatyczne wykrywanie sieci</title>
 <subsection>

@@ -7,37 +7,12 @@
 
 <sections>
 
-<version>2.3</version>
-<date>2005-07-30</date>
+<version>5.0</version>
+<date>2005-08-08</date>
 
-<section>
-<title>Menedżer urządzeń</title>
-<body>
-
-<p>
-Użytkownicy jąder 2.4 instalujący Gentoo z etapu trzeciego <e>muszą</e> na
-początek odinstalować udev i zainstalować devfsd. Jest to niezbędne w związku z
-tym, że Gentoo domyślnie korzysta z systemu udev niedostępnego na jądrach 2.4.
-</p>
-
-<pre caption="Instalowane devfsd">
-<comment>(Dla użytkowników jąder 2.4.x używających stage 3)</comment>
-# <i>emerge --unmerge udev</i>
-# <i>emerge devfsd</i>
-</pre>
-
-</body>
-</section>
 <section>
 <title>Program logujący</title>
 <body>
-
-<p>
-Gdy wspominaliśmy czym jest <e>stage3</e> powiedzieliśmy, że zawiera on
-wszystkie niezbędne narzędzia systemowe, dla których nie możemy zaoferować
-użytkownikowi żadnej alternatywy. Powiedzieliśmy również, że w późniejszej fazie
-instalacji systemu dodamy kolejne narzędzia. Oto ten etap. :)
-</p>
 
 <p>
 Pierwszym narzędziem przy którym należy dokonać wyboru, jest program do obsługi
@@ -95,14 +70,6 @@ regularnie (na przykład codziennie, co tydzień, co miesiąc).
 </p>
 
 <p>
-Gentoo oferuje trzy różne demony crona: <c>dcron</c>, <c>fcron</c> oraz
-<c>vixie-cron</c>. Instalacja każdego z nich jest analogiczna do instalacji
-programu logującego, jednakże <c>dcron</c> i <c>frcon</c> wymagają dodatkowej
-konfiguracji (wykonywanej przez polecenie: <c>crontab /etc/crontab</c>).
-Niezdecydowanym polecamy program <c>vixie-cron</c>.
-</p>
-
-<p>
 Dla instalacji bez sieci dostarczamy tylko <c>vixie-cron</c>. Aby używać innego
 demona cron, trzeba będzie poczekać i zainstalować go później.
 </p>
@@ -110,7 +77,6 @@ demona cron, trzeba będzie poczekać i zainstalować go później.
 <pre caption="Instalacja demona cron">
 # <i>emerge vixie-cron</i>
 # <i>rc-update add vixie-cron default</i>
-<comment>(Dla dcron lub fcron)</comment> # <i>crontab /etc/crontab</i>
 </pre>
 
 </body>
@@ -143,7 +109,8 @@ czy tworzenia dodatkowych systemów plików).
 
 <p>
 W poniższej tabeli przedstawiono narzędzia, których należy użyć dla
-poszczególnych używanych systemów plików:
+poszczególnych używanych systemów plików. Nie każdy system plików jest dostępny
+na wszystkich architekturach.
 </p>
 
 <table>
@@ -219,24 +186,6 @@ zależności (<c>rp-pppoe</c> posiada narzędzia graficzne, aby z nich korzysta�
 możesz przekompilować <c>rp-pppoe</c> po instacji serwera xorg-x11 lub
 zainstalować go teraz, jednak jego kompilacja zajmie dużo czasu).
 </p>
-
-</body>
-</subsection>
-<subsection>
-<title>Narzędzia RAID dla sprzętu IBM</title>
-<body>
-
-<p>
-Użytkownicy SCSI RAID na systemach opartych na POWER-5 powinni rozważyć
-instalację pakietu <c>iprutils</c>, dzięki któremu możliwe będą operacje na
-tablicach dysku RAID, takie jak pobieranie ich statusu oraz uaktualnianie
-mikrokodu.
-</p>
-
-<pre caption="Instalowanie iprutils">
-# <i>emerge iprutils</i>
-</pre>
-
 
 <p>
 Teraz jesteśmy już gotowi do przejścia do <uri
