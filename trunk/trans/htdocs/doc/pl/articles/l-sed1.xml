@@ -157,9 +157,9 @@ Jeżeli wykonamy to polecenie, nie otrzymamy nic na wyjściu. Dlaczego?  W tym
 przykładzie wywołaliśmy seda z jednym z poleceń edycyjnych - <c>d</c> Sed
 otworzy plik <path>/etc/services</path>, wczyta wiersz do bufora, wykona
 wskazane operacje (u nas "d" - usuń wiersz), i wypisze zawartość bufora (w
-naszym przykładzie bufor będzie pusty !). Takie czynności zostaną powtarzane
+naszym przykładzie bufor będzie pusty!). Takie czynności będą powtarzane
 dla każdego kolejnego wiersza. Nie otrzymamy nic na wyjściu, ponieważ za pomocą
-polecenia <c>d</c> usunęliśmy każdy wiersz !
+polecenia <c>d</c> usunęliśmy każdy wiersz!
 </p>
 
 <p>
@@ -171,8 +171,7 @@ wierszowo.  Polecenie <c>d</c> nie oznaczało po prostu usunięcie wszystkiego
 naraz - sed wczytywał linijkę po linijce do bufora (zwanego buforem wzorca), a
 następnie wykonywał polecenie <c>d</c> i wypisywał zawartość bufora (u nas
 nic). Później dowiemy się w jaki sposób używać adresowania zakresów aby móc
-kontrolować dla których wierszy zostanie wykonane polecenie. W naszym
-przykładzie polecenie.
+kontrolować dla których wierszy zostanie wykonane polecenie <c>d</c>.
 </p>
 
 <p>
@@ -298,7 +297,7 @@ mogą zostać użyte w wyrażeniach.
   </tr>
   <tr>
     <ti>[ ]</ti>
-    <ti>Oznacza dowolny znak z [ ]</ti>
+    <ti>Wszystkie znaki pomiędzy [ i ]</ti>
   </tr>
 </table>
 
@@ -354,7 +353,7 @@ czasu na oswojenie się z wyrażeniami regularnymi. A oto sposób ich poprawnego
 użycia:
 </p>
 
-<pre caption="Poprawne uzycie wyrażenia regularnego">
+<pre caption="Poprawne użycie wyrażenia regularnego">
 $ <i>sed -e '/regexp/d' /sciezka/do/mojego/testowego/pliku | more</i>
 </pre>
 
@@ -383,7 +382,7 @@ wiersza pasującego do wzorca.
 
 <p>
 Na razie powiedzieliśmy parę słów o adresowaniu wierszy, adresowaniu zakresów i
-wykorzystaniu wyrażeń regularnych do adresowania. Ale możliwości jest więcej.
+wykorzystaniu wyrażeń regularnych do adresowania, ale możliwości jest więcej.
 Można zdefiniować dwa wyrażenia regularne oddzielone przecinkiem, a sed edytuje
 wszystkie wiersze znajdujące się między pierwszym a drugim wyrażeniem włącznie.
 Na przykład następujące polecenie wyświetli blok tekstu zaczynający się od
@@ -398,7 +397,7 @@ $ <i>sed -n -e '/POCZATEK/,/KONIEC/p' /moj/plik | more</i>
 <p>
 Jeżeli "POCZATEK" nie zostanie odnaleziony nic nie zostanie wyświetlone.
 Natomiast jeżeli sed odnajdzie "POCZATEK", ale nie odnajdzie "KONIEC",
-otrzymamy wszystkie wiersze do końca od miejsca odnalezienia. Ma to miejsce,
+otrzymamy wszystkie wiersze od miejsca odnalezienia do końca. Dzieje się tak,
 ponieważ sed jest zorientowany strumieniowo - więc nigdy nie wie kiedy nastąpi
 "KONIEC".
 </p>
@@ -406,7 +405,7 @@ ponieważ sed jest zorientowany strumieniowo - więc nigdy nie wie kiedy nastąp
 </body>
 </section>
 <section>
-<title>Przykład z źródłami C</title>
+<title>Przykład ze źródłami C</title>
 <body>
 
 <p>
@@ -414,13 +413,13 @@ Jeżeli ktoś chciałby zobaczyć jedynie zawartość funkcji main() w pliku
 źródłowym C, może napisać:
 </p>
 
-<pre caption="Podgląd funkcji main() z pliku źródłowego X">
+<pre caption="Podgląd funkcji main() z pliku źródłowego C">
 $ <i>sed -n -e '/main[[:space:]]*(/,/^}/p' zlodlo.c | more</i>
 </pre>
 
 <p>
 Polecenie zawiera dwa wyrażenia regularne '/main[[:space:]]*(/' i '/^}/' oraz
-polecenie <c>p</c>. Pierwszy wyrażenie regularne oznacza, że sed będzie szukał
+polecenie <c>p</c>. Pierwsze wyrażenie regularne oznacza, że sed będzie szukał
 ciągu znaków "main" po którym może wystąpić dowolna ilość spacji i tabulatorów
 oraz otwarty nawias "(". To powinno nam pozwolić na znalezienie deklaracji
 funkcji main() zgodnie z ANSI C.
@@ -429,8 +428,8 @@ funkcji main() zgodnie z ANSI C.
 <p>
 W tym wyrażeniu regularnym wystąpiła klasa znaków '[[:space:]]'.  Jest to po
 prostu specjalne słowo-klucz które mówi sedowi aby brał pod uwagę TAB lub
-spacje. Zamiast pisać '[[:space:]]' można napisać '[', CTRL+V, tabulator i ']'.
-Ale chyba bardziej czytelna jest klasa znaków '[[:space:]]'.
+spacje. Zamiast pisać '[[:space:]]' można napisać '[', CTRL+V, tabulator i ']',
+ale chyba bardziej czytelna jest klasa znaków '[[:space:]]'.
 </p>
 
 <p>
@@ -454,8 +453,9 @@ włącznie.
 <body>
 
 <p>
-Na razie dotknąłem tylko podstaw seda. Więcej w następnych dwóch artykułach.
-Polecam poczytanie materiałów na temat seda - lista znajduje się poniżej.
+Na razie przedstawiłem tylko podstawy seda. Temat ten rozwinę w dwóch
+następnych. Polecam również lekturę materiałów na temat seda i wyrażeń
+regularnych, których lista znajduje się poniżej.
 </p>
 
 </body>
