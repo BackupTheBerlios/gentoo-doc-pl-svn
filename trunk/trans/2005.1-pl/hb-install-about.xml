@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>2.2</version>
-<date>2005-08-09</date>
+<version>5.0</version>
+<date>2005-08-08</date>
 
 <section>
 <title>Wprowadzenie</title>
@@ -29,10 +29,10 @@ Gentoo to szybka i nowoczesna dystrybucja. Do jej głównych zalet należą
 przejrzystość i elastyczność. Tworzymy je jako wolne oprogramowanie i staramy
 się nie ukrywać niczego przed użytkownikiem. Portage, czyli nasz system
 zarządzania pakietami napisaliśmy w Pythonie, dzięki czemu można z łatwością
-przeglądać i modyfikować jego kod tak, aby dostosować go do swoich potrzeb. Gentoo
-jest oparte głównie na pakietach źródłowych, ale posiada rownież wsparcie dla
-pakietów prekompilowanych. Cała konfiguracja odbywa się za pomocą zwyczajnych
-plików tekstowych. Podsumowując: Gentoo to pełna otwartość.
+przeglądać i modyfikować jego kod tak, aby dostosować go do swoich potrzeb.
+Gentoo jest oparte głównie na pakietach źródłowych, ale posiada również
+wsparcie dla pakietów prekompilowanych. Cała konfiguracja odbywa się za pomocą
+zwyczajnych plików tekstowych. Podsumowując: Gentoo to pełna otwartość.
 </p>
 
 <p>
@@ -61,7 +61,7 @@ kończy się w określonym momencie:
 </li>
 <li>
   Po ukończeniu etapu drugiego możemy korzystać z właśnie skonfigurowanego łącza
-  internetowego.
+  internetowego (jeśli jest taka potrzeba, to opcjonalne rozwiązanie).
 </li>
 <li>
   Po ukończeniu etapu trzeciego dyski i partycje w komputerze są gotowe do
@@ -99,7 +99,7 @@ Za każdym razem gdy użytkownik będzie zmuszony do wybrania jednej z kilku opc
 postaramy się jak najlepiej przedstawić wady i zalety każdego z rozwiązań.
 Następnie będziemy kontynuować omawianie procesu instalacji opisując kolejno
 wybór domyślny, a następnie wszystkie alternatywne możliwości. Domyślne opcje
-mie są tymi zalecanymi, po prostu przy pisaniu dokumentacji zakładamy, że
+nie są tymi zalecanymi, po prostu przy pisaniu dokumentacji zakładamy, że
 wybierze je większość użytkowników.
 </p>
 
@@ -124,18 +124,17 @@ inną uruchamialną płytę (np. Knoppix), środowisko uruchamiane z sieci
 </p>
 
 <p>
-W Podręczniku omawiamy instalację przy użyciu płyt Gentoo LiveCD oraz,
-w pewnych przypadkach, rozruchu z sieci (netboot). Generalnie zakładamy, że
-użytkownik zamierza zainstalować najnowsze dostępne wersje pakietów. Instalację
-bez dostępu do Internetu omawiamy w <uri link="2005.1/index.xml">Podręcznikach
-Gentoo 2005.1</uri>.
+W tym Podręczniku omawiamy instalację przy użyciu uniwersalnych płyt
+instalacyjnych Gentoo, które zawierają wszystkie pliki konieczne do instalacji
+systemu Gentoo. Możliwe jest również skorzystanie z płyty z prekompilowanymi
+pakietami, dzięki której możliwe będzie błyskawiczne doinstalowanie potrzebnego
+oprogramowania do już zainstalowanego systemu podstawowego.
 </p>
 
 <p>
-W przypadku instalacji przy pomocy GRP (Gentoo Reference Platform - kolekcja
-prekompilowanych pakietów służących do błyskawicznego instalowania Gentoo)
-<e>trzeba</e> skorzystać z instrukcji w <uri
-link="2005.1/index.xml">Podręcznikach Gentoo 2005.1</uri>.
+Taka metoda instalacji nie zapewnia najnowszych wersji pakietów. Opis
+pobierania najnowszych źródeł programów z Internetu znajduje się w zwykłym <uri
+link="/doc/pl/handbook/index.xml">Podręczniku Gentoo</uri>.
 </p>
 
 <p>
@@ -150,14 +149,6 @@ how-to), który znajduje się w naszych <uri link="/doc/pl/index.xml">zasobach
 dokumentacji</uri>.
 </p>
 
-<p>
-Możliwości wyboru nie kończą się na medium instalacyjnym. Możliwe jest
-skompilowanie całego systemu od podstaw lub wykorzystanie do jego budowy
-prekompilowanych pakietów, co zaoszczędzi mnóstwo czasu. Oczywiście są także
-rozwiązania mieszane, dzięki którym nie trzeba kompilować wszystkiego i
-można zacząć od częściowo przygotowanego systemu.
-</p>
-
 </body>
 </subsection>
 <subsection>
@@ -166,7 +157,8 @@ można zacząć od częściowo przygotowanego systemu.
 
 <p>
 Jeśli w czasie instalacji pojawi się jakiś problem (lub wystąpią błędy w
-dokumentacji) zachęcamy do odwiedzenia naszej <uri
+dokumentacji) zachęcamy do odwiedzenia strony projektu <uri
+link="/proj/en/releng/">Gentoo Release Engineering</uri>, naszej <uri
 link="http://bugs.gentoo.org">bugzilli</uri> i sprawdzenia czy został
 on już zgłoszony. Jeśli jeszcze o nim nie wiemy prosimy o wypełnienie
 i wysłanie odpowiedniego formularza. Nie należy się bać developerów, do których
@@ -206,6 +198,101 @@ tekstach. Najczęściej można ich spotkać na kanałach #gentoo-doc-pl w sieci
 freenode i #gentoo.pl na ircnecie.
 </p>
 
+</body>
+</subsection>
+</section>
+
+<section>
+<title>Szybka instalacja programów za pomocą GRP</title>
+<subsection>
+<title>Co to jest "Gentoo Reference Platform"?</title>
+<body>
+  
+<p>
+GRP (Gentoo Reference Platform) to zestaw prekompilowanych pakietów, które
+przygotowujemy dla użytkowników wraz z każdym wydaniem naszej dystrybucji.
+Zestaw ten umożliwia błyskawiczną instalację tych programów w ich systemach.
+Znajdują się tam nie tylko te pakiety, które są konieczne do działania
+podstawowego systemu Gentoo, dodajemy także kompilacje większych programów i
+środowisko, np. KDE, xorg-x11, GNOME, OpenOffice, Mozillę).
+</p>
+  
+<p>
+Zestaw tych pakietów jest aktualizowany wraz z każdym wydaniem Gentoo, pomiędzy
+nimi wersje pozostają te same. Można je wykorzystać do szybkiej instalacji
+podstawowego środowiska, a następnie zaktualizować je do najnowszej wersji już
+mogąc w nim pracować.
+</p>
+  
+</body>
+</subsection>
+<subsection>
+<title>Jak Portage obsługuje pakiety GRP?</title>
+<body>
+  
+<p>
+Drzewo Portage to kolekcja <e>ebuildów</e>, czyli plików zawierających
+wszystkie informacje dotyczące określonych pakietów, takie jak ich opis, adres
+strony internetowej projektu, odnośniki do kodów źródłowych, instrukcje
+dotyczące ich kompilacji, czy ich zależności. W naszym przypadku drzewo to musi
+być zsynchronizowane z konkretnym zestawem GRP, a wersje ebuildów w drzewie
+muszą zgadzać się z wersjami prekompilowanych pakietów.
+</p>
+  
+<p>
+W związku z tym z zalet GRP można skorzystać wyłącznie podczas instalacji
+Gentoo. GRP nie są dostępne dla osób chcących zainstalować najnowsze wersje
+wszystkich programów.
+</p>
+  
+</body>
+</subsection>
+<subsection>
+<title>Czy GRP są dostępne?</title>
+<body>
+  
+<p>
+Nie zapewniamy GRP dla wszystkich architektur. Nie oznacza to, że Portage nie
+jest tam przygotowane do ich obsługi, po prostu nie mamy zasobów, aby je dla
+danej architektury zbudować.
+</p>
+  
+<p>
+Obecnie GRP są dostępne dla następujących architektur:
+</p>
+  
+<ul>
+  <li>
+    Architektura <b>x86</b> (x86, athlon-xp, pentium3, pentium4) Uwaga:
+    pakiety zbudowane dla x86 (packages-x86-2005.1.iso) są dostępne na
+    mirrorach, a pakiety dla pentium3, pentium4 i athlon-xp są dostępne za
+    poprzez bittorrent.
+  </li>
+  <li>
+    Architektura <b>amd64</b> (amd64)
+  </li>
+  <li>
+    Architektura <b>sparc</b> (sparc64)
+  </li>
+  <li>
+    Architektura <b>ppc</b> (G3, G4, G5)
+  </li>
+  <li>
+    Architektura <b>alpha</b>
+  </li>
+</ul>
+  
+<p>
+Jeśli jakiejś architektury nie ma na liście, oznacza to, że pakiety GRP nie są
+dla niej w danym momencie dostępne.
+</p>
+  
+<p>
+To tyle tytułem wstępu, przechodzimy do <uri
+link="?part=1&amp;chap=2">uruchamiania systemu z uniwersalnej płyty
+instalacyjnej</uri>.
+</p>
+  
 </body>
 </subsection>
 </section>
