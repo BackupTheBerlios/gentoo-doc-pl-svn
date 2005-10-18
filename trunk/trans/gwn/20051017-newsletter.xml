@@ -39,56 +39,60 @@
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>New USE flag editor released</title>
+<title>Wydano nowy edytor flag USE</title>
 <body>
 <p>
-<mail link="dams@gentoo.org">Damien Krotkine</mail> has added a new command 
-line interface tool called <c>flagedit</c> to his growing <uri 
-link="http://www.damz.net/gentoo/">collection of configuration editors</uri>. 
-On top of everything <c>profuse</c> does with its choice of three GUIs, the 
-new flag editor also edits <path>/etc/portage/package.keywords</path>, thus 
-offering a simple way to add a platform not yet supported to a package you'd 
-like to test:
+<mail link="dams@gentoo.org">Damien Krotkine</mail> dodał nowy interfejs
+poleceń liniowych zwany <c>flagedit</c> do swojej wciąż rosnącej kolekcji <uri
+link="http://www.damz.net/gentoo/">narzędzi konfiguracyjnych</uri>.
+Na szczycie wszystkiego znajduje się <c>profuse</c> ze swoimi trzema
+interfejsami graficznymi. Nowy edytor flag posiada możliwość edycji pliku
+<path>/etc/portage/package.keywords</path>, zatem oferuje prosty sposób
+na dodanie jeszcze nie wspieranej platformy do pakietu, który mamy chęć
+testować:
 </p>
-<pre caption="Adding package.keywords">
+<pre caption="Dodawanie package.keywords">
 # <i>flagedit net-im/amsn -- +~ppc +~x86</i>
 </pre>
 <p>
-Besides keywords, <c>flagedit</c> lets you edit the USE flags of 
-<path>/etc/make.conf</path>, as well as those in the 
-<path>/etc/portage/package.use</path> file, either for a particular ebuild, or 
-for the whole system. And of course, a backup of each modified file lets you 
-roll back easily.
+Ponadto słowa kluczowe, <c>flagedit</c> pozwala nam edytować flagi USE pliku
+<path>/etc/make.conf</path>, w taki sam sposób jak te w pliku
+<path>/etc/portage/package.use</path>, bądź dla pojedynczego ebuilda, bądź dla
+całego systemu. Oczywiście każda kopia zapasowa pliku, może być w bardzo łatwy
+sposób przywrócona.
 </p>
 </body>
 </section>
 <section>
-<title>Subforums introduction at Gentoo Forums</title>
+<title>Przedstawienie podfor na forum Gentoo</title>
 <body>
 <p>
-Subforums are a feature that had been requested by users for quite a long time. 
-While the general policy on the Gentoo Forums was to use vanilla <uri 
-link="http://www.phpbb.com/">phpBB</uri>, the administrators have recently 
-adopted a more open attitude towards patches and modifications. The most recent 
-consequence is the arrival of a subforums modification, mainly written by forums 
-administrator <mail link="tomk@gentoo.org">Tom Knight</mail>. Before using it on 
-the production system some testing was done on forum administrator <mail 
-link="ian@gentoo.org">Christian Hartmann's</mail> <uri link="http://fgo.iansview.com">test 
-server</uri> which is usually not available to the general public. The test 
-server is still open and the forums team would greatly appreciate some more 
-feedback and testing before using the subforums on the main server. Please see 
-<uri link="http://forums.gentoo.org/viewtopic-t-391659.html">this thread</uri> 
-for more information.
+Podfora, są funkcją, na którą od dość dawna oczekiwali użytkownicy. Kiedy,
+główną polityką forum Gentoo było używanie czystego <uri
+link="http://www.phpbb.com/">phpBB</uri>, administratorzy wprowadzili wiele
+łatek i modyfikacji. Najnowszym przejawem takiego postępowania jest modyfikacja
+wprowadzająca podfora, napisana przez administratora forum <mail
+link="tomk@gentoo.org">Toma Knighta</mail>. Przed wprowadzeniem jej została ona
+przetestowana przez administratora <mail
+link="ian@gentoo.org">Christiana Hartmanna</mail> na jego <uri
+link="http://fgo.iansview.com">serwerze testowym</uri>, które z reguły nie jest
+dostępny dla normalnych użytkowników. Serwer testowy wciąż funkcjonuje, a
+zespół forum Gentoo, byłby wdzięczny za testowanie nowej modyfikacji i
+przesyłanie wszelkich sugestii na temat jego działania, przed wprowadzeniem
+podfor na główny serwer. Więcej informacji można znaleźć w tym
+<uri link="http://forums.gentoo.org/viewtopic-t-391659.html">wątku</uri>.
 </p>
 </body>
 </section>
 </chapter>
+
 <!-- Future zone -->
 <!-- User Stories -->
 <!-- Gentoo Stories -->
 <!-- Developer of the week -->
+
 <!-- Heard in the community: gentoo-dev, gentoo-user, forums -->
 <chapter>
 <title>Społeczność Gentoo</title>
@@ -131,7 +135,7 @@ jest już dobrze opisane. Poradnik można znaleźć na forum:
 <p><b>Zarządzanie wieloma kompatybilnymi narzędziami</b></p>
 <p>
 Czasami zdarza się, że danemu zadaniu podoła kilka narzędzi. Przykładowo
-<path>bsdtar</path> oraz GNU <path>tar</path> są ze sobą kompatybline. Jeden z
+<path>bsdtar</path> oraz GNU <path>tar</path> są ze sobą kompatybilne. Jeden z
 użytkowników, <mail link="flameeyes@gentoo.org">Diego Pettenò</mail> zapytał czy
 istnieje jakiś prosty sposób na wybór jednego z nich oraz ich zamianę.
 </p>
@@ -187,6 +191,7 @@ do pomocy przy testowaniu nowej wersji vim-6.4_beta:
 </body>
 </section>
 </chapter>
+
 <!-- Gentoo international -->
 <chapter>
 <title>Gentoo international</title>
@@ -223,6 +228,7 @@ installation media, just to be on the safe side...
 </body>
 </section>
 </chapter>
+
 <!-- Gentoo in the press -->
 <chapter>
 <title>Gentoo in the press</title>
@@ -259,6 +265,7 @@ server for all-purpose use at home.
 </body>
 </section>
 </chapter>
+
 <!-- Tips and Tricks -->
 <chapter>
 <title>Tips and tricks</title>
@@ -313,6 +320,7 @@ You should notice the difference straight away.
 </body>
 </section>
 </chapter>
+
 <!-- Moves, adds, and changes -->
 <chapter>
 <title>Odeszli, przybyli, zmienili status</title>
@@ -516,6 +524,7 @@ to:
 </section>
 </chapter>
 <!-- end of paste from bugzilla script -->
+
 <!-- GWN feedback information -->
 <chapter>
 <title>Opinie czytelników</title>
@@ -530,6 +539,7 @@ dotyczące tłumaczenia tygodnika można zgłaszać na adres
 </body>
 </section>
 </chapter>
+
 <!-- GWN subscription information -->
 <chapter>
 <title>Subskrypcja Tygodnika Gentoo</title>
