@@ -27,8 +27,7 @@ może to być również eth1, wlan0, etc.
 </note>
 
 <note>
-Przy pisaniu dokumentu zakładamy, że jest zainstalowany baselayout-1.11.11
-lub nowszy.
+Ten dokument wymaga zainstalowanego baselayout-1.11.11 lub nowszej jego wersji.
 </note>
 
 <p>
@@ -63,24 +62,19 @@ routes_eth0=( "default gw 192.168.0.1" )
 </pre>
 
 <note>
-Jeżeli nie zostanie określona konfiguracja dla interfejsu, zakłada się że użyte
-zostanie DHCP.
+Jeżeli nie zostanie zmieniona konfiguracja dla interfejsu, użyty zostanie DHCP.
 </note>
 
 <note>
 CIDR oznacza Classless InterDomain Routing. Początkowo adresy IPv4 były
 podzielone na klasy A, B lub C. Klasyfikacja ta nie przewidywała takiego wzrostu
-popularności Internetu i teraz stoi przed obliczem utraty unikalnych adresów IP.
-CIDR pozwala użyć jednego schematu adresowania w celu użyciajednego adresu IP do
-reprezentowania wielu adresów. Adres IP w notacji CIDR wygląda jak zwykły adres
-IP, z tą różnicą, że kończy się ukośnikiem za którym znajduje się liczba. Dla
-przykładu, 192.168.0.0/16. CIDR jest dokładnie opisany w
+popularności Internetu i teraz stoi przed niebezpieczeństwem utraty unikalnych adresów IP. CIDR pozwala użyć jednego schematu adresowania w celu użycia jednego adresu IP do reprezentowania wielu adresów. Adres IP w notacji CIDR wygląda jak zwykły adres IP, z tą różnicą, że kończy się ukośnikiem za którym znajduje się liczba. Dla przykładu, 192.168.0.0/16. CIDR jest dokładnie opisany w
 <uri link="http://rfc.net/rfc1519.html">RFC 1519</uri>.
 </note>
 
 <p>
 Teraz, gdy interfejs został już skonfigurowany, można go uruchomić i zatrzymać
-używając poleceń znajdujących się poniżej.
+wykorzystując polecenia znajdujące się poniżej.
 </p>
 
 <pre caption="Uruchamianie i zatrzymywanie sieci przy pomocy skryptów
@@ -98,8 +92,8 @@ informacji na temat tego, co się dzieje.
 <p>
 Teraz, gdy już udało się uruchomić oraz zatrzymać urządzenie sieciowe, należałoby
 dodać je do domyślnych skryptów startowych Gentoo. Poniżej opisane jest jak tego
-dokonać. Ostatnie polecenie "rc" powoduje uruchomienie tych skryptów w danym
-poziomie uruchomieniowym, które jeszcze nie zostały jeszcze uruchomione.
+dokonać. Ostatnie polecenie "rc" powoduje załadowanie wszystkich skryptów w
+danym poziomie uruchomienia, które do tej pory nie zostały uruchomione.
 </p>
 
 <pre caption="Konfiguracja interfejsu sieciowego, aby uruchamiał się przy
