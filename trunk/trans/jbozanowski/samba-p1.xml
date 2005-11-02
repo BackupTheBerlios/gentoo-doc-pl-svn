@@ -256,12 +256,12 @@ Samby.
 Konfigurując Sambę zabezpieczyłem zasób drobbins hasłem. Pomimo iż jestem
 podłączony tylko do prywatnej sieci LAN, wolę utrzymywać pewien podstawowy
 poziom bezpieczeństwa. Jednocześnie utworzyłem dwóch użytkowników Samby:
-drobbins i administrator. Ich hasła pokrywają się z tymi, jakie mają na
+"drobbins" i "administrator". Ich hasła pokrywają się z tymi, jakie mają na
 stacjach roboczych NT. Reguły bezpieczeństwa dla zasobu drobbins są
 następujące: dostęp do zasobu uzyskamy, gdy jesteśmy poprawnym użytkownikiem
 Samby i podamy właściwe hasło dla tego użytkownika. Tak więc zarówno
-użytkownik drobbins jak i administrator uzyskają dostęp gdy zostanie podane
-prawidłowe hasło.
+użytkownik "drobbins" jak i "administrator" uzyskają dostęp gdy zostanie
+podane prawidłowe hasło.
 </p>
 
 <p>
@@ -276,15 +276,16 @@ Samba udzieliła mi dostępu.
 </p>
 
 <p>
-Można zadać sobie pytanie dlaczego Samba ma własną bazę danych z hasłami. Czemu
-nie użyje po prostu standardowej uniksowej bazy w celu uwierzytelnienia
-użytkownika administrator? Dawniej, gdy Windows przesyłał hasła otwartym tekstem
-było to możliwe, jednak wszystkie współczesne wersje tego systemu przesyłają
-hasła SMB/CIFS w postaci zaszyfrowanej, która nie jest kompatybilna ze
-standardowym szyfrem uniksowym. Innymi słowy Samba nie ma możliwości użycia
-uniksowej bazy haseł do zweryfikowania hasła przysłanego przez Windows. Na
-szczęście istnieje wiele sposobów na zsynchronizowanie obu baz danych, co
-znacznie ułatwia życie administratorom Samby.
+Można zadać sobie pytanie dlaczego Samba ma własną bazę danych z hasłami.
+Czemu nie użyje po prostu standardowej uniksowej bazy w celu
+uwierzytelnienia użytkownika "administrator"? Dawniej, gdy Windows przesyłał
+hasła otwartym tekstem było to możliwe, jednak wszystkie współczesne wersje
+tego systemu przesyłają hasła SMB/CIFS w postaci zaszyfrowanej, która nie
+jest kompatybilna ze standardowym szyfrem uniksowym. Innymi słowy Samba nie
+ma możliwości użycia uniksowej bazy haseł do zweryfikowania hasła
+przysłanego przez Windows. Na szczęście istnieje wiele sposobów na
+zsynchronizowanie obu baz danych, co znacznie ułatwia życie administratorom
+Samby.
 </p>
 
 </body>
@@ -295,7 +296,7 @@ znacznie ułatwia życie administratorom Samby.
 
 <p>
 Zapoznaliśmy się już Sambą od strony systemu Windows, czas więc przyjrzeć się
-jak jak jej działanie wygląda z punktu widzenia systemów uniksowych. Najpierw
+jak jej działanie wygląda z punktu widzenia systemów uniksowych. Najpierw
 garść ogólnych informacji. Stroną domową projektu Samba jest
 <uri>http://fi.samba.org</uri>, zaś aktualna wersja Samby w dniu 25 kwietnia
 2000 roku to 2.0.7 i to z niej będziemy korzystać w tej serii artykułów. Możemy
