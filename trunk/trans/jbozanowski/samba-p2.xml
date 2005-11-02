@@ -2,21 +2,25 @@
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 <!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/articles/samba-p2.xml,v 1.1 2005/10/09 18:31:43 rane Exp $ -->
 
-<guide link="/doc/en/articles/samba-p2.xml" disclaimer="articles">
-<title>Introduction to Samba, Part 2</title>
+<guide link="/doc/pl/articles/samba-p2.xml" disclaimer="articles" lang="pl">
+<title>Wprowadzenie do Samby, Część druga</title>
 
 <author title="Author">
   <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
+</author>
+<author title="Tłumaczenie">
+  <mail link="jbozanowski@gmail.com">Kuba Bożanowski</mail>
 </author>
 <!-- <author title="Editor">
   <mail link="jackdark@gmail.com">Joshua Saddler</mail>
 </author> -->
 
 <abstract>
-In his previous article, Daniel introduced you to what Samba can do.  Now it's
-time to get it running on your system. In this article, he'll walk you through
-the process of compiling, installing, and initially configuring Samba (version
-2.0.7) so that it works in your environment.
+W poprzednim artykule Daniel wprowadził nas w możliwości Samby. Teraz nadszedł
+czas na jej instalację i konfigurację na naszym komputerze. W niniejszym
+artykule autor poprowadzi nas przez proces kompilacji, instalacji i początkowej
+konfiguracji Samby (w wersji 2.0.7) aby poprawnie funkcjonowała w naszym własnym
+środowisku.
 </abstract>
 
 <!-- The original version of this article was first published on IBM
@@ -28,132 +32,131 @@ made by the Gentoo Linux Documentation team -->
 <date>2005-10-06</date>
 
 <chapter>
-<title>Compiling, installing, and configuring Samba for your environment</title>
+<title>Kompilowanie, instalowanie i konfigurowanie Samby w naszym środowisku</title>
 <section>
-<title>Downloading Samba</title>
+<title>Pobieranie Samby</title>
 <body>
 
 <p>
-OK, it's time to download Samba 2.0.7 or greater from the Samba.org Web site
-(see <uri link="#resources">Resources</uri> later in this article).
+Zacznijmy od pobrania źródeł Samby w wersji 2.0.7 lub nowszej ze strony
+Samba.org (link w dziale <uri link="#resources">Zasoby</uri> pod koniec
+artykułu).
 </p>
 
 <note>
-While I'll be compiling Samba from scratch, you may choose to install Samba from
-a binary package (such as RPM that came with your Linux distribution). This is
-perfectly OK. But, as I mentioned in my last article, if you do this, your file
-locations may be slightly different than what I refer to here.
+Będziemy instalować Sambę od podstaw ze źródeł, równie dobrze jednak możemy to
+zrobić za pomocą menadżera pakietów naszej dystrybucji (na przykład RPM).
+Wówczas, jak już wspomniałem w poprzednim artykule, położenia niektórych plików
+mogą się różnić z opisanymi tutaj.
 </note>
 
 <p>
-After you've downloaded Samba 2.0.7 or greater, it's time to decompress it to a
-directory location of your choice. From the command prompt, type:
+Po pobraniu Samby w wersji 2.0.7 lub nowszej. czas rozpakować źródła do dowolnego
+katalogu. Wydajmy następujące polecenie w wierszu poleceń:
 </p>
 
-<pre caption="Unpacking the source files">
+<pre caption="Rozpakowanie źródeł">
 $ <i>tar -xzvf samba-2.0.7.tar.gz</i>
 </pre>
 
 <p>
-A <path>samba-2.0.7</path> directory will be created. <c>cd</c> into it, and
-we'll take a look around. First, notice the docs directory.  Inside it you'll
-see another directory called <path>textdocs</path>.  <path>texdocs</path>
-contains a whole bunch of Samba documentation.  One of the most important files
-in the <path>textdocs</path> directory is called DIAGNOSIS.txt. It walks you
-through a step-by-step process of diagnosing problems you may have with proper
-Samba operation. We'll be covering some, but not all, of the diagnosis
-procedures mentioned in this file.
+Zostanie utworzony katalog <path>samba-2.0.7</path>. Przejdźmy do niego
+poleceniem <c>cd</c> i rozejrzyjmy się. Przede wszystkim należy zwrócić uwagę na
+katalog docs. Wewnątrz znajdziemy podkatalog o nazwie <path>textdocs</path>,
+który zawiera sporą część dokumentacji Samby. Jednym z najważniejszych plików,
+jakie można w nim znaleźć to DIAGNOSIS.txt. Poprowadzi on nas przez proces
+diagnozy ewentualnych problemów z Sambą. Omówimy część z opisanych w nim
+procedur.
 </p>
 
 </body>
 </section>
 <section>
-<title>Compiling and installing Samba</title>
+<title>Kompilowanie i instalowanie Samby</title>
 <body>
 
 <p>
-You'll also notice the <path>sources</path> directory in the main
-<path>samba-2.0.7</path> directory. Inside <path>sources</path> you'll find a
-well designed configure script designed to set up all the makefiles properly. As
-with any other configure script, to get a list of the configuration options,
-type:
+Zauważmy też katalog o nazwie <path>sources</path> w głównym katalogu
+<path>samba-2.0.7</path>. Wewnątrz znajdziemy dobrze napisany skrypt configure,
+stworzony z myślą o poprawnym utworzeniu wszystkich plików Makefile. Jak w
+przypadku każdego innego skryptu configure, listę opcji konfiguracji uzyskujemy
+pisząc:
 </p>
 
-<pre caption="Investigating options">
+<pre caption="Poznawanie opcji">
 $ <i>./configure --help</i>
 </pre>
 
 <p>
-You will probably want to pipe the output to <c>more</c> so that you can view
-all the options:
+Najlepiej będzie przekierować wyjście do polecenia <c>more</c> aby móc przejrzeć
+wszystkie opcje:
 </p>
 
-<pre caption="Even more options">
+<pre caption="Więcej opcji">
 $ <i>./configure --help | more</i>
 </pre>
 
 <p>
-Note the directory and file name options. Notice where everything gets
-installed, and that the default install path is <path>/usr/local/samba</path>.
-You will probably want to change this to <path>/usr/local</path> by passing the
-<c>--prefix=/usr/local</c> option when you configure Samba. For this example,
-I'm going to use the following path settings:
+Zwróćmy uwagę na opcje dotyczące katalogów i nazw plików. Domyślną ścieżką
+instalacji jest <path>/usr/local/samba</path>. Najlepiej będzie zmienić ją na
+<path>/usr/local</path>, przekazując parametr <c>--prefix=/usr/local</c> do
+skryptu configure. Na potrzeby niniejszego artykułu użyję następujących ustawień
+ścieżek:
 </p>
 
-<pre caption="Configuring the directory options">
+<pre caption="Konfiguracja katalogów">
 $ <i>./configure --prefix=/usr/local --localstatedir=/var/log --sysconfdir=/etc</i>
 </pre>
 
 <p>
-The above configuration options will cause Samba's default tree to be in
-<path>/usr/local</path>, with the exception of the configuration files. Samba
-will expect to find these in <path>/etc</path> and log files, which will end up
-in <path>/var/log</path>. If you omit those configure options, you'll find
-everything in the <path>/usr/local/samba</path> directory tree
-(<path>/usr/local/samba/var</path>, <path>/usr/local/samba/etc</path>, etc.).
+Powyższe opcje spowodują instalację domyślnego drzewa katalogów Samby do
+katalogu <path>/usr/local</path>, z wyjątkiem plików konfiguracyjnych, które
+znajdą się w katalogu <path>/etc</path>, oraz logów, których Samba spodziewa się
+w katalogu <path>/var/log</path>. Jeśli pominiemy powyższe opcje, wszystkie te
+katalogi znajdą się w drzewie <path>/usr/local/samba</path>
+(<path>/usr/local/samba/var</path>, <path>/usr/local/samba/etc</path>, itd.).
 </p>
 
 <p>
-It's now time to start the compilation. After running <c>configure</c>, type:
+Nadszedł czas na kompilację. Po uruchomieniu skryptu <c>configure</c> napiszmy:
 </p>
 
-<pre caption="Compiling Samba">
+<pre caption="Kompilacja Samby">
 $ <i>make</i>
 </pre>
 
 <p>
-After compilation completes, type the following as root to install the
-software:
+Po zakończeniu procesu kompilacji należy zainstalować całość, pisząc poniższe
+polecenie jako użytkownik root:
 </p>
 
-<pre caption="Installing Samba">
+<pre caption="Instalowanie Samby">
 # <i>make install</i>
 </pre>
 
 </body>
 </section>
 <section>
-<title>Configuring the server</title>
+<title>Konfigurowanie serwera</title>
 <body>
 
 <p>
-For the most part, configuring Samba begins and ends with the
-<path>smb.conf</path> file. This is Samba's main configuration file.  It has
-many different configuration options. To avoid confusion, we're going to start
-only with those options essential to the proper operation of Samba. First,
-you'll need to find out where <path>smb.conf</path> should be. If you used the
-configuration options I specified above, you should place <path>smb.conf</path>
-in <path>/etc</path>. If you used the default paths, Samba will look for it in
-<path>/usr/local/samba/etc</path>. To get started, <c>cd</c> to the appropriate
-directory, fire up your favorite text editor, and type in the following lines.
-I'll intersperse commentary along the way to provide you with a good
-understanding of what each option does. Add these lines to your
-<path>smb.conf</path> file:
+W większości sytuacji konfigurowanie Samby sprowadza się do edycji pliku
+<path>smb.conf</path>, jako że jest to główny plik konfiguracyjny Samby. Posiada on
+wiele różnych opcji, dlatego aby uniknąć zamieszania zaczniemy jedynie od tych,
+które są niezbędne do poprawnego działania oprogramowania. Przede wszytkim
+musimy dowiedzieć się gdzie powinniśmy umieścić plik <path>smb.conf</path>.
+Jeśli użyliśmy powyższych parametrów do skryptu configure, należy umieścić go w
+katalogu <path>/etc</path>. Gdybyśmy jednak użyli domyślnych ścieżek, Samba
+będzie szukać tego pliku w katalogu <path>/usr/local/samba/etc</path>. Zacznijmy
+przechodząc do odpowiedniego katalogu, uruchamiając nasz ulubiony edytor
+tekstu i pisząc następujące linijki. Poniżej dodam komentarz do każdej
+linijki aby łatwiej było zrozumieć co każda z nich robi.
 </p>
 
 <pre caption="smb.conf">
 [global] 
-workgroup = YOURWORKGROUP 
+workgroup = NASZAGRUPAROBOCZA 
 security = user 
 encrypt passwords = yes 
 guest account = guest
