@@ -32,18 +32,18 @@ regexps = (
 (r'<title>Moves</title>',
  r'<title>Odeszli</title>'),
 
-(r'The following developers recently left the Gentoo team:',
+(r'The following developers recently left the Gentoo project:',
  r'Następujący deweloperzy opuścili projekt Gentoo Linux w minionym tygodniu:'),
 
 (r'<title>Adds</title>',
  r'<title>Przybyli</title>'),
 
-(r'The following developers recently joined the Gentoo Linux team:',
+(r'The following developers recently joined the Gentoo Linux project:',
  r'''Następujący deweloperzy przyłączyli się do projektu Gentoo Linux w minionym
 tygodniu:'''),
 
-(r'<title>Changes</title>',
- r'<title>Zmienili status</title>'),
+(r'<title>Gentoo developer moves</title>',
+ r'<title>Zmiana statusu deweloperów Gentoo</title>'),
 
 (r'The following developers recently changed roles within the Gentoo Linux project:',
  r'''Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie
@@ -51,6 +51,9 @@ Gentoo Linux funkcję:'''),
 
 (r'<li><e>None this week</e></li>',
  r'<li><e>Nikt w tym tygodniu</e></li>'),
+
+(r'<title>Gentoo Security</title>',
+ r'<title>Bezpieczeństwo Gentoo</title>'),
 
 (r'For more information, please see the',
  r'Więcej informacji można znaleźć w'),
@@ -140,33 +143,93 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 </p>
 '''),
 
-(r'''<ul> <li> <uri link="/news/da/gwn/gwn.xml">Danish</uri> </li>
-<li> <uri link="/news/nl/gwn/gwn.xml">Dutch</uri> </li>
-<li> <uri link="/news/en/gwn/gwn.xml">English</uri> </li>
-<li> <uri link="/news/de/gwn/gwn.xml">German</uri> </li>
-<li> <uri link="/news/fr/gwn/gwn.xml">French</uri> </li>
-<li> <uri link="/news/ja/gwn/gwn.xml">Japanese</uri> </li>
-<li> <uri link="/news/it/gwn/gwn.xml">Italian</uri> </li>
-<li> <uri link="/news/pl/gwn/gwn.xml">Polish</uri> </li>
-<li> <uri link="/news/pt_br/gwn/gwn.xml">Portuguese \(Brazil\)</uri> </li>
-<li> <uri link="/news/pt/gwn/gwn.xml">Portuguese \(Portugal\)</uri> </li>
-<li> <uri link="/news/ru/gwn/gwn.xml">Russian</uri> </li>
-<li> <uri link="/news/es/gwn/gwn.xml">Spanish</uri> </li>
-<li> <uri link="/news/tr/gwn/gwn.xml">Turkish</uri> </li> </ul>''',
+(r'''<ul>
+<li>
+<uri link="/news/da/gwn/gwn.xml">Danish</uri>
+</li>
+<li>
+<uri link="/news/nl/gwn/gwn.xml">Dutch</uri>
+</li>
+<li>
+<uri link="/news/en/gwn/gwn.xml">English</uri>
+</li>
+<li>
+<uri link="/news/de/gwn/gwn.xml">German</uri>
+</li>
+<li>
+<uri link="/news/fr/gwn/gwn.xml">French</uri>
+</li>
+<li>
+<uri link="/news/ko/gwn/gwn.xml">Korean</uri>
+</li>
+<li>
+<uri link="/news/ja/gwn/gwn.xml">Japanese</uri>
+</li>
+<li>
+<uri link="/news/it/gwn/gwn.xml">Italian</uri>
+</li>
+<li>
+<uri link="/news/pl/gwn/gwn.xml">Polish</uri>
+</li>
+<li>
+<uri link="/news/pt_br/gwn/gwn.xml">Portuguese \(Brazil\)</uri>
+</li>
+<li>
+<uri link="/news/pt/gwn/gwn.xml">Portuguese \(Portugal\)</uri>
+</li>
+<li>
+<uri link="/news/ru/gwn/gwn.xml">Russian</uri>
+</li>
+<li>
+<uri link="/news/es/gwn/gwn.xml">Spanish</uri>
+</li>
+<li>
+<uri link="/news/tr/gwn/gwn.xml">Turkish</uri>
+</li>
+</ul>''',
  r'''<ul>
-<li><uri link="http://www.gentoo.org/news/en/gwn/gwn.xml">angielskim</uri></li>
-<li><uri link="http://www.gentoo.org/news/da/gwn/gwn.xml">duńskim</uri></li>
-<li><uri link="http://www.gentoo.org/news/fr/gwn/gwn.xml">francuskim</uri></li>
-<li><uri link="http://www.gentoo.org/news/es/gwn/gwn.xml">hiszpańskim</uri></li>
-<li><uri link="http://www.gentoo.org/news/nl/gwn/gwn.xml">holenderskim</uri></li>
-<li><uri link="http://www.gentoo.org/news/ja/gwn/gwn.xml">japońskim</uri></li>
-<li><uri link="http://www.gentoo.org/news/de/gwn/gwn.xml">niemieckim</uri></li>
-<li><uri link="http://www.gentoo.org/news/pl/gwn/gwn.xml">polskim</uri></li>
-<li><uri link="http://www.gentoo.org/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
-<li><uri link="http://www.gentoo.org/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
-<li><uri link="http://www.gentoo.org/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
-<li><uri link="http://www.gentoo.org/news/tr/gwn/gwn.xml">tureckim</uri></li>
-<li><uri link="http://www.gentoo.org/news/it/gwn/gwn.xml">włoskim</uri></li>
+<li>
+<uri link="/news/en/gwn/gwn.xml">angielskim</uri>
+</li>
+<li>
+<uri link="/news/da/gwn/gwn.xml">duńskim</uri
+></li>
+<li>
+<uri link="/news/fr/gwn/gwn.xml">francuskim</uri>
+</li>
+<li>
+<uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri>
+</li>
+<li>
+<uri link="/news/nl/gwn/gwn.xml">holenderskim</uri>
+</li>
+<li>
+<uri link="/news/ja/gwn/gwn.xml">japońskim</uri>
+</li>
+<li>
+<uri link="/news/ko/gwn/gwn.xml">koreańskim</uri>
+</li>
+<li>
+<uri link="/news/de/gwn/gwn.xml">niemieckim</uri>
+</li>
+<li>
+<uri link="/news/pl/gwn/gwn.xml">polskim</uri>
+</li>
+<li>
+<uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri>
+</li>
+<li>
+<uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri>
+</li>
+<li>
+<uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri>
+</li>
+<li>
+<uri link="/news/tr/gwn/gwn.xml">tureckim</uri>
+</li>
+<li>
+<uri link="/news/it/gwn/gwn.xml">włoskim</uri>
+</li>
 </ul>''')
 
 )
