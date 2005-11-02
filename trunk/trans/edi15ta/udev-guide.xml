@@ -265,23 +265,21 @@ prawidłowego uruchomienia systemu.
 <body>
 
 <p>
-If you want to use the udev-tweaks Gentoo added to make your life
-comfortable, then read no more. Gentoo will use udev but keep a static
-<path>/dev</path> so that you will never have any missing device nodes.
-The Gentoo init scripts won't run the devfsd daemon and will deactivate devfs
-when you boot up.
+Jeśli chcemy, aby poprawki dodane przez deweloperów Gentoo ułtwiły nam życie
+wtedy należy ominąć ten rożdział. Gentoo będzie używał udev, ale katalog 
+<path>/dev</path> będzie statyczny, żebyśmy nigdy nie doświadczyli braku
+jakiegokolwiek węzła urządzenia. W tym wariancie skrypty Gentoo nie uruchomią
+demona devfs i zdezaktywują devfs podczas uruchamiania systemu.
 </p>
 
 <p>
-But if you are a die-hard and want to run a udev-only, no-tweaked system as is
-intended by the udev development (including the difficulties of missing device
-nodes because udev doesn't support them yet), by all means, read on :)
+Jeśli jesteśmy twardzi i chcemy, aby nasz system używał tylko i wyłącznie udev
+(włączając w to brakujące węzły urządzeń spowodowne przez brak wsparcia ze
+strony udev), wteyd anleży czytać dalej.
 </p>
-
 <p>
-We'll deactivate the rules that save the device file nodes: edit the
-<c>RC_DEVICE_TARBALL</c> variable in <path>/etc/conf.d/rc</path> and set it to
-<c>no</c>:
+Zdezaktywujemy reguły, które zachowują węzły urządzeń do pliku: edytujemy
+zmienną <c>RC_DEVICE_TARBALL</c> w <path>/etc/conf.d/rc</path> i ustawiamy ją na <c>no</c>:
 </p>
 
 <pre caption="/etc/conf.d/rc">
@@ -289,11 +287,10 @@ RC_DEVICE_TARBALL="no"
 </pre>
 
 <p>
-If you have included devfs support in your kernel, you can deactivate it in
-the bootloader configuration: add <c>gentoo=nodevfs</c> as a kernel parameter.
-If you want to use devfs and deactivate udev, add <c>gentoo=noudev</c> as
-kernel
-parameter.
+Jeśli włączyliśmy w jądrze wsparcie dla devfs, możemy je wyłączyć dopisując do
+paramterów jądra w pliku konfiguracyjnym bootloadera: <c>gentoo=nodevfs</c>.
+Jeśli chcemy używać devfs i zdgqezaktywować udev, wtedy jako parametr jądra
+dodajemy <c>gentoo=noudev</c>.
 </p>
 
 </body>
@@ -317,15 +314,15 @@ machines installed from old media.
 </p>
 
 <p>
-If you run <c>sys-apps/baselayout-1.8.12</c> or later, this problem is
-alleviated since the boot process should still manage to complete. However, to
-get rid of those annoying warnings, you should create the missing device nodes
-as described below.
+Jeśli posiadamy <c>sys-apps/baselayout-1.8.12</c> lub nowszy, wtedy ten problem
+jest złaodzony ponieważ proces uruchamiania systemu powinien zakończyć się
+powodzeniem. Jednakże, aby pozbyć się tych denerwujących ostrzeżeń, należy
+stworzyć brakujące węzły urządzeń tak jak jest to przedstawione poniżej.
 </p>
 
 <p>
-To see which devices nodes are present before the <path>/dev</path> filesystem
-is mounted, run the following commands:
+	Aby sprawdzić które węzły urządzeń są obecne przed zamontowaniem
+	katalogu <path>/dev</path> należy wykonać następujące polecenia:
 </p>
 
 <pre caption="Wyświetlanie węzłów urządzeń dostępnych podczas uruchamiania
@@ -337,11 +334,10 @@ is mounted, run the following commands:
 </pre>
 
 <p>
-The devices needed for a successful boot are <path>/dev/null</path> and
-<path>/dev/console</path>. If they didn't show up in the previous test, you
-have
-to create them manually. Issue the following commands in the
-<path>test/dev/</path> directory:
+Urządzenia wymagane do pomyślnego załadowania sytemu są umieszczone w
+<path>/dev/null</path> w <path>/dev/console</path>. Jeśli się nie pojawiły, to
+należy je stworzyć ręcznie. Będąc w katalogu <path>test/dev/</path> należy
+wykonać:
 </p>
 
 <pre caption="Tworzenie wymaganych plików węzłów urządzeń">
@@ -350,8 +346,7 @@ to create them manually. Issue the following commands in the
 </pre>
 
 <p>
-When you're finished, don't forget to unmount the <path>test/</path>
-directory:
+Kiedy skończymy nie należy zapomnieć o odmontowaniu katalogu <path>test/</path>:
 </p>
 
 <pre caption="Odmontowywanie katalogu test/ ">
@@ -363,62 +358,55 @@ directory:
 </body>
 </section>
 <section>
-<title>udev i nvidia</title>
+<title>udev i nVidia</title>
 <body>
 
 <p>
-If you use the proprietary driver from nVidia and the X server fails to start
-on
-a udev-only system, then make sure you have:
+Jeśli używamy odpowiednich sterowników nVidii, ale serwer X nie uruchamia się,
+wtedy należy upewnić sięm, że mamy:
 </p>
 
 <ul>
   <li>
-    the <c>nvidia</c> module listed in
-    <path>/etc/modules.autoload.d/kernel-2.6</path>
+    moduł <c>nvidia</c> w <path>/etc/modules.autoload.d/kernel-2.6</path>
   </li>
   <li>
-    a version of <c>nvidia-kernel</c> equal to or greater than
-    <c>media-video/nvidia-kernel-1.0.5336-r2</c>
-  </li>
+    wersję <c>nvidia-kernel</c> równą lub wyższą
+    <c>media-video/nvidia-kernel-1.0.5336-r2</c> </li>
   <li>
-    a version of baselayout equal to or greater than
-    <c>sys-apps/baselayout-1.8.12</c>
-  </li>
-</ul>
+    wersję baselayout równą lub większą <c>sys-apps/baselayout-1.8.12</c>
+    </li> 
+ </ul>
 
 </body>
 </section>
 <section>
-<title>LVM2 Names Disappear</title>
+<title>Nazwy LVM2 znikają</title>
 <body>
 
 <p>
-When you use <c>udev</c> and LVM2 together, you might notice that your created
-volume groups and logical volumes have disappeared. Well, they haven't, but
-they
-are unfortunately named <path>/dev/dm-#</path> with # being 0, 1, ...
+Jeśli używamy razem <c>udev</c> i LVM2, wtedy można zauważyć, że grupy oraz
+woluminy logiczne zniknęły. W rzeczywistości jest to nieprawdą gdyż są one
+nazwane <path>/dev/dm-#</path> gdzie #=0,1,...
 </p>
 
 <p>
-To fix this, edit <path>/etc/udev/rules.d/50-udev.rules</path> and uncomment
-the
-following line:
+Aby to naprawić, należy edytować <path>/etc/udev/rules.d/50-udev.rules</path> i
+odkomentować następującą linię:
 </p>
 
-<pre caption="Uncomment this line from /etc/udev/rules.d/50-udev.rules">
+<pre caption="Odkomentowujemy linię w /etc/udev/rules.d/50-udev.rules">
 KERNEL="dm-[0-9]*",     PROGRAM="/sbin/devmap_name %M %m", NAME="%k",
 SYMLINK="%c"
 </pre>
 
 <p>
-Next, install <c>sys-fs/multipath-tools</c> which contains the
-<c>devmap_name</c> application.
+Następnie należy zainstalowć <c>sys-fs/multipath-tools</c>, który zawiera
+aplikację <c>devmap_name</c>.
 </p>
 
-<pre caption="Installing multipath-tools">
-<comment>(At the moment of writing, multipath-tools is only available in the
-testing branch:)</comment>
+<pre caption="Instalacja multipath-tools">
+<comment>(W chwili obecnej multipath-tools są zamaskowane :)</comment>
 # <i>echo "=sys-fs/multipath-tools-0.4.2 ~x86" &gt;&gt;
 /etc/portage/package.keywords</i>
 # <i>emerge multipath-tools</i>
@@ -427,59 +415,59 @@ testing branch:)</comment>
 </body>
 </section>
 <section>
-<title>No Consistent Naming between DevFS and udev</title>
+<title>Spójne nazewnictwo pomiędzy DevFS a udev</title>
 <body>
 
 <p>
-Even though our intention is to have a consistent naming scheme between both
-dynamical device management solutions, sometimes naming differences do occur.
+Pomimo naszych starań, aby posiadać spójne nazewnictwo pomiędzy tymi dwoma
+dynamicznymi sposobami nazewnictwa urządzeń, czasami pewne różnice w nazwach
+występują. 
 </p>
 
 <p>
-One reported clash is with a HP Smart Array 5i RAID controller (more precisely
-the <c>cciss</c> kernel module). With udev, the devices are named
-<path>/dev/cciss/cXdYpZ</path> with X, Y and Z regular numbers. With devfs,
-the
-devices are <path>/dev/hostX/targetY/partZ</path> or symlinked from
-<path>/dev/cciss/cXdY</path>.
+Jednym ze zgłoszonych błędów jest kolizja z kontrolerem HP Smart Array 5i RAID
+(a dokładniej modułem jądra <c>cciss</c>). W udev, urządzenia są nazywane
+<path>/dev/cciss/cXdYpZ</path> gdzie X, Y i Z są normalnymi liczbami. W devfs
+urządzeniami są <path>/dev/hostX/targetY/partZ</path> lub dowiązane symbolicznie
+z <path>/dev/cciss/cXdY</path>.
 </p>
 
 <p>
-If this is the case, don't forget to update your <path>/etc/fstab</path> and
-bootloader configuration files accordingly.
+W tym przypadku należy pamiętać o zaktualizowaniu pliku <path>/etc/fstab</path>
+oraz o konfiguracji plików bootloadera
 </p>
 
 <p>
-The same happens with all-round symlinks that used to exist in
-<path>/dev</path>, such as <path>/dev/mouse</path>, which <c>udev</c> doesn't
-create anymore. Be certain to check your X configuration file and see if the
-Device rule for your mouse points to an existing device file.
+To samo zdarza się The same happens with all-round symlinks that used to exist w
+katalogu <path>/dev</path>, such as <path>/dev/mouse</path>, których <c>udev</c>
+już nie tworzy. Należy się upewnić, że w pliku konfiguracyjnym X-ów posiadamy
+odpowiednie ustawienia.
 </p>
 
 </body>
 </section>
 <section>
-<title>Other issues</title>
+<title>Inne problemy</title>
 <body>
 
 <p>
-If device nodes are not created when a module is loaded from
-<path>/etc/modules.autoload.d/kernel-2.6</path> but they appear when you load
-the module manually with modprobe then you should try upgrading to
-<c>sys-apps/baselayout-1.8.12</c> or later.
+Jeśli węzły urządzeń nie są tworzone podczas ładowania modułu z
+<path>/etc/modules.autoload.d/kernel-2.6</path>, ale są tworzone jeśli
+załadujemy moduł ręcznie, wtedy powinniśmy spróbować zaktualizować pakiet
+baselayout do wersji <c>sys-apps/baselayout-1.8.12</c> lub późniejszej.
 </p>
 
 <p>
-Support for the framebuffer devices (<path>/dev/fb/*</path>) comes with the
-kernel starting from version 2.6.6-rc2.
+Wsparcie dla urządzeń bufora ramki (<path>/dev/fb/*</path>) jest w jądrze
+2.6.6-rc2 i powyżej.
 </p>
 
 <p>
-For kernels older than 2.6.4 you have to explicitly include support for the
-<path>/dev/pts</path> filesystem.
+W jądrach starszych od 2.6.4 należy włączyć wsparcie dla systemu plików
+<path>/dev/pts</path>.
 </p>
 
-<pre caption="Enabling the /dev/pts filesystem">
+<pre caption="Włączanie systemu plików /dev/pts">
 File systems ---&gt;
   Pseudo filesystems ---&gt;
     [*] /dev/pts file system for Unix98 PTYs
@@ -490,28 +478,26 @@ File systems ---&gt;
 </chapter>
 
 <chapter>
-<title>Resources &amp; Acknowledgements</title>
+<title>Zasoby i podziękowania</title>
 <section>
 <body>
 
 <p>
-The udev talk on the Linux Symposium (Ottawa, Ontario Canada - 2003) given by
-Greg Kroah-Hartman (IBM Corporation) provided a solid understanding on the
-udev
-application.
+Wykład o udev na Linux Symposium (Ottawa, Ontario Canada - 2003) prowadzony
+przez Greg Kroah-Hartman (IBM Corporation) dostarczył solidnego zrozumienia
+systemu udev.
 </p>
 
 <p>
 <uri
 link="http://webpages.charter.net/decibelshelp/LinuxHelp_UDEVPrimer.html">
-Decibel's
-UDEV Primer</uri> is an in-depth document about udev and Gentoo.
+Decibel's UDEV Primer</uri> jest wyczerpującym źródłem o udev i Gentoo.
 </p>
 
 <p>
-<uri link="http://www.reactivated.net/udevrules.php">Writing udev rules</uri> by
-fellow Gentoo developer Daniel Drake is an excellent document to learn how to
-customize your udev installation.
+<uri link="http://www.reactivated.net/udevrules.php">Writing udev rules</uri>
+stworzony przez dewelopera Gentoo Daniela Drake jest doskonałym przykładem
+dostosowywania systemu udev do własnych potrzeb.
 </p>
 
 </body>
