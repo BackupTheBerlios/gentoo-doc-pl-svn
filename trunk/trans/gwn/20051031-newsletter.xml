@@ -33,121 +33,128 @@
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>New Korean version for the Gentoo Weekly News</title>
+<title>Nowe, koreańskie tłumacznie Tygodnika Gentoo</title>
 <body>
 <p>
-<mail link="jinkyup@gmail.com">Jin Kyu Park</mail> is the initiator of a new 
-project: adding a Korean version to the list of translated GWNs. He's been 
-silently chipping away at the block of English GWNs for a few weeks 
-already, and samples of his translation work can be found at the freshly 
-established <uri link="/news/ko/gwn/gwn.xml">overview page</uri>. He's now 
-looking for fellow translators to help make the Korean GWN a sustainable 
-effort. If your Korean is up to the task, please contact him directly.
+<mail link="jinkyup@gmail.com">Jin Kyu Park</mail> jest pomysłodawcą stworzenia
+koreańskiej wersji Tygodnika Gentoo i dodania jej do listy tłumaczonych
+tygodników. Powoli zaprzestawał pracy w angielskim wydaniu tygodnika, a teraz
+próbki jego tłumaczeń można znaleźć na nowo uruchomionej <uri
+link="/news/ko/gwn/gwn.xml">stronie</uri>. W tej chwili poszukuje on tłumaczy,
+którzy chcieliby pomóc mu w tłumaczeniu koreańskiego Tygodnika Gentoo. Jeżeli
+znasz język koreański i chcesz pomóc wszystkie pytania kieruj bezpośrednio do
+niego.
 </p>
-<note>Most of the other languages, even the ones that have a regular update schedule,
-are always looking for additional help, too. If you would like to volunteer
-for any language, send a message to <mail 
-link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail>, please.</note>
+<note>
+Większość tłumaczeń, nawet tych które ukazują się regularnie, cały czas
+poszukuje dodatkowych rąk do pracy. Wszystkich chętnych do pomocy prosimy o
+wysłanie wiadomości elektronicznej na adres <mail
+link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail>
+</note>
 </body>
 </section>
 <section>
-<title>Subforums introduced at Gentoo Forums</title>
+<title>Podfora na forum Gentoo</title>
 <body>
 <p>
-Starting this weekend, the introduction of subforums further
-improves the usability of the evergrowing <uri
-link="http://forums.gentoo.org">Gentoo Forums</uri>. After sufficient testing on
-a test server (see <uri
-link="/news/en/gwn/20051017-newsletter.xml#doc_chap1">our earlier report</uri>), the <uri
-link="http://forums.gentoo.org/viewforum-f-28.html">German</uri> and <uri
-link="http://forums.gentoo.org/viewforum-f-41.html">Italian</uri> forums are the
-first ones to benefit from this long requested feature. Following the general
-forums structure, both now separate support requests from discussion and chat.
+Wprowadzone na początku tego tygodnia podfora zwiększyły funkcjonalność <uri
+link="http://forums.gentoo.org">forum Gentoo</uri> dostępną dla ciągle rosnącego
+grona użytkowników.  Po wnikliwym przetestowaniu na serwerze testowym
+(informacje w naszym <uri
+link="/news/en/gwn/20051017-newsletter.xml#doc_chap1">wcześniejszym
+raporcie</uri>), forum <uri
+link="http://forums.gentoo.org/viewforum-f-28.html">niemieckie</uri> i <uri
+link="http://forums.gentoo.org/viewforum-f-41.html">włoskie</uri> są pierwszymi,
+które jako pierwsze mogą sprawdzić jak działa nowo dostępna usługa, od tak dawna
+już wyczekiwana. Zgodnie z strukturą głównego forum rozdzielono fora na dwie
+części, w pierwszej znajdują się wszelki prośby o wsparcie i pomoc, a w drugiej
+toczone są dyskusję na różne tematy.
 </p>
 <p>
-Besides the creation of more subforums, future plans include layout polishing and
-an improved presentation of threads from several subforums. The Forums team
-would like to thank everyone who participated in the testing of subforums.
+Pomijając fakt tworzenia większej ilości podfor, przyszłe plany zakładają dalsze
+usprawnienie i poprawianie sposobu prezentacji dostępnych tematów.  Zespół
+odpowiedzialny za forum chciałby podziękować wszystkim, którzy w jakikolwiek
+sposób pomogli w testowaniu nowych funkcjonalności.
 </p>
-
 </body>
 </section>
 </chapter>
 
 <!-- Future zone -->
 <chapter>
-<title>Future zone</title>
+<title>Rzut okiem w przyszłość</title>
 <section>
-<title>Speeding up the cache - Portage on the move towards 3.0</title>
+<title>Przyśpieszanie pamięci podręcznej - zmiany w Portage 3.0</title>
 <body>
 <p>
-<e>What is the cache, why do I need it, and what's this metadata 
-transferring thing?</e>
+<e>Co to jest pamięć podręczna -- cache, do czego jest ona potrzeba?</e>
 </p>
 <p>
-The cache is metadata saved from ebuilds; without the cache, access 
-would be about 400x slower for every ebuild lookup.
+Pamięć podręczna są to metadane zapisane z ebuildów. Bez niej dostęp do nich
+byłby znacznie wolniejszy, około 400 razy przy przeszukiwaniu każdego ebuilda.
 
-The metadata transfer is as it sounds; the system's local cache is 
-updated with pregenerated cache entries distributed via <c>rsync</c>, 
-so that the user's machine doesn't have to regenerate portions of the cache 
-itself.
-</p>
-
-<p>
-<e>Why is it slow?</e>
-</p>
-<p>
-The way stable's cache subsystem scales isn't exactly efficient; ebuilds using 
-eclasses (which must be tracked) scales horribly, and rears its head 
-in particular during metadata transfers.
+Określenie transfer metadanych określa to co jest. Lokalna pamięć podręczna 
+systemu jest aktualizowana przy pomocy generowanych wstępnie wpisów pamięci
+podręcznej rozprowadzanych poprzez <c>rsync</c>, tak aby komputer użytkownika
+nie musiał odtwarzać części pamięci podręcznej sam.
 </p>
 
 <p>
-<e>What is being done to make it not suck?</e>
+<e>Dlaczego dzieje się to tak wolno?</e>
 </p>
 <p>
-A cache rewrite, which is in use in the non-stable branches already, has been 
-backported to 2.0. Example statistics of the improvement are 
-available via a <uri link="http://article.gmane.org/gmane.linux.gentoo.portage.devel/1123">discussion thread</uri>. Rough runtime reduction for a Pentium at 233MHz is 35% normally, with reduction 
-of worst case runtime by 65%.
+Sposób w jaki pamięć podręczna podsystemu się skaluje nie jest do końca
+efektywny. Ebuildy używające eclass skalują się w sposób karygodny, a w
+szczególności występują opóźnienia podczas transferu metadanych.
 </p>
 
 <p>
-<e>Nifty. Downsides? </e>
+<e>Jakie działania zostają podjęte, aby proces nie zakończył się porażką?</e>
 </p>
 <p>
-Alternative cache backends need to be rewritten to work with the new 
-design.  Tools that access the on disk cache directly (<c>eix</c>) will need 
-to be updated.  This is still being tested.
-</p>
-
-<p><e>When will it be available in portage?</e></p>
-
-<p>
-2.0.54 is targeted, if it's not clean enough, .55 - in other words, as 
-soon as we know it's bug free. 
+Pamięć podręczna ponownego zapisu, która jest już w użyciu w niestabilnej
+gałęzi, została przeniesiona do wersji 2.0. Przykładowe statystyki poprawek
+dostępne są za pomocą tego <uri 
+link="http://article.gmane.org/gmane.linux.gentoo.portage.devel/1123">tematu do
+dyskusji</uri>. Redukcja czasu uruchomienia dla Pentium 233MHz wynosi z reguły
+35%, z redukcją w gorszym przypadku na poziomie 65%.
 </p>
 
 <p>
-<e>Is a patch available now?</e>
-</p>
-
-<p>Yes, <uri link="http://dev.gentoo.org/~ferringb/portage/2.0/3.0-cache-backport-experimental-7.patch">http://dev.gentoo.org/~ferringb/portage/2.0/3.0-cache-backport-experimental-7.patch</uri> 
-is the relevant patch. 
+<e>Świetnie. Ale czy są jakieś minusy?</e>
 </p>
 <p>
-As per the norm, it's not supported yet; bugs, feedback etc. is 
-welcome, but using it means you're taking the responsibility of 
-patching your package manager -- a critical piece of a gentoo system.  
-If it breaks, you're stuck cleaning up the pieces.  
+Alternatywnie backend pamięci podręcznej musi zostać napisany od nowa, aby mógł
+działać z nowym projektem. Narzędzia, które potrzebują bezpośredniego dostępu do
+pamięci podręcznej (<c>eix</c>), będą musiały zostać zaktualizowane. 
+</p>
+
+<p><e>Kiedy będzie dostępny w portage?</e></p>
+
+<p>
+Docelowo w wersji 2.0.54, jeśli nie będzie wystarczająco dopracowany w .55.
+Innymi słowy tak szybko jak będzie wolny od błędów. 
+</p>
+
+<p>
+<e>Czy łata dostępna jest już teraz?</e>
+</p>
+
+<p>Tak, <uri
+link="http://dev.gentoo.org/~ferringb/portage/2.0/3.0-cache-backport-experimental-7.patch">http://dev.gentoo.org/~ferringb/portage/2.0/3.0-cache-backport-experimental-7.patch</uri> 
+jest odpowiednią łatką.
+</p>
+<p>
+Zgodnie jednak z normą, nie jest ona jeszcze wspierana. Wszelakie błędy, pomoc
+jest mile widziana, jednak używanie łatki oznacza, że zgadzamy się na ryzyko,
+łatania menedżera pakietów - krytycznej części systemu Gentoo.
 </p>
 <warn>
-Adding it into the Portage ebuild for local use requires more than 
-just a <path>src_unpack</path> addition -- <path>src_install</path> 
-needs adjustment also.</warn>
+Dodanie tej łatki do ebuilda Portage do lokalnego użytku wymaga poza
+uzupełnieniem <path>src_unpack</path> również zmian w <path>src_install</path>.
+</warn>
 </body>
 </section>
 </chapter>
