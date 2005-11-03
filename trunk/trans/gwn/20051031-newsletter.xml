@@ -44,13 +44,13 @@ tygodników. Powoli zaprzestawał pracy w angielskim wydaniu tygodnika, a teraz
 próbki jego tłumaczeń można znaleźć na nowo uruchomionej <uri
 link="/news/ko/gwn/gwn.xml">stronie</uri>. W tej chwili poszukuje on tłumaczy,
 którzy chcieliby pomóc mu w tłumaczeniu koreańskiego Tygodnika Gentoo. Jeżeli
-znasz język koreański i chcesz pomóc wszystkie pytania kieruj bezpośrednio do
+znasz język koreański i chcesz pomóc, wszystkie pytania kieruj bezpośrednio do
 niego.
 </p>
 <note>
-Większość tłumaczeń, nawet tych które ukazują się regularnie, cały czas
+Większość tłumaczeń, nawet tych, które ukazują się regularnie, cały czas
 poszukuje dodatkowych rąk do pracy. Wszystkich chętnych do pomocy prosimy o
-wysłanie wiadomości elektronicznej na adres <mail
+wysłanie wiadomości na adres <mail
 link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail>
 </note>
 </body>
@@ -67,16 +67,16 @@ link="/news/en/gwn/20051017-newsletter.xml#doc_chap1">wcześniejszym
 raporcie</uri>), forum <uri
 link="http://forums.gentoo.org/viewforum-f-28.html">niemieckie</uri> i <uri
 link="http://forums.gentoo.org/viewforum-f-41.html">włoskie</uri> są pierwszymi,
-które jako pierwsze mogą sprawdzić jak działa nowo dostępna usługa, od tak dawna
-już wyczekiwana. Zgodnie z strukturą głównego forum rozdzielono fora na dwie
-części, w pierwszej znajdują się wszelki prośby o wsparcie i pomoc, a w drugiej
+które mogą sprawdzić jak działa nowo dostępna usługa, od tak dawna
+już wyczekiwana. Zgodnie ze strukturą głównego forum rozdzielono fora na dwie
+części, w pierwszej znajdują się wszelkie prośby o wsparcie i pomoc, a w drugiej
 toczone są dyskusję na różne tematy.
 </p>
 <p>
 Pomijając fakt tworzenia większej ilości podfor, przyszłe plany zakładają dalsze
-usprawnienie i poprawianie sposobu prezentacji dostępnych tematów.  Zespół
+usprawnianie i poprawianie sposobu prezentacji dostępnych tematów.  Zespół
 odpowiedzialny za forum chciałby podziękować wszystkim, którzy w jakikolwiek
-sposób pomogli w testowaniu nowych funkcjonalności.
+sposób pomogli w testowaniu nowej funkcjonalności.
 </p>
 </body>
 </section>
@@ -89,71 +89,76 @@ sposób pomogli w testowaniu nowych funkcjonalności.
 <title>Przyśpieszanie pamięci podręcznej - zmiany w Portage 3.0</title>
 <body>
 <p>
-<e>Co to jest pamięć podręczna -- cache, do czego jest ona potrzeba?</e>
+<e>Co to jest pamięć podręczna (cache) i do czego jest potrzebna?</e>
 </p>
 <p>
-Pamięć podręczna są to metadane zapisane z ebuildów. Bez niej dostęp do nich
-byłby znacznie wolniejszy, około 400 razy przy przeszukiwaniu każdego ebuilda.
-
-Określenie transfer metadanych określa to co jest. Lokalna pamięć podręczna 
-systemu jest aktualizowana przy pomocy generowanych wstępnie wpisów pamięci
-podręcznej rozprowadzanych poprzez <c>rsync</c>, tak aby komputer użytkownika
-nie musiał odtwarzać części pamięci podręcznej sam.
+Pamięć podręczna to metadane zapisane z ebuildów. Bez niej dostęp do nich
+byłby około 400 razy wolniejszy przy każdym zapytaniu o plik ebuild.
+Pojęcie "transfer metadanych" można zrozumieć intuicyjnie.  Lokalna pamięć
+podręczna systemu jest aktualizowana przy pomocy generowanych wstępnie
+wpisów pamięci podręcznej, rozprowadzanych poprzez <c>rsync</c>, tak aby
+komputer użytkownika nie musiał sam odtwarzać fragmentów pamięci podręcznej.
 </p>
 
 <p>
 <e>Dlaczego dzieje się to tak wolno?</e>
 </p>
 <p>
-Sposób w jaki pamięć podręczna podsystemu się skaluje nie jest do końca
-efektywny. Ebuildy używające eclass skalują się w sposób karygodny, a w
-szczególności występują opóźnienia podczas transferu metadanych.
+Podsystem pamięci podręcznej źle się skaluje. Najgorzej jest z ebuildami
+używającymi eklas (które trzeba śledzić), co jest szczególnie odczuwalne
+podczas transferu metadanych.
 </p>
 
 <p>
-<e>Jakie działania zostają podjęte, aby proces nie zakończył się porażką?</e>
+<e>Co robimy aby poprawić sytuację?</e>
 </p>
 <p>
-Pamięć podręczna ponownego zapisu, która jest już w użyciu w niestabilnej
-gałęzi, została przeniesiona do wersji 2.0. Przykładowe statystyki poprawek
-dostępne są za pomocą tego <uri 
-link="http://article.gmane.org/gmane.linux.gentoo.portage.devel/1123">tematu do
-dyskusji</uri>. Redukcja czasu uruchomienia dla Pentium 233MHz wynosi z reguły
-35%, z redukcją w gorszym przypadku na poziomie 65%.
+Piszemy obsługę pamięci podręcznej na nowo. Niestabilne wersje już
+korzystają z niej korzystają, a teraz efekty naszej pracy zostały
+przeniesione do wersji 2.0.  Przykładowe statystyki poprawek dostępne są w
+tym <uri
+link="http://article.gmane.org/gmane.linux.gentoo.portage.devel/1123">wątku
+dyskusji</uri>. Redukcja czasu wykonania dla Pentium 233MHz zwykle wynosi
+35%, zaś najgorszy czas został zredukowany o 65%.
 </p>
 
 <p>
-<e>Świetnie. Ale czy są jakieś minusy?</e>
+<e>Świetnie. Czy są jakieś minusy?</e>
 </p>
 <p>
-Alternatywnie backend pamięci podręcznej musi zostać napisany od nowa, aby mógł
-działać z nowym projektem. Narzędzia, które potrzebują bezpośredniego dostępu do
-pamięci podręcznej (<c>eix</c>), będą musiały zostać zaktualizowane. 
+Alternatywne narzędzia korzystające z pamięci podręcznej muszą zostać
+napisane od nowa aby mogły działać z nową wersją. Narzędzia, które
+potrzebują bezpośredniego dostępu do pamięci podręcznej (<c>eix</c>) będą
+musiały zostać uaktualnione. 
 </p>
 
-<p><e>Kiedy będzie dostępny w portage?</e></p>
-
-<p>
-Docelowo w wersji 2.0.54, jeśli nie będzie wystarczająco dopracowany w .55.
-Innymi słowy tak szybko jak będzie wolny od błędów. 
-</p>
+<p><e>Kiedy nowsza wersja znajdzie się w portage?</e></p>
 
 <p>
-<e>Czy łata dostępna jest już teraz?</e>
+Planujemy dodać ją w wersji 2.0.54, jeśli jednak do tego czasu nie będzie
+wystarczająco dopracowana, to znajdzie się w .55. Innymi słowy: gdy tylko
+uznamy, że jest wolna od błędów. 
 </p>
 
-<p>Tak, <uri
-link="http://dev.gentoo.org/~ferringb/portage/2.0/3.0-cache-backport-experimental-7.patch">http://dev.gentoo.org/~ferringb/portage/2.0/3.0-cache-backport-experimental-7.patch</uri> 
-jest odpowiednią łatką.
+<p>
+<e>Czy można już teraz pobrać łatę?</e>
+</p>
+
+<p>
+Tak, oto ona: <uri
+link="http://dev.gentoo.org/~ferringb/portage/2.0/3.0-cache-backport-experimental-7.patch">http://dev.gentoo.org/~ferringb/portage/2.0/3.0-cache-backport-experimental-7.patch</uri>.
 </p>
 <p>
-Zgodnie jednak z normą, nie jest ona jeszcze wspierana. Wszelakie błędy, pomoc
-jest mile widziana, jednak używanie łatki oznacza, że zgadzamy się na ryzyko,
-łatania menedżera pakietów - krytycznej części systemu Gentoo.
+Jak zwykle jednak w takich sytuacjach, łatka nie jest wspierana. Opinie i
+zgłoszone błędy są mile widziane, lecz korzystanie z niej oznacza, że sami
+jesteśmy odpowiedzialni za uaktualnienie menadżera pakietów, który jest
+najważniejszą częścią Gentoo. Jeśli coś popsujemy, naprawa będzie
+kłopotliwa.
 </p>
 <warn>
-Dodanie tej łatki do ebuilda Portage do lokalnego użytku wymaga poza
-uzupełnieniem <path>src_unpack</path> również zmian w <path>src_install</path>.
+Dodanie tej łatki do naszego lokalnego ebuilda Portage wymaga poza
+uzupełnieniem funkcji <path>src_unpack</path> również zmian w
+<path>src_install</path>.
 </warn>
 </body>
 </section>
@@ -207,16 +212,17 @@ jest <c>kmail</c>.
 <p><b>Zarządzanie zależnościami</b></p>
 <p>
 <mail link="spider@gentoo.org">D.M.D. Ljungmark</mail> rozpoczął raczej
-techniczny wątek dotyczący zależności. Z jednej strony "Jeśli pakiet, libFoo,
-instaluje plik nagłówkowy, który wymaga plików z innego pakietu, libBar, wtedy
-mamy do czynienia z zależnościami potrzebnymi do uruchomienia programu, nie
-tylko z zależnościami przy kompilacji", z drugiej jednak "Nie jest prawdą, że
-jest to zależność potrzebna do uruchomienia programu, gdyż pakiet libBar jest
-wymagany tylko w przypadku kompilacji". Problem dokładnego określenia typu
-zależności nie dotyczy większości z użytkowników, jednak jest bardzo ważny w
-przypadku systemów wbudowanych, gdzie usuwane jest wszystko co nie jest
-potrzebne by zminimalizować ich wielkość. W wątku niestety nie znaleziono
-odpowiedzi jak należy postępować w opisanym przypadku.
+techniczny wątek dotyczący zależności. Z jednej strony "Jeśli pakiet,
+libCośtam, instaluje plik nagłówkowy, który wymaga plików z innego pakietu,
+libCośinnego, wtedy mamy do czynienia z zależnościami potrzebnymi do
+uruchomienia programu, nie tylko z zależnościami przy kompilacji", z drugiej
+jednak "Nie jest prawdą, że jest to zależność potrzebna do uruchomienia
+programu, gdyż pakiet libCośinnego jest wymagany tylko w przypadku
+kompilacji". Problem dokładnego określenia typu zależności nie dotyczy
+większości użytkowników, jednak jest bardzo ważny w przypadku systemów
+wbudowanych, gdzie usuwa się wszystko, co nie jest potrzebne, w celu
+zminimalizowania ich wielkości. W wątku niestety nie znaleziono odpowiedzi
+jak należy postępować w opisanym przypadku.
 </p>
 <ul>
 <li><uri
@@ -230,7 +236,7 @@ W duchu "posiadania pakietów przed oficjalną premierą", <mail
 link="spyderous@gentoo.org">Donnie Berkholz</mail> napisał: "Pierwszy kandydat
 do finalnego wydania został wypuszczony około 12 godzin temu. Zgodnie z
 filozofią charakterystyczną dla Gentoo Linux, najbardziej aktualnego systemu
-operacyjnego w świecie wolnego oprogramowania, w drzewie portage znaleźć można,
+operacyjnego w świecie wolnego oprogramowania, w drzewie portage znaleźć można
 nowe, kompletne wydanie X.org -- wszystkie pakiety, a jest ich aż 296."
 </p>
 <ul>
