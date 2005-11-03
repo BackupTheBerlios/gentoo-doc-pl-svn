@@ -163,99 +163,102 @@ guest account = guest
 </pre>
 
 <p>
-The first line tells Samba that we are placing options in the "global" section.
-There are many options that are intended to be defined only in this section.
-These options control the global behavior of Samba.
+Pierwsza linijka informuje Sambę, że umieszczamy opcje w sekcji "global".
+Istnieje wiele opcji, które należy definiować tylko w tej sekcji. Opcje te
+sterują ogólnym zachowaniem Samby.
 </p>
 
 <p>
-The second line tells Samba the name of the Windows workgroup that Samba will
-create. Replace YOURWORKGROUP with an appropriate name for your workgroup.
+Druga linijka podaje Sambie nazwę grupy roboczej, którą ma utworzyć. Należy
+zamienić NASZAGRUPAROBOCZA właściwą dla nas nazwą.
 </p>
 
 <p>
-On the third line, we tell Samba to run in user-level security mode.  This
-option will cause Samba to tell all connecting Windows clients that they need to
-provide a valid username/password combination to gain access to any network
-resource. This is definitely a good thing.  User-level security is Samba's most
-often used security level because it's an excellent match for the majority of
-file sharing situations.  However, there are other security levels available.
-One handy mode tells Samba to authenticate all users against the security
-database of an existing Windows NT or 2000 Server. We won't be covering that
-particular mode in this article. If you want more information about it, take a
-look the "security" option in the <path>smb.conf</path> main page.
+W trzeciej linijce instruujemy Sambę aby pracowała w trybie bezpieczeństwa
+użytkownika. Dzięki tej opcji Samba poinformuje wszystkie klienty Windows o
+konieczności podania właściwej nazwy użytkownika i hasła w celu uzyskania
+dostępu do jakiegokolwiek zasobu sieciowego. Jest to bardzo dobre rozwiązanie.
+Bezpieczeństwo w trybie użytkownika jest najczęściej wykorzystywanym trybem
+bezpieczeństwa Samby, ponieważ najlepiej odpowiada większości scenariuszy
+udostępniania plików. Dostępne są jednakże inne tryby. W jednym z nich Samba
+uwierzytelnia użytkowników na podstawie bazy danych bezpieczeństwa z istniejącej
+instalacji Windows NT lub 2000 Server. Nie będziemy jednak omawiać go w tym
+artykule. Więcej informacji na jego temat można znaleźć w FIXME (rzeczywiście
+chodzi o man?) sekcji "security" podręcznika systemowego man do pliku
+<path>smb.conf</path>.
 </p>
 
 <p>
-Now, on to the fourth line. Here we tell Samba to exchange passwords with Samba
-in encrypted mode. You will always want to run Samba in encrypted mode, unless
-all your client machines are extremely ancient (like Windows for Workgroups-era
-machines). Enabling encrypted passwords does cause Samba to need its own
-password file, in addition to the standard Unix password database. If you are
-thinking that it may be nice to turn encrypted passwords off, so that you can
-avoid having to maintain two password files, don't do it! Turning encrypted
-passwords off will cause sharing problems with even moderately old versions of
-Windows NT 4.0 in addition to Windows 2000. If you really want to avoid
-maintaining two separate databases, Samba provides several ways to synchronize
-both databases, which is a better approach.
+Kolej na czwartą linijkę. W tym miejscu instruujemy Sambę aby wymiana haseł
+odbywała się w trybie szyfrowanym. Z tej opcji należy korzystać w każdej
+sytuacji, z wyjątkiem gdy wszystkie nasze komputery są bardzo stare (na przykład
+z systemami z czasów Windows for Workgroups). Włączenie szyfrowanych haseł
+powoduje, że Samba oprócz standardowej uniksowej bazy danych passwd
+potrzebuje własnego pliku z hasłami. Nie należy jednak sądzić, że wyłączenie tej
+opcji ułatwi nam życie, gdyż będziemy musieli zajmować się tylko jednym plikiem.
+Wyłączenie szyfrowanych haseł spowoduje problemy z udostępnianiem zasobów nawet
+pod relatywnie starymi systemami Windows NT 4.0 (nie wspominając o Windows
+2000). Samba dostarcza nam wiele sposobów na synchronizowanie obu baz danych,
+jeśli nie chcemy się opiekować nimi osobno. Jest to zdecydowanie lepsze
+rozwiązanie niż wyłączanie szyfrowania.
 </p>
 
 <p>
-The next line specifies a valid Unix user account that will be used 
-for guest access. While people often use "guest account=nobody", it's 
-recommended that you add a literal "guest" user to your system if one 
-doesn't exist already. The new "guest" account does not need a 
-password set and does not need to be able to log in interactively. 
-(It's fine if you do choose to configure guest with a password and a 
-valid default shell.)
+Kolejna linijka podaje konto użytkownika systemu Unix, które zostanie
+wykorzystane do dostępu gościa. Mimo iż częstą praktyką jest podawanie "guest
+account=nobody", sugeruję dodanie użytkownika "guest" do systemu, o ile jeszcze
+go nie ma. Konto to nie potrzebuje hasła i nie trzeba umożliwiać interaktywnego
+logowania się na nie (aczkolwiek nic się nie stanie jeśli nadamy mu hasło i
+domyślną powłokę systemową).
 </p>
 
 <p>
-Now we're ready to add WINS support options to <path>smb.conf</path>. You'll
-want to add one of the following two lines to the global section:
+Teraz można już dodać obsługę WINS w pliku <path>smb.conf</path>. W tym celu
+należy dodać jedną z poniższych dwóch linijek w sekcji "global":
 </p>
 
-<pre caption="WINS support">
+<pre caption="Obsługa WINS">
 wins support = yes
 </pre>
 
 <p>
-OR
+LUB
 </p>
 
-<pre caption="WINS server IP address">
-wins server = IP address of WINS server
+<pre caption="Adres IP WINS">
+wins server = adres IP serwera WINS
 </pre>
 
 <p>
-If you already have a WINS server on your current subnet (a Windows NT Server
-running WINS, for example), you'll want to use the second option and specify the
-name of the WINS server on the right side of the equals sign. Samba's internal
-WINS services will then be disabled, and it will use the WINS server you
-specify.
+Jeśli posiadamy już serwer WINS w naszej podsieci (na przykład WINS działający
+pod systemem Windows NT Server), będziemy chcieli użyć drugiej opcji i podać
+adres IP tego serwera po prawej stronie znaku równości. Wewnętrzna usługa WINS
+Samby zostanie wówczas wyłączona i zostanie użyty podany serwer WINS. 
 </p>
 
 <p>
-If you don't have a WINS server running on your subnet, or you're setting Samba
-up at home and you don't know exactly what a WINS server is, you'll want to use
-the first option. This will tell Samba to become a WINS server for your LAN.
+Jeśli nie posiadamy osobnego serwera WINS lub konfigurujemy Sambę w domu i
+nie orientujemy się nawet czym jest serwer WINS, powinniśmy wybrać pierwszą
+opcję. Samba wówczas sama będzie pełnić rolę takiego serwera w naszej sieci
+LAN.
 </p>
 
 <p>
-You may be wondering what WINS does. Basically, you can think of WINS as a local
-dynamic DNS database. When Samba is running as a WINS server, every
-Windows-compatible machine on the same subnet will register its IP address and
-NetBIOS name (a.k.a. "computer name") with Samba. This enables Windows machines
-to use Samba's WINS database to request an IP address for a particular NetBIOS
-name.  WINS is a key component of network browsing, which is what you are doing
-when you poke around inside the Network Neighborhood on a Windows machine.
+Być może zadajemy sobie pytanie jaką funkcję pełni serwer WINS. Ogólnie rzecz
+biorąc jest to lokalna dynamiczna baza danych DNS. Gdy Samba pracuje jako serwer
+WINS, każdy komputer kompatybilny z Windows w naszej podsieci zarejestruje w
+Sambie swój adres IP i nazwę NetBIOS (czyli potocznie FIXME "nazwę komputera").
+Dzięki temu komputery Windows będą korzystać z bazy danych WINS w Sambie w celu
+uzyskania adresu IP komputera o danej nazwie NetBIOS. WINS to kluczowy składnik
+przeglądania sieci i to właśnie z niego korzystamy, gdy rozglądamy się po
+Otoczeniu Sieciowym systemu Windows.
 </p>
 
 <p>
-Now we're ready to add several more options to the global section:
+Możemy teraz dodać kilka kolejnych opcji do globalnej sekcji:
 </p>
 
-<pre caption="Network browsing setup">
+<pre caption="Konfiguracja przeglądania sieci">
 local master = yes 
 os level = 99 
 domain master = yes 
@@ -263,65 +266,70 @@ preferred master = yes
 </pre>
 
 <p>
-Now for an explanation. All these options are related to network browsing. I've
-already mentioned that WINS is a key component of network browsing, but there's
-another element required for browsing to work properly. A local master browser
-must exist. Sound strange?  Some further explanation is required.
+Czas na wyjaśnienia. Wszystkie te opcje są związane z przeglądaniem sieci. Już
+wspomnieliśy że WINS jest kluczowym składnikiem tego zagadnienia, istnieje
+jednak kolejny element wymagany do poprawnego działania przeglądania sieci. Musi
+istnieć główna lokalna przeglądarka (ang. local master browser). Brzmi to dość
+dziwnie, czas więc na wyjaśnienia.
 </p>
 
 <p>
-For browsing to work properly, there must be some central location that keeps
-track of what machines and workgroups exist on the local subnet.  This
-particular list is called the browse list. The browse list is used to construct
-the list of workgroups, domains, and machines you see when you first click on
-the Network Neighborhood. Any modern Windows machine can become the local master
-browser. Ideally, we'd like Samba to be the local master browser on the network.
+Aby przeglądanie sieci działało poprawnie, musi istnieć jakieś główne miejsce, w
+którym zapisane jest jakie komputery i grupy robocze są przyłączone do lokalnej
+podsieci. Taka lista określana jest mianem listy przeglądania (ang. browse
+list). Na podstawie tej listy konstruowana jest lista grup roboczych, domen i
+komputerów, które zobaczymy, gdy po raz pierwszy klikniemy na ikonie Otoczenia
+Sieciowego. Każdy komputer ze współczesnym systemem Windows może pełnić rolę
+głównej lokalnej przeglądarki, my chcielibyśmy jednak aby w naszej sieci tę
+rolę pełniła Samba. 
 </p>
 
 <p>
-How is this accomplished? Basically, several beefy Windows-compatible machines
-on your subnet will regularly duke it out by flinging packets back and forth
-across your LAN in an attempt to determine who will become the local master
-browser. This process is called a "browser election."
+Jak tego dokonamy? Ujmując rzecz jak najprościej, wszystkie komputery z systemem
+Windows w naszej podsieci toczą ze sobą bitwy wysyłając pakiety tam i z powrotem
+między sobą, próbując określić który z nich stanie się główną lokalną
+przeglądarką. Proces ten nazywa się "wyborami przeglądarki" (ang. browser
+election).
 </p>
 
 <note>
-Be a good sport. Please don't use Samba's ability to beat Windows in all
-browser elections as an excuse to tease Microsoft administrators in your
-organization.  Remember, it's important to be a good winner.
+Nie bądźmy okrutni. Nie powinniśmy wykorzystywać faktu, iż Samba potrafi pokonać
+systemy Windows w każdych wyborach przeglądarki, w celu nabijania się z
+administratorów systemów Microsoft w naszych biurach. Pamiętajmy, że wygrywać
+też trzeba umieć.
 </note>
 
 <p>
-In the end the "winner" of this broadcast packet war gets to become the local
-master browser. We can cause Samba to win the battle by using the <c>os level =
-99</c> option, which causes it to beat every other machine on the LAN. This
-happens because every version of Windows (from Windows 95 to NT to 2000) has a
-hard-coded OS level that was intended to cause the most advanced version of
-Windows to become the local master browser (later versions of Windows have a
-bigger number). Setting Samba to 99 will cause it to beat all Microsoft
-products, allowing it to become the local master browser every time.
+Zwycięzca tej "wojny" na pakiety zostaje lokalną główną przeglądarką. Możemy
+spowodować każdorazowe zwycięstwo Samby w tych zmaganiach dzięki opcji <c>os
+level = 99</c>. Dzieje się tak, gdyż każda wersja systemu Windows (od Windows
+95, przez NT, aż po 2000) posiada zapisany na stałe numer systemu operacyjnego,
+dzięki czemu przeglądarką powinna zostać najnowsze wydanie tego systemu.
+Ustawienie tej opcji na 99 spodowuje pokonanie przez Sambę każdego produktu
+firmy Microsoft, dzięki czemu za każdym razem zostanie ona główną lokalną
+przeglądarką.
 </p>
 
 </body>
 </section>
 <section>
-<title>Security options</title>
+<title>Opcje bezpieczeństwa</title>
 <body>
 
 <p>
-Before we leave the global section, here are a few security options that you may
-be interested in. The host's <c>allow</c> option lets you limit the IP addresses
-that can connect to Samba:
+Zanim opuścimy sekcję globalną, powinniśmy zainteresować się kilkoma opcjami
+bezpieczeństwa. Opcja <c>allow</c> hosta pozwala nam ograniczyć adresy IP,
+którym zezwalamy na połączenia z Sambą:
 </p>
 
-<pre caption="Allowed IP addresses">
+<pre caption="Dopuszczone adresy IP">
 hosts allow = 192.168.1. 127.
 </pre>
 
 <p>
-This option allows only machines in the <b>192.168.1</b> network to connect to
-Samba, in addition to <b>127</b>, the localhost. Always make sure there is a
-<b>127.</b> at the end of your hosts allow line.
+Dzięki tej opcji jedynie komputery z podsieci o adresie <b>192.168.1</b>, oraz
+<b>127</b> (localhost) będą mogły nawiązać połączenie z Sambą. Należy się zawsze
+upewnić, że dodajemy <b>127.</b> na końcu linijki hosts allow.
 </p>
 
 <p>
