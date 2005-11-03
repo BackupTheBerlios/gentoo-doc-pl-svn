@@ -25,6 +25,9 @@
 <author title="Tłumacz">
 <mail link="linux_user@o2.pl">Michał Kurgan</mail>
 </author>
+<author title="Korektor">
+Robert Muchacki
+</author>
 
 <abstract>Wydanie Tygodnika Gentoo z 31 października 2005.</abstract>
 <summary/>
@@ -40,8 +43,8 @@
 <p>
 <mail link="jinkyup@gmail.com">Jin Kyu Park</mail> jest pomysłodawcą stworzenia
 koreańskiej wersji Tygodnika Gentoo i dodania jej do listy tłumaczonych
-tygodników. Powoli zaprzestawał pracy w angielskim wydaniu tygodnika, a teraz
-próbki jego tłumaczeń można znaleźć na nowo uruchomionej <uri
+tygodników. Powoli zaprzestawał pracy w angielskim, oryginalnym, wydaniu, a
+teraz próbki jego tłumaczeń można znaleźć na nowo uruchomionej <uri
 link="/news/ko/gwn/gwn.xml">stronie</uri>. W tej chwili poszukuje on tłumaczy,
 którzy chcieliby pomóc mu w tłumaczeniu koreańskiego Tygodnika Gentoo. Jeżeli
 znasz język koreański i chcesz pomóc, wszystkie pytania kieruj bezpośrednio do
@@ -92,12 +95,12 @@ sposób pomogli w testowaniu nowej funkcjonalności.
 <e>Co to jest pamięć podręczna (cache) i do czego jest potrzebna?</e>
 </p>
 <p>
-Pamięć podręczna to metadane zapisane z ebuildów. Bez niej dostęp do nich
-byłby około 400 razy wolniejszy przy każdym zapytaniu o plik ebuild.
-Pojęcie "transfer metadanych" można zrozumieć intuicyjnie.  Lokalna pamięć
-podręczna systemu jest aktualizowana przy pomocy generowanych wstępnie
-wpisów pamięci podręcznej, rozprowadzanych poprzez <c>rsync</c>, tak aby
-komputer użytkownika nie musiał sam odtwarzać fragmentów pamięci podręcznej.
+Pamięć podręczna to metadane zapisane z ebuildów. Bez niej dostęp do nich byłby
+około 400 razy wolniejszy przy każdym zapytaniu o plik ebuild.  Pojęcie
+"transfer metadanych" można zrozumieć intuicyjnie.  Lokalna pamięć podręczna
+systemu jest aktualizowana przy pomocy generowanych wstępnie wpisów pamięci
+podręcznej, rozprowadzanych poprzez <c>rsync</c>, tak aby komputer użytkownika
+nie musiał sam  odtwarzać jej fragmentów, co z pewnością poprawia wydajność.
 </p>
 
 <p>
@@ -105,21 +108,20 @@ komputer użytkownika nie musiał sam odtwarzać fragmentów pamięci podręczne
 </p>
 <p>
 Podsystem pamięci podręcznej źle się skaluje. Najgorzej jest z ebuildami
-używającymi eklas (które trzeba śledzić), co jest szczególnie odczuwalne
-podczas transferu metadanych.
+używającymi eklas (które trzeba śledzić), co jest szczególnie odczuwalne podczas
+transferu metadanych.
 </p>
 
 <p>
 <e>Co robimy aby poprawić sytuację?</e>
 </p>
 <p>
-Piszemy obsługę pamięci podręcznej na nowo. Niestabilne wersje już
-korzystają z niej korzystają, a teraz efekty naszej pracy zostały
-przeniesione do wersji 2.0.  Przykładowe statystyki poprawek dostępne są w
-tym <uri
+Piszemy obsługę pamięci podręcznej na nowo. Niestabilne wersje już korzystają z
+niej korzystają, a teraz efekty naszej pracy zostały przeniesione do wersji 2.0.
+Przykładowe statystyki poprawek dostępne są w <uri
 link="http://article.gmane.org/gmane.linux.gentoo.portage.devel/1123">wątku
-dyskusji</uri>. Redukcja czasu wykonania dla Pentium 233MHz zwykle wynosi
-35%, zaś najgorszy czas został zredukowany o 65%.
+dyskusji</uri>. Redukcja czasu wykonania dla Pentium 233MHz zwykle wynosi 35%,
+zaś najgorszy czas został zredukowany o 65%.
 </p>
 
 <p>
@@ -128,12 +130,11 @@ dyskusji</uri>. Redukcja czasu wykonania dla Pentium 233MHz zwykle wynosi
 <p>
 Alternatywne narzędzia korzystające z pamięci podręcznej muszą zostać
 napisane od nowa aby mogły działać z nową wersją. Narzędzia, które
-potrzebują bezpośredniego dostępu do pamięci podręcznej (<c>eix</c>) będą
+potrzebują bezpośredniego dostępu do pamięci podręcznej (np. <c>eix</c>) będą
 musiały zostać uaktualnione. 
 </p>
 
 <p><e>Kiedy nowsza wersja znajdzie się w portage?</e></p>
-
 <p>
 Planujemy dodać ją w wersji 2.0.54, jeśli jednak do tego czasu nie będzie
 wystarczająco dopracowana, to znajdzie się w .55. Innymi słowy: gdy tylko
@@ -143,7 +144,6 @@ uznamy, że jest wolna od błędów.
 <p>
 <e>Czy można już teraz pobrać łatę?</e>
 </p>
-
 <p>
 Tak, oto ona: <uri
 link="http://dev.gentoo.org/~ferringb/portage/2.0/3.0-cache-backport-experimental-7.patch">http://dev.gentoo.org/~ferringb/portage/2.0/3.0-cache-backport-experimental-7.patch</uri>.
@@ -152,13 +152,11 @@ link="http://dev.gentoo.org/~ferringb/portage/2.0/3.0-cache-backport-experimenta
 Jak zwykle jednak w takich sytuacjach, łatka nie jest wspierana. Opinie i
 zgłoszone błędy są mile widziane, lecz korzystanie z niej oznacza, że sami
 jesteśmy odpowiedzialni za uaktualnienie menadżera pakietów, który jest
-najważniejszą częścią Gentoo. Jeśli coś popsujemy, naprawa będzie
-kłopotliwa.
+najważniejszą częścią Gentoo. Jeśli coś popsujemy, naprawa będzie kłopotliwa.
 </p>
 <warn>
-Dodanie tej łatki do naszego lokalnego ebuilda Portage wymaga poza
-uzupełnieniem funkcji <path>src_unpack</path> również zmian w
-<path>src_install</path>.
+Dodanie tej łatki do naszego lokalnego ebuilda Portage wymaga poza uzupełnieniem
+funkcji <path>src_unpack</path> również zmian w <path>src_install</path>.
 </warn>
 </body>
 </section>
@@ -351,7 +349,8 @@ Zope jest podatne na usterkę dołączenia pliku, gdy udostępniono usługi
 RestructuredText.
 </p>
 <p>
-Więcej informacji można znaleźć w <uri link="/security/en/glsa/glsa-200510-20.xml">komunikacie GLSA</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200510-20.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
@@ -364,7 +363,8 @@ wykonania niepożądanego kodu, oraz jest podatny na ataki typu cross-site
 scripting.
 </p>
 <p>
-Więcej informacji można znaleźć w <uri link="/security/en/glsa/glsa-200510-21.xml">komunikacie GLSA</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200510-21.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
