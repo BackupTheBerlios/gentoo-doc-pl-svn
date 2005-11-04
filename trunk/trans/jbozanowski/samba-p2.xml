@@ -328,161 +328,169 @@ hosts allow = 192.168.1. 127.
 
 <p>
 Dzięki tej opcji jedynie komputery z podsieci o adresie <b>192.168.1</b>, oraz
-<b>127</b> (localhost) będą mogły nawiązać połączenie z Sambą. Należy się zawsze
-upewnić, że dodajemy <b>127.</b> na końcu linijki hosts allow.
+<b>127</b> (localhost) będą mogły nawiązać połączenie z Sambą. Pamiętajmy, że
+zawsze należy dodać <b>127.</b> na końcu linijki hosts allow.
 </p>
 
 <p>
-The interfaces option is very useful if your machine happens to have multiple
-network interfaces. It allows you to specify the network interfaces on which
-Samba is available. It is used as follows:
+Opcja "interfaces" jest przydatna jeśli nasza maszyna posiada wiele interfejsów
+sieciowych. Dzięki niej możemy podać dla jakich interfejsów Samba ma być
+dostępna. Używa się jej następująco:
 </p>
 
-<pre caption="Specifying interfaces">
+<pre caption="Podawanie interfejsów">
 interfaces = eth1
 </pre>
 
 <p>
-This is an easy way to limit Samba to the necessary interfaces. And limiting
-the interfaces prevents possible hacking attempts from unwanted users.
+Łatwo w ten sposób ograniczyć Sambę jedynie do tych interfejsów, na których jest
+potrzebna. Dzięki temu możemy ograniczyć ewentualne próby włamań przez
+niepożądanych użytkowników.
 </p>
 
 </body>
 </section>
 <section>
-<title>A test share</title>
+<title>Zasób testowy</title>
 <body>
 
 <p>
-Now that we've configured Samba's global options, it's time to create a test
-share that will allow us to access the <path>/tmp</path> directory. Add the
-following lines:
+Skoro skonfigurowaliśmy już globalne opcje Samby, czas utworzyć testowy zasób,
+dzięki któremu będziemy mogli uzyskać dostęp do katalogu <path>/tmp</path>.
+Dodajmy następujące linijki:
 </p>
 
-<pre caption="Setting the /tmp directory">
+<pre caption="Konfigurowanie katalogu /tmp">
 [tmp] 
 path=/tmp 
 writeable=yes
 </pre>
 
 <p>
-When Samba is started, these settings will make a share available called
-<c>tmp</c>. This share will contain the contents of your <path>/tmp</path>
-directory on your Samba server. Also, if a particular user has write permission
-in <path>/tmp</path>, as almost all do, that user will be able to create and
-modify files in that directory.
+Gdy uruchamiamy Sambę, ustawienia te utworzą zasób dzielony o nazwie <c>tmp</c>.
+Zasób ten będzie FIXME zawierał zawartość katalogu <path>/tmp</path> na serwerze
+Samby. Dodatkowo jeśli dany użytkownik posiada uprawnienia zapisu w katalogu
+<path>/tmp</path>, a prawie każdy posiada, będzie możliwe tworzenie i
+modyfikowanie plików przez tego użytkownika w tym katalogu.
 </p>
 
 <p>
-Now that we've added all these entries to <path>smb.conf</path>, it's time to
-verify that our configuration is correct. To do this, we'll use the
-<c>testparm</c> utility:
+Skoro dodaliśmy już to wszystko do pliku <path>smb.conf</path>, czas na
+sprawdzenie czy nasza konfiguracja jest poprawna. Aby tego dokonać, wykorzystamy
+narzędzie <c>testparm</c>:
 </p>
 
-<pre caption="Using testparm">
+<pre caption="Korzystanie z testparm">
 $ testparm
 </pre>
 
 <p>
-A list of all your configuration options will be listed to the screen after you
-hit Enter. Any errors in <path>smb.conf</path> will also be noted and commented
-upon at this point. If there are any errors, follow the instructions on-screen
-to fix them. Now we're ready to configure Samba users and fire up Samba for the
-test run.
+Zaraz po naciśnięciu klawisza enter na ekranie ukaże się lista wszystkich
+naszych opcji konfiguracyjnych. Jeśli w pliku <path>smb.conf</path> były jakieś
+błędy, również zostaniemy o tym poinformowani. W tym przypadku wystarczy
+stosować się do instrukcji w celu ich poprawienia. Jesteśmy teraz gotowi do
+skonfigurowania użytkowników i próbnego uruchomienia Samby.
 </p>
 
 </body>
 </section>
 <section>
-<title>Creating users</title>
+<title>Tworzenie użytkowników</title>
 <body>
 
 <p>
-In order for the "myuser" user with the "mypass" password to be able to use
-Samba, the following things must exist:
+Aby użytkownik "mójużytkownik" z hasłem "mojehasło" mógł korzystać z Samby,
+muszą zostać spełnione następujące warunki:
 </p>
 
 <ol>
   <li>
-    A valid <b>myuser</b> Unix account. <b>myuser</b> does not need to be able
-    to log in, and <b>myuser</b>'s Unix password is not used by Samba, so you
-    can set to a dummy value if you like. If <b>myuser</b> also logs in
-    interactively to your Samba server, that's OK, too.
+    Musi istnieć konto uniksowe <b>mójużytkownik</b>. Nie jest wymagana
+    możliwość logowania się na nie, również hasło tego użytkownika nie jest 
+    używane przez Sambę, dlatego możemy dowolnie je ustawić. Oczywiście 
+    w niczym nie przeszkadza jeśli <b>mójużytkownik</b> może się logować 
+    do systemu.
   </li>
   <li>
-    A valid <b>myuser</b> entry in the <path>smbpasswd</path> file. The
-    <path>smbpasswd</path> file is found in the directory called
-    <path>private</path> that resides in the default Samba install prefix
-    (<path>/usr/local/private</path> in this example).  <b>myuser</b> can be
-    added to the <path>smbpasswd</path> file by using the <c>smbpasswd</c>
-    command and by typing the following as root:
+
+    W pliku <path>smbpasswd</path> musi być dopisany użytkownik
+    <b>mójużytkownik</b>. Plik ten można znaleźć w katalogu o nazwie
+    <path>private</path>, który znajduje się w domyślnym katalogu 
+    instalacyjnym Samby (w naszym przykładzie będzie to 
+    <path>/usr/local/private</path>). Użytkownik <b>mójużytkownik</b> może 
+    zostać dodany do pliku <path>smbpasswd</path> za pomocą polecenia 
+    <c>smbpasswd</c>. Dokonamy tego pisząc następujące polecenia z konta 
+    użytkownika root:
   </li>
 </ol>
 
-<pre caption="Adding users">
-# <i>smbpasswd -a myuser</i>
-New SMB password: &lt;enter "mypass" here&gt;
-Retype new SMB password: &lt;enter "mypass" again&gt;
-Added user myuser.
+<pre caption="Dodawanie użytkowników">
+# <i>smbpasswd -a mójużytkownik</i>
+New SMB password: &lt;tutaj należy wpisać "mojehasło"&gt;
+Retype new SMB password: &lt;i jeszcze raz "mojehasło"&gt;
+Added user mójużytkownik.
 </pre>
 
 <p>
-These steps must be repeated for every new Samba user. If you are Samba-enabling
-an existing Unix account, remember to add the username and password to the
-<path>smbpasswd</path> file. If you're adding a Windows-only user, remember that
-in addition to adding the user to the <path>smbpasswd</path> file you'll also
-need to create a valid Unix account with an identical username. In fact, you'll
-need to create the Unix account first since <path>smbpasswd</path> won't add a
-user unless the Unix account already exists.
+Te kroki należy powtórzyć dla każdego nowego użytkownika Samby. Jeśli chcemy aby
+już istniejące konto uniksowe działało w Sambie, należy pamiętać o dodaniu nazwy
+użytkownika i hasła do pliku <path>smbpasswd</path>. Jeśli dodajemy użytkownika,
+który istnieje tylko w systemie Windows, powinniśmy pamiętać, że oprócz dodania
+go do pliku <path>smbpasswd</path> musimy także dodać konto uniksowe o
+identycznej nazwie użytkownika. Co więcej, konto uniksowe musimy utworzyć jako
+pierwsze, ponieważ dodanie użytkownika do pliku <path>smbpasswd</path> nie
+będzie możliwe, jeśli konto nie będzie już istniało.
 </p>
 
 <p>
-Both accounts are needed because Samba uses the Unix account to set the proper
-permissions on disk, while the <path>smbpasswd</path> file is used for
-authentication purposes. If you are going to connect from Windows NT, you'll
-want to create a Samba "administrator" user.
+Konieczne jest istnienie obu kont, ponieważ Samba wykorzystuje konto uniksowe do
+sprawdzania uprawnień dostępu do plików na dysku, natomiast plik
+<path>smbpasswd</path> jest wykorzystywany do uwierzytelniania. Jeśli będziemy
+łączyć się z systemu Windows NT, powinniśmy dodać użytkownika o nazwie
+"administrator".
 </p>
 
 </body>
 </section>
 <section>
-<title>Final server configuration</title>
+<title>Ostateczna konfiguracja sewera</title>
 <body>
 
 <p>
-We're almost ready to start Samba and configure the client machines.  But you
-must first make sure that your Samba box can ping every Windows client machine
-on your network, by name. If this doesn't work, you'll need to add some entries
-to <path>/etc/hosts</path> or update your DNS so that your Samba box can
-properly find your Windows machines.
+Jesteśmy już prawie gotowi do uruchomienia Samby i konfigurowania komputerów
+klienckich. Najpierw jednak musimy upewnić się, czy komputer z Sambą jest w
+stanie pingować każdy komputer z Windowsem w sieci, posługując się jego nazwą.
+Jeśli tak nie jest, konieczne będzie dodanie odpowiednich wpisów do pliku
+<path>/etc/hosts</path> lub uaktualnić naszą usługę DNS.
 </p>
 
 <p>
-It is also helpful to note that Samba works best when <path>/etc/hosts</path> is
-set up so that only the "localhost" name maps to 127.0.0.1. The FQDN of your
-machine should map to the primary IP address used on your LAN. For example:
+Warto też zaznaczyć, że Samba działa najlepiej gdy w pliku
+<path>/etc/hosts</path> do adresu 127.0.0.1 przypisana jest tylko nazwa
+"localhost". Wpis FQDN dla naszego komputera powinien być przypisany do głównego
+adresu IP używanego w naszej sieci LAN. Na przykład:
 </p>
 
 <pre caption="/etc/hosts">
-<comment>/etc/hosts excerpt</comment>
+<comment>fragment pliku /etc/hosts</comment>
 
 127.0.0.1       localhost 
-192.168.1.1   mybox mybox.mydomain.com
+192.168.1.1   mójkomputer mójkomputer.mojadomena.com
 </pre>
 
 </body>
 </section>
 <section>
-<title>Starting Samba</title>
+<title>Uruchamianie Samby</title>
 <body>
 
 <p>
-Samba is now configured and ready to go. We'll start Samba and then focus on
-configuring the Windows machines properly. To start Samba, type the following as
-root:
+Samba jest już skonfigurowana i gotowa do pracy. Uruchomimy ją i skupimy się na
+prawidłowej konfiguracji komputerów z systemem Windows. Aby uruchomić Sambę,
+jako root wydajmy następujące polecenia:
 </p>
 
-<pre caption="Starting Samba">
+<pre caption="Uruchamianie Samby">
 # <i>smbd</i>
 # <i>nmbd</i>
 </pre>
