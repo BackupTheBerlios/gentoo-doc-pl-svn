@@ -13,11 +13,11 @@
   <mail link="greg_g@gentoo.org">Gregorio Guidi</mail>
 </author>
 <author title="Tłumaczenie">
-        <mail link="edi15ta@gazeta.pl">Mateusz Kotyrba</mail>
+  <mail link="edi15ta@gazeta.pl">Mateusz Kotyrba</mail>
 </author>
 
 <abstract>
-Ten dokument wyjaśnia czym jest udev i jak go można używać, aby sprostał
+Ten dokument wyjaśnia czym jest udev oraz opisuje jak go używać, aby sprostał
 naszym wymaganiom.
 </abstract>
 
@@ -37,10 +37,10 @@ naszym wymaganiom.
 <p>
 Kiedy użytkownicy Linuksa rozmawiają o ich sprzęcie w pobliżu ludzi, którzy
 wierzą, że Linux jest pewnego rodzaju wirusem lub gatunkiem kawy, użycie słów
-"ukosnik dev ukośnik cośtam" spowoduje, że zaczną się oni dziwnie na nich
+"ukośnik dev ukośnik cośtam" spowoduje, że zaczną się oni dziwnie na nich
 patrzeć. Ale szczęśliwy użytkownik (i to jesteśmy my) używając
 <path>/dev/hda1</path> skrótowo wyjaśnia, że rozmowa tyczy się pierwszej
-partycji na dysku, który jest podpięty jako primary master. Czy nie mam racji?
+partycji dysku, który jest podpięty jako primary master. Czy nie mam racji?
 </p>
 
 <p>
@@ -52,17 +52,17 @@ ale jest to wada projektu.
 </p>
 
 <p>
-Pomyślmy o urządzeniach typu hotplug takich jak USB, IEEE1394, PCI,... Co jest
-pierwszym urządzeniem? I na jak długo? Jak będą inne urządzenia nazwane, kiedy
-to pierwsze zninknie? Jaki to będzie miało wpływ na inne procesy?  Czyż nie
-byłoby to zabawne gdyby zadanie do drukowania zostało nagle przeniesione z
-naszej nowiutkiej drukarki laserowej do naszej zrupieciałej drukarki mozaikowej,
-ponieważ mama zdecydowała się wyciągnąć wtyczkę drukarki laserowej z kontaktu,
-która była pierwszą drukarką?
+Pomyślmy o urządzeniach podłączanych podczas pracy takich jak USB, IEEE1394,
+PCI,... Co jest pierwszym urządzeniem? I na jak długo? Jak będą inne urządzenia
+nazwane, kiedy to pierwsze zniknie? Jaki to będzie miało wpływ na inne procesy?
+Czyż nie byłoby to zabawne gdyby zadanie do drukowania zostało nagle
+przeniesione z naszej nowiutkiej drukarki laserowej do naszej zrupieciałej
+drukarki mozaikowej, ponieważ mama zdecydowała się wyciągnąć wtyczkę drukarki
+laserowej, która była pierwszą drukarką, z kontaktu?
 </p>
 
 <p>
-Wchodzimy do <e>udev</e>. Głównymi cele projektu udev są zarówno ciekawe jak i
+Wchodzimy do <e>udev</e>. Główne cele projektu udev są zarówno ciekawe jak i
 konieczne:
 </p>
 
@@ -85,8 +85,8 @@ Aby dostarczyć te cechy, udev jest rozwijany w trzech odrębnych projektach:
 <body>
 
 <p>
-Namedev pozwala nam zdefiniować odrębne nazewnictwo od programu udev. To pozwala
-na elastyczne polityki i schematy nazewnictwa rozwijane przez odrębne jednostki.
+Namedev pozwala zdefiniować odrębne nazewnictwo niż te w udev. To pozwala na
+elastyczne polityki i schematy nazewnictwa rozwijane przez odrębne jednostki.
 Ten podsystem nazewnictwa urządzeń dostarcza standardowego interfejsu, którego
 może używać udev.
 </p>
@@ -99,8 +99,9 @@ większości użytkowników Linuksa.
 
 <p>
 Namedev używa pięciostopniowej procedury pozyskiwania nazwy urządzenia. Jeśli
-nazwa urządzenia zostanie znalziona w tych pięciu krokach, wtedy ta nazwa
-zostaje użyta. Są nimi
+nazwa urządzenia zostanie znaleziona w tych pięciu krokach, wtedy zostanie ona
+użyta. Są nimi
+
 </p>
 
 <ul>
@@ -119,18 +120,18 @@ zostaje użyta. Są nimi
 </p>
 
 <p>
-Krok <e>numer urządzenia magistrali</e> sprawdza numer urządzenia magistrali. W
-środowisku  step checks the device bus number. Dla systemów, które nie mają
-możliwości podłączania urządzeń w trakcie pracy, ten krok jest wystarczający.
-Na przykład numery magistrali bardzo rzadko są zmieniane. Ponownie jeśli namedev
-znajdzie odpowiednią nazwę wtedy zostanie ona użyta. 
+Krok <e>numer urządzenia magistrali</e> sprawdza numer urządzenia magistrali.
+Dla systemów, które nie mają możliwości podłączania urządzeń w trakcie pracy,
+ten krok jest wystarczający.  Ponieważ numery magistrali bardzo rzadko są
+zmieniane. Ponownie jeśli namedev znajdzie odpowiednią nazwę wtedy zostanie ona
+użyta. 
 </p>
 
 <p>
 Podobnie krok <e>topologia magistrali</e> jest statycznym sposobem
-przydzielania nazw, po warunkiem, że użytkownik nie zamieni urządzeń. Jeśli
-pozycja urządzenia będzie zgodna z tym co podał użytkownik, wtedy nazwa temu
-towarzysząca zostanie użyta.
+przydzielania nazw, pod warunkiem, że użytkownik nie zamieni urządzeń. Jeśli
+pozycja urządzenia będzie zgodna z tym co podał użytkownik, wtedy towarzysząca
+temu nazwa zostanie użyta.
 </p>
 
 <p>
@@ -187,7 +188,7 @@ dane przez jądro do aplikacji udev, która wykona wymagane czyności na struktu
 udev został stworzony do pracy wraz jądrem 2.6 (na przykład
 <c>vanilla-sources</c> lub <c>gentoo-sources</c> w domyślnym profilu 2005.0).
 Jeśli używamy takiego jądra, wtedy należy się upewnić, że posiadamy najnowszą
-wersj pakietu <c>sys-apps/baselayout</c>.
+wersję pakietu <c>sys-apps/baselayout</c>.
 </p>
 
 <pre caption="Instalacja udev">
@@ -197,7 +198,7 @@ wersj pakietu <c>sys-apps/baselayout</c>.
 <p>
 udev, jako jedną ze swoich zależności, zainstaluje <c>hotplug-base</c>.
 Instalacja <c>hotplug</c> nie jest wymagana dopóki nie będziemy chcieli mieć
-automatycznie załadowanych modułów po podpięciu dowolnego urządzenia.
+automatycznie ładowanych modułów po podpięciu dowolnego urządzenia.
 <c>hotplug</c> zarządza również zautomatyzowanym uruchamianiem urządzeń
 sieciowych oraz ściąganiem oprogramowania sieciowego.
 </p>
@@ -207,8 +208,8 @@ sieciowych oraz ściąganiem oprogramowania sieciowego.
 </pre>
 
 <p>
-If you want modules loaded for devices that have been plugged in before you
-boot, use the coldplug package:
+Jeśli chcielibyśmy automatycznie załadować moduły dla urządzeń, które
+podłączyliśmy przed uruchomieniem komputera, wtedy należy użyć pakietu coldplug:
 </p>
 
 <pre caption="Instalacja pakietu coldplug">
@@ -225,8 +226,8 @@ Nie należy zapomnieć o dodaniu <c>coldplug</c> do poziomu uruchamiania o nazwi
 </pre>
 
 <p>
-Użytkownicy korzystający z ręcznie kompilowanego jądra muszą włączyć następujące
-opcje:
+Użytkownicy korzystający z ręcznie skompilowanego jądra muszą włączyć
+następujące opcje:
 </p>
 
 <pre caption="Wymagane opcje jądra">
@@ -265,8 +266,8 @@ prawidłowego uruchomienia systemu.
 <body>
 
 <p>
-Jeśli chcemy, aby poprawki dodane przez deweloperów Gentoo ułtwiły nam życie
-wtedy należy ominąć ten rożdział. Gentoo będzie używał udev, ale katalog 
+Jeśli chcemy, aby poprawki dodane przez deweloperów Gentoo ułatwiły nam życie
+wtedy należy ominąć ten rozdział. Gentoo będzie używał udev, ale katalog 
 <path>/dev</path> będzie statyczny, żebyśmy nigdy nie doświadczyli braku
 jakiegokolwiek węzła urządzenia. W tym wariancie skrypty Gentoo nie uruchomią
 demona devfs i zdezaktywują devfs podczas uruchamiania systemu.
@@ -274,13 +275,13 @@ demona devfs i zdezaktywują devfs podczas uruchamiania systemu.
 
 <p>
 Jeśli jesteśmy twardzi i chcemy, aby nasz system używał tylko i wyłącznie udev
-(włączając w to brakujące węzły urządzeń spowodowne przez brak wsparcia ze
-strony udev), wteyd anleży czytać dalej.
+(mogą pojawić się brakujące węzły urządzeń spowodowane przez brak wsparcia ze
+strony udev), wtedy należy czytać dalej.
 </p>
 <p>
 Zdezaktywujemy reguły, które zachowują węzły urządzeń do pliku: edytujemy
-zmienną <c>RC_DEVICE_TARBALL</c> w <path>/etc/conf.d/rc</path> i ustawiamy ją na <c>no</c>:
-</p>
+zmienną <c>RC_DEVICE_TARBALL</c> w <path>/etc/conf.d/rc</path> i ustawiamy ją na
+<c>no</c>: </p>
 
 <pre caption="/etc/conf.d/rc">
 RC_DEVICE_TARBALL="no"
@@ -288,8 +289,8 @@ RC_DEVICE_TARBALL="no"
 
 <p>
 Jeśli włączyliśmy w jądrze wsparcie dla devfs, możemy je wyłączyć dopisując do
-paramterów jądra w pliku konfiguracyjnym bootloadera: <c>gentoo=nodevfs</c>.
-Jeśli chcemy używać devfs i zdgqezaktywować udev, wtedy jako parametr jądra
+parametrów jądra w pliku konfiguracyjnym bootloadera: <c>gentoo=nodevfs</c>.
+Jeśli chcemy używać devfs i zdezaktywować udev, wtedy jako parametr jądra
 dodajemy <c>gentoo=noudev</c>.
 </p>
 
@@ -304,18 +305,15 @@ dodajemy <c>gentoo=noudev</c>.
 <body>
 
 <p>
-If you can't boot successfully because you get an error about
-<path>/dev/null</path> not found, or because the initial console is missing,
-the
-problem is that you lack some device files that must be available
-<e>before</e>
-<path>/dev</path> is mounted and handled by udev. This is common on Gentoo
-machines installed from old media.
+Jeśli nie potrafimy pomyślnie zakończyć procesu uruchamiania systemu ponieważ
+wyskakuje nam błąd o nie znalezieniu <path>/dev/null</path> lub ponieważ brakuje
+konsoli startowej, wtedy problemem jest brak pewnych plików urządzeń, które
+musza być dostępne <e>przed</e> zamontowaniem katalogu <path>/dev</path>.
 </p>
 
 <p>
 Jeśli posiadamy <c>sys-apps/baselayout-1.8.12</c> lub nowszy, wtedy ten problem
-jest złaodzony ponieważ proces uruchamiania systemu powinien zakończyć się
+jest złagodzony ponieważ proces uruchamiania systemu powinien zakończyć się
 powodzeniem. Jednakże, aby pozbyć się tych denerwujących ostrzeżeń, należy
 stworzyć brakujące węzły urządzeń tak jak jest to przedstawione poniżej.
 </p>
@@ -334,9 +332,9 @@ stworzyć brakujące węzły urządzeń tak jak jest to przedstawione poniżej.
 </pre>
 
 <p>
-Urządzenia wymagane do pomyślnego załadowania sytemu są umieszczone w
-<path>/dev/null</path> w <path>/dev/console</path>. Jeśli się nie pojawiły, to
-należy je stworzyć ręcznie. Będąc w katalogu <path>test/dev/</path> należy
+Urządzenia wymagane do pomyślnego załadowania systemu są umieszczone w
+<path>/dev/null</path> oraz w <path>/dev/console</path>. Jeśli się nie pojawiły,
+to należy je stworzyć ręcznie. Będąc w katalogu <path>test/dev/</path> należy
 wykonać:
 </p>
 
@@ -349,7 +347,7 @@ wykonać:
 Kiedy skończymy nie należy zapomnieć o odmontowaniu katalogu <path>test/</path>:
 </p>
 
-<pre caption="Odmontowywanie katalogu test/ ">
+<pre caption="Odmontowywanie katalogu test/">
 # <i>cd ../..</i>
 # <i>umount test</i>
 # <i>rmdir test</i>
@@ -363,7 +361,7 @@ Kiedy skończymy nie należy zapomnieć o odmontowaniu katalogu <path>test/</pat
 
 <p>
 Jeśli używamy odpowiednich sterowników nVidii, ale serwer X nie uruchamia się,
-wtedy należy upewnić sięm, że mamy:
+wtedy należy upewnić się, że mamy:
 </p>
 
 <ul>
@@ -374,7 +372,7 @@ wtedy należy upewnić sięm, że mamy:
     wersję <c>nvidia-kernel</c> równą lub wyższą
     <c>media-video/nvidia-kernel-1.0.5336-r2</c> </li>
   <li>
-    wersję baselayout równą lub większą <c>sys-apps/baselayout-1.8.12</c>
+    wersję baselayout równą lub wyższą <c>sys-apps/baselayout-1.8.12</c>
     </li> 
  </ul>
 
@@ -439,9 +437,9 @@ oraz o konfiguracji plików bootloadera
 
 <p>
 To samo zdarza się The same happens with all-round symlinks that used to exist w
-katalogu <path>/dev</path>, such as <path>/dev/mouse</path>, których <c>udev</c>
-już nie tworzy. Należy się upewnić, że w pliku konfiguracyjnym X-ów posiadamy
-odpowiednie ustawienia.
+katalogu <path>/dev</path>, takie jak <path>/dev/mouse</path>, których
+<c>udev</c> już nie tworzy. Należy się upewnić, że w pliku konfiguracyjnym X-ów
+posiadamy odpowiednie ustawienia.
 </p>
 
 </body>
