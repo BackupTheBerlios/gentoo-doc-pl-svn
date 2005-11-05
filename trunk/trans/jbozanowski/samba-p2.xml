@@ -16,7 +16,7 @@
 </author> -->
 
 <abstract>
-W poprzednim artykule Daniel wprowadził nas w możliwości Samby. Teraz nadszedł
+W poprzednim artykule Daniel ukazał nam możliwości Samby. Teraz nadszedł
 czas na jej instalację i konfigurację na naszym komputerze. W niniejszym
 artykule autor poprowadzi nas przez proces kompilacji, instalacji i początkowej
 konfiguracji Samby (w wersji 2.0.7) aby poprawnie funkcjonowała w naszym własnym
@@ -47,11 +47,11 @@ artykułu).
 Będziemy instalować Sambę od podstaw ze źródeł, równie dobrze jednak możemy to
 zrobić za pomocą menadżera pakietów naszej dystrybucji (na przykład RPM).
 Wówczas, jak już wspomniałem w poprzednim artykule, położenia niektórych plików
-mogą się różnić z opisanymi tutaj.
+mogą się różnić w stosunku do opisanych tutaj.
 </note>
 
 <p>
-Po pobraniu Samby w wersji 2.0.7 lub nowszej. czas rozpakować źródła do dowolnego
+Po pobraniu Samby w wersji 2.0.7 lub nowszej czas rozpakować źródła do dowolnego
 katalogu. Wydajmy następujące polecenie w wierszu poleceń:
 </p>
 
@@ -65,7 +65,7 @@ poleceniem <c>cd</c> i rozejrzyjmy się. Przede wszystkim należy zwrócić uwag
 katalog docs. Wewnątrz znajdziemy podkatalog o nazwie <path>textdocs</path>,
 który zawiera sporą część dokumentacji Samby. Jednym z najważniejszych plików,
 jakie można w nim znaleźć to DIAGNOSIS.txt. Poprowadzi on nas przez proces
-diagnozy ewentualnych problemów z Sambą. Omówimy część z opisanych w nim
+diagnozy ewentualnych problemów z Sambą. Później omówimy część z opisanych w nim
 procedur.
 </p>
 
@@ -77,7 +77,7 @@ procedur.
 
 <p>
 Zauważmy też katalog o nazwie <path>sources</path> w głównym katalogu
-<path>samba-2.0.7</path>. Wewnątrz znajdziemy dobrze napisany skrypt configure,
+<path>samba-2.0.7</path>. Wewnątrz znajdziemy skrypt configure,
 stworzony z myślą o poprawnym utworzeniu wszystkich plików Makefile. Jak w
 przypadku każdego innego skryptu configure, listę opcji konfiguracji uzyskujemy
 pisząc:
@@ -88,8 +88,8 @@ $ <i>./configure --help</i>
 </pre>
 
 <p>
-Najlepiej będzie przekierować wyjście do polecenia <c>more</c> aby móc przejrzeć
-wszystkie opcje:
+Aby przejrzeć wszytkie opcje, najlepiej przekierować wyjście do polecenia
+<c>more</c>:
 </p>
 
 <pre caption="Więcej opcji">
@@ -111,14 +111,15 @@ $ <i>./configure --prefix=/usr/local --localstatedir=/var/log --sysconfdir=/etc<
 <p>
 Powyższe opcje spowodują instalację domyślnego drzewa katalogów Samby do
 katalogu <path>/usr/local</path>, z wyjątkiem plików konfiguracyjnych, które
-znajdą się w katalogu <path>/etc</path>, oraz logów, których Samba spodziewa się
-w katalogu <path>/var/log</path>. Jeśli pominiemy powyższe opcje, wszystkie te
-katalogi znajdą się w drzewie <path>/usr/local/samba</path>
+znajdą się w katalogu <path>/etc</path>, oraz logów, których Samba będzie
+spodziewać się w katalogu <path>/var/log</path>. Jeśli pominiemy powyższe opcje,
+wszystkie te katalogi znajdą się w drzewie <path>/usr/local/samba</path>
 (<path>/usr/local/samba/var</path>, <path>/usr/local/samba/etc</path>, itd.).
 </p>
 
 <p>
-Nadszedł czas na kompilację. Po uruchomieniu skryptu <c>configure</c> napiszmy:
+Nadszedł czas na kompilację. Gdy skrypt <c>configure</c> skończy pracę,
+napiszmy:
 </p>
 
 <pre caption="Kompilacja Samby">
@@ -142,7 +143,7 @@ polecenie jako użytkownik root:
 
 <p>
 W większości sytuacji konfigurowanie Samby sprowadza się do edycji pliku
-<path>smb.conf</path>, jako że jest to główny plik konfiguracyjny Samby. Posiada on
+<path>smb.conf</path>, ponieważ jest to jej główny plik konfiguracyjny. Posiada on
 wiele różnych opcji, dlatego aby uniknąć zamieszania zaczniemy jedynie od tych,
 które są niezbędne do poprawnego działania oprogramowania. Przede wszytkim
 musimy dowiedzieć się gdzie powinniśmy umieścić plik <path>smb.conf</path>.
@@ -183,19 +184,18 @@ bezpieczeństwa Samby, ponieważ najlepiej odpowiada większości scenariuszy
 udostępniania plików. Dostępne są jednakże inne tryby. W jednym z nich Samba
 uwierzytelnia użytkowników na podstawie bazy danych bezpieczeństwa z istniejącej
 instalacji Windows NT lub 2000 Server. Nie będziemy jednak omawiać go w tym
-artykule. Więcej informacji na jego temat można znaleźć w FIXME (rzeczywiście
-chodzi o man?) sekcji "security" podręcznika systemowego man do pliku
-<path>smb.conf</path>.
+artykule. Więcej informacji na jego temat można znaleźć w sekcji "security"
+podręcznika systemowego man do pliku <path>smb.conf</path>.
 </p>
 
 <p>
-Kolej na czwartą linijkę. W tym miejscu instruujemy Sambę aby wymiana haseł
-odbywała się w trybie szyfrowanym. Z tej opcji należy korzystać w każdej
+Kolej na czwartą linijkę. W tym miejscu konfigurujemy Sambę tak, aby wymiana
+haseł odbywała się w trybie szyfrowanym. Z tej opcji należy korzystać w każdej
 sytuacji, z wyjątkiem gdy wszystkie nasze komputery są bardzo stare (na przykład
 z systemami z czasów Windows for Workgroups). Włączenie szyfrowanych haseł
-powoduje, że Samba oprócz standardowej uniksowej bazy danych passwd
-potrzebuje własnego pliku z hasłami. Nie należy jednak sądzić, że wyłączenie tej
-opcji ułatwi nam życie, gdyż będziemy musieli zajmować się tylko jednym plikiem.
+powoduje, że Samba oprócz standardowej uniksowej bazy danych passwd potrzebuje
+własnego pliku z hasłami. Nie należy jednak sądzić, że wyłączenie tej opcji
+ułatwi nam życie, gdyż będziemy musieli zajmować się tylko jednym plikiem.
 Wyłączenie szyfrowanych haseł spowoduje problemy z udostępnianiem zasobów nawet
 pod relatywnie starymi systemami Windows NT 4.0 (nie wspominając o Windows
 2000). Samba dostarcza nam wiele sposobów na synchronizowanie obu baz danych,
@@ -213,8 +213,8 @@ domyślną powłokę systemową).
 </p>
 
 <p>
-Teraz można już dodać obsługę WINS w pliku <path>smb.conf</path>. W tym celu
-należy dodać jedną z poniższych dwóch linijek w sekcji "global":
+Teraz można już dodać obsługę WINS. W tym celu należy dodać jedną z poniższych
+linijek w sekcji "global" pliku <path>smb.conf</path>.
 </p>
 
 <pre caption="Obsługa WINS">
@@ -496,150 +496,161 @@ jako root wydajmy następujące polecenia:
 </pre>
 
 <p>
-This will start Samba's two main server processes, <c>smbd</c> and <c>nmbd</c>.
-They will log any informational and error messages to
-<path>/var/log/log.smb</path> and <path>/var/log/log.nmb</path>, respectively.
-Now that the Unix side is up and running, it's time to turn to the client
-machines and get them set up properly.
+Uruchomi to dwa główne procesy Samby, <c>smbd</c> i <c>nmbd</c>. Będą one
+logować wszelkie komunikaty informacyjne i komunikaty błędów odpowiednio do
+plików <path>/var/log/log.smb</path> i <path>/var/log/log.nmb</path>. Teraz
+skoro część uniksowa działa, czas zająć się klientami i prawidłowo je
+skonfigurować.
 </p>
 
 </body>
 </section>
 <section>
-<title>Configuring client machines</title>
+<title>Konfigurowanie komputerów klienckich</title>
 <body>
 
 <p>
-To configure a Windows machine so that it can participate in your Samba
-Workgroup, you'll need to make sure the TCP/IP protocol is properly configured.
-You must also make sure that:
+Aby skonfigurować komputer z systemem Windows w celu korzystania z naszej Grupy
+Roboczej z Samby, należy upewnić się, że protokół TCP/IP został na nich
+prawidłowo skonfigurowany. Powinniśmy także upewnić się, że:
 </p>
 
 <ol>
   <li>
-    Your Windows machine can ping your Unix machine by name. (Type <c>ping
-    myserver</c> at the C:\&gt; prompt.)
+    Możliwe jest pingowanie serwera uniksowego spod Windows przy użyciu jego 
+    nazwy (pisząc w wierszu poleceń C:\&gt; <c>ping mójserwer</c>).
   </li>
   <li>
-    Your Windows machine is configured to use a WINS server. If Samba is
-    providing WINS services, this should be set to the IP of your Samba box. If
-    not, it should be set to the IP of a valid WINS server. This setting is
-    normally found inside the TCP/IP settings dialog.
+    Nasz komputer z systemem Windows został skonfigurowany do korzystania z
+    serwera WINS. Jeśli Samba pełni rolę takiego serwera, należy podać w
+    konfiguracji adres IP serwera Samby. Jeśli nie, należy podać adres IP
+    działającego serwera WINS. Zwykle konfiguruje się to w oknie ustawień
+    TCP/IP.
   </li>
-  <li>Your Windows machine is a member of YOURWORKGROUP.</li>
+  <li>
+    Nasz komputer z systemem Windows należy do grupy roboczej
+    NASZAGRUPAROBOCZA.
+  </li>
 </ol>
 
 </body>
 </section>
 <section>
-<title>Testing it out</title>
+<title>Testowanie</title>
 <body>
 
 <p>
-Now is the moment of truth. After your Windows machines have finished rebooting,
-you'll need to log on to Windows using a username/password that will be accepted
-by Samba. If you're using Windows 95/98, this username/password combo will be
-simply stored in a file and used later when you try to connect to any network
-resource.
+Nadeszła chwila prawdy. Gdy tylko komputery z systemem Windows zakończą proces
+ponownego uruchamiania się, zalogujmy się do nich, używając nazwy użytkownika i
+hasła, które zostaną zaakceptowane przez Sambę. Jeśli korzystamy z systemów
+Windows 95/98, dane połączenie nazwy użytkownika i hasła zostaną przechowane w
+pliku i wykorzystane później, gdy będziemy chcieli połączyć się z jakimś zasobem
+sieciowym.
 </p>
 
 <p>
-If you are using Windows NT Workstation, this username/password combo must also
-be in the NT's local security database (otherwise you won't be able to initially
-log in to NT). To do this, log on to NT as administrator and create the account
-using User Manager. Afterwards, log out and log in as the new user.
+Jeśli zaś korzystamy z systemu Windows NT Workstation, para nazwy użytkownika i
+hasło muszą istnieć także w lokalnej bazie danych bezpieczeństwa, inaczej nie
+będziemy mogli się zalogować do systemu. Jeśli tak nie jest, musimy zalogować
+się jako administrator i utworzyć konto za pomocą FIXME (User Manager) Menadżera
+Użytkowników. Następnie powinniśmy się wylogować i zalogować się ponownie jako
+nowoutworzony użytkownik.
 </p>
 
 <p>
-After you've properly logged in, double-click on the Network Neighborhood and
-take a look at the YOURWORKGROUP workgroup. Look inside. See if your Samba
-server is listed. Double-click on it and see if the <path>/tmp</path> share is
-listed. If so, congratulations!  Samba is working! If not, here are some things
-to check:
+Po prawidłowym zalogowaniu kliknijmy dwukrotnie na Otoczeniu Sieciowym i
+zajrzyjmy do grupy roboczej o nazwie NASZAGRUPAROBOCZA. Sprawdźmy czy znajduje się w
+niej nasz serwer Samby. Kliknijmy dwukrotnie na nim i zobaczmy czy widać zasób
+<path>/tmp</path>. Jeśli tak, to gratuluję, Samba działa! Jeśli nie, oto co
+możemy zrobić:
 </p>
 
 <ol>
   <li>
-    Run <c>testparm</c>. Is your <path>smb.conf</path> OK? If not, fix the
-    problem and restart Samba.
+    Spróbujmy uruchomić program <c>testparm</c>. Czy z plikiem
+    <path>smb.conf</path> jest wszystko w porządku? Jeśli nie, to należy
+    poprawić błędy i uruchomić ponownie Sambę.
   </li>
   <li>
-    Are <c>smbd</c> and <c>nmbd</c> running? If not, check the log files for
-    possible errors, correct any issues, and restart <c>smbd</c> and
-    <c>nmbd</c>.
+    Czy działają procesy <c>smbd</c> i <c>nmbd</c>? Jeśli nie, przejrzyjmy logi
+    pod kątem błędów, poprawmy ewentualne problemy i zrestartujmy procesy
+    <c>smbd</c> i <c>nmbd</c>.
   </li>
   <li>
-    Did you configure your Windows client machines to use a proper WINS server?
-    If not, they will have problems looking up the IP addresses of machines on
-    your network.
+    Czy skonfigurowaliśmy komputery z systemem Windows w celu używania
+    odpowiedniego serwera WINS? Jeśli nie, nie będą one potrafiły odczytać
+    adresów IP komputerów w naszej sieci.
   </li>
   <li>
-    Can you ping the Unix machine from Windows and vice-versa? If not, you'll
-    need to configure your <path>/etc/hosts</path> file or DNS so that name
-    resolution is working properly.
+    Czy możliwe jest pingowanie komputerów z systemem Unix spod Windows i
+    odwrotnie? Jeśli nie, powinniśmy skonfigurować plik <path>/etc/hosts</path>
+    lub serwer DNS aby poprawnie działała translacja nazw.
   </li>
 </ol>
 
 <p>
-If all these things check out and Samba is still not working, carefully follow
-each step in the DIAGNOSIS.txt file found in the <path>docs/textdocs</path>
-directory. You should be able to pinpoint and fix your configuration or network
-problem within minutes. If you change <path>smb.conf</path> in any way, you'll
-need to send <c>smbd</c> and <c>nmbd</c> a HUP signal to force them to reread
-<path>smb.conf</path>. This is done as follows:
+Jeśli wszystko to się zgadza, ale Samba nadal nie działa, należy uważnie
+przeczytać każdy krok wyszczególniony w pliku DIAGNOSIS.txt, który znajduje się
+w katalogu <path>docs/textdocs</path>. Powinniśmy w krótkim czasie odnaleźć i
+rozwiązać problem z konfiguracją lub z siecią. Pamiętajmy jednak, że jeśli
+choć nieznacznie zmodyfikujemy zawartość pliku <path>smb.conf</path>, powinniśmy
+wysłać procesom <c>smbd</c> i <c>nmbd</c> wysłać sygnał HUP, aby zmusić je do
+ponownego odczytania tego pliku. Dokonamy tego w następujący sposób:
 </p>
 
-<pre caption="Troubleshooting">
-# <i>kill -hup &lt;pid of smbd&gt;</i>
-# <i>kill -hup &lt;pid of nmbd&gt;</i>
+<pre caption="Rozwiązywanie problemów">
+# <i>kill -hup &lt;pid procesu smbd&gt;</i>
+# <i>kill -hup &lt;pid procesu nmbd&gt;</i>
 </pre>
 
 <p>
-Alternately, you can simply kill <c>smbd</c> and <c>nmbd</c> and restart them
-again.
+Innym sposobem będzie zabicie procesów <c>smbd</c> i <c>nmbd</c> i uruchomienie
+ich ponownie.
 </p>
 
 </body>
 </section>
 <section>
-<title>Next time</title>
+<title>W następnym odcinku</title>
 <body>
 
 <p>
-In my <uri link="/doc/en/articles/samba-p3.xml">next Samba article</uri> I'll
-familiarize you with Samba's more advanced options. Then you'll be able to set
-up shares that function exactly the way you want them to. We'll also look at
-several advanced features of Samba, like Samba printing. I'll see you then!
+W <uri link="/doc/en/articles/samba-p3.xml">kolejnym artykule o Sambie</uri>
+mojego autorstwa przybliżę bardziej zaawansowane opcje Samby. Wówczas będziemy
+potrafili skonfigurować zasoby dzielone dokładnie tak jak chcemy. Przyjrzymy
+się też kilku zaawansowanym funkcjom, jak na przykład drukowaniu przez Sambę. Do
+zobaczenia w następnym odcinku!
 </p>
 
 </body>
 </section>
 <section id="resources">
-<title>Resources</title>
+<title>Zasoby</title>
 <body>
 
 <ul>
-  <li>The main <uri link="http://fi.samba.org">Samba</uri> web site</li>
+  <li>Strona główna <uri link="http://fi.samba.org">Samby</uri>.</li>
   <li>
-    <uri link="http://www.kampsax.dtu.dk/~rask/Samba/mailinglist/">Amiga
-    Samba</uri> mailing list
+    Lista dyskusyjna <uri
+    link="http://www.kampsax.dtu.dk/~rask/Samba/mailinglist/">Amiga Samba</uri>.
   </li>
-  <li><uri link="http://linuxguy.net/samba.htm">Samba</uri> by Ed Weinberg</li>
+  <li><uri link="http://linuxguy.net/samba.htm">Samba</uri> według Eda 
+      Weinberga</li>.
   <li>
-    <uri link="http://www.amazon.com/exec/obidos/ASIN/0672318628/">Samba
-    Unleashed</uri>>, by Steve Litt, with contributions from Daniel Robbins
-  </li>
-  <li>
-    <uri link="http://www.oreilly.com/catalog/samba/">Using Samba</uri>
-    (O'Reilly Publishing; 1999)
+    Książka <uri link="http://www.amazon.com/exec/obidos/ASIN/0672318628/">Samba
+    Unleashed</uri>>. Autor: Steve Litt, współautor: Daniel Robbins.
   </li>
   <li>
-    <uri link="http://www.mdb.ku.dk/tarvin/samba/">Samba Notes</uri> on Samba
-    and Redhat
+    Książka <uri link="http://www.oreilly.com/catalog/samba/">Using Samba</uri>
+    (Wydawnictwo O'Reilly Publishing; 1999).
   </li>
   <li>
-    The <uri link="http://fi.samba.org/docs/swat_ssl.html">SWAT</uri> main
-    page
+    <uri link="http://www.mdb.ku.dk/tarvin/samba/">Samba Notes</uri> o Sambie i
+    dystrybucji RedHat.
+  </li>
+  <li>
+    Strona główna narzędzia <uri
+    link="http://fi.samba.org/docs/swat_ssl.html">SWAT</uri>. 
   </li>
 </ul>
 
