@@ -171,7 +171,7 @@ sterują ogólnym zachowaniem Samby.
 
 <p>
 Druga linijka podaje Sambie nazwę grupy roboczej, którą ma utworzyć. Należy
-zamienić NASZAGRUPAROBOCZA właściwą dla nas nazwą.
+zastąpić NASZAGRUPAROBOCZA właściwą dla nas nazwą.
 </p>
 
 <p>
@@ -191,14 +191,14 @@ podręcznika systemowego man do pliku <path>smb.conf</path>.
 <p>
 Kolej na czwartą linijkę. W tym miejscu konfigurujemy Sambę tak, aby wymiana
 haseł odbywała się w trybie szyfrowanym. Z tej opcji należy korzystać w każdej
-sytuacji, z wyjątkiem gdy wszystkie nasze komputery są bardzo stare (na przykład
+sytuacji, chyba że wszystkie nasze komputery są bardzo stare (na przykład
 z systemami z czasów Windows for Workgroups). Włączenie szyfrowanych haseł
 powoduje, że Samba oprócz standardowej uniksowej bazy danych passwd potrzebuje
 własnego pliku z hasłami. Nie należy jednak sądzić, że wyłączenie tej opcji
-ułatwi nam życie, gdyż będziemy musieli zajmować się tylko jednym plikiem.
+ułatwi nam życie, ponieważ będziemy musieli zajmować się tylko jednym plikiem.
 Wyłączenie szyfrowanych haseł spowoduje problemy z udostępnianiem zasobów nawet
-pod relatywnie starymi systemami Windows NT 4.0 (nie wspominając o Windows
-2000). Samba dostarcza nam wiele sposobów na synchronizowanie obu baz danych,
+pod relatywnie starymi systemami Windows NT 4.0, nie wspominając o Windows
+2000. Samba dostarcza nam wiele sposobów na synchronizowanie obu baz danych,
 jeśli nie chcemy się opiekować nimi osobno. Jest to zdecydowanie lepsze
 rozwiązanie niż wyłączanie szyfrowania.
 </p>
@@ -247,7 +247,7 @@ LAN.
 Być może zadajemy sobie pytanie jaką funkcję pełni serwer WINS. Ogólnie rzecz
 biorąc jest to lokalna dynamiczna baza danych DNS. Gdy Samba pracuje jako serwer
 WINS, każdy komputer kompatybilny z Windows w naszej podsieci zarejestruje w
-Sambie swój adres IP i nazwę NetBIOS (czyli potocznie FIXME "nazwę komputera").
+Sambie swój adres IP i nazwę NetBIOS (czyli potocznie "nazwę komputera").
 Dzięki temu komputery Windows będą korzystać z bazy danych WINS w Sambie w celu
 uzyskania adresu IP komputera o danej nazwie NetBIOS. WINS to kluczowy składnik
 przeglądania sieci i to właśnie z niego korzystamy, gdy rozglądamy się po
@@ -333,19 +333,19 @@ zawsze należy dodać <b>127.</b> na końcu linijki hosts allow.
 </p>
 
 <p>
-Opcja "interfaces" jest przydatna jeśli nasza maszyna posiada wiele interfejsów
+Opcja "interfaces" jest przydatna jeśli nasz komputer posiada wiele interfejsów
 sieciowych. Dzięki niej możemy podać dla jakich interfejsów Samba ma być
 dostępna. Używa się jej następująco:
 </p>
 
-<pre caption="Podawanie interfejsów">
+<pre caption="Określanie interfejsów">
 interfaces = eth1
 </pre>
 
 <p>
 Łatwo w ten sposób ograniczyć Sambę jedynie do tych interfejsów, na których jest
-potrzebna. Dzięki temu możemy ograniczyć ewentualne próby włamań przez
-niepożądanych użytkowników.
+potrzebna. Dzięki temu możemy zminimalizować ryzyko ewentualnych prób włamań
+przez niepożądanych użytkowników.
 </p>
 
 </body>
@@ -357,7 +357,7 @@ niepożądanych użytkowników.
 <p>
 Skoro skonfigurowaliśmy już globalne opcje Samby, czas utworzyć testowy zasób,
 dzięki któremu będziemy mogli uzyskać dostęp do katalogu <path>/tmp</path>.
-Dodajmy następujące linijki:
+Dodajmy następujące linijki do pliku <path>smb.conf</path>:
 </p>
 
 <pre caption="Konfigurowanie katalogu /tmp">
@@ -368,8 +368,8 @@ writeable=yes
 
 <p>
 Gdy uruchamiamy Sambę, ustawienia te utworzą zasób dzielony o nazwie <c>tmp</c>.
-Zasób ten będzie FIXME zawierał zawartość katalogu <path>/tmp</path> na serwerze
-Samby. Dodatkowo jeśli dany użytkownik posiada uprawnienia zapisu w katalogu
+W zasóbie tym znajdziemy zawartość katalogu <path>/tmp</path> na serwerze Samby.
+Dodatkowo jeśli dany użytkownik posiada uprawnienia zapisu w katalogu
 <path>/tmp</path>, a prawie każdy posiada, będzie możliwe tworzenie i
 modyfikowanie plików przez tego użytkownika w tym katalogu.
 </p>
@@ -453,7 +453,7 @@ sprawdzania uprawnień dostępu do plików na dysku, natomiast plik
 </body>
 </section>
 <section>
-<title>Ostateczna konfiguracja sewera</title>
+<title>Ostateczna konfiguracja serwera</title>
 <body>
 
 <p>
@@ -518,7 +518,7 @@ prawidłowo skonfigurowany. Powinniśmy także upewnić się, że:
 <ol>
   <li>
     Możliwe jest pingowanie serwera uniksowego spod Windows przy użyciu jego 
-    nazwy (pisząc w wierszu poleceń C:\&gt; <c>ping mójserwer</c>).
+    nazwy (pisząc w wierszu poleceń <c>ping mójserwer</c>).
   </li>
   <li>
     Nasz komputer z systemem Windows został skonfigurowany do korzystania z
@@ -543,26 +543,24 @@ prawidłowo skonfigurowany. Powinniśmy także upewnić się, że:
 Nadeszła chwila prawdy. Gdy tylko komputery z systemem Windows zakończą proces
 ponownego uruchamiania się, zalogujmy się do nich, używając nazwy użytkownika i
 hasła, które zostaną zaakceptowane przez Sambę. Jeśli korzystamy z systemów
-Windows 95/98, dane połączenie nazwy użytkownika i hasła zostaną przechowane w
-pliku i wykorzystane później, gdy będziemy chcieli połączyć się z jakimś zasobem
-sieciowym.
+Windows 95/98, nasza nazwa użytkownika i hasło zostaną przechowane w pliku i
+wykorzystane, gdy będziemy chcieli połączyć się z jakimś zasobem sieciowym.
 </p>
 
 <p>
-Jeśli zaś korzystamy z systemu Windows NT Workstation, para nazwy użytkownika i
-hasło muszą istnieć także w lokalnej bazie danych bezpieczeństwa, inaczej nie
-będziemy mogli się zalogować do systemu. Jeśli tak nie jest, musimy zalogować
-się jako administrator i utworzyć konto za pomocą FIXME (User Manager) Menadżera
-Użytkowników. Następnie powinniśmy się wylogować i zalogować się ponownie jako
-nowoutworzony użytkownik.
+Jeśli zaś korzystamy z systemu Windows NT Workstation, nazwa użytkownika i hasło
+muszą istnieć także w lokalnej bazie danych bezpieczeństwa, inaczej nie będziemy
+mogli się zalogować do systemu. Jeśli tak nie jest, musimy zalogować się jako
+administrator i utworzyć konto za pomocą menadżera użytkowników. Następnie
+powinniśmy się wylogować i zalogować się ponownie jako nowoutworzony użytkownik.
 </p>
 
 <p>
-Po prawidłowym zalogowaniu kliknijmy dwukrotnie na Otoczeniu Sieciowym i
-zajrzyjmy do grupy roboczej o nazwie NASZAGRUPAROBOCZA. Sprawdźmy czy znajduje się w
-niej nasz serwer Samby. Kliknijmy dwukrotnie na nim i zobaczmy czy widać zasób
-<path>/tmp</path>. Jeśli tak, to gratuluję, Samba działa! Jeśli nie, oto co
-możemy zrobić:
+Po prawidłowym zalogowaniu się kliknijmy dwukrotnie na Otoczeniu Sieciowym i
+zajrzyjmy do grupy roboczej o nazwie NASZAGRUPAROBOCZA. Sprawdźmy czy znajduje
+się w niej nasz serwer Samby. Kliknijmy dwukrotnie na nim i zobaczmy czy widać
+zasób <path>/tmp</path>. Jeśli tak, to gratuluję, Samba działa! Jeśli nie, oto
+co możemy zrobić:
 </p>
 
 <ol>
@@ -577,7 +575,7 @@ możemy zrobić:
     <c>smbd</c> i <c>nmbd</c>.
   </li>
   <li>
-    Czy skonfigurowaliśmy komputery z systemem Windows w celu używania
+    Czy skonfigurowaliśmy komputery z systemem Windows tak, aby używały
     odpowiedniego serwera WINS? Jeśli nie, nie będą one potrafiły odczytać
     adresów IP komputerów w naszej sieci.
   </li>
@@ -592,10 +590,10 @@ możemy zrobić:
 Jeśli wszystko to się zgadza, ale Samba nadal nie działa, należy uważnie
 przeczytać każdy krok wyszczególniony w pliku DIAGNOSIS.txt, który znajduje się
 w katalogu <path>docs/textdocs</path>. Powinniśmy w krótkim czasie odnaleźć i
-rozwiązać problem z konfiguracją lub z siecią. Pamiętajmy jednak, że jeśli
-choć nieznacznie zmodyfikujemy zawartość pliku <path>smb.conf</path>, powinniśmy
-wysłać procesom <c>smbd</c> i <c>nmbd</c> wysłać sygnał HUP, aby zmusić je do
-ponownego odczytania tego pliku. Dokonamy tego w następujący sposób:
+rozwiązać problem z konfiguracją lub z siecią. Pamiętajmy jednak, że jeśli choć
+nieznacznie zmodyfikujemy zawartość pliku <path>smb.conf</path>, powinniśmy
+wysłać procesom <c>smbd</c> i <c>nmbd</c> sygnał HUP, aby zmusić je do ponownego
+odczytania tego pliku. Dokonamy tego w następujący sposób:
 </p>
 
 <pre caption="Rozwiązywanie problemów">
