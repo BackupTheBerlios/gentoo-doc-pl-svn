@@ -48,89 +48,95 @@ informacji po procesie kompilacji pakietów.
 <!-- Future zone -->
 <!-- User Stories -->
 <chapter>
-<title>User stories</title>
+<title>Opinie użytkowników</title>
 <section>
-<title>Interview with Jacob Lindberg, a Linux Specialist for
-Brenntag Nordic</title>
+<title>Wywiad z Jacobem Lindbergiem, specjalistą od Linuksa w firmie Brenntag
+Nordic</title>
 <body>
 <figure link="/images/gwn/20051107_jacob.jpg" short="Jacob Lindberg"
-caption="Jacob Lindberg, Linux Specialist for Brenntag Nordic" />
+caption="Jacob Lindberg, specjalista od Linuksa w firmie Brenntag Nordic" />
 
-<p><e>Who are you and where do you work?</e></p>
+<p><e>Kim jesteś i gdzie pracujesz?</e></p>
 
-<p>I'm Jacob Lindberg, 30 years old working as a Linux Specialist for
-Brenntag Nordic in Denmark since March 2004. I recently got married,
-have no kids, but a dog and 2 blue-russian cats, Phoebe and Joey, named
-after Friends (the comedy).</p>
+<p>Nazywam się Jacob Lindberg, mam 30 lat i pracuję w Danii jako specjalista
+od Linuksa w firmie Brenntag Nordic od marca 2004 roku. Niedawno ożeniłem
+się, nie mam dzieci, mam za to psa i dwa koty rasy rosyjski niebieski o
+imionach Phoebe i Joey. Zostały tak nazwane od bohaterów serialu
+"Przyjaciele".</p>
 
-<p>Brenntag Nordic has offices and plants in Denmark, Sweden, Norway and Finland
-and is a part of the Brenntag Group. They <uri
-link="http://www-306.ibm.com/software/success/cssdb.nsf/CS/DNSD-5QJENP">consolidated
-a lot of their servers</uri> to Linux in 2003. Unfortunately the cost
-of external consultants was very high, services went down from time to
-time, and the consultants didn't have the knowledge to fix the various
-problems. The solutions were based on SuSE. As an old FreeBSD man, I
-don't like anything in binaries. I want my stuff from source and
-configurable. And as a lot of other Linux guys I have been through the
-hell of RPM dependencies. No more! This is why way back Gentoo caught
-my attention, and it has never left it since.
-</p>
-<p><e>Where do you use Gentoo? What did it replace?</e></p>
+<p>Firma Brenntag Nordic ma biura i fabryki w Danii, Szwecji, Norwegii i
+Finlandii i jest częścią Brenntag Group. W 2003 roku firma <uri
+link="http://www-306.ibm.com/software/success/cssdb.nsf/CS/DNSD-5QJENP">przeniosła
+wiele swoich serwerów</uri> na Linuksa. Niestety, koszta zewnętrznych
+konsultacji piętrzyły się, usługi przestawały działać, a konsultanci nie
+zawsze wiedzieli jak usunąć przyczyny awarii. Serwery pracowały pod kontrolą
+systemu SuSE Linux. Wywodząc się ze środowiska FreeBSD nie lubię binarnych
+instalacji. Wolę gdy system jest instalowany ze źródeł, a więc w pełni
+konfigurowalny. Podobnie jak wielu innych użytkowników Linuksa miałem złe
+doświadczenia z menadżerem pakietów RPM i nie zamierzałem ich powtarzać.
+Dlatego już dawno system Gentoo przykuł moją uwagę i od tamtej pory
+pozostałem mu wierny.</p>
 
-<p>We have no Linux servers not running Gentoo, so it's everywhere
-that's possible. We got the following services from Gentoo:</p>
+<p><e>Gdzie wykorzystujecie Gentoo? Co zostało przez Gentoo zastąpione?</e></p>
+
+<p>Nie posiadamy serwerów linuksowych, na których nie pracowałby system Gentoo,
+a więc jest on wykorzystywany wszędzie, gdzie to możliwe. Gentoo zapewnia nam
+następujące usługi:</p>
 
 <ul>
-<li>Samba, doing PDC, fileserver and Image server</li>
-<li>Squid, doing proxy and filtering</li>
-<li>Postfix and spamassassin, scanning all incoming and outgoing emails</li>
-<li>Bind9, running our dns internally and externally</li>
-<li>IPtables, running as firewall between our datacenter and our 10 locations (clients)</li>
-<li>rsync, doing our Gentoo mirror</li>
-<li>proftpd and tftp, doing images for Cisco equipment and such</li>
-<li>Backup server</li>
-<li>Log server</li>
+<li>Samba, działająca jako główny kontroler domeny NT, serwer plików i
+obrazów,</li>
+<li>Squid, działający jako proxy i filtr,</li>
+<li>Postfix i spamassassin, które skanują pocztę przychodzącą i wychodzącą,</li>
+<li>Bind9, pełniący rolę zewnętrznego i wewnętrznego serwera DNS,</li>
+<li>IPtables, wykorzystywany jako zapora ogniowa między naszym datacenter i
+10 oddziałami,</li>
+<li>rsync, pełniący funkcję naszego serwera lustrzanego Gentoo</li>
+<li>proftpd i tftp, przechowujące m.in obrazy dla sprzętu Cisco,</li>
+<li>Serwer kopii zapasowych,</li>
+<li>Serwer logów.</li>
 </ul>
 
-<p><e>Why do you use POWER4/5 machines? </e></p>
+<p><e>Dlaczego używacie komputerów POWER4/5?</e></p>
 
-<p>Our iSeries machines are running SAP and Lotus Notes in the OS400
-environment. The rest are Linux LPARs (logical partitions). In the new
-year we will exchange the 870 with an 570 (i5), so everything is changed
-to POWER5. The future plan is after changing to POWER5 we have a lot
-more power and are able to supply more services. The reason for using
-IBM hardware is that it's rock stable – and we have the opportunity to
-run things directly from the OS400 also.</p>
+<p>Na naszych komputerach iSeries działa SAP i Lotus Notes w środowisku
+OS400. Pozostałe to linuksowe LPAR-y (logiczne partycje). W nadchodzącym
+roku wymienimy 870-tki na komputery 570 (i5), a więc przejście na procesory
+POWER5 będzie kompletne. Plany na przyszłość zakładają zwiększenie ilości
+usług, skoro będziemy mieli do dyspozycji więcej mocy obliczeniowej. Używamy
+sprzętu firmy IBM, ponieważ jest stabilny jak skała. Mamy także możliwość
+pracy bezpośrednio w środowisku OS400.</p>
 
-<p>It's not easy to get something running on fairly non-documented
-architecture (iSeries on PPC64) which was the situation back in early
-2004. I started out with a pSeries LiveCD which didn't work at all.
-After some tricks, and some help from the community I managed to get a
-nws working which contained the LiveCD, and a kernel in the IFS. Now I
-could boot Gentoo. This was done on my old 270 (RS/6000 processor as far
-as I remember). This was quickly adapted to the 825 (POWER4) and 870
-(POWER4). Today the 2005.0 and 2005.1 LiveCD are working on the i5
-machines, but still not on the 825 and 870 machine.</p>
+<p>Uruchomienie czegokolwiek na nienajlepiej udokumentowanej architekturze
+(iSeries na PPC64) nie było proste, szczególnie na początku 2004 roku.
+Zacząłem z LiveCD dla pSeries, którego nie udało się zmusić do działania. Po
+zastosowaniu kilku sztuczek i z pomocą społeczności udało mi się uruchomić
+nws, które zawierało LiveCD i jądro w IFS. Wtedy mogłem uruchomić Gentoo.
+Dokonałem tego na moim starej 270-tce (procesor RS/6000, jeśli mnie pamięć
+nie myli). Szybko udało się zastosować to na komputerach 825 (POWER4) i 870
+(POWER4). Dziś LiveCD w wersjach 2005.0 i 2005.1 działają na komputerach i5,
+lecz wciąż nie na 825 i 870.</p>
 
-<p>The difference between x86 and PPC64 is mostly when installing
-and configuring, especially the kernel. All your environment has to be
-configured correctly for the PPC64 to work also. When working inside
-Gentoo you don't see any big difference except <c>uname</c> returns another
-architecture. This is because of the way Gentoo works.</p>
+<p>Różnica pomiędzy architekturami x86 i PPC64 jest widoczna głównie podczas
+instalacji i konfigurowania systemu, szczególnie jądra. Na PPC64 całe środowisko
+musi być poprawnie skonfigurowane, aby wszystko działało prawidłowo. Jednak
+pracując z Gentoo nie widać większych różnic, poza tym, że polecenie
+<c>uname</c> zwraca informację o innej architekturze. Tak właśnie działa
+Gentoo.</p>
 
-<p><e>Where does Gentoo need improvement?</e></p>
+<p><e>Pod jakim względem można ulepszyć Gentoo?</e></p>
 
-<p>I'm applying to become a member of the PPC64 developer team. In this
-way, I can be a part of the improvement. I think the <uri
-link="http://glep.gentoo.org">GLEP webpage</uri> shows some nice features
-for the future.</p>
+<p>Staram się zostać członkiem zespołu deweloperów zajmujących się architekturą
+PPC64. W ten sposób mogę przyczynić się ulepszania tego systemu. Sądze, że <uri
+link="http://glep.gentoo.org">strona GLEP</uri> ukazuje niezłe cele na
+przyszłość.</p>
 
-<p><e>What are your experiences with the Gentoo community?</e></p>
+<p><e>Jak oceniłbyś swoje doświadczenia ze społecznością Gentoo?</e></p>
 
-<p>It's amazing how many people are contributing to the community. This is
-why I want to do it also. But my experience is that it's hard to find a
-problem which can't be solved with the help from the community. So it's
-very positive.</p>
+<p>Niesamowitym jest jak wiele osób wnosi coś do tej społeczności. Z tego
+względu również pragnę brać w tym udział. Z moich doświadczeń wynika, że
+trudno o problem, którego nie dałoby się rozwiązać z pomocą społeczności.
+Tak więc doświadczenia są zdecydowanie pozytywne.</p>
 </body>
 </section>
 </chapter>
