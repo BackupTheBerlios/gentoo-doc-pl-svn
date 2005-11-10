@@ -13,6 +13,19 @@
 <author title="Redaktor">
 <mail link="deadhead@gechi.it">Andrea Perotti</mail>
 </author>
+<author title="Tłumacz">
+<mail link="jbozanowski@gmail.com">Jakub Bożanowski</mail>
+</author>
+<author title="Tłumacz">
+<mail link="damian@lezajsk.info">Damian Kuras</mail>
+</author>
+<author title="Tłumacz">
+<mail link="linux_user@o2.pl">Michał Kurgan</mail>
+</author>
+<author title="Korektor">
+<mail link="muchar@gentoo.org">Robert Muchacki</mail>
+</author>
+
 <abstract>Wydanie Tygodnika Gentoo z 7 listopada 2005.</abstract>
 <summary/>
 <version>Wolumin 4, numer 44</version>
@@ -22,24 +35,24 @@
 <chapter>
 <title>Wiadomości Gentoo</title>
 <section>
-<title>Nowy GLEP do zarządzania ważnymi danymi aktualizacyjnymi</title>
+<title>GLEP z propozycją zarządzania informacjami o aktualizacjach</title>
 <body>
 <p>
-Jedna z dłuższych dyskusji, która toczy się miedzy deweloperami Gentoo, a jego
-użytkownikami jest skupiona wokół małych ostrzeżeń <path>einfo</path>, który
-wyświetlane są dość często w trakcie kiedy emergujemy pakiet, zawierający
-istotne informacje dotyczące sposobu aktualizacji pewnych rzeczy oraz na jakie
-pliki konfiguracyjne należy mieć baczną uwagę. Są one bardzo ważne, jednak
-użyteczne tylko w przypadku gdy użytkownik przewija ekran konsoli, aby obejrzeć
-poprzednie ekrany kompilacji. Jednak mimo wcześniejszych wysiłków nigdy nie 
-znalazły się one w inny miejscu Portage, aby można je było w spokoju przejrzeć 
-w późniejszym czasie. Jednak <mail link="ciaranm@gentoo.org">Ciaran
-McCreesh</mail> podjął kolejną próbę rozwiązania tego problemu. Jest on autorem
-<uri link="/proj/en/glep/glep-0042.html">formalnej propozycji</uri>, aby
-uzupełnić istniejące kanały informacji Gentoo o nowe medium (Forum, lista 
-mailingowa <path>gentoo-anno</path>, strona WWW oraz Tygodnik Gentoo), 
-jednak znajdujące się już w samym Portage, aby użytkownik miał dostęp do tych
-informacji po procesie kompilacji pakietów.
+Jedna z dłuższych dyskusji, która toczy się pomiedzy deweloperami, a
+użytkownikami Gentoo jest skupiona wokół ostrzeżeń <path>einfo</path>,
+wyświetlanych po zakończonym procesie instalacji pakietu. Te zawarte w ebuildach
+informacje, zawierają ważne wskazówki dotyczące sposobów aktualizacji i
+konfiguracji danego programu, na które należy mieć baczną uwagę.  Są one bardzo
+istotne, wymagają jednak by użytkownik przewinął ekran konsoli, aby obejrzeć
+rezultaty wcześniejszych kompilacji.  Pomimo wcześniejszych wysiłków nigdy nie
+wprowadzono zmian w Portage, by były one przechowywane tak by użytkownik mógł z
+nich skorzystać później. By temu zaradzić <mail link="ciaranm@gentoo.org">Ciaran
+McCreesh</mail> podjął kolejną próbę rozwiązania tego problemu składając <uri
+link="/proj/en/glep/glep-0042.html">formalną propozycję</uri>. Chce on uzupełnić
+istniejące sposoby informowania użytkowników o ważnych zmianach takie jak forum,
+lista dyskusyjna <path>gentoo-anno</path>, strona www oraz Tygodnik Gentoo o
+automatyczny system będący częścią portage, tak by nie wymagane było
+przeglądanie wszystkich dostępnych teraz źródeł.
 </p>
 </body>
 </section>
@@ -48,7 +61,7 @@ informacji po procesie kompilacji pakietów.
 <!-- Future zone -->
 <!-- User Stories -->
 <chapter>
-<title>Opinie użytkowników</title>
+<title>Historie użytkowników</title>
 <section>
 <title>Wywiad z Jacobem Lindbergiem, specjalistą od Linuksa w firmie Brenntag
 Nordic</title>
@@ -56,87 +69,98 @@ Nordic</title>
 <figure link="/images/gwn/20051107_jacob.jpg" short="Jacob Lindberg"
 caption="Jacob Lindberg, specjalista od Linuksa w firmie Brenntag Nordic" />
 
-<p><e>Kim jesteś i gdzie pracujesz?</e></p>
-
-<p>Nazywam się Jacob Lindberg, mam 30 lat i pracuję w Danii jako specjalista
-od Linuksa w firmie Brenntag Nordic od marca 2004 roku. Niedawno ożeniłem
-się, nie mam dzieci, mam za to psa i dwa koty rasy rosyjski niebieski o
-imionach Phoebe i Joey. Zostały tak nazwane od bohaterów serialu
-"Przyjaciele".</p>
-
-<p>Firma Brenntag Nordic ma biura i fabryki w Danii, Szwecji, Norwegii i
-Finlandii i jest częścią Brenntag Group. W 2003 roku firma <uri
+<p>
+<e>Kim jesteś i gdzie pracujesz?</e>
+</p>
+<p>
+Nazywam się Jacob Lindberg, mam 30 lat i pracuję w Danii jako specjalista od
+Linuksa w firmie Brenntag Nordic od marca 2004 roku. Niedawno ożeniłem się, ale
+nie mam jeszcze dzieci, posiadam za to psa i dwa koty rasy blue-russian o
+imionach Phoebe i Joey. Zostały tak nazwane od bohaterów serialu "Przyjaciele".
+</p>
+<p>
+Firma Brenntag Nordic ma biura i fabryki w Danii, Szwecji, Norwegii i Finlandii,
+jest ona częścią Brenntag Group. W 2003 roku firma <uri
 link="http://www-306.ibm.com/software/success/cssdb.nsf/CS/DNSD-5QJENP">przeniosła
 wiele swoich serwerów</uri> na Linuksa. Niestety, koszta zewnętrznych
-konsultacji piętrzyły się, usługi przestawały działać, a konsultanci nie
-zawsze wiedzieli jak usunąć przyczyny awarii. Serwery pracowały pod kontrolą
-systemu SuSE Linux. Wywodząc się ze środowiska FreeBSD nie lubię binarnych
-instalacji. Wolę gdy system jest instalowany ze źródeł, a więc w pełni
-konfigurowalny. Podobnie jak wielu innych użytkowników Linuksa miałem złe
-doświadczenia z menadżerem pakietów RPM i nie zamierzałem ich powtarzać.
-Dlatego już dawno system Gentoo przykuł moją uwagę i od tamtej pory
-pozostałem mu wierny.</p>
-
-<p><e>Gdzie wykorzystujecie Gentoo? Co zostało przez Gentoo zastąpione?</e></p>
-
-<p>Nie posiadamy serwerów linuksowych, na których nie pracowałby system Gentoo,
-a więc jest on wykorzystywany wszędzie, gdzie to możliwe. Gentoo zapewnia nam
-następujące usługi:</p>
-
+konsultacji piętrzyły się, usługi przestawały działać, a konsultanci nie zawsze
+wiedzieli jak usunąć przyczyny awarii. Serwery pracowały pod kontrolą systemu
+SuSE Linux. Wywodząc się ze środowiska FreeBSD nie lubię binarnych instalacji.
+Wolę gdy system jest instalowany ze źródeł, a więc w pełni konfigurowalny.
+Podobnie jak wielu innych użytkowników Linuksa miałem złe doświadczenia z
+menadżerem pakietów RPM i nie zamierzałem ich powtarzać.  Wtedy system Gentoo
+przykuł moją uwagę i od tamtego czasu pozostałem mu wierny.
+</p>
+<p>
+<e>Gdzie wykorzystujecie Gentoo? Co zostało przez niego zastąpione?</e>
+</p>
+<p>
+Nie posiadamy serwerów linuksowych, na których nie pracowałby system Gentoo, a
+więc jest on wykorzystywany wszędzie, gdzie jest to tylko możliwe. Gentoo
+zapewnia nam następujące usługi:
+</p>
 <ul>
 <li>Samba, działająca jako główny kontroler domeny NT, serwer plików i
 obrazów,</li>
 <li>Squid, działający jako proxy i filtr,</li>
-<li>Postfix i spamassassin, które skanują pocztę przychodzącą i wychodzącą,</li>
+<li>Postfix i spamassassin, obsługujące pocztę przychodzącą i wychodzącą,</li>
 <li>Bind9, pełniący rolę zewnętrznego i wewnętrznego serwera DNS,</li>
 <li>IPtables, wykorzystywany jako zapora ogniowa między naszym datacenter i
 10 oddziałami,</li>
 <li>rsync, pełniący funkcję naszego serwera lustrzanego Gentoo</li>
-<li>proftpd i tftp, przechowujące m.in obrazy dla sprzętu Cisco,</li>
+<li>proftpd i tftp, przechowujące m.in. obrazy dla sprzętu Cisco,</li>
 <li>Serwer kopii zapasowych,</li>
 <li>Serwer logów.</li>
 </ul>
-
-<p><e>Dlaczego używacie komputerów POWER4/5?</e></p>
-
-<p>Na naszych komputerach iSeries działa SAP i Lotus Notes w środowisku
-OS400. Pozostałe to linuksowe LPAR-y (logiczne partycje). W nadchodzącym
-roku wymienimy 870-tki na komputery 570 (i5), a więc przejście na procesory
-POWER5 będzie kompletne. Plany na przyszłość zakładają zwiększenie ilości
-usług, skoro będziemy mieli do dyspozycji więcej mocy obliczeniowej. Używamy
-sprzętu firmy IBM, ponieważ jest stabilny jak skała. Mamy także możliwość
-pracy bezpośrednio w środowisku OS400.</p>
-
-<p>Uruchomienie czegokolwiek na nienajlepiej udokumentowanej architekturze
-(iSeries na PPC64) nie było proste, szczególnie na początku 2004 roku.
-Zacząłem z LiveCD dla pSeries, którego nie udało się zmusić do działania. Po
-zastosowaniu kilku sztuczek i z pomocą społeczności udało mi się uruchomić
-nws, które zawierało LiveCD i jądro w IFS. Wtedy mogłem uruchomić Gentoo.
-Dokonałem tego na moim starej 270-tce (procesor RS/6000, jeśli mnie pamięć
-nie myli). Szybko udało się zastosować to na komputerach 825 (POWER4) i 870
-(POWER4). Dziś LiveCD w wersjach 2005.0 i 2005.1 działają na komputerach i5,
-lecz wciąż nie na 825 i 870.</p>
-
-<p>Różnica pomiędzy architekturami x86 i PPC64 jest widoczna głównie podczas
+<p>
+<e>Dlaczego używacie komputerów POWER4/5?</e>
+</p>
+<p>
+Na naszych komputerach iSeries działa SAP i Lotus Notes w środowisku OS400.
+Pozostałe to linuksowe LPAR-y (logiczne partycje). W nadchodzącym roku wymienimy
+870-tki na komputery 570 (i5), a więc przejście na procesory POWER5 będzie
+kompletne. Plany na przyszłość zakładają zwiększenie ilości usług, skoro
+będziemy mieli do dyspozycji więcej mocy obliczeniowej. Używamy sprzętu firmy
+IBM, ponieważ jest stabilny jak skała. Mamy także możliwość pracy bezpośrednio w
+środowisku OS400.
+</p>
+<p>
+Uruchomienie czegokolwiek na nie najlepiej udokumentowanej architekturze
+(iSeries na PPC64) nie było proste, szczególnie na początku 2004 roku.  Zacząłem
+z LiveCD dla pSeries, którego nie udało się zmusić do działania. Po zastosowaniu
+kilku sztuczek i z pomocą społeczności udało mi się uruchomić nws, które
+zawierało LiveCD i jądro w IFS. Wtedy mogłem uruchomić Gentoo.  Dokonałem tego
+na moim starej 270-tce (procesor RS/6000, jeśli mnie pamięć nie myli). Szybko
+udało się powtórzyć tą samą procedurę na komputerach 825 (POWER4) i 870
+(POWER4). Dziś LiveCD w wersjach 2005.0 i 2005.1 działają na komputerach i5, ale
+jeszcze nie na 825 i 870.
+</p>
+<p>
+Różnica pomiędzy architekturami x86 i PPC64 jest widoczna głównie podczas
 instalacji i konfigurowania systemu, szczególnie jądra. Na PPC64 całe środowisko
 musi być poprawnie skonfigurowane, aby wszystko działało prawidłowo. Jednak
 pracując z Gentoo nie widać większych różnic, poza tym, że polecenie
 <c>uname</c> zwraca informację o innej architekturze. Tak właśnie działa
-Gentoo.</p>
-
-<p><e>Pod jakim względem można ulepszyć Gentoo?</e></p>
-
-<p>Staram się zostać członkiem zespołu deweloperów zajmujących się architekturą
+Gentoo.
+</p>
+<p>
+<e>Pod jakim względem można ulepszyć Gentoo?</e>
+</p>
+<p>
+Staram się zostać członkiem zespołu deweloperów zajmujących się architekturą
 PPC64. W ten sposób mogę przyczynić się ulepszania tego systemu. Sądze, że <uri
-link="http://glep.gentoo.org">strona GLEP</uri> ukazuje niezłe cele na
-przyszłość.</p>
-
-<p><e>Jak oceniłbyś swoje doświadczenia ze społecznością Gentoo?</e></p>
-
-<p>Niesamowitym jest jak wiele osób wnosi coś do tej społeczności. Z tego
-względu również pragnę brać w tym udział. Z moich doświadczeń wynika, że
-trudno o problem, którego nie dałoby się rozwiązać z pomocą społeczności.
-Tak więc doświadczenia są zdecydowanie pozytywne.</p>
+link="http://glep.gentoo.org">strona GLEP</uri> ukazuje cele jakie mogą być
+osiągnięte w przyszłości.
+</p>
+<p>
+<e>Jak oceniłbyś swoje doświadczenia ze społecznością Gentoo?</e>
+</p>
+<p>
+Niesamowite jest, jak wiele osób wnosi coś do tej społeczności. Z tego względu
+również pragnę brać w niej udział. Z moich doświadczeń wynika, że trudno o
+problem, którego nie dałoby się rozwiązać z pomocą społeczności.  Tak więc
+doświadczenia są zdecydowanie pozytywne.
+</p>
 </body>
 </section>
 </chapter>
@@ -151,7 +175,7 @@ Tak więc doświadczenia są zdecydowanie pozytywne.</p>
 <body>
 <p><b>Getting important updates to users</b></p>
 <p>
-Jedne z największych wątków z ostatniego tygodnia rozdzielił się na cztery
+Jeden z największych wątków z ostatniego tygodnia rozdzielił się na cztery
 osobne gorące dyskusje dotyczące jednego z głównych, do tej pory nie
 rozwiązanego, problemu Gentoo Linux:<br/> Jak upewnić się że użytkownicy zostaną
 poinformowani o aktualizacjach i innych ważnych informacjach związanych z nowymi
@@ -190,32 +214,30 @@ changes to base profile for Gentoo/ALT </uri></li>
 <title>Włochy: Konferencja GeCHI w listopadzie</title>
 <body>
 <p>
-26 listopada 2005 stał się datą, kiedy po raz piąty włoski ruch wolnego
-oprogramowania zorganizuje międzynarodowy dzień Linuksa. Po raz trzeci
-również, ta duża włoska impreza będzie okazją dla użytkowników Gentoo do
-nawaracania innych na tą dystrybucję. W tym roku, trzecie międzynarodowe
-spotkanie zwane dniem Gentoo zostanie zorganizowane we współpracy z 
-<uri link="http://www.velug.it">VELug-iem</uri> (Venice Free Software Users 
+26 listopada 2005 po raz piąty włoski ruch wolnego oprogramowania zorganizuje
+międzynarodowy dzień Linuksa. Po raz trzeci również, ta duża impreza będzie
+okazją aby zdobyć nowych użytkowników Gentoo Linux. W tym roku, trzecie
+międzynarodowe spotkanie zwane dniem Gentoo zostanie zorganizowane we współpracy
+z <uri link="http://www.velug.it">VELug-iem</uri> (Venice Free Software Users
 Group). Dzięki wsparciu lokalnych władz, miejscem tegorocznego spotkania będzie
-Villa Franchin, Viale Garibaldi 155 (quartiere Carpenedo-Bissuola), w mieście 
-Mestre, niedaleko Wenecji.
+Villa Franchin, Viale Garibaldi 155 (quartiere Carpenedo-Bissuola), w Mestre,
+niedaleko Wenecji.
 </p>
 <p>
 Użytkownicy Gentoo aktywni w strukturach <uri
-link="http://www.gechi.it">włoskiego kanału Gentoo</uri> (GeCHI) zaprezentują
-kilka przemówień na temat różnych zagadnień tematycznych zaczynając od 
-"Wprowadzenia Gentoo", poprzez "Instalator Gentoo" i "Zabawa z Gentoo" kończąc
-na "Gimp: Od zera do Dalego". Spotkanie będzie również okazją do zakupienia
-nowych ekstra gadżetów, takich jak sławne już na cały świat koszulki GetCHI lub
-naklejki czy plakaty.
+link="http://www.gechi.it">włoskiego kanału Gentoo</uri> (GeCHI) przedstawią
+kilka prezentacji na temat różnych zagadnień tematycznych, zaczynając od
+"Wprowadzenia do Gentoo", poprzez "Instalator Gentoo" i "Zabawa z Gentoo"
+kończąc na "Gimp: Od zera do Dalego". Spotkanie będzie również okazją do
+zakupienia nowych gadżetów, takich jak sławne już na cały świat koszulki GetCHI
+lub naklejki, czy plakaty.
 </p>
 <p>
-Nie przepuść takiej szansy na spotkanie z innymi włoskimi użytkownikami Gentoo
-oraz deweloperami. Jeśli chcesz dołączyć do GetCHI w tych staraniach sprawdź 
-<uri link="http://forums.gentoo.org/viewtopic-p-2853724.html">ten wątek</uri>
-oraz <uri
-link="http://www.gechi.it/forums/viewtopic.php?p=1632">forum GetCHI</uri>
-(obydwie strony są w języku włoskim)."
+Nie można przepuść takiej szansy na spotkanie z innymi włoskimi użytkownikami
+Gentoo oraz deweloperami, każdego zainteresowany powinien sprawdzić następujący
+<uri link="http://forums.gentoo.org/viewtopic-p-2853724.html">wątek</uri> oraz
+<uri link="http://www.gechi.it/forums/viewtopic.php?p=1632">forum GetCHI</uri>
+(strony w języku włoskim)."
 </p>
 </body>
 </section>
@@ -223,17 +245,17 @@ link="http://www.gechi.it/forums/viewtopic.php?p=1632">forum GetCHI</uri>
 <title>Japonia: Przywitanie Andrea Barisani przez GentooJP</title>
 <body>
 <p>
-<uri link="http://www.gentoo.gr.jp">Japońscy użytkownicy Gentoo</uri> zagrają 
-cicerone przebywającego w Japonii z wizytą deweloperowi Gentoo
-<mail link="lcars@gentoo.org">Andrea Barisaniemu</mail> oraz zapewnią mu nocną
-wycieczkę wśród najbardziej rodzimych alei dystryktu Tokio zwanego Shibuya.
-Andrea przyjechał do Japonii, aby wziąć udział w
-<uri link="/news/en/gwn/20051003-newsletter.xml#doc_chap2_sect2">prezentacji na
-konferencji PacSec</uri> i jeśli chciałbyś dołączyć, upewnij się, że będziesz 
-przed pomnikiem Hachiko na stacji Shibuya o godzinie 18:30.
+<uri link="http://www.gentoo.gr.jp">Japońscy użytkownicy Gentoo</uri> zagrają
+cicerone dla przebywającego w Japonii z wizytą dewelopera, <mail
+link="lcars@gentoo.org">Andrea Barisaniego</mail>.  W planach jest także nocna
+wycieczka wśród alei dystryktu Shibuya w Tokio.  Andrea przyjechał do Japonii,
+aby wziąć udział w <uri
+link="/news/en/gwn/20051003-newsletter.xml#doc_chap2_sect2">prezentacji na
+konferencji PacSec</uri>. Każdego zainteresowanego spotkaniem zapraszamy o
+godzinie 18:30, pod pomnik Hachiko, znajdujący się na stacji Shibuya.
 <note>
 Prosimy o potwierdzanie swojego przybycia poprzez wysłanie krótkiej informacji
-na listę mailingową <path>gentoojp-misc@ml.gentoo.gr.jp</path>.
+na listę dyskusyjną <path>gentoojp-misc@ml.gentoo.gr.jp</path>.
 </note>
 </body>
 </section>
@@ -246,22 +268,21 @@ na listę mailingową <path>gentoojp-misc@ml.gentoo.gr.jp</path>.
 <title>Desktop Linux (4 listopada 2005)</title>
 <body>
 <p>
-Nowa książka O'Reilly, <uri
-link="http://www.desktoplinux.com/news/NS6574473318.html">Linux Desktop
-Pocket Reference</uri> zwięźle przedstawia przegląd pięciu najpopularniejszych
+Nowa książka wydawnictwa O'Reilly, <uri
+link="http://www.desktoplinux.com/news/NS6574473318.html">Linux Desktop Pocket
+Reference</uri>, zwięźle przedstawia przegląd pięciu najpopularniejszych
 dystrybucji, uporządkowany alfabetycznie. Przed Gentoo znajduje się Fedora, zaś
-po nich Mandriva, SUSE i Ubuntu. Autor David Brickner stara się wybrać
-najważniejsze informacje, które będą łatwe do przełknięcia dla wszystkich.
-Pierwszy rozdział zawierający porównanie pięciu dystrybucji dostępny jest w 
-postaci <uri 
-link="http://www.oreilly.com/catalog/linuxdesktoppr/chapter/ch01.pdf">przykładowego
-dokumentu PDF</uri>. Główne plusy Gentoo zostały ocenione w bardzo
-entuzjastyczny i krótki sposób: Portage i dokumentacja.
+po nich Mandriva, SUSE i Ubuntu. Autor, David Brickner, starał się zebrać
+najważniejsze informacje, które będą łatwe do przełknięcia dla wszystkich
+czytelników, niekoniecznie znających linuksa.  Pierwszy rozdział, zawierający
+porównanie pięciu opisywanych dystrybucji, dostępny jest w postaci <uri
+link="http://www.oreilly.com/catalog/linuxdesktoppr/chapter/ch01.pdf"> dokumentu
+PDF</uri>. Zalety Gentoo przedstawiono w bardzo entuzjastyczny i zwięzły sposób:
+Portage i dokumentacja.
 </p>
 </body>
 </section>
 </chapter>
-
 
 <!-- Tips and Tricks -->
 <!-- Gentoo developer moves -->
