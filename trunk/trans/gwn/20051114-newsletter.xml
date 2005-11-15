@@ -57,140 +57,201 @@ link="https://bugs.gentoo.org/105809">bug #105809</uri>.
 <!-- User Stories -->
 
 <chapter>
-<title>User stories</title>
+<title>Historie użytkowników</title>
 <section>
-<title>Interview with Douglas Robertson from Zymeta Corporation</title>
+<title>Wywiad z Douglasem Robertsonem z firmy Zymeta Corporation</title>
 <body>
 <figure link="/images/gwn/20051114_zymeta-jukebox.jpg" short="Zymeta Video
   Jukebox"
 caption="The Zymeta Video Jukebox in action" />
 
-<p><e>A few words about you. Who are you, where do you work?</e></p>
+<p>
+<e>Poprosimy o kilka słów o sobie. Kim jesteś i gdzie pracujesz?</e>
+</p>
 
-<p>My name is Douglas Robertson and I'm the Director of Technology at <uri
-  link="http://www.zymeta.com/">Zymeta Entertainment.</uri></p>
+<p>
+Nazywam się Douglas Robertson i pracuję na pozycji kierownik ds. technologii w
+firmie <uri link="http://www.zymeta.com/">Zymeta Entertainment</uri>.
+</p>
 
-<p><e>What is your "product"?</e></p>
+<p>
+<e>Czym się zajmujecie?</e>
+</p>
 
-<p>Zymeta is an entertainment systems company. We have developed an on demand
-  touch screen media delivery platform for public venues complete with a backend
-  system for updating and managing the platform. And we can manage the platform
-  as a whole or make changes for a single location.  Our first very successful
-  product is a music video entertainment system called the "Video Jukebox" which
-  is typically installed in pubs and bars.  The venues patrons are able to
-  choose their music selections using a touchscreen and then watch the music
-  videos on the bars televisions and advertisers can pin point their promotions
-  to specific locations or groups of locations.   The service is completely
-  licensed by the music industry.   It's flashy, it's interactive and it's built
-  on top of Gentoo Linux.</p>
+<p>
+Zymeta to firma produkująca systemy rozrywkowe. Stworzyliśmy własną platformę
+multimedialną z ekranem dotykowym, przeznaczoną do miejsc publicznych,
+wyposażoną we własny system uaktualnień i zarządzania. Możemy zarządzać całością
+urządzeń lub wprowadzać zmiany tylko w jednym z nich. Pierwszym z naszych
+naprawdę udanych produktów to system rozrywkowy odtwarzający teledyski o nazwie
+"Video Jukebox", zwykle instalowany w pubach i barach. Goście lokali mogą
+dokonywać wyboru za pomocą ekranu dotykowego i oglądać teledyski na ekranach
+telewizorów, zaś agencje reklamowe mogą kierować swój przekaz do konkretnych
+miejsc lub grup odbiorców. Usługa jest w pełni licencjonowana przez przemysł
+muzyczny. Jest kolorowa, interaktywna i działa na systemie Gentoo Linux.
+</p>
 
-<p>If anyone wants to see the jukebox in action, our <uri
-    link="http://www.zymeta.com/files/corporate-video-small.mov">corporate
-    video</uri> also has a lot of cool shots.</p>
+<p>
+Jeśli ktoś jest ciekawy jak wygląda nasze urządzenie, można je zobaczyć na wielu
+urywkach w naszym <uri
+link="http://www.zymeta.com/files/corporate-video-small.mov">firmowym
+filmie</uri>.
+</p>
 
-<p><e>How does Gentoo fit in there? Why did you decide to use it?</e></p>
+<p>
+<e>Jaka jest rola systemu Gentoo w tym wszystkim? Kiedy zdecydowaliście się go
+użyć?</e>
+</p>
 
-<p>As far as technology is concerned, Zymeta is a Gentoo-driven company.  The
-  development team all run Gentoo on their desktops, our servers are all running
-  Gentoo and, most importantly, our jukeboxes all run Gentoo.   I brought Gentoo
-  into Zymeta and mandated it be the distro used; trying to support multiple
-  distributions is too much hassle. I chose Gentoo because of it's flexibility;
-  it's a source-based distro with a great packaging system and a great
-  user-base.</p>
+<p>
+Pod względem technologii firma Zymeta całkowicie polega na Gentoo. Zespół
+deweloperów używa Gentoo na stacjach roboczych, nasze serwery działają pod
+kontrolą Gentoo i, co najważniejsze, nasze szafy grające działają pod kontrolą
+Gentoo. Wprowadzenie tej dystrybucji do Zymeta i uczynienie jej jedynym
+wykorzystywanym systemem jest moją zasługą. Mieliśmy zbyt wiele problemów z
+używaniem wielu dystrybucji na raz. Wybrałem Gentoo ze względu na jego
+wszechstronność. Jest to dystrybucja oparta na kodzie źródłowym, wyposażona w
+świetny system zarządzania paczkami, posiadająca znakomitą społeczność
+użytkowników.
+</p>
 
-<p>We update the jukebox client software over the Internet but we haven't been
-  updating the Operating System on the jukeboxes. We haven't updated the OS
-  because Gentoo has been so stable and as such there's been no real need to
-  change anything.  We looked at setting up our own portage tree but decided
-  that the best route to any major updates would be to build a new tarball of
-  the OS and use that to update the jukeboxes. In the future we may look at
-  doing minor updates of individual packages using a portage tree. This would
-  allow us to keep the jukeboxes up to date in case of any security flaws
-  found.</p>
+<p>
+Wprawdzie uaktualniamy oprogramowanie klienckie szaf grających przez internet,
+nie było jednak potrzeby uaktualniania ich systemu operacyjnego ze względu na
+stabilność Gentoo. Zastanawialiśmy się nad stworzeniem własnego drzewa Portage,
+zdecydowaliśy jednak, że najlepszym sposobem na dokonywanie większych
+uaktualnień będzie tworzenie skompresowanego pliku, zawierającego cały system
+operacyjny i uaktualnianie szaf grających za jego pomocą. Możliwe jednak, że w
+przyszłości niewielkie uaktualnienia pojedynczych pakietów będziemy wykonywać
+za pomocą drzewa Portage. Dzięki temu moglibyśmy szybko reagować w przypadku
+luk bezpieczeństwa.
+</p>
 
-<p>That said, we recently upgraded the software so that it works flawlessly on
-  the 2.6 kernel and I have spent the last two days setting up a CD that boots
-  the jukebox, mounts the hard drive and then updates the OS files.  The Gentoo
-  community was very helpful with this, and as I mentioned, there is a tonne of
-  documentation, which make it simple for me to modify the Gentoo 2005.1 LiveCD
-  so that it is Zymeta branded and does the required updating.</p>
+<p>
+Oprócz tego niedawno uaktualniliśmy oprogramowanie aby działało idealnie na
+jądrze 2.6, zaś przez ostatnie dwa dni zajmowałem się tworzeniem płyty CD, która
+uruchamia szafę grającą, montuje twarde dyski i uaktualnia pliki systemu
+operacyjnego. Bardzo pomogła mi przy tym społeczność Gentoo, a także, jak już
+wspomniałem, ogromna ilość dokumentacji, dzięki której bardzo łatwo jest
+zmodyfikować Gentoo 2005.1 LiveCD tak, aby opatrzone logo Zymeta dokonywało
+niezbędnych uaktualnień.
+</p>
 
-<p><e>What did Gentoo replace?</e></p>
+<p>
+<e>Jakie systemy zostały zastąpione przez Gentoo?</e>
+</p>
 
-<p>Prior to Gentoo, Zymeta was running Red Hat for servers and Debian on the
-  jukeboxes.</p>
+<p>
+Zanim zaczęliśmy używać Gentoo wykorzystywaliśmy system Red Hat na serwerach i
+Debian w szafach grających.
+</p>
 
-<p><e>Any experiences with other distributions? How do they compare?</e></p>
+<p>
+<e>Jakie mieliście doświadczenia z innymi dystrybucjami? Jak wypada ich
+porównanie?</e>
+</p>
 
-<p>I initially tried Gentoo in 2003 at my previous job because a co-worker
-  decided to try it and then complained about how much trouble it was to set up
-  and how it took him two days to get it working.  To prove him wrong I tried it
-  and had a working Gentoo, complete with KDE, on my Dell laptop within the day.
-  It was love at first sight with Gentoo so I never went back to my old Red Hat
-  install.</p>
+<p>
+Pierwszy raz wypróbowałem Gentoo w 2003 roku jeszcze w poprzednim miejscu pracy,
+a stało się to przez mojego współpracownika, który zainstalował je i później
+narzekał jak bardzo musiał się przy tym namęczyć i że zajęło mu to dwa dni. Sam
+spróbowałem i udowodniłem mu, że się myli, instalując Gentoo razem z KDE bez
+problemu w ciągu jednego dnia na moim laptopie firmy Dell. Pokochałem ten system
+od pierwszego wejrzenia i nie wróciłem już do używanego poprzednio Red Hata.
+</p>
 
-<p>A lot of people had issues with Red Hat's RPM system, but I loved it.  At
-  least until I started needing the latest packages of various things (such as
-  PostgreSQL and some networking tools) and the RPM wouldn't work because it was
-  built on a different version of Red Hat. Or it would require updating three
-  other packages, which in turn had their own dependencies.  Gentoo's package
-  system is the real shining star as far as I'm concerned, and while updates
-  take longer since packages are compiled, it's well worth it.</p>
+<p>
+Wielu ludzi miało złe doświadczenia z zarządcą pakietów RPM z Red Hata, mi
+jednakże bardzo się on podobał. Przynajmniej dopóki nie zaczęły mi być potrzebne
+najnowsze wersje paczek różnych programów (na przykład PostgreSQL i kilku
+narzędzi sieciowych), a pobrane pliki RPM nie działały, ponieważ zostały
+zbudowane na innej wersji systemu Red Hat. Bądź też wymagały uaktualnienia
+trzech innych paczek, które z kolei miały swoje zależności. System zarządzania
+paczkami w Gentoo to dla mnie największa zaleta tego systemu i pomimo iż
+uaktualnianie zajmuje więcej czasu ze względu na kompilację, zdecydowanie warto
+jest poczekać.
+</p>
 
-<p><e>What are the big advantages? Where does it shine?</e></p>
+<p>
+<e>Jakie są największe zalety Gentoo?</e>
+</p>
 
-<p>Gentoo offers flexibility. Don't need IPv6 support is your packages?  Just
-  change your USE flags. No ebuild for a package you need? Just create your own
-  ebuild and add it into your Portage overlay. How sweet is that for
-  flexibility?</p>
+<p>
+Gentoo daje nam elastyczność. Nie potrzebujemy wsparcia dla IPv6 w naszych
+programach? Wystarczy zmienić flagi USE. Nie ma pliku ebuild dla paczki, której
+potrzebujemy? Wystarczy stworzyć własny i dodać go do nakładki na Portage. To
+się nazywa elastyczność!
+</p>
 
-<p><e>What do you see as problematic? Where could things be improved?</e></p>
+<p>
+<e>Gdzie widzisz problemy? Co możnaby jeszcze dopracować?</e>
+</p>
 
-<p>My only complaint is that sometimes it takes a long time to stabilize
-  packages. I like that the maintainers ensure that packages compile and work
-  properly before marking a package as stable, especially given that we run
-  Gentoo on production/enterprise systems, but sometimes it seems to take a bit
-  too long. But we get around that using Portage's flexibility (ie. USE flags
-  and Portage overlays).</p>
+<p>
+Narzekać mogę jedynie na długi czas stabilizowania pakietów. Podoba mi się to,
+że opiekunowie upewniają się, że program kompiluje się i działa poprawnie przed
+oznaczeniem go jako stabilny, szczególnie biorąc pod uwagę fakt, że używamy
+Gentoo na systemach produkcyjnych, czasem jednak zajmuje to zbyt wiele czasu.
+Udaje nam się jednak to ominąć dzięki elastyczności Portage (wykorzystując flagi
+USE i nakładki na Portage).
+</p>
 
 
-<p><e>There are many projects like the installer, Gentoo/Alt (BSD,...).  What do
-    you think of this expansion into new fields? How about different
-    architectures?</e></p>
+<p>
+<e>Istnieje wiele projektów takich jak instalator, Gentoo/Alt (na przykład BSD).
+Co sądzisz o tym poszerzaniu pól działania? W tym także o nowe architektury?</e>
+</p>
 
-<p>I think that the more people using Gentoo the better. Part of the reason I'm
-  excited about this interview is that I want to help spread the word that
-  Gentoo can be used in any environment, whether it's on a desktop or on an
-  enterprise server running a mission-critical database. Stability is key in
-  most environments but I don't think that you necessarily need to use six month
-  old packages to get that stability.</p>
+<p>
+Myślę, że im więcej ludzi używa Gentoo, tym lepiej. Jednym z powodów, dla
+których chętnie udzielam tego wywiadu jest chęć rozpowszechnienia opini o tym,
+że systemu Gentoo można używać w każdym środowisku, obojętnie czy będzie to
+stacja robocza, czy też potężny serwer, na którym działa krytycznie ważna baza
+danych. Stabilność jest kluczowa w większości zastosowań, nie sądzę jednak, że
+uzyskanie tej stabilności wiąże się z koniecznością używania paczek mających
+sześć miesięcy.
+</p>
 
-<p><e>How do you see the community? What is the general perception of Gentoo in
-    your company?</e></p>
+<p>
+<e>Co sądzisz o społeczności? Jaki jest stosunek do Gentoo w twojej firmie?</e>
+</p>
 
-<p>I love the Gentoo community.  There's a lot of support available and tonnes
-  of documentation. And because at this stage it seems like the majority of
-  Gentoo users have a fairly technical background, there's a different feel to
-  the Gentoo forums as compared to say the old Red Hat forums.</p>
+<p>
+Uwielbiam społeczność Gentoo. Do dyspozycji jest mnóstwo dokumentacji i bardzo
+łatwo jest uzyskać wsparcie. Na forum Gentoo panuje też inna atmosfera niż na
+przykład na starym forum Red Hata, chyba głównie ze względu na to, że aktualnie
+większość użytkowników Gentoo zdaje się mieć wykształcenie techniczne.
+</p>
 
-<p>As for Zymeta, everyone in the company knows Zymeta's product is built on top
-  of Gentoo. And since our switch to Gentoo, the stability of our product has
-  increased. Part of that is due to Gentoo and part of that is due to an updated
-  kernel. But the end result is that the Zymeta team and our customers associate
-  Gentoo with stability.</p>
+<p>
+Natomiast w samej firmie Zymeta wszyscy wiedzą, że nasz produkt jest oparty na
+Gentoo. Od czasu przesiadki na ten system wzrosła jego stabilność. Częściowo
+jest to zasługa Gentoo, a częściowo uaktualnionego jądra, jednak w efekcie
+zarówno pracownicy Zymeta, jak i nasi klienci kojarzą Gentoo ze stabilnością.
+</p>
 
-<p><e>How can you be contacted?  And what can we expect in the near future?</e></p>
+<p>
+<e>Jak można się z tobą skontaktować? I czego możemy się spodziewać w
+najbliższej przyszłości?</e>
+</p>
 
-<p>If anyone wants to talk to me about deploying Gentoo in the enterprise, they
-  can contact me at dr@zymeta.com. Also, I believe that Gentoo developer Corey
-  Shields wants to create a Gentoo case study out of Zymeta so people should
-  look soon for that.</p>
+<p>
+Jeśli ktoś chciałby porozmawiać o wykorzystaniu Gentoo w firmach, może
+skontaktować się ze mną pod adresem dr@zymeta.com. Zaś z tego co mi wiadomo
+deweloper Gentoo Corey Shields chce dokonać analizy wykorzystania Gentoo na
+przykładzie firmy Zymeta, więc wkrótce warto będzie przyjrzeć się efektom jego
+pracy.
+</p>
 
-<p>Oh, and there's a Gentoo easter egg in an upcoming version of the Zymeta
-  Jukebox client so if anyone wants to know how to do that, they can email me
-  about that too.</p>
+<p>
+Warto też wspomnieć o istnieniu ukrytej niespodzianki związanej z Gentoo w
+nadchodzącej wersji naszej szafy grającej, więc jeśli ktoś chce wiedzieć gdzie
+ją znaleźć, może do mnie napisać.
+</p>
 
-<p><e>Thanks for the interview!</e></p>
+<p>
+<e>Dziękujemy za wywiad.!</e>
+</p>
 
 </body>
 </section>
