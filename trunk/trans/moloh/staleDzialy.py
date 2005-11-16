@@ -26,8 +26,8 @@ regexps = (
 (r'<abstract>This is the Gentoo Weekly Newsletter for the week of ([^.]*).</abstract>',
  r'<abstract>Wydanie Tygodnika Gentoo z \1.</abstract>'),
 
-(r'<title>Moves, adds, and changes</title>',
- r'<title>Odeszli, przybyli, zmienili status</title>'),
+(r'<title>Gentoo developer moves</title>',
+ r'<title>Zmiana statusu deweloperów Gentoo</title>'),
 
 (r'<title>Moves</title>',
  r'<title>Odeszli</title>'),
@@ -38,12 +38,12 @@ regexps = (
 (r'<title>Adds</title>',
  r'<title>Przybyli</title>'),
 
-(r'The following developers recently joined the Gentoo Linux project:',
+(r'The following developers recently joined the Gentoo project:',
  r'''Następujący deweloperzy przyłączyli się do projektu Gentoo Linux w minionym
 tygodniu:'''),
 
-(r'<title>Gentoo developer moves</title>',
- r'<title>Zmiana statusu deweloperów Gentoo</title>'),
+(r'<title>Changes</title>',
+ r'<title>Zmienili status</title>'),
 
 (r'The following developers recently changed roles within the Gentoo Linux project:',
  r'''Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie
@@ -192,8 +192,8 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 <uri link="/news/en/gwn/gwn.xml">angielskim</uri>
 </li>
 <li>
-<uri link="/news/da/gwn/gwn.xml">duńskim</uri
-></li>
+<uri link="/news/da/gwn/gwn.xml">duńskim</uri>
+</li>
 <li>
 <uri link="/news/fr/gwn/gwn.xml">francuskim</uri>
 </li>
