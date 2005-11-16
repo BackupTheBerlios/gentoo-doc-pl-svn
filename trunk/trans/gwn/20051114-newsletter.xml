@@ -1,55 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="/xsl/guide.xsl" type="text/xsl"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
-<guide type="newsletter" link="20051114-newsletter.xml" lang="en">
-<title>Gentoo Weekly Newsletter</title>
-<subtitle>November 14th, 2005</subtitle>
-<author title="Editor">
+<guide type="newsletter" link="20051114-newsletter.xml" lang="pl">
+<title>Tygodnik Gentoo</title>
+<subtitle>14 listopada 2005</subtitle>
+<author title="Redaktor naczelny">
 <mail link="plate@gentoo.org">Ulrich Plate</mail>
 </author>
-<author title="Author">
+<author title="Redaktor">
 <mail link="patrick@gentoo.org">Patrick Lauer</mail>
 </author>
-<author title="Author">
+<author title="Redaktor">
 <mail link="pylon@gentoo.org">Lars Weiler</mail>
 </author>
-<abstract>This is the Gentoo Weekly Newsletter for the week of 14 November 2005.</abstract>
+<author title="Tłumacz">
+<mail link="jbozanowski@gmail.com">Jakub Bożanowski</mail>
+</author>
+<author title="Tłumacz">
+<mail link="damian@lezajsk.info">Damian Kuras</mail>
+</author>
+<author title="Tłumacz">
+<mail link="linux_user@o2.pl">Michał Kurgan</mail>
+</author>
+<author title="Korektor">
+<mail link="muchar@gentoo.org">Robert Muchacki</mail>
+</author>
+<abstract>Wydanie Tygodnika Gentoo z 14 listopada 2005.</abstract>
 <summary/>
-<version>Volume 4, Issue 45</version>
+<version>Wolumin 4, numer 45</version>
 <date>2005-11-14</date>
 
 <!-- Gentoo News -->
 <chapter>
 <title>Wiadomości Gentoo</title>
 <section>
-<title>Zmiana domyślnej metody instalacji na stage3</title>
+<title>Zmiana domyślnej metody instalacji</title>
 <body>
 <p>
 Podczas ostatniego tygodnia <uri
 link="http://www.gentoo.org/proj/en/gdp/index.xml">zespół dokumentacji Gentoo
 </uri> zmodyfikował <uri
-link="http://www.gentoo.org/doc/en/handbook/index.xml">podręcznik Gentoo</uri>
-w taki sposób, aby instalacja z stage3 była metodą domyślną. Przed tą decyzją 
-<uri link="http://www.gentoo.org/proj/en/releng/index.xml">zespół 
-wydający</uri> prosił już o taką zmianę, w związku z rosnącą liczbą 
-użytkowników, którzy niszczyli sobie podstawowy system, poprzez niezalecane 
-zmiany w czasie instalacji z stage1 bądź stage2 lub poprzez nie stosowanie się 
-do instrukcji zawartych w podręczniku.
+link="http://www.gentoo.org/doc/en/handbook/index.xml">Podręcznik Gentoo</uri> ,
+zmieniono domyślnego tarballa stage1 na stage3, używanego w czasie instalacji
+systemu. <uri link="http://www.gentoo.org/proj/en/releng/index.xml">Zespół
+zajmujący się tworzeniem nowych wydań</uri> prosił o taką zmianę już od jakiegoś
+czasu, w związku z rosnącą liczbą użytkowników, którzy niszczyli sobie
+podstawowy system, poprzez niezalecane zmiany w czasie procesu instalacji z
+stage1 bądź stage2, albo poprzez nie stosowanie się do instrukcji zawartych w
+podręczniku.
 </p>
 <p>
-Od dnia dzisiejszego polecaną metodą instalacji jest instalacja z stage3 i
-opcjonalne przebudowanie systemu już po samej instalacji. Takie działanie
-również stworzy zoptymalizowany do naszych potrzeb system. Jak postępować przy
-prawdziwej instalacji z stage1 lub stage2 opisane jest w <uri 
-link="http://www.gentoo.org/doc/en/faq.xml#stage12">FAQ</uri>.
+Od dnia dzisiejszego zalecaną metodą instalacji jest użycie tarballa stage3 i
+opcjonalne przebudowanie całego systemu już po jej skończeniu. Dzięki temu
+również uzyskamy w pełni zoptymalizowany i dostosowany do naszych potrzeb
+system. Metoda postępowania przy użyciu tarballi stage1 i stage2 opisane jest w
+<uri link="http://www.gentoo.org/doc/en/faq.xml#stage12">FAQ</uri>.
 </p>
 <p>
-Do dalszej lektury polecamy temat o <uri
-link="http://article.gmane.org/gmane.linux.gentoo.documentation/2327">pełnych
-zmianach</uri> w liście mailingowej gentoo-doc, można również przejrzeć
-<uri link="http://www.gentoo.org/cgi-bin/viewcvs.cgi/xml/htdocs/doc/en/handbook/hb-install-x86-medium.xml?hidecvsroot=1&amp;search=&amp;hideattic=0&amp;sortby=file&amp;r2=1.41&amp;logsort=date&amp;root=gentoo&amp;diff_format=h&amp;r1=1.40">real
-zmiany</uri> w naszym viewcvs lub przeczytać <uri
-link="https://bugs.gentoo.org/105809">bug #105809</uri>.
+Każdego zainteresowanego szczegółami na ten temat zapraszamy do przeglądnięcia
+odpowiedniego wątku na liście dyskusyjnej gentoo-doc, opisującego <uri
+link="http://article.gmane.org/gmane.linux.gentoo.documentation/2327">pełną
+listę zmian</uri>, a także do <uri
+link="http://www.gentoo.org/cgi-bin/viewcvs.cgi/xml/htdocs/doc/en/handbook/hb-install-x86-medium.xml?hidecvsroot=1&amp;search=&amp;hideattic=0&amp;sortby=file&amp;r2=1.41&amp;logsort=date&amp;root=gentoo&amp;diff_format=h&amp;r1=1.40">repozytorium
+cvs</uri>, gdzie można znaleźć dokładny zapis modyfikacji lub <uri
+link="https://bugs.gentoo.org/105809">buga #105809</uri>.
 </p>
 </body>
 </section>
@@ -66,7 +80,7 @@ link="https://bugs.gentoo.org/105809">bug #105809</uri>.
 <body>
 <figure link="/images/gwn/20051114_zymeta-jukebox.jpg" short="Zymeta Video
   Jukebox"
-caption="The Zymeta Video Jukebox in action" />
+caption="Zymeta Video Jukebox w akcji" />
 
 <p>
 <e>Poprosimy o kilka słów o sobie. Kim jesteś i gdzie pracujesz?</e>
@@ -84,19 +98,20 @@ firmie <uri link="http://www.zymeta.com/">Zymeta Entertainment</uri>.
 <p>
 Zymeta to firma produkująca systemy rozrywkowe. Stworzyliśmy własną platformę
 multimedialną z ekranem dotykowym, przeznaczoną do miejsc publicznych,
-wyposażoną we własny system uaktualnień i zarządzania. Możemy zarządzać całością
-urządzeń lub wprowadzać zmiany tylko w jednym z nich. Pierwszym z naszych
-naprawdę udanych produktów to system rozrywkowy odtwarzający teledyski o nazwie
-"Video Jukebox", zwykle instalowany w pubach i barach. Goście lokali mogą
-dokonywać wyboru za pomocą ekranu dotykowego i oglądać teledyski na ekranach
-telewizorów, zaś agencje reklamowe mogą kierować swój przekaz do konkretnych
-miejsc lub grup odbiorców. Usługa jest w pełni licencjonowana przez przemysł
-muzyczny. Jest kolorowa, interaktywna i działa na systemie Gentoo Linux.
+wyposażoną we własny system uaktualnień i zarządzania. Możemy kontrolować
+wszystkie urządzenia lub wprowadzać zmiany tylko w jednym z nich. Pierwszym z
+naszych naprawdę udanych produktów jest urządzenie odtwarzające teledyski,
+nazwaliśmy go "Video Jukebox", a zwykle instalowane w pubach i barach. Goście
+danego lokalu mogą dokonywać wyboru za pomocą ekranu dotykowego i oglądać
+teledyski na ekranach telewizorów, zaś agencje reklamowe mogą kierować swój
+przekaz do konkretnych miejsc lub grup odbiorców. Usługa jest w pełni
+licencjonowana przez przemysł muzyczny. Urządzenie jest kolorowe, interaktywne i
+działa na systemie Gentoo Linux.
 </p>
 
 <p>
-Jeśli ktoś jest ciekawy jak wygląda nasze urządzenie, można je zobaczyć na wielu
-urywkach w naszym <uri
+Jeśli ktoś jest ciekawy jak wygląda nasze urządzenie, można je zobaczyć w wielu
+ujęciach na naszym <uri
 link="http://www.zymeta.com/files/corporate-video-small.mov">firmowym
 filmie</uri>.
 </p>
@@ -114,30 +129,31 @@ Gentoo. Wprowadzenie tej dystrybucji do Zymeta i uczynienie jej jedynym
 wykorzystywanym systemem jest moją zasługą. Mieliśmy zbyt wiele problemów z
 używaniem wielu dystrybucji na raz. Wybrałem Gentoo ze względu na jego
 wszechstronność. Jest to dystrybucja oparta na kodzie źródłowym, wyposażona w
-świetny system zarządzania paczkami, posiadająca znakomitą społeczność
-użytkowników.
+świetny system zarządzania pakietami, i co ważne, posiadająca wspaniałą
+społeczność użytkowników.
 </p>
 
 <p>
 Wprawdzie uaktualniamy oprogramowanie klienckie szaf grających przez internet,
-nie było jednak potrzeby uaktualniania ich systemu operacyjnego ze względu na
-stabilność Gentoo. Zastanawialiśmy się nad stworzeniem własnego drzewa Portage,
-zdecydowaliśy jednak, że najlepszym sposobem na dokonywanie większych
-uaktualnień będzie tworzenie skompresowanego pliku, zawierającego cały system
-operacyjny i uaktualnianie szaf grających za jego pomocą. Możliwe jednak, że w
-przyszłości niewielkie uaktualnienia pojedynczych pakietów będziemy wykonywać
-za pomocą drzewa Portage. Dzięki temu moglibyśmy szybko reagować w przypadku
-luk bezpieczeństwa.
+nie było jednak potrzeby aktualizacji pracującego na urządzeniach systemu
+operacyjnego, ze względu na stabilność Gentoo. Zastanawialiśmy się nad
+stworzeniem własnego drzewa Portage, zdecydowaliśmy jednak, że najlepszym
+sposobem na dokonywanie większych uaktualnień będzie tworzenie skompresowanego
+pliku, zawierającego cały system operacyjny, a następnie jego przegranie do
+poszczególnych szaf grających. Możliwe jednak, że w przyszłości niewielkie
+uaktualnienia pojedynczych pakietów będziemy wykonywać z użyciem drzewa Portage.
+Dzięki temu moglibyśmy szybko reagować w przypadku luk bezpieczeństwa.
 </p>
 
 <p>
-Oprócz tego niedawno uaktualniliśmy oprogramowanie aby działało idealnie na
-jądrze 2.6, zaś przez ostatnie dwa dni zajmowałem się tworzeniem płyty CD, która
-uruchamia szafę grającą, montuje twarde dyski i uaktualnia pliki systemu
-operacyjnego. Bardzo pomogła mi przy tym społeczność Gentoo, a także, jak już
-wspomniałem, ogromna ilość dokumentacji, dzięki której bardzo łatwo jest
-zmodyfikować Gentoo 2005.1 LiveCD tak, aby opatrzone logo Zymeta dokonywało
-niezbędnych uaktualnień.
+Oprócz tego niedawno przeprowadziliśmy aktualizację oprogramowania, aby działało
+idealnie na jądrze 2.6, zaś przez ostatnie dwa dni zajmowałem się tworzeniem
+płyty CD, która uruchamia szafę grającą, montuje twarde dyski i dokonuje
+automatycznego uaktualnienia systemu operacyjnego. W tym przedsięwzięciu bardzo
+pomogła społeczność Gentoo, a także, jak już wspomniałem, ogromna ilość
+dokumentacji, dzięki której bardzo łatwo jest zmodyfikować Gentoo 2005.1 LiveCD
+tak, aby opatrzone logo Zymeta dokonywało niezbędnych poprawek w sposób
+automatyczny.
 </p>
 
 <p>
@@ -145,7 +161,7 @@ niezbędnych uaktualnień.
 </p>
 
 <p>
-Zanim zaczęliśmy używać Gentoo wykorzystywaliśmy system Red Hat na serwerach i
+Zanim zaczęliśmy używać Gentoo wykorzystywaliśmy system Red Hat na serwerach, a
 Debian w szafach grających.
 </p>
 
@@ -155,24 +171,25 @@ porównanie?</e>
 </p>
 
 <p>
-Pierwszy raz wypróbowałem Gentoo w 2003 roku jeszcze w poprzednim miejscu pracy,
-a stało się to przez mojego współpracownika, który zainstalował je i później
-narzekał jak bardzo musiał się przy tym namęczyć i że zajęło mu to dwa dni. Sam
-spróbowałem i udowodniłem mu, że się myli, instalując Gentoo razem z KDE bez
-problemu w ciągu jednego dnia na moim laptopie firmy Dell. Pokochałem ten system
-od pierwszego wejrzenia i nie wróciłem już do używanego poprzednio Red Hata.
+Pierwszy raz wypróbowałem Gentoo w 2003 roku, jeszcze w poprzednim miejscu
+pracy, a stało się to przez mojego współpracownika, który zainstalował je i
+później narzekał jak bardzo musiał się przy tym namęczyć i że zajęło mu to aż
+dwa dni. Sam spróbowałem i udowodniłem mu, że się myli, instalując Gentoo razem
+z KDE bez problemu w ciągu jednego dnia na moim laptopie firmy Dell. Pokochałem
+ten system od pierwszego wejrzenia i nie wróciłem już do używanego poprzednio
+Red Hata.
 </p>
 
 <p>
-Wielu ludzi miało złe doświadczenia z zarządcą pakietów RPM z Red Hata, mi
-jednakże bardzo się on podobał. Przynajmniej dopóki nie zaczęły mi być potrzebne
-najnowsze wersje paczek różnych programów (na przykład PostgreSQL i kilku
-narzędzi sieciowych), a pobrane pliki RPM nie działały, ponieważ zostały
-zbudowane na innej wersji systemu Red Hat. Bądź też wymagały uaktualnienia
-trzech innych paczek, które z kolei miały swoje zależności. System zarządzania
-paczkami w Gentoo to dla mnie największa zaleta tego systemu i pomimo iż
-uaktualnianie zajmuje więcej czasu ze względu na kompilację, zdecydowanie warto
-jest poczekać.
+Wielu ludzi miało złe doświadczenia z zarządcą pakietów RPM oferowane przez
+system Red Hata, mi jednakże bardzo się on podobał. Przynajmniej dopóki nie
+zaczęły mi być potrzebne najnowsze wersje paczek różnych programów (na przykład
+PostgreSQL i kilku narzędzi sieciowych), a pobrane pliki RPM nie działały,
+ponieważ zostały zbudowane na innej wersji systemu Red Hat. Bądź też wymagały
+uaktualnienia trzech innych paczek, które z kolei miały swoje zależności. System
+zarządzania paczkami w Gentoo to dla mnie największa zaleta tego systemu i
+pomimo iż aktualizacja zajmuje więcej czasu ze względu na kompilację,
+zdecydowanie warto jest poczekać.
 </p>
 
 <p>
@@ -187,7 +204,7 @@ się nazywa elastyczność!
 </p>
 
 <p>
-<e>Gdzie widzisz problemy? Co możnaby jeszcze dopracować?</e>
+<e>Gdzie widzisz problemy? Co można jeszcze dopracować?</e>
 </p>
 
 <p>
@@ -195,19 +212,20 @@ Narzekać mogę jedynie na długi czas stabilizowania pakietów. Podoba mi się 
 że opiekunowie upewniają się, że program kompiluje się i działa poprawnie przed
 oznaczeniem go jako stabilny, szczególnie biorąc pod uwagę fakt, że używamy
 Gentoo na systemach produkcyjnych, czasem jednak zajmuje to zbyt wiele czasu.
-Udaje nam się jednak to ominąć dzięki elastyczności Portage (wykorzystując flagi
-USE i nakładki na Portage).
+Udaje nam się jednak to ominąć dzięki elastyczności Portage (wykorzystując
+flagi USE i nakładki na Portage).
 </p>
 
 
 <p>
 <e>Istnieje wiele projektów takich jak instalator, Gentoo/Alt (na przykład BSD).
-Co sądzisz o tym poszerzaniu pól działania? W tym także o nowe architektury?</e>
+Co sądzisz o tym poszerzaniu pól działania? W tym także o nowe
+architektury?</e>
 </p>
 
 <p>
 Myślę, że im więcej ludzi używa Gentoo, tym lepiej. Jednym z powodów, dla
-których chętnie udzielam tego wywiadu jest chęć rozpowszechnienia opini o tym,
+których chętnie udzielam tego wywiadu jest chęć rozpowszechnienia opinii o tym,
 że systemu Gentoo można używać w każdym środowisku, obojętnie czy będzie to
 stacja robocza, czy też potężny serwer, na którym działa krytycznie ważna baza
 danych. Stabilność jest kluczowa w większości zastosowań, nie sądzę jednak, że
@@ -241,15 +259,15 @@ najbliższej przyszłości?</e>
 <p>
 Jeśli ktoś chciałby porozmawiać o wykorzystaniu Gentoo w firmach, może
 skontaktować się ze mną pod adresem dr@zymeta.com. Zaś z tego co mi wiadomo
-deweloper Gentoo Corey Shields chce dokonać analizy wykorzystania Gentoo na
+deweloper Gentoo, Corey Shields chce dokonać analizy wykorzystania Gentoo na
 przykładzie firmy Zymeta, więc wkrótce warto będzie przyjrzeć się efektom jego
 pracy.
 </p>
 
 <p>
-Warto też wspomnieć o istnieniu ukrytej niespodzianki związanej z Gentoo w
-nadchodzącej wersji naszej szafy grającej, więc jeśli ktoś chce wiedzieć gdzie
-ją znaleźć, może do mnie napisać.
+Warto też wspomnieć o istnieniu ukrytej niespodzianki związanej z Gentoo, w
+nadchodzącej wersji naszej szafy grającej, więc jeśli ktoś chce wiedzieć gdzie i
+jak ją znaleźć, może do mnie napisać.
 </p>
 
 <p>
@@ -264,32 +282,30 @@ ją znaleźć, może do mnie napisać.
 <!-- Developer of the week -->
 <!-- Heard in the community: gentoo-dev, gentoo-user, forums -->
 <chapter>
-<title>Heard in the community</title>
+<title>Społeczność Gentoo</title>
 <section>
-<title>gentoo-dev</title>
+<title>Lista dyskusyjna gentoo-dev</title>
 <body>
-<p><b>GLEP 43: GLEP file hosting</b></p>
+<p><b>GLEP 43: Zarządzanie plikami GLEP</b></p>
 <p>
-<mail link="ciaranm@gentoo.org">Ciaran McCreesh</mail> publicized a <uri
-link="http://www.gentoo.org/proj/en/glep/glep-0043.html">new GLEP</uri> this
-week to allow (future) GLEPs to have attached code in a subdirectory instead of
-inlined or placed externally. This should allow for better GLEP readability and
-easier maintenance.
+<mail link="ciaranm@gentoo.org">Ciaran McCreesh</mail> opublikował w tym
+tygodniu <uri link="http://www.gentoo.org/proj/en/glep/glep-0043.html">nowy
+GLEP</uri>, w którym przedstawił propozycję by kolejne GLEP-y były dołączane w
+podkatalogu, a nie były wklejane lub umieszczane na zewnętrznych zasobach, jak
+to ma miejsce w tej chwili. Taka zmiana z pewnością przyczyni się do poprawienia
+czytelności i ułatwi zarządzanie.
 </p>
 <ul>
 <li><uri
 link="http://thread.gmane.org/gmane.linux.gentoo.devel/32769">GLEP 43:
 GLEP file hosting </uri></li>
 </ul>
-
-
-<p><b>Creation and handling of virtual/tar</b></p>
+<p><b>Stworzenie virtual/tar</b></p>
 <p>
-<mail link="flameeyes@gentoo.org">Diego 'Flameeyes' Pettenò</mail> tells us
-about the creation of virtual/tar which at the moment can be satisfied by GNU
-tar and bsdtar. Creating this virtual will mostly help <uri
-link="http://www.gentoo.org/proj/en/gentoo-alt/index.xml">Gentoo/Alt</uri> at
-the moment.
+<mail link="flameeyes@gentoo.org">Diego 'Flameeyes' Pettenò</mail> zaproponował
+stworzenie virtual/tar, który w obecnej chwili byłby spełniony przez GNU tar i
+bsdtar. Zmiana ta jest bardzo pomocna dla projektu <uri
+link="http://www.gentoo.org/proj/en/gentoo-alt/index.xml">Gentoo/Alt</uri>.
 </p>
 <ul>
 <li><uri
@@ -307,26 +323,29 @@ link="http://thread.gmane.org/gmane.linux.gentoo.devel/32732">virtual/tar
 <title>Niemcy: LWE i DevCon we Frankfurcie nad Menem</title>
 <body>
 <p>
-W tym tygodniu na targach w Frankfurcie nad Menem odbędą się imprezy związane z
-Gentoo. Pierwszą z nich jest <uri link="http://www.linuxworldexpo.de/">Linux 
-World Conference &amp; Expo</uri> w 4 hali targów we Frankfurcie. Od wtorku, 15
-listopada, do czwartku 17 listopada, będzie okazja do spotkania deweloperów
-Gentoo na ich stoisku w pawilonie .org (G06). Kilka informacji można będzie
-usłyszeć na <uri
-link="http://www.linuxworldexpo.de/04_03_01.php?Termin_ID=154&amp;ID=97">
-wykładzie dotyczącym Gentoo</uri> w środowy wieczór.
+W tym tygodniu w okolicach Frankfurtu nad Menem odbędą się dwie imprezy na
+których będzie można dowiedzieć się czegoś na temat Gentoo. Pierwszą z nich jest
+<uri link="http://www.linuxworldexpo.de/">Linux World Conference &amp;
+Expo</uri> w hali nr 4, targów we Frankfurcie. Od wtorku, 15 listopada, do
+czwartku 17 listopada, będzie okazja do spotkania deweloperów Gentoo na stoisku
+znajdującym się w pawilonie .org (G06). Dodatkowo, w środowy wieczór będzie
+można tam usłyszeć <uri
+link="http://www.linuxworldexpo.de/04_03_01.php?Termin_ID=154&amp;ID=97"> wykład
+opisujący Gentoo</uri>.
 </p>
 <p>
-Po trzech dniach targów, redaktor Tygodnika Gentoo <mail 
-link="plate@gentoo.org">Ulrich Plate</mail> zaprosił <uri
+Po zakończeniu targów, redaktor Tygodnika Gentoo, <mail
+link="plate@gentoo.org">Ulrich Plate</mail> zaprosza <uri
 link="http://conference.gentoo-ev.org/">na europejskie spotkanie deweloperów
-Gentoo</uri> w jego rezydencji zamku Kransberg, 40km na północ od Frankfurtu.
-Ponad 20 deweloperów oraz innych użytkowników zadeklarowało swoją obecność.
-Kilka wykładów oraz innych zajęć uzupełnionych przez szwedzki stół wypełni
-dzień.
+Gentoo</uri>, które odbędzie się w jego rezydencji, na zamku Kransberg,
+znajdującym się około 40km na północ od Frankfurtu.  Ponad 20 deweloperów oraz
+oraz kilkoro użytkowników zadeklarowało swoją obecność.  Planowane jest
+przeprowadzenie warsztatów i wykładów, nie zabraknie też przekąsek i kilku
+spotkań zapoznawczych.
 </p>
 <p>
-Jeżeli jesteś zainteresowany udziałem w konferencji, prosimy o wypełnienie <uri
+Wszystkich zainteresowanych wzięciem udziału w konferencji, prosimy o
+wypełnienie <uri
 link="http://conference.gentoo-ev.org/cgi-bin/registration.pl">formularza
 rejestracyjnego</uri>.
 </p>
@@ -338,38 +357,41 @@ rejestracyjnego</uri>.
 <!-- Tips and Tricks -->
 <!-- Gentoo developer moves -->
 <chapter>
-<title>Gentoo developer moves</title>
+<title>Zmiana statusu deweloperów Gentoo</title>
 <section>
-<title>Moves</title>
+<title>Odeszli</title>
 <body>
 <p>
-The following developers recently left the Gentoo project:
+Następujący deweloperzy opuścili projekt Gentoo Linux w minionym tygodniu:
 </p>
 <ul>
 <li></li>
-<li>Jesper Brodersen (broeman) - danish translations</li>
-<li>Arne Mejholm (aaby) - danish translations</li>
+<li>Jesper Brodersen (broeman) - duńskie tłumaczenie</li>
+<li>Arne Mejholm (aaby) - duńskie tłumaczenie</li>
 </ul>
 </body>
 </section>
 <section>
-<title>Adds</title>
+<title>Przybyli</title>
 <body>
 <p>
-The following developers recently joined the Gentoo project:
+Następujący deweloperzy przyłączyli się do projektu Gentoo Linux w minionym
+tygodniu:
 </p>
 <ul>
-<li>Michael Schönbeck (thoand) - video disc recorder</li>
+<li>Michael Schönbeck (thoand) - narzędzia do nagrywania płyt video</li>
 </ul>
 </body>
 </section>
 <section>
-<title>Changes</title>
+<title>Zmienili status</title>
 <body>
-<p>The following developers recently changed roles within the
-Gentoo project:</p>
+<p>
+Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie
+Gentoo Linux funkcję:
+</p>
 <ul>
-<li><e>None this week</e></li>
+<li><e>Nikt w tym tygodniu</e></li>
 </ul>
 </body>
 </section>
@@ -377,53 +399,62 @@ Gentoo project:</p>
 
 <!-- Gentoo security -->
 <chapter>
-<title>Gentoo Security</title>
+<title>Bezpieczeństwo Gentoo</title>
 <!-- paste from the script -->
 <section>
-<title>PHP: Multiple vulnerabilities</title>
+<title>PHP: Wiele usterek</title>
 <body>
 <p>
-    PHP suffers from multiple issues, resulting in security functions bypass,
-    local Denial of service, cross-site scripting or PHP variables overwrite.
+PHP zawiera szereg usterek, które mogą doprowadzić do ominięcia funkcji
+bezpieczeństwa, lokalnego ataku Denial of service lub cross-site scripting, a
+także nadpisanie zmiennych PHP.
 </p>
 <p>
-For more information, please see the <uri link="http://www.gentoo.org/security/en/glsa/glsa-200511-08.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200511-08.xml">komunikacie
+GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>Lynx: Arbitrary command execution</title>
+<title>Lynx: Wykonanie niepożądanej komendy</title>
 <body>
 <p>
-    Lynx is vulnerable to an issue which allows the remote execution of
-    arbitrary commands.
+Lynx zawiera usterkę, która możne zostać wykorzystana do zdalnego wykonania
+niepożądanej komendy.
 </p>
 <p>
-For more information, please see the <uri link="http://www.gentoo.org/security/en/glsa/glsa-200511-09.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200511-09.xml">komunikacie
+GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>RAR: Format string and buffer overflow vulnerabilities</title>
+<title>RAR: Przepełnienie bufora oraz usterka format string</title>
 <body>
 <p>
-    RAR contains a format string error and a buffer overflow vulnerability that
-    may be used to execute arbitrary code.
+RAR zawiera usterkę format string oraz jest podatny na przepełnienie bufora. Oba
+błędy mogą doprowadzić do wykonania niepożądanego kodu.
 </p>
 <p>
-For more information, please see the <uri link="http://www.gentoo.org/security/en/glsa/glsa-200511-10.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200511-10.xml">komunikacie
+GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>linux-ftpd-ssl: Remote buffer overflow</title>
+<title>linux-ftpd-ssl: Zdalne przepełnienie bufora</title>
 <body>
 <p>
-    A buffer overflow vulnerability has been found, allowing a remote attacker
-    to execute arbitrary code with escalated privileges on the local system.
+Usterka przepełnienia bufora umożliwia zdalnemu napastnikowi na przekroczenie
+uprawnień i wykonanie niepożądanego kodu.
 </p>
 <p>
-For more information, please see the <uri link="http://www.gentoo.org/security/en/glsa/glsa-200511-11.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200511-11.xml">komunikacie
+GLSA</uri>
 </p>
 </body>
 </section>
@@ -435,178 +466,220 @@ For more information, please see the <uri link="http://www.gentoo.org/security/e
 <chapter>
 <title>Bugzilla</title>
 <section>
-<title>Statistics</title>
+<title>Statystyki</title>
 <body>
-     <p>
-      The Gentoo community uses Bugzilla (<uri
-      link="http://bugs.gentoo.org">bugs.gentoo.org</uri>) to record and track
-      bugs, notifications, suggestions and other interactions with the
-      development team.  Between 06 November 2005
-      and 13 November 2005, activity on the site has resulted in:
-     </p>
-     <ul>
-          <li>711 new bugs during this period</li>
-          <li>315 bugs closed or resolved during this period</li>
-          <li>31 previously closed bugs were reopened this period</li>
-     </ul>
-     <p>
-     Of the 8960 currently open bugs: 107 are labeled 'blocker', 195 are labeled 'critical', and 558 are labeled 'major'.
-     </p>
+<p>
+Społeczność Gentoo używa Bugzilli (<uri
+link="http://bugs.gentoo.org/">bugs.gentoo.org</uri>) do zgłaszania i śledzenia
+błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomiędzy 6
+listopada 2005, a 13 November 2005 aktywność w serwisie przedstawiała się
+następująco:
+</p>
+<ul>
+<li>zgłoszono 711 nowych bugów</li>
+<li>zamknięto lub rozwiązano 315 bugów</li>
+<li>31 uprzednio zamkniętych bugów zostało ponownie otwartych</li>
+</ul>
+<p>
+Spośród 8960 obecnie otwartych bugów: 107 oznaczono jako 'blocker', 195 jako
+'critical', a 558 jako 'major'.
+</p>
 </body>
 </section>
 
 <section>
-<title>Closed bug rankings</title>
+<title>Zamknięte Bugi</title>
 <body>
-     <p>
-       The developers and teams who have closed the most bugs during this period are:
-     </p>
-     <ul>
-      <li><mail link="docs-team@gentoo.org">Docs Team</mail>, with 21
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=docs-team@gentoo.org">closed bugs</uri>
-      </li>
-      <li><mail link="base-system@gentoo.org">Gentoo's Team for Core System packages</mail>, with 20
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=base-system@gentoo.org">closed bugs</uri>
-      </li>
-      <li><mail link="kde@gentoo.org">Gentoo KDE team</mail>, with 10
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=kde@gentoo.org">closed bugs</uri>
-      </li>
-      <li><mail link="security@gentoo.org">Gentoo Security</mail>, with 9
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">closed bugs</uri>
-      </li>
-      <li><mail link="achumakov@gentoo.org">Alexey Chumakov</mail>, with 9
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=achumakov@gentoo.org">closed bugs</uri>
-      </li>
-      <li><mail link="svyatogor@gentoo.org">Sergey Kuleshov</mail>, with 8
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=svyatogor@gentoo.org">closed bugs</uri>
-      </li>
-      <li><mail link="perl@gentoo.org">Perl Devs @ Gentoo</mail>, with 8
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=perl@gentoo.org">closed bugs</uri>
-      </li>
-      <li><mail link="ppc-macos@gentoo.org">Gentoo for Mac OS X</mail>, with 6
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=ppc-macos@gentoo.org">closed bugs</uri>
-      </li>
+<p>
+Deweloperzy oraz zespoły, które zamknęły najwięcej bugów w minionym
+tygodniu, to:
+</p>
+<ul>
+<li>
+<mail link="docs-team@gentoo.org">Docs Team</mail>, 21 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=docs-team@gentoo.org">zamkniętych
+bugów</uri>
+</li>
+<li>
+<mail link="base-system@gentoo.org">Gentoo's Team for Core System
+packages</mail>, 20 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=base-system@gentoo.org">zamkniętych
+bugów</uri>
+</li>
+<li>
+<mail link="kde@gentoo.org">Gentoo KDE team</mail>, 10 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=kde@gentoo.org">zamkniętych
+bugów</uri>
+</li>
+<li>
+<mail link="security@gentoo.org">Gentoo Security</mail>, 9 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">zamkniętych
+bugów</uri>
+</li>
+<li>
+<mail link="achumakov@gentoo.org">Alexey Chumakov</mail>, 9 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=achumakov@gentoo.org">zamkniętych
+bugów</uri>
+</li>
+<li>
+<mail link="svyatogor@gentoo.org">Sergey Kuleshov</mail>, 8 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=svyatogor@gentoo.org">zamkniętych
+bugów</uri>
+</li>
+<li>
+<mail link="perl@gentoo.org">Perl Devs @ Gentoo</mail>, 8 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=perl@gentoo.org">zamkniętych
+bugów</uri>
+</li>
+<li>
+<mail link="ppc-macos@gentoo.org">Gentoo for Mac OS X</mail>, 6 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;resolution=FIXED&amp;assigned_to=ppc-macos@gentoo.org">zamkniętych
+bugów</uri>
+</li>
 </ul>
 </body>
 </section>
 
 <section>
-<title>New bug rankings</title>
+<title>Nowe Bugi</title>
 <body>
-     <p>
-       The developers and teams who have been assigned the most new bugs during this period are:
-     </p>
-     <ul>
-      <li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New Packages</mail>, with 56
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=maintainer-wanted@gentoo.org">new bugs</uri>
-      </li>
-      <li><mail link="maintainer-needed@gentoo.org">Default Assignee for Orphaned Packages</mail>, with 49
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=maintainer-needed@gentoo.org">new bugs</uri>
-      </li>
-      <li><mail link="perl@gentoo.org">Perl Devs @ Gentoo</mail>, with 42
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=perl@gentoo.org">new bugs</uri>
-      </li>
-      <li><mail link="amd64-test@gentoo.org">AMD64 Testing Team</mail>, with 10
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=amd64-test@gentoo.org">new bugs</uri>
-      </li>
-      <li><mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, with 9
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=gnome@gentoo.org">new bugs</uri>
-      </li>
-      <li><mail link="base-system@gentoo.org">Gentoo's Team for Core System packages</mail>, with 9
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=base-system@gentoo.org">new bugs</uri>
-      </li>
-      <li><mail link="mozilla@gentoo.org">Mozilla Gentoo Team</mail>, with 7
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=mozilla@gentoo.org">new bugs</uri>
-      </li>
-      <li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, with 6
-        <uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=sound@gentoo.org">new bugs</uri>
-      </li>
+<p>
+Deweloperzy oraz zespoły, którym przydzielono najwięcej bugów w minionym tygodniu,
+to:
+</p>
+<ul>
+<li>
+<mail link="maintainer-wanted@gentoo.org">Default Assignee for New
+Packages</mail>, 56 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=maintainer-wanted@gentoo.org">nowych
+bugów</uri>
+</li>
+<li>
+<mail link="maintainer-needed@gentoo.org">Default Assignee for Orphaned
+Packages</mail>, 49 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=maintainer-needed@gentoo.org">nowych
+bugów</uri>
+</li>
+<li>
+<mail link="perl@gentoo.org">Perl Devs @ Gentoo</mail>, 42 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=perl@gentoo.org">nowe
+bugi</uri>
+</li>
+<li>
+<mail link="amd64-test@gentoo.org">AMD64 Testing Team</mail>, 10 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=amd64-test@gentoo.org">nowych
+bugów</uri>
+</li>
+<li>
+<mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, 9 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=gnome@gentoo.org">nowych
+bugów</uri>
+</li>
+<li>
+<mail link="base-system@gentoo.org">Gentoo's Team for Core System
+packages</mail>, 9 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=base-system@gentoo.org">nowych
+bugów</uri>
+</li>
+<li>
+<mail link="mozilla@gentoo.org">Mozilla Gentoo Team</mail>, 7 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=mozilla@gentoo.org">nowych
+bugów</uri>
+</li>
+<li>
+<mail link="sound@gentoo.org">Gentoo Sound Team</mail>, 6 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-06&amp;chfieldto=2005-11-13&amp;assigned_to=sound@gentoo.org">nowych
+bugów</uri>
+</li>
 </ul>
 </body>
 </section>
 </chapter>
+
 <!-- end of paste from bugzilla script -->
 <!-- GWN feedback information -->
 <chapter>
-<title>GWN feedback</title>
+<title>Opinie czytelników</title>
 <section>
 <body>
 <p>
-Please send us your <mail link="gwn-feedback@gentoo.org">feedback</mail> and
-help make the GWN better.
+Jeśli chcesz, aby ten magazyn był jeszcze lepszy, podziel się z
+<mail link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat.
+Uwagi dotyczące tłumaczenia tygodnika można zgłaszać na adres
+<mail link="rane@gentoo.org">rane@gentoo.org</mail>.
 </p>
 </body>
 </section>
 </chapter>
+
 <!-- GWN subscription information -->
 <chapter>
-<title>GWN subscription information</title>
+<title>Subskrypcja Tygodnika Gentoo</title>
 <section>
 <body>
-<p>To subscribe to the Gentoo Weekly Newsletter, send a blank email to
-<mail
-link="gentoo-gwn+subscribe@gentoo.org">gentoo-gwn+subscribe@gentoo.org</mail>.
+<p>Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego e-maila na adres
+<mail>gentoo-gwn-pl+subscribe@gentoo.org</mail>.
 </p>
-<p> To unsubscribe to the Gentoo Weekly Newsletter, send a blank email to
-<mail
-link="gentoo-gwn+unsubscribe@gentoo.org">gentoo-gwn+unsubscribe@gentoo.org</mail>
-from the email address you are subscribed under.</p>
+<p> Aby zrezygnować z subskrypcji, należy wysłać pustego e-maila na adres <mail>
+gentoo-gwn-pl+unsubscribe@gentoo.org</mail> z konta, na które jest zarejestrowana.</p>
 </body>
 </section>
 </chapter>
 
 <!-- Other Languages -->
 <chapter>
-<title>Other languages</title>
+<title>Inne języki</title>
 <section>
 <body>
-<p>The Gentoo Weekly Newsletter is also available in the following
-languages:</p>
+<p>
+Tygodnik Gentoo jest dostępny w następujących językach:
+</p>
+
 <ul>
 <li>
-<uri link="/news/da/gwn/gwn.xml">Danish</uri>
+<uri link="/news/en/gwn/gwn.xml">angielskim</uri>
 </li>
 <li>
-<uri link="/news/nl/gwn/gwn.xml">Dutch</uri>
+<uri link="/news/da/gwn/gwn.xml">duńskim</uri></li>
+<li>
+<uri link="/news/fr/gwn/gwn.xml">francuskim</uri>
 </li>
 <li>
-<uri link="/news/en/gwn/gwn.xml">English</uri>
+<uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri>
 </li>
 <li>
-<uri link="/news/de/gwn/gwn.xml">German</uri>
+<uri link="/news/nl/gwn/gwn.xml">holenderskim</uri>
 </li>
 <li>
-<uri link="/news/fr/gwn/gwn.xml">French</uri>
+<uri link="/news/ja/gwn/gwn.xml">japońskim</uri>
 </li>
 <li>
-<uri link="/news/ko/gwn/gwn.xml">Korean</uri>
+<uri link="/news/ko/gwn/gwn.xml">koreańskim</uri>
 </li>
 <li>
-<uri link="/news/ja/gwn/gwn.xml">Japanese</uri>
+<uri link="/news/de/gwn/gwn.xml">niemieckim</uri>
 </li>
 <li>
-<uri link="/news/it/gwn/gwn.xml">Italian</uri>
+<uri link="/news/pl/gwn/gwn.xml">polskim</uri>
 </li>
 <li>
-<uri link="/news/pl/gwn/gwn.xml">Polish</uri>
+<uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri>
 </li>
 <li>
-<uri link="/news/pt_br/gwn/gwn.xml">Portuguese (Brazil)</uri>
+<uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri>
 </li>
 <li>
-<uri link="/news/pt/gwn/gwn.xml">Portuguese (Portugal)</uri>
+<uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri>
 </li>
 <li>
-<uri link="/news/ru/gwn/gwn.xml">Russian</uri>
+<uri link="/news/tr/gwn/gwn.xml">tureckim</uri>
 </li>
 <li>
-<uri link="/news/es/gwn/gwn.xml">Spanish</uri>
-</li>
-<li>
-<uri link="/news/tr/gwn/gwn.xml">Turkish</uri>
+<uri link="/news/it/gwn/gwn.xml">włoskim</uri>
 </li>
 </ul>
 </body>
 </section>
 </chapter>
 </guide>
+
