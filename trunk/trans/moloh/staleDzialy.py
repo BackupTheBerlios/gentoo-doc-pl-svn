@@ -45,7 +45,7 @@ tygodniu:'''),
 (r'<title>Changes</title>',
  r'<title>Zmienili status</title>'),
 
-(r'The following developers recently changed roles within the Gentoo Linux project:',
+(r'The following developers recently changed roles within the Gentoo project:',
  r'''Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie
 Gentoo Linux funkcję:'''),
 
