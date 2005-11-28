@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="/xsl/guide.xsl" type="text/xsl"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
-<guide type="newsletter" link="20051128-newsletter.xml" lang="en">
-<title>Gentoo Weekly Newsletter</title>
-<subtitle>November 28th, 2005</subtitle>
-<author title="Editor">
+<guide type="newsletter" link="20051128-newsletter.xml" lang="pl">
+<title>Tygodnik Gentoo</title>
+<subtitle>28 listopada 2005</subtitle>
+<author title="Redaktor naczelny">
 <mail link="plate@gentoo.org">Ulrich Plate</mail>
 </author>
-<author title="Author">
+<author title="Redaktor">
 <mail link="patrick@gentoo.org">Patrick Lauer</mail>
 </author>
-<abstract>This is the Gentoo Weekly Newsletter for the week of 28 November 2005.</abstract>
+<author title="Tłumacz">
+<mail link="jbozanowski@gmail.com">Jakub Bożanowski</mail>
+</author>
+<author title="Tłumacz">
+<mail link="damian@lezajsk.info">Damian Kuras</mail>
+</author>
+<author title="Tłumacz">
+<mail link="moloh@moloh.net">Michał Kurgan</mail>
+</author>
+<author title="Korektor">
+<mail link="muchar@gentoo.org">Robert Muchacki</mail>
+</author>
+<abstract>Wydanie Tygodnika Gentoo z 28 listopada 2005.</abstract>
 <summary/>
-<version>Volume 4, Issue 47</version>
+<version>Wolumin 4, numer 47</version>
 <date>2005-11-28</date>
 
 <!-- Gentoo News -->
 <chapter>
-<title>Wiadomości Gentoo</title><section>
-<title>Bezpieczeństwo sieci bezprzewodowych: wpa_supplicant kontra xsupplicant</title>
+<title>Wiadomości Gentoo</title>
+<section>
+<title>Bezpieczeństwo sieci bezprzewodowych: wpa_supplicant vs. xsupplicant</title>
 <body>
 <p>
-Bezpieczny dostęp Wi-Fi (WPA i WPA2) wspierany jest przez dwie aplikacje
-znajdujące się w Portage i wykonujące dokładnie to samo zadanie,
-<c>wpa_supplicant</c> i <c>supplicant</c>. Deweloper 
-<mail link="brix@gentoo.org">Henrik Brix Andersen</mail> oczekuje teraz na
-komentarze na temat planów uznania za przestarzały tego drugiego, z powodu 
-braku integracji z nowym <c>baselayoutem</c> Gentoo. Jako, że nowe wersje 
-<c>wpa_supplicant</c> wydawane są częściej oraz posiadają więcej możliwości 
-niż <c>xsupplicant</c>, użytkownicy, którzy chcieliby utrzymać go w Portage
-pomimo to, proszeni są o wysłanie wiadomości elektronicznej do wyżej
-wymienionego dewelopera z uzasadnieniem dlaczego wolą używać
-<c>xsupplicant</c> niż <c>wpa_supplicant</c>.
+Bezpieczny dostęp Wi-Fi (WPA i WPA2) wspierany jest przez dwie, wykonujące
+dokładnie to samo zadanie, aplikacje znajdujące się w Portage,
+<c>wpa_supplicant</c> i <c>supplicant</c>. Deweloper <mail
+link="brix@gentoo.org">Henrik Brix Andersen</mail> oczekuje na komentarze na
+temat planów uznania, drugiego z wymienionych pakietów, za przestarzały.
+Spowodowane jest to brakiem integracji z nowymi wydaniami <c>baselayoutu</c>, a
+także tym że nowe wersje <c>wpa_supplicant</c> wydawane są częściej, a także
+posiadają większą funkcjonalność niż <c>xsupplicant</c>.  Użytkownicy, którzy
+chcieliby go utrzymać w Portage, proszeni są o wysłanie e-maila do Henrika,
+najlepiej zawierającego uzasadnieniu czemu <c>xsupplicant</c> nie powinien
+zostać usunięty.
 </p>
 </body>
 </section>
@@ -43,22 +56,22 @@ wymienionego dewelopera z uzasadnieniem dlaczego wolą używać
 <!-- Developer of the week -->
 <!-- Heard in the community: gentoo-dev, gentoo-user, forums -->
 <chapter>
-<title>Heard in the community</title>
+<title>Społeczność Gentoo</title>
 <section>
-<title>gentoo-dev</title>
+<title>Lista dyskusyjna gentoo-dev</title>
 <body>
-<p><b>Decision to remove stage1/2 from installation
-documentation</b></p>
+<p><b>Decyzja o usunięciu plików stage 1/2 z podręcznika instalacji
+Gentoo</b></p>
 <p>
-The documentation project decided to move the stage 1/2 install
-documentation out of the default installation documentation. While this
-was meant to reduce installation errors and help new users by
-simplifying the documentation it caused many questions on the dev
-mailinglist wether stage 1/2 are still supported. In short, stage 1 and
-stage 2 will still be provided, but should no longer be used for a
-default installation as they provide little benefit and are the source
-of many avoidable bugs.
-
+Projekt dokumentacji Gentoo podjął decyzję o usunięciu informacji o użyciu
+plików stege 1/2 z podręcznika instalacji Gentoo. Zmiana została podyktowana
+rosnącą liczbą problemów jakie nowi użytkownicy napotykali w czasie pierwszej
+instalacji systemu i chęcią uproszczenia dokumentacji. Przeprowadzone
+modyfikacje sprowokowały wielu użytkowników do zadania wielu pytań na liście
+deweloperów. Najczęściej pytano o to czy pliki stage 1/2 będą dalej wspierane i
+tworzone. W skrócie można powiedzieć, że tak, będą one dalej wspierane, zmieniła
+się jedynie metoda domyślnej instalacji Gentoo, co ma uprościć procedurę i
+pozwala uniknąć wielu możliwych do ominięcia problemów.
 </p>
 <ul>
 <li><uri
@@ -67,15 +80,14 @@ to remove stage1/2 from installation documentation
 </uri></li>
 </ul>
 
-
-<p><b>status of http://wwwredesign.gentoo.org</b></p>
+<p><b>Nowy wygląd strony głównej Gentoo</b></p>
 <p>
-The website redesign project is coming along quite well. <mail
-link="curtis119@gentoo.org">Curtis Napier</mail> asked for some feedback
-on his work and got a huge number of replies. Many changes were
-incorporated, and still <uri link="http://wwwredesign.gentoo.org">the
-new site</uri> is being improved so that it can hopefully replace the
-"old" website soon.
+Projekt zmiany interfejsu strony głównej Gentoo ma się całkiem dobrze.<mail
+link="curtis119@gentoo.org">Curtis Napier</mail> poprosił o ocenę
+dotychczasowych efektów pracy i otrzymał olbrzymią liczbę odpowiedzi. Wiele z
+przesłanych pomysłów zostało przez niego wykorzystanych, a projekt <uri
+link="http://wwwredesign.gentoo.org">nowej strony głównej</uri> jest na bieżąco
+aktualizowany i możliwe, że wkrótce zastąpi dotychczasową.
 </p>
 <ul>
 <li><uri
@@ -83,13 +95,15 @@ link="http://thread.gmane.org/gmane.linux.gentoo.devel/33150">status of
 http://wwwredesign.gentoo.org </uri></li>
 </ul>
 
-<p><b>Split ELF debug</b></p>
+<p><b>Debugowanie plików ELF</b></p>
 <p>
-<mail link="solar@gentoo.org">Ned Ludd</mail> presents a portage feature
-that will most likely be implemented in 2.0.54: split debug info. This
-mildly obscure feature will split executables into the executable and
-debug information in a way that reduces executable size and still
-retains as much debug information as possible.
+<mail link="solar@gentoo.org">Ned Ludd</mail> zaprezentował nową funkcjonalność
+Portage, która najprawdopodobniej zostanie wprowadzona do wersji 2.0.54:
+oddzielenie informacji dla debuggera. Dzięki temu mało skomplikowanemu
+rozszerzeniu plik wykonywalny zostanie podzielony na dwie części, jedną
+wykonywalną oraz drugą, zawierającą jedynie informacje dla debuggera. Dzięki
+temu zachowane zostaną małe rozmiary plików wykonywalnych, a dodane będą
+informacje przydatne dla deweloperów.
 </p>
 <ul>
 <li><uri
@@ -99,6 +113,7 @@ Debug (defult or not?) </uri></li>
 </body>
 </section>
 </chapter>
+
 <!-- Gentoo international -->
 <chapter>
 <title>Gentoo international</title>
@@ -132,6 +147,7 @@ with the <path>gentoojp-misc@gentoo.gr.jp</path> mailing list if you intend to c
 </body>
 </section>
 </chapter>
+
 <!-- Gentoo in the press -->
 <chapter>
 <title>Gentoo in the press</title>
@@ -188,26 +204,28 @@ Hardened PPC, motivated because he "had heard support for it was fairly question
 </body>
 </section>
 </chapter>
+
 <!-- Tips and Tricks -->
 <!-- Gentoo developer moves -->
 <chapter>
-<title>Gentoo developer moves</title>
+<title>Zmiana statusu deweloperów Gentoo</title>
 <section>
-<title>Moves</title>
+<title>Odeszli</title>
 <body>
 <p>
-The following developers recently left the Gentoo project:
+Następujący deweloperzy opuścili projekt Gentoo Linux w minionym tygodniu:
 </p>
 <ul>
-<li><e>None this week</e></li>
+<li><e>Nikt w tym tygodniu</e></li>
 </ul>
 </body>
 </section>
 <section>
-<title>Adds</title>
+<title>Przybyli</title>
 <body>
 <p>
-The following developers recently joined the Gentoo project:
+Następujący deweloperzy przyłączyli się do projektu Gentoo Linux w minionym
+tygodniu:
 </p>
 <ul>
 <li>Marien Zwart (marienz) - Python, <c>twisted</c>, Portage</li>
@@ -216,12 +234,12 @@ The following developers recently joined the Gentoo project:
 </body>
 </section>
 <section>
-<title>Changes</title>
+<title>Zmienili status</title>
 <body>
-<p>The following developers recently changed roles within the
-Gentoo project:</p>
+<p>Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie
+Gentoo Linux funkcję:</p>
 <ul>
-<li><e>None this week</e></li>
+<li><e>Nikt w tym tygodniu</e></li>
 </ul>
 </body>
 </section>
@@ -229,92 +247,87 @@ Gentoo project:</p>
 
 <!-- Gentoo security -->
 <chapter>
-<title>Gentoo Security</title>
+<title>Bezpieczeństwo Gentoo</title>
 <!-- paste from the script -->
 <section>
-<title>GNUMP3d: Directory traversal and insecure temporary file creation</title>
+<title>GNUMP3d: Niebezpieczne tworzenie plików tymczasowych oraz usterka
+directory traversal</title>
 <body>
 <p>
-
-Two vulnerabilities have been identified in GNUMP3d allowing for limited
-directory traversal and insecure temporary file creation.
-
+GNUMP3d tworzy pliki tymczasowe w niebezpieczny sposób, umożliwiając
+przeprowadzenie ataku z użyciem dowiązań symbolicznych, oraz zawiera usterkę
+directory traversal.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200511-16.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200511-16.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>FUSE: mtab corruption through fusermount</title>
+<title>FUSE: Uszkodzenie pliku mtab</title>
 <body>
 <p>
-
-The fusermount utility from FUSE can be abused to corrupt the /etc/mtab
-file contents, potentially allowing a local attacker to set unauthorized
-mount options.
-
+Narzędzie fusermount zawarte w FUSE może zostać wykorzystanie do uszkodzenia
+zawartości pliku /etc/mtab, co może umożliwić lokalnemu napastnikowi na nadanie
+własnych opcji montowania.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200511-17.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200511-17.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>phpSysInfo: Multiple vulnerabilities</title>
+<title>phpSysInfo: Wiele usterek</title>
 <body>
 <p>
-
-phpSysInfo is vulnerable to multiple issues, including a local file
-inclusion leading to information disclosure and the potential execution of
-arbitrary code.
-
+phpSysInfo zawiera wiele usterek, m.in. usterkę dołączenia lokalnego pliku,
+która może doprowadzić do ujawnienia informacji lub wykonanie niepożądanego
+kodu.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200511-18.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200511-18.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>eix: Insecure temporary file creation</title>
+<title>eix: Niebezpieczne tworzenie plików tymczasowych</title>
 <body>
 <p>
-
-eix has an insecure temporary file creation vulnerability, potentially
-allowing a local user to overwrite arbitrary files.
-
+eix jest podatne na atak z użyciem dowiązań symbolicznych, co może potencjalnie
+umożliwić lokalnemu użytkownikowi na nadpisanie dowolnych plików.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200511-19.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200511-19.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>Horde Application Framework: XSS vulnerability</title>
+<title>Horde: Usterka XSS</title>
 <body>
 <p>
-
-The Horde Application Framework is vulnerable to a cross-site scripting
-vulnerability which could lead to the compromise of the victim's browser
-content.
-
+Horde jest podatne na ataki cross-site scripting, które mogą zostać wykorzystane
+do podmiany zawartości przeglądarki.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200511-20.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200511-20.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
 <section>
-<title>Macromedia Flash Player: Remote arbitrary code execution</title>
+<title>Macromedia Flash Player: Zdalne wykonanie niepożądanego kodu</title>
 <body>
 <p>
-
-A vulnerability has been identified that allows arbitrary code execution on
-a user's system via the handling of malicious SWF files.
-
+Znaleziono usterkę umożliwiającą napastnikowi na zdalne wykonanie niepożądanego
+kodu, przy użyciu spreparowanego pliku SWF.
 </p>
 <p>
-For more information, please see the <uri link="/security/en/glsa/glsa-200511-21.xml">GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="/security/en/glsa/glsa-200511-21.xml">komunikacie GLSA</uri>
 </p>
 </body>
 </section>
@@ -325,178 +338,193 @@ For more information, please see the <uri link="/security/en/glsa/glsa-200511-21
 <chapter>
 <title>Bugzilla</title>
 <section>
-<title>Statistics</title>
+<title>Statystyki</title>
 <body>
 <p>
-The Gentoo community uses Bugzilla (<uri
-link="http://bugs.gentoo.org">bugs.gentoo.org</uri>) to record and track
-bugs, notifications, suggestions and other interactions with the
-development team.  Between 20 November 2005
-and 27 November 2005, activity on the site has resulted in:
+Społeczność Gentoo używa Bugzilli (<uri
+link="http://bugs.gentoo.org/">bugs.gentoo.org</uri>) do zgłaszania i śledzenia
+błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomiędzy 20
+listopada 2005, a 27 listopada 2005 aktywność w serwisie przedstawiała się
+następująco:
 </p>
 <ul>
-<li>623 new bugs during this period</li>
-<li>451 bugs closed or resolved during this period</li>
-<li>32 previously closed bugs were reopened this period</li>
+<li>zgłoszono 623 nowe bugi</li>
+<li>zamknięto lub rozwiązano 451 bugów</li>
+<li>32 uprzednio zamknięte bugi zostało ponownie otwartych</li>
 </ul>
 <p>
-Of the 9020 currently open bugs: 104 are labeled 'blocker', 200 are labeled 'critical', and 556 are labeled 'major'.
+Spośród 9020 obecnie otwartych bugów: 104 oznaczono jako 'blocker', 200 jako
+'critical', a 556 jako 'major'.
 </p>
 </body>
 </section>
 
 <section>
-<title>Closed bug rankings</title>
+<title>Zamknięte Bugi</title>
 <body>
 <p>
-The developers and teams who have closed the most bugs during this period are:
+Deweloperzy oraz zespoły, które zamknęły najwięcej bugów w minionym
+tygodniu, to:
 </p>
 <ul>
-<li><mail link="x11@gentoo.org">Gentoo X-windows packagers</mail>, with 39
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=x11@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="security@gentoo.org">Gentoo Security</mail>, with 29
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="neysx@gentoo.org">Xavier Neys</mail>, with 20
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=neysx@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="amd64@gentoo.org">AMD64 Porting Team</mail>, with 19
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=amd64@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="amd64-test@gentoo.org">AMD64 Testing Team</mail>, with 19
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=amd64-test@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="games@gentoo.org">Gentoo Games</mail>, with 17
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=games@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="base-system@gentoo.org">Gentoo's Team for Core System packages</mail>, with 16
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=base-system@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="devrel@gentoo.org">Gentoo Developer Relations Team</mail>, with 15
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=devrel@gentoo.org">closed bugs</uri>
-</li>
+<li><mail link="x11@gentoo.org">Gentoo X-windows packagers</mail>, 39 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=x11@gentoo.org">zamkniętych
+bugów</uri> </li>
+<li><mail link="security@gentoo.org">Gentoo Security</mail>, 29 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">zamkniętych
+bugów</uri> </li>
+<li><mail link="neysx@gentoo.org">Xavier Neys</mail>, 20 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=neysx@gentoo.org">zamkniętych
+bugów</uri> </li>
+<li><mail link="amd64@gentoo.org">AMD64 Porting Team</mail>, 19 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=amd64@gentoo.org">zamkniętych
+bugów</uri> </li>
+<li><mail link="amd64-test@gentoo.org">AMD64 Testing Team</mail>, 19 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=amd64-test@gentoo.org">zamkniętych
+bugów</uri> </li>
+<li><mail link="games@gentoo.org">Gentoo Games</mail>, 17 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=games@gentoo.org">zamkniętych
+bugów</uri> </li>
+<li><mail link="base-system@gentoo.org">Gentoo's Team for Core System
+packages</mail>, 16 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=base-system@gentoo.org">zamkniętych
+bugów</uri> </li>
+<li><mail link="devrel@gentoo.org">Gentoo Developer Relations Team</mail>, 15
+<uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;resolution=FIXED&amp;assigned_to=devrel@gentoo.org">zamkniętych
+bugów</uri> </li>
 </ul>
 </body>
 </section>
 
 <section>
-<title>New bug rankings</title>
+<title>Nowe Bugi</title>
 <body>
 <p>
-The developers and teams who have been assigned the most new bugs during this period are:
+Deweloperzy oraz zespoły, którym przydzielono najwięcej bugów w minionym tygodniu,
+to:
 </p>
 <ul>
-<li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New Packages</mail>, with 25
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=maintainer-wanted@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, with 11
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=gnome@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, with 9
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=sound@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="java@gentoo.org">Java team</mail>, with 8
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=java@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="maintainer-needed@gentoo.org">Default Assignee for Orphaned Packages</mail>, with 7
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=maintainer-needed@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="amd64@gentoo.org">AMD64 Porting Team</mail>, with 6
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=amd64@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="amd64-test@gentoo.org">AMD64 Testing Team</mail>, with 6
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=amd64-test@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="media-video@gentoo.org">media-video herd</mail>, with 5
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=media-video@gentoo.org">new bugs</uri>
-</li>
+<li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New
+Packages</mail>, 25 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=maintainer-wanted@gentoo.org">nowych
+bugów</uri> </li>
+<li><mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, 11
+<uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=gnome@gentoo.org">nowych
+bugów</uri> </li>
+<li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, 9 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=sound@gentoo.org">nowych
+bugów</uri> </li>
+<li><mail link="java@gentoo.org">Java team</mail>, 8 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=java@gentoo.org">nowych
+bugów</uri> </li>
+<li><mail link="maintainer-needed@gentoo.org">Default Assignee for Orphaned
+Packages</mail>, 7 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=maintainer-needed@gentoo.org">nowych
+bugów</uri> </li>
+<li><mail link="amd64@gentoo.org">AMD64 Porting Team</mail>, 6 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=amd64@gentoo.org">nowych
+bugów</uri> </li>
+<li><mail link="amd64-test@gentoo.org">AMD64 Testing Team</mail>, 6 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=amd64-test@gentoo.org">nowych
+bugów</uri> </li>
+<li><mail link="media-video@gentoo.org">media-video herd</mail>, 5 <uri
+link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2005-11-20&amp;chfieldto=2005-11-27&amp;assigned_to=media-video@gentoo.org">nowych
+bugów</uri> </li>
 </ul>
 </body>
 </section>
 </chapter>
 <!-- end of paste from bugzilla script -->
+
 <!-- GWN feedback information -->
 <chapter>
-<title>GWN feedback</title>
+<title>Opinie czytelników</title>
 <section>
 <body>
 <p>
-Please send us your <mail link="gwn-feedback@gentoo.org">feedback</mail> and
-help make the GWN better.
+Jeśli chcesz, aby ten magazyn był jeszcze lepszy, podziel się z
+<mail link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat.
+Uwagi dotyczące tłumaczenia tygodnika można zgłaszać na adres
+<mail link="moloh@moloh.net">koordynatora</mail>.
 </p>
 </body>
 </section>
 </chapter>
+
 <!-- GWN subscription information -->
 <chapter>
-<title>GWN subscription information</title>
+<title>Subskrypcja Tygodnika Gentoo</title>
 <section>
 <body>
-<p>To subscribe to the Gentoo Weekly Newsletter, send a blank email to
-<mail
-link="gentoo-gwn+subscribe@gentoo.org">gentoo-gwn+subscribe@gentoo.org</mail>.
-</p> 
-<p> To unsubscribe to the Gentoo Weekly Newsletter, send a blank email to
-<mail
-link="gentoo-gwn+unsubscribe@gentoo.org">gentoo-gwn+unsubscribe@gentoo.org</mail>
-from the email address you are subscribed under.</p>
+<p>
+Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego e-maila na adres
+<mail>gentoo-gwn-pl+subscribe@gentoo.org</mail>.
+</p>
+<p>
+Aby zrezygnować z subskrypcji, należy wysłać pustego e-maila na adres <mail>
+gentoo-gwn-pl+unsubscribe@gentoo.org</mail> z konta, na które jest zarejestrowana.
+</p>
 </body>
 </section>
 </chapter>
 
 <!-- Other Languages -->
 <chapter>
-<title>Other languages</title>
+<title>Inne języki</title>
 <section>
 <body>
-<p>The Gentoo Weekly Newsletter is also available in the following
-languages:</p>
+<p>
+Tygodnik Gentoo jest dostępny w następujących językach:
+</p>
+
 <ul>
 <li>
-<uri link="/news/da/gwn/gwn.xml">Danish</uri>
+<uri link="/news/en/gwn/gwn.xml">angielskim</uri>
 </li>
 <li>
-<uri link="/news/nl/gwn/gwn.xml">Dutch</uri>
+<uri link="/news/da/gwn/gwn.xml">duńskim</uri>
 </li>
 <li>
-<uri link="/news/en/gwn/gwn.xml">English</uri>
+<uri link="/news/fr/gwn/gwn.xml">francuskim</uri>
 </li>
 <li>
-<uri link="/news/de/gwn/gwn.xml">German</uri>
+<uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri>
 </li>
 <li>
-<uri link="/news/fr/gwn/gwn.xml">French</uri>
+<uri link="/news/nl/gwn/gwn.xml">holenderskim</uri>
 </li>
 <li>
-<uri link="/news/ko/gwn/gwn.xml">Korean</uri>
+<uri link="/news/ja/gwn/gwn.xml">japońskim</uri>
 </li>
 <li>
-<uri link="/news/ja/gwn/gwn.xml">Japanese</uri>
+<uri link="/news/ko/gwn/gwn.xml">koreańskim</uri>
 </li>
 <li>
-<uri link="/news/it/gwn/gwn.xml">Italian</uri>
+<uri link="/news/de/gwn/gwn.xml">niemieckim</uri>
 </li>
 <li>
-<uri link="/news/pl/gwn/gwn.xml">Polish</uri>
+<uri link="/news/pl/gwn/gwn.xml">polskim</uri>
 </li>
 <li>
-<uri link="/news/pt_br/gwn/gwn.xml">Portuguese (Brazil)</uri>
+<uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri>
 </li>
 <li>
-<uri link="/news/pt/gwn/gwn.xml">Portuguese (Portugal)</uri>
+<uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri>
 </li>
 <li>
-<uri link="/news/ru/gwn/gwn.xml">Russian</uri>
+<uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri>
 </li>
 <li>
-<uri link="/news/es/gwn/gwn.xml">Spanish</uri>
+<uri link="/news/tr/gwn/gwn.xml">tureckim</uri>
 </li>
 <li>
-<uri link="/news/tr/gwn/gwn.xml">Turkish</uri>
+<uri link="/news/it/gwn/gwn.xml">włoskim</uri>
 </li>
 </ul>
 </body>
 </section>
 </chapter>
 </guide>
+
