@@ -121,7 +121,7 @@ to:'''),
  r'''Jeśli chcesz, aby ten magazyn był jeszcze lepszy, podziel się z
 <mail link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat.
 Uwagi dotyczące tłumaczenia tygodnika można zgłaszać na adres
-<mail link="rane@gentoo.org">rane@gentoo.org</mail>.'''),
+<mail link="moloh@moloh.net">koordynatora</mail>.'''),
 
 (r'<title>GWN subscription information</title>',
  r'<title>Subskrypcja Tygodnika Gentoo</title>'),
