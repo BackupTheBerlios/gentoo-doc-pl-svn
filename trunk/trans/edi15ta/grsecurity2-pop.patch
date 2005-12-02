@@ -1,0 +1,74 @@
+--- ../htdocs/proj/pl/hardened/grsecurity2.xml	2005-09-21 22:23:30.000000000 +0200
++++ grsecurity2-pop.xml	2005-12-02 22:52:08.000000000 +0100
+@@ -180,7 +180,7 @@
+ </p>
+ 
+ <p>
+-Więcej informacji o ASLR można znaleźć 
++Więcej informacji o ASLR można znaleźć
+ <uri link="http://pax.grsecurity.net/docs/aslr.txt">w sieci</uri>.
+ </p>
+ 
+@@ -366,7 +366,7 @@
+ (Mandatory Access Control - obowiązkowa kontrola dostępu). Linux standardowo
+ korzysta z mechanizmu DAC: twórca pliku może zdefiniować prawa dostępu. W
+ przypadku MAC wszyscy muszą się stosować do zasad wprowadzonych przez
+-administratora. 
++administratora.
+ </p>
+ 
+ <p>
+@@ -376,7 +376,7 @@
+ określonych obiektach. Posiadając dobrze napisany zbiór ról i operacji jesteśmy
+ pewni, że użytkownicy będą mogli wykonywać tylko zadania do których mają prawo.
+ Domyślne ustawienie "deny-all" zapewnia, że użytkownicy nie będą mogli wykonać
+-akcji, o których nie pomyśleliśmy. 
++akcji, o których nie pomyśleliśmy.
+ </p>
+ 
+ </body>
+@@ -607,7 +607,7 @@
+ </p>
+ 
+ <p>
+-W pewnym nieokreślonym pseudo-języku można by to zapisać jako: 
++W pewnym nieokreślonym pseudo-języku można by to zapisać jako:
+ </p>
+ 
+ <pre caption="Wyjaśnienie w pseudo-języku">
+@@ -618,7 +618,7 @@
+ 
+ if ( (<i>$objset1</i> contained <i>/tmp/blah rw</i>) and
+      (<i>$objset2</i> contained <i>/ rwx</i>) )
+-then 
++then
+   <i>$objset1 - $objset2</i> would contain <i>/tmp/blah h</i>
+ </pre>
+ 
+@@ -649,7 +649,7 @@
+ <p>
+ Grsecurity2 zawiera wiele poprawek, które uniemożliwiają użytkownikom uzyskanie
+ nadmiernej wiedzy o systemie. W ich skład wchodzą ograniczenia na wykorzystanie
+-<path>/proc</path>, chrootowania, linkowania, itp. 
++<path>/proc</path>, chrootowania, linkowania, itp.
+ </p>
+ 
+ </body>
+@@ -803,7 +803,7 @@
+ <p>
+ Grsecurity pozwala na ograniczenie praw dla plików wykonywalnych. Ze względu na
+ to, że większość exploitów wykorzystuje uruchomione procesy takie
+-zabezpieczenie pomaga zachować system w pełnej sprawności. 
++zabezpieczenie pomaga zachować system w pełnej sprawności.
+ </p>
+ 
+ </body>
+@@ -892,7 +892,7 @@
+   <li><uri link="http://grsecurity.net/">Strona domowa Grsecurity</uri></li>
+   <li><uri link="http://forums.grsecurity.net/">Forum Grsecurity</uri></li>
+   <li>
+-    <uri link="http://grsecurity.net/researchpaper.pdf">Poprawienie wydajności 
++    <uri link="http://grsecurity.net/researchpaper.pdf">Poprawienie wydajności
+     i rozdrobnienia w Role-Based Access Control Systems</uri>
+   </li>
+   <li>
