@@ -11,18 +11,15 @@
 <author title="Tłumaczenie">
   <mail link="jbozanowski@gmail.com">Kuba Bożanowski</mail>
 </author>
-<!-- <author title="Editor">
-  <mail link="jackdark@gmail.com">Joshua Saddler</mail>
-</author> -->
 
 <abstract>
 Samba to znakomite narzędzie dla każdego, kto używa zarówno systemów z
-rodziny Unix, jak i Windows. Implementując protokół SMB/CIFS pozwala
-systemom Uniksowym udostępniać swoje zasoby standardowym klientom z rodziny
-Windows. W niniejszym artykule Daniel Robbins przedstawi nam możliwości
-Samby. Najwięcej uwagi zostanie poświęcone kluczowym zagadnieniom
-(kwestii konfiguracji przyjrzymy się w następnym artykule). Pod koniec
-będziemy wiedzieć nie tylko co Samba robi, ale również w jaki sposób.
+rodziny Unix, jak i Windows. Protokół SMB/CIFS pozwala systemom Uniksowym
+udostępniać swoje zasoby standardowym klientom z rodziny Windows. W niniejszym
+artykule Daniel Robbins przedstawi nam możliwości Samby. Najwięcej uwagi
+zostanie poświęcone kluczowym zagadnieniom (kwestii konfiguracji przyjrzymy się
+w następnym artykule). Pod koniec będziemy wiedzieć nie tylko co Samba robi,
+ale również w jaki sposób.
 </abstract>
 
 <!-- The original version of this article was first published on IBM
@@ -60,7 +57,7 @@ Aktualnie w mojej wewnętrznej sieci LAN pracują trzy komputery:
 </ul>
 
 <p>
-W tym środowisku używam Samby przede wszytkim do udostępniania plików,
+W tym środowisku używam Samby przede wszystkim do udostępniania plików,
 drukarek, a nawet uruchamiania aplikacji systemu Windows bezpośrednio z
 komputera freebox (Unix). Oto zrzut ekranu, który ukazuje zawartość
 Otoczenia Sieciowego komputera kompressor:
@@ -100,10 +97,10 @@ protokołu firmy Microsoft.
 </note>
 
 <p>
-Samba na komputerze freebox została specjalnie skonfigurowana aby udostępniać
+Samba na komputerze freebox została specjalnie skonfigurowana, aby udostępniać
 tylko wyżej widoczne zasoby. Gdy zajrzymy do zasobu o nazwie drobbins, ujrzymy
 zawartość mojego katalogu domowego. Preferuję przechowywanie wszystkich moich
-plików na komputerze freebox (pod Uniksem) aby mieć je w jednym miejscu i móc
+plików na komputerze freebox (pod Uniksem), aby mieć je w jednym miejscu i móc
 łatwo nimi zarządzać. Jedną z najlepszych cech Samby jest to, że umożliwia
 administratorom przechowywanie plików użytkowników w jednym miejscu, zamiast
 dawać im osobne położenia pod Windowsem i Uniksem.
@@ -325,7 +322,7 @@ kompilacji i instalacji Samby:
 </p>
 
 <p>
-Ścieżka <path>/usr/local/samba/bin</path> zawiera wszytkie binarne pliki
+Ścieżka <path>/usr/local/samba/bin</path> zawiera wszystkie binarne pliki
 wykonywalne Samby. W wersji 2.0.7 podstawowe pliki wykonywalne to <c>smbd</c> i
 <c>nmbd</c>. Program <c>smbd</c> dostarcza usługi udostępniania plików poprzez
 SMB/CIFS, zaś <c>nmbd</c> wykonuje czynności związane z WINS, ułatwiając
