@@ -3,25 +3,28 @@
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
 <guide link="/doc/en/gentoo-freebsd.xml">
-<title>A short guide to Gentoo/FreeBSD</title>
+<title>Krótkie wprowadzenie do Gentoo/FreeBSD</title>
 
-<author title="Author">
+<author title="Autor">
   <mail link="ignacio.arquelatour@gmail.com">Ignacio Arque-Latour</mail>
 </author>
-<author title="Author">
+<author title="Autor">
   <mail link="citizen428@gentoo.org">Michael Kohl</mail>
 </author>
-<author title="Author">
+<author title="Autor">
   <mail link="angusyoung@gentoo.org">Otavio R. Piske</mail>
 </author>
-<author title="Author">
+<author title="Autor">
   <mail link="ka0ttic@gentoo.org">Aaron Walker</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="aleander@dark.freak.pl">Aleksander Kamil Modzelewski</mail>
 </author>
 
 <abstract>
-This document gives some general information on FreeBSD, as well as
-installation instructions for Gentoo/FreeBSD. It also includes some reference
-for people interested in helping out with development.
+Ten dokument przedstawia podstawowe informacje o FreeBSD oraz zapewnia
+instrukcję instalacji Gentoo/FreeBSD. Zawiera także referencje dla osób
+zainteresowanych pomocą w rozwoju projektu.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -32,86 +35,92 @@ for people interested in helping out with development.
 <date>2005-12-06</date>
 
 <chapter>
-<title>Introduction to FreeBSD</title>
+<title>Wprowadzenie do FreeBSD</title>
 <section>
-<title>What is FreeBSD?</title>
+<title>Czym jest FreeBSD?</title>
 <body>
 
 <p>
-<uri link="http://www.freebsd.org/">FreeBSD</uri> is a free (<uri
-link="http://www.freebsd.org/copyright/freebsd-license.html">license</uri>)
-Unix-like operating system. Back in 1993 when development of <uri
-link="http://www.386bsd.org/">386BSD</uri> stopped, two projects were born:
-<uri link="http://www.netbsd.org/">NetBSD</uri>, commonly known to run on a
-huge number of architetures, and FreeBSD which focuses mainly on the x86
-platform. FreeBSD is renowned for its stability, performance and security, thus
-being used from small to huge companies all over the world. FreeBSD's current
-production release version is 5.4, which is also used as the foundation for the
-Gentoo/FreeBSD project.
+<uri link="http://www.freebsd.org/">FreeBSD</uri> jest systemem
+Unikso-podobnym opartym na wolnej <uri
+link="http://www.freebsd.org/copyright/freebsd-license.html">licencji</uri>.
+W roku 1993, gdy wstrzymano rozwój <uri
+link="http://www.386bsd.org">386BSD</uri>, powstały dwa nowe projekty:
+<uri link="http://www.netbsd.org/">NetBSD</uri>, powszechnie
+rozpoznawany ze względu na ogromną ilość wspieranych architektur
+sprzętowych, oraz FreeBSD, którego rozwój skupił się głównie na
+platformie x86. FreeBSD jest szanowane za stabilność, wydajność oraz
+bezpieczeństwo, dzięki czemu znalazło zastosowanie w zarówno małych, jak
+i wielkich firmach na całym świecie. Aktualną stabilną wersją FreeBSD
+jest 5.4 - na niej właśnie jest oparty projekt Gentoo/FreeBSD.
 </p>
 
 </body>
 </section>
 <section>
-<title>What is Gentoo/FreeBSD?</title>
+<title>Czym jest Gentoo/FreeBSD?</title>
 <body>
 
 <p>
-Gentoo/FreeBSD is an effort to provide a fully-capable FreeBSD operating system
-with Gentoo's design sensibilities. The long-term goal of the Gentoo/BSD project
-is to allow users to choose any combination of *BSD or Linux kernels, *BSD or
-GNU libc, and *BSD or GNU userland tools.
+Gentoo/FreeBSD ma na celu stworzenie w pełni funkcjonalnego systemu
+FreeBSD przy zachowaniu założeń projektowych Gentoo. Długoterminowym
+celem projektu jest zapewnienie użytkownikom możliwości wyboru dowolnej
+kombinacji jąder Linuksa lub *BSD, libc w wersji GNU lub *BSD, oraz
+narzędzi przestrzeni użytkownika w wersji *BSD lub GNU.
 </p>
 
 </body>
 </section>
 <section>
-<title>FreeBSD and Linux</title>
+<title>FreeBSD a Linux</title>
 <body>
 
 <p>
-Users migrating from Linux to FreeBSD commonly consider the two operating
-systems "almost the same". In fact, FreeBSD really shares a lot of similarities
-with Linux distributions in general. Nevertheless, it has some key differences
-that are worth noting:
+Użytkownicy przenoszący się z Linuksa na FreeBSD z reguły uważają te
+systemy za "prawie takie same". Faktycznie, jest pomiędzy nimi wiele
+podobieństw. Istnieje jednak kilka kilka kluczowych różnic:
 </p>
 
 <ul>
   <li>
-    Contrary to Linux, which actually only refers to the kernel, FreeBSD is a
-    complete operating system, consisting of a C library, userland tools and
-    much more. This development approach makes the overall system very
-    consistent.
+    W przeciwieństwie do Linuksa, który w zasadzie jest samym jądrem,
+    FreeBSD jest kompletnym systemem operacyjnym, składającym się z
+    biblioteki podstawowej C, narzędzi przestrzeni użytkownika i wielu
+    innych elementów. To założenie konstrukcyjne czyni całość bardzo
+    konsekwentną.
   </li>
   <li>
-    Contrary to the Linux kernel, FreeBSD development is not led by one person,
-    but instead managed by a small group of people called the <uri
+    W przeciwieństwie do jądra Linuksa, rozwój FreeBSD nie jest
+    prowadzony przez jedną osobę, tylko przez niewielką grupę zwaną
+    <uri
     link="http://www.freebsd.org/doc/en_US.ISO8859-1/articles/contributors/staff-core.html">Core
     Team</uri>.
   </li>
 </ul>
 
 <p>
-Besides, FreeBSD also has some technical differences which set it apart
-from Linux. Some of them are very important to know, even if you don't plan on
-joining the Gentoo/FreeBSD development effort:
+Ponadto istnieją też różnice techniczne oddzielające FreeBSD od Linuksa.
+Niektóre z nich warto znać nawet, jeżeli nie zamierza się przyłączyć do
+rozwoju Gentoo/FreeBSD:
 </p>
 
 <ul>
   <li>
-    To get run-time dynamic linking functions like <c>dlopen()</c>, programs do
-    not need to be linked against libdl like on GNU/Linux. Instead they are
-    linked against libc.
+    Funkcje dynamicznego łączenia, takie jak <c>dlopen()</c>, działają
+    bez połączenia programu z biblioteką libdl (co jest wymagane na
+    GNU/Linux). Zamiast tego po prostu łączy się je z libc.
   </li>
   <li>
-    FreeBSD doesn't have an official tool for kernel compilation, thus you'll
-    have to resolve feature dependencies on your own.
+    FreeBSD nie posiada oficjalnego narzędzia kompilacji jądra, więc
+    zależności pomiędzy róznymi cechami muszą zostać rozstrzygnięte
+    przez użytkownika.
   </li>
   <li>
-    FreeBSD uses UFS/UFS-2 as its filesystems and has no official support for
-    e.g. ReiserFS or XFS. However, there are projects for adding read-only
-    support for these filesystems. Accessing ext2/ext3 partitions is already
-    possible, but you cannot install your system on them.
+    FreeBSD stosuje systemy plików UFS/UFS-2 i nie zawiera oficjalnego
+    wsparcia dla ReiserFS ani XFS. Mimo to istnieją projekty dodania
+    możliwości odczytu danych zapisanych przy ich użyciu. Dostęp do
+    partycji ext2/ext3 jest już możliwy, jednak nie da się na nich
+    zainstalować systemu.
   </li>
 </ul>
 
@@ -120,31 +129,33 @@ joining the Gentoo/FreeBSD development effort:
 </chapter>
 
 <chapter>
-<title>Installing Gentoo/FreeBSD</title>
+<title>Instalacja Gentoo/FreeBSD</title>
 <section>
-<title>Installation instructions</title>
+<title>Instrukcja instalacji</title>
 <body>
 
 <p>
-After this short introduction, it's about time to finally install
-Gentoo/FreeBSD. Unfortunately, we currently lack our own installation media, so
-you have to choose between two alternative installation methods. The first
-would be to use an existing FreeBSD installation to partition your hard drive
-and use it as a base for installing Gentoo/FreeBSD. Alternatively, you can also
-use the excellent <uri link="http://www.freesbie.org/">FreeSBIE LiveCD</uri> as
-an installation medium for Gentoo/FreeBSD.
+Po wprowadzeniu nadchodzi czas na zainstalowanie Gentoo/FreeBSD.
+Niestety projekt nie dysponuje jeszcze własnym medium instalacyjnym,
+więc konieczny jest wybór pomiędzy dwoma alternatywami. Pierwszą z nich
+jest wykorzystanie istniejącej instalacji FreeBSD do podzielenia dysku
+twardego na partycję i zainstalowania Gentoo/FreeBSD. Drugą z nich jest
+użycie <uri link="http://www.freesbie.org">FreeSBIE LiveCD</uri>
+jako medium instalacyjnego.
 </p>
 
 <p>
-Before you can begin with the installation, you have to setup a hard disk for
-use with Gentoo/FreeBSD. This can either be done via <c>sysinstall</c>
-(available from a current FreeBSD installation as well as from within FreeSBIE)
-or by manually using the commands <c>fdisk</c>, <c>disklabel</c> and
-<c>newfs</c>. If you have never set up a FreeBSD system before,
-<c>sysinstall</c> may be the better option for you. If you face difficulties
-while partitioning or formatting your hard disks, have a look at the great
-<uri link="http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/">FreeBSD
-Handbook</uri> or hop onto <c>#gentoo-bsd</c> on the Freenode IRC server.
+Zanim rozpoczniemy instalację należy przygotować dysk twardy do
+wykorzystania z Gentoo/FreeBSD. Może to zostać dokonane albo przy użyciu
+<c>sysinstall</c> (dostępne z istniejącej instalacji FreeBSD a także z
+FreeSBIE) lub ręcznie, przy użyciu poleceń <c>fdisk</c>,
+<c>disklabel</c> oraz <c>newfs</c>. Jeżeli jest to pierwsza próba
+instalacji FreeBSD to <c>sysinstall</c> może okazać się najlepszym
+wyborem. W razie problemów z podziałem lub formatowaniem dysków warto
+zwrócić uwagę na świetny <uri
+link="http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/">Podręcznik
+FreeBSD</uri> lub wejść na kanał <c>#gentoo-bsd</c> na serwerze IRC
+Freenode.
 </p>
 
 <p>
