@@ -46,8 +46,8 @@ tygodniu:'''),
  r'<title>Zmienili status</title>'),
 
 (r'The following developers recently changed roles within the Gentoo project:',
- r'''Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie
-Gentoo Linux funkcję:'''),
+ r'''Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie Gentoo
+ Linux funkcję:'''),
 
 (r'<li><e>None this week</e></li>',
  r'<li><e>Nikt w tym tygodniu</e></li>'),
@@ -98,8 +98,8 @@ błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomię
 (r'<title>Closed bug rankings</title>', r'<title>Zamknięte Bugi</title>'),
 
 (r'The developers and teams who have closed the most bugs during this period are:',
- r'''Deweloperzy oraz zespoły, które zamknęły najwięcej bugów w minionym
-tygodniu, to:'''),
+ r'''Deweloperzy oraz zespoły, które zamknęły najwięcej bugów w minionym tygodniu,
+ to:'''),
 
 (r' with (\d*)([^>]*>)closed bugs',
  r' \1 \2zamkniętych bugów'),
@@ -118,21 +118,26 @@ to:'''),
  r'<title>Opinie czytelników</title>'),
 
 (r'Please send us your <mail link="gwn-feedback@gentoo.org">feedback</mail> and help make the GWN better.',
- r'''Jeśli chcesz, aby ten magazyn był jeszcze lepszy, podziel się z
-<mail link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat.
-Uwagi dotyczące tłumaczenia tygodnika można zgłaszać na adres
-<mail link="moloh@moloh.net">koordynatora</mail>.'''),
+ r'''Jeśli chcesz, aby Tygodnik Gentoo był jeszcze lepszy, podziel się z <mail
+link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat.  Uwagi
+dotyczące tłumaczenia można zgłaszać na adres <mail
+link="moloh@moloh.net">koordynatora</mail>.'''),
 
 (r'<title>GWN subscription information</title>',
  r'<title>Subskrypcja Tygodnika Gentoo</title>'),
 
-(r'To subscribe to the Gentoo Weekly Newsletter, send a blank email to <mail link="gentoo-gwn\+subscribe@gentoo.org">gentoo-gwn\+subscribe@gentoo.org</mail>.',
- r'''Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego e-maila na adres
-<mail>gentoo-gwn-pl+subscribe@gentoo.org</mail>.'''),
+(r'<p> To subscribe to the Gentoo Weekly Newsletter, send a blank email to <mail link="gentoo-gwn\+subscribe@gentoo.org">gentoo-gwn\+subscribe@gentoo.org</mail>. </p>',
+ r'''<p>
+Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego e-maila na adres
+<mail>gentoo-gwn-pl+subscribe@gentoo.org</mail>.
+</p>'''),
 
-(r'To unsubscribe to the Gentoo Weekly Newsletter, send a blank email to <mail link="gentoo-gwn\+unsubscribe@gentoo.org">gentoo-gwn\+unsubscribe@gentoo.org</mail> from the email address you are subscribed under.',
- r'''Aby zrezygnować z subskrypcji, należy wysłać pustego e-maila na adres <mail>
-gentoo-gwn-pl+unsubscribe@gentoo.org</mail> z konta, na które jest zarejestrowana.'''),
+(r'<p> To unsubscribe to the Gentoo Weekly Newsletter, send a blank email to <mail link="gentoo-gwn\+unsubscribe@gentoo.org">gentoo-gwn\+unsubscribe@gentoo.org</mail> from the email address you are subscribed under. </p>',
+ r'''<p>
+Aby zrezygnować z subskrypcji, należy wysłać pustego e-maila na adres <mail>
+gentoo-gwn-pl+unsubscribe@gentoo.org</mail> z konta, na które jest
+zarejestrowana.
+</p>'''),
 
 (r'<title>Other languages</title>',
  r'<title>Inne języki</title>'),
