@@ -47,82 +47,102 @@
 <chapter>
 <title>Gentoo news</title>
 <section>
-<title>GCC 3.4.4 stable on x86</title>
+<title>GCC 3.4.4 w stabilnej gałęzi x86</title>
 <body>
 <p>
-The compiler is a central component of every Gentoo system, so unlike other
-packages, the developers are rather careful when updating it. Finally gcc 3.4.4
-has made it to the stable branch on x86, affecting a large number of users.
-The <uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/33733">announcement</uri>
-on the developer mailing list links to the <uri
-link="http://www.gentoo.org/proj/en/base/x86/gcc-upgrading-guide.xml">upgrade 
-guide</uri> containing the steps necessary for the upgrade. It is important to 
-rebuild some packages before unmerging the old <c>gcc</c> version or the system may break.
+Kompilator jest najważniejszym składnikiem systemu Gentoo Linux. W
+przeciwieństwie do innych pakietów, deweloperzy są z reguły ostrożni w przypadku
+jego aktualizacji. Jednak nadszedł ten czas i gcc 3.4.4 w końcu zostało
+przeniesione do stabilnej gałęzi na architekturze x86, co ma ogromny wpływ na
+systemy większości użytkowników.  <uri
+link="http://thread.gmane.org/gmane.linux.gentoo.devel/33733">Ogłoszenie</uri>
+na liście dyskusyjnej deweloperów zawiera link do <uri
+link="http://www.gentoo.org/proj/en/base/x86/gcc-upgrading-guide.xml">przewodnika
+aktualizacji</uri> (dostępny w języku angielskim) opisującego niezbędnego kroki,
+które należy podjąć w procesie migracji. Ważnym aspektem aktualizacji jest
+konieczność przebudowania niektórych pakietów przed odinstalowaniem starej
+wersji <c>gcc</c>. Jeśli tego nie zrobimy, możemy doprowadzić do uszkodzenia
+systemu.
 </p>
 <p>
-According to the <uri link="http://forums.gentoo.org/viewtopic-t-407840.html">
-thread in the Gentoo forums</uri>, some <uri link="https://bugs.gentoo.org/show_bug.cgi?id=114341">minor problems occured</uri> on some systems
-due to a small bug, but once it was fixed the upgrade worked fine for most of
-the users.
+Zgodnie z <uri link="http://forums.gentoo.org/viewtopic-t-407840.html">wątkiem
+na forum Gentoo</uri>, część użytkowników miała problemy, w związku z
+<uri link="https://bugs.gentoo.org/show_bug.cgi?id=114341">nieznacznym</uri> 
+błędem, który został już naprawiony i nie powinno one się ponownie pojawić. 
 </p>
 <note>
-If you experience problems or have general questions, visit the forums
-or <path>#gentoo</path> on <path>irc.freenode.net</path>, and please report 
-bugs on <uri link="http://bugs.gentoo.org">http://bugs.gentoo.org</uri>.
+Jeżeli będziemy mieli jakiekolwiek problemy lub ogólne pytania, zapraszamy na
+kanał <path>#gentoo</path> na serwerze <path>irc.freenode.net</path>. Prosimy
+również zgłaszać błędy na <uri
+link="http://bugs.gentoo.org">http://bugs.gentoo.org</uri>.
 </note>
 </body>
 </section>
 <section>
-<title>Power.org opens free developer membership</title>
+<title>Członkowsto w Power.org dostępne dla niezależnych deweloperów</title>
 <body>
 <p>
-Gentoo PPC developer <mail link="lu_zero@gentoo.org">Luca Barbato</mail> was the 
-first to hop aboard a new initiative from <uri link="http://www.power.org">Power.org</uri>, 
-a collaborative industry consortium dedicated to "developing, enabling and promoting 
-Power Architecture technology innovation" and representing a wide range of semiconductor 
-and electronics organisations active in the field. Founded by IBM, Power.org tries to open
-itself to the community of POWER, PowerPC and related architecture development, and counts 
-Gentoo sponsor Genesi among its recent additions to contributors and supporters. Developers 
-who become members of Power.org get access to technical resources at the member-only area on 
-the website, and to technical subcommittee output. You can register at the <uri link="http://power.org/join">Power.org website</uri>.
+Deweloper Gentoo PPC <mail link="lu_zero@gentoo.org">Luca Barbato</mail> został
+pierwszym członkiem nowej inicjatywy autorstwa Power.org, konsorcjum
+przemysłowego stworzonego w celu "promocji, wspierania i rozwijania innowacji
+technologicznych związanych z architekturą Power", jak również reprezentowania
+firma i organizacji elektronicznych działających na tym polu. Założone przez
+IBM, Power.org będzie starało otworzyć się na społeczność POWER, PowerPC i
+innych powiązanych architektur, do szerokiego grona wspierającego organizację
+dołączyła firma Genesi, sponsor Gentoo. Każdy deweloper który uzyska członkostwo
+w Power.org uzyskuje dostęp do zbiorów dokumentów technicznych udostępnionych w
+części serwisu tylko dla zarejestrowanych członków oraz do dokumentacji
+tworzonej przez podkomisję techniczną. Każdego zainteresowanego by stać się
+członkiem zachęcamy do rejestracji na stronie <uri
+link="http://power.org/join">głównej projektu</uri>.
 </p>
 </body>
 </section>
 <section>
-<title>GWN looking for contributors</title>
+<title>GWN poszukuje rąk do pracy</title>
 <body>
 <p>
-Looking at this week's unusually rich issue of the GWN, you wouldn't suspect that we sometimes 
-have serious trouble getting our weekly edition out in a timely and accurate fashion. The 
-author list on this page has dwindled down to less than a handful of regular contributors. If 
-you would like the GWN to continue to provide you with information from the Gentoo project, all 
-its outer layers in the user communities, commercial spin-offs or fun stuff emerging from 
-the greater Gentoo realm -- then we'd like to encourage you to join us on the authoring team. 
-Many of our current news sections could use a helping hand, for example everybody's favorite 
-GWN chapter, the Tips &amp; Tricks, is particularly in need of input from as many sources as 
-possible. Send a message to <mail link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail> 
-and tell us for which of the existing sections you'd like to contribute articles, or maybe come 
-up with entirely new ideas, offer proofreading (<e>very</e> much appreciated), invent new and 
-exciting techniques to automate some of our scripting, or indeed whatever else you feel up to.
+Patrząc na nowe wydanie Tygodnika Gentoo, zapewne niewielu z Was zdaje sobie
+sprawę z ilości problemów jakie są związane z opracowaniem nowego wydania na
+czas. Lista redaktorów, widoczna na tej stronie, stopniała do ledwie garstki
+osób regularnie wspomagających GWN.  Jeżeli chcesz, aby Tygodnik Gentoo dalej
+dostarczał Ci informacji na temat projektu Gentoo, a także podprojektów
+tworzonych przez użytkowników, prosimy o dołączenie do zespołu. Wiele z obecnych
+działów tygodnika potrzebuje nowych rąk do pracy, dla przykładu, uwielbiany
+przez wszystkich, Sztuczki i Kruczki. Jeżeli chcesz i możesz pomóc, prosimy o
+wysłanie e-maila na adres <mail
+link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail>. Napisz nam jaką z
+istniejących sekcji chciałbyś wspomóc, czekamy na nowe pomysły, a także
+artykuły, które mogą zostać włączone do jednego z przyszłych wydań.  Oprócz
+autorów potrzebni są korektorzy (wręcz <e>bardzo</e> potrzebni), liczymy także
+na wszelką pomoc w usprawnieniu działania naszych skryptów, używanych do
+generacji statystyk. Zachęcamy każdą osobę mającą pomysły i chcącą pomóc przy
+tworzeniu Tygodnika Gentoo o kontakt.
 </p>
+<note>
+Poszukiwani są także tłumacze, jeśli chciałbyś wspomóc projekt i własnoręcznie
+przyczynić się do powstawania nowych wydań Tygodnika Gentoo zapraszamy do
+współpracy.  Wszystkich chętnych prosimy o kontakt z <mail
+link=moloh@moloh.net>koordynatorem</mail> tłumaczenia.
+</note>
 </body>
 </section>
 <section>
-<title>100k users registered at the Gentoo Forums</title>
+<title>100k użytkowników zarejestrowanych na forum Gentoos</title>
 <body>
 <p>
-Three and a half years after the creation of the Gentoo forums we hit 100,000 registered 
-users early on 16 November morning when Blindside350 registered:
+Trzy i pół roku od stworzenia forum Gentoo, rankiem 16 listopada, zdobyliśmy
+100,000 użytkownika. Szczęśliwcem tym okazał się Blindside350:
 </p>
 <figure link="/images/gwn/20051205_100k.jpg" 
-short="Screenschot" caption="Screenshot dated 16 November 2005"/>
+short="Zrzut ekranu" caption="Zrzut ekranu z dnia 16 listopada 2005"/>
 <p>
-<uri link="https://forums.gentoo.org/viewtopic-p-2883571.html#2883571">A forum thread</uri> 
-from a very distant past has been reanimated for the occasion.
+Z powodu tego doniosłego wydarzanie wygrzebano jeden z <uri
+link="https://forums.gentoo.org/viewtopic-p-2883571.html#2883571">wątków </uri>
+z zamierzchłej przeszłości.
 </p>
 </body>
 </section>
-</chapter>
 
 <!-- Future zone -->
 <!-- User Stories -->
