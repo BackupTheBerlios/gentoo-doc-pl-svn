@@ -127,245 +127,290 @@ from a very distant past has been reanimated for the occasion.
 <!-- Future zone -->
 <!-- User Stories -->
 <chapter>
-<title>User stories</title>
+<title>Historie użytkowników</title>
 <section>
-<title>Interview with Bryan Green at NASA's Advanced Supercomputing division</title>
+<title>Wywiad z Bryanem Greenem z wydziału Advanced Supercomputing NASA</title>
 <body>
 <note>
-Gentoo made a public appearance at NASA's visualization wall last month at the 
-<uri link=" http://sc05.supercomputing.org/">Supercomputing 2005 conference</uri>. 
-Thousands of visitors were able to see the status and results from NASA's Columbia 
-supercomputer, through a visualization system running Gentoo. This week, Bryan Green 
-tells us more about this system and how Gentoo is being used in the NASA Advanced 
-Supercomputing division.
+W zeszłym miesiącu podczas <uri link="
+http://sc05.supercomputing.org/">konferencji Supercomputing 2005</uri> mieliśmy
+okazję zobaczyć Gentoo w akcji na ścianie wizualizacyjnej NASA. Tysiące
+odwiedzających mogło obejrzeć wyniki obliczeń i stan superkomputera NASA o
+nazwie Columbia dzięki systemowi wizualizacyjnemu pracującemu pod kontrolą
+Gentoo. W tym tygodniu Bryan Green opowie nam o tym systemie i o tym jak Gentoo
+jest wykorzystywane w wydziale Advanced Supercomputing NASA.
 </note>
 <p>
-<e>Tell us about yourself and your work with Columbia (along with a few words
-about Columbia for those who are not familiar)</e>
+<e>Opowiedz nam o sobie i o swojej pracy nad Columbią (i przedstaw ten komputer
+tym spośród nas, którzy jeszcze o nim nie słyszeli)</e>
 </p>
-<p>I am a contractor working at the NASA Advanced Supercomputing (the NAS,
-formerly "Numerical Aerospace Simulation") facility, at NASA Ames Research
-Center in Mountain View, CA.  I am an employee of AMTI.  I've been a member of
-the NAS facility's scientific visualization group since 1997, when I graduated
-from UC Santa Cruz.  When I started, we were using SGI Onyx systems for
-visualization, but the emergence of NVIDIA, and the pressure of the PC gamer
-market on the graphics card industry, ultimately made it possible to move to
-commodity-based linux systems with high-end NVIDIA graphics cards.  So we have
-the gamers to thank for saving us hundreds of thousands of dollars on graphics
-hardware.  My group's home page is here:
-<uri link="http://www.nas.nasa.gov/Resources/Visualization/visualization.html">http://www.nas.nasa.gov/Resources/Visualization/visualization.html</uri>
+<p>
+Jestem pracownikiem kontraktowym wydziału Advanced Supercomputing NASA ("NAS",
+poprzednio nazywał się on "Numerical Aerospace Simulation"), który mieści się w
+ośrodku badawczym NASA Ames w Mountain View w stanie Kalifornia. Jestem
+pracownikiem firmy AMTI, zaś członkiem grupy odpowiedzialnej
+za wizualizację zagadnień naukowych zostałem w roku 1997 po ukończeniu 
+Uniwersytetu Kalifornijskiego w Santa Cruz. Gdy dołączyłem do zespołu, do
+wizualizacji używaliśmy głównie komputerów SGI Onyx, jednak wraz z rozwojem
+rynku gier oraz pojawieniem się firmy NVIDIA stało się możliwe wykorzystanie
+swobodnie dostępnego sprzętu komputerowego, wyposażonego w najwyżsej klasy karty
+graficzne firmy NVIDIA i pracującego pod kontrolą systemu Linux.  Powinniśmy
+więc dziekować graczom za setki tysięcy dolarów, które zaoszczędziliśmy na
+kartach graficznych. Stronę domową grupy, w której pracuję można znaleźć pod tym
+adresem: <uri
+link="http://www.nas.nasa.gov/Resources/Visualization/visualization.html">http://www.nas.nasa.gov/Resources/Visualization/visualization.html</uri>
 </p>
-<p>The Columbia supercomputer, a 10,240 processor SGI Altix system running Linux,
-was built by the NAS in 2004.  It uses Intel Itanium2 processors, and is
-divided into 20 nodes with 512 processors each.  Each 512-processor Altix node
-is a Single System Image (SSI) with 1 Terabyte of shared memory.  More
-information about Columbia and the various types of science being performed on
-it can be found here:
-<uri link="http://www.nas.nasa.gov/About/Projects/Columbia/columbia.html">http://www.nas.nasa.gov/About/Projects/Columbia/columbia.html</uri>
+<p>
+Superkomputer Columbia to wyposażony w 10240 procesorów system SGI Altix, który
+pracuje pod kontrolą systemu Linux. Został zbudowany przez wydział NAS w 2004
+roku. Wykorzystuje procesory Itanium2 firmy Intel i składa się z 20 węzłów,
+każdy po 512 procesorów. Każdy węzeł Altix to system typu Single System Image
+(SSI) z 1 terabajtem pamięci współdzielonej. Więcej informacji na temat
+superkomputera Columbia i różnego rodzaju obliczeń, jakie wykonujemy za jego pomocą
+można znaleźć pod tym adresem: <uri
+link="http://www.nas.nasa.gov/About/Projects/Columbia/columbia.html">http://www.nas.nasa.gov/About/Projects/Columbia/columbia.html</uri>
 </p>
-<p>While Columbia itself uses a Suse-based distribution (with SGI modifications),
-the NAS division's security group uses Gentoo exclusively for infrastructure
-and special projects.  They even have a three-node Mosix cluster.  In total,
-they have about 30 Gentoo systems deployed.  If anyone is interested in
-more information about this, they can contact <mail link="shawd@nas.nasa.gov">Derek Shaw</mail>.
+<p>
+O ile sama Columbia pracuje pod kontrolą systemu operacyjnego opartego na Suse
+(z modyfikacjami dokonanymi przez firmę SGI), o tyle infrastruktura i specjalne
+projekty grupy odpowiedzialnej za bezpieczeństwo na wydziale NAS pracuje pod
+kontrolą Gentoo. Posiadają nawet trójwęzłowy klaster Mosix. W sumie wykorzystują
+około 30 komputerów z Gentoo. Jeśli ktoś chciałby dowiedzieć się więcej, może
+skontaktować się z <mail link="shawd@nas.nasa.gov">Derekiem Shaw</mail>.
 </p>
-<p>Since Columbia was built, my group's work has primarily involved providing
-visualization support to Columbia users.  Our focus these days is on tapping
-directly into the simulation codes themselves, and extracting data as it is
-produced.  We have our own 16-cpu-node "chunnel" plugged into Columbia.  For
-each simulation timestep, we extract the computed data via shared memory, ship
-the data over infiniband to chunnel, and distribute it to our visualization
-cluster.  During this past hurricane season, we have been using this technique
-to generate movies from runs of fvGCM, the finite-volume General Circulation
-Model which has been used in hurricane forecasting.  This was one of the
-applications we were demonstrating at SC05.
+<p>
+Głównymi obowiązkami naszej grupy, odkąd tylko zbudowano Columbię, było
+zapewnianie naszym użytkownikom wsparcia dla systemu wizualizacji. Dziś
+zajmujemy się przede wszystkim wydobywaniem na bieżąco danych bezpośrednio z
+programów symulacyjnych. Posiadamy własny, szesnastoprocesorowy węzeł, pełniący
+rolę naszego "kanału" do Columbii. Z każdym krokiem czasowym symulacji pobieramy
+przetworzone dane poprzez pamięć współdzieloną, przesyłamy je poprzez 
+InfiniBand do "kanału", a następnie do naszego klastra wizualizacyjnego.
+W czasie ostatnich huraganów wykorzystywaliśmy tę technikę do generowania filmów
+z fvGCM (finite-volume General Circulation Model), którego używa się
+do przewidywania huraganów. Było to jedno z zastosowań, które demonstrowaliśmy w
+czasie konferencji SC05.
 </p>
-<p><e>On to the Columbia monitor.  What all are you able to visualize and see on
-these screens?  What else do you do with this visualization cluster?
+<p><e>Przejdźmy do monitora Columbii. Co można przedstawiać na tych ekranach? Do
+czego jeszcze wykorzystujecie klaster wizualizacyjny?
 </e></p>
-<p>We refer to our grid of LCD screens backed by a cluster as a "hyperwall".  As
-opposed to a "powerwall", which typically displays large images, our intent is
-to visualize high-dimensional datasets by allowing the use of different tools,
-viewpoints, and parameters to display different aspects of a dataset
-simultaneously and in concert.  We have a 7x7 hyperwall installed at our
-facility and a 3x3 hyperwall which serves as our "portable": the one you see
-in the picture.  The hyperwall has been used for a number of applications
-including Computation Fluid Dynamics (CFD), quantum physics, astronomy and
-astrophysics, and atmospheric and oceanic modeling.
+<p>
+Nasz wspomagany klastrem zespół monitorów LCD nazywamy "hyperwall". W
+przeciwieństwie do ekranu typu "powerwall", który zwykle służy do wyświetlania
+dużych obrazków, naszym zamiarem jest wizualizacja zbiorów danych o dużej
+objętości, wykorzystując wiele różnych narzędzi, punktów odniesienia i
+parametrów, co umożliwia nam wyświetlanie wielu interpretacji danych
+jednocześnie. Ekran zainstalowany w naszej głównej siedzibie to hyperwall 7x7
+monitorów.  Posiadamy także "przenośny" hyperwall 3x3 monitory i to on jest
+widoczny na zdjęciu. Ekrany były wykorzystywane do wielu różnych zadań, w tym
+do obliczeń z dziedziny dynamiki płynów (CFD), fizyki kwantowej,
+astronomii i astrofizyki, a także modelowania atmosfery i oceanów.
 </p>
-<p>The 7x7 is still running Fedora Core 2.  It is our original hyperwall, and
-whether/when/how it gets updated and/or converted is subject to debate.
+<p>
+Większy ekran nadal działa pod kontrolą systemu Fedora Core 2. Jest to nasz
+pierwszy hyperwall i nie jest jeszcze pewne czy, kiedy i jak zostanie
+uaktualniony i/lub skonwertowany.
 
-The Columbia monitoring tool is a program for monitoring system resource
-utilization on one or more Columbia nodes.  With the hyperwall, we can monitor
-all 20 Columbia nodes simultaneously with plenty of resolution.
+Narzędzie monitorujące Columbii to program, który służy do nadzoru użycia
+zasobów systemowych na jednym lub więcej węzłów Columbii. Dzięki naszemu
+ekranowi możemy monitorować wszystkie 20 węzłów jednocześnie przy dużym zapasie
+rozdzielczości.
 
-Our ultimate goal is to combine system resource monitoring with code
-instrumentation to get a holistic view of a specific simulation's behaviour,
-performance and system utilization, ultimately for optimization purposes.
-Our division provides "full-service" support for High End Computing (HEC)
-applications -- porting and scaling, optimization, and visualization.
+Nasz ostateczny cel to połączenie monitorowania zasobów systemowych z
+odpowiednimi narzędziami w celu uzyskania kompletnego obrazu wydajności,
+zachowania i użycia zasobów systemowych przez daną symulację, głównie w celu
+późniejszej optymalizacji. Nasz wydział w pełni obsługuje aplikacje z dziedziny
+wysokowydajnych technologii obliczeniowych (HEC) -- skalowanie, przenoszenie na
+inną platformę, optymalizację i wizualizację.
 </p>
 <figure link="/images/gwn/20051205_nasa1.jpg" 
-short="Screenshots" caption="Statistical information"/>
+short="Screenshots" caption="Informacje statystyczne"/>
 
 <p>
-Most of the statistical information is gleaned from the proc and sysfs
-filesystems.  Three monitoring components are shown in the picture: cpumon,
-pagemon, and linkmon.  Cpumon visualizes cpu statistics gleaned from
-'/proc/stat', as well as showing cpuset allocations.  Pagemon visualizes the
-non-uniform memory usage -- memory in a 512-processor node is divided into 256
-blocks with 4 Gigabytes each, with statistics gleaned from
-'/sys/devices/system/node/node*/meminfo'.  Linkmon uses the "Performance
-Co-Pilot" tool to get NUMAlink statistics -- Columbia's communication backbone.
+Większość informacji jest zbierana z katalogów proc i sysfs. Na obrazku widać
+trzy komponenty monitorujące: cpumon, pagemon i linkmon. Cpumon obrazuje pobrane
+z katalogu "/proc/stat" statystyki użycia procesora, a także alokacje cpuset.
+Pagemon obrazuje niejednolite zużycie pamięci -- pamięć w 512-procesorowym węźle
+jest podzielona na 256 bloków po 4 gigabajty każdy, do którego statystyki
+pobierane są z plików "/sys/devices/system/node/node*/meminfo". Linkmon
+wykorzystuje narzędzie "Performance Co-Pilot" w celu pobrania statystyk NUMAlink
+-- głównego modułu komunikacyjnego Columbii.
 </p>
-<p>The charts in the upper left screen show cpu and memory statistics for the
-64-processor Columbia frontend node (bottom), and the vis group's 16-processor
-node previously mentioned (top).  Each of the 5 screens arranged in a cross is
-subdivided into quadrants, with each quadrant showing statistics for a single
-Columbia 512-processor node.  A set of unhappy faces means either a node is
-down, or the monitoring daemon is not running on that system.  The set of
-three views on the lower right screen is just a blowup of the Columbia node on
-which the production fvGCM runs are performed, from which we produce our
-atmospheric visualizations.
+<p>
+Wykresy w lewym górnym rogu ekranu ukazują statystyki użycia procesora i pamięci
+dla zewnętrznego, 64-procesorowego węzła Columbii (na dole) i wspomnianego
+wcześniej 16-procesorowego węzła grupy zajmującej się wizualizacją (u góry).
+Każdy z ułożonych w krzyż pięciu ekranów jest podzielony na sektory, z których
+każdy pokazuje statystyki dla jednego 512-procesorowego węzła Columbii.  Grupa
+smutnych emotikonek oznacza, że albo dany węzeł nie działa, albo nie pracuje na
+nim demon monitorujący. Zestaw trzech obrazów w prawej dolnej części ekranu to
+powiększenie tego węzła Columbii, na którym wykonywane są zadania fvGCM. To z
+nich pochodzą dane do naszych wizualizacji atmosferycznych.
 </p>
-<p><e>What do the colored boxes, bar graphs, and lines represent?</e></p>
+<p><e>Co reprezentują kolorowe kwadraciki, wykresy słupkowe i linie?</e></p>
+<p>
+Siatka kolorowych kwadratów (komórek) obrazuje wykorzystanie procesora. Każda
+komórka odpowiada jednemu procesorowi. Kolory mają następujące znaczenie: czarny
+to bezczynność, niebieski to wykorzystanie procesora przez użytkownika, czerwony
+to wykorzystanie procesora przez system, kolor szaro-błękitny to czas
+oczekiwania procesora na operacje wejścia/wyjścia (iowait), żółty oznacza
+przerwania programowe, a pomarańczowy to przerwania sprzętowe.  Zestawy
+procesorów są oznaczone przez kolorowe obwódki wokół grupy komórek.
 
-<p>The grid of colored boxes (cells) shows cpu utilization.  Each cell represents
-one cpu.  The color codes are as follows: black=idle, blue=user, red=system,
-cyan=iowait, yellow=soft-interrupt, orange=hard-interrupt.  Cpusets are
-represented by colored outlines around groups of cells.
+Czerwone wykresy słupkowe ukazują użycie pamięci. Dla każdego węzła jest 256
+pionowych słupków, z których każdy oznacza 4-gigabajtowy blok pamięci. Wysokość
+czerwonych słupków reprezentuje ilość zaalokowanej pamięci.
 
-The red bar graphs show memory usage.  For a 512, there are 256 vertical bars
-representing each of the 4-Gigabyte blocks of memory.  The height of the red
-bar indicates the percentage of memory allocated.
+Wykres liniowy poniżej wykresów procesora i pamięci to odwzorowanie topografii
+NUMAlink dla węzła 512-procesorowego. Cytując nasz plakat z konferencji: 
+FIXME (niech ktoś, kto się zna na klastrach sprawdzi cały ten cytat... zostawiam
+oryginał pod spodem) "Dwupłaszczyznowa topologia typu "fat tree" połączeń między
+NUMAlinkami, gdzie kolor purpurowy oznacza aktywność między dwoma węzłami
+wewnątrz oznaczonych zielonym kwadracikiem modułów obliczeniowych C-brick. Ten
+sam kolor oznacza też aktywność między węzłami i routerami, które są
+przedstawione jako szaro-błękitne kwadraciki. Żółte kwadraty symbolizują
+metaroutery poziomu pierwszego i drugiego". Należy zwrócić uwagę, że tutaj
+termin "węzeł" oznacza część modułu obliczeniowego C-brick, a nie
+512-procesorowy węzeł klastra. Kolor purpurowy oznacza aktywność, niebieski zaś
+brak aktywności, natomiast szary to nieczytelne dane.
 
-The line graph shown below the cpu and memory charts is a representation of
-the NUMAlink topology for a 512-cpu node.  To quote our SC05 poster:
 "Dual-plane fat tree NUMAlink interconnect topology, with activity shown in
 magenta between the 2 nodes within the green squares in a C-brick, and between
 the nodes and the routers represented by cyan squares; level 1 and level 2
-metarouters are indicated by the yellow squares."  Note that the term "node"
-here refers to a portion of a C-brick, not to an entire 512-cpu "node".
-Magenta=activity, blue=inactivity, gray=unreadable.
+metarouters are indicated by the yellow squares."
 </p>
-<p><e>Give us a few details about how the 3x3 screen wall works.  How do you
-control it?</e>
-</p>
-<p>The hyperwall is a fairly simple cluster.  Each node is a dual-CPU, dual-core
-Opteron system with 4 Gigs RAM.  Each node has a basic Gentoo install on it,
-with Xorg and Xfce, and of course the NVIDIA video driver for OpenGL.  We use
-NFS for shared filesystems.  We have a set of scripts for things like
-launching programs on the nodes.  Nodes can be selected by their screen's two
-dimensional position in the grid, using perl regular expressions to select
-groups of nodes -- so the cross pattern used in the picture is described by:
-'CROSS = N1. N.1'.  We have a tool called 'hyperX' which allows you to drive
-the cursor on all the screens, or subsets of screens, simultaneously from the
-master console.  It works using the XTest protocol.  I have also written a
-C++-based distributed object and event architecture that is used for driving
-some of the applications on the wall.  This is the underlying framework used
-by the Columbia monitoring tools.
+<p><e>Mógłbyś opowiedzieć nam jak działa ekran 3x3? Jak nim sterujecie?</e></p>
+<p>
+Hyperwall to klaster o dość prostej strukturze. Każdy węzeł to system
+dwuprocesorowy z dwurdzeniowymi procesorami Opteron i 4 gigabajtami pamięci RAM.
+Każdy z nich pracuje pod kontrolą systemu Gentoo, na którym zainstalowane są
+Xorg, Xfce i sterownik NVIDII do obsługi OpenGL. Wykorzystujemy NFS do
+współdzielenia plików przez sieć. Odpowiedni zestaw skryptów służy nam między
+innymi do uruchamiania programów na węzłach. Węzły można wybierać na podstawie
+pary koordynatów opisujących ich położenie na ekranie oraz łączyć w grupy dzięki
+wyrażeniom regularnym. Tak więc figura krzyża, użyta na obrazku jest opisana
+przez wyrażenie "CROSS = N1. N.1". Dzięki narzędziu o nazwie 'hyperX' możliwe
+jest poruszanie kursorem z głównej konsolety na wszystkich lub wybranych
+ekranach jednocześnie.  Narzędzie to pracuje w oparciu o protokół XTest.
+Stworzyłem także w C++ rozproszoną architekturę, bazującą na obiektach i
+zdarzeniach, dzięki której sterujemy niektórymi wyświetlanymi aplikacjami. Jest
+ona szkieletem dla narzędzi monitorowania Columbii.
 </p>
 <figure link="/images/gwn/20051205_nasa2.jpg" 
-short="Screenshots" caption="Statistical information"/>
-<p>One application approach is to launch a copy of an application on each screen
-and drive each instance simultaneously.  Each instance of the app has
-different initial conditions, for example the data field being mapped onto a
-particular geometry, or a variation in the colormap.  The apps are driven
-either via their GUI, using hyperX, or via a master control panel that
-controls the apps with app-specific protocols.  The advantage of hyperX
-is that virtually any application can be used unmodified.
-
-Another approach involves more intercommunication between the apps running on
-the nodes, so that the view on one node influences the view on another in some
-way. For example, constraints in one set of dimensions may be set visually in
-one display, and the mapping of those constraints into other dimensions may be
-seen in the other displays.
-</p>
-<p><e>Why did you pick Gentoo for this setup?</e></p>
-
-<p>I simply wanted to try installing Gentoo on a cluster.  I first installed
-Gentoo on my work laptop, and after becoming familiar and comfortable with it,
-I installed it on my workstation.  Until then, my group's systems were
-exclusively Redhat/Fedora.  Gentoo reignited my love for Linux, and it made
-system administration interesting and enjoyable for me.  I started getting the
-idea that it would make a great distribution for a cluster, and when we built
-our first mini hyperwall (the first 3x3), I had partitions set aside for later
-installing Gentoo alongside Fedora.  After a good long wait, I finally did the
-deed, and it actually went really well.  I then installed Gentoo on our second
-3x3 about a week before SC05... well, actually, I cloned the original 3x3, and
-then just tweaked and updated.  If you want a rational motivation for the
-install, besides simple experimentation, it was because I really like and
-depend on Portage for convenient access to a diversity of applications and
-keeping certain packages up-to-date, like GTK.  I was always having trouble
-with installing non-standard packages on Fedora, usually because no one had
-bothered to make an RPM for them, or I got stuck wrangling with yum.
-</p>
-
-<p><e>What are the big advantages of using Gentoo in this particular setup?  How
-about the disadvantages or areas that need improvement?</e></p>
-
-<p>For one thing, the ability to find useful information, documentation, and
-community support is very valuable and something that I always felt was
-lacking from Redhat/Fedora.
-
-I setup my first Portage overlay to deal with an issue involving our newest
-3x3.  The NVIDIA video driver had major stability issues on our hardware.  We
-got NVIDIA to identify and fix the problem, and they provided us with a patch.
-I copied the latest nvidia-kernel ebuild into a Portage overlay and updated it
-to apply the patch.  Its great to be able to have our custom-patched graphics
-driver reside in the package management system -- and it was really easy to do.
-
-Portage offers a number of advantages over binary distributions.  Access to a
-diversity of packages is one.  Even browsing/searching Portage is a great way
-to learn about what tools are out there.  The ability to be selective about
-what versions of packages get installed has come in handly as well.  Another
-advantage is the ability to incrementally update a system, or parts of a
-system, from the command line.  In fact, having all system administration
-tasks be commandline and script-oriented is a real plus on a cluster, in my
-opinion.
-
-The flexibility of Portage/Gentoo is one of the reasons for using it on a
-cluster.  My current setup has the Portage tree being shared over NFS to the
-nodes, with squid on the master providing a proxy for emerge.  I also have
-some homebrew scripts for cloning using rsync.  I have other configurations in
-mind to try, like installing the node OS in a chroot environment on the
-master, and just propagating it from there to the nodes.
-
-Making Xfce the desktop manager on the nodes has also been a big improvement
-over using Gnome (on Fedora), which was just massive overkill.
-</p>
-<p>One thing I think Gentoo needs is its own version of the SystemImager tool.  A
-'GentooImager' ebuild, if you will.  SystemImager is tailored to
-Redhat/Fedora, and includes the whole kitchen sink in its distribution.  A
-GentooImager ebuild, perhaps based on and borrowing from SystemImager, could
-just make the necessary tools -- dhcp, syslinux, tftp, etc. -- be dependencies.
-Beyond that, there's the matter of providing an environment for pxeboot to
-boot into and bootstrap a system and the other details of making system
-images.  Anyway, its something to think about.  When/if we build another
-hyperwall, I may start working on such a package.  We'll see.  I'm interested
-in hearing from others who have installed and maintained Gentoo on a cluster.
-</p>
-<p>As for disadvantages, I don't see any particular disadvantages to using Gentoo
-on the hyperwall, though it might be difficult coming at it as your first
-Gentoo install.  Areas of Gentoo that I see as needing improvement are in
-handling security-specific updates, and in tracking important messages that
-are printed during an emerge.  I'm glad that these are issues that appear to
-be getting attention.
-</p>
-<p><e>Are there any future plans for Gentoo installations in your department?</e></p>
-
-<p>Right now, I'm just the annoying Gentoo flag-waver of my small group.  I've
-managed to generate some interest among a portion of my group, and I think one
-of them is going to give Gentoo a try.  We'll see what happens.
-
-As I mentioned, Gentoo plays a major role in the security department.  As for
-Columbia itself, well, one can dream...
-</p>
-<p><e>How can you be contacted?</e></p>
+short="Screenshots" caption="Informacje statystyczne"/>
 <p>
-Contact information can be found via <uri 
-link="http://people.nas.nasa.gov/~bgreen/">my web page</uri>
+Jedną z możliwości, jakie mamy przy wizualizacji działania aplikacji, jest
+uruchomienie na każdym ekranie po jednej kopii programu i jednoczesna obsługa
+wszystkich instancji. Każda z nich może mieć różne warunki początkowe, na
+przykład pole danych może być odwzorowaniem jakiegoś kształtu lub zmian w mapie
+kolorów. Obsługa aplikacji może odbywać się albo przez ich graficzny interfejs
+użytkownika (GUI) dzięki hyperX, bądź też przez główny panel sterowania, który
+steruje aplikacjami używając protokołów właściwych dla każdej z nich. Przewagą
+użycia hyperX jest to, że nie trzeba modyfikować aplikacji.
+
+Inne podejście obejmuje więcej wzajemnej komunikacji pomiędzy aplikacjami, które
+pracują na poszczególnych węzłach, aby widok uzyskany z jednego węzła wpływał w
+jakiś sposób na widok na innym węźle. Na przykład można wizualnie ustawić
+ograniczenia w jednym zestawie wymiarów na jednym z ekranów i obserwować na
+innych ekranach odwzorowanie tych ograniczeń w innych wymiarach.
+</p>
+<p><e>Dlaczego wybraliście akurat Gentoo?</e></p>
+
+<p>
+Po prostu chciałem zainstalować Gentoo na klastrze. Najpierw zainstalowałem ten
+system na moim służbowym laptopie, a po oswojeniu się z nim zrobiłem to samo na
+mojej stacji roboczej. Wcześniej systemami operacyjnymi w naszej grupie były
+wyłącznie Redhat/Fedora. System Gentoo na nowo wzniecił moją pasję do Linuksa i
+sprawił, że administracja stała się dla mnie interesująca i zaczęła sprawiać mi
+przyjemność. W końcu w mojej głowie zaczęła dojrzewać myśl, że Gentoo byłoby
+świetną dystrybucją na klaster, więc gdy zbudowaliśmy nasz pierwszy mini
+hyperwall (pierszy o wymiarach 3x3), miałem już przygotowane partycje pod ten
+system.  Trochę zwlekałem, ale w końcuzainstalowałem go równolegle z Fedorą.
+Wszystko poszło świetnie. Wówczas zainstalowałem Gentoo na drugim ekranie 3x3 na
+około tydzień przed konferencją SC05... W zasadzie to sklonowałem system
+pierwszego ekranu 3x3, następnie go uaktualniając i dopracowując. Jeśli miałbym
+podać racjonalne uzasadnienie instalacji (poza skłonnością do eksperymentowania)
+to byłaby to chęć używania Portage. To świetne narzędzie, dzięki któremu mam
+łatwy dostęp do wielkiej ilości aplikacji. Uaktualnianie poszczególnych
+programów (na przykład GTK) również nie nastręcza trudności. Nigdy nie radziłem
+sobie najlepiej z instalowaniem niestandardowych aplikacji na Fedorze, głównie z
+powodu braku paczek RPM lub problemów z menadżerem pakietów yum.
+</p>
+
+<p><e>Jakie są największe zalety używania Gentoo na waszym sprzęcie? Z czego zaś
+jesteś niezadowolony? Co wymagałoby poprawek?</e></p>
+
+<p>
+Po pierwsze, łatwy dostęp do wartościowych informacji, dokumentacji i wsparcia
+ze strony społeczności są nieocenione. Tych rzeczy zawsze bardzo mi brakowało w
+dystrybucjach Redhat i Fedora.
+
+Pierwszy raz musiałem konfigurować nakładkę na Portage, aby poprawić błąd, który
+dokuczał nam przy naszym najnowszym ekranie 3x3. Sterownik graficzny NVIDII był
+niestabilny na naszym sprzęcie. Dostaliśmy łatkę od pracowników NVIDII, którzy
+pomogli nam zidentyfikować i naprawić problem. Skopiowałem ostatnią wersję pliku
+ebuild pakietu nvidia-kernel do nakładki Portage i uaktualniłem go, aby nałożyć
+łatkę na źródła. Możliwość umieszczenia poprawionego przez siebie sterownika do
+karty graficznej od razu w menadżerze pakietów jest nieoceniona -- a na dodatek
+było to bardzo proste.
+
+Dzięki Portage Gentoo przewyższa binarne dystrybucje pod kilkoma względami.
+Jednym z nich jest dostęp do ogromnej ilości pakietów. Samo przeglądanie i
+przeszukiwanie drzewa Portage pozwala poznać przydatne oprogramowanie. Możliwość
+wyboru spośród rożnych wersji tych samych programów również się przydaje.
+Kolejną zaletą jest możliwość stopniowego uaktualniania systemu lub jego części
+za pomocą wiersza poleceń. Moim zdaniem możliwość wykonywania wszystkich zadań
+administracyjnych poprzez wiersz poleceń jest ogromną zaletą w przypadku
+klastra.
+
+Elastyczność Portage i Gentoo jest jednym z powodów, dla których uzywamy ich na
+klastrze. W naszej aktualnej konfiguracji udostępniam drzewo Portage wszystkim
+węzłom poprzez NFS. Na głównym węźle pracuje squid, który pełni rolę pośrednika
+sieciowego dla polecenia emerge. Wykorzystuję także kilka autorskich skryptów do
+klonowania za pomocą rsync. Zastanawiam się jednak nad innymi konfiguracjami, na
+przykład zainstalowaniem systemu operacyjnego węzła w środowisku chroot na
+głównym węźle i propagowaniem go dalej dla pozostałych węzłów.
+
+Zastosowanie Xfce jako środowiska graficznego węzłów również było krokiem
+naprzód w stosunku do stosowanego poprzednio (gdy używaliśmy systemu Fedora)
+Gnome'a, który był po prostu zbyt duży jak na nasze wymagania.
+</p>
+<p>
+Jedną z rzeczy, które moim zdaniem przydałyby się w Gentoo to własna wersja
+narzędzia SystemImager. Można go nazwać na przykład 'GentooImager'. Jest to
+narzędzie stworzone specjalnie dla systemu Redhat/Fedora i zawiera cały wachlarz
+funkcjonalności. Plik ebuild dla Gentoo mógłby być bezpośrednio na nim oparty i
+zawierać niezbędne narzędzia -- dhcp, syslinux, tftp, itd. -- jako zależności.
+Oprócz tego należałoby zatroszczyć się o stworzenie środowiska, w którym
+pxeboot uruchamiałby i inicjował system, a także o inne detale ważne przy
+tworzeniu obrazów systemu. Tak czy inaczej należałoby się nad tym zastanowić.
+Jeśli/gdy będziemy budować następny hyperwall, możliwe, że zajmę się stworzeniem
+takiego pakietu. Zobaczymy. Ciekaw jestem opinii innych, którzy instalowali i
+opiekowali się Gentoo na klastrze.
+</p>
+<p>
+Nie sądzę, żeby istniały jakieś wady używania Gentoo na hyperwallu, poza tym że
+może to być niełatwe przedsięwzięcie, jeśli wcześniej nigdy nie instalowaliśmy
+tego systemu. Części Gentoo, które moim zdaniem wymagają nieco pracy to obsługa
+uaktualnień ważnych ze względu na bezpieczeństwo, oraz śledzenie komunikatów
+pojawiających się podczas instalacji. Cieszy mnie jednak, że ktoś już pracuje
+nad rozwiązaniem tych problemów.
+</p>
+<p><e>Czy w twoim wydziale planowane są dalsze wdrożenia Gentoo?</e></p>
+
+<p>
+Aktualnie jestem jedynym entuzjastą w mojej niewielkiej grupie. Udało mi się
+zainteresować kilka osób i możliwe że jedna osoba wypróbuje Gentoo w najbliższym
+czasie. Zobaczymy co z tego wyniknie.
+
+Jak już wspomniałem, Gentoo odgrywa dużą rolę w wydziale odpowiadającym za
+bezpieczeństwo. Jeśli zaś chodzi o samą Columbię... No cóż, zawsze można
+pomarzyć...
+</p>
+<p><e>Jak można się z tobą skontaktować?</e></p>
+<p>
+Informacje na ten temat znajdują się na <uri
+link="http://people.nas.nasa.gov/~bgreen/">mojej stronie domowej</uri>.
 </p>
 </body>
 </section>
