@@ -23,7 +23,7 @@
 
 <abstract>
 Ten dokument przedstawia podstawowe informacje o FreeBSD oraz zapewnia
-instrukcję instalacji Gentoo/FreeBSD. Zawiera także referencje dla osób
+instrukcję instalacji Gentoo/FreeBSD. Zawiera także wskazówki dla osób
 zainteresowanych pomocą w rozwoju projektu.
 </abstract>
 
@@ -93,8 +93,7 @@ podobieństw. Istnieje jednak kilka kilka kluczowych różnic:
     W przeciwieństwie do jądra Linuksa, rozwój FreeBSD nie jest
     prowadzony przez jedną osobę, tylko przez niewielką grupę zwaną
     <uri
-    link="http://www.freebsd.org/doc/en_US.ISO8859-1/articles/contributors/staff-core.html">Core
-    Team</uri>.
+    link="http://www.freebsd.org/doc/en_US.ISO8859-1/articles/contributors/staff-core.html">Grupą Zarządzającą</uri>.
   </li>
 </ul>
 
@@ -159,58 +158,62 @@ Freenode.
 </p>
 
 <p>
-Once you're done setting up your disks, you have to create a mount point for
-your Gentoo/FreeBSD installation and mount all the necessary partitions.
+Po zakończeniu konfiguracji dysków należy stworzyć punkt montowania dla
+nowej instalacji Gentoo/FreeBSD oraz zamontować wszystkie niezbędne
+partycje.
 </p>
 
-<pre caption="Creating a mount point and mounting partitions">
+<pre caption="Tworzenie punktu montowania oraz montowanie partycji">
 # <i>mkdir /mnt/gentoo</i>
-<comment>(Replace X with the correct numbers for your hard disk.)</comment>
+<comment>(X należy zastąpić numerem właściwym dla odpowiedniego dysku.)</comment>
 # <i>mount /dev/adXsXa /mnt/gentoo</i>
 </pre>
 
 <p>
-Now that you have mounted the target partition, it is time to fetch and unpack
-a stage3 tarball.
+Następnie należy ściągnąć i rozpakować archiwum zawierające obraz stage3.
 </p>
 
-<pre caption="Obtaining and unpacking a stage3 tarball">
+<pre caption="Ściągnięcie oraz rozpakowanie archiwum stage3">
 # <i>cd /mnt/gentoo/</i>
-<comment>(Any other Gentoo mirror which includes the experimental/ directory will also work.)</comment>
+<comment>(Każdy inny mirror Gentoo zawierający katalog experimental/
+również zadziała)</comment>
 # <i>wget http://gentoo.osuosl.org/experimental/x86/freebsd/stages/stage3-x86-fbsd-20051020.tar.bz2</i>
 # <i>tar -jxvpf stage3-x86-fbsd-20051020.tar.bz2</i>
-<comment>(You can delete the tarball with the following command if you want to.)</comment>
+<comment>(Za pomocą następnego polecenia można - ale nie trzeba - usunąć
+archiwum stage3)</comment>
 # <i>rm stage3-x86-fbsd-20051020.tar.bz2</i>
 </pre>
 
 <p>
-Before chrooting into the newly-extracted stage, you first must obtain an up-to-date
-copy of the Gentoo/FreeBSD overlay. The easiest way to achieve this is to to get our latest
-snapshot which you then extract to <path>/mnt/gentoo/usr/local/portage</path>
+Przez wykonaniem chroot do nowo rozpakowanego obrazu konieczne jest
+jeszcze zainstalowanie aktualnej kopii nakładki Gentoo/FreeBSD.
+Najprostszym sposobem jest ściągnięcie najnowszej jej migawki i 
+rozpakowanie jej do <path>/mnt/gentoo/usr/local/portage</path>
 </p>
 
-<pre caption="Getting the Gentoo/FreeBSD Portage overlay">
+<pre caption="Sprowadzanie nakładki Gentoo/FreeBSD na Portage">
 # <i>cd /mnt/gentoo/usr/local/portage</i>
 # <i>wget http://gentoo.osuosl.org/experimental/snapshots/portage-alt-overlay-latest.tar.bz2</i>
 # <i>tar -xjf portage-alt-overlay-latest.tar.bz2</i>
-<comment>(You now can safely delete the snapshot with the following command.)</comment>
+<comment>(Można teraz usunąć migawkę)</comment>
 # <i>rm portage-alt-overlay-latest.tar.bz2</i>
 </pre>
 
 <p>
-Alternatively, you can also use Subversion to check out the current version of
-the overlay. If you are interested in this possibility, please refer to the
-<uri link="/proj/en/gentoo-alt/overlay.xml">Gentoo/ALT overlay
-documentation</uri>.
+Można również wykorzystać Subversion aby sprawdzić, jaka jest aktualna
+wersja nakładki. W przypadku, gdy pożądane jest skorzystanie z tej
+możliwości, należy zwrócić się do 
+<uri link="/proj/en/gentoo-alt/overlay.xml">dokumentacji nakładki
+Gentoo/ALT</uri>.
 </p>
 
 <p>
-In order for your install to work, you need to mount the <path>/dev</path>
-filesystem from the currently running system into the Gentoo/FreeBSD mount
-point before proceeding with the chroot.
+Przed chroot konieczne jest jeszcze zamontowanie katalogu
+<path>/dev</path> z aktualnego systemu do odpowiedniego miejsca w
+strukturze Gentoo/FreeBSD.
 </p>
 
-<pre caption="Mounting the /dev filesystem and chrooting">
+<pre caption="Montowanie /dev oraz zmiana korzenia drzewa katalogów">
 # <i>mount -t devfs none /mnt/gentoo/dev/</i>
 # <i>cp /etc/resolv.conf /mnt/gentoo/etc</i>
 # <i>chroot /mnt/gentoo/ /bin/bash</i>
@@ -218,16 +221,18 @@ point before proceeding with the chroot.
 </pre>
 
 <p>
-After you got hold of the Gentoo/FreeBSD overlay, it's time to link
-<path>/etc/make.profile</path> to the correct profile and add get your
-<path>/etc/make.conf</path> ready for Gentoo/FreeBSD.
+Po uzyskaniu nakładki Gentoo/FreeBSD nadhodzi czas na dowiązanie
+<path>/etc/make.profile</path> do właściwego profilu i przygotowanie
+<path>/etc/make.conf</path>.
 </p>
 
-<pre caption="Setting up the profile and editing /etc/make.conf">
+<pre caption="Konfiguracja profilu oraz /etc/make.conf">
 # <i>ln -sf /usr/local/portage/portage-alt-overlay/profiles/default-bsd/fbsd/5.4/x86/ /etc/make.profile</i>
-<comment>(FreeBSD's standard editor is ee, which is used to edit /etc/make.conf)</comment>
+<comment>(Standardowym edytorem we FreeBSD jest ee, którego użyjemy do
+edycji /etc/make.conf</comment>
 # <i>ee /etc/make.conf</i>
-<comment>(Please make sure you add at least the following entries:)</comment>
+<comment>(Należy upewnić się, że dodano co najmniej następujące 
+wpisy:)</comment>
 CHOST="i686-gentoo-freebsd5.4"
 ACCEPT_KEYWORDS="~x86-fbsd ~x86"
 FEATURES="-sandbox collision-protect"
@@ -235,21 +240,22 @@ PORTDIR_OVERLAY="/usr/local/portage/portage-alt-overlay"
 </pre>
 
 <p>
-In order to boot correctly, you will need to create the <path>/proc</path> directory.
+Aby start systemu mógł przebiegać poprawnie konieczne jest też
+stworzenie katalogu <path>/proc</path>.
 </p>
 
-<pre caption="Creating the /proc directory">
+<pre caption="Tworzenie katalogu /proc">
 # <i>mkdir /proc</i>
 </pre>
 
 <p>
-Now, you have to obtain a copy of the main Gentoo Portage tree, which depending
-on your connection might take quite a while.
+Teraz ściągniemy kopię głównego drzewa Portage, co na słabszych łączach
+może zająć całkiem sporo czasu.
 </p>
 
-<pre caption="Obtaining the Portage tree">
+<pre caption="Pozyskiwanie drzewa Portage">
 # <i>emerge --sync</i>
-<comment>(It's also possible to retrieve the Portage tree in another way:)</comment>
+<comment>(Możliwe jest również uzyskanie drzewa Portage w inny sposób:)</comment>
 # <i>cd /</i>
 # <i>wget http://gentoo.osuosl.org/snapshots/portage-latest.tar.bz2</i>
 # <i>tar -xjf portage-latest.tar.bz2 -C /usr/</i>
@@ -257,46 +263,49 @@ on your connection might take quite a while.
 </pre>
 
 <p>
-If you want, you can now rebuild the system's core packages.
+W razie potrzeby można również przebudować podstawowe pakiety systemowe:
 </p>
 
-<pre caption="Rebuilding the FreeBSD core packages (Optional)">
+<pre caption="Opcjonalne przebudowanie podstawowych pakietów FreeBSD">
 # <i>emerge -e system</i>
 </pre>
 
 <p>
-When you did <c>emerge -e system</c>, the sources for the FreeBSD kernel got 
-installed to <path>/usr/src/sys</path>. If you skipped this step, you can get 
-them in the following way:
+Po wykonaniu <c>emerge -e system</c>, źródła jądra FreeBSD zostały
+zainstalowane do <path>/usr/src/sys</path>. Jeżeli krok ten został
+pominięty, można je pozyskać w następujący sposób:
 </p>
 
-<pre caption="Geting the FreeBSD kernel sources">
+<pre caption="Pozyskiwanie źródeł jądra FreeBSD">
 # <i>emerge freebsd-sources</i>
 </pre>
 
 <p>
-Configuring and compiling a custom kernel is really different from compiling Linux, 
-so if you are not familiar with the process we encourage you to have a look at 
+Konfiguracja i kompilacja własnego jądra jest bardzo odmienna od swojego
+linuksowego odpowiednika, więc w razie wątpliwości należy skonsultować
+się z 
 <uri link="http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/kernelconfig.html">
-chapter 8</uri> of the FreeBSD handbook.
+rozdziałem ósmym</uri> podręcznika FreeBSD.
 </p>
 
 <p>
-Please note that currently only the "Traditional" way of building the kernel is 
-supported on Gentoo/FreeBSD! Also note that <c>make install</c> will probably
-ask you for a <path>/boot/device.hints</path> file. A default version can be
-found in the <path>conf</path> subdirectory of the <c>GENERIC</c> configuration
-and is called <path>GENERIC.hints</path>
+Należy również zwrócić uwagę na to, że jedynie "Tradycyjny" sposób
+kompilacji jest akutalnie wspierany przez Gentoo/FreeBSD. Dodatkowo
+<c>make install</c> prawdpodobnie zapyta o plik
+<path>/boot/device.hints</path>. Domyślna jego wersja może zostać
+znaleziona w podkatalogu <path>conf</path> konfiguracji <c>GENERIC</c> i
+nazwana jest <path>GENERIC.hints</path>.
 </p>
 
 <p>
-Now is the time to do some basic system configuration and settings. First, we are 
-going to setup the filesystem mounting points in <path>/etc/fstab</path>
+Teraz można już dokonać podstawowej konfiguracji systemu. Najpierw
+zdefiniujemy punkty montowania w <path>/etc/fstab</path>:
 </p>
 
-<pre caption="Editing the filesystem in /etc/fstab">
+<pre caption="Edycja /etc/fstab">
 # <i>ee /etc/fstab</i>
-<comment>(This is an example, replace X and Y with the correct numbers for your hard disk.)</comment>
+<comment>(To jest tylko przykład - X oraz Y należy zastąpić licbami
+właściwymi dla danej konfiguracji.)</comment>
 #Device         Mountpoint      Fstype          Options         Dump    Pass
 /dev/adXsYb     none            swap            sw              0       0
 /dev/adXsYa     /               ufs             rw              1       1
@@ -306,79 +315,83 @@ going to setup the filesystem mounting points in <path>/etc/fstab</path>
 </pre>
 
 <p>
-Now would also be a good time to set up your network connection before the final
-reboot.
+Teraz jest też właściwy czas aby skonfigurować połączenia sieciowe przed
+ostatecznym przeładowaniem systemu:
 </p>
 
-<pre caption="Setting up your network">
+<pre caption="Konfiguracja sieci">
 # <i>ee /etc/conf.d/net</i>
-<comment>(This is just an example which you have to adjust for your network.)</comment>
+<comment>(To również jest tylko przykład, który trzeba zmodyfikować na
+potrzeby konkretnej sieci.)</comment>
 ifconfig_rl0=("192.168.0.10 netmask 255.255.255.0 broadcast 192.168.0.255")
 routes_rl0=("-net 0.0.0.0 -host 192.168.0.1")
 </pre>
 
 <p>
-To change your hostname you have to edit <path>/etc/hostname</path>.
+Aby zmienić nazwę komputera należy zmodyfikować <path>/etc/hostname</path>.
 </p>
 
-<pre caption="Setting up the machine's hostname">
-# <i>echo "YOUR_HOSTNAME_HERE" > /etc/hostname</i>
+<pre caption="Zmiana nazwy komputera">
+# <i>echo "NAZWA_KOMPUTERA" > /etc/hostname</i>
 </pre>
 
 <p>
-In case you need to use another keyboard layout for your language, you have to set the 
-correct value in <path>/etc/conf.d/syscons</path>. The following example uses the Spanish
-layout, so you'll have to adjust it to your need if you want to use another one.
+W przypadku, gdy użytkownicy maszyny będą wykorzystywać układów
+klawiatury innych niż standardowy, należy ustawić właściwą wartość w
+<path>/etc/conf.d/syscons</path>. Następujący przykład pokazuje
+konfigurację dla układu hiszpańskiego, należy więc go zmodyfikować w
+celu dostosowania do konkretnej instalacji.
 </p>
 
-<pre caption="Changing your keyboard layout (Optional)">
+<pre caption="Zmiana układu klawiatury (opcjonalnie)">
 # <i>ee /etc/conf.d/syscons</i>
 KEYMAP="spanish.iso.acc"
-<comment>(Possible layouts can be found in /usr/share/syscons/keymaps).</comment>
+<comment>(Dostępne układy można znaleźć w katalogu /usr/share/syscons/keymaps).</comment>
 </pre>
 
 <impo>
-Please make absolutely sure you add your new Gentoo/FreeBSD installation to the
-configuration of your bootloader, otherwise you won't be able to boot your newly
-installed system! If you don't have another bootloader installed, you should use 
-<c>boot0</c>, as it is currently the only one supported by FreeBSD. In this case
-please don't forget to use your other operating systems to <c>boot0</c>'s 
-configuration.
+Absolutnie koniecznym jest przygotowanie bootloadera na Gentoo/FreeBSD,
+w przeciwnym wypadku niemożliwe będzie wystartowanie nowo
+zainstalowanego systemu! Jeżeli na komputerze nie ma innego bootloadera,
+należy zastosować <c>boot0</c>, ponieważ jest on jedynym aktualnie
+wspieranym przez FreeBSD. W takim wypadku należy dodać pozostałe obecne
+na komputerze systemy operacyjne do konfiguracji <c>boot0</c>.
 </impo>
 
-<pre caption="Installing and setting up boot0">
+<pre caption="Instalacja i konfiguracja boot0">
 # <i>emerge boot0</i>
-<comment>(Leave the chroot environment)</comment>
+<comment>(Opuszczenie środowiska chroot)</comment>
 # <i>exit</i>
-<comment>(Issued from outside the chroot)</comment>
+<comment>(Dalsze polecenia muszą zostać wydane spoza chroot)</comment>
 # <i>fdisk -b -B /mnt/gentoo/boot/boot0 /dev/adX</i>
 # <i>chroot /mnt/gentoo /bin/bash</i>
 # <i>disklabel -B adXsY</i>
 </pre>
 
 <p>
-If you need additonal information on setting up <c>boot0</c>, please consult 
+Dalsze informacje dotyczące konfiguracji <c>boot0</c> dostępne są w
 <uri link="http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/boot.html">
-chapter 12</uri> of the FreeBSD handbook.
+rozdziale dwunastym</uri> podręcznika FreeBSD.
 </p>
 
 <p>
-Now would be a good time to set a password for the <c>root</c> user and to add 
-another user account for your day-to-day work.
+Należy też zmienić hasło użytkownika <c>root</c> oraz dodać konto
+zwykłego użytkownika przeznaczone do codziennej pracy.
 </p>
 
-<pre caption="Changing the root password and adding a new user">
+<pre caption="Zmiana hasła użytkownika root oraz dodawanie nowego
+użytkownika">
 # <i>passwd</i>
-<comment>(If you need help in adding a user please consult the FreeBSD handbook).</comment>
+<comment>(Dalsze informacje dostępne są w podręczniku FreeBSD).</comment>
 # <i>adduser</i>
 </pre>
 
 <p>
-Congratulations, you have just finished your Gentoo/FreeBSD installation which you 
-can start exploring after the final reboot. Have fun!
+Gratulacje, instalacja Gentoo/FreeBSD jest już gotowa i można rozpocząć
+odkrywanie jej możliwości zaraz po restarcie systemu. Powodzenia!
 </p>
 
-<pre caption="Rebooting the system">
+<pre caption="Restart systemu">
 # <i>exit</i>
 # <i>reboot</i>
 </pre>
@@ -388,53 +401,56 @@ can start exploring after the final reboot. Have fun!
 </chapter>
 
 <chapter>
-<title>Developing for Gentoo/FreeBSD</title>
+<title>Rozwijanie Gentoo/FreeBSD</title>
 <section>
-<title>How to help</title>
+<title>Jak pomóc</title>
 <body>
 
 <p>
-There are many things you could help with, depending on your skill level and
-spare time:
+Pomoc jest potrzebna w wielu dziedzinach, zależnie od ilości dostępnego
+czasu oraz poziomu umiejętności:
 </p>
 
 <ul>
   <li>
-    We need GCC and binutils hackers who are able to port FreeBSD's patches to
-    the original versions of these tools provided by our main Portage tree.
+    Potrzebni są hakerzy GCC oraz binutils którzy mogliby przenieść
+    rozmaite łatki specyficzne dla FreeBSD do głównego drzewa Portage.
   </li>
   <li>
-    Working on current ebuilds: this means working closely with ebuild maintainers 
-    in order to create patches or modify ebuilds in a way that can be accepted 
-    into the main tree.
+    Praca nad aktualnymi ebuildami: oznacza to ścisłą współpracę z
+    osobami odpowiedzialnymi za ebuildy w celu przygotowania łatek oraz
+    modyfikacji ebuildów tak, aby zostały one zaakceptowane w głównym
+    drzewie.
   </li>
   <li>
-    Security: if you are into security, we need you! Although security
-    advisories from the FreeBSD project are tracked and fixed, we can always
-    use help in this area.
+    Bezpieczeństwo: osoby zainteresowane zabezpieczeniami są bardzo
+    potrzebne! Wprawdzie doniesienia o zagrożeniach od projektu FreeBSD
+    są śledzone i uwzględniane, dodatkowa pomoc jest zawsze potrzebna.
   </li>
   <li>
-    Contacts: we need people who can get in touch with FreeBSD developers to
-    maintain contacts between us and the original project to exchange patches
-    and discuss various problems and their solutions. Note that this should
-    never involve any kind of spamming of mailing lists or IRC channels.
+    Kontakty: potrzebni są nam ludzie dysponujący znajomościami wśród
+    deweloperów FreeBSD w celu utrzymywania kontaktu między nami a
+    oryginalnym projektem dla wymiany łatek oraz dyskusji rozmaitych
+    problemów i ich rozwiązań. Uwaga: taka działalność nigdy nie powinna
+    żadnej formy spamowania na listach dyskusyjnych ani kanałach IRC.
   </li>
   <li>
-    Testing: the more people are actively using Gentoo/FreeBSD, the more bugs
-    will be discovered, which helps us improving the quality of the port. If
-    you are good at describing bugs or problems, we definitely want to hear
-    from you.
+    Testowanie: im więcej ludzi wykorzystuje Gentoo/FreeBSD tym więcej
+    błędów będzie rozpoznawanych, co pomaga nam w poprawianiu jakości
+    produktu. Osoby potrafiące umiejętnie opisać błędy oraz problemy
+    będą bardzo przydatne.
   </li>
   <li>
-    Other areas where we need help include: system ebuilds, baselayout,
-    creation of installation CDs, documentation, kernel hacking.
+    Inne dziedziny również wymagają wsparcia, w tym: ebuidly systemowe,
+    baselayout, tworzenie płyt instalacyjnych, dokumentacja, modyfikacje
+    jądra.
   </li>
 </ul>
 
 </body>
 </section>
 <section>
-<title>Building the system and dealing with issues</title>
+<title>Budowa systemu oraz poprawianie problemów</title>
 <body>
 
 <p>
