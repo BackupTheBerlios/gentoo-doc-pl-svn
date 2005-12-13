@@ -112,40 +112,44 @@ most important Linux resources on the Internet.
 </chapter>
 <!-- Future zone -->
 <chapter>
-<title>Future zone</title>
+<title>Rzut okiem w przyszłość</title>
 <section>
-<title>New virtual package style increases Portage flexibility</title>
+<title>Nowy sposób konfiguracji pakietów wirtualnych zwiększa elastyczność
+Portage.</title>
 <body>
 <p>
-With <uri link="/proj/en/glep/glep-0037.html">GLEP 37</uri>, virtuals are actual 
-packages (located in the <path>virtual/</path> category) instead of being 
-mentioned in the '<path>virtuals</path>' file in <path>profiles/</path>. This 
-gives us more flexibility regarding their syntax. For example we can now specify 
-an order of preference for virtual providers instead of just a single default 
-versus everything else.
+Wraz z wejściem w życie propozycji <uri link="/proj/en/glep/glep-0037.html">GLEP
+37</uri> pakiety wirtualne stały się prawdziwymi pakietami (umieszczonymi w
+katalogu <path>virtual/</path>) zamiast tylko wpisami w pliku
+'<path>virtuals</path>' w katalogu <path>profiles/</path>. Daje to nam więcej
+swobody podczas ich definiowania. Możemy na przykład określić preferowaną
+kolejność pakietów tworzących pakiet wirtualny, zamiast podawać tylko jeden
+domyślny pakiet.
 </p>
 <p>
-The first adopter of GLEP 37 is the X team, with <path>virtual/x11</path>. 
-Although there were some temporary issues with switching to the new virtual 
-type, everything's resolved and seems to work quite well. This lets us only 
-allow <path>xorg-x11-6.8.x</path> to fulfill <path>virtual/x11</path> and 
-force modular X users to have completely specified dependencies.
+Zespół opiekujący się X jest pierwszym, który zastosował nowe reguły, tworząc
+pakiet <path>virtual/x11</path>. Na początku wystąpiło kilka problemów ze zmianą
+konfiguracji, ale zostały one rozwiązane i wszystko działa bez zarzutu. Nowa
+funkcjonalność pozwala nam zezwolić tylko <path>xorg-x11-6.8.x</path> na
+spełnianie <path>virtual/x11</path> i wymusić pełne określenie zależności w
+przypadku użytkowników modularnych X-ów.
 </p>
 <p>
-Modular X users will want to add a line to <path>/etc/portage/profile/virtuals</path> 
-until contributors port all the packages on their systems to modular X:
+Użytkownicy modularnych X-ów powinni dodać poniższą linijkę do pliku
+<path>/etc/portage/profile/virtuals</path>, zanim wszytkie paczki zostaną
+zmodyfikowane z myślą o tej wersji X.
 </p>
 
-<pre caption="Insert line for modular X">
+<pre caption="Linijka wymagana przy modularnym X">
 virtual/x11	x11-base/xorg-x11
 </pre>
 <note>
-If you'd like to help with the porting efforts, see the <uri 
-link="http://dev.gentoo.org/~spyderous/xorg-x11/">modular X porting 
-HOWTO</uri>. But first, you'll need to <uri
-link="http://dev.gentoo.org/~spyderous/xorg-x11/migrating_to_modular_x_howto.txt">convert 
-your system to modular X</uri>. Please file bugs only to the package 
-maintainers with patches for modular X dependencies, <e>not</e> to 
+Jeśli ktoś chciałby pomóc przy przenoszeniu aplikacji, należy zapoznać się z
+dokumentem <uri link="http://dev.gentoo.org/~spyderous/xorg-x11/">modular X
+porting HOWTO</uri>. Najpierw jednak należy <uri
+link="http://dev.gentoo.org/~spyderous/xorg-x11/migrating_to_modular_x_howto.txt">skonwertować
+własny system do modularnego X</uri>. Bugi z załączonym łatkami, które dodają
+zależności, należy zgłaszać tylko opiekunom paczek, a <e>nie</e> pod adres
 <path>x11@gentoo.org</path>.
 </note>
 </body>
@@ -318,49 +322,54 @@ collection</uri> (in file <path>review.tar.bz2</path>).
 </chapter>
 <!-- Gentoo in the press -->
 <chapter>
-<title>Gentoo in the press</title>
+<title>Gentoo w prasie</title>
 <section>
-<title>Linuxhardware.org (6 December 2005)</title>
+<title>Linuxhardware.org (6 grudnia 2005)</title>
 <body>
 <p>
-Right on time before people have done all their Christmas shopping, Gentoo
-developer <mail link="augustus@gentoo.org">Kristopher Kersey (Augustus)</mail> 
-has published the <uri link="http://www.linuxhardware.org/article.pl?sid=05/12/06/2138210">third 
-and last part</uri> of his series on the "Ultimate Linux Workstation" that he
-designed using all the latest and greatest parts to be found in the wild. 
-He's spent his money reasonably well on a dual Opteron 2.8GHz system with 
-plenty of RAM, fast disks, water-cooling and high-performance graphics to 
-impress in the benchmarking he includes in his article. Needless to say, 
-Augustus went for Gentoo Linux as the operating system for his ultimate
-workstation (and the alternative "budget system"). Well, what else would 
-you want under the tree...
+Tuż przed czasem, kiedy większość z nas zakończy kupowanie prezentów
+świątecznych, deweloper Gentoo <mail link="augustus@gentoo.org">Kristopher
+Kersey (Augustus)</mail> opublikował <uri
+link="http://www.linuxhardware.org/article.pl?sid=05/12/06/2138210">trzecią i
+ostatnią część</uri> artykułu "Ultimate Linux Workstation". Opisuje w nim
+tworzenie linuksowej stacji roboczej, opartej o najnowszy i najlepszy dostępny
+sprzęt komputerowy. Wiedział na co wydać pieniądze, kupując dwuprocesorowy
+system Opteron 2.8 GHz wyposażony w mnóstwo pamięci RAM, szybkie napędy dyskowe,
+chłodzenie wodne i wysoko wydajną kartę graficzną. Wszystko to sprawia, że
+komputer osiąga wspaniałe wyniki w dołączonych do artykułu testach. Jak
+nietrudno się domyślić, Augustus wykorzystał system Gentoo Linux jako system
+operacyjny swojej stacji roboczej (oraz alternatywnego "taniego komputera").
+Cóż, jest czego sobie życzyć na Gwiazdkę...
 </p>
 </body>
 </section>
 <section>
-<title>Netcraft (5 December 2005)</title>
+<title>Netcraft (5 grudnia 2005)</title>
 <body>
 <p>
-Gentoo has passed the mark of 100,000 servers worldwide visibly running Gentoo 
-Linux, according to the <uri
-link="http://news.netcraft.com/archives/2005/12/05/strong_growth_for_debian.html">December 
-survey at Netcraft</uri>. With Gentoo's success and the even steeper raise in 
-Debian-driven systems, non-commercial Linuces including CentOS and Fedora are growing 
-faster than their commercial counterparts.
+Według <uri
+link="http://news.netcraft.com/archives/2005/12/05/strong_growth_for_debian.html">grudniowego
+badania firmy Netcraft</uri> istnieje już ponad 100,000 serwerów pracujących pod
+kontrolą systemu Gentoo. Biorąc pod uwagę jeszcze szybszy wzrost liczby serwerów
+opartych na systemie Debian, należy zauważyć szybszy rozwój niekomercyjnych
+systemów Linux, w tym GentOS i Fedory, w stosunku do ich komercyjnych
+konkurentów.
 </p>
 </body>
 </section>
 <section>
-<title>Frappr.com (December 2005)</title>
+<title>Frappr.com (Grudzień 2005)</title>
 <body>
 <p>
-Unlike all other maps of Gentoo users that have been established so far, <uri
-link="http://www.frappr.com/gentoo">this new one</uri> over at Frappr (short 
-for "Friends Mapper") isn't regionally limited. Wherever on the planet you 
-happen to live, you can pin your location onto a global map that already carries 
-hundreds of other Gentoo users. Lacking particularly in the Asian and African 
-department so far, it's certainly fun to add yourself to the growing number of 
-pins -- and even more fun to find others using this tool.
+W przeciwieństwie do wszystkich innych istniejących do tej pory map użytkowników
+Gentoo, <uri link="http://www.frappr.com/gentoo">najnowsza z nich</uri>,
+mieszcząca się na serwerze "Frappr" (skrót od "Friends Mapper") nie jest
+ograniczona geograficznie. Gdziekolwiek na świecie się znajdujemy, zawsze możemy
+oznaczyć miejsce swojego zamieszkania na mapie, na której już teraz znajdziemy
+setki innych użytkowników Gentoo. Jak na razie najmniej osób zgłosiło się z
+Afryki i Azji, tym niemniej dołączenie do coraz większej ilości użytkowników na
+mapie może być interesujące -- tak jak i odnajdywanie tych, którzy już się
+dopisali.
 </p>
 </body>
 </section>
