@@ -450,56 +450,56 @@ czasu oraz poziomu umiejętności:
 </body>
 </section>
 <section>
-<title>Budowa systemu oraz poprawianie problemów</title>
+<title>Kompilacja systemu oraz poprawianie problemów</title>
 <body>
 
 <p>
-Although Linux and FreeBSD both are Unix-like operating systems, there are some
-important differences you have to know about if you want to contribute to our
-development effort:
+Chociaż zarówno Linux jak i FreeBSD są systemami Uniksopodobnymi to
+istnieją pomiędzy nimi istotne różnice o których powinna wiedzieć osoba
+która chce przyłączyć się do rozwoju projektu:
 </p>
 
 <ul>
   <li>
-    FreeBSD doesn't use the GNU autotools (autoconf, automake, autoheader).
-    Instead, it uses its own implementation of <c>make</c>, putting
-    configuration options in external files and some .mk files that are
-    included with each Makefile. Although a lot of work has been put into
-    those .mk files, it is not hard to find some installations failing due to
-    a missing <c>${INSTALL}&nbsp;-d</c> somewhere. The easy way to deal with
-    this kind of problem is to read the Makefile to find the accompanying .mk
-    file, then open that file and try to figure out which part failed (this is
-    not really hard once you figure out where in the installation process it
-    stopped).
+    FreeBSD nie wykorzystuje GNU autotools (autoconf, automake, autoheader).
+    Zamiast tego korzysta z własnej implementacji <c>make</c>,
+    umieszczając opcje konfiguracyjne w zewnętrznych plikach oraz kilku
+    plikach .mk które włączane są do każdego Makefile. Pomimo sporego
+    nakładu pracy włożonego w .mk łatwo jest o nieudaną instalację
+    pakietu spowodowaną brakiem pojedyńczego <c>${INSTALL}&nbsp;-d</c>.
+    Łatwym sposobem radzenia sobie z takimi problemami jest odnalezienie
+    odpowiedniego .mk, następnie otwarcie go i ustalenia, która jego
+    część zawiodła (nie jest to tak naprawdę trudne kiedy już ustali
+    się, w którym momencie zawiodła instalacja).
   </li>
   <li>
-    Besides, due to the fact that FreeBSD is a complete operating system, you
-    won't find things like a FreeBSD kernel tarball for download on a web site.
-    The system is meant to be concise, thus whenever you start making an ebuild
-    for something that uses system sources, you are very likely to run into
-    problems when it tries to access non-existent files or directories. This
-    generally occurs when a Makefile points to <path>${.CURDIR}/../sys</path>,
-    or when a Makefile has a source dependency on another system package. There
-    is no default rule on dealing with such issues, but generally one of the
-    following procedures helps:
+    Ponadto, ponieważ FreeBSD jest kompletnym systemem operacyjnym, nie
+    istnieje coś takiego jak archiwum jądra FreeBSD które można by
+    ściągnąć ze strony www. Założeniem konstrukcyjnym systemu jest jego
+    spójność, więc w trakcie budowy ebuilda czegokolwiek wykorzystującego
+    źródła systemu istnieje znaczne ryzyko próby dostępu do nieistniejących
+    plików lub katalogów. Zdarza się to z reguły w przypadku, gdy Makefile
+    wskazuje na <path>${.CURDIR}/../sys</path> lub w przypadku zależności
+    źródeł od innego pakietu systemowego. Nie ma standardowej zasady
+    rozwiązywania tego rodzaju problemów, ale z reguły pomaga jedna z 
+    następujących technik:
     <ul>
       <li>
-        If the ebuild is trying to access kernel sources, patch it to point to
-        <path>/usr/src/sys</path>
+        Jeżeli ebuild próbuje skorzystać ze źródeł jądra, należy go
+        zmodyfikować tak, aby wskazywał na <path>/usr/src/sys</path>
       </li>
       <li>
-        If it's trying to access some other source that is provided by the
-        system, it's easier to add it to <c>$SRC_URI</c> and unpack it to
-        <c>$WORKDIR</c>
+        Jeżeli próbuje skorzystać z innej części źródeł systemu łatwiej jest
+        je dodać do <c>$SRC_URI</c> i rozpakować do <c>$WORKDIR</c>
       </li>
     </ul>
   </li>
   <li>
-    In order to maintain a concise buildsystem, we have several tarballs which
-    are grouped by their functionality. This means that system libraries can be
-    found in the freebsd-lib tarball, which contains the sources you would
-    usually find in /usr/src/lib. On the other hand, freebsd-usrsbin contains
-    <path>/usr/sbin/*</path> tools and consists of sources from
+    W celu zachowania spójności systemu dostępne jest kilka archiwów
+    pogrupowanyc w zależności od ich przeznaczenia. Oznacza to, że
+    biblioteki systemowe można znaleźć w paczce freebsd-lib, zawierającej
+    źródła zawarte z reguły w /usr/src/lib. Podobnie, freebsd-usrsbin
+    zawiera narzędzia z <path>/usr/sbin/*</path> i pochodzi ze źródeł z
     <path>/usr/src/usr.sbin</path>.
   </li>
 </ul>
@@ -507,22 +507,23 @@ development effort:
 </body>
 </section>
 <section>
-<title>Known issues</title>
+<title>Znane problemy</title>
 <body>
 
 <p>
-At the moment, there are still quite a lot of known issues. Here are the ones
-really worth noting:
+Nadal występuje wiele już rozpoznanych problemów. Poniżej wymienione są
+najważniejsze z nich:
 </p>
 
 <ul>
   <li>
-    Some init scripts depend on the clock service which we don't provide right
-    now. You can just remove it from the dependencies of the script and report
-    that on our <uri link="http://bugs.gentoo.org/">bugzilla</uri>. Please
-    remember to use the "Gentoo BSD" product for your submission.
+    Niektóre skrypty inicjalizacyjne wymagają usługi zegara której w tej
+    chwili nie wspieramy. Można zwyczajnie usunąć ją z zależności skryptu i
+    napisać o tym na <uri link="http://bugs.gentoo.org/">bugzilli</uri>.
+    Prosimy pamiętać o skorzystaniu z produktu "Gentoo BSD" w trakcie
+    zgłoszenia.
   </li>
-  <li>glib and gnome in general need a lot of fixes to be backported.</li>
+  <li>glib oraz gnome wymagają wielu poprawek aby prawidłowo działać.</li>
 </ul>
 
 </body>
@@ -530,16 +531,16 @@ really worth noting:
 </chapter>
 
 <chapter>
-<title>Contact</title>
+<title>Kontakt</title>
 <section>
 <body>
 
 <p>
-A list of Gentoo/FreeBSD developers can be found at the <uri
-link="/proj/en/gentoo-alt/bsd/fbsd/">project page</uri>. Other ways to contact
-Gentoo/FreeBSD developers include our IRC Channel <c>#gentoo-bsd</c> on
-Freenode, as well as the <uri link="/main/en/lists.xml">gentoo-bsd mailing
-list</uri>.
+Lista deweloperów Gentoo/FreeBSD jest dostępna na <uri
+link="/proj/en/gentoo-alt/bsd/fbsd/">stronie projektu</uri>. Dalsze
+możliwości kontaktu z jego członkami to kanał IRC <c>#gentoo-bsd</c> na
+Freenode oraz <uri link="/main/en/lists.xml">lista dystrybucyjna
+gentoo-bsd</uri>.
 </p>
 
 </body>
