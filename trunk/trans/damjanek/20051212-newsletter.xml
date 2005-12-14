@@ -49,19 +49,18 @@
 <title>Nadchodzi Qt4</title>
 <body>
 <p>
-Qt4 powoli przechodzi do niestabilnej części drzewa Portage na wielu
+Qt4 powoli przechodzi do niestabilnej części drzewa Portage na różnych
 architekturach co oznacza, że w niedługim czasie będzie instalowany na wielu
 systemach. KDE w dalszym ciągu używa Qt3, ale dzięki mechanizmowi slotów możliwe
-jest posiadanie obu wersji biblioteki i ich jednoczesne posiadanie nie powinno
-powodować żadnych problemów. Jeżeli jednak po instalacji Qt4, w trakcie
-instalacji pakietów przeznaczonych dla wcześniejszej wersji wystąpią problemy,
-prosimy o wysłanie odpowiedniego <uri
-link="http://bugs.gentoo.org">raportu</uri>, i przydzielenie go na adres
-<path>caleb@gentoo.org</path>. Taka procedura umożliwi nam szybsze wydanie
-odpowiedniej poprawki. To samo odnosi się także do użytkowników, którzy wiedzą
-które pakiety używają Qt4, w tym przypadku również prosimy o zgłoszenie buga na
-adres <path>caleb@gentoo.org</path>, tak abyśmy jak najszybciej mogli rozpocząć
-kompletowanie ebuildów zależnych od Qt4.
+jest posiadanie obu wersji biblioteki i ich współistnienie nie powinno powodować
+żadnych problemów. Jeżeli jednak po instalacji Qt4, czy też w trakcie instalacji
+pakietów przeznaczonych dla wcześniejszej wersji wystąpią problemy, prosimy o
+wysłanie odpowiedniego <uri link="http://bugs.gentoo.org">raportu</uri> i
+przydzielenie go do adresu <path>caleb@gentoo.org</path>. Taka procedura
+umożliwi nam szybsze wydanie odpowiedniej poprawki. To samo odnosi się także do
+użytkowników, którzy wiedzą które pakiety używają Qt4. W tym przypadku również
+prosimy o informację na adres <path>caleb@gentoo.org</path>, tak abyśmy jak
+najszybciej mogli rozpocząć kompletowanie ebuildów zależnych od Qt4.
 </p>
 
 </body>
@@ -75,8 +74,8 @@ link="/proj/en/base/alpha/status/status-20051207.xml">status</uri> opisując sta
 podstawowych pakietów systemowych, jądra, <c>gcc</c>, i bibliotek C.
 Nadchodzące eksperymentalne porty zawierają Jave, modularne X-y i SELinux. W
 przyszłości zostanie utworzony zespół osób testujących architekturę Alpha.
-Decyzję taką podjęto w związku z dobrymi doświadczeniami z przeszłych działań
-zespołu AMD64, który również posiadał swoich osobnych testerów.
+Decyzję taką podjęto w związku z dobrymi doświadczeniami związanymi z
+dokonaniami zespołu AMD64, który również posiadał swoich testerów.
 </p>
 </body>
 </section>
@@ -86,18 +85,19 @@ zespołu AMD64, który również posiadał swoich osobnych testerów.
 <p>
 Odpowiadając na duże zainteresowanie, w nowym <uri
 link="/proj/en/pr/gwn-guide.xml">przewodniku Tygodnika Gentoo</uri>
-przedstawiono wskazówki dla redaktorów, najlepsze praktyki oraz wiele innych
+przedstawiono wskazówki dla redaktorów, stosowane konwencje oraz wiele innych
 technicznych aspektów produkcji Tygodnika Gentoo. Przewodnik skierowany jest
-głównie do przyszłych i obecnych członków zespołu redagującego Tygodnik Gentoo.
+głównie do obecnych i przyszłych członków zespołu redagującego Tygodnik Gentoo.
 W przewodniku tym opisano zakres i strukturę poszczególnych rozdziałów oraz
 sposób posługiwania się GuideXML przy tworzeniu tygodnika. Będzie on służył jako
 narzędzie pomagające przygotować nowych redaktorów do przygotowywania artykułów
 używając języka XML. Każdy zainteresowany dołączeniem do zespołu powinien się z
-nim z pewnością zapoznać, zachęcamy wszystkich do jego przeglądnięcia, a tych
+nim z pewnością zapoznać. Zachęcamy wszystkich do jego przeglądnięcia, a tych
 którzy postanowią przyłączyć się do zespołu opracowującego Tygodnik Gentoo
 prosimy o kontakt na adres <mail
-link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail> i przesłanie
-swoich preferencji.
+link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail> wraz z krótką
+informacją o zakresie swojej wiedzy, czy też o sprawach o których chcielibyśmy
+pisać.  
 </p>
 
 </body>
@@ -110,11 +110,11 @@ Deweloper Gentoo <mail link="dams@gentoo.org">Damien Krotkine</mail> zestawił
 dane statystyczne z <uri link="http://forums.gentoo.org">forum Gentoo</uri> i
 dzięki nim stworzył bardzo interesujące <uri
 link="http://damz.net/gentoo_forums_stats/">wykresy</uri> obrazujące aktywność w
-serwisie. Znajdziemy na nich informacje o ilości użytkowników i tematów jakie
-można znaleźć na forum Gentoo, i wszystko to od samego początku jego istnienia.
+serwisie. Znajdziemy na nich informacje o ilości użytkowników, tematów i postów
+od samego początku jego istnienia.
 </p>
 <figure link="/images/gwn/20051212_stats.png" short="Statystyki"
-caption="Prezentacja statystyk forum Gentoo: wzrost liczby użytkowników"/>
+caption="Prezentacja statystyk forum Gentoo: przyrost liczby użytkowników"/>
 <p>
 Dane, codziennie z pomocą crona, przygotowywane są przy użyciu skryptów shella i
 <c>perla<c/>, które pobierają potrzebne informacji ze strony <uri
@@ -133,19 +133,19 @@ ono jednym z najważniejszych źródeł informacji o Linuksie w internecie.
 <chapter>
 <title>Rzut okiem w przyszłość</title>
 <section>
-<title>Nowy sposób konfiguracji pakietów wirtualnych.</title>
+<title>Nowy sposób konfiguracji pakietów wirtualnych</title>
 <body>
 <p>
 Wraz z wejściem w życie propozycji <uri link="/proj/en/glep/glep-0037.html">GLEP
 37</uri> pakiety wirtualne stały się prawdziwymi pakietami (umieszczonymi w
-katalogu <path>virtual/</path>) zamiast wpisami w pliku '<path>virtuals</path>'
+katalogu <path>virtual/</path>) zamiast wpisami w pliku "<path>virtuals</path>"
 w katalogu <path>profiles/</path>. Daje to nam więcej swobody podczas ich
 definiowania. Możemy na przykład określić kolejność pakietów, co może mieć wpływ
-na instalacje, czy aktualizacje.
+na instalację, czy aktualizację.
 </p>
 <p>
 Zespół opiekujący się Xorg jest pierwszym, który zastosował nowe reguły, w
-trakcie tworzenia pakietu <path>virtual/x11</path>. W czasie tej migracji
+trakcie tworzenia pakietu <path>virtual/x11</path>. Podczas tej migracji
 nastąpiło kilka problemów związanych ze zmianą konfiguracji, ale na szczęście
 wszystkie zostały pomyślnie rozwiązana całość działa bez zarzutu. Nowa
 funkcjonalność pozwala na używanie monolitycznego <path>xorg-x11-6.8.x</path>,
@@ -162,10 +162,9 @@ użytkowników modularnej wersji X-ów">virtual/x11	x11-base/xorg-x11</pre>
 <note>
 Wszystkich zainteresowanych pomocą przy przenoszeniu aplikacji, zachęcamy do
 zapoznania się z dokumentem <uri
-link="http://dev.gentoo.org/~spyderous/xorg-x11/">modular X porting HOWTO</uri>.
-Najpierw należy jednak <uri
+link="http://dev.gentoo.org/~spyderous/xorg-x11/">modular X porting HOWTO</uri>. Najpierw należy jednak <uri
 link="http://dev.gentoo.org/~spyderous/xorg-x11/migrating_to_modular_x_howto.txt">skonwertować
-własny system, tak by używał modularnego X</uri>. Wszelkie poprawki należy
+własny system, tak by używał modularnych X</uri>. Wszelkie poprawki należy
 zgłaszać wyłącznie opiekunom poszczególnych pakietów, załączając odpowiednią
 łatkę do buga, a <e>nie</e> na adres <path>x11@gentoo.org</path>.
 </note>
@@ -182,13 +181,13 @@ zgłaszać wyłącznie opiekunom poszczególnych pakietów, załączając odpowi
 <section>
 <title>Lista dyskusyjna gentoo-dev</title>
 <body>
-<p><b>Modularny X</b></p>
+<p><b>Modularne X-y</b></p>
 <p>
 <mail link="spyderous@gentoo.org">Donnie Berkholz</mail> przedstawił aktualny
-stan procesu tworzenia nowego, modularnego zestawu pakietów dla programu Xorg.
-Jedyne czego w tej chwili brakuje, to zmiany w zależnościach innych pakietów -
-proste DEPEND zależne od xorg-x11 teraz już nie wystarczy. Wszyscy użytkownicy,
-który już teraz używają modularnej wersji Xorg, proszeni są o modyfikację pliku
+stan procesu tworzenia nowego, modularnego zestawu pakietów dla Xorg. Jedyne
+czego w tej chwili brakuje, to zmiany w zależnościach innych pakietów -
+proste DEPEND na xorg-x11 już nie wystarczy. Wszyscy użytkownicy, który już
+teraz używają modularnej wersji Xorg, proszeni są o modyfikację pliku
 <path>/etc/portage/profile/virtuals</path> zgodnie z instrukcjami podanymi w
 rozdziale <uri link="#doc_chap2">"Rzut okiem w przyszłość"</uri>, znajdującym
 się w tym numerze Tygodnika Gentoo.
@@ -239,14 +238,14 @@ Manifest2 format</uri></li>
 
 <p><b>Gentoo OpenSolaris</b></p>
 <p>
-4 listopada 2005 <mail link="venky.tv@duh-uh.com">"Venky"</mail> poinformował
-społeczność projektu <uri link="/proj/en/gentoo-alt/">Gentoo/ALT</uri>, że
-rozpoczął pracę nad Gentoo OpenSolaris. Każdego zainteresowanego stworzeniem
-własnego portu, zachęcamy do skorzystania z <uri
-link="/proj/en/gentoo-alt/port-start.xml">dokumentu</uri> opracowanego przez
-jednego z deweloperów Gentoo, <mail link="flameeyes@gentoo.org">Diego
-Pettenò</mail>, oczywiście pierwszą radą dla Venky'ego było skorzystanie
-właśnie z niego.
+Dnia 4 listopada 2005 <mail link="venky.tv@duh-uh.com">"Venky"</mail>
+poinformował społeczność projektu <uri
+link="/proj/en/gentoo-alt/">Gentoo/ALT</uri>, że rozpoczął pracę nad Gentoo
+OpenSolaris. Każdego zainteresowanego stworzeniem własnego portu, zachęcamy do
+skorzystania z <uri link="/proj/en/gentoo-alt/port-start.xml">dokumentu</uri>
+opracowanego przez jednego z deweloperów Gentoo, <mail
+link="flameeyes@gentoo.org">Diego Pettenò</mail>, oczywiście pierwszą radą dla
+Venky'ego było skorzystanie właśnie z niego.
 </p>
 <ul>
 <li><uri
@@ -303,13 +302,12 @@ project status and proposal</uri></li>
 W wątku znajdziemy kilka pytań i odpowiedzi dotyczących przewagi systemów
 64-bitowych nad 32-bitowymi. Co ważniejsze, znajdziemy w nim także porady jak
 uruchomić wiele z 32-bitowych aplikacji na 64-bitowym sprzęcie. Wszystkim
-zainteresowanym, do przeglądnięcia, polecamy także oficjalną dokumentację
-Gentoo:
+zainteresowanym, do przejrzenia, polecamy także oficjalną dokumentację Gentoo:
 </p>
 <ul>
 <li><uri link="http://thread.gmane.org/gmane.linux.gentoo.amd64/5703">64 bit or
 not</uri></li>
-<li><uri link="/doc/en/gentoo-amd64-faq.xml">Gentoo AMD64 FAQ</uri></li>
+<li><uri link="/doc/pl/gentoo-amd64-faq.xml">Gentoo Linux/AMD64 FAQ</uri></li>
 </ul>
 </body>
 </section>
@@ -334,9 +332,9 @@ i kurtki posiadające okolicznościowe napisy, a także strona gdzie wszyscy ch�
 będą mogli się wcześniej zarejestrować. Uczestnictwo w imprezie będzie
 kosztowało 10 Euro za noc na osobę - wliczone są zimne napoje i inne przysmaki.
 Aby przynajmniej częściowo poznać panującą na zlocie atmosferę, zapraszamy do
-oglądnięcia <uri link="http://www.gentoo.de/pub/summer-camp/2005">kolekcji
+oglądania <uri link="http://www.gentoo.de/pub/summer-camp/2005">kolekcji
 zdjęć</uri> z ostatniej imprezy (znajdują się w pliku
-<path>review.tar.bz2</path>)..
+<path>review.tar.bz2</path>)..  
 </p>
 </body>
 </section>
@@ -349,17 +347,17 @@ zdjęć</uri> z ostatniej imprezy (znajdują się w pliku
 <title>Linuxhardware.org (6 grudnia 2005)</title>
 <body>
 <p>
-Tuż przed czasem, kiedy większość z nas kończy kupowanie prezentów świątecznych,
-deweloper Gentoo <mail link="augustus@gentoo.org">Kristopher Kersey
-(Augustus)</mail> opublikował <uri
+Tuż przed momentem, kiedy większość z nas kończy kupowanie prezentów
+świątecznych, deweloper Gentoo <mail link="augustus@gentoo.org">Kristopher
+Kersey (Augustus)</mail> opublikował <uri
 link="http://www.linuxhardware.org/article.pl?sid=05/12/06/2138210">trzecią i
 ostatnią część</uri> artykułu "Ultimate Linux Workstation". Opisuje w nim
-tworzenie linuksowej stacji roboczej, opartej o najnowocześniejszy dostępny
-sprzęt komputerowy. Autor wiedział na co wydać pieniądze, kupując 2-procesorowy
-system Opteron 2.8 GHz wyposażony w mnóstwo pamięci RAM, szybkie napędy dyskowe,
-chłodzenie wodne i wysokowydajną kartę graficzną. Wszystko to sprawia, że
-komputer osiąga wspaniałe wyniki w dołączonych do artykułu testach. Jak
-nietrudno się domyślić, Augustus wykorzystał system Gentoo Linux jako system
+tworzenie linuksowej stacji roboczej, opartej na najnowocześniejszym dostępnym
+sprzęcie komputerowym. Autor wiedział na co wydać pieniądze, kupując
+2-procesorowy system Opteron 2.8 GHz wyposażony w mnóstwo pamięci RAM, szybkie
+napędy dyskowe, chłodzenie wodne i wysokowydajną kartę graficzną. Wszystko to
+sprawia, że komputer osiąga wspaniałe wyniki w dołączonych do artykułu testach.
+Jak nietrudno się domyślić, Augustus wykorzystał system Gentoo Linux jako system
 operacyjny swojej stacji roboczej (oraz alternatywnego "taniego komputera").
 Cóż, jest czego sobie życzyć na Gwiazdkę...
 </p>
@@ -371,10 +369,10 @@ Cóż, jest czego sobie życzyć na Gwiazdkę...
 <p>
 Według <uri
 link="http://news.netcraft.com/archives/2005/12/05/strong_growth_for_debian.html">grudniowego
-badania firmy Netcraft</uri>, istnieje już ponad 100,000 serwerów pracujących
+badań firmy Netcraft</uri>, istnieje już ponad 100,000 serwerów pracujących
 pod kontrolą systemu Gentoo. Biorąc pod uwagę jeszcze szybszy wzrost liczby
 serwerów opartych na systemie Debian, należy zauważyć szybszy rozwój
-niekomercyjnych systemów Linux, w tym GentOS i Fedory, w stosunku do ich
+niekomercyjnych systemów Linux, w tym CentOS i Fedory, w stosunku do ich
 komercyjnych konkurentów.
 </p>
 </body>
@@ -428,8 +426,10 @@ tygodniu:
 <section>
 <title>Zmienili status</title>
 <body>
-<p>Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie Gentoo
- Linux funkcję:</p>
+<p>
+Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie
+Gentoo Linux funkcję:
+</p>
 <ul>
 <li><e>Nikt w tym tygodniu</e></li>
 </ul>
@@ -460,7 +460,7 @@ link="/security/en/glsa/glsa-200512-01.xml">komunikacie GLSA</uri>
 <body>
 <p>
 Wiele pakietów zawiera usterki RUNPATH, które umożliwiają, użytkownikowi
-należącemu do grupy "portage", przekroczenie uprawnień.
+należącemu do grupy "portage" przekroczenie uprawnień.
 </p>
 <p>
 Więcej informacji można znaleźć w <uri
@@ -472,8 +472,8 @@ link="/security/en/glsa/glsa-200511-02.xml">komunikacie GLSA</uri>
 <title>phpMyAdmin: Wiele usterek</title>
 <body>
 <p>
-phpMyAdmin zawiera wiele błędów m.in. wiele usterek cross-site scripting (XSS),
-a także usterki dołączenia lokalnego i zdalnego pliku.
+Pakiet phpMyAdmin zawiera wiele błędów m.in. wiele usterek cross-site scripting
+(XSS), a także usterki dołączenia lokalnego i zdalnego pliku.
 </p>
 <p>
 Więcej informacji można znaleźć w <uri
@@ -514,7 +514,7 @@ Spośród 9124 obecnie otwartych bugów: 96 oznaczono jako 'blocker', 195 jako
 <body>
 <p>
 Deweloperzy oraz zespoły, które zamknęły najwięcej bugów w minionym tygodniu,
- to:
+to: 
 </p>
 <ul>
 <li>
