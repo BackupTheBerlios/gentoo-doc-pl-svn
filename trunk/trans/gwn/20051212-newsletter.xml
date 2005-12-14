@@ -39,90 +39,103 @@
 </author>
 <abstract>Wydanie Tygodnika Gentoo z 12 grudnia 2005.</abstract>
 <summary/>
+
 <version>Wolumin 4, numer 49</version>
 <date>2005-12-12</date>
-
-<!-- Gentoo News -->
+<!--Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>Qt4 on its way into Portage</title>
+<title>Qt4 w niedługim czasie pojawi się w Portage</title>
 <body>
-<p>
-Qt4 is starting to be marked unstable on various architectures, which means 
-that some people will start installing it on their systems. KDE still 
-uses Qt3, and due to SLOTting users will have both installed on their system 
-and it shouldn't be an issue. After installing Qt4, if users note problems 
-with installing ebuilds that may need Qt3 but instead find Qt4, please file <uri
-link="http://bugs.gentoo.org">a bug report</uri> and assign it to 
-<path>caleb@gentoo.org</path> to get it fixed. The same goes for users who know 
-of packages that use Qt4, please assign your bugs to 
-<path>caleb@gentoo.org</path>, too, so we can start getting some Qt4-related 
-ebuilds into the tree.
-</p>
-</body>
-</section>
-<section>
-<title>Alpha project status update</title>
-<body>
-<p>
-The Gentoo Alpha project released a new <uri 
-link="/proj/en/base/alpha/status/status-20051207.xml">status update</uri> 
-covering the state of core system packages, mainly the kernel, <c>gcc</c>, 
-and the C libraries. Experimental ports under way include Java, modular
-X and SELinux, and the future has the creation of an Alpha arch-tester team on 
-the agenda, a decision taken against the backdrop of very good experiences the 
-AMD64 team had with their architecture testers.
-</p>
-</body>
-</section>
-<section>
-<title>GWN editorial guidelines and release process</title>
-<body>
-<p>
-Answering popular demand, a new <uri link="/proj/en/pr/gwn-guide.xml">GWN 
-guide</uri> lists editorial guidelines, best practices and many technical 
-details of the Gentoo Weekly Newsletter production. Mainly intended for use of 
-current and future Gentoo Weekly Newsletter staff, it explains the scope and 
-structure of the GWN's individual chapters and how the GuideXML variant used in 
-producing the GWN works. It will serve as a tool for training new contributors 
-to prepare their articles using its XML syntax. As a reference to everyone 
-interested in joining the GWN team, it's being released in the hope that many
-new authors find their way to contributing to Gentoo's weekly news source. If
-you find the guide useful and would like to be part of the team, please contact 
-us via the <mail link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail> 
-alias with a short description of your areas of expertise or which sections you 
-would like to write for.
-</p>
-</body>
-</section>
-<section>
-<title>Gentoo Forums statistics graphs</title>
-<body>
-<p>
-Gentoo developer <mail link="dams@gentoo.org">Damien Krotkine</mail> has 
-collated statistical data from the <uri link="http://forums.gentoo.org">Gentoo 
-Forums</uri> to produce some interesting <uri 
-link="http://damz.net/gentoo_forums_stats/">graphs</uri>. The graphs show the 
-cumulative totals of users, topics and posts on the forums as well as stats for 
-each day since the forums were created. 
-</p>
-<figure link="/images/gwn/20051212_user.png" 
-short="Stats" caption="Gentoo Forum statistics visualized: user growth"/>
 
 <p>
-The data is gathered using a shell script and <c>perl</c> to extract the 
-information from the Forums' <uri link="http://forums.gentoo.org/statistics.php">statistics 
-page</uri>, run from a daily cronjob. Older data was gathered by Forums 
-administrator <mail link="tomk@gentoo.org">Tom Knight</mail> using some 
-customized SQL queries. All the data is then passed through <c>gnuplot</c> to 
-produce the graphs. Despite the recent downturn, the Forums remain one of the 
-most important Linux resources on the Internet.
+Qt4 powoli przechodzi do niestabilnej części drzewa Portage na wielu
+architekturach co oznacza, że w niedługim czasie będzie instalowany na wielu
+systemach. KDE w dalszym ciągu używa Qt3 i z uwagi na użytkowników
+posiadających obie wersję Qt, zainstalowane w systemie w różnych slotach nie
+powinno być żadnych problemów. Jeżeli jednak po instalacji Qt4, użytkownicy
+zauważą błędy instalując ebuildy wymagające Qt3, a znajdujące zamiast niego
+wersję 4, prosimy o wysłanie <uri link="http://bugs.gentoo.org">raportu</uri>
+przydzielając go na adres <path>caleb@gentoo.org</path>, tak aby umożliwić nam
+wydanie łatki. To samo odnosi się do użytkowników, którzy wiedzą jakie pakiety
+używają Qt4. Ich również prosimy o wysłanie raportów i przydzielanie ich na
+adres <path>caleb@gentoo.org</path>, tak abyśmy mogli rozpocząć kompletowanie
+ebuildów w drzewie zależnych od Qt4.
+</p>
+
+</body>
+</section>
+<section>
+<title>Aktualizacja statusu projektu Gentoo Alpha</title>
+<body>
+
+<p>
+Projekt Gentoo Alpha uaktualnił swój <uri
+link="/proj/en/base/alpha/status/status-20051207.xml">status</uri> ukrywając
+stan podstawowych pakietów systemowych, jądra, <c>gcc</c>, i bibliotek C.
+Nadchodzące eksperymentalne porty zawierają Jave, modułowe X-y i SELinux. W
+przyszłości zostanie utworzony zespół osób testujących architekturę Alpha.
+Decyzję taką podjęto w związku z dobrymi doświadczeniami w przeszłości w
+przypadku zespołu AMD64, który również posiadał swoich testerów.
+</p>
+
+</body>
+</section>
+<section>
+<title>Proces wydawania oraz wytyczne dla redaktorów Tygodnika Gentoo</title>
+<body>
+
+<p>
+Odpowiadając na duże zainteresowanie, w nowym <uri
+link="/proj/en/pr/gwn-guide.xml">przewodniku Tygodnika Gentoo</uri>
+przedstawiono wskazówki dla redaktorów, najlepsze praktyki oraz wiele innych
+technicznych aspektów produkcji Tygodnika Gentoo. Przewodnik skierowany jest
+głównie do przyszłych i obecnych członków zespołu redagującego Tygodnik Gentoo.
+W przewodniku tym opisano zakres i strukturę poszczególnych rozdziałów oraz
+sposób posługiwania się GuideXML przy produkcji tygodnika. Przewodnik będzie
+służył jako narzędzie pomagające przygotować nowych redaktorów do redagowania
+artykułów używając języka XML. Został on wydany dla wszystkich zainteresowanych
+przystąpieniem do zespołu redagującego. Jeżeli uznasz, że przewodnik ten w 
+jakikolwiek sposób okazał się pomocny i zechcesz się do nas przyłączyć, prosimy 
+o kontakt na adres <mail
+link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail> z krótkim opisem
+do jakiego działu chciałbyś pisać artykuł.
+</p>
+
+</body>
+</section>
+<section>
+<title>Wykres statystyk forum Gentoo</title>
+<body>
+
+<p>
+Deweloper Gentoo <mail link="dams@gentoo.org">Damien Krotkine</mail> zestawił
+dane statystyczne z <uri link="http://forums.gentoo.org">forum Gentoo</uri>,
+aby stworzyć bardzo interesujące <uri
+link="http://damz.net/gentoo_forums_stats/">wykresy</uri>. Wykresy te ukazują
+ilość użytkowników, tematów i postów na forum, jak również przedstawiają
+statystyki każdego dnia od początku istnienia samego forum.
+</p>
+
+<figure link="/images/gwn/20051212_stats.png"
+short="Stats" caption="Prezentacja statystyk forum Gentoo: wzrost liczby
+użytkowników"/>
+
+<p>
+Dane przygotowywane są przy użyciu skryptów shell, a do rozpakowywania
+informacji ze <uri
+link="http://forums.gentoo.org/statistics.php">statystyk forum</uri>
+<c>perla</c>, uruchamianych codziennie przy użyciu crona. Starsze dane zostały
+zebrane przez administratora forum <mail link="tomk@gentoo.org">Toma
+Knighta</mail>, który użył do tego zapytań SQL. Następnie wszystkie dane
+poddawane są obróbce przez <c>gnuplot</c>, który rysuje wykresy. Pomimo
+częstych okresów, w których forum było wyłączone, pozostaje ono jednym z
+najważniejszych źródeł informacji o Linuksie w internecie.
 </p>
 </body>
 </section>
 </chapter>
-
 <!-- Future zone -->
 <chapter>
 <title>Rzut okiem w przyszłość</title>
