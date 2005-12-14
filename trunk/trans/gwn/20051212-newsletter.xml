@@ -46,46 +46,43 @@
 <chapter>
 <title>Wiadomości Gentoo</title>
 <section>
-<title>Qt4 w niedługim czasie pojawi się w Portage</title>
+<title>Nadchodzi Qt4</title>
 <body>
-
 <p>
 Qt4 powoli przechodzi do niestabilnej części drzewa Portage na wielu
 architekturach co oznacza, że w niedługim czasie będzie instalowany na wielu
-systemach. KDE w dalszym ciągu używa Qt3 i z uwagi na użytkowników
-posiadających obie wersję Qt, zainstalowane w systemie w różnych slotach nie
-powinno być żadnych problemów. Jeżeli jednak po instalacji Qt4, użytkownicy
-zauważą błędy instalując ebuildy wymagające Qt3, a znajdujące zamiast niego
-wersję 4, prosimy o wysłanie <uri link="http://bugs.gentoo.org">raportu</uri>
-przydzielając go na adres <path>caleb@gentoo.org</path>, tak aby umożliwić nam
-wydanie łatki. To samo odnosi się do użytkowników, którzy wiedzą jakie pakiety
-używają Qt4. Ich również prosimy o wysłanie raportów i przydzielanie ich na
-adres <path>caleb@gentoo.org</path>, tak abyśmy mogli rozpocząć kompletowanie
-ebuildów w drzewie zależnych od Qt4.
+systemach. KDE w dalszym ciągu używa Qt3, ale dzięki mechanizmowi slotów możliwe
+jest posiadanie obu wersji biblioteki i ich jednoczesne posiadanie nie powinno
+powodować żadnych problemów. Jeżeli jednak po instalacji Qt4, w trakcie
+instalacji pakietów przeznaczonych dla wcześniejszej wersji wystąpią problemy,
+prosimy o wysłanie odpowiedniego <uri
+link="http://bugs.gentoo.org">raportu</uri>, i przydzielenie go na adres
+<path>caleb@gentoo.org</path>. Taka procedura umożliwi nam szybsze wydanie
+odpowiedniej poprawki. To samo odnosi się także do użytkowników, którzy wiedzą
+które pakiety używają Qt4, w tym przypadku również prosimy o zgłoszenie buga na
+adres <path>caleb@gentoo.org</path>, tak abyśmy jak najszybciej mogli rozpocząć
+kompletowanie ebuildów zależnych od Qt4.
 </p>
 
 </body>
 </section>
 <section>
-<title>Aktualizacja statusu projektu Gentoo Alpha</title>
+<title>Statusu projektu Gentoo Alpha</title>
 <body>
-
 <p>
 Projekt Gentoo Alpha uaktualnił swój <uri
-link="/proj/en/base/alpha/status/status-20051207.xml">status</uri> ukrywając
-stan podstawowych pakietów systemowych, jądra, <c>gcc</c>, i bibliotek C.
-Nadchodzące eksperymentalne porty zawierają Jave, modułowe X-y i SELinux. W
+link="/proj/en/base/alpha/status/status-20051207.xml">status</uri> opisując stan
+podstawowych pakietów systemowych, jądra, <c>gcc</c>, i bibliotek C.
+Nadchodzące eksperymentalne porty zawierają Jave, modularne X-y i SELinux. W
 przyszłości zostanie utworzony zespół osób testujących architekturę Alpha.
-Decyzję taką podjęto w związku z dobrymi doświadczeniami w przeszłości w
-przypadku zespołu AMD64, który również posiadał swoich testerów.
+Decyzję taką podjęto w związku z dobrymi doświadczeniami z przeszłych działań
+zespołu AMD64, który również posiadał swoich, osobnych testerów.
 </p>
-
 </body>
 </section>
 <section>
 <title>Proces wydawania oraz wytyczne dla redaktorów Tygodnika Gentoo</title>
 <body>
-
 <p>
 Odpowiadając na duże zainteresowanie, w nowym <uri
 link="/proj/en/pr/gwn-guide.xml">przewodniku Tygodnika Gentoo</uri>
@@ -93,14 +90,14 @@ przedstawiono wskazówki dla redaktorów, najlepsze praktyki oraz wiele innych
 technicznych aspektów produkcji Tygodnika Gentoo. Przewodnik skierowany jest
 głównie do przyszłych i obecnych członków zespołu redagującego Tygodnik Gentoo.
 W przewodniku tym opisano zakres i strukturę poszczególnych rozdziałów oraz
-sposób posługiwania się GuideXML przy produkcji tygodnika. Przewodnik będzie
-służył jako narzędzie pomagające przygotować nowych redaktorów do redagowania
-artykułów używając języka XML. Został on wydany dla wszystkich zainteresowanych
-przystąpieniem do zespołu redagującego. Jeżeli uznasz, że przewodnik ten w 
-jakikolwiek sposób okazał się pomocny i zechcesz się do nas przyłączyć, prosimy 
-o kontakt na adres <mail
-link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail> z krótkim opisem
-do jakiego działu chciałbyś pisać artykuł.
+sposób posługiwania się GuideXML przy tworzeniu tygodnika. Będzie on służył jako
+narzędzie pomagające przygotować nowych redaktorów do przygotowywania artykułów
+używając języka XML. Każdy zainteresowany dołączeniem do zespołu powinien się z
+nim z pewnością zapoznać, zachęcamy wszystkich do jego przeglądnięcia, a tych
+którzy postanowią przyłączyć się do zespołu opracowującego Tygodnik Gentoo
+prosimy o kontakt na adres <mail
+link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail> i przesłanie
+swoich preferencji.
 </p>
 
 </body>
@@ -136,6 +133,7 @@ najważniejszych źródeł informacji o Linuksie w internecie.
 </body>
 </section>
 </chapter>
+
 <!-- Future zone -->
 <chapter>
 <title>Rzut okiem w przyszłość</title>
@@ -324,7 +322,7 @@ not</uri></li>
 
 <!-- Gentoo international -->
 <chapter>
-<title>Gentoo international</title>
+<title>Międzynarodowe Gentoo</title>
 <section>
 <title>Germany: Gentoo Summer Camp 2006</title>
 <body>
@@ -332,17 +330,18 @@ not</uri></li>
 <figure link="/images/gwn/20051212_gsc-logo.png" 
 short="GSC" caption="Gentoo Summer Camp 2006"/>
 <p>
-The second Gentoo Summer Camp 2006 in Germany is planned for 26 and 27 August 
-2006, probably to be held somewhere on the German North Sea coast, with the
-exact venue to be decided upon soon. Organizer Slick, one of the German Gentoo
-Forum moderators, expects between 30 and 40 campers to participate in the event,
-with at least a few of them arriving a week early to spend an entire Gentoo vacation
-at the site. Themed T-shirts and windbreakers featuring the GSC logo will be made
-available soon, along with a registration site for early bookers. Participation
-will set you back 10 Euros per night and person, including cold beverages and 
-roasted marshmallows. For a glimpse of what the first summer camp looked like,
-check the <uri link="http://www.gentoo.de/pub/summer-camp/2005">photo 
-collection</uri> (in file <path>review.tar.bz2</path>).
+Drugi Gentoo Summer Camp 2006 planowany jest na 26-27 sierpnia 2006,
+prawdopodobnie będzie miał miejsce na północnym wybrzeżu Niemiec. Jeden z
+organizatorów, Slick, moderator niemieckiego forum Gentoo, spodziewa się że na
+zjeździe zjawi się około 30-40 gości, a przynajmniej kilkoro z nich zjawi się co
+najmniej tydzień wcześniej by dodatkowo odpocząć. Wkrótce dostępne będą koszuli
+i kurtki posiadające okolicznościowe napisy, a także strona gdzie wszyscy chętni
+będą mogli się wcześniej zarejestrować. Uczestnictwo w imprezie będzie
+kosztowało 10 Euro za noc na osobę, wliczone są zimne napoje i inne przysmaki.
+Aby przynajmniej częściowo poznać panującą na zlocie atmosferę, zapraszamy do
+oglądnięcia <uri link="http://www.gentoo.de/pub/summer-camp/2005">kolekcji
+zdjęć</uri> z ostatniej imprezy (znajdują się w pliku
+<path>review.tar.bz2</path>).
 </p>
 </body>
 </section>
