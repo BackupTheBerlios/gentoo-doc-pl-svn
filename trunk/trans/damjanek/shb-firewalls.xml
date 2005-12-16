@@ -304,13 +304,13 @@ zdecydować jak z nim postąpić, czyli czy go zaakceptować, czy też odrzucić
 </p>
 
 <p>
-Tradycyjny filtr pakietów można oszukać tak, by akceptował pakiety, których nie
-powinien poprzez manipulowanie nagłówkami. Można tego dokonać poprzez
+Tradycyjny filtr pakietów można oszukać tak, by akceptował pakiety, które
+powinien upuścić, poprzez manipulowanie nagłówkami. Można tego dokonać poprzez
 manipulowanie flagami (zwłaszcza SYN) w nagłówkach pakietów TCP, tak by
 stworzyć złudzenie, że sfałszowany pakiet jest częścią już nawiązanego
 połączenia. Dzieje się tak ponieważ ten przestarzały sposób filtrowania nie daje
 możliwości śledzenia połączeń. Filtrowanie dynamiczne daje możliwość wykrycia
-takich pakietów i ich odrzucania. Spowoduje ono również, że wszystkie
+takich pakietów i ich upuszczania. Spowoduje ono również, że wszystkie
 próby "niewidocznych" skanowań (stealth scans) będą nieudane. Niewidoczne
 skanowanie to takie, które polega na wysłaniu przez skaner portów, do
 skanowanego komputera, serii pakietów z tak ustawionymi flagami, że szansa na
@@ -498,7 +498,7 @@ określone reguły. Iptables posiadają następujące opcje:
 </table>
 
 <p>
-Zaczniemy od prostego przykładu, odrzucenia wszystkich pakietów ICMP
+Zaczniemy od prostego przykładu, upuszczenia wszystkich pakietów ICMP
 przychodzących do naszego komputera.  
 </p>
 
