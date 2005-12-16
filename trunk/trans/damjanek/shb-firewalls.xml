@@ -29,8 +29,9 @@ zwykły, podatny na błędy program.
 
 <p>
 Należy zatem poważnie przemyśleć jego używanie i dokładnie sprawdzić czy jest
-nam potrzebny. Należy również spisać dokładnie jakiego typu ma to być firewall,
-określić reguły jego działania oraz użytkowników jacy będą z niego korzystać.
+nam potrzebny. Należy również określić dokładnie jakiego typu ma to być
+firewall, określić reguły jego działania oraz użytkowników, którzy będą z niego
+korzystać.
 </p>
 
 <p>
@@ -157,7 +158,7 @@ Przykładowe filtry pakietów na Linuksa:
 <!--FIXME: should SmoothWall really be included, since it uses iptables?-->
 
 <note>
-Zaleca się używanie iptables. Ipchains to przeżytek.
+Zaleca się używanie iptables. Ipchains jest przestarzałe.
 </note>
 
 </body>
@@ -184,7 +185,7 @@ informacji. Filtrowanie może się odbywać poprzez kontrolę:
 </ul>
 
 <p>
-Cały ruch jest zatwierdzany i monitorowany, ten niechciany jest po prostu
+Cały ruch jest zatwierdzany i monitorowany, a ten niechciany jest po prostu
 odrzucany.
 </p>
 
@@ -230,7 +231,7 @@ Korzyści:
 <ul>
   <li>Pozwala na buforowanie (cache) plików, co zwiększa wydajność sieci.</li>
   <li>Dokładnie loguje wszystkie połączenia.</li>
-  <li>Dobrze się skaluje (niektóre proxy mogą współdzielić buforowane dane)</li>
+  <li>Dobrze się skaluje (niektóre proxy mogą współdzielić buforowane dane).</li>
   <li>Uniemożliwia bezpośredni dostęp z zewnątrz.</li>
   <li>Może "w locie" zmieniać zawartość pakietu.</li>
 </ul>
@@ -277,9 +278,8 @@ iptables przy pomocy polecenia <c>emerge iptables</c>.
 </p>
 
 <p>
-Test czy program działa prawidłowo wykonuje się wpisując polecenie <c>iptables
--L</c>. Jeśli się nie uda to znaczy, że coś poszło nie tak i należy sprawdzić
-swoją konfigurację.
+By sprawdzić, czy program działa prawidłowo, wpisujemy polecenie <c>iptables
+-L</c>. Jeżeli wystąpi błąd, należy sprawdzić swoją konfigurację.
 </p>
 
 <p>
@@ -300,28 +300,29 @@ to protokół połączeniowy, w przeciwieństwie do np. protokołu UDP.
 <p>
 Dzięki analizie nagłówka pakietu TCP dynamiczny filtr pakietów jest w stanie
 ustalić czy otrzymany pakiet TCP jest częścią już nawiązanego połączenia oraz
-zdecydować jak z nim postąpić, czyli czy go zaakceptować, czy odrzucić.
+zdecydować jak z nim postąpić, czyli czy go zaakceptować, czy też odrzucić.
 </p>
 
 <p>
-Tradycyjny filtr pakietów można poprzez manipulowanie nagłówkami oszukać tak
-żeby akceptował pakiety, które powinien upuścić. Można tego dokonać poprzez
+Tradycyjny filtr pakietów można oszukać tak, by akceptował pakiety, których nie
+powinien poprzez manipulowanie nagłówkami. Można tego dokonać poprzez
 manipulowanie flagami (zwłaszcza SYN) w nagłówkach pakietów TCP, tak by
 stworzyć złudzenie, że sfałszowany pakiet jest częścią już nawiązanego
 połączenia. Dzieje się tak ponieważ ten przestarzały sposób filtrowania nie daje
 możliwości śledzenia połączeń. Filtrowanie dynamiczne daje możliwość wykrycia
-takich pakietów i ich upuszczenia. Spowoduje ono również, że wszystkie
+takich pakietów i ich odrzucania. Spowoduje ono również, że wszystkie
 próby "niewidocznych" skanowań (stealth scans) będą nieudane. Niewidoczne
-skanowanie to takie, które polega na wysłaniu przez skaner portów do
-skanowanego komputera serii pakietów z tak ustawionymi flagami, że szansa na ich
-zapisanie w logach jest mniejsza niż w przypadku zwykłych pakietów z flagą SYN.
+skanowanie to takie, które polega na wysłaniu przez skaner portów, do
+skanowanego komputera, serii pakietów z tak ustawionymi flagami, że szansa na
+ich zapisanie w logach jest mniejsza niż w przypadku zwykłych pakietów z flagą
+SYN.
 </p>
 
 <p>
 Ponadto iptables posiada kilka innych bardzo użytecznych narzędzi, jak np. NAT
 (Network Adress Translation) czy limitowanie prędkości transmisji. To drugie
-jest szczególnie przydatne do zapobiegania atakom typu DoS (Denial of Service)
-typu SYN flood.
+jest szczególnie przydatne do zapobiegania atakom typu DoS (Denial of Service),
+jak na przykład SYN flood.
 </p>
 
 <p>
@@ -338,28 +339,28 @@ pakiety SYN+ACK. Najczęściej wysyłane są pakiety ze sfałszowanym źródłow
 adresem IP, ponieważ atakujący i tak nie oczekuje na nie odpowiedzi. Serwer po
 otrzymaniu każdego pakietu SYN dodaje odpowiedni wpis do kolejki pół-otwartych
 połączeń i rozpoczyna oczekiwanie na pakiet ACK. Ponieważ ilość miejsc w kolejce
-jest ograniczona możliwe jest jej przepełnienie i w konsekwencji uniemożliwienie
-nawiązywania przez komputer zwykłych połączeń. Jeśli pakiet ACK nie przyjdzie po
-określonym okresie czasu wpis zostaje automatycznie usunięty z kolejki. Ten
-okres czasu zależy od atakowanego komputera, ale zwykle waha się pomiędzy 30 i
-60 sekundami. Klient rozpoczyna atak przez wysłanie serii pakietów SYN z różnymi
-źródłowymi adresami IP i wysyła kolejne tak szybko i często jak to tylko
-możliwe, czym wypełnia kolejkę pół-otwartych połączeń i uniemożliwia innym
-klientom nawiązania połączenia z atakowanym komputerem.
+jest ograniczona, możliwe jest jej przepełnienie i w konsekwencji
+uniemożliwienie nawiązywania przez komputer zwykłych połączeń. Jeśli pakiet ACK
+nie przyjdzie po określonym upływie czasu, wpis zostaje automatycznie usunięty z
+kolejki. Ten czas zależy od atakowanego komputera, ale zwykle waha się pomiędzy
+30 i 60 sekundami. Klient rozpoczyna atak przez wysłanie serii pakietów SYN z
+różnymi źródłowymi adresami IP i wysyła kolejne tak szybko i często, jak to
+tylko możliwe, powodując wypełenie kolejki pół-otwartych połączeń i
+uniemożliwienie innym klientom nawiązania połączenia z atakowanym komputerem.
 </p>
 
 <p>
 I tu właśnie przydaje się limitowanie prędkości transmisji. Dzięki opcjom <c>-m
-limit --limit 1/s</c> można regulować ilość przyjmowanych pakietów
-SYN. Dzięki temu możliwe jest ograniczenie ilości pakietów SYN przyjmowanych w
-ciągu każdej sekundy co udaremnia wszystkie ataki typu SYN flood.
+limit --limit 1/s</c> można regulować ilość przyjmowanych pakietów SYN. Dzięki
+temu, możliwe jest ograniczenie ilości pakietów SYN przyjmowanych w ciągu każdej
+sekundy, co udaremnia wszystkie ataki typu SYN flood.
 </p>
 
 <note>
-Inną metodą zapobiegania atakom typu SYN flood są <uri link
-="http://cr.yp.to/syncookies.html">SYN cookies</uri>, które pozwalają
+Inną metodą zapobiegania atakom typu SYN flood są <uri
+link="http://cr.yp.to/syncookies.html">SYN cookies</uri>, które pozwalają
 komputerowi na odpowiadanie na pakiety SYN bez zapełniania miejsca w kolejce
-połączeń. SYN cookies są już częścią jądra Linux i można z nich korzystać
+połączeń. SYN cookies są już częścią jądra Linux i można z nich korzystać,
 poprzez zaznaczenie w jego konfiguracji odpowiednich opcji, wciąż jest to jednak
 mocno eksperymentalny projekt.
 </note>
@@ -372,10 +373,10 @@ A teraz pora na odrobinę praktyki.
 Kiedy iptables zostaną załadowane do jądra powstanie 5 "zaczepów", na których
 można umieścić reguły. Ich nazwy to <c>INPUT</c>, <c>OUTPUT</c>, <c>FORWARD</c>,
 <c>PREROUTING</c> i <c>POSTROUTING</c>. Każdy z nich nazywany jest łańcuchem i
-składa się listy reguł. Każda z nich mówi o tym jak ma postępować firewall w
-przypadku otrzymania pakietu z określonym nagłówkiem. Jeśli pakiet nie pasuje do
-żadnej z reguł jest traktowany zgodnie z polityką określoną dla całego łańcucha,
-do którego trafił.
+składa się listy reguł. Każda z nich mówi o tym jak ma postępować firewall,
+jeśli otrzyma pakiet z określonym nagłówkiem. Jeśli pakiet nie pasuje do żadnej
+z reguł, zostanie potraktowany zgodnie z polityką określoną dla całego łańcucha,
+do którego trafił.  
 </p>
 
 <p>
@@ -400,7 +401,7 @@ określone reguły. Iptables posiadają następujące opcje:
 </tr>
 <tr>
   <ti>-I</ti>
-  <ti>Umieść w określonym miejscu</ti>
+  <ti>Wstaw w określone miejsce</ti>
 </tr>
 <tr>
   <ti>-R</ti>
@@ -484,11 +485,11 @@ określone reguły. Iptables posiadają następujące opcje:
 </tr>
 <tr>
   <ti>-f</ti>
-<ti>Dopasuj drugie i dalsze fragmenty</ti>
+  <ti>Dopasuj drugie i dalsze fragmenty</ti>
 </tr>
 <tr>
   <ti>-V</ti>
-  <ti>Wersja pakietu</ti>
+  <ti>Wersja programu</ti>
 </tr>
 <tr>
   <ti>--line-numbers</ti>
@@ -497,8 +498,8 @@ określone reguły. Iptables posiadają następujące opcje:
 </table>
 
 <p>
-Zaczniemy od prostego przykładu upuszczania wszystkich pakietów ICMP
-przychodzących do naszego komputera.
+Zaczniemy od prostego przykładu, odrzucenia wszystkich pakietów ICMP
+przychodzących do naszego komputera.  
 </p>
 
 <pre caption="Upuszczanie pakietów ICMP">
@@ -544,10 +545,9 @@ ustalić następującą regułę:
 </pre>
 
 <p>
-Wprowadzenie takiej reguły skutkuje akceptowaniem wszystkich przychodzących
-pakietów, które należą do już nawiązanych połączeń lub są z nimi
-powiązane. Jeśli przed dodaniem tej reguły wpiszemy dodatkowo polecenie
-<c>iptables
+Wprowadzenie takiej reguły, skutkuje akceptowaniem wszystkich przychodzących
+pakietów, które należą do już nawiązanych połączeń lub są z nimi powiązane.
+Jeśli przed dodaniem tej reguły wpiszemy dodatkowo polecenie <c>iptables
 -A INPUT -i eth0 -m state --state INVALID -j DROP</c> załadujemy rozszerzenie
 "state", dzięki któremu będziemy mieli możliwość upuszczania każdego pakietu,
 którego brakuje w tabeli stanu. Aby umożliwić innym łączenie się z naszym
@@ -563,7 +563,7 @@ modułów o różnym przeznaczeniu, niektóre z nich to:
 </tr>
 <tr>
   <ti>mac</ti>
-  <ti>Test polegający na sprawdzaniu źródłowego adresu mac.</ti>
+  <ti>Test polegający na sprawdzaniu źródłowego adresu mac</ti>
   <ti>--mac-source</ti>
 </tr>
 <tr>
@@ -573,7 +573,7 @@ modułów o różnym przeznaczeniu, niektóre z nich to:
 </tr>
 <tr>
   <ti>limit</ti>
-  <ti>Ograniczenie częstotliwości pasowania reguły</ti>
+  <ti>Ograniczenie częstotliwości dopasowywania reguły</ti>
   <ti>--limit, --limit-burst</ti>
 </tr>
 <tr>
@@ -586,7 +586,7 @@ modułów o różnym przeznaczeniu, niektóre z nich to:
 </tr>
 <tr>
   <ti>unclean</ti>
-  <ti>Wykonuje różne losowe testy sprawdzające na pakiecie.</ti><ti></ti>
+  <ti>Wykonuje różne losowe testy sprawdzające na pakiecie</ti><ti></ti>
 </tr>
 </table>
 
@@ -853,14 +853,13 @@ Kilka rad dotyczących tworzenia firewalli:
 <li>Nie warto nadmiernie komplikować zestawu reguł.</li>
 <li>Należy poznać podstawy pracy każdego z protokołów, np. poprzez przeczytanie
 odpowiednich <uri link="http://www.ietf.org/">RFC</uri>.</li>
-<li>Należy pamiętać, że firewall jest kolejnym programem uruchamianym z przywilejami
-roota.</li>
+<li>Należy pamiętać, że firewall jest kolejnym programem uruchamianym z przywilejami roota.</li>
 <li>Warto przetestować firewall zanim na dobre zacznie się go używać.</li>
 </ol>
 
 <p>
-W przypadku, gdy iptables wydają się zbyt skomplikowane aby je zrozumieć, lub
-też ich skonfigurowanie zajmowałoby zbyt dużo czasu można skorzystać z programu
+W przypadku, gdy iptables wydają się zbyt skomplikowane aby je zrozumieć lub
+też ich skonfigurowanie zajmowałoby zbyt dużo czasu, można skorzystać z programu
 <uri link="http://www.shorewall.net">Shorewall</uri>. Jest to prosty w
 konfiguracji firewall zabezpieczający komputer przy pomocy iptables.
 </p>
@@ -879,8 +878,8 @@ przeglądarkę, uwierzytelniane konta użytkowników, typ MIME, oraz numer portu
 </p> 
 
 <p>
-W poniższym przykładzie opisuję odfiltrowywanie bannerów zamiast filtrowania
-treści pornograficznych. Robię tak ponieważ chcę uniknąć sytuacji, że Gentoo.org
+Poniższy przykład opisuje odfiltrowywanie bannerów, zamiast filtrowania treści
+pornograficznych. Robię tak ponieważ chcę uniknąć sytuacji, że Gentoo.org
 zostanie zaindeksowane jako strona zawierająca treści porno, a poza tym nie mam
 czasu na szukanie dla was ciekawych stron.
 </p>
@@ -892,12 +891,13 @@ Moja zasady wyglądają następująco:
 <ul>
 <li>Na surfowanie w Internecie (HTTP/HTTPS) zezwalamy jedynie w godzinach pracy
 (poniedziałek-piątek 8-17, soboty 8-13). Jeśli pracownicy zostają po godzinach
-powinni zajmować się pracą, a nie chodzeniem po Internecie.</li>
-<li>Pobieranie plików nie jest dozwolone (żadych .exe, .com, .arj, .zip, .asf, .avi,
-.mpg, .mpeg, etc)</li>
-<li>Nie lubimy bannerów, więc będą one odfiltrowywane i zastępowane przezroczystym
-gifem. (i to jest to miejsce, w którym trzeba uruchomić wyobraźnię...)</li>
-<li>Wszystkie inne połączenie do i z Internetu są zabronione.</li>
+powinni zajmować się pracą, a nie przeglądaniem sieci.</li>
+<li>Pobieranie plików nie jest dozwolone (żadych .exe, .com, .arj, .zip, .asf,
+.avi, .mpg, .mpeg, etc)</li>
+<li>Nie lubimy bannerów, więc będą one odfiltrowywane i zastępowane
+przezroczystym gifem (i to jest to miejsce, w którym trzeba uruchomić
+wyobraźnię...).</li>
+<li>Wszystkie inne połączenia do i z Internetu są zabronione.</li>
 
 </ul>
 
@@ -974,7 +974,7 @@ http_access deny all
 </pre>
 
 <p>
-Następnie wypełniamy listę plików, na których pobieranie nie pozwalamy naszym
+Następnie wypełniamy listę plików, na których pobieranie, nie pozwalamy naszym
 użytkownikom. Na liście są pliki zip, viv, exe, mp3, rar, ace, avi, mov, mpg,
 mpeg, au, ra, arj, tar, gz i z.
 </p>
@@ -1072,7 +1072,7 @@ funkcjonuje w małych sieciach, składających się z góra 20 użytkowników.
 
 <p>
 Polecam używanie filtra pakietów (iptables) wraz z bramą aplikacyjną (Squid)
-nawet jeśli serwer proxy znajduje się w bezpiecznym miejscu i nikt z zewnątrz
+nawet, jeśli serwer proxy znajduje się w bezpiecznym miejscu i nikt z zewnątrz
 nie ma do niego dostępu. Zawsze istnieje możliwość ataku od wewnątrz.
 </p>
 
@@ -1102,9 +1102,8 @@ następującej reguły:
 <note>
 Jeśli proxy działa na tym samym komputerze co filtr pakietów (nie polecamy
 takiego rozwiązania, ale czasem z braku dodatkowych komputerów jest to
-konieczne)
-należy użyć celu <c>REDIRECT</c> zamiast <c>DNAT</c> (<c>REDIRECT</c> kieruje
-ruch na localhost).
+konieczne), należy użyć celu <c>REDIRECT</c> zamiast <c>DNAT</c>
+(<c>REDIRECT</c> kieruje ruch na localhost).
 </note>
 
 </body>
@@ -1118,11 +1117,11 @@ Nauczyliśmy się, że:
 </p>
 
 <ol>
-<li>Zaimplementowanie firewalla może się wiązać z pewnym ryzykiem. Posiadanie źle
-skonfigurowanego firewalla jest gorsze niż nie posiadanie go w ogóle.</li>
+<li>Zaimplementowanie firewalla może się wiązać z pewnym ryzykiem. Posiadanie
+źle skonfigurowanego firewalla jest gorsze niż nie posiadanie go w ogóle.</li>
 <li>Nauczyliśmy się konfigurowania transparentnego proxy.</li>
-<li>Dowiedzieliśmy się, że warunkiem budowy solidnego firewalla jest dobra znajomość
-protokołów sieciowych.</li>
+<li>Dowiedzieliśmy się, że warunkiem budowy solidnego firewalla jest dobra
+znajomość protokołów sieciowych.</li>
 <li>Wiemy, że ruch IP nie zawsze zawiera pożądane dane, np. pakiety ICMP mogą
 zawierać szkodliwe informacje.</li>
 <li>Umiemy zapobiegać atakom typu SYN.</li>
