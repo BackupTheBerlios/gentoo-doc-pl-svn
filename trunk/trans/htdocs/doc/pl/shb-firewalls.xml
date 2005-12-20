@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/security/shb-firewalls.xml,v 1.2 2005/06/10 19:16:38 fox2mike Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/security/shb-firewalls.xml,v 1.7 2005/12/16 10:12:38 rane Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <sections>
 
-<version>1.0</version>
-<date>2005-05-31</date>
+<version>1.1</version>
+<date>2005-10-16</date>
 
 <section>
 <title>Firewall</title>
@@ -49,10 +49,10 @@ Są trzy typy firewalli:
   </li>
   <li>
     Kontrolujące połączenia sieciowe między systemami wewnętrznymi i zewnętrznymi
-    (circuit relay).
+    (circuit relay)
   </li>
   <li>
-    Bramy aplikacyjne.
+    Bramy aplikacyjne
   </li>
 </ul>
 
@@ -238,7 +238,7 @@ Wady:
 
 <p>
 Bramy aplikacyjne to najlepszy sposób zabezpieczania sieci, ponieważ nie muszą
-być uruchamiane z przywilejami roota, oraz uniemożliwiają bezpośredni dostęp z
+być uruchamiane z przywilejami roota oraz uniemożliwiają bezpośredni dostęp z
 Internetu do komputerów w sieci.
 </p>
 
@@ -263,10 +263,10 @@ razie potrzeby ładuje te z nich, które są mu potrzebne. Jeśli jednak zgodnie
 poprzednimi sugestiami zrezygnowano z włączania opcji Loadable Kernel Modules
 można spokojnie wkompilować wszystko na stałe. Więcej informacji na temat tego
 jak skonfigurować jądro przed użyciem iptables znajduje się w dokumencie <uri
-link="http://iptables-tutorial.frozentux.net/chunkyhtml/kernelsetup.html">Iptables
-Tutorial Chapter 2: Preparations</uri>. Po skompilowaniu jądra z odpowiednimi
-opcjami (lub jeszcze w trakcie jego kompilowania) należy zainstalować program
-iptables przy pomocy polecenia <c>emerge iptables</c>.
+link="http://iptables-tutorial.frozentux.net/iptables-tutorial.html#PREPARATIONS">
+Iptables Tutorial Chapter 5: Preparations</uri>. Po skompilowaniu jądra z 
+odpowiednimi opcjami (lub jeszcze w trakcie jego kompilowania) należy 
+zainstalować program iptables przy pomocy polecenia <c>emerge iptables</c>.
 </p>
 
 <p>
@@ -297,8 +297,8 @@ zdecydować jak z nim postąpić, czyli czy go zaakceptować, czy odrzucić.
 </p>
 
 <p>
-Tradycyjny filtr pakietów można poprzez manipulowanie nagłówkami oszukać tak
-żeby akceptował pakiety, które powinien upuścić. Można tego dokonać poprzez
+Tradycyjny filtr pakietów można poprzez manipulowanie nagłówkami oszukać tak,
+aby akceptował pakiety, które powinien upuścić. Można tego dokonać poprzez
 manipulowanie flagami (zwłaszcza SYN) w nagłówkach pakietów TCP, tak by
 stworzyć złudzenie, że sfałszowany pakiet jest częścią już nawiązanego
 połączenia. Dzieje się tak ponieważ ten przestarzały sposób filtrowania nie daje
@@ -490,7 +490,7 @@ określone reguły. Iptables posiadają następujące opcje:
 </table>
 
 <p>
-Zaczniemy od prostego przykładu upuszczania wszystkich pakietów ICMP
+Zaczniemy od prostego przykładu, upuszczania wszystkich pakietów ICMP
 przychodzących do naszego komputera.
 </p>
 
@@ -1072,7 +1072,7 @@ nie ma do niego dostępu. Zawsze istnieje możliwość ataku od wewnątrz.
 <p>
 Ostatnia kwestia to odpowiednie skonfigurowanie przeglądarek użytkowników, tak
 aby korzystały z naszego serwera proxy. Brama uniemożliwi użytkownikom
-jakikolwiek kontakt ze światem zewnętrzym sposobami innymi niż przez serwer
+jakikolwiek kontakt ze światem zewnętrznym sposobami innymi niż przez serwer
 proxy.
 </p>
 
