@@ -117,11 +117,13 @@ to:'''),
 (r'<title>GWN feedback</title>',
  r'<title>Opinie czytelników</title>'),
 
-(r'Please send us your <mail link="gwn-feedback@gentoo.org">feedback</mail> and help make the GWN better.',
- r'''Jeśli chcesz, aby Tygodnik Gentoo był jeszcze lepszy, podziel się z <mail
-link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat.  Uwagi
+(r'<p> Please send us your <mail link="gwn-feedback@gentoo.org">feedback</mail> and help make the GWN better. </p>',
+ r'''<p>
+Jeśli chcesz, aby Tygodnik Gentoo był jeszcze lepszy, podziel się z <mail
+link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat. Uwagi
 dotyczące tłumaczenia można zgłaszać na adres <mail
-link="moloh@moloh.net">koordynatora</mail>.'''),
+link="moloh@moloh.net">koordynatora</mail>.
+</p>'''),
 
 (r'<title>GWN subscription information</title>',
  r'<title>Subskrypcja Tygodnika Gentoo</title>'),
