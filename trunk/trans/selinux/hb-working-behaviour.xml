@@ -14,11 +14,11 @@
 <body>
 
 <p>
-Portage zna koncepcję "plików chronionych". Oznacza to, że gdy aktualizujemy
-oprogramowanie, dotychczasowe pliki nie zostaną od razu nadpisane, lecz
-zostaniemy jedynie poinformowani, iż pojawiły się nowsze wersje. Jest to bardzo
-przydatne w przypadku plików konfiguracyjnych (tych, które rezydują w katalogu
-<path>/etc</path>).
+Portage obsługuje koncepcję "plików chronionych". Oznacza to, że gdy
+aktualizujemy oprogramowanie, dotychczasowe pliki nie zostaną nadpisane, lecz
+zostaniemy jedynie poinformowani, iż pojawiły się ich nowsze wersje. Jest to
+bardzo przydatne w przypadku plików konfiguracyjnych (tych, które rezydują w
+katalogu <path>/etc</path>).
 </p>
 
 <p>
@@ -27,7 +27,7 @@ Zamiast nadpisywać pliki, Portage stworzy nowe pliki o nazwie
 oryginalna nazwa pliku. Od użytkownika zależy, czy skorzysta on ze zmian w
 nowszych wersjach plików konfiguracyjnych. Aby uprościć tą czynność można użyć
 programu <c>etc-update</c>. Dokładniejsze informacje na jego temat znajdują się
-w dalszej części tego rozdziału.
+w dalszej części tego dokumentu.
 </p>
 
 </body>
@@ -37,11 +37,11 @@ w dalszej części tego rozdziału.
 <body>
 
 <p>
-Portage nie może obejmować ochroną poszczególnych plików. Zamiast tego chroni
-całe katalogi. Używana do tego zmienna <c>CONFIG_PROTECT</c>, jest zdefiniowana w
-pliku <path>/etc/make.globals</path>, jednak jeśli chcemy ją zmodyfikować
-powinniśmy zadeklarować ją w pliku <path>/etc/make.conf</path> (dla utrzymania
-spójności cała konfiguracja Portage odbywa się przez plik
+Portage nie może chronić poszczególnych plików. Zamiast tego obejmuje ochroną
+całe katalogi. Używana jest do tego zmienna <c>CONFIG_PROTECT</c>, którą
+zdefiniowano w pliku <path>/etc/make.globals</path>, jednak jeśli chcemy ją
+zmodyfikować powinniśmy zadeklarować ją w pliku <path>/etc/make.conf</path> (dla
+utrzymania spójności cała konfiguracja Portage odbywa się przez plik
 <path>/etc/make.conf</path>).
 </p>
 
@@ -52,7 +52,7 @@ CONFIG_PROTECT="/etc /usr/share/config /usr/kde/3.1/share/config"
 <p>
 Jeśli chcemy objąć ochroną jakiś katalog, ale nie chronić przy tym jego
 podkatalogów, powinniśmy dodać te podkatalogi do zmiennej
-<c>CONFIG_PROTECT_MASK</c>, której domyślna wartość również jest określona w
+<c>CONFIG_PROTECT_MASK</c>, której domyślna wartość jest określona w
 pliku <path>/etc/make.globals</path>, jednak modyfikacje należy wprowadzać w
 <path>/etc/make.conf</path>:
 </p>
@@ -62,8 +62,8 @@ CONFIG_PROTECT_MASK="/etc/init.d"
 </pre>
 
 <p>
-Więcej informacji o ochronie plików konfiguracyjnych można uzyskać w pomocy
-programu <c>emerge</c>:
+Więcej informacji o ochronie plików konfiguracyjnych można uzyskać poprzez
+pomoc programu <c>emerge</c>:
 </p>
 
 <pre caption="Informacje o ochronie plików konfiguracyjnych">
@@ -92,9 +92,10 @@ Uruchomienie <c>etc-update</c> jest bardzo proste:
 </pre>
 
 <p>
-Po wprowadzeniu prostych zmian, otrzymamy listę chronionych plików, których nowe
-wersje są dostępne. Na końcu otrzymujemy poniższą listę możliwych do wykonania
-czynności:
+Po automatycznym wprowadzeniu trywialnych zmian (np. różnic w rozmieszczeniu
+pustych wierszy w pliku - przyp. tłum.), otrzymamy listę chronionych plików,
+których nowe wersje są dostępne. Na końcu otrzymujemy poniższą informację o
+możliwych do wykonania czynnościach:
 </p>
 
 <pre caption="Czynności do wykonania przez etc-update">
@@ -113,8 +114,8 @@ wprowadzeniu numeru znajdującego się obok pliku.
 </p>
 
 <p>
-Przykładowo zajmiemy się plikiem <path>/etc/pear.conf</path>. Oto efekt wybrania
-go z listy:
+Przykładowo zajmiemy się plikiem <path>/etc/pear.conf</path>. Oto efekt wpisania
+jego numeru z listy:
 </p>
 
 <pre caption="Aktualizacja wybranego pliku konfiguracyjnego">
@@ -142,7 +143,7 @@ linie (oryginalną i proponowaną w nowym pliku) i będziemy mogli wybrać spoś
 następujących opcji:
 </p>
 
-<pre caption="Komendy dostępne w czasie interaktynej aktualizacji">
+<pre caption="Komendy dostępne w czasie interaktywnej aktualizacji">
 ed:     Edytuj i użyj obu wersji, każdą poprzedzając nagłówkiem.
 eb:     Edytuj i użyj obu wersji.
 el:     Edytuj i użyj wersji po lewej stronie.
@@ -187,10 +188,10 @@ się poszczególnym zmiennym.
 </p>
 
 <p>
-Zmienna <c>SYNC</c> zawiera serwer rsync, jaki będzie używany. Przykładowo, aby
-korzystać z serwera <uri>rsync://rsync.namerica.gentoo.org/gentoo-portage</uri>,
-należy zdefiniować zmienną <c>SYNC</c> w pliku <path>/etc/make.conf</path> w
-następujący sposób:
+Zmienna <c>SYNC</c> zawiera adres serwera rsync, jaki będzie
+wykorzystywany. Przykładowo, aby korzystać z serwera
+<uri>rsync://rsync.namerica.gentoo.org/gentoo-portage</uri>, należy zdefiniować
+zmienną <c>SYNC</c> w pliku <path>/etc/make.conf</path> w następujący sposób:
 </p>
 
 <pre caption="Definiowanie zmiennej SYNC w pliku /etc/make.conf">
@@ -200,7 +201,7 @@ SYNC="rsync://rsync.namerica.gentoo.org/gentoo-portage"
 <p>
 Zmienna <c>GENTOO_MIRRORS</c> zawiera listę serwerów distfiles. Aby używać
 serwera <uri>ftp://ibiblio.org/pub/Linux/distributions/gentoo</uri> w pierwszej
-kolejności i <uri>http://www.gtlib.cc.gatech.edu/pub/gentoo</uri> jeśli
+kolejności i <uri>http://www.gtlib.cc.gatech.edu/pub/gentoo</uri>, jeśli
 pierwszy nie będzie dostępny, należy dodać poniższy wpis do pliku
 <path>/etc/make.conf</path>:
 </p>
@@ -229,7 +230,7 @@ PORTAGE_BINHOST="ftp://login:pass@grp.mirror.site/pub/grp/i686/athlon-xp"
 <body>
 
 <p>
-Wiele pakietów posiada zmienną SRC zawierającą 'mirror://'. Takie pakiety
+Wiele pakietów posiada zmienną SRC zawierającą <c>mirror://<c>. Takie pakiety
 posiadają kody źródłowe na wielu serwerach (sourceforge, gnu, ...). Gdy Portage
 natrafia na taki pakiet, przeszukuje plik <path>/etc/portage/mirrors</path>, a
 jeśli nie znajdzie tam żadnego serwera sprawdza
@@ -262,7 +263,7 @@ być przechowywany na serwerach lustrzanych.
 
 <p>
 Jeśli chcemy skorzystać w programu <c>mirrorselect</c>, musimy go zainstalować
-(jeśli nie zrobiliśmy tego dotychczas).
+(o ile nie zrobiliśmy tego dotychczas).
 </p>
 
 <pre caption="Instalacja mirrorselect">
@@ -302,7 +303,7 @@ RESUMECOMMAND="/usr/bin/wget -c -t 5 --passive-ftp -P \${DISTDIR} \${URI}"
 <p>
 Zmienna <c>${DISTDIR}</c> przechowuje lokalizację, w której pobierane pliki są
 zapisywane (standardowo <path>/usr/portage/distfiles</path>), podczas gdy
-zmienna <c>${URI}</c> zawiera nazwę pliku, jaki musi zostać ściągnięty.
+zmienna <c>${URI}</c> zawiera nazwę pliku, jaki musi zostać pobrany.
 </p>
 
 <p>
@@ -311,8 +312,8 @@ wykorzystanie proxy poprzez zdefiniowanie zmiennych <c>http_proxy</c> i
 <c>ftp_proxy</c> (pamiętajmy o  małych literach w ich nazwach). Można to zrobić
 w pliku <path>/etc/make.conf</path>, jednak zmienne <c>http_proxy</c> i
 <c>ftp_proxy</c> są wykorzystywane przez wiele aplikacji, a pliku
-<path>/etc/make.conf</path> używa tylko Portage, więc lepiej dokonać ustawień
-bardziej globalnych. Warto zapoznać się z rozdziałem <uri
+<path>/etc/make.conf</path> używa tylko Portage. Lepiej jest więc dokonać ustawień
+bardziej globalnie. Warto zapoznać się z rozdziałem <uri
 link="?part=2&amp;chap=5">Zmienne środowiskowe</uri>, dla uzyskania informacji o
 deklaracji zmiennych systemowych obejmujących całe środowisko.
 </p>
@@ -335,10 +336,10 @@ Aby ochronić ebuildy przez aktualizacją lub usunięciem w czasie wykonywania
 <c>emerge --sync</c>, należy skorzystać ze zmiennej <c>RSYNC_EXCLUDEFROM</c>.
 Powinna ona wskazywać na plik, którego używa <c>rsync</c> do objęcia określonych
 plików ochroną. Standardowo jest to <path>/etc/portage/rsync_excludes</path>.
-<e>Nie</e> zaleca się jednak stosowania tej metody, poniważ można uszkodzić
+<e>Nie</e> zaleca się jednak stosowania tej metody, ponieważ można uszkodzić
 system zależności, jeśli nie zachowa się ostrożności. W dalszej części powiemy o
 zmiennej <c>PORTDIR_OVERLAY</c>, której użycie jest rekomendowaną metodą. Dla
-uzyskania większej ilości informacji należy zapoznać sie ze stronami man
+uzyskania dodatkowych informacji należy zapoznać sie ze stronami man
 programu <c>rsync</c>.
 </p>
 
@@ -379,8 +380,8 @@ RSYNC_TIMEOUT="180"
 <p>
 Wszystko w Portage jest konfigurowalne, włączając w to katalogi używane do
 różnych zadań. Aby zmienić domyślne lokalizacje (które określone są w
-<path>/etc/make.globals</path>), musimy zdefiniować odpowiedni zmienne w - gdzieżby
-indziej :) - <path>/etc/make.conf</path>.
+<path>/etc/make.globals</path>), musimy zdefiniować odpowiednie zmienne w - gdzieżby
+indziej :) - pliku <path>/etc/make.conf</path>.
 </p>
 
 <warn>
@@ -396,7 +397,7 @@ nie powinniśmy kończyć ścieżki ukośnikiem <path>/</path> !
 
 <p>
 Lokalizacja drzewa Portage określona jest w zmiennej <c>PORTDIR</c>. Domyślnie
-wskazuje ona na katalog <path>/usr/portage</path>"
+wskazuje ona na katalog <path>/usr/portage</path>.
 </p>
 
 <pre caption="Zmienna PORTDIR">
@@ -405,7 +406,7 @@ PORTDIR="/usr/portage"
 
 <p>
 Jeśli chcemy poza "oficjalną" wersją drzewa przechowywać również jego lokalną
-wersję, musimy zdefiniować zmienną <c>PORTDIR_OVERLAY</c>. Na  lokalizacje określone
+wersję, musimy zdefiniować zmienną <c>PORTDIR_OVERLAY</c>. Na lokalizacje określone
 w tej zmiennej nie ma wpływu <c>emerge --sync</c>: znajdujące się tam ebuildy nie
 zostaną zaktualizowane bądź usunięte i pozostaną częścią lokalnego drzewa
 Portage.
@@ -417,7 +418,7 @@ PORTDIR_OVERLAY="/usr/local/portage"
 
 </body>
 </subsection>
-<subsection>
+<subsection>n
 <title>Pobrane kody źródłowe</title>
 <body>
 
@@ -473,7 +474,7 @@ PORTAGE_TMPDIR="/var/tmp"
 </pre>
 
 <p>
-Domyślnie Portage stworzy katalog <path>portage</path> w katalogu zdefiniowanym
+Domyślnie Portage tworzy katalog <path>portage</path> w katalogu zdefiniowanym
 w zmiennej <c>PORTAGE_TMPDIR</c>. Zachowanie to jest określone w zmiennej
 <c>BUILD_PREFIX</c>:
 </p>
@@ -486,7 +487,7 @@ BUILD_PREFIX="${PORTAGE_TMPDIR}/portage"
 Jeśli zechcemy zmienić lokalizację tymczasowego katalogu, upewnijmy się, że
 będzie się on znajdował na partycji z dużą ilością wolnego miejsca. Podczas
 kompilowania pakietów zawierających duże aplikacje, katalog tymczasowy może
-rozrosnąć się do wielkości 2 Gb, a nawet więcej!
+rozrosnąć się do wielkości 2 GB, a nawet więcej!
 </p>
 
 </body>
@@ -543,7 +544,7 @@ aby wiedzieć, iż jest ona obsługiwana.
 <p>
 Jeśli instalujemy nowszą wersję pakietu, Portage sprawdzi, czy zmienna
 <c>SLOT</c> została zadeklarowna dla pakietu. Jeśli tak jest i zmienna
-<c>SLOT</c> jest różna dla obu wersji pakietu, to Portage nie usunie starszej
+<c>SLOT</c> jest inna dla obu wersji pakietu, to Portage nie usunie starszej
 wersji.
 </p>
 
@@ -561,8 +562,8 @@ CLEAN_DELAY="5"
 
 <p>
 Jeśli nie chcemy, aby starsze wersje jakiegokolwiek pakietu były usuwane (proces
-ten nazywany jest sprzątaniem), musimy przypisać zmiennej <c>AUTOCLEAN</c>
-wartość <c>no</c>:
+usuwania starszych wersji nazywany jest też sprzątaniem), musimy przypisać
+zmiennej <c>AUTOCLEAN</c> wartość <c>no</c>:
 </p>
 
 <pre caption="Zmienna AUTOCLEAN">
@@ -595,8 +596,9 @@ Online Manuals</uri>.
 
 <p>
 Jeśli zmienna <c>DEBUGBUILD</c> jest zdefiniowana, Portage nie dokona
-przeplatania binariów i bibliotek, aby ułatwić diagnostykę programów. Spowalnia
-to działanie systemu i powoduje zwiększenie wielkości plików.
+przeplatania binariów i bibliotek, ułatwiając w ten sposób diagnostykę
+programów. Spowalnia to działanie systemu i powoduje zwiększenie wielkości
+plików programów.
 </p>
 
 <pre caption="Zmienna DEBUGBUILD">
@@ -608,7 +610,7 @@ DEBUGBUILD="true"
 
 <p>
 Zmienna <c>MAKEOPTS</c> jest wykorzystywana przez program <c>make</c> -
-narzędzie ułatwiające kompilację pakietu. Zazwyczj jest ona tak zdefiniowana,
+narzędzie ułatwiające kompilację pakietu. Zazwyczaj jest ona tak zdefiniowana,
 aby nakazać programowi <c>make</c> uruchomienie kilku kompilacji równolegle
 (szczególnie jeśli posiadamy wieloprocesorowy system, lub korzystamy z
 <c>distcc</c>, jak opisano wcześniej).
