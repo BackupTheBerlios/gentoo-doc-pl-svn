@@ -10,36 +10,36 @@
 
 <sections>
   <section>
-    <title>Introduction to eclasses</title>
+    <title>Wprowadzenie do eklas</title>
 
     <subsection>
-      <title>The idea behind eclasses</title>
+      <title>Do czego służą eklasy?</title>
       <body>
 	
-	<p>eclasses are modules of shared code. They are written in
-	bash and have the same syntax as ordinary ebuilds, and are
-	sourced ('inherited') by ebuilds and other eclasses, to
-	provide default settings and functionality across many similar
-	ebuilds.</p>
-	<p>This is used to ensure maximum code reuse among similar
-	ebuilds.</p>
-	<p>This first chapter shows briefly how to write an eclass
-	incorporating the standard tricks and techniques used in
-	existing eclasses. The second is an overview of the kde
-	eclasses.The third explains how to write a KDE ebuild using
-	the kde group of eclasses.</p>
-	
+	<p>Eklasy to moduły, które zawierają współdzielony kod. Są napisane w
+	bashu i posiadają tę samą składnię, co zwykłe pliki ebuild. Są
+	odczytywane ('dziedziczone') przez pliki ebuild i inne eklasy,
+	dostarczając tę samą funkcjonalność i domyślne ustawienia w wielu
+	ebuildach.</p>
+	<p>Dzięki temu możemy w największym stopniu wykorzystać ponownie kod w
+	podobnych plikach ebuild.</p>
+	<p>W niniejszym rozdziale w skrócie zademonstrujemy jak napisać eklasę,
+	wykorzystując standardowe techniki z już istniejących eklas. W drugim
+	rozdziale omówimy eklasy kde, zaś trzeci ukaże nam jak napisać ebuild
+	KDE, wykorzystując eklasy z grupy kde.</p>
+
       </body>
     </subsection>
 
     <subsection>
-      <title>An example of a simple eclass</title>
+      <title>Przykład nieskomplikowanej eklasy</title>
       <body>
 
-	<p>Here is a fictive sourceforge.eclass, designed to provide
-	homepage and download locations to sourceforge.net-hosted
-	projects:</p>
-	<pre caption = "Example: sourceforge.eclass">
+	<p>Oto fikcyjna eklasa o nazwie sourceforge.eclass, która ma za zadanie
+	dostarczyć informacje o stronie domowej projektów FIXME hostowanych na
+	sourceforge.net, oraz miejsca, z których można je pobrać:</p>
+
+	<pre caption = "Przykład: eklasa sourceforge.eclass">
 # Copyright 2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Dan Armak &lt;danarmak@gentoo.org&gt;
@@ -51,112 +51,109 @@ INHERITED="${INHERITED $ECLASS}"
 
 HOMEPAGE=&quot;http://${PN}.sourceforge.net/&quot;
 SRC_URI=&quot;http://download.sourceforge.net/${PN}/${P}.tar.gz&quot;</pre>
-	<note>The ECLASS= and INHERITED= lines help portage handle dep
-	caching with eclasses; they must be present in every eclass,
-	or things will break. ${ECLASS} is also used by
-	EXPORT_FUNCTIONS(). These variables might be deprecated in the
-	future though, and be set by portage automatically in
-	inherit().</note>
-	<p>The first four lines are headers, just like those in any
-	ebuild. The next two lines are a short description of the
-	eclass. The rest of the code does the actual work - setting
-	SRC_URI and HOMEPAGE.</p>
-	<p>Most eclasses go beyond setting variables and providing
-	helper functions; they contain default versions of the special
-	ebuild functions (src_unpack, src_compile and so on). Before
-	writing a default function in an eclass, you should be aware
-	of the default functions already contained in ebuild.sh. They
-	are what gets executed if you don't put some function in your
-	ebuild (not even via an eclass); the default src_unpack() is
-	often used. If you haven't yet, go and look at the default
-	implementations in ebuild.sh.</p>
+	<note>Linijki ECLASS= i INHERITED= są wykorzystywane przez Portage do
+	obsługi podręcznego buforowania zależności eklas. Linie te muszą
+	znajdować się w każdym pliku eclass, inaczej będą występować błędy.
+	Zmienną ${ECLASS} wykorzystuje także funkcja EXPORT_FUNCTIONS(). Należy
+	jednak mieć na uwadze, że zmienne te mogą wkrótce stać się przestarzałe
+	i będą ustawiane automatycznie przez funkcję inherit().</note> 
+	<p>Pierwsze cztery linijki to nagłówki, identyczne jak w każdym pliku
+	ebuild. Kolejne dwie FIXME (pod ECLASS I INHERITED?) to krótki opis
+	eklasy. Właściwą pracę -- ustawianie zmiennych SRC_URI i HOMEPAGE --
+	wykonują następne linie kodu.</p> 
+	<p>Większość eklas robi więcej niż tylko ustawianie zmiennych i
+	dostarczanie funkcji pomocniczych. Zawierają domyślne implementacje
+	specjalnych funkcji używanych przez ebuildy (src_unpack, src_compile
+	itd). Przed napisaniem domyślnej funkcji w eklasie powinniśmy znać
+	funkcje już zawarte w pliku ebuild.sh. To one są wykonywane w naszych
+	plikach ebuild jeśli nie umieścimy ich tam sami (nawet poprzez eklasy).
+	Często wykorzystuje się domyślną funkcję src_unpack(). Powinniśmy
+	przyjrzeć się funkcjom z pliku ebuild.sh, jeśli jeszcze tego nie
+	uczyniliśy.</p>
 	
-	<p>This is all you need to know to actually write
-	eclasses. Put your new eclass
-	in <path>${PORTDIR}/eclass/</path>, and put this line at the
-	beginning of your ebuild:</p>
-	<pre caption ="How to inherit eclasses">
+	<p>To wszystko, co powinniśmy wiedzieć, aby pisać eklasy. Umieśćmy nasz
+	nowy plik eclass w katalogu <path>${PORTDIR}/eclass/</path> i dodajmy
+	poniższą linijkę na początku naszego pliku ebuild:</p>
+	<pre caption ="Dziedziczenie eklas w plikach ebuild">
 inherit sourceforge</pre>
-	<p>The contents of the eclass will be sourced at this
-	point. Remember that any variables or functions defined in the
-	eclass can be overriden in the ebuild, whose code executes
-	after any eclasses. Therefore, you should try to put as much
-	default settings and common code in your eclass as
-	possible. Any nonstandard settings and modifications can then
-	be put into the ebuild.</p>
-	<p>Oh, and you can inherit several eclasses at the same time
-	by saying:</p>
-	<pre caption = "Inheriting multiple eclasses">
+	<p>W tym miejscu pliku ebuild zostanie przeczytana zawartość naszej
+	eklasy. Należy pamiętać, że jakiekolwiek zmienne zdefiniowane w eklasie
+	mogą zostać nadpisane w pliku ebuild, gdyż jego kod jest wykonywany po
+	kodzie eklasy. Dlatego powinniśmy umieszczać jak najwięcej domyślnych
+	ustawień i wspólnego kodu właśnie w eklasach. Wszystkie niestandarowe
+	ustawienia i modyfikacje możemy zamieszczać w pliku ebuild.</p>
+	<p>Możemy także dziedziczyć wiele eklas jednocześnie, używając
+	składni:</p>
+	<pre caption = "Dziedziczenie wielu eklas">
 inherit eclass1 eclass2 [...]</pre>
-	<p>...but watch their order! Remember, eclasses can inherit
-	one another and override each other's settings, so you should
-	be careful when dealing with multiple eclasses that might
-	influence one another.</p>
+	<p>...uważajmy jednak na ich kolejność! Musimy pamiętać, że jedne eklasy
+	mogą dziedziczyć inne i nadpisywać nawzajem swoje ustawienia. Z tego
+	względu należy być ostrożnym przy posługiwaniu się jednocześnie wieloma
+	eklasami, które mogą wpływać wzajemnie na siebie.</p>
 
-	<p>We will now go over all the tricks of eclass writing,
-	before moving on to the actual eclasses in portage.</p>
-
-      </body>
-    </subsection>
-
-    <subsection>
-      <title>inherit()</title>
-      <body>
-
-	<p>This function lives in ebuild.sh and handles inheriting
-	(sourcing) of eclasses. It is called with a list of eclass
-	names to inherit: inherit &lt;eclass1&gt; [eclass2
-	eclass3...].</p>
-	<p>Besides actually sourcing the eclass files, it sets the
-	ECLASS and INHERITED variables which are used by portage for
-	caching eclass modification timestamps. The INHERITED variable
-	might be of use in writing eclasses: it contains a list of all
-	eclasses inherited (sourced) up to this point, in order. Thus
-	an eclass can use it to determine whether or not it was called
-	from some other eclass.</p>
+	<p>Zanim przejdziemy do prawdziwych eklas z Portage, najpierw omówimy
+	wszystkie sztuczki przydatne przy ich pisaniu.</p> 
 
       </body>
     </subsection>
 
     <subsection>
-      <title>EXPORT_FUNCTIONS</title>
+      <title>Funkcja inherit()</title>
       <body>
 
-	<p>A good eclass's predefined functions can often be used
-	as-is; the ebuild will then contain very little code (which is
-	good). Sometimes, though, the eclass functions won't do
-	exactly what you need. You could write a new function in your
-	ebuild, overriding the function definition from the
-	eclass. However, this would minimize the benefit of code
-	reuse. So we try to 'extend' the eclass functions instead.</p>
-	<p>Suppose you want to extend src_compile(). You can write an
-	src_compile() definition in your ebuild, which would only
-	include the parts missing from the eclass src_compile(). You
-	would then call the eclass src_compile() from within the code
-	of your custom function.</p>
-	<p>However, if you create a new function called src_compile(),
-	bash will forget about the old one and you won't be able to
-	call it! That's where the EXPORT_FUNCTIONS macro comes into
-	play.</p>
+	<p>Funkcja ta jest zdefiniowana w pliku ebuild.sh i obsługuje
+	dziedziczenie (odczytywanie) eklas. Wywoływana jest z listą nazw eklas
+	jako parametrami: inherit &lt;eclass1&gt; [eclass2 eclass3...].</p>
+	<p>Oprócz czytania pliku z eklasami ustawia też zmienne ECLASS i
+	INHERITED, które są wykorzystywane przez Portage do buforowania czasów
+	modyfikacji plików eclass. Ponadto zmienna INHERITED przydaje się
+	podczas pisania nowych eklas, ponieważ zawiera listę wszystkich
+	przeczytanych (odziedziczonych) do tej pory, w kolejności ich
+	dziedziczenia. Dzięki temu jedna eklasa może w prosty sposób sprawdzić,
+	czy została wywołana z innej eklasy.</p>
 
-	<p>Let's look at another problem for a moment. Suppose that
-	foo.eclass and bar.eclass both define src_compile(). If you
-	inherit both foo and bar you'll get a different src_compile()
-	depending on the order in which you inherit them. That's ok;
-	you're supposed to keep track of your inheritance order. But
-	you may want to call either of the two src_compile()s
-	explicitly.</p>
-	<p>So, every eclass adds to the functions that it defines a
-	prefix. For example, foo.eclass will define a function called
-	foo_src_compile(), and bar.eclass will define a
-	bar_src_compile(). That way, the ebuild can call either
-	function and know what it'll get.</p>
-	<p>However, we also want to have some default function called
-	just src_compile(), or the ebuild will have to define one. The
-	EXPORT_FUCTIONS macro solves both this problem and the one
-	presented earlier.</p>
+      </body>
+    </subsection>
 
-	<pre caption = "EXPORT_FUNCTIONS() (from ebuild.sh)">
+    <subsection>
+      <title>Makro EXPORT_FUNCTIONS</title>
+      <body>
+
+	<p>Predefiniowane funkcje dobrze napisanej eklasy zwykle można używać
+	od razu, bez żadnych modyfikacji. Plik ebuild będzie wówczas zawierał
+	bardzo mało kodu, co jest pożądane. Czasem jednak funkcje danej eklasy
+	nie będą robiły wszystkiego, czego byśmy od nich oczekiwali. Jednym
+	wyjściem jest napisanie samemu nowej funkcji w pliku ebuild, nadpisując
+	funkcję z eklasy. W ten sposób jednak rezygnujemy z pożytecznej
+	możliwości ponownego wykorzystania już istniejącego kodu. Zamiast tego
+	lepiej jest 'rozszerzyć' funkcjonalność funkcji z eklasy.</p>
+	<p>Przypuśćmy, że chcemy rozszerzyć funkcję src_compile(). Moglibyśmy
+	napisać definicję tej funkcji w naszym pliku ebuild, w której znalazłyby
+	się tylko te linie kodu, których nie było w definicji zamieszczonej w
+	eklasie. Następnie z naszej funkcji wywołalibyśmy funkcję src_compile()
+	z eklasy.</p>
+	<p>Jednakże jeśli stworzymy nową funkcję o nazwie src_compile(), bash
+	nie będzie już pamiętał o poprzedniej, a więc nie będzie możliwe jej
+	wywołanie! W tej sytuacji przydaje się makro EXPORT_FUNCTIONS.</p>
+
+	<p>Przez chwilę przyjrzyjmy się innemu problemowi. Załóżmy, że dwie
+	eklasy, coś.eclass i tam.eclass, jednocześnie definiują funkcję
+	src_compile(). Jeśli odziedziczymy obie, to dostaniemy inną funkcję
+	src_compile(), w zależności od kolejności dziedziczenia tych eklas. W
+	porządku, to jest normalne, ponieważ powinniśmy śledzić kolejność
+	dziedziczenia. Jednak czasem możemy chcieć wywołać konkretnie jedną z
+	tych funkcji.</p>
+	<p>Z tego względu każda eklasa dodaje do definiowanych przez siebie
+	funkcji przedrostek. Na przykład eklasa coś.eclass zdefiniuje funkcję
+	coś_src_compile(), zaś eklasa tam.eclass zdefiniuje funkcję
+	tam_src_compile(). W ten sposób w pliku ebuild zawsze możemy wywołać
+	dowolną z nich.</p>
+	<p>Jednak dobrze by było mieć domyślną funkcję o nazwie src_compile(), w
+	przeciwnym wypadku koniecznym stałoby się zdefiniowanie jej w pliku
+	ebuild. Makro EXPORT_FUNCTIONS rozwiązuje zarówno ten problem, jak i
+	przedstawiony powyżej.</p>
+
+	<pre caption = "Makro EXPORT_FUNCTIONS() (z pliku ebuild.sh)">
 EXPORT_FUNCTIONS() {
 	while [ &quot;$1&quot; ]; do
 		eval &quot;$1() { ${ECLASS}_$1 ; }&quot; &gt; /dev/null
@@ -164,71 +161,74 @@ EXPORT_FUNCTIONS() {
 	done
 }</pre>
 
-	<p>The inherit() function sets ${ECLASS} to the eclass's name
-	before sourcing it. The eclass, at its end, calls
-	EXPORT_FUNCTIONS(), passing as parameters the list of default
-	functions it provides. For example, if you call</p>
-	<pre caption="EXPORT_FUNCTIONS call example">
+	<p>Funkcja inherit() przed odczytaniem każdej eklasy przypisuje zmiennej
+	${ECLASS} jej nazwę. Na samym końcu eklasy wywoływane jest makro
+	EXPORT_FUNCTIONS(), któremu przekazywane są jako parametry domyślne
+	funkcje, których dostarcza eklasa. Przykładowo, jeśli wywołamy:</p>
+	<pre caption="Przykład wywołania makra EXPORT_FUNCTIONS">
 EXPORT_FUNCTIONS src_compile src_install</pre>
-	<p>then EXPORT_FUNCTIONS will call eval() on the following string:</p>
+	<p>wówczas makro EXPORT_FUNCTIONS wywoła funkcję eval() na poniższych
+	danych:</p>
 
-	<pre caption="EXPORT_FUNCTIONS result">
-src_compile() { foo_src_compile() ; }
-src_install() { foo_src_install() ; }</pre>
+	<pre caption="Wynik działania makra EXPORT_FUNCTIONS">
+src_compile() { coś_src_compile() ; }
+src_install() { tam_src_install() ; }</pre>
 
-	<p>Now, whichever eclass is inherited last will define the
-	default src_compile() function, but both functions can be
-	directly called by the ebuild if needed.</p>
-	<p>You can also extend the default src_compile() function by
-	calling the eclass's function from within your own
-	function. You then have to use the default function's full
-	name of foo_src_compile. An example:</p>
+	<p>W ten sposób eklasa odziedziczona jako ostatnia zdefiniuje domyślną
+	funkcję src_compile(), jednak wciąż w pliku ebuild można w razie
+	potrzeby odwołać się bezpośrednio do obu funkcji.</p>
+	<p>Możemy także rozszerzyć domyślną funkcję src_compile() poprzez
+	wywołanie funkcji z eklasy z wnętrza naszej własnej funkcji. Wówczas
+	należy posłużyć się pełną nazwą domyślnej funkcji, czyli
+	coś_src_compile. Przykładowo:</p>
 
-	<pre caption="Extending eclass-provided default functions in your ebuild">
-#in foo.eclass:
-foo_src_compile() {
-	[default code here]
+	<pre caption="Rozszerzanie domyślnych funkcji z eklas w naszych plikach
+	ebuild">
+#w pliku cos.eclass:
+cos_src_compile() {
+	[domyślny kod funkcji]
 }
 
 EXPORT_FUNCTIONS src_compile
-#end eclass code
+#tu kończy się kod eklasy
 
-#in an ebuild:
-inherit foo
+#w pliku ebuild
+inherit cos
 
 src_compile() {
-	[custom code here]
-	foo_src_compile
-	[more custom code]
+	[nasz kod]
+	cos_src_compile
+	[więcej naszego kodu]
 }</pre>
 
       </body>
     </subsection>
 
     <subsection>
-      <title>Function sections</title>
+      <title>Sekcje funkcji</title>
       <body>
 
-	<p>Sometimes, extending default functions by having code
-	execute before and after isn't flexible enough. When dealing
-	with long, complex functions, you often want to have your
-	custom code run in the middle of those functions.</p>
-	<p>Function sections provide for greater flexibility required
-	here. They break the functions down into sections and allow
-	you to execute code between any two sections.</p>
+	<p>Czasem rozszerzanie domyślnych funkcji przez wywoływanie własnego
+	kodu przed i po ich wywołaniu nie daje nam wystarczającej elastyczności.
+	Gdy mamy do czynienia z długimi, skomplikowanymi funkcjami, czasem
+	chcielibyśmy umieścić nasz kod gdzieś w ich środku.</p>
+	<p>Potrzebną tu większą elastyczność zapewniają nam sekcje funkcji.
+	Dzięki nim możliwe jest podzielenie funkcji na fragmenty i wykonywanie
+	kodu z dowolnego z nich.</p>
 
-	<p>The implementation is simple. Let's take as an example the
-	src_compile() function from base.eclass. (Note: it no longer
-	exists, but it's a good example :-) It looks like this:</p>
+	<p>Implementacja jest bardzo prosta. Przyjrzyjmy się funkcji
+	src_compile() z eklasy base.eclass. (Uwaga: FIXME (czy może funkcja?)
+	eklasa ta już nie istnieje, ale wciąż jest dobrym przykładem :) Wygląda
+	ona tak:</p>
 
-	<pre caption = "Example from original base.eclass">
+	<pre caption = "Przykład z eklasy base.eclass">
 base_src_compile() {
     ./configure || die
     emake || die
 }</pre>
 
-	<p>Here is the same function, divided into sections:</p>
-	<pre caption = "The same function divided into sections.">
+	<p>Oto ta sama funkcja, lecz podzielona na sekcje:</p>
+	<pre caption = "Ta sama funkcja podzielona na sekcje.">
 base_src_compile() {
  
     [ -z &quot;$1&quot; ] &amp;&amp; base_src_compile all
@@ -247,77 +247,76 @@ base_src_compile() {
  
 }</pre>
 			
-	<p>The code has been divided into two
-	sections: <c>configure</c> and <c>make</c>. In our simple
-	example, they correspond to the two commands in the original
-	function.</p>
-	<p>In the center of the new function is a
-	while;case...esac;shift;done block. This block matches the
-	parameters to the function with the defined section names and
-	executes the corresponding lines of code.</p>
-	<p>The special case <c>all</c> calls the same function
-	recursively with a list of sections in order. It's up to the
-	eclass's author to maintain this list.</p>
-	<p>The line before the block says that a call without
-	parameters should be treated the same as a call with the
-	single parameter <c>all</c>. As you see, this function
-	recurses a lot. Note, however, that the
-	call <c>base_src_compile configure all make</c> is also legal;
-	it will execute <c>base_src_compile configure configure make
-	make</c>.</p>
+	<p>Kod podzielono na dwie sekcje: <c>configure</c> i <c>make</c>. W
+	naszym prostym przykładzie odpowiadają one dwóm komendom z pierwotnej
+	funkcji.</p>
+	<p>Sercem nowej funkcji jest blok instrukcji
+	while;case...esac;shift;done. Porównuje on parametry przekazane funkcji
+	z nazwami sekcji i wywołuje odpowiadające im linie kodu.</p>
+	<p>Specjalny parametr <c>all</c> wywołuje rekursywnie tę samą funkcję z
+	wszystkimi parametrami po kolei. Autor eklasy odpowiada za poprawność
+	tej listy.</p>
+	<p>Linia kodu poprzedzająca powyższy blok instrukcji mówi nam, że
+	wywołanie bez parametrów powinno być traktowane tak samo jak wywołanie
+	tylko z parametrem <c>all</c>. Nietrudno zauważyć, że funkcja często
+	wywołuje sama siebie. Zwróćmy również uwagę, że wywołanie
+	<c>base_src_compile configure all make</c> również jest poprawne.
+	Wówczas właściwe wywołanie będzie wyglądało tak: <c>base_src_compile
+	configure configure make make</c>.</p>
 
-	<p>Now, in your ebuild (or eclass) that inherits from
-	base.eclass, you get the stub function src_compile which calls
-	base_src_compile without parameters. This makes
-	base_src_compile execute <e>all</e>, that is, all its
-	sections. You can leave it as-is. If you wish to extend it,
-	you can define a new src_compile and call base_src_compile a
-	section at a time:</p>
-	<pre caption = "Using the sectioned src_compile()">
+	<p>W naszym ebuildzie (lub eklasie), które dziedziczą z eklasy
+	base.eclass będziemy mogli użyć zalążka funkcji o nazwie src_compile(),
+	który wywołuje funkcję base_src_compile bez parametrów. Co odpowiada
+	wywołaniu jej z parametrem <e>all</e>, a więc wywołując wszystkie jej
+	sekcje. Możemy używać tej funkcji w obecnej postaci lub
+	rozszerzyć ją, definiując nową funkcję src_compile i w niej wywoływać
+	pojedyncze sekcje z base_src_compile:</p>
+	<pre caption = "Używanie sekcji w funkcji src_compile()">
 src_compile() {
-    run_my_code1
+    nasz_kod1
     base_src_compile configure
-    run_my_code2
+    nasz_kod2
     base_src_compile make
-    run_my_code3
+    nasz_kod3
 }</pre>
-	<p>As you can see, the function sections add flexibility since
-	you can now insert code between the two sections, as well as
-	run them in a different order or run only some of the sections
-	provided. This makes for greater code reuse overall.</p>
+	<p>Jak widać, sekcje funkcji dają nam większą elastyczność, gdyż możemy
+	umieszczać nasz kod pomiędzy sekcjami, wywoływać sekcje w
+	dowolnej kolejności, a także pomijać niektóre z nich. Łatwiej w ten
+	sposób ponownie wykorzystywać kod.</p>
 
       </body>
     </subsection>
 
     <subsection>
-      <title>The debug-print-* functions</title>
+      <title>Funkcje debug-print-*</title>
       <body>
 
-	<p>These are more functions provided by ebuild.sh. They add
-	verbose debug output facilities to eclasses, to allow you to
-	trace their execution more easily without having to read the
-	long traces provided by the bash debug mode. All my eclasses
-	call these functions a lot.</p>
+	<p>Są to kolejne funkcje, które dostarcza nam plik ebuild.sh.
+	Umożliwiają one eklasom wypisywanie komunikatów diagnostycznych, dzięki
+	którym łatwiej jest śledzić ich wykonywanie, nie musząc czytać długich
+	wydruków z trybu debug powłoki bash. Wszystkie moje eklasy często
+	wykorzystują te funkcje.</p>
 
-	<p>debug-print() simply prints all its parameters with the
-	'debug:' prefix. It is called whenever there's something
-	interesting to put in the debug log.</p>
-	<p>debug-print-function() prints 'debug: entering function $1,
-	parameters: $2 [$3 ....] It is called at the beginning of a
-	function.</p>
-	<p>debug-print-section() prints 'debug: now in section $1'. It
-	is called at the beginning of a function's section.</p>
+	<p>Funkcja debug-print() wypisuje po prostu wszystkie podane jej
+	parametry z przedroskiem 'debug:'. Używa się jej gdy tylko trafi się coś
+	wartego umieszczenia w logu diagnostycznym.</p>
+	<p>Funkcja debug-print-function() wypisuje komunikat 'debug: entering
+	function $1, parameters: $2 [$3 ....]'. Wywołuje się ją na początku
+	funkcji.</p>
+	<p>Funkcja debug-print-section() wypisuje 'debug: now in section $1'.
+	Wywołuje się ją na początku sekcji funkcji.</p>
 
-	<p>The debug output normally goes into
-	${T}/eclass-debug.log. You can set the ECLASS_DEBUG_OUTPUT
-	env. variable (in make.globals/conf or in the environment) and
-	output will be sent there as well. You can also set it to the
-	special value 'on', which echoes output to stdout together
-	with the other emerge messages.</p>
+	<p>Zwykle komunikaty diagnostyczne zapisywane są do pliku
+	${T}/eclass-debug.log. Możemy podać alternatywny plik za pomocą zmiennej
+	środowiskowej ECLASS_DEBUG_OUTPUT (w pliku make.globals/conf lub
+	bezpośrednio w środowisku), dzięki czemu komunikaty trafią również tam.
+	Ewentualnie możemy przypisać tej zmiennej specjalną wartość 'on', co
+	spowoduje wypisywanie komunikatów diagnostycznych na standardowe
+	wyjście, razem z pozostałymi komunikatami emerge.</p>
 
-	<p>Let's add typical debug output statements to our sample
-	function:</p>
-	<pre caption = "Adding debug statements">
+	<p>Dodajmy do naszej przykładowej funkcji możliwość wypisywania
+	komunikatów diagnostycznych:</p>
+	<pre caption = "Dodawanie komunikatów diagnostycznych">
 base_src_compile() {
  
     debug-print-function
@@ -340,8 +339,8 @@ base_src_compile() {
  
     debug-print &quot;${FUNCNAME}: result is ${RESULT}&quot;
 }</pre>
-	<p>${FUNCNAME} is a bash builtin that returns the current
-	function's name.</p>
+	<p>Zmienna ${FUNCNAME} to zmienna wbudowana w powłokę bash, w której
+	znajduje się nazwa aktualnie uruchomionej funkcji.</p>
 
       </body>
     </subsection>
@@ -371,18 +370,18 @@ base_src_compile() {
   </section>
 
   <section>
-    <title>Existing eclasses</title>
+    <title>Istniejące eklasy</title>
     
     <subsection>
-      <title>Introduction</title>
+      <title>Wprowadzenie</title>
       <body>
 
-	<p>Most eclasses are simple, and you should simply read them
-	and maybe glance at a couple of ebuilds using them to
-	understand how they work. Also, most eclasses are
-	well-commented, so it's best to read them.</p>
-	<p>This chapter documents the overall relationship between the
-	kde* eclasses.</p>
+	<p>Większość eklas jest raczej nieskomplikowana i wystarczy je
+	przeczytać i ewentualnie przejrzeć kilka ebuildów, które z nich
+	korzystają, aby zapoznać się z ich działaniem. W prawie wszystkich
+	znajdziemy również bogate komentarze.</p>
+	<p>Zadaniem niniejszego rozdziału jest przedstawić ogólne powiązania
+	pomiędzy eklasami z grupy kde*.</p>
 
       </body>
     </subsection>
@@ -391,24 +390,29 @@ base_src_compile() {
       <title>base.eclass</title>
       <body>
 
-	<p>This eclass defines some default variables and functions,
-	similar to those you'd get by default in a non-inheriting
-	ebuild (which are defined in ebuild.sh). You probably aren't
-	interested in using it directly, but rather through one of the
-	kde eclasses, which inherit it.</p>
-	<p>One interesting bit of functionality it provides is the
-	autopatch capability. If you set the PATCHES variable to
-	conain a list of files in your ebuild that uses
-	base_src_unpack() (or kde_src_unpack()), the sources will be
-	patched from those files. The patches need to work with -p0
-	when run from ${S}.</p>
-	<p>Note that you can set PATCHES without defining a custom
-	src_unpack() in your ebuild! That is what it's for.</p>
-	<p>The newer epatch() function from eutils.eclass is much more
-	powerful - it supports compressed patches, patch directories
-	and series, and automatic detection of the patch level - and I
-	intend to make autopatch use it sonmeday.</p>
-	<p>Note that the <c>patch</c> section in base_src_unpack() is
+	<p>W tej klasie zdefiniowane są zmienne i funkcje podobne do zawartych
+	domyślnie w tych ebuildach, które nie dziedziczą żadnych klas (są one
+	zdefiniowane w pliku ebuild.sh). Najprawdopodobniej nie będziemy
+	zainteresowani korzystaniem z nich bezpośrednio, lecz poprzez jedną z
+	eklas kde, które je dziedziczą.</p>
+	<p>Jedną z interesujących funkcjonalności, które dostarcza ta eklasa
+	jest możliwość automatycznego nakładania łatek. Jeśli w zmiennej
+	PATCHES umieścimy listę plików z ebuilda, do których rozpakowania nada
+	się funkcja base_src_unpack() (lub kde_src_unpack()), to na źródła
+	zostaną nałożone łatki z tych plików. Musimy zadbać, aby polecenie patch
+	zadziałało z parametrem -p0 z katalogu ${S}.</p>
+	<p>Zwróćmy uwagę, że możemy ustawić zmienną PATCHES bez definiowania
+	własnej funkcji src_unpack() w naszym ebuildzie. Właśnie po to ona
+	jest.</p>
+	<p>Nowsza funkcja epatch() z eklasy eutils.eclass jest znacznie bardziej
+	rozbudowana -- obsługuje skompresowane pliki łatek, katalogi i FIXME
+	serie łatek i automatyczne wykrywanie poziomu łatki -- dlatego któregoś
+	dnia planuję zmodyfikować powyższy mechanizm automatycznego nakładania
+	poprawek, aby z niej korzystał.</p>
+	<p>Należy zwrócić uwagę, że używanie sekcji <c>patch</c> funkcji
+	base_src_unpack() jest niezalecane wkrótce zostanie ona usunięta. 
+	
+	Note that the <c>patch</c> section in base_src_unpack() is
 	deprecated and will be removed soon. If you see an ebuild
 	using it, it needs to be converted to the <c>autopatch</c>
 	style.</p>
