@@ -7,24 +7,30 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/hardened/selinux/hb-selinux-faq.xml,v 1.1 2004/07/06 03:22:02 pebenito Exp $ -->
 
 <sections>
-<section><title>Brakuje modułu SELinux podczas instalacji</title>
-<subsection><title>"Dostaję ten błąd podczas instalacji:"</title>
+<section>
+<title>Brakuje modułu SELinux podczas instalacji</title>
+<subsection>
+<title>"Otrzymuję ten błąd podczas instalacji:"</title>
 <body>
+
 <pre>
 !!! SELinux module not found. Please verify that it was installed.
 </pre>
+
 <p>
-  Oznacza to że brakuje modułu SELinux w portage lub jest on uszkodzony. Również
-  python mógł być uaktualniony do nowej wersji, co oznacza iż nalezy
-  przekompilować python-selinux. Przeinstalowanie dev-python/python-selinux
-  powinno pomóc. Również poszczególne paczki mogły być zainstalowane bez
-  odpowiednich oznakowań, więc przydałoby się dokonać takiego oznakowania.
+Oznacza to że brakuje modułu SELinux w portage lub jest on uszkodzony. Również
+python mógł być uaktualniony do nowej wersji, co oznacza iż należy
+przekompilować python-selinux. Przeinstalowanie dev-python/python-selinux
+powinno pomóc. Również poszczególne pakiety mogły być zainstalowane bez
+odpowiednich oznakowań, więc przydałoby się dokonać takiego oznakowania.
 </p>
-</body></subsection>
+
+</body>
+</subsection>
 </section>
 
-<section><title>Błąd podczas rejestrowania możliwości [capabilities] z
-jądrem</title>
+<section>
+<title>Błąd podczas rejestrowania modułu w jądrze</title>
 <subsection><title>"Mam ten błąd jądra podczas uruchamiania:"</title>
 <body>
 <pre>
@@ -33,18 +39,25 @@ Failure registering capabilities with the kernel
 selinux_register_security:  Registering secondary module capability
 Capability LSM initialized
 </pre>
+
 <p>
-  Oznacza to że moduł Capability LSM nie może się zarejestrować jako pierwszy
-  moduł, gdyż tym modułem jest już SELinux. Trzeci komunikat oznacza że
-  rejestruje jako drugi moduł SELinuxa. Jest to normalne zachowanie.
+Oznacza to że moduł Capability LSM nie może zostać zarejestrowany jako pierwszy
+moduł, gdyż na tej pozycji jest już SELinux. Trzeci komunikat oznacza, że moduł
+SELinux zostaje zarejestrowany jako drugi. Jest to normalne zachowanie.
 </p>
-</body></subsection>
+
+</body>
+</subsection>
 </section>
 
-<section><title>Zły kontekst plików podczas oznakowywania plików</title>
-<subsection><title>"Podczas oznakowywania plików, dostaję błąd o nieprawidłowych
-kontekstach."</title><body>
-<pre caption="Invalid contexts example">
+<section>
+<title>Zły kontekst plików podczas ich oznakowywania</title>
+<subsection>
+<title>"Podczas oznakowywania plików, dostaję błąd o nieprawidłowych
+kontekstach."</title>
+<body>
+
+<pre caption="Przykładowy błąd nieprawidłowych kontekstów">
 # make relabel
 /usr/sbin/setfiles file_contexts/file_contexts `mount | awk '/(ext[23]| xfs).*rw/{print $3}'`
 /usr/sbin/setfiles:  read 559 specifications
@@ -61,28 +74,35 @@ kontekstach."</title><body>
 Exiting after 10 errors.
 make: *** [relabel] Error 1
 </pre>
+
 <p>
-  Na początku należy się upewnić że /selinux jest zamontowana. Jeśli selinuxfs
-  nie jest zamontowane, setfiles nie potrafi sprawdzić jakichkolwiek kontekstów,
-  co powoduje iż uznaje że wszystkie konteksty są nieprawidłowe. Jeśli /selinux
-  jest zamontowane, to najprawdopodobniej istnieje nowa polityka, która jeszcze
-  nie została zamontowane, co oznacza że dane konteksty jeszcze nie są
-  prawidłowe.
+Na początku należy upewnić się, że odbyło się montowanie w
+<c>/selinux</c>. Jeśli selinuxfs nie jest zamontowane, <c>setfiles</c> nie
+potrafi sprawdzić kontekstów, co powoduje, iż uznaje, że wszystkie konteksty są
+nieprawidłowe. Jeśli <c>/selinux</c> jest zamontowane, to najprawdopodobniej
+istnieje nowa polityka, która jeszcze nie została zamontowana, co z kolei
+oznacza, że obecne konteksty nie są prawidłowe.
 </p>
-</body></subsection>
+
+</body>
+</subsection>
 </section>
 
-
 <!-- always keep this one as the bottom FAQ :) -->
-<section><title>Przykładowa maszyna Gentoo SELinux</title>
-<subsection><body>
+<section>
+<title>Przykładowa maszyna Gentoo SELinux</title>
+<subsection>
+<body>
+
 <p>
-  Ta maszyna nie jest uruchomiona w trybie użytkownika, ani chroot'a - posiada
-  obowązkową kontrolę dostępu SELinuxa. Nie, nie można zainstalować na niej
-  psybnc lub irc-bota, chyba że uda się zniszczyć zabezpieczenia SELinuxa i
-  otrzymać wyższe prawa dostępu.
+Ta maszyna nie wykorzystuje user-mode linux, ani środowiska chrootowanego -
+korzysta jedynie z kontroli dostępu narzuconej przez SELinux. Nie, nie można
+zainstalować na niej psybnc lub irc-bota, chyba że uda się złamać zabezpieczenia
+SELinux i zdobyć wyższy poziom uprawnień.
 </p>
-</body></subsection>
+
+</body>
+</subsection>
 </section>
 <!-- dont put anything below here, this demo machine faq should be the last one -->
 </sections>
