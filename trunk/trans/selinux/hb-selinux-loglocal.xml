@@ -7,165 +7,249 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/hardened/selinux/hb-selinux-loglocal.xml,v 1.4 2004/11/16 00:20:49 pebenito Exp $ -->
 
 <sections>
-<section><title>Należy rozpocząć tutaj</title>
-<subsection><body>
+<section>
+<title>Stąd zaczynamy</title>
+<subsection>
+<body>
+
 <p>
-Należy posiadać rolę <c>sysadm_r</c>, aby dokonać tych czynności.
+Konieczne jest posiadanie statusu <c>sysadm_r</c>, aby wykonać poniższe czynności.
 </p>
+
 <p>
-Trzeba wpisać <c>sestatus -v</c>, potem kliknąć na pierwszym kontekście, który
-nie pasuje:
+Wykonujemy polecenie <c>sestatus -v</c>, a następnie wybieramy z poniższej listy
+pierwszy kontekst, który nie pasuje:
 </p>
+
 <table>
-<tr><th>Proces</th><th>Kontekst</th></tr>
-<tr><ti>Init context</ti><ti><uri link="#doc_chap2">system_u:system_r:init_t</uri></ti></tr>
-<tr><ti>/sbin/agetty</ti><ti><uri link="#doc_chap3">system_u:system_r:getty_t</uri></ti></tr>
-<tr><th>Plik</th><th>Kontekst</th></tr>
-<tr><ti>/bin/login</ti><ti><uri link="#doc_chap4">system_u:object_r:login_exec_t</uri></ti></tr>
-<tr><ti>/sbin/unix_chkpwd</ti><ti><uri link="#doc_chap5">system_u:object_r:chkpwd_exec_t</uri></ti></tr>
-<tr><ti>/etc/passwd</ti><ti><uri link="#doc_chap6">system_u:object_r:etc_t</uri></ti></tr>
-<tr><ti>/etc/shadow</ti><ti><uri link="#doc_chap6">system_u:object_r:shadow_t</uri></ti></tr>
-<tr><ti>/bin/bash</ti><ti><uri link="#doc_chap7">system_u:object_r:shell_exec_t</uri></ti></tr>
+<tr>
+  <th>Proces</th>
+  <th>Kontekst</th>
+</tr>
+<tr>
+  <ti>Init context</ti>
+  <ti><uri link="#doc_chap2">system_u:system_r:init_t</uri></ti>
+</tr>
+<tr>
+  <ti>/sbin/agetty</ti>
+  <ti><uri link="#doc_chap3">system_u:system_r:getty_t</uri></ti>
+</tr>
+<tr>
+  <th>Plik</th>
+  <th>Kontekst</th>
+</tr>
+<tr>
+  <ti>/bin/login</ti>
+  <ti><uri link="#doc_chap4">system_u:object_r:login_exec_t</uri></ti>
+</tr>
+<tr>
+  <ti>/sbin/unix_chkpwd</ti>
+  <ti><uri link="#doc_chap5">system_u:object_r:chkpwd_exec_t</uri></ti>
+</tr>
+<tr>
+  <ti>/etc/passwd</ti>
+  <ti><uri link="#doc_chap6">system_u:object_r:etc_t</uri></ti>
+</tr>
+<tr>
+  <ti>/etc/shadow</ti>
+  <ti><uri link="#doc_chap6">system_u:object_r:shadow_t</uri></ti>
+</tr>
+<tr>
+  <ti>/bin/bash</ti>
+  <ti><uri link="#doc_chap7">system_u:object_r:shell_exec_t</uri></ti>
+</tr>
 </table>
-</body></subsection>
+
+</body>
+</subsection>
 </section>
 
-<section><title>Nieprawidłowy kontekst init'a</title>
-<subsection><title>Sprawdzenie znacznika inita</title>
+<section>
+<title>Nieprawidłowy kontekst init</title>
+<subsection>
+<title>Sprawdzenie znacznika init</title>
 <body>
+
 <p>
-Istnieje wiele możliwości dla których init posiada niewłaściwy kontekst.
-Po pierwsze, należy sprawdzić czy init jest właściwie oznakowany. Wystarczy
-sprawdzić w wyniku polecenia sestatus'u dla /sbin/init. Jeśli nie jest to
-<c>system_u:object_r:init_exec_t</c>, należy dokonać ponownego oznakowania
-sysvinit'a.
+Istnieje wiele sytuacji, w których init może posiadać niewłaściwy kontekst. Po
+pierwsze, należy sprawdzić czy init jest właściwie oznakowany. Aby tego dokonać
+wystarczy sprawdzić wynik polecenia <c>sestatus</c> dla
+<path>/sbin/init</path>. Jeśli nie jest to <c>system_u:object_r:init_exec_t</c>,
+należy dokonać ponownego oznakowania sysvinit.
 </p>
-<pre>
+
+<pre caption="Ponowne znakowanie sysvinit">
 # <i>rlpkg sysvinit</i>
 </pre>
-</body></subsection>
-<subsection><title>Sprawdzenie dostępnej polityki</title><body>
+
+</body>
+</subsection>
+<subsection>
+<title>Sprawdzenie dostępnej polityki</title>
+<body>
+
 <p>
-Odpowiedni plik binarny polityki musi znajdować się w /etc/security/selinux. Dla
-przykładu polityki w wersji 17, musi istnieć plik
-/etc/security/selinux/policy.17. Jeśli go brakuje, należy dostosować plik <uri
-link="?part=4&amp;chap=1#doc_chap6_sect3">Makefile</uri>. Potem przekompilować i
-zainstalować politykę.
+Odpowiedni plik binarny polityki musi znajdować się w
+<path>/etc/security/selinux</path>. Przykładowo dla polityki w wersji 17, musi
+istnieć plik <path>/etc/security/selinux/policy.17</path>. Jeśli go brakuje,
+należy dostosować plik <uri
+link="?part=4&amp;chap=1#doc_chap6_sect3">Makefile</uri>, a następnie
+przekompilować i zainstalować politykę.
 </p>
-<pre>
+
+<pre caption="Kompilacja i instalacja polityki">
 # <i>cd /etc/security/selinux/src/policy</i>
 # <i>make clean</i>
 # <i>make install</i>
 </pre>
+
 </body>
 </subsection>
-<subsection><title>Sprawdzenie czy init moze załadować daną
-politykę</title><body>
+<subsection>
+<title>Sprawdzenie czy init może załadować daną politykę</title>
+<body>
+
 <p>
-Ostatecznym sprawdzianem jest upewnienie się że init może załadować politykę.
+Ostatecznym sprawdzianem jest upewnienie się, że init może załadować politykę.
 Wystarczy uruchomić polecenie <c>ldd</c> na pliku init i sprawdzić czy
-libselinux znajduje się w wyniku. Jeśli nie, należy przeinstalować sysvinit.
+libselinux znajduje się w wynikach. Jeśli nie, należy przeinstalować sysvinit.
 </p>
-<pre>
+
+<pre caption="Testowanie, czy init może załadować wybraną politykę">
 # <i>ldd /sbin/init</i>
   linux-gate.so.1 =>  (0xffffe000)
   <comment>libselinux.so.1 => /lib/libselinux.so.1 (0x40025000)</comment>
   libc.so.6 => /lib/libc.so.6 (0x40035000)
   /lib/ld-linux.so.2 => /lib/ld-linux.so.2 (0x40000000)
 </pre>
+
 <p>
-Teraz należy dokonać ponownego rozruchu aby init otrzymał prawidłowy kontekst i
+Teraz należy ponownie uruchomić komputer, aby init otrzymał prawidłowy kontekst i
 załadował politykę.
 </p>
-</body></subsection>
+
+</body>
+</subsection>
 </section>
 
-<section><title>Nieprawidłowy kontekst agetty</title>
-<subsection><body>
+<section>
+<title>Nieprawidłowy kontekst agetty</title>
+<subsection>
+<body>
+
 <p>
-Należy sprawdzić czy agetty jest prawidłowo oznakowana. Wystarczy posłużyć się
-poleceniem sestatus dla pliku /sbin/agetty. Jeśli nie jest to
-<c>system_u:object_r:getty_exec_t</c>, należy dokonać ponownego oznakowania
-pakietu util-linux. Potem należy ponownie uruchomić wszystkie procesy agetty.
+Należy sprawdzić, czy agetty jest prawidłowo oznakowana. Wystarczy posłużyć się
+poleceniem <c>sestatus</c> dla pliku <path>/sbin/agetty</path>. Jeśli nie
+otrzymamy w jego wyniku <c>system_u:object_r:getty_exec_t</c>, konieczne jest
+dokonanie ponownego oznakowania pakietu <c>util-linux</c>. Potem należy ponownie
+uruchomić wszystkie procesy agetty.
 </p>
-<pre>
+
+<pre caption="Znakowanie i restartowanie procesów agetty">
 # <i>rlpkg util-linux</i>
 # <i>killall agetty</i> <comment>(uruchomią się ponownie)</comment>
 </pre>
+
 <p>
 Wszystkie procesy agetty powinny posiadać poprawny kontekst
-<c>system_u:object_r:getty_exec_t</c>. Można spróbować ponownie się zalogować.
+<c>system_u:object_r:getty_exec_t</c>. Możemy spróbować ponownie się zalogować.
 </p>
+
 </body>
 </subsection>
 </section>
 
-<section><title>Nieprawidłowy kontekst login</title>
-<subsection><body>
+<section>
+<title>Nieprawidłowy kontekst login</title>
+<subsection>
+<body>
+
 <p>
-Program do logoawnia się (/bin/login) nie jest prawidłowo oznakowany. Należy
-dokonać ponownego oznakowania paczki pam-login.
+Jeśli program do logowania się (<c>/bin/login</c>) nie jest prawidłowo
+oznakowany, należy dokonać ponownego oznakowania pakietu <c>pam-login</c>.
 </p>
-<pre>
+
+<pre caption="Ponowne znakowanie pakietu pam-login">
 # <i>rlpkg pam-login</i>
 </pre>
+
 <p>
-/bin/login powinien teraz posiadać kontekst
-<c>system_u:object_r:login_exec_t</c>. Mozna próbować ponownie się zalogować.
+<c>/bin/login</c> powinien teraz posiadać kontekst
+<c>system_u:object_r:login_exec_t</c>. Możemy spróbować ponownie się zalogować.
 </p>
+
 </body>
 </subsection>
 </section>
 
-<section><title>Nieprawidłowy kontekst PAM</title>
-<subsection><body>
+<section>
+<title>Nieprawidłowy kontekst PAM</title>
+<subsection>
+<body>
+
 <p>
 Sshd powinien mieć możliwość użycia PAM do autoryzacji użytkownika. Program do
-sprawdzania hasła PAM'a (/sbin/unix_chkpwd) musi być odpowiednio oznakowany aby
+sprawdzania hasła PAM (<c>/sbin/unix_chkpwd</c>) musi być odpowiednio oznakowany aby
 sshd mogło sprawdzić hasło. Wystarczy dokonać ponownego oznakowania PAM.
 </p>
-<pre>
+
+<pre caption="Ponowne znakowanie PAM">
 # <i>rlpkg pam</i>
 </pre>
+
 <p>
 Program do sprawdzania haseł powinien posiadać kontekst
-<c>system_u:object_r:chkpwd_exec_t</c>. Można ponownie spróbować się zalogować.
+<c>system_u:object_r:chkpwd_exec_t</c>. Możemy spróbować ponownie się zalogować.
 </p>
-</body></subsection>
-</section>
 
-<section><title>Nieprawidłowy kontekst plików związanych z hasłami</title>
-<subsection><body>
-<p>
-Pliki z hasłami (/etc/passwd oraz /etc/shadow) powinny być odpowiednio
-oznakowane. W innym przypadku PAM nie będzie w stanie poprawnie zautoryzować
-użytkowników. Należy dokonać ponownego oznakowania tych plików.
-</p>
-<pre>
-# <i>restorecon /etc/passwd /etc/shadow</i>
-</pre>
-<p>
-Pliki passwd oraz shadow powinny posiadać teraz kontekst odpowiednio 
-<c>system_u:object_r:etc_t</c> oraz <c>system_u:object_r:shadow_t</c>. Można
-ponownie spróbować się zalogować.
-</p>
 </body>
 </subsection>
 </section>
 
-<section><title>Nieprawidłowy kontekst bash'a</title>
-<subsection><body>
+<section>
+<title>Nieprawidłowy kontekst plików związanych z hasłami</title>
+<subsection>
+<body>
+
 <p>
-Bash musi być odpowiednio oznakowany aby uzytkownik mógł się zalogować do
+Pliki z hasłami (<path>/etc/passwd</path> oraz <path>/etc/shadow</path>) powinny
+być odpowiednio oznakowane. W innym przypadku PAM nie będzie w stanie poprawnie
+autoryzować użytkowników. Należy dokonać ponownego oznakowania tych plików.
+</p>
+
+<pre caption="Ponowne znakowanie plików związanych z hasłami">
+# <i>restorecon /etc/passwd /etc/shadow</i>
+</pre>
+
+<p>
+Pliki <path>/etc/passwd</path> oraz <path>/etc/shadow</path> powinny posiadać
+teraz kontekst odpowiednio <c>system_u:object_r:etc_t</c> i
+<c>system_u:object_r:shadow_t</c>. Możemy spróbować ponownie się zalogować.
+</p>
+
+</body>
+</subsection>
+</section>
+
+<section>
+<title>Nieprawidłowy kontekst basha</title>
+<subsection>
+<body>
+
+<p>
+Bash musi być odpowiednio oznakowany, aby użytkownik mógł się zalogować do
 odpowiedniej domeny. Należy dokonać ponownego oznakowania basha.
 </p>
-<pre>
+
+<pre caption="Ponowne znakowanie basha">
 # <i>rlpkg bash</i>
 </pre>
+
 <p>
-Bash (/bin/bash) powinien posiadać teraz kontekst
-<c>system_u:object_r:shell_exec_t</c>.  Można ponownie spróbować się zalogować.
+Bash (<c>/bin/bash</c>) powinien posiadać teraz kontekst
+<c>system_u:object_r:shell_exec_t</c>. Możemy spróbować ponownie się zalogować.
 </p>
+
 </body>
 </subsection>
 </section>
