@@ -9,76 +9,58 @@
 <longname>SELinux</longname>
 
 <description>
-  SELinux to system obowiązkowej kontroli dostępu (ang. mandatory access
-  controls). SELinux może wymusić politykę bezpieczeństwa wobec wszystkich
-  procesów oraz obiektów w systemie.
-  
-  SELinux is a system of mandatory access controls.  SELinux can enforce
-  the security policy over all processes and objects in the system.
+SELinux jest systemem obowiązkowej kontroli dostępu (ang. mandatory access
+controls). SELinux może wymusić politykę bezpieczeństwa wobec wszystkich
+procesów oraz obiektów w systemie.
 </description>
 
 <longdescription>
-  Ten projekt zarządza wsparciem dla SELinux w Gentoo. W skład tego wchodzi
-  dostarczanie jąder z obsługą SELinux, dostarczanie narzędzi dla użytkowników,
-  pisanie silnych specyficznych dla Gentoo podstawowych profili, jak również
-  wstawianie tych profili do Portage. SELinux jest ograniczone do architektury
-  x86 na jądrze 2.4, jednak jest zintegrowany z jądrem 2.6, dzięki czemu jest
-  dostępny dla wszystkich architektur.
-  
-	This project manages SELinux support in Gentoo.  This includes providing
-	kernels with SELinux support, providing patches to userland utilities, writing
-	strong Gentoo-specific default profiles, and deploying policies from Portage.
-	SELinux is limited to x86 on 2.4, but is integrated in 2.6, and available on
-	all architectures.
+Ten projekt odpowiedzialny jest za obsługę SELinux w Gentoo. Obejmuje to
+dostarczanie jąder z obsługą SELinux, dostarczanie narzędzi dla użytkowników,
+pisanie specyficznych dla Gentoo podstawowych profili, jak również
+integrowanie tych profili w Portage. SELinux jest ograniczone do architektury
+x86 przy jądrze 2.4, jednak zostało zintegrowane z jądrem 2.6, dzięki czemu jest
+dostępny dla wszystkich architektur.
 </longdescription>
 
 <goals>
-  Założeniem projektu jest sprawienie aby SELinux był dostępny dla większej
-  liczby użytkowników, jak również ma na celu poprawianie jego integracji.
+Założeniem projektu jest sprawienie, aby SELinux był dostępny dla większej
+liczby użytkowników, jak również poprawianie jego integracji w systemie.
 
-  [Policy] powinny być dostępne dla wszystkich popularnych daemonów oraz pliki
-  pochodzących z oprogramowania zainstalowanego przy pomocy Portage powinny mieć
-  odpowiedni [kontekst pliku]. Obecnie, prace są ukierunkowane na serwery,
-  jednakże wkrótce rózwnież stacje robocze będą wspierane.
-  
-  The intention of the project is to make SELinux available to more users, and
-  improving its integration.
-  Policy should be available for common daemons, and files merged in from Portage
-  should have the correct file context.  Currently we only work on servers, but
-  desktops will be supported in the future.
+Polityki powinny być dostępne dla wszystkich popularnych demonów, a pliki
+oprogramowania, zainstalowanego przy pomocy Portage powinny mieć odpowiednie
+konteksty (czytając podręcznik dowiemy się czym są polityki i konteksty oraz
+jakie jest ich znaczenie w systemie - przyp. tłum). Obecnie, prace są
+ukierunkowane na obsługę serwerów, jednak wkrótce również stacje robocze będą
+obsługiwane.
 </goals>
 
 <extrachapter position="goals">
 <title>Czym jest SELinux?</title>
-<section><body>
+<section>
+<body>
+
 <p>
-  <uri link="http://www.nsa.gov/selinux">Security-Enhanced Linux</uri> (SELinux)
-  to system obowiązkowej kontroli dostępu używającego [type enforcement] oraz
-  kontroli dostępu w zależności od posiadanej roli. Jest zaimplementowany jako
-  <uri link="http://lsm.immunix.org/">Linux Security Module</uri> (LSM).
-  Dodatkowo, system jest wzbogacony o bibliotekę SELinuksa (libselinux),
-  użyteczne oprogramowanie dla użytkownika służące do kompilowania polityki
-  (checkpolicy), uruchamiania polityki (policycoreutils).
-  
-  is a system of mandatory access control using type enforcement and role-based
-  access control. It is implemented as a
-  <uri link="http://lsm.immunix.org/">Linux Security Module</uri> (LSM).
-  In addition to the kernel portion, SELinux consists of a library (libselinux)
-  and userland utilities for compiling policy (checkpolicy), and loading policy
-  (policycoreutils), in addition to other user programs.
+<uri link="http://www.nsa.gov/selinux">Security-Enhanced Linux</uri> (SELinux)
+jest systemem obowiązkowej kontroli dostępu, który używa silnej kontroli typów
+oraz kontroli poziomu dostępu użytkowników w zależności od posiadanego przez
+nich statusu. SELinux jest zaimplementowany jako <uri
+link="http://lsm.immunix.org/">Linux Security Module</uri> (LSM).  Dodatkowo,
+system korzystający z SELinux zostaje wzbogacony o bibliotekę SELinux
+(<c>libselinux</c>), a także o użyteczne oprogramowanie dla użytkowników,
+służące do kompilowania polityk (<c>checkpolicy</c>) oraz ich uruchamiania
+(<c>policycoreutils</c>).
 </p>
+
 <p>
-  Istnieje pewna powszechna nieścisłość, mówiąca o tym że SELinux to kompleksowe
-  zabezpieczenie systemu, niemniej jednak - nie jest. SELinux jedynie dostarcza
-  cząstkę takich zabezpieczeń. Doskonale współpracuje z innymi projektami
-  [hardened], takimi jak PaX, aby otrzymać kompletne rozwiązanie.
-  
-  One common misconception is that SELinux is a complete security solution,
-  however, it is not.  SELinux only provides one piece of a security
-  solution.  It can work well with other Hardened projects, such as PaX,
-  for a more complete solution.
+Powszechnie uważa się, że SELinux stanowi kompletne zabezpieczenie systemu,
+jednak w rzeczywistości tak nie jest. SELinux dostarcza jedynie część
+zabezpieczeń. Doskonale współpracuje on z innymi projektami Hardened, takimi
+jak PaX, co pozwala na otrzymanie kompletnego systemu zabezpieczeń.
 </p>
-</body></section>
+
+</body>
+</section>
 </extrachapter>
 
 <dev role="lead" description="Base policy, x86, PPC, AMD64">pebenito</dev>
@@ -86,42 +68,43 @@
 <dev description="Daemon policy, x86">kaiowas</dev>
 
 <extraproject name="Base Policy" lead="pebenito">
-  Polityka SELinux przeznaczona dla systemu bazowego, włączając w to
-  użytkowników, administratorów oraz daemony w profilu systemowym.
+Polityka SELinux przeznaczona dla systemu bazowego, włączając w to
+użytkowników, administratorów oraz demony w profilu systemowym.
 </extraproject>
 <extraproject name="Daemon Policy" lead="kaiowas">
-  Polityka SELinux dla popularnych daemonów.
+Polityka SELinux dla popularnych demonów.
 </extraproject>
 <extraproject name="x86" lead="pebenito">
-  Wsparcie dla architektury x86.
+Obsługa dla architektury x86.
 </extraproject>
 <extraproject name="PPC" lead="pebenito">
-  Wsparcie dla architektury PowerPC.
+Obsługa dla architektury PowerPC.
 </extraproject>
 <extraproject name="SPARC" lead="method">
-  Wsparcie dla architektury SPARC64.
+Obsługa dla architektury SPARC64.
 </extraproject>
 <extraproject name="AMD64" lead="pebenito">
-  Wsparcie dla architektury AMD64 (x86-64).
+Obsługa dla architektury AMD64 (x86-64).
 </extraproject>
 
 <plannedproject name="non-x86 Support">
-  Profile, przewodniki instalacji, oraz wsparcie dla architektur innych niż x86.
+Profile, przewodniki instalacji, oraz obsługa architektur innych niż x86.
 </plannedproject>
 <plannedproject name="Desktop">
-  Wsparcie SELinux dla komputerów biurkowych. Zawiera również poprawdki do
-  bezpieczeństwa XFree i pochodnych polityk.
+Obsługa SELinux na komputerach typu desktop. Zawiera również poprawki do
+bezpieczeństwa XFree i pochodnych.
 </plannedproject>
 
 <!--
 <resource link="http://selinux.dev.gentoo.org">SELinux Demonstration Machine</resource>
 -->
+
 <resource
 link="http://www.gentoo.org/proj/en/hardened/selinux/selinux-x86-handbook.xml">Podręcznik
-o SELinux dla x86</resource>
+SELinux dla x86</resource>
 <resource
 link="http://www.gentoo.org/proj/en/hardened/selinux/selinux-ppc-handbook.xml">Podręcznik
-o SELinux dla PPC</resource>
+SELinux dla PPC</resource>
 <resource
 link="http://www.gentoo.org/proj/en/hardened/selinux/selinux-sparc64-handbook.xml">Podręcznik
 o SELinux dla SPARC</resource>
@@ -130,75 +113,84 @@ link="http://www.gentoo.org/proj/en/hardened/selinux/selinux-amd64-handbook.xml"
 o SELinux dla AMD64</resource>
 
 <extrachapter position="resources">
-<title>Jak tego używać?</title>
+<title>Jak korzystać z SELinux?</title>
 <section>
 <body>
+
 <p>
-  SELinux może być zainstalowany na nowym systemie, co dokładnie opisują
-  powyższe podręczniki instalacji dla danej architektury. Jeśli z jakichś
-  powodów nie ma w spisie odpowiedniej architektury, możliwe jest nadal
-  dokonanie instalacji przy pomocy <uri
-  link="http://www.gentoo.org/doc/en/handbook/index.xml">Podręcznika
-  Gentoo</uri>. Gdy system jest już zainstalowany, należy kierować się
-  rozdziałem o konwersji do SELinux w podręczniku.
+SELinux może być zainstalowany od razu podczas instalacji systemu, co
+dokładnie opisują powyższe podręczniki instalacji dla poszczególnych
+architektur. Jeśli z jakichś powodów nie ma w spisie odpowiedniej
+architektury, możliwe jest nadal dokonanie instalacji przy pomocy <uri
+link="http://www.gentoo.org/doc/pl/handbook/index.xml">Podręcznika
+Gentoo</uri>, a gdy system będzie już zainstalowany, dokonanie konwersji do
+SELinux.
 </p>
+
 </body>
 </section>
 </extrachapter>
 
 <extrachapter position="bottom">
-<title>Chcę uczestniczyć.</title>
+<title>Uczestnictwo w projekcie</title>
 <section>
 <body>
+
 <p>
-  Aby uczestniczyć w projekcie SELinux, najpierw należy dołączyć do list
-  dyskusyjnych <i>gentoo-hardened@gentoo.org</i>. Potem należy zapytać czy są
-  plany w rozwoju czegoś, czym jest się zainteresowanym, bądź należy
-  zaproponować nowy podprojekt  lub wybrać jeden z już istniejących
-  podprojektów. Można również podjąć dyskusję z deweloperami oraz użytkownikami
-  na kanale IRCowym <i>#gentoo-hardened</i> na serwerze <i>irc.freenode.net</i>
-  uzyskując więcej informacji, lub po prostu w celu pogawędki na temat projektu
-  lub podprojektów. Jeśli nie ma możliwości aktywnie pomagać poprzez pracę na
-  rzecz projektu, zawsze potrzebni są testerzy aby używać i sprawdzać polityki
-  SELinuksa. Każdy rodzaj pracy będzie mile widziany.
+Aby uczestniczyć w projekcie SELinux, najpierw należy dołączyć do listy
+mailingowej <c>gentoo-hardened@gentoo.org</c>. Potem należy zapytać, czy są
+plany w rozwoju czegoś, czym jesteśmy zainteresowani, bądź zaproponować nowy
+podprojekt lub też dołączyć do jednego z już istniejących. Można również podjąć
+dyskusję z deweloperami oraz użytkownikami na kanale IRC
+<c>#gentoo-hardened</c> na serwerze <c>irc.freenode.net</c>. Można tam uzyskać
+dodatkowe informacje lub po prostu pogawędzić na temat projektu lub
+podprojektów. Jeśli nie mamy możliwości aktywnego uczestnictwa w projekcie
+poprzez pracę na jego rzecz, zawsze możemy pomagać testując polityki
+SELinux. Każdy rodzaj pomocy będzie mile widziany.
 </p>
+
 </body>
 </section>
-<section><title>Zatwierdzanie polityk</title>
+<section>
+<title>Zatwierdzanie polityk</title>
 <body>
+
 <p>
-  Krytyczną częścią systemu opartego o SELinux to posiadanie silnej polityki
-  zabezpieczeń. Nasz zespół robi wszystko aby wspierać jak największą ilosć
-  daemonów. Jednakże, nie możemy tworzyć polityk dla daemonów z którymi nie
-  mieliśmy doczynienia. Jesteśmy jednak szczęśliwi gdy otrzymujemy polityki od
-  użytkowników, którymi możemy się posłużyć. Jest jednak kilka wymagań:
+Krytyczną częścią systemu opartego o SELinux silna polityka zabezpieczeń. Nasz
+zespół robi wszystko, aby zapewnić obsługę jak największej ilości
+demonów. Nie możemy jednak tworzyć polityk dla demonów, z którymi nie
+mieliśmy do czynienia. Jesteśmy szczęśliwi, gdy otrzymujemy polityki od
+użytkowników, które możemy wykorzystać. Jest jednak kilka wymagań:
 </p>
+
 <ul>
 <li>
-  Muszą posiadać komentarze (w polityce i/lub w [bugu]), tak aby można było
-  zrozumieć zmiany względem przykładowej polityki NSA.
+  Polityki muszą posiadać komentarze (w polityce i/lub w raporcie), aby
+  można było zrozumieć zmiany względem przykładowej polityki NSA.
 </li>
 <li>
-  Polityka powinna dotyczyć domyślnych instalacji. Prosimy o nie przesyłanie
-  polityk dla niestandardowych i dziwnych konfiguracji daemonów.
+  Polityka powinna dotyczyć domyślnych instalacji. Prosimy nie przesyłać
+  polityk dla niestandardowych i dziwnych konfiguracji demonów.
 </li>
 <li>
-  Musimy wiedzieć czy dana polityka jest zależna od innej polityki (dla
-  przykładu, rpcd jest zależne od portmap) innej niż głównej polityki.
+  Musimy wiedzieć czy dana polityka jest zależna od polityki innej niż
+  główna polityka (dla przykładu, rpcd jest zależne od portmap).
 </li>
 <li>
-  Ebuild dla polityki może również zostać wysłany, aby pomóc deweloperom włączyć
-  daną politykę do portage znacznie szybciej, jeśli zostanie zaakceptowana.
-  Można spojrzeć na bieżące polityki daemonów w portage, aby uzyskać przykład
-  użycia eclassy selinux-policy.
+  Ebuild dla polityki może również zostać wysłany, aby pomóc deweloperom
+  szybciej włączyć daną politykę do Portage, jeśli zostanie ona zaakceptowana.
+  Można przyjrzeć się bieżącym politykom demonów w Portage, aby uzyskać przykład
+  użycia eclass selinux-policy.
 </li>
 </ul>
+
 <p>
-  Polityka powinna być wysłana za pomocą <uri
-  link="http://bugs.gentoo.org/">bugzilli</uri>. Prosimy o dołączenie plików .te
-  oraz .fc osobno w [bugu], nie jako archiwum tar. [Bug] powinien być przypisany
-  do <c>selinux@gentoo.org</c>.
+Polityka powinna być wysłana za pomocą <uri
+link="http://bugs.gentoo.org/">Bugzilli</uri>. Prosimy o dołączenie plików
+<path>.te</path> oraz <path>.fc</path> osobno w raporcie, a nie jako archiwum
+tar. Raport powinien być przypisany do <c>selinux@gentoo.org</c>.
 </p>
+
 </body>
 </section>
 </extrachapter>

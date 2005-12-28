@@ -12,8 +12,11 @@
 <author title="Autor">
   Główni autorzy Podręcznika Gentoo, Redaktorzy oraz Współpracownicy
 </author>
-<author title="Tłumacz">
+<author title="Tłumaczenie">
   <mail link="muchar@gentoo.org">Robert Muchacki</mail>
+</author>
+<author title="Tłumaczenie">
+  <mail link="stawrul@o2.pl">Waldemar Korłub</mail>
 </author>
 
 <abstract>
@@ -38,7 +41,7 @@ W tej części można dowiedzieć się jak zainstalować Gentoo SELinux.
 <title>O instalacji Gentoo SELinux</title>
 <abstract>
 Użytkownicy, którzy nie są obeznani z Gentoo, nie zawsze zdają sobie sprawę, że
-dokonywanie wyborów to to, o co chodzi w Gentoo.
+dokonywanie wyborów jest tym, o co chodzi w Gentoo.
 </abstract>
   <include href="hb-install-about.xml"/>
 </chapter>
@@ -82,8 +85,9 @@ opisuje jak należy rozpakować taki plik i jak skonfigurować portage.
 <chapter>
 <title>Instalacja podstawowego systemu</title>
 <abstract>
-Niezależnie od wybranego etapu, końcowym wynikem jest konieczność posiadania
-podstawowego systemu Gentoo. Ten rozdział opisuje jak przebrnąć przez ten etap.
+Niezależnie od wybranego etapu, końcowym wynikem posiadanie
+podstawowego systemu Gentoo. Ten rozdział opisuje jak przebrnąć przez
+etap jego budowy.
 </abstract>
   <include href="hb-install-system.xml"/>
 </chapter>
@@ -92,7 +96,7 @@ podstawowego systemu Gentoo. Ten rozdział opisuje jak przebrnąć przez ten eta
 <title>Konfiguracja jądra</title>
 <abstract>
 Jądro linuksa to rdzeń każdej dystrybucji. Ten rozdział przedstawia sposób
-instlacj jądra.
+instalacji jądra.
 </abstract>
   <include href="hb-install-x86-kernel.xml"/>
 </chapter>
@@ -100,16 +104,16 @@ instlacj jądra.
 <chapter>
 <title>Konfiguracja systemu</title>
 <abstract>
-Należy wyedytować kilka ważnych plików konfiguracyjnych. W tym rozdziale opisane
-jest jak należy to robić i jakich plików to dotyczy.
+Należy wyedytować kilka ważnych plików konfiguracyjnych. W tym
+rozdziale dowiemy się jakie pliki i w jaki sposób musimy zmienić.
 </abstract>
   <include href="hb-install-config.xml"/>
 </chapter>
 
 <chapter>
-<title>Instalacja niezbędnych narzędzy systemowych</title>
+<title>Instalacja niezbędnych narzędzi systemowych</title>
 <abstract>
-Jak wspomniane wcześniej, w Gentoo ważne są wybory. W tym rozdziale można
+Jak wspomniano wcześniej, w Gentoo ważne są wybory. W tym rozdziale można
 dowiedzieć się jakie narzędzia systemowe można i należy wybrać, oraz jak je
 zainstalować.
 </abstract>
@@ -120,8 +124,8 @@ zainstalować.
 <title>Instalowanie bootloadera</title>
 <abstract>
 Dla architektury x86 istnieje wiele bootloaderów. Każdy z nich posiada swoją
-własną metodę konfiguracji. Krok po kroku zostało opisane jak przejść przez
-proces ich konfiguracji.
+własną metodę konfiguracji. W tym rozdziale Krok po kroku zostało
+opisane jak przejść przez proces ich konfiguracji.
 </abstract>
   <include href="hb-install-x86-bootloader.xml"/>
 </chapter>
@@ -147,27 +151,27 @@ Gentoo zostało już zainstalowane, ale co dalej?
 <part>
 <title>Konwersja do Gentoo SELinux</title>
 <abstract>
-Alternatywnie, SELinux może zostać zainstalowany na obecnym systemie. Ten
+Alternatywnie, SELinux może zostać zainstalowany na zbudowanym już systemie. Ten
 rozdział dokładnie opisuje co należy zrobić aby przekonwertować system.
 </abstract>
 <chapter>
 <title>Wstępne przygotowania</title>
 <abstract>
-Należy przygotować się odpowiednio przed instalowaniem paczek SELinux.
+Należy przygotować się odpowiednio przed instalacją pakietów SELinux.
 </abstract>
   <include href="hb-selinux-conv-profile.xml"/>
 </chapter>
 <chapter>
 <title>Uruchomienie jądra SELinuxa</title>
 <abstract>
-Instalacja i uruchomienie jadra SELinux.
+Instalacja i uruchomienie jądra SELinux.
 </abstract>
   <include href="hb-selinux-conv-reboot1.xml"/>
 </chapter>
 <chapter>
 <title>Instalacja oprogramowania dla SELinux</title>
 <abstract>
-Instlacja paczek SELinuxa oraz polityk, jak również znakowanie systemu plików.
+Instlacja pakietów SELinuxa oraz polityk, jak również znakowanie systemu plików.
 </abstract>
   <include href="hb-selinux-conv-reboot2.xml"/>
 </chapter>
@@ -184,7 +188,7 @@ systemowych, zmiana zachowania portage etc.
 <title>Flagi USE</title>
 <abstract>
 Flagi USE są niezwykle ważną częścią Gentoo. W tym rozdziale, można nauczyć się
-jak pracować z flagami USE i jak one współgrają z systemem.
+jak pracować z flagami USE i jak współdziałają one z systemem.
 </abstract>
   <include href="/doc/pl/handbook/hb-working-use.xml"/>
 </chapter>
@@ -192,10 +196,10 @@ jak pracować z flagami USE i jak one współgrają z systemem.
 <chapter>
 <title>Portage i oprogramowanie</title>
 <abstract>
-Głównym powodem dla którego został stworzony portage, to zarządzanie
+Głównym powodem dla którego został stworzony Portage, jest zarządzanie
 oprogramowaniem w systemie. W tym rozdziale można dowiedzieć się jak uzyskać
-informacje o pakiecie, jak je zaktualizować, zainstalować/usunąć/uaktualnić i
-wiele wiele więcej...
+informacje o pakiecie, jak go zainstalować/usunąć/uaktualnić i wiele wiele
+więcej...
 </abstract>
   <include href="/doc/pl/handbook/hb-working-portage.xml"/>
 </chapter>
@@ -203,8 +207,8 @@ wiele wiele więcej...
 <chapter>
 <title>Funkcje Portage</title>
 <abstract>
-Portage Gentoo posiada wiele funkcji, które wspomagają w aspektach związanych z
-portage, jak np. czas kompilacji. Ten rozdział opisuje te funkcje.
+Portage Gentoo posiada wiele funkcji, które wspomagają system np. podczas
+kompilacji oprogramowania. Ten rozdział opisuje te funkcje.
 </abstract>
   <include href="/doc/pl/handbook/hb-working-features.xml"/>
 </chapter>
@@ -212,8 +216,8 @@ portage, jak np. czas kompilacji. Ten rozdział opisuje te funkcje.
 <chapter>
 <title>Kontrola zachowania portage</title>
 <abstract>
-Można podkręcić portage do własnych potrzeb. Tutaj można dowiedzieć się jak
-chronić pliki, wybierać serwery, zmieniać katalogi portage itp.
+Można zmodyfikować Portage do własnych potrzeb. Tutaj można dowiedzieć się jak
+chronić pliki, wybierać serwery, zmieniać katalogi Portage itp.
 </abstract>
   <include href="hb-working-behaviour.xml"/>
 </chapter>
@@ -221,8 +225,8 @@ chronić pliki, wybierać serwery, zmieniać katalogi portage itp.
 <chapter>
 <title>Skrypty inicjujące</title>
 <abstract>
-Gentoo używa specjalny format skryptów inicjujących który, wśród innych
-zastosowań, pozwala na podejmowanie decyzji związanych z zależnościami oraz
+Gentoo używa specjalnego formatu skryptów inicjujących który, poza innymi
+zastosowaniami, pozwala na podejmowanie decyzji związanych z zależnościami oraz
 pozwala na posiadanie wirtualnych skryptów inicjujących. Ten rozdział opisuje
 wszystkie te aspekty i tłumaczy jak je wykorzystać.
 </abstract>
@@ -247,22 +251,22 @@ Naucz się jak pracować z SELinux.
 <chapter>
 <title>Przegląd SELinux</title>
 <abstract>
-Selinux ma wiele części do zrozumienia. Ten rozdizał opisuje najważniejsze
-koncepcje SELinuxa oraz jego politykę.
+Selinux posiada wiele części, które powinniśmy poznać. Ten rozdział opisuje
+najważniejsze koncepcje SELinux oraz jego politykę.
 </abstract>
   <include href="hb-selinux-overview.xml"/>
 </chapter>
 <chapter>
 <title>SELinux HOWTO</title>
 <abstract>
-Ten rozdział opisuje jak radzić sobie z częstymi opracjami w SELinux.
+Ten rozdział opisuje jak radzić sobie z częstymi operacjami w SELinux.
 </abstract>
   <include href="hb-selinux-howto.xml"/>
 </chapter>
 <chapter>
 <title>SELinux FAQ</title>
 <abstract>
-Ten rozdział odpowiada na najczęściej zadawane pytania dotyczące SELinuxa.
+Ten rozdział odpowiada na najczęściej zadawane pytania dotyczące SELinux.
 </abstract>
   <include href="hb-selinux-faq.xml"/>
 </chapter>
@@ -272,14 +276,13 @@ Ten rozdział odpowiada na najczęściej zadawane pytania dotyczące SELinuxa.
 <part>
 <title>Rozwiązywanie problemów z SELinux</title>
 <abstract>
-Gdy napotyka się na problemy w systemie, SELinux może je tylko spotegować przy
-próbie naprawy. Ten rozdział pokazuje jak radzić sobie z najczęstszymi
-problemami.
+Gdy napotyka się na problemy w systemie, SELinux może je tylko spotegować. Ten
+rozdział pokazuje jak radzić sobie z najczęstszymi problemami.
 </abstract>
 <chapter>
 <title>Polityka nie ładuje się przy uruchomieniu</title>
 <abstract>
-Ten rozdział opisuje problem nie ładującej się polityki podczas uruchamiania
+Ten rozdział opisuje problemy przy ładowaniu polityki podczas uruchamiania
 systemu.
 </abstract>
   <include href="hb-selinux-initpol.xml"/>
