@@ -4,18 +4,24 @@
 <!-- $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/hardened/selinux/selinux-x86-handbook.xml,v 1.11 2005/04/02 16:24:44 pebenito Exp $ -->
 
 <book link="selinux-x86-handbook.xml">
-<title>Gentoo x86 SELinux Handbook</title>
+<title>Podręcznik o SELinux dla architektury x86</title>
 
-<author title="Author">
+<author title="Autor">
   <mail link="pebenito@gentoo.org">Chris PeBenito</mail>
 </author>
-
-<author title="Author">
-  Main Gentoo Handbook Authors, Editors, and Contributors
+<author title="Autor">
+  Główni autorzy Podręcznika Gentoo, Redaktorzy oraz Współpracownicy
+</author>
+<author title="Tłumaczenie">
+  <mail link="muchar@gentoo.org">Robert Muchacki</mail>
+</author>
+<author title="Tłumaczenie">
+  <mail link="stawrul@o2.pl">Waldemar Korłub</mail>
 </author>
 
 <abstract>
-This is the Gentoo x86 SELinux Handbook, based on the Gentoo handbook.
+To jest podręcznik Gentoo SELinux dla architektury x86, oparty na Podręczniku
+Gentoo.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -26,241 +32,241 @@ This is the Gentoo x86 SELinux Handbook, based on the Gentoo handbook.
 <date>7 October 2004</date>
 
 <part>
-<title>Installing Gentoo SELinux</title>
+<title>Instalowanie Gentoo SELinux</title>
 <abstract>
-In this part you learn how to install Gentoo SELinux on your system.
+W tej części można dowiedzieć się jak zainstalować Gentoo SELinux.
 </abstract>
 
 <chapter>
-<title>About the Gentoo Linux Installation</title>
+<title>O instalacji Gentoo SELinux</title>
 <abstract>
-Users not familiar with Gentoo do not always know that choice is what
-Gentoo is all about. 
+Użytkownicy, którzy nie są obeznani z Gentoo, nie zawsze zdają sobie sprawę, że
+dokonywanie wyborów jest tym, o co chodzi w Gentoo.
 </abstract>
   <include href="hb-install-about.xml"/>
 </chapter>
 
 <chapter>
-<title>Choosing the Right Installation Medium</title>
+<title>Wybór odpowiedniego nośnika do instalacji</title>
 <abstract>
-You can install Gentoo in many ways. This chapter explains how to install Gentoo
-using the SELinux LiveCD
+Można zainstalować Gentoo na wiele sposobów. Ten rozdział wyjaśnia w jakis
+sposób zainstalować Gentoo przy pomocy SELinux LiveCD.
 </abstract>
   <include href="hb-install-x86-medium.xml"/>
 </chapter>
 
 <chapter>
-<title>Configuring your Network</title>
+<title>Konfiguracja sieci</title>
 <abstract>
-If you want to install Gentoo using the Internet, you need to setup
-networking.
+Jeżeli zachodzi potrzeba instalacji Gentoo przy użyciu sieci, należy tą sieć
+odpowiednio skonfigurować.
 </abstract>
   <include href="/doc/en/handbook/hb-install-network.xml"/>
 </chapter>
 
 <chapter>
-<title>Preparing the Disks</title>
+<title>Przygotowanie dysków</title>
 <abstract>
-To be able to install Gentoo, you must create the necessary partitions.
-This chapter describes how to partition a disk for future usage.
+Aby móc zainstalować Gentoo, należy utworzyć odpowiednie partycje. Ten rozdział
+opisuje, w jaki sposób podzielić na partycje dyski, do przyszłego użytku.
 </abstract>
   <include href="hb-install-x86-disk.xml"/>
 </chapter>
 
 <chapter>
-<title>Installing the Gentoo Installation Files</title>
+<title>Instalowanie plików instalacyjnych Gentoo</title>
 <abstract>
-Gentoo installs work through socalled stage-files. In this chapter we
-describe how you extract a stage-file and configure Portage.
+Instalacja Gentoo przebiega przy pomocy tak zwanych plików stage. Ten rozdział
+opisuje jak należy rozpakować taki plik i jak skonfigurować portage.
 </abstract>
   <include href="hb-install-stage.xml"/>
 </chapter>
 
 <chapter>
-<title>Installing the Gentoo Base System</title>
+<title>Instalacja podstawowego systemu</title>
 <abstract>
-Independent of what stage you chose, the eventual result is that you
-have a Gentoo base system at your disposal. This chapter describes how
-to progress to that stadium.
+Niezależnie od wybranego etapu, końcowym wynikem posiadanie
+podstawowego systemu Gentoo. Ten rozdział opisuje jak przebrnąć przez
+etap jego budowy.
 </abstract>
   <include href="hb-install-system.xml"/>
 </chapter>
 
 <chapter>
-<title>Configuring the Kernel</title>
+<title>Konfiguracja jądra</title>
 <abstract>
-The Linux kernel is the core of every distribution. This chapter
-explains how to configure your kernel.
+Jądro linuksa to rdzeń każdej dystrybucji. Ten rozdział przedstawia sposób
+instalacji jądra.
 </abstract>
   <include href="hb-install-x86-kernel.xml"/>
 </chapter>
 
 <chapter>
-<title>Configuring your System</title>
+<title>Konfiguracja systemu</title>
 <abstract>
-You need to edit some important configuration files. In this chapter
-you receive an overview of these files and an explanation on how to
-proceed.
+Należy wyedytować kilka ważnych plików konfiguracyjnych. W tym
+rozdziale dowiemy się jakie pliki i w jaki sposób musimy zmienić.
 </abstract>
   <include href="hb-install-config.xml"/>
 </chapter>
 
 <chapter>
-<title>Installing Necessary System Tools</title>
+<title>Instalacja niezbędnych narzędzi systemowych</title>
 <abstract>
-As mentioned before, Gentoo is about choices. In this chapter we help you
-choose and install some important tools.
+Jak wspomniano wcześniej, w Gentoo ważne są wybory. W tym rozdziale można
+dowiedzieć się jakie narzędzia systemowe można i należy wybrać, oraz jak je
+zainstalować.
 </abstract>
   <include href="hb-install-tools.xml"/>
 </chapter>
 
 <chapter>
-<title>Configuring the Bootloader</title>
+<title>Instalowanie bootloadera</title>
 <abstract>
-Several bootloaders exist for the x86 architecture. Each one of them has its 
-own way of configuration. We step you through the process of configuring a 
-bootloader to your needs.
+Dla architektury x86 istnieje wiele bootloaderów. Każdy z nich posiada swoją
+własną metodę konfiguracji. W tym rozdziale Krok po kroku zostało
+opisane jak przejść przez proces ich konfiguracji.
 </abstract>
   <include href="hb-install-x86-bootloader.xml"/>
 </chapter>
 
 <chapter>
-<title>Finalizing your Gentoo Installation</title>
+<title>Finalizowanie instalacji Gentoo</title>
 <abstract>
-You're almost done. We'll just create one (or more) users for your
-system and leave the installation to reboot into a brand new Gentoo
-system.
+Już prawie koniec. Należy tylko utworzyć jednego (lub więcej) użytkowników w
+systemie i zakończyć instalację poprzez reboot do nowiutkiego systemu Gentoo.
 </abstract>
   <include href="hb-install-finalise.xml"/>
 </chapter>
 
 <chapter>
-<title>Where to go from here?</title>
+<title>I co dalej?</title>
 <abstract>
-Now you have your Gentoo system, but what's next? 
+Gentoo zostało już zainstalowane, ale co dalej?
 </abstract>
   <include href="hb-install-next.xml"/>
 </chapter>
 </part>
 
 <part>
-<title>Converting to Gentoo SELinux</title>
+<title>Konwersja do Gentoo SELinux</title>
 <abstract>
-SELinux alternatively can be installed on current Linux installations.  This
-Chapter deals with converting a prexisting Gentoo install to SELinux.
+Alternatywnie, SELinux może zostać zainstalowany na zbudowanym już systemie. Ten
+rozdział dokładnie opisuje co należy zrobić aby przekonwertować system.
 </abstract>
 <chapter>
-<title>Initial preparations</title>
+<title>Wstępne przygotowania</title>
 <abstract>
-A few preparations must be done before installing SELinux packages.
+Należy przygotować się odpowiednio przed instalacją pakietów SELinux.
 </abstract>
   <include href="hb-selinux-conv-profile.xml"/>
 </chapter>
 <chapter>
-<title>Boot SELinux Kernel</title>
+<title>Uruchomienie jądra SELinuxa</title>
 <abstract>
-Install and boot a SELinux kernel.
+Instalacja i uruchomienie jądra SELinux.
 </abstract>
   <include href="hb-selinux-conv-reboot1.xml"/>
 </chapter>
 <chapter>
-<title>Install SELinux Userland</title>
+<title>Instalacja oprogramowania dla SELinux</title>
 <abstract>
-Install SELinux packages and policy, and label filesystems.
+Instlacja pakietów SELinuxa oraz polityk, jak również znakowanie systemu plików.
 </abstract>
   <include href="hb-selinux-conv-reboot2.xml"/>
 </chapter>
 </part>
 
 <part>
-<title>Working with Gentoo</title>
+<title>Praca z Gentoo</title>
 <abstract>
-Learn how to work with Gentoo: installing software, altering variables, changing
-portage behaviour etc. 
+Jak pracować z Gentoo: instalowanie oprogramowania, konfiguracja zmiennych
+systemowych, zmiana zachowania portage etc.
 </abstract>
 
 <chapter>
-<title>USE flags</title>
+<title>Flagi USE</title>
 <abstract>
-USE-flags are a very important aspect of Gentoo. In this chapter, you learn to
-work with USE-flags and understand how USE-flags interact with your system.
+Flagi USE są niezwykle ważną częścią Gentoo. W tym rozdziale, można nauczyć się
+jak pracować z flagami USE i jak współdziałają one z systemem.
 </abstract>
-  <include href="/doc/en/handbook/hb-working-use.xml"/>
+  <include href="/doc/pl/handbook/hb-working-use.xml"/>
 </chapter>
 
 <chapter>
-<title>Portage and Software</title>
+<title>Portage i oprogramowanie</title>
 <abstract>
-The main reason for portage is to maintain the software on your system. In this
-chapter you learn how to get information from a package, update your package
-database, install/remove/update software and more...
+Głównym powodem dla którego został stworzony Portage, jest zarządzanie
+oprogramowaniem w systemie. W tym rozdziale można dowiedzieć się jak uzyskać
+informacje o pakiecie, jak go zainstalować/usunąć/uaktualnić i wiele wiele
+więcej...
 </abstract>
-  <include href="/doc/en/handbook/hb-working-portage.xml"/>
+  <include href="/doc/pl/handbook/hb-working-portage.xml"/>
 </chapter>
 
 <chapter>
-<title>Portage Features</title>
+<title>Funkcje Portage</title>
 <abstract>
-Gentoo's Portage allows for several features that improve portage-related
-aspects, such as build time. This chapter explains the existing features.
+Portage Gentoo posiada wiele funkcji, które wspomagają system np. podczas
+kompilacji oprogramowania. Ten rozdział opisuje te funkcje.
 </abstract>
-  <include href="/doc/en/handbook/hb-working-features.xml"/>
+  <include href="/doc/pl/handbook/hb-working-features.xml"/>
 </chapter>
 
 <chapter>
-<title>Controlling Portage Behaviour</title>
+<title>Kontrola zachowania portage</title>
 <abstract>
-You can tweak Portage to your own needs/environment. Learn how to protect files,
-select mirrors, change directory locations and more.
+Można zmodyfikować Portage do własnych potrzeb. Tutaj można dowiedzieć się jak
+chronić pliki, wybierać serwery, zmieniać katalogi Portage itp.
 </abstract>
   <include href="hb-working-behaviour.xml"/>
 </chapter>
 
 <chapter>
-<title>Initscripts</title>
+<title>Skrypty inicjujące</title>
 <abstract>
-Gentoo uses a special initscript format which, amongst other features, allows
-dependency-driven decisions and virtual initscripts. This chapter explains all
-these aspects and explains how to deal with these scripts.
+Gentoo używa specjalnego formatu skryptów inicjujących który, poza innymi
+zastosowaniami, pozwala na podejmowanie decyzji związanych z zależnościami oraz
+pozwala na posiadanie wirtualnych skryptów inicjujących. Ten rozdział opisuje
+wszystkie te aspekty i tłumaczy jak je wykorzystać.
 </abstract>
-  <include href="/doc/en/handbook/hb-working-rcscripts.xml"/>
+  <include href="/doc/pl/handbook/hb-working-rcscripts.xml"/>
 </chapter>
 
 <chapter>
-<title>Environment Variables</title>
+<title>Zmienne środowiskowe</title>
 <abstract>
-With Gentoo you can easily manage the environment variables for your system.
-This chapter explains how you do that, and also describes frequently used
-variables.
+W Gentoo można w łatwy sposób zarządzać zmiennymi środowiskowymi systemu. Ten
+rozdział opisuje jak to robić, oraz przedstawia najczęściej używane zmienne.
 </abstract>
-  <include href="/doc/en/handbook/hb-working-variables.xml"/>
+  <include href="/doc/pl/handbook/hb-working-variables.xml"/>
 </chapter>
 </part>
 
 <part>
-<title>Working with SELinux</title>
+<title>Praca z SELinux</title>
 <abstract>
-Learn how to work with SELinux
+Naucz się jak pracować z SELinux.
 </abstract>
 <chapter>
-<title>SELinux Overview</title>
+<title>Przegląd SELinux</title>
 <abstract>
-SELinux has many parts to understand.  This chapter discusses SELinux's
-important concepts and policy.
+Selinux posiada wiele części, które powinniśmy poznać. Ten rozdział opisuje
+najważniejsze koncepcje SELinux oraz jego politykę.
 </abstract>
   <include href="hb-selinux-overview.xml"/>
 </chapter>
 <chapter>
 <title>SELinux HOWTO</title>
 <abstract>
-This chapter deals with how to common operations in SELinux.
+Ten rozdział opisuje jak radzić sobie z częstymi operacjami w SELinux.
 </abstract>
   <include href="hb-selinux-howto.xml"/>
 </chapter>
 <chapter>
 <title>SELinux FAQ</title>
 <abstract>
-This chapter deals with frequently asked questions in SELinux.
+Ten rozdział odpowiada na najczęściej zadawane pytania dotyczące SELinux.
 </abstract>
   <include href="hb-selinux-faq.xml"/>
 </chapter>
@@ -268,29 +274,30 @@ This chapter deals with frequently asked questions in SELinux.
 </part>
 
 <part>
-<title>Troubleshooting SELinux</title>
+<title>Rozwiązywanie problemów z SELinux</title>
 <abstract>
-When encountering problems on a machine, SELinux can add extra difficulty
-in fixing the problem.  This chapter walks through fixing common problems.
+Gdy napotyka się na problemy w systemie, SELinux może je tylko spotegować. Ten
+rozdział pokazuje jak radzić sobie z najczęstszymi problemami.
 </abstract>
 <chapter>
-<title>Policy Not Loaded on Boot</title>
+<title>Polityka nie ładuje się przy uruchomieniu</title>
 <abstract>
-This chapter deals with the problem of the policy not being loaded on boot.
+Ten rozdział opisuje problemy przy ładowaniu polityki podczas uruchamiania
+systemu.
 </abstract>
   <include href="hb-selinux-initpol.xml"/>
 </chapter>
 <chapter>
-<title>Trouble Logging in Locally</title>
+<title>Kłopoty z lokalnym logowaniem się</title>
 <abstract>
-This chapter deals with problems logging in locally at the console.
+Ten rozdział opisuje problem z lokalnym logowaniem się w konsoli.
 </abstract>
   <include href="hb-selinux-loglocal.xml"/>
 </chapter>
 <chapter>
-<title>Trouble Logging in Remotely</title>
+<title>Kłopoty ze zdalnym logowaniem się</title>
 <abstract>
-This chapter deals with problems logging in remotely by ssh.
+Ten rozdział opisuje problemy ze zdalnym logowaniem się przy pomocy SSH.
 </abstract>
   <include href="hb-selinux-logremote.xml"/>
 </chapter>
