@@ -2,172 +2,181 @@
 <!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/articles/openssh-key-management-p1.xml,v 1.3 2005/10/09 17:13:23 rane Exp $ -->
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<guide link="/doc/en/articles/openssh-key-management-p1.xml" disclaimer="articles">
+<guide link="/doc/pl/articles/openssh-key-management-p1.xml" disclaimer="articles">
 <title>OpenSSH key management, Part 1</title>
-<author title="Author">
+<author title="Autor">
   <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
 </author>
+<author title="Tłumacz">
+  <mail link="moloh@moloh.net">Michał Kurgan</mail>
+</author>
+
 <!-- xmlified by Max Lorenz (anarchyisgoodforthee@gmail.com) -->
 
 <abstract>
-In this series, you'll learn how RSA and DSA authentication work, and see how
-to set up passwordless authentication the right way. In the first article of
-the series, Daniel Robbins focuses on introducing the RSA and DSA
-authentication protocols and showing you how to get them working over the
-network.
+W tej serii artykułów, będzie można się dowiedzieć ciekawych informacji na temat
+zasad funkcjonowania RSA i DSA m.in. jak w prawidłowy sposób skonfigurować
+autentykację bez hasła. W pierwszym artykule, Daniel Robbins wprowadza w arkana
+protokołów uwierzytelniania, RSA i DSA i pokazuje co należy zrobić aby można
+było ich używać poprzez sieć.
 </abstract>
 
-<!-- The original version of this article was first published on IBM 
-developerWorks, and is property of Westtech Information Services. This 
-document is an updated version of the original article, and contains
-various improvements made by the Gentoo Linux Documentation team -->
+<!-- The original version of this article was first published on IBM
+developerWorks, and is property of Westtech Information Services. This document
+is an updated version of the original article, and contains various improvements
+made by the Gentoo Linux Documentation team -->
 
 <version>1.1</version>
 <date>2005-10-09</date>
 
 <chapter>
-<title>Understanding RSA/DSA authentication</title>
+<title>Wprowadzenie</title>
 <section>
 <body>
 
 <p>
-Many of us use the excellent OpenSSH (see <uri
-link="#resources">Resources</uri> later in this article) as a secure, encrypted
-replacement for the venerable <c>telnet</c> and <c>rsh</c> commands. One of
-OpenSSH's more intriguing features is its ability to authenticate users using
-the RSA and DSA authentication protocols, which are based on a pair of
-complementary numerical keys. As one of its main appeals, RSA and DSA
-authentication promise the capability of establishing connections to remote
-systems <e>without supplying a password</e>. While this is appealing, new
-OpenSSH users often configure RSA/DSA the quick and dirty way, resulting in
-passwordless logins, but opening up a big security hole in the process.
+Wielu użytkowników używa doskonałego OpenSSH (zobacz punkt <uri
+link="#materiały">Materiały</uri> na końcu artykułu) jako bezpiecznego i
+kodowanego odpowiednika szacownego polecenia <c>telnet</c> i <c>rsh<c>. Jedną z
+ciekawszych funkcjonalności OpenSSH jest możliwość dokonania autoryzacji przy
+użyciu protokołów RSA i DSA, które bazują na parze uzupełniających się kluczy.
+Jedną z ich głównych zalet jest możliwość nawiązania połączenia <e>bez podawania
+hasła</e>. Sama możliwość jest niezwykle interesująca, niestety początkujący
+użytkownicy OpenSSH konfigurują RSA/DSA w szybki i niezbyt udany sposób, co
+oczywiście umożliwia dokonanie logowania bez podawania hasła, ale niestety
+tworzy też lukę, która może zostać wykorzystania do dokonania włamania.
 </p>
 
 </body>
 </section>
 <section>
-<title>What is RSA/DSA authentication?</title>
+<title>Co to jest uwierzytelnianie RSA/DSA?</title>
 <body>
 
 <p>
-SSH, specifically OpenSSH (a completely free implementation of SSH), is an
-incredible tool. Like <c>telnet</c> or <c>rsh</c>, the ssh client can be used
-to log in to a remote machine. All that's required is for this remote machine
-to be running <c>sshd</c>, the <c>ssh</c> server process. However, unlike
-<c>telnet</c>, the ssh protocol is very secure. It uses special algorithms to
-encrypt the data stream, ensure data stream integrity and even perform
-authentication in a safe and secure way.
+SSH, szczególnie OpenSSH (wolna implementacja SSH), jest niebywałym narzędziem.
+Podobnie jak <c>telnet</c>, czy <c>rsh</c>, klient ssh może zostać użyty by
+zalogować się na zdalnym komputerze. Jedynym wymaganiem jest by na niej był
+uruchomiony demon <c>sshd</c>, będący serwerem <c>ssh</c>. Jednak w odróżnieniu
+od <c>telnetu</c>, protokół ssh jest bezpieczny. Używa on specjalnych
+algorytmów, by zakodować strumień danych, zapewnić jego spójność, a także
+dokonać uwierzytelniania w bezpieczny i wygodny dla użytkownika sposób.
 </p>
 
 <p>
-However, while <c>ssh</c> is really great, there is a certain component of
-<c>ssh</c> functionality that is often ignored, dangerously misused, or simply
-misunderstood. This component is OpenSSH's RSA/DSA key authentication system,
-an alternative to the standard secure password authentication system that
-OpenSSH uses by default.
+Jednak, pomimo tego że <c>ssh</c> jest naprawdę bardzo użyteczne, duża część
+jego funkcjonalności nie jest zazwyczaj używana, lub, co gorsze, używana w
+nieodpowiedni sposób. Najczęściej błędy zdarzają się w module autentykacji z
+użyciem klucza RSA/DSA, który domyślnie nie jest używany. Wykorzystywane jest
+natomiast uwierzytelnianie z użyciem hasła.
 </p>
 
 <p>
-OpenSSH's RSA and DSA authentication protocols are based on a pair of specially
-generated cryptographic keys, called the <e>private key</e> and the <e>public
-key</e>. The advantage of using these key-based authentication systems is that
-in many cases, it's possible to establish secure connections without having to
-manually type in a password.
+Protokół autentykacji RSA/DSA używany w OpenSSH bazuje na parze specjalnie
+wygenerowanych kluczy, <e>kluczu prywatnym</e> i <e>kluczu publicznym</e>.
+Zaletą tej metody jest możliwość nawiązania bezpiecznego połączenia bez
+ręcznego wpisywania hasła.
 </p>
 
 <p>
-While the key-based authentication protocols are relatively secure, problems
-arise when users take certain shortcuts in the name of convenience, without
-fully understanding their security implications. In this article, we'll take a
-good look at how to correctly use RSA and DSA authentication protocols without
-exposing ourselves to any unnecessary security risks. In my next article, I'll
-show you how to use <c>ssh-agent</c> to cache decrypted private keys, and 
-introduce <c>keychain</c>, an <c>ssh-agent</c> front-end that offers a number 
-of convenience advantages without sacrificing security. If you've always wanted 
-to get the hang of the more advanced authentication features of OpenSSH, then 
-read on.
+Protokoły autentykacji bazujące na wymianie kluczy są relatywnie bezpieczne,
+problemem niestety stają się nawyki stosujących je użytkowników, którzy nie w
+pełni zdają sobie sprawę z grożącego im niebezpieczeństwa. W pierwszym artykule
+przedstawione zostaną metody właściwego postępowania, tak by nie narażać się na
+zbędne ryzyko.  W drugim znajdzie się opis skryptu <c>ssh-agent</c> buforującego
+odkodowane klucze prywatne, oraz prezentacja programu <c>keychain</c>, będącego
+nakładką na <c>ssh-agent</c>, która oferuje znacznie większą funkcjonalność, co
+ważne zachowując odpowiedni poziom bezpieczeństwa. Każdy zainteresowany
+zaawansowaną funkcjonalnością OpenSSH z pewnością powinien kontynuować lekturę,
+wszystkich innych gorąco do tego zachęcamy.
 </p>
 
 </body>
 </section>
 <section>
-<title>How RSA/DSA keys work</title>
+<title>Jak działają klucze RSA/DSA</title>
 <body>
 
 <p>
-Here's a quick general overview of how RSA/DSA keys work. Let's start with a 
-hypothetical scenario where we'd like to use RSA authentication to allow a 
-local Linux workstation (named <e>localbox</e>) to open a remote shell on 
-<e>remotebox</e>, a machine at our ISP. Right now, when we try to connect to 
-<e>remotebox</e> using the <c>ssh</c> client, we get the following prompt:
+W rozdziale znajduje się krótki opis przedstawiający ideę działania kluczy
+RSA/DSA. Zacznijmy od opisania hipotetycznej sytuacji w której chcemy użyć
+uwierzytelniania RSA by umożliwić lokalnej stacji roboczej, pracującej pod
+kontrolą systemu Linux (nazwijmy ją <e>lokalna</e>), nawiązanie zdalnego
+połączenia i otwarcia powłoki na zdalnym komputerze (tą z kolei nazwijmy
+<e>zdalna</e>). W chwili obecnej gdy będziemy próbowali nawiązać takie
+połączenie, używając klienta <c>ssh</c> zostaniemy powitani następującym
+komunikatem:
 </p>
 
-<pre caption="Connecting to remotebox">
-$ <i>ssh drobbins@remotebox</i>
-drobbins@remotebox's password:
+<pre caption="Połączenie ze zdalną">
+$ <i>ssh drobbins@zdalna</i>
+drobbins@zdalna's password:
 </pre>
 
 <p>
-Here we see an example of the <c>ssh</c> <e>default</e> way of handling
-authentication. Namely, it asks for the password of the <e>drobbins</e> account
-on <e>remotebox</e>. If we type in our password for <e>remotebox</e>,
-<c>ssh</c> uses its secure password authentication protocol, transmitting our
-password over to <e>remotebox</e> for verification. However, unlike what
-<c>telnet</c> does, here our password is encrypted so that it can not be
-intercepted by anyone sniffing our data connection. Once <e>remotebox</e>
-authenticates our supplied password against its password database, if
-successful, we're allowed to log on and are greeted with a <e>remotebox</e>
-shell prompt. While the <c>ssh</c> default authentication method is quite
-secure, RSA and DSA authentication open up some new possibilities.
+Na przedstawionym przykładzie widzimy <e>domyślną</e> dla <c>ssh</c> metodę
+autentykacji. Zostaliśmy poproszeni o podanie hasła dla użytkownika
+<e>drobbins</e> na komputerze <e>zdalna</e>. Teraz jeśli postąpimy zgodnie z
+instrukcjami <c>ssh</c>, używając swojego bezpiecznego protokołu
+uwierzytelniania, prześle podane hasło przez sieć do <e>zdalnej</e> by dokonać
+odpowiedniej weryfikacji. Jednak w przeciwieństwie do <c>telnetu</c>, dane
+przesyłane są w formie zakodowanej, więc hasło nie może zostać w łatwy sposób
+przechwycone przez kogoś podsłuchującego nasze połączenie. Po porównaniu
+przesłanego hasła z zawartością bazy znajdującej się na <e>zdalnej</e>,
+połączenie zostaje zestawione, w przypadku gdy hasła są takie same, lub zerwane
+w przeciwnym przypadku. Domyślna metoda weryfikacji stosowana przez <c>ssh</c>
+jest całkiem bezpieczna, jednak wykorzystanie RSA i DSA daje nam wiele nowych i
+interesujących możliwości.
 </p>
 
 <p>
-However, unlike the <c>ssh</c> secure password authentication, RSA
-authentication requires some initial configuration. We need to perform these
-initial configuration steps only once. After that, RSA authentication between
-<e>localbox</e> and <e>remotebox</e> will be totally painless. To set up RSA
-authentication, we first need to generate a pair of keys, one private and one
-public. These two keys have some very interesting properties. The public key
-can be used to encrypt a message, and only the holder of the private key can
-decrypt it. The public key can only be used for <e>encryption</e>, and the
-private key can only be used for <e>decryption</e> of a message encoded by the
-matching public key. The RSA (and DSA) authentication protocols use the special
-properties of key pairs to perform secure authentication, without needing to
-transmit any confidential information over the network.
+Jednak w przeciwieństwie do uwierzytelniania z użyciem hasła, autentykacja RSA
+wymaga dokonania pewnych zmian w konfiguracji. Na szczęście zmiany te musimy
+wykonać tylko jeden raz, a po ich dokonaniu nawiązanie bezpiecznego połączenia z
+<e>lokalnej</e> na <e>zdalną</e> będzie bardzo proste. Pierwszą czynnością jaką
+musimy wykonać, jest stworzenie pary kluczy, jednego prywatnego i jednego
+publicznego. Taka para kluczy posiada bardzo interesujące właściwości, klucz
+publiczny może służyć tylko do <e>szyfrowania</e> wiadomości, którą odczytać
+będzie mógł tylko właściciel klucza prywatnego, jako że tylko on może z
+powodzeniem zostać użyty do <e>deszyfracji</e> wcześniej zakodowanej informacji.
+Protokół uwierzytelniania RSA (i DSA) używa tej specjalnej właściwości pary
+kluczy, by nawiązać bezpieczne połączenie, nie ma potrzeby wysyłania przez sieć
+żadnych tajnych informacji.
 </p>
 
 <p>
-To get RSA or DSA authentication working, we perform a single one-time
-configuration step. We copy our <e>public key</e> over to <e>remotebox</e>.
-The public key is called "public" for a reason. Since it can only be used to
-<e>encrypt</e> messages for us, we don't need to be too concerned about it
-falling into the wrong hands. Once our public key has been copied over to
-<e>remotebox</e> and placed in a special file
-(<path>~/.ssh/authorized_keys</path>) so that <e>remotebox</e>'s <c>sshd</c>
-can locate it, we're ready to use RSA authentication to log onto
-<e>remotebox</e>.
+By móc skorzystać z dobrodziejstw uwierzytelniania RSA i DSA musimy
+przeprowadzić prostą i krótką procedurę konfiguracji, kopiujemy <e>klucz
+publiczny</e> na <e>zdalną<e/>. Klucz ten nie jest nazywany "publicznym" bez
+powodu. Jako, że może on zostać użyty jedynie do <e>szyfrowania</e> wiadomości
+przeznaczonych dla nas (właściciela klucza prywatnego), nie musimy się
+przejmować jeśli wpadnie w niepowołane ręce. Gdy zostanie on przekopiowany na
+<e>zdalną</e> i zapisany w specjalnym pliku
+(<path>~/.ssh/authorized_keys</path>), demon <c>sshd</c> uruchomiony na
+<e>zdalnej<e/> będzie mógł go znaleźć, będziemy wtedy gotowi do nawiązania
+połączenia z użyciem uwierzytelniania RSA.
 </p>
 
 <p>
-To do this, we simply type <c>ssh drobbins@remotebox</c> at <e>localbox</e>'s
-console, as we always have. However, this time, <c>ssh</c> lets
-<e>remotebox</e>'s <c>sshd</c> know that it would like to use the RSA
-authentication protocol. What happens next is rather interesting.
-<e>Remotebox</e>'s <c>sshd</c> generates a random number, and encrypts it using
-our public key that we copied over earlier. Then, it sends this encrypted
-random number back to the <c>ssh</c> running on <e>localbox</e>. In turn, our
-<c>ssh</c> uses our <e>private key</e> to decrypt this random number, and then
-sends it back to <e>remotebox</e>, saying in effect "See, I really <e>do</e>
-hold the matching private key; I was able to successfully decrypt your
-message!" Finally, <c>sshd</c> concludes that we should be allowed to log in,
-since we hold a matching private key. Thus, the fact that we hold a matching
-private key grants us access to <e>remotebox</e>.
+Wystarczy już tylko wpisać <c>ssh drobbins@zdalna</c>, będąc zalogowanym na
+<e>lokalnej</e>. Do tej pory postępowanie jest podobne, jednak od tego momentu
+procedura nawiązywania połączenia wygląda już inaczej. Klient <c>ssh</c>
+informuje demona <c>sshd</c>, uruchomionego na <e>zdalnej</e>, że chce użyć
+protokołu RSA, by dokonać uwierzytelniania. W odpowiedzi wysyłana jest na nasz
+lokalny komputer, zaszyfrowana kluczem publicznym, losowa liczba, która zostaje
+odszyfrowana dzięki użyciu klucza publicznego i wysłana na <e>zdalną<e>, jakby
+mówiąc "Widzisz, ja naprawdę <e>posiadam<e> pasujący klucz prywatny; Udało mi
+się poprawnie odczytać zakodowaną wiadomość!" Ostatnim etapem jest weryfikacja,
+czy zwrócona liczba odpowiada wysłanej i w przypadku pozytywnej odpowiedzi demon
+<c>sshd</c> doje nam dostęp do <e>zdalnej</e>. Należy zauważyć, że cała
+procedura odbywa się w sposób automatyczny i nie wymaga żadnej ingerencji
+użytkownika.
 </p>
 
 </body>
 </section>
 <section>
-<title>Two observations</title>
+<title>Dwa wnioski</title>
 <body>
 
 <p>
