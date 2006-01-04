@@ -180,24 +180,24 @@ użytkownika.
 <body>
 
 <p>
-
-
-There are two important observations about the RSA and DSA authentication. The
-first is that we really only need to generate one pair of keys. We can then
-copy our public key to the remote machines that we'd like to access and they
-will all happily authenticate against our single private key. In other words,
-we don't need a key pair for <e>every</e> system we'd like to access. Just one
-pair will suffice.
+Zanim przejdziemy do omawiania szczegółów związanych z uwierzytelnianiem RSA i
+DSA należy zwrócić uwagę na dwa istotne wnioski. Po pierwsze, tak naprawdę
+musimy stworzyć tylko jedną parę kluczy. Możemy następnie skopiować klucz
+publiczny na dowolną ilość zdalnych maszyn, do których chcemy mieć dostęp.
+Wszystkie, by dokonać odpowiedniej weryfikacji, będą wtedy używać jednego klucza
+prywatnego znajdującego się na komputerze lokalnym. Więc nie ma potrzeby
+generować pary kluczy dla <e>każdego</e> komputera, na który chcemy mieć
+możliwość zdalnego logowania.
 </p>
 
 <p>
-The other observation is that our <e>private key should not fall into the wrong
-hands</e>. The private key is the one thing that grants us access to our remote
-systems, and anyone that possesses our private key is granted exactly the same
-privileges that we are. Just as we wouldn't want strangers to have keys to our
-house, we should protect our private key from unauthorized use. In the world of
-bits and bytes, this means that no one should be able to read or copy our
-private key.
+Drugą istotną sprawą jest bardzo ważny fakt, <e>klucz prywatny nie powinien
+wpaść w niepowołane ręce</e>. Jest on elementem gwarantującym dostęp do zdalnych
+kont ssh i jeśli ktokolwiek go uzyska będzie mógł uzyskać do nich wszystkich
+dostęp. Więc podobnie jak w przypadku kluczy do domu powinniśmy strzec kluczy
+prywatnych jak "oka w głowie". W świecie bitów i bajtów oznacza to, że nikt
+niepowołany nie powinien mieć praw by odczytać lub przekopiować plików je
+zawierających.
 </p>
 
 <p>
