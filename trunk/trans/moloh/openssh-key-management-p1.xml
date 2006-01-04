@@ -214,44 +214,46 @@ passphrase. Armed with that knowledge, let's take a look at how to configure
 </body>
 </section>
 <section>
-<title>ssh-keygen up close</title>
+<title>Generacja kluczy z bliska</title>
 <body>
 
 <p>
-The first step in setting up RSA authentication begins with generating a
-public/private key pair. RSA authentication is the original form of <c>ssh</c>
-key authentication, so RSA should work with any version of OpenSSH, although I
-recommend that you install the most recent version available, which was
-openssh-2.9_p2 at the time this article was written. Generate a pair of RSA
-keys as follows:
+Pierwszym krokiem w czasie konfiguracji uwierzytelniania RSA jest stworzenie
+pary kluczy, prywatnego i publicznego. Protokół autentykacji RSA, będący
+podstawią metod uwierzytelniania używanych przez <c>ssh</c>, wszystko będzie
+działało poprawnie w przypadku każdej wersji OpenSSH, ale pomimo tego najlepiej
+jest posiadać najnowszą dostępną wersję, w czasie pisania tego artykułu była to
+openssh-2.9_p2 {{ FIXME - przy tłumaczeniu to 4.2_p1 }}. By wygenerować parę
+kluczy RSA należy postępować następująco:
 </p>
 
-<pre caption="Using ssh-keygen">
+<pre caption="Narzędzie ssh-keygen">
 $ <i>ssh-keygen</i>
 Generating public/private rsa1 key pair.
-Enter file in which to save the key (/home/drobbins/.ssh/identity): <comment>(hit enter)</comment>
-Enter passphrase (empty for no passphrase): <comment>(enter a passphrase)</comment>
-Enter same passphrase again: <comment>(enter it again)</comment>
+Enter file in which to save the key (/home/drobbins/.ssh/identity): <comment>(naciśnij enter)</comment>
+Enter passphrase (empty for no passphrase): <comment>(wpisz hasło)</comment>
+Enter same passphrase again: <comment>(wpisz ponownie hasło)</comment>
 Your identification has been saved in /home/drobbins/.ssh/identity.
 Your public key has been saved in /home/drobbins/.ssh/identity.pub.
 The key fingerprint is:
-a4:e7:f2:39:a7:eb:fd:f8:39:f1:f1:7b:fe:48:a1:09 drobbins@localbox
+a4:e7:f2:39:a7:eb:fd:f8:39:f1:f1:7b:fe:48:a1:09 drobbins@lokalna
 </pre>
 
 <p>
-When <c>ssh-keygen</c> asks for a default location for the key, we hit enter 
-to accept the default of <path>/home/drobbins/.ssh/identity</path>.
-<c>ssh-keygen</c> will store the private key at the above path, and the
-<e>public</e> key will be stored right next to it, in a file called 
+Gdy <c>ssh-keygen</c> pyta nas o lokalizację kluczy, wciskamy enter by
+zatwierdzić domyślną wartość (<path>/home/drobbins/.ssh/identity</path>).
+Wygenerowane klucze prywatne będą przechowywane w powyższej lokalizacji,
+podobnie jak klucz <e>publiczny</e>, który będzie znajdował się w pliku
 identity.pub.
 </p>
 
 <p>
-Also note that <c>ssh-keygen</c> prompted us to enter a passphrase. When
-prompted, we entered a good passphrase (seven or more hard-to-predict
-characters). <c>ssh-keygen</c> then encrypted our private key
-(<path>~/.ssh/identity</path>) using this passphrase so that our private key
-will be useless to anyone who does not know it.
+Należy zauważyć, że <c>ssh-keygen</c> zapytał nas o hasło. Najlepiej gdy będzie
+ono odpowiednio skomplikowane i długie (siedem lub więcej ciężkich do
+przewidzenia znaków). Klucz prywatny zostanie z zaszyfrowany
+(<path>~/.ssh/identity</path>) właśnie przy jego użyciu, wtedy nawet gdy ktoś
+pozna nasz klucz prywatny, będzie on dla niego bezwartościowy gdy nie będzie
+także znał podanego hasła.
 </p>
 
 </body>
