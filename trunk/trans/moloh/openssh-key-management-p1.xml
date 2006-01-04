@@ -180,6 +180,8 @@ użytkownika.
 <body>
 
 <p>
+
+
 There are two important observations about the RSA and DSA authentication. The
 first is that we really only need to generate one pair of keys. We can then
 copy our public key to the remote machines that we'd like to access and they
@@ -199,16 +201,19 @@ private key.
 </p>
 
 <p>
-Of course, the <c>ssh</c> developers are aware of the private keys' importance,
-and have built a few safeguards into <c>ssh</c> and <c>ssh-keygen</c> so that
-our private key is not abused. First, <c>ssh</c> is configured to print out a
-big warning message if our key has file permissions that would allow it to be
-read by anyone but us. Secondly, when we create our public/private key pair
-using <c>ssh-keygen</c>, <c>ssh-keygen</c> will ask us to enter a passphrase.
-If we do, our private key will be encrypted using this passphrase, so that even
-if it is stolen, it will be useless to anyone who doesn't happen to know the
-passphrase. Armed with that knowledge, let's take a look at how to configure
-<c>ssh</c> to use the RSA and DSA authentication protocols.
+Oczywiście deweloperzy <c>ssh</c> doskonale zdają sobie sprawę z tego jak ważne
+są klucze prywatne i dlatego wbudowali kilka dodatkowych zabezpieczeń w
+<c>ssh</c> i <c>ssh-keygen</c> tak, by nie można w łatwy sposób przechwycić
+kluczy. Po pierwsze, w przypadku gdy klucz będzie w stanie odczytać ktokolwiek
+za wyjątkiem jego właściciela to zostaniemy o tym poinformowani. Dzięki czemu
+będziemy wiedzieć, że z uprawnienia do pliku przechowującego klucze prywatne
+powinny zostać poprawione. Po drugie, gdy tworzymy parę kluczy,
+<c>ssh-keygen</c> prosi o podanie hasła. Jeżeli je podamy to klucz prywatny
+zostanie zaszyfrowany z jego użyciem, więc nawet gdy ktoś niepowołany uzyska
+dostęp do pliku przechowującego klucze, to bez znajomości hasła nie będzie mógł
+go wykorzystać. Po poznaniu najważniejszych elementów związanych z generacją
+kluczy czas na opis konfiguracji <c>ssh</c> tak, by używał protokołów
+uwierzytelniania RSA i DSA.
 </p>
 
 </body>
