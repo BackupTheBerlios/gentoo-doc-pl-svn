@@ -36,13 +36,13 @@ security policy, and cannot be bypassed.
 
 <p>
 <e>Typ</e> jest atrybutem bezpieczeństwa, przekazywanym obiektom takim jak
-pliki, porty internetowe itp. Typ procesu odwołuje się zazwyczaj do jego
-domeny. Polityka SELinux jast w głównej mierze zbudowana z reguł wymuszających
-sprawdzanie typów, które opisują, jak domeny mogą współdziałać z obiektami oraz
-z innymi domenami. Typ jest zazwyczaj zakończony przyrostkiem &#39;_t&#39;, jak
-na przykład <c>sysadm_t</c>. Jest to najważniejszy atrybut procesu czy też
-obiektu, ponieważ większość reguł polityki bezpieczeństwa opiera się na typach
-obiektów wywołujących zdarzenia i tych, które są wywoływane.
+pliki, porty internetowe itp. Typ procesu odwołuje się zazwyczaj do jego zakresu
+stosowania. Polityka SELinux jast w głównej mierze zbudowana z reguł egzekucji
+typów, które opisują, jak domeny mogą współdziałać z obiektami oraz z innymi
+domenami. Typ jest zazwyczaj zakończony przyrostkiem &#39;_t&#39;, jak na
+przykład <c>sysadm_t</c>. Jest to najważniejszy atrybut procesu czy też obiektu,
+ponieważ większość reguł polityki bezpieczeństwa opiera się na typach obiektów
+wywołujących zdarzenia i tych, które są wywoływane.
 </p>
 
 </body>
@@ -65,7 +65,7 @@ potrzeba wykonania czynności administracyjnych status powinien zostać zmienion
 na <c>sysadm_r</c>. W SELinux domeny, w których może znajdować się użytkownik,
 są determinowane posiadanym przez niego statusem. Jeśli dany status nie pozwala
 na posiadanie pewnej domeny, to przejście do niej nie będzie możliwe, nawet
-jeśli zasady wymuszania typów na to pozwalają. Generalnie rzecz biorąc statusy
+jeśli zasady egzekucji typów na to pozwalają. Generalnie rzecz biorąc statusy
 posiadają przyrostek &#39;_r&#39;, jak np. <c>portage_r</c>.
 </p>
 
@@ -308,256 +308,381 @@ pomóc w zapewnieniu, że określone uprawnienia nigdy nie zostaną dopuszczone.
 <body>
 
 <p>
-A type attribute can be used to identify a set of types with a similar
-property.  Each type can have any number of attributes, and each
-attribute can be associated with any number of types.  Attributes are
-explicitly declared in this file, and can then be associated with particular
-types in type declarations.  Attribute names can then be used throughout
-the configuration to express the set of types that are associated with
-the attribute.
+Atrybuty danego typu mogą zostać wykorzystane do zidentyfikowania grupy typów o
+podobnych właściwościach. Każdy typ może posiadać dowolną ilość atrybutów, a
+każdy atrybut może wiązać się z dowolną ilością typów. Atrybuty są jawnie
+zadeklarowane w pliku <path>attrib.te</path> i mogą zostać połączone z
+poszczególnymi typami, w czasie deklarowania tychże typów. Nazwy atrybutów mogą
+następnie zostać wykorzystane w konfiguracji, aby określić grupę typów
+powiązanych z atrybutami.
 </p>
 
 </body>
 </subsection>
 
-<subsection><title>constraints</title><body>
-<p>
-This file defines additional constraints on permissions
-in the form of expressions that must be satisfied in order
-for specified permissions to be granted.  These constraints
-are used to further refine the type enforcement tables and
-the role allow rules.  Typically, these constraints are used
-to restrict changes in user identity or role to certain domains.
-</p>
-</body></subsection>
+<subsection>
+<title>Plik constraints</title>
+<body>
 
-<subsection><title>domains/</title><body>
 <p>
-This directory contains the type enforcement rules.  This directory contains
-the files <c>admin.te</c>, <c>staff.te</c>, and <c>user.te</c>, which
-contain the access vectors for the <c>sysadm_r</c>, <c>staff_r</c>, and 
-<c>user_r</c> roles.  The <c>program/</c> directory consists of all of the
-active policies for various programs and daemons.  The <c>misc/</c> directory
-contains all other policy files.
+Plik <path>constraints</path> definiuje dodatkowe ograniczenia dostępu w formie
+wyrażeń, które muszą zostać spełnione, aby określone prawa dostępu zostały
+nadane. Te ograniczenia są następnie wykrzytywane do uściślenia tabel egzekucji
+typów i praw dostępu opartych na statusach. Zazwyczaj reguły te stosuje
+się w celu ograniczenia zmian w tożsamości użytkowanika lub jego statusie do
+określonego zakresu.
 </p>
-</body></subsection>
 
-<subsection><title>file_contexts/</title><body>
-<p>
-This directory contains the files that describe the security contexts
-for all files on persistent filesystems.  It contains the file <c>types.fc</c>
-which has all of the security contexts for the general system.  The
-directory <c>program/</c> contains the security contexts for the daemons
-in the <c>domains/program/</c> directory.  These are one-to-one mapped;
-for example, the domains/program/syslogd.te policy file corresponds to the
-file_contexts/program/syslogd.fc security contexts file.
-</p>
-</body></subsection>
+</body>
+</subsection>
 
-<subsection><title>flask/</title><body>
-<p>
-This directory contains contains configuration files independent of the
-policy.  These files contain definitions corresponding to definitions
-in the kernel headers.  These files <e>should not</e> be modified.
-</p>
-</body></subsection>
+<subsection>
+<title>Katalog domains/</title>
+<body>
 
-<subsection><title>fs_use</title><body>
 <p>
-This file describes the labelling behavior for files on various filesystem
-types.  For example, ext3 uses persistent labelling, while tmpfs uses
-transitional security IDs.  In general, this file should <e>not</e>
-need to be modified.
+Katalog <path>domains/</path> zawiera zasady egzekucji typów. Znajdują się tu
+pliki <c>admin.te</c>, <c>staff.te</c> i <c>user.te</c>, opisujące prawa dostępu
+dla statusów <c>sysadm_r</c>, <c>staff_r</c> i <c>user_r</c>. Katalog
+<path>program/</path> zawiera wszystkie pliki aktywnej polityki odwołujące się
+do programów i demonów. W katalogu <path>misc/</path> znajdują się wszystkie
+pozostałe pliki polityki.
 </p>
-</body></subsection>
 
-<subsection><title>genfs_contexts</title><body>
-<p>
-This file contains the security contexts for files in a filesystem that
-do not support persistent file labels, such as <c>/proc</c>.
-</p>
-</body></subsection>
+</body>
+</subsection>
 
-<subsection><title>initial_sid_contexts</title><body>
-<p>
-This file contains the initial context for each security ID.  In general,
-this file should <e>not</e> need to be modified.
-</p>
-</body></subsection>
+<subsection>
+<title>Katalog file_contexts/</title>
+<body>
 
-<subsection><title>macros/</title><body>
 <p>
-This directory contains the m4 macros used to ease creation and maintenance
-of the policy.  It contains the macro file <c>admin_macros.te</c> for
-describing administration domains, such as <c>sysadm_t</c>.  The
-<c>user_macros.te</c> contains macros used in user domains such as <c>user_t</c>
-and <c>staff_t</c>.  The <c>global_macros.te</c> contains macros used throughout
-the entire policy.
+Katalog <path>file_contexts/</path> zawiera pliki, opisujące konteksty
+bezpieczeństwa wszystkich plików na niewymiennych napędach. Znajduje się tu plik
+<c>types.fc</c>, który zawiera wszystkie konteksty dla systemu
+podstawowego. W katalogu <path>program/</path> znajdziemy konteksty
+bezpieczeństwa dla demonów znajdujących się w katalogu
+<path>domains/program/</path>. Każdemu plikowi z <path>domains/program/</path>
+odpowiada plik w katalogu <path>file_contexts/program/</path>, przykładowo
+plikowi polityki <path>domains/program/syslogd.te</path> odpowiada plik z
+kontekstami bezpieczeństwa <path>file_contexts/program/syslogd.fc</path>.
 </p>
-</body></subsection>
 
-<subsection><title>mls</title><body>
-<p>
-This file contains the configuration for SELinux multi-level security.
-Multi-level Security is experimental, and is not supported by Gentoo.
-</p>
-</body></subsection>
+</body>
+</subsection>
 
-<subsection><title>net_contexts</title><body>
-<p>
-This file defines the security contexts of network objects such as ports,
-interfaces, and nodes.  This will need to be modified if daemons run on
-nonstandard ports.
-</p>
-</body></subsection>
+<subsection>
+<title>Katalog flask/</title>
+<body>
 
-<subsection><title>rbac</title><body>
 <p>
-The name of the file is misleading, as SELinux does not have
-role-based access control.  This file contains role transition
-rules for the base system.  Additional transitions are allowed
-in the type enforcement files, especially <c>user.te</c> and
-<c>staff.te</c>.
+Katalog <path>flask/</path> zawiera pliki konfiguracyjne niezależne od
+polityki. Pliki te przechowują definicje odwołujące się do nagłówków
+jądra. <e>Nie należy</e> wprowadzać zmian w tym katalogu.
 </p>
-</body></subsection>
 
-<subsection><title>tmp/</title><body>
-<p>
-This directory is used for holding intermediate files when compiling the
-policy.  It can be safely removed, if needed.
-</p>
-</body></subsection>
+</body>
+</subsection>
 
-<subsection><title>tunable.te</title><body>
-<p>
-This is the main configuration file of the policy.
-</p>
-</body></subsection>
+<subsection>
+<title>Plik fs_use</title>
+<body>
 
-<subsection><title>types/</title><body>
 <p>
-This directory contains files for declaring general types of the system
-which do not appear in the individual program policies.
+Plik <path>fs_use</path> opisuje sposób oznaczania plików na różnych systemach
+plików. Przykładowo, dla systemu plików ext3 używane jest trwałe znakowanie,
+podczas gdy dla tmpfs wykorzystuje się pośrednie numery ID. Generalnie <e>nie
+należy</e> wprowadzać zmian w tym pliku.
 </p>
-</body></subsection>
 
-<subsection><title>users</title><body>
+</body>
+</subsection>
+
+<subsection>
+<title>Plik genfs_contexts</title>
+<body>
+
 <p>
-This file describes the SELinux identities, and the roles they can enter.
+Plik <path>genfs_contexts</path> zawiera konteksty bezpieczeństwa dla plików,
+dla których nie są obsługiwane pośrednie oznaczenia, np. <c>/proc</c>.
 </p>
-</body></subsection>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Plik initial_sid_contexts</title>
+<body>
+
+<p>
+Plik <path>initial_sid_contexts</path> zawiera początkowe konteksty dla każdego
+numeru ID. Generalnie <e>nie należy</e> modyfikować tego pliku.
+</p>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Katalog macros/</title>
+<body>
+
+<p>
+Katalog <path>macros/</path> zawiera makra m4, używane do łatwego tworzenia i
+zarządzania politykami. Znajduje się tu plik <path>admin_macros.te</path>,
+służący do określenia domen administracyjnych, takich jak <c>sysadm_t</c>. Plik
+<path>user_macros.te</path> zawiera makra wykorzystywane w domenach
+użytkowników, np. <c>user_t</c> i <c>staff_t</c>. W pliku
+<path>global_macros.te</path> znajdują się makra wykorzystywane w całej polityce.
+</p>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Plik mls</title>
+<body>
+
+<p>
+Plik <path>mls</path> zawiera konfigurację bezpieczeństwa wielopoziomowego
+(Multi-level Security) SELinux. Bezpieczeństwo wielopoziomowe jest
+eksperymentalną funkcjonalnością i nie jest obsługiwane w Gentoo.
+</p>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Plik net_contexts</title>
+<body>
+
+<p>
+Plik <path>net_contexts</path> definiuje konteksty bezpieczeństwa dla obiektów
+sieciowych, takich jak porty, interfejsy, węzły. Jeśli demony działają na
+niestandardowych portach, konieczne będzie zmodyfikowanie tego pliku.
+</p>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Plik rbac</title>
+<body>
+
+<p>
+Nazwa tego pliku jest zwodnicza, gdyż SELinux nie posiada kontroli dostępu
+opartej na statusach. Plik <path>rbac</path> opisuje reguły zmian statusów dla
+systemu podstawowego. Dodatkowe możliwości przełączania statusów można umieścić
+w plikach egzekucji typów, szczególnie w <path>user.te</path> i
+<path>staff.te</path>.
+</p>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Katalog tmp/</title>
+<body>
+
+<p>
+Katalog <path>tmp/</path> jest wykorzystywany do przechowywania tymczasowych
+plików w czasie kompilowania polityki. Jeśli jest to konieczne, katalog ten
+można bezpiecznie usunąć.
+</p>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Plik tunable.te</title>
+<body>
+
+<p>
+Plik <path>tunable.te</path> jest głównym plikiem konfiguracyjnym polityki.
+</p>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Katalog types/</title>
+<body>
+
+<p>
+Katalog <path>types/</path> zawiera pliki prznaczone do deklarowania ogólnych
+typów, które nie pojawiają się indywidualnych politykach programów.
+</p>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Plik users</title>
+<body>
+
+<p>
+Plik <path>users</path> opisuje tożsamości SELinux oraz statusy jakie mogą one
+przyjmować.
+</p>
+
+</body>
+</subsection>
 </section>
 
 <section>
-<title>Policy Database Versions</title>
-<subsection><body>
-<p>
-When compiling the policy, the resultant binary policy is versioned.  The
-first version that was merged into 2.6, and also is in the 2.4 backports is
-version 15.  The version number is only incremented generally when new
-features are added that require changes to the structure of the compiled
-policy.  For example, in 2.6.5, conditional policy extensions were added.
-This required the policy version to be incremented to version 16.
-</p>
-</body></subsection>
-<subsection><title>What Policy Version Does My Kernel Use?</title>
+<title>Wersje bazy danych polityki</title>
+<subsection>
 <body>
+
 <p>
-There are several ways to determine the kernel's policy version.  A change
-to the kernel eclass has been made that will display the policy version that
-the kernel expects:
+Po skompilowaniu polityki, wynikowy plik binarny posiada oznaczenie
+wersji. Pierwsza wersja jaka została zintegrowana w jądrach serii 2.6 (także w
+serii 2.4) posiadała wersję 15. Numer polityki jest zwiększany tylko w sytuacji,
+gdy dodano nowe funkcje wymagające zmian w strukturze skompilowanej
+polityki. Przykładowo, w wersji 2.6.5 dodano warunkowe rozszerzenia
+polityk. Spowodowało to konieczność zwiększenia numeru wersji polityki do 16.
 </p>
-<pre>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Jakiej wersji polityki używa nasze jądro?</title>
+<body>
+
+<p>
+Istnieje kilka sposobów, aby dowiedzieć się jakiej wersji polityki używa
+jądro. Wprowadzono zmianę w eclass jądra, która pozwala na wyświetlenie
+informajcji jakiej werji polityki oczekuje jądro.
+</p>
+
+<pre caption="Informacja o wersji polityki SELinux oczekiwanej przez jądro">
  * The SELinux policy version of this kernel is 16.
 </pre>
+
 <p>
-The policy version of a running kernel can be determined by executing
-<c>sestatus</c> or <c>policyvers</c>.  Current kernels can load
-the previous version policy for compatibility.  For example a version 17
-kernel can also load a version 16 policy.  However, this compatibility
-code may be removed in the future.
+Wersję polityki działającego jądra można uzyskać przy użyciu polecenia
+<c>sestatus</c> lub <c>policyvers</c>. Obcene wersje jąder moga korzystać z
+wcześniejszych wersji polityk dla zachowania kompatybilności
+wstecz. Przykładowo, jądro używające polityki w wersji 17 może również załadować
+politykę w wersji 16. Niemniej jednak ta kompatybilność wstecz może zostać
+usunięta w przyszłości.
 </p>
-</body></subsection>
-<subsection><title>Compiling the Right Version Policy</title>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Kompilowanie właściwej wersji polityki</title>
 <body>
+
 <p>
-The only adjustment needed is in the policy Makefile.  There is a line
-near the top that looks like this:
+Jedyna zmiana jakiej musimy dokonać zawiera się w pliku Makefile polityki. W
+początkowej częsci tego pliku znajduje się linia podobna do poniższej.
 </p>
-<pre>
+
+<pre caption="Edycja pliku Makefile polityki">
 POLICYCOMPAT = -c 15
 </pre>
+
 <p>
-Normally, checkpolicy will create a policy for the current version.  The
-policy versions that checkpolicy can create can be determined by running
-<c>checkpolicy -V</c>.  With the above option uncommented, a compatibility
-policy can be created.  The above statement will create a version 15 policy;
-it can be changed to 16.
+Standardowo, <c>checkpolicy</c> wygeneruje polityką dla obecnej wersji. Aby
+wprawdzić wersję polityki, jaką <c>checkpolicy</c> może utworzyć należy wykonać
+polecenie <c>checkpolicy -V</c>. Po odkomentowaniu powyższej linii może zostać
+utworzona kompatybilna polityka. Powyższe ustawienie sprawi, że utworzona
+zostanie polityka w wersji 15 (można to zmienić na wersję 16).
 </p>
-</body></subsection>
-<subsection><title>Policy Versions</title>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Wersje polityk</title>
 <body>
+
 <p>
-The following table contains the policy versions in vanilla 2.6
-kernels and in SELinux-patched 2.4 kernels.  Other 2.6 kernels,
-such as arch kernels (ppc-dev-sources) and gentoo-dev-sources,
-will have the SELinux version of the vanilla kernel version
-it is based on.
+Poniższa tabela przedstawia wersje polityk dla jąder vanilla 2.6 oraz jąder
+serii 2.4 z patchami SELinux. Pozostałe kernela serii 2.6, jak na przykład jądra
+przeznaczone dla konkretnych architektur (ppc-dev-sources) i jądra
+gentoo-dev-sources, będą używały wersji SELinux przeznaczonej dla jąder vanilla,
+na których bazują.
 </p>
+
 <table>
-<tr><th>Version</th>
- <th>Description</th>
- <th>Vanilla Kernel Versions</th>
- <th>SELinux-sources</th>
- <th>Hardened-sources</th>
- <th>Hardened-dev-sources</th></tr>
-<tr><ti>12</ti>
- <ti>"Old API" SELinux (deprecated).</ti></tr>
-<tr><ti>15</ti>
- <ti>"New API" SELinux merged into 2.6.</ti>
- <ti>2.6.0 - 2.6.4</ti>
- <ti>All 2.4</ti>
- <ti>All 2.4</ti>
- <ti>2.6.0 - 2.6.3</ti></tr>
-<tr><ti>16</ti>
- <ti>Conditional policy extensions added.</ti>
- <ti>2.6.5</ti>
- <ti></ti>
- <ti></ti>
- <ti>2.6.4 - 2.6.5-r2</ti></tr>
-<tr><ti>17</ti>
- <ti>IPV6 support added.</ti>
- <ti>2.6.6 - 2.6.7</ti>
- <ti></ti>
- <ti></ti>
- <ti>2.6.5-r3 - current</ti></tr>
-<tr><ti>18</ti>
- <ti>Fine-grained netlink socket support added.</ti>
- <ti>2.6.8 - current</ti>
- <ti></ti>
- <ti></ti>
- <ti></ti></tr>
+<tr>
+  <th>Wersja</th>
+  <th>Opis</th>
+  <th>Wersja kernela vanilla</th>
+  <th>SELinux-sources</th>
+  <th>Hardened-sources</th>
+  <th>Hardened-dev-sources</th>
+</tr>
+<tr>
+  <ti>12</ti>
+  <ti>"Old API" SELinux (zdeprecjonowany).</ti>
+</tr>
+<tr>
+  <ti>15</ti>
+  <ti>"New API" SELinux zintegrowany w 2.6.</ti>
+  <ti>2.6.0 - 2.6.4</ti>
+  <ti>Cała seria 2.4</ti>
+  <ti>Cała seria 2.4</ti>
+  <ti>2.6.0 - 2.6.3</ti>
+</tr>
+<tr>
+  <ti>16</ti>
+  <ti>Dodane warunkowe rozszerzenia polityk.</ti>
+  <ti>2.6.5</ti>
+  <ti></ti>
+  <ti></ti>
+  <ti>2.6.4 - 2.6.5-r2</ti>
+</tr>
+<tr>
+  <ti>17</ti>
+  <ti>Dodana obsługa IPv6.</ti>
+  <ti>2.6.6 - 2.6.7</ti>
+  <ti></ti>
+  <ti></ti>
+  <ti>2.6.5-r3 - obecna wersja</ti>
+  </tr>
+<tr>
+  <ti>18</ti>
+  <ti>Dodana precyzyjna obsługa gniazd netlink.</ti>
+  <ti>2.6.8 - obecna wersja</ti>
+  <ti></ti>
+  <ti></ti>
+  <ti></ti>
+</tr>
 </table>
-</body></subsection>
+
+</body>
+</subsection>
 </section>
 
 <section>
-<title>Conditional Policy Extensions</title>
-<subsection><body>
-<p>
-  The conditional policy extensions allow the enabling and disabling of policy
-  rules at runtime, without loading a modified policy.  Using policy booleans
-  and expressions, policy rules can be conditionally applied.
-</p>
-</body></subsection>
-
-<subsection><title>Determine Boolean Values</title>
+<title>Warunkowe rozszerzenia polityk.</title>
+<subsection>
 <body>
+
 <p>
-  The status of policy booleans in the current running policy can be determined
-  two ways.  The first is by using <c>sestatus</c>.
+Koncepcja warunkowych rozszerzeń polityk pozwala na włączanie i wyłączanie zasad
+polityki w czasie jej działania, bez konieczności przeładowywania zmodyfikowanej
+polityki. Reguły polityki mogą być warunkowo uruchamiane, przy użyciu zmiennych
+i wyrażeń.
 </p>
-<pre>
+
+</body>
+</subsection>
+
+<subsection>
+<title>Uzyskiwanie infromacji o wartościach zmiennych</title>
+<body>
+
+<p>
+Wartości zmiennych obecnie wykorzystywanej polityki można uzyskać na dwa
+sposoby. Pierwszym jest użycie polecenia <c>sestatus</c>.
+</p>
+
+<pre caption="Użycie sestatus">
 # sestatus
 SELinux status:      enabled
 SELinuxfs mount:     /selinux
@@ -567,40 +692,53 @@ Policy version:      17
 Policy booleans:
 user_ping            inactive
 </pre>
+
 <p>
-  The second is <c>getsebool</c> which is a simple tool that displays
-  the status of policy booleans, and if a value change is pending.
+Drugim sposobem jest wykorzystanie narzędzia <c>getsebool</c>, które wyświetla
+status zmiennych polityki oraz informację o tym, czy zmiana statusu oczekuje
+wykonania.
 </p>
-<pre>
+
+<pre caption="Użycie getsebool">
 # getsebool -a
 user_ping --> active: 0 pending: 0
 </pre>
-</body></subsection>
 
-<subsection><title>Changing Boolean Values</title>
+</body>
+</subsection>
+
+<subsection>
+<title>Zmienianie wartości zmiennych</title>
 <body>
+
 <p>
-  The value of a boolean can be toggled by using the <c>togglesebool</c>
-  command.  Multiple booleans can be specified on the command line.  The
-  new value of the boolean will be displayed.
+Status zmiennych może być przełączany przy użyciu polecenia
+<c>togglesebool</c>. W roli argumentów można podać kilka zmiennych. Nowa wartość
+zmiennych zostanie wyświetlona.
 </p>
-<pre>
+
+<pre caption="Przełączenie wartości zmiennej">
 # togglesebool user_ping
 user_ping: active
 </pre>
+
 <p>
-  The value of a boolean can be set specifically by using the <c>setsebool</c>
-  command.
+Wartość zmiennej można również określić używając polecenia <c>setsebool</c>.
 </p>
-<pre>
+
+<pre caption="Ustawianie wartości zmiennej">
 # setsebool user_ping 0
 </pre>
-</body></subsection>
+
+</body>
+</subsection>
 </section>
 
 <section>
 <title>Policy Kernel Messages</title>
-<subsection><body>
+<subsection>
+<body>
+
 <p>
 While a system is running, a program or user may attempt to do something
 that violates the security policy.  If the system is enforcing the policy,
@@ -608,9 +746,14 @@ the access will be denied, and there will be a message in the kernel log.
 If the system is not enforcing (permissive mode), the access will be allowed,
 but there will still be a kernel message.
 </p>
-</body></subsection>
 
-<subsection><title>AVC Messages</title><body>
+</body>
+</subsection>
+
+<subsection>
+<title>AVC Messages</title>
+<body>
+
 <p>
 Most kernel messages from SELinux come from the access vector cache (AVC).
 Understanding denials is important to understand if an attack is happening,
@@ -627,10 +770,12 @@ scontext=pebenito:sysadm_r:mount_t tcontext=system_u:object_r:tmp_t tclass=file
 While most AVC messages are denials, occasionally there might be an audit
 message for an access that was granted:
 </p>
+
 <pre caption="Example AVC Message 2">
 avc:  granted  { load_policy } for  pid=3385 exe=/usr/sbin/load_policy
 scontext=pebenito:sysadm_r:load_policy_t tcontext=system_u:object_r:security_t tclass=security
 </pre>
+
 <p>
 In this case, the ability to load the policy was granted.  This is a critical
 security event, and thus is always audited.  Another event that is always
@@ -655,11 +800,15 @@ The policy would have to be modified to not audit these accesses if they
 are normal program behavior, but still need to be denied.
 </p>
 
-</body></subsection>
+</body>
+</subsection>
 </section>
 
-<section><title>Dissecting a Denial</title>
-<subsection><body>
+<section>
+<title>Dissecting a Denial</title>
+<subsection>
+<body>
+
 <p>
 Denials contain varying amounts of information, depending on the access type.
 </p>
@@ -673,37 +822,61 @@ tcontext=pebenito:sysadm_r:mkinitrd_t tclass=unix_stream_socket
 
 avc:  denied  { setuid } for  pid=3170 exe=/usr/bin/ntpd capability=7
 scontext=system_u:system_r:ntpd_t tcontext=system_u:system_r:ntpd_t tclass=capability
-
 </pre>
 
 <p>
 The most common denial relates to access of files.  For better understanding,
 the first denial message will be broken down:
 </p>
+
 <table>
-<tr><th>Component</th><th>Description</th></tr>
-<tr><ti>avc:  denied</ti>
- <ti>SELinux has denied this access.</ti></tr>
-<tr><ti>{ lock }</ti>
- <ti>The attempted access is a lock.</ti></tr>
-<tr><ti>pid=28341</ti>
- <ti>The process ID performing this access is 28341.</ti></tr>
-<tr><ti>exec=/sbin/agetty</ti>
- <ti>The full path and name of the process&#39;s executable is /sbin/agetty.</ti></tr>
-<tr><ti>path=/var/log/wtmp</ti>
- <ti>The path and name of the target object is /var/log/wtmp.  Note: a complete
-     path is not always available.</ti></tr>
-<tr><ti>dev=03:03</ti>
- <ti>The target object resides on device 03:03 (major:minor number).
-     On 2.6 kernels this may resolve to a name, hda3 in this example.</ti></tr>
-<tr><ti>ino=475406</ti>
- <ti>The inode number of the target object is 475406.</ti></tr>
-<tr><ti>scontext=system_u:system_r:getty_t</ti>
- <ti>The context of the program is system_u:system_r:getty_t.</ti></tr>
-<tr><ti>tcontext=system_u:object_r:var_log_t</ti>
- <ti>The context of the target object is system_u:object_r:var_log_t.</ti></tr>
-<tr><ti>tclass=file</ti>
- <ti>The target object is a normal file.</ti></tr>
+<tr>
+  <th>Component</th>
+  <th>Description</th>
+</tr>
+<tr>
+  <ti>avc:  denied</ti>
+  <ti>SELinux has denied this access.</ti>
+</tr>
+<tr>
+  <ti>{ lock }</ti>
+  <ti>The attempted access is a lock.</ti>
+</tr>
+<tr>
+  <ti>pid=28341</ti>
+  <ti>The process ID performing this access is 28341.</ti>
+</tr>
+<tr>
+  <ti>exec=/sbin/agetty</ti>
+  <ti>The full path and name of the process&#39;s executable is
+  /sbin/agetty.</ti>
+</tr>
+<tr>
+  <ti>path=/var/log/wtmp</ti>
+  <ti>The path and name of the target object is /var/log/wtmp.  Note: a complete
+  path is not always available.</ti>
+</tr>
+<tr>
+  <ti>dev=03:03</ti>
+  <ti>The target object resides on device 03:03 (major:minor number).
+  On 2.6 kernels this may resolve to a name, hda3 in this example.</ti>
+</tr>
+<tr>
+  <ti>ino=475406</ti>
+  <ti>The inode number of the target object is 475406.</ti>
+</tr>
+<tr>
+  <ti>scontext=system_u:system_r:getty_t</ti>
+  <ti>The context of the program is system_u:system_r:getty_t.</ti>
+</tr>
+<tr>
+  <ti>tcontext=system_u:object_r:var_log_t</ti>
+  <ti>The context of the target object is system_u:object_r:var_log_t.</ti>
+</tr>
+<tr>
+  <ti>tclass=file</ti>
+  <ti>The target object is a normal file.</ti>
+</tr>
 </table>
 
 <p>
@@ -712,9 +885,14 @@ two denials.  The fields vary depending on the target object&#39;s class.
 However, the most important fields: access type, source and target contexts,
 and the target object&#39;s class will always be in an AVC message.
 </p>
-</body></subsection>
 
-<subsection><title>Understanding the Denial</title><body>
+</body>
+</subsection>
+
+<subsection>
+<title>Rozumienie odmowy dostępu</title>
+<body>
+
 <p>
 Denials can be very confusing since they can be triggered for several reasons.
 The key to understanding what is happening is to know the behavior of the
@@ -722,6 +900,7 @@ program, and to correctly interpret the denial message.  The target is not
 limited to files; it could also be related to network sockets,
 interprocess communications, or others.
 </p>
+
 <p>
 In the above example, the agetty is denied locking of a file.  The file&#39;s type
 is var_log_t, therefore it is implied that the target file is in /var/log.
@@ -735,21 +914,29 @@ in the policy by not allowing agetty to update wtmp?  It turns out that wtmp
 has the incorrect context.  It should be system_u:object_r:wtmp_t, rather
 than system_u:object_r:var_log_t.
 </p>
+
 <p>
 If this access was not understood, an administrator might mistakenly allow getty_t
 read/write access to var_log_t files, which would be incorrect, since agetty
 only needs to modify /var/log/wtmp.  This underscores how critical keeping
 file contexts consistent is.
 </p>
-</body></subsection>
+
+</body>
+</subsection>
 </section>
 
-<section><title>References</title>
-<subsection><body>
+<section>
+<title>Inne źródła informacji</title>
+<subsection>
+<body>
+
 <p>
-<uri link="http://www.nsa.gov/selinux">U.S. National Security Agency</uri>,
-SELinux Policy README
+<uri link="http://www.nsa.gov/selinux">Narodowa Agencja Ochrony USA (U.S. NSA) -
+polityka SELinux</uri>
 </p>
-</body></subsection>
+
+</body>
+</subsection>
 </section>
 </sections>
