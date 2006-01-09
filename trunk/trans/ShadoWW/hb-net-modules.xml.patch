@@ -1,0 +1,60 @@
+--- hb-net-modules.xml	2006-01-09 14:01:12.000000000 +0100
++++ hb-net-modules-1.xml	2006-01-09 15:19:39.000000000 +0100
+@@ -245,7 +245,10 @@
+ </body>
+ </section>
+ <section>
+-<title>APIPA {Automatyczne prywatne adresowanie IP (ang. Automatic Private IP Addressing)}</title>
++<title>
++APIPA {Automatyczne prywatne adresowanie IP (ang. Automatic Private IP 
++Addressing)}
++</title>
+ <body>
+ 
+ <p>
+@@ -289,14 +292,14 @@
+ </p>
+ 
+ <p>
+-Łączenie urządzeń sieciowych stosuje się w celu zwiększenia przepustowości sieci.
+-Jeżeli w komputerze są do dyspozycji dwie karty sieciowe znajdujące się w tej
+-samej sieci, można je połączyć tak, żeby aplikacje w rzeczywistości używały obu
+-urządzeń jednocześnie.
++Łączenie urządzeń sieciowych stosuje się w celu zwiększenia przepustowości 
++sieci. Jeżeli w komputerze są do dyspozycji dwie karty sieciowe znajdujące się 
++w tej samej sieci, można je połączyć tak, żeby aplikacje w rzeczywistości 
++używały obu urządzeń jednocześnie.
+ </p>
+ 
+ <pre caption="Konfiguracja łączenia w /etc/conf.d/net">
+-<comment>Aby połączyć urządzenia razem</comment>
++<comment># Aby połączyć urządzenia razem</comment>
+ slaves_bond0="eth0 eth1 eth2"
+ 
+ <comment># Jeżeli nie trzeba przypisywać adresu IP do interfejsu</comment>
+@@ -320,8 +323,8 @@
+ </p>
+ 
+ <p>
+-Mostkowanie jest używane do łączenia w całość dużych sieci. Dla przykładu można mieć
+-serwer, który łączy się z internetem przy pomocy ADSL oraz ma połączenie z
++Mostkowanie jest używane do łączenia w całość dużych sieci. Dla przykładu można
++mieć serwer, który łączy się z internetem przy pomocy ADSL oraz ma połączenie z
+ bezprzewodową kartą sieciową by umożliwić innym komputerom łączenie się z
+ internetem przy pomocy modemu ADSL. Można stworzyć mostek do połączenia obydwu
+ interfejsów.
+@@ -359,10 +362,10 @@
+ <body>
+ 
+ <p>
+-W celu zmiany adresów MAC interfejsów sieciowych wystarczy posiadać zainstalowany
+-<c>sys-apps/baselayout-1.11.14</c> lub nowszy. Jeżeli zachodzi potrzeba zamiany 
+-adresu na losowy lub baselayout jest starszy od wyżej wymienionej wersji, należy
+-zainstalować <c>net-analyzer/macchanger</c>.
++W celu zmiany adresów MAC interfejsów sieciowych wystarczy posiadać 
++zainstalowany <c>sys-apps/baselayout-1.11.14</c> lub nowszy. Jeżeli zachodzi 
++potrzeba zamiany  adresu na losowy lub baselayout jest starszy od wyżej 
++wymienionej wersji, należy zainstalować <c>net-analyzer/macchanger</c>.
+ </p>
+ 
+ <pre caption="Przykład zmiany adresu MAC">
