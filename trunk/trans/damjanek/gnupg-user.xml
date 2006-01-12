@@ -45,11 +45,11 @@ GnuPG</uri>. Po zapoznaniu się z podstawami można wrócić do tego tekstu.
 </p>
 
 <p>
-Ten przewodnik pokaże jak zainstalować GnuPG, jak utworzyć parę kluczy, jak
-dodawać klucze do bazy, jak wysłać klucz publiczny na serwer kluczy i jak
-podpisywać, szyfrować, weryfikować lub deszyfrować otrzymywane lub wysyłane
-wiadomości. Dodatkowo wytłumaczymy jak należy szyfrować pliki na własnym
-komputerze by uniemożliwić innym odczyt ich zawartości.
+Ten przewodnik pokaże jak zainstalować GnuPG, utworzyć parę kluczy, dodawać
+klucze do bazy, jak wysłać klucz publiczny na serwer kluczy i jak podpisywać,
+szyfrować, weryfikować lub deszyfrować otrzymywane lub wysyłane wiadomości.
+Dodatkowo wytłumaczymy jak należy szyfrować pliki na własnym komputerze by
+uniemożliwić innym odczyt ich zawartości.
 </p>
 
 </body>
@@ -62,7 +62,7 @@ komputerze by uniemożliwić innym odczyt ich zawartości.
 Na sam początek należy zainstalować GnuPG za pomocą polecenia <c>emerge
 gnupg</c>. Wiele programów ma obecnie pewnego rodzaju wsparcie dla gpg, tak więc
 posiadanie flagi <e>crypt</e> w zmiennej USE jest bardzo zalecane. Warto mieć
-program do obsługi poczty elektronicznej pozwalający na korzystanie z gnupg.
+program do obsługi poczty elektronicznej umożliwiający korzystanie z gnupg.
 Można w tym celu zainstalować pine (<c>emerge pinepgp</c>), mutt (<c>emerge
 mutt</c>), Kuriera Poczty z pakietu Mozilla/Netscape, evolution (evolution jest
 wchodzącym w skład GNOME odpowiednikiem Microsoft Outlook) lub klienta poczty z
@@ -91,7 +91,7 @@ uruchomieniu, zostanie stworzonych kilka katalogów. Aby wygenerować klucze
 należy ponownie wykonać polecenie:
 </p>
 
-<pre caption="przebieg generowania klucza">
+<pre caption="Proces generowania klucza">
 $ <i>gpg --gen-key</i> gpg (GnuPG)
 1.2.6; Copyright (C) 2004 Free Software Foundation, Inc.
 This program comes with ABSOLUTELY NO WARRANTY.
@@ -111,7 +111,7 @@ Tutaj można wybrać rodzaj klucza którego chcemy używać. Większość użytk
 wybierze domyślne DSA i ElGamal. Następnie wybieramy długość klucza - należy
 pamiętać, że im dłuższy klucz tym lepszy, ale nie powinno się używać kluczy DSA
 i ElGamal dłuższych niź 2048. Generalnie 1024 to więcej niż potrzeba do
-normalnej poczty.
+normalnej poczty.  
 </p>
 
 <p>
@@ -166,7 +166,7 @@ Enter passphrase:
 Należy dwukrotnie podać hasło. Zalecane jest użycie mocnego hasła. Jeśli
 ktokolwiek kiedykolwiek zdobędzie klucz prywatny i złamie to hasło, będzie mógł
 wysyłać wiadomości podpisane przez "nas" sprawiając że wszyscy będą wierzyć, że
-poczta jest od nas.
+poczta pochodzi od nas.
 </p>
 
 <p>
@@ -187,7 +187,7 @@ Ta część jest bardzo ważna i musi być wykonana <e>TERAZ</e>.
 <p>
 Po utworzeniu kluczy należy utworzyć certyfikat unieważnienia. Pozwoli to
 unieważnić klucz w przypadku gdy coś złego się z nim stanie (ktoś zdobędzie nasz
-klucz/hasło).
+klucz, czy też hasło).
 </p>
 
 <pre caption="Generowanie certyfikatu unieważnienia">
@@ -232,7 +232,7 @@ your machine might store the data and make it available to others!
 </pre>
 
 <p>
-Polecenie <c>gpg --list-keys</c> wypisuje klucze należące do naszej bazy kluczy.
+Polecenie <c>gpg --list-keys</c> wyświetli klucze należące do naszej bazy.
 Można dzięki niemu sprawdzić ID klucza co pozwoli na wygenerowanie certyfikatu
 unieważnienia. Teraz dobrym pomysłem będzie skopiowanie całego katalogu .gnupg
 oraz certyfikatu unieważniającego (w formacie ASCII - <path>revoke.asc</path>)
@@ -373,12 +373,12 @@ sig!3       75447B14 2002-12-08   John Doe (The Real John Doe) &lt;john@nowhe
 Teraz, kiedy mamy już nasz klucz, dobrym pomysłem będzie wysłanie go do
 ogólnodostępnego serwera kluczy. Na świecie jest wiele serwerów i większość z
 nich wymienia klucze między sobą. My wyślemy klucz Luisa do serwera
-subkeys.pgp.net.  Użyjemy protokołu HTTP, więc jeśli używany jest serwer proxy
+subkeys.pgp.net. Użyjemy protokołu HTTP, więc jeśli używany jest serwer proxy
 dla ruchu HTTP należy pamiętać o jego konfiguracji (<c>export
-http_proxy=http://proxy_host:port/</c>). Polecenie do wysyłania klucza to:
+http_proxy=http://serwer_proxy:port/</c>). Polecenie do wysyłania klucza to:
 <c>gpg --keyserver subkeys.pgp.net --keyserver-options honor-http-proxy
---send-key 75447B14</c> gdzie <c>75447B14</c> to ID klucza. Jeśli nie jest
-używany serwer proxy można usunąć opcję <e>--keyserver-options
+--send-key 75447B14</c> gdzie <c>75447B14</c> to ID klucza. Jeśli nie
+korzystamy z serwera proxy, możemy usunąć opcję <e>--keyserver-options
 honor-http-proxy</e>.
 </p>
 
@@ -451,9 +451,7 @@ skonfigurowany by na to pozwalać.
 </p>
 
 <p>
-Gentoo udostępnia kilka aplikacji agenta GPG. <c>app-crypt/gpg-agent</c> może
-być uważany za tego zalecanego i właśnie z niego będziemy korzystać w tym
-dokumencie.
+Gentoo udostępnia kilka aplikacji agenta GPG. Zalecamy <c>app-crypt/gpg-agent</c> i właśnie z niego będziemy korzystać w tym dokumencie.
 </p>
 
 </body>
@@ -545,9 +543,9 @@ Kolejne trzy polecenia zaszyfrują i podpiszą plik.
 </p>
 
 <pre caption="Szyfrowanie i podpisywanie plików">
-$ <i>gpg --output doc.gpg --encrypt --recipient lmpinto@dei.uc.pt doc_to_encrypt</i>
-$ <i>gpg --output doc.gpg --sign --recipient lmpinto@dei.uc.pt doc_to_sign</i>
-$ <i>gpg --output doc.gpg --encrypt --sign --recipient lmpinto@dei.uc.pt doc_to_encrypt_and_sign</i>
+$ <i>gpg --output doc.gpg --encrypt --recipient lmpinto@dei.uc.pt dokument_do_zaszyfrowania</i>
+$ <i>gpg --output doc.gpg --sign --recipient lmpinto@dei.uc.pt dokument_do_podpisania</i>
+$ <i>gpg --output doc.gpg --encrypt --sign --recipient lmpinto@dei.uc.pt dokument_do_zaszyfrowania_i_podpisania</i>
 </pre>
 
 <p>
@@ -563,8 +561,8 @@ Utworzone zostaną pliki binarne. Aby utworzyć pliki ASCII, trzeba dodać
 
 <p>
 Załóżmy że dostaliśmy plik, który jest zaszyfrowany. Polecenie do deszyfracji to
-<c>gpg --output document --decrypt encrypted_doc.gpg</c>. Rozszyfruje ono
-dokument i sprawdzi podpis (jeśli istnieje).
+<c>gpg --output document --decrypt zaszyfrowany_dokument.gpg</c>. Rozszyfruje
+ono dokument i sprawdzi podpis (jeśli istnieje).
 </p>
 
 </body>
@@ -574,8 +572,8 @@ dokument i sprawdzi podpis (jeśli istnieje).
 <body>
 
 <p>
-GnuPG ma kilka przyjemnych zaawansowanych funkcji. Aby je odnaleźć, należy
-otworzyć plik <path>~/.gnupg/gpg.conf</path>.
+GnuPG ma kilka przyjemnych, zaawansowanych funkcji. Aby z nich skorzytać,
+należy otworzyć plik <path>~/.gnupg/gpg.conf</path>.
 </p>
 
 <pre caption="~/.gnupg/gpg.conf">
@@ -595,8 +593,8 @@ pobrać.
 Kolejne przyjemne polecenie to <c>gpg --refresh-keys</c>. Skontaktuje się ono z
 serwerem zdefiniowanym w pliku konfiguracyjnym i odświeży klucze publiczne z
 lokalnej bazy kluczy, szukając unieważnionych kluczy, nowych ID i nowych
-podpisów. To polecenie powinno być uruchamiane dwa razy w miesiącu tak aby być
-powiadomionym gdy ktoś unieważni swój klucz.
+podpisów. To polecenie powinno być uruchamiane dwa razy w miesiącu tak aby
+zostać powiadomionym w sytuacji, gdy ktoś unieważni swój klucz.
 </p>
 
 </body>
@@ -610,9 +608,9 @@ powiadomionym gdy ktoś unieważni swój klucz.
 <body>
 
 <p>
-W 95% GnuPG używany jest wraz z pocztą elektroniczną, podpisywania i szyfrowania
-wychodzącej poczty lub czytania podpisanych i zaszyfrowanych wiadomości. Tak
-więc napiszę o tym na samym początku.
+W 95% GnuPG używany jest wraz z pocztą elektroniczną do podpisywania i
+szyfrowania wychodzącej poczty lub czytania podpisanych i zaszyfrowanych
+wiadomości. Tak więc napiszę o tym na samym początku.
 </p>
 
 <p>
@@ -667,8 +665,8 @@ który ma być rozszyfrowany.
 
 <p>
 Na obrazku widać główne okno Kgpg z wklejonym zaszyfrowanym tekstem. Stąd można
-go rozszyfrować (trzeba będzie podać hasło), szyfrować inne pliki, wkleić nowy
-tekst do podpisania...
+go rozszyfrować (trzeba będzie podać hasło), szyfrować inne pliki czy też wkleić
+nowy tekst do podpisania...
 </p>
 
 <figure link="/images/kgpg2.png" short="Okno zarządzania kluczami"/>
@@ -701,8 +699,8 @@ wiersza poleceń.
 <p>
 Mozilla od wersji 1.0 wzwyż zawiera Enigmail, wtyczkę do klienta poczty, która
 jest bardzo łatwa w konfiguracji. Wystarczy otworzyć Preferencje -&gt;
-Prywatność i Zabezpieczenia -&gt; Enigmail. Następnie jedyne co trzeba zrobić,
-to podać określony klucz i adres email.
+Prywatność i Zabezpieczenia -&gt; Enigmail. Następnie trzeba jedyne podać
+określony klucz i adres email.
 </p>
 
 <p>
@@ -720,7 +718,7 @@ narzędzia z wiersza polecenia, zgadza się?).
 <body>
 
 <p>
-Jeśli zmienna USE zawiera flagę <c>crypt</c>, KMail będzie skompilowane ze
+Jeśli zmienna USE zawiera flagę <c>crypt</c>, KMail będzie skompilowany ze
 wsparciem dla gpg i będzie miał możliwość automatycznego szyfrowania i
 deszyfrowania wiadomości w starym formacie PGP, a także szyfrowania wiadomości w
 formacie OpenPGP/MIME. Jeśli program ma deszyfrować wiadomości OpenPGP/MIME
@@ -745,17 +743,17 @@ nieaktywne, oznacza to, że KMail nie działa poprawnie.
 
 <p>
 To jest program pocztowy, który jest dla mnie najlepszym wyborem. Jest
-<e>bardzo</e> szybki przy pracy z dużymi skrzynkami, posiada wszystkie fajne
-funkcje, których można wymagać od programu pocztowego i całkiem dobrze
-współpracuje z gpg. Jedyny problem, to fakt, że nie współpracuje z podpisami PGP
-starego typu, tak więc jeśli się otrzyma taką wiadomość trzeba samemu sprawdzać
-jej podpis.
+<e>bardzo</e> szybki przy pracy z dużymi skrzynkami, posiada wszystkie funkcje,
+których można wymagać od programu pocztowego i całkiem dobrze współpracuje z
+gpg. Jedyny problemem jest fakt, że nie współpracuje z podpisami PGP starego
+typu, tak więc jeśli otrzyma się taką wiadomość, trzeba samemu sprawdzać jej
+podpis.
 </p>
 
 <p>
 Aby użyć gpg z programem Sylpheed-Claws wystarczy wejść w konfigurację konta i
-wybrać zakładkę prywatność. Po czym należy wybrać klucz, który będzie używany.
-Prawdopodobnie większość użytkowników zostawi domyślnie wybrany klucz.
+wybrać zakładkę prywatność. Następnie, należy wybrać klucz, który będzie
+używany. Prawdopodobnie większość użytkowników zostawi domyślnie wybrany klucz.
 </p>
 
 </body>
@@ -780,8 +778,8 @@ zdumieniem i przyniósł mi książkę dla dzieci o szyfrowaniu przez podstawian
 (to takie, w których zamienia się literę na jakąś inną jak w znanym Szyfrze
 Cezara lub ROT-13 (Tragbb emnqmv, mncenfmnzl qb qnyfmrw yrxghel grtb grxfgh.
 Gnx, mnfmlsebjnyvfzl gb cbabjavr bq abjn ceml gyhznpmravh, pb cbgjvreqmn anfmn
-pubebor cflpuvpman).  (program rotix pomoże w odszyfrowaniu powyższej
-wiadomości). Byłem bardzo zawiedziony i zacząłem szukać szerszych informacji.  W
+pubebor cflpuvpman) (program rotix pomoże w odszyfrowaniu powyższej
+wiadomości). Byłem bardzo zawiedziony i zacząłem szukać szerszych informacji. W
 takich wypadkach dobrze jest mieć w rodzinie matematyka, po rozmowie z nim
 szybko otworzył się przede mną nowy, fascynujący świat.
 </p>
@@ -795,7 +793,7 @@ Definicje:
 
 1- Liczba pierwsza to dodatnia liczba całkowita większa od jedynki która jest
 podzielna tylko przez 1 i samą siebie (reszta z dzielenia wynosi 0).
-Pierwszych 8 liczb pierwszych to 2,3,5,7,11,13,17,19
+Pierwszych 8 liczb pierwszych to 2,3,5,7,11,13,17,19.
 
 Twierdzenie (bez dowodu)
 1- Każdą dodatnią liczbę złożoną (czyli taką, która nie jest liczbą pierwszą)
@@ -807,19 +805,19 @@ można rozbić na iloczyn liczb pierwszych i ten iloczyn jest unikalny.
 12=2*6=2*2*3
 
 "Fakty":
-1- Z matematycznego punkty widzenia łatwo jest pomnożyć dwie duże liczby
+1- Z matematycznego punktu widzenia łatwo jest pomnożyć dwie duże liczby
 całkowite.
 2- Ciężko jest znaleźć czynniki pierwsze danej liczby całkowitej.
 </pre>
 
 <p>
-Jeśli wezmę liczbę 35 i powiem, że ta liczba jest iloczynem dwóch liczb
-pierwszych, łatwo zgadnąć, że te liczby to 5 i 7. Ale jeśli powiem to samo o
-liczbie 1588522601, trzeba poświęcić dużo czasu (lub cykli procesora) by
-odgadnąć że to 49811*31891. Jeśli ta liczba jest bardzo duża to zadanie staje
+Jeśli wezmę liczbę 35 i powiem, że liczba ta jest iloczynem dwóch liczb
+pierwszych, łatwo odgadnąć, że te liczby to 5 i 7. Ale jeśli powiem to samo o
+liczbie 1588522601, to trzeba będzie poświęcić dużo czasu (lub cykli procesora)
+by odgadnąć że to 49811*31891. Jeśli ta liczba jest bardzo duża to zadanie staje
 się "niewykonalne". Tak więc jeśli dam światu moją wielką liczbę, która jest
-iloczynem dwóch liczb pierwszych, wiem coś o tej liczbie, czego nikt inny nie
-wie.
+iloczynem dwóch liczb pierwszych, wiem coś o tej liczbie, czego nie wie nikt
+inny.
 </p>
 
 <p>
@@ -827,7 +825,7 @@ To jest podstawą dzisiejszych implementacji kryptografii przy użyciu Klucza
 Publicznego. Jako przykład, dam komuś swoją liczbę której będzie używał do
 szyfrowania wiadomości do mnie. Każdy może zobaczyć zaszyfrowaną wiadomość, ale
 tylko ja znam skrót do jej przeczytania, pozostali musieliby najpierw "rozbić"
-tę wielką liczbę by móc przeczytać wiadomość, a faktem jest, że tego się nie da
+tę wielką liczbę, by móc przeczytać wiadomość, a każdy wie, że tego się nie da
 zrobić w krótkim czasie (dzisiejsze metody i najszybsze komputery na świecie do
 wykonania tego potrzebują tysiące lat). W tej konfiguracji dwie wielkie liczby
 pierwsze byłyby nazwane KLUCZEM PRYWATNYM, a wielka liczba złożona jest KLUCZEM
@@ -835,9 +833,8 @@ PUBLICZNYM.
 </p>
 
 <p>
-W praktyce to nie jest w 100% zgodne z rzeczywistością, ale daje dobre
-wyobrażenie dla nowicjusza. Więcej informacji można znaleźć na hack.gr w artykule
-<uri
+W praktyce to nie jest w 100% zgodne z rzeczywistością, ale daje dobry obraz
+nowicjuszowi. Więcej informacji można znaleźć na hack.gr w artykule <uri
 link="http://www.hack.gr/users/dij/crypto/overview/diffie.html">Diffie-Hellmana</uri>.
 Jeszcze więcej informacji można znaleźć w publicznej bibliotece w książce <uri
 link="http://www.cacr.math.uwaterloo.ca/hac/">"Podręcznik Kryptografii
@@ -846,7 +843,7 @@ Vanstone'a, ta książka jest także dostępna on-line na wyżej podanej stronie
 </p>
 
 <p>
-Konsekwencją powyższego jest to, że jeśli się szyfruje dla kogoś wiadomość i
+Konsekwencją powyższego jest to, że jeśli szyfruje się dla kogoś wiadomość i
 zgubi się oryginalny tekst, nie ma możliwości odzyskania go z zaszyfrowanej
 wersji.
 </p>
@@ -865,19 +862,19 @@ wiadomość skąd naprawdę mogę wiedzieć że jest od niego, a nie kogoś inne
 </p>
 
 <p>
-Pamiętacie jak powiedziałem że Kryptografia Kluczem Publicznym nie jest taka
-prosta jak mówię? Pomysł jest taki, że kiedy się szyfruje wiadomość podpisuje
-się ją swoim kluczem prywatnym, tak że kiedy ktoś ją dostanie najpierw używa
-naszego publicznego klucza do sprawdzenia podpisu, a następnie swojego
+Pamiętacie jak powiedziałem że Kryptografia Kluczem Publicznym wcale nie jest
+taka prosta jak mówię? Pomysł jest taki, że kiedy szyfruje się wiadomość
+podpisuje się ją swoim kluczem prywatnym, tak że kiedy ktoś ją dostanie najpierw
+używa naszego publicznego klucza do sprawdzenia podpisu, a następnie swojego
 prywatnego klucza do rozszyfrowania wiadomości. Jak widać nie da się tego zrobić
 w konfiguracji jaką wcześniej opisałem.
 </p>
 
 <p>
 Kolejną ważną rzeczą jest to, że nie trzeba szyfrować wiadomości którą chcemy
-podpisać. Tak więc można tworzyć "podpisane" wiadomości które każdy będzie mógł
-przeczytać. Co więcej jeśli jakakolwiek litera zostanie zmieniona możliwe będzie
-natychmiastowe wykrycie tego faktu.
+podpisać. Tak więc można tworzyć "podpisane" wiadomości tak, by każdy mógł ją
+przeczytać. Co więcej jeśli jakakolwiek litera zostanie zmieniona, możliwe
+będzie natychmiastowe wykrycie tego faktu.
 </p>
 
 </body>
@@ -887,50 +884,50 @@ natychmiastowe wykrycie tego faktu.
 <body>
 
 <p>
-Powiedzmy że nigdy wcześniej nie kontakowałem się z kimś kto mi wysyła
-wiadomość, skąd mam wziąć jego klucz publiczny, i skąd mam wiedzieć że należy on
-napewno do niego?
+Powiedzmy że nigdy wcześniej nie kontaktowałem się z kimś, kto przysyła mi
+wiadomość, skąd mam wziąć jego klucz publiczny i skąd mam mieć pewność, że
+klucz należy do niego?
 </p>
 
 <p>
 Aby rozwiązać ten problem stworzone zostały Serwery Kluczy. Gdy się tworzy swoją
-parę kluczy (Publiczny i Prywatny) wysyła  się swój klucz publiczny do serwera.
+parę kluczy (Publiczny i Prywatny), wysyła się swój klucz publiczny do serwera.
 Od tego momentu każdy może stamtąd otrzymać nasz klucz. To rozwiązuje problem
-znalezienia czyjegoś klucza. Ale skąd mam napewno wiedzieć że klucz jest kluczem
-autora? Do tego musi powstać kolejne rozwiązanie i to jest właśnie podpisywanie
-kluczy:
+szukania czyjegoś klucza. Ale skąd mogę mieć pewność, że klucz jest kluczem
+autora? Do tego musiało powstać kolejne rozwiązanie i to jest właśnie
+podpisywanie kluczy:
 </p>
 
 <p>
-Podpisywanie kluczy oznacza to że jeśli sie posiada klucz publiczny innej osoby,
+Podpisywanie kluczy oznacza, że jeśli posiada się klucz publiczny innej osoby,
 taki że ma się <e>pewność</e> że to jest jej klucz (przyjaciel lub ktoś kogo się
-zna itd.) można podpisać ten publiczny klucz i wysłać go do serwera, w ten
-sposób mówi się światu: "Ten klucz naprawdę należy do osoby która tak
-twierdzi.". Tym sposobem osoby posiadające mój publiczny klucz i ufające mi mogą
-użyć tego zaufania by zaufać innym kluczom.
+zna itd.), można podpisać ten klucz publiczny i wysłać go do serwera. W ten
+sposób mówi się światu: "Ten klucz naprawdę należy do osoby która tak twierdzi".
+Tym sposobem osoby posiadające mój klucz publiczny, ufające mi, mogą tego użyć
+by zaufać innym kluczom.
 </p>
 
 <p>
-To może być czasami mylące więc zobaczmy jak to działa w prawdziwym świecie
+To może być czasami mylące, więc zobaczmy jak działa to w praktyce.
 </p>
 
 <p>
 Wyobraźmy sobie 3 osoby: Johna, Mary i Lisę. John jest dobrym przyjacielem Mary,
 ale nie zna Lisy; Lisa jest dobrą przyjaciółką Mary, ale nie zna Johna. Pewnego
 dnia Lisa wysyła Johnowi podpisaną wiadomość. John pobierze klucz Lisy z
-publicznego serwera i sprawdzi wiadomość. Jeśli wszystko dobrze pójdzie zobaczy
-on, że ktokolwiek podpisał wiadomość, także wygenerował ten klucz. Ale skąd
-wiedzieć, że to na pewno jest osobą, za którą się podaje?
+publicznego serwera i sprawdzi wiadomość. Jeśli wszystko dobrze pójdzie zobaczy,
+że ktokolwiek podpisał wiadomość, wygenerował ten klucz. Ale skąd wiedzieć, że
+jest osobą, za którą się podaje?
 </p>
 
 <p>
 Wtedy John widzi że ten klucz jest podpisany przez Mary, którą może sprawdzić
-ponieważ posiada jej klucz i mu ufa. Z tego kręgu zaufania wyciąga wniosek że ta
-wiadomość napewno została napisana przez Lisę.
+ponieważ posiada jej klucz i jej ufa. Z tego kręgu zaufania wyciąga wniosek, że
+ta wiadomość napewno została napisana przez Lisę.
 </p>
 
 <p>
-Teraz jesteśmy gotowi do przeczytania tego przewodnika, można wrócić do
+Teraz jesteśmy gotowi do przeczytania tego przewodnika. Można wrócić do
 pierwszego rozdziału i nauczyć się korzystać z gpg.
 </p>
 
@@ -946,14 +943,15 @@ pierwszego rozdziału i nauczyć się korzystać z gpg.
 
 <p>
 Miałem problemy ze zdjęciami w kluczach. Należy sprawdzić wersję której się
-używa. Jeśli używane jest GnuPG 1.2.1-r1 wszystko prawdopodobnie jest w
-porządku, ze starszymi wersjami mogły być problemy. Także większość serwerów nie
-lubi kluczy ze zdjęciami, więc lepiej ich jednak nie dodawać.
+używa. Jeśli używane jest GnuPG 1.2.1-r1 wszystko powinno funcjonować, jednak ze
+starszymy wersjami zdarzały się problemy. Większość serwerów nie lubi kluczy ze
+zdjęciami, więc lepiej ich jednak nie dodawać.
 </p>
 
 <p>
-Najnowsze wersje gpg zdają się nie działać z poleceniem <c>gpg --send-keys</c>,
-które było użyte do wysłania wszystkich posiadanych kluczy do serwera.
+Najnowsze wersje gpg zdają się nie wpółpracować z poleceniem <c>gpg
+--send-keys</c>, które zostało użyte w celu wysłania wszystkich posiadanych
+kluczy do serwera.
 </p>
 
 </body>
@@ -963,14 +961,15 @@ które było użyte do wysłania wszystkich posiadanych kluczy do serwera.
 <body>
 
 <p>
-<c>gpg</c> to bardzo rozbudowane narzędzie, pozwala zrobić dużo więcej niż tu
-napisałem. Ten przewodnik jest dla nowych użytkowników GnuPG. Po więcej informacji
-należy wejść na <uri link="http://www.gnupg.org">stronę domową GnuPG</uri>.
+<c>Gpg</c> to bardzo rozbudowane narzędzie, pozwala zrobić dużo więcej niż to,
+co pokazuje ten dokument. Przewodnik jest dla nowych użytkowników GnuPG. Po
+więcej informacji należy wejść na <uri link="http://www.gnupg.org">stronę domową
+GnuPG</uri>.
 </p>
 
 <p>
-Nie pisałem o innych narzędziach niż <c>pgp4pine</c>, <c>gpgpine</c>,
-<c>evolution</c> i być może programach dla Windows, ale prawdopodobnie rozszerzę
+Nie pisałem o innych narzędziach, takich jak <c>pgp4pine</c>, <c>gpgpine</c>,
+<c>evolution</c> i programach dla Windows, ale prawdopodobnie poszerzę
 ten dokument w przyszłości.
 </p>
 
