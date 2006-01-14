@@ -3,7 +3,7 @@
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
 <guide link="/doc/pl/articles/openssh-key-management-p1.xml" disclaimer="articles">
-<title>OpenSSH key management, Part 1</title>
+<title>Zarządzanie kluczami OpenSSH, Część 1</title>
 <author title="Autor">
   <mail link="drobbins@gentoo.org">Daniel Robbins</mail>
 </author>
@@ -407,44 +407,49 @@ zdalnego komputera <e>remotebox</e>, by sprawdził on czy konfiguracja serwera
 <body>
 
 <p>
-While RSA keys are used by version 1 of the <c>ssh</c> protocol, DSA keys are
-used for protocol level 2, an updated version of the <c>ssh</c> protocol. Any
-modern version of OpenSSH should be able to use both RSA and DSA keys.
-Generating DSA keys using OpenSSH's <c>ssh-keygen</c> can be done similarly to
-RSA in the following manner:
+Klucze RSA są wymagany jeśli używamy pierwszej wersji protokołu <c>ssh</c>, w
+przypadku wersji 2 używane są klucze DSA, oba typy są wspierane przez każdą nowa
+wersja OpenSSH. W przypadku konfiguracji uwierzytelniania DSA cała procedura
+jest bardzo podobna, różni się tylko w kilku szczegółach.
 </p>
 
-<pre caption="Generating a DSA key pair">
+<pre caption="Generowanie kluczy DSA">
 $ <i>ssh-keygen -t dsa</i>
 </pre>
 
 <p>
-Again, we'll be prompted for a passphrase. Enter a secure one. We'll also be
-prompted for a location to save our DSA keys. The default, normally
-<path>~/.ssh/id_dsa</path> and <path>~/.ssh/id_dsa.pub</path>, should be fine.
-After our one-time DSA key generation is complete, it's time to install our DSA
-public key to remote systems.
+Zostaniemy poproszeni o podanie hasła, które także w tym przypadku zostanie
+użyte do zakodowania klucza prywatnego, wskazane jest więc użycie odpowiednio
+bezpiecznego i trudnego do odgadnięcia. Podobnie będziemy mogli podać
+lokalizację, gdzie <c>ssh-keygen</c> zapisze wygenerowane klucze prywatny i
+publiczny (domyślnie jest to <path>~/.ssh/id_dsa</path> i
+<path>~/.ssh/id_dsa.pub</path> co możemy bez obaw zatwierdzić). Gdy generacja
+zostanie zakończona sukcesem należy następnie zainstalować klucz publiczny na
+zdalne komputery, gdzie chcemy mieć dostęp.
 </p>
 
 </body>
 </section>
 <section>
-<title>DSA public key install</title>
+<title>Instalacja klucza publicznego DSA</title>
 <body>
 
 <p>
-Again, DSA public key installation is almost identical to RSA. For DSA, we'll
-want to copy our <path>~/.ssh/id_dsa.pub</path> file to <e>remotebox</e>, and
-then append it to the <path>~/.ssh/authorized_keys2</path> on <e>remotebox</e>.
-Note that this file has a different name than the RSA
-<path>authorized_keys</path> file. Once configured, we should be able to log in
-to <e>remotebox</e> by typing in our DSA private key passphrase rather than
-typing in our actual <e>remotebox</e> password.
+Instalacja klucza publicznego DSA przebiega niemal w identyczny sposób jak miało
+to miejsce w poprzednim przypadku, wystarczy skopiować plik
+<path>~/.ssh/id_dsa.pub</path> na <e>remotebox</e>, a następnie po zalogowaniu
+na zdalny komputer nadpisać <path>~/.ssh/authorized_keys2</path>, dodając do
+niego zawartość przekopiowanego wcześniej pliku. Należy zauważyć, że w tym
+przypadku modyfikujemy zawartość innego pliku, nie <path>authorized_keys</path>
+jak miało to miejsce w czasie konfiguracji uwierzytelniania RSA. Po wykonaniu
+powyższych czynności, gdy będziemy chcieli zalogować się z <e>localbox</e> na
+<e>remotebox</e> będziemy musieli podać hasło zabezpieczające nasz klucz
+prywatny, a nie hasło dostępu do konta.
 </p>
 
 <note>
-Nowadays you should only use version 2 of the ssh protocol, as version 1 has
-weaknesses.
+Zalecane jest stosowanie wersji 2 protokołu ssh, ze względu na słabości związane
+z jego starszą, pierwszą odmianą.
 </note>
 
 </body>
@@ -454,48 +459,49 @@ weaknesses.
 <body>
 
 <p>
-Right now, you should have RSA or DSA authentication working, but you still
-need to type in your passphrase for every new connection. In my next article,
-we'll see how to use <c>ssh-agent</c>, a really nice system that allows us to
-establish connections <e>without</e> supplying a password, but also allows us
-to keep our private keys encrypted on disk. I'll also introduce
-<c>keychain</c>, a very handy <c>ssh-agent</c> front-end that makes
-<c>ssh-agent</c> even more secure, convenient, and fun to use. Until then,
-check out the handy resources below to keep yourself on track.
+Teraz, konfiguracja uwierzytelniania RSA lub DSA nie stanowi już problemu.
+Ciągle jednak każde logowanie na zdalny komputer wymaga od nas wprowadzenia
+hasła. W kolejnym artykule w serii przedstawione zostaną zagadnienia związane z
+<c>ssh-agent</c>, interesującym systemem, który umożliwi nam ominąć tą
+niedogodność i nawiązać połączenie <e>bez</e> wpisywania hasła i co równie ważne
+zachować odpowiedni poziom bezpieczeństwa (klucze prywatne są zabezpieczone
+hasłem). Będzie w nim można znaleźć także opis <c>keychain</c>, przydatnej,
+ułatwiającej prace i poprawiającej bezpieczeństwo, nakładki na <c>ssh-agent</c>.
+Poniżej można znaleźć materiały umożliwiające przeprowadzenie badań we własnym
+zakresie.
 </p>
 
 </body>
 </section>
 </chapter>
 <chapter id="resources">
-<title>Resources</title>
+<title>Materiały</title>
 <section>
 <body>
 
 <ul>
   <li>
-    Read Daniel's other two articles in this series, <uri
-    link="/doc/en/articles/openssh-key-management-p2.xml">OpenSSH key 
-    management, Part 2</uri> and <uri 
-    link="/doc/en/articles/openssh-key-management-p3.xml">OpenSSH key 
-    management, Part 3</uri>
+    Pozostałe artykuły Daniela Robbinsa z serii, <uri
+    link="/doc/en/articles/openssh-key-management-p2.xml">Zarządzanie
+    kluczami OpenSSH, Część 2</uri> i <uri
+    link="/doc/en/articles/openssh-key-management-p3.xml">Zarządzanie
+    kluczami OpenSSH, Część 3</uri>.
   </li>
   <li>
-    Be sure to visit the home of <uri
-    link="http://www.openssh.com">OpenSSH</uri> development.
+    Strona domowa projektu <uri link="http://www.openssh.com">OpenSSH</uri>.
   </li>
   <li>
-    Check out the <uri link="http://www.openssh.com/faq.html">OpenSSH
-    FAQ</uri>.
+    <uri link="http://www.openssh.com/faq.html">OpenSSH FAQ</uri>.
   </li>
   <li>
     <uri link="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</uri>
-    is an excellent <c>ssh</c> client for Windows machines.
+    - doskonały klient <c>ssh</c> dla systemów rodziny Windows.
   </li>
   <li>
-    You may find O'Reilly's <e>SSH, The Secure Shell: The Definitive Guide</e>
-    to be helpful. The <uri link="http://www.snailbook.com/">authors'
-    site</uri> contains information about the book, a FAQ, news, and updates.
+    <e>SSH, The Secure Shell: The Definitive Guide</e> - doskonałe źródło
+    informacji dotyczące ssh (dostępna w języku angielskim). Strona <uri
+    link="http://www.snailbook.com/">autorów</uri> zawiera dodatkowe
+    informacje o książce, FAQ, nowości i poprawki.
   </li>
 </ul>
 
