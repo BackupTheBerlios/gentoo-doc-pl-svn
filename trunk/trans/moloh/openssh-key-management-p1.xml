@@ -17,7 +17,7 @@
 W tej serii artykułów, będzie można się dowiedzieć ciekawych informacji na temat
 zasad funkcjonowania RSA i DSA m.in. jak w prawidłowy sposób skonfigurować
 autentykację bez hasła. W pierwszym artykule, Daniel Robbins wprowadza w arkana
-protokołów uwierzytelniania, RSA i DSA i pokazuje co należy zrobić aby można
+protokołów uwierzytelniania RSA i DSA i pokazuje co należy zrobić aby można
 było ich używać poprzez sieć.
 </abstract>
 
@@ -37,8 +37,8 @@ made by the Gentoo Linux Documentation team -->
 <p>
 Wielu użytkowników używa doskonałego OpenSSH (zobacz punkt <uri
 link="#materiały">Materiały</uri> na końcu artykułu) jako bezpiecznego i
-kodowanego odpowiednika szacownego polecenia <c>telnet</c> i <c>rsh<c>. Jedną z
-ciekawszych funkcjonalności OpenSSH jest możliwość dokonania autoryzacji przy
+szyfrowanego odpowiednika szacownego polecenia <c>telnet</c> i <c>rsh</c>. Jedną
+z ciekawszych funkcjonalności OpenSSH jest możliwość dokonania autoryzacji przy
 użyciu protokołów RSA i DSA, które bazują na parze uzupełniających się kluczy.
 Jedną z ich głównych zalet jest możliwość nawiązania połączenia <e>bez podawania
 hasła</e>. Sama możliwość jest niezwykle interesująca, niestety początkujący
@@ -66,16 +66,16 @@ dokonać uwierzytelniania w bezpieczny i wygodny dla użytkownika sposób.
 <p>
 Jednak, pomimo tego że <c>ssh</c> jest naprawdę bardzo użyteczne, duża część
 jego funkcjonalności nie jest zazwyczaj używana, lub, co gorsze, używana w
-nieodpowiedni sposób. Najczęściej błędy zdarzają się w module autentykacji z
-użyciem klucza RSA/DSA, który domyślnie nie jest używany. Wykorzystywane jest
-natomiast uwierzytelnianie z użyciem hasła.
+nieodpowiedni sposób. Najczęstsze błędy zdarzają się w module uwierzytelniania
+RSA/DSA, który domyślnie nie jest jednak używany, domyślną metodą autentykacji
+jest weryfikacja hasła użytkownika.
 </p>
 
 <p>
 Protokół autentykacji RSA/DSA używany w OpenSSH bazuje na parze specjalnie
 wygenerowanych kluczy, <e>kluczu prywatnym</e> i <e>kluczu publicznym</e>.
-Zaletą tej metody jest możliwość nawiązania bezpiecznego połączenia bez
-ręcznego wpisywania hasła.
+Zaletą metody jest możliwość nawiązania bezpiecznego połączenia bez ręcznego
+wpisywania hasła.
 </p>
 
 <p>
@@ -83,12 +83,12 @@ Protokoły autentykacji bazujące na wymianie kluczy są relatywnie bezpieczne,
 problemem niestety stają się nawyki stosujących je użytkowników, którzy nie w
 pełni zdają sobie sprawę z grożącego im niebezpieczeństwa. W pierwszym artykule
 przedstawione zostaną metody właściwego postępowania, tak by nie narażać się na
-zbędne ryzyko.  W drugim znajdzie się opis skryptu <c>ssh-agent</c> buforującego
-odkodowane klucze prywatne, oraz prezentacja programu <c>keychain</c>, będącego
-nakładką na <c>ssh-agent</c>, która oferuje znacznie większą funkcjonalność, co
-ważne zachowując odpowiedni poziom bezpieczeństwa. Każdy zainteresowany
-zaawansowaną funkcjonalnością OpenSSH z pewnością powinien kontynuować lekturę,
-wszystkich innych gorąco do tego zachęcamy.
+zbędne ryzyko.  W drugim będzie można znaleźć się opis skryptu <c>ssh-agent</c>
+buforującego odkodowane klucze prywatne, oraz prezentacja programu
+<c>keychain</c>, będącego nakładką na <c>ssh-agent</c>, która oferuje znacznie
+większą funkcjonalność, co ważne zachowując odpowiedni poziom bezpieczeństwa.
+Każdy zainteresowany zaawansowaną funkcjonalnością OpenSSH z pewnością powinien
+kontynuować lekturę, wszystkich innych gorąco do tego zachęcamy.
 </p>
 
 </body>
@@ -104,7 +104,7 @@ uwierzytelniania RSA by umożliwić lokalnej stacji roboczej, pracującej pod
 kontrolą systemu Linux (nazwijmy ją <e>lokalbox</e>), nawiązanie zdalnego
 połączenia i otwarcia powłoki na zdalnym komputerze (tą z kolei nazwijmy
 <e>remotebox</e>). W chwili obecnej gdy będziemy próbowali nawiązać takie
-połączenie, używając klienta <c>ssh</c> zostaniemy powitani następującym
+połączenie, używając klienta <c>ssh</c> zostaniemy przywitani następującym
 komunikatem:
 </p>
 
@@ -114,7 +114,7 @@ drobbins@remotebox's password:
 </pre>
 
 <p>
-Na przedstawionym przykładzie widzimy <e>domyślną</e> dla <c>ssh</c> metodę
+Na przedstawionym listingu widzimy <e>domyślną</e> dla <c>ssh</c> metodę
 autentykacji. Zostaliśmy poproszeni o podanie hasła dla użytkownika
 <e>drobbins</e> na komputerze <e>remotebox</e>. Teraz jeśli postąpimy zgodnie z
 instrukcjami <c>ssh</c>, używając swojego bezpiecznego protokołu
@@ -131,16 +131,16 @@ interesujących możliwości.
 
 <p>
 Jednak w przeciwieństwie do uwierzytelniania z użyciem hasła, autentykacja RSA
-wymaga dokonania pewnych zmian w konfiguracji. Na szczęście zmiany te musimy
-wykonać tylko jeden raz, a po ich dokonaniu nawiązanie bezpiecznego połączenia z
-<e>localbox</e> na <e>remotebox</e> będzie bardzo proste. Pierwszą czynnością jaką
-musimy wykonać, jest stworzenie pary kluczy, jednego prywatnego i jednego
-publicznego. Taka para kluczy posiada bardzo interesujące właściwości, klucz
-publiczny może służyć tylko do <e>szyfrowania</e> wiadomości, którą odczytać
-będzie mógł tylko właściciel klucza prywatnego, jako że tylko on może z
-powodzeniem zostać użyty do <e>deszyfracji</e> wcześniej zakodowanej informacji.
-Protokół uwierzytelniania RSA (i DSA) używa tej specjalnej właściwości pary
-kluczy, by nawiązać bezpieczne połączenie, nie ma potrzeby wysyłania przez sieć
+wymaga dokonania pewnych zmian w konfiguracji. Na szczęście musimy je wykonać
+tylko jeden raz, a po ich dokonaniu nawiązanie bezpiecznego połączenia z
+<e>localbox</e> na <e>remotebox</e> będzie bardzo proste. Pierwszą czynnością
+jaką musimy wykonać jest stworzenie pary kluczy, jednego prywatnego i jednego
+publicznego. Posiada ona bardzo interesujące właściwości, klucz publiczny może
+służyć tylko do <e>szyfrowania</e> wiadomości, którą odczytać będzie mógł tylko
+właściciel klucza prywatnego, jako że tylko on może z powodzeniem zostać użyty
+do <e>deszyfracji</e> wcześniej zakodowanej informacji.  Protokół
+uwierzytelniania RSA (i DSA) używa tej specjalnej właściwości pary kluczy, by
+nawiązać bezpieczne połączenie, nie ma wtedy potrzeby wysyłania przez sieć
 żadnych tajnych informacji.
 </p>
 
@@ -153,7 +153,7 @@ przeznaczonych dla nas (właściciela klucza prywatnego), nie musimy się
 przejmować jeśli wpadnie w niepowołane ręce. Gdy zostanie on przekopiowany na
 <e>remotebox</e> i zapisany w specjalnym pliku
 (<path>~/.ssh/authorized_keys</path>), demon <c>sshd</c> uruchomiony na
-<e>remotebox<e/> będzie mógł go znaleźć, będziemy wtedy gotowi do nawiązania
+<e>remotebox</e> będzie mógł go znaleźć. Będziemy wtedy gotowi do nawiązania
 połączenia z użyciem uwierzytelniania RSA.
 </p>
 
@@ -162,15 +162,15 @@ Wystarczy już tylko wpisać <c>ssh drobbins@remotebox</c>, będąc zalogowanym 
 <e>localbox</e>. Do tej pory postępowanie jest podobne, jednak od tego momentu
 procedura nawiązywania połączenia wygląda już inaczej. Klient <c>ssh</c>
 informuje demona <c>sshd</c>, uruchomionego na <e>remotebox</e>, że chce użyć
-protokołu RSA, by dokonać uwierzytelniania. W odpowiedzi wysyłana jest na nasz
-lokalny komputer, zaszyfrowana kluczem publicznym, losowa liczba, która zostaje
-odszyfrowana dzięki użyciu klucza publicznego i wysłana na <e>remotebox<e>, jakby
-mówiąc "Widzisz, ja naprawdę <e>posiadam<e> pasujący klucz prywatny; Udało mi
-się poprawnie odczytać zakodowaną wiadomość!" Ostatnim etapem jest weryfikacja,
-czy zwrócona liczba odpowiada wysłanej i w przypadku pozytywnej odpowiedzi demon
-<c>sshd</c> doje nam dostęp do <e>remotebox</e>. Należy zauważyć, że cała
-procedura odbywa się w sposób automatyczny i nie wymaga żadnej ingerencji
-użytkownika.
+protokołu uwierzytelniania RSA. W odpowiedzi, na nasz lokalny komputer, wysyłana
+jest losowa liczba, zaszyfrowana kluczem publicznym.  Następnie zostaje ona
+poddana procedurze deszyfracji, w tym momencie jest używany nasz klucz prywatny
+i z powrotem wysłana na <e>remotebox</e>, jakby mówiąc "Widzisz, ja naprawdę
+<e>posiadam</e> pasujący klucz prywatny; Udało mi się poprawnie odczytać
+zakodowaną wiadomość!" Ostatnim etapem jest weryfikacja, czy zwrócona liczba
+odpowiada wysłanej i jeśli tak właśnie jest demon <c>sshd</c> doje nam dostęp do
+<e>remotebox</e>. Należy zauważyć, że cała procedura odbywa się w sposób
+automatyczny i nie wymaga żadnej ingerencji użytkownika.
 </p>
 
 </body>
@@ -184,8 +184,8 @@ Zanim przejdziemy do omawiania szczegółów związanych z uwierzytelnianiem RSA
 DSA należy zwrócić uwagę na dwa istotne wnioski. Po pierwsze, tak naprawdę
 musimy stworzyć tylko jedną parę kluczy. Możemy następnie skopiować klucz
 publiczny na dowolną ilość zdalnych maszyn, do których chcemy mieć dostęp.
-Wszystkie, by dokonać odpowiedniej weryfikacji, będą wtedy używać jednego klucza
-prywatnego znajdującego się na lokalnym komputerze. Więc nie ma potrzeby
+Wszystkie, by dokonać odpowiedniej weryfikacji, będą używać jednego klucza
+prywatnego znajdującego się na lokalnym komputerze. Nie ma więc potrzeby
 generować pary kluczy dla <e>każdego</e> komputera, na który chcemy mieć
 możliwość zdalnego logowania.
 </p>
@@ -194,10 +194,9 @@ możliwość zdalnego logowania.
 Drugą istotną sprawą jest bardzo ważny fakt, <e>klucz prywatny nie powinien
 wpaść w niepowołane ręce</e>. Jest on elementem gwarantującym dostęp do zdalnych
 kont ssh i jeśli ktokolwiek go uzyska będzie mógł uzyskać do nich wszystkich
-dostęp. Więc podobnie jak w przypadku kluczy do domu powinniśmy strzec kluczy
-prywatnych jak "oka w głowie". W świecie bitów i bajtów oznacza to, że nikt
-niepowołany nie powinien mieć praw by odczytać lub przekopiować plików je
-zawierających.
+dostęp. Więc podobnie jak w przypadku kluczy do domu powinniśmy go strzec jak
+"oka w głowie". W świecie bitów i bajtów oznacza to, że nikt niepowołany nie
+powinien mieć uprawnień by odczytać lub przekopiować plików je zawierających.
 </p>
 
 <p>
@@ -206,14 +205,13 @@ są klucze prywatne i dlatego wbudowali kilka dodatkowych zabezpieczeń w
 <c>ssh</c> i <c>ssh-keygen</c> tak, by nie można w łatwy sposób przechwycić
 kluczy. Po pierwsze, w przypadku gdy klucz będzie w stanie odczytać ktokolwiek
 za wyjątkiem jego właściciela to zostaniemy o tym poinformowani. Dzięki czemu
-będziemy wiedzieć, że z uprawnienia do pliku przechowującego klucze prywatne
-powinny zostać poprawione. Po drugie, gdy tworzymy parę kluczy,
-<c>ssh-keygen</c> prosi o podanie hasła. Jeżeli je podamy to klucz prywatny
-zostanie zaszyfrowany z jego użyciem, więc nawet gdy ktoś niepowołany uzyska
-dostęp do pliku przechowującego klucze, to bez znajomości hasła nie będzie mógł
-go wykorzystać. Po poznaniu najważniejszych elementów związanych z generacją
-kluczy czas na opis konfiguracji <c>ssh</c> tak, by używał protokołów
-uwierzytelniania RSA i DSA.
+będziemy wiedzieć, że uprawnienia do pliku przechowującego klucze prywatne
+powinny zostać zmienione. Po drugie, gdy tworzymy parę kluczy, <c>ssh-keygen</c>
+prosi o podanie hasła. Jeżeli je podamy to zostanie ono użyte bo zaszyfrować
+klucz prywatny, więc nawet gdy ktoś niepowołany uzyska dostęp do pliku
+przechowującego klucze, to bez znajomości hasła nie będzie mógł go wykorzystać.
+Po poznaniu najważniejszych elementów związanych z generacją kluczy czas na opis
+konfiguracji <c>ssh</c> tak, by używał protokołów uwierzytelniania RSA i DSA.
 </p>
 
 </body>
@@ -225,11 +223,11 @@ uwierzytelniania RSA i DSA.
 <p>
 Pierwszym krokiem w czasie konfiguracji uwierzytelniania RSA jest stworzenie
 pary kluczy, prywatnego i publicznego. Protokół autentykacji RSA, będący
-podstawią metod uwierzytelniania używanych przez <c>ssh</c>, wszystko będzie
-działało poprawnie w przypadku każdej wersji OpenSSH, ale pomimo tego najlepiej
-jest posiadać najnowszą dostępną wersję, w czasie pisania tego artykułu była to
-openssh-2.9_p2 {{ FIXME - przy tłumaczeniu to 4.2_p1 }}. By wygenerować parę
-kluczy RSA należy postępować następująco:
+podstawią metod uwierzytelniania używanych przez pierwsze wersje <c>ssh</c>,
+powinien poprawnie działać w przypadku każdej wersji OpenSSH, ale pomimo tego
+najlepiej jest posiadać najnowszą dostępną wersję, w czasie pisania tego
+artykułu była to openssh-2.9_p2 {{ FIXME - przy tłumaczeniu to 4.2_p1 }}. By
+wygenerować parę kluczy RSA należy postępować następująco:
 </p>
 
 <pre caption="Narzędzie ssh-keygen">
@@ -237,7 +235,7 @@ $ <i>ssh-keygen</i>
 Generating public/private rsa1 key pair.
 Enter file in which to save the key (/home/drobbins/.ssh/identity): <comment>(naciśnij enter)</comment>
 Enter passphrase (empty for no passphrase): <comment>(wpisz hasło)</comment>
-Enter same passphrase again: <comment>(wpisz ponownie hasło)</comment>
+Enter same passphrase again: <comment>(ponownie wpisz hasło)</comment>
 Your identification has been saved in /home/drobbins/.ssh/identity.
 Your public key has been saved in /home/drobbins/.ssh/identity.pub.
 The key fingerprint is:
@@ -255,10 +253,10 @@ identity.pub.
 <p>
 Należy zauważyć, że <c>ssh-keygen</c> zapytał nas o hasło. Najlepiej gdy będzie
 ono odpowiednio skomplikowane i długie (siedem lub więcej ciężkich do
-przewidzenia znaków). Klucz prywatny zostanie z zaszyfrowany
-(<path>~/.ssh/identity</path>) właśnie przy jego użyciu, wtedy nawet gdy ktoś
+przewidzenia znaków). Klucz prywatny zostanie zaszyfrowany
+(<path>~/.ssh/identity</path>) właśnie przy jego użyciu, więc nawet gdy ktoś
 pozna nasz klucz prywatny, będzie on dla niego bezwartościowy gdy nie będzie
-także znał podanego hasła.
+znał podanego hasła i nie będzie w stanie go poznać.
 </p>
 
 </body>
@@ -271,13 +269,12 @@ także znał podanego hasła.
 Gdy, w czasie generacji kluczy, podamy hasło, <c>ssh-keygen</c> zabezpieczy
 klucz prywatny i uniemożliwi jego odczyt przez osoby trzecie, przechowywane będą
 tylko zakodowane dane. Jednak wiąże się to również z pewnymi niedogodnościami,
-za każdym razem gdy będziemy chcieli zalogować się, z użyciem <c>ssh</c>, na
-konto <e>drobbins@remotebox</e>, będziemy musieli podać hasło zabezpieczające
-nasze klucze zamiast tego zabezpieczającego dostęp do zdalnego konta. Po jego
-podaniu <c>ssh</c> będzie mógł dokonać poprawnej weryfikacji i umożliwi nam
-dostęp. Sam mechanizm działania jest zupełnie inny, niż w przypadku domyślnej
-metody uwierzytelniania używanej przez <c>ssh</c>, ale w dalszym ciągu jesteśmy
-zmuszeni do wpisywanie pewnej "tajnej frazy".
+za każdym razem gdy będziemy chcieli zalogować się na konto
+<e>drobbins@remotebox</e>, będziemy musieli podać hasło zabezpieczające nasze
+klucze. Po jego podaniu <c>ssh</c> będzie mógł dokonać poprawnej weryfikacji i
+umożliwi nam dostęp. Sam mechanizm działania jest zupełnie inny, niż w przypadku
+domyślnej metody uwierzytelniania używanej przez <c>ssh</c>, ale w dalszym ciągu
+jesteśmy zmuszeni do wpisywanie pewnej "tajnej frazy".
 </p>
 
 <pre caption="Logowanie z użyciem hasła do klucza prywatnego">
@@ -296,18 +293,18 @@ Mimo, że konfiguracja, gdy logowanie z użyciem uwierzytelniania RSA i DSA nie
 wymaga wprowadzenia hasła, wydaje się kusząca, nie należy jej stosować bez
 pełnej świadomości o jej wpływie na bezpieczeństwo. Przechowywanie na komputerze
 niezakodowanego klucza prywatnego powoduje, że każdy kto może go odczytać, może
-to być zarówno włamywacz lub w przypadku błędnej konfiguracji innych elementów
-systemu operacyjnego inny użytkownik, uzyska dostęp wszędzie tam gdzie używamy
-tego rodzaju autentykacji.
+to być zarówno włamywacz lub w przypadku błędnej konfiguracji różnych elementów
+systemu operacyjnego (np. praw dostępu do pliku) także inny użytkownik, uzyska
+dostęp wszędzie tam gdzie używamy tego rodzaju autentykacji.
 </p>
 
 <p>
 Pomimo tego ryzyka, cała idea w dalszym ciągu jest interesująca i mimo
-związanych z nią niebezpieczeństw można z pokusić o skorzystanie z niej. Ale na
-szczęście <e>istnieje znacznie lepsze rozwiązanie!</e>, możliwe jest logowanie
-bez użycia hasła i nie musimy w tym celi poświęcać bezpieczeństwa. Zaawansowane
-zagadnienia związane z narzędziem mającym właśnie takie możliwości można
-przeczytać w drugim artykule w tej serii.  Najpierw jednak poznajmy pewnie
+związanych z nią niebezpieczeństw można się pokusić o skorzystanie z niej. Ale
+na szczęście <e>istnieje znacznie lepsze rozwiązanie!</e>, możliwe jest
+logowanie bez użycia hasła i nie musimy w tym celu poświęcać bezpieczeństwa.
+Zaawansowane zagadnienia związane z narzędziem mającym właśnie takie możliwości
+można znaleźć drugim artykule w tej serii.  Najpierw jednak poznajmy pewnie
 podstawy działania skryptu <c>ssh-agent</c> i skonfigurujmy odpowiednio
 uwierzytelnianie RSA i DSA. Oto dokładne wskazówki:
 </p>
@@ -329,9 +326,9 @@ $ <i>ssh-keygen</i>
 </pre>
 
 <p>
-Wprowadź domyślną lokalizację, gdzie mają być przechowywane wygenerowane klucze
-(najczęściej będzie to <path>~/.ssh/identity</path> i
-<path>~/.ssh/identity.pub</path> dla klucza publicznego), a następnie wpisz
+Należy wprowadzić domyślną lokalizację, gdzie mają być przechowywane
+wygenerowane klucze (najczęściej będzie to <path>~/.ssh/identity</path> i
+<path>~/.ssh/identity.pub</path> dla klucza publicznego), a następnie podać
 hasło. Po zakończeniu działania <c>ssh-keygen</c>, wygenerowany zostanie klucz
 publiczny, oraz klucz prywatny który zostanie zakodowany z użyciem podanego
 hasła.
@@ -344,7 +341,7 @@ hasła.
 <body>
 
 <p>
-Kolejnym krokiem jest konfiguracja systemu na, którym uruchomiony jest
+Kolejnym krokiem jest konfiguracja systemu na którym uruchomiony jest
 <c>sshd</c>, gdzie chcemy zastosować uwierzytelnianie z użyciem
 <e>publicznego</e> klucza RSA. W tym celu wystarczy skopiować wygenerowany
 wcześniej klucz publiczny na zdalny system:
@@ -355,9 +352,9 @@ $ <i>scp ~/.ssh/identity.pub drobbins@remotebox:</i>
 </pre>
 
 <p>
-Uwierzytelnianie z użyciem RSA nie jest jeszcze skonfigurowane więc musimy podać
-nasze hasło dostępu do konta na <e>remotebox</e>. Następnie musimy jeszcze
-zalogować się na zdalny komputer i dodać odpowiedni wpis, zawierający nasz klucz
+Uwierzytelnianie z użyciem RSA nie jest jeszcze włączone więc musimy podać nasze
+hasło dostępu do konta na <e>remotebox</e>. Następnie musimy jeszcze zalogować
+się na zdalny komputer i dodać odpowiedni wpis, zawierający nasz klucz
 publiczny, do pliku <path>~/.ssh/authorized_keys</path>:
 </p>
 
@@ -387,17 +384,17 @@ Enter passphrase for key '/home/drobbins/.ssh/identity':
 <p>
 Właśnie skonfigurowaliśmy dostęp do komputera <e>remotebox</e> z użyciem
 uwierzytelniania RSA! Jeśli pomimo wykonania wszystkich powyższych wskazówek w
-czasie logowania występują jakieś problemy spróbuj użyć komendy
-<path>~/.ssh/authorized_keys</path>. Jej użycie wymusi na ssh zastosowanie
-odpowiedniej wersji protokołu autentykacji, taka sytuacja może mieć miejsce w
-przypadku, gdy zdalny system został skonfigurowany by domyślnie używać
-uwierzytelniania DSA. Jeśli pomimo tego mamy problemy, należy upewnić się, że
-plik konfiguracyjny <path>/etc/ssh/ssh_config</path> nie zawiera polecenia
-<c>RSAAuthentication no</c>, jeżeli w naszym przypadku ją znajdziemy to najlepiej
-dodać znak komentarza ("#") na jej początku. Gdy, pomimo przeprowadzenia tych
-operacji, dalej mamy problemy, należy skontaktować się z administratorem
-zdalnego komputera <e>remotebox</e>, by sprawdził on czy konfiguracja serwera
-<c>sshd</c> umożliwia użycie uwierzytelniania RSA.
+czasie logowania występują jakieś problemy spróbuj użyć komendy <path>ssh -1
+drobbins@remotebox</path>. Jej użycie wymusi na ssh zastosowanie odpowiedniej
+wersji protokołu autentykacji, taka sytuacja może mieć miejsce w przypadku, gdy
+zdalny system został skonfigurowany by domyślnie używać uwierzytelniania DSA.
+Jeśli pomimo tego mamy problemy, należy upewnić się, że plik konfiguracyjny
+<path>/etc/ssh/ssh_config</path> nie zawiera wpisu <c>RSAAuthentication no</c>,
+jeżeli w naszym przypadku go znajdziemy to najlepiej dodać znak komentarza ("#")
+na początku linii. Gdy, pomimo przeprowadzenia tych operacji, dalej mamy
+problemy, należy skontaktować się z administratorem zdalnego komputera
+<e>remotebox</e>, by sprawdził on czy konfiguracja serwera <c>sshd</c> umożliwia
+użycie uwierzytelniania RSA.
 </p>
 
 </body>
@@ -407,7 +404,7 @@ zdalnego komputera <e>remotebox</e>, by sprawdził on czy konfiguracja serwera
 <body>
 
 <p>
-Klucze RSA są wymagany jeśli używamy pierwszej wersji protokołu <c>ssh</c>, w
+Klucze RSA są wymagane jeśli używamy pierwszej wersji protokołu <c>ssh</c>, w
 przypadku wersji 2 używane są klucze DSA, oba typy są wspierane przez każdą nowa
 wersja OpenSSH. W przypadku konfiguracji uwierzytelniania DSA cała procedura
 jest bardzo podobna, różni się tylko w kilku szczegółach.
@@ -455,20 +452,20 @@ z jego starszą, pierwszą odmianą.
 </body>
 </section>
 <section>
-<title>Next time</title>
+<title>W kolejnej części</title>
 <body>
 
 <p>
-Teraz, konfiguracja uwierzytelniania RSA lub DSA nie stanowi już problemu.
-Ciągle jednak każde logowanie na zdalny komputer wymaga od nas wprowadzenia
-hasła. W kolejnym artykule w serii przedstawione zostaną zagadnienia związane z
-<c>ssh-agent</c>, interesującym systemem, który umożliwi nam ominąć tą
-niedogodność i nawiązać połączenie <e>bez</e> wpisywania hasła i co równie ważne
-zachować odpowiedni poziom bezpieczeństwa (klucze prywatne są zabezpieczone
-hasłem). Będzie w nim można znaleźć także opis <c>keychain</c>, przydatnej,
-ułatwiającej prace i poprawiającej bezpieczeństwo, nakładki na <c>ssh-agent</c>.
-Poniżej można znaleźć materiały umożliwiające przeprowadzenie badań we własnym
-zakresie.
+Z pewnością teraz konfiguracja uwierzytelniania RSA lub DSA nie stanowi już
+problemu.  Ciągle jednak każde logowanie na zdalny komputer wymaga od nas
+wprowadzenia hasła. W kolejnym artykule w serii przedstawione zostaną
+zagadnienia związane z <c>ssh-agent</c>, interesującym systemem, który umożliwi
+nam ominąć tą niedogodność i nawiązać połączenie <e>bez</e> wpisywania hasła i
+co równie ważne zachować odpowiedni poziom bezpieczeństwa (klucze prywatne są
+zabezpieczone hasłem). Będzie w nim można znaleźć także opis <c>keychain</c>,
+przydatnej, ułatwiającej prace i poprawiającej bezpieczeństwo, nakładki na
+<c>ssh-agent</c>.  Poniżej można znaleźć materiały umożliwiające przeprowadzenie
+"badań" we własnym zakresie.
 </p>
 
 </body>
@@ -499,7 +496,7 @@ zakresie.
   </li>
   <li>
     <e>SSH, The Secure Shell: The Definitive Guide</e> - doskonałe źródło
-    informacji dotyczące ssh (dostępna w języku angielskim). Strona <uri
+    informacji dotyczące ssh. Strona <uri
     link="http://www.snailbook.com/">autorów</uri> zawiera dodatkowe
     informacje o książce, FAQ, nowości i poprawki.
   </li>
