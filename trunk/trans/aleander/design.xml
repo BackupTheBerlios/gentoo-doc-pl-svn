@@ -2,48 +2,59 @@
 
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<guide link="/proj/en/releng/installer/design.xml">
-<title>Gentoo Linux Installer</title>
+<guide link="/proj/pl/releng/installer/design.xml">
+<title>Instalator Gentoo Linux</title>
 
-<author title="Author">
+<author title="Autor">
   <mail link="esammer@gentoo.org">Eric Sammer</mail>
 </author>
-<author title="Editor">
+<author title="Redaktor">
   <mail link="blackace@gentoo.org">Blackace</mail>
 </author>
+<author title="Tłumaczenie">
+  <mail link="aleander@dark.freak.pl">Aleksander Kamil Modzelewski</mail>
+</author>
+
+
 
 <abstract>
-An introduction to the Gentoo Linux Installer project discussing its purpose,
-design structure, and participants.
+Wstęp do Projektu Instalatora Gentoo Linux, opisujący jego przeznaczenie,
+budowę oraz członków.
+<!-- [WARNING] Trochę bez sensu -->
 </abstract>
 
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <license/>
 
 <version>1.0</version>
 <date>Jan 29, 2004</date>
 
 <chapter>
-<title>Overview</title>
+<title>Przegląd</title>
 <section>
 <body>
 
 <p>
-Currently, Gentoo has no guided installer. A number of users has expressed
-interest in such an application to ease the current installation process.
-Many users new to Gentoo or Linux in general, find the installation process
-intimidating and even with a strong assurance of support and excellent
-documentation, they are reluctant to try. Some users have stated this to be the
-singular reason they have not moved to or tried Gentoo yet.
-The current process will still be available to those who choose to use it.
+W tej chwili nie istnieje wspomagany instalator Gentoo. Wiele użytkowników
+wyraziło zapotrzebowanie na aplikację tego rodzaju. Nowicjusze Gentoo
+(albo, bardziej ogólnie, Linuksa) są z reguły zastraszeni procesem instalacji
+i nawet świetna dokumentacja oraz zapewnienia o dostępności wsparcia
+nie są w stanie ich przekonać do podjęcia próby. Niektórzy określili to
+nawet jako jedyną przyczynę, dla której nie dokonali jeszcze migracji na
+Gentoo. Obecna metoda instalacji będzie nadal dostępna dla tych, którzy
+ją preferują.
 </p>
 
 <p>
-The Gentoo Linux Installer project aims to build a normative installation
-platform for both desktop and server systems. Generally, the goals of the
-installer are consistency across architectures, usability for all users, and
-flexibility. The section on features will give a better overview of the
-specifics, but suffice it to say it will be for all users, of all experience
-levels, for all environments.
+Projekt Instalatora Gentoo Linux ma na celu stworzenie standardowej
+platformy instalacyjnej dla systemów tak biurkowych, jak i serwerowych.
+Ogólnie, celem instalatora jest zgodność pomiędzy architekturami, 
+użyteczność dla wszystkich użytkowników oraz elastyczność. W dziale
+poświęconym funkcjonalności przedstawimy dokładniejszy opis konkretnych
+możliwości, jak na razie powiemy tylko, że będzie on przeznaczony dla
+wszystkich użytkowników, w każdym środowisku i na każdym poziomie
+doświadczenia.
 </p>
 
 </body>
@@ -51,96 +62,103 @@ levels, for all environments.
 </chapter>
 
 <chapter>
-<title>Features</title>
+<title>Funkcjonalność</title>
 <section>
 <body>
 
 <p>
-The following is a list of features that will be present in the installer.
-While not an exhaustive list, it should give you a better idea of what
-will be possible. Not all of these features are of use to all users, but
-the idea is to provide consistency for all users so keep the mantra of "if
-not for me, for someone else" fresh in mind.
+Poniżej znajduje się lista cech które będą obecne w instalatorze. Nie jest
+ona wyczerpująca, ale powinna przedstawić zakres dostępnych możliwości.
+Nie wszystkie z tych funkcji są przydatne dla każdego użytkownika, ale
+celem jest zapewnienie konsystencji, zgodnie z mantrą "jeżeli nie dla mnie,
+to dla kogoś innego".
 </p>
 
 </body>
 </section>
 <section>
-<title>Multiple front ends</title>
+<title>Wiele front-endów</title>
 <body>
 
 <p>
-The installer will have interchangeable user interfaces of which some will be X
-GUIs. Since some platforms are more commonly installed with devices that do not
-support X windows (Sun serial console installs, etc.) a plain text front end
-will be developed. Users will be free to develop a user interface (of any
-nature) as they see fit but, due to maintenance, only one text based and one
-GUI may be officially supported at first.
+Instalator będzie miał wymienny interfejs użytkownika, przy czym wśród
+możliwości będą GUI X.  Ponieważ na niektórych platformach często nie
+ma urządzeń zapewniających X window (instalacja na komputerach Sun za
+pośrednictwem konsoli szeregowej itp.), dostępny będzie też interfejs
+tekstowy. Użytkownicy będą mieli również możliwość rozwijania własnych
+rozwiązań (dowolnego rodzaju), ale ze względu na ograniczone możliwości
+utrzymania oficjalnie wspierany będzie tylko jeden rodzaj interfejsu 
+tekstowego i jeden rodzaj GUI.
 </p>
 
 </body>
 </section>
 <section>
-<title>Reusable back end framework</title>
+<title>Silnik nadający się do wielokrotnego wykorzystania</title>
 <body>
 
 <p>
-The actual workhorse of the installer will be a set of APIs that will be called
-from the desired client. In keeping a clean and complete separation of
-functionality and user interface, a generic platform will be established for any
-tools that wish to control the installation of a Gentoo system. This also
-promotes strong consistency across all platforms and environments.
+Właściwym koniem pociągowym instalatora będzie zestaw API
+wykorzystywanych przez konkretnego klienta. W celu zachowania podziału
+funkcjonalności i interfejsu użytkownika stworzona zostanie ogólna platforma
+dla narzędzi stosowanych do kontroli instalacji systemu Gentoo. Rozwiązanie
+takie będzie również wspierało konsystencję rozwiązań stosowanych na
+różnych platformach.
 </p>
 
 </body>
 </section>
 <section>
-<title>Automated deployment</title>
+<title>Zautomatyzowana instalacja</title>
 <body>
 
 <p>
-The installer will support automated deployment using pre-configured
-installation profiles. This will allow easy installation in larger environments
-with similar hardware or in situations where you wish to store a backup of your
-machine's initial installation parameters for disaster recovery. The
-installation profile will contain all data required to "replay" an installation
-(i.e. cflags, use flags, partitioning schemes, post-install packages, etc.).
+Instalator będzie wspierał automatyczną instalacją przy użyciu
+prekonfigurowanych profili. Ułatwi to instalację w dużych wdrożeniach
+opartych na jednolitym sprzęcie lub w sytuacji, gdy istnieje potrzeba
+zachowania wstępnej konfiguracji na wypadek awarii. Profil instalacyjny
+będzie zawierał wszystkie dane potrzebne do "odtworzenia" instalacji
+(np. cflags, flagi use, schemat partycjonowania dysków, pakiety
+zainstalowane po wstępnej konfiguracji i tak dalej).
 </p>
 
 </body>
 </section>
 <section>
-<title>Dry run profile generation</title>
+<title>Instalacja "na sucho" w celu wygenerowania profilu</title>
 <body>
 
 <p>
-Users will be able to create installation profiles by going through the
-installer without actually performing the steps. All data generated by user
-actions will be serialized to an install profile (represented as an XML
-document) which can later be used for automated deployment.
+Użytkownicy będą mieli możliwość tworzenia profili instalacji poprzez
+użycie instalatora bez faktycznego dokonywania jakichkolwiek działań.
+Wszystkie dane wprowadzone przez użytkownika zostaną zapisane w
+profilu (zapisanym w pliku XML) który potem może zostać wykorzystywany
+do instalacji zautomatyzowanej.
 </p>
 
 </body>
 </section>
 <section>
-<title>Full support for all Gentoo architectures</title>
+<title>Pełne wsparcie dla wszystkich architektur Gentoo</title>
 <body>
 
 <p>
-As a requirement, all architectures supported by Gentoo will be supported by the
-installer project. These include, but are not limited to, x86, ppc, sparc,
-alpha, amd64, mips, hppa, and itanium. (The one notable exception is embedded
-devices. This is due to a highly specialized environment that the installer may
-not be able to accommadate.)
+Jednym z wymagań wobec intalatora będzie wsparcie dla wszystkich
+architektur dostępnych w Gentoo. Oznacza to co najmniej x86, ppc, sparc,
+alpha, amd64, mips, hppa oraz itanium (znaczącym wyjątkiem będą
+urządzenia osadzone. Ze względu na ich wysoką specjalizację
+przystosowanie instalatora może być niemożliwe).
 </p>
 
 </body>
 </section>
 <section>
-<title>Specialized profiles</title>
+<title>Specjalizowane profile</title>
 <body>
 
 <p>
+Wyspecjalizowane profile, takie jak SELinux będą również wspierane.
+<!-- [WARNING] Pomyśl nad tym -->
 Specialized profiles such as SELinux will be supported along side the
 traditional (processor based) architectures. These specialized profiles will
 support the additional features and requirements of their respective
@@ -150,27 +168,29 @@ installation processes.
 </body>
 </section>
 <section>
-<title>Open policies and standards use</title>
+<title>Otwarta polityka i wykorzystanie standardów</title>
 <body>
 
 <p>
-Whenever possible, the installer will use open formats and standards as to play
-nice with other tools that users development. This includes file formats (XML),
-network protocols, and other such items. Special care will be taken to not
-exclude the use of alternate tools and utilities.
+Jeśli to tylko możliwe instalator będzie wykorzystywał otwarte formaty oraz
+standardy w celu zapewnienia zgodności z innymi narzędziami stosowanymi
+przez użytkowników. Oznacza to użycie otwartych formatów plików (XML),
+protokołów sieciowych i temu podobnych. Zachowana będzie ostrożność w
+celu uniknięcia uniemożliwienia wykorzystania alternatywnych narzędzi.
 </p>
 
 </body>
 </section>
 <section>
-<title>Integration with future configuration projects</title>
+<title>Integracja z przyszłymi narzędziami konfiguracyjnymi</title>
 <body>
 
 <p>
-Wherever possible, the installer will integrate with Gentoo specific system
-configuration tools and utilities to facilitate post-install setup and
-configuration of machines. Support for non-Gentoo specific tools such as
-cfengine may also be included.
+Gdzie tylko będzie to możliwe instalator będzie integrował się z narzędziami
+konfiguracyjnymi specyficznymi dla Gentoo do celów konfiguracji po
+dokonaniu właściwej instalacji. Wsparcie dla narzędzi nie związanych
+bezpośrednio z Gentoo (takich jak np. cfengine) może również zostać
+wprowadzone.
 </p>
 
 </body>
@@ -178,133 +198,140 @@ cfengine may also be included.
 </chapter>
 
 <chapter>
-<title>Design and Structure</title>
+<title>Struktura i założenia projektowe</title>
 <section>
 <body>
 
 <p>
-The structure of the installer must be generic enough to support the features
-above while not abstracting ourselves so far away from the system that simple
-tasks become difficult or maintainability becomes cumbersome.
+Struktura instalatora musi być wystarczająco ogólna aby wspierać
+wymienione powyżej funkcje, jednocześnie nie prowadząc do nadmiernej
+abstrakcji która uczyniłaby proste zadania trudnymi oraz utrudniła
+utrzymanie.
 </p>
 
 <p>
-A few design requirements were stated:
+Określone zostało kilka założeń projektowych:
 </p>
 
 <ul>
-  <li>Multiple UIs must be supported (abstracted view support)</li>
-  <li>A complete separation of model, view, and  control logic be kept</li>
-  <li>All features must be supported regardless of front end or architecture</li>
-  <li>Automated deployment always be possible</li>
+  <li>Wspierane będzie wiele interfejsów użytkowników (abstrakcja
+  	warstwy prezentacji)</li>
+  <li>Utrzymana będzie pełna separacja modelu, prezentacji oraz logiki</li>
+  <li>Wszystkie cechy muszą być wspierane niezależnie od interfejsu
+    oraz architektury</li>
+  <li>Automatyczna instalacja zawsze musi być możliwa</li>
 </ul>
 
 <p>
-To this end, the installer platform (as the entire system is referenced) is
-broken up into three major parts.
+W celu spełnienia tych założeń platforma instalatora jest podzielona na trzy
+części:
 </p>
 
 </body>
 </section>
 <section>
-<title>Front end (Client)</title>
+<title>Warstwa prezentacji (klient)</title>
 <body>
 
 <p>
-The client is the user's interface to the system. It contains all user interface
-logic and support. Also, minor state information about temporary configuration
-of the client, itself, including command line arguments, environment settings,
-invocation method (interactive / non-interactive), logging locations, binary
-package server URIs, and more. Some of these settings will "stick" to the
-install, but most will not.
+Klient jest interfejsem użytkownika. Zawiera całość logiki związanej z
+prezentacją procesu instalacji. Dodatkowo utrzymywać będzie mniej
+istotne informacje o stanie, takie jak własna konfiguracja, ustawienia
+linii poleceń, zmienne środowiskowe, rodzaj wywołania (interaktywny/
+nieinteraktywny), logowanie, adresy serwerów z pakietami binarnymi i tak
+dalej. Część z tych informacji będzie zachowana w profilu instalacji,
+większość jednak nie.
 </p>
 
 <p>
-The user will be able to use their desired front end to generate installation
-profiles to be used for later deployment, and in this respect can also be
-thought of as a profile generation utility.
+Użytkownik będzie mógł wykorzystać wybrany interfejs do wygenerowania
+profilu instalacyjnego, więc pod tym względem może on być traktowany
+jak narzędzie do generacji profili.
 </p>
 
 <p>
-The client may also integrate with system configuration tools at a later date.
+Klient może również integrować się później z narzędziami konfiguracyjnymi.
 </p>
 
 <p>
-Generally, the client is "dumb" and is unaware of implementation logic of the
-actual installation process, although some architecture specific logic will be
-present.
+W ogólności klient jest "głupi" i nieświadomy logiki implementacji
+właściwego procesu instalacyjnego, aczkolwiek część rozwiązań
+specyficznych dla architektury będzie w nim zawartych.
 </p>
 
 </body>
 </section>
 <section>
-<title>Back end (API or framework)</title>
+<title>Warstwa implementacji (API lub szkielet)</title>
 <body>
 
 <p>
-The meat and potatoes of the installer is a set of object oriented APIs that
-abstract the actual commands run to install the system. The framework is
-somewhat abstracted in that the behavior is dependent on what architecture
-template is being used at the time. The number of discreet steps performed
-largely depends on the requirements and implementation of the architecture
-template (an XML file that is similar in nature to Portage's /etc/make.profile
-information).
+Najważniejszą częścią instalatora będzie zestaw zorientowanych obiektowo
+API które wprowadza uogólnienie właściwych poleceń wykonywanych w celu
+instalacji systemu. Abstrakcja szkieletu polega na tym, że jego zachowanie
+zależne jest od tego, jaki schemat architektury jest w danym momencie
+wykorzystywany. Ilość oddzielnych kroków która zostanie wykonana w
+znacznym stopniu zależy od wymagań oraz implementacji schematu
+architektury (pliku XML który w swojej naturze jest podobny do 
+/etc/make.profile).
 </p>
 
 <p>
-Since the framework is segregated from the client, it may be used for customized
-installation products developed by users. The major classes are as follows:
+Ponieważ szkielet jest oddzielony od klienta, może być on wykorzystywany
+do specjalizowanych produktów rozwijanych przez użytkowników. Główne
+możliwości są następujące:
 </p>
 
 <ul>
   <li>
-    A controller class that dictates, based on the architecture template (an XML
-    file), what steps to perform and in what order. This is the core of all
-    logic.
+    Klasa kontrolująca która, opierając się na schemacie architektury (plik
+    XML), określa które kroki wykonać i w jakiej kolejności to zrobić. Jest ona
+    jądrem całej implementacji.
   </li>
   <li>
-    A installation profile class that maintains all installation information
-    such as partitioning schemes, cflags, use flags, and other such data. This
-    class can serialize itself to XML which can then be placed on an automated
-    deployment server for later use.
+    Klasa opisująca profil instalacji która utrzymuje całą informację o procesie,
+    taką jak schemat partycjonowania, cflags, flagi use i temu podobne. Ta
+    klasa może zostać zapisana do pliku XML, który następnie może zostać
+    umieszczona na serwerze automatycznego wdrożenia.
   </li>
 </ul>
 
 <p>
-Other minor classes may be used for intermediary support, but these two solidify
-what is to be considered public to developers of clients.
+Inne klasy mogą zostać wykorzystane w celach przejściowych, lecz te dwie
+określają to, co można uznać za publicznie dostępne dla autorów klientów.
 </p>
 
 </body>
 </section>
 <section>
-<title>Deployment server</title>
+<title>Serwer automatycznego wdrożenia</title>
 <body>
 
 <p>
-The third component is probably only of interest to those using the automated
-deployment features of the installer. The deployment server is actually only a
-combination of services and files.
+Trzeci komponent jest prawdopodobnie interesujący tylko dla osób
+korzystających z możliwości automatycznego wdrożenia zapewnianych
+przez instalator. Serwer ten jest w zasadzie kombinacją usług i plików.
 </p>
 
 <p>
-Installation profiles may be stored on a machine and served up using an rsync
-server. The client (or, specifically, the back end) will fetch all available
-profiles when given the URI of the rsync server. This is the one part of the
-picture.
+Profile instalacyjne mogą być przechowywane na zdalnej maszynie i
+udostępniane poprzez serwer rsync. Klient (a dokładniej jego warstwa
+implementacji) pobiera wszystkie dostępne profile jeżeli otrzyma URI
+serwera rsync.
 </p>
 
 <p>
-The deployment server may also run tftp and dhcp services to facilitate
-netbooting for large scale installations. This usually requires netboot support
-on the client machine, but custom live cds with such support may be made
-available by Gentoo.
+Serwer wdrożeń może również udostępniać usługi tftp oraz dhcp aby
+umożliwiać start z sieci dla potrzeb dużych instalacji. Wymaga to z reguły
+odpowiedniego wsparcia na maszynie klienckiej, lecz specjalne płyty live
+CD z odpowiednim oprogramowaniem mogą zostać udostępnione przez
+Gentoo.
 </p>
 
 <p>
-In short, the deployment server isn't a specific daemon or service, but a
-combination of freely available and standard services. The idea is to take
-advantage of services that may be already running on a user's network.
+W skrócie, serwer wdrożeń nie jest konkretnym demonem ani usługą, tylko
+kombinacją już dostępnych i standardowych usług. Założeniem jest
+skorzystanie z usług które już mogą być dostępne w sieci użytkownika.
 </p>
 
 </body>
@@ -312,22 +339,23 @@ advantage of services that may be already running on a user's network.
 </chapter>
 
 <chapter>
-<title>Process</title>
+<title>Przebieg instalacji</title>
 <section>
 <body>
 
 <p>
-The actual process of which steps to perform in which order and how is primarily
-determined by the architecture templates. For the most part, the architecture
-template will replicate the steps shown in the Gentoo Installation Handbook.
+Proces konkretnej instalacji w znacznym stopniu zależy od schematu
+architektury. Z reguły będzie on powtarzał kroki opisane w Podręczniku
+Instalacji Gentoo.
 </p>
 
 <p>
-The special architecture templates such as the previously mentioned SELinux can
-use this same mechinism to alter the standard process. The arch templates will
-override the default behavior from a generic template. This way, each arch does
-not have to specify thing such as syncing the portage tree, emerging system, or
-other such steps that all archs have to do.
+Specjalizowane schematy, takie jak wcześniej wzmiankowany SELinux,
+mogą wykorzystywać takie same mechanizmy jak proces standardowy.
+Konkretne schematy będą nadpisywać domyślne zachowanie opisane w
+wersji domyślnej. W ten sposób można uniknąć np. opisywania procesu
+synchronizowania drzewa rsync czy emergowania systemu dla każdej
+wspieranej architektury.
 </p>
 
 </body>
@@ -335,7 +363,7 @@ other such steps that all archs have to do.
 </chapter>
 
 <chapter>
-<title>Contact</title>
+<title>Kontakt</title>
 <section>
 <body>
 
