@@ -122,7 +122,7 @@ to:'''),
 Jeśli chcesz, aby Tygodnik Gentoo był jeszcze lepszy, podziel się z <mail
 link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat. Uwagi
 dotyczące tłumaczenia można zgłaszać na adres <mail
-link="moloh@moloh.net">koordynatora</mail>.
+link="moloh@gentoo.org">koordynatora</mail>.
 </p>'''),
 
 (r'<title>GWN subscription information</title>',
@@ -151,92 +151,36 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 '''),
 
 (r'''<ul>
-<li>
-<uri link="/news/da/gwn/gwn.xml">Danish</uri>
-</li>
-<li>
-<uri link="/news/nl/gwn/gwn.xml">Dutch</uri>
-</li>
-<li>
-<uri link="/news/en/gwn/gwn.xml">English</uri>
-</li>
-<li>
-<uri link="/news/de/gwn/gwn.xml">German</uri>
-</li>
-<li>
-<uri link="/news/fr/gwn/gwn.xml">French</uri>
-</li>
-<li>
-<uri link="/news/ko/gwn/gwn.xml">Korean</uri>
-</li>
-<li>
-<uri link="/news/ja/gwn/gwn.xml">Japanese</uri>
-</li>
-<li>
-<uri link="/news/it/gwn/gwn.xml">Italian</uri>
-</li>
-<li>
-<uri link="/news/pl/gwn/gwn.xml">Polish</uri>
-</li>
-<li>
-<uri link="/news/pt_br/gwn/gwn.xml">Portuguese \(Brazil\)</uri>
-</li>
-<li>
-<uri link="/news/pt/gwn/gwn.xml">Portuguese \(Portugal\)</uri>
-</li>
-<li>
-<uri link="/news/ru/gwn/gwn.xml">Russian</uri>
-</li>
-<li>
-<uri link="/news/es/gwn/gwn.xml">Spanish</uri>
-</li>
-<li>
-<uri link="/news/tr/gwn/gwn.xml">Turkish</uri>
-</li>
+<li> <uri link="/news/da/gwn/gwn.xml">Danish</uri> </li>
+<li> <uri link="/news/nl/gwn/gwn.xml">Dutch</uri> </li>
+<li> <uri link="/news/en/gwn/gwn.xml">English</uri> </li>
+<li><uri link="/news/de/gwn/gwn.xml">German</uri> </li>
+<li> <uri link="/news/fr/gwn/gwn.xml">French</uri> </li>
+<li> <uri link="/news/ko/gwn/gwn.xml">Korean</uri> </li>
+<li> <uri link="/news/ja/gwn/gwn.xml">Japanese</uri> </li>
+<li> <uri link="/news/it/gwn/gwn.xml">Italian</uri> </li>
+<li> <uri link="/news/pl/gwn/gwn.xml">Polish</uri> </li>
+<li> <uri link="/news/pt_br/gwn/gwn.xml">Portuguese \(Brazil\)</uri> </li>
+<li> <uri link="/news/pt/gwn/gwn.xml">Portuguese \(Portugal\)</uri> </li>
+<li> <uri link="/news/ru/gwn/gwn.xml">Russian</uri> </li>
+<li> <uri link="/news/es/gwn/gwn.xml">Spanish</uri> </li>
+<li> <uri link="/news/tr/gwn/gwn.xml">Turkish</uri> </li>
 </ul>''',
  r'''<ul>
-<li>
-<uri link="/news/en/gwn/gwn.xml">angielskim</uri>
-</li>
-<li>
-<uri link="/news/da/gwn/gwn.xml">duńskim</uri>
-</li>
-<li>
-<uri link="/news/fr/gwn/gwn.xml">francuskim</uri>
-</li>
-<li>
-<uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri>
-</li>
-<li>
-<uri link="/news/nl/gwn/gwn.xml">holenderskim</uri>
-</li>
-<li>
-<uri link="/news/ja/gwn/gwn.xml">japońskim</uri>
-</li>
-<li>
-<uri link="/news/ko/gwn/gwn.xml">koreańskim</uri>
-</li>
-<li>
-<uri link="/news/de/gwn/gwn.xml">niemieckim</uri>
-</li>
-<li>
-<uri link="/news/pl/gwn/gwn.xml">polskim</uri>
-</li>
-<li>
-<uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri>
-</li>
-<li>
-<uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri>
-</li>
-<li>
-<uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri>
-</li>
-<li>
-<uri link="/news/tr/gwn/gwn.xml">tureckim</uri>
-</li>
-<li>
-<uri link="/news/it/gwn/gwn.xml">włoskim</uri>
-</li>
+<li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
+<li><uri link="/news/da/gwn/gwn.xml">duńskim</uri></li>
+<li><uri link="/news/fr/gwn/gwn.xml">francuskim</uri></li>
+<li><uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri></li>
+<li><uri link="/news/nl/gwn/gwn.xml">holenderskim</uri></li>
+<li><uri link="/news/ja/gwn/gwn.xml">japońskim</uri></li>
+<li><uri link="/news/ko/gwn/gwn.xml">koreańskim</uri></li>
+<li><uri link="/news/de/gwn/gwn.xml">niemieckim</uri></li>
+<li><uri link="/news/pl/gwn/gwn.xml">polskim</uri></li>
+<li><uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
+<li><uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
+<li><uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
+<li><uri link="/news/tr/gwn/gwn.xml">tureckim</uri></li>
+<li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>
 </ul>''')
 
 )
