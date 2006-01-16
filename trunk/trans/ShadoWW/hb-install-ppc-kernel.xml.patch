@@ -1,0 +1,114 @@
+11,12c11,12
+< <version>5.2</version>
+< <date>2005-08-21</date>
+---
+> <version>5.4</version>
+> <date>2006-01-06</date>
+51c51,55
+< dostępu do sieci. Wybierzmy któreś i zainstalujmy:
+---
+> dostępu do sieci. Wybierzmy któreś i zainstalujmy. Flaga <c>USE="-doc"</c>
+> uniemożliwi zainstalowanie xorg-x11 i innych zbędnych na tym etapie 
+> zależności. Flaga <c>USE="symlink"</c> nie jest konieczna w przypadku nowej
+> instalacji, jednak zapewnia w późniejszym okresie tworzenie prawidłowych
+> dowiązań symbolicznych <path>/usr/src/linux</path>.
+55c59
+< # <i>emerge gentoo-sources</i>
+---
+> # <i>USE="-doc symlink" emerge gentoo-sources</i>
+57a62,63
+> <!-- Removed, as we're trying to avoid specific kernel versions to improve
+> HB maintainability
+61a68
+> -->
+66,67c73,75
+< zakładamy, że źródła jądra zostały zainstalowane jako
+< <c>gentoo-sources-2.6.12-r4</c>: 
+---
+> zakładamy, że źródła jądra zostały zainstalowane jako 
+> <c>gentoo-sources-2.6.12-r6</c>. W komputerze użytkownika może być to inna 
+> wersja, dlatego należy mieć to na uwadze.
+72,85c80
+< lrwxrwxrwx    1 root     root           22  Mar 18 16:23 /usr/src/linux -&gt; linux-2.6.12-gentoo-r4
+< </pre>
+< 
+< <p>
+< Jeśli informacje z symlinka nie pokrywają się z rzeczywistością (np. wskazuje na
+< inne źródła jądra) to będziemy musieli go poprawić przed przejściem do dalszych
+< części tego dokumentu. Poniżej zakładamy, że zainstalowano jądro
+< <c>gentoo-sources-2.6.12-r4</c>.
+< </p>
+< 
+< <pre caption="Zmiana dowiązania symbolicznego do źródeł jądra">
+< # <i>rm /usr/src/linux</i>
+< # <i>cd /usr/src</i>
+< # <i>ln -s linux-2.6.12-gentoo-r6 linux</i>
+---
+> lrwxrwxrwx    1 root     root           22  Mar 18 16:23 /usr/src/linux -&gt; linux-2.6.12-gentoo-r6
+92c87
+< ręcznie i lepiej dostostosować kernel do własnych potrzeb. Zaczniemy od
+---
+> ręcznie i lepiej dostosować kernel do własnych potrzeb. Zaczniemy od
+115c110
+< kilku kerneli nie będziemy pamiętać, że kiedykowiek uważaliśmy to za trudne
+---
+> kilku kerneli nie będziemy pamiętać, że kiedykolwiek uważaliśmy to za trudne
+124c119
+< chrootowanego środowiska. Podczas pracy z tym programem możne bezpieczenie
+---
+> chrootowanego środowiska. Podczas pracy z tym programem można bezpiecznie
+136,138c131,135
+< Kiedy już zbierzemy wszystkie informacje przechodzimy do katalogu ze
+< źródłami i wpisujemy polecenie <c>make menuconfig</c>. Uruchomi się menu
+< konfiguracyjne oparte na ncurses.
+---
+> Teraz pora na przeniesienie się do katalogu ze źródłami kernel, a następnie
+> jego konfiguracja. Aby dodać domyślne ustawienia do konfiguracji, zaleca się
+> uruchomienie najpierw polecenia <c>make defconfig</c>. Po wygenerowaniu
+> domyślnej konfiguracji pora na wydanie polecenia <c>make menuconfig</c>, po
+> którym uruchomi się menu konfiguracyjne oparte na ncurses.
+142a140
+> # <i>make defconfig</i>
+177,178c175
+< <c>/proc file system</c>. <e>Nie należy</e> włączać opcji <c>/dev file
+< system</c>.  
+---
+> <c>/proc file system</c>. 
+185d181
+<     [ ] /dev file system support (OBSOLETE)
+321,332c317,319
+< <comment>Zastępujemy 2.6.12 wersją jądra</comment>
+< (Apple/IBM)  # <i>cp vmlinux /boot/kernel-2.6.12</i>
+< (Pegasos)    # <i>cp arch/ppc/boot/images/zImage.chrp /boot/kernel-2.6.12</i>
+< </pre>
+< 
+< <p>
+< Dobrym pomysłem jest skopiowanie tam również pliku konfiguracyjnego, który
+< posłużył do zbudowania jądra.
+< </p>
+< 
+< <pre caption="Tworzenie kopii zapasowej konfiguracji jądra">
+< # <i>cp .config /boot/config-2.6.12-gentoo-r6</i>
+---
+> <comment>replace &lt;kernel-version&gt; with your kernel version</comment>
+> (Apple/IBM)  # <i>cp vmlinux /boot/&lt;kernel-version&gt;</i>
+> (Pegasos)    # <i>cp arch/ppc/boot/images/zImage.chrp /boot/&lt;kernel-version&gt;</i>
+442,445c429,432
+< je przy pomocy menu <c>genkernel --menuconfig all</c>. Sterowniki te muszą być
+< wkompilowane w jądro <e>na stałe</e>, nie można dodawać ich w postaci modułów.
+< Użytkownicy EVMS2 lub LVM2 powinni dodać również <c>--evms2</c> lub
+< <c>--lvm2</c> do listy argumentów.
+---
+> je przy pomocy menu <c>genkernel --menuconfig --genzimage all</c>. Sterowniki
+> te muszą być wkompilowane w jądro <e>na stałe</e>, nie można dodawać ich w 
+> postaci modułów. Użytkownicy EVMS2 lub LVM2 powinni dodać również 
+> <c>--evms2</c> lub <c>--lvm2</c> do listy argumentów.
+480,481c467
+< 	<comment>(Należy to wykonać po instalacji, czyli w trakcie instalacji
+< 		według wskazówek GRP)</comment>	
+---
+> <comment>(Należy to wykonać po instalacji, czyli w trakcie instalacji według wskazówek GRP)</comment>	
+491c477
+< <pre caption="Emerging and enabling hotplug">
+---
+> <pre caption="Emergowanie i uruchamianie hotplug">

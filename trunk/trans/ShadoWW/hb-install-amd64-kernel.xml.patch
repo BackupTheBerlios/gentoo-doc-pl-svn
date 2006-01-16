@@ -1,0 +1,66 @@
+9,10c9,10
+< <version>5.4</version>
+< <date>2005-11-29</date>
+---
+> <version>5.5</version>
+> <date>2006-01-06</date>
+53,54c53,56
+< <c>emerge</c>. Zmienna <c>USE="-doc"</c> zapobiegnie instalacji zbędnych na tym
+< etapie zależności, takich jak np. xorg-x11.
+---
+> <c>emerge</c>. Flaga <c>USE="-doc"</c> uniemożliwi zainstalowanie xorg-x11 i
+> innych zbędnych na tym etapie zależności. Flaga <c>USE="symlink"</c> nie jest
+> konieczna w przypadku nowej instalacji, jednak zapewnia w późniejszym okresie
+> tworzenie prawidłowych dowiązań symbolicznych <path>/usr/src/linux</path>.
+58c60
+< # <i>USE="-doc" emerge gentoo-sources</i>
+---
+> # <i>USE="-doc symlink" emerge gentoo-sources</i>
+62,63c64,67
+< W katalogu <path>/usr/src</path> powinien być mniej więcej taki symlink, o
+< nazwie <path>linux</path>, wskazujący na źródeł aktualnego kernela:
+---
+> W katalogu <path>/usr/src</path> powinniśmy mieć mniej więcej taki symlink, o
+> nazwie <path>linux</path>, wskazujący na źródła Twojego aktualnego kernela. W
+> tym wypadku wskazuje na źródła <c>gentoo-sources-2.6.12-r10</c>. W komputerze
+> użytkownika może być to inna wersja, dlatego należy mieć to na uwadze.
+72,83d75
+< Jeśli informacje z symlinka nie pokrywają się z rzeczywistością (np. wskazuje on
+< na inne źródła kernela) to będzie trzeba go poprawić zanim przejdziemy
+< do dalszych części tego dokumentu.
+< </p>
+< 
+< <pre caption="Zmiana dowiązania symbolicznego do źródeł jądra">
+< # <i>rm /usr/src/linux</i>
+< # <i>cd /usr/src</i>
+< # <i>ln -s linux-2.6.12-gentoo-r10 linux</i>
+< </pre>
+< 
+< <p>
+181,182c173
+< system</c>. Nie należy zaznaczać opcji <c>/dev file system</c>, ponieważ
+< Gentoo 2005.1/AMD64 korzysta domyślnie z <c>udev</c>.
+---
+> system</c>. 
+189d179
+<     &lt; &gt; /dev file system support (OBSOLETE)
+269c259,262
+< <path>/boot</path>:
+---
+> <path>/boot</path>. Wybieramy dowolną nazwę dla naszego jądra jednak należy
+> pamiętać jaka to nazwa, gdyż będziemy jej potrzebowali w późniejszym czasie w
+> trakcie konfiguracji bootloadera. Należy pamiętać o zastąpieniu części wpisu
+> <path>&lt;kernel-version&gt;</path> swoją nazwą i wersją kernela.
+273,282c266
+< # <i>cp arch/x86_64/boot/bzImage /boot/kernel-2.6.12-gentoo-r10</i>
+< </pre>
+< 
+< <p>
+< Zwykle mądrą decyzją jest skopiowanie tam również pliku konfiguracyjnego, który
+< posłużył do zbudowania jądra.
+< </p>
+< 
+< <pre caption="Tworzenie kopii zapasowej konfiguracji jądra">
+< # <i>cp .config /boot/config-2.6.12-gentoo-r10</i>
+---
+> # <i>cp arch/x86_64/boot/bzImage /boot/&lt;kernel-version&gt;</i>
