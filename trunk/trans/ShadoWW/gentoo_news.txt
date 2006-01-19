@@ -1,0 +1,147 @@
+<!-- Gentoo News -->
+<chapter>
+<title>Wiadomości Gentoo</title>
+<section>
+<title>Wkrótce nowe flagi USE</title>
+<body>
+
+<p>
+Dla niektórych pakietów portage posiada automatyczne wpisy use, co oznacza, że
+dopóki całkowicie ich nie nadpiszemy flaga USE będzie aktywowana podczas
+instalacji oraz deaktywowana podczas usuwania pakietu. Na przykład. Po wydaniu
+polecenie "<c>emerge sqlite</c>" flaga <path>sqlite</path> będzie wyświetlana w
+wyniku polecenie "<c>emegre info</c>" i "<c>emerge -vp</c>", dla pakietów,
+który posiadają tą flagę w <path>iuse</path>, chyba, że w pliku
+<path>make.conf</path> będzie znajdował się wpis "<path>-sqlite</path>" lub
+"<path>-*</path>" w zmiennej USE. Jeżeli usuniemy <c>sqlite</c> flaga USE
+ponownie będzie wyświetlana jako nieaktywna (oczywiście, jeśli nie będziemy
+mieć jej dodanej do zmiennej USE w pliku <path>make.conf</path>).
+</p>
+
+<p>
+Mogło spowodować to pewną irytację, gdy flaga USE miała tendencję to
+przypadkowego przeskakiwania w momencie gdy nowy pakiet wywoływał automatyczny
+wpisy use (może się tak dziać również w przypadku zainstalowania lub usuniecia
+jej lub gdy plik <path>package.use</path> został wyedytowany). 
+</p>
+
+<p>
+Zmiana ta zostanie wprowadzone w następnych wydaniach Portage 2.1. Wersja ta
+znajduje się w testowej gałęzi drzewa na niemal wszystkich architekturach.
+Użytkownicy korzystający ze stabilnej gałęzi nie odczują tej zmiany przez jakiś
+czas, od kiedy Portage 2.0.x nie zmieni swojego zachowania, jednak aktualizację
+mogą i będą zmieniać flagi USE. Jeżeli niedawno zaaktualizowałeś Portage do
+nowej wersji 2.1 zapewne będziesz chciał przyjrzeć się wynikowi polecenia 
+"<c>emerge -DuvpN world</c>", a następnie dodać flagi, które chcemy mieć
+aktywne do pliku <path>make.conf</path>, jeśli będą wyglądały np. tak: 
+"<path>-foo*</path>".
+</p>
+
+</body>
+</section>
+<section>
+<title>Zmiany w baselayout</title>
+<body>
+
+<p>
+Zespół Gentoo zajmujący się baselayout ma zaszczyt poinformować o wydaniu 
+<path>baselayout-1.12.0_pre14</path> dla szerszej libczy uzytkowników. Poniżej
+znajduje się podsumowanie głównych zmian poczynionych od wersji 1.11:
+</p>
+
+<ul>
+<li><b>Network backgrounding support from wpa_supplicant, ifplugd and 
+netplug with service dependency restart</b> -- Z reguły <c>ifplugd</c> używany
+jest do monitorowania stanu kabla ethernet, czy jest podłączony czy odłączony,
+oraz do uruchamiania/zatrzymywania usług serwisów sieciowych, razem z usługami
+zależnymi od nich. Problem objawiał się w sytuacji gdu <c>ifplugd</c>
+uruchamiał ponownie usługę sieciową, ale nie uruchamiał tuch usług, które
+zatrzymały się z tą pierwszą. W tej chwili wsparcie dla <c>ifplugd</c>
+oraz <c>netplug</c> zostało dodane do <path>baselayout</path>. Możemy
+bezpośrednio kontrolować usługi oraz w razie potrzeby uruchamiać ponownie, te
+które zostały zatrzymane przez usługe sieciową. Wsparcie dla nowej funkcji
+uzyskał również <c>wpa_supplicant</c>.
+</li>
+<li>
+<b>Oddzielna konfiguracja dla każego interfejsu sieciowego</b> -- Każdy
+interfejs może już posiadać własny plik <path>resolv.conf</path> oraz domyślny
+route. Na pierwszym miejscu postawliśmy komunikację kablową, nad bezprzewodową
+i połaczyli pliki resolv.conf razem. Rozwiązanie to idealnie nadaje się dla
+użytkowników laptopów korzystających z kilku różnych dróg dostępu do
+internetu. 
+</li>
+<li><b>Interaktywny start</b>  -- Czy posiadasz usługę, która sprawia problemy
+podczas uruchamiania systemu? Nie powinieneś, jednak jeśli już się tak zdarzy,
+mamy możliwość wybory co system ma zrobić (uruchomić, pominąć, kontyuować) w 
+takim wypadku, dla każdej usługi interaktywnie. Używając standardowego
+terminalu <path>stty</path> oraz wywołaniań shell, dokonujemy tego w sposób nie
+blokujący systemu oraz bez potrzeby użycia demona.
+</li>
+<li>
+<b>Poprawki równoległego startu/zatrzymania</b> -- Równoległe uruchomienie i
+zatrzymanie tak naprawdę nie wykonywało swojego zadania, do którego zostało
+pierwotnie wydane, jednak teraz zmieniło się to na korzyść. Prowadzi nas to
+do ...
+</li>
+<li><b>Usprawione zamawianie zależności usług (aczkolwiek wolniejsze)</b> --
+Dzięki równoległemu uruchamianiu, odkryliśmy, że usługa zamawiania była
+kompeletnie nie do przyjęcia. Zmusiło nas to do jej całkowitego przepisania. W
+tej chwili jest to już czwarta wersja, używająca topologicznego sortowania
+napisanego w bashu. Sprawowała się znakomicie przez około trzy miesiące więc
+myśle, że w końcu problem ten został rozgryziony.
+</li>
+<li><b>Service daemon status checks</b> -- Usługi, które uruchamiają demony
+poprzez demona start-stop w tej chwili już na pewno wykonują swoje zadanie
+zgodnie z przeznaczeniem. Poprzednia wersja zamiast uruchamiać, zamykała się w
+związku z niewłaściwą konfiguracją <c>rc</c>. Ponadto, jeśli sprawdzamy status
+usługi, sprawdzamy czy demon cały czas jest uruchomiony czy nie. Jeżeli nie,
+wtedy zatrzymujemy samą usługą i inne usługi zależne od tej danej. W końcu
+naprawdę usługa zostaje zatrzymana, przez co został naprawiony błąd obiawiający
+się w sytuacji gdy mieliśmy uruchiomionego <c>cups</c>, instalowaliśmy go
+ponownie, a następnie nie można było go ani zatrzymać, ani zrestartować. 
+</ul>
+</body>
+</section>
+<section>
+<title>Określenie planów rozwoju Gentoo PPC na wydania 2006.0 i dalsze</title>
+<body>
+<p>
+Deweloperzy PPC spędzili trzy godziny w sobotni wieczór, na dyskusji o swoich
+przyszłych zadania. Wydanie 2006.0 dla PowerPC będzie zawierało stage 1, 2 oraz
+3, specyficzne archiwa stage 3 dla procesorów G3 oraz G4, obie wersje,
+minimalną i uniwersalną, płyt instalacyjnych oraz dodatkowo oddzielny obraz CD
+z pakietami GRP. Wszystkie progile 2006.0, zarówno te zoptymalizowane jak i
+standardowe, będą zawierały wsparcie dla NPTL. 
+</p>
+<p>
+The PPC team will tackle some of the open bugs when another PPC bugday will focus 
+the efforts of developers and users. If you'd like to participate in weeding out 
+some of the undergrowth, tune into <path>#gentoo-ppc</path> on <path>irc.freenode.net</path> 
+next Saturday, 21 January 14:00 UTC. Before starting a recruitment campaign for 
+new develpers, the team is currently evaluating who among the 21 listed PPC devs 
+is currently active or de-facto retired. Along with boosting the activity level 
+within the team, they're also planning to enhance communication with other 
+architectures and users by starting a mark-up of their blog posts and sending 
+heads-up to the GWN team on a regular basis.
+</p>
+</body>
+</section>
+<section>
+<title>AMD 64 project update</title>
+<body>
+<p>Major highlights from the Gentoo Linux for AMD64 activities have been included 
+in a status report published by the Gentoo AMD64 project last week. As the hardware
+has become more affordable, 2005 saw the user base grow a lot, and the number of
+developers didn't stand back: The AMD64 team started with nine developers 
+at the beginning of 2005, and currently counts 32 active developers, plus 16
+"arch testers", i.e. power users putting the development under close scrutiny and
+filing bug reports. The "arch testers" concept works so well that the idea has 
+gained popularity with other architectures who are now considering setting up tester 
+teams of their own. See <uri 
+link="http://www.gentoo.org/proj/en/base/amd64/status/status_20060110.xml">the entire 
+report</uri> for more accomplishments of the AMD64 team.
+</p>
+</body>
+</section>
+</chapter>
+
