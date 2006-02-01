@@ -32,94 +32,98 @@
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>Modular X entering ~arch (testing)</title>
+<title>Przejście modularnego X do gałęzi testowej (~arch)</title>
 <body>
 
 <p>
-The X team members plan to remove all 289 modular X packages from
-package.mask soon. They will enter ~arch (testing)
-for all the architectures for which they're keyworded: alpha, amd64,
-arm, ia64, mips, ppc, sh, sparc and x86. To learn how to upgrade
-properly, read the 
-<uri link="http://www.gentoo.org/proj/en/desktop/x/x11/modular-x-howto.xml">migration guide</uri>
-before starting the upgrade. It discusses how the USE flags changed, why X.Org
-went modular and why <c>emerge xorg-x11</c> won't be quite enough yet.
+Zespół X planuje wkrótce usunąć komplet 289 pakietów modularnego X z pliku
+package.mask. Staną się one dostępne w gałęzi testowej (~arch) dla wszystkich
+architektur, do których są przypisane, czyli alpha, amd64, arm, ia64, mips, ppc,
+sh, sparc i x86. Więcej informacji na temat prawidłowego procesu uaktualnienia
+znajdziemy w dokumencie <uri
+link="http://www.gentoo.org/proj/pl/desktop/x/x11/modular-x-howto.xml">Migracja
+na modularne X</uri>. Omawia on zmiany we flagach USE, powód, dla którego X.org
+stał się modularny oraz czemu na razie nie wystarczy napisać <c>emerge
+xorg-x11</c>.
 </p>
 
 <p>
-Not all packages in the tree will work with modular X when it enters
-~arch, although the most common applications already do. The X team
-encourages users and developers to contribute fixes to their favorite
-packages by reading the
-<uri link="http://www.gentoo.org/proj/en/desktop/x/x11/porting-modular-x-howto.xml">
-porting guide</uri>. Applications requiring the most work include games
-and packages without a listed maintainer in metadata.xml or altogether
-lacking metadata.
+Nie wszytkie pakiety będą działać, gdy zainstalujemy modularny X po jego wejściu
+do ~arch, jednakże większość tych najpopularniejszych działa już teraz. Zespół X
+pragnie zachęcić uzytkowników i deweloperów do zgłaszania poprawek dla ich
+ulubionych aplikacji. Proces ich tworzenia znacznie ułatwi lektura dokumentu
+<uri
+link="http://www.gentoo.org/proj/en/desktop/x/x11/porting-modular-x-howto.xml">
+Przenoszenie programów na modularne X</uri>. Programy, które wymagają najwięcej
+pracy to gry i pakiety, które nie posiadają opiekuna wyszczególnionego w pliku
+metadata.xml albo w ogóle nie posiadające metadanych.
 </p>
 
 <p>
-<mail link="spyderous@gentoo.org">Donnie Berkholz</mail> provides a list of
-all unported applications along with their maintainers, updated daily, in his
-<uri link="http://dev.gentoo.org/~spyderous/broken_modular/">webspace</uri>.
-A graph of porting progress exists in the same location. If you encounter any bugs
-with the migration, please report them at <uri link="https://bugs.gentoo.org">
-Gentoo's Bugzilla</uri>.
+<mail link="spyderous@gentoo.org">Donnie Berkholz</mail> prowadzi na <uri
+link="http://dev.gentoo.org/~spyderous/broken_modular/">swojej stronie</uri>
+codziennie uaktualnianą listę niekompatybilnych aplikacji i ich opiekunów. W
+razie napotkania jakichkolwiek błędów w czasie migracji prosimy zgłosić je
+poprzez <uri link="https://bugs.gentoo.org">Bugzillę Gentoo</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>End of lifetime announcement for old-style configuration Apache packages</title>
+<title>Koniec wsparcia dla starego stylu konfiguracji pakietów Apache</title>
 <body>
 
 <p>
-In October, the Apache team made stable a new configuration style for
-apache and its modules. While many users have made the switch, many
-cautious users have not.
+W październiku zespół Apache ogłosił stabilność nowego stylu konfiguracji Apache
+i jego modułów. Wielu użytkowników uaktualniło swoje systemy, jednak niektórzy
+ostrożni użytkownicy nie zrobili tego.
 </p>
 
 <p>
-The Apache team is announcing that they will no longer support the
-old-style configuration of Apache after March 1, 2006. Anyone who has
-not upgraded to <c>net-www/apache-2.0.55</c> and higher, or
-<c>net-www/apache-1.3.34-r10</c> and higher should do so before then.
-For information on how to upgrade, we provide an
-<uri link="http://www.gentoo.org/doc/en/apache-upgrading.xml">
-Upgrading Apache Guide</uri>.
+Zespół Apache ogłosił, że od 1 marca 2006 roku nie będzie już wspierał
+konfiguracji starego typu. Wszyscy, który nie uaktualnili jeszcze serwera do
+wersji <c>net-www/apache-2.0.55</c> lub wyższej, bądź
+<c>net-www/apache-1.3.34-r10</c> lub wyższej, powinni zrobić to do tego czasu.
+Informacje na temat procesu aktualizacji można znaleźć w przewodniku <uri
+link="http://www.gentoo.org/doc/pl/apache-upgrading.xml">Aktualizacja serwera
+Apache</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>PHP Herd's January meeting</title>
+<title>Styczniowe spotkanie herdu PHP</title>
 <body>
 
 <p>
-Gentoo's PHP Herd held their first  meeting in 2006 on January 21st. Topics on
-the agenda included election of herd leads, SLOTting of PHP minor versions and
-the stabilization of <c>dev-lang/php</c>.
+Pierwsze spotkanie herdu PHP Gentoo odbyło się 21 stycznia 2006 roku. Niektóre
+spośród omawianych tematów to wybory koordynatorów herdu, umieszczanie
+mniejszych wersji w SLOTach i ustabilizowanie pakietu <c>dev-lang/php</c>.
 </p>
 
 <p>
-<mail link="chtekk@gentoo.org">Luca Longinotti</mail> has been elected as lead for
-core-PHP packages and <mail link="sebastian@gentoo.org">Sebastian Bergmann</mail>
-as lead for PEAR packages. The PHP Herd agreed to keep the SLOTting scheme as is,
-i.e. only major versions of PHP (PHP 4, PHP 5) will be slotted. The most notable
-decision made from a users point of view forces users to migrate from <c>dev-php/php</c>
-to <c>dev-lang/php</c> as soon as possible as the PHP Herd decided to no longer support them.
-The old <c>dev-php/php</c> packages will be package.masked as soon as the
-architecture teams have stabilized the new-style PHP packages, which is
-expected by the end of February, and removed from the Portage tree about
-two months later.
+<mail link="chtekk@gentoo.org">Luca Longinotti</mail> został wybrany
+koordynatorem odpowiedzialnym za główne pakiety PHP, natomiast <mail
+link="sebastian@gentoo.org">Sebastian Bergmann</mail> będzie odpowiadał za
+pakiety PEAR. Grupa postanowiła pozostać przy dotychczasowym sposobie
+umieszczania pakietów w SLOTach, czyli robieniu tego tylko dla głównych wersji
+PHP (PHP 4, PHP 5). Najważniejsza decyzja z punktu widzenia użytkowników to
+konieczność jak najszybszej migracji z <c>dev-php/php</c> na
+<c>dev-lang/php</c>, bowiem herd zdecydował o wycofaniu dalszego wsparcia
+pierwszego pakietu. Gdy tylko zespoły odpowiedzialne za architekturę
+ustabilizują pakiety z nowej kategorii, te stare z katalogu <c>dev-php/php</c>
+zostaną zamaskowane. Planowany termin ukończenia prac to koniec lutego. Dwa
+miesiące później przestarzałe pakiety zostaną całkowicie usunięte z drzewa
+Portage.
 </p>
 
 <p>
-The minutes of the PHP Herd's January meeting are available at the 
-<uri link="http://tinyurl.com/cc964">PHP Overlay website</uri>. Their next
-meeting is scheduled for February 7th at 19:00 UTC in
-#gentoo-php on irc.freenode.net.
+Oficjalne sprawozdanie ze styczniowego posiedzenia herdu PHP jest dostępne na
+<uri link="http://tinyurl.com/cc964">stronie PHP Overlay</uri>. Termin
+następnego spotkania został wyznaczony na dzień 7 lutego o godzinie 19:00 czasu
+UTC na kanale #gentoo-php sieci irc.freenode.net.
 </p>
 
 </body>
