@@ -154,7 +154,7 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 <li> <uri link="/news/da/gwn/gwn.xml">Danish</uri> </li>
 <li> <uri link="/news/nl/gwn/gwn.xml">Dutch</uri> </li>
 <li> <uri link="/news/en/gwn/gwn.xml">English</uri> </li>
-<li><uri link="/news/de/gwn/gwn.xml">German</uri> </li>
+<li> <uri link="/news/de/gwn/gwn.xml">German</uri> </li>
 <li> <uri link="/news/fr/gwn/gwn.xml">French</uri> </li>
 <li> <uri link="/news/ko/gwn/gwn.xml">Korean</uri> </li>
 <li> <uri link="/news/ja/gwn/gwn.xml">Japanese</uri> </li>
