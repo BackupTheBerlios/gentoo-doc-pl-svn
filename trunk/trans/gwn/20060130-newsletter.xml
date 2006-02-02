@@ -129,101 +129,110 @@ UTC na kanale #gentoo-php sieci irc.freenode.net.
 </body>
 </section>
 <section>
-<title>Slotted MySQL</title>
+<title>Wsparcie slotów dla MySQL</title>
 <body>
 
 <p>
-Gentoo's MySQL maintainers plan to move <c>=dev-db/mysql-4.1.16-r30</c> and
-<c>dev-db/mysql-5.0.18-r30</c> into ~arch (testing) soon. Those <c>-r30</c>
-revision Ebuilds now allow installing several MySQL versions in parallel,
-or in Gentoo speak: They support SLOTting. While all minor versions beyond
-or equal to 4.1 will become slotted, <c>dev-db/mysql-4.0*</c> will stay at
+Opiekunowie pakietu MySQL planują w niedługim czasie przenieść pakiety 
+<c>=dev-db/mysql-4.1.16-r30</c> i <c>dev-db/mysql-5.0.18-r30</c> do
+niestabilnej (~arch) gałęzi drzewa. Wersja <c>-r30</c> ebuildu pozwala na
+posiadanie kilku wersji MySQL równolegle, co w Gentoo oznacza otrzymanie
+wsparcia dla slotowania pakietu. Od teraz wszystkie główne wydania, poczynając
+od 4.1, będą instalowane w slotach, <c>dev-db/mysql-4.0*</c> pozostanie w
 <c>SLOT="0"</c>.
 </p>
 
 <p>
-To accomplish this, new Eclasses and an <c>eselect</c> module for easy
-switching between MySQL versions were written. Though you can run several
-MySQL versions simultaneously you are still limited to one (the current)
-<c>libmysqlclient</c> at a time. To learn how to upgrade properly, read the
-<uri link="http://www.gentoo.org/doc/en/mysql-upgrade-slotted.xml">migration guide</uri>
-before starting the upgrade. All packages in the tree that worked before
-<e>should</e> also work with slotted MySQL when it enters ~arch.
+Dodatkowo, aby ułatwić użytkownikom przełączanie się pomiędzy różnymi wersjami
+MySQL zostały napisane nowe pliki Eclass oraz nowy moduł do <c>eselect</c>.
+Mimo tego, że mamy możliwość uruchomienia kilku wersji MySQL jednocześnie,
+dalej jesteśmy ograniczeni do jednego <c>libmysqlclineta</c> w danym czasie.
+Aby zapoznać się ze szczegółami aktualizacji, prosimy zapoznać się z
+<uri
+link="http://www.gentoo.org/doc/en/mysql-upgrade-slotted.xml">przewodnikiem</uri>.
+Wszystkie pakiety, które do tej pory poprawnie współpracowały z MySQL
+<e>powinny</e> w dalszym ciągu nie sprawiać problemów, gdy ten zostanie
+przeniesiony do testowej gałęzi.
 </p>
 
 <p>
-If you encounter any bugs with the migration, please report them at
-<uri link="https://bugs.gentoo.org">Gentoo's Bugzilla</uri>.
+Jeżeli napotkamy na jakiekolwiek błędy prosimy o zgłaszanie ich na <uri
+link="https://bugs.gentoo.org">bugzilli</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>gentoolkit update</title>
+<title>Aktualizacja gentoolkit</title>
 <body>
 
 <p>
-A new version of <c>app-portage/gentoolkit</c> (<c>0.2.1</c>) containing significant
-improvements has been marked stable a few days ago. These are the
-major changes between gentoolkit-0.2.0 and gentoolkit-0.2.1:
+Nowa wersja <c>app-portage/gentoolkit</c> (<c>0.2.1</c>) zawierająca wiele
+znaczących usprawnień została oznaczona jako stabilna kilka dni temu. Poniżej
+wymienione są główne zmiany w stosunku do wersji 0.2.0:
 </p>
 
 <ul>
 <li>
-A new tool called <c>eclean</c> for removing no longer needed distfiles and
-packages has been added
+Dodane zostało nowe narzędzie <c>eclean</c>, służące do usuwania niepotrzebnych
+już plików distfiles
 </li>
 <li>
-<c>revdep-rebuild</c> now allows for more user interaction and customizing.
-You can avoid rebuilding binary packages like <c>app-office/openoffice-bin</c>
-by setting the <c>SEARCH_DIRS_MASK</c> variable in <path>/etc/make.conf</path>
-to for example skip packages installed in the <path>/opt</path> directory.
+<c>revdep-rebuild</c> pozwala teraz na znacznie większą ingerencję ze strony
+użytkownika. Możemy przerwać przebudowywanie pakietów binarnych takich jak
+<c>app-office/openoffice-bin</c> poprzez ustawienie zmiennej
+<c>SEARCH_DIRS_MASK</c> w pliku <path>/etc/make.conf</path>, dla przykładu, aby
+nie były ponownie budowane pakiety zainstalowane w katalogu <path>/opt</path>.
 </li>
 <li>
-One major fix optimizing memory consumption has been applied to <c>equery</c>.
-Also many fixes made it more usable, though it is still not the fastest program
-on the block. If the lack of speed bothers you, we would recommend investigating
-the <c>app-portage/portage-utils</c> package
+Jedna łatka, optymalizująca zużycie pamięci w <c>equery</c>. Usprawniono także
+wiele innych aspektów tego narzędzi, aby stał się on bardziej ergonomicznym,
+jednak nadal nie jest najszybszym z całej grupy. Jeżeli martwi nas, brak
+szybkości, powinniśmy się zainteresować pakietem
+<c>app-portage/portage-utils</c>.
 </li>
 </ul>
 
 <p>
-A detailed listing of the changes for those interested is in
+Dla zainteresowanych, szczegółowy wykaz zmian znajduje się w pliku
 <path>/usr/share/doc/gentoolkit-0.2.1/ChangeLog</path>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Three million posts in the Gentoo Forums</title>
+<title>Trzy miliony wiadomości na forum Gentoo</title>
 <body>
 
 <figure link="/images/gwn/20060130_3M-posts.png"
-short="3M posts" caption="Three million posts in the Gentoo Forums"/>
+short="3M postów" caption="Trzy miliony wiadomości na forum Gentoo"/>
 
 <p>
-Almost exactly a year after reaching two million posts in
-<uri link="http://www.gentoo.org/news/en/gwn/20050207-newsletter.xml">January 2005</uri>
-the Gentoo Forums hit three million posts on Jan 24th. A
-<uri link="http://forums.gentoo.org/viewtopic-t-421954.html">thread on the forums</uri>
-not only features the answer to the question "Whose post was it?", but also
-leaves space for wild conspiracy theories about a mysterious decrease in postcount
-shortly before the three millionth post was reached. The Gentoo Forums
-were noted to be among the largest phpBB installations on
-<uri link="http://rankings.big-boards.com/?filter=phpBB,all">big-boards.com</uri>.
+Niemal dokładnie w rok od osiągnięcia poziomu dwóch milionów wiadomości w 
+<uri link="http://www.gentoo.org/news/en/gwn/20050207-newsletter.xml">styczniu
+2005</uri> roku na forum Gentoo, dnia 24 stycznia osiągnięto poziom trzech
+milionów wiadomości. <uri 
+link="http://forums.gentoo.org/viewtopic-t-421954.html">Temat</uri> założony na
+forum Gentoo, nie tylko zawiera odpowiedź na pytanie "Kto napisał tą 
+wiadomość?", ale również można snuć tam różne teorie spiskowe na temat 
+tajemniczego zmniejszenia się liczników wiadomości, krótko przed osiągnieciem
+magicznej bariery trzech milionów wiadomości. Forum Gentoo według <uri
+link="http://rankings.big-boards.com/?filter=phpBB,all">big-boards.com</uri>
+należy do jednych z największych instalacji phpBB.
 </p>
 
 </body>
 </section>
 <section>
-<title>pdftohtml replaced by poppler</title>
+<title>pdftohtml zastąpiony przez poppler</title>
 <body>
 
 <p>
-<c>app-text/pdftohtml</c> has been replaced by <c>app-text/poppler</c> because
-of security concerns as stated in bug <uri link="https://bugs.gentoo.org/show_bug.cgi?id=115789">
-#115789</uri>. You are strongly advised to unmerge <c>app-text/pdftohtml</c> and
-emerge <c>app-text/poppler</c> instead.
+Pakiet <c>app-text/pdftohtml</c> został zastąpiony przez 
+<c>app-text/poppler</c> z powodu obaw o bezpieczeństwo wyrażanych w raporcie
+numer <uri link="https://bugs.gentoo.org/show_bug.cgi?id=115789">115789</uri>.
+Mocno zalecanym postępowaniem jest odinstalowanie <c>app-text/pdftohtml</c> i
+zainstalowaniem zamiast niego pakietu <c>app-text/poppler</c>.
 </p>
 </body>
 </section>
