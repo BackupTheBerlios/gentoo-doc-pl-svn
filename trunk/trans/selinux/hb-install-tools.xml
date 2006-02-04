@@ -8,47 +8,50 @@
 
 <sections>
 <section>
-<title>System Logger</title>
+<title>Program loguj±cy</title>
 <body>
 
 <p>
-When we mentioned what <e>stage3</e> was, we said that it contained all
-necessary system tools for which we cannot provide a choice to our users. We 
-also said that we would install the other tools later on. Well, here we are :)
+Mówi±c o <e>stage3</e> wspomnieli¶my, ¿e zawiera on wszystkie potrzebne
+narzêdzia systemowe, dla których nie ma alternatywy w postaci inny
+programów. Powiedzieli¶my równie¿, ¿e pozosta³e narzêdzie zainstalujemy pó¼niej.
+W³a¶nie teraz siê tym zajmiemy.
 </p>
 
 <p>
-The first tool you need to decide on has to provide logging facilities for your
-system. Unix and Linux have an excellent history of logging capabilities -- if
-you want you can log everything that happens on your system in logfiles. This
-happens through the <e>system logger</e>.
+Pierwszym narzêdziem, przy którym nale¿y dokonaæ wyboru, jest program do obs³ugi
+logów systemowych. Unix i Linux posiadaj± bogat± historiê w tym zakresie. Je¶li
+to konieczne, mo¿na logowaæ do plików wszystko, co dzieje siê w systemie.
+Mechanizmem tym zarz±dza w³a¶nie <e>program loguj±cy</e>.
 </p>
 
 <p>
-Gentoo offers several system loggers to choose from. There are <c>sysklogd</c>,
-which is the traditional set of system logging daemons, <c>syslog-ng</c>, an 
-advanced system logger, and <c>metalog</c> which is a highly-configurable 
-system logger. Others might be available through Portage as well - our number of
-available packages increases on a daily basis.
+Gentoo oferuje kilka ró¿nych programów loguj±cych: <c>sysklogd</c> - tradycyjny
+zestaw loguj±cych demonów, <c>syslog-ng</c> - zaawansowany program loguj±cy oraz
+<c>metalog</c>, charakteryzuj±cy siê du¿± liczb± opcji konfiguracyjnych. W
+drzewie Portage znajduje ca³y wachlarz programów loguj±cych i innych - liczba
+naszych pakietów ro¶nie z ka¿dym dniem.
 </p>
 
 <note>
-Only <c>metalog</c> and <c>syslog-ng</c> have been fully tested with the
-current SELinux policies, though you are welcome to try other loggers.
+Tylko <c>metalog</c> i <c>syslog-ng</c> zosta³y w pe³ni przetestowane z aktualn±
+polityk± SELinux, niemniej jednak mo¿na wypróbowaæ inne programy loguj±ce.
 </note>
 
 <p>
-If you can't choose one, use <c>metalog</c> as it is very powerful yet comes
-with a great default configuration.
+Je¶li nie jeste¶my zdecydowani, z jakiego programu loguj±cego powinni¶my skorzystaæ,
+wybierzmy <c>metalog</c>. Jest to potê¿ne narzêdzie z bardzo dobr± domy¶ln±
+konfiguracj±.
 </p>
 
 <p>
-To install the system logger of your choice, <c>emerge</c> it and have it added
-to the default runlevel using <c>rc-update</c>. The following example installs
-<c>metalog</c>. Of course substitute with your system logger:
+Wybrany program loguj±cy instalujemy przy u¿yciu narzêdzia <c>emerge</c>, a
+nastêpnie dodajemy do domy¶lego poziomu uruchamiania wykorzystuj±c program
+<c>rc-update</c>. Poni¿szy przyk³ad przedstawia instalacjê
+<c>metalog</c>. Nale¿y zast±piæ jego nazwê nazw± wybranego programu.
 </p>
 
-<pre caption="Installing a system logger">
+<pre caption="Instalacja programu loguj±cego">
 # <i>emerge metalog</i>
 # <i>rc-update add metalog default</i>
 </pre>
@@ -56,57 +59,59 @@ to the default runlevel using <c>rc-update</c>. The following example installs
 </body>
 </section>
 <section>
-<title>Optional: Cron Daemon</title>
+<title>Opcjonalnie: demon Cron</title>
 <body>
 
 <p>
-Next is the cron daemon. Although it is optional and not required for your
-system, it is wise to install one. But what is a cron daemon? A cron daemon 
-executes scheduled commands. It is very handy if you need to execute some 
-command regularly (for instance daily, weekly or monthly).
+Nastêpnym programem jest demon Cron. Pomimo, ¿e jest on opcjonalny i nie jest
+wymagany do poprawnej pracy systemu, zalecane jest jego zainstalowanie. Czym
+jest demon Cron? Jest to program s³u¿±cy do wykonywania zaplanowanych poleceñ w
+okre¶lonym czasie. Jest on bardzo przydatny, gdy wykonujemy pewne czynno¶ci
+regularnie (na przyk³ad codziennie, co tydzieñ, co miesi±c).
 </p>
 
 <p>
-Gentoo offers three possible cron daemons: <c>dcron</c>, <c>fcron</c> and
-<c>vixie-cron</c>. Installing one of them is similar to installing a system 
-logger. However, <c>dcron</c> and <c>fcron</c> require an extra configuration 
-command, namely <c>crontab /etc/crontab</c>. If you don't know what to choose, 
-use <c>vixie-cron</c>.
+Gentoo oferuje trzy demony cron: <c>dcron</c>, <c>fcron</c> i
+<c>vixie-cron</c>. Instalacja wybranego demona jest podobna do instalacji
+programu loguj±cego, jednak <c>dcron</c> i <c>fcron</c> wymagaj± wykonania
+dodatkowego polecenia: <c>crontab /etc/crontab</c>. Je¶li nie jeste¶my pewni co
+powinni¶my wybraæ, zainstalujmy <c>vixie-cron</c>.
 </p>
 
 <note>
-Cron requires a SELinux patch to function correctly.  Only vixie-cron and
-fcron have this support.
+Demon cron wymaga patcha SELinux do poprawnej pracy. Tylko <c>vixie-cron</c> i
+</c>fcron</c> posiadaj± obs³ugê tej funkcjonalno¶ci.
 </note>
 
-<pre caption="Installing a cron daemon">
+<pre caption="Instalacja demona cron">
 # <i>emerge vixie-cron</i>
 # <i>rc-update add vixie-cron default</i>
-<comment>(Only if you have chosen dcron or fcron)</comment> # <i>crontab /etc/crontab</i>
+<comment>(Je¶li wybrali¶my dcron lub fcron)</comment>
+# <i>crontab /etc/crontab</i>
 </pre>
 
 </body>
 </section>
 <section>
-<title>File System Tools</title>
+<title>Narzêdzia obs³ugi systemu plików</title>
 <body>
 
 <p>
-Depending on what file systems you are using, you need to install the necessary
-file system utilities (for checking the filesystem integrity, creating 
-additional file systems etc.).
+W zale¿no¶ci od tego, jakiego systemu plików u¿ywamy, musimy zainstalowaæ
+odpowiednie narzêdzia do jego obs³ugi (do sprawdzania jego integralno¶ci,
+czy te¿ tworzenia dodatkowych systemów plików).
 </p>
 
 <p>
-The following table lists the tools you need to install if you use a certain
-file system:
+Poni¿sza tabela przedstawia jakie narzêdzia musimy zainstalowaæ w zale¿no¶ci od
+tego, z jakiego systemu plików korzystamy.
 </p>
 
 <table>
 <tr>
-  <th>File System</th>
-  <th>Tool</th>
-  <th>Install Command</th>
+  <th>System plików</th>
+  <th>Narzêdzie</th>
+  <th>Polecenie instaluj±ce</th>
 </tr>
 <tr>
   <ti>XFS</ti>
@@ -138,30 +143,32 @@ If you are an LVM user, you also need to install <c>lvm-user</c>:
 -->
 
 <p>
-If you don't need <c>rp-pppoe</c> to connect to the Internet, continue with <uri
-link="?part=1&amp;chap=10">Configuring the Bootloader</uri>. Otherwise
-continue with <uri link="#doc_chap4">Optional: Networking Tools</uri>.
+Je¶li nie potrzebujemy programu <c>rp-pppoe</c> do ³±czenia siê z internetem,
+kontynuujemy instalacjê zgodnie z rozdzia³em <uri
+link="?part=1&amp;chap=10">Konfiguracja bootloadera</uri>. W innym przypadku
+przechodzimy do akapitu <uri link="#doc_chap4">Opcjonalnie: narzêdzia sieciowe</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Optional: Networking Tools</title>
+<title>Opcjonalnie: narzêdzia sieciowe</title>
 <body>
 
 <p>
-If you need <c>rp-pppoe</c> to connect to the net, you need to install it.
+Je¶li do ³±czenia siê z sieci± potrzebujemy programu <c>rp-pppoe</c>, nale¿y go
+zainstalowaæ.
 </p>
 
-<pre caption="Installing rp-pppoe">
+<pre caption="Instalowanie rp-pppoe">
 # <i>USE="-X" emerge rp-pppoe</i>
 </pre>
 
 <p>
-The <c>USE="-X"</c> will prohibit xorg-x11 to be installed as a dependency
-(<c>rp-pppoe</c> has graphical tools; if you want those enabled, you can
-recompile <c>rp-pppoe</c> later on or have xorg-x11 installed now -- which takes a
-long time to compile).
+U¿ycie <c>USE="-X"</c> zapobiega instalacji pakietu xorg-x11, który jest jedn± z
+zale¿no¶ci <c>rp-pppoe</c> (<c>rp-pppoe</c> posiada narzêdzia graficzne, aby z
+nich korzystaæ, nale¿y przekompilowaæ ten program po instalacji serwera xorg-x11
+lub zainstalowaæ serwer teraz, jednak jego kompilacja zajmie du¿o czasu).
 </p>
 
 </body>
