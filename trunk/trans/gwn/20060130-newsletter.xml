@@ -74,7 +74,6 @@ poprzez <uri link="https://bugs.gentoo.org">Bugzillę Gentoo</uri>.
 <section>
 <title>Koniec wsparcia dla starego stylu konfiguracji pakietów Apache</title>
 <body>
-
 <p>
 W październiku zespół Apache ogłosił stabilność nowego stylu konfiguracji Apache
 i jego modułów. Wielu użytkowników uaktualniło swoje systemy, jednak niektórzy
@@ -94,131 +93,108 @@ Apache</uri>.
 </body>
 </section>
 <section>
-<title>Styczniowe spotkanie herdu PHP</title>
+<title>Styczniowe spotkanie grupy deweloperów PHP</title>
 <body>
-
 <p>
-Pierwsze spotkanie herdu PHP Gentoo odbyło się 21 stycznia 2006 roku. Niektóre
-spośród omawianych tematów to wybory koordynatorów herdu, umieszczanie
-mniejszych wersji w SLOTach i ustabilizowanie pakietu <c>dev-lang/php</c>.
+Pierwsze spotkanie grupy zajmującej się rozwojem PHP odbyło się 21 stycznia 2006
+roku.  Wśród punktów znajdujących się w programie spotkania można znaleźć wybory
+koordynatorów, dyskusja na temat tworzenia slotów dla mniejszych wersji pakietów
+oraz stabilizacja <c>dev-lang/php</c>.
 </p>
-
 <p>
-<mail link="chtekk@gentoo.org">Luca Longinotti</mail> został wybrany
-koordynatorem odpowiedzialnym za główne pakiety PHP, natomiast <mail
+<mail link="chtekk@gentoo.org">Luca Longinotti</mail> został wybrany na
+stanowisko koordynatora odpowiedzialnego za główne pakiety PHP, natomiast <mail
 link="sebastian@gentoo.org">Sebastian Bergmann</mail> będzie odpowiadał za
-pakiety PEAR. Grupa postanowiła pozostać przy dotychczasowym sposobie
-umieszczania pakietów w SLOTach, czyli robieniu tego tylko dla głównych wersji
-PHP (PHP 4, PHP 5). Najważniejsza decyzja z punktu widzenia użytkowników to
+ebuildy PEAR.  Grupa postanowiła pozostać przy dotychczasowym sposobie
+umieszczania pakietów w slotach, czyli robieniu tego tylko dla głównych wersji
+PHP (PHP 4, PHP 5).  Najważniejsza decyzja z punktu widzenia użytkowników to
 konieczność jak najszybszej migracji z <c>dev-php/php</c> na
-<c>dev-lang/php</c>, bowiem herd zdecydował o wycofaniu dalszego wsparcia
-pierwszego pakietu. Gdy tylko zespoły odpowiedzialne za architekturę
-ustabilizują pakiety z nowej kategorii, te stare z katalogu <c>dev-php/php</c>
-zostaną zamaskowane. Planowany termin ukończenia prac to koniec lutego. Dwa
+<c>dev-lang/php</c>, gdyż zdecydowano o wycofaniu wsparcia dla pierwszego
+pakietu.  Gdy tylko zespoły odpowiedzialne za poszczególne architektury
+ustabilizują pakiety w nowej kategorii, to stare, z katalogu <c>dev-php/php</c>,
+zostaną zamaskowane.  Planowany termin ukończenia prac to koniec lutego. Dwa
 miesiące później przestarzałe pakiety zostaną całkowicie usunięte z drzewa
 Portage.
 </p>
-
 <p>
 Oficjalne sprawozdanie ze styczniowego posiedzenia herdu PHP jest dostępne na
 <uri link="http://tinyurl.com/cc964">stronie PHP Overlay</uri>. Termin
 następnego spotkania został wyznaczony na dzień 7 lutego o godzinie 19:00 czasu
 UTC na kanale #gentoo-php sieci irc.freenode.net.
 </p>
-
 </body>
 </section>
 <section>
-<title>Wsparcie slotów dla MySQL</title>
+<title>Wsparcie dla slotów w MySQL</title>
 <body>
-
 <p>
-Opiekunowie pakietu MySQL planują w niedługim czasie przenieść pakiety 
-<c>=dev-db/mysql-4.1.16-r30</c> i <c>dev-db/mysql-5.0.18-r30</c> do
-niestabilnej (~arch) gałęzi drzewa. Wersja <c>-r30</c> ebuildu pozwala na
-posiadanie kilku wersji MySQL równolegle, co w Gentoo oznacza otrzymanie
-wsparcia dla slotowania pakietu. Od teraz wszystkie główne wydania, poczynając
-od 4.1, będą instalowane w slotach, <c>dev-db/mysql-4.0*</c> pozostanie w
-<c>SLOT="0"</c>.
+Opiekunowie pakietu MySQL planują w najbliższym czasie przenieść pakiety
+<c>=dev-db/mysql-4.1.16-r30</c> i <c>dev-db/mysql-5.0.18-r30</c> do niestabilnej
+gałęzi drzewa Portage. Wersja <c>-r30</c> ebuildu pozwala już na instalację
+kilku wersji MySQL równolegle. Od teraz wszystkie główne wydania, poczynając od
+4.1, będą instalowane w slotach, <c>dev-db/mysql-4.0*</c> pozostanie w
+<c>SLOT="0"</c> uniemożliwiając instalację innych wersji.
 </p>
-
 <p>
 Dodatkowo, aby ułatwić użytkownikom przełączanie się pomiędzy różnymi wersjami
-MySQL zostały napisane nowe pliki Eclass oraz nowy moduł do <c>eselect</c>.
-Mimo tego, że mamy możliwość uruchomienia kilku wersji MySQL jednocześnie,
-dalej jesteśmy ograniczeni do jednego <c>libmysqlclineta</c> w danym czasie.
-Aby zapoznać się ze szczegółami aktualizacji, prosimy zapoznać się z
-<uri
-link="http://www.gentoo.org/doc/en/mysql-upgrade-slotted.xml">przewodnikiem</uri>.
-Wszystkie pakiety, które do tej pory poprawnie współpracowały z MySQL
-<e>powinny</e> w dalszym ciągu nie sprawiać problemów, gdy ten zostanie
-przeniesiony do testowej gałęzi.
+MySQL stworzone zostały nowe pliki eclass, a także nowy moduł <c>eselect</c>.
+Mimo tego, że mamy możliwość uruchomienia kilku wersji MySQL jednocześnie, dalej
+jesteśmy ograniczeni do jednej wersji <c>libmysqlclinet</c>.  Aby zapoznać się
+ze szczegółami aktualizacji, prosimy o przeczytanie odpowiedniego <uri
+link="http://www.gentoo.org/doc/en/mysql-upgrade-slotted.xml">przewodnika</uri>.
+Wszystkie pakiety, które do tej pory poprawnie współpracowały z MySQL <e>nie
+powinny</e> sprawiać problemów.
 </p>
-
 <p>
-Jeżeli napotkamy na jakiekolwiek błędy prosimy o zgłaszanie ich na <uri
-link="https://bugs.gentoo.org">bugzilli</uri>.
+W przypadku napotkanie jakichkolwiek błędów prosimy o zgłoszenie odpowiedniego
+raportu w serwisie<uri link="https://bugs.gentoo.org">bugzilla</uri>.
 </p>
-
 </body>
 </section>
 <section>
 <title>Aktualizacja gentoolkit</title>
 <body>
-
 <p>
 Nowa wersja <c>app-portage/gentoolkit</c> (<c>0.2.1</c>) zawierająca wiele
 znaczących usprawnień została oznaczona jako stabilna kilka dni temu. Poniżej
 wymienione są główne zmiany w stosunku do wersji 0.2.0:
 </p>
-
 <ul>
-<li>
-Dodane zostało nowe narzędzie <c>eclean</c>, służące do usuwania niepotrzebnych
-już plików distfiles
-</li>
-<li>
-<c>revdep-rebuild</c> pozwala teraz na znacznie większą ingerencję ze strony
+<li>Dodano nowe narzędzie - <c>eclean</c>, służące do usuwania niepotrzebnych
+już plików distfiles.</li>
+<li><c>revdep-rebuild</c> pozwala teraz na znacznie większą ingerencję ze strony
 użytkownika. Możemy przerwać przebudowywanie pakietów binarnych takich jak
 <c>app-office/openoffice-bin</c> poprzez ustawienie zmiennej
-<c>SEARCH_DIRS_MASK</c> w pliku <path>/etc/make.conf</path>, dla przykładu, aby
-nie były ponownie budowane pakiety zainstalowane w katalogu <path>/opt</path>.
-</li>
-<li>
-Jedna łatka, optymalizująca zużycie pamięci w <c>equery</c>. Usprawniono także
-wiele innych aspektów tego narzędzi, aby stał się on bardziej ergonomicznym,
-jednak nadal nie jest najszybszym z całej grupy. Jeżeli martwi nas, brak
-szybkości, powinniśmy się zainteresować pakietem
-<c>app-portage/portage-utils</c>.
-</li>
+<c>SEARCH_DIRS_MASK</c> w pliku <path>/etc/make.conf</path>, tak by przykładowo
+pakiety zainstalowane w katalogu <path>/opt</path> nie były przybudowywane.</li>
+<li>Poprawiono działanie narzędzie <c>equery</c>, zużycie pamięci i wydajność.
+Pomimo tych zmian ciągle nie jest ono najszybszym rozwiązaniem, dla spragnionych
+szybkości na szczęście istnieje jeszcze pakiet <c>app-portage/portage-utils</c>,
+który może stanowić ciekawą alternatywę.</li>
 </ul>
-
 <p>
-Dla zainteresowanych, szczegółowy wykaz zmian znajduje się w pliku
+Dla wszystkich zainteresowanych, szczegółowy wykaz zmian znajduje się w pliku
 <path>/usr/share/doc/gentoolkit-0.2.1/ChangeLog</path>.
 </p>
-
 </body>
 </section>
 <section>
 <title>Trzy miliony wiadomości na forum Gentoo</title>
 <body>
-
-<figure link="/images/gwn/20060130_3M-posts.png"
-short="3M postów" caption="Trzy miliony wiadomości na forum Gentoo"/>
-
+<figure link="/images/gwn/20060130_3M-posts.png" short="3M postów" caption="Trzy
+miliony wiadomości na forum Gentoo"/>
 <p>
-Niemal dokładnie w rok od osiągnięcia poziomu dwóch milionów wiadomości w 
-<uri link="http://www.gentoo.org/news/en/gwn/20050207-newsletter.xml">styczniu
-2005</uri> roku na forum Gentoo, dnia 24 stycznia osiągnięto poziom trzech
-milionów wiadomości. <uri 
-link="http://forums.gentoo.org/viewtopic-t-421954.html">Temat</uri> założony na
-forum Gentoo, nie tylko zawiera odpowiedź na pytanie "Kto napisał tą 
-wiadomość?", ale również można snuć tam różne teorie spiskowe na temat 
-tajemniczego zmniejszenia się liczników wiadomości, krótko przed osiągnieciem
-magicznej bariery trzech milionów wiadomości. Forum Gentoo według <uri
+Niemal dokładnie w rok od momentu gdy na forum Gentoo ukazała się dwu-milionowa
+wiadomość, a było to w <uri
+link="http://www.gentoo.org/news/pl/gwn/20050207-newsletter.xml">styczniu
+2005</uri>, ta liczba przekroczyła już trzy miliony.  Z tej okazji założono <uri
+link="http://forums.gentoo.org/viewtopic-t-421954.html">specjalny wątek</uri> w,
+którym można znaleźć m.in. odpowiedź na pytanie „Kto napisał tą wiadomość?”, a
+także próby wyjaśnieniu czemu w tajemniczych okolicznościach, tuż przed
+przekroczeniem magicznej bariery, liczba wiadomości zaczęła się zmniejszać.
+Forum Gentoo to według <uri
 link="http://rankings.big-boards.com/?filter=phpBB,all">big-boards.com</uri>
-należy do jednych z największych instalacji phpBB.
+jeden z największych przedstawicieli phpBB.
 </p>
 
 </body>
@@ -226,13 +202,14 @@ należy do jednych z największych instalacji phpBB.
 <section>
 <title>pdftohtml zastąpiony przez poppler</title>
 <body>
-
 <p>
-Pakiet <c>app-text/pdftohtml</c> został zastąpiony przez 
-<c>app-text/poppler</c> z powodu obaw o bezpieczeństwo wyrażanych w raporcie
-numer <uri link="https://bugs.gentoo.org/show_bug.cgi?id=115789">115789</uri>.
-Mocno zalecanym postępowaniem jest odinstalowanie <c>app-text/pdftohtml</c> i
-zainstalowaniem zamiast niego pakietu <c>app-text/poppler</c>.
+Z powodu obaw o bezpieczeństwo, więcej szczegółów można znaleźć w <uri
+link="https://bugs.gentoo.org/show_bug.cgi?id=115789">bugu 115789</uri>, pakiet
+<c>app-text/pdftohtml</c> został zastąpiony przez <c>app-text/poppler</c> z
+powodu obaw o bezpieczeństwo wyrażanych w raporcie numer <uri
+link="https://bugs.gentoo.org/show_bug.cgi?id=115789">115789</uri>.  Zalecane
+jest deinstalacaja <c>app-text/pdftohtml</c> i używanie <c>app-text/poppler</c>
+zamiast niego.
 </p>
 </body>
 </section>
@@ -283,17 +260,16 @@ Kito Danya Dietrich</mail> or <mail link="grobian@gentoo.org">Fabian Groffen</ma
 <!-- Developer of the week -->
 <!-- Heard in the community: gentoo-dev, gentoo-user, forums -->
 <chapter>
-<title>Heard in the community</title>
+<title>Społeczność Gentoo</title>
 <section>
-<title>gentoo-dev</title>
+<title>Lista dyskusyjna gentoo-dev</title>
 <body>
 
-<p><b>sed vs. gsed</b></p>
+<p><b>sed w Gentoo/ALT</b></p>
 <p>
-In his quest for Gentoo/Alt improvements <mail
-link="flameeyes@gentoo.org">Diego Pettenò </mail> asks for advice on how to
-handle sed as some of the alternative hosts for Gentoo use non-GNU sed,
-which has a  slightly different behavior in some cases.
+<mail link="flameeyes@gentoo.org">Diego Pettenò</mail> poprosił o radę jak
+poradzić sobie z nieco odmiennym zachowaniem implementacji sed na systemech nie
+posiadających oprogramowania GNU.
 </p>
 <ul>
 <li><uri
@@ -303,10 +279,11 @@ gsed </uri></li>
 
 <p><b>RFC: emerge snapshots</b></p>
 <p>
-If something breaks during an update the "repair" often takes quite some
-time. Are there any methods for doing a "rollback" to the old state of
-the system to undo the breakage? What would need to be done to make this
-feasible, and why is quickpkg often not good enough?
+W przypadku awarii w czasie przeprowadzania aktualizacji, zaradzenie sytuacji
+może zabrać sporo czasu. Czy istnieją jakieś metody odtworzenia poprzedniego
+stanu system,u by w ten sposób poradzić sobie z powstałym problemem? Co należy
+zrobić, aby była taka możliwość, i czemu quickpkg nie jest odpowiednim do tego
+narzędziem?
 </p>
 <ul>
 <li><uri
@@ -321,18 +298,17 @@ emerge snapshots </uri></li>
 <!-- Gentoo international -->
 <!-- Gentoo in the press -->
 <chapter>
-<title>Gentoo in the press</title>
+<title>Gentoo w prasie</title>
 <section>
-<title>Alternative Linux distributions on the POWER5 platform</title>
+<title>Linuks na platformie POWER5</title>
 <body>
-
-<p>
-A review of unsupported Linux distributions on the POWER5 platform has been
-published on
-<uri link="http://www-128.ibm.com/developerworks/linux/library/l-pow-linuxdistros.html?ca=drs-">
-IBM developerworks</uri>. Besides Debian, openSUSE 10 and Fedora Core this article
-also covers a test-environment and the installation of Gentoo on an 
-IBM eServer™ OpenPower™ 720 system.
+W ramach <uri
+link="http://www-128.ibm.com/developerworks/linux/library/l-pow-linuxdistros.html?ca=drs-">
+IBM developerworks</uri> opublikowano recenzję dystrybucji Linuksa pracujących
+na platformie POWER5, a nie posiadających komercyjnego wsparcia. Oprócz
+informacji o Debianie, openSUSE 10 i Fedorze Core znajdziemy tam także opis
+środowiska testowego i procesu instalacji Gentoo na koputerze IBM eServer™
+OpenPower™ 720.
 </p>
 
 </body>
@@ -365,7 +341,7 @@ tygodniu:
 <li>Markus Ullmann (Jokey) - netmon</li>
 <li>Patrick Mclean (chutzpah) - sound, amd64</li>
 <li>Damian Kuras (shadoww) - polskie tłumaczenie</li>
-<li>Karol Pasternak (reb) - Główny deweloper Gentoo/OpenBSD</li>
+<li>Karol Pasternak (reb) - główny deweloper Gentoo/OpenBSD</li>
 </ul>
 </body>
 </section>
