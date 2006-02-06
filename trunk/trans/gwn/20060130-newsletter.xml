@@ -25,6 +25,18 @@
 <author title="Redaktor">
 <mail link="grobian@gentoo.org">Fabian Groffen</mail>
 </author>
+<author title="Tłumacz">
+<mail link="jbozanowski@gmail.com">Jakub Bożanowski</mail>
+</author>
+<author title="Tłumacz">
+<mail link="karol.kania@gmail.com">Karol Kania</mail>
+</author>
+<author title="Tłumacz">
+<mail link="damian@lezajsk.info">Damian Kuras</mail>
+</author>
+<author title="Tłumacz">
+<mail link="moloh@gentoo.org">Michał Kurgan</mail>
+</author>
 <abstract>Wydanie Tygodnika Gentoo z 30 stycznia 2006.</abstract>
 <summary/>
 <version>Wolumin 5, numer 3</version>
@@ -34,39 +46,38 @@
 <chapter>
 <title>Wiadomości Gentoo</title>
 <section>
-<title>Przejście modularnego X do gałęzi testowej (~arch)</title>
+<title>Przejście modularnego X do gałęzi testowej drzewa Portage</title>
 <body>
-
 <p>
-Zespół X planuje wkrótce usunąć komplet 289 pakietów modularnego X z pliku
-package.mask. Staną się one dostępne w gałęzi testowej (~arch) dla wszystkich
-architektur, do których są przypisane, czyli alpha, amd64, arm, ia64, mips, ppc,
-sh, sparc i x86. Więcej informacji na temat prawidłowego procesu uaktualnienia
-znajdziemy w dokumencie <uri
+Zespół X planuje odmaskowanie kompletu 289 pakietów modularnego X. Wszystkie
+będą wtedy dostępne w gałęzi testowej (~arch) dla wszystkich architektur, do
+których są przypisane (alpha, amd64, arm, ia64, mips, ppc, sh, sparc i x86).
+Więcej informacji na temat prawidłowego procesu aktualizacji można znaleźć w
+dokumencie <uri
 link="http://www.gentoo.org/proj/pl/desktop/x/x11/modular-x-howto.xml">Migracja
 na modularne X</uri>. Omawia on zmiany we flagach USE, powód, dla którego X.org
 stał się modularny oraz czemu na razie nie wystarczy napisać <c>emerge
 xorg-x11</c>.
 </p>
-
 <p>
-Nie wszytkie pakiety będą działać, gdy zainstalujemy modularny X po jego wejściu
-do ~arch, jednakże większość tych najpopularniejszych działa już teraz. Zespół X
-pragnie zachęcić uzytkowników i deweloperów do zgłaszania poprawek dla ich
-ulubionych aplikacji. Proces ich tworzenia znacznie ułatwi lektura dokumentu
-<uri
-link="http://www.gentoo.org/proj/en/desktop/x/x11/porting-modular-x-howto.xml">
+Po dokonaniu aktualizacji na modularną wersję X, nie wszystkie pakiety będą
+działać, jednakże większość tych najpopularniejszych działa bezproblemowo już
+teraz. Zespół X prosi wszystkich użytkowników i deweloperów o zgłaszania
+poprawek i raportów o błędach dotyczących ich ulubionych aplikacji, tak by
+działały one w nowym środowisku. Proces tworzenia łatki będzie znacznie
+prostszy gdy zapoznamy się z dokumentem <uri
+link="http://www.gentoo.org/proj/pl/desktop/x/x11/porting-modular-x-howto.xml">
 Przenoszenie programów na modularne X</uri>. Programy, które wymagają najwięcej
-pracy to gry i pakiety, które nie posiadają opiekuna wyszczególnionego w pliku
-metadata.xml albo w ogóle nie posiadające metadanych.
+wysiłku to gry i pakiety, które nie posiadają opiekuna lub pliku metadata.xml
+zawierającego dodatkowe informacje o danym pakiecie.
 </p>
-
 <p>
 <mail link="spyderous@gentoo.org">Donnie Berkholz</mail> prowadzi na <uri
-link="http://dev.gentoo.org/~spyderous/broken_modular/">swojej stronie</uri>
-codziennie uaktualnianą listę niekompatybilnych aplikacji i ich opiekunów. W
-razie napotkania jakichkolwiek błędów w czasie migracji prosimy zgłosić je
-poprzez <uri link="https://bugs.gentoo.org">Bugzillę Gentoo</uri>.
+link="http://dev.gentoo.org/~spyderous/broken_modular/">swojej stronie</uri>,
+codziennie uaktualnianą, listę niekompatybilnych aplikacji wraz z
+wyszczególnieniem ich opiekunów. W razie napotkania jakichkolwiek błędów w
+czasie migracji prosimy o skorzystanie z <uri
+link="https://bugs.gentoo.org">odpowiedniego serwisu</uri>.
 </p>
 
 </body>
@@ -75,17 +86,16 @@ poprzez <uri link="https://bugs.gentoo.org">Bugzillę Gentoo</uri>.
 <title>Koniec wsparcia dla starego stylu konfiguracji pakietów Apache</title>
 <body>
 <p>
-W październiku zespół Apache ogłosił stabilność nowego stylu konfiguracji Apache
-i jego modułów. Wielu użytkowników uaktualniło swoje systemy, jednak niektórzy
-ostrożni użytkownicy nie zrobili tego.
+W październiku zespół Apache ogłosił zmiany w stylu konfiguracji Apache i jego
+modułów. Wielu użytkowników uaktualniło już swoje systemy, jednak ci bardziej
+ostrożni postanowili poczekać.
 </p>
-
 <p>
-Zespół Apache ogłosił, że od 1 marca 2006 roku nie będzie już wspierał
-konfiguracji starego typu. Wszyscy, który nie uaktualnili jeszcze serwera do
-wersji <c>net-www/apache-2.0.55</c> lub wyższej, bądź
-<c>net-www/apache-1.3.34-r10</c> lub wyższej, powinni zrobić to do tego czasu.
-Informacje na temat procesu aktualizacji można znaleźć w przewodniku <uri
+1 marca 2006 zespół Apache przestanie wspierać konfigurację starego typu.
+Wszyscy, który do tej pory jeszcze nie uaktualnili serwera do wersji
+<c>net-www/apache-2.0.55</c> lub wyższej, bądź <c>net-www/apache-1.3.34-r10</c>
+lub wyższej, powinni to zrobić jak najszybciej. Informacje na temat procesu
+aktualizacji można znaleźć w przewodniku <uri
 link="http://www.gentoo.org/doc/pl/apache-upgrading.xml">Aktualizacja serwera
 Apache</uri>.
 </p>
@@ -97,7 +107,7 @@ Apache</uri>.
 <body>
 <p>
 Pierwsze spotkanie grupy zajmującej się rozwojem PHP odbyło się 21 stycznia 2006
-roku.  Wśród punktów znajdujących się w programie spotkania można znaleźć wybory
+roku. Wśród punktów znajdujących się w programie spotkania można znaleźć wybory
 koordynatorów, dyskusja na temat tworzenia slotów dla mniejszych wersji pakietów
 oraz stabilizacja <c>dev-lang/php</c>.
 </p>
@@ -105,14 +115,14 @@ oraz stabilizacja <c>dev-lang/php</c>.
 <mail link="chtekk@gentoo.org">Luca Longinotti</mail> został wybrany na
 stanowisko koordynatora odpowiedzialnego za główne pakiety PHP, natomiast <mail
 link="sebastian@gentoo.org">Sebastian Bergmann</mail> będzie odpowiadał za
-ebuildy PEAR.  Grupa postanowiła pozostać przy dotychczasowym sposobie
+ebuildy PEAR. Grupa postanowiła pozostać przy dotychczasowym sposobie
 umieszczania pakietów w slotach, czyli robieniu tego tylko dla głównych wersji
-PHP (PHP 4, PHP 5).  Najważniejsza decyzja z punktu widzenia użytkowników to
+PHP (PHP 4, PHP 5). Najważniejsza decyzja z punktu widzenia użytkowników to
 konieczność jak najszybszej migracji z <c>dev-php/php</c> na
 <c>dev-lang/php</c>, gdyż zdecydowano o wycofaniu wsparcia dla pierwszego
-pakietu.  Gdy tylko zespoły odpowiedzialne za poszczególne architektury
+pakietu. Gdy tylko zespoły odpowiedzialne za poszczególne architektury
 ustabilizują pakiety w nowej kategorii, to stare, z katalogu <c>dev-php/php</c>,
-zostaną zamaskowane.  Planowany termin ukończenia prac to koniec lutego. Dwa
+zostaną zamaskowane. Planowany termin ukończenia prac to koniec lutego. Dwa
 miesiące później przestarzałe pakiety zostaną całkowicie usunięte z drzewa
 Portage.
 </p>
@@ -139,7 +149,7 @@ kilku wersji MySQL równolegle. Od teraz wszystkie główne wydania, poczynając
 Dodatkowo, aby ułatwić użytkownikom przełączanie się pomiędzy różnymi wersjami
 MySQL stworzone zostały nowe pliki eclass, a także nowy moduł <c>eselect</c>.
 Mimo tego, że mamy możliwość uruchomienia kilku wersji MySQL jednocześnie, dalej
-jesteśmy ograniczeni do jednej wersji <c>libmysqlclinet</c>.  Aby zapoznać się
+jesteśmy ograniczeni do jednej wersji <c>libmysqlclinet</c>. Aby zapoznać się
 ze szczegółami aktualizacji, prosimy o przeczytanie odpowiedniego <uri
 link="http://www.gentoo.org/doc/en/mysql-upgrade-slotted.xml">przewodnika</uri>.
 Wszystkie pakiety, które do tej pory poprawnie współpracowały z MySQL <e>nie
@@ -187,7 +197,7 @@ miliony wiadomości na forum Gentoo"/>
 Niemal dokładnie w rok od momentu gdy na forum Gentoo ukazała się dwu-milionowa
 wiadomość, a było to w <uri
 link="http://www.gentoo.org/news/pl/gwn/20050207-newsletter.xml">styczniu
-2005</uri>, ta liczba przekroczyła już trzy miliony.  Z tej okazji założono <uri
+2005</uri>, ta liczba przekroczyła już trzy miliony. Z tej okazji założono <uri
 link="http://forums.gentoo.org/viewtopic-t-421954.html">specjalny wątek</uri> w,
 którym można znaleźć m.in. odpowiedź na pytanie „Kto napisał tą wiadomość?”, a
 także próby wyjaśnieniu czemu w tajemniczych okolicznościach, tuż przed
@@ -207,7 +217,7 @@ Z powodu obaw o bezpieczeństwo, więcej szczegółów można znaleźć w <uri
 link="https://bugs.gentoo.org/show_bug.cgi?id=115789">bugu 115789</uri>, pakiet
 <c>app-text/pdftohtml</c> został zastąpiony przez <c>app-text/poppler</c> z
 powodu obaw o bezpieczeństwo wyrażanych w raporcie numer <uri
-link="https://bugs.gentoo.org/show_bug.cgi?id=115789">115789</uri>.  Zalecane
+link="https://bugs.gentoo.org/show_bug.cgi?id=115789">115789</uri>. Zalecane
 jest deinstalacaja <c>app-text/pdftohtml</c> i używanie <c>app-text/poppler</c>
 zamiast niego.
 </p>
@@ -217,40 +227,35 @@ zamiast niego.
 
 <!-- Future zone -->
 <chapter>
-<title>Future zone</title>
+<title>Rzut okiem w przyszłość</title>
 <section>
-<title>"Prefixed Portage" for Gentoo for Mac OS X</title>
+<title>Portage w Gentoo Mac OS X</title>
 <body>
-
 <p>
-For the last few months, the Gentoo for Mac OS X project has been
-serving as the primary testbed for a "prefix aware" portage and ebuild
-repository.  This basically allows for a configurable 'offset prefix' in
-which portage and all software it manages can be installed, as any user,
-without any interference with the 'host' operating system.  The need for
-such functionality arose from the ever-increasing problems of using
-Portage in 'foreign' environments such as Apple's Mac OS X.
+Przez ostatnie kilka miesięcy, projekt Gentoo Mac OS X służył za główne
+środowisko testowe dla drzewa Portage i repozytorium pakietów, które jest
+„prefix aware”. Modyfikacja parametru prefix pozwala na bardziej elastyczną
+konfigurację oprogramowania zarządzanego przez Portage, tak by nie zakłócać
+działania systemu operacyjnego. Potrzeba takiej funkcjonalności zrodziła się ze
+względu na problemy z używaniem Portage w „obcym” środowisku systemu
+operacyjnego (m.in. Apple Mac OS X).
 </p>
-
 <p>
-While in its current state, it is serving merely as a working and
-functional prototype, it has opened up many exciting possibilities for the
-future of Gentoo and Portage.  Although the Gentoo for Mac OS X project
-is the first project from the Gentoo/Alt umbrella project to have a
-pressing need for portage installations that leave the host operating
-system unmodified, it has proved to be of great interest to users and
-developers alike who are having excellent results running portage on a
-multitude of OS - AIX, HP-UX, FreeBSD, BeOS/Haiku/Zeta, Solaris, and
-Fedora Core Linux.
+W obecnej chwili system jest jedynie działającym prototypem, ale już teraz
+pokazał wiele interesujących możliwości, które mogą sprawdzić się w Gentoo i
+Portage. Pomimo, iż projekt Gentoo Mac OS X, jest pierwszym z tych wszystkich
+skupionych w ramach Gentoo/ALT, którego celem jest uruchomienie Portage na
+działającym systemie operacyjnym (instalujemy Portage na działającym systemie),
+zainteresowanie jakie budzi wśród użytkowników i deweloperów jest zdumiewające.
+Także liczba „zaliczonych” systemów jest imponująca, na tej liście można znaleźć
+m.in. AIX, HP-UX, FreeBSD, BeOS/Haiku/Zeta, Solaris i Fedorę Core.
 </p>
-
 <p>
-The Gentoo for Mac OS X team hopes to have preliminary documentation
-and developer installer packages available as soon as possible.
-Those interested in contributing may contact <mail link="kito@gentoo.org">
-Kito Danya Dietrich</mail> or <mail link="grobian@gentoo.org">Fabian Groffen</mail>.
+Zespół projektu Gentoo Mac OS X chce udostępnić wstępną dokumentacją i rozwijane
+pakiety instalatora tak szybko jak będzie to tylko możliwe. Dla zainteresowanych
+współpracą - kontakt: <mail link="kito@gentoo.org"> Kito Danya Dietrich</mail> i
+<mail link="grobian@gentoo.org">Fabian Groffen</mail>.
 </p>
-
 </body>
 </section>
 </chapter>
@@ -268,7 +273,7 @@ Kito Danya Dietrich</mail> or <mail link="grobian@gentoo.org">Fabian Groffen</ma
 <p><b>sed w Gentoo/ALT</b></p>
 <p>
 <mail link="flameeyes@gentoo.org">Diego Pettenò</mail> poprosił o radę jak
-poradzić sobie z nieco odmiennym zachowaniem implementacji sed na systemech nie
+poradzić sobie z nieco odmiennym zachowaniem implementacji sed na systemach nie
 posiadających oprogramowania GNU.
 </p>
 <ul>
@@ -307,7 +312,7 @@ link="http://www-128.ibm.com/developerworks/linux/library/l-pow-linuxdistros.htm
 IBM developerworks</uri> opublikowano recenzję dystrybucji Linuksa pracujących
 na platformie POWER5, a nie posiadających komercyjnego wsparcia. Oprócz
 informacji o Debianie, openSUSE 10 i Fedorze Core znajdziemy tam także opis
-środowiska testowego i procesu instalacji Gentoo na koputerze IBM eServer™
+środowiska testowego i procesu instalacji Gentoo na komputerze IBM eServer™
 OpenPower™ 720.
 </p>
 
