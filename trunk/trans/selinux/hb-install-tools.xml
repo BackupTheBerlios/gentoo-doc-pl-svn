@@ -8,50 +8,50 @@
 
 <sections>
 <section>
-<title>Program loguj±cy</title>
+<title>Program logujÄ…cy</title>
 <body>
 
 <p>
-Mówi±c o <e>stage3</e> wspomnieli¶my, ¿e zawiera on wszystkie potrzebne
-narzêdzia systemowe, dla których nie ma alternatywy w postaci inny
-programów. Powiedzieli¶my równie¿, ¿e pozosta³e narzêdzie zainstalujemy pó¼niej.
-W³a¶nie teraz siê tym zajmiemy.
+MÃ³wiÄ…c o <e>stage3</e> wspomnieliÅ›my, Å¼e zawiera on wszystkie potrzebne
+narzÄ™dzia systemowe, dla ktÃ³rych nie ma alternatywy w postaci inny
+programÃ³w. PowiedzieliÅ›my rÃ³wnieÅ¼, Å¼e pozostaÅ‚e narzÄ™dzie zainstalujemy pÃ³Åºniej.
+WÅ‚aÅ›nie teraz siÄ™ tym zajmiemy.
 </p>
 
 <p>
-Pierwszym narzêdziem, przy którym nale¿y dokonaæ wyboru, jest program do obs³ugi
-logów systemowych. Unix i Linux posiadaj± bogat± historiê w tym zakresie. Je¶li
-to konieczne, mo¿na logowaæ do plików wszystko, co dzieje siê w systemie.
-Mechanizmem tym zarz±dza w³a¶nie <e>program loguj±cy</e>.
+Pierwszym narzÄ™dziem, przy ktÃ³rym naleÅ¼y dokonaÄ‡ wyboru, jest program do obsÅ‚ugi
+logÃ³w systemowych. Unix i Linux posiadajÄ… bogatÄ… historiÄ™ w tym zakresie. JeÅ›li
+to konieczne, moÅ¼na logowaÄ‡ do plikÃ³w wszystko, co dzieje siÄ™ w systemie.
+Mechanizmem tym zarzÄ…dza wÅ‚aÅ›nie <e>program logujÄ…cy</e>.
 </p>
 
 <p>
-Gentoo oferuje kilka ró¿nych programów loguj±cych: <c>sysklogd</c> - tradycyjny
-zestaw loguj±cych demonów, <c>syslog-ng</c> - zaawansowany program loguj±cy oraz
-<c>metalog</c>, charakteryzuj±cy siê du¿± liczb± opcji konfiguracyjnych. W
-drzewie Portage znajduje ca³y wachlarz programów loguj±cych i innych - liczba
-naszych pakietów ro¶nie z ka¿dym dniem.
+Gentoo oferuje kilka rÃ³Å¼nych programÃ³w logujÄ…cych: <c>sysklogd</c> - tradycyjny
+zestaw logujÄ…cych demonÃ³w, <c>syslog-ng</c> - zaawansowany program logujÄ…cy oraz
+<c>metalog</c>, charakteryzujÄ…cy siÄ™ duÅ¼Ä… liczbÄ… opcji konfiguracyjnych. W
+drzewie Portage znajduje caÅ‚y wachlarz programÃ³w logujÄ…cych i innych - liczba
+naszych pakietÃ³w roÅ›nie z kaÅ¼dym dniem.
 </p>
 
 <note>
-Tylko <c>metalog</c> i <c>syslog-ng</c> zosta³y w pe³ni przetestowane z aktualn±
-polityk± SELinux, niemniej jednak mo¿na wypróbowaæ inne programy loguj±ce.
+Tylko <c>metalog</c> i <c>syslog-ng</c> zostaÅ‚y w peÅ‚ni przetestowane z aktualnÄ…
+politykÄ… SELinux, niemniej jednak moÅ¼na wyprÃ³bowaÄ‡ inne programy logujÄ…ce.
 </note>
 
 <p>
-Je¶li nie jeste¶my zdecydowani, z jakiego programu loguj±cego powinni¶my skorzystaæ,
-wybierzmy <c>metalog</c>. Jest to potê¿ne narzêdzie z bardzo dobr± domy¶ln±
-konfiguracj±.
+JeÅ›li nie jesteÅ›my zdecydowani, z jakiego programu logujÄ…cego powinniÅ›my skorzystaÄ‡,
+wybierzmy <c>metalog</c>. Jest to potÄ™Å¼ne narzÄ™dzie z bardzo dobrÄ… domyÅ›lnÄ…
+konfiguracjÄ….
 </p>
 
 <p>
-Wybrany program loguj±cy instalujemy przy u¿yciu narzêdzia <c>emerge</c>, a
-nastêpnie dodajemy do domy¶lego poziomu uruchamiania wykorzystuj±c program
-<c>rc-update</c>. Poni¿szy przyk³ad przedstawia instalacjê
-<c>metalog</c>. Nale¿y zast±piæ jego nazwê nazw± wybranego programu.
+Wybrany program logujÄ…cy instalujemy przy uÅ¼yciu narzÄ™dzia <c>emerge</c>, a
+nastÄ™pnie dodajemy do domyÅ›lego poziomu uruchamiania wykorzystujÄ…c program
+<c>rc-update</c>. PoniÅ¼szy przykÅ‚ad przedstawia instalacjÄ™
+<c>metalog</c>. NaleÅ¼y zastÄ…piÄ‡ jego nazwÄ™ nazwÄ… wybranego programu.
 </p>
 
-<pre caption="Instalacja programu loguj±cego">
+<pre caption="Instalacja programu logujÄ…cego">
 # <i>emerge metalog</i>
 # <i>rc-update add metalog default</i>
 </pre>
@@ -63,55 +63,55 @@ nastêpnie dodajemy do domy¶lego poziomu uruchamiania wykorzystuj±c program
 <body>
 
 <p>
-Nastêpnym programem jest demon Cron. Pomimo, ¿e jest on opcjonalny i nie jest
+NastÄ™pnym programem jest demon Cron. Pomimo, Å¼e jest on opcjonalny i nie jest
 wymagany do poprawnej pracy systemu, zalecane jest jego zainstalowanie. Czym
-jest demon Cron? Jest to program s³u¿±cy do wykonywania zaplanowanych poleceñ w
-okre¶lonym czasie. Jest on bardzo przydatny, gdy wykonujemy pewne czynno¶ci
-regularnie (na przyk³ad codziennie, co tydzieñ, co miesi±c).
+jest demon Cron? Jest to program sÅ‚uÅ¼Ä…cy do wykonywania zaplanowanych poleceÅ„ w
+okreÅ›lonym czasie. Jest on bardzo przydatny, gdy wykonujemy pewne czynnoÅ›ci
+regularnie (na przykÅ‚ad codziennie, co tydzieÅ„, co miesiÄ…c).
 </p>
 
 <p>
 Gentoo oferuje trzy demony cron: <c>dcron</c>, <c>fcron</c> i
 <c>vixie-cron</c>. Instalacja wybranego demona jest podobna do instalacji
-programu loguj±cego, jednak <c>dcron</c> i <c>fcron</c> wymagaj± wykonania
-dodatkowego polecenia: <c>crontab /etc/crontab</c>. Je¶li nie jeste¶my pewni co
-powinni¶my wybraæ, zainstalujmy <c>vixie-cron</c>.
+programu logujÄ…cego, jednak <c>dcron</c> i <c>fcron</c> wymagajÄ… wykonania
+dodatkowego polecenia: <c>crontab /etc/crontab</c>. JeÅ›li nie jesteÅ›my pewni co
+powinniÅ›my wybraÄ‡, zainstalujmy <c>vixie-cron</c>.
 </p>
 
 <note>
 Demon cron wymaga patcha SELinux do poprawnej pracy. Tylko <c>vixie-cron</c> i
-</c>fcron</c> posiadaj± obs³ugê tej funkcjonalno¶ci.
+</c>fcron</c> posiadajÄ… obsÅ‚ugÄ™ tej funkcjonalnoÅ›ci.
 </note>
 
 <pre caption="Instalacja demona cron">
 # <i>emerge vixie-cron</i>
 # <i>rc-update add vixie-cron default</i>
-<comment>(Je¶li wybrali¶my dcron lub fcron)</comment>
+<comment>(JeÅ›li wybraliÅ›my dcron lub fcron)</comment>
 # <i>crontab /etc/crontab</i>
 </pre>
 
 </body>
 </section>
 <section>
-<title>Narzêdzia obs³ugi systemu plików</title>
+<title>NarzÄ™dzia obsÅ‚ugi systemu plikÃ³w</title>
 <body>
 
 <p>
-W zale¿no¶ci od tego, jakiego systemu plików u¿ywamy, musimy zainstalowaæ
-odpowiednie narzêdzia do jego obs³ugi (do sprawdzania jego integralno¶ci,
-czy te¿ tworzenia dodatkowych systemów plików).
+W zaleÅ¼noÅ›ci od tego, jakiego systemu plikÃ³w uÅ¼ywamy, musimy zainstalowaÄ‡
+odpowiednie narzÄ™dzia do jego obsÅ‚ugi (do sprawdzania jego integralnoÅ›ci,
+czy teÅ¼ tworzenia dodatkowych systemÃ³w plikÃ³w).
 </p>
 
 <p>
-Poni¿sza tabela przedstawia jakie narzêdzia musimy zainstalowaæ w zale¿no¶ci od
-tego, z jakiego systemu plików korzystamy.
+PoniÅ¼sza tabela przedstawia jakie narzÄ™dzia musimy zainstalowaÄ‡ w zaleÅ¼noÅ›ci od
+tego, z jakiego systemu plikÃ³w korzystamy.
 </p>
 
 <table>
 <tr>
-  <th>System plików</th>
-  <th>Narzêdzie</th>
-  <th>Polecenie instaluj±ce</th>
+  <th>System plikÃ³w</th>
+  <th>NarzÄ™dzie</th>
+  <th>Polecenie instalujÄ…ce</th>
 </tr>
 <tr>
   <ti>XFS</ti>
@@ -143,21 +143,21 @@ If you are an LVM user, you also need to install <c>lvm-user</c>:
 -->
 
 <p>
-Je¶li nie potrzebujemy programu <c>rp-pppoe</c> do ³±czenia siê z internetem,
-kontynuujemy instalacjê zgodnie z rozdzia³em <uri
+JeÅ›li nie potrzebujemy programu <c>rp-pppoe</c> do Å‚Ä…czenia siÄ™ z internetem,
+kontynuujemy instalacjÄ™ zgodnie z rozdziaÅ‚em <uri
 link="?part=1&amp;chap=10">Konfiguracja bootloadera</uri>. W innym przypadku
-przechodzimy do akapitu <uri link="#doc_chap4">Opcjonalnie: narzêdzia sieciowe</uri>.
+przechodzimy do akapitu <uri link="#doc_chap4">Opcjonalnie: narzÄ™dzia sieciowe</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Opcjonalnie: narzêdzia sieciowe</title>
+<title>Opcjonalnie: narzÄ™dzia sieciowe</title>
 <body>
 
 <p>
-Je¶li do ³±czenia siê z sieci± potrzebujemy programu <c>rp-pppoe</c>, nale¿y go
-zainstalowaæ.
+JeÅ›li do Å‚Ä…czenia siÄ™ z sieciÄ… potrzebujemy programu <c>rp-pppoe</c>, naleÅ¼y go
+zainstalowaÄ‡.
 </p>
 
 <pre caption="Instalowanie rp-pppoe">
@@ -165,10 +165,10 @@ zainstalowaæ.
 </pre>
 
 <p>
-U¿ycie <c>USE="-X"</c> zapobiega instalacji pakietu xorg-x11, który jest jedn± z
-zale¿no¶ci <c>rp-pppoe</c> (<c>rp-pppoe</c> posiada narzêdzia graficzne, aby z
-nich korzystaæ, nale¿y przekompilowaæ ten program po instalacji serwera xorg-x11
-lub zainstalowaæ serwer teraz, jednak jego kompilacja zajmie du¿o czasu).
+UÅ¼ycie <c>USE="-X"</c> zapobiega instalacji pakietu xorg-x11, ktÃ³ry jest jednÄ… z
+zaleÅ¼noÅ›ci <c>rp-pppoe</c> (<c>rp-pppoe</c> posiada narzÄ™dzia graficzne, aby z
+nich korzystaÄ‡, naleÅ¼y przekompilowaÄ‡ ten program po instalacji serwera xorg-x11
+lub zainstalowaÄ‡ serwer teraz, jednak jego kompilacja zajmie duÅ¼o czasu).
 </p>
 
 </body>
