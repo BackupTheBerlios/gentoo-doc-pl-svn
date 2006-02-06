@@ -33,15 +33,15 @@ X.Org.
 <body>
 
 <p>
-Zapewne dziwi, dlaczego jeden wygodny pakiet, zmienił się w 300 odzielnych?
-Proces ten realizowany jest przez twórców X.Org. Rozdzielają oni wszystkie
-pakiety na pomniejsze, a my jedynie podążamy za nimi.
+Dlaczego jeden wygodny pakiet zmienił się w 300 mniejszych?  Proces ten
+realizowany jest przez twórców X.Org. Rozdzielają oni wszystkie pakiety na
+pomniejsze, a my jedynie podążamy za nimi.
 </p>
 
 <p>
 Polecamy lekturę <uri
-link="http://www.gentoo.org/proj/pl/desktop/x/x11/modular-x-howto.xml#doc_chap1_sect1">Migracja 
-na modularne X</uri>.
+link="/proj/pl/desktop/x/x11/modular-x-howto.xml#doc_chap1_sect1">Migracja na
+modularne X</uri>.
 </p>
 
 </body>
@@ -56,18 +56,18 @@ na modularne X</uri>.
 <p>
 Chcemy wyliczyć wszystkie zależności tak dobrze, jak to tylko możliwe, by
 użytkownicy nie musieli mieć w systemie zbędnych programów, których nawet nie
-używają, jak na przyład XPrint. Więc, jeśli pakiet jest od czegoś zależny, to
-w zależnościach wpisujemy pakiety z bibliotekami i nagłowkami, a nie virtuale.
+używają (na przyład XPrint). Jeśli pakiet jest od czegoś zależny, to w
+zależnościach wpisujemy pakiety z bibliotekami i nagłówkami, a nie virtuale.
 </p>
 
 <p>
 Nie możemy także zagwarantować, że użytkownicy wciąż będą mieli zainstalowane
 pewne zależności, ponieważ instalowali metapakiet, więc eliminacja tego typu
-błędu pozwoli zaoszczęcić nam dużo czasu.
+błędu pozwoli zaoszczędzić nam dużo czasu.
 </p>
 
 <p>
-Jeśli znajde jakikolwiek pakiet, dla którego zależnością będzie metapakiet, będę
+Jeśli znajdę jakikolwiek pakiet, dla którego zależnością będzie metapakiet, będę
 prześladował osobę zajmującą się tym pakietem, dopóki tego nie naprawi.
 </p>
 
@@ -111,22 +111,22 @@ związany bez żadnego powodu).
 </p>
 
 <p>
-Sporadycznie, skrypt <c>included_headers.sh</c> znajdzie zły nagłówek, ponieważ
+Sporadycznie skrypt <c>included_headers.sh</c> znajdzie zły nagłówek, ponieważ
 niektóre z nich używają tej samej nazwy, a to powoduje, że skrypt zwróci
-nieprawidłowy pakiet. Zwykle, jest to oczywiste.
+nieprawidłowy pakiet. Zwykle takie pomyłki są oczywiste.
 </p>
 
 <p>
 Jeśli dopiszemy opcję <c>-d</c>, może to spowodować, że dostaniemy informację
 "Not found". Może to oznaczać, że odinstalowaliśmy nagłówek, który jest wymagany
 przez pakiet, by go zbudować lub jest to opcjonalny nagłówek, z którego nie
-korzystamy w naszym systemie. W przypadku biblioteki, znaczyć to może, że
+korzystamy w naszym systemie. W przypadku biblioteki znaczyć to może, że
 odinstalowaliśmy bibliotekę, która została tylko statycznie zbudowana, ale nigdy
 nie została zainstalowana. 
 </p>
 
 <p>
-Warto poświęcić troche czasu, by zorientować się, które biblioteki lub nagłówki
+Warto poświęcić trochę czasu i zorientować się, które biblioteki lub nagłówki
 nie są dodawane do listy zależności. W przypadku nagłówków, nie trzeba mieć ich
 zainstalowanych, by przeprowadzić skanowanie.
 </p>
@@ -136,12 +136,12 @@ W niektórych przypadkach, w pewnym sensie, pakiet wymaga serwera X. Jeśli nie
 jest to wymagane, by w czasie instalacji serwer X był obecny w systemie,
 odradzamy umieszczanie go na liście RDEPEND. Psuje to instalacje bez X, gdzie
 program jest uruchamiamiany na innym komputerze, więc nie wymaga istnienia
-nagłówków, ani bibliotek na danej maszynie.
+nagłówków ani bibliotek na danej maszynie.
 </p>
 
 <p>
 W drzewie portage znajduje się kilka serwerów X, więc jeśli nie potrzeba nam
-nam owego, należy dołączyć wszystkie. Modularne serwery X, znajdują się w
+owego, należy dołączyć wszystkie. Modularne serwery X znajdują się w
 pakiecie xorg-server. Mamy również serwer DirectFB w pakiecie xdirectfb; kdrive
 jest małym serwerem X. Oczywiście mamy też do dyspozycji stare &lt;xorg-x11-7.
 Należy również dołączyć restrykcje odnośnie wersji xorg-x11, by być pewnym, że
@@ -201,15 +201,15 @@ USE.
 </note>
 
 <p>
-Naszym celem jest nie tylko wparcie dla nowyego, modularnego X, ale również
+Naszym celem jest nie tylko wparcie dla nowego, modularnego X, ale również
 umożliwienie spełnienie zależności użytkowników korzystających ze starego,
 monolitycznego X. By prawidłowo móc je spełnić, odrzucamy starą formę
 deklarowania virtual/x11.
 </p>
 
 <impo>
-To pozwoli użytkownikom korzystającym z gałęzi eksperymentalnej portage
-bezproblemową instalację modularnego X, a osobom korzystającyh ze stabilnej,
+To pozwoli użytkownikom korzystającym z gałęzi eksperymentalnej portage na
+bezproblemową instalację modularnego X, a osobom korzystającyh ze stabilnej
 wciąż mieć virtual/x11.
 </impo>
 
@@ -224,10 +224,10 @@ wciąż mieć virtual/x11.
 
 <p>
 Caleb zadał dobre pytanie: jak radzić sobie z flagami USE w pakietach, które
-mają ogromną ilość opcjonalnych bibliotek X? W wielu przypadkach, ma sens
-wymuszanie włączenia lub też nie, flag. Można to sobie ułatwić, grupując flagi.
-Należy upewnić się, że nazwa flagi bierze się od funkcji jaką wprowadzają, a nie
-od nazw biblitek czy też pakietów, z których będą korzystać.
+mają ogromną ilość opcjonalnych bibliotek X? W wielu przypadkach ma sens
+wymuszanie włączenia lub też niewłączania flag. Można to sobie ułatwić,
+grupując flagi.  Należy upewnić się, że nazwa flagi bierze się od funkcji jaką
+wprowadzają, a nie od nazw biblitek czy też pakietów, z których będą korzystać.
 </p>
 
 </body>
