@@ -1,0 +1,32 @@
+.TH "ENV-UPDATE" "1" "Dec 2005" "Portage 2.1" "Portage"
+.SH NAZWA
+env-update \- program do automatycznego aktualizowanie zmiennych środowiskowych
+.SH SKŁADNIA
+.B env-update
+.SH OPIS
+.B env-update
+odczytuje pliki w katalogu \fI/etc/env.d\fR i automatycznie tworzy pliki
+\fI/etc/profile.env\fR i \fI/etc/ld.so.conf\fR. Następnie jest uruchamiany
+skrypt \fBldconfig\fR(8) w celu zaktualizowania \fI/etc/ld.so.cache\fR. Program
+\fBenv-update\fR jest uruchamiany przez Portage po każdej instalacji pakietu.
+Warto również pamiętać o uruchamianiu programu po wprowadzeniu zmian w plikach
+w katalogu \fI/etc/env.d\fR, dzięki czemu zmiany zostaną zastosowane. Zmiany te
+oczywiście będą dotyczyły tylko nowych procesów. Aby je zastosować do
+uruchomionej powłoki, należy wpisać jeszcze polecenie \fIsource
+/etc/profile\fR.
+.SH OPCJE
+.TP
+Brak.
+.SH "ZGŁASZANIE BŁĘDÓW"
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu http://bugs.gentoo.org
+.SH Autor
+Daniel Robbins <drobbins@gentoo.org>
+.SH "ZOBACZ TAKŻE"
+.BR emerge (1),
+.BR ldconfig (8)
+.SH TŁUMACZENIE
+Łukasz Damentko <rane@gentoo.org>
+.br
+Polski projekt tłumaczenia manuali Gentoo
+.br
+http://gentoo.org/~rane/tlumaczenie-manuali.html

@@ -1,0 +1,163 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of DISPATCH-CONF</TITLE>
+</HEAD><BODY>
+<H1>DISPATCH-CONF</H1>
+Section: Portage (1)<BR>Updated: Dec 2005<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAZWA</H2>
+
+dispatch-conf - rozsądny sposób na aktualizację plików konfiguracyjnych po
+instalacji nowych pakietów.
+<A NAME="lbAC">&nbsp;</A>
+<H2>SKŁADNIA</H2>
+
+<B>dispatch-conf</B>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>OPIS</H2>
+
+<I>dispatch-conf</I>
+
+został zaprojektowany do sprawdzania po instalacji nowych pakietów czy
+konieczna jest aktualizacja plików konfiguracyjnych oraz do przeprowadzania tej
+aktualizacji, polegającej na nadpisaniu starego pliku konfiguracyjnego nowym.
+Jeśli pojawią się problemy, użytkownik zostanie poproszony o decyzję w
+kontrowersyjnej sprawie.
+Do zalet 
+<I>dispatch-conf</I>
+
+należy możliwość łatwego cofnięcia wprowadzonych zmian (poprawki są
+przechowywane jako patche lub za pomocą rcs) oraz automatyczne nanoszenie zmian
+na pliki, które nigdy nie były zmieniane przez użytkownika lub na pliki, w
+których nowa wersja przynosi zmiany jedynie związane z numerem rewizji w CVS
+lub niewidocznymi znakami. 
+<P>
+<I>dispatch-conf</I>
+
+sprawdza wszystkie katalogi wymienione w zmiennej <I>CONFIG_PROTECT</I>.
+Wszystkie pliki konfiguracyjne ze zmiennej <I>CONFIG_PROTECT_MASK</I> zostaną
+nadpisane automatycznie. Więcej szczegółów znajduje się w <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5).
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPCJE</H2>
+
+<DL COMPACT>
+<DT>Brak.<DD>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>UŻYCIE</H2>
+
+<I>dispatch-conf</I>
+
+musi być uruchamiany z konta roota, w związku z tym, że zamieniane przez
+program pliki konfiguracyjne należą do tego użytkownika. Przed uruchomieniem
+<I>dispatch-conf</I>
+
+po raz pierwszy, należy dostosować ustawienia w pliku 
+<B>/etc/dispatch-conf.conf</B>
+
+oraz utworzyć katalog dla kopii zapasowych plików konfiguracyjnych, na który
+wskazuje ten plik. Wszystkie zmiany nanoszone na pliki konfiguracyjne będą
+archiwizowane za pomocą patchy lub rcs, pozwalając na odtworzenie poprzednich
+ich wersji.
+<P>
+Kiedy dispatch-conf znajdzie plik konfiguracyjny, który musi zostać zastąpiony
+nowszą wersją, wyświetli użytkownikowi menu z kilkoma opcjami dotyczącymi
+aktualizacji do wyboru:
+<DL COMPACT>
+<DT><B>u</B>
+
+<DD>
+Zaktualizuj (zastąp) konkretny plik konfiguracyjny jego nową wersją i przejdź
+dalej.
+<DT><B>z</B>
+
+<DD>
+Usuń nową wersję i przejdź dalej.
+<DT><B>n</B>
+
+<DD>
+Pomiń plik i przejdź do następnej pozycji, pozostawiając zarówno stary plik
+konfiguracyjny jak i pliki chronione zmienną <I>CONFIG_PROTECT</I>.
+<DT><B>e</B>
+
+<DD>
+Edytuj nowy plik konfiguracyjny, za pomocą programu określonego w zmiennej
+<I>$EDITOR</I>.
+<DT><B>m</B>
+
+<DD>
+Interaktywny tryb nanoszenia poprawek z nowego pliku na stary.
+<DT><B>l</B>
+
+<DD>
+Podgląd zmian pomiędzy starym i nowym plikiem.
+<DT><B>t</B>
+
+<DD>
+Zamienia miejscami nowy i stary plik, powodując odwrotne ich traktowanie przez
+program.
+
+<DT><B>h</B>
+
+<DD>
+Wyświetla pomoc.
+<DT><B>q</B>
+
+<DD>
+Wyjście z programu.
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>ZGŁASZANIE BŁĘDÓW</H2>
+
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu <A HREF="http://bugs.gentoo.org/">http://bugs.gentoo.org/</A>
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTORZY</H2>
+
+<PRE>
+Jeremy Wohl
+Karl Trygve Kalleberg &lt;<A HREF="mailto:karltk@gentoo.org">karltk@gentoo.org</A>&gt;
+Mike Frysinger &lt;<A HREF="mailto:vapier@gentoo.org">vapier@gentoo.org</A>&gt;
+Grant Goodyear &lt;<A HREF="mailto:g2boojum@gentoo.org">g2boojum@gentoo.org</A>&gt;
+</PRE>
+
+<A NAME="lbAI">&nbsp;</A>
+<H2>PLIKI</H2>
+
+<DL COMPACT>
+<DT><B>/etc/dispatch-conf.conf</B>
+
+<DD>
+Plik zawierający opcje konfiguracyjne programu <I>dispatch-conf</I>.
+</DL>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>ZOBACZ TAKŻE</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+etc-update">etc-update</A></B>(1)
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAZWA</A><DD>
+<DT><A HREF="#lbAC">SKŁADNIA</A><DD>
+<DT><A HREF="#lbAD">OPIS</A><DD>
+<DT><A HREF="#lbAE">OPCJE</A><DD>
+<DT><A HREF="#lbAF">UŻYCIE</A><DD>
+<DT><A HREF="#lbAG">ZGŁASZANIE BŁĘDÓW</A><DD>
+<DT><A HREF="#lbAH">AUTORZY</A><DD>
+<DT><A HREF="#lbAI">PLIKI</A><DD>
+<DT><A HREF="#lbAJ">ZOBACZ TAKŻE</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 20:22:34 GMT, February 07, 2006
+</BODY>
+</HTML>

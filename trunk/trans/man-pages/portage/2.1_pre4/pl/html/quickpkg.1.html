@@ -1,0 +1,119 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of QUICKPKG</TITLE>
+</HEAD><BODY>
+<H1>QUICKPKG</H1>
+Section: Portage (1)<BR>Updated: Dec 2005<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAZWA</H2>
+
+quickpkg - tworzy prekompilowane pakiety
+<A NAME="lbAC">&nbsp;</A>
+<H2>SKŁADNIA</H2>
+
+<B>quickpkg &lt;list of pkgs&gt;</B>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>OPIS</H2>
+
+<I>quickpkg</I>
+
+jest wykorzystywane do szybkiego budowania prekompilowanych pakietów za pomocą
+plików już zainstalowanych w systemie. Następnie taki pakiet można zainstalować
+w innym systemie. Dokładny opis instalowania prekompilowanych pakietów znajduje
+się w <B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1). Zaletą korzystania z takich pakietów jest fakt, że nie
+trzeba wtedy czekać aż pakiet zostanie rozpakowany, skonfigurowany,
+skompilowany i zainstalowany zanim możliwe będzie jego użycie. Główną wadą jest
+fakt, że wewnątrz pakietu znajdować się będą pliki z systemu, na którym był on
+budowany, nawet jeśli zostały zmienione po instalacji.
+<BR>
+
+Utworzone przez program prekompilowane pakiety znajdują się w katalogu opisanym
+zmienną <B>PKGDIR</B>. Można ją ustawić w pliku <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5). Jej domyślna
+wartość to /usr/portage/packages.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPCJE</H2>
+
+<DL COMPACT>
+<DT><B>&lt;lista pakietów&gt;</B>
+
+<DD>
+Każdy pakiet na tej liście może zostać wymieniony na dwa sposoby. Można
+podać pełną ścieżkę do katalogu w bazie wirtuali, np.
+/var/db/pkg/&lt;KATEGORIA&gt;/&lt;WERSJA-PAKIETU&gt;/. Można również podać nazwę pakietu,
+tak jak podaje się ją emerge, kiedy chce się go zainstalować. Pełny opis
+znajduje się w <B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5).
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>PRZYKŁADY</H2>
+
+<B>quickpkg</B>
+
+/var/db/pkg/dev-python/pyogg-1.1
+<BR>
+
+<B>quickpkg</B>
+
+planeshift
+<BR>
+
+<B>quickpkg</B>
+
+=apache-1.3.27-r1
+<BR>
+
+<B>quickpkg</B>
+
+=net-www/apache-2*
+<A NAME="lbAG">&nbsp;</A>
+<H2>ZGŁASZANIE BŁĘDÓW</H2>
+
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu <A HREF="http://bugs.gentoo.org/">http://bugs.gentoo.org/</A>
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTORZY</H2>
+
+<PRE>
+Terry Chan (original author)
+Mike Frysinger &lt;<A HREF="mailto:vapier@gentoo.org">vapier@gentoo.org</A>&gt; (revamped version)
+</PRE>
+
+<A NAME="lbAI">&nbsp;</A>
+<H2>PLIKI</H2>
+
+<DL COMPACT>
+<DT><B>/etc/make.conf</B>
+
+<DD>
+W tym pliku konfiguruje się zmienną <B>PKGDIR</B>.
+</DL>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>ZOBACZ TAKŻE</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5)
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAZWA</A><DD>
+<DT><A HREF="#lbAC">SKŁADNIA</A><DD>
+<DT><A HREF="#lbAD">OPIS</A><DD>
+<DT><A HREF="#lbAE">OPCJE</A><DD>
+<DT><A HREF="#lbAF">PRZYKŁADY</A><DD>
+<DT><A HREF="#lbAG">ZGŁASZANIE BŁĘDÓW</A><DD>
+<DT><A HREF="#lbAH">AUTORZY</A><DD>
+<DT><A HREF="#lbAI">PLIKI</A><DD>
+<DT><A HREF="#lbAJ">ZOBACZ TAKŻE</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 20:22:34 GMT, February 07, 2006
+</BODY>
+</HTML>

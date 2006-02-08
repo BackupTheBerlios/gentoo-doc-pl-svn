@@ -1,0 +1,160 @@
+.TH "REPOMAN" "1" "Dec 2005" "Portage 2.1" "Portage"
+.SH NAZWA
+repoman \- program zapewniaj±cy podstawowy poziom jako¶ci pakietów dodawanych
+do drzewa Portage.
+.SH SK£ADNIA
+\fBrepoman\fR [\fIopcje\fR] [\fItryb\fR]
+.SH OPIS
+.BR "Wysoka jako¶æ to podstawa naszej pracy."
+
+.BR repoman
+jest przeznaczony dla deweloperów Gentoo, gdy¿ nie sprawdza poszczególnych
+ebuildów, ale jako¶æ ca³ego repozytorium CVS.
+
+Uwaga: \fBrepoman commit\fR dzia³a jedynie w lokalnych kopiach repozytorium
+CVS.
+.SH OPCJE
+.TP
+.B --pretend
+Niczego nie dodaje do repozytorium i nie naprawia ¿adnych b³êdów. Pokazuje
+jedynie jakie czynno¶ci wykona.
+.TP
+.B --help
+Wy¶wietla pomoc.
+.SH OPCJE
+.TP
+.B scan
+Skanuje bie¿±cy katalog w poszukiwaniu b³êdów zwi±zanych z QA (kontrol±
+jako¶ci). Jest to domy¶lna opcja. Wiêcej informacji znajduje siê w \fBS£OWA
+KLUCZOWE QA\fR.
+.TP
+.B fix
+Naprawia wszystkie b³êdy, które mo¿e naprawiæ (jak zbêdne lub brakuj±ce sumy
+kontrolne).
+.TP
+.B full
+Skanuje bie¿±ce drzewo katalogów w poszukiwaniu b³êdów zwi±zanych z QA
+(kontrol± jako¶ci). Wiêcej informacji znajduje siê w \fBS£OWA KLUCZOWE QA\fR.
+.TP
+.B help
+Wy¶wietla pomoc.
+.TP
+.B commit
+Skanuje bie¿±ce drzewo katalogów w poszukiwaniu b³êdów zwi±zanych z QA
+(kontrol± jako¶ci) oraz dodaje zmiany do repozytorium je¶li nie natrafi na
+¿adne problemy.
+.SH S£OWA KLUCZOWE QA
+.TP
+.BR CVS/Entries.IO_error
+Podczas próby dodania zmian do repozytorium okaza³o siê, ¿e nie znaleziono
+katalogu CVS/Entries, by³ on uszkodzony lub prawa dostêpu do niego nie
+pozwoli³y repomanowi odczytaæ tych plików.
+.TP
+.BR digest.assumed
+Pliki wymienione w sumach kontrolnych nie zosta³y odnalezione w $DISTDIR, a
+zatem obecne sumy kontrolne zosta³y uznane za poprawne.
+.TP
+.BR digest.disjointed
+Sumy kontrolne nie zosta³y dodane do CVS podczas dodawania okre¶lonego ebuildu.
+.TP
+.BR digest.missing
+Ebuild odwo³uje siê do plików, dla których nie obliczono jeszcze sum
+kontrolnych.
+.TP
+.BR digest.notadded
+Znaleziono sumy kontrolne, które nie zosta³y jeszcze dodane do CVS.
+.TP
+.BR digest.stray
+Znaleziono sumy kontrolne, do których nie pasuje ¿aden ebuild.
+.TP
+.BR ebuild.disjointed
+Zosta³y dodane sumy kontrolne, ale nie dodano ebuildów.
+.TP
+.BR ebuild.invalidname
+Nazwa pliku ebuild jest niew³a¶ciwa i niemo¿liwa do przetworzenia przez
+Portage.
+.TP
+.BR changelog.missing
+Brakuje pliku ChangeLog.
+.TP
+.BR ebuild.namenomatch
+Plik ebuild posiada nazwê inn± ni¿ katalog, w którym siê znajduje.
+.TP
+.BR ebuild.notadded
+Ebuildy nie zosta³y dodane do CVS.
+.TP
+.BR file.executable
+Plik ma ustawiony bit wykonywalno¶ci, chocia¿ jest to niepotrzebne. Test
+sprawdza ebuildy, sumy kontrolne, pliki Manifest, ChangeLog i metadata.xml.
+.TP
+.BR file.size
+Rozmiar pliku przekracza 20k, co jest sprzeczne z obecnie obowi±zuj±cymi
+zasadami dotycz±cymi plików w katalogu files/ w drzewie.
+.TP
+.BR filedir.missing
+Brakuje katalogu files/.
+.TP
+.BR DEPEND.bad
+Nie istniej± widoczne dla u¿ytkownika ebuildy zdolne zaspokoiæ listê zale¿no¶ci
+pakietu.
+.TP
+.BR RDEPEND.bad
+Pojawia siê, gdy widoczne dla u¿ytkownika ebuildy maj± zepsute ustawienia
+RDEPEND (tylko widoczne dla u¿ytkownika ebuildy s± sprawdzane). Innymi s³owy,
+nie znaleziono widocznych dla u¿ytkownika ebuildów zdolnych zaspokoiæ
+ustawienia RDEPEND innych ebuildów.
+.TP
+.BR DEPEND.badmasked
+Zamaskowano ebuildy, które maj± ¼le ustawion± zmienn± DEPEND (sprawdza
+*wszystkie* ebuildy). Innymi s³owy, nie znaleziono ¿adnych ebuildów zdolnych
+zaspokoiæ ustawienia DEPEND.
+.TP
+.BR RDEPEND.badmasked
+Zamaskowano ebuildy, które maj± ¼le ustawion± zmienn± RDEPEND (sprawdza 
+*wszystkie* ebuildy). Innymi s³owy, nie znaleziono ¿adnych ebuildów zdolnych 
+zaspokoiæ ustawienia RDEPEND.
+.TP
+.BR ebuild.syntax
+Pojawi³ siê b³±d przy tworzeniu cache, który zosta³ spowodowany b³êdami w
+sk³adni ebuildu.
+.TP
+.BR ebuild.output
+Wykonanie polecenie source na pliku ebuild pozostawia ¶lady w systemie, co jest
+sprzeczne z zasadami pisania ebuildów.
+.TP
+.BR IUSE.invalid
+Ebuild zawiera w zmiennej IUSE flagê, której nie ma w plikach use.desc i
+use.local.desc. Nale¿y dodaæ opis tej flagi do którego¶ z tych plików przed
+dodaniem ebuildu.
+.TP
+.BR KEYWORDS.missing
+W ebuildzie brakuje zmiennej KEYWORDS.
+.TP
+.BR KEYWORDS.stupid
+W ebuildzie pojawi³a siê zmienna KEYWORDS=-*. Zamiast tego nale¿y skorzystaæ z
+pliku package.mask.
+.TP
+.BR LICENSE.missing
+W ebuildzie brakuje zmiennej LICENSE.
+.TP
+.BR DESCRIPTION.missing
+W ebuildzie brakuje zmiennej DESCRIPTION.
+.TP
+.BR SLOT.missing
+W ebuildzie brakuje zmiennej SLOT.
+.SH "ZG£ASZANIE B£ÊDÓW"
+Wszystkie b³êdy nale¿y zg³aszaæ za pomoc± serwisu http://bugs.gentoo.org/
+.SH AUTORZY
+.nf
+Daniel Robbins <drobbins@gentoo.org>
+Saleem Abdulrasool <compnerd@gentoo.org>
+.fi
+.SH "ZOBACZ TAK¯E"
+.BR emerge (1)
+.SH T£UMACZENIE
+£ukasz Damentko <rane@gentoo.org>
+.br 
+Polski projekt t³umaczenia manuali Gentoo
+.br 
+http://gentoo.org/~rane/tlumaczenie-manuali.html
+

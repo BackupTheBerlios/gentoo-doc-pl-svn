@@ -1,0 +1,63 @@
+.TH "glsa-check" "1" "0.6" "Marius Mauch" "gentoolkit"
+.SH "NAZWA"
+.LP 
+glsa\-check \- program do monitorowania i zarządzania GLSA
+.SH "SKŁADNIA"
+.LP 
+glsa\-check <\fIopcja\fP> [\fIlista-glsa\fP]
+
+[\fIlista\-glsa\fR] może zawierać dowolną liczbę identyfikatorów GLSA, nazw
+plików zawierających GLSA lub specjalne identyfikatory "all" oraz "new"
+.SH "OPIS"
+.LP 
+Program jest wykorzystywany do lokalnego monitorowania i zarządzania Gentoo
+Linux Security Advisories.
+.br
+Przed zgłoszeniem jakichkolwiek błędów należy przeczytać zawartość strony
+.br 
+http://www.gentoo.org/proj/en/portage/glsa\-integration.xml
+.LP
+Uwaga: ten program będzie działał skutecznie tylko wtedy, gdy lokalne drzewo
+Portage będzie regularnie aktualizowane.
+.SH "OPCJE"
+.LP 
+.TP 
+.B \-l, \-\-list
+Pokazuje listę wszystkich GLSA.
+.TP 
+.B \-d, \-\-dump, \-\-print
+Pokazuje wszystkie informacje na temat określonego GLSA
+.TP 
+.B \-t, \-\-test
+Sprawdza czy system jest podatny na określone GLSA.
+.TP 
+.B \-p, \-\-pretend
+Pokazuje polecenia związane z nakładaniem określonego GLSA.
+.TP 
+.B \-f, \-\-fix
+Próbuje automatycznie nałożyć określone GLSA (opcja eksperymentalna).
+.TP 
+.B \-i, \-\-inject
+Wprowadza podany GLSA do pliku checkfile.
+.TP 
+.B \-n, \-\-nocolor
+Wyłącza kolory. (opcja)
+.TP 
+.B \-h, \-\-help
+Wyświetla pomoc.
+.TP 
+.B \-V, \-\-version
+Wyświetla informacje o programie.
+.TP 
+.B \-v, \-\-verbose
+Drukuje więcej informacji. (opcja)
+.TP
+.B \-c, \-\-cve
+Pokazuje identyfikatory CAN w trybie listowania. (opcja)
+
+.SH "TŁUMACZENIE"
+Jan Jędrychowski <gogiel@gmail.com> 
+.br
+Polski projekt tłumaczenia manuali Gentoo
+.br
+http://gentoo.org/~rane/tlumaczenie-manuali.html

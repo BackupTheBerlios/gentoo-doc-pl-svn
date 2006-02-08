@@ -1,0 +1,104 @@
+.TH "revdep\-rebuild" "1" "" "gentoolkit" ""
+.SH "NAZWA"
+revdep\-rebuild \- Program do odtwarzania uszkodzonych zależności
+.SH "SKŁADNIA"
+.B revdep\-rebuild
+[OPCJE] [\-\-] [OPCJE EMERGE]
+.SH "OPIS"
+revdep\-rebuild znajduje biblioteki i programy, dla których brakuje bibliotek
+współdzielonych i naprawia je poprzez ponowną kompilację programów i
+brakujących bibliotek, z których korzystają. Jest bardzo przydatny w momencie,
+gdy zaktualizowany pakiet psuje pozostałe, które są od niego zależne.
+.SH "OPCJE"
+.TP 
+.B \-X | \-\-nazwy\-pakietów
+Przekompiluje najlepsze dostępne pakiety, niekoniecznie dokładnie te same wersje, które są zainstalowane
+.TP      
+.B \-\-library=NAZWA
+Przekompiluje pakiety, które używają podanej nazwy biblioteki. Nazwa może być
+pełną ścieżką do biblioteki lub prostym wyrażeniem regularnym (definicje
+dotyczące wyrażeń regularnych znajdują się w man grep)
+.TP 
+.B \-nc | \-\-no\-color
+Wyłącza kolorowe informacje (opcja ta jest także przekazywana do polecenia emerge)
+.TP 
+.B \-i | \-\-ignore
+Ignoruje pliki tymczasowe z poprzednich uruchomień
+.TP 
+.B \-q | \-\-quiet
+Pokazuje mniej informacji (ta opcja jest także przekazywana do polecenia emerge)
+.TP 
+.B \-vv | \-\-extra\-verbose
+Pokazuje więcej informacji (obecnie wyświetla informacje o środowisku poszukiwań revdep\-rebuild)
+
+Wszystkie pozostałe opcje są przekazywane do polecenia emerge.
+.SH "KONFIGURACJA"
+revdep\-rebuild nie używa już ścieżek wpisanych w kod. Aby zmienić domyślne
+zachowanie programu należy ustawić odpowiednie wartości poniższym zmiennym
+systemowym.
+
+LD_LIBRARY_MASK \- Maska specjalnie wyliczanych bibliotek.
+.LP 
+SEARCH_DIRS \- Lista katalogów, w których nastąpi wyszukiwanie programów i
+bibliotek.
+.LP 
+SEARCH_DIRS_MASK \- Lista katalogów, w których nie nastąpi wyszukiwanie.
+
+Zmienne te mogą być przekazane poprzez ustawienie im wartości w środowisku
+uruchomieniowym przed uruchomieniem programu lub poprzez odpowiednie wpisy w
+pliku /etc/make.conf.
+
+Wpisanie do zmiennej "\-*" oznacza wyczyszczenie jej wartości od tego miejsca.
+Przykład: SEARCH_DIRS="/usr/bin \-*" ustawi wartość SEARCH_DIRS tylko na
+/usr/bin.
+
+revdep\-rebuild bierze pod uwagę zmienne NOCOLOR oraz PORTAGE_NICENESS z pliku /etc/make.conf
+.SH "UŻYCIE"
+Zaleca się wykonanie poniższego polecenia przed uruchomieniem programu:
+.br 
+\fBrevdep\-rebuild \-\-ignore \-\-pretend\fR
+
+Aby przeszukać cały system za wyjątkiem /mnt i /home:
+.br 
+\fBenv SEARCH_DIRS="/ \-*" SEARCH_DIRS_MASK="/mnt /home" revdep\-rebuild\fR
+
+Aby przebudować pakiety zależne od libkdecore.so.4 z KDE 3.3:
+.br 
+\fBrevdep\-rebuild \-\-library /usr/kde/3.3/lib/libkdecore.so.4\fR
+
+Aby przebudować pakiety zależne od libImlib.so oraz libImlib2.so:
+.br 
+\fBrevdep\-rebuild \-\-library libImlib[2]*.so.*\fR
+
+.SH "KOD WYJŚCIA"
+revdep\-rebuild zwraca kod wyjścia równy zeru jeśli zakończy działanie poprawnie.
+W przeciwnym wypadku zwraca wartość różną od zera.
+.SH "BŁĘDY"
+.LP 
+revdep\-rebuild może niepoprawnie ułożyć kolejność kompilacji nieaktualnych
+(nienajnowszych) pakietów
+.br 
+http://bugs.gentoo.org/show_bug.cgi?id=23018
+.LP 
+Kompilacja przy użyciu \-\-package\-names powinna być domyślną, jednak emerge
+nie ma możliwości aktualizacji pakietów slotowych do najnowszych wersji.
+.br 
+http://bugs.gentoo.org/show_bug.cgi?id=4698
+
+\fBUwaga:\fR Możliwość aktualizacji pakietów slotowych do najnowszej wersji
+została dodana do revdep\-rebuild, jednak możliwe jest, że dodatek ten nie
+działa ciągle w 100% poprawnie.
+.LP 
+Źle obsługuje interaktywne polecenia emerge.
+.br 
+http://bugs.gentoo.org/show_bug.cgi?id=37485
+
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu <http://bugs.gentoo.org>
+.SH "ZOBACZ TAKŻE"
+emerge(1), portage(5), grep(1)
+.SH TŁUMACZENIE
+Janusz Bossy <jbossy@bol-istnienia.org>
+.br
+Polski projekt tłumaczenia manuali Gentoo
+.br
+http://gentoo.org/~rane/tlumaczenie-manuali.html

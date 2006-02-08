@@ -1,0 +1,243 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of REPOMAN</TITLE>
+</HEAD><BODY>
+<H1>REPOMAN</H1>
+Section: Portage (1)<BR>Updated: Dec 2005<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAZWA</H2>
+
+repoman - program zapewniający podstawowy poziom jakości pakietów dodawanych
+do drzewa Portage.
+<A NAME="lbAC">&nbsp;</A>
+<H2>SKŁADNIA</H2>
+
+<B>repoman</B> [<I>opcje</I>] [<I>tryb</I>]
+<A NAME="lbAD">&nbsp;</A>
+<H2>OPIS</H2>
+
+<B>Wysoka jakość to podstawa naszej pracy.</B>
+
+<P>
+<B>repoman</B>
+
+jest przeznaczony dla deweloperów Gentoo, gdyż nie sprawdza poszczególnych
+ebuildów, ale jakość całego repozytorium CVS.
+<P>
+Uwaga: <B>repoman commit</B> działa jedynie w lokalnych kopiach repozytorium
+CVS.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPCJE</H2>
+
+<DL COMPACT>
+<DT><B>--pretend</B>
+
+<DD>
+Niczego nie dodaje do repozytorium i nie naprawia żadnych błędów. Pokazuje
+jedynie jakie czynności wykona.
+<DT><B>--help</B>
+
+<DD>
+Wyświetla pomoc.
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>OPCJE</H2>
+
+<DL COMPACT>
+<DT><B>scan</B>
+
+<DD>
+Skanuje bieżący katalog w poszukiwaniu błędów związanych z QA (kontrolą
+jakości). Jest to domyślna opcja. Więcej informacji znajduje się w <B>SŁOWA
+KLUCZOWE QA</B>.
+<DT><B>fix</B>
+
+<DD>
+Naprawia wszystkie błędy, które może naprawić (jak zbędne lub brakujące sumy
+kontrolne).
+<DT><B>full</B>
+
+<DD>
+Skanuje bieżące drzewo katalogów w poszukiwaniu błędów związanych z QA
+(kontrolą jakości). Więcej informacji znajduje się w <B>SŁOWA KLUCZOWE QA</B>.
+<DT><B>help</B>
+
+<DD>
+Wyświetla pomoc.
+<DT><B>commit</B>
+
+<DD>
+Skanuje bieżące drzewo katalogów w poszukiwaniu błędów związanych z QA
+(kontrolą jakości) oraz dodaje zmiany do repozytorium jeśli nie natrafi na
+żadne problemy.
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>SŁOWA KLUCZOWE QA</H2>
+
+<DL COMPACT>
+<DT><B>CVS/Entries.IO_error</B>
+
+<DD>
+Podczas próby dodania zmian do repozytorium okazało się, że nie znaleziono
+katalogu CVS/Entries, był on uszkodzony lub prawa dostępu do niego nie
+pozwoliły repomanowi odczytać tych plików.
+<DT><B>digest.assumed</B>
+
+<DD>
+Pliki wymienione w sumach kontrolnych nie zostały odnalezione w $DISTDIR, a
+zatem obecne sumy kontrolne zostały uznane za poprawne.
+<DT><B>digest.disjointed</B>
+
+<DD>
+Sumy kontrolne nie zostały dodane do CVS podczas dodawania określonego ebuildu.
+<DT><B>digest.missing</B>
+
+<DD>
+Ebuild odwołuje się do plików, dla których nie obliczono jeszcze sum
+kontrolnych.
+<DT><B>digest.notadded</B>
+
+<DD>
+Znaleziono sumy kontrolne, które nie zostały jeszcze dodane do CVS.
+<DT><B>digest.stray</B>
+
+<DD>
+Znaleziono sumy kontrolne, do których nie pasuje żaden ebuild.
+<DT><B>ebuild.disjointed</B>
+
+<DD>
+Zostały dodane sumy kontrolne, ale nie dodano ebuildów.
+<DT><B>ebuild.invalidname</B>
+
+<DD>
+Nazwa pliku ebuild jest niewłaściwa i niemożliwa do przetworzenia przez
+Portage.
+<DT><B>changelog.missing</B>
+
+<DD>
+Brakuje pliku ChangeLog.
+<DT><B>ebuild.namenomatch</B>
+
+<DD>
+Plik ebuild posiada nazwę inną niż katalog, w którym się znajduje.
+<DT><B>ebuild.notadded</B>
+
+<DD>
+Ebuildy nie zostały dodane do CVS.
+<DT><B>file.executable</B>
+
+<DD>
+Plik ma ustawiony bit wykonywalności, chociaż jest to niepotrzebne. Test
+sprawdza ebuildy, sumy kontrolne, pliki Manifest, ChangeLog i metadata.xml.
+<DT><B>file.size</B>
+
+<DD>
+Rozmiar pliku przekracza 20k, co jest sprzeczne z obecnie obowiązującymi
+zasadami dotyczącymi plików w katalogu files/ w drzewie.
+<DT><B>filedir.missing</B>
+
+<DD>
+Brakuje katalogu files/.
+<DT><B>DEPEND.bad</B>
+
+<DD>
+Nie istnieją widoczne dla użytkownika ebuildy zdolne zaspokoić listę zależności
+pakietu.
+<DT><B>RDEPEND.bad</B>
+
+<DD>
+Pojawia się, gdy widoczne dla użytkownika ebuildy mają zepsute ustawienia
+RDEPEND (tylko widoczne dla użytkownika ebuildy są sprawdzane). Innymi słowy,
+nie znaleziono widocznych dla użytkownika ebuildów zdolnych zaspokoić
+ustawienia RDEPEND innych ebuildów.
+<DT><B>DEPEND.badmasked</B>
+
+<DD>
+Zamaskowano ebuildy, które mają źle ustawioną zmienną DEPEND (sprawdza
+*wszystkie* ebuildy). Innymi słowy, nie znaleziono żadnych ebuildów zdolnych
+zaspokoić ustawienia DEPEND.
+<DT><B>RDEPEND.badmasked</B>
+
+<DD>
+Zamaskowano ebuildy, które mają źle ustawioną zmienną RDEPEND (sprawdza 
+*wszystkie* ebuildy). Innymi słowy, nie znaleziono żadnych ebuildów zdolnych 
+zaspokoić ustawienia RDEPEND.
+<DT><B>ebuild.syntax</B>
+
+<DD>
+Pojawił się błąd przy tworzeniu cache, który został spowodowany błędami w
+składni ebuildu.
+<DT><B>ebuild.output</B>
+
+<DD>
+Wykonanie polecenie source na pliku ebuild pozostawia ślady w systemie, co jest
+sprzeczne z zasadami pisania ebuildów.
+<DT><B>IUSE.invalid</B>
+
+<DD>
+Ebuild zawiera w zmiennej IUSE flagę, której nie ma w plikach use.desc i
+use.local.desc. Należy dodać opis tej flagi do któregoś z tych plików przed
+dodaniem ebuildu.
+<DT><B>KEYWORDS.missing</B>
+
+<DD>
+W ebuildzie brakuje zmiennej KEYWORDS.
+<DT><B>KEYWORDS.stupid</B>
+
+<DD>
+W ebuildzie pojawiła się zmienna KEYWORDS=-*. Zamiast tego należy skorzystać z
+pliku package.mask.
+<DT><B>LICENSE.missing</B>
+
+<DD>
+W ebuildzie brakuje zmiennej LICENSE.
+<DT><B>DESCRIPTION.missing</B>
+
+<DD>
+W ebuildzie brakuje zmiennej DESCRIPTION.
+<DT><B>SLOT.missing</B>
+
+<DD>
+W ebuildzie brakuje zmiennej SLOT.
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>ZGŁASZANIE BŁĘDÓW</H2>
+
+Wszystkie błędy należy zgłaszać za pomocą serwisu <A HREF="http://bugs.gentoo.org/">http://bugs.gentoo.org/</A>
+<A NAME="lbAI">&nbsp;</A>
+<H2>AUTORZY</H2>
+
+<PRE>
+Daniel Robbins &lt;<A HREF="mailto:drobbins@gentoo.org">drobbins@gentoo.org</A>&gt;
+Saleem Abdulrasool &lt;<A HREF="mailto:compnerd@gentoo.org">compnerd@gentoo.org</A>&gt;
+</PRE>
+
+<A NAME="lbAJ">&nbsp;</A>
+<H2>ZOBACZ TAKŻE</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1)
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAZWA</A><DD>
+<DT><A HREF="#lbAC">SKŁADNIA</A><DD>
+<DT><A HREF="#lbAD">OPIS</A><DD>
+<DT><A HREF="#lbAE">OPCJE</A><DD>
+<DT><A HREF="#lbAF">OPCJE</A><DD>
+<DT><A HREF="#lbAG">SŁOWA KLUCZOWE QA</A><DD>
+<DT><A HREF="#lbAH">ZGŁASZANIE BŁĘDÓW</A><DD>
+<DT><A HREF="#lbAI">AUTORZY</A><DD>
+<DT><A HREF="#lbAJ">ZOBACZ TAKŻE</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 20:22:34 GMT, February 07, 2006
+</BODY>
+</HTML>

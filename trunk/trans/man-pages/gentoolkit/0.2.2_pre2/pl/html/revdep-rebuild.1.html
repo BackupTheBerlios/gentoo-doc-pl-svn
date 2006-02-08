@@ -1,0 +1,177 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of revdep\-rebuild</TITLE>
+</HEAD><BODY>
+<H1>revdep\-rebuild</H1>
+Section:  (1)<BR>Updated: <BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAZWA</H2>
+
+revdep-rebuild - Program do odtwarzania uszkodzonych zależności
+<A NAME="lbAC">&nbsp;</A>
+<H2>SKŁADNIA</H2>
+
+<B>revdep-rebuild</B>
+
+[OPCJE] [--] [OPCJE EMERGE]
+<A NAME="lbAD">&nbsp;</A>
+<H2>OPIS</H2>
+
+revdep-rebuild znajduje biblioteki i programy, dla których brakuje bibliotek
+współdzielonych i naprawia je poprzez ponowną kompilację programów i
+brakujących bibliotek, z których korzystają. Jest bardzo przydatny w momencie,
+gdy zaktualizowany pakiet psuje pozostałe, które są od niego zależne.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPCJE</H2>
+
+<DL COMPACT>
+<DT><B>-X | --nazwy-pakietów</B>
+
+<DD>
+Przekompiluje najlepsze dostępne pakiety, niekoniecznie dokładnie te same wersje, które są zainstalowane
+<DT><B>--library=NAZWA</B>
+
+<DD>
+Przekompiluje pakiety, które używają podanej nazwy biblioteki. Nazwa może być
+pełną ścieżką do biblioteki lub prostym wyrażeniem regularnym (definicje
+dotyczące wyrażeń regularnych znajdują się w man grep)
+<DT><B>-nc | --no-color</B>
+
+<DD>
+Wyłącza kolorowe informacje (opcja ta jest także przekazywana do polecenia emerge)
+<DT><B>-i | --ignore</B>
+
+<DD>
+Ignoruje pliki tymczasowe z poprzednich uruchomień
+<DT><B>-q | --quiet</B>
+
+<DD>
+Pokazuje mniej informacji (ta opcja jest także przekazywana do polecenia emerge)
+<DT><B>-vv | --extra-verbose</B>
+
+<DD>
+Pokazuje więcej informacji (obecnie wyświetla informacje o środowisku poszukiwań revdep-rebuild)
+<P>
+Wszystkie pozostałe opcje są przekazywane do polecenia emerge.
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>KONFIGURACJA</H2>
+
+revdep-rebuild nie używa już ścieżek wpisanych w kod. Aby zmienić domyślne
+zachowanie programu należy ustawić odpowiednie wartości poniższym zmiennym
+systemowym.
+<P>
+LD_LIBRARY_MASK - Maska specjalnie wyliczanych bibliotek.
+<P>
+
+SEARCH_DIRS - Lista katalogów, w których nastąpi wyszukiwanie programów i
+bibliotek.
+<P>
+
+SEARCH_DIRS_MASK - Lista katalogów, w których nie nastąpi wyszukiwanie.
+<P>
+Zmienne te mogą być przekazane poprzez ustawienie im wartości w środowisku
+uruchomieniowym przed uruchomieniem programu lub poprzez odpowiednie wpisy w
+pliku /etc/make.conf.
+<P>
+Wpisanie do zmiennej &quot;-*&quot; oznacza wyczyszczenie jej wartości od tego miejsca.
+Przykład: SEARCH_DIRS=&quot;/usr/bin -*&quot; ustawi wartość SEARCH_DIRS tylko na
+/usr/bin.
+<P>
+revdep-rebuild bierze pod uwagę zmienne NOCOLOR oraz PORTAGE_NICENESS z pliku /etc/make.conf
+<A NAME="lbAG">&nbsp;</A>
+<H2>UŻYCIE</H2>
+
+Zaleca się wykonanie poniższego polecenia przed uruchomieniem programu:
+<BR>
+
+<B>revdep-rebuild --ignore --pretend</B>
+<P>
+Aby przeszukać cały system za wyjątkiem /mnt i /home:
+<BR>
+
+<B>env SEARCH_DIRS=&quot;/ -*&quot; SEARCH_DIRS_MASK=&quot;/mnt /home&quot; revdep-rebuild</B>
+<P>
+Aby przebudować pakiety zależne od libkdecore.so.4 z KDE 3.3:
+<BR>
+
+<B>revdep-rebuild --library /usr/kde/3.3/lib/libkdecore.so.4</B>
+<P>
+Aby przebudować pakiety zależne od libImlib.so oraz libImlib2.so:
+<BR>
+
+<B>revdep-rebuild --library libImlib[2]*.so.*</B>
+<P>
+<A NAME="lbAH">&nbsp;</A>
+<H2>KOD WYJŚCIA</H2>
+
+revdep-rebuild zwraca kod wyjścia równy zeru jeśli zakończy działanie poprawnie.
+W przeciwnym wypadku zwraca wartość różną od zera.
+<A NAME="lbAI">&nbsp;</A>
+<H2>BŁĘDY</H2>
+
+<P>
+
+revdep-rebuild może niepoprawnie ułożyć kolejność kompilacji nieaktualnych
+(nienajnowszych) pakietów
+<BR>
+
+<A HREF="http://bugs.gentoo.org/show_bug.cgi?id=23018">http://bugs.gentoo.org/show_bug.cgi?id=23018</A>
+<P>
+
+Kompilacja przy użyciu --package-names powinna być domyślną, jednak emerge
+nie ma możliwości aktualizacji pakietów slotowych do najnowszych wersji.
+<BR>
+
+<A HREF="http://bugs.gentoo.org/show_bug.cgi?id=4698">http://bugs.gentoo.org/show_bug.cgi?id=4698</A>
+<P>
+<B>Uwaga:</B> Możliwość aktualizacji pakietów slotowych do najnowszej wersji
+została dodana do revdep-rebuild, jednak możliwe jest, że dodatek ten nie
+działa ciągle w 100% poprawnie.
+<P>
+
+Źle obsługuje interaktywne polecenia emerge.
+<BR>
+
+<A HREF="http://bugs.gentoo.org/show_bug.cgi?id=37485">http://bugs.gentoo.org/show_bug.cgi?id=37485</A>
+<P>
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu &lt;<A HREF="http://bugs.gentoo.org">http://bugs.gentoo.org</A>&gt;
+<A NAME="lbAJ">&nbsp;</A>
+<H2>ZOBACZ TAKŻE</H2>
+
+<A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A>(1), <A HREF="http://localhost/cgi-bin/man/man2html?5+portage">portage</A>(5), <A HREF="http://localhost/cgi-bin/man/man2html?1+grep">grep</A>(1)
+<A NAME="lbAK">&nbsp;</A>
+<H2>TŁUMACZENIE</H2>
+
+Janusz Bossy &lt;<A HREF="mailto:jbossy@bol-istnienia.org">jbossy@bol-istnienia.org</A>&gt;
+<BR>
+
+Polski projekt tłumaczenia manuali Gentoo
+<BR>
+
+<A HREF="http://gentoo.org/~rane/tlumaczenie-manuali.html">http://gentoo.org/~rane/tlumaczenie-manuali.html</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAZWA</A><DD>
+<DT><A HREF="#lbAC">SKŁADNIA</A><DD>
+<DT><A HREF="#lbAD">OPIS</A><DD>
+<DT><A HREF="#lbAE">OPCJE</A><DD>
+<DT><A HREF="#lbAF">KONFIGURACJA</A><DD>
+<DT><A HREF="#lbAG">UŻYCIE</A><DD>
+<DT><A HREF="#lbAH">KOD WYJŚCIA</A><DD>
+<DT><A HREF="#lbAI">BŁĘDY</A><DD>
+<DT><A HREF="#lbAJ">ZOBACZ TAKŻE</A><DD>
+<DT><A HREF="#lbAK">TŁUMACZENIE</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 00:54:43 GMT, February 08, 2006
+</BODY>
+</HTML>
