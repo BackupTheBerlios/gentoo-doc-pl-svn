@@ -1,0 +1,204 @@
+.TH "EBUILD" "1" "Dec 2005" "Portage 2.1" "Portage"
+.SH "NAZWA"
+ebuild \- strona man programu ebuild \- niskopoziomowego interfejsu
+maszyny Portage. 
+.SH "SKŁADNIA"
+.B ebuild
+.I plik opcja [opcje]\fR...
+.SH "OPIS"
+Program ebuild jest bezpośrednim interfejsem maszyny Portage. Pozwala
+on na wykonywanie określonych czynności związanych w ebuildem przy
+pomocy komend lub ich grup, w celu wywołania specyficznych dla ebuildu
+kontekstów i funkcji. Przyjmując jako argumenty nazwę pliku ebuild i
+jedną lub więcej opcji, program przetwarza skrypt ebuild i wywołuje
+określone polecenia. Funkcje zawarte w plikach ebuild obejmują
+pobieranie źródeł programów, rozpakowywanie ich, kompilowanie,
+instalowanie plików obiektowych w tymczasowym katalogu "image",
+instalowanie obrazu z tego katalogu w systemie, tworzenie
+tarballa bzip z obrazu i inne czynności. 
+n.SH "PLIK"
+Plik musi być poprawnym skryptem ebuild. Więcej informacji na ten
+temat można uzyskać czytając stronę man \fBebuild\fR(5).
+.SH "OPCJE"
+.TP
+.BR help
+Pokazuje skróconą formę strony man oraz dodatkowe informacje
+specyficzne dla pakietu podanego jako pierwszy argument.
+.TP
+.BR setup
+Wywołuje wszystkie właściwe pakietowi czynności instalacyjne i
+egzotyczne testy systemu.
+.TP
+.BR clean
+Sprząta tymczasowy katalog, który został stworzony przez Portage dla
+wskazanego pliku ebuild. Katalog ten zazwyczaj zawiera rozpakowany kod
+źródłowy oraz "obraz instalacyjny" programu (wszystkie pliki, jakie
+zostaną zainstalowane w systemie lub umieszczone w
+pakiecie). Lokalizacja katalogu, w którym ma miejsce budowanie
+programu, określona jest przez zmienną BUILD_PREFIX. Więcej informacji
+o tej zmiennej można uzystać wykonując polecenie \fIemerge [\-v]
+info\fR. Opis nadpisywania jej wartości znajduje się na stronie man
+\fBmake.conf\fR(5).
+
+Uwaga: Portage sprząta niemal wszystko po poprawnym zainstalowaniu
+pakietu, chyba że zmienna FEATURES zawiera 'noclean'. Dodanie noclean
+do FEATURES spowoduje pozostawianie ogromnej ilości plików i w krótkim
+czasie doprowadzi do zajęcia dużego obszaru pamięci. Nie zaleca się
+dodawania opcji noclean, chyba że chcemy wykorzystać tymczasowe pliki
+do instalacji w przyszłości. Opcjonalnie można ręcznie wyczyścić
+katalog \fIrm \-rf /var/tmp/portage\fR, co będzie jednoznaczne z
+usunięciem wszystkich plików tymczasowych.
+.TP
+.BR fetch
+Sprawdza, czy wszystkie źródła zawarte w zmiennej SRC_URI znajdują się
+w katalogu określonym zmienną DISTDIR (więcej informacji na stronie
+man \fBmake.conf\fR(5)) i posiadają poprawne sumy md5. Jeśli źródła
+nie zostaną odnalezione, program spróbuje je pobrać, wykorzystując
+adresy serwerów zgromadzone w zmiennej SRC_URI. Jeśli dla jednego
+pliku istnieje kilka źródeł, z których może on zostać pobrany, Portage
+pinguje każdą lokalizację, aby sprawdzić która z nich oferuje
+najszybszy transfer. Serwery lustrzane określone w zmiennej
+GENTOO_MIRRORS zawsze są przeszukiwane jako pierwsze. Jeśli znalezione
+na dysku lub pobrane źródła posiadają sumy md5 niezgodne z tymi, które
+zostały zapisane w files/digest\-[pakiet]\-[wersja\-rewizja],
+wyświetlone zostanie ostrzeżenie i program ebuild zakończy działanie z
+kodem błędu 1.
+.TP
+.BR digest
+Tworzy plik wyciągu dla pakietu w katalogu
+/usr/portage/[kategoria]/[pakiet]/files/. Plik ten zawiera sumy md5
+dla wszystkich plików określonych w zmiennej SRC_URI. Jeśli pobrane
+źródła pakietu są uskodzone lub zawierają błędy, zostanie to wykryte
+na podstawie sum md5.
+.TP
+.BR manifest
+Aktualizuje plik manifestu dla pakietu, tworząc sumy md5 dla plików w
+katalogu files oraz dla ebuildu.
+.TP
+.BR unpack
+Wypakowuje pliki do podkatalogu w \fIkatalogu budowania programu\fR
+(BUILD_PREFIX) poprzez wywołanie funkcji \fIsrc_unpack()\fR w skrypcie
+ebuild podanym jako argument. Jeśli funkcja src_unpack() nie została
+zdefiniowana, program korzysta z domyśnej funkcji w celu rozpakowania
+plików określonych w zmiennej SRC_URI. Źródła są zazwyczaj
+rozpakowywane do katalogu
+${BUILD_PREFIX}/[pakiet]\-[wersja\-rewizja]/work. Może to zostać
+zmienione poprzez zmienną ${WORKDIR}.
+
+Jeśli piszemy ebuilda, chcemy mieć pewność, że zmienna S (określająca
+katalog z rozpakowanymi źródłami) wskazuje na odpowiednie
+miejsce. Domyślnie katalog ten określony jest jako ${WORKDIR}/${P},
+więc często definiowanie zmiennej S nie jest konieczne. Funkcja
+src_unpack() jest również odpowiedzialna za zastosowanie właściwych
+patchy na źródłach tak, aby były one gotowe do kompilacji.
+.TP
+.BR compile
+Kompiluje rozpakowane źródła poprzez wywołanie funkcji
+\fIsrc_compile()\fR zdefiniowanej w pliku ebuild podanym jako
+argument. Gdy funkcja src_compile() rozpoczyna działanie, katalogiem
+roboczym staje się ten, na który wskazuje zmienna ${S}. Po zakończeniu
+działania funkcji src_compile(), źródła powinny być w pełni skompilowane.
+.TP
+.BR test
+Wykonuje specyficzne dla pakietu testy, aby zweryfikować, czy program
+został zbudowany poprawnie.
+.TP
+.BR preinst
+Wykonuje właściwe dla pakietu czynności, które są konieczne przed jego
+zainstalowaniem w systemie.
+.TP
+.BR install
+Instaluje pakiet w tymczasowym \fIkatalogu instalacyjnym\fR poprzez
+wywołanie funkcji \fIsrc_install()\fR. Po zakończeniu instalacji
+\fIkatalog instalacyjny\fR
+(${BUILD_PREFIX}/[pakiet]\-[wersja\-rewizja]/image) będzie zawierał
+wszystkie pliki, które powinny zostać zainstalowane w systemie lub
+włączone do binarnego pakietu.
+.TP
+.BR postinst
+Wykonuje czynności konieczne po zainstalowaniu pakietu w
+systemie. Zazwyczaj powoduje wyświetlenie pomocnych informacji.
+.TP
+.BR qmerge
+Instaluje wszystkie pliki w \fIkatalogu instalacyjnym\fR w działającym
+systemie plików. Proces ten przebiega następująco: po pierwsze zostaje
+wywołana funkcja \fIpkg_preinst()\fR (jeśli została
+zdefiniowana). Następnie pliki zostają zainstalowane w działającym
+systemie plików, a sumy md5 tych plików zostają zapisane w
+\fI/var/db/pkg/${KATEGORIA}/${PN}\-[wersja\-rewizja]/CONTENTS\fR. Po
+przeniesieniu wszystkich plików do systemu, wywoływana jest funkcja
+\fIpkg_postinst()\fR (jeśli ją zdefiniowano).
+.TP
+.BR merge
+Aby zainstalować pakiet należy wywołać program
+ebuild kolejno z następującymi opcjami: \fIfetch\fR, \fIunpack\fR,
+\fIcompile\fR, \fIinstall\fR i \fIqmerge\fR. Jeśli po prostu chcemy
+zainstalować pakiet nie zwracając uwagi na poszczególne etapy, możemy
+skorzystać z opcji merge, która wykona wszystkie wymienione kroki,
+zatrzymując instalację, jeśli coś pójdzie nie tak.
+.TP
+.BR unmerge
+Ta opcja wywołuje w pierwszej kolejności funkcję \fIpkg_prerm\fR
+(jeśli została zdefiniowana). Następnie powoduje usunięcie z systemu
+plików wszystkich plików, które posiadają poprawne sumy md5 i wartości
+mtime w pliku określającym zawartość pakietu. Wszystkie puste katalogi
+zostają rekurencyjnie usunięte. Ostatecznie zostaje wywołana funkcja
+\fIpkg_postrm\fR (jeśli ją zdefiniowano). Zainstalowanie nowej wersji
+pakietu a następnie usunięcie starszej jest bezpieczne \- jest to
+zalecany sposób aktualizacji.
+.TP
+.BR prerm
+Powoduje wykonanie czynności koniecznych przed usunięciem pakietu z
+systemu. Ma związek z \fIunmerge\fR.
+.TP
+.BR postrm
+Wykonuje czynności potrzebne po usunięciu pakietu z systemu. Ma
+związek z \fIunmerge\fR.
+.TP
+.BR config
+Wykonuje specyficzne dla pakietu czynności konieczne po zakończeniu
+procesu instalacji. Zazwyczaj obejmuje to ustawienie plików
+konfiguracyjnych lub inne podobne działania, które użytkownik być może
+będzie chciał wykonać.
+.TP
+.BR package
+Ta opcja jest bardzo podobna do opcji \fImerge\fR, jednak po pobraniu
+źródeł, rozpakowaniu ich, skompilowaniu i zainstalowaniu, tworzony
+jest tarball .tbz2. Zostaje on umieszczony w katalogu ${PKGDIR}/All
+(zmienna ${PKGDIR} domyślnie wskazuje na /usr/portage/packages). W
+katalogu ${PKGDIR}/${CATEGORY} tworzone jest dowiązanie symboliczne,
+które wskazuje na pakiet w ${PKGDIR}/All.
+.TP
+.BR rpm
+Buduje pakiet RPM z plików w tymczasowym \fIkatalogu instalacyjnym\fR.
+Obcenie informacje o zależnościach ebuildów nie są dołączane do
+pakietów RPM.
+.SH "ZGŁASZANIE BŁĘDÓW"
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu
+http://bugs.gentoo.org/
+.SH "AUTORZY"
+.nf
+Achim Gottinger <achim@gentoo.org>
+Daniel Robbins <drobbins@gentoo.org>
+Nicholas Jones <carpaski@gentoo.org>
+Mike Frysinger <vapier@gentoo.org>
+.fi
+.SH "PLIKI"
+.TP
+\fB/etc/make.conf\fR 
+Zawiera zmienne, związane z procesem budowania programów, które
+nadpisują definicje z pliku make.globals.
+.SH "ZOBACZ TAKŻE"
+.BR emerge (1),
+.BR ebuild (5),
+.BR make.conf (5)
+.TP
+Skrypt \fI/usr/sbin/ebuild.sh\fR 
+.TP
+Aplikacje pomocnicze w katalogu \fI/usr/lib/portage/bin\fR.
+.SH TŁUMACZENIE
+Waldemar Korłub <stawrul@gmail.com>
+.br
+Polski projekt tłumaczenia manuali Gentoo
+.br
+http://gentoo.org/~rane/tlumaczenie-manuali.html
