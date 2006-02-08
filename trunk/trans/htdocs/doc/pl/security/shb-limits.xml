@@ -1,20 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/security/shb-limits.xml,v 1.2 2005/06/10 19:16:38 fox2mike Exp $ -->
-
-<!-- Orig revision: 1.2 -->
-<!-- Translator: rane <rane@gentoo.pl> -->
-<!-- Title: Limitowanie -->
-<!-- Status: Finished -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/security/shb-limits.xml,v 1.4 2005/12/27 15:13:11 rane Exp $ -->
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
-<!-- See http://creativecommons.org/licenses/by-sa/1.0 -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
 <sections>
 
-<version>1.0</version>
-<date>2005-05-31</date>
+<version>1.1</version>
+<date>2005-12-26</date>
 
 <section id="limits_conf">
 <title>/etc/security/limits.conf</title>
@@ -24,7 +19,9 @@
 Kontrola użycia zasobów jest bardzo efektywnym sposobem zapobiegania lokalnym
 atakom typu "Denial of Service". Możemy też przy okazji również nałożyć
 restrykcje dla maksymalnej dopuszczalnej ilości zalogowań dla użytkowników oraz
-grup.
+grup. Nie wolno jednak ustawiać zbyt restrykcyjnych limitów, gdyż może to
+zakłócić prawidłowe działanie systemu. Każdy wpis należy sprawdzić kilkukrotnie
+zanim się go zacznie używać.
 </p>
 
 <pre caption="/etc/security/limits.conf">
@@ -168,8 +165,9 @@ Quotas for user kn:
 <p>
 Aby uzyskać więcej informacji należy zapoznać się z dokumentami <c>man
 edquota</c>, <uri link="http://www.tldp.org/HOWTO/mini/Quota.html">Jak używać
-Quoty na Linux-ie.</uri>(wersja polska) i <uri
+Quoty na Linuksie</uri> (wersja polska) i <uri
 link="http://www.tldp.org/HOWTO/Quota.html">Mini Quota HOWTO</uri> (wersja
+angielska)
 </p>
 
 </body>
@@ -227,7 +225,6 @@ Ustawienie te nie mają wpływu na SSH, ponieważ SSH nie używa domyślnie
 Takie ustawienie umożliwi zalogowanie się jedynie członkom grupy wheel z domeny
 gentoo.org. Może jest to dość paranoiczne podejście, lepiej jednak być trochę
 "nadmiernie" zabezpieczonym niż później żałować.
-sorry.
 </p>
 
 </body>

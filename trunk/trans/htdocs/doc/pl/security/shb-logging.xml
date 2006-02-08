@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sections SYSTEM "/dtd/book.dtd">
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/security/shb-logging.xml,v 1.2 2005/06/10 19:16:38 fox2mike Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/pl/security/shb-logging.xml,v 1.5 2005/12/03 11:16:21 rane Exp $ -->
 
 <!-- Orig revision: 1.2 -->
 <!-- Translator: rane <rane@gentoo.pl> -->
@@ -13,8 +13,8 @@
 
 <sections>
 
-<version>1.1</version>
-<date>2005-06-08</date>
+<version>1.2</version>
+<date>2005-11-25</date>
 
 <section>
 <title>Wprowadzenie</title>
@@ -166,7 +166,7 @@ następujących skryptów:
 </p>
 
 <p>
-For postfix:
+Dla postfix:
 </p>
 
 <pre caption="/usr/local/sbin/mail_pwd_failures.sh for postfix">
@@ -222,7 +222,7 @@ drobnych poprawek.
 </p>
 
 <pre caption="/etc/syslog-ng/syslog-ng.conf">
-options { long_hostnames(off); sync(0); };
+options { chain_hostnames(off); sync(0); };
 
 #source where to read log
 source src { unix-stream("/dev/log"); internal(); };
@@ -334,7 +334,7 @@ plików. Te pliki to <path>logcheck.hacking</path>, który zawiera znane
 wiadomości opisujące atak, <path>logcheck.violations</path>, który zawiera
 wzory naruszeń bezpieczeństwa, <path>logcheck.violations.ignore</path> z
 informacjami pozwalającymi na zdefiniowanie często występujących, omyłkowo
-branych za ataki wpisów w logach, oraz <path>logcheck.ignore</path>, który
+branych za ataki wpisów w logach oraz <path>logcheck.ignore</path>, który
 pozwala na ich zignorowanie.
 </p>
 
