@@ -39,12 +39,12 @@
 
 <p>
 GNOME 2.12 dnia 22 stycznia 2006 zostało przesunięte do stabilnej gałęzi
-drzewa. Dostępna jest <uri
+drzewa. Dostępny jest <uri
 link="http://www.gentoo.org/proj/pl/desktop/gnome/howtos/gnome-2.12-upgrade.xml">przewodnik
-aktualizacji</uri>. Jeżeli zauważymy jakiekolwiek problemy prosimy o
-przeszukanie <uri link="http://bugs.gentoo.org">bugzilli</uri>, zgłaszanie ich
+po aktualizacji</uri>. W przypadki zauważenia jakiekolwiek problemów prosimy o
+przeszukanie <uri link="http://bugs.gentoo.org">bugzilli</uri> oraz zgłaszanie ich
 na kanale <path>#gentoo-desktop</path>, serwer <path>irc.freenode.net</path>.
-Można również wysłać raporty błędu na bugzille.
+Można również wysłać raporty błędu na bugzillę.
 </p>
 
 <note>
@@ -88,20 +88,20 @@ link="http://packages.gentoo.org/packages/?category=net-wireless;name=wispy-tool
 Użytkownicy śledzący ogłoszenia bezpieczeństwa Gentoo (GLSA) mają
 świadomość, że w ciągu ostatniego roku w kodzie <c>xpdf</c> odnaleziono wiele
 błędów związanych z bezpieczeństwem. Aby ułatwić zadanie ich naprawy - tak, aby
-użytkownik musiał jedynie aktualizować sam pakiet - wydana została bliblioteka
-Poppler. Niestety biblioteka ta nie była używana przez <c>kpdf</c> do
+użytkownik musiał jedynie aktualizować sam pakiet - wydana została biblioteka
+poppler. Niestety biblioteka ta nie była używana przez <c>kpdf</c> do
 wyświetlania PDF-ów ponieważ łaty zawarte w kopii <c>xpdf</c> dla KDE nie
 znajdowały się w popplerze. Dzięki deweloperowi Gentoo <mail
 link="genstef@gentoo.org">Stefanowi Schweizerowi</mail>, który pomógł w
 stworzeniu dużej poprawki dla Popplera, <uri
 link="http://freedesktop.org/wiki/Software_2fpoppler">niemal wszystkie 
-potrzebne elementy do integracji z kdpf</uri> zostało tam zawarte. 
+potrzebne elementy do integracji z kdpf</uri> zostały tam zawarte. 
 </p>
 
 <p>
-Jednakże KDPF nie używa jeszcze Popplera z powodu zamrożenie zależności w KDE
-3.5 i braku możliwości ich dodania. Kubuntu używa łatki napisanej przez
-Jonathana Riddella, umożliwiające współpracę KPDF z Popplerem. Gentoo używa
+Jednakże kpdf nie używa jeszcze Popplera z powodu zamrożenie zależności w KDE
+3.5 i braku możliwości ich dodania. Kubuntu używa łatkę napisaną przez
+Jonathana Riddella, umożliwiającej współpracę kpdf z popplerem. Gentoo używa
 tej samej łaty, jednak odpowiednio usprawionej przez <mail 
 link="flameeyes@gentoo.org">Diego Pettena</mail>.
 </p>
@@ -119,8 +119,8 @@ zauważalnie szybszy niż poprzednio.
 </p>
 
 <note>
-Xpdf zostało także przeportowane, aby używał Popplera. Aktualna wersja ebuilda
-<c>xpdf</c> znajdująca się w Portage, używa wyłączynie Popplera do generowania
+xpdf zostało także przeportowane, aby używał popplera. Aktualna wersja ebuilda
+<c>xpdf</c> znajdująca się w Portage, używa wyłącznie popplera do generowania
 widoku.
 </note>
 
@@ -152,21 +152,21 @@ on Gentoo Linux</uri></li>
 </body>
 </section>
 <section>
-<title>List dyskusyjna gentoo-dev</title>
+<title>Lista dyskusyjna gentoo-dev</title>
 <body>
 <p><b>logrotate i globalna flaga USE?</b></p>
 <p>
 W tym tygodniu miała miejsce długa dyskusja dotycząca powodów dla których
 logrotate powinno, czy też nie powinno, być globalną flagą USE. Pomimo tego że
-niektóre z pakietów już teraz ją zawierają nie jest wskazane, by ją używać -
+niektóre z pakietów już teraz ją zawierają, nie jest wskazane, by ją używać -
 zmiana sposobu logowania powinna być opcją, które nie może nas zmuszać do
 rekompilacji pakietu!
 </p>
 <ul>
 <li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/35675">Make
-logrotate a global USE flag? </uri></li>
+logrotate a global USE flag?</uri></li>
 <li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/35753">Default
-ebuild behaviour </uri></li>
+ebuild behaviour</uri></li>
 </ul>
 <p><b>Zmiana flagi USE: pdflib --> pdf</b></p>
 <p>
@@ -200,7 +200,7 @@ płycie mini-CD lub pamięci USB o pojemności 256MB. Nowa wersja posiada szereg
 usprawnień, w tym nowe jądro w wersji 2.6.14 z obsługą systemu plików unionfs,
 wsparcie dla modułów pakietowych w stylu dystrybucji SlaX, trwałe przechowywanie
 (przydatne przy wtyczkach Nessus), repozytorium ExploitTree projektu
-SecurityForest lub pliki konfiguracyjne oraz rozbudowana obsługa sieci
+SecurityForest oraz pliki konfiguracyjne oraz rozbudowana obsługa sieci
 bezprzewodowych.
 </p>
 <figure link="/images/gwn/20060206_pentoo.png"
@@ -222,12 +222,12 @@ uzyskania szczegółowych informacji.
 <body>
 <p>
 Członkowie <uri link="http://www.gentoo.gr.jp">GentooJP</uri> przygotowują się
-do następnej konferencji poświęconej technologii open-source w Tokio: wiosennej
-edycji japońskiej cyklicznej imprezy open-source, <uri
-link="http://www.ospn.jp/osc2006">OSC</uri>. Konferencja odbędzie się w dniu 17
-i 18 marca, tam gdzie zwykle, czyli w szkole <uri
+do następnej konferencji poświęconej technologii Open Source w Tokio: wiosennej
+edycji japońskiej cyklicznej imprezy Open Source, <uri
+link="http://www.ospn.jp/osc2006">OSC</uri>. Konferencja odbędzie się w dniach
+17 - 18 marca, tam gdzie zwykle, czyli w szkole <uri
 link="http://www.jec.ac.jp/sc_intro/sc_access.html">Japan Electronics
-College</uri> w Ogikubo. Wstęp będzie wolny. Jeśli chcielibyśmy pomóc przy
+College</uri> w Ogikubo. Wstęp będzie wolny. Jeśli chcielibyście pomóc przy
 stoisku, należy się zgłosić poprzez listę dyskusyjną GentooJP
 (<path>gentoojp-misc@ml.gentoo.gr.jp</path>).
 </p>
@@ -243,14 +243,14 @@ opisaliśmy w <uri
 link="http://www.gentoo.org/news/en/gwn/20060109-newsletter.xml#doc_chap2">numerze
 Tygodnika z 9 stycznia 2006</uri>, będzie jednym z mówców na konferencji
 poświęconej bezpieczeństwu o nazwie <uri
-link="http://eusecwest.com">EUSecWest</uri>, która odbędzie się w Londynie dnia
-20 i 21 lutego. W swojej prezentacji, która nosi tytuł <uri
-link="http://www.inversepath.com/news.html">"Lessons in open-source security:
+link="http://eusecwest.com">EUSecWest</uri>, która odbędzie się w Londynie w
+dniach 20 i 21 lutego. W swojej prezentacji, która nosi tytuł <uri
+link="http://www.inversepath.com/news.html">"Lessons in Open Source security:
 the tale of a 0-day incident"</uri>, opisze jak poradzili sobie z usterką
 programu <c>rsync</c> deweloperzy Gentoo i opiekunowie programu (patrz:
 komunikaty <uri link="/security/en/glsa/glsa-200312-01.xml">GLSA 200312-01</uri>
 i <uri link="/security/en/glsa/glsa-200312-03.xml">GLSA 200312-03</uri>).
-Poruszy także temat bezpieczeństwa w środowisku open-source, używając Hardened
+Poruszy także temat bezpieczeństwa w środowisku Open Source, używając Hardened
 Gentoo jako jednego z przykładów.
 </p>
 </body>
@@ -347,7 +347,7 @@ tygodniu:
 <body>
 <p>
 MyDNS zawiera usterkę, która może zostać wykorzystana do przeprowadzenia ataku
-Denal of Service.
+Denial of Service.
 </p>
 <p>
 Więcej informacji można znaleźć w <uri
