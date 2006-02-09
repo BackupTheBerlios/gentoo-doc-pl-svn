@@ -25,6 +25,9 @@
 <author title="Tłumacz">
 <mail link="moloh@gentoo.org">Michał Kurgan</mail>
 </author>
+<author title="Korektor">
+<mail link="muchar@gentoo.org">Robert Muchacki</mail>
+</author>
 <abstract>Wydanie Tygodnika Gentoo z 6 lutego 2006.</abstract>
 <summary/>
 <version>Wolumin 5, numer 5</version>
@@ -36,7 +39,6 @@
 <section>
 <title>Stabilizacja GNOME 2.12</title>
 <body>
-
 <p>
 GNOME 2.12 dnia 22 stycznia 2006 zostało przesunięte do stabilnej gałęzi
 Portage. <uri
@@ -48,84 +50,75 @@ link="http://bugs.gentoo.org">bugzilla</uri>, lub zgłaszanie ich na kanale
 <path>#gentoo-desktop</path> znajdującym się na serwerze
 <path>irc.freenode.net</path>..
 </p>
-
 <note>
 Jeżeli pomagałeś w testowaniu wersji 2.12 poprzez umieszczenie pakietów w pliku
 <path>package.keywords</path>, prosimy o <b>usunięcie ich wszystkich</b>,
 ponieważ w niedługim czasie będziemy dodawać nowsze wydania takie jak 2.12.3
 czy 2.13 beta.
 </note>
-
 </body>
 </section>
 <section>
-<title>Wsparcie urządzenia Wi-Spy</title>
+<title>Wsparcie dla dewelopera Gentoo</title>
 <body>
-
 <p>
-W wyniku ostatniego <uri
-link="http://planet.gentoo.org/developers/brix/2006/01/21/low_cost_2_4ghz_spectrum_analyzer">wpisu
-w pamiętniku internetowym</uri>, Ryan Woodings, dyrektor <uri
-link="http://www.metageek.net/">MetaGeek, LLC</uri>, hojnie wspomógł darmowy
-analizator spektrum Wi-Spy opracowany przez dewelopera Gentoo <mail
-link="brix@gentoo.org">Henrika Brix Andersena</mail>. Urządzenie pomoże przy
-usuwaniu błędów w wielu sterownikach kart sieci bezprzewodowych IEEE 802.11
-znajdujących się w Portage. Wielkie podziękowania dla Ryana za udzieloną pomoc.
+Po opublikowniu ostatniego wpisu w <uri
+link="http://planet.gentoo.org/developers/brix/2006/01/21/low_cost_2_4ghz_spectrum_analyzer">pamiętniku
+internetowym</uri> <mail link="brix@gentoo.org">Henrika Brixa Andersena</mail>,
+dzięki wsparciu Ryana Woodingsa dyrektora <uri
+link="http://www.metageek.net/">MetaGeek, LLC</uri>, otrzymał on urządzenie
+Wi-Spy, porządany przez autora wpisu analizator spektrum. Dzięki temu datkowi,
+debugowanie sterowników dla kart sieci bezprzewodowych IEEE 802.11 znajdujących
+się w drzewie Portage, będzie znacznie prostsze. Za udzieloną pomoc, Ryanowi
+należą się gorące słowa podziękowania.
 </p>
-
 <p>
-Pierwsze wydanie <uri 
-link="http://www.kismetwireless.net/wispy.shtml">narzędzi open-source</uri> dla
-Wi-Spy, dostępne są już w drzewie Portage pod pozycją <uri
+Pierwsze wydanie <uri link="http://www.kismetwireless.net/wispy.shtml">narzędzi
+Open Source</uri> dla urządzenia Wi-Spy, dostępne jest już w drzewie Portage -
+<uri
 link="http://packages.gentoo.org/packages/?category=net-wireless;name=wispy-tools">net-wireless/wispy-tools</uri>.
 </p>
-
 </body>
 </section>
 <section>
-<title>Poppler i KPDF</title>
+<title>Poppler i kpdf</title>
 <body>
-
 <p>
-Użytkownicy śledzący ogłoszenia bezpieczeństwa Gentoo (GLSA) mają
+Użytkownicy śledzący ogłoszenia dotyczące bezpieczeństwa Gentoo (GLSA) mają
 świadomość, że w ciągu ostatniego roku w kodzie <c>xpdf</c> odnaleziono wiele
-błędów związanych z bezpieczeństwem. Aby ułatwić zadanie ich naprawy - tak, aby
-użytkownik musiał jedynie aktualizować sam pakiet - wydana została biblioteka
-poppler. Niestety biblioteka ta nie była używana przez <c>kpdf</c> do
-wyświetlania PDF-ów ponieważ łaty zawarte w kopii <c>xpdf</c> dla KDE nie
-znajdowały się w popplerze. Dzięki deweloperowi Gentoo <mail
+błędów. Aby ułatwić aplikowanie poprawek - tak, aby użytkownik nie musiał
+aktualizować wielu pakietów - stworzona została biblioteka poppler. Niestety nie
+jest ona używana przez <c>kpdf</c>, ponieważ łaty zawarte w kopii <c>xpdf</c>
+dla KDE nie znajdowały się w popplerze. Dzięki deweloperowi Gentoo, <mail
 link="genstef@gentoo.org">Stefanowi Schweizerowi</mail>, który pomógł w
-stworzeniu dużej poprawki dla Popplera, <uri
-link="http://freedesktop.org/wiki/Software_2fpoppler">niemal wszystkie 
-potrzebne elementy do integracji z kdpf</uri> zostały tam zawarte. 
+stworzeniu dużej poprawki „integracyjnej”, która zawiera <uri
+link="http://freedesktop.org/wiki/Software_2fpoppler">niemal wszystkie zmiany w
+poplerze wymagane przez kpdf</uri> można teraz dokonać jego migracji.
 </p>
-
 <p>
-Jednakże kpdf nie używa jeszcze Popplera z powodu zamrożenie zależności w KDE
-3.5 i braku możliwości ich dodania. Kubuntu używa łatkę napisaną przez
+Pomimo stworzenia łatki, nie została ona zaaplikowana w oficjalnej wersji kpdf z
+powodu zamrożenie zależności w KDE 3.5, więc nie można dodać popplera jako
+nowego, wymaganego przy instalacji programu. Kubuntu używa poprawki napisanej przez
 Jonathana Riddella, umożliwiającej współpracę kpdf z popplerem. Gentoo używa
-tej samej łaty, jednak odpowiednio usprawionej przez <mail 
-link="flameeyes@gentoo.org">Diego Pettena</mail>.
+tej samej łaty, zawiera ona jednak kilka usprawnień zaimplementowanych przez <mail
+link="flameeyes@gentoo.org">Diego Pettenò</mail>.
 </p>
-
 <p>
-Informacja ta jest w wiekszości przypadków ważna dla opiekunów pakietów, gdyż w
-znacznym stopniu ułatwia operacje związane z zapewnieniem bezpieczeństwa, o
-tyle tworzy to również kilka komplikacji dla użytkowników. W chwili gdy KPDF
-korzysta z Popplera bezpośrednio, tworzy zależność do kdegraphics i kdpf. Więzy
-popplera już są zależnością dla <c>kpdf</c> oraz dla kdegraphics z flagą
-USE="pdf". Usunięcia powtórzonego kodu oznacza, że KPDF będzie potrzebował
-mniej czasu do zbudowania, jak również będzie zajmował mniej miejsca już po
-kompilacji. Poprzez użycie wsparcia <c>cairo</c> w Popplerze jest on 
-zauważalnie szybszy niż poprzednio.
+Informacja ta jest ważna dla opiekunów pakietów, gdyż opisana zmiana w znacznym
+stopniu ułatwia operacje związane bezpieczeństwem i aktualizacjami. Ma ona też
+wpływ na użytkowników, gdyż w tej chwili kpdf korzysta bezpośrednio z popplera,
+więc zmienione zostały zależności pakietów <c>kpdf</c> i <c>kdegraphics</c>, a
+do tego drugiego dodano także flagę USE="pdf". Usunięcie powtarzające go się kodu
+oznacza, że kompilacja kpdf zajmie także mniej czasu, a także zmiejszy rozmiary
+wynikowego pliku binarnego. Jako, że poppler zawiera wsparcie dla biblioteki
+<c>cairo</c>, dokumenty pdf są teraz otwierane szybciej niż miało to miejsce
+dotychczas.
 </p>
-
 <note>
-xpdf zostało także przeportowane, aby używał popplera. Aktualna wersja ebuilda
-<c>xpdf</c> znajdująca się w Portage, używa wyłącznie popplera do generowania
-widoku.
+Xpdf także został przeportowany, tak by używał popplera i aktualna wersja,
+znajdująca się drzewie Portage, do renderowania plików pdf używa wyłącznie tej
+biblioteki.
 </note>
-
 </body>
 </section>
 </chapter>
@@ -193,8 +186,8 @@ flags</uri></li>
 <p>
 <uri link="http://www.pentoo.ch">Mini-Pentoo</uri> to okrojona wersja <uri
 link="/news/en/gwn/20050425-newsletter.xml#doc_chap5">Pentoo LiveCD</uri>,
-opartej na systemie Gentoo Linux "dystrybucji, przeznaczonej do testów
-penetracyjnych", którą opiekuje się pochodzący z Basel <mail
+opartej na systemie Gentoo Linux „dystrybucji, przeznaczonej do testów
+penetracyjnych”, którą opiekuje się pochodzący z Basel, <mail
 link="grimmlin@pentoo.ch">Michael Zanetta</mail>. Oferuje ona narzędzia do
 przeprowadzania audytów i testów sieci, począwszy od skanowania i odkrywania
 usług, po wykorzystywanie usterek. Zajmuje 186MB, dzięki czemu zmieści się na
@@ -202,20 +195,21 @@ płycie mini-CD lub pamięci USB o pojemności 256MB. Nowa wersja posiada szereg
 usprawnień, w tym nowe jądro w wersji 2.6.14 z obsługą systemu plików unionfs,
 wsparcie dla modułów pakietowych w stylu dystrybucji SlaX, trwałe przechowywanie
 (przydatne przy wtyczkach Nessus), repozytorium ExploitTree projektu
-SecurityForest oraz pliki konfiguracyjne oraz rozbudowana obsługa sieci
+SecurityForest, a takżę pliki konfiguracyjne oraz rozbudowaną obsługa sieci
 bezprzewodowych.
 </p>
-<figure link="/images/gwn/20060206_pentoo.png"
-short="Pentoo"
-caption="'Najseksowniejszy menedżer okien' -- Nowy motyw Enlightenment w
-Pentoo" />
+<figure link="/images/gwn/20060206_pentoo.png" short="Pentoo"
+caption="'Najseksowniejszy menedżer okien' -- Nowy motyw Enlightenment w Pentoo"
+/>
 <note>
-Deweloper Gentoo <mail link="vanquirius@gentoo.org">Marcelo Góes</mail> napisał
-<uri link="http://dev.gentoo.org/~vanquirius/pentoo_review.html">recenzję
-Pentoo</uri>. Warto się z nią zapoznać, jeśli chcielibyśmy dowiedzieć się czegoś
-więcej o testach penetracyjnych. Warto tez zajrzeć do <uri
-link="http://www.pentoo.ch/-Tools-List-.html">pełnej listy narzędzi</uri> w celu
-uzyskania szczegółowych informacji.
+Deweloper Gentoo, <mail link="vanquirius@gentoo.org">Marcelo Góes</mail>,
+napisał <uri
+link="http://dev.gentoo.org/~vanquirius/pentoo_review.html">recenzję
+Pentoo</uri>. Wszystkich zainteresowanych co właściwie oznacza termin „testy
+penetracyjne” gorąco zachęcamy do zapoznania się nią. By uzyskać dokładne i
+szczegółowe informacje warto także przyjrzeć się dokładnie <uri
+link="http://www.pentoo.ch/-Tools-List-.html">pełnej liście narzędzi</uri> jakie
+można znaleźć w Pentoo.
 </note>
 </body>
 </section>
@@ -224,14 +218,14 @@ uzyskania szczegółowych informacji.
 <body>
 <p>
 Członkowie <uri link="http://www.gentoo.gr.jp">GentooJP</uri> przygotowują się
-do następnej konferencji poświęconej technologii Open Source w Tokio: wiosennej
-edycji japońskiej cyklicznej imprezy Open Source, <uri
+do kolejnej konferencji poświęconej technologii Open Source w Tokio: wiosennej
+edycji cyklicznej japońskiej imprezy - <uri
 link="http://www.ospn.jp/osc2006">OSC</uri>. Konferencja odbędzie się w dniach
-17 - 18 marca, tam gdzie zwykle, czyli w szkole <uri
+17 - 18 marca, w tym samym miejscu, czyli w szkole <uri
 link="http://www.jec.ac.jp/sc_intro/sc_access.html">Japan Electronics
-College</uri> w Ogikubo. Wstęp będzie wolny. Jeśli chcielibyście pomóc przy
-stoisku, należy się zgłosić poprzez listę dyskusyjną GentooJP
-(<path>gentoojp-misc@ml.gentoo.gr.jp</path>).
+College</uri> w Ogikubo. Wstęp będzie wolny. Każdego zainteresowanego pomocą w
+organizacji stoiska Gentoo zapraszamy na listę dyskusyjną GentooJP
+(<path>gentoojp-misc@ml.gentoo.gr.jp</path>), gdzie przyjmowane będą zgłoszenia.
 </p>
 </body>
 </section>
@@ -242,18 +236,18 @@ Londynie</title>
 <p>
 Deweloper Gentoo <mail link="lcars@gentoo.org">Andrea Barisani</mail>, którego
 opisaliśmy w <uri
-link="http://www.gentoo.org/news/en/gwn/20060109-newsletter.xml#doc_chap2">numerze
-Tygodnika z 9 stycznia 2006</uri>, będzie jednym z mówców na konferencji
-poświęconej bezpieczeństwu o nazwie <uri
-link="http://eusecwest.com">EUSecWest</uri>, która odbędzie się w Londynie w
-dniach 20 i 21 lutego. W swojej prezentacji, która nosi tytuł <uri
-link="http://www.inversepath.com/news.html">"Lessons in Open Source security:
-the tale of a 0-day incident"</uri>, opisze jak poradzili sobie z usterką
-programu <c>rsync</c> deweloperzy Gentoo i opiekunowie programu (patrz:
-komunikaty <uri link="/security/en/glsa/glsa-200312-01.xml">GLSA 200312-01</uri>
-i <uri link="/security/en/glsa/glsa-200312-03.xml">GLSA 200312-03</uri>).
-Poruszy także temat bezpieczeństwa w środowisku Open Source, używając Hardened
-Gentoo jako jednego z przykładów.
+link="http://www.gentoo.org/news/pl/gwn/20060109-newsletter.xml#doc_chap2">numerze
+Tygodnika z 9 stycznia 2006</uri>, będzie jednym z prelegentów na konferencji
+poświęconej bezpieczeństwu, <uri link="http://eusecwest.com">EUSecWest</uri>,
+która odbędzie się w Londynie w dniach 20 i 21 lutego. W swojej prezentacji,
+która nazywa się <uri link="http://www.inversepath.com/news.html">„Lessons in
+Open Source security: the tale of a 0-day incident”</uri>, opisze problemy
+związane z tworzeniem poprawek dla <c>rsync</c> jakie napotkali deweloperzy
+Gentoo i opiekunowie programu (patrz: komunikaty <uri
+link="/security/en/glsa/glsa-200312-01.xml">GLSA 200312-01</uri> i <uri
+link="/security/en/glsa/glsa-200312-03.xml">GLSA 200312-03</uri>). Poruszy
+także temat bezpieczeństwa w środowisku Open Source, opisze związane z tym
+zagadnieniem narzędzie, w tym Gentoo Hardened.
 </p>
 </body>
 </section>
