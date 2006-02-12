@@ -128,46 +128,48 @@ odnośników dla pojedynczego pliku. Jeśli plik nie zostanie znaleziony w
 Powinna zawierać listę odnośników URL do strony głównej pakietu oraz innych
 źródeł informacji na jego temat.
 .TP
-\fBKEYWORDS\fR = \fI[-~][x86,ppc,sparc,mips,alpha,arm,hppa]\fR Zmienna ta
-powinna zawierać listę architektur, o których wiemy, że ebuild na nich
-zadziała/nie zadziała. Zwykle jeśli nie jesteśmy pewni co do architektury, nie
-dodajemy jej do zmiennej. Jeśli ebuild nie zadziała na danej architekturze,
-należy dodać ją poprzedzoną znakiem \-, na przykład \-ppc. Jeśli planujemy dodać
-ebuild do drzewa Portage, powinniśmy podać ~arch dla tych architektur, dla
-których ebuild NA PEWNO DZIAŁA. (Pakiety, które mają w ten sposób ustawiony
+\fBKEYWORDS\fR = \fI[-~][x86,ppc,sparc,mips,alpha,arm,hppa]\fR 
+Zmienna ta powinna zawierać listę architektur, o których wiemy, że ebuild na
+nich zadziała/nie zadziała. Zwykle jeśli nie jesteśmy pewni co do architektury,
+nie dodajemy jej do zmiennej. Jeśli ebuild nie zadziała na danej architekturze,
+należy dodać ją poprzedzoną znakiem \-, na przykład \-ppc. Jeśli planujemy
+dodać ebuild do drzewa Portage, powinniśmy podać ~arch dla tych architektur,
+dla których ebuild NA PEWNO DZIAŁA. (Pakiety, które mają w ten sposób ustawiony
 KEYWORD można odmaskować, ustawiając zmienną ACCEPT_KEYWORDS="~arch" w wierszu
-poleceń lub w pliku \fBmake.conf\fR(5)). Miarodajną listę architektur znajdziemy
-w pliku /usr/portage/profiles/arch.list.
+poleceń lub w pliku \fBmake.conf\fR(5)). Miarodajną listę architektur
+znajdziemy w pliku /usr/portage/profiles/arch.list.
 .TP
 \fBSLOT\fR
-This sets the SLOT for packages that may need to co\-exist.  By default
-you should set \fBSLOT\fR="0" unless you know what you are doing and need
-to do otherwise.  This value should \fINEVER\fR be left undefined.
+Za pomocą tej zmiennej ustawiamy wartość SLOT dla pakietów, które być może będą
+musiały współistnieć. Domyślnie powinniśmy ustawić \fBSLOT\fR="0", chyba że
+mamy poważne powody, by uczynić inaczej. Zmienna ta \fIZAWSZE\fR powinna zostać
+ustawiona.
 .TP
 \fBLICENSE\fR
-This should be a space delimited list of licenses that the package falls
-under.  This \fB_must_\fR be set to a matching license in
-/usr/portage/licenses/. If the license does not exist in portage yet you
-must add it first.
+W tej zmiennej powinniśmy umieścić rozdzieloną spacjami listę licencji, na
+których wydany jest pakiet. Ustawiane licencje \fB_muszą_\fR odpowiadać tym z
+katalogu /usr/portage/licenses/. Jeśli danej licencji nie ma jeszcze w Portage,
+najpierw należy ją tam dodać.
 .TP
 \fBIUSE\fR
-This should be a list of any and all USE flags that are leveraged within
-your build script.  The only USE flags that should not be listed here are
-arch related flags (see \fBKEYWORDS\fR).
+Zmienna ta powinna zawierać listę wszelkich flag USE, z których korzysta nasz
+skrypt. Możemy tu pominąć jedynie flagi właściwe dla architektury (patrz
+\fBKEYWORDS\fR).
 .TP
 \fBDEPEND\fR
-This should contain a list of all packages that are required for the
-program to compile.
+Zmienna ta powinna zawierać listę wszystkich pakietów, które muszą być już
+zainstalowane, aby nasz pakiet dał się skompilować.
 .RS
 .TP
-.B DEPEND Atoms
-A depend atom is simply a dependency that is used by portage when calculating
-relationships between packages.  Please note that if the atom has not already
-been emerged, then the latest version available is matched.
+.B Atomy DEPEND
+Atom depend to po prostu zależność, której Portage używa przy obliczaniu
+powiązań między pakietami. Należy zauważyć, że jeśli dany atom nie został
+jeszcze zainstalowany, dopasowywana jest ostatnia dostępna wersja.
 .RS
 .TP
-.B Atom Bases
-The base atom is just a full category/packagename.  Hence, these are base atoms:
+.B Pełna postać atomów
+Atom w pełnej postaci FIXME to po prostu kompletna specyfikacja
+kategoria/nazwapakietu. Oto przykładowe atomy w pełnej postaci:
 
 .nf
 .I sys-apps/sed
@@ -175,10 +177,11 @@ The base atom is just a full category/packagename.  Hence, these are base atoms:
 .I net-misc/dhcp
 .fi
 .TP
-.B Atom Versions
-It is nice to be more specific and say that only certain versions of atoms are
-acceptable.  Note that versions must be combined with a prefix (see below).  Hence
-you may add a version number as a postfix to the base:
+.B Wersje atomów
+Czasem możemy potrzebować określić precyzyjnie jakie wersje atomów są nam
+potrzebne. Należy jedynie zwrócić uwagę, że numery wersji muszą być łączone
+przedrostkiem (patrz niżej). Dlatego numery wersji dodajemy jako przyrostek do
+reszty:
 
 .nf
 sys-apps/sed\fI-4.0.5\fR
@@ -186,16 +189,18 @@ sys-libs/zlib\fI-1.1.4-r1\fR
 net-misc/dhcp\fI-3.0_p2\fR
 .fi
 
-Versions are normally made up of two or three numbers separated by periods, such 
-as 1.2 or 4.5.2.  This string may be followed by a character such as 1.2a or 4.5.2z.  
-Note that this letter is \fBnot\fR meant to indicate alpha, beta, etc... status.  
-For that, use the optional suffix; either _alpha, _beta, _pre (pre-release), _rc 
-(release candidate), or _p (patch).  This means for the 3rd pre-release of a package, 
-you would use something like 1.2_pre3.
+Numer wersji zwykle składa się z dwóch lub trzech liczb, oddzielonych kropkami,
+na przykład 1.2 lub 4.5.2. Ten ciąg znaków może być czasem zakończony literą, na
+przykład 1.2a lub 4.5.2z. Należy zwrócić uwagę, że znak ten \fBnie ma\fR
+oznaczać statusu alpha, beta, itd... Do tego służą osobne przyrostki: _alpha,
+_beta, _pre (FIXME pre-release), _rc (FIXME release canditate) lub _p (patch).
+Czyli dla trzeciej wersji FIXME pre-release pakietu napisalibyśmy na przykład
+1.2_pre3. 
 .TP
-.B Atom Prefix Operators [> >= = <= <]
-Sometimes you want to be able to depend on general versions rather than specifying
-exact versions all the time.  Hence we provide standard boolean operators:
+.B Operatory przedrostkowe atomów [> >= = <= <]
+Czasem możemy musieć określić zależność od ogólnych zakresów wersji pakietów,
+zamiast podawać za każdym razem konkretną wersję. Do tego celu służą standardowe
+boolowskie operatory:
 
 .nf
 \fI>\fRmedia-libs/libgd-1.6
@@ -205,7 +210,9 @@ exact versions all the time.  Hence we provide standard boolean operators:
 \fI<\fRmedia-libs/libgd-1.6
 .fi
 .TP
-.B Extended Atom Prefixes [!~] and Postfixes [*]
+.B Rozszerzone przedrosktki [!~] i przyrostki [*] atomów
+
+
 Now to get even fancier, we provide the ability to define blocking packages and
 version range matching.  Also note that these extended prefixes/postfixes may
 be combined in any way with the atom classes defined above.  Here are some common
