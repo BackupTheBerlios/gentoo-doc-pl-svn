@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/proj/pl/desktop/x/x11/porting-modular-x-howto.xml,v 1.2 2006/01/18 14:26:37 rane Exp $ -->
+<!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/proj/pl/desktop/x/x11/porting-modular-x-howto.xml,v 1.3 2006/02/08 01:42:15 rane Exp $ -->
 
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
@@ -137,13 +137,9 @@ pakietów szuka nagłówków libXt, w celu sprawdzenia występowania X w systemi
 <p>
 Sporadycznie skrypt <c>included_headers.sh</c> znajdzie zły nagłówek, ponieważ
 niektóre z nich używają tej samej nazwy, a to powoduje, że skrypt zwróci
-<<<<<<< .mine
 nieprawidłowy pakiet. Zwykle takie pomyłki są oczywiste, tak jak w przypadku
 nagłówków Windowsa, przez które wydaje się, że app-emulation/wine jest
 zależnością.
-=======
-nieprawidłowy pakiet. Zwykle takie pomyłki są oczywiste.
->>>>>>> .r2269
 </p>
 
 <p>
@@ -165,7 +161,7 @@ zainstalowanych, by przeprowadzić skanowanie.
 W niektórych przypadkach, w pewnym sensie, pakiet wymaga serwera X. Jeśli nie
 jest to wymagane, by w czasie instalacji serwer X był obecny w systemie,
 odradzamy umieszczanie go na liście RDEPEND. Psuje to instalacje bez X, gdzie
-program jest uruchamiamiany na innym komputerze, więc nie wymaga istnienia
+program jest uruchamiany na innym komputerze, więc nie wymaga istnienia
 nagłówków ani bibliotek na danej maszynie.
 </p>
 
@@ -227,8 +223,8 @@ modularne zależności, więc mogą one zainstalować wymagane biblioteki.
 <note>
 Dwie oddzielne flagi USE włączą wsparcie dla X, ale jedna nie jest zależna od
 drugiej. W tym przypadku, trzeba będzie powielić sekcję zależności wsparcia dla
-X lub zdefiniować w innym miejcu jako ${X_DEPEND}. Jeśli definiujemy ją w innym 
-miejcu, należy pamiętać by dołączyć również sekcje specyficzne dla każdej z flag
+X lub zdefiniować w innym miejscu jako ${X_DEPEND}. Jeśli definiujemy ją w innym 
+miejscu, należy pamiętać by dołączyć również sekcje specyficzne dla każdej z flag
 USE.
 </note>
 
@@ -250,7 +246,7 @@ najprawdopodobniej będą chcieli przenieść wszystkie swoje ebuildy naraz.
 
 <impo>
 To pozwoli użytkownikom korzystającym z gałęzi eksperymentalnej portage na
-bezproblemową instalację modularnego X, a osobom korzystającyh ze stabilnej
+bezproblemową instalację modularnego X, a osobom korzystających ze stabilnej
 wciąż mieć virtual/x11.
 </impo>
 
@@ -274,7 +270,7 @@ Caleb zadał dobre pytanie: jak radzić sobie z flagami USE w pakietach, które
 mają ogromną ilość opcjonalnych bibliotek X? W wielu przypadkach ma sens
 wymuszanie włączenia lub też niewłączania flag. Można to sobie ułatwić,
 grupując flagi.  Należy upewnić się, że nazwa flagi bierze się od funkcji jaką
-wprowadzają, a nie od nazw biblitek czy też pakietów, z których będą korzystać.
+wprowadzają, a nie od nazw bibliotek czy też pakietów, z których będą korzystać.
 </p>
 
 </body>
