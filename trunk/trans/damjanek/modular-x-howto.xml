@@ -24,7 +24,7 @@ Ten dokument pomaga w migracji na modularne X.Org.
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <license/>
 
-<version>1.1</version>
+<version>1.1.1</version>
 <date>2006-01-02</date>
 
 <chapter>
@@ -484,6 +484,62 @@ Można nas wesprzeć w poprawianiu pakietów instalujących się w
   chcemy, by wariant dotyczył drugiego układu.
   </li>
 </ul>
+
+<pre caption="Odszukiwanie zmian w XKB">
+<comment>Przeszukujemy /var/log/Xorg.0.log w poszukiwaniu tej
+informacji:</comment> 
+<comment>(WW) Couldn't load XKB keymap, falling back to pre-XKB keymap</comment>
+<comment>Jeśli ten błąd się nie pojawia, znaczy to, że XKB działa
+prawidłowo.</comment>
+# <i>grep Xkb /etc/X11/xorg.conf</i>
+	Option "XkbModel"  "logibik"
+	Option "XkbLayout"  "dvorak"
+	Option "XkbOptions" "ctrl:swapcaps"
+<comment>Po pierwsze, należy zobaczyć co zmieniło się w naszym układzie.
+Znajduje się to w katalogu symbols/pc directory.</comment>
+# <i>cd /usr/share/X11/xkb/symbols/</i>
+<comment>Jeśli zainstalowaliśmy xkbdata zamiast xkeyboard-config, szukamy w
+katalogu pc/.</comment>
+# <i>ls *dvorak*</i>
+<comment>Nic się nie pokazało.</comment>
+# <i>ls *us*</i>
+us
+<comment>Następnie szukamy wiariantu xkb_symbols o nazwie dvorak.</comment>
+# <i>grep xkb_symbols.*dvorak us</i>
+xkb_symbols "dvorak" {
+<comment>To oznacza, że w xorg.conf potrzebujemy Option "XkbLayout"
+"us"</comment> 
+<comment> i Option "XkbVariant" "dvorak".</comment>
+<comment>Jeśli próbujemy sprawdzić te ustawienia przy użyciu setxkbmap i wciąż
+otrzymujemy błąd</comment>
+# <i>setxkbmap -model logibik -layout us -variant dvorak -option "ctrl:swapcaps"</i>
+<comment>Może to oznaczać, że model klawiatury również uległ zmianie</comment>
+# <i>cd /usr/share/X11/xkb/rules/</i>
+# <i>grep logibik xorg.lst</i>
+<comment>Jeśli nic się nie pojawia po wydaniu powyższej komendy, oznacza to, że
+dany model został usunięty. Można sprawdzić inne, jemu podobne:</comment>
+# <i>grep logi* xorg.lst</i>
+ logiaccess      Logitech Access Keyboard
+ logicdit        Logitech Cordless Desktop iTouch
+ logicdp         Logitech Cordless Desktop Pro
+ logicdpa        Logitech Cordless Desktop Pro (alternate option)
+ logicdpa2       Logitech Cordless Desktop Pro (alternate option2)
+ logicdo         Logitech Cordless Desktop Optical
+ logicfn         Logitech Cordless Freedom/Desktop Navigator
+ logicdn         Logitech Cordless Desktop Navigator
+ logidak         Logitech Deluxe Access Keyboard
+ logiitc         Logitech iTouch Cordless Keyboard (model Y-RB6)
+ logiik          Logitech Internet Keyboard
+ logiitc         Logitech iTouch Cordless Keyboard (model Y-RB6)
+ logiik          Logitech Internet Keyboard
+ logiink         Logitech Internet Navigator Keyboard
+ logiultrax      Logitech Ultra-X Keyboard
+<comment>Model "logiik" wygląda podobnie, więc sprawdzamy go przy użyciu
+setxkbmap.</comment>
+# <i>setxkbmap -model logiik -layout us -variant dvorak -option "ctrl:swapcaps"</i>
+<comment>Jeśli powyższe zadziałało, zmieniamy wpis XkbModel.</comment>
+<comment>Po zakończeniu, wszystko powinno działać</comment>
+      </pre>
 
 </body>
 </section>
