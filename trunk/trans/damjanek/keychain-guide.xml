@@ -8,6 +8,10 @@
 <author title="Autor">
   <mail link="airuike@gmail.com">Eric Brown</mail>
 </author>
+<author title="Redaktor">
+ <mail link="vanquirius@gentoo.org">Marcelo Góes</mail>
+</author>
+
 <author title="Tłumacz">
   Tomasz Jankowski
 </author>
@@ -21,8 +25,8 @@ keychain. Zawiera również podstawową wiedzę na temat kryptografii.
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <license/>
 
-<version>1.1</version>
-<date>2004-12-02</date>
+<version>1.2</version>
+<date>2006-02-05</date>
 
 <chapter>
 <title>Podstawy</title>
@@ -263,10 +267,54 @@ do każdego klucza określonego w linii komend. Powłoki uruchomione po tej
 będą używać ssh-agent'a, pozwalając ci nawiązywać połączenia bez podawania haseł
 SSH.
 </p>
+</body>
+</section>
+<section>
+<title>Korzystanie z keychain w KDE</title>
+<body>
+
+<p>
+Jeśli używamy KDE, zamiast używać <path>~/.bash_profile</path>, można pozwolić
+KDE zarządzać ssh-agent. W tym celu należy zmodyfikować plik
+<path>/usr/kde/${WERSJA_KDE}/env/agent-startup.sh</path>, który jest
+wykonywany podczas uruchamiania KDE, oraz
+<path>/usr/kde/${WERSJA_KDE}/shutdown/agent-shutdown.sh</path>, który jest
+wykonywany podczas zamykania KDE, gdzie ${WERSJA_KDE} odnosi się do do
+pierwszych dwóch cyfr w wersji KDE. Na przykład, jeżeli korzystamy z KDE 3.5.1,
+tak należałoby zmodyfikować te pliki:
+</p>
+      
+<pre caption="Modyfikacja /usr/kde/3.5/env/agent-startup.sh">
+if [ -x /usr/bin/ssh-agent ]; then
+ eval "$(/usr/bin/ssh-agent -s)"
+fi
+</pre>
+
+<pre caption="Modyfikacja /usr/kde/3.5/shutdown/agent-shutdown.sh">
+if [ -n "${SSH_AGENT_PID}" ]; then
+ eval "$(ssh-agent -k)"
+fi
+</pre>
+
+<p>
+Teraz wystarczy jedynie uruchomić jakiś emulator terminala, taki jak Konsole i
+załadować klucze, które chcielibyśmy używać. Na przykład: 
+</p>
+
+<pre caption="Ładowanie klucza ssh">
+keychain ~/.ssh/id_dsa
+<comment>(Enter your key password)</comment>
+</pre>
+
+<p>
+Klucze zostaną zapamiętane aż do zakończenia sesji KDE lub do momentu, aż
+momentu ręcznego wyłączenia ssh-agent.
+</p>
 
 </body>
 </section>
 </chapter>
+
 <chapter>
 <title>Podsumowujące uwagi</title>
 <section>
