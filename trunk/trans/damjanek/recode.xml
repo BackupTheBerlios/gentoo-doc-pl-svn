@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 
-<guide link="recode.html">
+<guide link="recode.html" lang="pl">
 
 <title>Jak ustawić recode w irssi</title>
 
 <author title="Autor">
-  Damjanek
+  <mail link="damjanek@gmail.com">Damian Szeluga</mail>
 </author>
 
 <abstract>
@@ -26,10 +26,10 @@ Recode umożliwia wybór kodowania dla poszczególnych kanałów.
 <body>
 
 <p>
-By używać recode w irssi potrzebujemy wersji 0.8.10: <uri
+By używać recode w irssi potrzebujemy wersji 0.8.10. <uri
 link="http://www.gentoo.org/doc/pl/handbook/handbook-x86.xml?part=3amp;chap=3">Podręcznik</uri>
-- lektura powyższego powinna w pełni wystarczyć, by zainstalować sobie wersję
-0.8.10 dla osób, które korzystają ze stabilnej gałęzi drzewa Portage.
+powinien w pełni wystarczyć by osoby korzystające ze stabilnej gałęzi drzewa
+Portage zainstalowały sobie wymaganą wersję irssi.  
 </p>
 
 <ul>
@@ -47,11 +47,16 @@ komendach użyjemy UTF-8.
 </li>
 <li>
 Jeśli chcemy, by na konkretny kanał nadawać w innym kodowaniu, niż to
-standardowe, które ustawiliśmy, piszemy /recode add #kanał kodowanie, czyli na
-przykład /recode add #gentoo.pl UTF-8. W celu usunięcia powyższego, użyjemy
-/recode remove #gentoo.pl.
+standardowe, które ustawiliśmy, piszemy <c>/recode add #kanał kodowanie</c>,
+czyli na przykład <c>/recode add #gentoo.pl UTF-8</c>. W celu usunięcia
+powyższego, użyjemy <c>/recode remove #gentoo.pl</c>.
 </li>
 </ul>
+
+<p>
+Więcej informacji na temat recode otrzymamy za pomocą polecenia <c>/help
+recode</c>.
+</p>
 
 </body>
 </section>
