@@ -1,0 +1,102 @@
+.TH "EUSE" "1" "2004-10-17" "Gentoo Linux" "Gentoo Toolkit"
+.SH "NAZWA"
+euse \- Gentoo: edytor flag USE z linii poleceń
+.SH "SKŁADNIA"
+.B euse
+\fI<opcja> [druga opcja] [lista flag USE]\fB
+.SH "OPIS"
+.PP 
+.I euse
+jest używany do ustawiania (włączania i wyłączania) flag USE w pliku
+/etc/make.conf bez konieczności bezpośredniej edycji tego pliku. Jest także
+używany do sprawdzania szczegółowych informacji na temat flag USE takich jak
+opis, status flagi (włączona czy wyłączona) oraz  typ flagi (globalna czy
+lokalna).
+.SH "OPCJE"
+.TP 
+\fB\-E, \-\-enable\fI
+Włącza flagę lub flagi USE w make.conf. Jako parametr przyjmuje jedną lub więcej
+flag USE rozdzielonych spacjami.
+.TP 
+\fB\-D, \-\-disable\fI
+Wyłącza flagę lub flagi USE w make.conf. Umieszcza '\-' przed nazwą flagi USE
+i dołącza ją do ustawień USE w make.conf. Jako parametr przyjmuje jedną lub więcej 
+flag USE oddzielonych spacjami.
+.TP 
+\fB\-P, \-\-prune\fI
+Usuwa flagę lub flagi USE z make.conf. Usuwa wszystkie dodatnie i ujemne odwołania do wskazanej 
+flagi lub flag USE z make.conf.
+.TP 
+\fB\-i, \-\-info\fI
+Wyświetla szczegółowe informacje na temat flagi lub flag USE. Jeśli nie podano argumentów
+zostanie wyświetlona informacja o wszystkich flagach USE. Jeśli zostanie podany jeden lub więcej
+argumentów (rodzielonych spacjami) to tylko dla tych flag zostanie wyświetlona informacja. 
+.sp
+.RS
+Wynik polecenia jest w następującym formacie:
+.br 
+\fB[\- cD ]\fI alpha \- indicates that architecture ...
+.br 
+\fB[\-   ]\fI moznocompose (net\-www/mozilla):
+.br 
+Disable building of mozilla's web page composer 
+.br 
+Wskaźniki w pierwszej kolumnie to:
+.IP is_active
++ gdy flaga jest włączona w portage, \- jeśli jest wyłączona
+.IP is_in_env
+E jeśli flaga jest włączona w środowisku, e gdy jest wyłączona
+w środowisku, puste w przypadku gdy nie dotyczy środowiska
+.IP is_in_make_conf
+C jeśli flaga jest włączona w make.conf, c gdy jest wyłączona 
+w make.conf, puste gdy nie dotyczy make.conf
+.IP is_in_make_defaults
+D gdy flaga jest włączona w make.defaults, d jeśli jest 
+wyłączona w make.defaults, puste gdy nie dotyczy
+make.defaults
+.IP is_in_make_globals
+G gdy flaga jest włączona w make.globals, g jeśli jest
+wyłączona w make.globals, puste gdy nie dotyczy
+make.globals
+.br 
+Następnie pojawia się nazwa flagi do lokalnych flag, nazwy pakietu i opisu 
+(w nowej linii dla lokalnych flag).
+.TP 
+\fB\-a, \-\-active\fI
+Wyświetla wszystkie aktywne flagi USE oraz informacje na ich temat (zobacz 
+opis dla \fB\-\-info\fI).
+.TP 
+\fB\-h, \-\-help\fI
+Pokazuje pomoc wyświetlając wszystkie dostępne flagi oraz krótki opis
+.TP 
+\fB\-v, \-\-version\fI
+Pokazuje informacje o wersji programu
+.SH "PLIKI"
+/etc/make.conf
+.br 
+/etc/make.profile/make.defaults
+.br 
+/etc/make.globals
+.br 
+$PORTDIR/profiles/use.desc
+.br 
+$PORTDIR/profiles/use.local.desc
+.br 
+
+.SH "AUTOR"
+Oryginalna wersja: Arun Bhanu <codebear@gentoo.org>
+.br 
+Aktualizacja po przepisaniu euse od nowa: Marius Mauch <genone@gentoo.org>
+.SH "BŁĘDY"
+euse na razie nie radzi sobie z flagami USE włączonymi lub wyłączonymi przez
+use.mask lub package.use oraz nie do końca rozumie flagę \-*.
+.SH "ZOBACZ TAKŻE"
+.BR ufed(8), 
+.TP 
+Skrypt \fI/usr/bin/euse\fR.
+.SH TŁUMACZENIE
+Kamil Baćkowski <keybi@os.pl>
+.br 
+Polski projekt tłumaczenia manuali Gentoo
+.br 
+http://gentoo.org/~rane/tlumaczenie-manuali.html
