@@ -1,0 +1,67 @@
+--- stary_1.11_pl.xml	2006-01-23 14:15:46.000000000 +0100
++++ nowy_1.13_pl.xml	2006-02-21 23:02:02.000000000 +0100
+@@ -21,8 +21,8 @@
+ <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
+ <license/>
+ 
+-<version>1.6</version>
+-<date>2006-01-14</date>
++<version>1.7</version>
++<date>2006-02-20</date>
+ 
+ <chapter>
+ <title>Cron - podstawy</title>
+@@ -200,8 +200,9 @@
+ 
+ <pre caption="Instalacja crona">
+ # <i>emerge dcron</i>
+-# <i>rc-update add dcron default</i>
+ # <i>/etc/init.d/dcron start</i>
++# <i>rc-update add dcron default</i>
++
+ </pre>
+ 
+ <p>
+@@ -210,8 +211,9 @@
+ 
+ <pre caption="Instalacja anacrona">
+ # <i>emerge anacron</i>
+-# <i>rc-update add anacron default</i>
+ # <i>/etc/init.d/anacron start</i>
++# <i>rc-update add anacron default</i>
++
+ </pre>
+ 
+ </body>
+@@ -264,7 +266,9 @@
+ <note>
+ Nadanie innemu użytkownikowi dostępu do crona nie powoduje, że będzie on mógł
+ uruchamiać zaplanowane zadania jako root. Jeśli chcemy, by użytkownik miał
+-możliwość edycji pliku crontab roota, to należy zapoznać się <c>sudo</c>.
++możliwość edycji pliku crontab roota, to należy zapoznać się <c>sudo</c> (Więcej
++informacji na ten temat w <uri link="/doc/pl/sudo-guide.xml">Sudo i sudoers w
++Gentoo</uri>).
+ </note>
+ 
+ <p>
+@@ -278,6 +282,11 @@
+ # <i>gpasswd -a yarel cron</i>
+ </pre>
+ 
++<note>
++Po dodaniu użytkownika do grupy cron, należy pamiętać o przelogowaniu go w celu
++zastosowania zmian.
++</note>
++
+ <p>
+ Jeśli używamy <b>Dcrona</b>, to jest to wszystko co musimy zrobić, by nadać
+ użytkownikowi prawo do korzystania z crontab. Użytkownicy Dcrona mogą przejść
+@@ -686,7 +695,7 @@
+ <li>
+   <b>Czy jest jakiś plik dead.letter?</b><br/>
+     Zazwyczaj, gdy wystąpi problem, cron wysyła maila. Sprawdzamy pocztę, a
+-    także plik ~/dead.letter
++    także plik <path>~/dead.letter</path>
+ </li>
+ </ul>
+ 
