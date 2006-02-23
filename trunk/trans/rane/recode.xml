@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
+
+<guide link="recode.html" lang="pl">
+
+<title>Jak ustawić recode w irssi</title>
+
+<author title="Autor">
+  <mail link="damjanek@gmail.com">Damian Szeluga</mail>
+</author>
+
+<abstract>
+Recode umożliwia wybór kodowania dla poszczególnych kanałów.
+</abstract>
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
+<license/>
+
+<version>1.0</version>
+<date>2006-02-18</date>
+
+<chapter>
+<title>Ustawianie recode</title>
+<section>
+<body>
+
+<p>
+By używać recode w irssi potrzebujemy wersji 0.8.10. <uri
+link="http://www.gentoo.org/doc/pl/handbook/handbook-x86.xml?part=3amp;chap=3">Podręcznik</uri>
+powinien w pełni wystarczyć by osoby korzystające ze stabilnej gałęzi drzewa
+Portage zainstalowały sobie wymaganą wersję irssi.  
+</p>
+
+<ul>
+<li>
+Odpalamy irssi. Ustawiamy zmienną term_charset tak by odpowiadała kodowaniu
+naszego terminala - w moim przypadku na UTF-8: <c>/set term_charset UTF-8</c>.
+</li>
+<li>
+Założenie jest takie: jeśli pośród kanałów na których siedzimy, więcej jest
+tych, na których używane jest iso-8859-2, <c>recode_out_default_charset</c> i
+<c>recode_fallback</c> ustawiamy na iso-8859-2: <c>/set recode_fallback
+iso-8859-2</c> i <c>/set recode_out_default_charset iso-8859-2</c>.  Jeśli
+przeważa UTF-8, to zamiast iso-8859-2 w powyższych
+komendach użyjemy UTF-8.
+</li>
+<li>
+Jeśli chcemy, by na konkretny kanał nadawać w innym kodowaniu, niż to
+standardowe, które ustawiliśmy, piszemy <c>/recode add #kanał kodowanie</c>,
+czyli na przykład <c>/recode add #gentoo.pl UTF-8</c>. W celu usunięcia
+powyższego, użyjemy <c>/recode remove #gentoo.pl</c>.
+</li>
+<li>
+Jeśli przebywamy na kilku kanałach o tej samej nazwie, ale w różnych sieciach,
+zamiast dodawać kanał przez <c>/recode add #kanał kodowanie</c>, użyjemy
+<c>/recode add sieć/#kanał kodowanie</c>. W naszym przypadku będzie to
+<c>/recode add freenode/#gentoo.pl UTF-8</c>. <note><c>Sieć</c> odnosi się do nazwy
+jaką nadaliśmy danej sieci, a nie jej faktycznej nazwie.</note>
+</li>
+</ul>
+<p>
+Więcej informacji na temat recode otrzymamy za pomocą polecenia <c>/help
+recode</c>.
+</p>
+
+</body>
+</section>
+</chapter>
+</guide>
