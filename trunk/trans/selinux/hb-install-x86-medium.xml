@@ -41,20 +41,21 @@ komputer, aby można było na nim zainstalować Gentoo.
 </subsection>
 </section>
 <section>
-<title>Make your Choice</title>
+<title>Podejmowanie decyzji</title>
 <subsection>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <body>
 
 <p>
-Still interested in trying out Gentoo? Well, then it is now time to
-choose the installation medium you want to use. Yes, you have the
-choice, no, they are not all equal, and yes, the result is always the same: a
-Gentoo base system.
+Jeśli wciąż jesteśmy zainteresowani instalacją Gentoo, przyszedł czas na
+wybranie medium, które wykorzystamy w czasie instalacji. Istnieje pewien wybór -
+poszczególne płyty instalacyjne nie są takie same. Jednak wynik zawsze jest taki
+sam: system podstawowy Gentoo.
 </p>
 
 <p>
-The installation media we will describe are:
+W przypadku instalacji Gentoo SELinux możemy skorzystać z następujących
+nośników:
 </p>
 
 <ul>
@@ -65,240 +66,241 @@ The installation media we will describe are:
 </ul>
 
 <p>
-Every single media has its advantages and disadvantages. We will list
-the pros and cons of every medium so you have all the information to
-make a justified decision. But before we continue, let's explain our
-three-stage installation.
+Każda płyta instalacyjna posiada wady i zalety. Przedstawimy je w dalszej części
+tego rozdziału, jednak najpierw zajmiemy się zagadnieniem plików stage,
+wykorzystywanych podczas instalacji.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>The Three Stages</title>
+<title>Trzy pliki stage</title>
 <body>
 
 <p>
-Gentoo Linux can be installed using one of three <e>stage</e> tarball files.
-The one you choose depends on how much of the system you want to compile
-yourself. The <e>stage1</e> tarball is used when you want to bootstrap and
-build the entire system from scratch. The <e>stage2</e> tarball is used for
-building the entire system from a bootstrapped &quot;semi-compiled&quot; state.
-The <e>stage3</e> tarball already contains a basic Gentoo Linux system that has
-been built for you. As we will explain later, you can also install
-Gentoo without compiling anything (except your kernel and some optional 
-packages). If you want this, you have to use a <e>stage3</e> tarball.
+Gentoo może zostać zainstalowany przy użyciu jednego z trzech tarballi
+<e>stage</e>. To, który z nich wybierzemy, zależy od tego, jak dużą część
+systemu chcemy skompilować samodzielnie. Tarball <e>stage1</e> pozwala na
+wykonanie bootstrapu i zbudowanie całego systemu od podstaw. <e>Stage2</e>
+pozwala na zbudowanie systemu od etapu, w którym jest on już częściowo
+skompilowany. Tarball <e>stage3</e> zawiera skompilowany system podstawowy
+Gentoo. Jak się wkrótce dowiemy, możliwa jest instalacja Gentoo bez instalacji
+jakichkolwiek pakietów (poza jądrem systemu i pewnymi opcjonalnymi
+programami). Jest to możliwe właśnie dzięki <e>stage3</e>.
 </p>
 
 <p>
-Now what stage do you have to choose?
+Który tarball stage powinniśmy wybrać?
 </p>
 
 <p>
-Starting from a <e>stage1</e> allows you to have total control over the
-optimization settings and optional build-time functionality that is
-initially enabled on your system. This makes <e>stage1</e> installs good for
-power users who know what they are doing. It is also a great
-installation method for those who would like to know more about the
-inner workings of Gentoo Linux.
+Etap ten pozwala na posiadanie pełnej kontroli nad optymalizacją systemu. Jest
+najbardziej odpowiedni dla bardziej doświadczonych użytkowników, którzy
+dokładnie wiedzą co jest im potrzebne. Jest również doskonałym sposobem by
+dość dokładnie dowiedzieć się jak działa Gentoo. 
 </p>
 
 <p>
-A <e>stage1</e> installation can only be performed when you have a working
-Internet connection.
+Instalacja przy pomocy <e>stage1</e> jest możliwa tylko, jeśli dysponujemy
+działającym połączeniem internetowym.
 </p>
 
 <table>
 <tr>
   <th>Stage1</th>
-  <th>Pros and Cons</th>
+  <th>Plusy i minusy</th>
+</tr>
+<tr>
+  <th>+</th>
+  <ti>Pozwala na pełną kontrolę nad konfiguracją i optymalizacją systemu.</ti>
+</tr>
+<tr>
+  <th>+</th>
+  
+  <ti>Jest odpowiedni dla doświadczonych użytkowników.</ti>
 </tr>
 <tr>
   <th>+</th>
   <ti>
-    Allows you to have total control over the optimization settings and optional
-    build-time functionality that is initially enabled on your system
+    Pozwala na dokładniejsze poznanie mechanizmów działania Gentoo niż inne
+    etapy.
+    </ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>Instalacja zajmuje dużo czasu.</ti>
+</tr>
+<tr>
+  <th>-</th>
+  <ti>
+    Jeśli nie zmienimy żadnych ustawień prawdopodobnie instalacja z tego etapu
+    będzie stratą czasu.
   </ti>
 </tr>
 <tr>
-  <th>+</th>
-  <ti>Suitable for powerusers that know what they are doing</ti>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Allows you to learn more about the inner workings of Gentoo</ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>Takes a long time to finish the installation</ti>
-</tr>
-<tr>
   <th>-</th>
   <ti>
-    If you don't intend to tweak the settings, it is probably a waste of time
-  </ti>
-</tr>
-<tr>
-  <th>-</th>
-  <ti>
-    Not suitable for networkless installations
+    Wymaga działającego połączenia z Internetem.
   </ti>
 </tr>
 </table>
 
 <p>
-<e>Stage2</e> installs allow you to skip the bootstrap process and doing this
-is fine if you are happy with the optimization settings that we chose
-for your particular <e>stage2</e> tarball.
+Instalacja z etapu drugiego pozwala na ominięcie czasochłonnego procesu
+bootstrapowania. Zwykle zaczynają z niego użytkownicy, którym odpowiadają
+ustawienia optymalizacji, wybrane przez deweloporów Gentoo do budowy plików tego
+etapu.
 </p>
 
 <p>
-A <e>stage2</e> installation can only be performed when you have a working
-Internet connection.
+Instalacja przy pomocy <e>stage1</e> jest możliwa tylko, jeśli dysponujemy
+działającym połączeniem internetowym.
 </p>
 
 <table>
 <tr>
   <th>Stage2</th>
-  <th>Pros and Cons</th>
+  <th>Plusy i minusy</th>
 </tr>
 <tr>
   <th>+</th>
-  <ti>You don't need to bootstrap</ti>
+  <ti>Nie trzeba przeprowadzać bootstrapu</ti>
 </tr>
 <tr>
   <th>+</th>
-  <ti>Faster than starting with stage1</ti>
+  <ti>Instalacja zajmuje mniej czasu niż w przypadku etapu pierwszego</ti>
 </tr>
 <tr>
   <th>+</th>
-  <ti>You can still tweak your settings</ti>
+  <ti>Wciąż można zoptymalizować dużo ustawień</ti>
 </tr>
 <tr>
   <th>-</th>
-  <ti>You cannot tweak as much as with a stage1</ti>
+  <ti>Nie można poprawić tak wielu ustawień jak w przypadku etapu
+  pierwszego</ti>
 </tr>
 <tr>
   <th>-</th>
-  <ti>It's not the fastest way to install Gentoo</ti>
+  <ti>Nie jest najszybszą z dostępnych metod instalacji Gentoo</ti>
 </tr>
 <tr>
   <th>-</th>
-  <ti>You have to accept the optimizations we chose for the bootstrap</ti>
+  <ti>Trzeba zaakceptować domyślne ustawienia optymalizacji dla podstawowego
+  systemu.</ti>
 </tr>
 <tr>
   <th>-</th>
-  <ti>
-    Not suitable for networkless installations
-  </ti>
+  <ti>Do instalacji z tego etapu potrzebne jest połączenie z Internetem.</ti>
 </tr>
 </table>
 
 <p>
-Choosing to go with a <e>stage3</e> allows for the fastest install of Gentoo
-Linux, but also means that your base system will have the optimization
-settings that we chose for you (which to be honest, are good settings
-and were carefully chosen to enhance performance while maintaining
-stability). <e>stage3</e> is also required if you want to install Gentoo using
-prebuilt packages or without a network connection.
+Wybór etapu trzeciego pozwala na błyskawiczne zainstalowanie Gentoo, ale wiąże
+się również z koniecznością zaakceptowania ustawień optymalizacji dobranych
+przez deweloperów (są to dobrze wybrane ustawienia, poprawiające wydajność, ale
+nie zmniejszające stabilności systemu). Jeśli chcemy skorzystać z
+prekompilowanych pakietów lub nie posiadamy działającego połączenia
+internetowego, instalacja z tego etapu jest jedyną możliwością, jaką mamy.
 </p>
 
 <table>
 <tr>
   <th>Stage3</th>
-  <th>Pros and Cons</th>
+  <th>Plusy i minusy</th>
 </tr>
 <tr>
   <th>+</th>
-  <ti>Fastest way to get a Gentoo base system</ti>
+  <ti>Najszybsza metoda instalacji Gentoo.</ti>
 </tr>
 <tr>
   <th>+</th>
-  <ti>Suitable for networkless installations</ti>
+  <ti>Daje możliwość instalacja bez połączenia z internetem</ti>
 </tr>
 <tr>
   <th>-</th>
-  <ti>You cannot tweak the base system - it's built already</ti>
+  <ti>Nie można poprawiać systemu podstawowego, bo jest on prekompilowany</ti>
 </tr>
 <tr>
   <th>-</th>
-  <ti>You cannot brag about having used stage1 or stage2</ti>
+  <ti>Nie można pochwalić się instalcją Gentoo przy użyciu stage1 lub
+  stage2</ti>
 </tr>
 </table>
 
 <p>
-You might be interested to know that, if you decide to use different 
-optimization settings after having installed Gentoo, you will be able to 
-recompile your entire system with the new optimization settings.
+Warto zauważyć, że po zainstalowaniu Gentoo użytkownicy mają możliwość wybrania
+swoich ustawień optymalizacji i przebudowania z nimi części lub nawet całego
+systemu.
 </p>
 
 <p>
-Now take a look at the available installation media.
-</p>
-
-</body>
-</subsection>
-<subsection>
-<title>Gentoo LiveCDs</title>
-<body>
-
-<p>
-The <e>Gentoo LiveCDs</e> are bootable CDs which contain a
-self-sustained Gentoo environment. They allow you to boot Linux from the CD.
-During the boot process your hardware is detected and the appropriate drivers
-are loaded. They are maintained by Gentoo developers.
-</p>
-
-<p>
-All LiveCDs allow you to boot, setup networking, initialize your
-partitions and start installing Gentoo from the Internet. However, some
-LiveCDs also contain all necessary source code so you are able to install 
-Gentoo without a working network configuration.
-</p>
-
-<p>
-Now what do these LiveCDs contain?
+Przyjrzyjmy się teraz dostępnym płytom instalacyjnym.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Gentoo's Minimal LiveCD</title>
+<title>Płyty instalacyjne Gentoo</title>
 <body>
 
 <p>
-This is a small, no-nonsense, bootable CD which sole purpose is to boot the 
-system, prepare the networking and continue with the Gentoo installation. It 
-does not contain any stages (or, in some cases, a single stage1 file), 
-source code or precompiled packages. <!-- For example the x86 variant of this 
+Dzięki płytom instalacyjnym można uruchomić podstawowe środowisko służące do
+instalacji systemu Gentoo na dysk. W czasie uruchamiania systemu z
+płyty zostanie wykryty sprzęt dostępny w komputerze, a Gentoo automatycznie
+załaduje odpowiednie dla niego sterowniki. Płyty te są tworzone i rozwijane
+przez deweloperów Gentoo.
+</p>
+
+<p>
+Wszystkie płyty instalacyjne pozwalają na uruchomienie środowiska
+instalacyjnego, skonfigurowanie ustawień sieciowych, utworzenie i aktywowanie
+partycji oraz rozpoczęcie instalowania Gentoo z użyciem połączenia
+internetowego. Niektóre płyty instalacyjne zawierają dodatkowe kody źródłowe i
+pakiety binarne, pozwalające na instalację systemu bez dostępu do internetu.
+</p>
+
+<p>
+Co dokładnie zawierają płyty instalacyjne?
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Minimalna płyta instalacyjna Gentoo</title>
+<body>
+
+<p>
+Jest to mała bootowalna płyta, zawierająca jedynie niezbęde narzędzia. Jej
+jedynym przeznaczeniem jest uruchomienie systemu instalacyjnego, skonfigurowanie
+połączenia siciowego i umożliwienie dalszej instalacji Gentoo z wykorzystaniem
+internetu. Nie znajdziemy tu żdanych plików stage (w pewnych przypadkach płyta
+zawiera pojedynczy plik stage1), kodów źródłowych, czy też prekompilowanych
+pakietów. <!-- For example the x86 variant of this 
 LiveCD can be found in the <path>universal</path> subdirectory and is called
 <c>selinux-x86-2004.2.iso</c>. -->
 </p>
 
 <table>
 <tr>
-  <th>SELinux Minimal LiveCD</th>
-  <th>Pros and Cons</th>
+  <th>Minimalna płyta instalacyjna SELinux</th>
+  <th>Plusy i minusy</th>
 </tr>
 <tr>
   <th>+</th>
-  <ti>Smallest download</ti>
-</tr>
-<tr>
-  <th>+</th>
-  <ti>Suitable for a complete architecture</ti>
+  <ti>Mała ilość danych do pobrania</ti>
 </tr>
 <tr>
   <th>+</th>
   <ti>
-    You can do a stage1, stage2 or stage3 by getting the stage tarball off the
-    net
+    Możemy wykonać instalację z etapu stage1, stage2 lub stage3, pobierając
+    odpowiednie tarballe z internetu.
   </ti>
 </tr>
 <tr>
   <th>-</th>
   <ti>
-    Contains no stages, no portage snapshot, no GRP packages and therefore not 
-    suitable for networkless installation
+    Nie zawiera plików stage, snapshotów portage i prekompilowanych pakietów,
+    więc nie nadaje się do instalacji bez dostępu do sieci.
   </ti>
 </tr>
 </table>
@@ -368,347 +370,356 @@ installation.
 -->
 </section>
 <section>
-<title>Download, Burn and Boot a Gentoo LiveCD</title>
+<title>Pobieranie, nagrywanie i uruchamianie płyt instalacyjnych Gentoo</title>
 <subsection>
-<title>Downloading and Burning the LiveCDs</title>
+<title>Pobieranie i nagrywanie płyt</title>
 <body>
 
 <p>
-You have chosen to use a Gentoo LiveCD. We'll first start by downloading and 
-burning the chosen LiveCD. We previously discussed the several available 
-LiveCDs, but where can you find them? 
+Skoro zdecydowaliśmy się na wykorzystanie płyt instalacyjnych Gentoo, musimy
+pobrać ich obrazy i nagrać je. Omówiliśmy już dostępne płyty instalacyjne, teraz
+dowiemy się, gdzie możemy je znaleźć.
 </p>
 
 <p>
-You can download any of the LiveCDs (and, if you want, also a Packages CD) from
-one of our <uri link="/main/en/mirrors.xml">mirrors</uri>. The LiveCDs
-are located in the <path>experimental/x86/hardened/livecd</path> directory.
+Płyty instalacyjne (i dodatkowe płyty z pakietami binarnymi) można pobrać z <uri
+link="/main/en/mirrors.xml">serwerów lustrzanych</uri>. Płyty przeznaczone do
+instalacji Gentoo SELinux znajdują się w katalogu
+<path>experimental/x86/hardened/livecd</path>.
 </p>
 
 <impo>
-You must use a SELinux LiveCD for installing.
+Aby zainstalować Gentoo SELinux, konieczne jest wykorzystanie wyżej wskazanych
+płyt instalacyjnych.
 </impo>
 
 <p>
-Inside that directory you'll find so-called ISO-files. Those are full CD images
-which you can write on a CD-R.
-</p>
-<p>
-In case you wonder if your downloaded file is corrupted or not, you can
-check its MD5 checksum and compare it with the MD5 checksum we provide (such as
-<path>livecd-x86-selinux.iso.md5</path>). You can check the MD5 checksum
-with the <c>md5sum</c> tool under Linux/Unix or <uri
-link="http://www.etree.org/md5com.html">md5sum</uri> for Windows.
+We wskazanych katalogu znajdują się pliki iso. Są to pełne obrazy płyt, które
+można nagrać na płycie CD-R.
 </p>
 
 <p>
-To burn the downloaded ISO(s), you have to select raw-burning. How you
-do this is highly program-dependent. We will discuss <c>cdrecord</c> and
-<c>K3B</c> here; more information can be found in our <uri
-link="/doc/en/faq.xml#isoburning">Gentoo FAQ</uri>.
+Aby sprawdzić, czy pobrane przez nas pliki nie zawierają błędów, powiniśmy
+porównać ich sumy kontrolne MD5 z tymi, które dostarczane są na serwerach
+lustrzanych razem razem z obrazami płyt
+(np. <path>install-x86-minimal-2004.3.iso.md5</path>). Do sprawdzenia sumy MD5 w
+systemach GNU/Linux i Unix, możemy wykorzystać program <c>md5sum</c>, natomiast
+w systemie Window aplikację <uri
+link="http://www.md5summer.org">md5summer</uri>.
+</p>
+
+<p>
+Pobrane obrazy należy nagrać w trybie RAW. Sposób uaktywnienia tego trybu,
+zależy od używanej aplikacji. Poniżej przyjrzymy się jak tego dokonać w
+programach <c>cdrecord</c> i <c>Kf3B</c>. Więcej informacji o nagrywaniu obrazów
+na płyty można uzyskać czytając <uri
+link="/doc/pl/faq.xml#isoburning">Gentoo FAQ</uri>.
 </p>
 
 <ul>
   <li>
-    With cdrecord, you simply type <c>cdrecord dev=/dev/hdc</c> (replace
-    <path>/dev/hdc</path> with your CD-RW drive's device path) followed
-    by the path to the ISO file :)
+    W <c>cdrecord</c> wystarczy wpisać <c>cdrecord dev=/dev/hdc</c> (zmieniamy
+    <path>/dev/hdc</path> na ściężkę do naszego urządzenia CD-RW) i nazwę pliku
+    ISO, który chcemy wypalić.
   </li>
   <li>
-    With K3B, select <c>Tools</c> &gt; <c>CD</c> &gt; <c>Burn Image</c>. Then
-    you can locate your ISO file within the 'Image to Burn' area. Finally click
-    <c>Start</c>.
+    W K3B wybieramy kolejno <c>Tools</c> &gt; <c>CD</c> &gt; <c>Burn Image</c>.
+    Następnie wskazujemy plik ISO w oknie 'Image to Burn'. Wreszcie wciskamy
+    <c>Start</c>, aby wypalić obraz.
   </li>
 </ul>
 
 </body>
 </subsection>
 <subsection>
-<title>Booting the LiveCD(s)</title>
+<title>Uruchamianie systemu instalacyjnego</title>
 <body>
 
 <impo>
-Read this whole subsection before continuing, as you will not always have the 
-time to read before acting.
+Przed rozpoczęciem jakichkolwiek czynności należy przeczytać ten paragraf do
+końca, ponieważ dostęp do niego może okazać się niemożliwy bez wykonania w
+środowisku instalacyjnym opisanych tu działań.
 </impo>
 
 <p>
-Once you have burned your installation CDs, it is time to boot them.
-Remove all CDs from your CD drives, reboot your system and enter the BIOS. 
-This is usually done by hitting DEL, F1 or ESC, depending on your BIOS. Inside 
-the BIOS, change the boot order so that the CD-ROM is tried before the hard 
-disk. This is often found under "CMOS Setup". If you don't do this, your system 
-will just reboot from the hard disk, ignoring the CD-ROM.
+Po nagraniu płyt nadszedł czas na uruchomienie systemu instalacyjnego. Aby tego
+dokonać zrestartujemy komputer i wejdziemy do ustawień BIOS-u. Zazwyczaj służą
+do tego klawisze Del, F1 lub ESC, w zależności od jego producenta. Następnie
+zmienimy kolejność uruchamiania tak, aby napęd CD-ROM znalazł się przed twardym
+dyskiem. Przeważnie opcja ta kryje się pod etykietą "CMOS Setup". Jeśli tego nie
+zrobimy, system uruchomi się z twardego dysku zamiast z płyty.
 </p>
 
 <p>
-Now place the installation CD in the CD-ROM drive (duh) and reboot. You
-should see a fancy boot screen with the Gentoo Linux logo on it. At this
-screen, you can hit Enter to begin the boot process with the default
-boot options, or boot the LiveCD with custom boot options by specifying a 
-kernel followed by boot options and then hitting Enter. 
+Kolejnym krokiem będzie umieszczenie płyty instalacyjnej w napędzie i ponownie
+uruchom komputer. Powiniśmy ujrzeć ładny ekran startowy z logo Gentoo
+Linux. Możemy po prostu wcisnąć Enter aby rozpocząć proces uruchamiania z
+domyślnymi opcjami lub zmienić je, wybierając jądro i dodając odpowiednie
+parametry.
 </p>
 
 <p>
-Specifying a kernel? Yes, we provide several kernels on our LiveCDs. The
-default one is <c>gentoo</c>. Other kernels are <c>smp</c>, which activates 
-support for multi-cpu systems and the <c>-nofb</c> variants which disable
-framebuffer. 
+Mamy możliwość wyboru jądra? Tak. Na płycie instalacyjnej znajduje się kilka
+kerneli. Domyśnym jest <c>gentoo</c>. Pozostałe możliwości to jądro <c>smp</c>,
+które obsługuje systemy wieloprocesorowe i warianty powyższych kerneli z sufiksem
+<c>-nofb</c>, które są pozbawione obsługi framebuffera.
 </p>
 
 <p>
-It is recommended that you select the <c>gentoo</c> or <c>gentoo-nofb</c>
-kernels if you want to install Gentoo Linux with a 2.4 kernel or <c>smp</c> or
-<c>smp-nofb</c> if you want to install Gentoo Linux with a 2.6 kernel. Otherwise
-you might run into compatibility issues.
+Zaleca się wybór jądra <c>gentoo</c> lub <c>gentoo-nofb</c>, jeśli chcemy
+zainstalować Gentoo z jądrem serii 2.4 oraz <c>smp</c> lub <c>smp-nofb</c> dla
+instalacji systemu z kernelem 2.6. W innym przypadku mogą wystąpić problemu
+związane z kompatybilnością.
 </p>
 
 <p>
-Below you'll find a short overview on the available kernels:
+Poniższa tabela krótko opisuje jądra dostępne na płycie instalacyjnej:
 </p>
 
 <table>
 <tr>
-  <th>Kernel</th>
-  <th>Description</th>
+  <th>Jądro</th>
+  <th>Opis</th>
 </tr>
 <tr>
   <ti>permissive</ti>
-  <ti>SELinux in permissive mode (default)</ti>
+  <ti>SELinux w trybie pobłażliwym (domyślne jądro)</ti>
 </tr>
 <tr>
   <ti>enforcing</ti>
-  <ti>SELinux in enforcing mode</ti></tr>
+  <ti>SELinux w trybie egzekutywnym</ti>
+</tr>
 <tr>
   <ti>seoff</ti>
-  <ti>SELinux disabled</ti></tr>
+  <ti>Jądro z wyłączoną obsługą SELinux</ti></tr>
 <tr>
   <ti>permissive-nofb</ti>
-  <ti>SELinux in permissive mode, disabled framebuffer</ti></tr>
+  <ti>SELinux w trybie pobłażliwym, bez obsługi framebuffera</ti></tr>
 <tr>
   <ti>enforcing-nofb</ti>
-  <ti>SELinux in enforcing mode, disabled framebuffer</ti></tr>
+  <ti>SELinux w trybie egzekutywnym, bez obsługi framebuffera</ti></tr>
 <tr>
   <ti>seoff-nofb</ti>
-  <ti>SELinux disabled, disabled framebuffer</ti></tr>
+  <ti>Jądro z wyłączoną obsługą SELinux, bez obsługi framebuffera</ti></tr>
 </table>
 
 <p>
-You can also provide kernel options. They represent optional settings
-you can (de)activate at will. The following list is the same one you receive
-when you press F2 at the bootscreen.
+Możemy również dodać parametry startowe dla jądra. Kontrolują one opcjonalne
+ustawienia. Poniższa tabela przedstawia listę dostępnych opcji. Te same
+informacje uzyskamy wciskając przycisk F2 na ekranie wyboru jądra.
 </p>
 
-<pre caption="Options available to pass to your kernel of choice">
-- agpgart       loads agpgart (use if you have graphic problems,lockups)
-- doscsi        scan for scsi devices (breaks some ethernet cards)
-- nodetect      causes hwsetup/kudzu and hotplug not to run
-- dofirewire    modprobes firewire modules in initrd (for firewire cdroms,etc)
-- nousb         disables usb module load from initrd, disables hotplug
-- nodhcp        dhcp does not automatically start if nic detected
-- doataraid     loads ide raid modules from initrd
-- dopcmcia      starts pcmcia service
-- noapm         disables apm module load
-- noraid        disables loading of evms modules
-- nohotplug     disables loading hotplug service
-- ide=nodma     Force disabling of dma for malfunctioning ide devices
-- docache       Cache the entire runtime portion of cd in ram, allows you
-                to umount /mnt/cdrom to mount another cdrom.
-- dokeymap      enable keymap selection for non-us keyboard layouts
-- noapic        disable apic (try if having hardware problems ,nics,scsi,etc)
-- hdx=stroke    (smp/smp-nofb kernel only) Allows you to partition the whole
-                harddrive even if your BIOS can't handle large harddrive
+<pre caption="Opcje z jakimi można uruchomić jądro z płyty instalacyjnej">
+- agpgart       ładuje agpgart (używane w przypadku problemów z grafiką, zwłaszcza zawieszania się komputera)
+- doscsi        skanuje w poszukiwaniu urządzeń scsi (może nie działać prawidłowo z niektórymi kartami ethernet)
+- nodetect      uniemożliwia uruchomienie hwsetup/kudzu i hotplug
+- dofirewire    ładuje moduły do obsługi firewire w initrd (dla napędów cdrom korzystających z firewire itp.)
+- nousb         wyłącza ładowanie modułu usb z initrd, wyłącza też hotplug
+- nodhcp        dhcp nie wystartuje automatycznie jeśli zostanie wykryta karta sieciowa
+- doataraid     ładuje moduły do obsługi ide raid w initrd
+- dopcmcia      uruchamia obsługę pcmcia
+- noapm         wyłącza ładowanie modułu apm
+- noraid        wyłącza łądowanie modułów evms
+- nohotplug     wyłącza uruchamianie hotplug
+- ide=nodma     wymusza wyłączenie DMA na psujących się napędach IDE
+- docache       Zapamiętuje cały proces uruchamiania płyty CD w pamięci RAM, dzięki czemu możliwe jest odmontowanie /mnt/cdrom w czasie instalacji
+- dokeymap      umożliwia wybór klawiatury innej niż us
+- noapic        wyłącza apic (warto wypróbować, jeśli mamy problemy ze sprzętem nics, scsi itp.)
+- hdx=stroke    pozwala na partycjonowanie całego dysku nawet wedy, gdy nasz BIOS nie obsługuje dużych dysków
 </pre>
 
 <p>
-Now boot your CD, select a kernel (if you are not happy with the default
-<c>permissive</c> kernel) and boot options. As an example, we show you how
-to boot the <c>permissive</c> kernel, with <c>dopcmcia</c> as kernel
-parameters:
+Posiadając te informacje będziemy mogli uruchomić komputer, wybrać jądro (jeśli
+nie odpowiada nam domyślny kernel <c>permissive</c>) i dodać opcje
+startowe. Poniższy przykład pokazuje wybór jądra <c>permissive</c> z opcją
+uruchamiania <c>dopcmcia</c>:
 </p>
 
-<pre caption="Booting a LiveCD">
+<pre caption="Uruchamianie LiveCD">
 boot: <i>permissive dopcmcia</i>
 </pre>
 
 <p>
-You will then be greeted with another boot screen and progress bar. Once
-the boot process completes, you will be automatically logged in to the
-&quot;Live&quot; Gentoo Linux as &quot;root&quot;, the super user. You should 
-have a root (&quot;#&quot;) prompt on the current console and can also switch 
-to other consoles by pressing Alt-F2, Alt-F3 and Alt-F4. Get back to the one 
-you started on by pressing Alt-F1.
+Następnie zobaczymy kolejny ekran uruchamiania z paskiem postępu. Gdy proces
+uruchamiania zakończy się, zostaniemy automatycznie zalogowani do systemu
+instalacyjnego jako super użytkownik <c>root</c>. Powinniśmy widzieć znak
+zachęty roota (<c>#</c>) na obecnej konsoli. Możemy przenieść się na inne
+konsole wykorzystując kombinacje klawiszy Alt-F2, Alt-F3 i Alt-F4. Aby powrócić na
+konsolę, od której zaczeliśmy, używamy kombinacji Alt-F1.
 </p>
 
 <p>
-If you are installing Gentoo on a system with a non-US keyboard, make sure you
-boot the LiveCD with the <c>dokeymap</c> boot option.
+Jeśli instalujemy Gentoo na komputerze z klawiaturą o układzie innym niż
+<c>us</c>, pamiętajmy o przekazaniu do jądra parametru startowego
+<c>dokeymap</c>.
 </p>
 
 <p>
-Now continue with <uri link="#hardware">Extra Hardware Configuration</uri>.
+Kontunuujemy instalację zgodnie z paragrafem <uri link="#hardware">Konfiguracja
+dodatkowego sprzętu</uri>.
 </p>
 
 </body>
 </subsection>
 <subsection id="hardware">
-<title>Extra Hardware Configuration</title>
+<title>Konfiguracja dodatkowego sprzętu</title>
 <body>
 
 <p>
-When the Live CD boots, it tries to detect all your hardware devices and
-loads the appropriate kernel modules to support your hardware. In the
-vast majority of cases, it does a very good job. However, in some cases (the
-SPARC LiveCDs don't even do autodetection), it may not auto-load the kernel 
-modules you need. If the PCI auto-detection missed some of your system's 
-hardware, you will have to load the appropriate kernel modules manually. 
+W czasie uruchamiania z płyty instalacyjnej system spróbuje wykryć sprzęt i
+załadować odpowiednie sterowniki. Zazwyczaj czyni to prawidłowo, ale czasami
+mogą zdarzyć się problemy (LiveCD dla architektury SPARC nawet nie wykonuje
+autodetekcji sprzętu) i nie wszystkie potrzebne moduły zostaną załadowane. Jeśli
+zawiedzie autodetekcja PCI, konieczne będzie załadowanie potrzebnych modułów
+ręcznie.
 </p>
 
 <p>
-In the next example we try to load the <c>8139too</c> module (support for 
-certain kinds of network interfaces):
+W poniższym przykładzie spróbujemy załadować moduł <c>8139too</c> (obsługa
+wielu różnych urządzeń sieciowych):
 </p>
 
-<pre caption="Loading kernel modules">
+<pre caption="Ładowanie modułu jądra">
 # <i>modprobe 8139too</i>
 </pre>
 
 </body>
 </subsection>
 <subsection>
-<title>Optional: Tweaking Hard Disk Performance</title>
+<title>Opcjonalnie: Poprawianie wydajności twardego dysku</title>
 <body>
 
 <p>
-If you are an advanced user, you might want to tweak the IDE hard disk
-performance using <c>hdparm</c>. With the <c>-tT</c> options you can
-test the performance of your disk (execute it several times to get a
-more precise impression):
+Jeśli posiadamy pewne doświadczenie być może będziemy chcieli zwiększyć
+wydajnośc dysku IDE za pomocą programu <c>hdparm</c>. Aktualną wydajność dysku
+można sprawdzić za pomocą parametrów <c>-tT</c> (wykonanie kilku testów
+zwiększa precyzję pomiaru):
 </p>
 
-<pre caption="Testing disk performance">
+<pre caption="Testowanie wydajności dysku">
 # <i>hdparm -tT /dev/hda</i>
 </pre>
 
 <p>
-To tweak, you can use any of the following examples (or experiment
-yourself) which use <path>/dev/hda</path> as disk (substitute with your
-disk):
+Aby poprawić wydajność można wykorzystać któryś z poniższych przykładów (lub
+poeksperymentować samodzielnie). Oczywiście musimy zastąpić /dev/hda ścieżką do
+naszego dysku.
 </p>
 
-<pre caption="Tweaking hard disk performance">
-<comment>Activate DMA:</comment>                                       # <i>hdparm -d 1 /dev/hda</i>
-<comment>Activate DMA + Safe Performance-enhancing Options:</comment>  # <i>hdparm -d 1 -A 1 -m 16 -u 1 -a 64 /dev/hda</i>
+<pre caption="Poprawianie wydajności dysku">
+<comment>Aktywowanie DMA:</comment>  # <i>hdparm -d 1 /dev/hda</i>
+<comment>Aktywowanie DMA oraz zestawu bezpiecznych opcji poprawiających wydajność:</comment>  # <i>hdparm -d 1 -A 1 -m 16 -u 1 -a 64 /dev/hda</i>
 </pre>
 
 </body>
 </subsection>
 <subsection id="useraccounts">
-<title>Optional: User Accounts</title>
+<title>Opcjonalnie: Konta użytkowników</title>
 <body>
 
 <p>
-If you plan on giving other people access to your installation
-environment or you want to chat using <c>irssi</c> without root privileges (for
-security reasons), you need to create the necessary user accounts and change 
-the root password.
+Jeśli planujemy umożliwienie innym osobom dostępu do środowiska instalacyjnego
+lub zamierzamy korzystać z <c>irssi</c> uruchomionego bez przywilejów roota (ze
+względu na bezpieczeństwo), musimy stworzyć dodatkowe konta i zmienić hasło
+roota.
 </p>
 
 <p>
-To change the root password, use the <c>passwd</c> utility:
+Hasło użytkownika roota zmieniamy poleceniem <c>passwd</c>:
 </p>
 
-<pre caption="Changing the root password">
+<pre caption="Zmiana hasła roota">
 # <i>passwd</i>
-New password: <comment>(Enter your new password)</comment>
-Re-enter password: <comment>(Re-enter your password)</comment>
+New password: <comment>(Podajemy nowe hasło)</comment>
+Re-enter password: <comment>(Potwierdzamy nowe hasło)</comment>
 </pre>
 
 <p>
-To create a user account, we first enter their credentials, followed by
-its password. We use <c>useradd</c> and <c>passwd</c> for these tasks.
-In the next example, we create a user called &quot;john&quot;.
+Aby stworzyć konto użytkownika musimy najpierw podać jego parametry, a następnie
+ustawić hasło. Skorzystamy przy tym z poleceń <c>useradd</c> oraz
+<c>passwd</c>. W przykładzie stworzymy użytkownika o nazwie &quot;stawrul&quot;.
 </p>
 
-<pre caption="Creating a user account">
-# <i>useradd john</i>
-# <i>passwd john</i>
-New password: <comment>(Enter john's password)</comment>
-Re-enter password: <comment>(Re-enter john's password)</comment>
+<pre caption="Tworzenie konta użytkownika">
+# <i>useradd stawrul</i>
+# <i>passwd stawrul</i>
+New password: <comment>(Podajemy hasło dla użytkownika stawrul)</comment>
+Re-enter password: <comment>(Potwierdzamy hasło)</comment>
 </pre>
 
 <p>
-You can change your user id from root to the newly created user by using
-<c>su</c>:
+Aby przełączyć się z konta roota na konto utworzonego użytkownika korzystamy
+z polecenia <c>su</c>:
 </p>
 
-<pre caption="Changing user id">
-# <i>su john -</i>
+<pre caption="Przełączanie użytkownika">
+# <i>su stawrul -</i>
 </pre>
 
 </body>
 </subsection>
 <subsection>
-<title>Optional: Viewing Documentation while Installing</title>
+<title>Opcjonalnie: Dostęp do dokumentacji podczas instalowania Gentoo</title>
 <body>
 
 <p>
-If you want to view the Gentoo Handbook (either from-CD or online) during the
-installation, make sure you have created a user account (see <uri
-link="#useraccounts">Optional: User Accounts</uri>). Then press <c>Alt-F2</c> to
-go to a new terminal and log in.
+Jeśli chcemy mieć dostęp do dokumentacji Gentoo - dostępnej na płycie
+instalacyjnej lub w internecie - podczas instalacji, powinniśmy utworzyć konto
+zwykłego użytkownika (zgodnie z paragrafem <uri
+link="#useraccounts">Opcjonalnie: Konta użytkowników</uri>). Następnie
+korzystamy z kombinacji <c>Alt-F2</c> aby przejść na inną konsolę i przełączamy się
+na nowe konto.
 </p>
 
 <p>
-If you want to view the documentation on the CD you can immediately run
-<c>links2</c> to read it:
+Dokumntację dostępną na płycie instalacyjnej możemy przeglądać przy pomocy
+przeglądarki <c>links2</c>:
 </p>
 
-<pre caption="Viewing the on-CD documentation">
+<pre caption="Przeglądanie dokumentacji na płycie instalacyjnej">
 # <i>links2 /mnt/cdrom/docs/html/index.html</i>
 </pre>
 
 <p>
-However, it is preferred that you use the online Gentoo Handbook as it will be
-more recent than the one provided on the CD. You can view it using <c>links2</c>
-as well, but only after having completed the <e>Configuring your Network</e>
-chapter (otherwise you won't be able to go on the Internet to view the
-document):
+Najnowszą wersję dokumentacji znajdziemy na stronach internetowych Gentoo. Do
+jej przeglądania możemy wykorzystać program <c>links2</c>, jednak potrzebujemy
+do tego skonfigurowanego połączenia sieciowego, czym zajmiemy się w następnym
+rozdziale.
 </p>
 
-<pre caption="Viewing the Online Documentation">
+<pre caption="Przeglądanie dokumentacji internetowej">
 # <i>links2 http://www.gentoo.org/doc/en/handbook/handbook-x86.xml</i>
 </pre>
 
 <p>
-You can go back to your original terminal by pressing <c>Alt-F1</c>.
+Na pierwszy terminal powracamy przy pomocy kombinacji klawiszy <c>Alt-F1</c>.
 </p>
 
 </body>
 </subsection>
 <subsection>
-<title>Optional: Starting the SSH Daemon</title>
+<title>Opcjonalnie: Uruchamianie demona SSH</title>
 <body>
 
 <p>
-If you want to allow other users to access your computer during the
-Gentoo installation (perhaps because those users are going to help you
-install Gentoo, or even do it for you), you need to create a user
-account for them and perhaps even provide them with your root password 
-(<e>only</e> do that <e>if</e> you <b>fully trust</b> that user).
+Aby umożliwić innym osobom dostęp do naszego komputera podczas instalacji (by
+mogły nam pomóc w konfigurowaniu Gentoo lub nawet przeprowadzić cały proces za
+nas) musimy dodać dla nich odpowiednie konta użytkowników lub nawet podać im
+hasło roota (nie należy tego robić, jeśli nie jest to osoba, której ufa się
+<e>całkowicie</e>).
 </p>
 
 <p>
-To fire up the SSH daemon, execute the following command:
+Demona SSH uruchomimy następującym poleceniem:
 </p>
 
-<pre caption="Starting the SSH daemon">
+<pre caption="Uruchamianie demona SSH">
 # <i>/etc/init.d/sshd start</i>
 </pre>
 
 <p>
-To be able to use sshd, you first need to setup your networking. Continue with
-the chapter on <uri link="?part=1&amp;chap=3">Configuring your Network</uri>.
+Aby korzystać ssh, musimy skonfigurować połączenie sieciowe. Zrobimy to w
+kolejnym rozdziale: <uri link="?part=1&amp;chap=3">Konfiguracja sieci</uri>.
 </p>
 
 </body>
