@@ -32,64 +32,77 @@
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>FOSDEM to open gates on Saturday</title>
+<title>Rozpoczyna się FOSDEM</title>
 <body>
 <p>
-Europe's finest and grandest open-source developer conference, FOSDEM,
-will be held this coming weekend (25 and 26 February) in Brussels.
-Gentoo has a booth in the exhibition area with various architectures on
-display on both Saturday and Sunday. For the second year in a row, Gentoo 
-will underline its role in development with its own "devroom", featuring an 
-entire day of presentations by Gentoo developers, most of them open to the 
-public, except for an internal Gentoo dev meeting around lunch time. The 
-Gentoo Devroom will be held on Sunday, 26 February, and <uri 
-link="http://fosdem.org/2006/index/dev_room_gentoo/schedule">the 
-schedule</uri> -- subject to change on short notice, but reasonably 
-stable as of today -- spans from 9:00 to 16:30 hours.
+W nadchodzący weekend (25-26 luty) odbędzie się jedna z najważniejszych imprez
+Open Source w Europie, a mianowicie konferencja FOSDEM w Brukseli. Gentoo
+będzie miało swoje stoisko w części wystawowej, na którym będą prezentowane
+różne architektury przez cały czas trwania konferencji. Również i w tym roku
+deweloperzy Gentoo wyraźnie zaznaczą swoją obecność w ramach odbywających się
+przez cały dzień prezentacji. Większość z nich będzie dostępna dla wszystkich
+odwiedzających, jedynie wewnętrzne spotkanie deweloperów odbędzie się za
+zamkniętymi drzwiami. Prezentacje Gentoo prowadzone będą w niedziele, 26 lutego.
+Zgodnie z <uri
+link="http://fosdem.org/2006/index/dev_room_gentoo/schedule">planem</uri> będą
+trwały one od godziny 9:00 do 16:30.
 </p>
 <p>
-The European Gentoo devs are particularly happy about three overseas visitors, 
-release engineering lead and x86 release coordinator <mail 
-link="wolf31o2@gentoo.org">Chris Gianelloni</mail> and AMD64 developer <mail 
-link="kingtaco@gentoo.org">Mike Doty</mail> from the US, and CJK maintainer <mail 
-link="usata@gentoo.org">Mamoru Komachi</mail> from Japan will join their European 
-colleagues in the dev room.
+Europejscy deweloperzy Gentoo są bardzo szczęśliwi z powodu obecności na
+konferencji trzech gości zza oceanu. Koordynatora wydań oraz koordynatora wydań
+architektury x86 <mail link="wolf31o2@gentoo.org">Chrisa Gianelloniego</mail>,
+dewelopera architektury AMD64 <mail link="kingtaco@gentoo.org">Mike'a
+Doty</mail> ze Stanów Zjednoczonych oraz opiekuna CJK <mail
+link="usata@gentoo.org">Mamoru Komachiego</mail> z Japonii. Wezmą oni udział w
+spotkaniach deweloperów Gentoo i pomogą w organizacji stoiska.
 </p>
 <p>
-A social event for the Gentoo developers in Brussels is scheduled for Saturday 
-night, if you would like to participate in the dinner, please send a message to 
-organizer <mail link="patrick@gentoo.org">Patrick Lauer</mail>. </p>
+Spotkanie integracyjne dla wszystkich deweloperów Gentoo uczestniczących w
+konferencji w Brukseli zaplanowane jest na sobotni wieczór. Jeżeli chcesz
+uczestniczyć w tym wydarzeniu, prosimy o wysłanie wiadomości do organizatora -
+<mail link="patrick@gentoo.org">Patricka Lauere</mail>.
+</p>
 </body>
 </section>
 <section>
-<title>Request for comments: Qmail to move on</title>
+<title>Prośba o komentarze: zmiany w Qmail</title>
 <body>
 <p>
-The Qmail team is investigating ongoing maintenance of <c>qmail</c> in the
-Portage tree, and moving towards <c>netqmail</c>. They are considering changing their
-patching policy to move towards having a single large combined patch
-which would be the result of merging all the existing patches used.</p>
-
-<p>In attempting to undertake this, they are also interested in which of <c>qmail</c>'s
-functionality is unused and which ones are missing.
+Zespół opiekujący się <c>qmail</c> w drzewie Portage próbuje podsumować wysiłki
+związane utrzymaniem pakietu, planowany jest także ruch w stronę
+<c>netqmail</c>. Rozważana jest zmiana polityki dotyczącej poprawek, tak aby
+dalsze prace były skierowane na stworzenie jednej dużej, która będzie zbiorem
+wszystkich dotychczasowych efektów pracy.
+</p>
+<p>
+Ponieważ zespół pragnie podjąć się tego zadania, zastanawia się również nad
+możliwościami <c>gmail</c>, które są nieużyteczne oraz takie, które w ogóle
+nie są zaimplementowane.
 </p>
 <ul>
-<li>Do you use something other than <c>qmail</c> to handle the SMTP frontend?
-<c>Qsmtp</c>, <c>qpsmtp</c>, <c>mailfront</c>? Additional scripts from <path>qmail-spp</path>?
-</li>
-<li>Are there any users of <path>qmail-mysql</path> at all? The last bug dates from late
-2003. If there is no demand for the package, we wish to drop it from the
-tree.
-</li>
-<li>Any users experienced with maintaining and modifying <path>qmail-ldap</path>? Please
-contact them, since they need more <path>qmail-ldap</path> experience as the original 
-developer handling it has moved on.
-</li>
+  <li>
+    Czy używasz innego programu niż <c>gmail</c> jako nakładki na SMTP?
+    <c>Qsmtp</c>, <c>qpsmtp</c>, <c>mailfront</c>? Może jakieś dodatkowe skrypty
+    z <path>qmail-spp</path>?
+  </li>
+  <li>
+    Czy są jeszcze użytkownicy <path>qmail-mysql</path>? Ostatnie raporty o
+    błędach pochodzą z 2003 roku. Jeżeli nie będzie żadnych sprzeciwów, pakiet
+    ten zostanie usunięty z drzewa.
+  </li>
+  <li>
+    Czy są użytkownicy, którzy mają doświadczenie w obsłudze
+    <path>qmail-ldap</path>? Prosimy o kontakt, ponieważ potrzebujemy pomocy
+    takich osób w pracach przy <path>qmail-ldap</path>.
+  </li>
 </ul>
-<note>Please contact them at <mail link="qmail-bugs@gentoo.org">qmail-bugs@gentoo.org</mail>, 
-they would love to hear from you.</note>
+
+<note>
+Wszelkie komentarze i pomoc prosimy kierować na adres <mail
+link="qmail-bugs@gentoo.org">qmail-bugs@gentoo.org</mail>.
+</note>
 </body>
 </section>
 </chapter>
