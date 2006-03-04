@@ -4,12 +4,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.0 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2005.1/hb-install-about.xml,v 1.2 2005/08/08 13:24:46 swift Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.0/hb-install-about.xml,v 1.2 2006/02/27 00:37:17 fox2mike Exp $ -->
 
 <sections>
 
-<version>5.0</version>
-<date>2005-08-08</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Introduction</title>
@@ -19,28 +19,27 @@
 
 <p>
 First of all, <e>welcome</e> to Gentoo. You are about to enter the world
-of choices and performance. Gentoo is all about choices. When
-installing Gentoo, this is made clear to you several times -- you can
-choose how much you want to compile yourself, how to install Gentoo,
-what system logger you want, etc.
+of customization and performance. When installing Gentoo, this is made clear to
+you several times -- you can choose how much you want to compile yourself, how
+to install Gentoo, what system logger you want, etc.
 </p>
 
 <p>
-Gentoo is a fast, modern metadistribution with a clean and flexible
+Gentoo is a fast, modern meta-distribution with a clean and flexible
 design. Gentoo is built around free software and doesn't hide from its
 users what is beneath the hood. Portage, the package maintenance system
 which Gentoo uses, is written in Python, meaning you can easily view and
 modify the source code. Gentoo's packaging system uses source code
 (although support for precompiled packages is included too) and
-configuring Gentoo happens through regular textfiles. In other words,
+configuring Gentoo happens through regular text files. In other words,
 openness everywhere.
 </p>
 
 <p>
-It is very important that you understand that <e>choices</e> are what
-makes Gentoo run. We try not to force you onto anything you don't like.
-If you feel like we do, please <uri
-link="http://bugs.gentoo.org">bugreport</uri> it.
+It is very important that you understand that <e>empowerment</e> is what makes
+Gentoo run. We try not to force anything on our users and try our best to
+empower you to make the choices you wish. If you feel a change should be made,
+please file a <uri link="http://bugs.gentoo.org">bug report</uri> about it.
 </p>
 
 </body>
@@ -126,11 +125,15 @@ rescue floppy, etc.
 </p>
 
 <p>
-This document covers the installation using the Universal Installation CD, a 
+This document covers the installation using a Gentoo Linux Installation CD, a 
 bootable CD that contains everything you need to get Gentoo Linux up and 
-running. You can optionally use one of our Package CDs as well to install a 
-complete system in a matter of minutes after having installed the Gentoo base 
-system.
+running. There are two types of Installation CDs, the InstallCD and the
+Installer LiveCD. The InstallCD is a minimal environment which contains only
+those packages necessary for installing Gentoo Linux. The LiveCD is a complete
+Gentoo Linux environment and can be used for multiple tasks, one of which is
+installing Gentoo Linux. The LiveCD is not available on all architectures at
+this time. If your architecture does not have a LiveCD, then this document will
+refer to the Universal InstallCD for you.
 </p>
 
 <p>
@@ -162,8 +165,8 @@ has such a document available.
 If you find a problem in the installation (or in the installation
 documentation), please check the errata from our <uri
 link="/proj/en/releng/">Gentoo Release Engineering Project</uri>, 
-visit our <uri link="http://bugs.gentoo.org">bugtracking
-system</uri> and check if the bug is known. If not, please create a bugreport 
+visit our <uri link="http://bugs.gentoo.org">bug tracking
+system</uri> and check if the bug is known. If not, please create a bug report 
 for it so we can take care of it. Do not be afraid of the developers who are 
 assigned to (your) bugs -- they generally don't eat people.
 </p>
@@ -212,7 +215,7 @@ prebuilt packages users (that means you!) can install during the installation
 of Gentoo to speed up the installation process. The GRP consists of all
 packages required to have a fully functional Gentoo installation. They are not
 just the ones you need to have a base installation up to speed in no time, but
-all lengthier builds (such as KDE, xorg-x11, GNOME, OpenOffice, Mozilla, ...)
+all lengthier builds (such as xorg-x11, GNOME, OpenOffice, Mozilla, ...)
 are available as GRP packages too.
 </p>
 
@@ -263,22 +266,18 @@ At present we provide GRP packages for the following architectures:
 
 <ul>
   <li>
-    The <b>x86</b> architecture (x86, athlon-xp, pentium3, pentium4)
-    Note: The x86 packages (packages-x86-2005.1.iso) are available on 
-    our mirrors, while pentium3, pentium4 and athlon-xp are only available 
-    via bittorrent.
+    The <b>amd64</b> architecture (amd64)
   </li>
   <li>
-    The <b>amd64</b> architecture (amd64)
+    The <b>ppc</b> architecture (ppc32, ppc64)
   </li>
   <li>
     The <b>sparc</b> architecture (sparc64)
   </li>
   <li>
-    The <b>ppc</b> architecture (G3, G4, G5)
-  </li>
-  <li>
-    The <b>alpha</b> architecture
+    The <b>x86</b> architecture (athlon, athlon-xp, athlon-mp, pentium-pro,
+    pentium2, pentium3, pentium4 and pentium-m) Note: The packages are for i686
+    and are available on the Installer LiveCD.
   </li>
 </ul>
 
@@ -289,7 +288,8 @@ able to opt for a GRP installation.
 
 <p>
 Now that this introduction is over, let's continue with <uri
-link="?part=1&amp;chap=2">Booting the Universal Installation CD</uri>.
+link="?part=1&amp;chap=2">Booting the Universal InstallCD/Installer
+LiveCD</uri>.
 </p>
 
 </body>
