@@ -6,8 +6,8 @@
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <sections>
 
-<version>5.5</version>
-<date>2006-01-06</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Strefa czasowa</title>
@@ -153,11 +153,19 @@ General setup ---&gt;
 </pre>
  
 <p>
-Trzeba również wybrać konkretny typ procesora.
+Trzeba również wybrać konkretny typ procesora. Opiekunii jądra architektury
+x86_64 zalecają, aby użytkownicy włączali opcje MCE, tak aby moglibyć
+powiadamiani o problemach związanych ze sprzętem. Na tej architekturze w
+przeciwieństwie do innych, błędy te nie są wyświetlane przez <c>dmesg</c>, a
+przez <c>/dev/mcelog</c>. Takie rozwiązanie wymaga zainstalowania pakietu
+<c>app-admin/mcelog</c>.
 </p>
 
 <pre caption="Selecting processor type and features">
+<commet>(Wybieramy opcję odpowiednią dla naszego procesora)</comment>
    Processor type and features  --->
+     [] Intel MCE Features
+     [] AMD MCE Features
      Processor family (AMD-Opteron/Athlon64)  --->
        ( ) AMD-Opteron/Athlon64
        ( ) Intel EM64T
@@ -232,6 +240,17 @@ Device Drivers ---&gt;
 USB Support ---&gt;
   &lt;*&gt;   USB Human Interface Device (full HID) support
   [*] HID input layer support
+</pre>
+
+<p>
+Jeżeli chcemy uruchomić system ze wsparciem multilib, które jest domyślnie
+włączone, należy upewnić się, że eumlacja środowiska 32 bitowego jest aktywna:
+</p>
+
+<pre caption="Uruchamianie emulacji 32 bitowego środowiska">
+Executable file formats / Emulations ---&gt;
+  [*] IA32 Emulation
+  [*]   IA32 a.out support
 </pre>
 
 <p>
