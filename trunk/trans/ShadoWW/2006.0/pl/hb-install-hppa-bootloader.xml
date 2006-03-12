@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>5.1</version>
-<date>2006-01-19</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Instalowanie PALO</title>
@@ -22,15 +22,15 @@ konfiguracja:
 </p>
 
 <pre caption = "Przykład /etc/palo.conf">
---commandline=2/kernel-2.6.12.2-pa2 root=/dev/sda4
+--commandline=2/kernel-2.6.15.1-pa4 root=/dev/sda4
 --recoverykernel=/vmlinux.old
 --init-partitioned=/dev/sda
 </pre>
 
 <p>
 Pierwsza linia wskazuje PALO miejsce, gdzie znajduje się jądro oraz parametry
-których używasz podczas startu.  Opcja <c>2/kernel-2.6.12.2-pa2</c> mówi, że
-jądro o nazwie <c>/kernel-2.6.12.2-pa2</c> znajduje się na drugiej partycji.
+których używasz podczas startu.  Opcja <c>2/kernel-2.6.15.1-pa4</c> mówi, że
+jądro o nazwie <c>/kernel-2.6.15.1-pa4</c> znajduje się na drugiej partycji.
 Ścieżka do jądra jest względna w zależności od partycji, a nie od głównego
 systemu plików.
 </p>
