@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>5.1</version>
-<date>2005-08-08</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Czy potrzebujemy dostępu do sieci?</title>
@@ -19,8 +19,8 @@
 
 <p>
 Generalnie nie jest potrzebny dostęp do internetu, jeśli instalujemy Gentoo przy
-użyciu uniwersalnej płyty instalacyjnej. Istnieją jednak sytuacje, w który
-dostęp do sieci może być niezbędny:
+użyciu uniwersalnej płyty instalacyjnej lub LiveCD. Istnieją jednak sytuacje, w
+który dostęp do sieci może być niezbędny:
 </p>
 
 <ul>
@@ -28,11 +28,13 @@ dostęp do sieci może być niezbędny:
     Pliki stage3 dostarczone na płycie nie odpowiadają naszej architekturze i
     konieczne jest pobranie poprawnego pliku.
   </li>
+    Plik stage 3 generowany przez LiveCD nie odpowiada naszej architekturze i
+    koniecznie jest pobranie poprawnego pliku.
   <li>
     Musimy zainstalować specyficzny program do łączenia się z internetem, który
-    nie jest dostępny na uniwersalnej płycie instalacyjnej, a znajduje się na
-    płycie minimalnej (przykładowo można połączyć się z siecią przy użyciu tej
-    płyty, jednak nie ma na niej potrzebnych źródeł).
+    nie jest dostępny na uniwersalnej płycie instalacyjnej lub na LiveCD, a
+    posiada wsparcie na naszej płycie (przykładowo można połączyć się z siecią
+    przy użyciu tej płyty, jednak nie ma na niej potrzebnych źródeł).
   </li>
   <li>
     Potrzebujemy dodatkowego wsparcia w czasie instalacji systemu (z użyciem
@@ -47,11 +49,19 @@ dostęp do sieci może być niezbędny:
 <body>
 
 <p>
-Sprawdźmy czy na płycie znajduje się odpowiedni dla naszej architektury plik
-stage3. Wszystkie pliki stage znajdują się w katalogu
-<path>/mnt/cdrom/stages</path>. Jeśli żaden plik nie odpowiada naszemu
-sprzętowi, możemy użyć innego przeznaczonego dla architektury kompatybilnej z
-naszą.
+W przypadku gdy używamy uniwersalnej płyty instalacyjnej sprawdźmy czy na
+płycie znajduje się odpowiedni dla naszej architektury plik stage3. Wszystkie
+pliki stage znajdują się w katalogu <path>/mnt/cdrom/stages</path>. Jeśli żaden
+plik nie odpowiada naszemu sprzętowi, możemy użyć innego przeznaczonego dla
+architektury kompatybilnej z naszą.
+</p>
+
+<p>
+Plik stage 3 generowany przez instalator znajdujący się na LiveCD optymalizowany
+jest dla komputerów i686 lub lepszy. Posiada on również wsparcie dla NPTL. Plik
+stage 3 budowany przez instalator znajdujący się na LiveCD, przeznaczonych dla
+architektury amd64, posiada generalne wsparcie tej architektury oraz podobnie
+jak w poprzednim przypadku posiada wsparcie dla NPTL.
 </p>
 
 <p>
