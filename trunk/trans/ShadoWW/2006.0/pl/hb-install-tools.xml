@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>5.2</version>
-<date>2005-11-21</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Program logujący</title>
@@ -200,6 +200,21 @@ zależności (<c>rp-pppoe</c> posiada narzędzia graficzne, aby z nich korzysta�
 możesz przekompilować <c>rp-pppoe</c> po instacji serwera xorg-x11 lub
 zainstalować go teraz, jednak jego kompilacja zajmie dużo czasu).
 </p>
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Narzędzia RAID dla komputerów IBM</titl>
+<body>
+
+<p>
+Jeżeli używamy SCSI RAID na systemie bazującym na POWER5, powinniśmy rozwarzyć
+instalację pakietu <c>iprutils</c>, który pozwoli nam pracować z macierzami
+RAID, pobierać status dysków w macierzy oraz dostarczy wielu innych funkcji.
+</p>
+
+<pre caption="Instalacja iprutils">
+# <i>emerge iprutils</i>
+</pre>
 
 <p>
 Teraz jesteśmy już gotowi do przejścia do <uri

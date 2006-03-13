@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>5.8</version>
-<date>2005-12-20</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Instalowanie tarballa stage</title>
@@ -82,13 +82,13 @@ Na początku przechodzimy do punktu montowania systemu plików Gentoo
 
 <p>
 W zależności od medium instalacyjnego mamy do dyspozycji kilka narzędzi, za
-pomocą których możemy pobrać plik stage. Jeżeli mamy program <c>links2</c>
+pomocą których możemy pobrać plik stage. Jeżeli mamy program <c>links</c>
 możemy wejść bezpośrednio na <uri link="/main/en/mirrors.xml">listę serwerów
 lustrzanych Gentoo</uri> i wybrać serwer, który znajduje się najbliżej.
 </p>
 
 <p>
-Jeżeli nie mamy programu <c>links2</c>, musimy skorzystać z przeglądarki
+Jeżeli nie mamy programu <c>links</c>, musimy skorzystać z przeglądarki
 <c>lynx</c> do tego celu. Aby używać serwera proxy musimy również
 wyeksportować zmienne <c>http_proxy</c> i <c>ftp_proxy</c>:
 </p>
@@ -100,24 +100,23 @@ wyeksportować zmienne <c>http_proxy</c> i <c>ftp_proxy</c>:
 
 <p>
 W dalszej części zakładamy, że do swojej dyspozycji mamy przeglądarkę 
-<c>links2</c>.
+<c>links</c>.
 </p>
 
 <p>
 Przechodzimy do <path>releases/</path>, a następnie do katalogu odpowiedniej
-architektury (np. <path>x86/</path>) oraz wersji Gentoo (<path>2005.1/</path>
-lub <path>2005.1-r1/</path> jeśli jest dostępna) i na koniec do 
-<path>stages/</path>. Znajdują się tam pliki stage dla wybranej architektury 
-(czasem mogą być umieszczone w podkatalogach dla różnych podarchitektur). 
-Wybieramy jeden i naciskamy <c>D</c>, aby go ściągnąć. Kiedy pobieranie 
-dobiegnie końca wciskamy <c>Q</c>, aby wyjść z przeglądarki.
+architektury (np. <path>x86/</path>) oraz wersji Gentoo (<path>2006.0/</path>)
+i na koniec do <path>stages/</path>. Znajdują się tam pliki stage dla wybranej
+architektury (czasem mogą być umieszczone w podkatalogach dla różnych
+podarchitektur). Wybieramy jeden i naciskamy <c>D</c>, aby go ściągnąć. Kiedy
+pobieranie dobiegnie końca wciskamy <c>Q</c>, aby wyjść z przeglądarki.
 </p>
 
-<pre caption="Przeglądanie listy serwerów lustrzanych za pomocą links2">
-# <i>links2 http://www.gentoo.org/main/en/mirrors.xml</i>
+<pre caption="Przeglądanie listy serwerów lustrzanych za pomocą links">
+# <i>links http://www.gentoo.org/main/en/mirrors.xml</i>
 
-<comment>(Jeżeli potrzebne jest proxy w links2:)</comment>
-# <i>links2 -http-proxy serwer.proxy.com:8080 http://www.gentoo.org/main/en/mirrors.xml</i>
+<comment>(Jeżeli potrzebne jest proxy w links:)</comment>
+# <i>links -http-proxy serwer.proxy.com:8080 http://www.gentoo.org/main/en/mirrors.xml</i>
 </pre>
 
 <p>
@@ -132,8 +131,8 @@ aby sprawdzić poprawność tarballa stage dla architektury x86:
 </p>
 
 <pre caption="Sprawdzanie integralności tarballa stage">
-# <i>md5sum -c stage1-x86-2005.1-r1.tar.bz2.md5</i>
-stage1-x86-2005.1-r1.tar.bz2: OK
+# <i>md5sum -c stage1-x86-2006.0.tar.bz2.md5</i>
+stage1-x86-2006.0.tar.bz2: OK
 </pre>
 
 </body>
@@ -147,7 +146,7 @@ Wypakowujemy pobrany plik stage przy pomocy <c>tar</c>:
 </p>
 
 <pre caption="Wypakowanie stage">
-# <i>tar xvjpf stage3-*.tar.bz2</i>
+# <i>tar xvjpf /mnt/cdrom/stages/stage3-&lt;subarch&gt;-2006.0.tar.bz2</i>
 </pre>
 
 <p>
@@ -213,12 +212,12 @@ Następnie wypakowujemy wybrany tarball. Użyjemy do tego celu <c>tar</c>.
 Przełączniki (<c>-xvjpf</c>) muszą być takie same! Należy pamiętać, że
 argument <c>v</c> jest opcjonalny i nie jest obsługiwany przez pewne wersje
 programu <c>tar</c>. W kolejnym przykładzie wykorzystujemy plik
-<path>stage3-&lt;podarchitektura&gt;-2005.1-r1.tar.bz2</path>. Oczywiście jego
+<path>stage3-&lt;podarchitektura&gt;-2006.0.tar.bz2</path>. Oczywiście jego
 nazwę należy odpowiednio zmodyfikować.
 </p>
 
 <pre caption="Wypakowanie tarballa stage">
-# <i>tar -xvjpf /mnt/cdrom/stages/stage3-&lt;subarch&gt;-2005.1-r1.tar.bz2</i>
+# <i>tar -xvjpf /mnt/cdrom/stages/stage3-&lt;subarch&gt;-2006.0.tar.bz2</i>
 </pre>
 
 <p>
@@ -257,7 +256,7 @@ Przechodzimy do miejsca gdzie zamontowaliśmy system plików (zwykle
 </pre>
 
 <p>
-Uruchamiamy <c>links2</c> (lub <c>lynx</c>) i przechodzimy do <uri
+Uruchamiamy <c>links</c> (lub <c>lynx</c>) i przechodzimy do <uri
 link="/main/en/mirrors.xml">listy mirrorów Gentoo</uri>. Wybieramy jeden z
 serwerów, najlepiej jak najbliższy naszej lokalizacji i przechodzimy do katalogu
 <path>snapshots/</path>. Ściągamy najnowszy snapshot Portage poprzez jego
@@ -265,7 +264,7 @@ wybranie i naciśnięcie klawisza <c>D</c>.
 </p>
 
 <pre caption="Przeglądanie listy mirrorów Gentoo">
-# <i>links2 http://www.gentoo.org/main/en/mirrors.xml</i>
+# <i>links http://www.gentoo.org/main/en/mirrors.xml</i>
 </pre>
 
 <p>
