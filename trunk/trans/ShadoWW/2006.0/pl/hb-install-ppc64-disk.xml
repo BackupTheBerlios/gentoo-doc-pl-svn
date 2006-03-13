@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>5.1</version>
-<date>2005-08-25</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Wprowadzenie do urządzeń blokowych</title>
@@ -241,10 +241,19 @@ systemów plików</uri>.
 
 <note>
 Aby skorzystać z tablicy RAID podczas instalacji Gentoo na sprzęcie opartym na
-POWER-5 należy uruchomić <c>iprutils</c> i sformatować dyski do formatu
+POWER-5 należy uruchomić <c>iprconfig</c> i sformatować dyski do formatu
 "Advanced Function" i utworzyć na nich tablice dyskowe. Należy rozważyć
 zemergowanie tego pakietu po zakończeniu instalacji.
 </note>
+
+<p>
+Jeżeli posiadamy urządzenie SCSI bazujące na ipr, powinniśmy uruchomić
+potrzebne narzędzia już teraz.
+</p>
+
+<pre catpion="Uruchamianie narzędzi ipr">
+# <i>/etc/init.d/iprinit start</i>
+</pre>
 
 <p>
 Zademonstrujemy teraz tworzenie przykładowego schematu podziału dysku takiego
@@ -556,7 +565,10 @@ temat.
 <body>
 
 <note>
-Na archtiekturze PPC64 jest dostępnych kilkanaście systemów plików.
+Na archtiekturze PPC64 jest dostępnych kilkanaście systemów plików. Wsparcie
+dla ext2, ext3 i ReiserFS wkompilowane jest w jądra znadujące się na płycie
+instalacyjnej. Wsparcie dla JFS i XFS możliwe jest do uzyskania przy pomocy
+modułów.
 </note>
 
 <p>

@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>5.1</version>
-<date>2005-08-21</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Strefa czasowa</title>
@@ -115,26 +115,14 @@ poleceniu <c>lsmod</c>, które pokaże listę modułów jakie załadował system
 instalacyjnej.
 </p>
 
-<p>
-Kiedy już zbierzemy wszystkie informacje przechodzimy do katalogu ze
-źródłami i wpisujemy polecenie <c>make menuconfig</c>. Uruchomi się menu
-konfiguracyjne oparte na ncurses.
-</p>
-
-<p>
-Podczas kompilacji jądra w 32-bitowej przestrzeni użytkownika dodajemy
-następującą linię do /etc/profile:
-</p>
-
-<pre caption="Tworzenie aliasu dla 32-bitowej przestrzeni użytkownika">
-# <i>echo 'alias ppc64make="make ARCH=ppc64 CROSS_COMPILE=powerpc64-unknown-linux-gnu-"' >> /etc/profile</i>
-# <i>source /etc/profile</i>
-</pre>
-
 <pre caption="Uruchamianie menuconfig">
 # <i>cd /usr/src/linux</i>
-(64-bitowa przestrzeń użytkownika) # <i>make menuconfig</i>
-(32-bitowa przestrzeń użytkownika) # <i>ppc64make menuconfig</i>
+<comment>Ważne: W przypadku gdy znajdujemy się w 32-bitowej przestrzeni
+użytkownika, musimy wyedytować plik Makefile znajdujący się w katalogu
+/usr/src/linux i zmienić opcję CROSS_COMPILE na CROSS_COMPILE ?=
+powerpc64-unknown-linux-gnu-. Należy to zrobić przed wykonaniem polecenia make
+menuconfig, aby uniknąć problemów z kompilacją jądra</comment>
+<i>make menuconfig</i>
 </pre>
 
 <p>
@@ -241,8 +229,7 @@ instalację. Opuszczamy program konfiguracyjny i rozpoczynamy proces kompilacji:
 </p>
 
 <pre caption="Kompilowanie kernela">
-(32-bitowa przestrzeń użytkownika)  # <i>make &amp;&amp; make modules_install</i>
-(64-bitowa przestrzeń użytkownika)  # <i>ppc64make &amp;&amp; ppc64make modules_install</i>
+# <i>make &amp;&amp; make modules_install</i>
 </pre>
 
 <p>

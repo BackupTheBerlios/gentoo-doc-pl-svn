@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>5.2</version>
-<date>2005-09-15</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Wymagania sprzętowe</title>
@@ -132,7 +132,7 @@ Obecnie dostępne są następujące płyty instalacyjne:
       i nie może być użyta podczas instalacji opartej na tym dokumencie.
   </li>
 </ul>
-
+a
 <p>
 Gentoo również dostarcza tzw. Package CD. To nie jest płyta instalacyjna ale
 dodatkowe źródło, które można wykorzystać podczas instalacji systemu Gentoo.
@@ -161,9 +161,9 @@ Jak użyć płytę Package CD zostanie wyjaśnione później w tym dokumencie.
 <p>
 Wszystkie obrazy płyt instalacji uniwersalnej (również płyt Package CD)
 znajdują się na naszych <uri link="/main/en/mirrors.xml">serwerach
-lustrzanych</uri> w katalogu <path>releases/ppc64/2005.1/installcd</path>;
+lustrzanych</uri> w katalogu <path>releases/ppc64/2006.0/installcd</path>;
 obraz płyt Package CD znajduje się w katalogu
-<path>releases/ppc64/2005.1/packagecd</path>.
+<path>releases/ppc64/2006.0/packagecd</path>.
 </p>
 
 <p>
@@ -176,21 +176,20 @@ Po ściągnięciu pliku należy sprawdzić czy nie zawiera żadnych błędów:
 </p>
 
 <ul>
-<li>
-Weryfikujemy poprawność pobranych plików ISO za pomocą porównania ich sum MD5
-z tymi znajdującymi się na naszym serwerze lustrzanym (np. w pliku o nazwie
-<path>install-x86-minimal-2005.1.iso.md5</path>). Sumy MD5 dla pobranych
-plików można wygenerować przy pomocy narzędzia <c>md5sum</c> dla Linuksa, lub
-jego <uri link="http://www.etree.org/md5com.html">odpowiednika</uri> dla
-Windows. Sprawdzanie sum MD5 w Mac OS X jest opisane w dokumancie <uri
-link="/doc/pl/gentoo-ppc-faq.xml#doc_chap1">Gentoo PPC FAQ</uri>.
-</li>
-
-<li>
-Innym sposobem sprawdzania poprawności pobranych plików jest weryfikacja ich
-kryptograficznych sygnatur przy pomocy GnuPG. Nalezy otrzymać klucz
-publiczny, którego my używamy (0x17072058) przed przejściem dalej.
-</li>
+  <li>
+    Weryfikujemy poprawność pobranych plików ISO za pomocą porównania ich sum MD5
+    z tymi znajdującymi się na naszym serwerze lustrzanym (np. w pliku o nazwie
+    <path>install-x86-minimal-2005.1.iso.md5</path>). Sumy MD5 dla pobranych
+    plików można wygenerować przy pomocy narzędzia <c>md5sum</c> dla Linuksa, lub
+    jego <uri link="http://www.etree.org/md5com.html">odpowiednika</uri> dla
+    Windows. Sprawdzanie sum MD5 w Mac OS X jest opisane w dokumancie <uri
+    link="/doc/pl/gentoo-ppc-faq.xml#doc_chap1">Gentoo PPC FAQ</uri>.
+  </li>
+  <li>
+    Innym sposobem sprawdzania poprawności pobranych plików jest weryfikacja ich
+    kryptograficznych sygnatur przy pomocy GnuPG. Nalezy otrzymać klucz
+    publiczny, którego my używamy (0x17072058) przed przejściem dalej.
+  </li>
 </ul>
 
 <p>
@@ -212,24 +211,20 @@ $ <i>gpg --verify &lt;plik sygnatury&gt; &lt;pobrane iso&gt;</i>
 
 <p>
 Pobrane pliki ISO należy nagrywać w trybie RAW. To jak się go   włącza zależy
-od
-programu, którego używamy. W Podręczniku opiszemy nagrywanie za pomocą
-programów
-<c>cdrecord</c> i <c>K3B</c>. Więcej informacji można znaleźć w dokumencie
-<uri
-  link="/doc/pl/faq.xml#isoburning">Gentoo FAQ</uri>.
+od programu, którego używamy. W Podręczniku opiszemy nagrywanie za pomocą
+programów <c>cdrecord</c> i <c>K3B</c>. Więcej informacji można znaleźć w
+dokumencie <uri link="/doc/pl/faq.xml#isoburning">Gentoo FAQ</uri>.
 </p>
 
 <ul>
   <li>
-     Jeśli chodzi o cdrecord to wystarczy wpisać polecenie <c>cdrecord
-     dev=/dev/hdc &lt;pobrany plik ISO&gt;</c>. Zamiast <path>/dev/hdc</path>
-     należy podać odpowiednią ścieżką do urządzenia CD-RW.
+    Jeśli chodzi o cdrecord to wystarczy wpisać polecenie <c>cdrecord
+    dev=/dev/hdc &lt;pobrany plik ISO&gt;</c>. Zamiast <path>/dev/hdc</path>
+    należy podać odpowiednią ścieżką do urządzenia CD-RW.
   </li>
   <li>
-      W K3B trzeba wybierać z menu kolejno zakładki <c>Tools</c> &gt;
-<c>CD</c>
-      &gt; <c>Burn Image</c>. Następnie wskazujemy nasz plik ISO i klikamy w
+    W K3B trzeba wybierać z menu kolejno zakładki <c>Tools</c> &gt; <c>CD</c>
+    &gt; <c>Burn Image</c>. Następnie wskazujemy nasz plik ISO i klikamy w
     przycisk <c>Start</c>.
   </li>
 </ul>
@@ -239,6 +234,30 @@ programów
 <subsection>
 <title>Uruchamianie płyty instalacyjnej na komputerach Apple</title>
 <body>
+
+<p>
+Należy przeczytać plik <path>README.kernel</path>, znajdujący się na płycie
+instalacyjnej, aby dowiedzieć się więcej o uruchamianiu komputera z różnymi
+jądrami oraz o uzyskaniu wsparcia dla sprzętu.
+</p>
+
+<p>
+Kiedy już zbierzemy wszystkie informacje przechodzimy do katalogu ze
+źródłami i wpisujemy polecenie <c>make menuconfig</c>. Uruchomi się menu
+konfiguracyjne oparte na ncurses.
+</p>
+
+<p>
+Podczas kompilacji jądra w 32-bitowej przestrzeni użytkownika dodajemy
+następującą linię do /etc/profile:
+</p>
+
+<pre caption="Tworzenie aliasu dla 32-bitowej przestrzeni użytkownika">
+# <i>echo 'alias ppc64make="make ARCH=ppc64 CROSS_COMPILE=powerpc64-unknown-linux-gnu-"' >> /etc/profile</i>
+# <i>source /etc/profile</i>
+</pre>
+jądrami oraz o uzyskaniu wsparcie dla różnego sprzętu.
+</p>
 
 <p>
 Umieszczamy płytę w napędzie CD-ROM i ponownie uruchamiamy komputer.
@@ -307,29 +326,35 @@ to <uri link="#booted">Czynności po uruchomieniu</uri>.
 </body>
 </subsection>
 <subsection>
-<title>Uruchamianie płyty instalacyjnej na komputerach IBM pSeries</title>
+<title>
+Uruchamianie płyty instalacyjnej na komputerach IBM pSeries, OpenPower
+oraz Power iSeries.
+</title>
 <body>
 
 <p>
-W komputerach pSeries czasem zawodzi automatyczne uruchamianie systemu z
-płyty.
-Możliwe, że będzie konieczne ustawienie napędu cd-rom jako jedynego urządzenia
-uruchamialnego w menu multi-boot (do którego wchodzi się naciskając F1 przy
-starcie komputera). Kolejną możliwością jest przejście do CF i dokonanie zmian
-stamtąd:
+Należy przeczytać plik <path>README.kernel</path>, znajdujący się na płycie
+instalacyjnej, aby dowiedzieć się więcej o uruchamianiu komputera z różnymi
+jądrami oraz o uzyskaniu wsparcia dla sprzętu.
 </p>
 
 <p>
-1) Uruchomić CF (przyciskiem 8 lub F8 w zależności od używanego sprzętu,
-naciskanie go należy zacząć w momencie pojawienia się wiadomości o wykryciu
-klawiatury i myszki).
+Większość współczesnych serwerów IBM pSeries można uruchamiać przy pomocy
+CDROM-u. Na niektórych starszych urządzeniach z tej serii napędy mogą nie
+uruchamiać komputera. Być może koniecznie będzie ustawienie cdromu jako
+pierwszego napędu do uruchomienia komputera (F1 przy starcie). Innym
+rozwiązaniem może być uruchomienie OF:
 </p>
-<p>
-2)  Wpisać polecenie 0> boot cdrom:1,yaboot
-</p>
-<p>
-3) Cieszyć się z sukcesu!
-</p>
+
+<ol>
+  <li>
+    Uruchamiamy OF (przyciskiem 8 lub F8 w zależności od używanego sprzętu,
+    naciskanie go należy zacząć w momencie pojawienia się wiadomości o wykryciu
+    klawiatury i myszki).
+  </li>
+  <li>Wpisujemy polecenie 0> boot cdrom:1,yaboot</li>
+  <li>Cieszymy się z sukcesu!</li>
+</ol>
 
 </body>
 </subsection>
@@ -493,11 +518,11 @@ i tam się zalogować.
 </p>
 
 <p>
-Do przeglądania dokumentacji nagranej na CD służy program <c>links2</c>:
+Do przeglądania dokumentacji nagranej na CD służy program <c>links</c>:
 </p>
 
 <pre caption="Przeglądanie dokumentacji na CD">
-# <i>links2 /mnt/cdrom/docs/handbook/html/index.html</i>
+# <i>links /mnt/cdrom/docs/handbook/html/index.html</i>
 </pre>
 
 <p>
@@ -507,7 +532,7 @@ na naszej stronie internetowej. Polecamy korzystanie właśnie z tej wersji.
 </p>
 
 <pre caption="Przeglądanie dokumentacji w Internecie">
-# <i>links2 http://www.gentoo.org/doc/pl/handbook/handbook-ppc64.xml</i>
+# <i>links http://www.gentoo.org/doc/pl/handbook/handbook-ppc64.xml</i>
 </pre>
 
 <p>
