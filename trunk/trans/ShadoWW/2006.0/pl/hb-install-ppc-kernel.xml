@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>5.4</version>
-<date>2006-01-06</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Strefa czasowa</title>
@@ -59,25 +59,17 @@ dowiązań symbolicznych <path>/usr/src/linux</path>.
 # <i>USE="-doc symlink" emerge gentoo-sources</i>
 </pre>
 
-<!-- Removed, as we're trying to avoid specific kernel versions to improve
-HB maintainability
-<note>
-W momencie wydawania Gentoo 2005.1 źródła te były w wersjach:
-<c>gentoo-sources-2.6.12-r4</c> i <c>vanilla-sources-2.6.12.2</c>.
-</note>
--->
-
 <p>
 W katalogu <path>/usr/src</path> powinien być mniej więcej taki jak poniższy
 symlink, o nazwie <path>linux</path>, wskazujący na źródła jądra. W przykładzie
 zakładamy, że źródła jądra zostały zainstalowane jako 
-<c>gentoo-sources-2.6.12-r6</c>. W komputerze użytkownika może być to inna 
+<c>gentoo-sources-2.6.15</c>. W komputerze użytkownika może być to inna 
 wersja, dlatego należy mieć to na uwadze.
 </p>
 
 <pre caption="Podgląd symlinka do źródeł kernela">
 # <i>ls -l /usr/src/linux</i> 
-lrwxrwxrwx    1 root     root           22  Mar 18 16:23 /usr/src/linux -&gt; linux-2.6.12-gentoo-r6
+lrwxrwxrwx    1 root     root           22  Mar 18 16:23 /usr/src/linux -&gt; linux-2.6.15
 </pre>
 
 <p>
@@ -309,14 +301,27 @@ instalację. Opuszczamy program konfiguracyjny i wpisujemy następujące polecen
 
 <p>
 Kiedy jądro skończy się kompilować kopiujemy jego obraz do katalogu
-<path>/boot (należy upewnić się, że jest to poprawnie montowane, zwłaszcza na
-Pegasosie)</path>.
+<path>/boot</path> (należy upewnić się, że jest to poprawnie montowane, zwłaszcza na
+komputerach Pegasos). Jeżeli do uruchamiania komputera używamy BootX, jądro
+skopiujemy w późniejszym czasie.
+</p>
+
+<p>
+Yaboot i BootX używają nieskompresowanych jąder w odróżnieniu do innych tego typu
+programów. Nieskompresowane jądra posiada nazwę vmlinux, a jego obraz po
+skompilowaniu znajduje się w katalogu <path>/usr/src/linux</path>. Jeżeli
+używamy komputera Pegasos jego oprogramowania wewnętrzne wymaga jądra
+skopresowanego, które po skompilowaniu posiada nazwę zImage.chrp i znajduje się
+w katalogu <path>/usr/src/linux/arch/ppc/boot/images</path>.
 </p>
 
 <pre caption="Instalowanie kernela">
+# <i>cd /usr/src/linux</i>
 <comment>replace &lt;kernel-version&gt; with your kernel version</comment>
-(Apple/IBM)  # <i>cp vmlinux /boot/&lt;kernel-version&gt;</i>
-(Pegasos)    # <i>cp arch/ppc/boot/images/zImage.chrp /boot/&lt;kernel-version&gt;</i>
+<comment>(Apple/IBM)</comment> 
+# <i>cp vmlinux /boot/&lt;kernel-version&gt;</i>
+<comment>(Pegasos)</comment>  
+# <i>cp arch/ppc/boot/images/zImage.chrp /boot/&lt;kernel-version&gt;</i>
 </pre>
 
 <p>

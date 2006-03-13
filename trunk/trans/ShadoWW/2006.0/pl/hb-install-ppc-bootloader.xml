@@ -5,8 +5,8 @@
 
 <sections>
 
-<version>5.3</version>
-<date>2006-01-19</date>
+<version>6.0</version>
+<date>2006-02-27a</date>
 
 <section>
 <title>Wybór bootloadera</title>
@@ -44,15 +44,17 @@ yaboot może być używany tylko na komputerach NewWorld Apple lub IBM!
 
 <p>
 W celu prawidłowego zlokalizowania urządzenia bootowalnego, yaboot potrzebuje
-dostępu do systemu plików <path>/dev</path>. Aby było to możliwe, należy
-dokonać
-dowiązania systemu plików <path>/dev</path> z płyty instalacyjnej do
-<path>/dev</path> w naszym nowym systemie.
+węzłów sprzętowych utworzonych przez udev oraz systemu plików sysfs. Systemy te
+znjadziemy odpowiednio w <path>/dev</path> i <path>/sys</path>. Aby tego
+dokonować będziemy musieli dowiązać te systemy plików z płyty instalacyjnej do
+odpowiednich systemów wewnątrz środowiska chroot. Jeżeli już to zrobiliśmy, nie
+ma potrzeby, aby czynność tę powtarzać.
 </p>
 
-<pre caption="Dowiązywanie systemu plików /dev">
+<pre caption="Dowiązywanie systemu plików /dev i /sys">
 # <i>exit </i> <comment>(opuszczenie chroot)</comment>
 # <i>mount -o bind /dev /mnt/gentoo/dev</i>
+# <i>mount -o bind /sys /mnt/gentoo/sys</i>
 # <i>chroot /mnt/gentoo /bin/bash</i>
 # <i>/usr/sbin/env-update &amp;&amp; source /etc/profile </i>
 </pre>
@@ -77,9 +79,9 @@ programem genkernel do yaboot.conf">
 <comment>####################################################################
 ## Ta sekcja może zostać powielona w przypadku posiadania więcej niż
 ## jednego jądra, lub zestawu parametrów startowych. Należy zastąpić
-## kernel-2.6.12 nazwą posiadanego jądra.
+## kernel-2.6.15 nazwą posiadanego jądra.
 ####################################################################</comment>
-image=/boot/kernel-2.6.12
+image=/boot/kernel-2.6.15
   label=Linux
   root=/dev/ram0    <comment># W przypadku użycia programu genkernel jest to
 /dev/ram0</comment>
@@ -116,29 +118,25 @@ Konieczne jest posiadanie na dysku partycji Apple_Bootstrap oraz odpowiednich
 wpisów dotyczących istniejących partycji Linuksa w pliku
 <path>/etc/fstab</path>, przed użyciem <c>yaboot</c>. Obydwa warunki powinny
 być już spełnione - wszystkie operacje zostały opisane w poprzednich
-rozdziałach. Ponadto należy upewnić się, że posiadamy najnowszą wersję
-yaboota,
-wykonując polecenie <c>emerge --update yaboot</c>. Jest to konieczne, ponieważ
-aktualna wersja bedzie dostępna poprzez Portage, jednak może jej jeszcze nie
-być
-w plikach stage.
+rozdziałach. Należy jednak upewnić się sprzawdzając plik
+<path>/etc/fstab</path>. oraz że posiadamy najnowszą wersję yaboota,
 </p>
 
 <pre caption="Instalowanie yaboota">
-# <i>emerge --usepkg --update yaboot</i>
+# <i>emerge --usepkg yaboot</i>
 </pre>
 
 <p>
 Następnie opuszczamy chroot i wykonujemy polecenie <c>yabootconfig --chroot
 /mnt/gentoo</c>. Po uruchomieniu programu zostaniemy poproszeni o
-potwierdzenie lokalizacji partycji bootstrap. Należy wcisnąć klawisz <c>Y</c>
-jeśli jest ona poprawna. Jeśli nie, musimy dwa razy sprawdzić plik
-<path>/etc/fstab</path>.
-Następnie <c>yabootconfig</c> przeskanuje ustawienia systemowe, utworzy plik
-<path>/etc/yaboot.conf</path> i uruchomi <c>mkofboot</c>. <c>mkofboot</c> jest
-programem, który formatuje partycję Apple_Bootstrap i umieszcza na niej plik
-konfiguracyjny yaboota. Gdy operacje te zostaną wykonane powracamy do
-środowiska chrootowanego.
+potwierdzenie lokalizacji partycji bootstrap. W przypadku gdy używamy schematu
+podanego w tym podręczniku powinno to być partycja <path>/dev/hda2</path>.
+Należy wpisać <c>Y</c>, jeżeli zgadzamy się z wynikiem polecenia. Jeżeli tak
+nie jest, należy sprawdzić ponownie plik <path>/etc/fstab</path>.
+<c>yabootconfig</c> przeskanuje ustawienia naszego systemu, stworzy plik
+<path>/dev/yaboot.conf</path> i uruchomi polecenie <c>mkofboot</c>.
+Polecenie to używane jest do sformatowania partycji bootstrap oraz instalacji
+pliku konfiguracyjnego na tej partycji. Ponownie wracamy do środowiska chroot.
 </p>
 
 <pre caption="Powrót do chroot">
@@ -172,7 +170,7 @@ Po pierwsze należy upewnić się, że mamy zainstalowaną najnowszą wersję
 </p>
 
 <pre caption = "Instalowanie yaboota">
-# <i>emerge --usepkg --update yaboot</i>
+# <i>emerge --usepkg yaboot</i>
 </pre>
 
 <p>
@@ -319,8 +317,7 @@ cdimage ~# <i>cp /mnt/gentoo/boot/initramfs-* "/mnt/mac/System Folder"</i>
 
 <p>
 Gdy jądro zostało skopiowane, musimy ponownie uruchomić komputer i
-skonfigurować
-BootX.
+skonfigurować BootX.
 </p>
 
 <pre caption="Odmontowywanie wszystkich partycji i rebootowanie">
@@ -338,12 +335,10 @@ uruchomić się MacOS.
 Gdy uruchomiony zostanie MacOS, otwieramy panel sterowania BootX. Jeśli nie
 korzystaliśmy z genkernela, wybieramy <c>Options</c> i odznaczamy <c>Use
 specified RAM disk</c>. Natomiast jeśli użyliśmy genkernela, musimy upewnić
-się,
-że initrd genkernela jest wybrany zamiast initrd płyty instalacyjnej.
+się, że initrd genkernela jest wybrany zamiast initrd płyty instalacyjnej.
 Użytkownicy niekorzystający z genkernela mogą określić teraz partycję root
 - podajemy tutaj wartość odpowiadającą naszemu podziałowi dysku. W zależności
-od
-konfiguracji jądra można dodać inne argumenty.
+od konfiguracji jądra można dodać inne argumenty.
 </p>
 
 <p>
@@ -354,10 +349,15 @@ Linuksa. Więcej informacji można uzyskać na <uri
 link="http://penguinppc.org/bootloaders/bootx/">Stronie domowej BootX</uri>.
 </p>
 
+<impo>
+Należy upewnić się, że posiadamy w jądrze wkompilowane wsparcie dla systemu
+plików HFS oraz HFS+, w przeciwnym razie nie będziemy mogli zaktualizować lub
+zmienić jądra na naszej partycji.
+</impo>
+
 <p>
 Następnie jeszcze raz restartujemy komputer, uruchamiamy Linuksa i
-kontunuujemy
-instalację zgodnie z instrukcjami w rozdziale <uri
+kontunuujemy instalację zgodnie z instrukcjami w rozdziale <uri
 link="?part=1&amp;chap=11">Finalizowanie instalacji Gentoo</uri>.
 </p>
 
@@ -370,12 +370,9 @@ link="?part=1&amp;chap=11">Finalizowanie instalacji Gentoo</uri>.
 <p>
 Program quik pozwala na bootowanie z pominięciem MacOS-a na komputerach
 OldWorld.  Nie jest to jednak dobrze wspierane i zalecane rozwiązanie, gdyż
-może
-spowodować występowanie licznych dziwactw. Jeśli tylko istnieje taka
-możliwość,
-zalecane jest korzystanie z programu BootX zamiast quik, ze względu na
-znacznie
-większą stabilność i łatwiejszą konfigurację tego pierwszego.
+może spowodować występowanie licznych dziwactw. Jeśli tylko istnieje taka
+możliwość, zalecane jest korzystanie z programu BootX zamiast quik, ze względu
+na znacznie większą stabilność i łatwiejszą konfigurację tego pierwszego.
 </p>
 
 <p>
@@ -395,21 +392,19 @@ skopiowaliśmy na partycję boot.
 
 <pre caption="Konfigurowanie quik.conf">
 # Przykładowy plik quik.conf
-init-message = "Gentoo 2005.1\n"
+init-message = "Gentoo 2006.0\n"
 partition = 2           <comment># Partycja boot</comment>
 root = /dev/hda4
 timeout = 30
 default = gentoo
-image = /vmlinux-2.6.12
-        label = gentoo
+image = /vmlinux-2.6.15
+label = gentoo
 </pre>
 
 <p>
 Plik quik.conf <e>musi</e> znajdować się na tym samym dysku co bootowalny
-obraz,
-ale niekoniecznie na tej samej partycji. Jest jednak wskazane, aby przenieść
-go
-do partycji boot.
+obraz, ale niekoniecznie na tej samej partycji. Jest jednak wskazane, aby
+przenieść go do partycji boot.
 </p>
 
 <pre caption="Przenoszenie quik.conf do /boot">
@@ -419,8 +414,7 @@ do partycji boot.
 <p>
 Teraz musimy ustawić zmienne związane z bootowaniem, aby quik był
 uruchamiany. Użyjemy do tego programu <c>nvsetenv</c>. To, jakie zmienne
-musimy
-ustawić, zależy od komputera jaki posiadamy. Zaleca się odszukanie <uri
+musimy ustawić, zależy od komputera jaki posiadamy. Zaleca się odszukanie <uri
 link="http://penguinppc.org/bootloaders/quik/quirks.php">prawidłowych
 wartości quirks</uri> przed rozpoczęciem konfiguracji.
 </p>
@@ -434,7 +428,7 @@ podstawie
 # <i>nvsetenv input-device kbd</i>
 # <i>nvsetenv boot-device scsi/sd@1:0</i> <comment># Dla SCSI</comment>
 # <i>nvsetenv boot-device ata/ata-disk@0:0</i> <comment># Dla ATA</comment>
-# <i>nvsetenv boot-file /boot/vmlinux-2.6.12 root=/dev/hda4</i>
+# <i>nvsetenv boot-file /boot/vmlinux-2.6.15 root=/dev/hda4</i>
 # <comment>Pierwszy element wskazuje ścieżkę do jądra, drugi do partycji root.
 # Dodać tu można wszelkie inne opcje jakie chcemy przekazać do
 jądra.</comment>
@@ -447,23 +441,21 @@ Możliwa jest także modyfikacja zmiennych związanych z bootowaniem z poziomu
 MacOS-a.  W zależności od posiadanego modelu należy użyć <uri
 link="http://penguinppc.org/bootloaders/quik/BootVars.sit.hqx">bootvars</uri>
 lub <uri
-link="ftp://ftp.apple.com/developer/macosxserver/utilities/SystemDisk2.3.1.smi
-.bin">.
+link="ftp://ftp.apple.com/developer/macosxserver/utilities/SystemDisk2.3.1.smi.bin">.
 Apple System Disk</uri>. Warto odwiedzić powyższą stronę quirks w celu
 uzyskania szerszych informacji na ten temat.
 </note>
 
 <p>
 Gdy ustawiliśmy już opcje uruchamiania, musimy upewnić się, że bootowalne
-obrazy
-są poprawnie zainstalowane. Uruchamiamy <c>quik -v -C /boot/quik.conf</c>.
-Powinniśmy uzyskać informację, że posiadamy boot block QUIK.
+obrazy są poprawnie zainstalowane. Uruchamiamy
+<c>quik -v -C /boot/quik.conf</c>. Powinniśmy uzyskać informację, że posiadamy
+boot block QUIK.
 </p>
 
 <note>
 Jeśli coś poszło nie tak, możemy zresetować PRAM do ustawień domyślnych
-poprzez
-kombinację <c>command + option + p + r</c>, przed uruchomieniem naszego
+poprzez kombinację <c>command + option + p + r</c>, przed uruchomieniem naszego
 komputera. Wyczyści to wartości jakie ustawiliśmy przy pomocy programu
 <c>nvsetenv</c> i powinno umożliwić uruchomienie zarówno z bootowalnej płyty
 MacOS-a jak i z płyty instalacyjnej Linuksa.
@@ -490,7 +482,7 @@ Po pierwsze, upewnijmy się, że mamy zainstalowaną najnowszą wersję programu
 </p>
 
 <pre caption="Instalowanie programu bootcreator">
-# <i>emerge --usepkg --update bootcreator</i>
+# <i>emerge --usepkg bootcreator</i>
 </pre>
 
 <p>
@@ -529,12 +521,12 @@ Local HD -> Morphos      (Normal)
 ide:0 boot2.img ramdebug edebugflags="logkprintf"
 
 [SECTION]
-Local HD -> Linux 2.6.12 (Normal)
-ide:0 linux-2.6.12 video=radeonfb:1024x768@70 root=/dev/hda3
+Local HD -> Linux 2.6.15 (Normal)
+ide:0 linux-2.6.15 video=radeonfb:1024x768@70 root=/dev/hda3
 
 [SECTION]
 Local HD -> Genkernel (Normal)
-ide:0 kernelz-2.6.12 root=/dev/ram0 real_root=/dev/hda3 init=/linuxrc
+ide:0 kernelz-2.6.15 root=/dev/ram0 real_root=/dev/hda3 init=/linuxrc
 </pre>
 
 <p>

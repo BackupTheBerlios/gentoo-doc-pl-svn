@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>5.3</version>
-<date>2005-11-29</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Wymagania sprzętowe</title>
@@ -67,7 +67,9 @@ komputer, aby pomyślnie zainstalować na nim Gentoo.
 
 <p>
 Należy również zapoznać się z dokumentem <uri
-link="/doc/pl/gentoo-ppc-faq.xml">Gentoo PPC FAQ</uri>.
+link="/doc/pl/gentoo-ppc-faq.xml">Gentoo PPC FAQ</uri>, w którym znajdziemy
+odpowiedzi na najczęście zadawane pytania związane z instalacją oraz z samym
+komputerem PowerPC.
 </p>
 
 </body>
@@ -163,8 +165,8 @@ Gentoo</title>
 <p>
 Wszystkie obrazy płyt instalacji uniwersalnej (również płyt Package CD) znajdują
 się na naszych <uri link="/main/en/mirrors.xml">serwerach lustrzanych</uri> w
-katalogu <path>releases/ppc/2005.1/installcd</path>; obraz płyt Package CD
-znajduje się w katalogu <path>releases/ppc/2005.1/packagecd</path>.
+katalogu <path>releases/ppc/2006.0/installcd</path>; obraz płyt Package CD
+znajduje się w katalogu <path>releases/ppc/2006.0/packagecd</path>.
 </p>
 
 <p>
@@ -248,10 +250,9 @@ Po załadowaniu płyty CD na ekranie pojawi się znak zachęty w postaci
 </p>
 
 <p>
-Dzięki niemu można wybrać podarchitekturę dla jakiej ma zostać wczytane jądro.
-Mamy do dyspozycji <c>G3</c>, <c>G4</c> i <c>G5</c>. Wszystkie jądra zostały
-zbudowane z obsługą komputerów wieloprocesorowych, ale nie sprawiają również
-żadnych problemów posiadaczom tylko jednego procesora.
+System dostarczany jest z jednym jądrem, <e>ppc32</e>, dla wszystkich
+podarchitektur. Zawiera on wkompilowane wsparcie dla wielu procesorów, jednak
+bez przeszkód można go używać w kopmuterach jednoprocesorowych.
 </p>
 
 <p>
@@ -268,12 +269,13 @@ wybrane jądro. Są to:
   <ti><c>video</c></ti>
   <ti>
     Do tej opcji można podać następujące, zależne od producenta karty
-    parametry: <c>radeonfb</c>, <c>rivafb</c>, <c>atyfb</c>, <c>aty128</c> lub
-    <c>ofonly</c>. Do tego warto również dopisać żądaną rozdzielczość i
-  częstotliwość odświeżania. Wpis może na przykład wyglądać tak:
-    <c>video=radeonfb:1280x1024@75</c>. Jeśli nie jest się pewnym co wybrać
-    należy skorzystać z opcji <c>ofonly</c>, ona działa we wszystkich
-    przypadkach.
+    parametry: <c>nvidiafb</c>, <c>radeonfb</c>, <c>rivafb</c>, <c>atyfb</c>,
+    <c>aty128</c> lub <c>ofonly</c>. Do tego warto również dopisać żądaną
+    rozdzielczość i częstotliwość odświeżania. Wpis może na przykład wyglądać
+    tak: <c>video=radeonfb:1280x1024@75-32</c>.Uruchomionu zostanie sterownik
+    ATI Radeon, z wybraną rozdzielczością 1280x1024, odświeżaniem 75Hz oraz z
+    32 bitową głębią kolorów. Jeśli nie jest się pewnym co wybrać należy
+    skorzystać z opcji <c>ofonly</c>, ona działa we wszystkich przypadkach.
   </ti>
 </tr>
 <tr>
@@ -313,11 +315,12 @@ to <uri link="#booted">Czynności po uruchomieniu</uri>.
 Na komputerach Pegasos wystarczy włożyć płytę do napędu, a następnie w
 SmartFirmware wpisać <c>boot cd /boot/menu</c>. Otworzy to małe menu, w którym
 można wybrać jedno z kilku domyślnych ustawień wyświetlania. Własne ustawienia
-podaje się w linii poleceń, na przykład wpisując <c>boot cd /boot/pegasos
-video=radeonfb:1280x1024@75 mem=256M</c>. Kompletna lista możliwych opcji jądra
-(przydatna w przypadku gdyby coś poszło naprawdę źle) wygląda następująco:
-<c>console=ttyS0,115200 console=tty0 init=/linuxrc looptype=squashfs
-loop=/livecd.squashfs udev nodevfs cdroot root=/dev/ram0</c>.
+podaje się w linii poleceń, tak jak w przykładzie z Yaboot powyżej. Dla
+przykładu: <c>boot cd /boot/pegasos video=radeonfb:1280x1024@75 mem=256M</c>. 
+Domyślna lista możliwych opcji jądra (przydatna w przypadku gdyby coś poszło
+naprawdę źle) wygląda następująco: <c>console=ttyS0,115200 console=tty0
+init=/linuxrc looptype=squashfs loop=/livecd.squashfs udev nodevfs cdroot
+root=/dev/ram0</c>.
 </p>
 
 </body>
@@ -331,8 +334,6 @@ loop=/livecd.squashfs udev nodevfs cdroot root=/dev/ram0</c>.
 Na komputerach OldWorld nie jest możliwe skorzystanie z części uruchamialnej
 płyty instalacyjnej. Najprostszym rozwiązaniem tego problemu jest użycie MacOS
 do przeprowadzenia bootstrapu systemu, co umożliwia narzędzie o nazwie BootX.
-Kiedyś były dostępne dyskietki, z których można było uruchomić środowisko
-instalacyjne, obecnie nie są one jednak dostępne.
 </p>
 
 <p>
@@ -343,8 +344,8 @@ Następnie należy skopiować  <c>BootX Extension</c> do katalogu <c>Extensions
 Folder</c> i panel sterowania BootX do katalogu <c>Control Panels</c>. Oba te
 katalogi znajdują się w katalogu systemowym MacOS. Następnie należy utworzyć
 katalog "Linux Kernels" w tymże folderze systemowym i skopiować do niego jądro
-<c>G3G4</c> z płyty instalacyjnej. Na koniec należy jeszcze przekopiować
-plik <c>G3G4.igz</c> z płyty instalacyjnej również do folderu systemowego
+<c>ppc32</c> z płyty instalacyjnej. Na koniec należy jeszcze przekopiować
+plik <c>ppc32.igz</c> z płyty instalacyjnej również do folderu systemowego
 MacOS.
 </p>
 
@@ -352,7 +353,7 @@ MacOS.
 Aby przygotować BootX należy uruchomić jego panel sterowania i wybrać menu o
 nazwie "Options", w którym należy zaznaczyć opcję <c>Use Specified RAM
 Disk</c>
-i wybrać plik <c>G3G4.igz</c> z folderu systemowego. Następnie trzeba wrócić
+i wybrać plik <c>ppc32.igz</c> z folderu systemowego. Następnie trzeba wrócić
 na
 początkowy ekran i upewnić się, że wybrany rozmiar ramdysku ma co najmniej
 <c>32000</c>. Na koniec można dodać jądru kilka parametrów argumentów, tak jak
@@ -360,8 +361,7 @@ zrobimy to poniżej:
 </p>
 
 <pre caption="Parametry jądra podawane przez BootX">
-cdroot root=/dev/ram0 init=linuxrc loop=livecd.squashfs looptype=squashfs
-console=tty0 nodevfs udev
+cdroot root=/dev/ram0 init=linuxrc loop=image.squashfs looptype=squashfs console=tty0
 </pre>
 
 <note>
@@ -432,12 +432,21 @@ ręcznie załadować odpowiednie moduły.
 
 <p>
 W poniższym przykładzie spróbujemy załadować moduł <c>airport</c>. Ten moduł
-wspiera tylko stary karty Airport (b-net). W chwili obecnej AirportExtreme nie
-jest wspierana pod Linuksem:
+wspiera tylko stary karty Airport (802.11b). W chwili obecnej AirportExtreme
+(802.11g) nie znajduje się na płycie instalacyjnej.
 </p>
 
-<pre caption="Ładowanie modułu jądra">
+<pre caption="Ładowanie modułu airport">
 # <i>modprobe airport</i>
+</pre>
+
+<p>
+Na starszych komuterach iMac, karta sieciowa nie jest poprawnie wykrywana.
+Powinniśmy w takim przypadku załadować moduł sterownika BMAC:
+</p>
+
+<pre caption="Ładowanie modułu BMAC">
+# <i>modprobe bmac</i>
 </pre>
 
 </body>
@@ -527,32 +536,30 @@ z polecenia <c>su</c>:
 <p>
 Jeśli zamierzamy podczas instalacji korzystać z Podręcznika Gentoo (obojętnie
 czy nagranego na CD czy znajdującego się w Internecie) powinniśmy dodać do
-tych
-celów konto zwykłego użytkownika, tak jak opisaliśmy to przed chwilą, a
+tych celów konto zwykłego użytkownika, tak jak opisaliśmy to przed chwilą, a
 następnie przejść przy pomocy kombinacji klawiszy <c>Alt-F2</c> na nowy
-terminal
-i tam się zalogować.
+terminal i tam się zalogować.
 </p>
 
 <p>
-Do przeglądania dokumentacji nagranej na CD służą programy <c>links2</c> oraz
+Do przeglądania dokumentacji nagranej na CD służą programy <c>links</c> oraz
 <c>links -g</c>:
 </p>
 
 <pre caption="Przeglądanie dokumentacji na CD">
-# <i>links2 /mnt/cdrom/docs/handbook/html/index.html</i>
+# <i>links /mnt/cdrom/docs/handbook/html/index.html</i>
 </pre>
 
 <p>
 Najnowszą i najlepszą dostępną wersją Podręcznika Gentoo jest ta znajdująca się
 na naszej stronie internetowej. Polecamy korzystanie właśnie z tej wersji.
 Podobnie jak w przypadku dokumentacji nagranej na CD można użyć do tego programu
-<c>links2</c>, pod warunkiem oczywiście, że mamy już skonfigurowane i działające
+<c>links</c>, pod warunkiem oczywiście, że mamy już skonfigurowane i działające
 połączenie z Internetem.
 </p>
 
 <pre caption="Przeglądanie dokumentacji w Internecie">
-# <i>links2 http://www.gentoo.org/doc/pl/handbook/handbook-ppc.xml</i>
+# <i>links http://www.gentoo.org/doc/pl/handbook/handbook-ppc.xml</i>
 </pre>
 
 <p>

@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>5.1</version>
-<date>2005-08-25</date>
+<version>6.0</version>
+<date>2006-02-27</date>
 
 <section>
 <title>Wprowadzenie do urządzeń blokowych</title>
@@ -26,8 +26,8 @@ wykorzystać dostępne miejsce.
 <p>
 Zaczniemy od omówienia <e>urządzeń blokowych</e>. Najpopularniejszym z nich
 prawdopodobnie jest <path>/dev/hda</path>, reprezentujący w Linuksie pierwszy
-napęd IDE. Jeśli w komputerze znajdują się urządzenia SCSI lub SATA, pierwszym
-takim dyskiem jest <path>/dev/sda</path>.
+napęd IDE. Jeśli w komputerze znajdują się urządzenia SCSI, FireWWire, USB lub
+SATA, pierwszym takim dyskiem jest <path>/dev/sda</path>.
 </p>
 
 <p>
@@ -106,7 +106,7 @@ skorzystać z domyślnego, z którego korzystamy w podręczniku:
   <ti>(Nie wymagana)</ti>
   <ti>(<path>/dev/hda2</path> (Dla quik)</ti>
   <ti><path>/dev/hda1</path></ti>
-  <ti>(Niepotrzebna)</ti>
+  <ti>(Nie wymagana)</ti>
   <ti>ext2</ti>
   <ti>32MB</ti>
   <ti>Partycja rozruchowa</ti>
@@ -142,12 +142,11 @@ mac-fdisk nie jest na razie w stanie ich skasować.
 </note>
 
 <warn>
-Program <c>parted</c> ma możliwość zmiany rozmiaru partycji. Na płytach
-instalacyjnych zawiera patche umożliwiające zmianę rozmiaru partycji HFS+.
+Program <c>parted</c> ma możliwość zmiany rozmiaru partycji, również HFS+. 
 Niestety wiąże się to z dużym ryzykiem w przypadku partycji HFS+ używających
-księgowania, nawet jeśli zostanie on wyłączony w Mac OS X. Wszystkie próby
-zmiany rozmiaru partycji przy pomocy parted to spore ryzyko, należy więc
-wykonać najpierw kopie zapasowe danych!
+księgowania. Należy wyłączyć księgowanie w Mac OS X, przed zmianą rozmiaru
+partycji. Wszystkie próby zmiany rozmiaru partycji przy pomocy parted to spore
+ryzyko, należy więc wykonać najpierw kopie zapasowe danych!
 </warn>
 
 <p>
