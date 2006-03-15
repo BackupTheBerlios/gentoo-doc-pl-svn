@@ -44,52 +44,65 @@
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>Common Portage error message</title>
+<title>Najczęstsze komunikaty o błędach Portage</title>
 <body>
+
 <p>
-For those users who encounter a Portage error similar to the following:
-"<path>!!! Cannot resolve a virtual package name to an ebuild.</path>" 
-during an '<c>emerge --sync</c>' or an '<c>emerge --metadata</c>' please 
-do <b>not</b> file a bug about it.  The code may instruct you to do 
-so, however the developers have already found a fix and it is already on 
-bugzilla, re-emerging Portage or metadata will suffice. Bug reports filed for this bug 
-will only be marked as duplicates of <uri link="http://bugs.gentoo.org/show_bug.cgi?id=114798">bug 114798</uri>.  Please see that bug report as well as the Portage project's <uri link="http://www.gentoo.org/proj/en/portage/doc/common-problems.xml">documentation 
-page</uri> for details and a fix for this issue. Thanks in advance from the 
-Portage Team.
+Wszystkich użytkowników, którzy po użyciu komend <c>emerge --sync</c> lub
+<c>emerge --metadata</c> zobaczą lub zobaczyli komunikat „<path>!!! Cannot
+resolve a virtual package name to an ebuild.</path>” prosimy o <b>nie</b>
+wysyłanie raportów na bugzille. Komunikaty Portage wyświetlane w przypadku
+wystąpienia tego błędu mogą do tego nakłaniać, jednak deweloperzy znaleźli już
+rozwiązanie zaistniałego problemu. Przeinstalowanie Portage lub pobranie plików
+metadata powinno pomóc i mu zaradzić. Wszystkie kolejne raporty dotyczące
+opisywanej usterki będą oznaczane jako duplikaty buga <uri
+link="http://bugs.gentoo.org/show_bug.cgi?id=114798">114798</uri>. Zachęcamy do
+przeczytanie tego raportu, a także dostępnej <uri
+link="http://www.gentoo.org/proj/en/portage/doc/common-problems.xml">dokumentacji</uri>
+opisującej najczęstsze błędy, ich powody i proponowane rozwiązania, na jakie
+można napotkać w czasie używania Portage.
 </p>
+
 </body>
 </section>
 <section>
-<title>PPC project meeting 5 March 2005</title>
+<title>Spotkanie uczestników projektu PPC</title>
 <body>
+
 <p>
-The PPC project held a meeting on Sunday, 5 March 2005. The turnout for was fairly 
-impressive. It was composed of a large majority of the PPC team members. The items on the 
-agenda included gcc 4.1, the 2006.0 release, leadership, Genesi/Freescale/IBM 
-developer programs, and installer project porting. The meeting lasted about one and 
-a half hours, and included some notes by <mail link="halcyon@gentoo.org">Mark Loeser</mail> 
-for gcc 4.1, and <mail link="agaffney@gentoo.org">Andrew Gaffney</mail> for the installer 
-project. Minutes for the meeting and a full log can be found at the <uri 
-link="http://marc.theaimsgroup.com/?l=gentoo-dev&amp;m=114159742721701&amp;w=2">Theaimsgroup 
-Archive</uri>.
+W niedzielę 5 marca 2006 odbyło się spotkanie osób zaangażowanych w projekt PPC.
+Frekwencja była imponująca, zjawili się prawie wszyscy jego uczestnicy. Na
+spotkaniu poruszono między innymi sprawy związane z gcc 4.1, wydaniem wersji
+2006.0, koordynacją projektu, programami deweloperskimi Genesi/Freescale/IBM
+oraz projektem stworzenia portu instalatora Gentoo. Samo spotkanie zakończyło
+się po ok. półtorej godzinie i obejmowało prezentację informacji na temat gcc
+4.1 przedstawionych przez <mail link="halcyon@gentoo.org">Marka Loesera</mail>,
+oraz instalatora, który to temat został omówiony przez <mail
+link="agaffney@gentoo.org">Andrew Gaffney'a</mail>. Pliki z logami ze spotkania
+można znaleźć pod <uri
+link="http://marc.theaimsgroup.com/?l=gentoo-dev&amp;m=114159742721701&amp;w=2">tym
+adresem</uri>.
 </p>
+
 </body>
 </section>
+
 <section>
-<title>Download counts for 2006.0 release</title>
+<title>Popularność Gentoo 2006.0</title>
 <body>
+
 <p>
-Gentoo's central address for release images, <uri 
-link="http://www.gentoo.org/main/en/where.xml">the bouncer system</uri>, keeps 
-track of the number of downloads. Since the 2006.0 release was available on the 
-mirrors, almost 100,000 images have been downloaded to date.
+<uri link="http://www.gentoo.org/main/en/where.xml">Główna strona</uri>
+informująca o sposobach pobierania nowego wydania Gentoo, posiada funkcję
+umożliwiającą śledzenie liczbę pobrań. Od momentu wydania najnowszej wersji
+została ona pobrana już ponad 100,000 razy.
 </p>
 
 <table>
 <tr>
-<th colspan="2">Gentoo 2006.0 downloads</th>
+<th colspan="2">Liczba ściągnieć Gentoo 2006.0</th>
 </tr>
 <tr>
 <ti>gentoo-2006.0-livecd</ti>
@@ -116,15 +129,20 @@ mirrors, almost 100,000 images have been downloaded to date.
 <ti>9061</ti>
 </tr>
 </table>
-<note>As of Saturday, 4 March 2006. Not included are downloads by those users 
-who choose one of the mirrors directly rather than going through the bouncer 
-system, and the above figures are not broken down by architectures.</note>
+<note>
+W powyższych statystykach nie są zliczani Ci, którzy bezpośrednio pobierali
+obrazy, omijając nasz system statystyk, nie pokazują one także popularności
+poszczególnych architektur.
+</note>
+
 <p>
-Similar statistics exist for the Bittorrent fileshares that are monitored via 
-the Gentoo tracker. During the same one week period since the 
-release of 2006.0, about 5000 LiveCD downloads were completed via the tracker. 
-The complete list of available torrents and their statistics can be viewed on <uri link="http://torrents.gentoo.org">the tracker webpage</uri>.
+Podobny system statystyk istnieje również dla plików rozprowadzanych z użyciem
+systemu wymiany bittorrent i rozprowadzanych przez tracker Gentoo. Biorąc pod
+uwagę ten sam okres czasu od wydania wersji 2006.0, LiveCD został pobrany około
+5000 razy. Pełna lista dostępnych torrentów oraz ich statystyki znajdują się na
+<uri link="http://torrents.gentoo.org">stronie trackera</uri>.
 </p>
+
 </body>
 </section>
 </chapter>
@@ -159,7 +177,7 @@ Gentoo.
 UTF8 per default? </uri></li>
 </ul>
 
-<p><b>2006.0 - me having a bad day?</b></p>
+<p><b>Problemy z pobraniem wydania 2006.0</b></p>
 
 <p>
 Wraz z publikacją nowego wydania pojawiły się nowe usterki - i pewien użytkownik
@@ -211,48 +229,48 @@ v2 </uri></li>
 <body>
 
 <p>
+4 kwietnia 2006, w ramach konferencji Embedded Systems Conference, która
+odbędzie się w San Jose, pomiędzy 3 a 7 kwietnia w McEnery Convention Center,
 Sergei Larin, główny twórca oprogramowania w firmie <uri
-link="http://www.freescale.com">Freescale Semiconductor</uri> poprowadzi
-swój pierwszy wykład na temat Gentoo 4 kwietnia podczas konferencji Embedded
-Systems Conference w San Jose (odbędzie się ona między 3 a 7 kwietnia w
-McEnery Convention Center). W swojej prezentacji, którą poprowadzi razem z
+link="http://www.freescale.com">Freescale Semiconductor</uri>, przedstawi swój
+pierwszy wykład na temat Gentoo. W swojej prezentacji, którą poprowadzi razem z
 deweloperem Gentoo <mail link="pvdabeel@gentoo.org">Pieterem Van den
 Abeele</mail>, opowie o możliwości skrócenia cyklu produkcyjnego urządzeń
-opartych na architekturze PowerPC, dzięki zastosowaniu oprogramowania
-open-source. Firma Freescale zdecydowała użyć Gentoo do realizacji tego
-pomysłu, ze względu na jego konfigurowalność i łatwość zastosowania na rynku
-urządzeń embedded. Głównym zagadnieniem prezentacji będzie jak zbudować
-"Domowe centrum multimedialne w oparciu o system Linux na architekturze
-PowerPC". Freescale już planuje podobne seminaria na konferencji LinuxWorld
-w Bostonie oraz w czasie innych imprez w najbliższej przyszłości.
+opartych o architekturę PowerPC, dzięki zastosowaniu oprogramowania Open Source.
+Firma Freescale zdecydowała użyć Gentoo do realizacji tego przedsięwzięcia ze
+względu na jego elastyczność i łatwość zastosowania na rynku urządzeń
+wbudowanych. Głównym zagadnieniem poruszanym w prezentacji będzie opis
+poszczególnych kroków jakie należy wykonać by stworzyć „Domowe centrum
+multimedialne w oparciu o system Linux na architekturze PowerPC”. Freescale
+planuje podobne seminaria na konferencji LinuxWorld w Bostonie oraz w czasie
+innych imprez w najbliższej przyszłości.
 </p>
 
 </body>
 </section>
 <section>
-<title>Wielka Brytania: Trwają przygotowania do Brytyjskiej Konferencji
+<title>Wielka Brytania: Trwają przygotowania do brytyjskiej konferencji
 Gentoo</title>
 <body>
 
 <p>
-<mail link="cokehabit@gmail.com">George Prowse</mail> i kilku deweloperów i
-użytkowników Gentoo z Wielkiej Brytanii rozpoczęło przygotowania do
-konferencji Gentoo w 2006 roku, opierając się na powodzeniu imprez z roku
-<uri link="http://dev.gentoo.org/~stuart/2004">2004</uri> i <uri
+<mail link="cokehabit@gmail.com">George Prowse</mail>, kilku deweloperów i
+użytkowników Gentoo z Wielkiej Brytanii rozpoczęło przygotowania do konferencji
+Gentoo w 2006 roku, zachęceni popularnością dotychczasowych imprez w latach <uri
+link="http://dev.gentoo.org/~stuart/2004">2004</uri> i <uri
 link="http://dev.gentoo.org/~stuart/2005">2005</uri>.
 </p>
 
 <p>
-Tym razem konferencja odbędzie się w Londynie, wstępnie planowany termin to
-10 i 11 czerwca 2006. Nie ustalono jeszcze lokalu, w którym ma się odbyć.
+Tym razem konferencja odbędzie się w Londynie, wstępnie planowany termin to 10 i
+11 czerwca 2006. Nie ustalono jeszcze miejsca, w którym ma się ona odbyć.
 </p>
 
 <p>
-Szukamy sponsorów wśród organizacji, które byłyby zainteresowane imprezą i
-chciałyby pokryć jej koszty. Jeśli ktoś ma kontakt z organizacją, która
-chciałaby pomóc, prosimy o wysłanie emaila z informacją do <mail
-link="cokehabit@gmail.com">George'a Prowse</mail>. Wkrótce podamy więcej
-informacji dla tych, którzy chcieliby wziąć udział w konferencji.
+Organizatorzy szukają sponsorów zainteresowanych pomocą w finansowaniu imprezy.
+<mail link="cokehabit@gmail.com">George Prowse</mail> czeka także na informacje
+od osób mających kontakty z takimi organizacjami. Wkrótce podamy więcej
+informacji dla wszystkich chętnych do wzięcia udziłu w konferencji.
 </p>
 
 </body>
@@ -260,21 +278,22 @@ informacji dla tych, którzy chcieliby wziąć udział w konferencji.
 <section>
 <title>Niemcy: Poszukiwani prelengenci na konferencję FrOSCon</title>
 <body>
+
 <p>
-FrOSCon to dwudniowa konferencja, poświęcona ruchowi free software i open
-source. Odbędzie się 24 i 25 czerwca 2006 roku na uczelni University of
+FrOSCon to dwudniowa konferencja, poświęcona ruchowi Free Software i Open
+Source. Odbędzie się ona 24 i 25 czerwca 2006 roku na uczelni University of
 Applied Sciences Bonn-Rhein-Sieg, która mieści się w St. Augustin, niedaleko
 Bonn w Niemczech, a jednym z organizatorów jest deweloper Gentoo, <mail
-link="sebastian@gentoo.org">Sebastian Bergmann</mail>. Głównym tematem
-dyskusji w ramach imprezy mają być aktualne wydarzenia w świecie free
-software i open source. Dodatkowo deweloperom projektów zostanie
-udostępniona przestrzeń, aby mogli organizować własne spotkania i
-prezentacje. W roku 2006 FrOSCon będzie pierwszy raz organizowany przez
-wydział informatyki przy współpracy z LUG-iem z Sankt Augustin, studentami,
-oraz oraz FrOSCon e.V., pragnąc stać się największą tego typu imprezą w
-Nadrenii. <uri link="http://www.froscon.org/wiki/CallforPapers">Poszukiwanie
-prelengentów</uri> trwać będzie aż do 15 marca, wciąż także dostępne są
-stanowiska i przestrzeń wystawowa dla zainteresowanych projektów.
+link="sebastian@gentoo.org">Sebastian Bergmann</mail>. Głównym tematem dyskusji
+w ramach imprezy mają być aktualne wydarzenia w świecie Open Source. Dodatkowo
+deweloperom różnych projektów, chętnym do wzięcia udziału w imprezie, zostanie
+udostępniona przestrzeń, tak by mogli oni organizować własne spotkania i
+prezentacje. W roku 2006 FrOSCon będzie pierwszy raz organizowany przez wydział
+informatyki przy współpracy z LUG-iem z St. Augustin, studentami, oraz oraz
+FrOSCon e.V., pragnąc stać się największą tego typu imprezą w Nadrenii. <uri
+link="http://www.froscon.org/wiki/CallforPapers">Poszukiwanie prelengentów</uri>
+trwać będzie do 15 marca, wciąż także dostępne są stanowiska i przestrzeń
+wystawowa dla zainteresowanych projektów.
 </p>
 
 </body>
@@ -289,14 +308,14 @@ stanowiska i przestrzeń wystawowa dla zainteresowanych projektów.
 <body>
 
 <p>
-W ogrodzie zoologicznym Riverbanks (w Columbia w stanie Karolina Południowa)
-mieszka dziesięć pingwinów białobrewych (ang. Gentoo Penguin), które nie
-mają jeszcze imienia. Administratorzy zoo zdecydowali, że pingwinów jest za
-dużo, by miały zostać nazwane przez pracowników, poprosili więc o to szerszą
-publikę. Konkurs na imiona dla pingwinów, <uri
-link="https://ssl29.pair.com/riverban/contest.shtml">"Riverbanks' Penguin
-Naming Contest"</uri>, będzie trwał do 15 marca, a zwycięzcy zostaną
-ogłoszeni 20 marca.
+W ogrodzie zoologicznym Riverbanks (Columbia w stanie Karolina Południowa)
+mieszka dziesięć pingwinów białobrewych (ang. Gentoo Penguin), które nie zostały
+jeszcze nazwane. Ich opiekunowie zdecydowali, że pingwinów jest za dużo, by
+miały zostać nazwane przez pracowników, poprosili więc o pomoc. Konkurs na
+imiona dla pingwinów, <uri
+link="https://ssl29.pair.com/riverban/contest.shtml">"Riverbanks' Penguin Naming
+Contest"</uri>, będzie trwał do 15 marca, a zwycięzcy zostaną ogłoszeni 20
+marca.
 </p>
 
 </body>
@@ -306,11 +325,11 @@ ogłoszeni 20 marca.
 <body>
 
 <p>
-Firma <uri link="http://sagetv.com/">SageTV</uri> wypuściłą wersję "Linux
-OEM edition" swojego centrum multimedialnego -- opartą na systemie Gentoo
-Linux: "Nośnik instalacyjny to zmodyfikowana płyta instalacyjna Gentoo,
-można ją dostosować do potrzeb własnej firmy, jeśli chcemy stworzyć wiele
-identycznych urządzeń", jak możemy wyczytać na <uri
+Firma <uri link="http://sagetv.com/">SageTV</uri> wypuściła wersję "Linux OEM
+edition" swojego centrum multimedialnego -- opartą na systemie Gentoo Linux:
+„Nośnik instalacyjny to zmodyfikowana płyta instalacyjna Gentoo, można ją
+dostosować do potrzeb własnej firmy, jeśli chcemy stworzyć wiele identycznych
+urządzeń”, jak możemy wyczytać na <uri
 link="http://sagetv.com/linuxOEMinstall.html">stronie SageTV</uri>. Firma
 poszukuje producentów sprzętu, którzy byliby zainteresowani dołączeniem do
 swojej oferty opartego na Gentoo oprogramowania do nagrywania obrazu.
@@ -341,14 +360,12 @@ zawierającą analizę możliwości nowego graficznego instalatora.
 W tym tygodniu najważniejszy niemiecki magazyn komputerowy zamieścił zapowiedź
 <uri link="http://www.heise.de/open/artikel/70300">artykułu</uri>, który
 zostanie opublikowany w tym miesiącu w ramach projektu <uri
-link="http://www.opensourcejahrbuch.de">"Open Source Jahrbuch"</uri>.  Bill Hilf
+link="http://www.opensourcejahrbuch.de">"Open Source Jahrbuch"</uri>. Bill Hilf
 pracujący na stanowisku dyrektora technicznego odpowiedzialnego za
 funkcjonowanie laboratorium zajmującego się analizą Linuksa i ogólnie pojętego
 Open Source daje wgląd do tego co robi "bańka Open Source w morzu Microsoftu", a
-także jakim wyposażeniem dysponuje.  odpowiedzialny za linuksowe i opensourcowe
-laboratorium, umożliwia wgląd do tego co robi "bąbel open source w morzu
-Microsoftu", jak jest wyposażony itd. Pomimo, że artykuł nie jest zbyt nowy
-(Daniel Robbins jest wymieniony jest znaczący członek Gentoo Linux), to ukazuje
+także jakim wyposażeniem dysponuje. Pomimo, że artykuł nie jest zbyt nowy
+(Daniel Robbins jest wymieniony jako znaczący członek Gentoo Linux), to ukazuje
 Gentoo i Portage jako obszar badań i tłumaczy czym właściwie jest projekt
 "shared source" autorstwa Microsoftu.
 </p>
