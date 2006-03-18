@@ -223,56 +223,61 @@ translations of individual articles has been set up.
 </chapter>
 <!-- Tips and Tricks -->
 <chapter>
-<title>Tips and tricks</title>
+<title>Sztuczki i kruczki</title>
 <section>
-<title>Iproute2 instead of ifconfig/route</title>
+<title>Używanie iproute2 zamiast ifconfig/route</title>
 <body>
 
 <p>
-For many, <c>ifconfig</c> and <c>route</c> are still the preferred commands for
-configuring a network through the command line. However, in modern network
-environments, <c>ifconfig</c> has its drawbacks. And as you would expect from a
-Free Software community, improved packages have been developed. <b>iproute2</b>
-is one of them and is getting increasingly popular.
+Gdy trzeba skonfigurować sieć z wiersza poleceń, wielu z nas nadal używa
+narzędzi <c>ifconfig</c> i <c>route</c>. Jednakże we współczesnych
+środowiskach sieciowych pakiet <c>ifconfig</c> nie zawsze się sprawdza. 
+Z tego względu, jak to często bywa w społeczności Free Software, powstało
+oprogramowanie pozbawione wad poprzednika. Przykładem ulepszonego pakietu
+jest zdobywający coraz większą popularność <b>iproute2</b>.
 </p>
 
 <p>
-The default command to work with <b>iproute2</b> is <c>ip</c>. Clean, simple to
-remember and extremely powerful. But its power is well described in many
-documents, including the <uri
-link="http://www.policyrouting.org/iproute2.doc.html">iproute2 document</uri>
-and the <uri link="http://linux-ip.net/html/">Guide to IP Layer Network
-Administration with Linux</uri>.
-In this short introduction, we'll stay with the simplest basics that most people
-use just to show you how easy it is to "migrate" from <c>ifconfig</c>
-(<b>sys-apps/net-tools</b>) to <c>ip</c> (<b>sys-apps/iproute2</b>).
+Domyślnym poleceniem przy pracy z <b>iproute2</b> jest <c>ip</c>.
+Charakteryzuje je krótka, łatwa do zapamiętania nazwa, prostota i wielkie
+możliwości. O szczegółach można jednak poczytać w wielu innych tekstach,
+takich jak <uri
+link="http://www.policyrouting.org/iproute2.doc.html">iproute2
+document</uri> oraz <uri link="http://linux-ip.net/html/">Guide to IP Layer
+Network Administration with Linux</uri>. Na potrzeby tego krótkiego
+wprowadzenia pozostaniemy przy najczęściej wykorzystywanych podstawowych
+opcjach, aby ukazać jak łatwo jest ,,przerzucić się" z narzędzia
+<c>ifconfig</c> (pakiet <b>sys-apps/net-tools</b>) na <c>ip</c> (pakiet
+<b>sys-apps/iproute2</b>).
 </p>
 
 <p>
-To configure a host to use IP address 192.168.0.102, netmask 255.255.255.0 and
-default gateway 192.168.0.1, the "old" commands were:
+Aby skonfigurować hosta z adresem IP 192.168.0.102, maską podsieci
+255.255.255.0 i domyślną bramą o adresie 192.168.0.1, do tej pory należało
+wydać następujące polecenia:
 </p>
 
-<pre caption="Using ifconfig and route">
+<pre caption="Wykorzystanie ifconfig i route">
 # <i>ifconfig eth0 192.168.0.102 netmask 255.255.255.0 up</i>
 # <i>route add default gw 192.168.0.1</i>
 </pre>
 
 <p>
-Using <b>iproute2</b>, this becomes:
+Zaś jeśli użyjemy <b>iproute2</b>, odpowiednimi poleceniami będą:
 </p>
 
-<pre caption="Using iproute2's ip command">
+<pre caption="Wykorzystanie polecenia ip z pakietu iproute2">
 # <i>ip address 192.168.0.102/24 dev eth0</i>
 # <i>ip route add default via 192.168.0.1</i>
 </pre>
 
 <p>
-The syntax isn't all that difficult, is it? Let's take a look at our current
-routing table. With <c>route</c> you would run <c>route -n</c>:
+Jak widać, składnia nie jest skomplikowana. Przyjrzyjmy się naszej aktualnej
+tablicy routingu. Używając narzędzia <c>route</c> napisalibyśmy <c>route
+-n</c>:
 </p>
 
-<pre caption="Using route">
+<pre caption="Wykorzystanie route">
 # <i>route -n</i>
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
@@ -282,10 +287,10 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 </pre>
 
 <p>
-With <c>ip</c>, you ask it to show the routes:
+Oto jak wyświetlić to samo za pomocą <c>ip</c>:
 </p>
 
-<pre caption="Using ip to show the routing table">
+<pre caption="Używamy narzędzia ip, aby wyświetlić tablice routingu">
 # <i>ip route show</i>
 192.168.0.0/24 dev eth0  proto kernel  scope link  src 192.168.0.121 
 127.0.0.0/8 via 127.0.0.1 dev lo  scope link 
@@ -293,36 +298,37 @@ default via 192.168.0.1 dev eth0
 </pre>
 
 <p>
-You might find this output strange; however, it gives a lot of useful
-information. For instance, <e>scope link</e> means that the network is
-reachable while <e>proto kernel</e> informs us that the kernel has added this
-routing as part of bringing the interface up.
+W pierwszej chwili zapis ten może się wydawać nieco dziwny, podaje jednak
+wiele przydatnych informacji. Na przykład <e>scope link</e> mówi nam, że
+sieć jest osiągalna, natomiast <e>proto kernel</e> informuje nas, że jądro
+dodało ten routing jako część uruchamiania interfejsu.
 </p>
 
 <p>
-Using <c>ip</c> within Gentoo isn't difficult either. The Gentoo
-<b>sys-apps/baselayout</b> package supports both formats (<c>ifconfig</c> and
+Użycie polecenia <c>ip</c> w systemie Gentoo również nie jest trudne. Pakiet
+<b>sys-apps/baselayout</b> obsługuje bowiem oba formaty (<c>ifconfig</c> i
 <c>ip</c>):
 </p>
 
-<pre caption="Configuring the network through /etc/conf.d/net">
-<comment>(Old-style configuration)</comment>
+<pre caption="Konfiguracja sieci w pliku /etc/conf.d/net">
+<comment>(Konfiguracja w starym stylu)</comment>
 config_eth0=( "192.168.0.102 netmask 255.255.255.0" )
 routes_eth0=( "default gw 192.168.0.1" )
 
-<comment>(Using iproute2 -- don't forget to emerge it first)</comment>
+<comment>(Konfiguracja za pomocą iproute2 -- pamiętajmy o uprzedniej jego
+instalacji)</comment>
 modules=( "iproute2" )
 config_eth0=( "192.168.0.102/24" )
 routes_eth0=( "default via 192.168.0.1" )
 </pre>
 
 <note>
-For more <path>/etc/conf.d/net</path> magic, please read the commented file
-<path>/etc/conf.d/net.example</path>.
+Więcej informacji na temat składni pliku <path>/etc/conf.d/net</path>
+znajdziemy w pliku <path>/etc/conf.d/net.example</path>.
 </note>
 
 <p>
-That's it for now; have fun with Gentoo !
+To wszystko na dziś, miłej zabawy z systemem Gentoo!
 </p>
 
 </body>
