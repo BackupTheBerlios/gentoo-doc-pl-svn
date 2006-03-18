@@ -198,9 +198,9 @@ Czyli dla trzeciej wersji FIXME pre-release pakietu napisalibyśmy na przykład
 1.2_pre3. 
 .TP
 .B Operatory przedrostkowe atomów [> >= = <= <]
-Czasem możemy musieć określić zależność od ogólnych zakresów wersji pakietów,
-zamiast podawać za każdym razem konkretną wersję. Do tego celu służą standardowe
-boolowskie operatory:
+Czasem możemy potrzebować określić zależność od ogólnych zakresów wersji
+pakietów, zamiast podawać za każdym razem konkretną wersję. Do tego celu służą
+standardowe operatory Boole'a:
 
 .nf
 \fI>\fRmedia-libs/libgd-1.6
@@ -210,13 +210,11 @@ boolowskie operatory:
 \fI<\fRmedia-libs/libgd-1.6
 .fi
 .TP
-.B Rozszerzone przedrosktki [!~] i przyrostki [*] atomów
-
-
-Now to get even fancier, we provide the ability to define blocking packages and
-version range matching.  Also note that these extended prefixes/postfixes may
-be combined in any way with the atom classes defined above.  Here are some common
-examples you may find in the portage tree:
+.B Rozszerzone przedrostki [!~] i przyrostki [*] atomów
+Na tym nie koniec funkcjonalności. W razie potrzebny możemy zdefiniować pakiety
+blokujące oraz określić zakres interesujących nas wersji pakietów. Należy też
+zwrócić uwagę, że te rozszerzone przyroski i przedrostki można dowolnie łączyć z
+klasami atomów, opisanymi wyżej. Oto kilka typowych przykładów z drzewa Portage:
 
 .nf
 \fI!\fRapp-text/dos2unix
@@ -225,18 +223,26 @@ examples you may find in the portage tree:
 \fI~\fRnet-libs/libnet-1.0.2a
 .fi
 
-\fI!\fR means block packages from being installed at the same time.
+\fI!\fR oznacza, że dany pakiet nie może być zainstalowany w tym samym czasie
 .br
-\fI*\fR means match any version of the package so long as the specified base 
-is matched.  So with a version of '2*', we can match '2.1', '2.2', '2.2.1', 
-etc... and not match version '1.0', '3.0', '4.1', etc...
+\fI*\fR oznacza, że interesuje nas zainstalowanie dowolnej wersji pakietu z
+podaną podstawą. Tak więc w przypadku '2*' interesują nas wersje '2.1', '2.2',
+'2.2.1' itd, natomiast nie jesteśmy zainteresowani wersjami '1.0', '3.0',
+'4.1' itd.
 .br
-\fI~\fR means match any revision of the base version specified.  So in the 
-above example, we would match versions '1.0.2a', '1.0.2a-r1', '1.0.2a-r2', 
-etc...
+\fI~\fR oznacza, że interesuje nas dowolna rewizja podstawowej wersji podanego
+pakietu. W powyższym przykładzie więc mogą to być wersje '1.0.2a', '1.0.2a-r1',
+'1.0.2a-r2' itd.
 .RE
 .TP
-.B Dynamic DEPENDs
+.B Dynamiczne zależności FIXME (DEPENDs)
+Czasem, zależnie od użytych flag USE, programy mogą posiadać zmienną listę
+zależności. Portage daje nam kilka sposobów na poradzenie sobie z tą sytuacją.
+Zauważmy tylko, że gdy używamy poniższych przykładów składni, każdy przypadek jest
+traktowany jako jeden atom w kontekście, w którym się pojawia. Oznacza to, że
+każdy atom warunkowo zarówno włącza wiele atomów, jak i może być zagnieżdżony w
+nieskończoność. FIXME (co to w ogóle znaczy?)
+
 Sometimes programs may depend on different things depending on the USE
 variable.  Portage offers a few options to handle this.  Note that when
 using the following syntaxes, each case is considered as 1 Atom in the
@@ -244,45 +250,47 @@ scope it appears.  That means that each Atom both conditionally include
 multiple Atoms and be nested to an infinite depth.
 .RS
 .TP
-.B usevar? ( DEPEND Atom )
-To include the jpeg library when the user has jpeg in \fBUSE\fR, simply use the
-following syntax:
+.B usevar? ( atom DEPEND )
+Aby dołączyć bibliotekę jpeg gdy użytkownik ustawił flagę jpeg w \fBUSE\fR,
+należy użyć poniższej składni:
 .br
 .B jpeg? ( media-libs/jpeg )
 .TP
-.B !usevar? ( Atom )
-If you want to include a package only if the user does not have a certain option
-in their \fBUSE\fR variable, then use the following syntax:
+.B !usevar? ( atom )
+Jeśli chcemy dołączyć pakiet tylko wtedy, gdy użytkownik nie włączył określonej
+flagi w zmiennej \fBUSE\fR, należy użyć poniższej składni:
 .br
 .B !nophysfs? ( dev-games/physfs )
 .br
-This is often useful for those times when you want to want to add optional support
-for a feature and have it enabled by default.
+Często przydaje się to wtedy, gdy chcemy dodać opcjonalne, lecz domyślnie
+włączone wsparcie dla jakiejś funkcji.
 .TP
-.B usevar? ( Atom if true ) !usevar? ( Atom if false )
-For functionality like the tertiary operator found in C you must use
-two statements, one normal and one inverted.  If a package uses
-GTK2 or GTK1, but not both, then you can handle that like this:
+.B usevar? ( atom jeśli prawda ) !usevar? ( atom jeśli fałsz )
+Obsługa funkcjonalności takiej jak operator trójargumentowy z języka C odbywa
+się za pomocą dwóch wyrażeń, jednego zwykłego, drugiego odwróconego. Jeśli
+pakiet korzysta z GTK1 lub GTK2, ale nie obu na raz, możemy obsłużyć to w ten
+sposób:
 .br
 .B gtk2? ( =x11-libs/gtk+-2* ) !gtk2? ( =x11-libs/gtk+-1* )
 .br
-That way the default is the superior GTK2 library.
+W ten sposób domyślnie będzie wykorzystywać lepszą bibliotekę GTK2.
 .TP
 .B || ( Atom Atom ... )
-When a package can work with a few different packages but a virtual is not 
-appropriate, this syntax can easily be used.
+Gdy pakiet może korzystać z kilku różnych pakietów, ale użycie pakietu
+wirtualnego nie jest wskazane, można zastosować taką składnię.
 .nf
 .B || (
 .B 	app-games/unreal-tournament
 .B 	app-games/unreal-tournament-goty
 .B )
 .fi
-Here we see that unreal-tournament has a normal version and it has a goty version.  
-Since they provide the same base set of files, another package can use either.  
-Adding a virtual is inappropriate due to the small scope of it.
+W tym przypadku widać, że unreal-tournament posiada normalną wersję oraz wersję
+goty. Oba pakiety posiadają te same pliki podstawowe i dla innych pakietów nie
+ma znaczenia który z nich będzie zainstalowany. Jednak dodanie pakietu
+wirtualnego nie jest wskazane, ze względu na małą wagę problemu. 
 .br
-Another good example is when a package can be built with multiple video 
-interfaces, but it can only ever have just one.
+Innym dobrym przykładem jest sytuacja, gdy pakiet może zostać skompilowany z
+wieloma interfejsami wideo, ale może posiadać w danym czasie tylko jeden z nich.
 .nf
 .B || (
 .B 	sdl? ( media-libs/libsdl )
@@ -292,139 +300,159 @@ interfaces, but it can only ever have just one.
 .B 	virtual/x11
 .B )
 .fi
-Here only one of the packages will be chosen, and the order of preference is 
-determined by the order in which they appear.  So sdl has the best chance of being 
-chosen, followed by svga, then opengl, then ggi, with a default of X if the user 
-does not specify any of the previous choices.
+W tym przypadku zostanie wybrany tylko jeden z pakietów, zaś kolejność, w jakiej
+będą wybierane, ustala ich kolejność na liście. Tak więc sdl ma największe
+szanse na bycie wybranym, zaraz po nim svga, następnie opengl, ggi, zaś jesli
+użytkownik nie poda żadnej z poprzednich opcji, wybrany zostanie domyślny
+interfejs, X.
 .RE
 
 .RE
 .TP
 \fBRDEPEND\fR
-This should contain a list of all packages that are required for this
-program to run (aka runtime depend).  If this is not set, then it
-defaults to the value of \fBDEPEND\fR.
+Zmienna ta powinna zawierać listę wszystkich pakietów, które są wymagane, aby
+program uruchomił się (mówimy o nich też jako o zależnościach czasu
+uruchamiania). Jeśli zmienna ta nie zostanie ustawiona, przyjmie tę samą
+wartość, co zmienna \fBDEPEND\fR.
 .br
-You may use the same syntax to vary dependencies as seen above in \fBDEPEND\fR.
+Wszystkie powyższe sposoby definiowania zmiennych zależności dotyczą również
+tej zmiennej.
 .TP
 \fBPDEPEND\fR
-This should contain a list of all packages that will have to be installed after
-the program has been merged.
+Zmienna ta powinna zawierać listę wszytkich tych pakietów, które muszą zostać
+zainstalowane zaraz po zainstalowaniu naszego programu.
 .br
-You may use the same syntax to vary dependencies as seen above in \fBDEPEND\fR.
+Wszystkie powyższe sposoby definiowania zmiennych zależności dotyczą również
+tej zmiennej.
 .TP
 \fBRESTRICT\fR = \fI[strip,mirror,fetch,userpriv]\fR
-This should be a space delimited list of portage features to restrict.
+W tej zmiennej powinniśmy zawrzeć rozdzieloną spacjami listę restrykcji co do
+opcji Portage.
 .PD 0
 .RS
 .TP
 .I fetch
-like \fInomirror\fR but the files will not be fetched via \fBSRC_URI\fR either.
+podobne do opcji \fInomirror\fR, ale pliki nie będą również pobierane z
+\fBSRC_URI\fR.
 .TP
 .I mirror
-files in \fBSRC_URI\fR will not be downloaded from the \fBGENTOO_MIRRORS\fR.
+pliki wymienione w zmiennej \fBSRC_URI\fR nie będą pobierane z wymienionych w
+zmiennej \fBGENTOO_MIRRORS\fR serwerów lustrzanych Gentoo.
 .TP
 .I primaryuri
-fetch from URL's in \fBSRC_URI\fR before \fBGENTOO_MIRRORS\fR.
+najpierw należy pobrać pliki z URL-i wymienionych w zmiennej \fBSRC_URI\fR,
+zanim wykorzystane zostaną serwery lustrzane z listy zawartej w
+\fBGENTOO_MIRRORS\fR.
 .TP
 .I strip
-final binaries/libraries will not be stripped of debug symbols.
+będące ostatecznym produktem kompilacji pliki binarne i biblioteki nie będą
+pozbawiane symboli debugowania.
 .TP
 .I sandbox
-disable sandbox (do not use without very good reason).
+wyłącza funkcję sandbox (nie należy uzywać tej restrykcji bez naprawdę dobrego
+uzasadnienia).
 .TP
 .I test
-do not run src_test even if user has \fBFEATURES\fR=test.
+funkcja src_test nie zostanie uruchomiona, nawet jeśli użytkownik ustawił
+zmienną \fBFEATURES\fR=test.
 .TP
 .I userpriv
-Disables userpriv for specific packages.
+Wyłącza funkcję userpriv dla okreslonych pakietów.
 .RE
 .PD 1
 .TP
 \fBPROVIDE\fR = \fI"virtual/TARGET"\fR
-This variable should only be used when a package provides a virtual target.
-For example, blackdown-jdk and sun-jdk provide \fIvirtual/jdk\fR.  This
-allows for packages to depend on \fIvirtual/jdk\fR rather than on blackdown
-or sun specifically.
-.SH "PORTAGE DECLARATIONS"
+Powinniśmy użyć tej zmiennej tylko wtedy, gdy pakiet dostarcza funkcjonalności
+wirtualnej. Przykładowo, pakiety blackdown-jdk i sun-jdk dostarczają
+\fIvirtual/jdk\fR. Pozwala to pakietom zdefiniować zależność od pakietu
+\fIvirtual/jdk\fR, zamiast konkretnie od pakietów blackdown lub sun.
+.SH "PORTAGE DECLARATIONS" FIXME
 .TP
 .B inherit
-Inherit is portage's maintainance of extra classes of functions that
-are external to ebuilds and provided as inheritable capabilities and
-data. They define functions and set data types as drop-in replacements,
-expanded, and simplified routines for extremely common tasks to streamline
-the build process. Inherit may only be called once in an ebuild and it may
-\fBnever be wrapped within any conditionals\fR of any kind. Specification of
-the eclasses contains only their name and not the \fI.eclass\fR extention.
-.SH "FUNCTIONS"
+Funkcjonalność "inherit" (dziedziczenia) to sposób zarządzania specjalnymi
+klasami funkcji w Portage, które są zdefiniowane poza ebuildami i dostarczają
+danych i możliwości, które można dziedziczyć. Definiują funkcje i typy danych
+jako łatwo wymienialne części, rozszerzone oraz uproszczone fragmenty kodu,
+służące do wykonywania najbardziej typowych zadań i czyniące proces budowania
+bardziej eleganckim. Deklaracja inherit może być użyta w ebuildzie tylko raz i
+\fBnigdy nie może być użyta wewnątrz jakichkolwiek instrukcji warunkowych\fR.
+Eklasy należy podawać posługujac się wyłącznie ich nazwą, pomijając rozszerzenie
+\fI.eclass\fR.
+.SH "FUNCTIONS" FIXME
 .TP
 .B pkg_nofetch
-If you turn on \fIfetch\fR in \fBRESTRICT\fR, then this function will be
-run when the files in \fBSRC_URI\fR cannot be found.  Useful for
-displaying information to the user on *how* to obtain said files.  All 
-you have to do is output a message and let the function return.  Do not 
-end the function with a call to \fBdie\fR.
+Jeśli dodamy opcję \fIfetch\fR do zmiennej \fBRESTRICT\fR, wówczas zostanie
+uruchomiona niniejsza funkcja, o ile nie będzie można znaleźć plików
+wymienionych w zmiennej \fBSRC_URI\fR. Funkcja ta przydaje się głównie wtedy,
+gdy trzeba poinformować użytkownika w jaki sposób samemu zdobyć wspomniane
+pliki. Powinniśmy jedynie wyświetlić komunikat i pozwolić funkcji samej
+zakończyć działanie. Nie należy wywoływać na końcu funkcji \fBdie\fR.
 .TP
 .B pkg_setup
-This function can be used if the package needs specific setup actions or
-checks to be preformed before anything else.
+Z tej funkcji korzystamy wtedy, gdy pakiet wymaga wykonania specjalnych poleceń
+konfigurujących lub sprawdzeń, które muszą być wykonane na samym poczatku.
 .br
-Initial working directory of ${PORTAGE_TMPDIR}.
+Początkowy katalog roboczy to ${PORTAGE_TMPDIR}.
 .TP
 .B src_unpack
-This function is used to unpack all the sources in \fIA\fR to \fIWORKDIR\fR.
-If not defined in the \fIebuild script\fR it calls \fIunpack ${A}\fR. Any
-patches and other pre configure/compile modifications should be done here.
+Funkcji tej używa się w celu rozpakowania wszystkich plików źródłowych z
+katalogu \fIA\fR do katalogu \fIWORKDIR\fR. Jeśli funkcja nie będzie
+zdefiniowana w skrypcie ebuild, automatycznie wywołana zostanie \fIunpack
+${A}\fR. Nakładanie łatek i inne modyfikacje dokonywane przed procesem
+konfigurowania i kompilacji powinny być wykonane tutaj.
 .br
-Initial working directory of $WORKDIR.
+Początkowy katalog roboczy to $WORKDIR.
 .TP
 .B src_compile
-All necessary steps for configuration and compilation should be done in here.
+Wszystkie czynności niezbędne przy konfiguracji i kompilacji powinny być
+wykonane tutaj.
 .br
-Initial working directory of $S.
+Początkowy katalog roboczy to $S.
 .TP
 .B src_test
-Run all package specific test cases.  The default is to run 'make check' 
-followed 'make test'.
+Wykonuje wszystkie procedury testujące danego pakietu. Domyślnie uruchamia
+polecenie 'make check', a następnie 'make test'.
 .br
-Initial working directory of $S.
+Początkowy katalog roboczy to $S.
 .TP
 .B src_install
-Should contain everything required to install the package in the temporary
-\fIinstall directory\fR.
+Funkcja ta powinna zawierać wszystkie niezbędne czynności, mające na celu
+zainstalowanie pakietu w tymczasowym \fIkatalogu instalacji\fR.
 .br
-Initial working directory of $S.
+Początkowy katalog roboczy to $S.
 .TP
 .B pkg_preinst pkg_postinst
-All modifications required on the live\-filesystem before and after the
-package is merged should be placed here. Also commentary for the user
-should be listed here as it will be displayed last.
+W tych funkcjach powinniśmy dokonywać wszelkich tych zmian w prawdziwym systemie
+plików, które muszą być wykonane przed lub po osadzeniu pakietu w systemie.
+Również komentarze dla użytkownika powinny znajdować się w tym miejscu, gdyż
+wówczas będą wyświetlone jako ostatnie.
 .br
-Initial working directory of $PWD.
+Początkowy katalog roboczy to $PWD.
 .TP
 .B pkg_prerm pkg_postrm
-Like the pkg_*inst functions but for unmerge.
+Funkcje analogiczne do pkg_*inst, lecz służące do odinstalowania.
 .br
-Initial working directory of $PWD.
+Początkowy katalog roboczy to $PWD.
 .TP
 .B pkg_config
-This function should contain optional basic configuration steps.
+Funkcja ta powinna zawierać opcjonalne podstawowe czynności konfiguracyjne.
 .br
-Initial working directory of $PWD.
-.SH "HELPER FUNCTIONS: GENERAL"
+Początkowy katalog roboczy to $PWD.
+.SH "FUNKCJE POMOCNICZE: OGÓLNE"
 .TP
-\fBdie\fR \fI[reason]\fR
-Causes the current emerge process to be aborted. The final display will
-include \fIreason\fR.
+\fBdie\fR \fI[powód]\fR
+Powoduje przerwanie aktualnego procesu instalacji. Zostanie wyświetlony
+komunikat \fIpowód\fR.
 .TP
-\fBuse\fR \fI<USE item>\fR
-If \fIUSE item\fR is in the \fBUSE\fR variable, the function will silently 
-return 0 (aka shell true).  If \fIUSE item\fR is not in the \fBUSE\fR 
-variable, the function will silently return 1 (aka shell false).  \fBusev\fR 
-is a verbose version of \fBuse\fR.
+\fBuse\fR \fI<flaga USE>\fR
+Jeśli \fIflaga USE\fR znajduje się w zmiennej \fBUSE\fR, niniejsza funkcja
+zwróci 0 (wartość "prawda" powłoki), nie wypisując niczego. Jeśli \fIflagi
+USE\fR nie ma w zmiennej \fBUSE\fR, funkcja zwróci wartość 1 (wartość "fałsz"
+powłoki), nie wypisując niczego. Polecenie \fBusev\fR pełni tę samą funkcję co
+\fBuse\fR, lecz wypisuje więcej komunikatów. 
 .RS
 .TP
-.I Example:
+.I Przykład:
 .nf
 if use gnome ; then
 	guiconf="--enable-gui=gnome --with-x"
@@ -433,44 +461,47 @@ elif use gtk ; then
 elif use X ; then
 	guiconf="--enable-gui=athena --with-x"
 else
-	# No gui version will be built
+	# Nie zostanie zbudowana wersja z gui
 	guiconf=""
 fi
 .fi
 .RE
 .TP
-\fBuse_with\fR \fI<USE item>\fR \fI[configure name]\fR \fI[configure opt]\fR
-Useful for creating custom options to pass to a configure script. If \fIUSE 
-item\fR is in the \fBUSE\fR variable and a \fIconfigure opt\fR is specified, 
-then the string \fI--with-[configure name]=[configure opt]\fR will be echoed.  
-If \fIconfigure opt\fR is not specified, then just \fI--with-[configure 
-name]\fR will be echoed.  If \fIUSE item\fR is not in the \fBUSE\fR variable, 
-then the string \fI--without-[configure name]\fR will be echoed. If 
-\fIconfigure name\fR is not specified, then \fIUSE item\fR will be used in 
-its place.
+\fBuse_with\fR \fI<flaga USE>\fR \fI[parametr configure]\fR \fI[opcja
+configure]\fR
+Funkcja przydatna przy tworzeniu własnej listy opcji, które chcemy przekazać
+do skryptu configure. Jeśli \fIflaga USE\fR znajduje się w zmiennej \fBUSE\fR i
+podamy \fIopcję configure\fR, wówczas zostanie wypisany napis
+\fI--with-[parametr configure]=[opcja configure]\fR. Jeśli nie podamy \fIopcji
+configure\fR, wówczas wypisane zostanie tylko \fI--with-[parametr configure]\fR.
+Jeśli \fIflagi USE\fR nie ma w zmiennej \fBUSE\fR, wypisany zostanie napis
+\fI--without-[parametr configure]\fR. Jeśli nie podamy \fIparametru
+configure\fR, wówczas zamiast niego zostanie użyta \fIflaga USE\fR.
 .RS
 .TP
-.I Examples:
+.I Przykłady:
 .nf
 USE="opengl"
 myconf=$(use_with opengl)
-(myconf now has the value "--with-opengl")
+(zmienna myconf ma teraz wartość "--with-opengl")
 
 USE="jpeg"
 myconf=$(use_with jpeg libjpeg)
-(myconf now has the value "--with-libjpeg")
+(zmienna myconf ma teraz wartość "--with-libjpeg")
 
 USE=""
 myconf=$(use_with jpeg libjpeg)
-(myconf now has the value "--without-libjpeg")
+(zmienna myconf ma teraz wartość "--without-libjpeg")
 
 USE="sdl"
 myconf=$(use_with sdl SDL all-plugins)
-(myconf now has the value "--with-SDL=all-plugins")
+(zmienna myconf ma teraz wartość "--with-SDL=all-plugins")
 .fi
 .RE
 .TP
-\fBuse_enable\fR \fI<USE item>\fR \fI[configure name]\fR \fI[configure opt]\fR
+\fBuse_enable\fR \fI<flaga USE>\fR \fI[parametr configure]\fR \fI[opcja configure]\fR
+Funkcja działa analogicznie jak 
+
 Same as \fBuse_with\fR above, except that the configure options are 
 \fI--enable-\fR instead of \fI--with-\fR and \fI--disable-\fR instead of 
 \fI--without-\fR.
