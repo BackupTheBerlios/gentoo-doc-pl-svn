@@ -14,7 +14,7 @@
 <body>
 
 <p>
-Zanim zaczniemy musimy poznać wymagania sprzętowe, jakie powinien spełniać
+Zanim zaczniemy, musimy poznać wymagania sprzętowe, jakie powinien spełniać
 komputer, aby można było na nim zainstalować Gentoo.
 </p>
 
@@ -47,8 +47,15 @@ komputer, aby można było na nim zainstalować Gentoo.
 <body>
 
 <p>
-Jeśli wciąż jesteśmy zainteresowani instalacją Gentoo, przyszedł czas na
-wybranie medium, które wykorzystamy w czasie instalacji. Istnieje pewien wybór -
+Jeśli wciąż jesteśmy zainteresowani wykorzystaniem z Gentoo, przyszedł
+czas na wybranie medium, które wykorzystamy w czasie instalacji. Do
+budowania Gentoo SELinux należy wykorzystać płytę instalacyjną
+hardened. Informacje o tym, skąd można ją pobrać, znajdują się w
+dalszej części tego rozdziału. Teraz zajmiemy się zagadnieniem plików
+stage, wykorzystywanych podczas instalacji.
+
+<!--
+Istnieje pewien wybór -
 poszczególne płyty instalacyjne nie są takie same. Jednak wynik zawsze jest taki
 sam: system podstawowy Gentoo.
 </p>
@@ -70,6 +77,7 @@ Każda płyta instalacyjna posiada wady i zalety. Przedstawimy je w dalszej czę
 tego rozdziału, jednak najpierw zajmiemy się zagadnieniem plików stage,
 wykorzystywanych podczas instalacji.
 </p>
+-->
 
 </body>
 </subsection>
@@ -78,14 +86,14 @@ wykorzystywanych podczas instalacji.
 <body>
 
 <p>
-Gentoo może zostać zainstalowany przy użyciu jednego z trzech tarballi
+Gentoo może zostać zainstalowane przy użyciu jednego z trzech tarballi
 <e>stage</e>. To, który z nich wybierzemy, zależy od tego, jak dużą część
 systemu chcemy skompilować samodzielnie. Tarball <e>stage1</e> pozwala na
 wykonanie bootstrapu i zbudowanie całego systemu od podstaw. <e>Stage2</e>
 pozwala na zbudowanie systemu od etapu, w którym jest on już częściowo
 skompilowany. Tarball <e>stage3</e> zawiera skompilowany system podstawowy
 Gentoo. Jak się wkrótce dowiemy, możliwa jest instalacja Gentoo bez instalacji
-jakichkolwiek pakietów (poza jądrem systemu i pewnymi opcjonalnymi
+jakichkolwiek dodatkowych pakietów (poza jądrem systemu i pewnymi opcjonalnymi
 programami). Jest to możliwe właśnie dzięki <e>stage3</e>.
 </p>
 
@@ -94,10 +102,10 @@ Który tarball stage powinniśmy wybrać?
 </p>
 
 <p>
-Etap ten pozwala na posiadanie pełnej kontroli nad optymalizacją systemu. Jest
-najbardziej odpowiedni dla bardziej doświadczonych użytkowników, którzy
-dokładnie wiedzą co jest im potrzebne. Jest również doskonałym sposobem by
-dość dokładnie dowiedzieć się jak działa Gentoo. 
+Plik etapu <e>stage1</e> pozwala na posiadanie pełnej kontroli nad optymalizacją
+systemu. Jest najbardziej odpowiedni dla bardziej doświadczonych użytkowników,
+którzy dokładnie wiedzą, co jest im potrzebne. Jest również doskonałym sposobem
+by dość dokładnie dowiedzieć się jak działa Gentoo.
 </p>
 
 <p>
@@ -153,7 +161,7 @@ etapu.
 </p>
 
 <p>
-Instalacja przy pomocy <e>stage1</e> jest możliwa tylko, jeśli dysponujemy
+Instalacja przy pomocy <e>stage2</e> jest możliwa tylko, jeśli dysponujemy
 działającym połączeniem internetowym.
 </p>
 
@@ -234,7 +242,7 @@ systemu.
 </p>
 
 <p>
-Przyjrzyjmy się teraz dostępnym płytom instalacyjnym.
+Przyjrzyjmy się teraz płytom instalacyjnym.
 </p>
 
 </body>
@@ -259,12 +267,15 @@ internetowego. Niektóre płyty instalacyjne zawierają dodatkowe kody źródło
 pakiety binarne, pozwalające na instalację systemu bez dostępu do internetu.
 </p>
 
+<!--
 <p>
 Co dokładnie zawierają płyty instalacyjne?
 </p>
+-->
 
 </body>
 </subsection>
+<!--
 <subsection>
 <title>Minimalna płyta instalacyjna Gentoo</title>
 <body>
@@ -307,6 +318,7 @@ LiveCD can be found in the <path>universal</path> subdirectory and is called
 
 </body>
 </subsection>
+-->
 <!--
 <subsection>
 <title>Gentoo's Universal LiveCD</title>
@@ -377,8 +389,7 @@ installation.
 
 <p>
 Skoro zdecydowaliśmy się na wykorzystanie płyt instalacyjnych Gentoo, musimy
-pobrać ich obrazy i nagrać je. Omówiliśmy już dostępne płyty instalacyjne, teraz
-dowiemy się, gdzie możemy je znaleźć.
+pobrać ich obrazy i nagrać je. Teraz dowiemy się, gdzie możemy znaleźć.
 </p>
 
 <p>
@@ -394,31 +405,30 @@ płyt instalacyjnych.
 </impo>
 
 <p>
-We wskazanych katalogu znajdują się pliki iso. Są to pełne obrazy płyt, które
+We wskazanym katalogu znajdują się pliki iso. Są to pełne obrazy płyt, które
 można nagrać na płycie CD-R.
 </p>
 
 <p>
 Aby sprawdzić, czy pobrane przez nas pliki nie zawierają błędów, powiniśmy
 porównać ich sumy kontrolne MD5 z tymi, które dostarczane są na serwerach
-lustrzanych razem razem z obrazami płyt
-(np. <path>install-x86-minimal-2004.3.iso.md5</path>). Do sprawdzenia sumy MD5 w
+lustrzanych razem z obrazami płyt
+(np. <path>hardened-x86-2005.1.iso.md5</path>). Do sprawdzenia sumy MD5 w
 systemach GNU/Linux i Unix, możemy wykorzystać program <c>md5sum</c>, natomiast
 w systemie Window aplikację <uri
 link="http://www.md5summer.org">md5summer</uri>.
 </p>
 
 <p>
-Pobrane obrazy należy nagrać w trybie RAW. Sposób uaktywnienia tego trybu,
-zależy od używanej aplikacji. Poniżej przyjrzymy się jak tego dokonać w
-programach <c>cdrecord</c> i <c>Kf3B</c>. Więcej informacji o nagrywaniu obrazów
-na płyty można uzyskać czytając <uri
-link="/doc/pl/faq.xml#isoburning">Gentoo FAQ</uri>.
+Pobrany obraz należy nagrać w trybie RAW. Sposób uaktywnienia tego trybu, zależy
+od używanej aplikacji. Poniżej pokarzemy jak tego dokonać w programach
+<c>cdrecord</c> i <c>K3B</c>. Więcej informacji o nagrywaniu obrazów na płyty
+można uzyskać czytając <uri link="/doc/pl/faq.xml#isoburning">Gentoo FAQ</uri>.
 </p>
 
 <ul>
   <li>
-    W <c>cdrecord</c> wystarczy wpisać <c>cdrecord dev=/dev/hdc</c> (zmieniamy
+    W <c>cdrecord</c> wystarczy wpisać <c>cdrecord dev=/dev/hdc</c> (zmieniając
     <path>/dev/hdc</path> na ściężkę do naszego urządzenia CD-RW) i nazwę pliku
     ISO, który chcemy wypalić.
   </li>
@@ -444,22 +454,24 @@ końca, ponieważ dostęp do niego może okazać się niemożliwy bez wykonania 
 <p>
 Po nagraniu płyt nadszedł czas na uruchomienie systemu instalacyjnego. Aby tego
 dokonać zrestartujemy komputer i wejdziemy do ustawień BIOS-u. Zazwyczaj służą
-do tego klawisze Del, F1 lub ESC, w zależności od jego producenta. Następnie
-zmienimy kolejność uruchamiania tak, aby napęd CD-ROM znalazł się przed twardym
+do tego klawisze Del, F1 lub ESC, w zależności od producenta. Następnie zmienimy
+kolejność uruchamiania tak, aby napęd CD-ROM znalazł się przed twardym
 dyskiem. Przeważnie opcja ta kryje się pod etykietą "CMOS Setup". Jeśli tego nie
 zrobimy, system uruchomi się z twardego dysku zamiast z płyty.
 </p>
 
 <p>
-Kolejnym krokiem będzie umieszczenie płyty instalacyjnej w napędzie i ponownie
-uruchom komputer. Powiniśmy ujrzeć ładny ekran startowy z logo Gentoo
+Kolejnym krokiem będzie umieszczenie płyty instalacyjnej w napędzie i ponowne
+uruchomienie komputera. Powiniśmy ujrzeć ładny ekran startowy z logo Gentoo
 Linux. Możemy po prostu wcisnąć Enter aby rozpocząć proces uruchamiania z
 domyślnymi opcjami lub zmienić je, wybierając jądro i dodając odpowiednie
 parametry.
 </p>
 
 <p>
-Mamy możliwość wyboru jądra? Tak. Na płycie instalacyjnej znajduje się kilka
+Mamy możliwość wyboru jądra? Tak.
+<!--
+Na płycie instalacyjnej znajduje się kilka
 kerneli. Domyśnym jest <c>gentoo</c>. Pozostałe możliwości to jądro <c>smp</c>,
 które obsługuje systemy wieloprocesorowe i warianty powyższych kerneli z sufiksem
 <c>-nofb</c>, które są pozbawione obsługi framebuffera.
@@ -473,6 +485,7 @@ związane z kompatybilnością.
 </p>
 
 <p>
+-->
 Poniższa tabela krótko opisuje jądra dostępne na płycie instalacyjnej:
 </p>
 
@@ -522,7 +535,7 @@ informacje uzyskamy wciskając przycisk F2 na ekranie wyboru jądra.
 - noraid        wyłącza łądowanie modułów evms
 - nohotplug     wyłącza uruchamianie hotplug
 - ide=nodma     wymusza wyłączenie DMA na psujących się napędach IDE
-- docache       Zapamiętuje cały proces uruchamiania płyty CD w pamięci RAM, dzięki czemu możliwe jest odmontowanie /mnt/cdrom w czasie instalacji
+- docache       zapamiętuje cały proces uruchamiania płyty CD w pamięci RAM, dzięki czemu możliwe jest odmontowanie /mnt/cdrom w czasie instalacji
 - dokeymap      umożliwia wybór klawiatury innej niż us
 - noapic        wyłącza apic (warto wypróbować, jeśli mamy problemy ze sprzętem nics, scsi itp.)
 - hdx=stroke    pozwala na partycjonowanie całego dysku nawet wedy, gdy nasz BIOS nie obsługuje dużych dysków
@@ -543,7 +556,7 @@ boot: <i>permissive dopcmcia</i>
 Następnie zobaczymy kolejny ekran uruchamiania z paskiem postępu. Gdy proces
 uruchamiania zakończy się, zostaniemy automatycznie zalogowani do systemu
 instalacyjnego jako super użytkownik <c>root</c>. Powinniśmy widzieć znak
-zachęty roota (<c>#</c>) na obecnej konsoli. Możemy przenieść się na inne
+zachęty roota (<c>#</c>) na aktualnej konsoli. Możemy przenieść się na inne
 konsole wykorzystując kombinacje klawiszy Alt-F2, Alt-F3 i Alt-F4. Aby powrócić na
 konsolę, od której zaczeliśmy, używamy kombinacji Alt-F1.
 </p>
@@ -625,7 +638,7 @@ roota.
 </p>
 
 <p>
-Hasło użytkownika roota zmieniamy poleceniem <c>passwd</c>:
+Hasło użytkownika root zmieniamy poleceniem <c>passwd</c>:
 </p>
 
 <pre caption="Zmiana hasła roota">
@@ -688,7 +701,7 @@ rozdziale.
 </p>
 
 <pre caption="Przeglądanie dokumentacji internetowej">
-# <i>links2 http://www.gentoo.org/doc/en/handbook/handbook-x86.xml</i>
+# <i>links2 http://www.gentoo.org/proj/en/hardened/selinux/selinux-x86-handbook.xml</i>
 </pre>
 
 <p>
@@ -718,7 +731,7 @@ Demona SSH uruchomimy następującym poleceniem:
 </pre>
 
 <p>
-Aby korzystać ssh, musimy skonfigurować połączenie sieciowe. Zrobimy to w
+Aby wykorzystać ssh, musimy skonfigurować połączenie sieciowe. Zrobimy to w
 kolejnym rozdziale: <uri link="?part=1&amp;chap=3">Konfiguracja sieci</uri>.
 </p>
 

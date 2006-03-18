@@ -14,9 +14,9 @@
 <p>
 System musi wiedzieć gdzie się znajduje, musimy zatem poprawnie skonfigurować
 jego ustawienia strefy czasowej. Zaczynamy od wyszukania odpowiedniej dla nas
-strefy w katalogu <path>/usr/share/zoneinfo</path>, a następnie tworzyny
-dowiązanie symboliczne do <path>/etc/localtime</path> przy użyciu polecenia
-<c>ln</c>.
+strefy w katalogu <path>/usr/share/zoneinfo</path>, a następnie tworzymy do niej
+dowiązanie symboliczne o nazwie <path>/etc/localtime</path> przy użyciu
+polecenia <c>ln</c>.
 </p>
 
 <pre caption="Ustawianie strefy czasowej">
@@ -36,10 +36,12 @@ dowiązanie symboliczne do <path>/etc/localtime</path> przy użyciu polecenia
 <p>
 Jądro Linux jest sercem każdej dystrybucji i stanowi interfejs pomiędzy
 programami użytkownika, a sprzętem. Gentoo pozwala użytkownikom na wybranie
-spośród kilku różnych jego źródeł. Pełna ich lista wraz z opisami znajduje się w
-dokumencie <uri link="/doc/pl/gentoo-kernel.xml">Gentoo Linux Kernel
-Guide</uri>. W SELinux tylko jądra serii 2.6 są obsługiwane. Ponadto sugerowane
-jest skorzystanie ze źródeł hardened-sources. 
+spośród kilku różnych jego wersji. Pełna ich lista wraz z opisami znajduje się w
+dokumencie <uri link="/doc/pl/gentoo-kernel.xml">Omówienie źródeł jądra
+dostępnych w Gentoo</uri>. W SELinux tylko jądra serii 2.6 są obsługiwane
+(obsługa serii 2.4 jest wciąż ograniczana, a w przyszłości zostanie zupełnie
+wstrzymana). Ponadto sugerowane jest skorzystanie ze źródeł
+<c>hardened-sources</c>.
 </p>
 
 <!--
@@ -86,7 +88,7 @@ odpowiedniej poprawki, zanim przejdziemy do dalszej części instalacji.
 </pre>
 
 <p>
-Teraz nadszedł czas na skomfigurowanie i skompilowanie źródeł jądra.
+Teraz nadszedł czas na skonfigurowanie i skompilowanie źródeł jądra.
 <!--
 You 
 can use <c>genkernel</c> for this, which will build a generic kernel as used 
@@ -121,12 +123,11 @@ czynność. ;)
 <p>
 Nie sposób jednak zaprzeczyć, że należy dobrze znać swój komputer, aby móc
 prawidłowo skonfigurować jądro. Większość informacji można zdobyć wyświetlając
-zawartość <path>/proc/pci</path> (lub używając polecenia <c>lspci</c> jeśli jest
-dostępne). Dodatkowe
-informacje o sterownikach, które należy włączyć do jądra, można uzyskać dzięki
-poleceniu <c>lsmod</c>, które pokaże listę modułów jakie załadował system płyty
-instalacyjnej (dając nam w ten sposób przydatne wskazówki co powinniśmy
-wykorzystać budując swój kernel).
+zawartość <path>/proc/pci</path> (lub używając polecenia <c>lspci</c>, jeśli
+jest dostępne). Dodatkowe informacje o sterownikach, które należy włączyć do
+jądra, można uzyskać dzięki poleceniu <c>lsmod</c>, które pokaże listę modułów
+jakie załadował system płyty instalacyjnej (dając nam w ten sposób przydatne
+wskazówki co powinniśmy wykorzystać budując swój kernel).
 </p>
 
 <p>
@@ -164,20 +165,20 @@ Na początku włączymy opcje wymagane przez SELinux:
 [*] Auditing support
 
 <comment>Zakładka "File systems"</comment>
-&lt;*&gt; Second extended fs support <comment>(If using ext2)</comment>
+&lt;*&gt; Second extended fs support <comment>(Dla użytkowników ext2)</comment>
 [*]   Ext2 extended attributes
 [ ]     Ext2 POSIX Access Control Lists
 [*]     Ext2 Security Labels
-&lt;*&gt; Ext3 journalling file system support <comment>(If using ext3)</comment>
+&lt;*&gt; Ext3 journalling file system support <comment>(Dla użytkowników ext3)</comment>
 [*]   Ext3 extended attributes
 [ ]     Ext3 POSIX Access Control Lists
 [*]     Ext3 security labels
-&lt;*&gt; JFS filesystem support <comment>(If using JFS)</comment>
+&lt;*&gt; JFS filesystem support <comment>(Dla użytkowników JFS)</comment>
 [ ]   JFS POSIX Access Control Lists
 [*]   JFS Security Labels
 [ ]   JFS debugging
 [ ]   JFS statistics
-&lt;*&gt; XFS filesystem support <comment>(If using XFS)</comment>
+&lt;*&gt; XFS filesystem support <comment>(Dla użytkowników XFS)</comment>
 [ ]   Realtime support (EXPERIMENTAL)
 [ ]   Quota support
 [ ]   ACL support
@@ -185,7 +186,10 @@ Na początku włączymy opcje wymagane przez SELinux:
 
 [*] /proc file system support
 [ ] /dev file system support (EXPERIMENTAL)
-[*] /dev/pts file system for Unix98 PTYs <comment>(This option does not appear in 2.6, it is always on)</comment>
+<!--
+[*] /dev/pts file system for Unix98 PTYs <comment>(This option does not appear -->
+<!--in 2.6, it is always on)</comment>
+-->
 [*]   /dev/pts Extended Attributes
 [*]     /dev/pts Security Labels    
 [*] Virtual memory file system support (former shm fs)
@@ -208,12 +212,12 @@ Na początku włączymy opcje wymagane przez SELinux:
 Rozszerzone atrybuty bezpieczeństa muszą zostać włączone dla devpts i używanych
 przez nas systemów plików. Devfs nie może być używane w SELinux, więc należy
 wyłączyć tę opcję. Nie wszystkie opcje występują w starszych jądrach serii 2.6,
-jak na przykład "Auditing support".
+na przykład "Auditing support".
 </p>
 
 <note>
-Dostępne opcje mogą się nieznacznie różnić w zależności od wersji wykorzystanych
-źródeł jądra. Inne rozszerzone atrybuty powinny być wyłączone.
+Dostępne opcje mogą się nieznacznie różnić w zależności od wersji
+wykorzystywanych źródeł jądra. Inne rozszerzone atrybuty powinny być wyłączone.
 </note>
 
 <warn>
@@ -227,10 +231,11 @@ Upewnijmy się, że skompilujemy jądra z właściwymi ustawieniami rodziny proc
 
 <pre caption="Wybór rodziny procesorów">
 Processor type and features ---&gt;
-  <comment>(Change according to younr system)</comment>
+  <comment>(Zmieniamy w zależności od posiadanego sprzętu)</comment>
   (<i>Athlon/Duron/K7</i>) Processor family
 </pre>
 
+<!--
 <p>
 Jeśli BIOS nie radzi sobie z dużymi dyskami i konieczne było ograniczenie
 maksymalnego ich rozmiaru przy pomocy jumpera, należy zaznaczyć poniższą opcję,
@@ -246,6 +251,7 @@ ATA/IDE/MFM/RLL support ---&gt;
     [ ]     Use multi-mode by default
     [*]     Auto-Geometry Resizing support
 </pre>
+-->
 
 <p>
 Użytkownicy łączący się z Internetem za pomocą PPPoE i połączeń dial-up powinni
@@ -253,13 +259,15 @@ zaznaczyć również:
 </p>
 
 <pre caption="Sterowniki niezbędne dla użytkowników PPPoE">
+<!--
 <comment>(With a 2.4.x kernel)</comment>
 Network device support ---&gt;
   &lt;*&gt; PPP (point-to-point protocol) support
   &lt;*&gt;   PPP support for async serial ports
   &lt;*&gt;   PPP support for sync tty ports
-
+  
 <comment>(With a 2.6.x kernel)</comment>
+-->
 Device Drivers ---&gt;
   Networking support ---&gt;
     &lt;*&gt; PPP (point-to-point protocol) support
@@ -271,7 +279,7 @@ Device Drivers ---&gt;
 Obie opcje dotyczące kompresji nie są wprawdzie wymagane, ale również nie
 zaszkodzą naszemu systemowi, podobnie zresztą jak opcja <c>PPP over
 Ethernet</c>, która jest przydatna tylko gdy skonfiguruje się <c>rp-pppoe</c>
-do pracy w trybie PPPoE jądra (kernel mode PPPoE).
+do pracy w trybie PPPoE (kernel mode PPPoE).
 </p>
 
 <p>
@@ -303,48 +311,48 @@ link="#compiling">Kompilowanie i instalowanie</uri>.
 <p>
 Po skonfigurowaniu kernela przyszła pora na jego skompilowanie i instalację.
 Opuszczamy program konfiguracyjny i rozpoczynamy proces kompilacji, wykonując
-polecenie <c>make dep &amp;&amp; make bzImage modules 
-modules_install</c>:
+polecenie <c>make &amp;&amp; make modules_install</c>:
 </p>
 
 <pre caption="Kompilowanie jądra">
+<!--
 <comment>(For 2.4 kernel)</comment>
 # <i>make dep &amp;&amp; make bzImage modules modules_install</i>
 
 <comment>(For 2.6 kernel)</comment>
+-->
 # <i>make &amp;&amp; make modules_install</i>
 </pre>
 
 <p>
 Kiedy jądro skończy się kompilować należy przekopiować jego obraz do katalogu
-<path>/boot</path>.
-
-When the kernel is done compiling, copy over the kernel image to
-<path>/boot</path>. From here onwards we assume that the kernel you are
-installing is the 2.4.26 version of the <c>gentoo-sources</c>. Use whatever name
-you feel is appropriate for your choice and remember it as you will need it
-later on when you configure your bootloader.
+<path>/boot</path>. W kolejnych przykładach zakładamy, że zainstalowane zostało
+jądro <c>hardened-sources</c> w wersji 2.6.7. Nazwy kopiowanych plików dobieramy
+zgodnie z naszymi preferencjami. Należy zapamiętać użyte nazwy, ponieważ będą
+nam potrzebe podczas konfigurowania bootloadera.
 </p>
 
-<pre caption="Installing the kernel">
-# <i>cp arch/i386/boot/bzImage /boot/kernel-2.4.26-gentoo-r6</i>
-# <i>cp System.map /boot/System.map-2.4.26-gentoo-r6</i>
+<pre caption="Kopiowanie jądra do katalogu /boot">
+# <i>cp arch/i386/boot/bzImage /boot/kernel-2.6.7-hardened-r6</i>
+# <i>cp System.map /boot/System.map-2.6.7-hardened-r6</i>
 </pre>
 
 <p>
-It is also wise to copy over your kernel configuration file to
-<path>/boot</path>, just in case :)
+Dobrze jest przekopiować do katalogu <path>/boot</path> również plik
+konfiguracyjny jądra - na wszelki wypadek.
 </p>
 
-<pre caption="Backing up your kernel configuration">
-# <i>cp .config /boot/config-2.4.26-gentoo-r6</i>
+<pre caption="Kopiowanie pliku konfiguracyjnego">
+# <i>cp .config /boot/config-2.6.7-hardened-r6</i>
 </pre>
 
 </body>
 </subsection>
 </section>
 <section id="kernel_modules">
-<title>Installing Separate Kernel Modules</title>
+<title>Moduły jądra</title>
+
+<!--
 <subsection>
 <title>Installing Extra Modules</title>
 <body>
@@ -447,53 +455,52 @@ installing <c>emu10k1</c>.
 
 </body>
 </subsection>
+-->
+
 <subsection>
-<title>Configuring the Modules</title>
+<title>Konfigurowanie modułów</title>
 <body>
 
 <p>
-You should list the modules you want automatically loaded in 
-<path>/etc/modules.autoload.d/kernel-2.4</path> (or <path>kernel-2.6</path>). 
-You can add extra options to the modules too if you want.
+Moduły ładowane w czasie startu systemu muszą zostać dopisane do pliku
+<path>/etc/modules.autoload.d/kernel-2.6</path>. Można tu również dodać
+dodatkowe opcje ich ładowania.
 </p>
 
 <p>
-To view all available modules, run the following <c>find</c> command. Don't
-forget to substitute "&lt;kernel version&gt;" with the version of the kernel you
-just compiled:
+Listę wszystkich dostępnych modułów pokaże polecenie <c>find</c> z podaną
+poniżej składnią:
 </p>
 
-<pre caption="Viewing all available modules">
+<pre caption="Znajdowanie dostępnych modułów">
 # <i>find /lib/modules/&lt;kernel version&gt;/ -type f -iname '*.o' -or -iname '*.ko'</i>
 </pre>
 
 <p>
-For instance, to automatically load the <c>3c59x.o</c> module, edit the
-<path>kernel-2.4</path> or <path>kernel-2.6</path> file and enter the module
-name in it.
+Dla przykładu, aby załadować moduł 3c59x.o należy wyedytować plik kernel-2.6,
+dodając tam nazwę modułu.
 </p>
 
-<pre caption="Editing /etc/modules.autoload.d/kernel-2.4">
-<comment>(Example for 2.4 kernels)</comment>
-# <i>nano -w /etc/modules.autoload.d/kernel-2.4</i>
+<pre caption="Edytowanie pliku /etc/modules.autoload.d/kernel-2.6">
+# <i>nano -w /etc/modules.autoload.d/kernel-2.6</i>
 </pre>
 
-<pre caption="/etc/modules.autoload.d/kernel-2.4 or kernel-2.6">
+<pre caption="Zawartość pliku /etc/modules.autoload.d/kernel-2.6">
 3c59x
 </pre>
 
 <p>
-Now run <c>modules-update</c> to commit your changes to the
-<path>/etc/modules.conf</path> file:
+Następnie wykonujemy polecenie <c>modules-update</c> aby wprowadzić zmiany w
+pliku <path>/etc/modules.conf</path>:
 </p>
 
-<pre caption="Running modules-update">
+<pre caption="Uruchamianie modules-update">
 # <i>modules-update</i>
 </pre>
 
 <p>
-Continue the installation with <uri link="?part=1&amp;chap=8">Configuring 
-your System</uri>.
+Kontynuujemy instalację zgodnie z rozdziałem <uri
+link="?part=1&amp;chap=8">Konfigurowanie systemu</uri>.
 </p>
 
 </body>
