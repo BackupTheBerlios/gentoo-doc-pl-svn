@@ -46,12 +46,14 @@ godzinę 16:21, wykonujemy polecenie:
 <body>
 
 <p>
-W następnym kroku należy wykonać instalację wybranego tarballa <e>stage</e>.
-Można go pobrać z internetu lub, jeśli korzystamy z jednej z Uniwersalnych płyt
-instalacyjnych Gentoo, przekopiować z CD. Jeżeli mamy Uniwersalną płytę
-instalacyjną i znajduje się na niej plik stage, którego chcemy używać, należy go
-skopiować na dysk. Ściąganie tarballa z internetu byłoby w tej wytuacji
-niepotrzebną stratą czasu, gdyż pliki stage są takie same.
+W następnym kroku wykonamy instalację wybranego tarballa <e>stage</e>, który
+uprzednio należy pobrać z internetu.
+<!--
+Można go pobrać z internetu lub przekopiować z płyty instalacyjnej, jeśli
+znajduje się na niej ten, którego chcemy użyć. Ściąganie tarballa z
+internetu byłoby w tej sytuacji niepotrzebną stratą czasu, gdyż pliki stage są
+takie same.
+-->
 </p>
 
 <table>
@@ -106,16 +108,16 @@ Na początku przechodzimy do punktu montowania systemu plików Gentoo
 </pre>
 
 <p>
-W zależności od medium instalacyjnego mamy do dyspozycji kilka narzędzi, za
-pomocą których możemy pobrać plik stage. Jeżeli mamy program <c>links2</c>
-możemy wejść bezpośrednio na <uri link="/main/en/mirrors.xml">listę serwerów
-lustrzanych Gentoo</uri> i wybrać serwer, który znajduje się
-najbliżej. Następnie wybieramy katalog <path>experimental/</path>, potem katalog
-odpowiadający naszej architekturze (na przykład <path>x86/</path>) i
-przechodzimy do <path>hardened/stages</path>. Zobaczymy tam wszystkie dostępne
-pliki stage dla naszej architektury. Wubieramy jeden i pobieramy go, wciskając
-klawisz <c>D</c>. Gdy pobieranie dobiegnie końca, opuszczamy przeglądarkę przy
-pomocy klawisza <c>Q</c>.
+Mamy do dyspozycji kilka narzędzi, za pomocą których możemy pobrać plik
+stage. Jeżeli mamy program <c>links2</c>, możemy wejść bezpośrednio na <uri
+link="/main/en/mirrors.xml">listę serwerów lustrzanych Gentoo</uri> i wybrać
+serwer, który znajduje się najbliżej. Następnie wybieramy katalog
+<path>experimental/</path>, potem katalog odpowiadający naszej architekturze (na
+przykład <path>x86/</path>) i przechodzimy do
+<path>hardened/stages</path>. Zobaczymy tam wszystkie dostępne pliki stage dla
+naszej architektury. Wybieramy jeden i pobieramy go, wciskając klawisz
+<c>D</c>. Gdy pobieranie dobiegnie końca, opuszczamy przeglądarkę przy pomocy
+klawisza <c>Q</c>.
 </p>
 
 <pre caption="Przeglądanie listy serwerów lustrzanych za pomocą links2">
@@ -314,8 +316,8 @@ link="#compile_options">Configuring the Compile Options</uri>.
 Jest wiele możliwych do skonfigurowania zmiennych wpływających na zachowanie
 Gentoo. Możemy je wprowadzać jako zmienne środowiskowe (poprzez <c>export</c>),
 ale wtedy nie zostaną zapisane na stałe. Zamiast tego Portage do utrzymywania
-konfiguracji używa pliku konfiguracyjnego <path>/etc/make.conf</path>. Pora
-wziąć się za jego edycję.
+konfiguracji używa pliku <path>/etc/make.conf</path>. Pora zająć się jego
+edycją.
 </p>
 
 <note>
@@ -330,7 +332,7 @@ Uruchamiamy ulubiony edytor (w przykładach używamy <c>nano</c>), który posłu
 nam do wprowadzenia omawianych opcji optymalizacji.
 </p>
 
-<pre caption="Otwierani /etc/make.conf">
+<pre caption="Otwieranie /etc/make.conf">
 # <i>nano -w /mnt/gentoo/etc/make.conf</i>
 </pre>
 
@@ -449,7 +451,7 @@ sobą.
 <p>
 W plik <path>make.conf</path> należy zdefiniować flagi optymalizacji, co do
 których jesteśmy przekonani, że <e>w głównej mierze</e> poprawią czas reakcji
-systemu. Nie przypisujmy tutaj ustawień eksperymentalnych; przesada w
+systemu. Nie przypisujmy tutaj ustawień eksperymentalnych - przesada w
 optymalizacji może spowodować, że programy zaczną źle funkcjonować (nagle
 przerywać działanie lub nawet wcale nie działać).
 </p>
@@ -458,7 +460,7 @@ przerywać działanie lub nawet wcale nie działać).
 Nie będziemy opisywać znaczenia wszystkich możliwych opcji optymalizacji.
 Wszystkie są omówione w <uri link="http://gcc.gnu.org/onlinedocs/">Internetowym
 Podręczniku GNU</uri>. Ponadto warto zajrzeć na stronę info <c>gcc</c> (przy
-pomocy komendy<c>info gcc</c> - działa tylko na systemach linuksowych). Plik
+pomocy komendy <c>info gcc</c> - działa tylko na systemach linuksowych). Plik
 <path>make.conf.example</path> również zawiera dużo informacji i przykładów -
 należy go uważnie przeczytać.
 </p>
