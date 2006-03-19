@@ -28,10 +28,10 @@ zachęty. Aby uruchomić instalator, należy wpisać:
 
 <p>
 Po zakończeniu ładowania, naszym oczom ukaże się ekran powitalny. Razem z
-instalatorem mamy dostęp do przyjaznej instrukcji instalacji Gentoo. Każdą z
+instalatorem mamy dostęp do przejrzystej instrukcji instalacji Gentoo. Każdą z
 opcji należy najpierw uważnie przeczytać, dopiero później z niej korzystać. Do
 każdego z kroków instalacji na górze zakładki dostępna jest szczegółowa pomoc.
-Radzimy ją wykorzystać, przed podjęciem własnych decyzji dotyczących
+Radzimy ją wykorzystać przed podjęciem własnych decyzji dotyczących
 instalacji. Ważne jest, iż możemy w dowolnym momencie zapisać stan instalacji i
 powrócić do tego samego momentu w późniejszym czasie. Do poruszania się po
 opcjach wewnątrz kolejnych zakładek należy skorzystać z klawisza <c>Tab</c> (na
@@ -50,7 +50,7 @@ klawiaturze) oraz klawisza <c>Enter</c> aby zatwierdzić jakąś akcję.
 
 <p>
 Pierwszą rzeczą, którą należy zrobić, aby móc zainstalować Gentoo na swoim
-komputerze jest przygotowanie dysków. Na zakładce <c>Partitioning</c> możemy
+komputerze jest przygotowanie dysków. W zakładce <c>Partitioning</c> możemy
 znaleźć listę wykrytych dysków oraz partycji, a także zdecydować jaki system
 plików powinien się na nich znaleźć. Należy bardzo uważać w przypadku opcji
 <c>Clear partitions</c> ponieważ powoduje ona usunięcie wszystkich partycji z
@@ -79,7 +79,7 @@ partycji oraz danych.
 
 <p>
 Na tej zakładce użytkownik może ustawić gdzie oraz jak powinny być montowane
-siecowe systemy plików, które można wykorzystać zarówno podczas jak i po
+sieciowe systemy plików, które można wykorzystać zarówno w trakcie, jak i po
 instalacji. Aby rozpocząć konfigurację należy wybrać opcję <c>New</c>. W tym
 momencie wspierany jest tylko NFS.
 </p>
@@ -89,21 +89,22 @@ momencie wspierany jest tylko NFS.
 </section>
 
 <section>
-<title>Wybór "Stage"</title>
+<title>Wybór stage</title>
 <subsection>
 <title>Dynamiczne tworzenie pliku stage</title>
 <body>
 
 <p>
-Jeżeli instalacja odbywa się bez dostępu do internetu, musimy użyć jądra
-znajdującego się na LiveCD. Są to <c>gentoo-sources</c> skompilowane przy
-użyciu <c>genkernela</c>, przez co uzyskujemy jądro automatycznie
-wykrywające i konfigurujące sprzęt podczas uruchomienia.
+Jeżeli instalujemy Gentoo <e>bez</e> dostępu do internetu, <e>musimy</e> wybrać
+<c>GRP</c> z opcji stage. Następnie, na kolejnym "ekranie", należy wybrać
+<c>Create from CD</c>. Wszystko co tylko potrzebne do budowy systemu, będzie
+wygenerowane przy użyciu plików z LiveCD.
 </p>
 
-<p>
-Wybieramy <c>LiveCD kernel</c> i przechodzimy do następnej zakładki.
-</p>
+<warn>
+Jeżeli nie mamy połączenia z internetem <e>nie</e> należy wybierać żadnych
+innych opcji, niż te podane powyżej.
+</warn>
 
 </body>
 </subsection>
@@ -117,9 +118,9 @@ Wybieramy <c>LiveCD kernel</c> i przechodzimy do następnej zakładki.
 
 <p>
 Jeżeli instalacja odbywa się bez dostępu do internetu, musimy użyć jądra
-znajdującego się na LiveCD. Są to <c>gentoo-sources</c> skompilowane przy użyciu
-<c>genkernela</c>, przez co otrzymujemy jądro automatycznie wykrywające i
-konfigurujące sprzęt podczas uruchamiania.
+znajdującego się na LiveCD. Jest to jądro <c>gentoo-sources</c> skompilowane
+przy użyciu <c>genkernela</c>, przez będzie ono automatycznie wykrywało i
+konfigurowało sprzęt podczas uruchamiania.
 </p>
 
 <p>
