@@ -81,8 +81,8 @@ partycji (np. <b>PPC</b>).
 
 <p>
 W naszym przykładowym schemacie (dla x86) <path>/boot</path> będzie partycją
-<path>/dev/hda1</path> i będzie używał systemu plików <c>ext2</c> oraz będzie
-sprawdzany podczas rozruchu.
+<path>/dev/hda1</path>, używającą systemu plików <c>ext2</c> oraz będzie
+sprawdzana podczas rozruchu.
 </p>
 
 <pre caption="Przykładowy wpis do /etc/fstab dla /boot">
@@ -259,7 +259,7 @@ iface_eth0="<i>&lt;nasz adres ip&gt;</i> broadcast <i>&lt;nasz adres broadcast&g
 </pre>
 
 <p>
-Jeśli korzystany z DHCP (automatyczne uzyskiwanie adresu IP), powinniśmy zmienną
+Jeśli korzystamy z DHCP (automatyczne uzyskiwanie adresu IP), powinniśmy zmienną
 <c>iface_eth0</c> ustawić jako <c>dhcp</c>. W przypadku używania rp-pppoe
 (np. ADSL), ustawiamy tu wartość <c>lo</c>. Jeśli natomiast musimy ręcznie
 skonfigurować sieć, a powyższy opis nie jest dla nas dość przejrzysty,
@@ -349,7 +349,7 @@ składa się z trzech komputerów: <c>jenny</c> (192.168.0.5), <c>benny</c>
 do pliku <path>/etc/hosts</path> następujące linijki:
 </p>
 
-<pre caption="Otwieranie o edycji pliku /etc/hosts">
+<pre caption="Otwieranie do edycji pliku /etc/hosts">
 # <i>nano -w /etc/hosts</i>
 </pre>
 
@@ -362,8 +362,8 @@ do pliku <path>/etc/hosts</path> następujące linijki:
 
 <p>
 Jeśli nie posiadamy wewnętrznej sieci (lub serwer nazw obejmuje także
-umieszczone w niej komputery) wystarczy pojedynczy wpis.  Jeżeli na przyład
-chcemy nazwać swój system <c>tux.homenetwork</c> dodajemy wpis:
+umieszczone w niej komputery) wystarczy pojedynczy wpis. Jeżeli, na przyład
+chcemy nazwać swój system <c>tux.homenetwork</c>, dodajemy wpis:
 </p>
 
 <pre caption="/etc/hosts dla samotnych lub w pełni zintegrowanych maszyn">
@@ -387,7 +387,7 @@ dalej.
 <body>
 
 <note>
-Pakiet <c>pcmcia-cs</c> jest dostępne wyłącznie na platformach x86, amd64 oraz
+Pakiet <c>pcmcia-cs</c> jest dostępny wyłącznie na platformach x86, amd64 oraz
 ppc.
 </note>
 
@@ -423,7 +423,7 @@ Następnie dodajemy do domyślnego poziomu uruchamiania skrypt <c>pcmcia</c>:
 Hasło roota zmieniamy poleceniem:
 </p>
 
-<pre caption="Ustawienie hasła superużytkownika">
+<pre caption="Ustawianie hasła superużytkownika">
 # <i>passwd</i>
 </pre>
 
@@ -467,15 +467,15 @@ mapowanie klawiatury właściwe dla i386 (np. <c>us</c>), zamiast
 
 <p>
 Architektura <b>PPC</b> wykorzystuje mapowanie klawiatury właściwe dla x86 na
-większości systemów. Użytkownicy, chcący korzystać z mapowania ADB w czasie
-uruchamiania systemu, muszą włączyć obsługę przesyłania klucza kodowego ADB w
+większości systemów. Użytkownicy, chcący korzystać z mapowania ADB, w czasie
+uruchamiania systemu muszą włączyć obsługę przesyłania klucza kodowego ADB w
 jądrze i ustawić mapowanie klawiatury odpowiednie dla mac/ppc w pliku
 <path>rc.conf</path>.
 </p>
 
 <p>
 Po zakończeniu konfigurowania pliku <path>/etc/rc.conf</path>, należy zachować
-zmiany i wyłącznyć edytor. Kolejnym krokiej jest <uri
+zmiany i opuścić edytor. Kolejnym krokiej jest <uri
 link="?part=1&amp;chap=9">Instalacja koniecznych narzędzi systemowych</uri>.
 </p>
 

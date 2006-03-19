@@ -13,7 +13,7 @@
 <body>
 
 <p>
-Po ponownym uruchomieniu systemu w czasie instalacji jest niemal pewne, że pewne
+Po ponownym uruchomieniu systemu w czasie instalacji, jest niemal pewne, że pewne
 pliki zmieniły się w stosunku do stanu przed rebootem. Aby mieć pewność, że
 wszystkie demony i procesy pracują we właściwych kontekstach, konieczne jest
 powtórne oznaczenie systemu plików.
@@ -62,7 +62,7 @@ Jeśli użytkownik kiedykolwiek będzie musiał wykonać jakieś czynności jako
 będzie mógł skorzystać z polecenia <c>su -</c>, aby tymczasowo uzyskać
 uprawnienia superużytkownika. Innym rozwiązaniem jest wykorzystanie pakietu
 <c>sudo</c>, który - właściwie skonfigurowany - jest bardzo
-bezpieczny. Użytkownik musi również posiadać stutsy <c>staff_r</c> i
+bezpieczny. Użytkownik musi również posiadać statusy <c>staff_r</c> i
 <c>sysadm_r</c>. Nadamy je dodając do pliku
 <path>/etc/security/selinux/src/policy/users</path> poniższą linię:
 </p>
@@ -72,14 +72,22 @@ user john roles { staff_r sysadm_r };
 </pre>
 
 <p>
-Aby powyższa zmiana przyniosła efekt, należy załadować politykę. Więcej
+Aby powyższa zmiana przyniosła efekt, należy przeładować politykę. Więcej
 informacji na ten temat można uzyskać w rozdziale <uri
 link="?part=4&amp;chap=1#doc_chap3">Przegląd SELinux</uri>.
+</p>
+
+<p>
+Gratulujemy, system jest już gotowy do użytkowania! Aby dowiedzieć się więcej o
+Gentoo, warto zapoznać się z rozdziałem <uri
+link="?part=1&amp;chap=12">I co dalej?</uri>.
 </p>
 
 </body>
 </subsection>
 </section>
+
+<!--
 <section>
 <title>Opcjonalnie: instalacja pakietów GRP</title>
 <body>
@@ -148,12 +156,7 @@ ten problem wykonując polecenie
 <c>emerge --usepkgonly</c> zamiast <c>emerge --usepkg</c>.
 </p>
 
-<p>
-Gratulujemy, system jest już gotowy do użytkowania! Aby dowiedzieć się więcej o
-Gentoo, warto zapoznać się z rozdziałem <uri
-link="?part=1&amp;chap=12">I co dalej?</uri>.
-</p>
-
 </body>
 </section>
+-->
 </sections>
