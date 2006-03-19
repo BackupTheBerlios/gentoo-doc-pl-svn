@@ -39,7 +39,7 @@ Domyślne ustawienia są wystarczające, aby dokończyć instalację.
 <p>
 Zanim zmienimy środowisko pracy musimy wykonać pewną bardzo ważną czynność. Jest
 nią skopiowanie ustawień DNS z pliku <path>/etc/resolv.conf</path> do nowego
-środowiska. Jest to konieczne, by sieć działała także tam.  Plik
+środowiska. Jest to konieczne, by sieć działała także tam. Plik
 <path>/etc/resolv.conf</path> określa jakie serwery nazw będą używane podczas
 pracy w sieci.
 </p>
@@ -75,7 +75,7 @@ dostarczanych przez jądro także w środowisku chrootowanym.
 Kolejnym krokiem jest zamontowanie systemu plików
 <path>/selinux</path> w katalogu <path>/mnt/gentoo/selinux</path>, aby
 możliwe było korzystanie z informacji dostarczanych przez jądro
-wewnątrz środowiska chrootowanego
+wewnątrz środowiska chrootowanego.
 </p>
 
 <pre caption="Montowanie /selinux">
@@ -113,7 +113,7 @@ wczytujemy te zmienne do pamięci poleceniem <c>source</c>.
 </pre>
 
 <p>
-Gratulacje! Znajdujemy się wewnątrz nowego systemu Gentoo Linux.  Oczywiście do
+Gratulacje! Znajdujemy się wewnątrz nowego systemu Gentoo Linux. Oczywiście do
 końca jeszcze daleko i to jest powód, dla którego zostało jeszcze kilka
 rozdziałów Podręcznika. :]
 </p>
@@ -145,10 +145,10 @@ link="#configure_USE">Configuring the USE variable</uri>.
 </pre>
 
 <p>
-Portage wykorzystuje protokół RSYNC do aktualizacji swojego
-drzewa. Jeśli powyższe polecenie zawiedzie ze względu na ustawienia naszego
-firewalla, możemy użyć komendy <c>emerge-webrsync</c>, która pobierze aktualną
-wersję drzewa Portage poprzez protokół HTTP.
+Portage wykorzystuje protokół RSYNC do aktualizacji swojego drzewa. Jeśli
+powyższe polecenie zawiedzie ze względu na ustawienia naszego firewalla, możemy
+użyć komendy <c>emerge-webrsync</c>, która pobierze aktualną wersję drzewa
+Portage poprzez protokół HTTP.
 </p>
 
 <pre caption="Aktualizacja drzewa Portage przy użyciu emerge-webrsync">
@@ -171,7 +171,7 @@ zaktualizowane nieco później.
 
 <p>
 <c>USE</c> to jedna z najważniejszych zmiennych w Gentoo. Niektóre programy mogą
-być kompilowane z obsługą niektórych funkcji lub bez niej. Na przykład
+być kompilowane z obsługą pewnych funkcji lub bez niej. Na przykład
 możliwe jest budowanie różnych programów ze wsparciem dla bibliotek gtk lub qt.
 Inne pakiety możemy z kolei wyposażyć w obsługę SSL, bądź też jej
 pozbawić. Jeszcze inne mogą być kompilowane z obsługą bufora ramki (svgalib)
@@ -283,7 +283,7 @@ wpływ na nasze działania.
   Stage2 do Stage3</uri>).
 </li>
 <li>
-  Jeżeli zaczynamy od <e>stage3</e> (z, lub bez GRP), możemy pominąć obydwa
+  Jeżeli zaczynamy od <e>stage3</e>, możemy pominąć obydwa
   kroki i przejść do następnego rozdziału, czyli <uri
   link="?part=1&amp;chap=7">Konfiguracji jądra</uri>.
 </li>
@@ -302,19 +302,19 @@ Kompilujemy wszystko od podstaw? Nie ma sprawy :-)
 </p>
 
 <p>
-W tym etapie wykonamy <e>bootstrap</e> Gentoo. Potrwa to
-stosunkowo długo, ale utworzony system będzie zoptymalizowany i dostosowany
-dla sprzętu i specyficznych wymagań użytkownika.
+W tym etapie wykonamy <e>bootstrap</e> Gentoo. Potrwa to stosunkowo długo, ale
+utworzony system będzie zoptymalizowany i dostosowany do sprzętu i specyficznych
+wymagań użytkownika.
 </p>
 
 <p>
-<e>Proces bootstrap</e> to budowanie biblioteki GNU C, zestawu
-kompilatorów GNU i kilku innych niezbędnych do budowy systemu programów.
+<e>Proces bootstrap</e> to budowanie biblioteki GNU C, zestawu kompilatorów GNU
+i kilku innych niezbędnych do programów systemowych.
 </p>
 
 <p>
-Zanim zaczniemy bootstrap poznamy możliwość, którą być może warto
-wykorzystać. Jeśli nas ona nie inetresuje, kontynuujmy instalację zgodnie z
+Zanim zaczniemy bootstrap, poznamy możliwość, którą być może warto
+wykorzystać. Jeśli nas ona nie interesuje, kontynuujmy instalację zgodnie z
 paragrafem <uri link="#bootstrap">Bootstrap systemu</uri>.
 </p>
 
@@ -377,10 +377,10 @@ Teraz nadeszła pora na zbudowanie pakietów należących do systemu.
 
 <p>
 Czy budujemy <e>wszystkie</e> pakiety systemowe? Nie, nie wszystkie. W tym
-etapie budujemy tylko te paczki, co do których nie mamy wyboru. Niektóre
-narzędzia systemowe mają kilka alternatyw (choćby programy logujące). W Gentoo
-o wszystkim możemy decydować samodzielnie, nieniejszy podręcznik ma za zadanie
-jedynie pomóc w dokonaniu wyboru, krótko omawiając każdą z możliwości.
+etapie budujemy tylko te, co do których nie mamy wyboru. Niektóre narzędzia
+systemowe mają kilka alternatyw (choćby programy logujące). W Gentoo o wszystkim
+możemy decydować samodzielnie, nieniejszy podręcznik ma za zadanie jedynie pomóc
+w dokonaniu wyboru, krótko omawiając każdą z możliwości.
 </p>
 
 </body>
