@@ -32,9 +32,13 @@ instalacyjnej).
 <body>
 
 <p>
-Jeśli skonfigurowaliśmy jądro z obsługą framebuffera (lub skorzystaliśmy z
+Jeśli skonfigurowaliśmy jądro z obsługą framebuffera,
+<!-- Prawdopodobnie genkernel nie obsługuje SELinux
+(lub skorzystaliśmy z
 kernela wygenerowanego na podstawie domyślnych ustawień programu
-<c>genkernel</c>), powinniśmy przekazać do jądra parametr <c>vga</c>, aby z
+<c>genkernel</c>)
+-->
+powinniśmy przekazać do jądra parametr <c>vga</c>, aby z
 niego skorzystać. Poniższa tabela prezentuje wartości jakie możemy przypisać
 parametrowi <c>vga</c>. W przykładowych plikach konfiguracyjnych wykorzystano
 ustawienia <e>800x600 @ 16bpp</e>, które są reprezentowane przez wartość
@@ -99,7 +103,7 @@ dysk twardy <path>/dev/hdd</path> i nie posiadamy dysku SCSI, urządzenie
 Całość wygląda dość pokrętnie, lecz jak się niedługo przekonamy GRUB oferuje
 mechanizm uzupełniania wiersza polecenia klawiszem TAB, co z pewnością jest
 wybawieniem dla tych, którzy mają dużo dysków twardych i partycji, a gubią się
-nieco w sposobie numeracji używanym przez tego bootloadera.
+nieco w sposobie numeracji, używanym przez tego bootloadera.
 </p>
 
 <p>
@@ -121,9 +125,9 @@ Instalujemy program GRUB przy pomocy polecenia <c>emerge</c>;
 </pre>
 
 <p>
-GRUB został zainstalowany, teraz należy go jeszcze skonfigurować i umieścić w
+GRUB został zainstalowany - teraz należy go jeszcze skonfigurować i umieścić w
 MBR, tak by automatycznie uruchamiał nowo zainstalowane kernele. Najpierw przy
-pomocy nano, lub dowolnego innego edytora tworzymy plik
+pomocy nano lub dowolnego innego edytora tworzymy plik
 <path>/boot/grub/grub.conf</path>:
 </p>
 
@@ -146,12 +150,12 @@ timeout 30
 # Zakomentujmy poniższą linię, jeśli nie posiadamy karty graficznej</comment>
 splashimage=(hd0,0)/grub/splash.xpm.gz
 
-title=Gentoo Linux 2.4.26-r6
+title=Gentoo Linux 2.6.7-r6
 <comment># Partycja na której znajduje się obraz jądra (lub system operacyjny)</comment>
 root (hd0,0)
-kernel /kernel-2.4.26-gentoo-r6 root=/dev/hda3 gentoo=nodevfs
+kernel /kernel-2.6.7-hardened-r6 root=/dev/hda3 gentoo=nodevfs
 
-<comment># Poniższe trzy linie są potrzebne tylko jeśli chcemy uruchamiać także Windows.</comment>
+<comment># Poniższe trzy linie są potrzebne tylko jeśli chcemy uruchamiać także system Windows.</comment>
 <comment># W poniższym przykładzie Windows znajduje się na partycji /dev/hda6.</comment>
 title=Windows XP
 rootnoverify (hd0,5)
@@ -162,11 +166,12 @@ chainloader +1
 <note>
 Jeśli wykorzystaliśmy inny schemat partycjonowania i/lub używamy innego obrazu
 jądra, dokonajmy niezbędnych poprawek. Warto pilnować, aby wszystko co dotyczy
-urządzenia z programem GRUB (np. <path>(hd0,0)</path>) było względne w stosunku do
-punktu montowania, a nie partycji root. Innymi słowy,
+urządzenia z programem GRUB (np. <path>(hd0,0)</path>) było względne w stosunku
+do punktu montowania, a nie partycji root. Innymi słowy,
 <path>(hd0,0)/grub/splash.xpm.gz</path> w rzeczywistości znaczy
 <path>/boot/grub/splash.xpm.gz</path>, gdyż <path>(hd0,0)</path> to partycja
-<path>/boot</path>.  </note>
+<path>/boot</path>.
+</note>
 
 <impo>
 Parametr <c>gentoo=nodevfs</c> jest konieczny, ponieważ SELinux nie może
@@ -176,16 +181,15 @@ korzystać z devfs.
 <p>
 Jeśli chcemy przekazać do jądra przy starcie jakieś dodatkowe opcje po prostu
 dopisujemy je na końcu polecenia kernel. W tym momencie już dodaliśmy jeden
-parametr (<c>root=/dev/hda3</c> lub <c>real_root=/dev/hda3</c>). Bez problemu
-możemy dopisać kolejne parametry. W poniższym przykładzie dodamy opcję
-<c>vga</c>, związaną z buforem ramki, którą omówiliśmy na początku tego
-rozdziału. 
+parametr (<c>root=/dev/hda3</c>). Bez problemu możemy dopisać kolejne
+parametry. W poniższym przykładzie dodamy opcję <c>vga</c>, związaną z buforem
+ramki, który omówiliśmy na początku tego rozdziału.
 </p>
 
 <pre caption = "Dodawanie parametru uruchomieniowego vga">
-title=Gentoo Linux 2.4.26-r6
+title=Gentoo Linux 2.6.7-r6
   root (hd0,0)
-  kernel /kernel-2.4.26-gentoo-r6 root=/dev/hda3 vga=788 gentoo=nodevfs
+  kernel /kernel-2.6.7-hardened-r6 root=/dev/hda3 vga=788 gentoo=nodevfs
 </pre>
 
 <p>
@@ -205,7 +209,7 @@ Aby tego dokonać skorzystamy z polecenia <c>grub-install</c>. Niestety to nie
 zadziała jeśli nie wykonamy najpierw innej czynności, ponieważ znajdujemy się w
 środowisku chrootowanym. Najpierw musimy zaktualizować plik
 <path>/etc/mtab</path>, który zawiera informacje o wszystkich zamontowanych
-systemach plików. Istnieje prosty sposób aby tego dokonać - wystarczy skopiować
+systemach plików. Istnieje prosty sposób, aby tego dokonać - wystarczy skopiować
 <path>/proc/mounts</path> do <path>/etc/mtab</path>:
 </p>
 
@@ -245,16 +249,16 @@ uruchamianie systemu</uri>.
 <p>
 LILO, czyli LInuxLOader to program wypróbowany i używany od bardzo dawna przez
 bardzo wielu użytkowników. Brakuje mu jednak niektórych cech, które posiada
-GRUB, co jest jednym z powodów rosnącej popularności tego drugiego.  Fakt, że na
+GRUB, co jest jednym z powodów rosnącej popularności tego drugiego. Fakt, że na
 niektórych systemach LILO działa, a GRUB nie, powoduje, iż LILO jest ciągle w
 użyciu. Oczywiście nie jest to jedyny powód - niektórzy po prostu lepiej znają
 LILO i wolą przy nim pozostać, zamiast uczyć się obsługi całkiem nowego
-programu. My jak zawsze wybór pozostawiamy użytkownikom, Gentoo wspiera obydwa
+programu. My jak zawsze wybór pozostawiamy użytkownikom, Gentoo obsługuje obydwa
 programy, a w kolejnych paragrafach zajmiemy się instalacją LILO.
 </p>
 
 <p>
-Instalacja LILO jest prosta, używamy do tego polecenia <c>emerge</c>:n
+Instalacja LILO jest prosta, używamy do tego polecenia <c>emerge</c>:
 </p>
 
 <pre caption = "Instalowanie LILO">
@@ -280,7 +284,7 @@ konsekwentnie używamy <c>nano</c>) i tworzymy ten plik.
 <p>
 W jednym z wcześniejszych rozdziałów zwracaliśmy uwagę, aby zapamiętać nazwę
 obrazu jądra, jakie stworzyliśmy. W przykładowym pliku <path>lilo.conf</path>
-używamy nazwy <path>kernel-2.4.26-gentoo-r6</path>. Korzystamy również z
+używamy nazwy <path>kernel-2.6.7-hardened-r6</path>. Korzystamy również z
 przykładowego schematu partycjonowania przedstawionego kilka rozdziałów
 wcześniej.
 </p>
@@ -298,7 +302,7 @@ default=gentoo            <comment># Gdy opóźnienie minie, uruchamiamy pozycj�
 <comment># Poniższa linia dotyczy wykorzystania framebuffera - usuwamy ją jeśli go nie używamy:</comment>
 vga=788                   <comment># Ustawienia framebuffera - zmieniamy według uznania</comment>
 
-image=/boot/kernel-2.4.26-gentoo-r6
+image=/boot/kernel-2.6.7-hardened-r6
   label=gentoo            <comment># Nazwa tej pozycji</comment>
   read-only               <comment># Zaczynamy z partycją root tylko do odczytu. Nie należy tego zmieniać!</comment>
   root=/dev/hda3          <comment># Lokalizacja głównego systemu plików</comment>
@@ -325,7 +329,7 @@ framebuffera.
 
 <pre caption = "Wykorzystanie sekcji append w celu przekazania parametrów dla
 jądra">
-image=/boot/kernel-2.4.26-gentoo-r6
+image=/boot/kernel-2.6.7-hardened-r6
   label=gentoo
   read-only
   root=/dev/hda3
@@ -339,10 +343,10 @@ BIOS nie mógł obsłużyć dużych dysków twardych, konieczne jest dodanie par
 </p>
 
 <p>
-Teraz zapisujemy plik i opuszczamy edytor. Aby zakończyć instalację LILO
-wykonujemy polecenie <c>/sbin/lilo</c>, aby LILO mógł wprowadzić do systemu
-konfigurację jaką stworzyliśmy w pliku <path>/etc/lilo.conf</path> (np. dodać
-się do MBR). Pamiętajmy, że konieczne jest ponowne wykonanie komendy
+Teraz zapisujemy plik i opuszczamy edytor. Kończymy instalację LILO, wykonując
+polecenie <c>/sbin/lilo</c>, aby LILO mógł wprowadzić do systemu konfigurację
+jaką stworzyliśmy w pliku <path>/etc/lilo.conf</path> (np. dodać się do
+MBR). Pamiętajmy, że konieczne jest ponowne wykonanie komendy
 <c>/sbin/lilo</c> po każdej instalacji nowego jądra.
 </p>
 
@@ -355,7 +359,7 @@ się do MBR). Pamiętajmy, że konieczne jest ponowne wykonanie komendy
 </section>
 
 <section>
-<title>Przygotowania przez ponownym uruchomieniem systemu</title>
+<title>Przygotowania przed ponownym uruchomieniem systemu</title>
 <subsection>
 <body>
 
