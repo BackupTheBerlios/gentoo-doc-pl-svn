@@ -13,13 +13,13 @@
 <title>"Otrzymuję ten błąd podczas instalacji:"</title>
 <body>
 
-<pre>
+<pre caption="Możliwy błąd podczas instalacji SELinux">
 !!! SELinux module not found. Please verify that it was installed.
 </pre>
 
 <p>
 Oznacza to że brakuje modułu SELinux w portage lub jest on uszkodzony. Również
-python mógł być uaktualniony do nowej wersji, co oznacza iż należy
+python mógł być uaktualniony do nowej wersji, co oznacza, iż należy
 przekompilować python-selinux. Przeinstalowanie dev-python/python-selinux
 powinno pomóc. Również poszczególne pakiety mogły być zainstalowane bez
 odpowiednich oznakowań, więc przydałoby się dokonać takiego oznakowania.
@@ -35,7 +35,7 @@ odpowiednich oznakowań, więc przydałoby się dokonać takiego oznakowania.
 <title>"Mam ten błąd jądra podczas uruchamiania:"</title>
 <body>
 
-<pre>
+<pre caption="Możliwy błąd kernela w czasie startu systemu">
 There is already a security framework initialized, register_security failed.
 Failure registering capabilities with the kernel
 selinux_register_security:  Registering secondary module capability
@@ -82,8 +82,8 @@ Na początku należy upewnić się, że odbyło się montowanie w
 <c>/selinux</c>. Jeśli selinuxfs nie jest zamontowane, <c>setfiles</c> nie
 potrafi sprawdzić kontekstów, co powoduje, iż uznaje, że wszystkie konteksty są
 nieprawidłowe. Jeśli <c>/selinux</c> jest zamontowane, to najprawdopodobniej
-istnieje nowa polityka, która jeszcze nie została zamontowana, co z kolei
-oznacza, że obecne konteksty nie są prawidłowe.
+istnieje nowa polityka, która jeszcze nie została zamontowana, co oznacza, że
+obecne konteksty są postrzegane przez system jako nieprawidłowe.
 </p>
 
 </body>

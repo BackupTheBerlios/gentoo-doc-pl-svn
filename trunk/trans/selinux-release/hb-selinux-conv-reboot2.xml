@@ -14,8 +14,8 @@
 
 <p>
 Należy zainstalować biblioteki, główne programy użytkowe oraz podstawową
-politykę. Wersja polityki może wymagać dopracowania. W Przeglądzie SELinux można
-znaleźć więcej informacji na temat wersji polityk.
+politykę. Wersja polityki może wymagać dopracowania. W dokumencie Przegląd
+SELinux można znaleźć więcej informacji na temat  polityk.
 </p>
 
 <pre caption="Instalowanie podstawowych pakietów SELinux oraz polityki">
@@ -23,8 +23,7 @@ znaleźć więcej informacji na temat wersji polityk.
 # <i>emerge selinux-base-policy</i>
 
 # <i>cd /etc/security/selinux/src/policy</i>
-<comment>Teraz należy załadować daną wersję polityki, jeśli zachodzi taka
-potrzeba</comment>
+<comment>Teraz należy załadować daną wersję polityki, jeśli zachodzi taka potrzeba</comment>
 # <i>make load</i>
 </pre>
 
@@ -50,7 +49,7 @@ SELinux, jak np. wyświetlanie kontekstów plików.
 <p>
 Istnieje wiele innych programów, które posiadają łatki dla SELinux, jednak
 zainstalowanie ich jest opcjonalne. Jeśli już posiadamy te aplikacje w systemie,
-należy je przekompilować, aby łatki SELinux zostały nałożone:
+należy je przekompilować, aby łatki SELinux zostały wykorzystane:
 </p>
 
 <ul>
@@ -62,7 +61,7 @@ należy je przekompilować, aby łatki SELinux zostały nałożone:
 </ul>
 
 <note>
-Fcron oraz Vixie-cron są jedynymi cronami ze wsparciem dla SELinux.
+Fcron oraz Vixie-cron są jedynymi cronami z obsługą SELinux.
 </note>
 
 </body>
@@ -87,7 +86,7 @@ Gentoo">
 </section>
 
 <section>
-<title>Znakowanie systemy plików</title>
+<title>Znakowanie systemu plików</title>
 <subsection>
 <body>
 
@@ -102,7 +101,7 @@ niezwykle ważne.</p>
 </pre>
 
 <warn>
-Znany jest błąd występujący w starszych wersjach programu GRUB. Powodował
+Znany jest błąd występujący w starszych wersjach programu GRUB. Powodował on
 problemy w odczytaniu dowiązań symbolicznych, które zostały oznakowane. Należy
 upewnić się, że zainstalowana wersja programu GRUB nie jest starsza niż
 0.94. Należy również uruchomić program GRUB i nadinstalować go do sektora
