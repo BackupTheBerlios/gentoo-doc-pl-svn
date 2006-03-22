@@ -47,14 +47,13 @@ komputer, aby można było na nim zainstalować Gentoo.
 <body>
 
 <p>
-Jeśli wciąż jesteśmy zainteresowani wykorzystaniem z Gentoo, przyszedł
-czas na wybranie medium, które wykorzystamy w czasie instalacji. Do
-budowania Gentoo SELinux należy wykorzystać płytę instalacyjną
-hardened. Informacje o tym, skąd można ją pobrać, znajdują się w
-dalszej części tego rozdziału. Teraz zajmiemy się zagadnieniem plików
-stage, wykorzystywanych podczas instalacji.
+Jeśli wciąż jesteśmy zainteresowani Gentoo, przyszedł czas na wybranie medium,
+które wykorzystamy w czasie instalacji. Do budowania Gentoo SELinux należy
+wykorzystać płytę instalacyjną hardened. Informacje o tym, skąd można pobrać jej
+obraz, znajdują się w dalszej części tego rozdziału. Teraz zajmiemy się
+zagadnieniem plików stage, wykorzystywanych podczas instalacji.
 
-<!--
+<!-- Nie istnieje żaden wybór - poniżej wylistowane płyty nie istnieją
 Istnieje pewien wybór -
 poszczególne płyty instalacyjne nie są takie same. Jednak wynik zawsze jest taki
 sam: system podstawowy Gentoo.
@@ -67,17 +66,15 @@ nośników:
 
 <ul>
 <li>Gentoo's SELinux Minimal LiveCD</li>
-<!--
 <li>Gentoo's SELinux Universal LiveCD</li>
--->
 </ul>
 
 <p>
 Każda płyta instalacyjna posiada wady i zalety. Przedstawimy je w dalszej części
 tego rozdziału, jednak najpierw zajmiemy się zagadnieniem plików stage,
 wykorzystywanych podczas instalacji.
-</p>
 -->
+</p>
 
 </body>
 </subsection>
@@ -156,7 +153,7 @@ działającym połączeniem internetowym.
 <p>
 Instalacja z etapu drugiego pozwala na ominięcie czasochłonnego procesu
 bootstrapowania. Zwykle zaczynają z niego użytkownicy, którym odpowiadają
-ustawienia optymalizacji, wybrane przez deweloporów Gentoo do budowy plików tego
+ustawienia optymalizacji, wybrane przez deweloperów Gentoo do budowy plików tego
 etapu.
 </p>
 
@@ -222,7 +219,7 @@ internetowego, instalacja z tego etapu jest jedyną możliwością, jaką mamy.
 </tr>
 <tr>
   <th>+</th>
-  <ti>Daje możliwość instalacja bez połączenia z internetem</ti>
+  <ti>Daje możliwość instalacji bez połączenia internetowego</ti>
 </tr>
 <tr>
   <th>-</th>
@@ -389,7 +386,7 @@ installation.
 
 <p>
 Skoro zdecydowaliśmy się na wykorzystanie płyt instalacyjnych Gentoo, musimy
-pobrać ich obrazy i nagrać je. Teraz dowiemy się, gdzie możemy znaleźć.
+pobrać ich obrazy i nagrać je. Teraz dowiemy się, gdzie możemy je znaleźć.
 </p>
 
 <p>
@@ -421,7 +418,7 @@ link="http://www.md5summer.org">md5summer</uri>.
 
 <p>
 Pobrany obraz należy nagrać w trybie RAW. Sposób uaktywnienia tego trybu, zależy
-od używanej aplikacji. Poniżej pokarzemy jak tego dokonać w programach
+od używanej aplikacji. Poniżej pokażemy jak tego dokonać w programach
 <c>cdrecord</c> i <c>K3B</c>. Więcej informacji o nagrywaniu obrazów na płyty
 można uzyskać czytając <uri link="/doc/pl/faq.xml#isoburning">Gentoo FAQ</uri>.
 </p>
@@ -470,7 +467,7 @@ parametry.
 
 <p>
 Mamy możliwość wyboru jądra? Tak.
-<!--
+<!-- Na płytach hardened nie ma opisanych poniżej kerneli
 Na płycie instalacyjnej znajduje się kilka
 kerneli. Domyśnym jest <c>gentoo</c>. Pozostałe możliwości to jądro <c>smp</c>,
 które obsługuje systemy wieloprocesorowe i warianty powyższych kerneli z sufiksem
@@ -548,7 +545,7 @@ startowe. Poniższy przykład pokazuje wybór jądra <c>permissive</c> z opcją
 uruchamiania <c>dopcmcia</c>:
 </p>
 
-<pre caption="Uruchamianie LiveCD">
+<pre caption="Uruchamianie systemu LiveCD">
 boot: <i>permissive dopcmcia</i>
 </pre>
 
@@ -568,7 +565,7 @@ Jeśli instalujemy Gentoo na komputerze z klawiaturą o układzie innym niż
 </p>
 
 <p>
-Kontunuujemy instalację zgodnie z paragrafem <uri link="#hardware">Konfiguracja
+Kontynuujemy instalację zgodnie z paragrafem <uri link="#hardware">Konfiguracja
 dodatkowego sprzętu</uri>.
 </p>
 
@@ -631,7 +628,7 @@ naszego dysku.
 <body>
 
 <p>
-Jeśli planujemy umożliwienie innym osobom dostępu do środowiska instalacyjnego
+Jeśli planujemy umożliwić innym osobom dostęp do środowiska instalacyjnego
 lub zamierzamy korzystać z <c>irssi</c> uruchomionego bez przywilejów roota (ze
 względu na bezpieczeństwo), musimy stworzyć dodatkowe konta i zmienić hasło
 roota.
@@ -685,7 +682,7 @@ na nowe konto.
 </p>
 
 <p>
-Dokumntację dostępną na płycie instalacyjnej możemy przeglądać przy pomocy
+Dokumentację dostępną na płycie instalacyjnej możemy przeglądać przy pomocy
 przeglądarki <c>links2</c>:
 </p>
 
@@ -696,7 +693,7 @@ przeglądarki <c>links2</c>:
 <p>
 Najnowszą wersję dokumentacji znajdziemy na stronach internetowych Gentoo. Do
 jej przeglądania możemy wykorzystać program <c>links2</c>, jednak potrzebujemy
-do tego skonfigurowanego połączenia sieciowego, czym zajmiemy się w następnym
+do tego skonfigurowanego połączenia sieciowego, którym zajmiemy się w następnym
 rozdziale.
 </p>
 

@@ -41,9 +41,9 @@ jeszcze innego. Przechowywane dane adresuje się jako ciąg 512-bajtowych blokó
 
 <p>
 Teoretycznie możliwe jest przeznaczenie całego dysku na system, jednak zazwyczaj
-nie jest to rozwiązanie praktyczne. Zamiast tego dzielimy napęd na
-mniejsze i dużo łatwiejsze w zarządzaniu urządzenia blokowe.  W systemach na
-platformie x86 nazywane są one <e>partycjami</e>.
+nie jest to rozwiązanie praktyczne. Zamiast tego dzielimy napęd na mniejsze i
+dużo łatwiejsze w zarządzaniu urządzenia blokowe. W systemach na platformie x86
+nazywane są one <e>partycjami</e>.
 </p>
 
 <p>
@@ -145,11 +145,11 @@ przeznaczyć oddzielną partycję na katalog <path>/home</path>. Poprawi to
 bezpieczeństwo i uprości tworzenife kopii zapasowych. Jeżeli docelowym
 zastosowaniem naszego Gentoo będzie praca w roli serwera poczty, na osobnej
 partycji powinniśmy umieścić <path>/var</path>, gdzie przechowywane są
-listy. Ponadto wybór odpowiedniego systemu plików może w tym przypadku
-znacznie zwiększyć wydajność. Oddzielenie <path>/opt</path> jest dobrym
-rozwiązaniem na serwerach gier, gdyż większość używanego oprogramowania zostanie
-tam zainstalowana. Powód jest podobny jak w przypadku katalogu
-<path>/home</path>: bezpieczeństwo i łatwość tworzenia kopii zapasowych.
+listy. Ponadto wybór odpowiedniego systemu plików może w tym przypadku znacznie
+zwiększyć wydajność. Oddzielenie <path>/opt</path> jest dobrym rozwiązaniem na
+serwerach gier, gdyż większość używanego oprogramowania zostanie tam
+zainstalowana. Powód jest podobny jak w przypadku katalogu <path>/home</path>:
+bezpieczeństwo i łatwość tworzenia kopii zapasowych.
 </p>
 
 <p>
@@ -163,8 +163,8 @@ instalując system. Podział dysku na partycje lub woluminy ma następujące zal
   woluminu.
 </li>
 <li>
-  Zapełnienie całego wolnego miejsca na partycji przez wadliwie działający
-  program nie ma szkodliwego wpływu na resztę systemu.
+  Zapełnienie całego wolnego miejsca na jednej partycji przez wadliwie
+  działający program nie ma szkodliwego wpływu na resztę systemu.
 </li>
 <li>
   Testy systemów plików są krótsze, ponieważ mogą być wykonywane równolegle
@@ -320,7 +320,7 @@ Partition number (1-4): <i>1</i>
 </pre>
 
 <p>
-Partycja została zaznaczona do usunięcia. Nie będzie się więcej pojawiać po
+Partycja została zaznaczona do usunięcia. Nie będzie się ona więcej pojawiać po
 wydaniu polecenia <c>p</c>, ale pozostanie nienaruszon dopóki zmiany nie zostaną
 fizycznie zapisane. Jeśli popełnimy błąd i będziemy chcieli anulować wszystkie
 wprowadzone zmiany, wpiszmy natychmiast <c>q</c> i potwierdźmy klawiszem
@@ -436,7 +436,7 @@ Device Boot    Start       End    Blocks   Id  System
 <p>
 Na koniec, utworzymy partycję root. Aby tego dokonać jeszcze raz posłużymy się
 poleceniem <c>n</c>. Zapytani o rodzaj wpisujemy <c>p</c>, aby była to partycja
-podstawową, następnie <c>3</c>, gdyż będzie już trzecią tego typu, czyli w
+podstawowa, następnie <c>3</c>, gdyż będzie już trzecią tego typu, czyli w
 naszym przypadku <path>/dev/hda3</path>. Na pytanie o pierwszy i ostatni
 cylinder odpowiadamy wciskając Enter - dzięki temu zajmie ona całą pozostałą
 wolną przestrzeń. Teraz polecenie <c>p</c> powinno pokazać następujący wydruk:
@@ -486,7 +486,7 @@ link="#filesystems">Zakładania systemów plików</uri>.
 
 <p>
 Po utworzeniu partycji nadszedł czas na założenie na nich systemów plików.
-Jeśli jest nam obojętne jakie systemy plików wykorzystamy lub chcemy zdać się
+Jeśli jest nam obojętne jakie systemy plików wykorzystamy lub chcemy zdać się na
 domyślne ustawienia prezentowane w tym Podręczniku, możemy od razu przejść do
 paragrafu <uri link="#filesystems-apply">Zakładanie systemów plików na
 partycjach</uri>. W przeciwnym wypadku przyjrzyjmy się systemom plików w
@@ -549,7 +549,7 @@ Jest dość nowy i jeszcze za wcześnie by oceniać jego stabilność.
 </p>
 
 <warn>
-Reiserfs nie jest poprawnie obsługiwany ze względu na brak wymaganych
+ReiserFS nie jest poprawnie obsługiwany ze względu na brak wymaganych
 rozszerzonych atrybutów.
 </warn>
 
@@ -630,9 +630,11 @@ Aby aktywować partycję wymiany, należy użyć programu <c>swapon</c>:
 # <i>swapon /dev/hda2</i>
 </pre>
 
+<!--
 <p>
 Teraz wykonujemy powyższe czynności.
 </p>
+-->
 
 </body>
 </subsection>
@@ -662,8 +664,8 @@ jej zamontowaniu odpowiednio zmienić prawa dostępu: <c>chmod 1777
 
 <p>
 Musimy także zamontować system plików proc (wirtualny interfejs jądra) w
-<path>/proc</path>. Najpierw jednak konieczne jest umieszczenie odpowiednich
-plików na partycjach.
+katalogu <path>/proc</path>. Najpierw jednak konieczne jest umieszczenie
+odpowiednich plików na partycjach.
 </p>
 
 <p>
