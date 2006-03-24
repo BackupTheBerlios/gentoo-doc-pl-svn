@@ -215,59 +215,64 @@ link="http://www.newsforge.com/article.pl?sid=06/03/14/1557211">NewsForge</uri>.
 
 <!-- Tips and Tricks -->
 <chapter>
-<title>Tips and tricks</title>
+<title>Sztuczki i kruczki</title>
 <section>
-<title>Efficient file change notifications</title>
+<title>Wydajne powiadamianie o zmianach plików</title>
 <body>
 
 <p>
-Many applications rely on tracking filesystem changes internally, and 
-until recently, the most popular library providing functionality like 
-this was <path>app-admin/fam</path>. Packages which use FAM for 
-file-monitoring include GNOME, KDE, PHP, various file managers, various 
-mail clients and servers, and many more. FAM works by repeatedly polling 
-directory contents and looking to see if things have changed. This is 
-inefficient, but it did the job for a while.
+Wiele aplikacji wykorzystuje wewnętrznie jakiś mechanizm śledzenia zmian w
+systemie plików. Do niedawna najbardziej popularną implementacją tej
+funkcjonalności była biblioteka <path>app-admin/fam</path>. Pakiety, które
+używały jej do monitorowania plików to między innymi GNOME, KDE, PHP, wiele
+menadżerów plików, klientów i serwerów poczty, a także wiele innych.
+Biblioteka ta wypełnia swoją funkcję poprzez ciągłe odpytywanie zawartości
+katalogów i sprawdzanie, czy coś się zmieniło. Rozwiązanie takie nie jest
+zbyt wydajne, ale przez jakiś czas wystarczało.
 </p>
 
 <p>
-More recently, ultra-efficient kernel-side support for monitoring file 
-changes was merged into Linux 2.6. This functionality, called <c>inotify</c>, 
-is on by default, and is probably already available on your system 
-(assuming you are relatively up-to-date). <path>app-admin/gamin</path> is a 
-direct replacement for FAM, even implementing an identical API. The biggest 
-bonus about <c>gamin</c> is that where available, <c>gamin</c> monitors the 
-filesystem using <c>inotify</c>, destroying the ugly overhead which FAM had.
+Jednakże ostatnio, do jądra Linuksa w wersji 2.6, wprowadzono obsługę wysoce
+wydajnego monitorowania zmian w plikach. Funkcjonalność ta nazywa się
+<c>inotify</c> i jest domyślnie włączona, więc najprawdopodobniej już jest
+dostępna w naszym systemie (zakładając, że uaktualniliśmy go w miarę
+regularnie). Program <path>app-admin/gamin</path> jest bezpośrednim następcą
+FAM, posiada nawet identyczny interfejs programistyczny. Największą jego
+zaletą jest wykorzystywanie funkcjonalności <c>inotify</c>, jeśli tylko jest
+ona dostępna, dzięki czemu unikamy znanego z FAM marnowania zasobów.
 </p>
 
 <p>
-Gamin will be the default for new Gentoo installs, but there is no 
-automatic migration for existing users at this time. It is recommended 
-that you make the switch manually:
+W nowych instalacjach Gentoo gamin będzie instalowany domyślnie, w chwili
+obecnej jednak użytkownicy już zainstalowanych systemów nie mogą dokonać
+automatycznej migracji. Najlepiej więc będzie, jeśli zrobimy to ręcznie:
 </p>
 
-<pre caption="Switching to gamin">
+<pre caption="Zastąpienie FAM przez gamin">
 # <i>emerge -C app-admin/fam</i>
 # <i>emerge --oneshot app-admin/gamin</i>
-<comment>It is not necessary to re-merge any software that is built on 
-FAM, as gamin is literally a drop-in replacement.
+<comment>
+Nie musimy reinstalować programów, które korzystają z biblioteki FAM, ponieważ
+gamin idealnie ją zastępuje.
 </comment>
 </pre>
+
 <note>
-Gamin also supports plain old filesystem polling, and seems to do 
-a better job than FAM did. Even if you do not have an <c>inotify</c>-enabled 
-system, it is still recommended that you change.
+Gamin obsługuje również starą metodę odpytywania systemu plików i wygląda na
+to, że robi to lepiej niż FAM. Dlatego nawet jeśli nie wkompilowaliśmy
+<c>inotify</c> w jądro, wciąż lepiej będzie zastąpić FAM nową biblioteką.
 </note>
+
 <p>
-Given that the overhead for monitoring filesystem events is now so low, 
-it is also suggested that you enable file-monitoring support for 
-applications which optionally support it. To do so, enable the "<path>fam</path>" 
-USE flag:
+Biorąc także pod uwagę fakt, że monitorowanie systemu plików obecnie w tak
+niewielkim stopniu obciąża komputer, polecamy włączenie tej funkcjonalności
+w aplikacjach, w których jest ona opcjonalna. Aby tego dokonać, powinniśmy
+dodać flagę "<path>fam</path>" do zmiennej USE:
 </p>
 
-<pre caption="Add 'fam' USE flag and rebuild world">
+<pre caption="Dodanie flagi 'fam' do USE i reinstalacja aplikacji">
 # <i>nano -w /etc/make.conf</i>
-<comment>Add "fam" to your USE variable and save the file</comment>
+<comment>Dodajmy "fam" do zmiennej USE i zapiszmy plik</comment>
 # <i>emerge --newuse world</i>
 </pre>
 </body>
