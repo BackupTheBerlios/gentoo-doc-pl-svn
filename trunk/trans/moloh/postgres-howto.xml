@@ -2,20 +2,23 @@
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 <!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/en/postgres-howto.xml,v 1.2 2006/03/16 21:25:36 neysx Exp $ -->
 
-<guide link="/doc/en/postgres-howto.xml" lang="en">
-<title>PostgreSQL Guide</title>
+<guide link="/doc/pl/postgres-howto.xml" lang="pl">
+<title>Poradnik PostgreSQL</title>
 
 <author title="Author">
-  <mail link="chriswhite@gentoo.org">Chris White</mail>
+<mail link="chriswhite@gentoo.org">Chris White</mail>
 </author>
 <author title="Editor">
-  <mail link="neysx@gentoo.org">Xavier Neys</mail>
+<mail link="neysx@gentoo.org">Xavier Neys</mail>
+</author>
+<author title="Tłumacz">
+<mail link="moloh@gentoo.org">Michał Kurgan</mail>
 </author>
 
 <abstract>
-This guide is meant to show the basic setup of PostgreSQL. The setup described
-here should be sufficient enough to use for basic web appplications, and any
-other program that provides PostgreSQL support.
+W poradniku tym znajduje się opis podstawowej konfiguracji PostgreSQL. Powinien
+być on wystarczający dla prostych aplikacji webowych oraz innego oprogramowania
+wspierającego PostgreSQL.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -26,37 +29,40 @@ other program that provides PostgreSQL support.
 <date>2006-03-14</date>
 
 <chapter>
-<title>Introduction</title>
+<title>Wprowadzenie</title>
 <section>
-<title>PostgreSQL introduction</title>
+<title>Wprowadzenie do PostgreSQL</title>
 <body>
 
 <p>
-When talking to most developers about the different database solutions to use,
-two major databases will usually form the answer. One would be <c>MySQL</c>,
-and the other is what this document will refer to, <c>PostgreSQL</c>.  The
-advantages of one over the other is a somewhat long winded debate, however it
-is just to say that PostgreSQL has had a more firm grasp on true relational
-database structure than MySQL.  Most of the standard features such as
-<b>FOREIGN KEY</b> was only just added in MySQL 5. However, whatever the case
-may be, this document assumes that you have selected PostgreSQL as the
-database to use. The first place to start is the <c>emerge</c> process. In the
-next section, the installation process through emerge will be described, as
-well as the basic configuration.
+Większość deweloperów zapytana o różne rozwiązania bazodanowe najprawdopodobniej
+wymieni dwa najpopularniejsze i najbardziej efektywne. Będą to <c>MySQL</c> oraz
+<c>PostgreSQL</c>, dokładniej opisany w tym dokumencie. Różnice i zalety obu
+systemów bazodanowych mogą zamienić się w długą debatę, jednak należy zwrócić
+uwagę że PostgreSQL jest bardziej związany z relacyjnym modelem przechowywania i
+dostępu do danych. Wydawało by się że standardowa funkcjonalność jak <b>FOREIGN
+KEY</b> powinna być zapewniona w każdym systemie SQL, i tak jest ale MySQL
+doczekał się go dopiero w wersji 5.0. Niezależnie od zapewnianej funkcjonalności
+i zalet obu rozwiązań dokument ten zawiera jedynie porady dotyczące PostgreSQL i
+z pewnością będzie cennym źródłem informacji dla każdego posługującego się tym
+systemem bazodanowym. Pierwszym krokiem jest oczywiście instalacja, w przypadku
+Gentoo sprowadza się to do wykonania polecenia <c>emerge</c>. W kolejnych
+rozdziałach zostanie opisany proces instalacji oraz podstawowej konfiguracji.
 </p>
 
 </body>
 </section>
 <section>
-<title>PostgreSQL installation</title>
+<title>Instalacja PostgreSQL</title>
 <body>
 
 <p>
-To begin, we must first <c>emerge</c> the PostgreSQL package. To do so, run the
-following code to first ensure that the options for it are properly set:
+Pierwszym krokiem jaki należy wykonać to instalacja pakietu PostgreSQL, należy
+wykonać następujące polecenie, by przekonać się że wszystkie opcje są właściwie
+ustawione:
 </p>
 
-<pre caption="Checking the PostgreSQL build options">
+<pre caption="Sprawdzenie dostępnych flag USE w pakiecie PostgreSQL">
 # <i>emerge -pv postgresql</i>
 
 These are the packages that I would merge, in order:
@@ -67,58 +73,62 @@ Calculating dependencies ...done!
 </pre>
 
 <p>
-Here's a list of what the different build options indicate:
+Poniżej znajduje się lista opcji wraz z krótkimi opisami:
 </p>
 
 <table>
 <tr>
-  <th>USE Flag</th>
-  <th>Meaning</th>
+  <th>flaga USE</th>
+  <th>Znaczenie</th>
 </tr>
 <tr>
   <ti>doc</ti>
   <ti>
-    This USE flag enables or disables the installation of documentation
-    outside of the standard man pages. The one good time to disable this
-    option is if you are low on space, or you have alternate methods of
-    getting a hold of the documentation (online, etc.)
+    Włącza lub wyłącza instalacje dokumentacji z wyłączenie stron podręcznika
+    man. Jedynym powodem aby nie używać tej flagi USE jest tylko mała ilość
+    wolnej przestrzeni dyskowej lub alternatywna metoda dostępu do dokumentacji
+    PostgreSQL (np. strona www).
   </ti>
 </tr>
 <tr>
   <ti>kerberos</ti>
   <ti>
-    When connecting to the database, with this option enabled, the admin
-    has the option of using <c>kerberos</c> to authenticate their
-    users/services to the database.
+    W czasie nawiązywania połączenia z bazą danych, w przypadku gdy ta opcji
+    jest używana, administrator może skorzystać z metody autoryzacji
+    <c>kerberos</c> by zweryfikować użytkowników lub usługi, które chcą uzyskać
+    dostęp.
   </ti>
 </tr>
 <tr>
   <ti>libg++</ti>
   <ti>
-    If this option is enabled, C++ bindings for PostgreSQL will be built.
-    This will build libpq++ for use by C++ programs to link against.
+    Włączenie tej flagi USE powoduje zbudowanie wiązań C++. Zostanie stworzona
+    biblioteka libpg++ umożliwiająca dostęp do funkcjonalności PostgreSQL z
+    poziomu języka C++.
   </ti>
 </tr>
 <tr>
   <ti>nls</ti>
   <ti>
-    If this option is enabled, PostgreSQL can utilize translated strings for
-    non-English speaking users.
+    W przypadku używania tej opcji, PostgreSQL będzie używał tłumaczeń
+    komunikatów co może być pomocne dla użytkowników nie posługujących się
+    językiem angielskim.
   </ti>
 </tr>
 <tr>
   <ti>pam</ti>
   <ti>
-    If this option is enabled, and the admin configures the PostgreSQL
-    configuration file properly, users/services will be able to login to a
-    PostgreSQL database using <c>PAM</c> (Pluggable Authentication Module).
+    Odpowiednia konfiguracja serwera PostgreSQL oraz aktywacja tej flagi USE
+    umożliwia administratorowi na użycie <c>PAM</c> (Pluggable Authentication
+    Module) jako sposobu autoryzacji w czasie nawiązywania połączeń przez
+    użytkowników z bazą danych.
   </ti>
 </tr>
 <tr>
   <ti>perl</ti>
   <ti>
-    If this option is enabled, <c>perl</c> bindings for PostgreSQL will be
-    built.
+    Włączenie tej opcji spowoduje zbudowanie wiązań PostgreSQL dla języka
+    <c>perl</c>.
   </ti>
 </tr>
 <tr>
@@ -142,8 +152,8 @@ Here's a list of what the different build options indicate:
 <tr>
   <ti>python</ti>
   <ti>
-    If this option is enabled, PostgreSQL will be built with
-    <c>python</c> bindings.
+    Włączenie tej opcji spowoduje zbudowanie wiązań PostgreSQL dla języka
+    <c>python</c>.
   </ti>
 </tr>
 <tr>
@@ -163,14 +173,16 @@ Here's a list of what the different build options indicate:
 <tr>
   <ti>ssl</ti>
   <ti>
-    If this option is enabled, PostgreSQL will utilize the <c>OpenSSL</c>
-    library to encrypt traffic between PostgreSQL clients and servers.
+    Załączenie tej flagi USE umożliwi wykorzystanie przez PostgreSQL biblioteki
+    <c>OpenSSL</c> służącej do szyfrowania połączeń pomiędzy serwerami
+    PostgreSQL i ich klientami.
   </ti>
 </tr>
 <tr>
   <ti>tcltk</ti>
   <ti>
-    If this option is enabled, PostgreSQL will build <c>tcl/tk</c> bindings.
+    Włączenie tej opcji spowoduje zbudowanie wiązań PostgreSQL dla języka
+    <c>tcl/tk</c>.
   </ti>
 </tr>
 <tr>
@@ -185,8 +197,8 @@ Here's a list of what the different build options indicate:
 <tr>
   <ti>zlib</ti>
   <ti>
-    This isn't really used by PostgreSQL itself, but by <c>pg_dump</c> to
-    compress the dumps it produces.
+    Opcja ta nie jest używana przez sam PostgreSQL, ale przez <c>pg_dump</c> by
+    dokonać kompresji tworzonych obrazów danych.
   </ti>
 </tr>
 </table>
