@@ -8,7 +8,7 @@
 
 <sections>
 <section>
-<title>Stąd zaczynamy</title>
+<title>Zaczynamy</title>
 <subsection>
 <body>
 
@@ -18,7 +18,7 @@ Konieczne jest posiadanie statusu <c>sysadm_r</c>, aby wykonać poniższe czynno
 
 <p>
 Wykonujemy polecenie <c>sestatus -v</c>, a następnie wybieramy z poniższej listy
-pierwszy kontekst, który nie pasuje:
+pierwszy kontekst, który się nie zgadza:
 </p>
 
 <table>
@@ -94,7 +94,7 @@ Odpowiedni plik binarny polityki musi znajdować się w
 istnieć plik <path>/etc/security/selinux/policy.17</path>. Jeśli go brakuje,
 należy dostosować plik <uri
 link="?part=4&amp;chap=1#doc_chap6_sect3">Makefile</uri>, a następnie
-przekompilować i zainstalować politykę.
+skompilować i zainstalować politykę.
 </p>
 
 <pre caption="Kompilacja i instalacja polityki">
@@ -141,8 +141,8 @@ załadował politykę.
 Należy sprawdzić, czy agetty jest prawidłowo oznakowana. Wystarczy posłużyć się
 poleceniem <c>sestatus</c> dla pliku <path>/sbin/agetty</path>. Jeśli nie
 otrzymamy w jego wyniku <c>system_u:object_r:getty_exec_t</c>, konieczne jest
-dokonanie ponownego oznakowania pakietu <c>util-linux</c>. Potem należy ponownie
-uruchomić wszystkie procesy agetty.
+dokonanie powtórnego oznakowania pakietu <c>util-linux</c>. Potem należy
+ponownie uruchomić wszystkie procesy agetty.
 </p>
 
 <pre caption="Znakowanie i restartowanie procesów agetty">
@@ -151,7 +151,7 @@ uruchomić wszystkie procesy agetty.
 </pre>
 
 <p>
-Wszystkie procesy agetty powinny posiadać poprawny kontekst
+Wszystkie procesy agetty powinny teraz posiadać poprawny kontekst
 <c>system_u:object_r:getty_exec_t</c>. Możemy spróbować ponownie się zalogować.
 </p>
 
@@ -188,9 +188,10 @@ oznakowany, należy dokonać ponownego oznakowania pakietu <c>pam-login</c>.
 <body>
 
 <p>
-Sshd powinien mieć możliwość użycia PAM do autoryzacji użytkownika. Program do
-sprawdzania hasła PAM (<c>/sbin/unix_chkpwd</c>) musi być odpowiednio oznakowany aby
-sshd mogło sprawdzić hasło. Wystarczy dokonać ponownego oznakowania PAM.
+<c>sshd</c> powinien mieć możliwość użycia PAM do autoryzacji
+użytkownika. Program do sprawdzania hasła PAM (<c>/sbin/unix_chkpwd</c>) musi
+być odpowiednio oznakowany, aby
+<c>sshd</c> mogło sprawdzić hasło. Wystarczy dokonać ponownego oznakowania PAM.
 </p>
 
 <pre caption="Ponowne znakowanie PAM">
@@ -237,7 +238,7 @@ teraz kontekst odpowiednio <c>system_u:object_r:etc_t</c> i
 <body>
 
 <p>
-Bash musi być odpowiednio oznakowany, aby użytkownik mógł się zalogować do
+Bash musi być prawidłowo oznakowany, aby użytkownik mógł się zalogować do
 odpowiedniej domeny. Należy dokonać ponownego oznakowania basha.
 </p>
 
