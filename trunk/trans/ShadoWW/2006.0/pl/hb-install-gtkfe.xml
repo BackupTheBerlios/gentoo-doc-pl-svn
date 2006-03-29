@@ -21,9 +21,9 @@ Po uruchomieniu instalatora Gentoo Linux wyświetlony zostanie ekran powitalny.
 Razem z instalatorem dostarczana jest przejrzysta instrukcja opisująca proces
 instalacji. Należy pamiętać o przeczytaniu każdej opcji z należytą uwagą. Dla
 każdego z etapów instalacji przewidziana jest pomoc. Wystarczy kilknąć
-<c>Help</c> w dolnym lewym rogu instalatora. Zalecmy przeczytanie tej pomoc
+<c>Help</c> w dolnym lewym rogu instalatora. Zalecamy przeczytanie tej pomocy
 przed dokonywaniem dalszych wyborów. Godnym uwagi szczegółem jest również
-możliwość zapisania akutalnych postępów konfiguracji, a następnie odtworzenie
+możliwość zapisania aktualnych postępów konfiguracji, a następnie odtworzenie
 procesu instalacji w późniejszym czasie.
 </p>
 
@@ -40,9 +40,9 @@ procesu instalacji w późniejszym czasie.
 <p>
 W następnej zakładce, mamy możliwość skonfigurowania naszej sieci. Instalator
 powinien automatycznie wykryć i skonfigurować naszą sieć, jednak jeżeli tego
-nie zrobił, pozostaje nam jej ręczna konfiguracja. Na zakładce <e>Misc.</e>,
-możemy wybrać gdzie instalator powinien gromadzić logi. Możemy również zostawić
-domyślną (<path>/var/log/installer.org</path>) wartość.
+nie zrobił, pozostaje nam jej ręczna konfiguracja. W zakładce <e>Misc.</e>,
+możemy wybrać gdzie instalator powinien gromadzić pliki log. Możemy również
+zostawić domyślną (<path>/var/log/installer.org</path>) wartość.
 </p>
 
 </body>
@@ -68,9 +68,9 @@ umieścić ich nazwy w odpowiedniej linii, każdy oddzielony spacją.
 </p>
 
 <warn>
-Nie należy zmieniąć opcja <e>Install mode</e> na jakąkolwiek inną wartość niż 
+Nie należy zmieniać opcji <e>Install mode</e> na jakąkolwiek inną wartość niż 
 <b>Normal</b>. Opcja ta cały czas jest w fazie eksperymentalnej i jej zmiana
-spodowuje, że nasz system nie będzie miał możliwości uruchomienia.
+spodowuje, że nasz system nie będzie mógł się uruchomić.
 </warn>
 
 </body>
@@ -84,7 +84,7 @@ spodowuje, że nasz system nie będzie miał możliwości uruchomienia.
 <body>
 
 <p>
-Pierwszą rzeczą, którą należy zrobić, aby móc zainstalować Gentoo na swoim
+Pierwszą rzeczą, którą należy zrobić, by móc zainstalować Gentoo na swoim
 komputerze jest przygotowanie dysków. W zakładce <c>Partitioning</c> możemy
 znaleźć listę wykrytych dysków oraz partycji, a także zdecydować jaki system
 plików powinien się na nich znaleźć. Należy bardzo uważać w przypadku opcji
@@ -94,12 +94,11 @@ naszego dysku! Możliwa jest również zmiana rozmiaru partycji.
 
 <p>
 Jeżeli wybierzemy opcję <c>Recommended layout</c>, instalator stworzy trzy
-partycje: 100 megabajtową partycję <path>/boot</path>, partycję
-<path>/swap</path> o rozmiarze do 512MB, natomiast reszta dostępnego miejsca na
-dysku zostanie użyta do utworzenia partycji głównej (<path>/</path>). Jeżeli
-posiadamy więcej niż 4GB niespartycjonowanego miejsca, opcja "Recomended
-layout" automatycznie skonfiguruje nasze partycje bez niszczenia istniejących
-partycji oraz danych.
+partycje: 100 megabajtową <path>/boot</path>, <path>/swap</path> o rozmiarze
+do 512MB, natomiast reszta dostępnego miejsca na dysku zostanie użyta do
+utworzenia partycji głównej (<path>/</path>). Jeżeli posiadamy więcej niż
+4GB niespartycjonowanego miejsca, opcja "Recomended layout" automatycznie
+skonfiguruje nasze partycje bez niszczenia istniejących partycji oraz danych.
 </p>
 
 </body>
@@ -113,7 +112,7 @@ partycji oraz danych.
 <body>
 
 <p>
-Na tej zakładce użytkownik może ustawić gdzie oraz jak powinny być montowane
+W tej zakładce użytkownik może ustawić gdzie oraz jak powinny być montowane
 sieciowe systemy plików, które można wykorzystać zarówno w trakcie, jak i po
 instalacji. Aby rozpocząć konfigurację należy wybrać opcję <c>New</c>. W tym
 momencie wspierany jest tylko NFS.
@@ -203,12 +202,12 @@ się czas ponownej kompilacji tego samego pakietu.
 </p>
 
 <p>
-W instalatorze nie możemy zmienić wartości <e>CHOST</e>, ponieważ nie umiejętna
+W instalatorze nie możemy zmienić wartości <e>CHOST</e>, ponieważ nieumiejętna
 jej zmiana może poważnie uszkodzić system. W opcji <e>MAKEOPTS</e> określamy
 maksymalną liczbę możliwych równoległych kompilacji podczas instalacji pakietu.
-Przyjęto zasadę, że wpisujemy tutaj ilość procesorów plus jeden, jednak ten
-wzór nie zawsze jest dobrym rozwiązaniem. W systemie jednoprocesorowym, można
-używać ustawienia <c>-j2</c>.
+Przyjęto zasadę, że wpisujemy tutaj ilość procesorów powiększona o jeden,
+jednak ten wzór nie zawsze jest dobrym rozwiązaniem. W systemie
+jednoprocesorowym, można używać ustawienia <c>-j2</c>.
 </p>
 
 </body>
@@ -244,16 +243,16 @@ Aby posiadać ładne tło podczas uruchamiania systemu należy zaznaczyć opcję
 <body>
 
 <p>
-Zakładka ta pozwala nam na wybór bootloadera oraz opcjonalne wpisanie
+Zakładka ta pozwala nam na wybór programu ładującego oraz opcjonalne wpisanie
 parametrów dla jądra uruchamianego podczas startu systemu.
 </p>
 
 <p>
-Możemy wybrać dysk z którego będzie uruchamiany program ładujący, opcja <e>Boot
-Drive</e>. W hierarch Linuksa, pierwszy dysk IDE nazwany jest <c>hda</c>, drugi
-<c>hdb</c> i tak dalej. Jeżeli posiadamy dysk SATA lub SCSI, będą one nosić
-nazwę odpowiednio <c>sda</c>, <c>sdb</c> itd. Należy się upewnić, że wybraliśmy
-odpowiedni dysk.
+Możemy wybrać dysk z którego będzie uruchamiany program ładujący, opcją <e>Boot
+Drive</e>. W hierarchii Linuksa, pierwszy dysk IDE nazwany jest <c>hda</c>,
+drugi <c>hdb</c> i tak dalej. Jeżeli posiadamy dysk SATA lub SCSI, będą one
+nosić nazwę odpowiednio <c>sda</c>, <c>sdb</c> itd. Należy się upewnić, że
+wybraliśmy odpowiedni dysk.
 </p>
 <!-- more bootloader inclusions needed about vga, etc. just don't include pure
 CLI stuff, but only what can go on the extra kernel params line -->
@@ -263,9 +262,9 @@ VGA, wpisujemy je w pole "Extra kernel parameters".
 </p>
 
 <p>
-W przypadku problemów z wykrycie naszego dysku przez BIOS z powodu jego dużej
+W przypadku problemów z wykryciem naszego dysku przez BIOS z powodu jego dużej
 wielkości, powinniśmy dodać opcję <c>hdx=stroke</c>. Jeżeli nasz dysk jest
-dyskie SCSI niezbędnym okaże się podanie parametru jądra <c>doscsi</c>.
+dyskiem SCSI niezbędnym okaże się podanie parametru jądra <c>doscsi</c>.
 </p>
 
 <!-- do we need to cover all the stuff about lilo/grub and kernel parameter
@@ -297,13 +296,13 @@ Powinniśmy zaznaczyć na liście miejsce znajdujące się najbliżej nas.
 
 <p>
 Na tej zakładce można skonfigurować różne urządzenia i interfejsy sieciowe,
-wykryte na naszym komputerze. Każdą opcję należy przeczytać bardzo uważnie.
+wykryte na naszym komputerze. Każdą z opcji należy przeczytać bardzo uważnie.
 </p>
 
 <p>
 Zakładka <e>Hostname/Proxy Information/Other</e> pozwoli nam ustawić nazwę
 naszego hosta. Jeżeli będzie taka potrzeba możemy tutaj również sprecyzować
-serwer proxy lub ustawienia DNS-a.
+serwer proxy lub ustawienia DNS-ów.
 </p>
 
 </body>
@@ -349,7 +348,7 @@ należy zanaczyć odpowiednie pola.
 </p>
 
 <impo>
-Jeżeli instalujemy Gentoo bez dostępu do internetu, nie możemy dodać, żadnych
+Jeżeli instalujemy Gentoo bez dostępu do internetu, nie możemy dodać żadnych
 dodatkowych pakietów poza tymi, które znajdują się na płycie instalacyjnej.
 </impo>
 
@@ -366,8 +365,8 @@ dodatkowych pakietów poza tymi, które znajdują się na płycie instalacyjnej.
 Zakładka ta pozwoli nam wybrać usługi, które mają być uruchamiane przy starcie
 systemu operacyjnego. Należy przeczytać wszystkie możliwe do wyboru usługi i
 wybrać te potrzebne. Dla przykładu, jeśli zainstalowaliśmy <c>xorg-x11</c> i
-chcemy od razu uruchamiać graficzne środowisko, powinniśmy wybrać z listy
-usługę "xdm".
+chcemy na starcie systemu uruchamiać graficzne środowisko, powinniśmy wybrać z
+listy usługę "xdm".
 </p>
 
 </body>
