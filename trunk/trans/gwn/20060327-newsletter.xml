@@ -35,71 +35,87 @@
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>Security team recruiting campaign</title>
+<title>Rekrutacja do zespołu bezpieczeństwa</title>
 <body>
+
 <p>
-Security has always been one of the Gentoo project's strongest aspects. To 
-prevent the quality of GLSAs from dropping, the security team has started to 
-actively look for additional help among existing and future developers. This 
-recruitment campaign aims to compensate for the potential problems that can 
-delay the fixing of security bugs, including missing or inactive package 
-maintainers, but also a lack of GLSA coordinators. Other areas that need 
-more support are the KISS project (kernel security advisory system) and 
-<c>glsa-check</c> integration into Portage. If you're able and willing to 
-help with any of these security-related issues, please contact one of the 
-following project/subproject leaders:
+Bezpieczeństwo było zawsze stawiane w Gentoo na pierwszym miejscu. W związku z
+chęcią zachowania jakości usług, zespół bezpieczeństwa rozpoczął gorączkowe
+poszukiwania osób chętnych do współpracy, zarówno wśród obecnych jak i
+przyszłych deweloperów. Działania te mają na celu przeciwdziałać potencjalnym
+problemom, które powodują opóźnienia w łataniu błędów związanych z
+bezpieczeństwem. Do głównych przyczyn można zaliczyć brak lub nieaktywność
+opiekuna danego pakietu oraz mała liczba koordynatorów GLSA. Inne rejony, które
+potrzebują większej uwagi to projekt KISS (kernel security advisory system)
+oraz intergracja <c>glsa-check</c> w Portage. Jeżeli nasze zdolności oraz chęci
+pchają nas do pomocy, prosimy o kontakt z jednym z niżej wymienionych
+koordynatorów:
 </p>
+
 <ul>
-<li>GLSA team: <mail link="jaervosz@gentoo.org">Sune Kloppenborg Jeppesen</mail> 
-or <mail link="dercorny@gentoo.org">Stefan Cornelius</mail> (who replaces
-Thierry Carrez as operational co-lead)</li>
-<li>Kernel team: <mail link="plasmaroo@gentoo.org">Tim Yamin</mail></li>
-<li>Audit team: <mail link="taviso@gentoo.org">Tavis Ormandy</mail></li>
+  <li>
+    Zespół GLSA: <mail link="jaervosz@gentoo.org">Sune Kloppenborg
+    Jeppesen</mail>
+    or <mail link="dercorny@gentoo.org">Stefan Cornelius</mail> (którey zastąpił
+    Thierry Carrez)</li>
+  <li>Zespół Kernel: <mail link="plasmaroo@gentoo.org">Tim Yamin</mail></li>
+  <li>Zespół Audit: <mail link="taviso@gentoo.org">Tavis Ormandy</mail></li>
 </ul>
+
 <note>
-See the latest <uri link="http://article.gmane.org/gmane.linux.gentoo.security/2787">security 
-team meeting report</uri> for more details.
+Po więcej szczegółów zapraszamy do <uri
+link="http://article.gmane.org/gmane.linux.gentoo.security/2787">ostatniego
+dziennika spotkania zespółu bezpieczeństwa</uri>.
 </note>
+
 </body>
 </section>
 <section>
-<title>Bugzilla category change for the installer project</title>
+<title>Zmiana kategorii na Bugzilli dla projektu instalatora</title>
 <body>
+
 <p>
-The maintainers of <uri link="http://bugs.gentoo.org">bugs.gentoo.org</uri> 
-have removed the old "Gentoo Linux Installer" (GLI) component inside the 
-"Gentoo Linux" category. Instead they have added an "Installer" component as a 
-"Gentoo Release Media" subcategory. All the old bugs are already reassigned, 
-and if you would like to file a bug regarding the installer, please use the new 
-component! 
+Opiekunowie serwisu <uri link="http://bugs.gentoo.org">bugs.gentoo.org</uri>
+usuneli stary komponent "Gentoo Linux Installer", znajdujący się wewntąrz
+kategorii "Gentoo Linux" i zastąpili go nowym. Nowy komponent nosi nazwę
+"Installer" i mieści się wewntąrz podkategorii "Gentoo Release Media".
+Wszystkie błędy zostały już przypisane do nowej kategorii. Użytkowników, którzy
+będą zgłaszać nowe prosimy o przestrzeganie nowego porządku.
 </p>
+
 </body>
 </section>
 <section>
-<title>Ruby on Rails 1.1 RC1 hits Portage</title>
+<title>Ruby on Rails 1.1 RC1 w Portage</title>
 <body>
+
 <p>
-The first release candidate of <uri link="http://www.rubyonrails.com">Ruby 
-on Rails</uri> 1.1 is now in Portage.  For users running ~arch, it will add 
-the new versions to their gem installations without removing the old ones.  
-They will be able to make use of the new version, and can still lock their 
-code to the old version if they need to. The Portage versions all end in 
-<path>.4008</path>, which represents upstream's subversion repository 
-commit number for the 1.1_RC1 release.
+Pierwsze wydanie RC <uri link="http://www.rubyonrails.com">Ruby
+on Rails</uri> 1.1 właśnie zostało zamieszczone w Portage. Dla użytkowników
+korzystających z testowej gałęzi najnowsza wersja zostanie zainstalowana bez
+usuwania pooprzedniej. Zapewni to możliwość korzystania jednocześnie z jednej i
+drugiej. Wersje w Portage zakończone są wyrażeniem <path>.4008</path>, które
+oznacza numer z repozytorium SVN dla wersji 1.1_RC1.
 </p>
+
 <p>
-Users who are interested in trying out the new versions are encouraged to
-do so, and file bugs to either <uri link="http://bugs.gentoo.org">Gentoo</uri>
-or <uri link="http://dev.rubyonrails.org">http://dev.rubyonrails.org</uri> as
-appropriate. Those who want to lock their existing Rails applications to a 
-specific version, they can see the following URLs for information on how to do 
-so:
+Zachęcamy zdecydowanych użytkowników do korzystania z nowej wersji oraz
+wysyłania raportów na <uri link="http://bugs.gentoo.org">bugzille</uri> lub do
+bardziej odpowiedniego miejsca jakim jest strona <uri
+link="http://dev.rubyonrails.org">http://dev.rubyonrails.org</uri>. Osoby
+pragnące zablokować swoje aplikacje napisane w tym jęzku na określonej wersji,
+proszone są o zapoznie się z poniższymi tekstami:
 </p>
+
 <ul>
-<li><uri link="http://weblog.rubyonrails.com/articles/2006/03/22/rails-1-1-release-candidate-1-available">RC 1 announcement</uri></li>
-<li><uri link="http://wiki.rubyonrails.com/rails/pages/HowtoLockToSpecificRailsVersions">How to lock to specific Rails versions</uri></li>
+  <li><uri
+    link="http://weblog.rubyonrails.com/articles/2006/03/22/rails-1-1-release-candidate-1-available">RC
+    1 announcement</uri></li>
+  <li><uri
+    link="http://wiki.rubyonrails.com/rails/pages/HowtoLockToSpecificRailsVersions">How
+    to lock to specific Rails versions</uri></li>
 </ul>
 
 </body>
