@@ -1,0 +1,41 @@
+--- hb-install-amd64-bootloader.xml~	2006-04-06 18:57:43.000000000 +0200
++++ hb-install-amd64-bootloader.xml	2006-04-06 18:55:56.000000000 +0200
+@@ -7,8 +7,8 @@
+ <!-- $Header: /var/www/www.gentoo.org/raw_cvs/gentoo/xml/htdocs/doc/pl/handbook/2006.0/hb-install-amd64-bootloader.xml,v 1.1 2006/03/31 16:50:49 shadoww Exp $ -->
+ 
+ <sections>
+-<version>6.0</version>
+-<date>2006-02-27</date>
++<version>6.1</version>
++<date>2006-03-26</date>
+ 
+ <section>
+ <title>Podejmowanie decyzji</title>
+@@ -110,17 +110,23 @@
+      </ti>
+   </tr>
+   <tr>
+-     <ti>mtrr</ti>
++     <ti>mtrr:n</ti>
+      <ti>
+-     Ustawia rejestry MTRR
++     Ustawia rejestry MTRR; <c>n</c> możeby przyjmować wartość:
++     0 - wyłączone
++     1 - bez buforowania
++     2 - opóźniony zapis
++     3 - łączony zapis
++     4 - bezpośredni zapis
+      </ti>
+   </tr>
+ </table>
+ 
+ <p>
+ Rezultatem tych dwóch opcji może być coś podobnego do <c>vga=0x318
+-video=vesafb:mtrr,ywrap</c> lub <c>video=vesafb:mtrr,ywrap,1024x768-32@85</c>.
+-Warto zapamiętać (lub zapisać) wybraną wartość; niedługo się ona przyda.
++video=vesafb:mtrr:3,ywrap</c> lub
++<c>video=vesafb:mtrr:3,ywrap,1024x768-32@85</c>.  Warto zapamiętać (lub zapisać)
++wybraną wartość; niedługo będzie ona przydatna.
+ </p>
+ 
+ <p>
