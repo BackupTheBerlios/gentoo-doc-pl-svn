@@ -29,10 +29,10 @@ Sun Apr 25 16:21:18 CEST 2004
 </pre>
 
 <p>
-Jeżeli wyświetlone informacje są błędne, musimy je zaktualizować poleceniem <c>date
-MMDDggmmWWRR</c> (<b>M</b>iesiąc, <b>D</b>zień, <b>g</b>odzina, <b>m</b>inuta,
-<b>W</b>iek pomniejszony o jeden i <b>R</b>ok). Na przykład, aby ustawić datę 25
-kwietnia 2004 roku i godzinę 16:21, wykonujemy polecenie:
+Jeżeli wyświetlone informacje są błędne, musimy je zaktualizować poleceniem
+<c>date MMDDggmmWWRR</c> (<b>M</b>iesiąc, <b>D</b>zień, <b>g</b>odzina,
+<b>m</b>inuta, <b>W</b>iek pomniejszony o jeden i <b>R</b>ok). Na przykład, aby
+ustawić datę 25 kwietnia 2004 roku i godzinę 16:21, wykonujemy polecenie:
 </p>
 
 <pre caption="Ustawianie daty/czasu">
@@ -109,7 +109,7 @@ Na początku przechodzimy do punktu montowania systemu plików Gentoo
 
 <p>
 Mamy do dyspozycji kilka narzędzi, za pomocą których możemy pobrać plik
-stage. Jeżeli mamy program <c>links2</c>, możemy wejść bezpośrednio na <uri
+stage. Jeżeli mamy program <c>links</c>, możemy wejść bezpośrednio na <uri
 link="/main/en/mirrors.xml">listę serwerów lustrzanych Gentoo</uri> i wybrać
 serwer, który znajduje się najbliżej. Następnie wybieramy katalog
 <path>experimental/</path>, potem katalog odpowiadający naszej architekturze (na
@@ -120,9 +120,11 @@ naszej architektury. Wybieramy jeden i pobieramy go, wciskając klawisz
 klawisza <c>Q</c>.
 </p>
 
-<pre caption="Przeglądanie listy serwerów lustrzanych za pomocą links2">
-<comment>(Bez proxy)</comment>   # <i>links2 http://www.gentoo.org/main/en/mirrors.xml</i>
-<comment>(Przy użyciu proxy)</comment>      # <i>links2 -http-proxy proxy.server.com:8080 http://www.gentoo.org/main/en/mirrors.xml</i>
+<pre caption="Przeglądanie listy serwerów lustrzanych za pomocą links">
+<comment>(Bez proxy)</comment>   
+# <i>links http://www.gentoo.org/main/en/mirrors.xml</i>
+<comment>(Przy użyciu proxy)</comment>      
+# <i>links -http-proxy proxy.server.com:8080 http://www.gentoo.org/main/en/mirrors.xml</i>
 </pre>
 
 <p>
@@ -504,8 +506,10 @@ flag optymalizacji, na przykład w ten sposób:
 </p>
 
 <pre caption="Definiowanie zmiennych CFLAGS i CXXFLAGS">
-CFLAGS="-march=athlon-xp -pipe -O2"   <comment># Użytkownicy AMD64 nie powinni używać athlon-xp</comment>
-CXXFLAGS="${CFLAGS}"                  <comment># Użycie tych samych ustawień dla obu zmiennych</comment>
+<comment># Użytkownicy AMD64 nie powinni używać athlon-xp</comment>
+CFLAGS="-march=athlon-xp -pipe -O2"   
+<comment># Użycie tych samych ustawień dla obu zmiennych</comment>
+CXXFLAGS="${CFLAGS}"                 
 </pre>
 
 </body>

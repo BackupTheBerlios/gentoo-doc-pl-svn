@@ -121,8 +121,8 @@ libselinux znajduje się w wynikach. Jeśli nie, należy przeinstalować sysvini
 </pre>
 
 <p>
-Teraz należy ponownie uruchomić komputer, aby init otrzymał prawidłowy kontekst i
-załadował politykę.
+Teraz należy ponownie uruchomić komputer, aby init otrzymał prawidłowy
+kontekst i załadował politykę.
 </p>
 
 </body>
@@ -157,8 +157,8 @@ oznakowania <c>sshd</c>, a następnie zrestartować go.
 <p>
 <c>sshd</c> powinien mieć możliwość użycia PAM do autoryzacji
 użytkownika. Program do sprawdzania hasła PAM (<c>/sbin/unix_chkpwd</c>) musi
-być odpowiednio oznakowany, aby <c>sshd</c> mogło sprawdzić hasło. Wystarczy dokonać
-ponownego oznakowania PAM.
+być odpowiednio oznakowany, aby <c>sshd</c> mogło sprawdzić hasło. Wystarczy
+dokonać ponownego oznakowania PAM.
 </p>
 
 <pre caption="Ponowne znakowanie PAM">
@@ -264,8 +264,8 @@ UsePAM yes
 <p>
 SELinux obecnie pozwala jedynie kilku programom - w tym programowi PAM - na
 bezpośredni dostęp do pliku <path>/etc/shadow</path>. Wobec tego openssh musi
-mieć włączoną identyfikację użytkowników przy pomocy autoryzacji (klucze publiczne
-nadal działają).
+mieć włączoną identyfikację użytkowników przy pomocy autoryzacji (klucze
+publiczne nadal działają).
 </p>
 
 </body>
