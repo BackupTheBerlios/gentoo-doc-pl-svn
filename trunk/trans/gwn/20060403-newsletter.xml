@@ -52,89 +52,93 @@ działania prosim kierować na adres e-mailowy Stuarta.
 </body>
 </section>
 </chapter>
+
 <!-- Future zone -->
 <chapter>
 <title>Rzut okiem w przyszłość</title>
 <section>
 <title>Kolab i Gentoo</title>
 <body>
+
 <p>
-Większość spośród tworzonych w technologii open-source systemów groupware,
-które są porównywalne z Microsoft Exchange Server, składa się z wielu
-pomniejszych usług, na przykład LDAP, Apache, Postfix i innych. Kolab jest
-typowym przykładem takiego modularnego systemu.
+Większość spośród istniejących w ramach Open Source systemów groupware, a
+porównywalnych z Microsoft Exchange Server, składa się z wielu pomniejszych
+usług, na przykład LDAP, Apache, Postfix i innych. Kolab jest przykładem takiego
+modularnego systemu.
 </p>
 
 <p>
-Główną funkcją pakietu Kolab jest wykorzystanie protokołu IMAP do
-przechowywania informacji grupowych, takich jak adresy, wydarzenia, notatki
-i inne. Pozwala to na zredukowanie głównych składników systemu zaledwie do
-usług OpenLDAP, Postfix i Cyrus-Imapd. Dzięki temu pakiet serwerowy jest
-mniejszy niż konkurencyjne produkty, na przykład Open-Exchange. Kolab jest
-również jednym z niewielu serwerów groupware, który w pełni obsługuje
-klienty e-mail pod Linuksa (Kontact) i Windowsa (Outlook), jednocześnie
-współpracując z klientem sieci (Horde). Dzięki temu można stosować go w
-heterogenicznym środowisku.
+Główną funkcją pakietu Kolab jest wykorzystanie protokołu IMAP do przechowywania
+informacji grupowych, takich jak adresy, wydarzenia, notatki i inne. Pozwala to
+na zredukowanie głównych składników systemu zaledwie do usług OpenLDAP, Postfix
+i Cyrus-Imapd. Dzięki temu pakiet serwerowy jest mniejszy niż konkurencyjne
+produkty, na przykład Open-Exchange. Kolab jest również jednym z niewielu
+serwerów ułatwiających pracę grupową, który w pełni obsługuje klienty e-mail w
+systemach Linux (Kontact) i Windows (Outlook), jednocześnie współpracując z tymi
+dostępnymi z poziomu przeglądarki internetowej (Horde). Dzięki temu można
+stosować go w heterogenicznym środowisku.
 </p>
 
 <p>
-Główną przeszkodą w utworzeniu wydajnego serwera groupware z
-wieloskładnikowego systemu jest oczywiście konfiguracja. Usługa e-mail musi
-współpracować z narzędziami antywirusowymi i antyspamowymi, wysyłanie i
-odbieranie poczty wymaga skonfigurowania odpowiednich kanałów, każda usługa
-musi korzystać z głównej bazy danych użytkowników itd.
+Główną przeszkodą w utworzeniu wydajnego serwera groupware z wieloskładnikowego
+systemu jest oczywiście konfiguracja. Usługa e-mail musi współpracować z
+narzędziami antywirusowymi i antyspamowymi, wysyłanie i odbieranie poczty wymaga
+skonfigurowania odpowiednich kanałów, każda usługa musi korzystać z głównej bazy
+danych użytkowników itd.
 </p>
 
 <p>
-Jedną z możliwości poradzenia sobie z konfiguracją jest pozostawienie
-konfiguracji składników systemu w stanie, jaki sugerują twórcy dystrybucji i
-dołączeniu długiej dokumentacji, w której opiszemy wszystkie niezbędne kroki
-potrzebne do uruchomienia systemu. Zaletą takiego podejścia jest znaczna
-niezależność serwera groupware od dystrybucji.
+Jedną z możliwości poradzenia sobie z konfiguracją jest użycie domyślnych
+parametrów zalecanych przez deweloperów i twórców aplikacji. Dodatkowo doradzają
+oni także by stworzyć obszerną dokumentację opisującą poszczególne kroku jakie
+należy wykonać by uruchomić dany system. Zaletą tego podejścia jest znaczna
+niezależność serwera groupware od dystrybucji którą używamy.
 </p>
 
 <p>
 Kolab jednakże podąża inną ścieżką i próbuje w pełni zautomatyzować proces
-konfiguracji. To znaczne ułatwienie dla końcowego użytkownika, ponieważ
-zwykle nie wymaga od niego zbyt częstej lektury dokumentacji do usług
-Postfix, Cyrus-Imap czy Apache. Z drugiej jednak strony takie podejście to
-koszmar dla deweloperów, szczególnie jeśli jednym z celów jest
-przystosowanie systemu do większości dystrybucji. Należałoby wziąć pod uwagę
-najdrobniejsze szczegóły, którymi poszczególne dystrybucje się różnią. Z
-tego względu twórcy Kolaba postanowili dostosować system do jednej
-dystrybucji (OpenPKG).  Zainstalowanie Kolaba na innej dystrybucji pociąga
-za sobą konieczność doinstalowania obsługi OpenPKG, przez co mamy dość
-niefortunną sytuację "systemu w systemie". 
+konfiguracji. Jest to znaczne ułatwienie dla końcowego użytkownika, ponieważ
+zwykle nie wymaga od niego znajomości dokumentacji usług takich jak Postfix,
+Cyrus-Imap czy Apache. Z drugiej jednak strony takie podejście to koszmar dla
+deweloperów, szczególnie jeśli jednym z celów jest przystosowanie systemu do
+większości dystrybucji. Należałoby wziąć pod uwagę najdrobniejsze szczegóły,
+którymi poszczególne dystrybucje się różnią. Z tego względu twórcy Kolaba
+postanowili dostosować system do jednej dystrybucji (OpenPKG). Instalacja tego
+systemu do pracy grupowej w innym systemie pociąga za sobą konieczność
+instalacji dodatkowych pakietów udostępniających usługi dostępne w OpenPKG, co
+tworzy nieco dziwną konfigurację „systemu w systemie“.
 </p>
 
 <p>
-Przez ostatnich kilka miesiący wielu ochotników pomagało w przerobieniu
-Kolaba tak, aby wykorzystywał narzędzia takie jak autoconf i automake.  W
-ten sposób możliwe jest utworzenie systemu budowania, który pozwoli na
-przeniesienie Kolaba na inną dystrybucję Linuksa. Dzięki temu nareszcie
-posiadamy natywne środowisko tego serwera w Gentoo. Projekt w wersji beta
-można znaleźć <uri link="http://projects.gunnarwrobel.de/Kolab/wiki">pod tym
-adresem</uri>. Spodziewamy się, że projekt uzyska pełną stabilność wraz z
-ukazaniem się wersji 2.1.
+Przez ostatnie trzy miesiące wielu ochotników pomagało w konwersji systemu Kolab
+tak by używał on narzędzi dostępnych w systemach GNU jak autoconf i automake.
+Zmiana ta umożliwi kompilację aplikacji w innych systemach Linuksowych,
+wliczając w to Gentoo Linux. Projekt opublikował wersję beta, którą można
+znaleźć pod <uri link="http://projects.gunnarwrobel.de/Kolab/wiki">tym
+adresem</uri>. Mamy nadzieję że jego stabilna wersja zobaczy światło dzienne
+wraz z wydaniem wersji 2.1 aplikacji.
 </p>
 
 <p>
-Jakie są zalety instalowania Kolaba jako natywnego pakietu Gentoo? Przede
-wszystkim możemy pozbyć się systemu rpm, którego musielibyśmy używać w
-wersji OpenPKG. W Gentoo byłoby to szczególnie dziwne, gdyż nie godziliśmy
-się na znoszenie długich czasów kompilacji bez powodu. Wraz z
-uniezależnieniem się od OpenPKG dostaliśmy większą możliwość rozbudowywania
-systemu. Konieczna jest obsługa telefonii? Dodajmy ją dzięki
-<c>asterisk</c>. Potrzebujemy systemu zarządzania dokumentami? Włączmy
-funkcję <c>knowledgetree</c> w LDAP, aby dostarczyć naszym użytkownikom
-poczty pełnowartościowy system DMS. Potrzebny nam jest dostęp do strony
-internetowej? DAV? SVN? Trac? Wszystko to, co działa pod kontrolą
-<c>apache</c> i wymaga uwierzytelniania powinno poprawnie działać. Dodatkowo
-Gentoo umożliwa dalszą rozbudowę systemu poprzez dodanie flagi USE "kolab"
-do istniejących aplikacji, przez co nasz serwer groupware może zyskać nową
-funkcjonalność. W tej chwili możliwości tych jeszcze nie ma, ale prace nad
-nimi są już w toku.
+Jakie zalety daje instalacja systemu Kolab jako natywnego pakietu Gentoo?
+Przede wszystkim pozbywamy się systemu rpm, który jest używany w przypadku
+wersji OpenPKG. W Gentoo byłoby to szczególnie dziwne, gdyż użytkownicy
+dystrybucji nie godzą się oczekiwanie na kompilacje poszczególnych pakietów bez
+powodu. Wraz z uniezależnieniem się od OpenPKG mamy teraz możliwość większej
+rozbudowy i modyfikacji samego systemu i dodawania kolejnych rozszerzeń i
+dodatków. Potrzebujemy dodać obsługę połączeń telefonicznych? Dodamy ją dzięki
+fladze <c>asterisk</c>. System do zarządzania dokumentami? Włączmy funkcję
+<c>knowledgetree</c> w LDAP, aby dostarczyć naszym użytkownikom poczty
+pełnowartościowy i rozbudowany system DMS (Document Management System). Dostęp
+z poziomu przeglądarki internetowej? DAV? SVN? Trac? Wszystko to, co działa pod
+kontrolą <c>apache</c>, a używa LDAP jako metody uwierzytelniania powinno
+bezproblemowo działać. Można powiedzieć, że Gentoo w prosty i elastyczny sposób
+umożliwia rozbudowę funkcjonalności tego systemu do pracy grupowej tylko poprzez
+dodanie flagi USE="kolab" do poszczególnych istniejących pakietów. Te
+modyfikacje nie zostały jeszcze wdrożone ale prace nad ich implementacją i
+wprowadzeniem w życie są już w toku.
 </p>
+
 </body>
 </section>
 </chapter>
