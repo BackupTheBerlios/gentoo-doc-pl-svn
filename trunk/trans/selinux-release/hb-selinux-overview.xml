@@ -336,7 +336,7 @@ Plik <path>constraints</path> definiuje dodatkowe ograniczenia dostępu w formie
 wyrażeń, które muszą zostać spełnione, aby określone prawa dostępu zostały
 nadane. Te ograniczenia są następnie wykorzystywane do uściślenia tabel
 egzekucji typów i praw dostępu opartych na statusach. Zazwyczaj reguły te
-stosuje się w celu ograniczenia zmian w tożsamości użytkowanika lub jego
+stosuje się w celu ograniczenia zmian w tożsamości użytkownika lub jego
 statusie do określonego zakresu.
 </p>
 
@@ -560,7 +560,7 @@ polityk. Spowodowało to konieczność zwiększenia numeru wersji polityki do 16
 <p>
 Istnieje kilka sposobów, aby dowiedzieć się jakiej wersji polityki używa
 jądro. Wprowadzono zmianę w eclass jądra, która pozwala na wyświetlenie
-informacji o tym, jakiej werji polityki oczekuje jądro.
+informacji o tym, jakiej wersji polityki oczekuje jądro.
 </p>
 
 <pre caption="Informacja o wersji polityki SELinux, oczekiwanej przez jądro">
@@ -569,7 +569,7 @@ informacji o tym, jakiej werji polityki oczekuje jądro.
 
 <p>
 Wersję polityki działającego jądra można uzyskać przy użyciu polecenia
-<c>sestatus</c> lub <c>policyvers</c>. Obecne wersje jąder moga korzystać z
+<c>sestatus</c> lub <c>policyvers</c>. Obecne wersje jąder mogą korzystać z
 wcześniejszych wersji polityk dla zachowania kompatybilności
 wstecz. Przykładowo, jądro używające polityki w wersji 17 może również załadować
 politykę w wersji 16. Niemniej jednak ta kompatybilność wstecz może zostać
@@ -941,7 +941,7 @@ powinien mieć formę <c>system_u:object_r:wtmp_t</c>, a nie
 </p>
 
 <p>
-Gdyby ten komuniatak odmowy dostępu nie został prawidłowo przeanalizowany,
+Gdyby ten komunikat odmowy dostępu nie został prawidłowo przeanalizowany,
 administrator mógłby błędnie pozwolić wszystkim obiektom posiadającym typ
 <c>getty_t</c> na zapis i odczyt plików o typie <c>var_log_t</c>. Byłoby to
 nieprawidłowe, ponieważ program <c>agetty</c> potrzebuje dostępu wyłącznie do
