@@ -60,8 +60,8 @@ działania prosim kierować na adres e-mailowy Stuarta.
 <body>
 <p>
 Większość spośród tworzonych w technologii open-source systemów groupware,
-które są porównywalne z Microsoft Exchange Server, składa się z wielu usług
-niższego rzędu, na przykład LDAP, Apache, Postfix i innych. Kolab jest
+które są porównywalne z Microsoft Exchange Server, składa się z wielu
+pomniejszych usług, na przykład LDAP, Apache, Postfix i innych. Kolab jest
 typowym przykładem takiego modularnego systemu.
 </p>
 
@@ -98,41 +98,42 @@ Kolab jednakże podąża inną ścieżką i próbuje w pełni zautomatyzować pr
 konfiguracji. To znaczne ułatwienie dla końcowego użytkownika, ponieważ
 zwykle nie wymaga od niego zbyt częstej lektury dokumentacji do usług
 Postfix, Cyrus-Imap czy Apache. Z drugiej jednak strony takie podejście to
-koszmar dla deweloperów, jeśli jednym z celów jest przystosowanie systemu do
-większości dystrybucji. Należało by wziąć pod uwagę najdrobniejsze
-szczegóły, którymi poszczególne dystrybucje się różnią. Z tego względu
-twórcy Kolaba postanowili dostosować system do jednej dystrybucji (OpenPKG).
-Zainstalowanie Kolaba na innej dystrybucji pociąga za sobą konieczność
-doinstalowania obsługi OpenPKG, przez co mamy dość niefortunną sytuację
-"systemu w systemie". 
+koszmar dla deweloperów, szczególnie jeśli jednym z celów jest
+przystosowanie systemu do większości dystrybucji. Należałoby wziąć pod uwagę
+najdrobniejsze szczegóły, którymi poszczególne dystrybucje się różnią. Z
+tego względu twórcy Kolaba postanowili dostosować system do jednej
+dystrybucji (OpenPKG).  Zainstalowanie Kolaba na innej dystrybucji pociąga
+za sobą konieczność doinstalowania obsługi OpenPKG, przez co mamy dość
+niefortunną sytuację "systemu w systemie". 
 </p>
 
 <p>
-Przez ostatnich kilka miesiący wielu ochotników pomagało w konwersji Kolaba
-na narzędzia takie jak autoconf i automake. Dzięki temu możliwe jest
-utworzenie systemu budowania, który pozwoli na przeniesienie Kolaba na inną
-dystrybucję Linuksa. Dzięki temu nareszcie posiadamy natywne środowisko tego
-serwera w Gentoo. Projekt w wersji beta można znaleźć <uri
-link="http://projects.gunnarwrobel.de/Kolab/wiki">pod tym adresem</uri>.
-Spodziewamy się, że projekt uzyska pełną stabilność wraz z ukazaniem się
-wersji 2.1.
+Przez ostatnich kilka miesiący wielu ochotników pomagało w przerobieniu
+Kolaba tak, aby wykorzystywał narzędzia takie jak autoconf i automake.  W
+ten sposób możliwe jest utworzenie systemu budowania, który pozwoli na
+przeniesienie Kolaba na inną dystrybucję Linuksa. Dzięki temu nareszcie
+posiadamy natywne środowisko tego serwera w Gentoo. Projekt w wersji beta
+można znaleźć <uri link="http://projects.gunnarwrobel.de/Kolab/wiki">pod tym
+adresem</uri>. Spodziewamy się, że projekt uzyska pełną stabilność wraz z
+ukazaniem się wersji 2.1.
 </p>
+
 <p>
-What are the advantages of having Kolab available as a native
-Gentoo system? First of all you get rid of the rpm system that
-you had to use for the OpenPKG version. As a Gentoo user this
-feels more than awkward since the choice to bear with compile
-times was not made without a reason. With the independence of the 
-OpenPKG distribution also comes a far greater potential for extension 
-of the system. You want telephony? Integrate it with <c>asterisk</c>. 
-You need a document management system? Why not activate the LDAP features 
-of <c>knowledgetree</c> in order to provide your mail users will a full-blown 
-DMS system. You need website access? DAV? SVN? Trac? Anything on <c>apache</c> 
-that requires authentication and can use LDAP should be no problem.
-In essence, Gentoo is the optimal system to enhance some of the
-existing ebuilds with a "kolab" USE flag in order to provide a
-groupware server with exciting new features. While this is not yet
-available, work is underway to achieve this.
+Jakie są zalety instalowania Kolaba jako natywnego pakietu Gentoo? Przede
+wszystkim możemy pozbyć się systemu rpm, którego musielibyśmy używać w
+wersji OpenPKG. W Gentoo byłoby to szczególnie dziwne, gdyż nie godziliśmy
+się na znoszenie długich czasów kompilacji bez powodu. Wraz z
+uniezależnieniem się od OpenPKG dostaliśmy większą możliwość rozbudowywania
+systemu. Konieczna jest obsługa telefonii? Dodajmy ją dzięki
+<c>asterisk</c>. Potrzebujemy systemu zarządzania dokumentami? Włączmy
+funkcję <c>knowledgetree</c> w LDAP, aby dostarczyć naszym użytkownikom
+poczty pełnowartościowy system DMS. Potrzebny nam jest dostęp do strony
+internetowej? DAV? SVN? Trac? Wszystko to, co działa pod kontrolą
+<c>apache</c> i wymaga uwierzytelniania powinno poprawnie działać. Dodatkowo
+Gentoo umożliwa dalszą rozbudowę systemu poprzez dodanie flagi USE "kolab"
+do istniejących aplikacji, przez co nasz serwer groupware może zyskać nową
+funkcjonalność. W tej chwili możliwości tych jeszcze nie ma, ale prace nad
+nimi są już w toku.
 </p>
 </body>
 </section>
