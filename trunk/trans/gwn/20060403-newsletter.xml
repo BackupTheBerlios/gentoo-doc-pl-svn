@@ -54,65 +54,68 @@ działania prosim kierować na adres e-mailowy Stuarta.
 </chapter>
 <!-- Future zone -->
 <chapter>
-<title>Future zone</title>
+<title>Rzut okiem w przyszłość</title>
 <section>
-<title>Kolab and Gentoo</title>
+<title>Kolab i Gentoo</title>
 <body>
 <p>
-Most of the current open-source groupware systems that are
-comparable to the Microsoft Exchange Server are build out of a
-high number of sub-services like LDAP, Apache, Postfix etc. Kolab
-is a typical example of such an aggregated system.
+Większość spośród tworzonych w technologii open-source systemów groupware,
+które są porównywalne z Microsoft Exchange Server, składa się z wielu usług
+niższego rzędu, na przykład LDAP, Apache, Postfix i innych. Kolab jest
+typowym przykładem takiego modularnego systemu.
 </p>
-<p>A main feature of Kolab is the use of IMAP to store groupware
-information like addresses, events, notes etc. This allows to
-reduce the main components of the system to OpenLDAP, Postfix and
-Cyrus-Imapd. This makes the server somewhat more lightweight than
-competitors such as Open-Exchange. It is also one of the few 
-groupware servers that has full support for e-mail clients on Linux 
-(Kontact) and Windows (Outlook) and works together with a web client 
-(Horde). Thus it can be easily employed in an environment with 
-mixed requirements.
-</p>
+
 <p>
-The main obstacle for molding a multi-component system into an
-efficient groupware server on Linux is obviously the
-configuration. The e-mail service needs to work together with
-virus and spam scanning tools, sending and receiving mail
-requires the setup of appropriate channels, each service needs to
-use a central user database, etc.
+Główną funkcją pakietu Kolab jest wykorzystanie protokołu IMAP do
+przechowywania informacji grupowych, takich jak adresy, wydarzenia, notatki
+i inne. Pozwala to na zredukowanie głównych składników systemu zaledwie do
+usług OpenLDAP, Postfix i Cyrus-Imapd. Dzięki temu pakiet serwerowy jest
+mniejszy niż konkurencyjne produkty, na przykład Open-Exchange. Kolab jest
+również jednym z niewielu serwerów groupware, który w pełni obsługuje
+klienty e-mail pod Linuksa (Kontact) i Windowsa (Outlook), jednocześnie
+współpracując z klientem sieci (Horde). Dzięki temu można stosować go w
+heterogenicznym środowisku.
 </p>
+
 <p>
-One option of dealing with the configuration is to leave the
-configuration of sub services in the state suggested by the
-distribution and provide a lengthy document that describes all
-necessary tweaks and changes to get the system up and
-running. This has the advantage that the groupware server is
-rather distribution independent.
+Główną przeszkodą w utworzeniu wydajnego serwera groupware z
+wieloskładnikowego systemu jest oczywiście konfiguracja. Usługa e-mail musi
+współpracować z narzędziami antywirusowymi i antyspamowymi, wysyłanie i
+odbieranie poczty wymaga skonfigurowania odpowiednich kanałów, każda usługa
+musi korzystać z głównej bazy danych użytkowników itd.
 </p>
+
 <p>
-Kolab chose a different method and tries to fully automate the
-configuration process. This is extremely nice for the end user
-since it usually means that it is not necessary to have the
-manuals of Postfix, Cyrus-Imap, Apache etc. at hand. But on the
-other hand it is a nightmare for the developer if the goal is to
-enable the system for most distributions. One would have to
-take all the small but important differences between these
-distributions into account. So the companies involved in creating 
-Kolab selected one distribution (OpenPKG) and decided to establish 
-the system only for OpenPKG. In order to install Kolab on a different
-distribution you would simply add a complete OpenPKG installation
-resulting in a somewhat awkward "system in a system" situation.
+Jedną z możliwości poradzenia sobie z konfiguracją jest pozostawienie
+konfiguracji składników systemu w stanie, jaki sugerują twórcy dystrybucji i
+dołączeniu długiej dokumentacji, w której opiszemy wszystkie niezbędne kroki
+potrzebne do uruchomienia systemu. Zaletą takiego podejścia jest znaczna
+niezależność serwera groupware od dystrybucji.
 </p>
+
 <p>
-During the last three months several volunteers helped on
-converting Kolab to tools such as autoconf and automake in order
-to have a build system that allows the transfer of Kolab to other
-Linux distributions. This finally allowed to get a native Kolab
-server environment in Gentoo. The beta stage of the project can
-be found <uri link="http://projects.gunnarwrobel.de/Kolab/wiki">here</uri>. 
-It is expected to be fully stabilized once Kolab-2.1 will be 
-released upstream.
+Kolab jednakże podąża inną ścieżką i próbuje w pełni zautomatyzować proces
+konfiguracji. To znaczne ułatwienie dla końcowego użytkownika, ponieważ
+zwykle nie wymaga od niego zbyt częstej lektury dokumentacji do usług
+Postfix, Cyrus-Imap czy Apache. Z drugiej jednak strony takie podejście to
+koszmar dla deweloperów, jeśli jednym z celów jest przystosowanie systemu do
+większości dystrybucji. Należało by wziąć pod uwagę najdrobniejsze
+szczegóły, którymi poszczególne dystrybucje się różnią. Z tego względu
+twórcy Kolaba postanowili dostosować system do jednej dystrybucji (OpenPKG).
+Zainstalowanie Kolaba na innej dystrybucji pociąga za sobą konieczność
+doinstalowania obsługi OpenPKG, przez co mamy dość niefortunną sytuację
+"systemu w systemie". 
+</p>
+
+<p>
+Przez ostatnich kilka miesiący wielu ochotników pomagało w konwersji Kolaba
+na narzędzia takie jak autoconf i automake. Dzięki temu możliwe jest
+utworzenie systemu budowania, który pozwoli na przeniesienie Kolaba na inną
+dystrybucję Linuksa. Dzięki temu nareszcie posiadamy natywne środowisko tego
+serwera w Gentoo. Projekt w wersji beta można znaleźć <uri
+link="http://projects.gunnarwrobel.de/Kolab/wiki">pod tym adresem</uri>.
+Spodziewamy się, że projekt uzyska pełną stabilność wraz z ukazaniem się
+wersji 2.1.
 </p>
 <p>
 What are the advantages of having Kolab available as a native
