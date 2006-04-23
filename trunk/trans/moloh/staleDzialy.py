@@ -128,13 +128,18 @@ link="moloh@gentoo.org">koordynatora</mail>.
 (r'<title>GWN subscription information</title>',
  r'<title>Subskrypcja Tygodnika Gentoo</title>'),
 
-(r'<p> To subscribe to the Gentoo Weekly Newsletter, send a blank email to <mail link="gentoo-gwn\+subscribe@gentoo.org">gentoo-gwn\+subscribe@gentoo.org</mail>. </p>',
+(r'<p>To subscribe to the Gentoo Weekly Newsletter, send a blank e-mail to
+<mail
+link="gentoo-gwn+subscribe@gentoo.org">gentoo-gwn+subscribe@gentoo.org</mail>. </p> ',
  r'''<p>
 Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego e-maila na adres <mail
 link="gentoo-gwn-pl+subscribe@gentoo.org">gentoo-gwn-pl+subscribe@gentoo.org</mail>.
 </p>'''),
 
-(r'<p> To unsubscribe to the Gentoo Weekly Newsletter, send a blank email to <mail link="gentoo-gwn\+unsubscribe@gentoo.org">gentoo-gwn\+unsubscribe@gentoo.org</mail> from the email address you are subscribed under. </p>',
+(r'<p> To unsubscribe to the Gentoo Weekly Newsletter, send a blank e-mail to
+<mail
+link="gentoo-gwn+unsubscribe@gentoo.org">gentoo-gwn+unsubscribe@gentoo.org</mail>
+from the e-mail address you are subscribed under.</p>',
  r'''<p>
 Aby zrezygnować z subskrypcji, należy wysłać pustego e-maila na adres <mail
 link="gentoo-gwn-pl+unsubscribe@gentoo.org">
