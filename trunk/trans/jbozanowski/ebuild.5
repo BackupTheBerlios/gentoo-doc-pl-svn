@@ -467,8 +467,7 @@ fi
 .fi
 .RE
 .TP
-\fBuse_with\fR \fI<flaga USE>\fR \fI[parametr configure]\fR \fI[opcja
-configure]\fR
+\fBuse_with\fR \fI<flaga USE>\fR \fI[parametr configure]\fR \fI[opcja configure]\fR
 Funkcja przydatna przy tworzeniu własnej listy opcji, które chcemy przekazać
 do skryptu configure. Jeśli \fIflaga USE\fR znajduje się w zmiennej \fBUSE\fR i
 podamy \fIopcję configure\fR, wówczas zostanie wypisany napis
@@ -500,60 +499,67 @@ myconf=$(use_with sdl SDL all-plugins)
 .RE
 .TP
 \fBuse_enable\fR \fI<flaga USE>\fR \fI[parametr configure]\fR \fI[opcja configure]\fR
-Funkcja działa analogicznie jak 
-
-Same as \fBuse_with\fR above, except that the configure options are 
-\fI--enable-\fR instead of \fI--with-\fR and \fI--disable-\fR instead of 
-\fI--without-\fR.
+Funkcja działa analogicznie jak \fBuse_with\fR, tylko że opcje
+do configure to \fI--enable-\fR zamiast \fI--with-\fR oraz \fI--disable-\fR
+zamiast \fI--without-\fR.
 .TP
-\fBhas\fR \fI<item>\fR \fI<item list>\fR
-If \fIitem\fR is in \fIitem list\fR, then \fIitem\fR is echoed and \fBhas\fR
-returns 0.  Otherwise, nothing is echoed and 1 is returned. As indicated with
-use, there is a non-echoing version \fBhasq\fR. Please use \fBhasq\fR in all
-places where output is to be disregarded. Never use the output for calculation.
+\fBhas\fR \fI<element>\fR \fI<lista elementów>\fR
+Jeśli \fIelement\fR znajduje się na \fIliście elementów\fR, wówczas
+\fIelement\fR zostanie wypisany na ekran, a funkcja \fBhas\fR zwróci 0. W
+przeciwnym wypadku nic nie zostanie wypisane, a funkcja zwróci 1.
+Analogicznie jak w przypadku funkcji use, istnieje funkcja \fBhasq\fR, która
+nic nie wypisuje na ekran. Należy używać jej wszędzie tam, gdzie to, co
+funkcja wypisuje, jest nieistotne. Nigdy nie należy używać tych danych do
+obliczeń.
 .br
-The \fIitem list\fR is delimited by the \fIIFS\fR variable.  This variable
-has a default value of ' ', or a space.  It is a \fBbash\fR(1) setting.
+Zmienna \fIIFS\fR decyduje o znaku, który będzie oddzielał poszczególne
+elementy \fIlisty elementów\fR. Zmienna ta przyjmuje domyślną wartość ' ',
+czyli spację. Jest to ustawienie powłoki \fBbash\fR(1).
 .TP
-\fBhas_version\fR \fI<category/package-version>\fR
-Check to see if \fIcategory/package-version\fR is installed on the system.
-The parameter accepts all values that are acceptable in the \fBDEPEND\fR
-variable.  The function returns 0 if \fIcategory/package-version\fR is
-installed, 1 otherwise.
+\fBhas_version\fR \fI<kategoria/pakiet-wersja>\fR
+Funkcja sprawdza czy \fIkategoria/pakiet-wersja\fR jest zainstalowana.
+Wszystkie wartości, jakie są akceptowalne w zmiennej \fBDEPEND\fR mogą być
+użyte jako parametr funkcji. Zwraca ona 0 jeśli
+\fI<kategoria/pakiet-wersja>\fR jest zainstalowana, zaś 1 jeśli nie.
 .TP
-\fBbest_version\fR \fI<package name>\fR
-This function will look up \fIpackage name\fR in the database of currently
-installed programs and echo the "best version" of the package that is
-currently installed.  The function returns 0 if there is a package that
-matches \fIpackage name\fR.  Otherwise, the function will return 1.
+\fBbest_version\fR \fI<nazwa pakietu>\fR
+Funkcja ta wyszuka \fInazwę pakietu\fR w bazie danych aktualnie
+zainstalowanych programów i wypisze na ekran "najlepszą wersję" spośród
+nich. Funkcja zwróci 0 jeśli istnieje pakiet, który pasuje do wzorca
+\fInazwa pakietu\fR. W przeciwnym wypadku funkcja zwróci zero.
 .RS
 .TP
-.I Example:
+.I Przykład:
 VERINS="$(best_version net-ftp/glftpd)"
 .br
-(VERINS now has the value "net-ftp/glftpd-1.27" if glftpd-1.27 is installed)
+(Zmienna VERINS posiada teraz wartość "net-ftp/glftpd-1.27" jeśli
+zainstalowany jest pakiet glftpd-1.27)
 .RE
-.SH "HELPER FUNCTIONS: OUTPUT"
+.SH "FUNKCJE POMOCNICZE: WYPISYWANIE NA EKRAN"
 .TP
-\fBeinfo\fR \fI"informative message"\fR
-If you need to display an message that you wish the user to read and take 
-notice of, then use \fBeinfo\fR.  It works just like \fBecho\fR(1), but 
-adds a little more to the output so as to catch the user's eye.
+\fBeinfo\fR \fI"powiadomienie"\fR
+Jeśli chcemy wypisać komunikat, na który użytkownik powinien zwrócić uwagę 
+i go przeczytać, powinniśmy użyć funkcji \fBeinfo\fR. Działa ona podobnie jak
+\fBecho\fR(1), tylko wyświetla tekst tak, aby przyciągnąć uwagę użytkownika.
 .TP
-\fBewarn\fR \fI"warning message"\fR
-Same as \fBeinfo\fR, but should be used when showing a warning to the user.
+\fBewarn\fR \fI"ostrzeżenie"\fR
+Funkcja działa podobnie jak \fBeinfo\fR, lecz powinna być używana wtedy, gdy
+chcemy ostrzec użytkownika.
 .TP
-\fBeerror\fR \fI"error message"\fR
-Same as \fBeinfo\fR, but should be used when showing an error to the user.
-.SH "HELPER FUNCTIONS: UNPACK"
+\fBeerror\fR \fI"komunikat błędu"\fR
+Funkcja działa podobnie jak \fBeinfo\fR, lecz powinna być używana wtedy, gdy
+chcemy powiadomić użytkownika o błędzie.
+.SH "FUNKCJE POMOCNICZE: ROZPAKOWYWANIE"
 .TP
-\fBunpack\fR \fI<source>\fR \fI[list of more sources]\fR
-This function uncompresses and/or untars a list of sources into the current
-directory. The function will append \fIsource\fR to the \fBDISTDIR\fR variable.
-.SH "HELPER FUNCTIONS: COMPILE"
+\fBunpack\fR \fI<źródło>\fR \fI[lista następnych źródeł]\fR
+Funkcja ta rozpakowuje archiwa i/lub pliki tar z listy źródeł do bieżącego
+katalogu. Oprócz rozpakowania funkcja dołączy \fIźródło\fR do zmiennej
+\fBDISTDIR\fR.
+.SH "FUNKCJE POMOCNICZE: KOMPILACJA"
 .TP
-\fBeconf\fR \fI[configure options]\fR
-This is used as a replacement for configure.  Performs:
+\fBeconf\fR \fI[opcje configure]\fR
+Funkcji tej używa się zamiast skryptu configure. Wykonuje ona następujące
+polecenia:
 .nf
 configure \\
 	--prefix=/usr \\
@@ -564,25 +570,28 @@ configure \\
 	--sysconfdir=/etc \\
 	--localstatedir=/var/lib \\
 	\fI${EXTRA_ECONF}\fR \\
-	\fIconfigure options\fR
+	\fIopcje configure\fR
 .fi
-Note that the \fIEXTRA_ECONF\fR is for users only, not for ebuild 
-writers.  If you wish to pass more options to configure, just pass the 
-extra arguements to \fBeconf\fR.
+Należy zwrócić uwagę, że zmienna \fIEXTRA_ECONF\fR ma służyć użytkownikom, a
+nie autorom ebuildów. Jeśli chcemy przekazać skryptowi configure więcej
+opcji, należy to zrobić poprzez dodanie argumentów do funkcji \fBeconf\fR.
 .TP
-\fBemake\fR \fI[make options]\fR
-This is used as a replacement for make.  Performs 'make ${MAKEOPTS} 
-\fImake options\fR' (as set in /etc/make.globals), default is MAKEOPTS="\-j2".
+\fBemake\fR \fI[opcje make]\fR
+Funkcji tej używa się zamiast polecenia make. Wykonuje ona polecenie 'make
+${MAKEOPTS} \fIopcje make\fR' (zgodnie z ustawieniami w pliku
+/etc/make.globals), domyślną wartością jest MAKEOPTS="\-j2".
 
-\fB***warning***\fR
+\fB***uwaga***\fR
 .br
-if you are going to use \fBemake\fR, make sure your build is happy with
-parallel makes (make \-j2).  It should be tested thoroughly as parallel
-makes are notorious for failing _sometimes_ but not always.
-.SH "HELPER FUNCTIONS: INSTALL"
+jeśli zamierzamy użyć funkcji \fBemake\fR, powinniśmy upewnić się, że
+kompilowany program poradzi sobie z budowaniem równoległym (make \-j2).
+Należy to dokładnie przetestować, ponieważ budowanie równoległe najczęściej
+zawodzi _czasem_, a nie za każdym razem.
+.SH "FUNKCJE POMOCNICZE: INSTALACJA"
 .TP
-\fBeinstall\fR \fI[make options]\fR
-This is used as a replacement for make install.  Performs:
+\fBeinstall\fR \fI[opcje make]\fR
+Funkcji tej używa się zamiast polecenia make install. Wykonuje ona
+następujące polecenia:
 .nf
 make \\
 	prefix=${D}/usr \\
@@ -592,12 +601,13 @@ make \\
 	mandir=${D}/usr/share/man \\
 	sysconfdir=${D}/etc \\
 	\fI${EXTRA_EINSTALL}\fR \\
-	\fImake options\fR \\
+	\fIopcje make\fR \\
 	install
 .fi
-Please do \fBnot\fR use this in place of 'make install DESTDIR=${D}'.  
-That is the preferred way of installing make-based packages.  Also, do 
-not utilize the \fIEXTRA_EINSTALL\fR variable since it is for users.
+\fBNie\fR należy używać tej funkcji zamiast 'make install DESTDIR=${D}'.
+Jest to bowiem preferowany sposób instalowania pakietów opartych na make.
+Nie należy również wykorzystywać zmiennej \fIEXTRA_EINSTALL\fR, gdyż służy
+ona użytkownikom.
 
 .PD 0
 .TP
@@ -611,252 +621,270 @@ not utilize the \fIEXTRA_EINSTALL\fR variable since it is for users.
 .TP
 .B prepallstrip
 .PD 1
-Useful for when a package installs into \fB${D}\fR via scripts
-(i.e. makefiles).  If you want to be sure that libraries are executable,
-aclocal files are installed into the right place, doc/info/man files are
-all compressed, and that executables are all stripped of debugging symbols,
-then use these suite of functions.
+Funkcje te przydają się, gdy program jest instalowany do katalogu \fB${D}\fR
+poprzez skrypty (na przykład pliki Makefile). Jeśli chcemy upewnić się, że
+biblioteki są wykonywalne, pliki aclocal są instalowane we właściwym
+miejscu, pliki doc/info/man są skompresowane, a pliki wykonywalne zostały
+pozbawione symboli debugowania, powinniśmy użyć tego zestawu funkcji.
 .RS
 .PD 0
 .TP
 .B prepall:
-Runs \fBprepallman\fR, \fBprepallinfo\fR, \fBprepallstrip\fR, sets
-libraries +x, and then checks aclocal directories.  Please note this
-does \fI*not*\fR run \fBprepalldocs\fR.
+Funkcja wywołuje funkcje \fBprepallman\fR, \fBprepallinfo\fR,
+\fBprepallstrip\fR, ustawia uprawnienia wykonywalności dla bibliotek i
+sprawdza katalogi aclocal. Należy zauważyć, że funkcja ta \fI*nie*\fR
+wywołuje funkcji \fBprepalldocs\fR.
 .TP
 .B prepalldocs:
-Compresses all doc files in ${D}/usr/share/doc.
+Kompresuje pliki z dokumentacją w katalogu ${D}/usr/share/doc.
 .TP
 .B prepallinfo:
-Compresses all info files in ${D}/usr/share/info.
+Kompresuje pliki info w katalogu ${D}/usr/share/info.
 .TP
 .B prepallman:
-Compresses all man files in ${D}/usr/share/man.
+Kompresuje pliki man w katalogu ${D}/usr/share/man.
 .TP
 .B prepallstrip:
-Strips all executable files of debugging symboles.  This includes libraries.
+Usuwa symbole debugowania ze wszystkich plików wykonywalnych i bibliotek.
 .RE
 
 .TP
-\fBprepinfo\fR \fI[dir]\fR
+\fBprepinfo\fR \fI[katalog]\fR
 .TP
-\fBprepman\fR \fI[dir]\fR
+\fBprepman\fR \fI[katalog]\fR
 .TP
-\fBprepstrip\fR \fI[dir]\fR
+\fBprepstrip\fR \fI[katalog]\fR
 .PD 1
-Similiar to the \fBprepall\fR functions, these are subtle in their differences.
+Funkcje różnią się nieznacznie od funkcji \fBprepall\fR.
 .RS
 .PD 0
 .TP
 .B prepinfo:
-If a \fIdir\fR is not specified, then \fBprepinfo\fR will assume the dir
-\fIusr\fR. \fBprepinfo\fR will then compress all the files in
-${D}/\fIdir\fR/info.
+Jeśli \fIkatalog\fR nie został podany, funkcja \fBprepinfo\fR będzie działać
+na katalogu \fIusr\fR. Jej działanie polega na skompresowaniu wszystkich
+plików w katalogu ${D}/\fIkatalog\fR/info.
 .TP
 .B prepman:
-If a \fIdir\fR is not specified, then \fBprepman\fR will assume the dir
-\fIusr\fR. \fBprepman\fR will then compress all the files in
-${D}/\fIdir\fR/man/*/.
+Jeśli \fIkatalog\fR nie został podany, funkcja \fBprepman\fR będzie działać
+na katalogu \fIusr\fR. Jej działanie polega na skompresowaniu wszystkich
+plików w katalogu ${D}/\fIdir\fR/man/*/.
 .TP
 .B prepstrip:
-All the files found in ${D}/\fIdir\fR will be stripped.  You may specify
-multiple directories.
+Wszystkie pliki w katalogu ${D}/\fIkatalog\fR zostaną pozbawione symboli
+debugowania. Możliwe jest podanie więcej niż jednego katalogu.
 .RE
 .PD 1
 .TP
-\fBdopython\fR \fI<commands>\fR
-Performs \fIcommands\fR with python and returns the result.
+\fBdopython\fR \fI<polecenia>\fR
+Wykonuje \fIpolecenia\fR za pomocą interpretera języka python i zwraca
+wynik.
 .TP
-\fBdosed\fR \fI"s:orig:change:g" <filename>\fR
-Performs sed (including cp/mv \fIfilename\fR) on \fIfilename\fR.
+\fBdosed\fR \fI"s:oryginał:zmiana:g" <plik>\fR
+Uruchamia program sed (w tym skopiowanie/przeniesienie \fIpliku\fR) na
+\fIpliku\fR.
 .br
-.BR 'dosed\ "s:/usr/local:/usr:g"\ /usr/bin/some-script'
-runs sed on ${D}/usr/bin/some-script
+.BR 'dosed\ "s:/usr/local:/usr:g"\ /usr/bin/jakiś-skrypt'
+uruchamia program sed dla pliku ${D}/usr/bin/jakiś-skrypt
 .TP
-\fBdodir\fR \fI<path>\fR
-Creates a directory inside of ${D}.
+\fBdodir\fR \fI<ścieżka>\fR
+tworzy katalog wewnątrz katalogu ${D}.
 .br
 .BR 'dodir\ /usr/lib/apache'
-creates ${D}/usr/lib/apache.  Note that the do* functions will run 
-\fBdodir\fR for you.
+tworzy katalog ${D}/usr/lib/apache. Zauważmy, że funkcje do* wywołają
+funkcję \fBdodir\fR za nas.
 .TP
-\fBdiropts\fR \fI[options for install(1)]\fR
-Can be used to define options for the install function used in
-\fBdodir\fR.  The default is \fI-m0755\fR.
+\fBdiropts\fR \fI[opcje dla programu install(1)]\fR
+Funkcja ta może zostać użyta do podania opcji funkcji install, którą
+wykorzystuje funkcja \fBdodir\fR. Domyślne opcje to \fI-m0755\fR.
 .TP
-\fBinto\fR \fI<path>\fR
-Sets the root (\fIDESTTREE\fR) for other functions like \fBdobin\fR,
-\fBdosbin\fR, \fBdoman\fR, \fBdoinfo\fR, \fBdolib\fR.
+\fBinto\fR \fI<ścieżka>\fR
+Ustawia katalog główny (\fIDESTTREE\fR) dla pozostałych funkcji, takich jak
+\fBdobin\fR, \fBdosbin\fR, \fBdoman\fR, \fBdoinfo\fR, \fBdolib\fR.
 .br
-The default root is /usr.
+Domyślnym katalogiem głównym jest /usr.
 .TP
-\fBkeepdir\fR \fI<path>\fR
-Tells portage to leave a directory behind even if it is empty.  Functions
-the same as \fBdodir\fR.
+\fBkeepdir\fR \fI<ścieżka>\fR
+Instruuje portage, aby nie kasował katalogu, nawet jeśli jest pusty. Działa
+tak samo jak funkcja \fBdodir\fR.
 .TP
-\fBdobin\fR \fI<binary> [list of more binaries]\fR
-Installs a \fIbinary\fR or a list of binaries into \fIDESTTREE\fR/bin.
-Creates all necessary dirs.
+\fBdobin\fR \fI<plik binarny> [więcej plików binarnych]\fR
+Instaluje \fIplik binarny\fR lub całą ich listę do katalogu
+\fIDESTTREE\fR/bin. W razie potrzeby tworzy katalogi.
 .TP
-\fBdosbin\fR \fI<binary> [list of more binaries]\fR
-Installs a \fIbinary\fR or a list of binaries into \fIDESTTREE\fR/sbin.
-Creates all necessary dirs.
+\fBdosbin\fR \fI<plik binarny> [więcej plików binarnych]\fR
+Instaluje \fIplik binarny\fR lub całą ich listę do katalogu
+\fIDESTTREE\fR/sbin. W razie potrzeby tworzy katalogi.
 .TP
-\fBdoinitd\fR \fI<init.d script> [list of more init.d scripts]\fR
-Install Gentoo \fIinit.d scripts\fR.  They will be installed into the 
-correct location for Gentoo init.d scripts (/etc/init.d/).  Creates all 
-necessary dirs.
+\fBdoinitd\fR \fI<skrypt init.d> [więcej skryptów init.d]\fR
+Instaluje \fIskrypty init.d\fR Gentoo. Zostaną zainstalowane w prawidłowym
+dla Gentoo katalogu dla tego rodzaju plików (/etc/init.d/). W razie potrzeby
+zostaną utworzone potrzebne katalogi.
 .TP
-\fBdoconfd\fR \fI<conf.d file> [list of more conf.d file]\fR
-Install Gentoo \fIconf.d files\fR.  They will be installed into the 
-correct location for Gentoo conf.d files (/etc/conf.d/).  Creates all 
-necessary dirs.
+\fBdoconfd\fR \fI<plik conf.d> [więcej plików conf.d]\fR
+Instaluje \fIpliki conf.d\fR Gentoo. Zostaną zainstalowane w prawidłowym dla
+Gentoo katalogu dla tego rodzaju plików (/etc/conf.d/). W razie potrzeby
+zostaną utworzone potrzebne katalogi.
 .TP
-\fBdoenvd\fR \fI<env.d entry> [list of more env.d entries]\fR
-Install Gentoo \fIenv.d entries\fR.  They will be installed into the 
-correct location for Gentoo env.d entries (/etc/env.d/).  Creates all 
-necessary dirs.
+\fBdoenvd\fR \fI<plik env.d> [więcej plików env.d]\fR
+Instaluje \fIpliki env.d\fR Gentoo. Zostaną zainstalowane w prawidłowym dla
+Gentoo katalogu dla tego rodzaju plików (/etc/env.d/). W razie potrzeby
+zostaną utworzone potrzebne katalogi.
 
 .PD 0
 .TP
-\fBdolib\fR \fI<library>\fR \fI[list of more libraries]\fR
+\fBdolib\fR \fI<biblioteka>\fR \fI[więcej bibliotek]\fR
 .TP
-\fBdolib.a\fR \fI<library>\fR \fI[list of more libraries]\fR
+\fBdolib.a\fR \fI<biblioteka>\fR \fI[więcej bibliotek]\fR
 .TP
-\fBdolib.so\fR \fI<library>\fR \fI[list of more libraries]\fR
+\fBdolib.so\fR \fI<biblioteka>\fR \fI[więcej bibliotek]\fR
 .PD 1
-Installs a library or a list of libraries into \fIDESTTREE\fR/lib.
-Creates all necessary dirs.
+Funkcje te instalują bibliotekę lub całą ich listę w katalogu
+\fIDESTTREE\fR/lib. W razie potrzeby tworzy katalogi.
 .TP
 \fBlibopts\fR \fI[options for install(1)]\fR
-Can be used to define options for the install function used in
-the \fBdolib\fR functions.  The default is \fI-m0644\fR.
+Funkcji tej możemy użyć, aby zdefiniować opcje dla funkcji install, z której
+korzystają funkcje \fBdolib\fR. Domyślna opcja to \fI-m0644\fR.
 .TP
-\fBdoman\fR \fI[\-i18n=<locale>]\fR \fI<man-page> [list of more man\-pages]\fR
-Installs manual\-pages into /usr/share/man/man[0\-9n] depending on the
-manual file ending.  The files are compressed if they are not already.  You 
-can specify locale-specific manpages with the \fI\-i18n\fR option.  Then the
-man-page will be installed into /usr/share/man/\fI<locale>\fR/man[0\-9n].
+\fBdoman\fR \fI[\-i18n=<locale>]\fR \fI<strona man> [więcej stron man]\fR
+Instaluje strony dokumentacji systemowej man do katalogu
+/usr/share/man/man[0\-9n], w zależności od końcówki pliku man. Pliki zostaną
+skompresowane, jeśli jeszcze nie są. Możemy podać strony man specyficzne dla
+używanego locale za pomocą opcji \fI\-i18n\fR. Wówczas strona podręcznika
+zostanie zainstalowana do katalogu /usr/share/man/\fI<locale>\fR/man[0\-9n].
 .PD 0
 .TP
-\fBdohard\fR \fI<filename> <linkname>\fR
+\fBdohard\fR \fI<nazwa pliku> <nazwa dowiązania>\fR
 .TP
-\fBdosym\fR \fI<filename> <linkname>\fR
+\fBdosym\fR \fI<nazwa pliku> <nazwa dowiązania>\fR
 .PD 1
-Performs the ln command as either a hard link or symlink.
+Wykonuje polecenie ln tworząc albo dowiązanie twarde (hard), albo
+symboliczne (sym).
 .TP
-\fBdohtml\fR \fI [\-a filetypes] [\-r] [\-x list\-of\-dirs\-to\-ignore] [list\-of\-files\-and\-dirs]\fR
-Installs the files in the list of files (space\-separated list) into
-/usr/share/doc/${PF}/html provided the file ends in .html, .png, .js, .jpg,
-or .css.  Setting \fI\-a\fR limits what types of files will be included,
-\fI\-A\fR appends to the default list, setting \fI\-x\fR sets which dirs to
-exclude (CVS excluded by default), \fI\-r\fR sets recursive.
+\fBdohtml\fR \fI [\-a typy\-plików] [\-r] [\-x lista\-katalogów\-do\-pominięcia] [lista\-plików\-i\-katalogów]\fR
+Instaluje pliki z listy (nazwy plików rozdzielone spacjami) do katalogu
+/usr/share/doc/${PF}/html pod warunkiem, że nazwa pliku kończy się na .html,
+.png, .js, .jpg, lub .css. Można ograniczyć brane pod uwagę typy plików
+poprzez użycie opcji \fI\-a\fR, zaś za pomocą opcji \fI\-A\fR możemy dodać
+typy plików do listy domyślnych. Poprzez parametr \fI\-x\fR możemy określić
+katalogi do pominięcia (domyślnie pomijany jest katalog CVS), zaś parametr
+\fI\-r\fR włącza pracę rekursywną.
 .TP
-\fBdoinfo\fR \fI<info-file> [list of more info\-files]\fR
-Installs info\-pages into \fIDESTDIR\fR/info.  Files are automatically
-gzipped.  Creates all necessary dirs.
+\fBdoinfo\fR \fI<pliki-info> [więcej plików info]\fR
+Instaluje pliki dokumentacji info do katalogu \fIDESTDIR\fR/info. Pliki są
+automatycznie kompresowane za pomocą narzędzia gzip. W razie potrzeby tworzy
+katalogi.
 .TP
-\fBdojar\fR \fI<jar file> [list of more jar files]\fR
-Installs jar files into /usr/share/${PN}/lib and adds them to
+\fBdojar\fR \fI<plik jar> [więcej plików jar]\fR
+Instaluje pliki jar do katalogu /usr/share/${PN}/lib i dodaje je do pliku
 /usr/share/${PN}/classpath.env.
 .TP
-\fBdomo\fR \fI<locale-file> [list of more locale\-files] \fR
-Installs locale\-files into \fIDESTDIR\fR/usr/share/locale/[LANG]
-depending on local\-file's ending.  Creates all necessary dirs.
+\fBdomo\fR \fI<plik locale> [więcej plików locale] \fR
+Instaluje pliki locale do katalogu \fIDESTDIR\fR/usr/share/locale/[LANG], w
+zależności od końcówki nazwy pliku. Tworzy katalogi w miarę potrzeby.
 
 .PD 0
 .TP
-\fBfowners\fR \fI<permissions> <file> [files]\fR
+\fBfowners\fR \fI<uprawnienia> <plik> [więcej plików]\fR
 .TP
-\fBfperms\fR \fI<permissions> <file> [files]\fR
+\fBfperms\fR \fI<uprawnienia> <plik> [więcej plików]\fR
 .PD 1
-Performs chown (\fBfowners\fR) or chmod (\fBfperms\fR), applying
-\fIpermissions\fR to \fIfiles\fR.
+Wykonuje polecenie chown (funkcja \fBfowners\fR) lub chmod (funkcja
+\fBfperms\fR), nadając \fIuprawnienia\fR \fIplikom\fR.
 .TP
-\fBinsinto\fR \fI[path]\fR
-Sets the root (\fIINSDESTTREE\fR) for the \fBdoins\fR function.
+\fBinsinto\fR \fI[ścieżka]\fR
+Ustawia katalog główny (\fIINSDESTTREE\fR) dla funkcji \fBdoins\fR.
 .br
-The default root is /.
+Domyślnym katalogiem głównym jest /.
 .TP
-\fBinsopts\fR \fI[options for install(1)]\fR
-Can be used to define options for the install function used in
-\fBdoins\fR.  The default is \fI\-m0644\fR.
+\fBinsopts\fR \fI[opcje dla funkcji install(1)]\fR
+Funkcji tej możemy użyć, aby zdefiniować opcje dla funkcji install, z której
+korzysta funkcja \fBdoins\fR. Domyślne opcje to \fI\-m0644\fR.
 .TP
-\fBdoins\fR \fI<file> [list of more files]\fR
-Installs files into \fIINSDESTTREE\fR.  This function uses \fBinstall\fR(1).  
-Creates all necessary dirs.
+\fBdoins\fR \fI<plik> [więcej plików]\fR
+Instaluje pliki do katalogu \fIINSDESTTREE\fR. Funkcja ta korzysta z funkcji
+\fBinstall\fR(1). W razie potrzeby tworzy niezbędne katalogi.
 .TP
-\fBexeinto\fR \fI[path]\fR
-Sets the root (\fIEXEDESTTREE\fR) for the \fBdoexe\fR function.
+\fBexeinto\fR \fI[ścieżka]\fR
+Ustawia katalog główny (\fIEXEDESTTREE\fR) dla funkcji \fBdoexe\fR.
 .br
-The default root is /.
+Domyślnym katalogiem głównym jest /.
 .TP
-\fBexeopts\fR \fI[options for install(1)]\fR
-Can be used to define options for the install function used in \fBdoexe\fR.
-The default is \fI\-m0755\fR.
+\fBexeopts\fR \fI[opcje dla funkcji install(1)]\fR
+Funkcji tej możemy użyć, aby zdefiniować opcje dla funkcji install, z której
+korzysta funkcja \fBdoexe\fR. Domyślne opcje to \fI\-m0755\fR.
 .TP
-\fBdoexe\fR \fI<executable> [list of more executables]\fR
-Installs a executable or a list of executable into \fIEXEDESTTREE\fR.
-This function uses \fBinstall\fR(1).  Creates all necessary dirs.
+\fBdoexe\fR \fI<plik wykonywalny> [więcej plików wykonywalnych]\fR
+Instaluje jeden lub więcej plików wykonywalnych do katalogu
+\fIEXEDESTTREE\fR. Funkcja ta korzysta z funkcji \fBinstall\fR(1). W razie
+potrzeby tworzy niezbędne katalogi.
 .TP
-\fBdocinto\fR \fI[path]\fR
-Sets the relative subdir (\fIDOCDESTTREE\fR) used by \fBdodoc\fR.
+\fBdocinto\fR \fI[ścieżka]\fR
+Ustawia podkatalog względny (\fIDOCDESTTREE\fR), z którego korzysta funkcja
+\fBdodoc\fR.
 .TP
-\fBdodoc\fR \fI<document> [list of more documents]\fR
-Installs a document or a list of document into /usr/share/doc/${PF}/\fIDOCDESTTREE\fR.
-Files are automatically gzipped.  Creates all necessary dirs.
+\fBdodoc\fR \fI<dokument> [więcej dokumentów]\fR
+Instaluje jeden lub więcej dokumentów do katalogu
+/usr/share/doc/${PF}/\fIDOCDESTTREE\fR. Pliki są automatycznie kompresowane
+za pomocą narzędzia gzip. W razie potrzeby tworzy niezbędne katalogi.
 
 .PD 0
 .TP
-\fBnewbin\fR \fI<old file> <new filename>\fR
+\fBnewbin\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewsbin\fR \fI<old file> <new filename>\fR
+\fBnewsbin\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewinitd\fR \fI<old file> <new filename>\fR
+\fBnewinitd\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewconfd\fR \fI<old file> <new filename>\fR
+\fBnewconfd\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewenvd\fR \fI<old file> <new filename>\fR
+\fBnewenvd\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewlib\fR \fI<old file> <new filename>\fR
+\fBnewlib\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewlib.so\fR \fI<old file> <new filename>\fR
+\fBnewlib.so\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewlib.a\fR \fI<old file> <new filename>\fR
+\fBnewlib.a\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewman\fR \fI<old file> <new filename>\fR
+\fBnewman\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewinfo\fR \fI<old file> <new filename>\fR
+\fBnewinfo\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewins\fR \fI<old file> <new filename>\fR
+\fBnewins\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewexe\fR \fI<old file> <new filename>\fR
+\fBnewexe\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .TP
-\fBnewdoc\fR \fI<old file> <new filename>\fR
+\fBnewdoc\fR \fI<stary plik> <nowa nazwa pliku>\fR
 .PD 1
-All these functions act like the do* functions, but they only work with one
-file and the file is installed as \fI[new filename]\fR.
-.SH "REPORTING BUGS"
-Please report bugs via http://bugs.gentoo.org/
-.SH "AUTHORS"
+Wszystkie powyższe funkcje działają analogicznie jak funkcje do*, tylko
+pracują z jednym plikiem i jest on instalowany pod nazwą \fI[nowa nazwa pliku]\fR.
+.SH "ZGŁASZANIE BŁĘDÓW"
+Błędy zgłaszać należy na stronie http://bugs.gentoo.org/
+.SH "AUTORZY"
 .nf
 Achim Gottinger <achim@gentoo.org>
 Mark Guertin <gerk@gentoo.org>
 Nicholas Jones <carpaski@gentoo.org>
 Mike Frysinger <vapier@gentoo.org>
 .fi
-.SH "FILES"
+.SH "PLIKI"
 .TP
-The \fI/usr/sbin/ebuild.sh\fR script.
+Skrypt \fI/usr/sbin/ebuild.sh\fR.
 .TP
-The helper apps in \fI/usr/lib/portage/bin\fR.
+Aplikacje pomocnicze w katalogu \fI/usr/lib/portage/bin\fR.
 .TP
 \fB/etc/make.conf\fR 
-Contains variables for the build\-process and overwrites those in make.defaults.
+Zawiera zmienne, wykorzystywane w procesie budowania. Nadpisuje zmienne
+zawarte w pliku make.defaults.
 .TP
 \fB/etc/make.globals\fR
-Contains the default variables for the build\-process, you should edit
-\fI/etc/make.conf\fR instead.
-.SH "SEE ALSO"
+Definiuje domyślne wartości zmiennych wykorzystywanych w procesie budowania.
+Edytować należy wyłącznie plik \fI/etc/make.conf\fR.
+.SH "ZOBACZ TAKŻE"
 .BR ebuild (1),
 .BR make.conf (5)
+.SH TŁUMACZENIE
+Kuba Bożanowski <jbozanowski@gmail.com>
+.br 
+Polski projekt tłumaczenia manuali Gentoo
+.br 
+http://gentoo.org/~rane/tlumaczenie-manuali.html
