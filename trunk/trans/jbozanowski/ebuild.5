@@ -51,7 +51,8 @@ src_install() {
 .SH "ZMIENNE"
 .TP
 .B UWAGI NT. UŻYTKOWANIA
-- Zmienne PORTAGE* i PORTDIR* można znaleźć w pliku \fBmake.conf\fR(5).
+- Wszystkie zmienne, które można znaleźć w pliku \fBmake.conf\fR(5) są dla
+  nas dostępne w plikach ebuild  (na przykład zmienne PORTAGE* i PORTDIR*)
 .br
 - Przypisując w skryptach ebuild wartości do zmiennych \fBnie wolno stawiać
 spacji\fR pomiędzy nazwą zmiennej a znakiem równości.
@@ -89,7 +90,7 @@ Zawiera pełną nazwę pakietu \fI[PN]\-[PVR]\fR
 .TP
 .B A
 Zawiera wszystkie pliki źródłowe, których wymaga pakiet. Nigdy nie należy
-definiować tej zmiennej. Jest ona automatycznie generowana ze zmiennych
+definiować tej zmiennej. Jest ona automatycznie generowana ze zmiennej
 \fISRC_URI\fR.
 .TP
 \fBWORKDIR\fR = \fI"${PORTAGE_TMPDIR}/portage/${PF}/work"\fR
@@ -100,11 +101,12 @@ należy modyfikować tej zmiennej.
 Zawiera ścieżkę do podkatalogu 'files' z katalogu pakietu w drzewie portage. Nie
 należy modyfikować tej zmiennej.
 .TP
-\fBS\fR = \fI"${WORKDIR}/${P}"\fR Zawiera ścieżkę do tymczasowego \fIkatalogu
-budowania\fR. Ze zmiennej tej korzystają funkcje \fIsrc_compile\fR i
-\fIsrc_install\fR. Dla obu tych funkcji ścieżka ze zmiennej \fIS\fR jest
-katalogiem roboczym. Zmienną tę można zmodyfikować, umieszczając w niej ścieżkę
-do katalogu, do którego zostało rozpakowane archiwum pakietu.
+\fBS\fR = \fI"${WORKDIR}/${P}"\fR 
+Zawiera ścieżkę do tymczasowego \fIkatalogu budowania\fR. Ze zmiennej tej
+korzystają funkcje \fIsrc_compile\fR i \fIsrc_install\fR. Dla obu tych
+funkcji katalogiem roboczym jest ścieżka ze zmiennej \fIS\fR. Zmienną tę
+można zmodyfikować, umieszczając w niej ścieżkę do katalogu, do którego
+zostało rozpakowane archiwum pakietu.
 .TP
 \fBT\fR = \fI"${PORTAGE_TMPDIR}/portage/${PF}/temp"\fR
 Zawiera ściezkę do \fIkatalogu tymczasowego\fR. Zmiennej tej możemy używać
@@ -124,7 +126,7 @@ Zawiera listę odnośników URI wymaganych plików źródłowych. Może zawiera�
 odnośników dla pojedynczego pliku. Jeśli plik nie zostanie znaleziony w
 \fIGENTOO_MIRROR\fB\fR, zostanie wybrana najszybsza lokacja.
 .TP
-\fBHOMEPAGE\fR = \fI"http://happy.com/"\fR
+\fBHOMEPAGE\fR = \fI"http://pozyteczny.com/"\fR
 Powinna zawierać listę odnośników URL do strony głównej pakietu oraz innych
 źródeł informacji na jego temat.
 .TP
@@ -163,13 +165,13 @@ zainstalowane, aby nasz pakiet dał się skompilować.
 .TP
 .B Atomy DEPEND
 Atom depend to po prostu zależność, której Portage używa przy obliczaniu
-powiązań między pakietami. Należy zauważyć, że jeśli dany atom nie został
-jeszcze zainstalowany, dopasowywana jest ostatnia dostępna wersja.
+powiązań między pakietami. Należy zauważyć, że jeśli dany Atom nie został
+jeszcze zainstalowany, dopasowywana jest najnowsza dostępna wersja.
 .RS
 .TP
-.B Pełna postać atomów
-Atom w pełnej postaci FIXME to po prostu kompletna specyfikacja
-kategoria/nazwapakietu. Oto przykładowe atomy w pełnej postaci:
+.B Podstawy atomów
+Podstawy atomów to po prostu kompletna specyfikacja kategoria/nazwapakietu.
+Oto przykładowe podstawy atomów:
 
 .nf
 .I sys-apps/sed
@@ -189,13 +191,13 @@ sys-libs/zlib\fI-1.1.4-r1\fR
 net-misc/dhcp\fI-3.0_p2\fR
 .fi
 
-Numer wersji zwykle składa się z dwóch lub trzech liczb, oddzielonych kropkami,
-na przykład 1.2 lub 4.5.2. Ten ciąg znaków może być czasem zakończony literą, na
-przykład 1.2a lub 4.5.2z. Należy zwrócić uwagę, że znak ten \fBnie ma\fR
-oznaczać statusu alpha, beta, itd... Do tego służą osobne przyrostki: _alpha,
-_beta, _pre (FIXME pre-release), _rc (FIXME release canditate) lub _p (patch).
-Czyli dla trzeciej wersji FIXME pre-release pakietu napisalibyśmy na przykład
-1.2_pre3. 
+Numer wersji zwykle składa się z dwóch lub trzech liczb, oddzielonych
+kropkami, na przykład 1.2 lub 4.5.2. Ten ciąg znaków może być czasem
+zakończony literą, na przykład 1.2a lub 4.5.2z. Należy zwrócić uwagę, że
+znak ten \fBnie ma\fR oznaczać statusu alpha, beta, itd... Do tego służą
+osobne przyrostki: _alpha, _beta, _pre (pre-release), _rc (release
+canditate) lub _p (patch).  Czyli dla trzeciej wersji pre-release pakietu
+napisalibyśmy na przykład 1.2_pre3. 
 .TP
 .B Operatory przedrostkowe atomów [> >= = <= <]
 Czasem możemy potrzebować określić zależność od ogólnych zakresów wersji
@@ -211,10 +213,11 @@ standardowe operatory Boole'a:
 .fi
 .TP
 .B Rozszerzone przedrostki [!~] i przyrostki [*] atomów
-Na tym nie koniec funkcjonalności. W razie potrzebny możemy zdefiniować pakiety
-blokujące oraz określić zakres interesujących nas wersji pakietów. Należy też
-zwrócić uwagę, że te rozszerzone przyroski i przedrostki można dowolnie łączyć z
-klasami atomów, opisanymi wyżej. Oto kilka typowych przykładów z drzewa Portage:
+Na tym nie koniec funkcjonalności. W razie potrzebny możemy zdefiniować
+pakiety blokujące oraz określić zakres interesujących nas wersji pakietów.
+Należy też zwrócić uwagę, że te rozszerzone przyrostki i przedrostki można
+dowolnie łączyć z klasami atomów, opisanymi wyżej. Oto kilka typowych
+przykładów z drzewa Portage:
 
 .nf
 \fI!\fRapp-text/dos2unix
@@ -235,28 +238,22 @@ pakietu. W powyższym przykładzie więc mogą to być wersje '1.0.2a', '1.0.2a-
 '1.0.2a-r2' itd.
 .RE
 .TP
-.B Dynamiczne zależności FIXME (DEPENDs)
+.B Dynamiczne zależności
 Czasem, zależnie od użytych flag USE, programy mogą posiadać zmienną listę
-zależności. Portage daje nam kilka sposobów na poradzenie sobie z tą sytuacją.
-Zauważmy tylko, że gdy używamy poniższych przykładów składni, każdy przypadek jest
-traktowany jako jeden atom w kontekście, w którym się pojawia. Oznacza to, że
-każdy atom warunkowo zarówno włącza wiele atomów, jak i może być zagnieżdżony w
-nieskończoność. FIXME (co to w ogóle znaczy?)
-
-Sometimes programs may depend on different things depending on the USE
-variable.  Portage offers a few options to handle this.  Note that when
-using the following syntaxes, each case is considered as 1 Atom in the
-scope it appears.  That means that each Atom both conditionally include
-multiple Atoms and be nested to an infinite depth.
+zależności. Portage daje nam kilka sposobów na poradzenie sobie z tą
+sytuacją.  Zauważmy tylko, że gdy używamy poniższych przykładów składni,
+każdy przypadek jest traktowany jako jeden Atom w kontekście, w którym się
+pojawia. Oznacza to, że każdy Atom może warunkowo włączać wiele atomów, jak
+i może być zagnieżdżony w nieskończoność.
 .RS
 .TP
-.B usevar? ( atom DEPEND )
+.B usevar? ( Atom DEPEND )
 Aby dołączyć bibliotekę jpeg gdy użytkownik ustawił flagę jpeg w \fBUSE\fR,
 należy użyć poniższej składni:
 .br
 .B jpeg? ( media-libs/jpeg )
 .TP
-.B !usevar? ( atom )
+.B !usevar? ( Atom )
 Jeśli chcemy dołączyć pakiet tylko wtedy, gdy użytkownik nie włączył określonej
 flagi w zmiennej \fBUSE\fR, należy użyć poniższej składni:
 .br
@@ -265,7 +262,7 @@ flagi w zmiennej \fBUSE\fR, należy użyć poniższej składni:
 Często przydaje się to wtedy, gdy chcemy dodać opcjonalne, lecz domyślnie
 włączone wsparcie dla jakiejś funkcji.
 .TP
-.B usevar? ( atom jeśli prawda ) !usevar? ( atom jeśli fałsz )
+.B usevar? ( Atom jeśli prawda ) !usevar? ( Atom jeśli fałsz )
 Obsługa funkcjonalności takiej jak operator trójargumentowy z języka C odbywa
 się za pomocą dwóch wyrażeń, jednego zwykłego, drugiego odwróconego. Jeśli
 pakiet korzysta z GTK1 lub GTK2, ale nie obu na raz, możemy obsłużyć to w ten
@@ -276,7 +273,7 @@ sposób:
 W ten sposób domyślnie będzie wykorzystywać lepszą bibliotekę GTK2.
 .TP
 .B || ( Atom Atom ... )
-Gdy pakiet może korzystać z kilku różnych pakietów, ale użycie pakietu
+Gdy pakiet może korzystać z kilku różnych pakietów, a użycie pakietu
 wirtualnego nie jest wskazane, można zastosować taką składnię.
 .nf
 .B || (
@@ -284,10 +281,10 @@ wirtualnego nie jest wskazane, można zastosować taką składnię.
 .B 	app-games/unreal-tournament-goty
 .B )
 .fi
-W tym przypadku widać, że unreal-tournament posiada normalną wersję oraz wersję
-goty. Oba pakiety posiadają te same pliki podstawowe i dla innych pakietów nie
-ma znaczenia który z nich będzie zainstalowany. Jednak dodanie pakietu
-wirtualnego nie jest wskazane, ze względu na małą wagę problemu. 
+W tym przykładzie widać, że unreal-tournament posiada normalną wersję oraz
+wersję goty. Oba pakiety posiadają te same pliki podstawowe i dla innych
+pakietów nie ma znaczenia który z nich będzie zainstalowany. Jednak dodanie
+pakietu wirtualnego nie jest wskazane, ze względu na małą wagę problemu. 
 .br
 Innym dobrym przykładem jest sytuacja, gdy pakiet może zostać skompilowany z
 wieloma interfejsami wideo, ale może posiadać w danym czasie tylko jeden z nich.
@@ -366,7 +363,7 @@ Powinniśmy użyć tej zmiennej tylko wtedy, gdy pakiet dostarcza funkcjonalnoś
 wirtualnej. Przykładowo, pakiety blackdown-jdk i sun-jdk dostarczają
 \fIvirtual/jdk\fR. Pozwala to pakietom zdefiniować zależność od pakietu
 \fIvirtual/jdk\fR, zamiast konkretnie od pakietów blackdown lub sun.
-.SH "PORTAGE DECLARATIONS" FIXME
+.SH "DEKLARACJE PORTAGE"
 .TP
 .B inherit
 Funkcjonalność "inherit" (dziedziczenia) to sposób zarządzania specjalnymi
@@ -378,7 +375,7 @@ bardziej eleganckim. Deklaracja inherit może być użyta w ebuildzie tylko raz 
 \fBnigdy nie może być użyta wewnątrz jakichkolwiek instrukcji warunkowych\fR.
 Eklasy należy podawać posługujac się wyłącznie ich nazwą, pomijając rozszerzenie
 \fI.eclass\fR.
-.SH "FUNCTIONS" FIXME
+.SH "FUNKCJE"
 .TP
 .B pkg_nofetch
 Jeśli dodamy opcję \fIfetch\fR do zmiennej \fBRESTRICT\fR, wówczas zostanie
@@ -549,6 +546,16 @@ chcemy ostrzec użytkownika.
 \fBeerror\fR \fI"komunikat błędu"\fR
 Funkcja działa podobnie jak \fBeinfo\fR, lecz powinna być używana wtedy, gdy
 chcemy powiadomić użytkownika o błędzie.
+.TP
+\fBebegin\fR \fI"komunikat"\fR
+Podobnie jak w przypadku funkcji \fBeinfo\fR, wypisujemy \fIkomunikat\fR,
+dając do zrozumienia, że wykonywana operacja może zająć trochę czasu. Gdy
+zakończy się ona, musimy wywołać funkcję \fBeend\fR.
+.TP
+\fBeend\fR \fI<status>\fR \fI["komunikat błędu"]\fR
+Funkcja ta dopisuje do komunikatu funkcji \fBebegin\fR znacznik "OK" lub
+"!!" (w przypadku wystąpienia błędu). Jeśli \fIstatus\fR jest niezerowy,
+dodatkowo zostanie wypisany \fIkomunikat błędu\fR.
 .SH "FUNKCJE POMOCNICZE: ROZPAKOWYWANIE"
 .TP
 \fBunpack\fR \fI<źródło>\fR \fI[lista następnych źródeł]\fR
@@ -578,15 +585,17 @@ opcji, należy to zrobić poprzez dodanie argumentów do funkcji \fBeconf\fR.
 .TP
 \fBemake\fR \fI[opcje make]\fR
 Funkcji tej używa się zamiast polecenia make. Wykonuje ona polecenie 'make
-${MAKEOPTS} \fIopcje make\fR' (zgodnie z ustawieniami w pliku
-/etc/make.globals), domyślną wartością jest MAKEOPTS="\-j2".
+${MAKEOPTS} \fIopcje make\fR' (zgodnie z ustawieniami w pliku /etc/make.globals),
+domyślną wartością jest MAKEOPTS="\-j2".
 
 \fB***uwaga***\fR
 .br
 jeśli zamierzamy użyć funkcji \fBemake\fR, powinniśmy upewnić się, że
 kompilowany program poradzi sobie z budowaniem równoległym (make \-j2).
 Należy to dokładnie przetestować, ponieważ budowanie równoległe najczęściej
-zawodzi _czasem_, a nie za każdym razem.
+zawodzi _czasem_, a nie za każdym razem. Jeśli stwierdzimy, że nasz pakiet
+nie buduje się równolegle i nie będziemy potrafili tego naprawić, powinniśmy
+wywoływać '\fBemake\fR -j1' zamiast 'make'.
 .SH "FUNKCJE POMOCNICZE: INSTALACJA"
 .TP
 \fBeinstall\fR \fI[opcje make]\fR
@@ -680,7 +689,7 @@ Wykonuje \fIpolecenia\fR za pomocą interpretera języka python i zwraca
 wynik.
 .TP
 \fBdosed\fR \fI"s:oryginał:zmiana:g" <plik>\fR
-Uruchamia program sed (w tym skopiowanie/przeniesienie \fIpliku\fR) na
+Uruchamia program sed (w tym skopiowanie/przeniesienie \fIpliku\fR) dla
 \fIpliku\fR.
 .br
 .BR 'dosed\ "s:/usr/local:/usr:g"\ /usr/bin/jakiś-skrypt'
