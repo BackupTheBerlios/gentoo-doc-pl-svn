@@ -1,0 +1,128 @@
+--- stary2.xml	2006-05-11 15:37:52.000000000 +0200
++++ nowy2.xml	2006-05-14 00:14:37.000000000 +0200
+@@ -25,7 +25,7 @@
+ <license/>
+ 
+ <version>1.3</version>
+-<date>2006-05-07</date>
++<date>2006-05-12</date>
+ 
+ <chapter>
+ <title>Wprowadzenie</title>
+@@ -456,7 +456,68 @@
+ 
+ <p>
+ Kilka odpowiednio ustawionych opcji może zwiększyć wydajność nawet o
+-30 procent. Ustawia się je w <path>/etc/X11/xorg.conf</path>.
++30 procent. Ustawia się je w <path>/etc/X11/xorg.conf</path>. Jednakże najpierw
++musimy się dowiedzieć czy wspierają je nasza płyta główna oraz karta graficzna.
++</p>
++
++<p>
++Po pierwsze, sprawdzimy czy nasza karta graficzna wspiera fast write. Dokonamy
++tego poprzez dogłębną analize wyniku polecenia <c>lspci</c>, a zwłaszcza
++informacji "VGA compatible controller".
++</p>
++
++<pre caption="Sprawdzanie karty graficznej">
++# <i>lspci -vv</i>
++01:00.0 VGA compatible controller: ATI Technologies Inc Radeon Mobility M6
++LY (prog-if 00 [VGA])
++. . .
++Capabilities: [58] AGP version 2.0
++	Status: RQ=48 Iso- ArqSz=0 Cal=0 SBA+ ITACoh- GART64- HTrans- 64bit- FW+ AGP3- Rate=x1,x2,x4
++</pre>
++
++<p>
++Mimo, iż wypisywanych jest dużo informacji, obchodzi nas tylko <b>FW</b> w
++podsekcji "Status" dla AGP "Capabilities". Jeżeli otrzymujemy <b>FW+</b> oznacza
++to, że nasza karta wspiera fast write. Możemy przystąpić zatem do sprawdzania,
++czy poradzi z nim sobie nasza płyta główna.
++</p>
++
++<impo>
++Jeżeli zamiast <b>FW+</b> otrzymujemy <b>FW-</b> nie możemy odblokować fast
++write w <path>xorg.conf</path>, ponieważ nasza karta go nie obsługuje.
++</impo>
++
++<p>
++Teraz możemy sprzwdzić, czy płyta główna obsługuje fast write. Znów posłużymy
++się poleceniem <c>lspci</c>, lecz tym razem należy zwrócić uwagę na sekcję "Host
++bridge"
++</p>
++
++<pre caption="Sprawdzanie płyty głównej">
++# <i>lspci -vv</i>
++00:00.0 Host bridge: Intel Corporation 82830 830 Chipset Host Bridge
++(rev 02)
++. . .
++Capabilities: [a0] AGP version 2.0
++Status: RQ=32 Iso- ArqSz=0 Cal=0 SBA+ ITACoh- GART64- HTrans- 64bit- FW+ AGP3- Rate=x1,x2,x4
++</pre>
++
++<p>
++I tym razem należy przyjrzeć się opcji <b>FW</b>. Jeżeli zobaczymy <b>FW+</b>
++oznacza to, iż nasza płyta główna wspiera technologię fast write.
++</p>
++
++<impo>
++Należy pamiętać, że zarówno informacja o karcie graficznej, jak i płycie
++głównej, musi pokazywać dokładnie ten sam stan <b>FW</b>. Jeżeli którekolwiek z
++urządzeń pokazuje <b>FW-</b> nie możemy uaktywnić fast write w naszym
++<path>xorg.conf</path>
++</impo>
++
++<p>
++Reasumując, jeżeli nasza płyta główna oraz karta graficzna wspierają fast write,
++możemy ustawić tę opcję w <path>/etc/X11/xorg.conf</path> i wyciągnąć to co
++najlepsze z naszego sprzętu :).
+ </p>
+ 
+ <pre caption="xorg.conf">
+@@ -483,46 +544,6 @@
+ odblokować odpowiednią opcję w BIOSie.
+ </note>
+ 
+-<!--
+-**
+-This section needs to be in eventually, but non-nvidia cards don't use
+-/proc/driver at all. We need some way to get users to check and see that SBA
+-and fast-writes are allowed for their hardware; that info is somewhere else in
+-/proc. If you have a non-nvidia card, you can help by emailing
+-nightmorph@gentoo.org with the relevant bits of your /proc so I can get this
+-info into the guide. See below for where things are found on an nvidia card.
+-**
+-
+-<p>
+-A few options may increase performance by up to 30 percent (or more) over the
+-default. Set them in <path>/etc/X11/xorg.conf</path>. However, you will first
+-need to check that your motherboard and video card support these options.
+-</p>
+-
+-<p>
+-First, let's check the supported modes of your video cards, and see if your it
+-supports fast writes. Remember to replace <c>nvidia</c> with the actual name of
+-your device in <path>/proc/driver/nvidia/</path>.
+-</p>
+- 	 
+-<pre caption="Video card check">
+-$ <i>cat /proc/driver/nvidia/agp/card</i>
+-</pre>
+- 
+-<p>
+-Next, let's check out the capabilities of the motherboard:
+-</p>
+- 	 
+-<pre caption="Motherboard check">
+-$ <i>cat /proc/driver/nvidia/agp/host-bridge</i>
+-</pre>
+- 	 
+-<impo>
+-Remember, the modes and capabilities for your video card and motherboard must
+-match for these settings to work!
+-</impo>
+--->
+-
+ <p>
+ Aby poznać więcej opcji należy udać się pod adres <uri
+ link="http://dri.freedesktop.org/wiki/FeatureMatrix">tabeli możliwości</uri> na
