@@ -1,0 +1,659 @@
+.TH "PORTAGE" "5" "Dec 2005" "Portage 2.1" "Portage"
+.SH "NAZWA"
+portage \- serce Gentoo
+.SH "OPIS"
+W trakcie działanie Portage korzysta z wielu różnych plików konfiguracyjnych,
+większość z nich nie jest znana większości użytkowników, czy zwykłym
+deweloperom. W tym podręczniku można znaleźć informacje o tym w jaki sposób
+można efektywnie wykorzystać potencjał drzemiący w Portage, a także znaleźć opis
+poszczególnych plików konfiguracyjnych nie posiadających własnych stron
+podręcznika.
+
+Ustawienia znajdujące się w plikach w katalogu make.profile mogą zostać
+nadpisane przez profil nadrzędny, gdy używane są profile kaskadowe. Więcej
+informacji na ten temat można znaleźć na stronie
+http://www.gentoo.org/proj/en/releng/docs/cascading-profiles.xml
+.IP UWAGA:
+Jeżeli szukasz informacji jak zainstalować pakiet, proszę skorzystać ze strony
+podręcznika
+.BR emerge (1).
+.SH "STRESZCZENIE"
+.TP
+.BR /etc/
+.nf
+make.globals
+.BR make.conf (5)
+.fi
+.TP
+.BR /etc/make.profile/
+.nf
+deprecated
+make.defaults
+packages
+packages.build
+package.provided
+parent
+use.defaults
+use.mask
+virtuals
+.fi
+.TP
+.BR /etc/portage/
+.nf
+bashrc
+package.mask
+package.unmask
+package.keywords
+package.use
+mirrors
+categories
+.fi
+.TP
+.BR /etc/portage/profile/
+własne ustawienia nadpisujące \fB/etc/make.profile/\fR
+.TP
+.BR /usr/portage/profiles/
+.nf
+arch.list
+categories
+info_pkgs
+info_vars
+package.mask
+profiles.desc
+thirdpartymirrors
+use.desc
+use.local.desc
+.fi
+.TP
+.BR /var/lib/portage/
+world
+.SH "TERMINOLOGIA"
+W kolejnych sekcjach można napotkać wiele sformułowań, które mają specyficzne
+znaczenie dla Portage. Poniżej znajduje się słowniczek najważniejszych pojęć.
+Proszę skonsultować się także z wymienionymi podręcznikami, by uzyskać
+dokładniejsze informacje.
+.RS
+.TP
+.B Atom DEPEND
+Łańcuch znaków pasujący do pakietu. Jego format to kategoria/pakiet. Dodatkowo
+może zawierać informacje o wersjach, a także operatory logiczne.
+.BR
+Więcej informacji:
+.BR ebuild (5)
+.TP
+.B KEYWORD
+Każda architektura posiada unikalny identyfikator - KEYWORD.
+.BR
+Więcej informacji:
+.BR ebuild (5)
+.TP
+.B virtual
+Atom DEPEND będący częścią kategorii wirtualnej. Może zostać użyty, gdy w
+drzewie Portage znajduje się wiele pakietów, które mogą zaspokoić daną
+zależność, a tylko jeden z nich jest niezbędny do poprawnej kompilacji, czy
+działania aplikacji.
+.BR
+Więcej informacji:
+.BR ebuild (5)
+.RE
+.SH "OPIS POSZCZEGÓLNYCH PLIKÓW"
+.TP
+.BR /etc/
+.RS
+.TP
+.BR make.globals
+Globalne, domyślne ustawienia Portage. Plik ten wchodzi w skład pakietu Portage.
+Parametry i ustawienia, które się w nim znajdują, mogą zostać nadpisane przez te
+zawarte w pliku \fBmake.conf\fR. Dokładny opis formatu znajduje się na stronie
+podręcznika \fBmake.conf\fR(5).
+.TP
+.BR make.conf
+Globalne ustawienia Portage. Dokładny opis formatu znajduje się w podręczniku \fBmake.conf\fR(5).
+.RE
+.TP
+.BR /etc/make.profile/
+Zazwyczaj jest to tylko dowiązanie symboliczne do właściwego profilu
+znajdującego się w katalogu \fB/usr/portage/profiles/\fR. Jako, że jest to część
+drzewa Portage, łatwo może zostać zaktualizowane/poprawione po użyciu
+polecenia `emerge \-\-sync`. Znajduje się tam definicja używanego profilu
+(zazwyczaj są to ustawienia związane z konkretną architekturą). W przypadku gdy
+chcemy stworzyć własny profil to należy utworzyć katalog
+\fB/etc/make.profile/\fR i zapełnić go odpowiednimi plikami. Jeżeli jednak
+naszym celem jest tylko zmiana niektórych ustawień to lepiej nie edytować
+żadnego z plików należących do używanego profilu, zmiany będą utracone przy
+najbliższym procesie synchronizacji drzewa Portage. By nadpisać interesujące nas
+ustawienia najlepiej posłużyć się instrukcjami, które można znaleźć poniżej, w
+kolejnej części tego podręcznika opisującej \fB/etc/portage/\fR.
+.RS
+.TP
+.BR deprecated
+Jeśli w danym profilu istnieje ten plik to jest on uważamy za przestarzały, co
+oznacza że nie jest on już wspierany przez deweloperów Gentoo. Pierwsza linia
+musi zawierać nazwę profilu do którego najlepiej dokonać migracji, w pliku mogą
+dodatkowo znajdować się instrukcje opisujące tą procedurę jaką należy wykonać w
+czasie zmiany profilu.
+
+.I Przykład:
+.nf
+default-linux/x86/2005.0
+# emerge -n '>=sys-apps/portage-2.0.51'
+# rm -f /etc/make.profile
+# ln -s /usr/portage/profiles/default-linux/alpha/2005.0 /etc/make.profile
+.fi
+.TP
+.BR make.defaults
+Domyślne ustawienia Portage w danym profilu. Schemat pliku jest opisany w
+podręczniku \fBmake.conf\fR(5). Znajdują się tu definicje kilku
+specyficznych zmiennych:
+
+.PD 0
+.RS
+.TP
+.BR ARCH
+typ architektury (x86/ppc/hppa/etc...).
+.TP
+.B USERLAND = \fI"GNU"\fR
+wsparcie dla BSD/cygwin/etc...
+.TP
+.B PORTAGE_LIBC = \fI"glibc"\fR
+wsparcie dla uClibc/BSD libc/etc...
+.TP
+.BR PROFILE_ARCH
+rozróżnia różne typy komputerów posiadających tą samą architekturę (\fBARCH\fR),
+np. wszystkie komputery sparc posiadają ARCH=sparc, ale wartość tej zmiennej to 'sparc32' 
+lub 'sparc64'.  
+.TP
+.BR STAGE1_USE
+specjalne flagi USE, które mogą być potrzebne w przypadku przeprowadzania
+bootstrapu podczas instalacji
+.TP
+.BR GRP_STAGE23_USE
+specjalne flagi, używane przez catalyst w czasie budowania pakietów GRP i pliku
+stage3.
+.RE
+.PD 1
+.TP
+.BR packages
+Plik konfiguracyjny, który służy do maskowania specyficznych pakietów/wersji z
+poziomu profilu, zawiera on także listę pakietów należących do specjalnej klasy 
+\fIsystem\fR.
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- jeden atom DEPEND na jedną linię
+\- pakiety należące do klasy system powinny mieć dodany prefiks - '*'
+.fi
+.I Uwaga:
+W konfiguracji kaskadowych profili, można usunąć pakiety w profilach
+podrzędnych, które zostały dodane przez profile nadrzędne, dodając prefiks '\-'
+do atomu określającego dany pakiet.
+
+.I Przykłady:
+.nf
+# komentarz
+# glibc tylko w wersjach niższych niż 2.3
+<sys\-libs/glibc\-2.3
+# dodaj dowolną wersję basha do klasy system
+*app\-shells/bash
+# readline tylko w wersjach niższych niż 4.2
+# dodaj readline do klasy system
+*<sys\-libs/readline\-4.2
+.fi
+.TP
+.BR packages.build
+Lista pakietów (jeden w jednej linijce) tworzących plik stage1. Przydatne
+tylko dla aplikacji budujących pliki stage.
+.TP
+.BR package.provided
+Lista pakietów (jeden w jednej linijce), które Portage powinno uważać jako
+zainstalowane i nie zajmować się ich zarządzaniem. Bardzo przydatna opcja dla
+portów w nie-linuksowym środowisku. Nie będą one aktualizowane, chyba że wśród
+zależności będzie wymagana jego nowsza wersja. Ta lista zastępuje składnię
+\fBemerge \-\-inject\fR.
+
+Dla przykładu, jeśli chcesz własnoręcznie zarządzać jądrem w wersji 2.6, to
+używając tego pliku możesz powiedzieć Portage, że 
+\'sys-kernel/development-sources-2.6.7' jest już niezależnie zainstalowane.
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- jeden depend atom na jedną linię
+\- nie można używać operatorów relacji
+\- obowiązkowa specyfikacja numeru wersji
+.fi
+
+.I Przykład:
+.nf
+# zarządzanie jądrem
+sys-kernel/development-sources-2.6.7
+
+# specjalna wersja QT
+x11-libs/qt-3.3.0
+
+# zainstalowana modularna wersja X, ale pakiety wymagają wersji monolitycznej
+x11-base/xorg-x11-6.8
+.fi
+.TP
+.BR parent
+Zawiera lokalizację profilu nadrzędnego, może to być zarówno ścieżka względna
+jak i absolutna. Najczęściej zawartość tego pliku jest postaci '..' aby wskazać
+katalog nadrzędny. Ten plik konfiguracyjny jest jedynie używany w przypadku
+profili kaskadowych.
+.TP
+.BR use.defaults
+W pliku nie są definiowane domyślne flagi USE, ale tzw. automatyczne flagi USE.
+Ta jedna z mniej znanych funkcjonalności Portage aktywuje flagę w przypadku
+instalacji odpowiadającego pakietu, gdy nie została ona wyraźnie wyłączona przez
+użytkownika. W pliku zawarte są wpisy przyporządkowujące pakiet do odpowiedniej
+flagi USE, która zostanie aktywowana po jego instalacji.
+
+Na przykład, gdy w konfiguracji nie jest używana flaga USE "sdl", ani "\-sdl",
+to po instalacji pakietu media\-libs/libsdl, flaga "sdl" zostanie automatycznie
+aktywowana.
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- jedna flaga USE w jednej linii z listą odpowiadających atomów DEPEND
+.fi
+
+.I Przykład:
+.nf
+# media\-libs/libsdl aktywuje "sdl"
+sdl        media\-libs/libsdl
+# włącz flagę tcltk tylko gdy oba pakiety
+# dev\-lang/tcl i dev\-lang/tk są zainstalowane
+tcltk      dev\-lang/tcl   dev\-lang/tk
+.fi
+.TP
+.BR use.mask
+Niektóre flagi USE nie mają sensu na wybranych architekturach (np. altivec ma
+sens tylko dla ppc, a mmx dla x86) lub nie zostały jeszcze wystarczająco
+przetestowane, tak więc tutaj mogą być one zamaskowane.
+
+.I Uwaga:
+W przypadku używania kaskadowych profili, można usunąć flagę USE zdefiniowaną
+w profilu podrzędnym, przez dodanie jej w profilu nadrzędnym z prefixem '\-'.
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- jedna flaga USE w jednej linii
+.fi
+.TP
+.BR virtuals
+W pliku znajdują się domyślne powiązania pomiędzy pakietem, a kategorią
+wirtualną, na przykład gdy pakiet do poprawnego działania wymaga możliwości
+wysyłania e\-maili, to będzie potrzebował virtual/mta. W przypadku gdy w naszym
+systemie nie będzie zainstalowana odpowiednia aplikacja (jak qmail, sendmail,
+postfix, itd.), Portage użyje odpowiedniego wpisu znajdującego się w tym pliku
+by zapewnić pożądaną funkcjonalność, w podanym przykładzie będzie to
+net\-mail/ssmtp, jako że jest to aplikacja zapewniająca potrzebne minimum
+możliwości.
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- jedna para, kategoria wirtualna i atom DEPEND, w jednej linii
+.fi
+
+.I Przykład:
+.nf
+# użyj net\-mail/ssmtp jako domyślnego mta
+virtual/mta            net\-mail/ssmtp
+# app\-dicts/aspell\-en jest domyślnym słownikiem
+virtual/aspell\-dict   app\-dicts/aspell\-en
+.fi
+.RE
+.TP
+.BR /etc/portage/
+.RS
+.TP
+.BR bashrc
+Gdy zajdzie taka potrzeba, plik ten określa środowisko w jakim wykonywane są
+ebuildy, w tym przypadku nie jest używane środowisko domyślne. Składnia jest
+analogiczna jak w przypadku zwykłych skryptów używających powłoki bash.
+
+.TP
+.BR modules
+Ten plik może zostać użyty w celu zmiany sposobu przechowywania informacji
+wewnętrznych Portage. W praktyce, portdbapi.auxdbmodule jest jedyną zmienną,
+którą użytkownik mógłby chcieć zmieniać.
+
+.I Przykład:
+.nf
+portdbapi.auxdbmodule = cache.metadata_overlay.database
+.fi
+
+Moduł metadata_overlay umożliwia ustawienie FEATURES="metadata-transfer" w
+\fBmake.conf\fR(5). Gdy użytkownik uruchomi metadata_overlay w
+/etc/portage/modules, wszystkie pliki zawierające się w
+/var/cache/edb/dep/${PORTDIR} muszą zostać ręcznie usunięte, by uniknąć zbędnego
+procesu regeneracji informacji Portage. Użytkownicy korzystający z modułu
+metadata_overlay, nie mogą modyfikować eklas w ${PORTDIR}, ponieważ Portage nie
+będzie w stanie stwierdzić czy regeneracja powyższych informacji jest potrzebna.
+Jeśli użytkownik chciałby modyfikować eklasy, można używać modułu
+metadata_overlay wraz z PORTDIR_OVERLAY w \fBmake.conf\fR.
+
+.TP
+.BR package.mask
+Lista atomów, które powinny być zamaskowane. Bardzo przydatne, gdy dana
+aplikacja lub jej wersja działają nieprawidłowo na danym systemie, umożliwia
+także zablokowanie aktualizacji pakietu np. jądra. W przypadku, gdy chcemy
+używać sterowników kart graficznych Nvidia, ale tylko w wersjach starszych niż
+1.0.4496, nie ma problemu, używając tego pliku można zrobić to z łatwością.
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- jeden atom DEPEND w jeden linii
+.fi
+
+.I Przykład:
+.nf
+# zamaskuj sterowniki nvidia starsze niż 1.0.4496
+>media\-video/nvidia\-kernel\-1.0.4496
+>media\-video/nvidia\-glx\-1.0.4496
+.fi
+.TP
+.BR package.unmask
+Podobna funkcjonalność jak w przypadku package.mask, tylko że w tym przypadku
+wskazane pakiety zostaną odmaskowane, może zostać użyte do nadpisania globalnej
+konfiguracji package.mask (zobacz poniżej). Należy zauważyć, że nie ma to wpływu
+na aplikacje zamaskowane przez KEYWORD.
+.TP
+.BR package.keywords
+Ustawienia flag KEYWORD dla poszczególnych pakietów, przydatne gdy chcemy używać
+niestabilnych pakietów na stabilnym systemie, i na odwrót. Zawartość tego pliku
+pozwala dostosować wartość zmiennej ACCEPT_KEYWORDS dla pojedynczych wersji
+aplikacji.
+
+.nf
+.I Uwaga:
+Istnieją dwie specjalne flagi KEYWORD, które mogą pomóc w odpowiedniej
+konfiguracji:
+\fB*\fR dowolny stabilny KEYWORD
+\fB~*\fR dowolny niestabilny KEYWORD
+
+.I Format:
+\- komentarze zaczynają się #
+\- jeden atom DEPEND, a następnie KEYWORD, w jednej linii
+\- linie nie zawierające KEYWORD będą domyślnie traktowane jako żądanie pakietu
+niestabilnego
+
+.I Przykład:
+# używaj niestabilnego libgd
+media\-libs/libgd ~x86
+# tylko stabilny mplayer
+media\-video/mplayer \-~x86
+# używaj niestabilnego netcat
+net-analyzer/netcat
+.fi
+
+.I Dodatkowa uwaga:
+W przypadku gdy dany pakiet oznaczony jest przez KEYWORD \fB-*\fR, to
+oznacza to, że on uznany jako zepsuty na dla wszystkich architektur, chyba, że
+jest inaczej we fladze KEYWORD danego ebuilda. Przykładowo, jeśli dana aplikacja
+jest dostępna tylko w formie binarnej dla x86 to odpowiednia część ebuilda może
+wyglądać następująco:
+
+games-fps/quake3-demo-1.11.ebuild:keywords="-* x86"
+
+Jeśli pomimo tego chcesz zainstalować dany pakiet to dodaj flagę \fB-*\fR w
+pliku package.keywords przy odpowiednim wpisie:
+
+games-fps/quake3-demo -*
+
+.TP
+.BR package.use
+Flagi USE definiowane dla poszczególnych pakietów. Bardzo przydatna
+funkcjonalność umożliwiająca zmianę globalnych flag USE i ustawienie lokalnej
+flagi, która jest wspierana jedynie przez dany pakiet. Przykładowo deweloper
+GTK, będzie prawdopodobnie zainteresowany instalacją dokumentacji dla GTK, ale
+już niekoniecznie dla QT. Używając tego pliku z łatwością można uzyskać taką
+konfigurację.
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- jeden atom DEPEND, a następnie lista, oddzielonych spacjami 
+flag USE, w jednej linii
+.fi
+
+.I Przykład:
+.nf
+# zainstaluj dokumentację dla GTK 2.x
+=x11\-libs/gtk+\-2* doc
+# wyłącz wsparcie dla mysql w QT
+x11\-libs/qt \-mysql
+.fi
+.TP
+.BR mirrors
+Gdy Portage napotka URL w postaci mirror://, to będzie próbował odnaleźć
+odpowiedni adres z pomocą tego pliku, a w przypadku niepowodzenia skorzysta z
+globalnej listy serwerów lustrzanych znajdujących się w pliku
+/usr/portage/profiles/thirdpartymirrors. Dodatkowo istnieje możliwość
+zdefiniowania listy specjalnych serwerów - "local", będą one zawsze przeglądane
+w pierwszej kolejności przed GENTOO_MIRRORS, nawet w przypadku gdy dany ebuild
+używa zmiennej RESTRICT="nomirror".
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- typ serwera, a następnie lista hostów
+.fi
+
+.I Przykład:
+.nf
+# lokalny, serwer lustrzany, używany tylko przez firmę
+local ftp://192.168.0.3/mirrors/gentoo http://192.168.0.4/distfiles
+
+# mieszkańcy Japonii woleliby używać japońskiego serwera lustrzanego
+sourceforge http://keihanna.dl.sourceforge.net/sourceforge
+
+# lokalny serwer gnu na Tajwanie
+gnu ftp://ftp.nctu.edu.tw/unix/gnu/
+.fi
+.TP
+.BR categories
+Lista kategorii znajdujących się w /usr/portage, w PORTDIR_OVERLAY, a także w
+PKGDIR (patrz \fBmake.conf\fR(5)). Umożliwia dodanie nowych kategorii.
+
+.I Format:
+.nf
+\- jedna kategoria w jednej linii
+.fi
+
+.I Przykład:
+.nf
+app\-hackers
+media\-other
+.fi
+.RE
+.TP
+.BR /usr/portage/profiles/
+Globalna konfiguracja Gentoo nadzorowana przez deweloperów, by nadpisać
+poszczególne jej ustawienia można użyć plików znajdujących się w
+\fB/etc/portage/\fR.  
+.RS
+.TP
+.BR arch.list
+Lista poprawnych architektur (KEYWORD), nie zawiera możliwych modyfikatorów.
+
+.I Format:
+.nf
+\- jeden KEYWORD w jednej linii
+.fi
+
+.I Przykład:
+.nf
+x86
+ppc
+sparc
+.fi
+.TP
+.BR categories
+Prosta lista rozpoznawanych kategorii /usr/portage, PORTDIR_OVERLAY, a także
+PKGDIR (patrz \fBmake.conf\fR(5)).
+
+.I Format:
+.nf
+\- jedna kategoria w jednej linii
+.fi
+
+.I Przykład:
+.nf
+app\-admin
+dev\-lang
+games\-strategy
+sys\-kernel
+.fi
+.TP
+.BR info_pkgs
+Lista pakietów, których wersje będzie można zobaczyć po wykonaniu polecenia
+`emerge info`.
+.TP
+.BR info_vars
+Lista zmiennych, które zostaną wyświetlone po wykonaniu `emerge info`.
+.TP
+.BR package.mask
+Zawiera listę DEPEND dla pakietów, które nie powinny być zainstalowane w
+którymkolwiek  z profili, przydatne w momencie dodawania wersji beta aplikacji,
+by mieć pewność, że w domyślnej konfiguracji nie dojdzie do przypadkowej
+aktualizacji. Umożliwia także zamaskowanie specyficznych wersji w przypadku
+wykrycia błędów bezpieczeństwa. ZAWSZE należy dodać odpowiedni komentarz, który
+wyjaśni dlaczego dany pakiet został zamaskowany i KTO dodał odpowiedni wpis.
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- jeden atom DEPEND w jednej linii
+.fi
+
+.I Przykład:
+.nf
+# zamaskowane z powodów bezpieczeństwa
+<sys\-libs/zlib\-1.1.4
+# <caleb@gentoo.org> (10 sep 2003)
+# nowe wersje beta KDE
+=kde\-base/kde\-3.2.0_beta1
+=kde\-base/kdeaccessibility\-3.2.0_beta1
+.fi
+.TP
+.BR profiles.desc
+Lista wszystkich stabilnych i deweloperskich profili które mają być sprawdzane
+przez repoman. W obecnej chwili wspierany jest tylko jeden profil na jedną
+konfigurację stable/dev/KEYWORD. W przypadku gdy, w pliku będzie znajdowało
+się więcej podobnych wpisów tylko ostatni z nich będzie używany.
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- jeden profil w formacie: architektura katalog status, w jednej linii
+\- KEYWORD (architektura) musi znajdować się w pliku arch.list
+\- lokalizacja katalogu określona jest przez ścieżkę względną do profiles.desc
+\- dopuszczalne wartości słowa kluczowego status to 'stable' i 'dev'
+.fi
+
+.I Przykład:
+.nf
+alpha default-linux/alpha/2004.3 stable
+m68k  default-linux/m68k         dev
+x86   default-linux/x86/2004.3   stable
+.fi
+.TP
+.BR thirdpartymirrors
+Nadzoruje aktualne powiązania pomiędzy URL-ami typu mirror:// i właściwą listą
+używanych hostów na których znajdują się pliki, umożliwia odciążenie
+poszczególnych serwerów i zmniejszenie przez to ich obciążenia.
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- typ serwera lustrzanego, a następnie lista hostów w jednej linii
+.fi
+
+.I Przykład:
+.nf
+sourceforge  http://aleron.dl.sourceforge.net/sourceforge http://unc.dl.sourceforge.net/sourceforge
+gentoo       http://distro.ibiblio.org/pub/linux/distributions/gentoo/distfiles/ ftp://ftp.gtlib.cc.gatech.edu/pub/gentoo/distfiles
+kernel       http://www.kernel.org/pub http://www.us.kernel.org/pub
+.fi
+.TP
+.BR use.desc
+Lista wszystkich globalnych flag USE oraz ich krótki opis.
+
+.I Format:
+.nf
+\- komentarze zaczynają się #
+\- flaga USE \- opis
+.fi
+
+.I Przykład:
+.nf
+3dfx \- Adds support for 3dfx video cards
+acl  \- Adds support for Access Control Lists
+doc  \- Adds extra documentation
+.fi
+.TP
+.BR use.local.desc
+Lista wszystkich lokalnych flag USE wraz z używającymi ich pakietami i opisami
+
+.nf
+.I Format:
+\- komentarze zaczynają się #
+\- pakiet:flaga USE \- opis
+
+.I Przykład:
+app\-editors/nano:justify \- Toggles the justify option
+dev\-libs/DirectFB:fusion \- Adds Multi Application support
+games\-emulation/xmess:net \- Adds network support
+.fi
+.RE
+.TP
+.BR /var/lib/portage/
+.RS
+.TP
+.BR world
+Zawiera listę pakietów należących do specjalnej klasy \- world. Jest ona za
+każdym razem odświeżana po instalacji lub po odinstalowaniu aplikacji. W
+przypadku użycia komendy `emerge world \-up` jest ona używana do określenia,
+które aplikacje powinny zostać zaktualizowane. Należy zauważyć, że lista ta nie
+zawiera pakietów zainstalowanych jako zależności, np. w przypadku polecenia
+`emerge mod_php` do tego pliku zostanie dodany tylko wpis "dev\-php/mod_php",
+natomiast "net\-www/apache" już nie. Dodatkowe informacje można znaleźć w
+podręczniku \fBemerge\fR(1).
+
+.I Format:
+.nf
+\- jeden atom DEPEND w jednej linii
+.fi
+
+.I Przykład:
+.nf
+games\-misc/fortune\-mod\-gentoo\-dev
+dev\-libs/uclibc
+app\-cdr/cdemu
+.fi
+.RE
+.SH "ZGŁASZANIE BŁĘDÓW"
+Prosimy o zgłaszanie błędów przy pomocy http://bugs.gentoo.org/
+.SH "AUTORZY"
+.nf
+Marius Mauch <genone@gentoo.org>
+Mike Frysinger <vapier@gentoo.org>
+Drake Wyrm <wyrm@haell.com>
+.fi
+.SH "ZOBACZ TAKŻE"
+.BR emerge (1),
+.BR ebuild (1),
+.BR ebuild (5),
+.BR make.conf (5)
+.SH "TŁUMACZENIE"
+Michał Kurgan <moloh@gentoo.org>
+.br
+Polski projekt tłumaczenia manuali Gentoo
+.br
+http://gentoo.org/~rane/tlumaczenie-manuali.html
