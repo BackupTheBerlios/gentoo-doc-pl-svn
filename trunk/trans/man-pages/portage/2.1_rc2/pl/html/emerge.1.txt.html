@@ -1,0 +1,737 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of EMERGE</TITLE>
+</HEAD><BODY>
+<H1>EMERGE</H1>
+Section: Portage (1)<BR>Updated: Dec 2005<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAZWA</H2>
+
+emerge - obsługiwany z linii poleceń interfejs systemu Portage
+<A NAME="lbAC">&nbsp;</A>
+<H2>SKŁADNIA</H2>
+
+<DL COMPACT>
+<DT><B>emerge</B>
+
+<DD>
+[<I>opcje</I>] [<I>akcja</I>] [<I>ebuild</I> | <I>archiwum</I> | <I>zestaw</I> | <I>zależności</I>] ...
+<DT><B>emerge</B>
+
+<DD>
+<B>--sync</B> | <B>--info</B> | <B>--version</B>
+<DT><B>emerge</B>
+
+<DD>
+<B>--search</B> <I>tekst</I>
+<DT><B>emerge</B>
+
+<DD>
+<B>--help</B> [<B>system</B> | <B>config</B> | <B>sync</B>]
+</DL>
+<A NAME="lbAD">&nbsp;</A>
+<H2>OPIS</H2>
+
+<B>emerge</B> jest obsługiwanym z linii poleceń intersfejsem do systemu Portage,
+który przede wszystkim wykorzystywany jest do instalowania nowych pakietów.
+<B>emerge</B> może automatycznie obsłużyć wszelkie zależności, jakie ma pożądany
+pakiet. <B>emerge</B> może także aktualizować <B>drzewo Portage</B>, budując
+nowe i zaktualizowane pakiety. <B>emerge</B> bardzo dobrze radzi sobie z
+aktualizacją zainstalowanych pakietów do nowszych wersji. Zajmuje się pakietami
+budowanymi ze źródeł, a także pakietami binarnymi. Może być również używane w
+celu tworzenia pakietów binarnych.
+<A NAME="lbAE">&nbsp;</A>
+<H2>EBUILDY, ARCHIWA, ZESTAWY I ZALEŻNOŚCI</H2>
+
+<B>emerge</B> przede wszystkim instaluje pakiety. Można wybrać, w jaki sposób: 
+jako <I>ebuild</I>, <I>archiwum</I>, <I>zestaw</I> lub jako <I>zależność</I>.
+<P>
+
+<DL COMPACT>
+<DT><B>ebuild</B>
+
+<DD>
+<I>ebuild</I> musi być co najmniej poprawną nazwą katalogu z pakietem w Portage,
+bez wersji lub kategorii, tak jak <B>portage</B> czy <B>python</B>. I wersja i
+kategoria również mogą być użyte, tak jak <B>sys-apps/portage</B> czy
+<B>=python-2.2.1-r2</B>. <B>emerge</B> ignoruje kończący nazwę ukośnik, tak że
+nazwy powstałe w wyniku automatycznego dopełniania także mogą zostać użyte.
+<I>ebuild</I> może być również ścieżką do pliku, jak
+<B>/usr/portage/app-admin/python/python-2.2.1-r2.ebuild</B>. 
+UWAGA: Aktualnie obsługa <B>emerge /ścieżka/do/ebuilda</B> jest uszkodzona, więc taka
+składnia nie powinna być używana.
+<DT><B>archiwum</B>
+
+<DD>
+<I>archiwum</I> musi być poprawnym plikiem .tbz2 utworzonym przy pomocy <B>ebuild
+&lt;pakiet&gt;-&lt;wersja&gt;.ebuild</B>, <B>emerge --buildpkg [kategoria/]&lt;pakiet&gt;</B>
+lub <B>quickpkg /var/db/pkg/&lt;kategoria&gt;/&lt;pakiet&gt;</B>.  
+<DT><B>zestaw</B>
+
+<DD>
+Zestawy pakietów są ułatwieniem umożliwiającym obsługę dużych grup pakietów.
+Obecnie istnieją dwie zestawy: <B>system</B> i <B>world</B>. <B>system</B> odnosi
+się do zbioru pakietów, które są niezbędne, by system działał poprawnie.
+<B>world</B> zawiera wszystkie pakiety w <B>system</B>, a także wszystkie
+pozostałe pakiety, zawarte w <B>/var/lib/portage/world</B>. [Więcej informacji w
+sekcji <B>PLIKI</B>] Należy zwrócić uwagę, że te komendy są używane w koniunkcji
+z <B>--update</B>.
+<DT><B>zależność</B>
+
+<DD>
+<I>zależność</I> opisuje pakiety, które mają zostać zainstalowane. <I>Patrz
+<A HREF="http://localhost/cgi-bin/man/man2html?5+portage">portage</A>(5) w celu zasięgnięcia większej ilości informacji na temat tych
+
+zostanie najnowsza dostępna wersja Pythona, wyższa lub równa 2.2.1-r2.
+Podobnie, do </I><B>&lt;dev-lang/python-2.0</B> dopasowana zostanie najnowsza dostępna
+wersja Pythona przed wersją 2.0. Należy mieć na uwadze, że wiele powłok wymaga
+znaków unikowych dla znaków takich jak '&lt;' i '=', używamy pojedynczego - lub
+podwójnego apostrofu wokół <I>zależności</I>, by nie mieć problemów ze znakami 
+unikowymi.
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>AKCJA</H2>
+
+<DL COMPACT>
+<DT><B>Brak akcji</B>
+
+<DD>
+Jeśli żadna akcja nie zostanie określona, akcją jest instalowanie określonych
+pakietów i wypełnianie zależności. Argumentami mogą być <I>ebuildy</I>,
+<I>archiwa</I>, <I>zestawy</I> lub <I>zależności</I>. <B>Należy mieć na uwadze, że
+należy użyć opcji --usepkg, jeżeli zamierzamy zainstalować plik tbz2</B>.
+Pakiety zostają dodane do pliku <B>world</B>, więc później brane są pod uwagę
+podczas aktualizacji systemu.  
+<DT><B>--clean </B>(<B>-c</B>)
+
+<DD>
+Oczyszcza system, poprzez usuwanie pakietów których brak nie spowoduje
+zmniejszenia funkcjonalności systemu. Argumentem mogą być <I>ebuildy</I>,
+<I>zestawy</I> lub <I>zależności</I>. Na przykład <B>emerge clean binutils</B>
+usunie stare wersje binutils; <B>emerge --clean net-www/mozilla-0.9.9-r2</B>
+usunie konkretną wersję Mozilli. Ogólnie jest to bezpieczne. <B>Należy mieć na
+uwadze</B>, że --clean<B> nie usunie pakietów, które nie znajdują w slocie
+innym niż domyślny.</B> 
+<DT><B>--depclean</B>
+
+<DD>
+Odnajduje wszystkie pakiety, które są zainstalowane bez żadnego powodu.
+emerge tworzy listę pakietów, które powinny być zainstalowane sprawdzając
+listę pakietów w klasie <B>system</B>e oraz plik <B>world</B>. Porównuje to z
+listą pakietów, które są zainstalowane.  Różnice zostaną wymienione jako pakiety
+do przeznaczone do usunięcia, a po krótkiej chwili zostaną usunięte. <B>UWAGA:
+Usuwanie niektórych pakietów może spowodować, że pakiety zależne od usuwanego
+pakietu przestaną działać i zaczną zgłaszać błędy dotyczące brakujących
+bibliotek</B>.  Należy ponownie zainstalować dany pakiet, by naprawić ten
+problem. <B>Należy mieć na uwadze, że zmiany we flagach USE mogą drastycznie
+wpłynąć na wynik --depclean</B>.  
+<DT><B>--help </B>(<B>-h</B>)
+
+<DD>
+Wyświetla pomocnicze informacje dla emerge. Dodając jeden z dodatkowych
+argumentów wymienionych poniżej otrzymujemy dokładniejsze informacje na dany
+temat. Wewnętrzna pomoc programu <B>emerge</B> jest aktualizowana znacznie
+częściej niż ta strona podręcznika man; warto to sprawdzić jeśli mamy
+problem, a ta strona podręcznika man nie pomaga nam w rozwiązaniu problemu.
+<DT><B>--info</B>
+
+<DD>
+Jest to zbiór informacji pomagających deweloperom w naprawianiu błędów.
+<B>Należy załączyć te informacje podczas procesu zgłaszania błędu.</B>
+Obszerniejsze wyjście można otrzymać przy pomocy opcji <I>--verbose</I>.
+<DT><B>--metadata</B>
+
+<DD>
+Nakazuje Portage przetworzyć wszystkie pliki metacache, tak jak jest to robione
+na koniec procesu aktualizacji rsync podczas <B>emerge --sync</B>. Proces ten
+utworzy bazę danych używaną przez Portage w celu przyspieszenia przeglądania
+informacji o pakietach.
+<DT><B>--prune </B>(<B>-P</B>)
+
+<DD>
+<B>UWAGA: Ten parametr może usunąć ważne pakiety!</B> Próbuje usunąć wszystkie
+wersje danego pakietu poza najnowszą zainstalowaną. Jako, że ta komenda
+aktualnie nie obsługuje poprawnie posiadania w systemie wielu wersji jednego
+pakietu, należy być ostrożnym! To polecenie nie sprawdza zależności, więc może
+również usunąć pakiety niezbędne do poprawnego działania systemu. <B>Jeśli nie
+jest się absolutnie pewnym co się robi, należy zamiast tej opcji użyć
+paramtetru </B> --clean <B></B>. Argumentami dla tego polecenia, mogą być
+<I>ebuildy</I>, <I>zestawy</I> lub <I>zależności</I> -- patrz przykłady dla
+<B>--clean</B>. Ostrzegaliśmy!
+<DT><B>--regen</B>
+
+<DD>
+Nakazuje Portage sprawdzić i zaktualizować cache zależności wszystkich pakietów
+z drzewa portage. Ten cache używany jest by przyspieszyć przeszukiwanie drzewa
+Portage i tworzenie drzew zależności. To polecenie nie jest zalecane dla
+użytkowników korzystających z rsync do aktualizacji drzewa Portage, jako że
+wówczas wykorzystywany jest cache z serwera. Jeśli nie wiemy, jaka jest różnica
+pomiędzy 'użytkownikiem korzystającym z rsync', a jakimkolwiek innym
+użytkownikiem, jesteśmy 'użytkownikiem korzystającym z rsync' :). Wówczas, w
+celu wygenerowania cache, wystarczy uruchomić <B>emerge --sync</B>. Po
+aktualizacji drzewa Portage dla użytkowników rsync dogodnym może być
+uruchomienie <B>emerge --metadata</B> w celu przebudowania cache, tak jak to
+robi Portage na końcu operacji synchronizacji drzewa.
+<DT><B>--resume</B>
+
+<DD>
+Wznawia ostatnią wykonywaną instalację. Należy mieć na uwadze, że ta operacja
+zwróci jedynie komunikat o błędzie w przypadku niepowodzenia. Jeśli nie
+pozostało nic do zrobienia, Portage zakończy operację i zwróci informację o
+sukcesie.
+<DT><B>--search </B>(<B>-s</B>)
+
+<DD>
+Przeszukuje drzewo Portage zwracając dopasowania do podanego wzoru. Wzór dla
+--search jest wyrażeniem regularnym. Na przykład, <B>emerge --search
+&quot;^kde&quot;</B> poszukuje wszystkich pakietów, których nazwa zaczyna się od &quot;kde&quot;;
+<B>emerge --search &quot;gcc$&quot;</B> poszukuje wszystkich pakietów, których nazwa
+kończy się &quot;gcc&quot;; <B>emerge --search &quot;office&quot;</B> poszukuje wszystkich
+pakietów, których nazwa zawiera słowo &quot;office&quot;. Jeśli chcemy również
+przeszukiwać opisy pakietów, korzystamy z akcji <B>--searchdesc</B>.
+<DT><B>--searchdesc </B>(<B>-S</B>)
+
+<DD>
+Zwraca dopasowania do poszukiwanego wzoru spośród opisów pakietów, a także z
+nazw pakietów. <B>Należy uważać</B>, jako że opisy pakietów również są traktowane
+jak wyrażenia regularne.
+<DT><B>--sync</B>
+
+<DD>
+Nakazuje aktualizację drzewa Portage przy pomocy jednego z serwerów lustrzanych
+rsync.gentoo.org. <B>Należy mieć na uwadze, że wszelkie zmiany, jakich
+dokonaliśmy w drzewie Portage, zostaną nadpisane</B>. Do synchronizacji używa
+<B>rsync</B>, chyba że zostało to w odpowiedni sposób zmienione. W man
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5) w opisie zmiennej PORTDIR_OVERLAY omówimy sposób na
+uniknięcie usuwania zmian.
+<DT><B>--unmerge </B>(<B>-C</B>)
+
+<DD>
+<B>UWAGA: Ta akcja może powodować usunięcie ważnych pakietów!</B> Usuwa
+wszystkie pakiety pasujące do wzoru. Nie sprawdza zależności, więc może usunąć
+pakiety wymagane do poprawnego funkcjonowania systemu. Jego argumentami mogą być
+<I>ebuildy</I>, <I>klasy</I> lub <I>zależności</I> -- patrz przykłady dotyczące
+opcji <B>--clean</B>.  
+<DT><B>--update </B>(<B>-u</B>)
+
+<DD>
+Aktualizuje pakiety do najnowszej dostępnej wersji, która nie zawsze jest
+najnowszą możliwą dostępną wersją, ze względu na maskowanie w celach testowania
+i tworzenia pakietu. Polecenie zaktualizuje również bezpośrednie zależności, co
+niekoniecznie jest pożądane. Radzimy korzystać z tej opcji tylko w kombinacji z
+klasą world lub system.
+<DT><B>--version </B>(<B>-V</B>)
+
+<DD>
+Wyświetla numer wersji programu <B>emerge</B>.
+<DT><B>--config </B>
+
+<DD>
+Wykonuje wszystkie niezbędne do wykonania akcje po instalacji pakietu. Pociąga
+to zwykle za sobą konieczność naniesienia poprawek na pliki konfiguracyjne lub
+innych zmian w ustawieniach.
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>OPCJE</H2>
+
+<DL COMPACT>
+<DT><B>--alphabetical </B>
+
+<DD>
+Podczas wyświetlania flag USE i innych informacji o flagach, lista zostaje
+posortowana alfabetycznie.
+<DT><B>--ask </B>(<B>-a</B>)
+
+<DD>
+Przed wykonaniem instalacji pokazuje jakie ebuildy i archiwa będą
+instalowane, tak samo jak przy użyciu opcji <B>--pretend</B>, z tym że w
+przypadku tej opcji emerge pyta, czy kontynuować instalację, czy nie. Użycie
+<B>--ask</B> jest bardziej efektywne niż użycie <B>--pretend</B> a nastepnie
+wywoływanie tej samej komendy bez opcji <B>--pretend</B>.
+<DT><B>--buildpkg </B>(<B>-b</B>)
+
+<DD>
+Nakazuje emerge nie tylko zainstalować dany program ale i utworzyć pakiety
+binarne dla wszystkich przetworzonych ebuildów. Praktyczne dla opiekunów wielu
+systemów Gentoo Linux (budujemy raz, instalujemy plik tbz2 wszędzie). Pakiet
+zostanie utworzony w katalogu <I>${PKGDIR}/All</I>. Jako alternatywy, dla
+pakietu, który już znajduje się w systemie, można użyć <B>quickpkg</B>, który
+tworzy plik tbz2 z działającego systemu.
+<DT><B>--buildpkgonly </B>(<B>-B</B>)
+
+<DD>
+Tworzy binarne pakiety dla wszystkich przetworzonych ebuildów, ale nie
+instaluje żadnych z nich w systemie. Wymaga to jednak istnienia wszystkich
+zależności dla danego pakietu w systemie w czasie jego budowania.
+<DT><B>--changelog </B>(<B>-l</B>)
+
+<DD>
+Należy tego używać wraz z opcją <B>--pretend</B>. Pokaże wpisy w pliku
+ChangeLog dla wszystkich pakietów, które będą aktualizowane.  
+<DT><B>--columns</B>
+
+<DD>
+Opcja użyta wraz z <B>--pretend</B> spowoduje wyświetlenie nazwy pakietu, nowej
+i starej wersji w sformatowany, łatwy do skopiowania sposób.
+<DT><B>--debug </B>(<B>-d</B>)
+
+<DD>
+Nakazuje emerge uruchomić się w trybie <B>--debug</B>. W tym trybie środowisko
+bash w którym pakiet będzie budowany zostanie wywołane z opcją -x, powodując,
+że wszystkie informacje potrzebne do usuwania błędów zostaną wyświetlone na
+wyjściu standardowym. Opcja <B>--debug</B> jest bardzo praktyczna podczas
+szukania błędów składni basha.
+<DT><B>--deep </B>(<B>-D</B>)
+
+<DD>
+Gdy użyta z opcją <B>--update</B>, nakazuje <B>emerge</B> przeanalizować całe
+drzewo zależności pakietów zamiast sprawdzać tylko bezpośrednie zależności
+pakietu. Dzięki temu możliwe jest wyłapanie aktualizacji bibliotek, które nie
+są bezpośrednio umieszczone w zależnościach pakietu.
+<DT><B>--emptytree </B>(<B>-e</B>)
+
+<DD>
+Ponownie instaluje wszystkie pakiety należące do klasy world i ich zależności,
+zgodnie z flagami USE, jak najmniej odwołując się do zainstalowanych pakietów.
+Należy najpierw wywołać z opcją <B>--pretend</B>, by sprawdzić czy wynik tego
+polecenia będzie taki jak oczekiwaliśmy.
+<DT><B>--fetchonly </B>(<B>-f</B>)
+
+<DD>
+Zamiast budować jakikolwiek pakiet, pobiera jedynie niezbędne źródła dla
+wszystkich pakietów (główny pakiet oraz jego wszelkie zależności).
+<DT><B>--fetch-all-uri </B>(<B>-F</B>)
+
+<DD>
+Zamiast budować jakikolwiek pakiet, pobiera jedynie niezbędne źródła dla
+wszystkich pakietów i ich zależności.
+<DT><B>--getbinpkg </B>(<B>-g</B>)
+
+<DD>
+Używając serwera i lokacji zdefiniowanej w <I>PORTAGE_BINHOST</I> (patrz
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5)), Portage pobiera informację od każdego odnalezionego pakietu
+binarnego i wykorzystuje te informacje w celu utworzenia listy zależności. Ta
+opcja implikuje <B>-k</B>. (Używamy <B>-gK</B> dla instalacji wyłącznie opartej
+na binariach).
+<DT><B>--getbinpkgonly </B>(<B>-G</B>)
+
+<DD>
+Ta opcja jest identyczna z <B>-g</B> powyżej, z tą różnicą, że nie użyje żadnej
+informacji z lokalnego komputera. Wszelkie pakiety binarne zostaną pobrane ze
+zdalnego serwera, bez sprawdzania, czy taki pakiet przypadkiem nie znajduje się
+już na dysku.
+<DT><B>--ignore-default-opts</B>
+
+<DD>
+Zmienna <I>EMERGE_DEFAULT_OPTS</I> (patrz <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5)) zostanie
+zignorowana.
+<DT><B>--newuse </B>(<B>-N</B>)
+
+<DD>
+Nakazuje emerge sprawdzenie, w których pakietach flagi USE zostały zmienione od
+czasu kompilacji. Gwiazdka ozancza, że dana flaga USE zmieniła się od czasu
+kompilacji.
+<DT><B>--nocolor </B>
+
+<DD>
+Wyłącza kolory.
+<DT><B>--noconfmem</B>
+
+<DD>
+Nakazuje Portage zignorować ścieżki podane w <B>CONFIG_PROTECT</B> i nadpisać
+pliki w powyższych katalogach, niezależnie od tego, czy już istnieją. Portage
+normalnie instaluje te pliki tylko jeden raz, by oszczędzić użytkownikowi
+borykania się z tymi samymi plikami konfiguracyjnymi wiele razy. Ta flaga
+powoduje, że pliki zawsze będą instalowane.
+<DT><B>--nodeps </B>(<B>-O</B>)
+
+<DD>
+Instaluje określone pakiety, bez instalowania jakichkolwiek ich zależności.
+Należy mieć na uwadze, że proces budowania pakietu może zakończyć się błędem w
+sytuacji, gdy zależności nie zostały spełnione.
+<DT><B>--noreplace </B>(<B>-n</B>)
+
+<DD>
+Pomija pakiety podane w tej komendzie, które już są zainstalowne. Bez tej opcji,
+wszelkie pakiety, ebuildy czy zależności które zostaną podane w tej komendzie
+zostaną zbudowane, nawet jeśli pakiet już jest zainstalowany. Należy mieć na
+uwadze, że standardowo Portage nie przebuduje zależności.  
+<DT><B>--nospinner</B>
+
+<DD>
+Wyłączy spinner (obracający się znak podczas ustalania zależności) na czas tej
+sesji. Spinner jest aktywny, jeżeli urządzeniem terminala okaże się być TTY. Ta
+flaga wyłącza spinner, niezależnie od powyższego urządzenia.  
+<DT><B>--oneshot </B>(<B>-1</B>)
+
+<DD>
+Normalnie instaluje, ale nie dodaje pakietów do pliku world w celu późniejszej
+aktualizacji.
+<DT><B>--onlydeps </B>(<B>-o</B>)
+
+<DD>
+Instaluje jedynie (lub udaje, że instaluje) zależności danego pakietu, a nie sam
+pakiet.
+<DT><B>--pretend </B>(<B>-p</B>)
+
+<DD>
+Zamiast wykonać operację instalacji, po prostu pokazuje, co *mogłoby* być
+zainstalowane, gdyby opcja <B>--pretend</B> nie została użyta. Użycie opcji
+<B>--pretend</B> jest polecane przed instalacją nieznanego nam pakietu.
+Wynikiem mogą być, 
+<BR>
+
+<BR>&nbsp;
+<BR>
+
+<I>N</I> = nowy, (Jeszcze nie zainstalowany)
+<BR>
+
+<I>S</I> = nowy, instalacja do slotu (sposób na koegzystencję różnych wersji
+jednego pakietu w systemie) 
+<BR>
+
+<I>U</I> = aktualizacja, (Zmiana wersji)
+<BR>
+
+<I>D</I> = instalacja starszej wersji niż aktualnie zainstalowana 
+<BR>
+
+<I>R</I> = ponowna instalacja tej samej wersji
+<BR>
+
+<I>F</I> = ograniczenie pobierania, należy ręcznie pobrać źródła
+<BR>
+
+<I>f</I> = ograniczenie pobieranie, pobieranie trwa w tej chwili
+<BR>
+
+<I>B</I> = blokowany przez już zainstalowany pakiet
+<DT><B>--quiet </B>(<B>-q</B>)
+
+<DD>
+Wynik może być różny, ale ogólne założenie jest takie, by zredukować ilość
+informacji, które wyświetla Portage.
+<DT><B>--skipfirst</B>
+
+<DD>
+Ta opcja jest poprawna jedynie w przypadku użycia jej wraz z <B>--resume</B>.
+Usuwa pierwszy pakiet na liście pakietów do wznowienia, tak by proces instalacji
+mógł być kontynuowany. Powinno być to jedynie używane w przypadku, gdy
+pominięcie pakietu nie uniemożliwi wypełnienia zależności.
+<DT><B>--tree </B>(<B>-t</B>)
+
+<DD>
+Pokazuje drzewo zależności poprzez zastosowanie wcięćJest to na prawdę
+praktyczne w połączeniu z opcją <B>--emptytree</B> lub <B>--update</B>
+i <B>--deep</B>.  
+<DT><B>--usepkg </B>(<B>-k</B>)
+
+<DD>
+Nakazuje emerge skorzystać z binarnych pakietów (z $PKGDIR), jeśli są one
+dostępne w celu ominięcia czasochłonnej kompilacji. Opcja ta jest na prawdę
+praktyczna w przypadku instalacji z płyty CD; można wykonać export
+PKGDIR=/mnt/cdrom/packages i wówczas skorzystać z tej opcji, by emerge użyło
+binarnych pakietów w celu wypełnienia zależności.
+<DT><B>--usepkgonly </B>(<B>-K</B>)
+
+<DD>
+Nakazuje emerge używać tylko binarnych pakietów (z $PKGDIR). Wszelkie binarne
+pakiety muszą być dostępne podczas procesu ustalania zależności. W przeciwnym
+wypadku emerge zakończy swoje działanie. Portage nie używa zmiennej $PORTDIR
+podczas procesu ustalania zależności, więc wszelkie informacje dotyczące
+maskowania sa ignorowane.
+<DT><B>--verbose </B>(<B>-v</B>)
+
+<DD>
+Nakazuje emerge wypisywać więcej informacji. Obecnie powoduje to wyświetlanie
+błędów GNU, jeśli jakiś wystąpi, a także wyświetlenie flag USE, z którymi
+pakiet zostanie zbudowany, gdy zostaje uruchomione razem z opcją --pretend lub
+--ask.
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>OPCJE ŚRODOWISKOWE</H2>
+
+<DL COMPACT>
+<DT><B>ROOT</B> = <I>[ścieżka]</I><DD>
+Używamy <B>ROOT</B> w celu określenia docelowego korzenia systemu plików
+używanego podczas instalowania pakietów lub ebuildów.
+<BR>
+
+Standardowo to /.
+<DT><B>PORTAGE_CONFIGROOT</B> = <I>[ścieżka]</I><DD>
+Używamy <B>PORTAGE_CONFIGROOT</B> by określić gdzie znajdują się różne pliki
+konfiguracyjne Portage (więcej informacji w sekcji <B>PLIKI</B> poniżej).
+<BR>
+
+Standardowo to /.
+</DL>
+<A NAME="lbAI">&nbsp;</A>
+<H2>WYJŚCIE</H2>
+
+Gdy wywołamy <B>emerge</B> z opcjami <B>--pretend</B> i <B>--verbose</B>, wynik
+może być na początku trudny do zrozumienia. Ta sekcja tłumaczy jego znaczenie.
+<DL COMPACT>
+<DT><B>[blocks B     ] app-text/dos2unix (from pkg app-text/hd2u-0.8.0)</B>
+
+<DD>
+Dos2unix blokuje hd2u. Pakiety blokujące pojawiają się w sytuacji, gdy dwa
+pakiety koliduja ze sobą. W sytuacji, gdyby pakiety nie były blokowane, mogłoby
+to prowadzić do uszkodzenia systemu. Pakiety blokujące się wzajemnie, nie musza
+być zainstalowane jednocześnie, ponieważ w większkości przypadków zapewniają tą
+samą funkcjonalność.
+<DT><B>[ebuild  N    ] app-games/qstat-25c</B>
+
+<DD>
+Qstat jest nowym pakietem i będzie zainstalowany po raz pierwszy.
+<DT><B>[ebuild  NS   ] dev-libs/glib-2.4.7</B>
+
+<DD>
+W systemie znajduje się już inna wersja pakietu glib, ale 'nowa' wersja jest
+dostępna dla innego slotu.
+<DT><B>[ebuild   R   ] sys-apps/sed-4.0.5</B>
+
+<DD>
+Sed 4.0.5 znajduje się już w systemie i w przypadku wykonania tego polecenie
+zostanie przebudowany.
+<DT><B>[ebuild    F  ] media-video/realplayer-8-r6</B>
+
+<DD>
+Pakiet realplayer wymaga pobrania źródeł ręcznie. Jeśli spróbujemy zainstalować
+ten pakiet i źródła nie zostaną odnalezione, Portage zatrzyma się i dostaniemy
+instrukcje, skąd pobrać niezbędne pliki.
+<DT><B>[ebuild    f  ] media-video/realplayer-8-r6</B>
+
+<DD>
+Pliki pakietu realplayer zostały już pobrane.
+<DT><B>[ebuild     U ] net-fs/samba-2.2.8_pre1 [2.2.7a]</B>
+
+<DD>
+Samba 2.2.7a jest już zainstalowana i może zostać zaktualizowana do wersji
+2.2.8_pre1.  
+<DT><B>[ebuild     UD] media-libs/libgd-1.8.4 [2.0.11]</B>
+
+<DD>
+Libgd 2.0.11 jest zainstalowane, ale po wykonaniu polecenia Portage powróci do
+starszej wersji 1.8.4.
+<BR>
+
+Tak może się stać w sytuacji, gdy nowsza wersja pakietu została zamaskowana ze
+względu na jego uszkodzenie lub potencjalne błędy związane z bezpieczeństwem i
+poprawka jeszcze nie została udostępniona.
+<BR>
+
+Innym powodem może być fakt, że pakiet który próbujemy zainstalować wymaga
+starszej wersji innego pakietu w celu poprawnego funkcjonowania. W tym
+przypadku, 2.x jest niekompatybilne z libgd 1.x. To oznacza, że pakiety
+stworzone w oparciu o libgd 1.x nie skompilują się z 2.x i wymagany jest powrót
+do starszej wersji, by móc te pakiety zainstalować.
+<DT><B>[ebuild     U ] sys-devel/distcc-2.16 [2.13-r1] USE=ipv6* -gtk -qt%</B>
+
+<DD>
+Tutaj widzimy, że zmienna USE w pliku make.conf decyduje o tym, jak dany pakiet
+ma zostać zbudowany. W tym przypadku, opcjonalne wsparcie dla ipv6 jest
+włączone, a wsparcie dla gtk i qt, wyłączone. Gwiazdka oznacza, że wsparcie dla
+ipv6 było wyłączone poprzednim razem, gdy dany pakiet był instalowany. Znak
+procenta przy qt oznacza, że opcja qt została dodana do danego pakietu od czasu
+jego instalacji w systemie.
+<BR>
+
+<B>*Uwaga:</B> Flagi które nie zostały zmienione od czasu instalacji są
+wyświetlane tylko wtedy, gdy emerge zostanie wywołane z opcją <B>--pretend</B>
+i <B>--verbose</B>. Używając opcji <B>--quiet</B> wyłączamy pokazywanie
+wszelkich informacji na ten temat.
+</DL>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>UWAGI</H2>
+
+Powinno się każdorazowo poprzedzać instalację pakietów lub aktualizację opcją
+<B>--pretend</B>. Pozwala to sprawdzić, jak wiele pakietów zostanie
+zainstalowanych i pokaże pakiety blokujące. Szczególnie ważne jest to w
+przypadku zestawów <B>system</B> i <B>world</B>, które mogą aktualizować ogromne
+ilości pakietów.
+<P>
+
+Z reguły warto użyć opcji <B>--update</B>, która ignoruje pakiety, które
+zostały już zaktualizowane ale aktualizuje te, dla których nowsza wersja jest
+dostępna.
+<P>
+
+Jeśli instalujemy pakiet z odinstalowanymi zależnościami i wyraźnie nie
+określimy tych zależności na liście parametrów, nie zostaną one dodane do pliku
+world. Jeśli chcemy by były one wykrywane podczas aktualizacji klasy world,
+należy upewnić się, że są wyszczególnione na liście parametrów dla <B>emerge</B>.
+<P>
+
+<B>Zmienne USE</B> mogą być wyszczególnione jako parametr dla komendy i
+zastępować standardowe, określone w ich normalnych lokalizacjach, pozwalając
+uniknąć niektórych zależności. <B>Flagi USE określone jako parametr dla komendy,
+nie będą pamiętane</B>. Na przykład <B>USE=&quot;-X -gnome&quot; emerge mc</B>,
+zainstaluje mc z takimi flagami USE. Jeśli chcemy, by te ustawienia zostały
+zapamiętane, należy je umieścić w pliku /etc/portage/package.use.
+<P>
+
+Jeśli <B>emerge --update system</B> lub <B>emerge --update world</B> zakończy
+się błędem, może się okazać, że ebuild korzysta z nowych opcji, które nie są
+dostępne w bieżącej wersji <B>emerge</B>. Należy wówczas skorzystać z <B>emerge
+--update portage</B> w celu aktualizacji do najnowszej dostępnej wersji, co
+powinno umożliwić użycie nowych opcji.
+<A NAME="lbAK">&nbsp;</A>
+<H2>ZAMASKOWANE PAKIETY</H2>
+
+<I>UWAGA: Należy być ostrożnym używając pakietów w wersjach rozwojowych.
+Problemy i błędy wynikające z używania pakietów zamaskowanych zabierają
+deweloperom Gentoo cenny czas. Należy mieć świadomość, że korzystanie z
+takich wersji może wiązać się z problemami.</I>
+<P>
+
+Maskowanie w <B>Portage</B> zapewnia trzy podstawowe funkcje: daje czas na
+przetestowanie, które pakiety mogą być używane; uniemożliwia użycie pakietu,
+gdy ten nie działa; maskuje istniejące pakiety, które mogą być uszkodzone lub
+są narażone na błędy związane z bezpieczeństwem.  Maskowanie może być
+realizowane na dwa sposoby: poprzez <B>package.mask</B> i <B>KEYWORDS</B>.
+Poniżej znajduje się informacja, jak odmaskowywać pakiety.  Należy mieć również
+na uwadze, że jeśli nakażemy <B>emerge</B> zainstalować ebuild, wszystkie
+sposoby maskowania zostaną zignorowane i <B>emerge</B> spróbuje zainstalować
+pakiet.
+<DL COMPACT>
+<DT><B>package.mask</B>
+
+<DD>
+Plik <B>package.mask</B> blokuje użycie pakietów, które mogą powodować problemy
+lub wiadomo, że mogą zachowywać się dziwnie na różnych systemach. Plik ten
+znajduje się w <I>/usr/portage/profiles</I>.
+<DT><B>KEYWORDS</B>
+
+<DD>
+Zmienna <B>KEYWORDS</B> dostępna w pliku <B>ebuild</B> jest również używana do
+maskowania pakietów, które wciąż są w fazie testowania. Znajdują się tam
+informacje o różnych architekturach, tak by <B>Portage</B> wiedziało, z jakimi
+systemami dany pakiet jest kompatybilny. Pakiety, które zostały zbudowane na
+danej architekturze, ale nie udowodniono jeszcze ich &quot;stabilności&quot;, są maskowane
+poprzez dodanie tyldy (<B>~</B>) na początku nazwy architektury. <B>emerge</B>
+sprawdza zmienną <B>ACCEPT_KEYWORDS</B> i pozwala lub nie, na instalację danego
+pakietu zamaskowanego poprzez <B>KEYWORDS</B>. W celu poinformowania
+<B>emerge</B>, że ma używać tych 'testowych' wersji pakietu, należy zaktualizować
+lokalny plik <I>/etc/portage/package.keywords</I> by określić pakiety, które mają
+pojawić się w wersji 'testowej'. Patrz <B><A HREF="http://localhost/cgi-bin/man/man2html?5+portage">portage</A></B>(5) w celu zasięgnięcia
+większej ilości informacji.
+</DL>
+<A NAME="lbAL">&nbsp;</A>
+<H2>ZGŁASZANIE BŁĘDÓW</H2>
+
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu 
+<P>
+
+<B><A HREF="http://bugs.gentoo.org/">http://bugs.gentoo.org/</A></B>
+<P>
+
+Prosimy dołączać do zgłoszeń wynik polecenia <B>emerge --info</B>.
+<A NAME="lbAM">&nbsp;</A>
+<H2>AUTORZY</H2>
+
+<PRE>
+Daniel Robbins &lt;<A HREF="mailto:drobbins@gentoo.org">drobbins@gentoo.org</A>&gt;
+Geert Bevin &lt;<A HREF="mailto:gbevin@gentoo.org">gbevin@gentoo.org</A>&gt;
+Achim Gottinger &lt;<A HREF="mailto:achim@gentoo.org">achim@gentoo.org</A>&gt;
+Nicholas Jones &lt;<A HREF="mailto:carpaski@gentoo.org">carpaski@gentoo.org</A>&gt;
+Phil Bordelon &lt;<A HREF="mailto:phil@thenexusproject.org">phil@thenexusproject.org</A>&gt;
+Mike Frysinger &lt;<A HREF="mailto:vapier@gentoo.org">vapier@gentoo.org</A>&gt;
+Marius Mauch &lt;<A HREF="mailto:genone@gentoo.org">genone@gentoo.org</A>&gt;
+</PRE>
+
+<A NAME="lbAN">&nbsp;</A>
+<H2>PLIKI</H2>
+
+<DL COMPACT>
+<DT><B>/var/lib/portage/world</B> <DD>
+Zawiera listę wszystkich pakietów zainstalowanych przez użytkownika. Można
+edytować ten plik, dodając pakiety, które chcemy by były rozpatrywane podczas
+aktualizacji zestawu <B>world</B> i usuwać przez nas niechciane.
+<DT><B>/etc/make.conf</B> <DD>
+Zawiera zmienne wymagane w procesie budowania pakietu, nadpisując te z pliku
+<B>make.globals</B>. <B>Należy modyfikować ten plik, zamiast innych wymienionych
+poniżej</B>.
+<DT><B>/etc/dispatch-conf.conf</B>
+
+<DD>
+Zawiera ustawienia dotyczące automatycznego tworzenia kopii bezpieczeństwa i
+aktualizacji plików konfiguracjnych.
+<DT><B>/etc/make.profile/make.defaults</B><DD>
+Zawiera specyficzne dla profilu zmienne dla procesu budowania. <B>Nie należy
+modyfikować tego pliku</B>.
+<DT><B>/etc/make.profile/use.defaults</B><DD>
+Zawiera listę pakietów, które jeśli są zainstalowane, włączają odpowiednią flagę
+USE. <B>Nie należy modyfikować tego pliku</B>.
+<DT><B>/usr/portage/profiles/use.desc</B> <DD>
+Zawiera listę flag USE i ich opis. <B>Nie należy modyfikować tego pliku</B>.
+<DT><B>/etc/make.profile/virtuals</B> <DD>
+Zawiera listę pakietów standardowych, używaną w celu ustalenia, który pakiet
+wypełnia wirtual. <B>Nie należy modyfikować tego pliku</B>.
+<DT><B>/etc/make.profile/packages</B><DD>
+Zawiera listę pakietów używaną przez system. Zestawy <B>system</B> i <B>world</B>
+sprawdzają ten plik. <B>Nie należy modyfikować tego pliku</B>.
+<DT><B>/etc/make.globals</B> <DD>
+Zawiera standardowe ustawienia zmiennych dla procesu budowania pakietów. <B>Nie
+należy modyfikować tego pliku</B>.
+</DL>
+<A NAME="lbAO">&nbsp;</A>
+<H2>ZOBACZ TAKŻE</H2>
+
+<B>emerge --help,</B>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+ebuild">ebuild</A></B>(1),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+portage">portage</A></B>(5)
+
+<P>
+
+Wiele aplikacji pomocniczych znajduje się w <I>/usr/lib/portage/bin</I>.
+<P>
+
+Pakiet <B>app-portage/gentoolkit</B> zawiera bardzo praktyczne skrypty, takie
+jak <B>equery</B> (narzędzie do pozyskiwania informacji o pakietach).
+<A NAME="lbAP">&nbsp;</A>
+<H2>TŁUMACZENIE</H2>
+
+Damian Szeluga &lt;<A HREF="mailto:damjanek@gmail.com">damjanek@gmail.com</A>&gt;
+<BR>
+
+Polski projekt tłumaczenia manuali Gentoo
+<BR>
+
+<A HREF="http://gentoo.org/~rane/tlumaczenie-manuali.html">http://gentoo.org/~rane/tlumaczenie-manuali.html</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAZWA</A><DD>
+<DT><A HREF="#lbAC">SKŁADNIA</A><DD>
+<DT><A HREF="#lbAD">OPIS</A><DD>
+<DT><A HREF="#lbAE">EBUILDY, ARCHIWA, ZESTAWY I ZALEŻNOŚCI</A><DD>
+<DT><A HREF="#lbAF">AKCJA</A><DD>
+<DT><A HREF="#lbAG">OPCJE</A><DD>
+<DT><A HREF="#lbAH">OPCJE ŚRODOWISKOWE</A><DD>
+<DT><A HREF="#lbAI">WYJŚCIE</A><DD>
+<DT><A HREF="#lbAJ">UWAGI</A><DD>
+<DT><A HREF="#lbAK">ZAMASKOWANE PAKIETY</A><DD>
+<DT><A HREF="#lbAL">ZGŁASZANIE BŁĘDÓW</A><DD>
+<DT><A HREF="#lbAM">AUTORZY</A><DD>
+<DT><A HREF="#lbAN">PLIKI</A><DD>
+<DT><A HREF="#lbAO">ZOBACZ TAKŻE</A><DD>
+<DT><A HREF="#lbAP">TŁUMACZENIE</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 17:45:10 GMT, May 26, 2006
+</BODY>
+</HTML>

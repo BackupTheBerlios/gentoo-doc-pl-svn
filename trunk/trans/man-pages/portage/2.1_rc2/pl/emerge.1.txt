@@ -1,0 +1,569 @@
+.TH "EMERGE" "1" "Dec 2005" "Portage 2.1" "Portage"
+.SH "NAZWA"
+emerge \- obsługiwany z linii poleceń interfejs systemu Portage
+.SH "SKŁADNIA"
+.TP
+.BR emerge
+[\fIopcje\fR] [\fIakcja\fR] [\fIebuild\fR | \fIarchiwum\fR | \fIzestaw\fR | \fIzależności\fR] ...
+.TP
+.BR emerge
+\fB\-\-sync\fR | \fB\-\-info\fR | \fB\-\-version\fR
+.TP
+.BR emerge
+\fB\-\-search\fR \fItekst\fR
+.TP
+.BR emerge
+\fB\-\-help\fR [\fBsystem\fR | \fBconfig\fR | \fBsync\fR]
+.SH "OPIS"
+\fBemerge\fR jest obsługiwanym z linii poleceń intersfejsem do systemu Portage,
+który przede wszystkim wykorzystywany jest do instalowania nowych pakietów.
+\fBemerge\fR może automatycznie obsłużyć wszelkie zależności, jakie ma pożądany
+pakiet. \fBemerge\fR może także aktualizować \fBdrzewo Portage\fR, budując
+nowe i zaktualizowane pakiety. \fBemerge\fR bardzo dobrze radzi sobie z
+aktualizacją zainstalowanych pakietów do nowszych wersji. Zajmuje się pakietami
+budowanymi ze źródeł, a także pakietami binarnymi. Może być również używane w
+celu tworzenia pakietów binarnych.
+.SH "EBUILDY, ARCHIWA, ZESTAWY I ZALEŻNOŚCI"
+\fBemerge\fR przede wszystkim instaluje pakiety. Można wybrać, w jaki sposób: 
+jako \fIebuild\fR, \fIarchiwum\fR, \fIzestaw\fR lub jako \fIzależność\fR.
+.LP
+.TP
+.BR ebuild
+\fIebuild\fR musi być co najmniej poprawną nazwą katalogu z pakietem w Portage,
+bez wersji lub kategorii, tak jak \fBportage\fR czy \fBpython\fR. I wersja i
+kategoria również mogą być użyte, tak jak \fBsys\-apps/portage\fR czy
+\fB=python\-2.2.1\-r2\fR. \fBemerge\fR ignoruje kończący nazwę ukośnik, tak że
+nazwy powstałe w wyniku automatycznego dopełniania także mogą zostać użyte.
+\fIebuild\fR może być również ścieżką do pliku, jak
+\fB/usr/portage/app\-admin/python/python\-2.2.1\-r2.ebuild\fR. 
+UWAGA: Aktualnie obsługa \fBemerge /ścieżka/do/ebuilda\fR jest uszkodzona, więc taka
+składnia nie powinna być używana.
+.TP
+.BR archiwum
+\fIarchiwum\fR musi być poprawnym plikiem .tbz2 utworzonym przy pomocy \fBebuild
+<pakiet>\-<wersja>.ebuild\fR, \fBemerge \-\-buildpkg [kategoria/]<pakiet>\fR
+lub \fBquickpkg /var/db/pkg/<kategoria>/<pakiet>\fR.  
+.TP
+.BR zestaw
+Zestawy pakietów są ułatwieniem umożliwiającym obsługę dużych grup pakietów.
+Obecnie istnieją dwie zestawy: \fBsystem\fR i \fBworld\fR. \fBsystem\fR odnosi
+się do zbioru pakietów, które są niezbędne, by system działał poprawnie.
+\fBworld\fR zawiera wszystkie pakiety w \fBsystem\fR, a także wszystkie
+pozostałe pakiety, zawarte w \fB/var/lib/portage/world\fR. [Więcej informacji w
+sekcji \fBPLIKI\fR] Należy zwrócić uwagę, że te komendy są używane w koniunkcji
+z \fB\-\-update\fR.
+.TP
+.BR zależność
+\fIzależność\fR opisuje pakiety, które mają zostać zainstalowane. \fIPatrz
+portage(5) w celu zasięgnięcia większej ilości informacji na temat tych
+'atomów'.\fR Na przykład, do \fB>=dev\-lang/python\-2.2.1\-r2\fR dopasowana
+zostanie najnowsza dostępna wersja Pythona, wyższa lub równa 2.2.1\-r2.
+Podobnie, do \fB<dev\-lang/python\-2.0\fR dopasowana zostanie najnowsza dostępna
+wersja Pythona przed wersją 2.0. Należy mieć na uwadze, że wiele powłok wymaga
+znaków unikowych dla znaków takich jak '<' i '=', używamy pojedynczego \- lub
+podwójnego apostrofu wokół \fIzależności\fR, by nie mieć problemów ze znakami 
+unikowymi.
+.SH "AKCJA"
+.TP
+.BR "Brak akcji"
+Jeśli żadna akcja nie zostanie określona, akcją jest instalowanie określonych
+pakietów i wypełnianie zależności. Argumentami mogą być \fIebuildy\fR,
+\fIarchiwa\fR, \fIzestawy\fR lub \fIzależności\fR. \fBNależy mieć na uwadze, że
+należy użyć opcji \-\-usepkg, jeżeli zamierzamy zainstalować plik tbz2\fR.
+Pakiety zostają dodane do pliku \fBworld\fR, więc później brane są pod uwagę
+podczas aktualizacji systemu.  
+.TP
+.BR "\-\-clean " (\fB\-c\fR)
+Oczyszcza system, poprzez usuwanie pakietów których brak nie spowoduje
+zmniejszenia funkcjonalności systemu. Argumentem mogą być \fIebuildy\fR,
+\fIzestawy\fR lub \fIzależności\fR. Na przykład \fBemerge clean binutils\fR
+usunie stare wersje binutils; \fBemerge \-\-clean net\-www/mozilla\-0.9.9\-r2\fR
+usunie konkretną wersję Mozilli. Ogólnie jest to bezpieczne. \fBNależy mieć na
+uwadze\fR, że \-\-clean\fB nie usunie pakietów, które nie znajdują w slocie
+innym niż domyślny.\fR 
+.TP
+.BR \-\-depclean
+Odnajduje wszystkie pakiety, które są zainstalowane bez żadnego powodu.
+\fRemerge\fR tworzy listę pakietów, które powinny być zainstalowane sprawdzając
+listę pakietów w klasie \fBsystem\fRe oraz plik \fBworld\fR. Porównuje to z
+listą pakietów, które są zainstalowane.  Różnice zostaną wymienione jako pakiety
+do przeznaczone do usunięcia, a po krótkiej chwili zostaną usunięte. \fBUWAGA:
+Usuwanie niektórych pakietów może spowodować, że pakiety zależne od usuwanego
+pakietu przestaną działać i zaczną zgłaszać błędy dotyczące brakujących
+bibliotek\fR.  Należy ponownie zainstalować dany pakiet, by naprawić ten
+problem. \fBNależy mieć na uwadze, że zmiany we flagach USE mogą drastycznie
+wpłynąć na wynik \-\-depclean\fR.  
+.TP
+.BR "\-\-help " (\fB\-h\fR)
+Wyświetla pomocnicze informacje dla emerge. Dodając jeden z dodatkowych
+argumentów wymienionych poniżej otrzymujemy dokładniejsze informacje na dany
+temat. Wewnętrzna pomoc programu \fBemerge\fR jest aktualizowana znacznie
+częściej niż ta strona podręcznika man; warto to sprawdzić jeśli mamy
+problem, a ta strona podręcznika man nie pomaga nam w rozwiązaniu problemu.
+.TP
+.BR \-\-info
+Jest to zbiór informacji pomagających deweloperom w naprawianiu błędów.
+\fBNależy załączyć te informacje podczas procesu zgłaszania błędu.\fR
+Obszerniejsze wyjście można otrzymać przy pomocy opcji \fI\-\-verbose\fR.
+.TP
+.BR \-\-metadata
+Nakazuje Portage przetworzyć wszystkie pliki metacache, tak jak jest to robione
+na koniec procesu aktualizacji rsync podczas \fBemerge \-\-sync\fR. Proces ten
+utworzy bazę danych używaną przez Portage w celu przyspieszenia przeglądania
+informacji o pakietach.
+.TP
+.BR "\-\-prune " (\fB\-P\fR)
+\fBUWAGA: Ten parametr może usunąć ważne pakiety!\fR Próbuje usunąć wszystkie
+wersje danego pakietu poza najnowszą zainstalowaną. Jako, że ta komenda
+aktualnie nie obsługuje poprawnie posiadania w systemie wielu wersji jednego
+pakietu, należy być ostrożnym! To polecenie nie sprawdza zależności, więc może
+również usunąć pakiety niezbędne do poprawnego działania systemu. \fBJeśli nie
+jest się absolutnie pewnym co się robi, należy zamiast tej opcji użyć
+paramtetru \fR \-\-clean \fB\fR. Argumentami dla tego polecenia, mogą być
+\fIebuildy\fR, \fIzestawy\fR lub \fIzależności\fR \-\- patrz przykłady dla
+\fB\-\-clean\fR. Ostrzegaliśmy!
+.TP
+.BR \-\-regen
+Nakazuje Portage sprawdzić i zaktualizować cache zależności wszystkich pakietów
+z drzewa portage. Ten cache używany jest by przyspieszyć przeszukiwanie drzewa
+Portage i tworzenie drzew zależności. To polecenie nie jest zalecane dla
+użytkowników korzystających z rsync do aktualizacji drzewa Portage, jako że
+wówczas wykorzystywany jest cache z serwera. Jeśli nie wiemy, jaka jest różnica
+pomiędzy 'użytkownikiem korzystającym z rsync', a jakimkolwiek innym
+użytkownikiem, jesteśmy 'użytkownikiem korzystającym z rsync' :). Wówczas, w
+celu wygenerowania cache, wystarczy uruchomić \fBemerge \-\-sync\fR. Po
+aktualizacji drzewa Portage dla użytkowników rsync dogodnym może być
+uruchomienie \fBemerge \-\-metadata\fR w celu przebudowania cache, tak jak to
+robi Portage na końcu operacji synchronizacji drzewa.
+.TP
+.BR "\-\-resume"
+Wznawia ostatnią wykonywaną instalację. Należy mieć na uwadze, że ta operacja
+zwróci jedynie komunikat o błędzie w przypadku niepowodzenia. Jeśli nie
+pozostało nic do zrobienia, Portage zakończy operację i zwróci informację o
+sukcesie.
+.TP
+.BR "\-\-search " (\fB\-s\fR)
+Przeszukuje drzewo Portage zwracając dopasowania do podanego wzoru. Wzór dla
+\-\-search jest wyrażeniem regularnym. Na przykład, \fBemerge \-\-search
+"^kde"\fR poszukuje wszystkich pakietów, których nazwa zaczyna się od "kde";
+\fBemerge \-\-search "gcc$"\fR poszukuje wszystkich pakietów, których nazwa
+kończy się "gcc"; \fBemerge \-\-search "office"\fR poszukuje wszystkich
+pakietów, których nazwa zawiera słowo "office". Jeśli chcemy również
+przeszukiwać opisy pakietów, korzystamy z akcji \fB\-\-searchdesc\fR.
+.TP
+.BR "\-\-searchdesc " (\fB\-S\fR)
+Zwraca dopasowania do poszukiwanego wzoru spośród opisów pakietów, a także z
+nazw pakietów. \fBNależy uważać\fR, jako że opisy pakietów również są traktowane
+jak wyrażenia regularne.
+.TP
+.BR \-\-sync
+Nakazuje aktualizację drzewa Portage przy pomocy jednego z serwerów lustrzanych
+rsync.gentoo.org. \fBNależy mieć na uwadze, że wszelkie zmiany, jakich
+dokonaliśmy w drzewie Portage, zostaną nadpisane\fR. Do synchronizacji używa
+\fBrsync\fR, chyba że zostało to w odpowiedni sposób zmienione. W man
+\fBmake.conf\fR(5) w opisie zmiennej PORTDIR_OVERLAY omówimy sposób na
+uniknięcie usuwania zmian.
+.TP
+.BR "\-\-unmerge " (\fB\-C\fR)
+\fBUWAGA: Ta akcja może powodować usunięcie ważnych pakietów!\fR Usuwa
+wszystkie pakiety pasujące do wzoru. Nie sprawdza zależności, więc może usunąć
+pakiety wymagane do poprawnego funkcjonowania systemu. Jego argumentami mogą być
+\fIebuildy\fR, \fIklasy\fR lub \fIzależności\fR \-\- patrz przykłady dotyczące
+opcji \fB\-\-clean\fR.  
+.TP
+.BR "\-\-update " (\fB\-u\fR)
+Aktualizuje pakiety do najnowszej dostępnej wersji, która nie zawsze jest
+najnowszą możliwą dostępną wersją, ze względu na maskowanie w celach testowania
+i tworzenia pakietu. Polecenie zaktualizuje również bezpośrednie zależności, co
+niekoniecznie jest pożądane. Radzimy korzystać z tej opcji tylko w kombinacji z
+klasą world lub system.
+.TP
+.BR "\-\-version " (\fB\-V\fR)
+Wyświetla numer wersji programu \fBemerge\fR.
+.TP
+.BR "\-\-config "
+Wykonuje wszystkie niezbędne do wykonania akcje po instalacji pakietu. Pociąga
+to zwykle za sobą konieczność naniesienia poprawek na pliki konfiguracyjne lub
+innych zmian w ustawieniach.
+.SH "OPCJE"
+.TP
+.BR "\-\-alphabetical "
+Podczas wyświetlania flag USE i innych informacji o flagach, lista zostaje
+posortowana alfabetycznie.
+.TP
+.BR "\-\-ask " (\fB\-a\fR)
+Przed wykonaniem instalacji pokazuje jakie ebuildy i archiwa będą
+instalowane, tak samo jak przy użyciu opcji \fB\-\-pretend\fR, z tym że w
+przypadku tej opcji emerge pyta, czy kontynuować instalację, czy nie. Użycie
+\fB\-\-ask\fR jest bardziej efektywne niż użycie \fB\-\-pretend\fR a nastepnie
+wywoływanie tej samej komendy bez opcji \fB\-\-pretend\fR.
+.TP
+.BR "\-\-buildpkg " (\fB\-b\fR)
+Nakazuje emerge nie tylko zainstalować dany program ale i utworzyć pakiety
+binarne dla wszystkich przetworzonych ebuildów. Praktyczne dla opiekunów wielu
+systemów Gentoo Linux (budujemy raz, instalujemy plik tbz2 wszędzie). Pakiet
+zostanie utworzony w katalogu \fI${PKGDIR}/All\fR. Jako alternatywy, dla
+pakietu, który już znajduje się w systemie, można użyć \fBquickpkg\fR, który
+tworzy plik tbz2 z działającego systemu.
+.TP
+.BR "\-\-buildpkgonly " (\fB\-B\fR)
+Tworzy binarne pakiety dla wszystkich przetworzonych ebuildów, ale nie
+instaluje żadnych z nich w systemie. Wymaga to jednak istnienia wszystkich
+zależności dla danego pakietu w systemie w czasie jego budowania.
+.TP
+.BR "\-\-changelog " (\fB\-l\fR)
+Należy tego używać wraz z opcją \fB\-\-pretend\fR. Pokaże wpisy w pliku
+ChangeLog dla wszystkich pakietów, które będą aktualizowane.  
+.TP
+.BR "\-\-columns"
+Opcja użyta wraz z \fB\-\-pretend\fR spowoduje wyświetlenie nazwy pakietu, nowej
+i starej wersji w sformatowany, łatwy do skopiowania sposób.
+.TP
+.BR "\-\-debug " (\fB\-d\fR)
+Nakazuje emerge uruchomić się w trybie \fB\-\-debug\fR. W tym trybie środowisko
+bash w którym pakiet będzie budowany zostanie wywołane z opcją \-x, powodując,
+że wszystkie informacje potrzebne do usuwania błędów zostaną wyświetlone na
+wyjściu standardowym. Opcja \fB\-\-debug\fR jest bardzo praktyczna podczas
+szukania błędów składni basha.
+.TP
+.BR "\-\-deep " (\fB\-D\fR)
+Gdy użyta z opcją \fB\-\-update\fR, nakazuje \fBemerge\fR przeanalizować całe
+drzewo zależności pakietów zamiast sprawdzać tylko bezpośrednie zależności
+pakietu. Dzięki temu możliwe jest wyłapanie aktualizacji bibliotek, które nie
+są bezpośrednio umieszczone w zależnościach pakietu.
+.TP
+.BR "\-\-emptytree " (\fB\-e\fR)
+Ponownie instaluje wszystkie pakiety należące do klasy world i ich zależności,
+zgodnie z flagami USE, jak najmniej odwołując się do zainstalowanych pakietów.
+Należy najpierw wywołać z opcją \fB\-\-pretend\fR, by sprawdzić czy wynik tego
+polecenia będzie taki jak oczekiwaliśmy.
+.TP
+.BR "\-\-fetchonly " (\fB\-f\fR)
+Zamiast budować jakikolwiek pakiet, pobiera jedynie niezbędne źródła dla
+wszystkich pakietów (główny pakiet oraz jego wszelkie zależności).
+.TP
+.BR "\-\-fetch\-all\-uri " (\fB\-F\fR)
+Zamiast budować jakikolwiek pakiet, pobiera jedynie niezbędne źródła dla
+wszystkich pakietów i ich zależności.
+.TP
+.BR "\-\-getbinpkg " (\fB\-g\fR)
+Używając serwera i lokacji zdefiniowanej w \fIPORTAGE_BINHOST\fR (patrz
+\fBmake.conf\fR(5)), Portage pobiera informację od każdego odnalezionego pakietu
+binarnego i wykorzystuje te informacje w celu utworzenia listy zależności. Ta
+opcja implikuje \fB\-k\fR. (Używamy \fB\-gK\fR dla instalacji wyłącznie opartej
+na binariach).
+.TP
+.BR "\-\-getbinpkgonly " (\fB\-G\fR)
+Ta opcja jest identyczna z \fB\-g\fR powyżej, z tą różnicą, że nie użyje żadnej
+informacji z lokalnego komputera. Wszelkie pakiety binarne zostaną pobrane ze
+zdalnego serwera, bez sprawdzania, czy taki pakiet przypadkiem nie znajduje się
+już na dysku.
+.TP
+.BR "\-\-ignore-default-opts"
+Zmienna \fIEMERGE_DEFAULT_OPTS\fR (patrz \fBmake.conf\fR(5)) zostanie
+zignorowana.
+.TP
+.BR "\-\-newuse " (\fB\-N\fR)
+Nakazuje emerge sprawdzenie, w których pakietach flagi USE zostały zmienione od
+czasu kompilacji. Gwiazdka ozancza, że dana flaga USE zmieniła się od czasu
+kompilacji.
+.TP
+.BR "\-\-nocolor "
+Wyłącza kolory.
+.TP
+.BR "\-\-noconfmem"
+Nakazuje Portage zignorować ścieżki podane w \fBCONFIG_PROTECT\fR i nadpisać
+pliki w powyższych katalogach, niezależnie od tego, czy już istnieją. Portage
+normalnie instaluje te pliki tylko jeden raz, by oszczędzić użytkownikowi
+borykania się z tymi samymi plikami konfiguracyjnymi wiele razy. Ta flaga
+powoduje, że pliki zawsze będą instalowane.
+.TP
+.BR "\-\-nodeps " (\fB\-O\fR)
+Instaluje określone pakiety, bez instalowania jakichkolwiek ich zależności.
+Należy mieć na uwadze, że proces budowania pakietu może zakończyć się błędem w
+sytuacji, gdy zależności nie zostały spełnione.
+.TP
+.BR "\-\-noreplace " (\fB\-n\fR)
+Pomija pakiety podane w tej komendzie, które już są zainstalowne. Bez tej opcji,
+wszelkie pakiety, ebuildy czy zależności które zostaną podane w tej komendzie
+zostaną zbudowane, nawet jeśli pakiet już jest zainstalowany. Należy mieć na
+uwadze, że standardowo Portage nie przebuduje zależności.  
+.TP
+.BR "\-\-nospinner"
+Wyłączy spinner (obracający się znak podczas ustalania zależności) na czas tej
+sesji. Spinner jest aktywny, jeżeli urządzeniem terminala okaże się być TTY. Ta
+flaga wyłącza spinner, niezależnie od powyższego urządzenia.  
+.TP
+.BR "\-\-oneshot " (\fB\-1\fR)
+Normalnie instaluje, ale nie dodaje pakietów do pliku world w celu późniejszej
+aktualizacji.
+.TP
+.BR "\-\-onlydeps " (\fB\-o\fR)
+Instaluje jedynie (lub udaje, że instaluje) zależności danego pakietu, a nie sam
+pakiet.
+.TP
+.BR "\-\-pretend " (\fB\-p\fR)
+Zamiast wykonać operację instalacji, po prostu pokazuje, co *mogłoby* być
+zainstalowane, gdyby opcja \fB\-\-pretend\fR nie została użyta. Użycie opcji
+\fB\-\-pretend\fR jest polecane przed instalacją nieznanego nam pakietu.
+Wynikiem mogą być, 
+.br 
+ 
+.br 
+\fIN\fR = nowy, (Jeszcze nie zainstalowany)
+.br 
+\fIS\fR = nowy, instalacja do slotu (sposób na koegzystencję różnych wersji
+jednego pakietu w systemie) 
+.br 
+\fIU\fR = aktualizacja, (Zmiana wersji)
+.br 
+\fID\fR = instalacja starszej wersji niż aktualnie zainstalowana 
+.br 
+\fIR\fR = ponowna instalacja tej samej wersji
+.br 
+\fIF\fR = ograniczenie pobierania, należy ręcznie pobrać źródła
+.br 
+\fIf\fR = ograniczenie pobieranie, pobieranie trwa w tej chwili
+.br 
+\fIB\fR = blokowany przez już zainstalowany pakiet
+.TP
+.BR "\-\-quiet " (\fB\-q\fR)
+Wynik może być różny, ale ogólne założenie jest takie, by zredukować ilość
+informacji, które wyświetla Portage.
+.TP
+.BR "\-\-skipfirst"
+Ta opcja jest poprawna jedynie w przypadku użycia jej wraz z \fB\-\-resume\fR.
+Usuwa pierwszy pakiet na liście pakietów do wznowienia, tak by proces instalacji
+mógł być kontynuowany. Powinno być to jedynie używane w przypadku, gdy
+pominięcie pakietu nie uniemożliwi wypełnienia zależności.
+.TP
+.BR "\-\-tree " (\fB\-t\fR)
+Pokazuje drzewo zależności poprzez zastosowanie wcięćJest to na prawdę
+praktyczne w połączeniu z opcją \fB\-\-emptytree\fR lub \fB\-\-update\fR
+i \fB\-\-deep\fR.  
+.TP
+.BR "\-\-usepkg " (\fB\-k\fR) 
+Nakazuje emerge skorzystać z binarnych pakietów (z $PKGDIR), jeśli są one
+dostępne w celu ominięcia czasochłonnej kompilacji. Opcja ta jest na prawdę
+praktyczna w przypadku instalacji z płyty CD; można wykonać export
+PKGDIR=/mnt/cdrom/packages i wówczas skorzystać z tej opcji, by emerge użyło
+binarnych pakietów w celu wypełnienia zależności.
+.TP
+.BR "\-\-usepkgonly " (\fB\-K\fR)
+Nakazuje emerge używać tylko binarnych pakietów (z $PKGDIR). Wszelkie binarne
+pakiety muszą być dostępne podczas procesu ustalania zależności. W przeciwnym
+wypadku emerge zakończy swoje działanie. Portage nie używa zmiennej $PORTDIR
+podczas procesu ustalania zależności, więc wszelkie informacje dotyczące
+maskowania sa ignorowane.
+.TP
+.BR "\-\-verbose " (\fB\-v\fR)
+Nakazuje emerge wypisywać więcej informacji. Obecnie powoduje to wyświetlanie
+błędów GNU, jeśli jakiś wystąpi, a także wyświetlenie flag USE, z którymi
+pakiet zostanie zbudowany, gdy zostaje uruchomione razem z opcją --pretend lub
+--ask.
+.SH "OPCJE ŚRODOWISKOWE"
+.TP
+\fBROOT\fR = \fI[ścieżka]\fR
+Używamy \fBROOT\fR w celu określenia docelowego korzenia systemu plików
+używanego podczas instalowania pakietów lub ebuildów.
+.br
+Standardowo to /.
+.TP
+\fBPORTAGE_CONFIGROOT\fR = \fI[ścieżka]\fR
+Używamy \fBPORTAGE_CONFIGROOT\fR by określić gdzie znajdują się różne pliki
+konfiguracyjne Portage (więcej informacji w sekcji \fBPLIKI\fR poniżej).
+.br
+Standardowo to /.
+.SH "WYJŚCIE"
+Gdy wywołamy \fBemerge\fR z opcjami \fB\-\-pretend\fR i \fB\-\-verbose\fR, wynik
+może być na początku trudny do zrozumienia. Ta sekcja tłumaczy jego znaczenie.
+.TP
+.B [blocks B     ] app\-text/dos2unix (from pkg app\-text/hd2u\-0.8.0)
+Dos2unix blokuje hd2u. Pakiety blokujące pojawiają się w sytuacji, gdy dwa
+pakiety koliduja ze sobą. W sytuacji, gdyby pakiety nie były blokowane, mogłoby
+to prowadzić do uszkodzenia systemu. Pakiety blokujące się wzajemnie, nie musza
+być zainstalowane jednocześnie, ponieważ w większkości przypadków zapewniają tą
+samą funkcjonalność.
+.TP
+.B [ebuild  N    ] app\-games/qstat\-25c
+Qstat jest nowym pakietem i będzie zainstalowany po raz pierwszy.
+.TP
+.B [ebuild  NS   ] dev-libs/glib-2.4.7
+W systemie znajduje się już inna wersja pakietu glib, ale 'nowa' wersja jest
+dostępna dla innego slotu.
+.TP
+.B [ebuild   R   ] sys\-apps/sed\-4.0.5
+Sed 4.0.5 znajduje się już w systemie i w przypadku wykonania tego polecenie
+zostanie przebudowany.
+.TP
+.B [ebuild    F  ] media\-video/realplayer\-8\-r6
+Pakiet realplayer wymaga pobrania źródeł ręcznie. Jeśli spróbujemy zainstalować
+ten pakiet i źródła nie zostaną odnalezione, Portage zatrzyma się i dostaniemy
+instrukcje, skąd pobrać niezbędne pliki.
+.TP
+.B [ebuild    f  ] media\-video/realplayer\-8\-r6
+Pliki pakietu realplayer zostały już pobrane.
+.TP
+.B [ebuild     U ] net\-fs/samba\-2.2.8_pre1 [2.2.7a]
+Samba 2.2.7a jest już zainstalowana i może zostać zaktualizowana do wersji
+2.2.8_pre1.  
+.TP
+.B [ebuild     UD] media\-libs/libgd\-1.8.4 [2.0.11]
+Libgd 2.0.11 jest zainstalowane, ale po wykonaniu polecenia Portage powróci do
+starszej wersji 1.8.4.
+.br 
+Tak może się stać w sytuacji, gdy nowsza wersja pakietu została zamaskowana ze
+względu na jego uszkodzenie lub potencjalne błędy związane z bezpieczeństwem i
+poprawka jeszcze nie została udostępniona.
+.br 
+Innym powodem może być fakt, że pakiet który próbujemy zainstalować wymaga
+starszej wersji innego pakietu w celu poprawnego funkcjonowania. W tym
+przypadku, 2.x jest niekompatybilne z libgd 1.x. To oznacza, że pakiety
+stworzone w oparciu o libgd 1.x nie skompilują się z 2.x i wymagany jest powrót
+do starszej wersji, by móc te pakiety zainstalować.
+.TP
+.B [ebuild     U ] sys\-devel/distcc\-2.16 [2.13\-r1] USE="ipv6* \-gtk \-qt%"
+Tutaj widzimy, że zmienna USE w pliku make.conf decyduje o tym, jak dany pakiet
+ma zostać zbudowany. W tym przypadku, opcjonalne wsparcie dla ipv6 jest
+włączone, a wsparcie dla gtk i qt, wyłączone. Gwiazdka oznacza, że wsparcie dla
+ipv6 było wyłączone poprzednim razem, gdy dany pakiet był instalowany. Znak
+procenta przy qt oznacza, że opcja qt została dodana do danego pakietu od czasu
+jego instalacji w systemie.
+.br
+\fB*Uwaga:\fR Flagi które nie zostały zmienione od czasu instalacji są
+wyświetlane tylko wtedy, gdy emerge zostanie wywołane z opcją \fB\-\-pretend\fR
+i \fB\-\-verbose\fR. Używając opcji \fB\-\-quiet\fR wyłączamy pokazywanie
+wszelkich informacji na ten temat.
+.SH "UWAGI"
+Powinno się każdorazowo poprzedzać instalację pakietów lub aktualizację opcją
+\fB\-\-pretend\fR. Pozwala to sprawdzić, jak wiele pakietów zostanie
+zainstalowanych i pokaże pakiety blokujące. Szczególnie ważne jest to w
+przypadku zestawów \fBsystem\fR i \fBworld\fR, które mogą aktualizować ogromne
+ilości pakietów.
+.LP
+Z reguły warto użyć opcji \fB\-\-update\fR, która ignoruje pakiety, które
+zostały już zaktualizowane ale aktualizuje te, dla których nowsza wersja jest
+dostępna.
+.LP
+Jeśli instalujemy pakiet z odinstalowanymi zależnościami i wyraźnie nie
+określimy tych zależności na liście parametrów, nie zostaną one dodane do pliku
+world. Jeśli chcemy by były one wykrywane podczas aktualizacji klasy world,
+należy upewnić się, że są wyszczególnione na liście parametrów dla \fBemerge\fR.
+.LP
+\fBZmienne USE\fR mogą być wyszczególnione jako parametr dla komendy i
+zastępować standardowe, określone w ich normalnych lokalizacjach, pozwalając
+uniknąć niektórych zależności. \fBFlagi USE określone jako parametr dla komendy,
+nie będą pamiętane\fR. Na przykład \fBUSE="\-X \-gnome" emerge mc\fR,
+zainstaluje mc z takimi flagami USE. Jeśli chcemy, by te ustawienia zostały
+zapamiętane, należy je umieścić w pliku /etc/portage/package.use.
+.LP
+Jeśli \fBemerge \-\-update system\fR lub \fBemerge \-\-update world\fR zakończy
+się błędem, może się okazać, że ebuild korzysta z nowych opcji, które nie są
+dostępne w bieżącej wersji \fBemerge\fR. Należy wówczas skorzystać z \fBemerge
+\-\-update portage\fR w celu aktualizacji do najnowszej dostępnej wersji, co
+powinno umożliwić użycie nowych opcji.
+.SH "ZAMASKOWANE PAKIETY"
+\fIUWAGA: Należy być ostrożnym używając pakietów w wersjach rozwojowych.
+Problemy i błędy wynikające z używania pakietów zamaskowanych zabierają
+deweloperom Gentoo cenny czas. Należy mieć świadomość, że korzystanie z
+takich wersji może wiązać się z problemami.\fR
+.LP
+Maskowanie w \fBPortage\fR zapewnia trzy podstawowe funkcje: daje czas na
+przetestowanie, które pakiety mogą być używane; uniemożliwia użycie pakietu,
+gdy ten nie działa; maskuje istniejące pakiety, które mogą być uszkodzone lub
+są narażone na błędy związane z bezpieczeństwem.  Maskowanie może być
+realizowane na dwa sposoby: poprzez \fBpackage.mask\fR i \fBKEYWORDS\fR.
+Poniżej znajduje się informacja, jak odmaskowywać pakiety.  Należy mieć również
+na uwadze, że jeśli nakażemy \fBemerge\fR zainstalować ebuild, wszystkie
+sposoby maskowania zostaną zignorowane i \fBemerge\fR spróbuje zainstalować
+pakiet.
+.TP
+.BR package.mask
+Plik \fBpackage.mask\fR blokuje użycie pakietów, które mogą powodować problemy
+lub wiadomo, że mogą zachowywać się dziwnie na różnych systemach. Plik ten
+znajduje się w \fI/usr/portage/profiles\fR.
+.TP
+.BR KEYWORDS
+Zmienna \fBKEYWORDS\fR dostępna w pliku \fBebuild\fR jest również używana do
+maskowania pakietów, które wciąż są w fazie testowania. Znajdują się tam
+informacje o różnych architekturach, tak by \fBPortage\fR wiedziało, z jakimi
+systemami dany pakiet jest kompatybilny. Pakiety, które zostały zbudowane na
+danej architekturze, ale nie udowodniono jeszcze ich "stabilności", są maskowane
+poprzez dodanie tyldy (\fB~\fR) na początku nazwy architektury. \fBemerge\fR
+sprawdza zmienną \fBACCEPT_KEYWORDS\fR i pozwala lub nie, na instalację danego
+pakietu zamaskowanego poprzez \fBKEYWORDS\fR. W celu poinformowania
+\fBemerge\fR, że ma używać tych 'testowych' wersji pakietu, należy zaktualizować
+lokalny plik \fI/etc/portage/package.keywords\fR by określić pakiety, które mają
+pojawić się w wersji 'testowej'. Patrz \fBportage\fR(5) w celu zasięgnięcia
+większej ilości informacji.
+.SH "ZGŁASZANIE BŁĘDÓW"
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu 
+.LP
+\fBhttp://bugs.gentoo.org/\fR
+.LP
+Prosimy dołączać do zgłoszeń wynik polecenia \fBemerge \-\-info\fR.
+.SH "AUTORZY"
+.nf
+Daniel Robbins <drobbins@gentoo.org>
+Geert Bevin <gbevin@gentoo.org>
+Achim Gottinger <achim@gentoo.org>
+Nicholas Jones <carpaski@gentoo.org>
+Phil Bordelon <phil@thenexusproject.org>
+Mike Frysinger <vapier@gentoo.org>
+Marius Mauch <genone@gentoo.org>
+.fi
+.SH "PLIKI"
+.TP
+\fB/var/lib/portage/world\fR 
+Zawiera listę wszystkich pakietów zainstalowanych przez użytkownika. Można
+edytować ten plik, dodając pakiety, które chcemy by były rozpatrywane podczas
+aktualizacji zestawu \fBworld\fR i usuwać przez nas niechciane.
+.TP
+\fB/etc/make.conf\fR 
+Zawiera zmienne wymagane w procesie budowania pakietu, nadpisując te z pliku
+\fBmake.globals\fR. \fBNależy modyfikować ten plik, zamiast innych wymienionych
+poniżej\fR.
+.TP
+.B /etc/dispatch\-conf.conf
+Zawiera ustawienia dotyczące automatycznego tworzenia kopii bezpieczeństwa i
+aktualizacji plików konfiguracjnych.
+.TP
+\fB/etc/make.profile/make.defaults\fR
+Zawiera specyficzne dla profilu zmienne dla procesu budowania. \fBNie należy
+modyfikować tego pliku\fR.
+.TP
+\fB/etc/make.profile/use.defaults\fR
+Zawiera listę pakietów, które jeśli są zainstalowane, włączają odpowiednią flagę
+USE. \fBNie należy modyfikować tego pliku\fR.
+.TP
+\fB/usr/portage/profiles/use.desc\fR 
+Zawiera listę flag USE i ich opis. \fBNie należy modyfikować tego pliku\fR.
+.TP
+\fB/etc/make.profile/virtuals\fR 
+Zawiera listę pakietów standardowych, używaną w celu ustalenia, który pakiet
+wypełnia wirtual. \fBNie należy modyfikować tego pliku\fR.
+.TP
+\fB/etc/make.profile/packages\fR
+Zawiera listę pakietów używaną przez system. Zestawy \fBsystem\fR i \fBworld\fR
+sprawdzają ten plik. \fBNie należy modyfikować tego pliku\fR.
+.TP
+\fB/etc/make.globals\fR 
+Zawiera standardowe ustawienia zmiennych dla procesu budowania pakietów. \fBNie
+należy modyfikować tego pliku\fR.
+.SH "ZOBACZ TAKŻE"
+.BR "emerge \-\-help",
+.BR ebuild (1),
+.BR ebuild (5),
+.BR make.conf (5),
+.BR portage (5)
+.LP
+Wiele aplikacji pomocniczych znajduje się w \fI/usr/lib/portage/bin\fR.
+.LP
+Pakiet \fBapp\-portage/gentoolkit\fR zawiera bardzo praktyczne skrypty, takie
+jak \fBequery\fR (narzędzie do pozyskiwania informacji o pakietach).
+.SH TŁUMACZENIE
+Damian Szeluga <damjanek@gmail.com>
+.br 
+Polski projekt tłumaczenia manuali Gentoo
+.br 
+http://gentoo.org/~rane/tlumaczenie-manuali.html

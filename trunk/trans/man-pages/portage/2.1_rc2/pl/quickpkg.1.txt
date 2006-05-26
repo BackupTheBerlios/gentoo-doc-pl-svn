@@ -1,0 +1,60 @@
+.TH "QUICKPKG" "1" "Dec 2005" "Portage 2.1" "Portage"
+.SH NAZWA
+quickpkg \- tworzy prekompilowane pakiety
+.SH SKŁADNIA
+.B quickpkg <list of pkgs>
+.SH OPIS
+.I quickpkg
+jest wykorzystywane do szybkiego budowania prekompilowanych pakietów za pomocą
+plików już zainstalowanych w systemie. Następnie taki pakiet można zainstalować
+w innym systemie. Dokładny opis instalowania prekompilowanych pakietów znajduje
+się w \fBemerge\fR(1). Zaletą korzystania z takich pakietów jest fakt, że nie
+trzeba wtedy czekać aż pakiet zostanie rozpakowany, skonfigurowany,
+skompilowany i zainstalowany zanim możliwe będzie jego użycie. Główną wadą jest
+fakt, że wewnątrz pakietu znajdować się będą pliki z systemu, na którym był on
+budowany, nawet jeśli zostały zmienione po instalacji.
+.br
+Utworzone przez program prekompilowane pakiety znajdują się w katalogu opisanym
+zmienną \fBPKGDIR\fR. Można ją ustawić w pliku \fBmake.conf\fR(5). Jej domyślna
+wartość to /usr/portage/packages.
+.SH OPCJE
+.TP
+.B <lista pakietów>
+Każdy pakiet na tej liście może zostać wymieniony na dwa sposoby. Można
+podać pełną ścieżkę do katalogu w bazie wirtuali, np.
+/var/db/pkg/<KATEGORIA>/<WERSJA-PAKIETU>/. Można również podać nazwę pakietu,
+tak jak podaje się ją emerge, kiedy chce się go zainstalować. Pełny opis
+znajduje się w \fBebuild\fR(5).
+.SH "PRZYKŁADY"
+.B quickpkg
+/var/db/pkg/dev-python/pyogg-1.1
+.br
+.B quickpkg
+planeshift
+.br
+.B quickpkg
+=apache-1.3.27-r1
+.br
+.B quickpkg
+=net-www/apache-2*
+.SH "ZGŁASZANIE BŁĘDÓW"
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu http://bugs.gentoo.org/
+.SH AUTORZY
+.nf
+Terry Chan (original author)
+Mike Frysinger <vapier@gentoo.org> (revamped version)
+.fi
+.SH "PLIKI"
+.TP
+.B /etc/make.conf
+W tym pliku konfiguruje się zmienną \fBPKGDIR\fR.
+.SH "ZOBACZ TAKŻE"
+.BR ebuild (5),
+.BR make.conf (5)
+.SH TŁUMACZENIE
+Łukasz Damentko <rane@gentoo.org>
+.br 
+Polski projekt tłumaczenia manuali Gentoo
+.br 
+http://gentoo.org/~rane/tlumaczenie-manuali.html
+
