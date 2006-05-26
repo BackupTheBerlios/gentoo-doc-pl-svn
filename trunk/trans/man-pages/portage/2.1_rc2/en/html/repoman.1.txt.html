@@ -1,0 +1,378 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of REPOMAN</TITLE>
+</HEAD><BODY>
+<H1>REPOMAN</H1>
+Section: Portage (1)<BR>Updated: Dec 2005<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+repoman - Gentoo's program to enforce a minimal level of quality assurance in packages added to the portage tree
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>repoman</B> [<I>option</I>] [<I>mode</I>]
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>Quality is job zero.</B>
+
+<P>
+<B>repoman</B>
+
+is meant for Gentoo developers only due to the fact it does not work on a per-ebuild basis.
+It checks the quality of CVS repositories.
+<P>
+Note: <B>repoman commit</B> only works <I>inside local</I> CVS repositories.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<DL COMPACT>
+<DT><B>-q</B>, <B>--quiet</B><DD>
+Be less verbose about extraneous info
+<DT><B>-p</B>, <B>--pretend</B><DD>
+Don't commit or fix anything; just show what would be done
+<DT><B>-i</B>, <B>--include-masked</B><DD>
+Include masked packages in scans at category or tree level
+<DT><B>-x</B>, <B>--xmlparse</B><DD>
+Forces the metadata.xml parse check to be carried out
+<DT><B>-v</B>, <B>--verbose</B><DD>
+Displays every package name while checking
+<DT><B>-I</B>, <B>--ignore-arches</B><DD>
+Ignore arch-specific failures (where arch != host)
+<DT><B>-m</B>, <B>--commitmsg</B><DD>
+Adds a commit message via the command line
+<DT><B>-M</B>, <B>--commitmsgfile</B><DD>
+Adds a commit message from the specified file
+<DT><B>-V</B>, <B>--version</B><DD>
+Show version info
+<DT><B>-h</B>, <B>--help</B><DD>
+Show this screen
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>MODES</H2>
+
+<DL COMPACT>
+<DT><B>full</B>
+
+<DD>
+Scan directory tree for QA issues (full listing)
+<DT><B>last</B>
+
+<DD>
+Remember report from last run
+<DT><B>help</B>
+
+<DD>
+Show this screen
+<DT><B>scan</B>
+
+<DD>
+Scan directory tree for QA issues (default)
+<DT><B>fix</B>
+
+<DD>
+Fix simple QA issues (stray digests, missing digests)
+<DT><B>lfull</B>
+
+<DD>
+Remember report from last run (full listing)
+<DT><B>commit</B>
+
+<DD>
+Scan directory tree for QA issues; if OK, commit via cvs
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>QA KEYWORDS</H2>
+
+<DL COMPACT>
+<DT><B>CVS/Entries.IO_error</B>
+
+<DD>
+Attempting to commit, and an IO error was encountered access the Entries file
+<DT><B>DEPEND.bad</B>
+
+<DD>
+User-visible ebuilds with bad DEPEND settings (matched against *visible* ebuilds)
+<DT><B>DEPEND.badindev</B>
+
+<DD>
+User-visible ebuilds with bad DEPEND settings (matched against *visible* ebuilds) in developing arch
+<DT><B>DEPEND.badmasked</B>
+
+<DD>
+Masked ebuilds with bad DEPEND settings (matched against *all* ebuilds)
+<DT><B>DEPEND.badmaskedindev</B>
+
+<DD>
+Masked ebuilds with bad DEPEND settings (matched against *all* ebuilds) in developing arch
+<DT><B>DEPEND.syntax</B>
+
+<DD>
+Syntax error in DEPEND (usually an extra/missing space/parenthesis)
+<DT><B>DESCRIPTION.missing</B>
+
+<DD>
+Ebuilds that have a missing or empty DESCRIPTION variable
+<DT><B>HOMEPAGE.missing</B>
+
+<DD>
+Ebuilds that have a missing or empty HOMEPAGE variable
+<DT><B>IUSE.invalid</B>
+
+<DD>
+This build has a variable in IUSE that is not in the use.desc or use.local.desc file
+<DT><B>KEYWORDS.invalid</B>
+
+<DD>
+This ebuild contains KEYWORDS that are not listed in profiles/arch.list or for which no valid profile was found
+<DT><B>KEYWORDS.missing</B>
+
+<DD>
+Ebuilds that have a missing or empty KEYWORDS variable
+<DT><B>KEYWORDS.stupid</B>
+
+<DD>
+Ebuilds that use KEYWORDS=-* instead of package.mask
+<DT><B>LICENSE.invalid</B>
+
+<DD>
+This ebuild is listing a license that doesnt exist in portages license/ dir.
+<DT><B>LICENSE.missing</B>
+
+<DD>
+Ebuilds that have a missing or empty LICENSE variable
+<DT><B>LICENSE.syntax</B>
+
+<DD>
+Syntax error in LICENSE (usually an extra/missing space/parenthesis)
+<DT><B>PDEPEND.bad</B>
+
+<DD>
+User-visible ebuilds with bad PDEPEND settings (matched against *visible* ebuilds)
+<DT><B>PDEPEND.badindev</B>
+
+<DD>
+User-visible ebuilds with bad PDEPEND settings (matched against *visible* ebuilds) in developing arch
+<DT><B>PDEPEND.badmasked</B>
+
+<DD>
+Masked ebuilds with PDEPEND settings (matched against *all* ebuilds)
+<DT><B>PDEPEND.badmaskedindev</B>
+
+<DD>
+Masked ebuilds with PDEPEND settings (matched against *all* ebuilds) in developing arch
+<DT><B>PDEPEND.syntax</B>
+
+<DD>
+Syntax error in PDEPEND (usually an extra/missing space/parenthesis)
+<DT><B>PROVIDE.syntax</B>
+
+<DD>
+Syntax error in PROVIDE (usually an extra/missing space/parenthesis)
+<DT><B>RDEPEND.bad</B>
+
+<DD>
+User-visible ebuilds with bad RDEPEND settings (matched against *visible* ebuilds)
+<DT><B>RDEPEND.badindev</B>
+
+<DD>
+User-visible ebuilds with bad RDEPEND settings (matched against *visible* ebuilds) in developing arch
+<DT><B>RDEPEND.badmasked</B>
+
+<DD>
+Masked ebuilds with RDEPEND settings (matched against *all* ebuilds)
+<DT><B>RDEPEND.badmaskedindev</B>
+
+<DD>
+Masked ebuilds with RDEPEND settings (matched against *all* ebuilds) in developing arch
+<DT><B>RDEPEND.syntax</B>
+
+<DD>
+Syntax error in RDEPEND (usually an extra/missing space/parenthesis)
+<DT><B>SLOT.missing</B>
+
+<DD>
+Ebuilds that have a missing or empty SLOT variable
+<DT><B>changelog.missing</B>
+
+<DD>
+Missing ChangeLog files
+<DT><B>changelog.notadded</B>
+
+<DD>
+ChangeLogs that exist but have not been added to cvs
+<DT><B>digest.assumed</B>
+
+<DD>
+Existing digest must be assumed correct (Package level only)
+<DT><B>digest.disjointed</B>
+
+<DD>
+Digests not added to cvs when the matching ebuild has been added
+<DT><B>digest.fail</B>
+
+<DD>
+Digest does not match the specified local file
+<DT><B>digest.missing</B>
+
+<DD>
+Digest files that are missing (ebuild exists, digest doesn't)
+<DT><B>digest.notadded</B>
+
+<DD>
+Digests that exist but have not been added to cvs
+<DT><B>digest.partial</B>
+
+<DD>
+Digest files do not contain all corresponding URI elements
+<DT><B>digest.stray</B>
+
+<DD>
+Digest files that do not have a corresponding ebuild
+<DT><B>digest.unmatch</B>
+
+<DD>
+Digests which are incomplete (please check if your USE/ARCH includes all files)
+<DT><B>digest.unused</B>
+
+<DD>
+Digest/Manifest entry has no matching SRC_URI entry
+<DT><B>ebuild.allmasked</B>
+
+<DD>
+All ebuilds are masked for this package (Package level only)
+<DT><B>ebuild.badheader</B>
+
+<DD>
+This ebuild has a malformed header
+<DT><B>ebuild.disjointed</B>
+
+<DD>
+Ebuilds not added to cvs when the matching digest has been added
+<DT><B>ebuild.invalidname</B>
+
+<DD>
+Ebuild files with a non-parseable or syntactically incorrect name (or using 2.1 versioning extensions)
+<DT><B>ebuild.majorsyn</B>
+
+<DD>
+This ebuild has a major syntax error that may cause the ebuild to fail partially or fully
+<DT><B>ebuild.minorsyn</B>
+
+<DD>
+This ebuild has a minor syntax error that contravenes gentoo coding style
+<DT><B>ebuild.namenomatch</B>
+
+<DD>
+Ebuild files that do not have the same name as their parent directory
+<DT><B>ebuild.nesteddie</B>
+
+<DD>
+Placing 'die' inside ( ) prints an error, but doesn't stop the ebuild.
+<DT><B>ebuild.nostable</B>
+
+<DD>
+There are no ebuilds that are marked as stable for your ARCH
+<DT><B>ebuild.notadded</B>
+
+<DD>
+Ebuilds that exist but have not been added to cvs
+<DT><B>ebuild.output</B>
+
+<DD>
+A simple sourcing of the ebuild produces output; this breaks ebuild policy.
+<DT><B>ebuild.syntax</B>
+
+<DD>
+Error generating cache entry for ebuild; typically caused by ebuild syntax error
+<DT><B>file.UTF8</B>
+
+<DD>
+File is not UTF8 compliant
+<DT><B>file.executable</B>
+
+<DD>
+Ebuilds, digests, metadata.xml, Manifest, and ChangeLog do note need the executable bit
+<DT><B>file.name</B>
+
+<DD>
+File/dir name must be composed of only the following chars: a-zA-Z0-9._-+:
+<DT><B>file.size</B>
+
+<DD>
+Files in the files directory must be under 20k
+<DT><B>filedir.missing</B>
+
+<DD>
+Package lacks a files directory
+<DT><B>metadata.bad</B>
+
+<DD>
+Bad metadata.xml files
+<DT><B>metadata.missing</B>
+
+<DD>
+Missing metadata.xml files
+<DT><B>usage.obsolete</B>
+
+<DD>
+The ebuild makes use of an obsolete construct
+<DT><B>variable.readonly</B>
+
+<DD>
+Assigning a readonly variable
+<DT><B>virtual.exists</B>
+
+<DD>
+PROVIDE contains existing package names
+<DT><B>virtual.unavailable</B>
+
+<DD>
+PROVIDE contains a virtual which contains no profile default
+<DT><B>virtual.versioned</B>
+
+<DD>
+PROVIDE contains virtuals with versions
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>REPORTING BUGS</H2>
+
+Please report bugs via <A HREF="http://bugs.gentoo.org/">http://bugs.gentoo.org/</A>
+<A NAME="lbAI">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+<PRE>
+Daniel Robbins &lt;<A HREF="mailto:drobbins@gentoo.org">drobbins@gentoo.org</A>&gt;
+Saleem Abdulrasool &lt;<A HREF="mailto:compnerd@gentoo.org">compnerd@gentoo.org</A>&gt;
+</PRE>
+
+<A NAME="lbAJ">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1)
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">MODES</A><DD>
+<DT><A HREF="#lbAG">QA KEYWORDS</A><DD>
+<DT><A HREF="#lbAH">REPORTING BUGS</A><DD>
+<DT><A HREF="#lbAI">AUTHORS</A><DD>
+<DT><A HREF="#lbAJ">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 17:40:35 GMT, May 26, 2006
+</BODY>
+</HTML>
