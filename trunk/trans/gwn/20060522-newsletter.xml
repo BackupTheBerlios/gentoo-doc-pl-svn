@@ -3,7 +3,7 @@
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
 <guide type="newsletter" link="20060522-newsletter.xml" lang="pl">
 <title>Tygodnik Gentoo</title>
-<subtitle>22 May 2006</subtitle>
+<subtitle>22 maja 2006</subtitle>
 <author title="Redaktor naczelny">
 <mail link="plate@gentoo.org">Ulrich Plate</mail>
 </author>
@@ -34,66 +34,71 @@
 <author title="Tłumacz">
 <mail link="moloh@gentoo.org">Michał Kurgan</mail>
 </author>
-<abstract>Wydanie Tygodnika Gentoo z 22 May 2006.</abstract>
+<abstract>Wydanie Tygodnika Gentoo z 22 maja 2006.</abstract>
 <summary/>
 <version>Wolumin 5, numer 19</version>
 <date>2006-05-22</date>
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>GCC 4.1 on its way into Portage</title>
+<title>GCC 4.1 wkrótce w Portage</title>
 <body>
+
 <p>
-The long awaited moment of GCC 4.1 being unmasked has almost arrived.  The
-toolchain team will be unmasking gcc-4.1.1 this week after it is released.
-The upgrade should be incredibly easy and require no additional work to
-install and use.  The number of applications that do not compile with gcc-4.1
-is extremely small now, and most users should not experience any problems
-with <path>~arch</path> packages not compiling.  To upgrade to the new version (assuming
-you are using gcc-3.4), all that is required is to upgrade GCC and then select
-the new profile using gcc-config.  If you are upgrading from an earlier version
-of GCC, please refer to our <uri link="/doc/en/gcc-upgrading.xml">GCC Upgrading 
-Guide</uri> for more detailed instructions.
+Długo oczekiwane wydarzenie, jakim jest odmaskowanie GCC 4.1, zbliża się
+wielkimi krokami. Zespół toolchain odmaskuje gcc-4.1.1, wkrótce po jego
+oficjalnym wydaniu. Aktualizacja będzie bardzo prosta i nie będzie wymagała
+żadnych dodatkowych czynności, aby sprawnie zainstalować i używać gcc bez
+problemów. Liczba pakietów, które mają problemy z kompilacją przy użyciu
+gcc-4.1 jest bardzo mała, a większość użytkowników używających pakietów z
+<path>~arch</path> nie odczuje żadnych niedogodności. Aby zaktualizować do
+nowej wersji (w przypadku gcc-3.4), wystarczy tylko zainstalować nowe GCC, a
+następnie przełączyć profil przy pomocy gcc-config. Wcześniejsze wersje
+wymagają jednak bardziej skomplikowanej procedury, opisanej w dokumencie <uri
+link="/doc/pl/gcc-upgrading.xml">Aktualizacja GCC w Gentoo Linux</uri>.
 </p>
+
 <p>
-If you run into any applications that do not compile, and they do not have a
-bug currently open, please file a "GCC Porting" bug and assign it to
-<mail link="gcc-porting@gentoo.org">gcc-porting@gentoo.org</mail> so that 
-the GCC Porting team can look into it.
+W przypadku jakichkolwiek problemów z kompilacją prosimy, po upewnieniu się że
+nie został on już opisany przez innego użytkownika, o wysłanie odpowiedniego
+raportu zawierającego „GCC Porting” w nazwie i przydzielenie go do <mail
+link="gcc-porting@gentoo.org">gcc-porting@gentoo.org</mail>.
 </p>
 </body>
 </section>
 <section>
 <title>Gentoo Summer of Code</title>
 <body>
+
 <p>
-There were over 6400 applications from students, almost 90 mentoring
-organizations - in almost every respect the Summer of Code program from
-Google has grown a lot since last year. This year Gentoo will be one of 
-the mentoring organizations, with the UserRel project acting as organizer. 
-While the final numbers will be released on Monday the 22nd
-we can already say that Gentoo got 130 applications. Out of these around
-13 will be sponsored by Google. We are very happy to see such a great
-interest in Gentoo and hope that all sponsored projects will be
-successful! 
+Ponad 6400 aplikacji studenckich, prawie 90 organizacji patronackich, niemal w
+każdym aspekcie program Summer of Code firmy Google rozwinął się przez ostatni
+rok. W tym roku Gentoo zostanie jedną z organizacji patronackich, a projekt
+UserRel będzie pełnił rolę organizatora. Zanim jeszcze oficjalne wyniki zostaną
+podane, możemy już teraz powiedzieć, że Gentoo posiada 130 aplikacji. Spośród
+nich, zostanie wybranych 13, a ich dalszy rozwój sponsorowany będzie przez
+Google. Cieszymy się ogromnie z wielkiego zainteresowania jakim cieszy się
+Gentoo i mamy nadzieję, że wszystkie projekty odniosą sukces!
 </p>
 </body>
 </section>
 <section>
-<title>Old-style PHP packages removed from Portage</title>
+<title>Stare pakiety PHP usunięte z Portage</title>
 <body>
+
 <p>
-After being <path>package.mask</path>ed for quite some time, the old-style PHP
-packages (<path>dev-php/php, dev-php/php-cgi, dev-php/mod_php</path>, and friends)
-have been removed from the Portage tree. The new-style PHP packages
-(<path>dev-lang/php, dev-php4/*, dev-php5/*</path>, and friends) are now stable on
-most architectures.
+Po okresie, w którym stare pakiety PHP przebywały w pliku
+<path>package.mask</path> (<path>dev-php/php, dev-php/php-cgi,
+dev-php/mod_php</path> i pochodne), zostały one usunięte z drzewa Portage. Nowe
+pakiety PHP (<path>dev-lang/php, dev-php4/*, dev-php5/*</path> i pochodne),
+zostały oznaczone na większości architektur jako stabilne.
 </p>
 </body>
 </section>
 </chapter>
+
 <!-- Future zone -->
 <!-- User Stories -->
 <!-- Gentoo Stories -->
@@ -230,6 +235,7 @@ Apache 2.0.58 now available</uri></li>
 </body>
 </section>
 </chapter>
+
 <!-- Gentoo international -->
 <chapter>
 <title>Międzynarodowe Gentoo</title>
@@ -262,6 +268,7 @@ http://dufo.tugraz.at/glt06/</note>
 <section>
 <title>Włochy: Gentoo na konferencji Linux World Summit w Mediolanie</title>
 <body>
+
 <p>
 Koledzy z GeCHI (Gentoo CHannel Italia www.gechi.it) spędzili na konferencji
 Linux World Summit w Mediolanie dwa dni pełne wrażeń. W porównaniu z
@@ -279,6 +286,7 @@ wystawy. Członkowie GeCHI przygotowali także broszurki Gentoo, które
 rozdawali przy stoisku, oraz sprzedawali pasujące do kompletu pingwiny i
 krowy (o imieniu Larry).
 </p>
+
 <figure link="/images/gwn/20060522_gechi.jpg"
 short="Gechi"
 caption="Jeden Larry, cztery Tuksy: GeCHI przy pracy" />
@@ -291,88 +299,97 @@ link="http://dev.gechi.it/gallery/v/Eventi/lws06">stronie GeCHI</uri></note>
 
 <!-- Gentoo in the press -->
 <chapter>
-<title>Gentoo in the press</title>
+<title>Gentoo w prasie</title>
 <section>
-<title>Dot KDE (16 May 2006)</title>
+<title>Dot KDE (16 maja 2006)</title>
 <body>
+
 <p>
-In a series of interviews with businesses that benefit from KDE -- 
-or vice-versa -- the KDE Dot News magazine spoke with Gentoo developer 
-<uri link="http://dot.kde.org/1147698188/">Caleb Tennis</uri> in his 
-professional quality as system designer at AEI, a company in Columbus,
-Indiana, specializing in diesel engine durability assessment, exhaust
-research, performance development and numerous other services. Caleb
-sees reliability as a key element in AEI's decision to run Linux and 
-KDE, as everything else "may be liveable on your girlfriend's computer, 
-but for one that's monitoring a $1,000,000 development engine, it becomes 
-pretty important to not have problems because 'Windows crashed'."
+W serii wywiadów przeprowadzonych z przedstawicielami firm korzystających z KDE,
+reporter KDE Dot News rozmawiał z deweloperem Gentoo <uri
+link="http://dot.kde.org/1147698188/">Calebem Tennisem</uri> na temat jego
+pracy jako projektanta systemów w firmie AEI mieszącej się w Columbus w stanie
+Indiana. Specjalizuje się ona w ocenie trwałości silników diesla, dodatkowo
+prowadzi także prace badawcze nad układami wydechowymi, zwiększaniem wydajności
+silników oraz cała masą innych rzeczy. Caleb stwierdził, że kluczowym elementem
+w decyzjach AEI, było przejście na Linuksa oraz KDE. Decyzja ta była
+podyktowana tym, że inne środowiska mogą być użyteczne co najwyżej na komputerze
+naszej dziewczyny, jednak na takim, na którym monitorowany jest rozwój silnika
+za $1,000,000, ważnym jest, aby nie mieć problemów spowodowanych błędami
+systemu.
 </p>
+
 </body>
 </section>
 <section>
-<title>Newsforge (19 May 2006)</title>
+<title>Newsforge (19 maja 2006)</title>
 <body>
+
 <p>
-Gentoo trustee and infrastructure lead <mail link="klieber@gentoo.org">Kurt 
-Lieber</mail> gets his say in an article about Gentoo sponsor OSUOSL titled
-<uri link="http://mobile.newsforge.com/mobility/06/05/05/2018250.shtml">"Oregon 
-lab plays Web host to the stars of open source."</uri> Setting the backdrop
-for the following interview with OSUOSL's Scott Kveton, Kurt points out how
-fabulous the open-source lab's services to Gentoo have been: "in fact, it's 
-better than what I would expect from commercial vendors in a lot of respects."
+Członek zarządu Gentoo oraz koordynator infrastruktury <mail
+link="klieber@gentoo.org">Kurt Lieber</mail> wypowiedział się w jednym z
+artykułów na temat sponsora Gentoo, firmy OSUOSL. Sam artykuł nosi tytuł<uri
+link="http://mobile.newsforge.com/mobility/06/05/05/2018250.shtml">"Oregon lab
+plays Web host to the stars of open source"</uri>. W wywiadzie, stanowiącym tło
+dla kolejnego, tym razem z przedstawicielem OSUOSL Scottem Kvetonem, Kurt
+wskazuje na wsparcie i usługi jaki laboratorium Open Source udostępnia Getnoo:
+„w wielu aspektach, jest znacznie lepiej niż się spodziewałem po komercyjnych
+producentach”.
 </p>
+
 </body>
 </section>
 </chapter>
+
 <!-- Tips and Tricks -->
 <chapter>
 <title>Sztuczki i kruczki</title>
 <section>
-<title>Zarządzanie nakładkami za pomocą narzędzia layman</title>
+<title>Zarządzanie nakładkami Portage</title>
 <body>
 <note>
-To pierwszy dział Sztuczki i kruczki od dłuższego czasu. Prosimy o
+To pierwsze wydanie działu Sztuczki i kruczki od dłuższego już czasu. Prosimy o
 nadsyłanie własnych propozycji porad, którymi chcielibyśmy podzielić się ze
 społecznością Gentoo, na adres <mail
 link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail>.
 </note>
 
 <p>
-<c>layman</c> to niewielka, lecz przydatna aplikacja napisana przez
-dewelopera Gentoo, <mail link="wrobel@genoo.org">Gunnara Wrobela</mail>.
-Umożliwia ona używanie i synchronizowanie wielu nakładek Portage na lokalnym
-komputerze przy minimum wysiłku.
+<c>layman</c> to niewielka, lecz przydatna aplikacja napisana przez dewelopera
+Gentoo, <mail link="wrobel@genoo.org">Gunnara Wrobela</mail>. Umożliwia ona
+używanie i synchronizowanie wielu nakładek Portage na lokalnym komputerze przy
+minimum wysiłku.
 </p>
 
 <p>
 W chwili obecnej <c>layman</c> nie posiada jeszcze stabilnej wersji, dlatego
-przed instalacją musimy dodać go do pliku <path>package.keywords</path>.
+przed instalacją musimy dodać odpowiedni wpis do pliku
+<path>package.keywords</path>.
 </p>
 
-<pre caption="Instalowanie laymana">
+<pre caption="Instalacja aplikacji">
 # echo "app-portage/layman" >> /etc/portage/package.keywords
 # emerge layman
 </pre>
 
 <p>
-Aby dodać do naszej zmiennej <c>PORTDIR_OVERLAY</c> zarządzane przez
-narzędzie <c>layman</c> nakładki, musimy wczytać plik, w którym są one
-zdefiniowane. Zwróćmy uwagę, że wciąż mamy możliwość ręcznego dodania innych
-nakładek do zmiennej <c>PORTDIR_OVERLAY</c> w pliku
-<path>/etc/make.conf</path>.
+Aby dodać do zmiennej <c>PORTDIR_OVERLAY</c> nakładki zarządzane przez narzędzie
+<c>layman</c>, musimy wczytać plik, w którym są one zdefiniowane. Należy zwrócić
+uwagę, że wciąż istnieje możliwość ręcznego dodania kolejnych nakładek do
+zmiennej <c>PORTDIR_OVERLAY</c> w pliku <path>/etc/make.conf</path>.
 </p>
 
-<pre caption="Wczytywanie nakładek laymana">
+<pre caption="Wczytywanie nakładek">
 # echo "source /usr/portage/local/layman/make.conf" >> /etc/make.conf
 </pre>
 
 <p>
-Konfigurowanie programu <c>layman</c> to bułka z masłem. Najpierw należy
-pobrać listę dostępnych nakładek, a następnie dodać te spośród nich, których
-chcemy użyć.
+Konfiguracja programu <c>layman</c> jest bardzo prosta. Pierwszą czynnością jest
+pobranie listę dostępnych nakładek, następnie należy dodać wybrane, które chcemy
+używać.
 </p>
 
-<pre caption="Konfiguracja laymana">
+<pre caption="Konfiguracja">
 <comment>Pobranie listy dostępnych nakładek</comment>
 # layman -f
 
@@ -381,15 +398,15 @@ chcemy użyć.
 </pre>
 
 <p>
-Wydając polecenie <c>layman -l</c> uzyskamy listę dostępnych nakładek, zaś
-dodając parametr <c>-a</c> możemy dodać kolejne nakładki.
+Dzięki poleceniu <c>layman -l</c> można uzyskać listę dostępnych nakładek,
+natomiast parametr <c>-a</c> służy do dodawania kolejnej nakładki, którą chcemy
+używać.
 </p>
 
 <p>
-Uruchomienie programu z parametrem <c>-s</c> pozwala natomiast
-zsynchronizować lokalne kopie nakładek. Możemy wybrać między
-zsynchronizowaniem konkretnej nakładki lub wszystkich spośród do tej pory
-dodanych.
+Uruchomienie programu z parametrem <c>-s</c> skutkuje przeprowadzeniem procesu
+synchronizacji lokalnych kopii nakładek. Można wybrać i dokonać aktualizacji
+wszystkich lub wybranych.
 </p>
 
 <pre caption="Synchronizacja nakładek">
