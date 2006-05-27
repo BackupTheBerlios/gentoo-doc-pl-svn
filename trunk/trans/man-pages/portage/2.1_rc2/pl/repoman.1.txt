@@ -1,0 +1,295 @@
+.TH "REPOMAN" "1" "Dec 2005" "Portage 2.1" "Portage"
+.SH NAZWA
+repoman \- Program Gentoo służący do zapewnienia minimalnego poziomu jakości w
+pakietach dodawanych do drzewa Portage.
+.SH SKŁADNIA
+\fBrepoman\fR [\fIopcje\fR] [\fItryb\fR]
+.SH OPIS
+.BR "Wysoka jakość to podstawa naszej pracy."
+
+.BR repoman
+przeznaczony jest dla deweloperów Gentoo ponieważ nie sprawdza każdego ebuilda
+z osobna, a repozytorium CVS jako całość.
+
+Uwaga: \fBrepoman commit\fR działa jedynie \fIwewnątrz lokalnego\fR repozytorium
+CVS.
+.SH OPCJE
+.TP
+\fB-q\fR, \fB--quiet\fR
+Podaje dodatkowe informacje w mniej szczegółowy sposób.
+.TP
+\fB-p\fR, \fB--pretend\fR
+Nie wykonuje żadnych działań, symuluje jedynie co zostanie zrobione.
+.TP
+\fB-i\fR, \fB--include-masked\fR
+Włącza do skanowania zamaskowane pakiety w katalogu lub na poziomie drzewa.
+.TP
+\fB-x\fR, \fB--xmlparse\fR
+Przymusowe sprawdzenie poprawności pliku metadata.xml.
+.TP
+\fB-v\fR, \fB--verbose\fR
+Wyświetla nazwy wszystkich pakietów podczas sprawdzania.
+.TP
+\fB-I\fR, \fB--ignore-arches\fR
+Ignoruje błędy wywołane przez architekturę (w przypadku gdy arch != host).
+.TP
+\fB-m\fR, \fB--commitmsg\fR
+Dodaje wiadomość zatwierdzającą poprzez linię poleceń.
+.TP
+\fB-M\fR, \fB--commitmsgfile\fR
+Dodaje wiadomość zatwierdzającą z podanego pliku.
+.TP
+\fB-V\fR, \fB--version\fR
+Pokazuje numer wersji programu.
+.TP
+\fB-h\fR, \fB--help\fR
+Pokazuje tę pomoc.
+.SH TRYBY
+.TP
+.B full
+Skanuje katalog w poszukiwaniu błędów związanych z QA (kontrola jakości).
+.TP
+.B last
+Zapamiętuje raport z ostatniego uruchomienia.
+.TP
+.B help
+Pokazuje tę pomoc.
+.TP
+.B scan
+Skanuje katalog w poszukiwaniu błędów związanych z QA (domyślnie).
+.TP
+.B fix
+Naprawia proste błędy QA (błędne pliki digest lub ich brak).
+.TP
+.B lfull
+Zapamiętuje raport z ostatniego uruchomienia (pełna lista).
+.TP
+.B commit
+Wpierw skanuje katalog drzewa w poszukiwaniu błędów QA, jeżeli ich nie znajdzie
+zatwierdza plik poprzez CVS.
+.SH SŁOWA KLUCZOWE QA
+.TP
+.B CVS/Entries.IO_error
+Podczas próby dodania zmian do repozytorium okazało się, że napotkano błąd IO w
+trakcie odczytu pliku wejścia.
+.TP
+.B DEPEND.bad
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienną DEPEND
+(sprawdza tylko *widzialne* ebuildy).
+.TP
+.B DEPEND.badindev
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienna DEPEND 
+(sprawdza tylko *widzialne* ebuildy) w rozwijanej architekturze.
+.TP
+.B DEPEND.badmasked
+Zamaskowano ebuildy, które posiadają źle ustawioną zmienną DEPEND (sprawdza
+*wszystkie* ebuildy).
+.TP
+.B DEPEND.badmaskedindev
+Zamaskowano ebuildy, które posiadają źle ustawioną zmienna DEPEND (sprawdza
+*wszystkie* ebuildy) w rozwijanej architekturze.
+.TP
+.B DEPEND.syntax
+Błąd składni w zmiennej DEPEND (z reguły brak lub dodatkowa spacja/nawias).
+.TP
+.B DESCRIPTION.missing
+Ebuildy posiadające pustą zmienną DESCRIPTION lub nie posiadające jej w ogóle.
+.TP
+.B HOMEPAGE.missing
+Ebuildy posiadające pustą zmienną HOMEPAGE lub nie posiadające jej w ogóle.
+.TP
+.B IUSE.invalid
+Ebuild posiadający wartość w IUSE, której nie ma w pliku use.desc lub
+use.local.desc.
+.TP
+.B KEYWORDS.invalid
+Ebuild zawiera zmienne KEYWORDS, które nie znajdują się w pliku
+profiles/arch.list lub dla których nie znaleziono odpowiedniego profilu.
+.TP
+.B KEYWORDS.missing
+Ebuildy posiadające pustą zmienną KEYWORDS lub nie posiadające jej w ogóle.
+.TP
+.B KEYWORDS.stupid
+Ebuildy używające KEYWORDS=-* zamiast pliku package.mask.
+.TP
+.B LICENSE.invalid
+Ebuildy posiadające licencję, która nie istnieje w katalogu license/ drzewa Portage.
+.TP
+.B LICENSE.missing
+Ebuildy posiadające pustą zmienną LICENSE lub nie posiadające jej w ogóle.
+.TP
+.B LICENSE.syntax
+Błąd składni w zmiennej LICENSE (z reguły brak lub dodatkowa spacja/nawias).
+.TP
+.B PDEPEND.bad
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienną PDEPEND
+(sprawdza jedynie *widoczne* ebuildy).
+.TP
+.B PDEPEND.badindev
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienną PDEPEND
+(sprawdza jedynie *widoczne* ebuild) w rozwijanej architekturze.
+.TP
+.B PDEPEND.badmasked
+Zamaskowane ebuildy, które posiadają źle ustawioną zmienną PDEPEND (sprawdza
+*wszystkie* ebuildy).
+.TP
+.B PDEPEND.badmaskedindev
+Zamaskowane ebuildy, które posiadają źle ustawioną zmienną PDEPEND (sprawdza
+*wszystkie* ebuildy) w rozwijanej architekturze.
+.TP
+.B PDEPEND.syntax
+Błąd składni w zmiennej PDEPEND (z reguły brak lub dodatkowa spacja/nawias).
+.TP
+.B PROVIDE.syntax
+Błąd składni w zmiennej PROVIDE (z reguły brak lub dodatkowa spacja/nawias).
+.TP
+.B RDEPEND.bad
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienną RDEPEND
+(sprawdza jedynie *widoczne* ebuildy).
+.TP
+.B RDEPEND.badindev
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienną RDEPEND
+(sprawdza jedynie *widoczne* ebuild) w rozwijanej architekturze.
+.TP
+.B RDEPEND.badmasked
+Zamaskowane ebuildy, które posiadają źle ustawioną zmienną RDEPEND (sprawdza
+*wszystkie* ebuildy).
+.TP
+.B RDEPEND.badmaskedindev
+Zamaskowane ebuildy, które posiadają źle ustawioną zmienną RDEPEND (sprawdza
+*wszystkie* ebuildy) w rozwijanej architekturze.
+.TP
+.B RDEPEND.syntax
+Błąd składni w zmiennej RDEPEND (z reguły brak lub dodatkowa spacja/nawias).
+.TP
+.B SLOT.missing
+Ebuildy posiadający pustą zmienną SLOT lub nie posiadające jej w ogóle.
+.TP
+.B changelog.missing
+Brak pliku zmian (ChangeLog).
+.TP
+.B changelog.notadded
+Pliki zmian istnieją, jednak nie zostały dodane do cvs.
+.TP
+.B digest.assumed
+Isteniejące pliki digest muszą zostać poprawnie stworzone (jedynie na poziomie pakietu).
+.TP
+.B digest.disjointed
+Pliki digest nie zostały dodane do cvs razem z ebuildem.
+.TP
+.B digest.fail
+Plik digest nie pasuje do lokalnego pliku.
+.TP
+.B digest.missing
+Brakuje plików digest (ebuild istnieje).
+.TP
+.B digest.notadded
+Pliki digest istnieją jednak nie zostały dodane do cvs.
+.TP
+.B digest.partial
+Pliki digest, które nie zawierają wszystkich poprawnych elementów URI.
+.TP
+.B digest.stray
+Pliki digest, które nie mają odpowiadającego im ebuilda.
+.TP
+.B digest.unmatch
+Pliki digest, które są niekompletne (należy sprawdzić czy nasze USE/ARCH
+zawiera wszystkie pliki).
+.TP
+.B digest.unused
+Plik digest/Manifest nie posiada odpowiadającego mu wpisu SRC_URI.
+.TP
+.B ebuild.allmasked
+Wszystkie ebuildy zostały zamaskowane dla tego pakietu (jedynie na poziomie
+pakietu).
+.TP
+.B ebuild.badheader
+Ebuild posiada zdeformowany nagłówek.
+.TP
+.B ebuild.disjointed
+Ebuildy nie zostały dodane do cvs mimo, że odpowiadające im pliki digest
+zostały dodane.
+.TP
+.B ebuild.invalidname
+Ebuildy, które są nieprzetwarzalne lub posiadają błędną nazwę (lub używane jest
+rozszerzenie 2.1).
+.TP
+.B ebuild.majorsyn
+Ebuild posiada poważny błąd w składni, który może spowodować częściowe lub
+całkowite błędne działanie.
+.TP
+.B ebuild.minorsyn
+Ebuild posiada poważny błąd w składni, który naruszają styl pisania ebuildów Gentoo.
+.TP
+.B ebuild.namenomatch
+Ebuildy nie posiadające nazwy takiej samej jak ich katalog.
+.TP
+.B ebuild.nesteddie
+Umieszczenie 'die' wewnątrz ( ) pokazuje błąd, jednak nie zatrzymuje instalacji
+ebuilda.
+.TP
+.B ebuild.nostable
+Nie istnieją ebuildy oznaczone jako stabilne dla naszej architektury.
+.TP
+.B ebuild.notadded
+Ebuildy, które istnieją jednak nie zostały dodane do cvs.
+.TP
+.B ebuild.output
+Złamanie polityki ebuildów dotyczące wyniku podawanego przez niego samego.
+.TP
+.B ebuild.syntax
+Błąd przy generowaniu wpisu w pamięci podręcznej dla ebuilda. Zwykle
+spowodowany przez błąd składni samego ebuilda.
+.TP
+.B file.UTF8
+Plik nie jest zgodny z UTF8.
+.TP
+.B file.executable
+Ebuildy, pliki digest, metadata.xml, Manifiest oraz ChangeLog nie potrzebują
+bitu wykonywalności.
+.TP
+.B file.name
+Nazwa pliku/katalogu może składać się jedynie ze znaków: a-zA-Z0-9._-+:
+.TP
+.B file.size
+Rozmiar pliku w katalogu nie może przekroczyć 20k.
+.TP
+.B filedir.missing
+Pakiet nie posiada katalogu na pliki.
+.TP
+.B metadata.bad
+Niepoprawne pliki metadata.xml.
+.TP
+.B metadata.missing
+Brak plików metadata.xml.
+.TP
+.B usage.obsolete
+Ebuild korzysta ze starej budowy.
+.TP
+.B variable.readonly
+Przydzielono zmienną jedynie do odczytu.
+.TP
+.B virtual.exists
+Zmienna PROVIDE zawiera istniejące nazwy pakietów.
+.TP
+.B virtual.unavailable
+Zmienna PROVIDE zawiera wirtualny pakiet, który nie ma domyślnego profilu.
+.TP
+.B virtual.versioned
+Zmienna PROVIDE zawiera wirtualne pakiety z wersjami.
+.SH "ZGŁASZANIE BŁĘDÓW"
+Wszystkie błędy prosimy zgłaszać przy użyciu serwisu http://bugs.gentoo.org/
+.SH AUTORZY
+.nf
+Daniel Robbins <drobbins@gentoo.org>
+Saleem Abdulrasool <compnerd@gentoo.org>
+.fi
+.SH "ZOBACZ TAKŻE"
+.BR emerge (1)
+.SH TŁUMACZENIE
+Damian Kuras <shadoww@gentoo.org>
+.br 
+Polski projekt tłumaczenia manuali Gentoo
+.br 
+http://gentoo.org/~rane/tlumaczenie-manuali.html
+
