@@ -66,6 +66,7 @@ nie został on już opisany przez innego użytkownika, o wysłanie odpowiedniego
 raportu zawierającego „GCC Porting” w nazwie i przydzielenie go do <mail
 link="gcc-porting@gentoo.org">gcc-porting@gentoo.org</mail>.
 </p>
+
 </body>
 </section>
 <section>
@@ -82,6 +83,7 @@ nich, zostanie wybranych 13, a ich dalszy rozwój sponsorowany będzie przez
 Google. Cieszymy się ogromnie z wielkiego zainteresowania jakim cieszy się
 Gentoo i mamy nadzieję, że wszystkie projekty odniosą sukces!
 </p>
+
 </body>
 </section>
 <section>
@@ -95,6 +97,7 @@ dev-php/mod_php</path> i pochodne), zostały one usunięte z drzewa Portage. Now
 pakiety PHP (<path>dev-lang/php, dev-php4/*, dev-php5/*</path> i pochodne),
 zostały oznaczone na większości architektur jako stabilne.
 </p>
+
 </body>
 </section>
 </chapter>
@@ -106,132 +109,145 @@ zostały oznaczone na większości architektur jako stabilne.
 
 <!-- Heard in the community: gentoo-dev, gentoo-user, forums -->
 <chapter>
-<title>Heard in the community</title>
+<title>Społeczność Gentoo</title>
 <section>
-<title>gentoo-dev</title>
+<title>Lista dyskusyjna gentoo-dev</title>
 <body>
-<p><b>et_EE locale and language of error messages</b></p>
+
+<p><b>Język i raporty o błędach</b></p>
+
 <p>
-The Gentoo bugwranglers often have to wrangle bugs that have error
-messages in other languages. This makes it difficult to understand and
-to find duplicates. A workaround for this issue would be to set the
-default language used by portage to "C", which is (through historic
-precedents) English and the default when nothing else is set.
-A different class of bugs comes from the estonian locale, et_EE: As
-their alphabet ordering is different some "silly" buildsystems stumble
-as [a-z] no longer matches all letters. While these bugs can be really
-annoying they should be fixed. Setting the locale to another language
-would prevent these bugs, but it is recommended to fix it so that future
-problems are avoided.
+Bugwranglerzy (osoby odpowiedzialne za przydzielenie raportu o błędzie do
+odpowiedniego zespołu, czy dewelopera) często muszą sobie radzić z opisami
+błędów wygenerowanymi w różnych językach. Utrudnia to odpowiednie zrozumienie
+problemu i w razie potrzeby oznaczenie duplikatów podobnych raportów. By
+zaradzić temu problemowi można ustawić domyślny język używany przez Portage jako
+"C", którym jest (ze względów historycznych) język angielski. Inne problemy są
+spowodowane estońską lokalizacją, oznaczoną jako et_EE: Jako, że język ten
+charakteryzuje się inną kolejnością liter w alfabecie, niektóre systemy
+konfiguracji i kompilacji mają problemy, jako że [a-z] nie obejmuje wszystkich
+liter. By ominąć taką usterkę wystarczy jedynie zmienić ustawienia lokalizacji,
+ale zalecane jest zgłoszenie odpowiedniego raportu, tak by został on naprawiony
+w kolejnych wydaniach.
 </p>
+
 <ul>
 <li><uri
-link="http://thread.gmane.org/gmane.linux.gentoo.devel/38378">et_EE
-locale and language of error messages </uri></li>
+link="http://thread.gmane.org/gmane.linux.gentoo.devel/38378">et_EE locale and
+language of error messages </uri></li>
 </ul>
 
+<p><b>Nowe eclass'y</b></p>
 
-<p><b>New eclasses</b></p>
 <p>
-As there are many different Revision Control Systems and it is often
-useful to have ebuild support to check out files directly from a
-repository this week gives us a few eclasses that help with managing
-darcs, git and mercurial. Those three are relatively new RCS that are
-already used by many projects instead of CVS or subversion.
+Jako, że istnieje wiele systemów kontroli wersji m.in. CVS, SVN to całkiem
+przydatne jest posiadanie funkcjonalności pozwalającej na skorzystanie
+bezpośrednio z repozytorium danej aplikacji. W tym tygodniu dodano kilka nowych
+eclass obsługujących darcs, git oraz mercurial. Te trzy systemy są całkiem nowe,
+ale już istnieją projekty, które ich używają.
 </p>
+
 <ul>
-<li><uri
-link="http://thread.gmane.org/gmane.linux.gentoo.devel/38364">New
-eclasses </uri></li>
+<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/38364">New
+eclasses</uri></li>
 </ul>
 
+<p><b>Podpisy plików</b></p>
 
-<p><b>Signing everything, for fun and for profit</b></p>
 <p>
-The first recorded discussions about signing all Gentoo-provided files
-to avoid tampering go back to 2003. Since then there have been a few
-tries to get a Gentoo-wide system to cryptographically sign all files,
-but there was never a consensus, and in the end it never got fully
-implemented. <mail link="patrick@gentoo.org">Patrick Lauer</mail>
-revives the discussion in the hope of getting it finally done.
+Pierwsza dyskusja dotycząca generowania podpisów dla wszystkich udostępnianych
+przez Gentoo plików, tak by uniemożliwić ich niepożądaną modyfikację, miała
+miejsce w 2003 roku. Jako że już kilkakrotnie próbowano stworzyć w Gentoo
+globalny system weryfikacji plików, ale taka modyfikacja nie uzyskała
+wystarczającego poparcia to do tej pory nie stworzono jego pełnej implementacji.
+<mail link="patrick@gentoo.org">Patrick Lauer</mail> wznowił dyskusję na ten
+temat, licząc że wreszcie znajdzie on odpowiednie poparcie.
 </p>
+
 <ul>
-<li><uri
-link="http://thread.gmane.org/gmane.linux.gentoo.devel/38363">Signing
+<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/38363">Signing
 everything, for fun and for profit </uri></li>
 </ul>
 
 <p><b>RFC - Gentoo Knowledge Base</b></p>
+
 <p>
-A new Gentoo project gets kickstarted by <mail
-link="swift@gentoo.org">Sven Vermeulen</mail>. The goal is to create a
-knowledge base that "[...] provides answers to specific questions and problems
-that users (or developers) might encounter. It is easily searchable and
-maintained by developers who are knowledgeable in the topic. The
-knowledge base entries ("topics" as I like to call them) are not
-documentation guides, but very specific to a particular environment and
-question."
+<mail link="swift@gentoo.org">Sven Vermeulen</mail> stworzył nowy projekt, które
+go celem jest zbudowanie bazy wiedzy „zawierającej odpowiedzi na wiele
+specyficznych problemów na jakie użytkownicy (i deweloperzy) mogą się natknąć.
+Charakteryzuje się ona możliwością przeszukiwania i prostymi mechanizmami
+aktualizacji zawartych porad. Poszczególne wpisy („tematy” jak lubię je
+określać) nie są dokładnymi poradnikami, ani nie stanowią dokumentacji systemu,
+lecz zawierają odpowiedzi na problem na jaki można się natknąć w specyficznym
+środowisku lub konfiguracji”.
 </p>
+
 <ul>
-<li><uri
-link="http://thread.gmane.org/gmane.linux.gentoo.devel/38030">RFC -
+<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/38030">RFC -
 Gentoo Knowledge Base </uri></li>
 </ul>
 
-<p><b>Paludis profiles yay or nay?</b></p>
+<p><b>Profile Paludis</b></p>
+
 <p>
-What started as a simple question by <mail link="spb@gentoo.org">Stephen
-Bennett</mail> whether there were any objections to adding profiles for the
-Paludis package manager into the mainline Gentoo tree became one of the
-fastest and most heated email exchanges to happen on the <path>gentoo-dev</path>
-mailinglist. With around 300 messages in the main thread and three
-forked subthreads this is an impressive debate:
+Co zaczęło się prostym pytaniem zadanym przez <mail
+link="spb@gentoo.org">Stephena Bennetta</mail> czy są jakieś przeciwwskazania by
+stworzyć profile dla menadżera pakietów Paludis w głównym drzewie Portage szybko
+stało gorącą i ostrą wymianą zdań na liście dyskusyjnej <path>gentoo-dev</path>.
+Debata zawiera około 300 wiadomości zgromadzonych w głównym i trzech dodatkowych
+podwątkach:
 </p>
+
 <ul>
-<li><uri
-link="http://thread.gmane.org/gmane.linux.gentoo.devel/38016">Paludis
+<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/38016">Paludis
 and Profiles </uri></li>
 <li><uri
-link="http://thread.gmane.org/gmane.linux.gentoo.devel/38231">Alternative
-Gentoo package managers discussion request (for the council) </uri></li>
-<li><uri
-link="http://thread.gmane.org/gmane.linux.gentoo.devel/38342">RFC:
+link="http://thread.gmane.org/gmane.linux.gentoo.devel/38231">Alternative Gentoo
+package managers discussion request (for the council) </uri></li>
+<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/38342">RFC:
 etiquette enforcement </uri></li>
-<li><uri
-link="http://thread.gmane.org/gmane.linux.gentoo.devel/38351">259
+<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/38351">259
 paludis-profile messages. ENOUGH! </uri></li>
-
 </ul>
 
 </body>
 </section>
 <section>
-<title>Planet Gentoo</title>
+<title>Serwis Planet Gentoo</title>
 <body>
-<p><b>Baselayout 1.12 going stable?</b></p>
+
+<p><b>Stabilizacja baselayout 1.12?</b></p>
+
 <p>
-Asked by many users Roy Marples now announced that there is only one 
-unionfs bug left before he starts building baselayout's 1.12.0 tarball. 
-If there don't occur any show-stopping bugs it will take another month 
-before baselayout-1.12.0 can be marked stable by our ARCH-teams.
+Pytanie dotyczące stabilizacji nowego wydania baselayout jest zadawane przez
+wielu użytkowników. By rozwiać wszelkie wątpliwości Roy Marples ogłosił że
+istnieje już tylko jedna usterka w systemie plików unionfs, która stoi na drodze
+tego procesu. Po jej usunięciu, gdy nie zostaną zgłoszone inne problemy,
+będziemy musieli jeszcze odczekać miesiąc do czasu gdy pakiet zostanie oznaczony
+jako stabilny na poszczególnych architekturach.
 </p>
+
 <ul>
-<li><uri link="http://roy.marples.name/node/261">
-Baselayout 1.12 going stable?</uri></li>
+<li><uri link="http://roy.marples.name/node/261"> Baselayout 1.12 going
+stable?</uri></li>
 </ul>
-<p><b>Apache 2.0.58 now available</b></p>
+
+<p><b>Apache 2.0.58</b></p>
 <p>
-Later than expected Apache 2.0.58 finally made it into the tree, including 
-some changes how Apache works within Gentoo. Most notable is the deprecation 
-of net-www/gentoo-webroot-default as discussed in Bug #90748. As of 2.0.58 
-the /var/www/localhost directory will be left untouched if it exists. If 
-it doesn’t exist, it will be created and populated.
+Później niż się spodziewane, Apache 2.0.58 znalazł się w drzewie Portage,
+wprowadzając kilka zmian w funkcjonowaniu serwera w Gentoo. Najbardziej znaczącą
+jest, zgodnie z bugiem #90748, oznaczenie pakietu net-www/gentoo-webroot-default
+jako przestarzały. Dodatkowo od tej wersji katalog /var/www/localhost nie będzie
+modyfikowany w czasie instalacji jeżeli już istnieje. W przeciwnym przypadku
+zostanie on stworzony razem ze standardową, testową zawartością.
 </p>
+
 <ul>
 <li><uri
 link="http://www.alteredeclipse.org/blog/projects/gentoo/apache/changes-2.0.58">
 Apache 2.0.58 now available</uri></li>
 </ul>
+
 </body>
 </section>
 </chapter>
@@ -242,27 +258,30 @@ Apache 2.0.58 now available</uri></li>
 <section>
 <title>Austria: Gentoo na konferencji Grazer Linuxtage</title>
 <body>
+
 <p>
-Jak pisaliśmy już w poprzednim numerze Tygodnika, Gentoo zaznaczyło swoją
-obecność na imprezie Linuxtag w Graz. Markus Lang, <mail
+Jak pisaliśmy już w poprzednim numerze Tygodnika Gentoo, na Linuxtag w Graz
+można było usłyszeć o naszej ulubionej dystrybucji. Markus Lang, <mail
 link="roger55@gentoo.org">Roger Miliker</mail>, Gregor Perner i <mail
-link="amne@gentoo.org">Wernfried Haas</mail> byli obecni przy stoisku
-Gentoo, rozdając płyty LiveCD, sprzedając nalepki na obudowy komputerów,
-rozmawiając z użytkownikami o Portage i rozdając naklejki. Jak zwykle
-koledzy z grml (których stoisko sąsiadowało ze stoiskiem Gentoo) pytali, czy
-nadal kompilujemy wszystko ze źródeł. W odpowiedzi dostali pokaz
-instalatora. Oczywiście to tylko przyjacielskie zaczepki, ekipy Funkfeuer,
-Gentoo, grml i Debiana dobrze się razem bawiły. Wernfried Haas prowadził
-warsztaty wprowadzające do IRC-a, skupiając się na popularnym kliencie tej
-usługi, <c>irssi</c> oraz omawiając sieć Freenode. Zarówno odwiedzający, jak
-i wystawiający dobrze się bawili dzięki sprawnej organizacji. Do zobaczenia
-w roku 2007!
+link="amne@gentoo.org">Wernfried Haas</mail> byli gospodarzami stoiska Gentoo, a
+do ich obowiązków należało m.in. rozdawanie płyty LiveCD, sprzedaż nalepek na
+obudowy komputerów, oraz rozdawanie naklejek. Można też było ich nakłonić do
+rozmowy o Portage. Jak zwykle koledzy z grml (których stoisko sąsiadowało ze
+stoiskiem Gentoo) pytali, czy nadal kompilujemy wszystko ze źródeł. W
+odpowiedzi zobaczyli pokaz możliwości instalatora Gentoo. Oczywiście to tylko
+przyjacielskie zaczepki, ekipy Funkfeuer, Gentoo, grml i Debiana dobrze się
+razem bawiły. Wernfried Haas prowadził warsztaty wprowadzające do IRC-a,
+skupiając się na popularnym kliencie tej usługi, <c>irssi</c> oraz omawiając
+sieć Freenode. Zarówno odwiedzający, jak i wystawiający przyjemnie spędzili
+czas dzięki sprawnej organizacji. Do zobaczenia w roku 2007!
 </p>
-<figure link="/images/gwn/20060522_glt.jpg"
-short="GLT"
-caption="Amne poprawia kolejność słów" />
-<note>Więcej zdjęć z imprezy można znaleźć pod adresem
-http://dufo.tugraz.at/glt06/</note>
+
+<figure link="/images/gwn/20060522_glt.jpg" short="GLT" caption="Amne poprawia
+kolejność słów" />
+<note>
+Więcej zdjęć z imprezy można znaleźć pod adresem http://dufo.tugraz.at/glt06/
+</note>
+
 </body>
 </section>
 <section>
@@ -270,29 +289,29 @@ http://dufo.tugraz.at/glt06/</note>
 <body>
 
 <p>
-Koledzy z GeCHI (Gentoo CHannel Italia www.gechi.it) spędzili na konferencji
-Linux World Summit w Mediolanie dwa dni pełne wrażeń. W porównaniu z
-poprzednimi latami zarezerwowano mniej powierzchni wystawowej w hotelu
-Marriot i to najprawdopodobniej z tego powodu nie można było znaleźć zbyt
-wielu stoisk należących do firm. Wystawy stowarzyszeń były za to większe,
-bardziej kolorowe i zabawne. Zgodnie z przewidywaniami z zeszłego numeru
-Tygodnika, GeCHI zademonstrowało komputer Sun Fire V120 i klaster OpenMosix,
-na który składały się cztery płyty główne Via Epia. Oba komputery pracowały
-pod kontrolą systemu Gentoo Linux. Tylko pierwszy węzeł klastra był
-podłączony do dwóch dysków SATA, pozostałe trzy pracowały w konfiguracji
-bezdyskowej i uruchamiały się przez sieć. Z powodu nietypowej obudowy
-klaster był w centrum zainteresowania publiczności w trakcie obu dni trwania
-wystawy. Członkowie GeCHI przygotowali także broszurki Gentoo, które
-rozdawali przy stoisku, oraz sprzedawali pasujące do kompletu pingwiny i
-krowy (o imieniu Larry).
+Koledzy z GeCHI (Gentoo CHannel Italia, www.gechi.it) spędzili na konferencji
+Linux World Summit w Mediolanie dwa dni pełne wrażeń. W porównaniu z poprzednimi
+latami zarezerwowano mniej powierzchni wystawowej w hotelu Marriot i to
+najprawdopodobniej z tego powodu nie można było znaleźć zbyt wielu stoisk
+należących do firm. Wystawy stowarzyszeń były za to większe, bardziej kolorowe i
+zabawne. Zgodnie z przewidywaniami z zeszłego numeru Tygodnika, GeCHI
+zademonstrowało komputer Sun Fire V120 i klaster OpenMosix, na który składały
+się cztery płyty główne Via Epia. Oba komputery pracowały pod kontrolą systemu
+Gentoo Linux. Tylko pierwszy węzeł klastra był podłączony do dwóch dysków SATA,
+pozostałe trzy pracowały w konfiguracji bezdyskowej i uruchamiały się przez
+sieć. Z powodu nietypowej obudowy klaster był w centrum zainteresowania
+publiczności w trakcie obu dni trwania wystawy. Członkowie GeCHI przygotowali
+także broszurki Gentoo, które rozdawali przy stoisku, oraz sprzedawali pasujące
+do kompletu maskotki: pluszowe pingwiny i krowy (te drugie o imieniu Larry).
 </p>
 
-<figure link="/images/gwn/20060522_gechi.jpg"
-short="Gechi"
-caption="Jeden Larry, cztery Tuksy: GeCHI przy pracy" />
-<note>Od lewej do prawej, z tyłu: deadhead, blackman, ElDios, z przodu: mouser, 
-riquitoi. Więcej zdjęć z imprezy możemy znaleźć na <uri 
-link="http://dev.gechi.it/gallery/v/Eventi/lws06">stronie GeCHI</uri></note>
+<figure link="/images/gwn/20060522_gechi.jpg" short="Gechi" caption="Jeden Larry
+i cztery pingwiny: GeCHI przy pracy" />
+<note>
+Od lewej do prawej, z tyłu: deadhead, blackman, ElDios, z przodu: mouser,
+riquitoi. Więcej zdjęć z imprezy możemy znaleźć na <uri
+link="http://dev.gechi.it/gallery/v/Eventi/lws06">stronie GeCHI</uri>
+</note>
 </body>
 </section>
 </chapter>
@@ -329,8 +348,8 @@ systemu.
 Członek zarządu Gentoo oraz koordynator infrastruktury <mail
 link="klieber@gentoo.org">Kurt Lieber</mail> wypowiedział się w jednym z
 artykułów na temat sponsora Gentoo, firmy OSUOSL. Sam artykuł nosi tytuł<uri
-link="http://mobile.newsforge.com/mobility/06/05/05/2018250.shtml">"Oregon lab
-plays Web host to the stars of open source"</uri>. W wywiadzie, stanowiącym tło
+link="http://mobile.newsforge.com/mobility/06/05/05/2018250.shtml">„Oregon lab
+plays Web host to the stars of open source”</uri>. W wywiadzie, stanowiącym tło
 dla kolejnego, tym razem z przedstawicielem OSUOSL Scottem Kvetonem, Kurt
 wskazuje na wsparcie i usługi jaki laboratorium Open Source udostępnia Getnoo:
 „w wielu aspektach, jest znacznie lepiej niż się spodziewałem po komercyjnych
