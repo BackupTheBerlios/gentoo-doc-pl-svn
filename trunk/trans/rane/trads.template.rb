@@ -8,15 +8,15 @@
 # {langfrom} and {langto} are placeholders,
 # they will be replaced by languages at runtime
 $ColHeaders = [ "Dokument" ,\
-                "Wersja <br/>angielska" ,\
-                "Data <br/>modyfikacji" ,\
-                "Wersja<br/>polska" ,\
-                "Data <br/>modyfikacji" ,\
-                "Wersja <br/>tłumaczenia" ,\
-                "Diff wersji<br/>angielskich " ,\
-                "Wersja <br/> tłumaczona" ,\
-                "Tłumacz" ,\
-                "Priorytet" ]
+                "Priorytet" ,\
+                "Wersja angielska" ,\
+                "Data modyfikacji" ,\
+                "Wersja polska" ,\
+                "Data modyfikacji" ,\
+                "W. tłumaczenia" ,\
+                "Diff" ,\
+                "--" ,\
+                "Tłumacz" ]
 
 $Part1 = <<END_OF_PART_1
 <?xml version="1.0" encoding="UTF-8"?>
