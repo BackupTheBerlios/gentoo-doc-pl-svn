@@ -42,40 +42,46 @@
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>Don't mix and match GCC 3.4 and 4.1 versions</title>
+<title>Nie należy mieszać GCC 3.4 i 4.1</title>
 <body>
 <p>
-It has been discovered that even though GCC 3.4 and 4.1 share the same 
-<path>libstdc++.so</path> version, some slight changes require you to 
-follow the <uri link="http://www.gentoo.org/doc/en/gcc-upgrading.xml">GCC 
-Upgrading Guide</uri>. <uri link="http://bugs.gentoo.org/show_bug.cgi?id=134447">Bug
-#134447</uri> illustrates an example of what may happen upon partial rebuilds (Qt in
-this case). Sorry for any inconvenience that this error may have caused.
+Odkryliśmy, że mimo współdzielenia tej samej wersji biblioteki
+<path>libstdc++.so</path> przez GCC 3.4 i 4.1, drobne zmiany zmuszają nas do
+szukania pomocy przy aktualizacji w dokumencie <uri
+link="http://www.gentoo.org/doc/en/gcc-upgrading.xml">Aktualizacja GCC w Gentoo
+Linux</uri>. Raport błędu <uri
+link="http://bugs.gentoo.org/show_bug.cgi?id=134447">#134447</uri> jest
+przykładem na częściowe przebudowanie systemu nowym kompilatorem (w tym wypadku
+Qt). Przepraszamy, za wszystkie niedogodności jakie związane są z tym błędem.
 </p>
 </body>
 </section>
 <section>
-<title>GnuPG update</title>
+<title>Aktualizacja GnuPG</title>
 <body>
 <p>
-<path>gnupg-1.9.20</path> has been marked stable, allowing its <uri 
-link="https://bugs.gentoo.org/show_bug.cgi?id=3D132343">added features</uri> 
-GPG-AGENT (passphrase caching) and GPGSM (S/MIME support) to be made available
-to all users of Gentoo Linux. As the GnuPG developers have <uri 
-link="http://lists.gnupg.org/pipermail/gnupg-announce/2005q4/000209.html">indicated</uri>
-these features are ready for production use. Following their recommendation, the <c>gpg</c> 
-executable on your system is still the <path>gnupg-1.4</path> version, as <path>gnupg-1.4</path> 
-and <path>gnupg-1.9</path> are both installed at the same time (in different slots). If 
-you want to use the <uri link="http://www.gnupg.org/(en)/download/index.html#gnupg2">development 
-version of gpg</uri> please enable <path>USE=gpg2-experimental</path>, then <c>emerge</c> 
-<path>gnupg-1.9</path> and the executable <c>/usr/bin/gpg2</c> will
-be installed. It will only be used if explicitly called, and by applications that are gpg2-aware. 
-Not all applications look for gpg2 or understand its interfaces, which is why <path>gnupg-1.4</path> 
-is also installed. As a result of the stabilization the <c>gpg-agent</c> package is 
-superseeded by <path>gnupg-1.9.20</path>. For information on how to use <c>gpg-agent</c> see <uri 
-link="http://www.gentoo.org/doc/en/gnupg-user.xml">Gentoo GnuPG User guide</uri>.
+<path>gnupg-1.9.20</path> zostało oznaczone jako stabilne, czyniąc dostępnymi
+dla wszystkich użytkowników Gentoo swoje <uri
+link="https://bugs.gentoo.org/show_bug.cgi?id=3D132343">nowe funkcje</uri>,
+takie jak GPG-AGENT (przechowywanie hasła) i GPGSM (wsparcie dla S/MIME). Jak
+<uri
+link="http://lists.gnupg.org/pipermail/gnupg-announce/2005q4/000209.html">zaznaczyli</uri>
+deweloperzy GnuPG opcje te są gotowe do użycia. Według wskazań plik wykonywalny
+<c>gpg</c> cały czas jest z wersji <path>gnupg-1.4</path>, w czasie gdy
+<path>gnupg-1.4</path> i <path>gnupg-1.9</path> są w tym czasie jednocześnie
+zainstalowane w systemie (w oddzielnych slotach). Jeżeli chcemy używać <uri
+link="http://www.gnupg.org/(en)/download/index.html#gnupg2">rozwojowej wersji
+gpg</uri> prosimy uaktywnić flagę USE <path>USE=gpg2-experimental</path>, a
+następnie ponownie zainstalować <path>gnupg-1.9</path>. Po tych czynnościach
+zostanie zainstalowany plik wykonywalny <c>usr/bin/gpg2</c>. Nie wszystkie
+aplikacje wyszukają na dysku gpg2. Również duża część nie współpracuje z tą
+wersją, dlatego wersja <path>gnupg-1.4</path> również jest obecna na dysku. W
+wyniku stabilizacji pakiet <c>gpg-agent</c> zastępowany jest przez
+<path>gnupg-1.9.20</path>. Aby dowiedzieć się w jaki sposób używać
+<c>gpg-agent</c> prosimy zapoznać się z dokumentem <uri
+link="http://www.gentoo.org/doc/en/gnupg-user.xml">GnuPG w Gentoo</uri>.
 </p>
 </body>
 </section>
@@ -83,15 +89,17 @@ link="http://www.gentoo.org/doc/en/gnupg-user.xml">Gentoo GnuPG User guide</uri>
 <title></title>
 <body>
 <p>
-Tobias Klausmann, systems administrator for <path>rsync5.de.gentoo.org</path>, was
-kind enough recently to completely rewrite the <uri link="http://www.gentoo.org/doc/en/rsync.xml">Gentoo 
-rsync server guide</uri> with fixes both in the instructions and the code snippets. 
-Gentoo developer Jeffrey Forman and the infrastructure team want to thank him for 
-the hard work and appreciate making Gentoo's documentation just a little bit more complete.
+Tobias Klausmann, administrator <path>rsync5.de.gentoo.org</path> był tak miły
+i przepisał dokument <uri link="http://www.gentoo.org/doc/en/rsync.xml">Zasady
+pracy serwerów rsync</uri> zawierając w nowej wersji poprawki zarówno w samej
+treści jak i w poszczególnych komendach. Deweloper Gentoo oraz zespół
+infrastruktury chcą podziękować mu za włożoną pracę w udoskonalanie
+dokumentacji Gentoo.
 </p>
 </body>
 </section>
 </chapter>
+
 <!-- Future zone -->
 <!-- User Stories -->
 <!-- Gentoo Stories -->
