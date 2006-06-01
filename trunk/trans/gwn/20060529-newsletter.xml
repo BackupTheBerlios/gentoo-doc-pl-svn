@@ -44,58 +44,72 @@
 <chapter>
 <title>Wiadomości Gentoo</title>
 <section>
-<title>Nie należy mieszać GCC 3.4 i 4.1</title>
+<title>Problemy z migracją z gcc-3.4 na gcc-4.1</title>
 <body>
+
 <p>
 Odkryliśmy, że mimo współdzielenia tej samej wersji biblioteki
-<path>libstdc++.so</path> przez GCC 3.4 i 4.1, drobne zmiany zmuszają nas do
-szukania pomocy przy aktualizacji w dokumencie <uri
-link="http://www.gentoo.org/doc/en/gcc-upgrading.xml">Aktualizacja GCC w Gentoo
-Linux</uri>. Raport błędu <uri
-link="http://bugs.gentoo.org/show_bug.cgi?id=134447">#134447</uri> jest
-przykładem na częściowe przebudowanie systemu nowym kompilatorem (w tym wypadku
-Qt). Przepraszamy, za wszystkie niedogodności jakie związane są z tym błędem.
+<path>libstdc++.so</path> przez gcc-3.4 i gcc-4.1, drobne zmiany w ABI pomiędzy
+tymi wersjami wymuszają na każdym, kto chce dokonać migracji, by postępować
+zgodnie z instrukcjami znajdującymi się w dokumencie <uri
+link="http://www.gentoo.org/doc/pl/gcc-upgrading.xml">Aktualizacja GCC w Gentoo
+Linux</uri>. Raport o błędzie <uri
+link="http://bugs.gentoo.org/show_bug.cgi?id=134447">#134447</uri> pokazuje
+przykładowy problem na jaki można natrafić w przypadku kompilacji pojedynczych
+pakietów zaktualizowanym kompilatorem (w tym wypadku Qt). Przepraszamy, za
+wszystkie niedogodności jakie są związane z tym błędem.
 </p>
+
 </body>
 </section>
 <section>
 <title>Aktualizacja GnuPG</title>
 <body>
+
 <p>
-<path>gnupg-1.9.20</path> zostało oznaczone jako stabilne, czyniąc dostępnymi
-dla wszystkich użytkowników Gentoo swoje <uri
-link="https://bugs.gentoo.org/show_bug.cgi?id=3D132343">nowe funkcje</uri>,
-takie jak GPG-AGENT (przechowywanie hasła) i GPGSM (wsparcie dla S/MIME). Jak
-<uri
+<path>gnupg-1.9.20</path> zostało oznaczone jako stabilne, dzięki czemu każdy
+użytkownik stabilnej wersji Gentoo może od teraz korzystać z jego <uri
+link="https://bugs.gentoo.org/show_bug.cgi?id=3D132343">nowych
+funkcjonalności</uri>, jak GPG-AGENT (przechowywanie hasła) i GPGSM (wsparcie
+dla S/MIME). Jak <uri
 link="http://lists.gnupg.org/pipermail/gnupg-announce/2005q4/000209.html">zaznaczyli</uri>
-deweloperzy GnuPG opcje te są gotowe do użycia. Według wskazań plik wykonywalny
-<c>gpg</c> cały czas jest z wersji <path>gnupg-1.4</path>, w czasie gdy
-<path>gnupg-1.4</path> i <path>gnupg-1.9</path> są w tym czasie jednocześnie
-zainstalowane w systemie (w oddzielnych slotach). Jeżeli chcemy używać <uri
+deweloperzy GnuPG opcje te są stabilne gotowe do użycia w warunkach
+produkcyjnych. Według ich wskazań bazę systemu <c>gpg</c> cały czas stanowi
+wersja <path>gnupg-1.4</path>, natomiast <path>gnupg-1.9</path> udostępnia
+jedynie nowe możliwości. Powoduje to że obie wersje są jednocześnie
+zainstalowane w systemie (w oddzielnych slotach). Dla zainteresowanych istnieje
+jednak możliwość użycia <uri
 link="http://www.gnupg.org/(en)/download/index.html#gnupg2">rozwojowej wersji
-gpg</uri> prosimy uaktywnić flagę USE <path>USE=gpg2-experimental</path>, a
-następnie ponownie zainstalować <path>gnupg-1.9</path>. Po tych czynnościach
-zostanie zainstalowany plik wykonywalny <c>usr/bin/gpg2</c>. Nie wszystkie
-aplikacje wyszukają na dysku gpg2. Również duża część nie współpracuje z tą
-wersją, dlatego wersja <path>gnupg-1.4</path> również jest obecna na dysku. W
-wyniku stabilizacji pakiet <c>gpg-agent</c> zastępowany jest przez
-<path>gnupg-1.9.20</path>. Aby dowiedzieć się w jaki sposób używać
-<c>gpg-agent</c> prosimy zapoznać się z dokumentem <uri
-link="http://www.gentoo.org/doc/en/gnupg-user.xml">GnuPG w Gentoo</uri>.
+gpg</uri>, wystarczy jedynie aktywować flagę <path>USE=gpg2-experimental</path>,
+a następnie ponownie skompilować <path>gnupg-1.9</path>. W przypadku jej
+instalacji utworzony zostanie plik wykonywalny <c>usr/bin/gpg2</c>. Nie będzie
+on jednak domyślnie używany, musi on zostać bezpośrednio wskazany, dodatkowo
+aplikacja powinna poprawnie współpracować z nową wersją. Nie wszystkie programy
+potrafią skorzystać z gpg2, z tego powodu instalowana jest także wersja
+<path>gnupg-1.4</path>. Rezultatem opisywanych zmian jest także usunięcie
+pakietu <c>gpg-agent</c>, który jest teraz zastąpiony przez
+<path>gnupg-1.9.20</path>. Dodatkowe informacje na temat funkcjonowania i
+używania <c>gpg-agent</c> można uzyskać dzięki lekturze dokumentu <uri
+link="http://www.gentoo.org/doc/pl/gnupg-user.xml">GnuPG w Gentoo</uri>.
 </p>
+
 </body>
 </section>
 <section>
-<title></title>
+<title>Dokumentacja Gentoo</title>
 <body>
+
 <p>
-Tobias Klausmann, administrator <path>rsync5.de.gentoo.org</path> był tak miły
-i przepisał dokument <uri link="http://www.gentoo.org/doc/en/rsync.xml">Zasady
-pracy serwerów rsync</uri> zawierając w nowej wersji poprawki zarówno w samej
-treści jak i w poszczególnych komendach. Deweloper Gentoo oraz zespół
-infrastruktury chcą podziękować mu za włożoną pracę w udoskonalanie
-dokumentacji Gentoo.
+Tobias Klausmann, administrator <path>rsync5.de.gentoo.org</path> przepisał od
+nowa dokument <uri link="http://www.gentoo.org/doc/pl/rsync.xml">Zasady pracy
+serwerów rsync</uri> (polska wersja zostanie wkrótce zaktualizowana, wersję
+angielską dokumentu można znaleźć pod <uri
+link="http://www.gentoo.org/doc/en/rsync.xml">tym</uri> adresem) dokonując
+poprawek i aktualizacji treści oraz zawartych w nim poleceń. Deweloper Gentoo
+Jeffrey Forman oraz zespół infrastruktury chcą mu podziękować za włożoną pracę w
+udoskonalanie dokumentacji Gentoo.
 </p>
+
 </body>
 </section>
 </chapter>
@@ -110,23 +124,23 @@ dokumentacji Gentoo.
 <title>"Pokój pełen nieznajomych to pokój pełen potencjalnych przyjaciół" -
 Christel Dahlskjaer (christel)</title>
 <body>
-<figure link="/images/gwn/20060529_christel.png"
-  short="christel" caption="Christel Dahlskjaer aka Christel" />
+<figure link="/images/gwn/20060529_christel.png" short="christel"
+caption="Christel Dahlskjaer aka Christel" />
+
 <p>
-Jednym z ostatnich nabytków zespołu deweloperów Gentoo jest Christel
-Dahlskjaer, znana już niektórym jako członek personelu sieci Freenode.
-Początkowo dołączyła w poczet deweloperów Gentoo, aby pomóc przy projekcie
-User Relations, jednak od tamtego czasu przeniknęła także do zespołów PR,
-Events, Gentoo/MIPS, Gentoo/Alpha, Developer Relations i Release
-Engineering. Obecnie jest również doradcą administracyjnym Gentoo w czasie
-tegorocznego konkursu Summer of Code. "Zespół User Relations istnieje, aby
-umożliwić i ułatwiać działanie tych projektów w obrębie Gentoo, które
-skupiają się na użytkownikach", wyjaśnia. "Tworzymy pomost pomiędzy
-użytkownikami i deweloperami, poprawiając przepływ informacji i umożliwiając
-zarówno użytkownikom, jak i deweloperom bycie na bieżąco z najważniejszymi
-wydarzeniami w społeczności zajmującej się rozwojem dystrybucji. Zajmujemy
-się także skargami". Pomimo iż Christel na początku dołączyła do zespołu
-User Relations, znajduje jednak wiele satysfakcji z pracy w innych
+Jednym z ostatnich nabytków zespołu deweloperów Gentoo jest Christel Dahlskjaer,
+znana już niektórym jako członek personelu sieci Freenode. Początkowo dołączyła
+w poczet deweloperów Gentoo, aby pomóc przy projekcie User Relations, jednak od
+tamtego czasu przeniknęła także do zespołów PR, Events, Gentoo/MIPS,
+Gentoo/Alpha, Developer Relations i Release Engineering. Obecnie jest również
+doradcą administracyjnym Gentoo w tegorocznej edycji Summer of Code. „Zespół
+User Relations istnieje, aby umożliwić i ułatwiać działanie tych projektów w
+obrębie Gentoo, które skupiają się na użytkownikach”, wyjaśnia. „Tworzymy pomost
+pomiędzy użytkownikami i deweloperami, poprawiając przepływ informacji i
+umożliwiając zarówno użytkownikom, jak i deweloperom bycie na bieżąco z
+najważniejszymi wydarzeniami w społeczności zajmującej się rozwojem dystrybucji.
+Zajmujemy się także skargami”. Pomimo iż Christel na początku dołączyła do
+zespołu User Relations, znajduje jednak wiele satysfakcji z pracy w innych
 projektach, których jest członkiem.
 </p>
 
@@ -134,19 +148,20 @@ projektach, których jest członkiem.
 Jako jedna z niewielu kobiet aktywnych w zdominowanym przez mężczyzn zespole
 deweloperów Gentoo, Christel jest również wykwalifikowaną pielęgniarką,
 znajdując wciąż czas na studia magisterskie na kierunku psychologia sądowa.
-Zajęcia na codzień dostarczają jej trzymane w domu komputery, w tym Alpha
-Server, Sun Blade 1000, O2 i "prześliczny, różowy iBook", wszystkie
-oczywiście pracujące pod kontrolą systemu Gentoo Linux.
+Codziennego zajęcia dostarczają jej trzymane w domu komputery, w tym Alpha
+Server, Sun Blade 1000, O2 i „prześliczny, różowy iBook”, wszystkie oczywiście
+pracujące pod kontrolą systemu Gentoo Linux.
 </p>
 
 <p>
-Pytanie "KDE czy Gnome?" pozostaje bez odpowiedzi dla użytkowniczki
-fluxboksa, która mieszka w Exeter w Wielkiej Brytanii i jest "szczęśliwie
-jeszcze niezamężna". Jej ulubioną aplikacją jest <c>irssi</c>, co nie
-powinno budzić zdziwienia, gdyż nie tylko zajmuje się jej rozwojem, ale jest
-też Starszym Członkiem Personelu Freenode. Christel nalega jednak, aby nie
-interpretować "starszy" jako "stary".
+Pytanie „KDE czy Gnome?” pozostaje bez odpowiedzi dla użytkowniczki fluxboksa,
+która mieszka w Exeter w Wielkiej Brytanii i jest „szczęśliwie jeszcze
+niezamężna”. Jej ulubioną aplikacją jest <c>irssi</c>, co nie powinno budzić
+zdziwienia, gdyż ciągle pracuje nad jej rozwojem. Dodatkowo jest też Starszym
+Członkiem Personelu Freenode. Christel nalega jednak, aby nie interpretować
+„starszy” jako „stary”.
 </p>
+
 </body>
 </section>
 </chapter>
@@ -175,24 +190,31 @@ door</uri></li>
 </body>
 </section>
 </chapter>
+
 <!-- Gentoo international -->
 <chapter>
 <title>Międzynarodowe Gentoo</title>
 <section>
-<title>Niemcy: Ogłoszono zwycięzców quizu (?konkursu/zgadywanki) gentoo.de</title>
+<title>Niemcy: Ogłoszono zwycięzców konkursu gentoo.de</title>
 <body>
+
 <p>
-<uri link="/news/en/gwn/20060508-newsletter.xml#doc_chap3">Jak ogłoszono</uri>, 
-niedochodowe niemieckie stowarzyszenie "Friends of Gentoo e.V." umieściło na swojej stronie
-quiz pod tytułem "Are you Gentoo?(?Czy jesteś Gentoo?)" Na chwilę obecną został on
-zakończony, a organizatorzy wiedzą już, że ponad 500 uczestników <e>jest</e> Gentoo. 
-Zainteresowanie owym quizem było na tyle imponujące, że postanowiono go jeszcze powtórzyć 
-późnym latem tego roku. Wszelkie pytania, które miałyby znaleźć się w następnym wydaniu quizu, można nadsyłać na adres: <mail link="www@gentoo.de">www@gentoo.de</mail>.
+<uri link="/news/en/gwn/20060508-newsletter.xml#doc_chap3">Jak ogłoszono</uri>,
+niemiecka organizacja „Friends of Gentoo e.V.” umieściła na swojej stronie
+pytanie „Are you Gentoo?”. Ukrywający się za nim konkurs został już
+rozstrzygnięty, a liczba uczestników którzy przebrnęli przez pytania, dodatkowo
+poprawnie na nie odpowiadając, przekroczyła 500. Zainteresowanie było na tyle
+duże, że postanowiono powtórzyć zmagania późnym latem. Zachęcamy do wymyślania
+pytań, które sprawdzą wiedzę na temat Gentoo, a następnie wysyłania ich na adres
+<mail link="www@gentoo.de">www@gentoo.de</mail>.
 </p>
+
 <p>
-Gratulacje dla Benjamina Franzke, Chiary Sannitz i Meik'a Frischke, którzy wygrali 
-T-shirty, podkładki pod myszkę i naklejki Gentoo ofiarowane przez "Friends of Gentoo". 
+Benjamin Franzke, Chiara Sannitz i Meik Frischke okazali się zwycięzcami
+pierwszej edycji konkursu otrzymując nagrody: podkoszulek, podkładkę pod mysz
+oraz naklejki ofiarowane przez „Friends of Gentoo”. Gratulujemy!
 </p>
+
 </body>
 </section>
 </chapter>
@@ -201,21 +223,23 @@ T-shirty, podkładki pod myszkę i naklejki Gentoo ofiarowane przez "Friends of 
 <chapter>
 <title>Gentoo w prasie</title>
 <section>
-<title>Newsforge (22 Maj 2006)</title>
+<title>Newsforge (22 maja 2006)</title>
 <body>
+
 <p>
-Robin Miller nadaje Gentoo ciekawą rolę wsparcia w <uri 
-link="http://business.newsforge.com/business/06/05/22/1240231.shtml"> 
-artykule</uri> o konferencji deweloperów Debiana - DebConf6. Odpowiadając
-na swoje własne pytanie: czemu Debian ma tak duże znaczenie, jasno
-stwierdza, że inni (?inne dystrybucje) stają się bardziej widoczni publicznie: 
-"Novell i Red Hat przeznaczają duże nakłady na reklamę i kształtowanie wizerunku.
-Gentoo ma oddanych użytkowników, którzy szerzą chwalące, zachęcające do przetestowania
-treści na praktycznie każdej możliwej internetowej dyskusji o dystrybucjach GNU/Linuksa." 
-Drobna pomyłka: Miller uważa, że umowa społeczna Debiana jest unikalna (?wyjątkowa), zatem 
-być może oddani użytkownicy Gentoo są o co najmniej jedną z <uri link="http://www.gentoo.org/main/en/contract.xml"> wyżej wymienionych treści</uri> 
-short so far. (? krótko mówiąc - do tyłu)
+Robin Miller niezwykle ciekawie opisuje Gentoo w <uri
+link="http://business.newsforge.com/business/06/05/22/1240231.shtml">artykule</uri>
+opisującym konferencję deweloperów Debiana - DebConf6. Odpowiadając na swoje
+własne pytanie czemu Debian jest ważny, jasno stwierdza, że inni są lepiej
+„reklamowani”: „Novell i Red Hat przeznaczają duże nakłady na reklamę i
+kształtowanie własnego wizerunku. Gentoo ma oddanych użytkowników, którzy chwalą
+swoją dystrybucje w praktycznie wszystkich dyskusjach o dystrybucjach
+GNU/Linuksa”. Drobna pomyłka: Miller uważa, że umowa społeczna Debiana jest
+wyjątkiem, zatem być może ci oddani użytkownicy Gentoo mają przynajmniej <uri
+link="http://www.gentoo.org/main/en/contract.xml">jeden mniej argument</uri> w
+ręku.
 </p>
+
 </body>
 </section>
 </chapter>
