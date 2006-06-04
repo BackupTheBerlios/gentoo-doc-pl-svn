@@ -1,0 +1,416 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of REPOMAN</TITLE>
+</HEAD><BODY>
+<H1>REPOMAN</H1>
+Section: Portage (1)<BR>Updated: Dec 2005<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAZWA</H2>
+
+repoman - Program Gentoo służący do zapewnienia minimalnego poziomu jakości w
+pakietach dodawanych do drzewa Portage.
+<A NAME="lbAC">&nbsp;</A>
+<H2>SKŁADNIA</H2>
+
+<B>repoman</B> [<I>opcje</I>] [<I>tryb</I>]
+<A NAME="lbAD">&nbsp;</A>
+<H2>OPIS</H2>
+
+<B>Wysoka jakość to podstawa naszej pracy.</B>
+
+<P>
+<B>repoman</B>
+
+przeznaczony jest dla deweloperów Gentoo ponieważ nie sprawdza każdego ebuilda
+z osobna, a repozytorium CVS jako całość.
+<P>
+Uwaga: <B>repoman commit</B> działa jedynie <I>wewnątrz lokalnego</I> repozytorium
+CVS.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPCJE</H2>
+
+<DL COMPACT>
+<DT><B>-q</B>, <B>--quiet</B><DD>
+Podaje dodatkowe informacje w mniej szczegółowy sposób.
+<DT><B>-p</B>, <B>--pretend</B><DD>
+Nie wykonuje żadnych działań, symuluje jedynie co zostanie zrobione.
+<DT><B>-i</B>, <B>--include-masked</B><DD>
+Włącza do skanowania zamaskowane pakiety w katalogu lub na poziomie drzewa.
+<DT><B>-x</B>, <B>--xmlparse</B><DD>
+Przymusowe sprawdzenie poprawności pliku metadata.xml.
+<DT><B>-v</B>, <B>--verbose</B><DD>
+Wyświetla nazwy wszystkich pakietów podczas sprawdzania.
+<DT><B>-I</B>, <B>--ignore-arches</B><DD>
+Ignoruje błędy wywołane przez architekturę (w przypadku gdy arch != host).
+<DT><B>-m</B>, <B>--commitmsg</B><DD>
+Dodaje wiadomość zatwierdzającą poprzez linię poleceń.
+<DT><B>-M</B>, <B>--commitmsgfile</B><DD>
+Dodaje wiadomość zatwierdzającą z podanego pliku.
+<DT><B>-V</B>, <B>--version</B><DD>
+Pokazuje numer wersji programu.
+<DT><B>-h</B>, <B>--help</B><DD>
+Pokazuje tę pomoc.
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>TRYBY</H2>
+
+<DL COMPACT>
+<DT><B>full</B>
+
+<DD>
+Skanuje katalog w poszukiwaniu błędów związanych z QA (kontrola jakości).
+<DT><B>last</B>
+
+<DD>
+Zapamiętuje raport z ostatniego uruchomienia.
+<DT><B>help</B>
+
+<DD>
+Pokazuje tę pomoc.
+<DT><B>scan</B>
+
+<DD>
+Skanuje katalog w poszukiwaniu błędów związanych z QA (domyślnie).
+<DT><B>fix</B>
+
+<DD>
+Naprawia proste błędy QA (błędne pliki digest lub ich brak).
+<DT><B>lfull</B>
+
+<DD>
+Zapamiętuje raport z ostatniego uruchomienia (pełna lista).
+<DT><B>commit</B>
+
+<DD>
+Wpierw skanuje katalog drzewa w poszukiwaniu błędów QA, jeżeli ich nie znajdzie
+zatwierdza plik poprzez CVS.
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>SŁOWA KLUCZOWE QA</H2>
+
+<DL COMPACT>
+<DT><B>CVS/Entries.IO_error</B>
+
+<DD>
+Podczas próby dodania zmian do repozytorium okazało się, że napotkano błąd IO w
+trakcie odczytu pliku wejścia.
+<DT><B>DEPEND.bad</B>
+
+<DD>
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienną DEPEND
+(sprawdza tylko *widzialne* ebuildy).
+<DT><B>DEPEND.badindev</B>
+
+<DD>
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienna DEPEND 
+(sprawdza tylko *widzialne* ebuildy) w rozwijanej architekturze.
+<DT><B>DEPEND.badmasked</B>
+
+<DD>
+Zamaskowano ebuildy, które posiadają źle ustawioną zmienną DEPEND (sprawdza
+*wszystkie* ebuildy).
+<DT><B>DEPEND.badmaskedindev</B>
+
+<DD>
+Zamaskowano ebuildy, które posiadają źle ustawioną zmienna DEPEND (sprawdza
+*wszystkie* ebuildy) w rozwijanej architekturze.
+<DT><B>DEPEND.syntax</B>
+
+<DD>
+Błąd składni w zmiennej DEPEND (z reguły brak lub dodatkowa spacja/nawias).
+<DT><B>DESCRIPTION.missing</B>
+
+<DD>
+Ebuildy posiadające pustą zmienną DESCRIPTION lub nie posiadające jej w ogóle.
+<DT><B>HOMEPAGE.missing</B>
+
+<DD>
+Ebuildy posiadające pustą zmienną HOMEPAGE lub nie posiadające jej w ogóle.
+<DT><B>IUSE.invalid</B>
+
+<DD>
+Ebuild posiadający wartość w IUSE, której nie ma w pliku use.desc lub
+use.local.desc.
+<DT><B>KEYWORDS.invalid</B>
+
+<DD>
+Ebuild zawiera zmienne KEYWORDS, które nie znajdują się w pliku
+profiles/arch.list lub dla których nie znaleziono odpowiedniego profilu.
+<DT><B>KEYWORDS.missing</B>
+
+<DD>
+Ebuildy posiadające pustą zmienną KEYWORDS lub nie posiadające jej w ogóle.
+<DT><B>KEYWORDS.stupid</B>
+
+<DD>
+Ebuildy używające KEYWORDS=-* zamiast pliku package.mask.
+<DT><B>LICENSE.invalid</B>
+
+<DD>
+Ebuildy posiadające licencję, która nie istnieje w katalogu license/ drzewa Portage.
+<DT><B>LICENSE.missing</B>
+
+<DD>
+Ebuildy posiadające pustą zmienną LICENSE lub nie posiadające jej w ogóle.
+<DT><B>LICENSE.syntax</B>
+
+<DD>
+Błąd składni w zmiennej LICENSE (z reguły brak lub dodatkowa spacja/nawias).
+<DT><B>PDEPEND.bad</B>
+
+<DD>
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienną PDEPEND
+(sprawdza jedynie *widoczne* ebuildy).
+<DT><B>PDEPEND.badindev</B>
+
+<DD>
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienną PDEPEND
+(sprawdza jedynie *widoczne* ebuild) w rozwijanej architekturze.
+<DT><B>PDEPEND.badmasked</B>
+
+<DD>
+Zamaskowane ebuildy, które posiadają źle ustawioną zmienną PDEPEND (sprawdza
+*wszystkie* ebuildy).
+<DT><B>PDEPEND.badmaskedindev</B>
+
+<DD>
+Zamaskowane ebuildy, które posiadają źle ustawioną zmienną PDEPEND (sprawdza
+*wszystkie* ebuildy) w rozwijanej architekturze.
+<DT><B>PDEPEND.syntax</B>
+
+<DD>
+Błąd składni w zmiennej PDEPEND (z reguły brak lub dodatkowa spacja/nawias).
+<DT><B>PROVIDE.syntax</B>
+
+<DD>
+Błąd składni w zmiennej PROVIDE (z reguły brak lub dodatkowa spacja/nawias).
+<DT><B>RDEPEND.bad</B>
+
+<DD>
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienną RDEPEND
+(sprawdza jedynie *widoczne* ebuildy).
+<DT><B>RDEPEND.badindev</B>
+
+<DD>
+Widoczne dla użytkownika ebuildy, które posiadają źle ustawioną zmienną RDEPEND
+(sprawdza jedynie *widoczne* ebuild) w rozwijanej architekturze.
+<DT><B>RDEPEND.badmasked</B>
+
+<DD>
+Zamaskowane ebuildy, które posiadają źle ustawioną zmienną RDEPEND (sprawdza
+*wszystkie* ebuildy).
+<DT><B>RDEPEND.badmaskedindev</B>
+
+<DD>
+Zamaskowane ebuildy, które posiadają źle ustawioną zmienną RDEPEND (sprawdza
+*wszystkie* ebuildy) w rozwijanej architekturze.
+<DT><B>RDEPEND.syntax</B>
+
+<DD>
+Błąd składni w zmiennej RDEPEND (z reguły brak lub dodatkowa spacja/nawias).
+<DT><B>SLOT.missing</B>
+
+<DD>
+Ebuildy posiadający pustą zmienną SLOT lub nie posiadające jej w ogóle.
+<DT><B>changelog.missing</B>
+
+<DD>
+Brak pliku zmian (ChangeLog).
+<DT><B>changelog.notadded</B>
+
+<DD>
+Pliki zmian istnieją, jednak nie zostały dodane do cvs.
+<DT><B>digest.assumed</B>
+
+<DD>
+Isteniejące pliki digest muszą zostać poprawnie stworzone (jedynie na poziomie pakietu).
+<DT><B>digest.disjointed</B>
+
+<DD>
+Pliki digest nie zostały dodane do cvs razem z ebuildem.
+<DT><B>digest.fail</B>
+
+<DD>
+Plik digest nie pasuje do lokalnego pliku.
+<DT><B>digest.missing</B>
+
+<DD>
+Brakuje plików digest (ebuild istnieje).
+<DT><B>digest.notadded</B>
+
+<DD>
+Pliki digest istnieją jednak nie zostały dodane do cvs.
+<DT><B>digest.partial</B>
+
+<DD>
+Pliki digest, które nie zawierają wszystkich poprawnych elementów URI.
+<DT><B>digest.stray</B>
+
+<DD>
+Pliki digest, które nie mają odpowiadającego im ebuilda.
+<DT><B>digest.unmatch</B>
+
+<DD>
+Pliki digest, które są niekompletne (należy sprawdzić czy nasze USE/ARCH
+zawiera wszystkie pliki).
+<DT><B>digest.unused</B>
+
+<DD>
+Plik digest/Manifest nie posiada odpowiadającego mu wpisu SRC_URI.
+<DT><B>ebuild.allmasked</B>
+
+<DD>
+Wszystkie ebuildy zostały zamaskowane dla tego pakietu (jedynie na poziomie
+pakietu).
+<DT><B>ebuild.badheader</B>
+
+<DD>
+Ebuild posiada zdeformowany nagłówek.
+<DT><B>ebuild.disjointed</B>
+
+<DD>
+Ebuildy nie zostały dodane do cvs mimo, że odpowiadające im pliki digest
+zostały dodane.
+<DT><B>ebuild.invalidname</B>
+
+<DD>
+Ebuildy, które są nieprzetwarzalne lub posiadają błędną nazwę (lub używane jest
+rozszerzenie 2.1).
+<DT><B>ebuild.majorsyn</B>
+
+<DD>
+Ebuild posiada poważny błąd w składni, który może spowodować częściowe lub
+całkowite błędne działanie.
+<DT><B>ebuild.minorsyn</B>
+
+<DD>
+Ebuild posiada poważny błąd w składni, który naruszają styl pisania ebuildów Gentoo.
+<DT><B>ebuild.namenomatch</B>
+
+<DD>
+Ebuildy nie posiadające nazwy takiej samej jak ich katalog.
+<DT><B>ebuild.nesteddie</B>
+
+<DD>
+Umieszczenie 'die' wewnątrz ( ) pokazuje błąd, jednak nie zatrzymuje instalacji
+ebuilda.
+<DT><B>ebuild.nostable</B>
+
+<DD>
+Nie istnieją ebuildy oznaczone jako stabilne dla naszej architektury.
+<DT><B>ebuild.notadded</B>
+
+<DD>
+Ebuildy, które istnieją jednak nie zostały dodane do cvs.
+<DT><B>ebuild.output</B>
+
+<DD>
+Złamanie polityki ebuildów dotyczące wyniku podawanego przez niego samego.
+<DT><B>ebuild.syntax</B>
+
+<DD>
+Błąd przy generowaniu wpisu w pamięci podręcznej dla ebuilda. Zwykle
+spowodowany przez błąd składni samego ebuilda.
+<DT><B>file.UTF8</B>
+
+<DD>
+Plik nie jest zgodny z UTF8.
+<DT><B>file.executable</B>
+
+<DD>
+Ebuildy, pliki digest, metadata.xml, Manifiest oraz ChangeLog nie potrzebują
+bitu wykonywalności.
+<DT><B>file.name</B>
+
+<DD>
+Nazwa pliku/katalogu może składać się jedynie ze znaków: a-zA-Z0-9._-+:
+<DT><B>file.size</B>
+
+<DD>
+Rozmiar pliku w katalogu nie może przekroczyć 20k.
+<DT><B>filedir.missing</B>
+
+<DD>
+Pakiet nie posiada katalogu na pliki.
+<DT><B>metadata.bad</B>
+
+<DD>
+Niepoprawne pliki metadata.xml.
+<DT><B>metadata.missing</B>
+
+<DD>
+Brak plików metadata.xml.
+<DT><B>usage.obsolete</B>
+
+<DD>
+Ebuild korzysta ze starej budowy.
+<DT><B>variable.readonly</B>
+
+<DD>
+Przydzielono zmienną jedynie do odczytu.
+<DT><B>virtual.exists</B>
+
+<DD>
+Zmienna PROVIDE zawiera istniejące nazwy pakietów.
+<DT><B>virtual.unavailable</B>
+
+<DD>
+Zmienna PROVIDE zawiera wirtualny pakiet, który nie ma domyślnego profilu.
+<DT><B>virtual.versioned</B>
+
+<DD>
+Zmienna PROVIDE zawiera wirtualne pakiety z wersjami.
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>ZGŁASZANIE BŁĘDÓW</H2>
+
+Wszystkie błędy prosimy zgłaszać przy użyciu serwisu <A HREF="http://bugs.gentoo.org/">http://bugs.gentoo.org/</A>
+<A NAME="lbAI">&nbsp;</A>
+<H2>AUTORZY</H2>
+
+<PRE>
+Daniel Robbins &lt;<A HREF="mailto:drobbins@gentoo.org">drobbins@gentoo.org</A>&gt;
+Saleem Abdulrasool &lt;<A HREF="mailto:compnerd@gentoo.org">compnerd@gentoo.org</A>&gt;
+</PRE>
+
+<A NAME="lbAJ">&nbsp;</A>
+<H2>ZOBACZ TAKŻE</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1)
+
+<A NAME="lbAK">&nbsp;</A>
+<H2>TŁUMACZENIE</H2>
+
+Damian Kuras &lt;<A HREF="mailto:shadoww@gentoo.org">shadoww@gentoo.org</A>&gt;
+<BR>
+
+Polski projekt tłumaczenia manuali Gentoo
+<BR>
+
+<A HREF="http://gentoo.org/~rane/tlumaczenie-manuali.html">http://gentoo.org/~rane/tlumaczenie-manuali.html</A>
+<P>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAZWA</A><DD>
+<DT><A HREF="#lbAC">SKŁADNIA</A><DD>
+<DT><A HREF="#lbAD">OPIS</A><DD>
+<DT><A HREF="#lbAE">OPCJE</A><DD>
+<DT><A HREF="#lbAF">TRYBY</A><DD>
+<DT><A HREF="#lbAG">SŁOWA KLUCZOWE QA</A><DD>
+<DT><A HREF="#lbAH">ZGŁASZANIE BŁĘDÓW</A><DD>
+<DT><A HREF="#lbAI">AUTORZY</A><DD>
+<DT><A HREF="#lbAJ">ZOBACZ TAKŻE</A><DD>
+<DT><A HREF="#lbAK">TŁUMACZENIE</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 15:45:45 GMT, June 04, 2006
+</BODY>
+</HTML>

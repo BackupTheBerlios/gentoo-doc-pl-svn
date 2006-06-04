@@ -1,0 +1,46 @@
+.TH "ETC-UPDATE" "1" "Dec 2005" "Portage 2.1" "Portage"
+.SH NAZWA
+etc-update \- zajmuje się aktualizacją plików konfiguracyjnych
+.SH SKŁADNIA
+.B etc-update
+.SH OPIS
+.I etc-update
+należy uruchamiać po zainstalowaniu nowego pakietu, jeśli konieczne jest
+zaktualizowanie plików konfiguracyjnych. Jeśli nowy plik konfiguracyjny ma
+zastąpić starą wersję,
+.I etc-update 
+poprosi użytkownika o decyzję.
+.PP
+.I etc-update
+sprawdza wszystkie katalogi zawarte wewnątrz zmiennej \fICONFIG_PROTECT\fR.
+Wszystkie pliki znajdujące się wewnątrz zmiennej \fICONFIG_PROTECT_MASK\fR
+zostaną automatycznie zaktualizowane przez \fIetc-update\fR. Więcej informacji
+znajduje się w \fBmake.conf\fR(5).
+.SH OPCJE
+.TP
+Brak.
+.SH "ZGŁASZANIE BŁĘDÓW"
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu http://bugs.gentoo.org/
+.SH AUTORZY
+.nf
+Jochem Kossen and Leo Lipelis
+Karl Trygve Kalleberg <karltk@gentoo.org>
+Mike Frysinger <vapier@gentoo.org>
+.fi
+.SH "PLIKI"
+.TP
+.B /etc/etc-update.conf
+Plik konfiguracyjny dla \fIetc-update\fR.
+.TP
+.B /etc/dispatch-conf.conf
+Ustawienia dotyczące zamieniania plików konfiguracyjnych zaraz po instalacji
+pakietu.
+.SH "ZOBACZ TAKŻE"
+.BR make.conf (5)
+.SH TŁUMACZENIE
+Łukasz Damentko <rane@gentoo.org>
+.br 
+Polski projekt tłumaczenia manuali Gentoo
+.br 
+http://gentoo.org/~rane/tlumaczenie-manuali.html
+

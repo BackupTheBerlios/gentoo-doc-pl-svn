@@ -1,0 +1,582 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of MAKE.CONF</TITLE>
+</HEAD><BODY>
+<H1>MAKE.CONF</H1>
+Section: portage (5)<BR>Updated: Dec 2005<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>TYTUŁ</H2>
+
+make.conf - własne ustawienia dla Portage
+<A NAME="lbAC">&nbsp;</A>
+<H2>SKŁADNIA</H2>
+
+<B>/etc/make.conf</B>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>OPIS</H2>
+
+Plik ten zawiera opis zmiennych używanych przez Portage. Portage sprawdza w
+pierwszej kolejności aktualnie zdefiniowane zmienne środowiskowe, jeśli ich
+nie znajdzie, sprawdza plik /etc/make.conf. Gdy i w tym pliku nie będzie
+zdefiniowanych zmiennych, zostaje sprawdzony plik /etc/make.globals.
+Ostatecznie gdy i tutaj Portage nie znajdzie nic, domyślne ustawienia profilu
+odczytywane są z pliku /etc/make.profile/make.defaults. Należy mieć na uwadze,
+że zmiany dokonywane przez użytkowników powinny zostać zapisywane jako zmienne
+środowiskowe lub powinny trafić do pliku /etc/make.conf. 
+<BR>
+
+Wyjątkami są zmienne przyrostowe takie jak USE, CONFIG_PROTECT* czy
+ACCEPT_KEYWORDS. Zmienne przyrostowe pobierane są z pliku make.defaults do
+make.globals, z niego następnie do make.conf i na końcu do zmiennych
+środowiskowych. Do usunięcia tych zmiennych wymagane jest usunięcie wszystkiego
+tak jak w przypadku export USE=&quot;-*&quot;.
+<A NAME="lbAE">&nbsp;</A>
+<H2>ZMIENNE</H2>
+
+<DL COMPACT>
+<DT><B>ACCEPT_KEYWORDS</B> = <I>[oddzielona spacjami lista słów kluczowych (KEYWORDS)]</I><DD>
+Uaktywnia możliwość instalowania testowych ebuildów, które nie zostały jeszcze
+oznaczone jako stabilne. Użytkownicy używający architektury 'x86' ustawią tę
+zmienną na wartość '~x86', zgodnie z tym użytkownicy używający 'ppc' ustawią ją
+na wartość '~ppc'. Jest to zmienne przyrostowa. Definiuje jedynie wartość
+~arch.
+<BR>
+
+Domyślnie ustawiona jest na wartość zmiennej $ARCH.
+<DT><B>BUILD_PREFIX</B> = <I>[ścieżka]</I><DD>
+Zmienna określająca lokalizację katalogu roboczego potrzebnego do kompilacji
+poszczególnych pakietów. 
+<BR>
+
+Wartością domyślną jest ${PORTAGE_TMPDIR}/portage
+<DT><B>CBUILD</B>
+
+<DD>
+Zmienna ta zostaje przekazana przez <I>skrypt ebuild</I> do <I>configure</I>
+jako <I>--build=${CBUILD}</I> tylko w przypadku gdy jest zdefiniowana. Nie
+należy ustawiać tej zmiennej samodzielnie, chyba że jesteśmy pewni co robimy.
+<DT><B>CCACHE_DIR</B> = <I>[path]</I><DD>
+Zmienna określająca położenie katalogu roboczego dla ccache. Aby zasięgnąć
+większej ilości informacji należy przejrzeć stronę manuala <B><A HREF="http://localhost/cgi-bin/man/man2html?1+ccache">ccache</A></B>(1).
+<BR>
+
+Wartością domyślną jest /var/tmp/ccache
+<DT><B>CCACHE_SIZE</B> = <I>&quot;size&quot;</I><DD>
+Określa limit miejsca na dysku dla ccache. Domyślna wartość to 2 GB. Wielkość
+można określać przy pomocy przedrostków 'G', 'M' lub 'K'.  
+<DT><B>CFLAGS CXXFLAGS</B>
+
+<DD>
+Zmienne służące do ustawienia pożądanych optymalizacji/instrukcji dla
+procesora, wykorzystywanych przy kompilacji pakietów. Prawie wszystkie ebuildy
+skorzystają z tych ustawień, przez co nasz system będzie w pełni
+zoptymalizowany i dostosowany do naszych potrzeb. Należy używać rozsądnych
+ustawień gdyż część z programów może mieć problemy z kompilacją lub
+uruchomieniem przy zbyt agresywnych opcjach.
+<P>
+Po większą ilość informacji prosimy sięgać do rozdziału <I>Invoking GCC</I>
+manuala gcc:
+<BR>
+
+<A HREF="http://gcc.gnu.org/onlinedocs/">http://gcc.gnu.org/onlinedocs/</A>
+<DT><B>CHOST</B>
+
+<DD>
+Zmienna ta zostaje przekazana przez <I>skrypt ebuild</I> do <I>configure</I>
+jako <I>--host=${CHOST}</I>.  W ten sposób można wymusić build-host.
+<P>
+Po więcej informacji należy się udać pod jeden z poniższych adresów:
+<BR>
+
+<A HREF="http://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Submodel-Options.html">http://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Submodel-Options.html</A>
+<BR>
+
+<A HREF="http://gcc.gnu.org/onlinedocs/gcc-3.3/gcc/Submodel-Options.html">http://gcc.gnu.org/onlinedocs/gcc-3.3/gcc/Submodel-Options.html</A>
+<BR>
+
+<A HREF="http://gcc.gnu.org/onlinedocs/gcc-2.95.3/gcc_2.html">http://gcc.gnu.org/onlinedocs/gcc-2.95.3/gcc_2.html</A>
+<DT><B>CLEAN_DELAY</B> = <I>liczba całkowita</I><DD>
+Określa jak długo będzie trwało odliczanie przed wykonaniem polecenia
+`emerge clean`.
+<BR>
+
+Domyślną wartością jest 5 sekund.
+<DT><B>CONFIG_PROTECT</B> = <I>[oddzielona spacjami lista katalogów]</I><DD>
+Wszystkie pliki konfiguracyjne w katalogach, które zostaną wymienione w tej
+zmiennej będą plikami chronionymi. W celu uzyskania większej ilości informacji
+prosimy  wydać polecenie `emerge --help config`.
+<DT><B>CONFIG_PROTECT_MASK</B> = <I>[oddzielona spacją lista katalogów]</I><DD>
+Wszystkie pliki konfiguracyjne w katalogach, które zostaną wymienione w tej 
+zmiennej zostaną pozbawione ochrony. W celu uzyskania większej ilości
+informacji prosimy wydać polecenie `emerge --help config`.
+<DT><B>CTARGET</B>
+
+<DD>
+Zmienna ta jest przekazywana przez <I>skrypt ebuild</I> do <I>configure</I>
+jako <I>--target=${CTARGET}</I> jedynie w przypadku gdy jest zdefiniowana.
+<DT><B>DISTDIR</B> = <I>[ścieżka]</I><DD>
+Definiuje położenie lokalnego repozytorium z kodami źródłowymi.
+<BR>
+
+Domyślną wartością jest ${PORTDIR}/distfiles.
+<DT><B>EBEEP_IGNORE</B>
+
+<DD>
+Określa czy sygnały dźwiękowe wydawane przez emerge podczas wyświetlania
+ważnych informacji mają być ignorowane czy nie. Domyślnie zmienna ta nie jest
+ustawiona.
+<DT><B>EMERGE_DEFAULT_OPTS</B>
+
+<DD>
+Opcje dołączane do linii poleceń <B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1) przy każdym uruchomieniu.
+Nie będą one dodawane do linii poleceń, jeśli do parametrów dodamy
+--ignore-default-opts
+<DT><B>EPAUSE_IGNORE</B>
+
+<DD>
+Określa czy krótkie przerwy spowodowane wyświetleniem ważnej informacji mają
+być ignorowane czy też nie. Wartość ta domyślnie nie jest ustawiona.
+<DT><B>FEATURES</B> = <I>&quot;sandbox ccache autoaddcvs&quot;</I><DD>
+Określa działania domyślnie podejmowane przez portage. Opcje te powinny być
+modyfikowane jedynie przez deweloperów i/lub opiekunów pakietów.
+
+wyłączony. Zmienna ta jest zmienną przyrostową.
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>assume-digests</B>
+
+<DD>
+W chwili zatwierdzania plików do cvs przy pomocy <B><A HREF="http://localhost/cgi-bin/man/man2html?1+repoman">repoman</A></B>(1), program 
+zakłada, że wszystkie istniejące sumy kontrole plików ze zmiennej SRC_URI są
+poprawne. Ta opcja powoduje również generowanie plików digest za pomocą
+polecenia <B><A HREF="http://localhost/cgi-bin/man/man2html?1+ebuild">ebuild</A></B>(1) i <B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1) (emerge generuje pliki digest tylko
+wtedy, gdy opcja <I>digest</I> jest włączona).
+<DT><B>autoaddcvs</B>
+
+<DD>
+Sprawia, że portage stara się automatycznie dodać do cvs pliki, które powinny
+zostać dodane w późniejszym czasie. Operacja ta jest wykonywana podczas
+tworzenia i działa tylko w przypadku posiadania wpisu <I>cvs</I> w zmiennej 
+<B>FEATURES</B>.
+<DT><B>buildpkg</B>
+
+<DD>
+Dla wszystkich instalowanych pakietów tworzone będą pakiety binarne.
+<DT><B>ccache</B>
+
+<DD>
+Uaktywnia wsparcie portage dla ccache. Jeżeli katalog dla ccache nie istnieje
+w środowisku użytkownika, wtedy portage użyje domyślnego ${PORTAGE_TMPDIR}/ccache
+(z <I>userpriv</I>) lub w innym przypadku /root/.ccache.
+<DT><B>confcache</B>
+
+<DD>
+Włącza wsparcie dla confcache. Jest to skrypt przechowujący odpowiedzi na
+pytania dla configure i przyspieszający jego działanie za pomocą funkcji
+pomocniczej econf. Więcej informacji w <B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5).
+<DT><B>collision-protect</B>
+
+<DD>
+Opcja QA pozwalająca upewnić się, że pakiet nie nadpisze plików, które nie
+należą do niego.
+<DT><B>cvs</B>
+
+<DD>
+Opcja przydatna dla deweloperów, powodująca, że portage uaktywania wszystkie
+flagi USE w zmiennej SRC_URI w trakcie tworzenia plików digest.
+<DT><B>digest</B>
+
+<DD>
+Automatycznie generuje plik digest dla pakietu podczas wykonywania polecenia
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1). Jeśli opcja <I>assume-digests</I> jest także włączona, wówczas
+bierzące pliki digest SRC_URI zostaną ponownie wykorzystane, gdziekolwiek jest
+to możliwe.
+<DT><B>distcc</B>
+
+<DD>
+Włącza obsługę distcc.
+
+<B>distlocks</B>
+
+Portage używa plików blokad, aby rywalizujące warstwy nie używały tych samych
+plików w jednym czasie. Opcja ta domyślnie jest włączona, jednak może
+spowodować atak serca w przypadku mniej inteligentych zdalnych systemów plików,
+taki jak na przykład NFSv2 i dziwnie skonfigurowany serwer Samby (opcja
+oplocks wyłączona, re-export NFS). Istnieje narzędzie
+(/usr/lib/portage/bin/clean_locks), które może się okazać pomoce w przypadku
+wystąpienia problemów z blokadami (z reguły w przypadku błędu lub utracenia
+połączenia).
+<DT><B>fixpackages</B>
+
+<DD>
+Uruchamia skrypt, który naprawia zależności we wszystkich pakietach binarnych.
+Zostaje on uruchomiony w przypadku gdy pakiety przenoszone są wewnątrz drzewa
+portage. Należy mieć na uwadze, że ta operacja może trwać dość długo.
+<DT><B>getbinpkg</B>
+
+<DD>
+Zmusza za każdym razem emerge do ściągnięcia źródeł z <I>PORTAGE_BINHOST</I>. Po
+więcej informacji należy udać się do <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5).
+<DT><B>gpg</B>
+
+<DD>
+Sprawdza poprawność podpisów plików Manifest.
+<DT><B>keeptemp</B>
+
+<DD>
+Zmienna ta nie pozwala na usunięcie katalogu ${T} po instalacji.
+<DT><B>keepwork</B>
+
+<DD>
+Zmienna ta nie pozwala na usunięcie katalogu ${WORKDIR} po instalacji.
+<DT><B>metadata-transfer</B>
+
+<DD>
+Automatycznie wykonuje przesłanie metadanych, gdy wykonywane jest polecenie
+`emerge --sync`.
+<DT><B>mirror</B>
+
+<DD>
+Spowoduje to, że opcja <B>FETCHCOMMAND</B> będzie uruchamiana zawsze, nawet w
+przypadku gdy plik będzie się znajdował już w <B>DISTDIR</B>.
+<DT><B>noauto</B>
+
+<DD>
+W trakcie wykorzystywania <B><A HREF="http://localhost/cgi-bin/man/man2html?1+ebuild">ebuild</A></B>(1), uruchamiana będzie jedynie żądana
+przez nas funkcja.
+<DT><B>noclean</B>
+
+<DD>
+Zmienna ta nie pozwala na usuwanie plików źródłowych i plików tymczasowych po
+procesie instalacji.
+<DT><B>nodoc</B>
+
+<DD>
+Zmienna nie zezwalająca na instalację dokumentacji (/usr/share/doc).
+<DT><B>noinfo</B>
+
+<DD>
+Zmienna nie zezwalająca na instalację stron info.
+<DT><B>noman</B>
+
+<DD>
+Zmienna nie zezwalająca na instalację manuali.
+<DT><B>nostrip</B>
+
+<DD>
+Zapobiega stripowaniu pakietów binarnych, którą zostaną zainstalowane w
+systemie.
+<DT><B>notitles</B>
+
+<DD>
+Wyłącza aktualizację belki tytułowej xterm (która zawiera informację na temat
+aktualnego statusu).
+<DT><B>parallel-fetch</B>
+
+<DD>
+Ściąga źródła w tle podczas kompilacji pakietów.
+<DT><B>sandbox</B>
+
+<DD>
+Uruchamia wsparcie dla sandbox gdy uruchamiamy <B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1) lub <B><A HREF="http://localhost/cgi-bin/man/man2html?1+ebuild">ebuild</A></B>(1).
+<DT><B>severe</B>
+
+<DD>
+Akceptuje jedynie te pliki Manifest, które zostały podpisane kluczami uznanymi
+przez nasz system za zaufane.
+<DT><B>sfperms</B>
+
+<DD>
+Skrót od Smart Filesystem Permissions. Przed wgraniem plików do systemu
+sprawdza prawa dostępu na tych, które mają ustawione bity setuid i setgid.
+Z plików z bitem setuid usuwane są prawa odczytu dla wszystkich użytkowników i
+dla grupy, a z plików z bitem setgid prawa odczytu dla wszystkich użytkowników.
+Więcej informacji w opisie opcji <I>suidctl</I> poniżej.
+<DT><B>sign</B>
+
+<DD>
+Gdy zatwierdzamy efekty naszej pracy programem <B><A HREF="http://localhost/cgi-bin/man/man2html?1+repoman">repoman</A></B>(1), podpisuje plik
+Manifest z użyciem klucza GPG. Więcej informacji na temat zmiennej
+<B>PORTAGE_GPG_KEY</B> znajdziemy w <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5).
+<DT><B>splitdebug</B>
+
+<DD>
+Przed stripowaniem plików ELF etdyn i etexec zapisuje informacje potrzebne do
+debugowania.
+<DT><B>strict</B>
+
+<DD>
+Nakazuje Portage reagować natychmiast w przypadkach uznawanych za niebezpieczne
+(np. niepoprawne sumy kontrolne lub ich całkowity brak).
+<DT><B>stricter</B>
+
+<DD>
+Nakazuje Portage reagować natychmiast w przypadkach które mogą kolidować z
+założeniami bezpieczeństwa systemu (na przykład textrels, wykonywalny stos).
+Więcej informacji na ten temat należy szukać pod zmiennymi <I>QA_STRICT_*</I> w
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5).
+<DT><B>suidctl</B>
+
+<DD>
+Przed zainstalowaniem pakietów do systemu, automatycznie stripuje bity setuid z
+każdego pliku nie znajdującego się na liście w pliku <I>/etc/portage/suidctl.conf</I>.
+<DT><B>test</B>
+
+<DD>
+Uruchamia testy po zainstalowaniu dla każdego z pakietów celem upewnienia się
+czy został on poprawnie skompilowany. Po więcej informacji należy udać się do
+rozdziału <I>test</I> manuala <B><A HREF="http://localhost/cgi-bin/man/man2html?1+ebuild">ebuild</A></B>(1) i <I>src_test()</I> manuala
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5).
+<DT><B>userfetch</B>
+
+<DD>
+Gdy Portage zostanie wywołane przez użytkownika root, polecenie zostanie
+wykonane przez portage:portage, na czas pobierania źródeł.
+<DT><B>userpriv</B>
+
+<DD>
+Zezwala portage na usunięcie uprawnień superużytkownika i kompilację pakietów
+jako portage:portage bez użycia sandbox (chyba, że flaga <I>usersandbox</I> jest
+również używana).
+<DT><B>usersandbox</B>
+
+<DD>
+Uaktywnia wsparcie sandbox w czasie kompilacji, w przypadku gdy nie pracuje z
+uprawnieniami superużytkownika (<I>userpriv</I>).
+</DL>
+</DL>
+
+<DT><B>FETCHCOMMAND</B>
+
+<DD>
+Zmienna ta zawiera polecenie używane do ściągania kodów źródłowych z internetu.
+musi zawierać pełną ścieżkę do pliku wykonywalnego, w taki sam sposób jak
+zmienne \${DISTDIR} i \${URI}.
+<DT><B>GENTOO_MIRRORS</B> = <I>[adresy URL]</I><DD>
+W zmiennej tej umieszczamy oddzielone spacją adresy serwerów lustrzanych.
+Serwery te używane są do ściągania plików przed serwerami umieszczonymi w 
+<I>skryptach ebuild</I>. Zainstalowanie programu 'mirrorselect' może pomóc w
+wyborze serwerów lustrzanych.
+<DT><B>http_proxy ftp_proxy</B> = <I>[adres:port]</I><DD>
+Zmienna ta używana jest w przypadku konieczności użycia <B><A HREF="http://localhost/cgi-bin/man/man2html?1+wget">wget</A></B>(1) do
+ściągania kodów źródłowych. Wymagana jest ona tylko w przypadku używania przez
+użytkownika serwera proxy do łączenia się z siecią Internet.
+<DT><B>MAKEOPTS</B>
+
+<DD>
+Zmiennej tej używamy w przypadku gdy chcemy, aby make działał równolegle do
+siebie. Dla przykładu, gdy posiadamy system z dwoma procesorami, ustawiamy tą
+zmienną na wartość &quot;-j2&quot; lub &quot;-j3&quot; dla zwiększenia wydajności kompilacji
+kilku pakietów. Zalecane ustawienia określone są wzorem <I>CPUs+1</I> i 
+<I>2*CPUs+1</I>. Dla większej ilości informacji warto zobaczyć <B><A HREF="http://localhost/cgi-bin/man/man2html?1+make">make</A></B>(1).
+<DT><B>NOCOLOR</B> = <I>[&quot;true&quot; | &quot;false&quot;]</I><DD>
+Określa czy kolory mają być domyślnie wyłączone.
+<BR>
+
+Domyślną wartością jest false.
+<DT><B>PKGDIR</B> = <I>[ścieżka]</I><DD>
+Zmienna określająca położenie katalogu, w którym przechowywane będą pakiety
+binarne .tbz2.
+<BR>
+
+Domyślną wartością jest ${PORTDIR}/packages.
+<DT><B>PORT_LOGDIR</B>
+
+<DD>
+Zmienna określająca katalog, w który tworzone będą pliki log ebuildów. Logi
+będą tworzone tylko w przypadku gdy zmienna ta zawierać będzie katalog, w
+którym użytkownik ma uprawnienia do zapisu.
+<DT><B>PORTAGE_BINHOST</B> = <I>&quot;<A HREF="ftp://login:hasło@serwer.lustrzany.grp/pub/grp/i686/athlon-xp">ftp://login:hasło@serwer.lustrzany.grp/pub/grp/i686/athlon-xp</A>&quot;</I><DD>
+W zmiennej tej podajemy adres, z którego portage będzie pobierało gotowe już
+pakiety binarne. Może znajdować się tutaj tylko jeden adres serwera, który
+posiada w swoich zasobach pakiety tbz2. Zmienna ta używana jest tylko w
+przypadku gdy uruchamiamy <B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1) z opcjami pobierania pakietów
+binarnych. Więcej informacji znajduje się na stronie man <B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1).
+Adres ten musi wskazywać na katalog, w którym są tworzone pakiety binarne.
+<DT><B>PORTAGE_NICENESS</B> = <I>[liczba]</I><DD>
+Wartość tej zmiennej zostanie dodana do aktualnego poziomu parametru nice, z
+którym zostanie uruchomione emerge. Innymi słowy, zmienna ta nie ustawi poziomu
+parametru nice, a jedynie go zwiększy. Więcej informacji znajduje się w manualu
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+nice">nice</A></B>(1).
+<B>PORTAGE_RSYNC_EXTRA_OPTS</B> = <I>[opcje dla rsync]</I>
+Dodatkowe opcje dla rsync, używane podczas <B>emerge --sync</B>.
+<BR>
+
+Standardowo, zmienna jest pusta.
+<DT><B>PORTAGE_RSYNC_OPTS</B> = <I>[opcje dla rsync]</I><DD>
+Domyślne opcje rsync, używane podczas <B>emerge --sync</B>.
+<BR>
+
+<B>Nie należy zmieniać tych opcji o ile nie ma się pewności co się robi!</B>
+<BR>
+
+Standardowo wartość tej zmiennej to: &quot;--recursive --links --safe-links --perms
+--times --compress --force --whole-file --delete --delete-after --stats
+--timeout=180 --exclude='/distfiles' --exclude='/local' --exclude='/packages'&quot;
+<DT><B>PORTAGE_RSYNC_RETRIES</B> = <I>[LICZBA]</I><DD>
+Ilość prób, które rsync wykona, zanim zwróci informację o niepowodzeniu.
+<BR>
+
+Standardowa wartość to 3.
+<DT><DT><B>PORTAGE_TMPDIR</B> = <I>[ścieżka]</I><DD>
+<DD>
+Określa położenie tymczasowego katalogu potrzebnego do kompilacji pakietów.
+<BR>
+
+Domyślną wartością jest /var/tmp.
+<DT><B>PORTDIR</B> = <I>[path]</I><DD>
+Określa położenie drzewa Portage.
+<BR>
+
+Domyślną wartością jest /usr/portage. 
+<DT><B>PORTDIR_OVERLAY</B> = <I>&quot;[ścieżka] [kolejna-ścieżka] [itd...]&quot;</I><DD>
+Określa położenie katalogu, w którym użytkownik może przechowywać ebuildy spoza
+Portage, a przy wydaniu polecenia `emerge --sync` nie zostaną one nadpisane.
+Katalogi oddzielone są od siebie spacją.
+<BR>
+
+Domyślnie zmienna ta nie posiada wartości.
+<DT><B>RESUMECOMMAND</B>
+
+<DD>
+Zmienna ta zawiera polecenie potrzebne do przywrócenia ściągania pakietów,
+które zostały tylko częściowo ściągnięte. Powinna zostać zdefiniowana w
+formacie takim jak zmienna <B>FETCHCOMMAND</B>.
+<DT><B>QA_STRICT_EXECSTACK = </B><I>&quot;set&quot;</I><DD>
+Ustawienie tej zmiennej powoduje, że Portage będzie ignorować wszelkie
+ustawienia <I>QA_EXECSTACK</I> w ebuildach. Więcej informacji w <B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5).
+<DT><B>QA_STRICT_WX_LOAD = </B><I>&quot;set&quot;</I><DD>
+Ustawienie tej zmiennej powoduje, że Portage będzie ignorować wszelkie
+ustawienia <I>QA_WX_LOAD</I> w ebuildach. Więcej informacji w <B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5).
+<DT><B>QA_STRICT_TEXTRELS = </B><I>&quot;set&quot;</I><DD>
+Ustawienie tej zmiennej powoduje, że Portage będzie ignorować wszelkie
+ustawienia <I>QA_TEXTREL</I> w ebuildach. Więcej infrormacji w <B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5).
+<DT><B>ROOT</B> = <I>[ścieżka]</I><DD>
+Zmiennej <B>ROOT</B> używamy do określenia docelowego głównego systemu plików,
+który będzie używany do instalacji pakietów lub ebuildów. Wszystkie zależności
+ze zmiennych <B>RDEPEND</B> i <B>PDEPEND</B> zostaną zainstalowane w katalogu
+określonym jako parametr <B>ROOT</B>. Wszystkie zależności ze zmniennej 
+<B>DEPEND</B> będą instalowane do katalogu /. Zmienną tę ustawiamy częściej w
+samym środowisku, niż w pliku <I>/etc/make.conf</I>. Powszechnie zmienna ta
+używana jest do tworzenia nowych obrazów build.
+<BR>
+
+Domyślna wartość to /.
+<DT><B>RPMDIR</B> = <I>[ścieżka]</I><DD>
+Określa katalog, w którym będą przetrzymywane pakiety RPM.
+<BR>
+
+Domyślną wartością jest ${PORTDIR}/rpm.
+<DT><B>SYNC</B> = <I>[RSYNC]</I><DD>
+W tej zmiennej umieszczamy preferowany przez nas serwer rsync. Używany jest on
+do synchronizacji naszego lokalnego drzewa każdorazowo przy wydaniu polecenia 
+`emerge --sync`.
+<BR>
+
+Domyślną wartością jest <A HREF="rsync://rsync.gentoo.org/gentoo-portage">rsync://rsync.gentoo.org/gentoo-portage</A>
+<DT><B>USE</B> = <I>[lista flag USE oddzielonych spacją]</I><DD>
+Zmienna ta przechowuje opcje kontrolujące zachowanie pakietów podczas ich
+kompilacji. Więcej informacji na ten temat można znaleźć w <B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5).
+Lista wartości jakich można użyć znajduje się w pliku 
+<I>/usr/portage/profiles/use.desc</I>.
+<DT><B>USE_EXPAND_HIDDEN</B> = <I>[rozdzielona spacjami lista nazw zmiennych]</I><DD>
+Nazwy zmiennych w <B>USE_EXPAND</B>, które nie powinny być pokazane w trybie
+wyświetlającym więcej informacji (--verbose), przy wykonaniu polecenia
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1).
+<DT><B>USE_ORDER</B> = <I>&quot;env:pkg:conf:auto:defaults&quot;</I><DD>
+Określa pierszeństwo ustawień zmiennej USE. Powyższy przykład spowoduje, że
+ustawienia środowiska (env) nadpiszą ustawienia dla pakietów (pkg), które
+nadpiszą make.conf (conf), które nadpiszą generowane automatycznie wartości dla
+zainstalowanych pakietów (auto), które nadpiszą make.defaults (defaults).
+<BR>
+
+<B>***ostrzeżenie***</B>
+<BR>
+
+Nie należy modyfikować tej zmiennej, jeżeli nie jest się pewnym z czym to się
+wiąże. Jeśli system zostanie uszkodzony przez jej modyfikację nikt na świecie
+nie będzie w stanie mu wtedy pomóc.
+<BR>
+
+Domyślne wartości to &quot;env:pkg:conf:defaults&quot;.
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>ZGŁASZANIE BŁĘDÓW</H2>
+
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu <A HREF="http://bugs.gentoo.org/">http://bugs.gentoo.org/</A>
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTORZY</H2>
+
+<PRE>
+Daniel Robbins &lt;<A HREF="mailto:drobbins@gentoo.org">drobbins@gentoo.org</A>&gt;
+Nicholas Jones &lt;<A HREF="mailto:carpaski@gentoo.org">carpaski@gentoo.org</A>&gt;
+Mike Frysinger &lt;<A HREF="mailto:vapier@gentoo.org">vapier@gentoo.org</A>&gt;
+</PRE>
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>PLIKI</H2>
+
+<DL COMPACT>
+<DT><B>/etc/make.conf</B> <DD>
+Zawiera zmienne nadpisujące te z pliku make.defaults potrzebne przy kompilacji
+pakietów.
+<DT><B>/etc/make.globals</B> <DD>
+Zawiera domyślne zmienne potrzebne przy kompilacji pakietów. W celu
+zmodyfikowania zmiennych należy wprowadzić odpowiednie zmiany do pliku
+<I>/etc/make.conf</I>.
+<DT><B>/usr/portage/profiles/use.desc</B><DD>
+Zawiera listę wszystkich globalnych flag USE.
+<DT><B>/usr/portage/profiles/use.local.desc</B><DD>
+Zawiera listę wszystkich lokalnych flag USE.
+</DL>
+<A NAME="lbAI">&nbsp;</A>
+<H2>ZOBACZ TAKŻE</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+portage">portage</A></B>(5),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+ebuild">ebuild</A></B>(1),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5)
+
+<DL COMPACT>
+<DT>Skrypt <I>/usr/sbin/ebuild.sh</I>. <DD>
+<DT>Aplikacje pomocnicze znajdujące się w katalogu <I>/usr/lib/portage/bin</I>.<DD>
+</DL>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>TŁUMACZENIE</H2>
+
+Damian Kuras &lt;<A HREF="mailto:shadoww@gentoo.org">shadoww@gentoo.org</A>&gt;
+<BR>
+
+Polski projekt tłumaczenia manuali Gentoo
+<BR>
+
+<A HREF="http://gentoo.org/~rane/tlumaczenie-manuali.html">http://gentoo.org/~rane/tlumaczenie-manuali.html</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">TYTUŁ</A><DD>
+<DT><A HREF="#lbAC">SKŁADNIA</A><DD>
+<DT><A HREF="#lbAD">OPIS</A><DD>
+<DT><A HREF="#lbAE">ZMIENNE</A><DD>
+<DT><A HREF="#lbAF">ZGŁASZANIE BŁĘDÓW</A><DD>
+<DT><A HREF="#lbAG">AUTORZY</A><DD>
+<DT><A HREF="#lbAH">PLIKI</A><DD>
+<DT><A HREF="#lbAI">ZOBACZ TAKŻE</A><DD>
+<DT><A HREF="#lbAJ">TŁUMACZENIE</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 15:45:45 GMT, June 04, 2006
+</BODY>
+</HTML>

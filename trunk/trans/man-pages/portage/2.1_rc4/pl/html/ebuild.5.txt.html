@@ -1,0 +1,1085 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of EBUILD</TITLE>
+</HEAD><BODY>
+<H1>EBUILD</H1>
+Section: portage (5)<BR>Updated: Mar 2006<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAZWA</H2>
+
+ebuild - format, zmienne i funkcje skryptów ebuild
+<A NAME="lbAC">&nbsp;</A>
+<H2>OPIS</H2>
+
+Program
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+ebuild">ebuild</A></B>(1)
+
+przyjmuje pojedynczy skrypt ebuild jako argument. Skrypt ten zawiera zmienne i
+polecenia, które określają w jaki sposób należy pobrać, rozpakować, poprawić,
+skompilować, zainstalować i osadzić w systemie dany pakiet oprogramowania,
+używając jego oryginalnych źródeł. Dodatkowo, skrypt może w razie potrzeby
+zawierać polecenia wykonywane przed/po procesach instalacji/deinstalacji.
+<A NAME="lbAD">&nbsp;</A>
+<H2>PRZYKŁAD</H2>
+
+Oto przykładowy prosty skrypt ebuild:
+<P>
+
+<PRE>
+# Copyright 1999-2006 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+inherit some_eclass another_eclass
+
+DESCRIPTION=&quot;Super-useful stream editor (sed)&quot;
+HOMEPAGE=&quot;<A HREF="http://www.gnu.org/software/sed/sed.html">http://www.gnu.org/software/sed/sed.html</A>&quot;
+SRC_URI=&quot;<A HREF="ftp://alpha.gnu.org/pub/gnu/sed/${P}.tar.gz">ftp://alpha.gnu.org/pub/gnu/sed/${P}.tar.gz</A>&quot;
+
+LICENSE=&quot;GPL-2&quot;
+SLOT=&quot;0&quot;
+KEYWORDS=&quot;~x86&quot;
+IUSE=&quot;&quot;
+
+DEPEND=&quot;virtual/libc&quot;
+RDEPEND=&quot;virtual/libc&quot;
+
+src_compile() {
+        econf || die &quot;could not configure&quot;
+        emake || die &quot;emake failed&quot;
+}
+
+src_install() {
+        into /usr
+        doinfo doc/sed.info
+        doman doc/sed.1
+        into /
+        dobin sed/sed || die &quot;dobin sed failed&quot;
+        dodir /usr/bin
+        dosym /bin/sed /usr/bin/sed
+        dodoc NEWS README* THANKS TODO AUTHORS BUGS ANNOUNCE
+}
+</PRE>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>ZMIENNE</H2>
+
+<DL COMPACT>
+<DT><B>UWAGI NT. UŻYTKOWANIA</B>
+
+<DD>
+- Wszystkie zmienne, które można znaleźć w pliku <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5) są dla
+<BR>&nbsp;&nbsp;nas&nbsp;dostępne&nbsp;w&nbsp;plikach&nbsp;ebuild&nbsp;&nbsp;(na&nbsp;przykład&nbsp;zmienne&nbsp;PORTAGE*&nbsp;i&nbsp;PORTDIR*)
+<BR>
+
+- Przypisując w skryptach ebuild wartości do zmiennych <B>nie wolno stawiać
+spacji</B> pomiędzy nazwą zmiennej a znakiem równości.
+<DT><B>P</B>
+
+<DD>
+Zmienna ta zawiera nazwę pakietu bez numeru rewizji ebuilda.
+Nie wolno jej NIGDY modyfikować.
+<BR>
+
+<B>xfree-4.2.1-r2.ebuild</B> --&gt; <B>$P</B>=='<I>xfree-4.2.1</I>'
+<DT><B>PN</B>
+
+<DD>
+Zawiera nazwę skryptu bez numeru wersji.
+<BR>
+
+<B>xfree-4.2.1-r2.ebuild</B> --&gt; <B>$PN</B>=='<I>xfree</I>'
+<DT><B>PV</B>
+
+<DD>
+Zawiera numer wersji bez numeru rewizji.
+<BR>
+
+<B>xfree-4.2.1-r2.ebuild</B> --&gt; <B>$PV</B>=='<I>4.2.1</I>'
+<DT><B>PR</B>
+
+<DD>
+Zawiera numer rewizji lub 'r0', jeśli numer rewizji nie istnieje.
+<BR>
+
+<B>xfree-4.2.1-r2.ebuild</B> --&gt; <B>$PR</B>=='<I>r2</I>'
+<DT><B>PVR</B>
+
+<DD>
+Zawiera numer wersji oraz numer rewizji.
+<BR>
+
+<B>xfree-4.2.1-r2.ebuild</B> --&gt; <B>$PVR</B>=='<I>4.2.1-r2</I>'
+<DT><B>PF</B>
+
+<DD>
+Zawiera pełną nazwę pakietu <I>[PN]-[PVR]</I>
+<BR>
+
+<B>xfree-4.2.1-r2.ebuild</B> --&gt; <B>$PF</B>=='<I>xfree-4.2.1-r2</I>'
+<DT><B>CATEGORY</B>
+
+<DD>
+Zawiera nazwę kategorii do której należy pakiet.
+<DT><B>A</B>
+
+<DD>
+Zawiera wszystkie pliki źródłowe, których wymaga pakiet. Nigdy nie należy
+definiować tej zmiennej. Jest ona automatycznie generowana ze zmiennej
+<I>SRC_URI</I>.
+<DT><B>WORKDIR</B> = <I>&quot;${PORTAGE_TMPDIR}/portage/${PF}/work&quot;</I><DD>
+Zawiera ścieżkę do głównego katalogu, w którym będzie budowany pakiet. Nie
+należy modyfikować tej zmiennej.
+<DT><B>FILESDIR</B> = <I>&quot;${PORTDIR}/${CATEGORY}/${PN}/files&quot;</I><DD>
+Zawiera ścieżkę do podkatalogu 'files' z katalogu pakietu w drzewie portage. Nie
+należy modyfikować tej zmiennej.
+<DT><B>S</B> = <I>&quot;${WORKDIR}/${P}&quot;</I> <DD>
+Zawiera ścieżkę do tymczasowego <I>katalogu budowania</I>. Ze zmiennej tej
+korzystają funkcje <I>src_compile</I> i <I>src_install</I>. Dla obu tych
+funkcji katalogiem roboczym jest ścieżka ze zmiennej <I>S</I>. Zmienną tę
+można zmodyfikować, umieszczając w niej ścieżkę do katalogu, do którego
+zostało rozpakowane archiwum pakietu.
+<DT><B>T</B> = <I>&quot;${PORTAGE_TMPDIR}/portage/${PF}/temp&quot;</I><DD>
+Zawiera ściezkę do <I>katalogu tymczasowego</I>. Zmiennej tej możemy używać
+zgodnie z upodobaniami.
+<DT><B>D</B> = <I>&quot;${PORTAGE_TMPDIR}/portage/${PF}/image&quot;</I><DD>
+Zawiera ścieżkę do tymczasowego <I>katalogu instalacji</I>. Każda operacja
+zapisu, która nie wykorzystuje pomocniczych narzędzi i funkcji (opisanych
+poniżej), powinna być poprzedzona zmienną ${D}. Nie należy modyfikować tej
+zmiennej.
+<DT><B>DESCRIPTION</B> = <I>&quot;Niezmiernie pożyteczny pakiet&quot;</I><DD>
+Zmienna ta powinna zawierać krótki opis pakietu.
+<DT><B>SRC_URI</B> = <I>&quot;<A HREF="http://pozyteczny.com/pakiet/${P}.tar.gz">http://pozyteczny.com/pakiet/${P}.tar.gz</A>&quot;</I><DD>
+Zawiera listę odnośników URI wymaganych plików źródłowych. Może zawierać wiele
+odnośników dla pojedynczego pliku. Lista zostanie wykorzystana, jeśli plik nie
+zostanie znaleziony na żadnym z serwerów w <I>GENTOO_MIRRORS</I><B></B>.
+<DT><B>HOMEPAGE</B> = <I>&quot;<A HREF="http://pozyteczny.com/">http://pozyteczny.com/</A>&quot;</I><DD>
+Powinna zawierać listę odnośników URL do strony głównej pakietu oraz innych
+źródeł informacji na jego temat.
+<DT><B>KEYWORDS</B> = <I>[-~][x86,ppc,sparc,mips,alpha,arm,hppa]</I> <DD>
+Zmienna ta powinna zawierać listę architektur, o których wiemy, że ebuild na
+nich zadziała/nie zadziała. Zwykle jeśli nie jesteśmy pewni co do architektury,
+nie dodajemy jej do zmiennej. Jeśli ebuild nie zadziała na danej architekturze,
+należy dodać ją poprzedzoną znakiem -, na przykład -ppc. Jeśli planujemy
+dodać ebuild do drzewa Portage, powinniśmy podać ~arch dla tych architektur,
+dla których ebuild NA PEWNO DZIAŁA. (Pakiety, które mają w ten sposób ustawiony
+KEYWORD można odmaskować, ustawiając zmienną ACCEPT_KEYWORDS=&quot;~arch&quot; w wierszu
+poleceń lub w pliku <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5)). Miarodajną listę architektur
+znajdziemy w pliku /usr/portage/profiles/arch.list. Lista powinna być
+uporządkowana alfabetycznie.
+<DT><B>SLOT</B><DD>
+Za pomocą tej zmiennej ustawiamy wartość SLOT dla pakietów, które być może będą
+musiały współistnieć. Domyślnie powinniśmy ustawić <B>SLOT</B>=&quot;0&quot;, chyba że
+mamy poważne powody, by uczynić inaczej. Zmienna ta <I>ZAWSZE</I> powinna zostać
+ustawiona.
+<DT><B>LICENSE</B><DD>
+W tej zmiennej powinniśmy umieścić rozdzieloną spacjami listę licencji, na
+których wydany jest pakiet. Ustawiane licencje <B>_muszą_</B> odpowiadać tym z
+katalogu /usr/portage/licenses/. Jeśli danej licencji nie ma jeszcze w Portage,
+najpierw należy ją tam dodać.
+<DT><B>IUSE</B><DD>
+Zmienna ta powinna zawierać listę wszelkich flag USE, z których korzysta nasz
+skrypt. Możemy tu pominąć jedynie flagi właściwe dla architektury (patrz
+<B>KEYWORDS</B>).
+<DT><B>DEPEND</B><DD>
+Zmienna ta powinna zawierać listę wszystkich pakietów, które muszą być już
+zainstalowane, aby nasz pakiet dał się skompilować.
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>Atomy DEPEND</B>
+
+<DD>
+Atom depend to po prostu zależność, której Portage używa przy obliczaniu
+powiązań między pakietami. Należy zauważyć, że jeśli dany Atom nie został
+jeszcze zainstalowany, dopasowywana jest najnowsza dostępna wersja.
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>Podstawy atomów</B>
+
+<DD>
+Podstawy atomów to po prostu kompletna specyfikacja kategoria/nazwapakietu.
+Oto przykładowe podstawy atomów:
+<P>
+<PRE>
+<I>sys-apps/sed</I>
+<I>sys-libs/zlib</I>
+<I>net-misc/dhcp</I>
+</PRE>
+
+<DT><B>Wersje atomów</B>
+
+<DD>
+Czasem możemy potrzebować określić precyzyjnie jakie wersje atomów są nam
+potrzebne. Należy jedynie zwrócić uwagę, że numery wersji muszą być łączone
+przedrostkiem (patrz niżej). Dlatego numery wersji dodajemy jako przyrostek do
+reszty:
+<P>
+<PRE>
+sys-apps/sed<I>-4.0.5</I>
+sys-libs/zlib<I>-1.1.4-r1</I>
+net-misc/dhcp<I>-3.0_p2</I>
+</PRE>
+
+<P>
+Numer wersji zwykle składa się z dwóch lub trzech liczb, oddzielonych
+kropkami, na przykład 1.2 lub 4.5.2. Ten ciąg znaków może być czasem
+zakończony literą, na przykład 1.2a lub 4.5.2z. Należy zwrócić uwagę, że
+znak ten <B>nie ma</B> oznaczać statusu alpha, beta, itd... Do tego służą
+osobne przyrostki: _alpha, _beta, _pre (pre-release), _rc (release
+canditate) lub _p (patch).  Czyli dla trzeciej wersji pre-release pakietu
+napisalibyśmy na przykład 1.2_pre3. 
+<DT><B>Operatory przedrostkowe atomów [&gt; &gt;= = &lt;= &lt;]</B>
+
+<DD>
+Czasem możemy potrzebować określić zależność od ogólnych zakresów wersji
+pakietów, zamiast podawać za każdym razem konkretną wersję. Do tego celu służą
+standardowe operatory Boole'a:
+<P>
+<PRE>
+<I>&gt;</I>media-libs/libgd-1.6
+<I>&gt;=</I>media-libs/libgd-1.6
+<I>=</I>media-libs/libgd-1.6
+<I>&lt;=</I>media-libs/libgd-1.6
+<I>&lt;</I>media-libs/libgd-1.6
+</PRE>
+
+<DT><B>Rozszerzone przedrostki [!~] i przyrostki [*] atomów</B>
+
+<DD>
+Na tym nie koniec funkcjonalności. W razie potrzebny możemy zdefiniować
+pakiety blokujące oraz określić zakres interesujących nas wersji pakietów.
+Należy też zwrócić uwagę, że te rozszerzone przyrostki i przedrostki można
+dowolnie łączyć z klasami atomów, opisanymi wyżej. Oto kilka typowych
+przykładów z drzewa Portage:
+<P>
+<PRE>
+<I>!</I>app-text/dos2unix
+=dev-libs/glib-2<I>*</I>
+<I>!</I>=net-fs/samba-2<I>*</I>
+<I>~</I>net-libs/libnet-1.0.2a
+</PRE>
+
+<P>
+<I>!</I> oznacza, że dany pakiet nie może być zainstalowany w tym samym czasie
+<BR>
+
+<I>*</I> oznacza, że interesuje nas zainstalowanie dowolnej wersji pakietu z
+podaną podstawą. Tak więc w przypadku '2*' interesują nas wersje '2.1', '2.2',
+
+
+<BR>
+
+<I>~</I> oznacza, że interesuje nas dowolna rewizja podstawowej wersji podanego
+pakietu. W powyższym przykładzie więc mogą to być wersje '1.0.2a', '1.0.2a-r1',
+
+</DL>
+</DL>
+
+<DT><B>Dynamiczne zależności</B>
+
+<DD>
+Czasem, zależnie od użytych flag USE, programy mogą posiadać zmienną listę
+zależności. Portage daje nam kilka sposobów na poradzenie sobie z tą
+sytuacją.  Zauważmy tylko, że gdy używamy poniższych przykładów składni,
+każdy przypadek jest traktowany jako jeden Atom w kontekście, w którym się
+pojawia. Oznacza to, że każdy Atom może warunkowo włączać wiele atomów, jak
+i może być zagnieżdżony w nieskończoność.
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>usevar? ( Atom DEPEND )</B>
+
+<DD>
+Aby dołączyć bibliotekę jpeg gdy użytkownik ustawił flagę jpeg w <B>USE</B>,
+należy użyć poniższej składni:
+<BR>
+
+<B>jpeg? ( media-libs/jpeg )</B>
+
+<DT><B>!usevar? ( Atom )</B>
+
+<DD>
+Jeśli chcemy dołączyć pakiet tylko wtedy, gdy użytkownik nie włączył określonej
+flagi w zmiennej <B>USE</B>, należy użyć poniższej składni:
+<BR>
+
+<B>!nophysfs? ( dev-games/physfs )</B>
+
+<BR>
+
+Często przydaje się to wtedy, gdy chcemy dodać opcjonalne, lecz domyślnie
+włączone wsparcie dla jakiejś funkcji.
+<DT><B>usevar? ( Atom jeśli prawda ) !usevar? ( Atom jeśli fałsz )</B>
+
+<DD>
+Obsługa funkcjonalności takiej jak operator trójargumentowy z języka C odbywa
+się za pomocą dwóch wyrażeń, jednego zwykłego, drugiego odwróconego. Jeśli
+pakiet korzysta z GTK1 lub GTK2, ale nie obu na raz, możemy obsłużyć to w ten
+sposób:
+<BR>
+
+<B>gtk2? ( =x11-libs/gtk+-2* ) !gtk2? ( =x11-libs/gtk+-1* )</B>
+
+<BR>
+
+W ten sposób domyślnie będzie wykorzystywać lepszą bibliotekę GTK2.
+<DT><B>|| ( Atom Atom ... )</B>
+
+<DD>
+Gdy pakiet może korzystać z kilku różnych pakietów, a użycie pakietu
+wirtualnego nie jest wskazane, można zastosować taką składnię.
+<PRE>
+<B>|| (</B>
+<B>app-games/unreal-tournament</B>
+<B>app-games/unreal-tournament-goty</B>
+<B>)</B>
+</PRE>
+
+W tym przykładzie widać, że unreal-tournament posiada normalną wersję oraz
+wersję goty. Oba pakiety posiadają te same pliki podstawowe i dla innych
+pakietów nie ma znaczenia który z nich będzie zainstalowany. Jednak dodanie
+pakietu wirtualnego nie jest wskazane, ze względu na małą wagę problemu. 
+<BR>
+
+Innym dobrym przykładem jest sytuacja, gdy pakiet może zostać skompilowany z
+wieloma interfejsami wideo, ale może posiadać w danym czasie tylko jeden z nich.
+<PRE>
+<B>|| (</B>
+<B>sdl? ( media-libs/libsdl )</B>
+<B>svga? ( media-libs/svgalib )</B>
+<B>opengl? ( virtual/opengl )</B>
+<B>ggi? ( media-libs/libggi )</B>
+<B>virtual/x11</B>
+<B>)</B>
+</PRE>
+
+W tym przypadku zostanie wybrany tylko jeden z pakietów, zaś kolejność, w jakiej
+będą wybierane, ustala ich kolejność na liście. Tak więc sdl ma największe
+szanse na bycie wybranym, zaraz po nim svga, następnie opengl, ggi, zaś jesli
+użytkownik nie poda żadnej z poprzednich opcji, wybrany zostanie domyślny
+interfejs, X.
+</DL>
+</DL>
+
+<P>
+</DL>
+</DL>
+
+<DT><B>RDEPEND</B><DD>
+Zmienna ta powinna zawierać listę wszystkich pakietów, które są wymagane, aby
+program uruchomił się (mówimy o nich też jako o zależnościach czasu
+uruchamiania). Jeśli zmienna ta nie zostanie ustawiona, przyjmie tę samą
+wartość, co zmienna <B>DEPEND</B>.
+<BR>
+
+Wszystkie powyższe sposoby definiowania zmiennych zależności dotyczą również
+tej zmiennej.
+<DT><B>PDEPEND</B><DD>
+Zmienna ta powinna zawierać listę wszytkich tych pakietów, które muszą zostać
+zainstalowane zaraz po zainstalowaniu naszego programu.
+<BR>
+
+Wszystkie powyższe sposoby definiowania zmiennych zależności dotyczą również
+tej zmiennej.
+<DT><B>RESTRICT</B> = <I>[strip,mirror,fetch,userpriv]</I><DD>
+W tej zmiennej powinniśmy zawrzeć rozdzieloną spacjami listę restrykcji co do
+opcji Portage.
+
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><I>binchecks</I>
+
+<DD>
+Wyłącza wszelkie sprawdzanie QA dla plików binarnych (nie należy używać bez
+jakiegoś dobrego powodu). Więcej informacji w sekcji <B>ZMIENNE KONTROLNE QA</B>.
+<DT><I>confcache</I>
+
+<DD>
+Wyłącza użycie confcache przez econf.
+<DT><I>fetch</I>
+
+<DD>
+podobne do opcji <I>mirror</I>, ale pliki nie będą również pobierane z
+<B>SRC_URI</B>.
+<DT><I>mirror</I>
+
+<DD>
+pliki wymienione w zmiennej <B>SRC_URI</B> nie będą pobierane z wymienionych w
+zmiennej <B>GENTOO_MIRRORS</B> serwerów lustrzanych Gentoo.
+<DT><I>primaryuri</I>
+
+<DD>
+najpierw należy pobrać pliki z URL-i wymienionych w zmiennej <B>SRC_URI</B>,
+zanim wykorzystane zostaną serwery lustrzane z listy zawartej w
+<B>GENTOO_MIRRORS</B>.
+<DT><I>strip</I>
+
+<DD>
+będące ostatecznym produktem kompilacji pliki binarne i biblioteki nie będą
+pozbawiane symboli debugowania.
+<DT><I>sandbox</I>
+
+<DD>
+wyłącza funkcję sandbox (nie należy uzywać tej restrykcji bez naprawdę dobrego
+uzasadnienia).
+<DT><I>test</I>
+
+<DD>
+funkcja src_test nie zostanie uruchomiona, nawet jeśli użytkownik ustawił
+zmienną <B>FEATURES</B>=test.
+<DT><I>userpriv</I>
+
+<DD>
+Wyłącza funkcję userpriv dla okreslonych pakietów.
+</DL>
+</DL>
+
+
+<DT><B>PROVIDE</B> = <I>&quot;virtual/TARGET&quot;</I><DD>
+Powinniśmy użyć tej zmiennej tylko wtedy, gdy pakiet dostarcza funkcjonalności
+wirtualnej. Przykładowo, pakiety blackdown-jdk i sun-jdk dostarczają
+<I>virtual/jdk</I>. Pozwala to pakietom zdefiniować zależność od pakietu
+<I>virtual/jdk</I>, zamiast konkretnie od pakietów blackdown lub sun.
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>ZMIENNE KONTROLNE QA</H2>
+
+<DL COMPACT>
+<DT><B>UŻYCIE</B>
+
+<DD>
+Jest kilka zmiennych QA, które pozwalają ebuildowi wykonywać parę manipulacji
+związanych z testami QA. Użycie tych zmiennych powinno być jak najmniejsze.
+W innym wypadku, łamały by zasady testów QA ustanowione przez grupę QA. Ich
+podstawowym zastosowaniem jest użycie w ebuildach, które instalują zamknięte
+oprogramowanie, które nie może być modyfikowane.
+<BR>
+
+Nalezy pamiętać, że obiekty, które łamią te zasady mogą nie działać na pewnych
+architekturach.
+<DT><B>QA_TEXTRELS</B><DD>
+Ta zmienna może być ustawiona jako lista plików, relatywnie do katalogu z
+obrazem, dla plików, których przeniesienie nie może zostać wyelminowane.
+Ścieżka może zawierać wyrażenia regularne.
+<BR>
+
+Ta zmienna jest przeznaczona do użycia z zamkniętym oprogramowaniem, które nie
+może być modyfikowane.
+<DT><B>QA_EXECSTACK</B><DD>
+Ta zmienna powinna zawierać listę plików, relatywną do katalogu z obrazem,
+obiektów które wymagają wykonywalnego stosu, by móc działać.
+Ścieżka może zawierać wyrażenia regularne.
+<BR>
+
+Ta zmienna jest przeznaczona do użycia z obiektami, które rzeczywiście wymagają
+wykonywalnego stosu (np. nie te, które twierdzą, że wymagają, ale w
+rzeczywistości nie).
+<DT><B>QA_WX_LOAD</B><DD>
+Ta zmienna powinna zawierać listę plików, relatywną do katalogu z obrazem,
+plików, które zawierają zapisywalne i wykonywalne części. Rzadko spotykane.
+Ścieżka może zawierać wyrażenia regularne.
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>DEKLARACJE PORTAGE</H2>
+
+<DL COMPACT>
+<DT><B>inherit</B>
+
+<DD>
+Funkcjonalność &quot;inherit&quot; (dziedziczenia) to sposób zarządzania specjalnymi
+klasami funkcji w Portage, które są zdefiniowane poza ebuildami i dostarczają
+danych i możliwości, które można dziedziczyć. Definiują funkcje i typy danych
+jako łatwo wymienialne części, rozszerzone oraz uproszczone fragmenty kodu,
+służące do wykonywania najbardziej typowych zadań i czyniące proces budowania
+bardziej eleganckim. Deklaracja inherit może być użyta w ebuildzie tylko raz i
+<B>nigdy nie może być użyta wewnątrz jakichkolwiek instrukcji warunkowych</B>.
+Eklasy należy podawać posługujac się wyłącznie ich nazwą, pomijając rozszerzenie
+<I>.eclass</I>. &quot;inherit&quot; musi się pojawić przed deklaracją zmiennych.
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>FUNKCJE</H2>
+
+<DL COMPACT>
+<DT><B>pkg_nofetch</B>
+
+<DD>
+Jeśli dodamy opcję <I>fetch</I> do zmiennej <B>RESTRICT</B>, wówczas zostanie
+uruchomiona niniejsza funkcja, o ile nie będzie można znaleźć plików
+wymienionych w zmiennej <B>SRC_URI</B>. Funkcja ta przydaje się głównie wtedy,
+gdy trzeba poinformować użytkownika w jaki sposób samemu zdobyć wspomniane
+pliki. Powinniśmy jedynie wyświetlić komunikat i pozwolić funkcji samej
+zakończyć działanie. Nie należy wywoływać na końcu funkcji <B>die</B>.
+<DT><B>pkg_setup</B>
+
+<DD>
+Z tej funkcji korzystamy wtedy, gdy pakiet wymaga wykonania specjalnych poleceń
+konfigurujących lub sprawdzeń, które muszą być wykonane na samym poczatku.
+<BR>
+
+Początkowy katalog roboczy to ${PORTAGE_TMPDIR}.
+<DT><B>src_unpack</B>
+
+<DD>
+Funkcji tej używa się w celu rozpakowania wszystkich plików źródłowych z
+katalogu <I>A</I> do katalogu <I>WORKDIR</I>. Jeśli funkcja nie będzie
+zdefiniowana w skrypcie ebuild, automatycznie wywołana zostanie <I>unpack
+${A}</I>. Nakładanie łatek i inne modyfikacje dokonywane przed procesem
+konfigurowania i kompilacji powinny być wykonane tutaj.
+<BR>
+
+Początkowy katalog roboczy to $WORKDIR.
+<DT><B>src_compile</B>
+
+<DD>
+Wszystkie czynności niezbędne przy konfiguracji i kompilacji powinny być
+wykonane tutaj.
+<BR>
+
+Początkowy katalog roboczy to $S.
+<DT><B>src_test</B>
+
+<DD>
+Wykonuje wszystkie procedury testujące danego pakietu. Domyślnie uruchamia
+polecenie 'make check', a następnie 'make test'.
+<BR>
+
+Początkowy katalog roboczy to $S.
+<DT><B>src_install</B>
+
+<DD>
+Funkcja ta powinna zawierać wszystkie niezbędne czynności, mające na celu
+zainstalowanie pakietu w tymczasowym <I>katalogu instalacji</I>.
+<BR>
+
+Początkowy katalog roboczy to $S.
+<DT><B>pkg_preinst pkg_postinst</B>
+
+<DD>
+W tych funkcjach powinniśmy dokonywać wszelkich tych zmian w prawdziwym systemie
+plików, które muszą być wykonane przed lub po osadzeniu pakietu w systemie.
+Również komentarze dla użytkownika powinny znajdować się w tym miejscu, gdyż
+wówczas będą wyświetlone jako ostatnie.
+<BR>
+
+Początkowy katalog roboczy to $PWD.
+<DT><B>pkg_prerm pkg_postrm</B>
+
+<DD>
+Funkcje analogiczne do pkg_*inst, lecz służące do odinstalowania.
+<BR>
+
+Początkowy katalog roboczy to $PWD.
+<DT><B>pkg_config</B>
+
+<DD>
+Funkcja ta powinna zawierać opcjonalne podstawowe czynności konfiguracyjne.
+<BR>
+
+Początkowy katalog roboczy to $PWD.
+</DL>
+<A NAME="lbAI">&nbsp;</A>
+<H2>FUNKCJE POMOCNICZE: OGÓLNE</H2>
+
+<DL COMPACT>
+<DT><B>die</B> <I>[powód]</I><DD>
+Powoduje przerwanie aktualnego procesu instalacji. Zostanie wyświetlony
+komunikat <I>powód</I>.
+<DT><B>use</B> <I>&lt;flaga USE&gt;</I><DD>
+Jeśli <I>flaga USE</I> znajduje się w zmiennej <B>USE</B>, niniejsza funkcja
+zwróci 0 (wartość &quot;prawda&quot; powłoki), nie wypisując niczego. Jeśli <I>flagi
+USE</I> nie ma w zmiennej <B>USE</B>, funkcja zwróci wartość 1 (wartość &quot;fałsz&quot;
+powłoki), nie wypisując niczego. Polecenie <B>usev</B> pełni tę samą funkcję co
+<B>use</B>, lecz wypisuje więcej komunikatów. 
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><I>Przykład:</I>
+
+<DD>
+<PRE>
+if use gnome ; then
+        guiconf=&quot;--enable-gui=gnome --with-x&quot;
+elif use gtk ; then
+        guiconf=&quot;--enable-gui=gtk --with-x&quot;
+elif use X ; then
+        guiconf=&quot;--enable-gui=athena --with-x&quot;
+else
+        # Nie zostanie zbudowana wersja z gui
+        guiconf=&quot;&quot;
+fi
+</PRE>
+
+</DL>
+</DL>
+
+<DT><B>use_with</B> <I>&lt;flaga USE&gt;</I> <I>[parametr configure]</I> <I>[opcja configure]</I><DD>
+Funkcja przydatna przy tworzeniu własnej listy opcji, które chcemy przekazać
+do skryptu configure. Jeśli <I>flaga USE</I> znajduje się w zmiennej <B>USE</B> i
+podamy <I>opcję configure</I>, wówczas zostanie wypisany napis
+<I>--with-[parametr configure]=[opcja configure]</I>. Jeśli nie podamy <I>opcji
+configure</I>, wówczas wypisane zostanie tylko <I>--with-[parametr configure]</I>.
+Jeśli <I>flagi USE</I> nie ma w zmiennej <B>USE</B>, wypisany zostanie napis
+<I>--without-[parametr configure]</I>. Jeśli nie podamy <I>parametru
+configure</I>, wówczas zamiast niego zostanie użyta <I>flaga USE</I>.
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><I>Przykłady:</I>
+
+<DD>
+<PRE>
+USE=&quot;opengl&quot;
+myconf=$(use_with opengl)
+(zmienna myconf ma teraz wartość &quot;--with-opengl&quot;)
+
+USE=&quot;jpeg&quot;
+myconf=$(use_with jpeg libjpeg)
+(zmienna myconf ma teraz wartość &quot;--with-libjpeg&quot;)
+
+USE=&quot;&quot;
+myconf=$(use_with jpeg libjpeg)
+(zmienna myconf ma teraz wartość &quot;--without-libjpeg&quot;)
+
+USE=&quot;sdl&quot;
+myconf=$(use_with sdl SDL all-plugins)
+(zmienna myconf ma teraz wartość &quot;--with-SDL=all-plugins&quot;)
+</PRE>
+
+</DL>
+</DL>
+
+<DT><B>use_enable</B> <I>&lt;flaga USE&gt;</I> <I>[parametr configure]</I> <I>[opcja configure]</I><DD>
+Funkcja działa analogicznie jak <B>use_with</B>, tylko że opcje
+do configure to <I>--enable-</I> zamiast <I>--with-</I> oraz <I>--disable-</I>
+zamiast <I>--without-</I>.
+<DT><B>has</B> <I>&lt;element&gt;</I> <I>&lt;lista elementów&gt;</I><DD>
+Jeśli <I>element</I> znajduje się na <I>liście elementów</I>, wówczas
+<I>element</I> zostanie wypisany na ekran, a funkcja <B>has</B> zwróci 0. W
+przeciwnym wypadku nic nie zostanie wypisane, a funkcja zwróci 1.
+Analogicznie jak w przypadku funkcji use, istnieje funkcja <B>hasq</B>, która
+nic nie wypisuje na ekran. Należy używać jej wszędzie tam, gdzie to, co
+funkcja wypisuje, jest nieistotne. Nigdy nie należy używać tych danych do
+obliczeń.
+<BR>
+
+Zmienna <I>IFS</I> decyduje o znaku, który będzie oddzielał poszczególne
+elementy <I>listy elementów</I>. Zmienna ta przyjmuje domyślną wartość ' ',
+czyli spację. Jest to ustawienie powłoki <B><A HREF="http://localhost/cgi-bin/man/man2html?1+bash">bash</A></B>(1).
+<DT><B>has_version</B> <I>&lt;kategoria/pakiet-wersja&gt;</I><DD>
+Funkcja sprawdza czy <I>kategoria/pakiet-wersja</I> jest zainstalowana.
+Wszystkie wartości, jakie są akceptowalne w zmiennej <B>DEPEND</B> mogą być
+użyte jako parametr funkcji. Zwraca ona 0 jeśli
+<I>&lt;kategoria/pakiet-wersja&gt;</I> jest zainstalowana, zaś 1 jeśli nie.
+<DT><B>best_version</B> <I>&lt;nazwa pakietu&gt;</I><DD>
+Funkcja ta wyszuka <I>nazwę pakietu</I> w bazie danych aktualnie
+zainstalowanych programów i wypisze na ekran &quot;najlepszą wersję&quot; spośród
+nich.
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><I>Przykład:</I>
+
+<DD>
+VERINS=&quot;$(best_version net-ftp/glftpd)&quot;
+<BR>
+
+(Zmienna VERINS posiada teraz wartość &quot;net-ftp/glftpd-1.27&quot; jeśli
+zainstalowany jest pakiet glftpd-1.27)
+</DL>
+</DL>
+
+</DL>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>FUNKCJE POMOCNICZE: WYPISYWANIE NA EKRAN</H2>
+
+<DL COMPACT>
+<DT><B>einfo</B> <I>&quot;powiadomienie&quot;</I><DD>
+Jeśli chcemy wypisać komunikat, na który użytkownik powinien zwrócić uwagę 
+i go przeczytać, powinniśmy użyć funkcji <B>einfo</B>. Działa ona podobnie jak
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+echo">echo</A></B>(1), tylko wyświetla tekst tak, aby przyciągnąć uwagę użytkownika.
+<DT><B>ewarn</B> <I>&quot;ostrzeżenie&quot;</I><DD>
+Funkcja działa podobnie jak <B>einfo</B>, lecz powinna być używana wtedy, gdy
+chcemy ostrzec użytkownika.
+<DT><B>eerror</B> <I>&quot;komunikat błędu&quot;</I><DD>
+Funkcja działa podobnie jak <B>einfo</B>, lecz powinna być używana wtedy, gdy
+chcemy powiadomić użytkownika o błędzie.
+<DT><B>ebegin</B> <I>&quot;komunikat&quot;</I><DD>
+Podobnie jak w przypadku funkcji <B>einfo</B>, wypisujemy <I>komunikat</I>,
+dając do zrozumienia, że wykonywana operacja może zająć trochę czasu. Gdy
+zakończy się ona, musimy wywołać funkcję <B>eend</B>.
+<DT><B>eend</B> <I>&lt;status&gt;</I> <I>[&quot;komunikat błędu&quot;]</I><DD>
+Funkcja ta dopisuje do komunikatu funkcji <B>ebegin</B> znacznik &quot;OK&quot; lub
+&quot;!!&quot; (w przypadku wystąpienia błędu). Jeśli <I>status</I> jest niezerowy,
+dodatkowo zostanie wypisany <I>komunikat błędu</I>.
+</DL>
+<A NAME="lbAK">&nbsp;</A>
+<H2>FUNKCJE POMOCNICZE: ROZPAKOWYWANIE</H2>
+
+<DL COMPACT>
+<DT><B>unpack</B> <I>&lt;źródło&gt;</I> <I>[lista następnych źródeł]</I><DD>
+Funkcja ta rozpakowuje archiwa i/lub pliki tar z listy źródeł do bieżącego
+katalogu. Oprócz rozpakowania, funkcja dołączy <I>źródło</I> do zmiennej
+<B>DISTDIR</B>.
+</DL>
+<A NAME="lbAL">&nbsp;</A>
+<H2>FUNKCJE POMOCNICZE: KOMPILACJA</H2>
+
+<DL COMPACT>
+<DT><B>econf</B> <I>[opcje configure]</I><DD>
+Funkcji tej używa się zamiast skryptu configure. Wykonuje ona następujące
+polecenie:
+<PRE>
+configure \
+        --prefix=/usr \
+        --host=${CHOST} \
+        --mandir=/usr/share/man \
+        --infodir=/usr/share/info \
+        --datadir=/usr/share \
+        --sysconfdir=/etc \
+        --localstatedir=/var/lib \
+        <I>${EXTRA_ECONF}</I> \
+        <I>opcje configure</I>
+</PRE>
+
+Należy zwrócić uwagę, że zmienna <I>EXTRA_ECONF</I> ma służyć użytkownikom, a
+nie autorom ebuildów. Jeśli chcemy przekazać skryptowi configure więcej
+opcji, należy to zrobić poprzez dodanie argumentów do funkcji <B>econf</B>.
+<DT><B>emake</B> <I>[opcje make]</I><DD>
+Funkcji tej używa się zamiast polecenia make. Wykonuje ona polecenie 'make
+${MAKEOPTS} <I>opcje make</I>' (zgodnie z ustawieniami w pliku /etc/make.globals),
+domyślną wartością jest MAKEOPTS=&quot;-j2&quot;.
+<P>
+<B>***uwaga***</B>
+<BR>
+
+jeśli zamierzamy użyć funkcji <B>emake</B>, powinniśmy upewnić się, że
+kompilowany program poradzi sobie z budowaniem równoległym (make -j2).
+Należy to dokładnie przetestować, ponieważ budowanie równoległe najczęściej
+zawodzi _czasem_, a nie za każdym razem. Jeśli stwierdzimy, że nasz pakiet
+nie buduje się równolegle i nie będziemy potrafili tego naprawić, powinniśmy
+wywoływać '<B>emake</B> -j1' zamiast 'make'.
+</DL>
+<A NAME="lbAM">&nbsp;</A>
+<H2>FUNKCJE POMOCNICZE: INSTALACJA</H2>
+
+<DL COMPACT>
+<DT><B>einstall</B> <I>[opcje make]</I><DD>
+Funkcji tej używa się zamiast polecenia make install. Wykonuje ona
+następujące polecenie:
+<PRE>
+make \
+        prefix=${D}/usr \
+        datadir=${D}/usr/share \
+        infodir=${D}/usr/share/info \
+        localstatedir=${D}/var/lib \
+        mandir=${D}/usr/share/man \
+        sysconfdir=${D}/etc \
+        <I>${EXTRA_EINSTALL}</I> \
+        <I>opcje make</I> \
+        install
+</PRE>
+
+<B>Nie</B> należy używać tej funkcji zamiast 'make install DESTDIR=${D}'.
+Jest to bowiem preferowany sposób instalowania pakietów opartych na make.
+Nie należy również wykorzystywać zmiennej <I>EXTRA_EINSTALL</I>, gdyż służy
+ona użytkownikom.
+<P>
+
+<DT><B>prepall</B>
+
+<DD>
+<DT><B>prepalldocs</B>
+
+<DD>
+<DT><B>prepallinfo</B>
+
+<DD>
+<DT><B>prepallman</B>
+
+<DD>
+<DT><B>prepallstrip</B>
+
+<DD>
+
+Funkcje te przydają się, gdy program jest instalowany do katalogu <B>${D}</B>
+poprzez skrypty (na przykład pliki Makefile). Jeśli chcemy upewnić się, że
+biblioteki są wykonywalne, pliki aclocal są instalowane we właściwym
+miejscu, pliki doc/info/man są skompresowane, a pliki wykonywalne zostały
+pozbawione symboli debugowania, powinniśmy użyć tego zestawu funkcji.
+<DL COMPACT><DT><DD>
+
+<DL COMPACT>
+<DT><B>prepall:</B>
+
+<DD>
+Funkcja wywołuje funkcje <B>prepallman</B>, <B>prepallinfo</B>,
+<B>prepallstrip</B>, ustawia uprawnienia wykonywalności dla bibliotek i
+sprawdza katalogi aclocal. Należy zauważyć, że funkcja ta <I>*nie*</I>
+wywołuje funkcji <B>prepalldocs</B>.
+<DT><B>prepalldocs:</B>
+
+<DD>
+Kompresuje pliki z dokumentacją w katalogu ${D}/usr/share/doc.
+<DT><B>prepallinfo:</B>
+
+<DD>
+Kompresuje pliki info w katalogu ${D}/usr/share/info.
+<DT><B>prepallman:</B>
+
+<DD>
+Kompresuje pliki man w katalogu ${D}/usr/share/man.
+<DT><B>prepallstrip:</B>
+
+<DD>
+Usuwa symbole debugowania ze wszystkich plików wykonywalnych i bibliotek.
+</DL>
+</DL>
+
+<P>
+<DT><B>prepinfo</B> <I>[katalog]</I><DD>
+<DT><B>prepman</B> <I>[katalog]</I><DD>
+<DT><B>prepstrip</B> <I>[katalog]</I><DD>
+
+Funkcje różnią się nieznacznie od funkcji <B>prepall</B>.
+<DL COMPACT><DT><DD>
+
+<DL COMPACT>
+<DT><B>prepinfo:</B>
+
+<DD>
+Jeśli <I>katalog</I> nie został podany, funkcja <B>prepinfo</B> będzie działać
+na katalogu <I>usr</I>. Jej działanie polega na skompresowaniu wszystkich
+plików w katalogu ${D}/<I>katalog</I>/info.
+<DT><B>prepman:</B>
+
+<DD>
+Jeśli <I>katalog</I> nie został podany, funkcja <B>prepman</B> będzie działać
+na katalogu <I>usr</I>. Jej działanie polega na skompresowaniu wszystkich
+plików w katalogu ${D}/<I>dir</I>/man/*/.
+<DT><B>prepstrip:</B>
+
+<DD>
+Wszystkie pliki w katalogu ${D}/<I>katalog</I> zostaną pozbawione symboli
+debugowania. Możliwe jest podanie więcej niż jednego katalogu.
+</DL>
+</DL>
+
+
+<DT><B>dopython</B> <I>&lt;polecenia&gt;</I><DD>
+Wykonuje <I>polecenia</I> za pomocą interpretera języka python i zwraca
+wynik.
+<DT><B>dosed</B> <I>&quot;s:oryginał:zmiana:g&quot; &lt;plik&gt;</I><DD>
+Uruchamia program sed (w tym skopiowanie/przeniesienie <I>pliku</I>) dla
+<I>pliku</I>.
+<BR>
+
+<B>'dosed&nbsp;s:/usr/local:/usr:g&nbsp;/usr/bin/jakiś-skrypt'</B>
+
+uruchamia program sed dla pliku ${D}/usr/bin/jakiś-skrypt
+<DT><B>dodir</B> <I>&lt;ścieżka&gt;</I><DD>
+tworzy katalog wewnątrz katalogu ${D}.
+<BR>
+
+<B>'dodir&nbsp;/usr/lib/apache'</B>
+
+tworzy katalog ${D}/usr/lib/apache. Zauważmy, że funkcje do* wywołają
+funkcję <B>dodir</B> za nas.
+<DT><B>diropts</B> <I>[opcje dla programu <A HREF="http://localhost/cgi-bin/man/man2html?1+install">install</A>(1)]</I><DD>
+Funkcja ta może zostać użyta do podania opcji funkcji install, którą
+wykorzystuje funkcja <B>dodir</B>. Domyślne opcje to <I>-m0755</I>.
+<DT><B>into</B> <I>&lt;ścieżka&gt;</I><DD>
+Ustawia katalog główny (<I>DESTTREE</I>) dla pozostałych funkcji, takich jak
+<B>dobin</B>, <B>dosbin</B>, <B>doman</B>, <B>doinfo</B>, <B>dolib</B>.
+<BR>
+
+Domyślnym katalogiem głównym jest /usr.
+<DT><B>keepdir</B> <I>&lt;ścieżka&gt;</I><DD>
+Instruuje portage, aby nie kasował katalogu, nawet jeśli jest pusty. Działa
+tak samo jak funkcja <B>dodir</B>.
+<DT><B>dobin</B> <I>&lt;plik binarny&gt; [więcej plików binarnych]</I><DD>
+Instaluje <I>plik binarny</I> lub całą ich listę do katalogu
+<I>DESTTREE</I>/bin. W razie potrzeby tworzy katalogi.
+<DT><B>dosbin</B> <I>&lt;plik binarny&gt; [więcej plików binarnych]</I><DD>
+Instaluje <I>plik binarny</I> lub całą ich listę do katalogu
+<I>DESTTREE</I>/sbin. W razie potrzeby tworzy katalogi.
+<DT><B>doinitd</B> <I>&lt;skrypt init.d&gt; [więcej skryptów init.d]</I><DD>
+Instaluje <I>skrypty init.d</I> Gentoo. Zostaną zainstalowane w prawidłowym
+dla Gentoo katalogu dla tego rodzaju plików (/etc/init.d/). W razie potrzeby
+zostaną utworzone potrzebne katalogi.
+<DT><B>doconfd</B> <I>&lt;plik conf.d&gt; [więcej plików conf.d]</I><DD>
+Instaluje <I>pliki conf.d</I> Gentoo. Zostaną zainstalowane w prawidłowym dla
+Gentoo katalogu dla tego rodzaju plików (/etc/conf.d/). W razie potrzeby
+zostaną utworzone potrzebne katalogi.
+<DT><B>doenvd</B> <I>&lt;plik env.d&gt; [więcej plików env.d]</I><DD>
+Instaluje <I>pliki env.d</I> Gentoo. Zostaną zainstalowane w prawidłowym dla
+Gentoo katalogu dla tego rodzaju plików (/etc/env.d/). W razie potrzeby
+zostaną utworzone potrzebne katalogi.
+<P>
+
+<DT><B>dolib</B> <I>&lt;biblioteka&gt;</I> <I>[więcej bibliotek]</I><DD>
+<DT><B>dolib.a</B> <I>&lt;biblioteka&gt;</I> <I>[więcej bibliotek]</I><DD>
+<DT><B>dolib.so</B> <I>&lt;biblioteka&gt;</I> <I>[więcej bibliotek]</I><DD>
+
+Funkcje te instalują bibliotekę lub całą ich listę w katalogu
+<I>DESTTREE</I>/lib. W razie potrzeby tworzy katalogi.
+<DT><B>libopts</B> <I>[opcje dla funkcji <A HREF="http://localhost/cgi-bin/man/man2html?1+install">install</A>(1)]</I><DD>
+Funkcji tej możemy użyć, aby zdefiniować opcje dla funkcji install, z której
+korzystają funkcje <B>dolib</B>. Domyślna opcja to <I>-m0644</I>.
+<DT><B>doman</B> <I>[-i18n=&lt;locale&gt;]</I> <I>&lt;strona man&gt; [więcej stron man]</I><DD>
+Instaluje strony dokumentacji systemowej man do katalogu
+/usr/share/man/man[0-9n], w zależności od końcówki pliku man. Pliki zostaną
+skompresowane, jeśli jeszcze nie są. Możemy podać strony man specyficzne dla
+używanego locale za pomocą opcji <I>-i18n</I>. Wówczas strona podręcznika
+zostanie zainstalowana do katalogu /usr/share/man/<I>&lt;locale&gt;</I>/man[0-9n].
+
+<DT><B>dohard</B> <I>&lt;nazwa pliku&gt; &lt;nazwa dowiązania&gt;</I><DD>
+<DT><B>dosym</B> <I>&lt;nazwa pliku&gt; &lt;nazwa dowiązania&gt;</I><DD>
+
+Wykonuje polecenie ln tworząc albo dowiązanie twarde (hard), albo
+symboliczne (sym).
+<DT><B>dohtml</B> <I> [-a typy-plików] [-r] [-x lista-katalogów-do-pominięcia] [lista-plików-i-katalogów]</I><DD>
+Instaluje pliki z listy (nazwy plików rozdzielone spacjami) do katalogu
+/usr/share/doc/${PF}/html pod warunkiem, że nazwa pliku kończy się na .html,
+
+poprzez użycie opcji <I>-a</I>, zaś za pomocą opcji <I>-A</I> możemy dodać
+typy plików do listy domyślnych. Poprzez parametr <I>-x</I> możemy określić
+katalogi do pominięcia (domyślnie pomijany jest katalog CVS), zaś parametr
+<I>-r</I> włącza pracę rekursywną.
+<DT><B>doinfo</B> <I>&lt;pliki-info&gt; [więcej plików info]</I><DD>
+Instaluje pliki dokumentacji info do katalogu <I>DESTDIR</I>/info. Pliki są
+automatycznie kompresowane za pomocą narzędzia gzip. W razie potrzeby tworzy
+katalogi.
+<DT><B>dojar</B> <I>&lt;plik jar&gt; [więcej plików jar]</I><DD>
+Instaluje pliki jar do katalogu /usr/share/${PN}/lib i dodaje je do pliku
+/usr/share/${PN}/classpath.env.
+<DT><B>domo</B> <I>&lt;plik locale&gt; [więcej plików locale] </I><DD>
+Instaluje pliki locale do katalogu <I>DESTDIR</I>/usr/share/locale/[LANG], w
+zależności od końcówki nazwy pliku. Tworzy katalogi w razie potrzeby.
+<P>
+
+<DT><B>fowners</B> <I>&lt;uprawnienia&gt; &lt;plik&gt; [więcej plików]</I><DD>
+<DT><B>fperms</B> <I>&lt;uprawnienia&gt; &lt;plik&gt; [więcej plików]</I><DD>
+
+Wykonuje polecenie chown (funkcja <B>fowners</B>) lub chmod (funkcja
+<B>fperms</B>), nadając <I>uprawnienia</I> <I>plikom</I>.
+<DT><B>insinto</B> <I>[ścieżka]</I><DD>
+Ustawia katalog główny (<I>INSDESTTREE</I>) dla funkcji <B>doins</B>.
+<BR>
+
+Domyślnym katalogiem głównym jest /.
+<DT><B>insopts</B> <I>[opcje dla funkcji <A HREF="http://localhost/cgi-bin/man/man2html?1+install">install</A>(1)]</I><DD>
+Funkcji tej możemy użyć, aby zdefiniować opcje dla funkcji install, z której
+korzysta funkcja <B>doins</B>. Domyślne opcje to <I>-m0644</I>.
+<DT><B>doins</B> <I>&lt;plik&gt; [więcej plików]</I><DD>
+Instaluje pliki do katalogu <I>INSDESTTREE</I>. Funkcja ta korzysta z funkcji
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+install">install</A></B>(1). W razie potrzeby tworzy niezbędne katalogi.
+<DT><B>exeinto</B> <I>[ścieżka]</I><DD>
+Ustawia katalog główny (<I>EXEDESTTREE</I>) dla funkcji <B>doexe</B>.
+<BR>
+
+Domyślnym katalogiem głównym jest /.
+<DT><B>exeopts</B> <I>[opcje dla funkcji <A HREF="http://localhost/cgi-bin/man/man2html?1+install">install</A>(1)]</I><DD>
+Funkcji tej możemy użyć, aby zdefiniować opcje dla funkcji install, z której
+korzysta funkcja <B>doexe</B>. Domyślne opcje to <I>-m0755</I>.
+<DT><B>doexe</B> <I>&lt;plik wykonywalny&gt; [więcej plików wykonywalnych]</I><DD>
+Instaluje jeden lub więcej plików wykonywalnych do katalogu
+<I>EXEDESTTREE</I>. Funkcja ta korzysta z funkcji <B><A HREF="http://localhost/cgi-bin/man/man2html?1+install">install</A></B>(1). W razie
+potrzeby tworzy niezbędne katalogi.
+<DT><B>docinto</B> <I>[ścieżka]</I><DD>
+Ustawia podkatalog względny (<I>DOCDESTTREE</I>), z którego korzysta funkcja
+<B>dodoc</B>.
+<DT><B>dodoc</B> <I>&lt;dokument&gt; [więcej dokumentów]</I><DD>
+Instaluje jeden lub więcej dokumentów do katalogu
+/usr/share/doc/${PF}/<I>DOCDESTTREE</I>. Pliki są automatycznie kompresowane
+za pomocą narzędzia gzip. W razie potrzeby tworzy niezbędne katalogi.
+<P>
+
+<DT><B>newbin</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newsbin</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newinitd</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newconfd</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newenvd</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newlib</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newlib.so</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newlib.a</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newman</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newinfo</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newins</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newexe</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+<DT><B>newdoc</B> <I>&lt;stary plik&gt; &lt;nowa nazwa pliku&gt;</I><DD>
+
+Wszystkie powyższe funkcje działają analogicznie jak funkcje do*, tylko
+pracują z jednym plikiem i jest on instalowany pod nazwą <I>[nowa nazwa pliku]</I>.
+</DL>
+<A NAME="lbAN">&nbsp;</A>
+<H2>ZGŁASZANIE BŁĘDÓW</H2>
+
+Błędy zgłaszać należy na stronie <A HREF="http://bugs.gentoo.org/">http://bugs.gentoo.org/</A>
+<A NAME="lbAO">&nbsp;</A>
+<H2>AUTORZY</H2>
+
+<PRE>
+Achim Gottinger &lt;<A HREF="mailto:achim@gentoo.org">achim@gentoo.org</A>&gt;
+Mark Guertin &lt;<A HREF="mailto:gerk@gentoo.org">gerk@gentoo.org</A>&gt;
+Nicholas Jones &lt;<A HREF="mailto:carpaski@gentoo.org">carpaski@gentoo.org</A>&gt;
+Mike Frysinger &lt;<A HREF="mailto:vapier@gentoo.org">vapier@gentoo.org</A>&gt;
+</PRE>
+
+<A NAME="lbAP">&nbsp;</A>
+<H2>PLIKI</H2>
+
+<DL COMPACT>
+<DT>Skrypt <I>/usr/sbin/ebuild.sh</I>.<DD>
+<DT>Aplikacje pomocnicze w katalogu <I>/usr/lib/portage/bin</I>.<DD>
+<DT><B>/etc/make.conf</B> <DD>
+Zawiera zmienne, wykorzystywane w procesie budowania. Nadpisuje zmienne
+zawarte w pliku make.defaults.
+<DT><B>/etc/make.globals</B><DD>
+Definiuje domyślne wartości zmiennych wykorzystywanych w procesie budowania.
+Edytować należy wyłącznie plik <I>/etc/make.conf</I>.
+</DL>
+<A NAME="lbAQ">&nbsp;</A>
+<H2>ZOBACZ TAKŻE</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+ebuild">ebuild</A></B>(1),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5)
+
+<A NAME="lbAR">&nbsp;</A>
+<H2>TŁUMACZENIE</H2>
+
+Kuba Bożanowski &lt;<A HREF="mailto:jbozanowski@gmail.com">jbozanowski@gmail.com</A>&gt;
+<BR>
+
+Polski projekt tłumaczenia manuali Gentoo
+<BR>
+
+<A HREF="http://gentoo.org/~rane/tlumaczenie-manuali.html">http://gentoo.org/~rane/tlumaczenie-manuali.html</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAZWA</A><DD>
+<DT><A HREF="#lbAC">OPIS</A><DD>
+<DT><A HREF="#lbAD">PRZYKŁAD</A><DD>
+<DT><A HREF="#lbAE">ZMIENNE</A><DD>
+<DT><A HREF="#lbAF">ZMIENNE KONTROLNE QA</A><DD>
+<DT><A HREF="#lbAG">DEKLARACJE PORTAGE</A><DD>
+<DT><A HREF="#lbAH">FUNKCJE</A><DD>
+<DT><A HREF="#lbAI">FUNKCJE POMOCNICZE: OGÓLNE</A><DD>
+<DT><A HREF="#lbAJ">FUNKCJE POMOCNICZE: WYPISYWANIE NA EKRAN</A><DD>
+<DT><A HREF="#lbAK">FUNKCJE POMOCNICZE: ROZPAKOWYWANIE</A><DD>
+<DT><A HREF="#lbAL">FUNKCJE POMOCNICZE: KOMPILACJA</A><DD>
+<DT><A HREF="#lbAM">FUNKCJE POMOCNICZE: INSTALACJA</A><DD>
+<DT><A HREF="#lbAN">ZGŁASZANIE BŁĘDÓW</A><DD>
+<DT><A HREF="#lbAO">AUTORZY</A><DD>
+<DT><A HREF="#lbAP">PLIKI</A><DD>
+<DT><A HREF="#lbAQ">ZOBACZ TAKŻE</A><DD>
+<DT><A HREF="#lbAR">TŁUMACZENIE</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 15:45:45 GMT, June 04, 2006
+</BODY>
+</HTML>

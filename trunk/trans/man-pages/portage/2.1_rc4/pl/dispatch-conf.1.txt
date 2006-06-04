@@ -1,0 +1,98 @@
+.TH "DISPATCH-CONF" "1" "Dec 2005" "Portage 2.1" "Portage"
+.SH NAZWA
+dispatch-conf \- rozsądny sposób na aktualizację plików konfiguracyjnych po
+instalacji nowych pakietów.
+.SH SKŁADNIA
+.B dispatch-conf
+.SH OPIS
+.I dispatch-conf
+został zaprojektowany do sprawdzania po instalacji nowych pakietów czy
+konieczna jest aktualizacja plików konfiguracyjnych oraz do przeprowadzania tej
+aktualizacji, polegającej na nadpisaniu starego pliku konfiguracyjnego nowym.
+Jeśli pojawią się problemy, użytkownik zostanie poproszony o decyzję w
+kontrowersyjnej sprawie.
+Do zalet 
+.I dispatch-conf
+należy możliwość łatwego cofnięcia wprowadzonych zmian (poprawki są
+przechowywane jako patche lub za pomocą rcs) oraz automatyczne nanoszenie zmian
+na pliki, które nigdy nie były zmieniane przez użytkownika lub na pliki, w
+których nowa wersja przynosi zmiany jedynie związane z numerem rewizji w CVS
+lub niewidocznymi znakami. 
+
+.I dispatch-conf
+sprawdza wszystkie katalogi wymienione w zmiennej \fICONFIG_PROTECT\fR.
+Wszystkie pliki konfiguracyjne ze zmiennej \fICONFIG_PROTECT_MASK\fR zostaną
+nadpisane automatycznie. Więcej szczegółów znajduje się w \fBmake.conf\fR(5).
+.SH OPCJE
+.TP
+Brak.
+.SH UŻYCIE
+.I dispatch-conf
+musi być uruchamiany z konta roota, w związku z tym, że zamieniane przez
+program pliki konfiguracyjne należą do tego użytkownika. Przed uruchomieniem
+.I dispatch-conf
+po raz pierwszy, należy dostosować ustawienia w pliku 
+.B /etc/dispatch-conf.conf
+oraz utworzyć katalog dla kopii zapasowych plików konfiguracyjnych, na który
+wskazuje ten plik. Wszystkie zmiany nanoszone na pliki konfiguracyjne będą
+archiwizowane za pomocą patchy lub rcs, pozwalając na odtworzenie poprzednich
+ich wersji.
+
+Kiedy dispatch-conf znajdzie plik konfiguracyjny, który musi zostać zastąpiony
+nowszą wersją, wyświetli użytkownikowi menu z kilkoma opcjami dotyczącymi
+aktualizacji do wyboru:
+.TP
+.B u
+Zaktualizuj (zastąp) konkretny plik konfiguracyjny jego nową wersją i przejdź
+dalej.
+.TP
+.B z
+Usuń nową wersję i przejdź dalej.
+.TP
+.B n
+Pomiń plik i przejdź do następnej pozycji, pozostawiając zarówno stary plik
+konfiguracyjny jak i pliki chronione zmienną \fICONFIG_PROTECT\fR.
+.TP
+.B e
+Edytuj nowy plik konfiguracyjny, za pomocą programu określonego w zmiennej
+\fI$EDITOR\fR.
+.TP
+.B m
+Interaktywny tryb nanoszenia poprawek z nowego pliku na stary.
+.TP
+.B l
+Podgląd zmian pomiędzy starym i nowym plikiem.
+.TP
+.B t
+Zamienia miejscami nowy i stary plik, powodując odwrotne ich traktowanie przez
+program.
+.Qt u
+.TP
+.B h
+Wyświetla pomoc.
+.TP
+.B q
+Wyjście z programu.
+.SH "ZGŁASZANIE BŁĘDÓW"
+Wszystkie błędy prosimy zgłaszać za pomocą serwisu http://bugs.gentoo.org/
+.SH AUTORZY
+.nf
+Jeremy Wohl
+Karl Trygve Kalleberg <karltk@gentoo.org>
+Mike Frysinger <vapier@gentoo.org>
+Grant Goodyear <g2boojum@gentoo.org>
+.fi
+.SH "PLIKI"
+.TP
+.B /etc/dispatch-conf.conf
+Plik zawierający opcje konfiguracyjne programu \fIdispatch-conf\fR.
+.SH "ZOBACZ TAKŻE"
+.BR make.conf (5),
+.BR etc-update (1)
+.SH TŁUMACZENIE
+Łukasz Damentko <rane@gentoo.org>
+.br 
+Polski projekt tłumaczenia manuali Gentoo
+.br 
+http://gentoo.org/~rane/tlumaczenie-manuali.html
+

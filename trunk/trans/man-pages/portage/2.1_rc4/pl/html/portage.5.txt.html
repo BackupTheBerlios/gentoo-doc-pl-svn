@@ -1,0 +1,868 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of PORTAGE</TITLE>
+</HEAD><BODY>
+<H1>PORTAGE</H1>
+Section: Portage (5)<BR>Updated: Dec 2005<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAZWA</H2>
+
+portage - serce Gentoo
+<A NAME="lbAC">&nbsp;</A>
+<H2>OPIS</H2>
+
+W trakcie działania Portage korzysta z wielu różnych plików konfiguracyjnych,
+większość z nich nie jest znana większości użytkowników, czy zwykłym
+deweloperom. W tym podręczniku można znaleźć informacje o tym w jaki sposób
+można efektywnie wykorzystać potencjał drzemiący w Portage, a także znaleźć opis
+poszczególnych plików konfiguracyjnych nie posiadających własnych stron
+podręcznika.
+<P>
+Ustawienia znajdujące się w plikach w katalogu make.profile mogą zostać
+nadpisane przez profil nadrzędny, gdy używane są profile kaskadowe. Więcej
+informacji na ten temat można znaleźć na stronie
+<A HREF="http://www.gentoo.org/proj/en/releng/docs/cascading-profiles.xml">http://www.gentoo.org/proj/en/releng/docs/cascading-profiles.xml</A>
+<DL COMPACT>
+<DT>UWAGA:<DD>
+Więcej informacji o tym, jak zainstalować pakiet, można odnaleźć w podręczniku
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1).
+
+</DL>
+<A NAME="lbAD">&nbsp;</A>
+<H2>STRESZCZENIE</H2>
+
+<DL COMPACT>
+<DT><B>/etc/</B>
+
+<DD>
+<PRE>
+make.globals
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5)
+</PRE>
+
+<DT><B>/etc/make.profile/</B>
+
+<DD>
+<PRE>
+deprecated
+make.defaults
+packages
+packages.build
+package.provided
+parent
+use.defaults
+use.mask
+virtuals
+</PRE>
+
+<DT><B>/etc/portage/</B>
+
+<DD>
+<PRE>
+bashrc
+modules
+package.mask
+package.unmask
+package.keywords
+package.use
+mirrors
+categories
+</PRE>
+
+<DT><B>/etc/portage/profile/</B>
+
+<DD>
+własne ustawienia nadpisujące <B>/etc/make.profile/</B>
+<DT><B>/usr/portage/profiles/</B>
+
+<DD>
+<PRE>
+arch.list
+categories
+info_pkgs
+info_vars
+package.mask
+profiles.desc
+thirdpartymirrors
+use.desc
+use.local.desc
+</PRE>
+
+<DT><B>/var/lib/portage/</B>
+
+<DD>
+world
+</DL>
+<A NAME="lbAE">&nbsp;</A>
+<H2>TERMINOLOGIA</H2>
+
+W kolejnych sekcjach można napotkać wiele sformułowań, które mają specyficzne
+znaczenie dla Portage. Poniżej znajduje się słowniczek najważniejszych pojęć.
+Proszę skonsultować się także z wymienionymi podręcznikami, by uzyskać
+dokładniejsze informacje.
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>Atom DEPEND</B>
+
+<DD>
+Łańcuch znaków pasujący do pakietu. Jego format to kategoria/pakiet. Dodatkowo
+może zawierać informacje o wersjach, a także operatory logiczne.
+<B>Więcej</B>informacji:
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5)
+
+<DT><B>KEYWORD</B>
+
+<DD>
+Każda architektura posiada unikalny identyfikator - KEYWORD.
+<B>Więcej</B>informacji:
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5)
+
+<DT><B>virtual</B>
+
+<DD>
+Atom DEPEND będący częścią kategorii wirtualnej. Może zostać użyty, gdy w
+drzewie Portage znajduje się wiele pakietów, które mogą zaspokoić daną
+zależność, a tylko jeden z nich jest niezbędny do poprawnej kompilacji, czy
+działania aplikacji.
+<B>Więcej</B>informacji:
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5)
+
+</DL>
+</DL>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>OPIS POSZCZEGÓLNYCH PLIKÓW</H2>
+
+<DL COMPACT>
+<DT><B>/etc/</B>
+
+<DD>
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>make.globals</B>
+
+<DD>
+Globalne, domyślne ustawienia Portage. Plik ten wchodzi w skład pakietu Portage.
+Parametry i ustawienia, które się w nim znajdują, mogą zostać nadpisane przez te
+zawarte w pliku <B>make.conf</B>. Dokładny opis formatu znajduje się na stronie
+podręcznika <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5).
+<DT><B>make.conf</B>
+
+<DD>
+Globalne ustawienia Portage. Dokładny opis formatu znajduje się w podręczniku <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5).
+</DL>
+</DL>
+
+<DT><B>/etc/make.profile/</B>
+
+<DD>
+Zazwyczaj jest to tylko dowiązanie symboliczne do właściwego profilu
+znajdującego się w katalogu <B>/usr/portage/profiles/</B>. Jako, że jest to część
+drzewa Portage, łatwo może zostać zaktualizowane/poprawione po użyciu
+polecenia `emerge --sync`. Znajduje się tam definicja używanego profilu
+(zazwyczaj są to ustawienia związane z konkretną architekturą). W przypadku gdy
+chcemy stworzyć własny profil to należy utworzyć katalog
+<B>/etc/make.profile/</B> i zapełnić go odpowiednimi plikami. Jeżeli jednak
+naszym celem jest tylko zmiana niektórych ustawień to lepiej nie edytować
+żadnego z plików należących do używanego profilu, zmiany będą utracone przy
+najbliższym procesie synchronizacji drzewa Portage. By nadpisać interesujące nas
+ustawienia najlepiej posłużyć się instrukcjami, które można znaleźć poniżej, w
+kolejnej części tego podręcznika opisującej <B>/etc/portage/</B>.
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>deprecated</B>
+
+<DD>
+Jeśli w danym profilu istnieje ten plik to jest on uważamy za przestarzały, co
+oznacza że nie jest on już wspierany przez deweloperów Gentoo. Pierwsza linia
+musi zawierać nazwę profilu do którego najlepiej dokonać migracji, w pliku mogą
+dodatkowo znajdować się instrukcje opisujące tą procedurę jaką należy wykonać w
+czasie zmiany profilu.
+<P>
+<I>Przykład:</I>
+
+<PRE>
+default-linux/x86/2005.0
+# emerge -n '&gt;=sys-apps/portage-2.0.51'
+# rm -f /etc/make.profile
+# ln -s /usr/portage/profiles/default-linux/alpha/2005.0 /etc/make.profile
+</PRE>
+
+<DT><B>make.defaults</B>
+
+<DD>
+Domyślne ustawienia Portage w danym profilu. Schemat pliku jest opisany w
+podręczniku <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5). Znajdują się tu definicje kilku
+specyficznych zmiennych:
+<P>
+
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>ARCH</B>
+
+<DD>
+typ architektury (x86/ppc/hppa/etc...).
+<DT><B>USERLAND = </B><I>GNU</I>
+
+<DD>
+wsparcie dla BSD/cygwin/etc...
+<DT><B>PORTAGE_LIBC = </B><I>glibc</I>
+
+<DD>
+wsparcie dla uClibc/BSD libc/etc...
+<DT><B>PROFILE_ARCH</B>
+
+<DD>
+rozróżnia różne typy komputerów posiadających tą samą architekturę (<B>ARCH</B>),
+np. wszystkie komputery sparc posiadają ARCH=sparc, ale wartość tej zmiennej to 'sparc32' 
+lub 'sparc64'.  
+<DT><B>STAGE1_USE</B>
+
+<DD>
+specjalne flagi USE, które mogą być potrzebne w przypadku przeprowadzania
+bootstrapu podczas instalacji
+<DT><B>GRP_STAGE23_USE</B>
+
+<DD>
+specjalne flagi, używane przez catalyst w czasie budowania pakietów GRP i pliku
+stage3.
+</DL>
+</DL>
+
+
+<DT><B>packages</B>
+
+<DD>
+Plik konfiguracyjny, który służy do maskowania specyficznych pakietów/wersji z
+poziomu profilu, zawiera on także listę pakietów należących do specjalnego
+zestawu <I>system</I>.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- jeden atom DEPEND na jedną linię
+- pakiety należące do zestawu system powinny mieć dodany prefiks '*'
+</PRE>
+
+<I>Uwaga:</I>
+
+W konfiguracji kaskadowych profili, można usunąć pakiety w profilach
+podrzędnych, które zostały dodane przez profile nadrzędne, dodając prefiks '-'
+do atomu określającego dany pakiet.
+<P>
+<I>Przykłady:</I>
+
+<PRE>
+# komentarz
+# glibc tylko w wersjach niższych niż 2.3
+&lt;sys-libs/glibc-2.3
+# dodaj dowolną wersję basha do zestawu system
+*app-shells/bash
+# readline tylko w wersjach niższych niż 4.2
+# dodaj readline do zestawu system
+*&lt;sys-libs/readline-4.2
+</PRE>
+
+<DT><B>packages.build</B>
+
+<DD>
+Lista pakietów (jeden w jednej linijce) tworzących plik stage1. Przydatne
+tylko dla aplikacji budujących pliki stage.
+<DT><B>package.provided</B>
+
+<DD>
+Lista pakietów (jeden w jednej linijce), które Portage powinno uważać jako
+zainstalowane i nie zajmować się ich zarządzaniem. Bardzo przydatna opcja dla
+portów w nie-linuksowym środowisku. Nie będą one aktualizowane, chyba że wśród
+zależności będzie wymagana jego nowsza wersja. Ta lista zastępuje składnię
+<B>emerge --inject</B>.
+<P>
+Dla przykładu, jeśli chcesz własnoręcznie zarządzać jądrem w wersji 2.6, to
+używając tego pliku możesz powiedzieć Portage, że 
+'sys-kernel/development-sources-2.6.7' jest już niezależnie zainstalowane.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- jeden depend atom na jedną linię
+- nie można używać operatorów relacji
+- obowiązkowa specyfikacja numeru wersji
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+# zarządzanie jądrem
+sys-kernel/development-sources-2.6.7
+
+# specjalna wersja QT
+x11-libs/qt-3.3.0
+
+# zainstalowana modularna wersja X, ale pakiety wymagają wersji monolitycznej
+x11-base/xorg-x11-6.8
+</PRE>
+
+<DT><B>parent</B>
+
+<DD>
+Zawiera lokalizację profilu nadrzędnego, może to być zarówno ścieżka względna
+jak i absolutna. Najczęściej zawartość tego pliku jest postaci '..' aby wskazać
+katalog nadrzędny. Ten plik konfiguracyjny jest jedynie używany w przypadku
+profili kaskadowych.
+<DT><B>use.defaults</B>
+
+<DD>
+W pliku nie są definiowane domyślne flagi USE, ale tzw. automatyczne flagi USE.
+Ta jedna z mniej znanych funkcjonalności Portage aktywuje flagę w przypadku
+instalacji odpowiadającego pakietu, gdy nie została ona wyraźnie wyłączona przez
+użytkownika. W pliku zawarte są wpisy przyporządkowujące pakiet do odpowiedniej
+flagi USE, która zostanie aktywowana po jego instalacji.
+<P>
+Na przykład, gdy w konfiguracji nie jest używana flaga USE &quot;sdl&quot;, ani &quot;-sdl&quot;,
+to po instalacji pakietu media-libs/libsdl, flaga &quot;sdl&quot; zostanie automatycznie
+aktywowana.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- jedna flaga USE w jednej linii z listą odpowiadających atomów DEPEND
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+# media-libs/libsdl aktywuje &quot;sdl&quot;
+sdl        media-libs/libsdl
+# włącz flagę tcltk tylko gdy oba pakiety
+# dev-lang/tcl i dev-lang/tk są zainstalowane
+tcltk      dev-lang/tcl   dev-lang/tk
+</PRE>
+
+<DT><B>use.mask</B>
+
+<DD>
+Niektóre flagi USE nie mają sensu na wybranych architekturach (np. altivec ma
+sens tylko dla ppc, a mmx dla x86) lub nie zostały jeszcze wystarczająco
+przetestowane, tak więc tutaj mogą być one zamaskowane.
+<P>
+<I>Uwaga:</I>
+
+W przypadku używania kaskadowych profili, można usunąć flagę USE zdefiniowaną
+w profilu podrzędnym, przez dodanie jej w profilu nadrzędnym z prefixem '-'.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- jedna flaga USE w jednej linii
+</PRE>
+
+<DT><B>virtuals</B>
+
+<DD>
+W pliku znajdują się domyślne powiązania pomiędzy pakietem, a kategorią
+wirtualną, na przykład gdy pakiet do poprawnego działania wymaga możliwości
+wysyłania e-maili, to będzie potrzebował virtual/mta. W przypadku gdy w naszym
+systemie nie będzie zainstalowana odpowiednia aplikacja (jak qmail, sendmail,
+postfix, itd.), Portage użyje odpowiedniego wpisu znajdującego się w tym pliku
+by zapewnić pożądaną funkcjonalność, w podanym przykładzie będzie to
+net-mail/ssmtp, jako że jest to aplikacja zapewniająca potrzebne minimum
+możliwości.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- jedna para, kategoria wirtualna i atom DEPEND, w jednej linii
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+# użyj net-mail/ssmtp jako domyślnego mta
+virtual/mta            net-mail/ssmtp
+# app-dicts/aspell-en jest domyślnym słownikiem
+virtual/aspell-dict   app-dicts/aspell-en
+</PRE>
+
+</DL>
+</DL>
+
+<DT><B>/etc/portage/</B>
+
+<DD>
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>bashrc</B>
+
+<DD>
+Gdy zajdzie taka potrzeba, plik ten określa środowisko w jakim wykonywane są
+ebuildy, w tym przypadku nie jest używane środowisko domyślne. Składnia jest
+analogiczna jak w przypadku zwykłych skryptów używających powłoki bash.
+<P>
+<DT><B>modules</B>
+
+<DD>
+Ten plik może zostać użyty w celu zmiany sposobu przechowywania informacji
+wewnętrznych Portage. W praktyce, portdbapi.auxdbmodule jest jedyną zmienną,
+którą użytkownik mógłby chcieć zmieniać.
+<P>
+<I>Przykład:</I>
+
+<PRE>
+portdbapi.auxdbmodule = cache.metadata_overlay.database
+</PRE>
+
+<P>
+Moduł metadata_overlay umożliwia ustawienie FEATURES=&quot;metadata-transfer&quot; w
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5). Gdy użytkownik uruchomi metadata_overlay w
+/etc/portage/modules, wszystkie pliki zawierające się w
+/var/cache/edb/dep/${PORTDIR} muszą zostać ręcznie usunięte, by uniknąć zbędnego
+procesu regeneracji informacji Portage. Użytkownicy korzystający z modułu
+metadata_overlay, nie mogą modyfikować eklas w ${PORTDIR}, ponieważ Portage nie
+będzie w stanie stwierdzić czy regeneracja powyższych informacji jest potrzebna.
+Jeśli użytkownik chciałby modyfikować eklasy, można używać modułu
+metadata_overlay wraz z PORTDIR_OVERLAY w <B>make.conf</B>.
+<P>
+<DT><B>package.mask</B>
+
+<DD>
+Lista atomów, które powinny być zamaskowane. Bardzo przydatne, gdy dana
+aplikacja lub jej wersja działają nieprawidłowo na danym systemie, umożliwia
+także zablokowanie aktualizacji pakietu np. jądra. W przypadku, gdy chcemy
+używać sterowników kart graficznych Nvidia, ale tylko w wersjach starszych niż
+1.0.4496, nie ma problemu, używając tego pliku można zrobić to z łatwością.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- jeden atom DEPEND w jeden linii
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+# zamaskuj sterowniki nvidia starsze niż 1.0.4496
+&gt;media-video/nvidia-kernel-1.0.4496
+&gt;media-video/nvidia-glx-1.0.4496
+</PRE>
+
+<DT><B>package.unmask</B>
+
+<DD>
+Podobna funkcjonalność jak w przypadku package.mask, tylko że w tym przypadku
+wskazane pakiety zostaną odmaskowane, może zostać użyte do nadpisania globalnej
+konfiguracji package.mask (zobacz poniżej). Należy zauważyć, że nie ma to wpływu
+na aplikacje zamaskowane przez KEYWORD.
+<DT><B>package.keywords</B>
+
+<DD>
+Ustawienia flag KEYWORD dla poszczególnych pakietów, przydatne gdy chcemy używać
+niestabilnych pakietów na stabilnym systemie, i na odwrót. Zawartość tego pliku
+pozwala dostosować wartość zmiennej ACCEPT_KEYWORDS dla pojedynczych wersji
+aplikacji.
+<P>
+<PRE>
+<I>Uwaga:</I>
+Istnieją dwie specjalne flagi KEYWORD, które mogą pomóc w odpowiedniej
+konfiguracji:
+<B>*</B> dowolny stabilny KEYWORD
+<B>~*</B> dowolny niestabilny KEYWORD
+
+<I>Format:</I>
+- komentarze zaczynają się #
+- jeden atom DEPEND, a następnie KEYWORD, w jednej linii
+- linie nie zawierające KEYWORD będą domyślnie traktowane jako żądanie pakietu
+niestabilnego
+
+<I>Przykład:</I>
+# używaj niestabilnego libgd
+media-libs/libgd ~x86
+# tylko stabilny mplayer
+media-video/mplayer -~x86
+# używaj niestabilnego netcat
+net-analyzer/netcat
+</PRE>
+
+<P>
+<I>Dodatkowa uwaga:</I>
+
+W przypadku gdy dany pakiet oznaczony jest przez KEYWORD <B>-*</B>, to
+oznacza to, że on uznany jako zepsuty na dla wszystkich architektur, chyba, że
+jest inaczej we fladze KEYWORD danego ebuilda. Przykładowo, jeśli dana aplikacja
+jest dostępna tylko w formie binarnej dla x86 to odpowiednia część ebuilda może
+wyglądać następująco:
+<P>
+games-fps/quake3-demo-1.11.ebuild:keywords=&quot;-* x86&quot;
+<P>
+Jeśli pomimo tego chcesz zainstalować dany pakiet to dodaj flagę <B>-*</B> w
+pliku package.keywords przy odpowiednim wpisie:
+<P>
+games-fps/quake3-demo -*
+<P>
+<DT><B>package.use</B>
+
+<DD>
+Flagi USE definiowane dla poszczególnych pakietów. Bardzo przydatna
+funkcjonalność umożliwiająca zmianę globalnych flag USE i ustawienie lokalnej
+flagi, która jest wspierana jedynie przez dany pakiet. Przykładowo deweloper
+GTK, będzie prawdopodobnie zainteresowany instalacją dokumentacji dla GTK, ale
+już niekoniecznie dla QT. Używając tego pliku z łatwością można uzyskać taką
+konfigurację.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- jeden atom DEPEND, a następnie lista, oddzielonych spacjami 
+flag USE, w jednej linii
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+# zainstaluj dokumentację dla GTK 2.x
+=x11-libs/gtk+-2* doc
+# wyłącz wsparcie dla mysql w QT
+x11-libs/qt -mysql
+</PRE>
+
+<DT><B>mirrors</B>
+
+<DD>
+Gdy Portage napotka URL w postaci <A HREF="mirror://,">mirror://,</A> to będzie próbował odnaleźć
+odpowiedni adres z pomocą tego pliku, a w przypadku niepowodzenia skorzysta z
+globalnej listy serwerów lustrzanych znajdujących się w pliku
+/usr/portage/profiles/thirdpartymirrors. Dodatkowo istnieje możliwość
+zdefiniowania listy specjalnych serwerów - &quot;local&quot;, będą one zawsze przeglądane
+w pierwszej kolejności przed GENTOO_MIRRORS, nawet w przypadku gdy dany ebuild
+używa zmiennej RESTRICT=&quot;mirror&quot;.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- typ serwera, a następnie lista hostów
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+# lokalny, serwer lustrzany, używany tylko przez firmę
+local <A HREF="ftp://192.168.0.3/mirrors/gentoo">ftp://192.168.0.3/mirrors/gentoo</A> <A HREF="http://192.168.0.4/distfiles">http://192.168.0.4/distfiles</A>
+
+# mieszkańcy Japonii woleliby używać japońskiego serwera lustrzanego
+sourceforge <A HREF="http://keihanna.dl.sourceforge.net/sourceforge">http://keihanna.dl.sourceforge.net/sourceforge</A>
+
+# lokalny serwer gnu na Tajwanie
+gnu <A HREF="ftp://ftp.nctu.edu.tw/unix/gnu/">ftp://ftp.nctu.edu.tw/unix/gnu/</A>
+</PRE>
+
+<DT><B>categories</B>
+
+<DD>
+Lista kategorii znajdujących się w /usr/portage, w PORTDIR_OVERLAY, a także w
+PKGDIR (patrz <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5)). Umożliwia dodanie nowych kategorii.
+<P>
+<I>Format:</I>
+
+<PRE>
+- jedna kategoria w jednej linii
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+app-hackers
+media-other
+</PRE>
+
+</DL>
+</DL>
+
+<DT><B>/usr/portage/profiles/</B>
+
+<DD>
+Globalna konfiguracja Gentoo nadzorowana przez deweloperów, by nadpisać
+poszczególne jej ustawienia można użyć plików znajdujących się w
+<B>/etc/portage/</B>.  
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>arch.list</B>
+
+<DD>
+Lista poprawnych architektur (KEYWORD), nie zawiera możliwych modyfikatorów.
+<P>
+<I>Format:</I>
+
+<PRE>
+- jeden KEYWORD w jednej linii
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+x86
+ppc
+sparc
+</PRE>
+
+<DT><B>categories</B>
+
+<DD>
+Prosta lista rozpoznawanych kategorii /usr/portage, PORTDIR_OVERLAY, a także
+PKGDIR (patrz <B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5)).
+<P>
+<I>Format:</I>
+
+<PRE>
+- jedna kategoria w jednej linii
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+app-admin
+dev-lang
+games-strategy
+sys-kernel
+</PRE>
+
+<DT><B>info_pkgs</B>
+
+<DD>
+Lista pakietów, których wersje będzie można zobaczyć po wykonaniu polecenia
+`emerge info`.
+<DT><B>info_vars</B>
+
+<DD>
+Lista zmiennych, które zostaną wyświetlone po wykonaniu `emerge info`.
+<DT><B>package.mask</B>
+
+<DD>
+Zawiera listę DEPEND dla pakietów, które nie powinny być zainstalowane w
+którymkolwiek  z profili, przydatne w momencie dodawania wersji beta aplikacji,
+by mieć pewność, że w domyślnej konfiguracji nie dojdzie do przypadkowej
+aktualizacji. Umożliwia także zamaskowanie specyficznych wersji w przypadku
+wykrycia błędów bezpieczeństwa. ZAWSZE należy dodać odpowiedni komentarz, który
+wyjaśni dlaczego dany pakiet został zamaskowany i KTO dodał odpowiedni wpis.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- jeden atom DEPEND w jednej linii
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+# zamaskowane z powodów bezpieczeństwa
+&lt;sys-libs/zlib-1.1.4
+# &lt;<A HREF="mailto:caleb@gentoo.org">caleb@gentoo.org</A>&gt; (10 sep 2003)
+# nowe wersje beta KDE
+=kde-base/kde-3.2.0_beta1
+=kde-base/kdeaccessibility-3.2.0_beta1
+</PRE>
+
+<DT><B>profiles.desc</B>
+
+<DD>
+Lista wszystkich stabilnych i deweloperskich profili które mają być sprawdzane
+przez repoman. W obecnej chwili wspierany jest tylko jeden profil na jedną
+konfigurację stable/dev/KEYWORD. W przypadku gdy, w pliku będzie znajdowało
+się więcej podobnych wpisów tylko ostatni z nich będzie używany.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- jeden profil w formacie: architektura katalog status, w jednej linii
+- KEYWORD (architektura) musi znajdować się w pliku arch.list
+- lokalizacja katalogu określona jest przez ścieżkę względną do profiles.desc
+- dopuszczalne wartości słowa kluczowego status to 'stable' i 'dev'
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+alpha default-linux/alpha/2004.3 stable
+m68k  default-linux/m68k         dev
+x86   default-linux/x86/2004.3   stable
+</PRE>
+
+<DT><B>thirdpartymirrors</B>
+
+<DD>
+Nadzoruje aktualne powiązania pomiędzy URL-ami typu mirror:// i właściwą listą
+używanych hostów na których znajdują się pliki, umożliwia odciążenie
+poszczególnych serwerów i zmniejszenie przez to ich obciążenia.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- typ serwera lustrzanego, a następnie lista hostów w jednej linii
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+sourceforge  <A HREF="http://aleron.dl.sourceforge.net/sourceforge">http://aleron.dl.sourceforge.net/sourceforge</A> <A HREF="http://unc.dl.sourceforge.net/sourceforge">http://unc.dl.sourceforge.net/sourceforge</A>
+gentoo       <A HREF="http://distro.ibiblio.org/pub/linux/distributions/gentoo/distfiles/">http://distro.ibiblio.org/pub/linux/distributions/gentoo/distfiles/</A> <A HREF="ftp://ftp.gtlib.cc.gatech.edu/pub/gentoo/distfiles">ftp://ftp.gtlib.cc.gatech.edu/pub/gentoo/distfiles</A>
+kernel       <A HREF="http://www.kernel.org/pub">http://www.kernel.org/pub</A> <A HREF="http://www.us.kernel.org/pub">http://www.us.kernel.org/pub</A>
+</PRE>
+
+<DT><B>use.desc</B>
+
+<DD>
+Lista wszystkich globalnych flag USE oraz ich krótki opis.
+<P>
+<I>Format:</I>
+
+<PRE>
+- komentarze zaczynają się #
+- flaga USE - opis
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+3dfx - Adds support for 3dfx video cards
+acl  - Adds support for Access Control Lists
+doc  - Adds extra documentation
+</PRE>
+
+<DT><B>use.local.desc</B>
+
+<DD>
+Lista wszystkich lokalnych flag USE wraz z używającymi ich pakietami i opisami
+<P>
+<PRE>
+<I>Format:</I>
+- komentarze zaczynają się #
+- pakiet:flaga USE - opis
+
+<I>Przykład:</I>
+app-editors/nano:justify - Toggles the justify option
+dev-libs/DirectFB:fusion - Adds Multi Application support
+games-emulation/xmess:net - Adds network support
+</PRE>
+
+</DL>
+</DL>
+
+<DT><B>/var/lib/portage/</B>
+
+<DD>
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>world</B>
+
+<DD>
+Zawiera listę pakietów należących do specjalnej klasy - world. Jest ona za
+każdym razem odświeżana po instalacji lub po odinstalowaniu aplikacji. W
+przypadku użycia komendy `emerge world -up` jest ona używana do określenia,
+które aplikacje powinny zostać zaktualizowane. Należy zauważyć, że lista ta nie
+zawiera pakietów zainstalowanych jako zależności, np. w przypadku polecenia
+`emerge mod_php` do tego pliku zostanie dodany tylko wpis &quot;dev-php/mod_php&quot;,
+natomiast &quot;net-www/apache&quot; już nie. Dodatkowe informacje można znaleźć w
+podręczniku <B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1).
+<P>
+<I>Format:</I>
+
+<PRE>
+- jeden atom DEPEND w jednej linii
+</PRE>
+
+<P>
+<I>Przykład:</I>
+
+<PRE>
+games-misc/fortune-mod-gentoo-dev
+dev-libs/uclibc
+app-cdr/cdemu
+</PRE>
+
+</DL>
+</DL>
+
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>ZGŁASZANIE BŁĘDÓW</H2>
+
+Prosimy o zgłaszanie błędów przy pomocy <A HREF="http://bugs.gentoo.org/">http://bugs.gentoo.org/</A>
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTORZY</H2>
+
+<PRE>
+Marius Mauch &lt;<A HREF="mailto:genone@gentoo.org">genone@gentoo.org</A>&gt;
+Mike Frysinger &lt;<A HREF="mailto:vapier@gentoo.org">vapier@gentoo.org</A>&gt;
+Drake Wyrm &lt;<A HREF="mailto:wyrm@haell.com">wyrm@haell.com</A>&gt;
+</PRE>
+
+<A NAME="lbAI">&nbsp;</A>
+<H2>ZOBACZ TAKŻE</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+emerge">emerge</A></B>(1),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+ebuild">ebuild</A></B>(1),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+ebuild">ebuild</A></B>(5),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+make.conf">make.conf</A></B>(5)
+
+<A NAME="lbAJ">&nbsp;</A>
+<H2>TŁUMACZENIE</H2>
+
+Michał Kurgan &lt;<A HREF="mailto:moloh@gentoo.org">moloh@gentoo.org</A>&gt;
+<BR>
+
+Polski projekt tłumaczenia manuali Gentoo
+<BR>
+
+<A HREF="http://gentoo.org/~rane/tlumaczenie-manuali.html">http://gentoo.org/~rane/tlumaczenie-manuali.html</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAZWA</A><DD>
+<DT><A HREF="#lbAC">OPIS</A><DD>
+<DT><A HREF="#lbAD">STRESZCZENIE</A><DD>
+<DT><A HREF="#lbAE">TERMINOLOGIA</A><DD>
+<DT><A HREF="#lbAF">OPIS POSZCZEGÓLNYCH PLIKÓW</A><DD>
+<DT><A HREF="#lbAG">ZGŁASZANIE BŁĘDÓW</A><DD>
+<DT><A HREF="#lbAH">AUTORZY</A><DD>
+<DT><A HREF="#lbAI">ZOBACZ TAKŻE</A><DD>
+<DT><A HREF="#lbAJ">TŁUMACZENIE</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 15:45:45 GMT, June 04, 2006
+</BODY>
+</HTML>
