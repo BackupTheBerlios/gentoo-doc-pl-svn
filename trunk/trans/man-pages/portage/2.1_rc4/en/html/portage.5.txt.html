@@ -49,6 +49,7 @@ packages
 packages.build
 package.provided
 parent
+profile.bashrc
 use.defaults
 use.mask
 virtuals
@@ -307,6 +308,12 @@ This contains a path to the parent profile.  It may be either relative or
 absolute.  The paths will be relative to the location of the profile.  Most 
 commonly this file contains '..' to indicate the directory above.  Utilized 
 only in cascading profiles.
+<DT><B>profile.bashrc</B>
+
+<DD>
+If needed, this file can be used to set up a special environment for ebuilds,
+different from the standard root environment.  The syntax is the same as for
+any other bash script.
 <DT><B>use.defaults</B>
 
 <DD>
@@ -827,6 +834,6 @@ Drake Wyrm &lt;<A HREF="mailto:wyrm@haell.com">wyrm@haell.com</A>&gt;
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
 using the manual pages.<BR>
-Time: 15:48:15 GMT, June 04, 2006
+Time: 01:35:43 GMT, June 10, 2006
 </BODY>
 </HTML>
