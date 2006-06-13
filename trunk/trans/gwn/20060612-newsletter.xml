@@ -450,7 +450,7 @@ available on its website.
   homepage</uri></li>
 </ul>
 
-<p><b>Decreasing chances of making mistakes while installing Gentoo</b></p>
+<p><b>Proste błędy popełniane w czasie instalacji Gentoo</b></p>
 
 <p>
 Użytkownik forum new_to_non_X86 przedstawił jak łatwo w czasie instalacji Gentoo
@@ -470,15 +470,17 @@ ilość możliwych błędów.
 <title>Lista dyskusyjna gentoo-dev</title>
 <body>
 
-<p><b>GLEP 49 - take 2</b></p>
+<p><b>GLEP 49 - drugie podejście</b></p>
 
 <p>
-After the long discussion about alternative package managers in the last weeks
-<mail link="pauldv@gentoo.org">Paul de Vrieze</mail> and <mail
-link="g2boojum@gentoo.org">Grant Goodyear</mail> offer two competing GLEPs for
-discussion that define the capabilities, license and other managerial issues
-that a package manager has to offer to be supported. This might focus future
-discussions about portage replacements on technical instead of social issues.
+Po długiej dyskusji na temat alternatywnych menadżerów pakietów, jaka odbyła się
+w zeszłym tygodniu, <mail link="pauldv@gentoo.org">Paul de Vrieze</mail> i <mail
+link="g2boojum@gentoo.org">Grant Goodyear</mail> zaproponowali dwa różne,
+rywalizujące ze sobą GLEP-y. Oba dotyczyły możliwości, licencji oraz spraw
+związanych z zarządzaniem pakietami jakie powinny się znaleźć w tego typu
+aplikacji, co może zmieni tematykę wątków dotyczących zamienników Portage z
+utarczek słownych mających niewiele wspólnego z tematem na merytoryczną
+techniczne dyskusje.
 </p>
 
 <ul>
@@ -486,16 +488,19 @@ discussions about portage replacements on technical instead of social issues.
   49 - take 2</uri></li>
 </ul>
 
-<p><b>Security/QA Spring Cleaning</b></p>
+<p><b>Wiosenne porządki związane z bezpieczeństwem</b></p>
 
 <p>
-Every now and then a security problem is found. When this affects a Gentoo
-package a GLSA is released, but until now the affected packages were not
-directly unkeyworded or removed from the tree. This leaves some vulnerable
-ebuilds in place, so <mail link="solar@gentoo.org">Ned Ludd</mail> in
-cooperation with <mail link="ferringb@gmail.com">Brian Harring</mail> has
-started a cleanup of the tree. This should not affect users, only vulnerable,
-insecure and unmaintained ebuilds will be removed.
+Zwykle co jakiś czas odkrywane są błędy bezpieczeństwa. Gdy dotyczy on jednej z
+aplikacji dostępnych w Gentoo to przygotowywany jest odpowiedni raport GLSA, ale
+do tej pory nie miało to bezpośredniego przełożenia na destabilizację,
+zamaskowanie lub nawet usunięcie danego pakietu. Skutkowało to zostawieniem
+ebuildów zawierających usterki bezpieczeństwa w drzewie Portage. <mail
+link="solar@gentoo.org">Ned Ludd</mail> we współpracy z <mail
+link="ferringb@gmail.com">Brianem Harringiem</mail> rozpoczęli proces
+czyszczenia właśnie takich pakietów. Zmiany nie powinny mieć wpływu na
+użytkowników, tylko stare, zawierające usterki oraz pozbawione bezpośredniego
+opiekuna ebuildy będą usuwane.
 </p>
 
 <ul>
@@ -530,15 +535,17 @@ Wiosenne porządki są częścią strategii QA, aby poprawić jakość Gentoo.
   sys-libs/ldetect{,-lst}</uri></li>
 </ul>
 
-<p><b>[RFC Maintainer-Wanted Bugs/Cleaning]</b></p>
+<p><b>Nowe ebuildy zgłaszane w Bugzilli</b></p>
+
 <p>
-For user-submitted and unmaintained ebuilds the maintainer-wanted
-alias was created. What seemed like a good idea has ended in almost
-2000 bugs assigned to that alias, most of them without any changes. 
-<mail link="antarus@gentoo.org">Alec Warner</mail> asks for input how to
-handle these bugs in the future. Some ideas like a central overlay for
-these ebuilds or closing them after a pre-set time are discussed in
-this thread, but no resolution has been found.
+Pakiety nadsyłane przez użytkowników dla aplikacji nie posiadających własnego
+opiekuna w Gentoo są przydzielane do aliasu maintainer-wanted w Bugzilli. Co
+było dobrym pomysłem skończyło się ponad 2000 raportami, z których większość nie
+zawiera żadnych dodatkowych zmian, czy poprawek. <mail
+link="antarus@gentoo.org">Alec Warner</mail> zapytał jak należy traktować takie
+bugi. Kilka interesujących pomysłów, jak specjalna nakładka Portage lub
+zamknięcie raportu po ustalonym okresie czasu, zostało przedstawionych i
+omówionych. Dyskusja nie skończyła się jednak podjęciem ostatecznej decyzji.
 </p>
 
 <ul>
@@ -581,15 +588,14 @@ funkcjonalności aplikacjim Akregator, KMail i KAlarm.</p>
   KDE 3.5.3 unmasked</uri></li>
 </ul>
 
-<p><b>net-setup enhancements</b></p>
+<p><b>Usprawnienia net-setup</b></p>
 
 <p>
-Naming of network interfaces sometimes differs between a live system
-and the installed Gentoo system. To help in configuring the network
-interfaces <c>net-setup</c> has been expanded by two additional dialogs
-which displays the interface name, interface caption and additional
-information. The new <c>net-setup</c> will be included in the next 
-<c>livecd-tools</c> release.
+Nazwy interfejsów sieciowych czasami są różne pomiędzy LiveCD, a już
+zainstalowanym Gentoo. By usprawnić konfigurację sieci <c>net-setup</c> zostało
+rozbudowane i obecnie zawiera dwa dodatkowe dialogi zawierające nazwę interfejsu
+oraz dodatkowe informacje na jego temat. Nowe wydanie <c>net-setup</c> zostanie
+dołączone do kolejnej wersji pakietu <c>livecd-tools</c>.
 </p>
 
 <ul>
@@ -760,87 +766,106 @@ Linux funkcję:
 <title>Bezpieczeństwo Gentoo</title>
 <!-- paste from the script -->
 <section>
-<title>CherryPy: Directory traversal vulnerability</title>
+<title>CherryPy: Usterka directory traversal</title>
 <body>
-<p>
 
-CherryPy is vulnerable to a directory traversal that could allow attackers
-to read arbitrary files.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200605-16.xml">komunikacie GLSA</uri>
+CherryPy jest podatne na atak directory traversal, który umożliwia odczytanie
+dowolnych plików.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200605-16.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
-<title>libTIFF: Multiple vulnerabilities</title>
+<title>libTIFF: Wiele usterek</title>
 <body>
-<p>
 
-Multiple vulnerabilities in libTIFF could lead to the execution of
-arbitrary code or a Denial of Service.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200605-17.xml">komunikacie GLSA</uri>
+libTIFF zawiera wiele usterek, które mogą zostać wykorzystane do wykonania
+niepożądanego lub przeprowadzenia ataku Denial of Service.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200605-17.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
-<title>Opera: Buffer overflow</title>
+<title>Opera: Przepełnienie bufora</title>
 <body>
-<p>
 
-Opera contains an integer signedness error resulting in a buffer overflow
-which may allow a remote attacker to execute arbitrary code.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-01.xml">komunikacie GLSA</uri>
+Opera zawiera błąd w obsłudze znaku liczb całkowitych, którego rezultatem może
+być usterka przepełnienia bufora, która umożliwia zdalnemu napastnikowi
+wykonanie niepożądanego kodu.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-01.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
-<title>shadow: Privilege escalation</title>
+<title>shadow: Przekroczenie uprawnień</title>
 <body>
-<p>
 
-A security issue in shadow allows a local user to perform certain actions
-with escalated privileges.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-02.xml">komunikacie GLSA</uri>
+Usterka bezpieczeństwa w shadow umożliwia lokalnemu użytkownikowi wykonanie
+pewnych czynności z przekroczonymi uprawnieniami.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-02.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
-<title>Dia: Format string vulnerabilities</title>
+<title>Dia: Usterki format string</title>
 <body>
-<p>
 
-Format string vulnerabilities in Dia may lead to the execution of arbitrary
-code.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-03.xml">komunikacie GLSA</uri>
+Dia zawiera usterki format string, które mogą zostać wykorzystane do wykonania
+niepożądanego kodu.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-03.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
-<title>Tor: Several vulnerabilities</title>
+<title>Tor: Wiele usterek</title>
 <body>
-<p>
 
-Tor is vulnerable to a possible buffer overflow, a Denial of Service,
-information disclosure and information leak.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-04.xml">komunikacie GLSA</uri>
+Tor zwiera wiele usterek przepełnienia bufora, jest podatny na atak Denial of
+Service oraz ujawnienie i wyciek informacji.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-04.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
@@ -939,35 +964,42 @@ Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/
 </body>
 </section>
 <section>
-<title>Mozilla Firefox: Multiple vulnerabilities</title>
+<title>Mozilla Firefox: Wiele usterek</title>
 <body>
-<p>
 
-Vulnerabilities in Mozilla Firefox allow privilege escalations for
-JavaScript code, cross site scripting attacks, HTTP response smuggling and
-possibly the execution of arbitrary code.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-12.xml">komunikacie GLSA</uri>
+Mozilla Firefox zawiera wiele usterek które umożliwiają umożliwiają wykonanie
+kodu JavaScript z przekroczonymi uprawnieniami, a takżę wykonanie niepożądanego
+kodu oraz jest podatny na ataki HTTP response smuggling
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-12.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
-<title>MySQL: SQL Injection</title>
+<title>MySQL: Usterka SQL Injection</title>
 <body>
+
 <p>
-
-MySQL is vulnerable to an SQL Injection flaw in the multi-byte encoding
-process.
-
+MySQL jest podatne na atak SQL Injection w czasie przetwarzania wielo-bajtowego
+kodowania.
 </p>
+
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-13.xml">komunikacie GLSA</uri>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-13.xml">komunikacie
+GLSA</uri>
+
 </p>
 </body>
 </section>
 </chapter>
+
 <!-- Bugzilla -->
 <!-- paste from the script -->
 <chapter>
@@ -975,68 +1007,77 @@ Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/
 <section>
 <title>Podsumowanie</title>
 <body>
+
 <ul>
-<li><uri link="#doc_chap1_sect2">Statystyki</uri></li>
-<li><uri link="#doc_chap1_sect3">Zamknięte bugi</uri></li>
-<li><uri link="#doc_chap1_sect4">Nowe bugi</uri></li>
+  <li><uri link="#doc_chap1_sect2">Statystyki</uri></li>
+  <li><uri link="#doc_chap1_sect3">Zamknięte bugi</uri></li>
+  <li><uri link="#doc_chap1_sect4">Nowe bugi</uri></li>
 </ul>
+
 </body>
 </section>
 
 <section>
 <title>Statystyki</title>
 <body>
+
 <p>
 Społeczność Gentoo używa Bugzilli (<uri
 link="http://bugs.gentoo.org/">bugs.gentoo.org</uri>) do zgłaszania i śledzenia
-błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomiędzy
-28 May 2006
-a 11 June 2006 aktywność w serwisie przedstawiała się następująco:
+błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomiędzy 28
+maja 2006, a 11 czerwca 2006 aktywność w serwisie przedstawiała się następująco:
 </p>
+
 <ul>
-<li>zgłoszono 1756 nowych bugów</li>
-<li>zamknięto lub rozwiązano 812 bugów</li>
-<li>54 uprzednio zamkniętych bugów zostało ponownie otwartych</li>
+  <li>zgłoszono 1756 nowych bugów</li>
+  <li>zamknięto lub rozwiązano 812 bugów</li>
+  <li>54 uprzednio zamknięte bugi zostały ponownie otwarte</li>
 </ul>
+
 <p>
 Spośród 10196 obecnie otwartych bugów: 53 oznaczono jako 'blocker', 144 jako
 'critical', a 549 jako 'major'.
 </p>
+
 </body>
 </section>
 
 <section>
 <title>Zamknięte Bugi</title>
 <body>
+
 <p>
 Deweloperzy oraz zespoły, które zamknęły najwięcej bugów w minionym tygodniu,
 to:
 </p>
+
 <ul>
-<li><mail link="games@gentoo.org">Gentoo Games</mail>, 49 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=games@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="security@gentoo.org">Gentoo Security</mail>, 28 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="printing@gentoo.org">Printing Team</mail>, 28 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=printing@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="kde@gentoo.org">Gentoo KDE team</mail>, 28 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=kde@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="apache-bugs@gentoo.org">Apache Herd - Bugzilla Reports</mail>, 26 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=apache-bugs@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="base-system@gentoo.org">Gentoo's Team for Core System packages</mail>, 25 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=base-system@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="dev-portage@gentoo.org">Portage team</mail>, 21 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=dev-portage@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="flameeyes@gentoo.org">Diego Pettenò</mail>, 19 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=flameeyes@gentoo.org">zamkniętych bugów</uri>
-</li>
+  <li><mail link="games@gentoo.org">Gentoo Games</mail>, 49 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=games@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="security@gentoo.org">Gentoo Security</mail>, 28 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="printing@gentoo.org">Printing Team</mail>, 28 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=printing@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="kde@gentoo.org">Gentoo KDE team</mail>, 28 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=kde@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="apache-bugs@gentoo.org">Apache Herd - Bugzilla Reports</mail>,
+  26 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=apache-bugs@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="base-system@gentoo.org">Gentoo's Team for Core System
+  packages</mail>, 25 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=base-system@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="dev-portage@gentoo.org">Portage team</mail>, 21 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=dev-portage@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="flameeyes@gentoo.org">Diego Pettenò</mail>, 19 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;resolution=FIXED&amp;assigned_to=flameeyes@gentoo.org">zamkniętych
+  bugów</uri></li>
 </ul>
 </body>
 </section>
@@ -1044,63 +1085,79 @@ to:
 <section>
 <title>Nowe Bugi</title>
 <body>
+
 <p>
 Deweloperzy oraz zespoły, którym przydzielono najwięcej bugów w minionym tygodniu,
 to:
 </p>
+
 <ul>
-<li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New Packages</mail>, 54 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=maintainer-wanted@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="mozilla@gentoo.org">Mozilla Gentoo Team</mail>, 16 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=mozilla@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="games@gentoo.org">Gentoo Games</mail>, 15 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=games@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="maintainer-needed@gentoo.org">Default Assignee for Orphaned Packages</mail>, 14 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=maintainer-needed@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="flameeyes@gentoo.org">Diego Pettenò</mail>, 14 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=flameeyes@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="chriswhite@gentoo.org">Chris White</mail>, 14 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=chriswhite@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="amd64@gentoo.org">AMD64 Project</mail>, 13 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=amd64@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="kde@gentoo.org">Gentoo KDE team</mail>, 12 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=kde@gentoo.org">nowych bugów</uri>
-</li>
+  <li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New
+  Packages</mail>, 54 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=maintainer-wanted@gentoo.org">nowe
+  bugi</uri></li>
+  <li><mail link="mozilla@gentoo.org">Mozilla Gentoo Team</mail>, 16 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=mozilla@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="games@gentoo.org">Gentoo Games</mail>, 15 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=games@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="maintainer-needed@gentoo.org">Default Assignee for Orphaned
+  Packages</mail>, 14 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=maintainer-needed@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="flameeyes@gentoo.org">Diego Pettenò</mail>, 14 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=flameeyes@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="chriswhite@gentoo.org">Chris White</mail>, 14 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=chriswhite@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="amd64@gentoo.org">AMD64 Project</mail>, 13 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=amd64@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="kde@gentoo.org">Gentoo KDE team</mail>, 12 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-05-28&amp;chfieldto=2006-06-11&amp;assigned_to=kde@gentoo.org">nowych
+  bugów</uri></li>
 </ul>
 </body>
 </section>
 </chapter>
+
 <!-- GWN feedback information -->
 <chapter>
 <title>Opinie czytelników</title>
 <section>
 <body>
-<p>Please send us your 
-<mail link="gwn-feedback@gentoo.org">feedback</mail>and help make the
-GWN better.</p>
+
+<p>
+Jeśli chcesz, aby Tygodnik Gentoo był jeszcze lepszy, podziel się z <mail
+link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat. Uwagi
+dotyczące tłumaczenia można zgłaszać na adres <mail
+link="moloh@gentoo.org">koordynatora</mail>.
+</p>
+
 </body>
 </section>
 </chapter>
+
 <!-- GWN subscription information -->
 <chapter>
 <title>Subskrypcja Tygodnika Gentoo</title>
 <section>
 <body>
-<p>To subscribe to the Gentoo Weekly Newsletter, send a blank e-mail to
-<mail link="gentoo-gwn+subscribe@gentoo.org">
-gentoo-gwn+subscribe@gentoo.org</mail>.</p>
-<p>To unsubscribe to the Gentoo Weekly Newsletter, send a blank e-mail
-to 
-<mail link="gentoo-gwn+unsubscribe@gentoo.org">
-gentoo-gwn+unsubscribe@gentoo.org</mail> from the e-mail address you are
-subscribed under.</p>
+
+<p>
+Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego e-maila na adres <mail
+link="gentoo-gwn-pl+subscribe@gentoo.org">gentoo-gwn-pl+subscribe@gentoo.org</mail>.
+</p>
+
+<p>
+Aby zrezygnować z subskrypcji, należy wysłać pustego e-maila na adres <mail
+link="gentoo-gwn-pl+unsubscribe@gentoo.org">
+gentoo-gwn-pl+unsubscribe@gentoo.org</mail> z konta, na które jest
+zarejestrowana.
+</p>
+
 </body>
 </section>
 </chapter>
@@ -1116,48 +1173,20 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 </p>
 
 <ul>
-<li>
-<uri link="/news/da/gwn/gwn.xml">Danish</uri>
-</li>
-<li>
-<uri link="/news/nl/gwn/gwn.xml">Dutch</uri>
-</li>
-<li>
-<uri link="/news/en/gwn/gwn.xml">English</uri>
-</li>
-<li>
-<uri link="/news/de/gwn/gwn.xml">German</uri>
-</li>
-<li>
-<uri link="/news/fr/gwn/gwn.xml">French</uri>
-</li>
-<li>
-<uri link="/news/ko/gwn/gwn.xml">Korean</uri>
-</li>
-<li>
-<uri link="/news/ja/gwn/gwn.xml">Japanese</uri>
-</li>
-<li>
-<uri link="/news/it/gwn/gwn.xml">Italian</uri>
-</li>
-<li>
-<uri link="/news/pl/gwn/gwn.xml">Polish</uri>
-</li>
-<li>
-<uri link="/news/pt_br/gwn/gwn.xml">Portuguese (Brazil)</uri>
-</li>
-<li>
-<uri link="/news/pt/gwn/gwn.xml">Portuguese (Portugal)</uri>
-</li>
-<li>
-<uri link="/news/ru/gwn/gwn.xml">Russian</uri>
-</li>
-<li>
-<uri link="/news/es/gwn/gwn.xml">Spanish</uri>
-</li>
-<li>
-<uri link="/news/tr/gwn/gwn.xml">Turkish</uri>
-</li>
+  <li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
+  <li><uri link="/news/da/gwn/gwn.xml">duńskim</uri></li>
+  <li><uri link="/news/fr/gwn/gwn.xml">francuskim</uri></li>
+  <li><uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri></li>
+  <li><uri link="/news/nl/gwn/gwn.xml">holenderskim</uri></li>
+  <li><uri link="/news/ja/gwn/gwn.xml">japońskim</uri></li>
+  <li><uri link="/news/ko/gwn/gwn.xml">koreańskim</uri></li>
+  <li><uri link="/news/de/gwn/gwn.xml">niemieckim</uri></li>
+  <li><uri link="/news/pl/gwn/gwn.xml">polskim</uri></li>
+  <li><uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
+  <li><uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
+  <li><uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
+  <li><uri link="/news/tr/gwn/gwn.xml">tureckim</uri></li>
+  <li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>
 </ul>
 </body>
 </section>
