@@ -420,10 +420,10 @@ on Gentoo as developers."
 <p><b>Genetic - nowy frontend Portage</b></p>
 
 <p>
-W ciągu ostatnich dwóch tygodni na Forum można było śledzić dyskusję na temat
+W ciągu ostatnich dwóch tygodni na Forum można było śledzić dyskusję dotyczącą
 nowego frontendu Portage używającego bibliotek ncurses oraz wxWidgets. Jak na
-razie jest w fazie planowania i poszukuje chętnych do pomocy deweloperów mających
-doświadczenie z XML-em, ncurses lub pythonem.
+razie jest w fazie planowania i poszukuje chętnych do pomocy deweloperów
+mających doświadczenie z XML-em, ncurses lub pythonem.
 </p>
 
 <ul>
@@ -435,12 +435,13 @@ doświadczenie z XML-em, ncurses lub pythonem.
 <p><b>GEMS - Gentoo Enterprise Management System</b></p>
 
 <p>
-An announcement of a new management system in the style of "Red Hat Network"
-designed for Gentoo has been announced on the forums. It aims to ease the
-management of a large number of Gentoo computers and currently includes features
-such as: inventory of installed software, GLSAs associated with them, monitoring
-deployments status and more.  GEMS is licensed under the GPL and is freely
-available on its website.
+Na Forum ogłoszono wydanie GEMS, nowego systemu do zarządzania przypominającego
+“Red Hat Network”, ale zaprojektowanego z myślą o Gentoo. Jego celem jest
+ułatwienie zarządzania siecią komputerów działających pod kontrolą systemu
+Gentoo Linux. Obecnie oferuje m.in. zarządzanie zainstalowanym oprogramowaniem,
+prosty dostęp do raportów GLSA z nim związanych, monitoring oraz wiele, wiele
+innych. GEMS opublikowany jest na zasadach licencji GPL i jest dostępny do
+pobrania ze strony domowej.
 </p>
 
 <ul>
@@ -599,7 +600,7 @@ dołączone do kolejnej wersji pakietu <c>livecd-tools</c>.
 </p>
 
 <ul>
-  <li>  <uri
+  <li><uri
   link="http://www.reactivated.net/weblog/archives/2006/06/net-setup-enhancements/">
   net-setup enhancements</uri></li>
 </ul>
@@ -871,96 +872,118 @@ GLSA</uri>
 <section>
 <title>Pound: HTTP request smuggling</title>
 <body>
-<p>
 
-Pound is vulnerable to HTTP request smuggling, which could be exploited to
-bypass security restrictions or poison web caches.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-05.xml">komunikacie GLSA</uri>
+Pound jest podatne na atak HTTP request smuggling, co może zostać wykorzystane
+do ominięcia procedur bezpieczeństwa lub zatrucia pamięci podręcznej aplikacji.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-05.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
-<title>AWStats: Remote execution of arbitrary code</title>
+<title>AWStats: Zdalne wykonanie niepożądanego kodu</title>
 <body>
-<p>
 
-AWStats contains a bug in the sanitization of the input parameters which
-can lead to the remote execution of arbitrary code.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-06.xml">komunikacie GLSA</uri>
+AWStats zawiera usterkę w procesie walidacji danych wejściowych, co może zostać
+wykorzystane do wykonania niepożądanego kodu.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-06.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
-<title>Vixie Cron: Privilege Escalation</title>
+<title>Vixie Cron: Przekroczenie uprawnień</title>
 <body>
-<p>
 
-Vixie Cron allows local users to execute programs as root.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-07.xml">komunikacie GLSA</uri>
+Vixie Cron umożliwiał lokalnym użytkownikom wykonywanie programów jako root.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-07.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
-<title>WordPress: Arbitrary command execution</title>
+<title>WordPress: Wykonanie niepożądanego polecenia</title>
 <body>
-<p>
 
-WordPress fails to sufficiently check the format of cached username data.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-08.xml">komunikacie GLSA</uri>
+WordPress niewystarczająco sprawdza format przechowywanych danych użytkownika.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-08.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
-<title>SpamAssassin: Execution of arbitrary code</title>
+<title>SpamAssassin: Wykonanie niepożądanego kodu</title>
 <body>
-<p>
 
-SpamAssassin, when running with certain options, could allow local or even
-remote attackers to execute arbitrary commands, possibly as the root user.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-09.xml">komunikacie GLSA</uri>
+SpamAssassin, gdy jest używany z pewnymi opcjami, umożliwia lokalnemu lub nawet
+zdalnemu użytkownikowi na wykonanie niepożądanych poleceń, które mogą być
+wykonanie z prawami superużytkownika.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-09.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
-<title>Cscope: Many buffer overflows</title>
+<title>Cscope: Wiele usterek przepełnienia bufora</title>
 <body>
-<p>
 
-Cscope is vulnerable to multiple buffer overflows that could lead to the
-execution of arbitrary code.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-10.xml">komunikacie GLSA</uri>
+Cscope zawiera wiele usterek przepełnienia bufora, które mogą zostać
+wykorzystane do wykonania niepożądanego kodu.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-10.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
 <title>JPEG library: Denial of Service</title>
 <body>
-<p>
 
-The JPEG library is vulnerable to a Denial of Service.
-
-</p>
 <p>
-Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/en/glsa/glsa-200606-11.xml">komunikacie GLSA</uri>
+JPEG library jet podatne na atak Denial of Service.
 </p>
+
+<p>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200606-11.xml">komunikacie
+GLSA</uri>
+</p>
+
 </body>
 </section>
 <section>
@@ -969,7 +992,7 @@ Więcej informacji można znaleźć w <uri link="http://www.gentoo.org/security/
 
 <p>
 Mozilla Firefox zawiera wiele usterek które umożliwiają umożliwiają wykonanie
-kodu JavaScript z przekroczonymi uprawnieniami, a takżę wykonanie niepożądanego
+kodu JavaScript z przekroczonymi uprawnieniami, a także wykonanie niepożądanego
 kodu oraz jest podatny na ataki HTTP response smuggling
 </p>
 
