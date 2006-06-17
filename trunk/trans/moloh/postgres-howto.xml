@@ -134,19 +134,18 @@ Poniżej znajduje się lista opcji wraz z krótkimi opisami:
 <tr>
   <ti>pg-hier</ti>
   <ti>
-    If this option is enabled, a patch is applied to enable hierarchical
-    queries, such as those seen by the <c>CONNECT</c> statement in
-    <c>Oracle</c> database servers. More information on hierarchical queries
-    can be found in the <uri
+    W przypadku włączenia tej opcji zostanie użyta poprawką umożliwiająca użycie
+    hierarchicznych zapytań, takich jak polecenie <c>CONNECT</c> w przypadku
+    serwerów bazodanowych <c>Oracle</c>. Więcej informacji na temat tego typu
+    zapytań można znaleźć w <uri
     link="http://www.lc.leidenuniv.nl/awcourse/oracle/server.920/a96540/
-    queries4a. htm">Oracle Reference Guide</uri>.
+    queries4a.htm">dokumentacji Oracle</uri>.
   </ti>
 </tr>
 <tr>
   <ti>pg-intdatetime</ti>
   <ti>
-    If this option is enabled, PostgreSQL will support 64 bit integer date
-    types.
+    Wsparcie w PostgreSQL dla 64-bitowych typów reprezentujących datę.
   </ti>
 </tr>
 <tr>
@@ -159,15 +158,16 @@ Poniżej znajduje się lista opcji wraz z krótkimi opisami:
 <tr>
   <ti>readline</ti>
   <ti>
-    If this option is enabled, PostgreSQL will support <c>readline</c> style
-    command line editing. This includes command history and isearch.
+    Opcja odpowiedzialna za wsparcie w PostgreSQL dla biblioteki
+    <c>readline</c>. Ułatwia posługiwanie się terminalem, dodaje historię oraz
+    opcję szukaj.
   </ti>
 </tr>
 <tr>
   <ti>selinux</ti>
   <ti>
-    If this option is enabled, an <c>selinux</c> policy for PostgreSQL will be
-    installed.
+    Włączenie tej opcji spowoduje instalację polis <c>selinux</c> dla
+    PostgreSQL.
   </ti>
 </tr>
 <tr>
@@ -188,34 +188,34 @@ Poniżej znajduje się lista opcji wraz z krótkimi opisami:
 <tr>
   <ti>xml2</ti>
   <ti>
-    If this option is enabled, <c>XPATH</c> style xml support will be built.
-    More information on using xml support with PostgreSQL can be found on:
-     <uri link="http://www.throwingbeans.org/tech/postgresql_and_xml.html">
-    PostgreSQL and XML</uri>.
+    Włączenie tej opcji zapewni wsparcie dla <c>XPATH</c> w xmls. Więcej
+    informacji na temat języka xml w PostgreSQL można znaleźć w dokumencie <uri
+    link="http://www.throwingbeans.org/tech/postgresql_and_xml.html"> PostgreSQL
+    and XML</uri> (język angielski).
   </ti>
 </tr>
 <tr>
   <ti>zlib</ti>
   <ti>
-    Opcja ta nie jest używana przez sam PostgreSQL, ale przez <c>pg_dump</c> by
-    dokonać kompresji tworzonych obrazów danych.
+    Opcja ta nie jest używana przez sam PostgreSQL, ale przez <c>pg_dump</c>.
+    Umożliwia kompresję tworzonych obrazów danych.
   </ti>
 </tr>
 </table>
 
 <note>
-The <c>pg-hier</c> patch author has stopped working on the patch, and it will
-most likely be removed in later versions.
+Autor poprawki <c>pg-hier</c> przestał nad nią pracować. Zostanie ona
+najprawdopodobniej usunięta w kolejnych wersjach.
 </note>
 
 <p>
-Once you've customized PostgreSQL to meet your specific needs, go ahead and
-start the <c>emerge</c>:
+Po włączeniu odpowiednich flag, tak by odpowiednio dostosować instalację bazy
+danych, czas na kolejny krok - instalację:
 </p>
 
-<pre caption="Emerge-ing PostgreSQL">
+<pre caption="Instalacja PostgreSQL">
 # <i>emerge postgresql</i>
-<comment>(Output shortened)</comment>
+<comment>(Komunikaty zostały skrócone)</comment>
 >>> /usr/lib/libecpg.so.5 -> libecpg.so.5.0
 >>> /usr/bin/postmaster -> postgres
  * Make sure the postgres user in /etc/passwd has an account setup with /bin/bash as the shell
@@ -229,15 +229,16 @@ start the <c>emerge</c>:
 </pre>
 
 <p>
-As shown by the einfo output, there is some post setup that must be done. The
-next chapter will look at the actual configuration of PostgreSQL.
+Jak pokazano na wydruku, po poprawnej kompilacji i instalacji PostgreSQL należy
+jeszcze wykonać dodatkowe czynności przygotowujące bazę danych do pracy. W
+kolejnym rozdziale zostanie opisany proces konfiguracji.
 </p>
 
 </body>
 </section>
 </chapter>
 <chapter>
-<title>PostgreSQL configuration</title>
+<title>Konfiguracja PostgreSQL</title>
 <section>
 <title>Setting up the initial database environment</title>
 <body>
@@ -258,10 +259,11 @@ passwd: password updated successfully
 </pre>
 
 <p>
-Now that this is setup, the creation of the initial database environment can occur:
+Po ustawieniu odpowiedniego hasła można przystąpić do stworzenia podstawowego
+środowiska PostgreSQL:
 </p>
 
-<pre caption="Configuring the database environment with emerge --config">
+<pre caption="Konfiguracja środowiska bazodanowego z użyciem emerge --config">
 # <i>emerge --config =postgresql-8.0.4</i>
 
 
@@ -314,8 +316,10 @@ or
 </pre>
 
 <p>
-Now the initial database environment is setup. The next section will look at
-verifying the install and setting up users to access the database.
+Po wykonaniu polecenia, podstawowe środowisko, tabele i pliki konfiguracyjne
+zostały utworzone. W kolejnej sekcji dowiemy się w jak sprawdzić poprawność
+instalacji oraz poznamy sposoby kontroli dostęp do bazy danych przez
+użytkowników.
 </p>
 
 </body>
