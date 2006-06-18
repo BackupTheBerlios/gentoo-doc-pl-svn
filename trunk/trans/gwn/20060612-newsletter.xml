@@ -54,173 +54,192 @@
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>Portage 2.1 Released</title>
+<title>Portage 2.1 wydane</title>
 <body>
 
 <p>
-After many months in development, the Portage team has released Portage-2.1.
-This new release sees a great many new features, fixed bugs, and performance
-improvements. A detailed description of changes can be found in the <uri
+Po wielu miesiącach prac, zespół Portage opublikował Portage-2.1. Wersja ta
+zawiera wiele nowych funkcji i naprawionych błędów. Dodatkowo poprawiono
+znacznie prędkość działania. Szczegółowy opis zmian można znaleźć w <uri
 link="http://sources.gentoo.org/viewcvs.py/portage/main/trunk/RELEASE-NOTES?view=markup">
-release notes</uri> and <uri
+release notes</uri> i <uri
 link="http://sources.gentoo.org/viewcvs.py/portage/main/trunk/NEWS?view=markup">
-NEWS file</uri>. Some highlights, however, are:
+pliku wiadomości</uri>. Najważniejsze z nich to:
 </p>
 
 <ul>
   <li>
-    <b>confcache integration</b>: In combination with the
-    <path>dev-util/confcache</path>package, users can now benefit from cached
-    configure checks, speeding up build times for many packages.</li> <li><b>New
-    cache framework</b>: The Portage cache has been completely overhauled,
-    leading to massive speed improvements when updating cache after sync, as
-    well as in other areas.
+    <b>Intergracja confcache</b>: W połączeniu z pakietem
+    <path>dev-util/confcache</path>, użytkownicy mogą korzystać z
+    kontroli konfiguracji pamięci podręcznej, przyśpieszając budowanie wielu
+    pakietów.
   </li>
   <li>
-    <b>New elog functionality</b>: In the past, important messages from ebuilds
-    were delivered by means of the <c>einfo</c>, <c>ewarn</c>, and <c>eerror</c>
-    functions, which print messages to the standard output.  However, in a
-    length multi-package merge, it is very easy for these messages to get lost.
-    The new <c>elog</c> function allows them to be collected in one place for
-    later inspection, and should greatly ease the process of upgrading many
-    packages at one time.
+    <b>Nowa budowa pamięci podręcznej</b>: Pamięć podręczna cache została
+    całkowicie przebudowana, dzięki czemu znacząco poprawiła się prędkość
+    aktualizacji po synchronizacji drzewa.
   </li>
   <li>
-    <b>New hooks framework</b>: Using <path>/etc/portage/bashrc</path>, users
-    can now define bash functions to be executed before and after any given
-    ebuild phase. This can be used to make almost arbitrary customisations to
-    the build environment, and is a powerful tool for those who need
-    functionality or behaviour that stock Portage cannot provide.
+    <b>Nowa funkcja elog</b>: W przeszłości ważne wiadomości
+    znajdujące się w ebuildzie były wyświetlane przy pomocy funkcji
+    <c>einfo</c>, <c>ewarn</c> i <c>eerror</c>, który wyświetlały daną
+    wiadomość na standardowe wyjście. Jednak w przypadku gdy
+    instalowaliśmy naraz kilka pakietów, bardzo łatwo było przeoczyć ważne
+    informacje dostarczane w ten sposób. Nowa funkcja <c>elog</c> pozwala
+    zebrać te wiadomości w jednym miejscu, tak aby można było w łatwy
+    sposób przeglądać je wszystkie za jednym razem. Powinno to w
+    znaczący sposób uprosicić aktualizację wielu pakietów jednocześnie.
   </li>
   <li>
-    <b>Digest improvements</b>: Portage can now use SHA256 and RMD160 digests in
-    addition to MD5 for checking the integrity of downloaded files. This release
-    also introduces support for a new Manifest2 format that should allow the
-    current Manifest and digest-* files to be unified into one much more
-    efficient file format.
+    <b>Nowa budowa hooks</b>: Używając pliku <path>/etc/portage/bashrc</path>,
+    użytkownicy mogą zdefiniować polecenia w bashu wykonywane przed lub po
+    każdej operacji zawartej w ebuildzie. Funkcja ta może być używana do
+    wprowadzania udoskonaleń w środowisku, w którym budowany jest pakiet.
+    Dodatkowo jest znakomitym narzędziem, dla tych, którzy potrzebują
+    funkcjonalności lub zachowań jakich nie zaimplementowano w Portage.
   </li>
   <li>
-    <b>Improved debugging support</b>: using FEATURES="splitdebug" it is now
-    possible to keep the performance improvements from using stripped binaries,
-    while still having the debug information around on disk should it be needed.
-    This should make filing useful bug reports much easier.
+    <b>Poprawki plików sum kontrolnych</b>: Portage może już używać algorytmów
+    SHA256 oraz RMD160 obok obecnego już MD5, służącego do sprawdzania 
+    poprawności ściągnietych plików. Wersja ta wspiera również nowy format
+    plików Manifest2, który pozwoli zintegrować w jeden format akutualne pliki
+    Manifest i digest-*.
   </li>
   <li>
-    <b>Colour remappings</b>: Using the <path>/etc/portage/color.map</path>
-    file, you can now remap the colours that Portage will use in its output.
-    Have you ever wanted a pretty pink portage? Well now you can, without having
-    to change the source code.
+    <b>Poprawione wsparcie debugowania</b>: Używając zmiennej
+    FEATURES="splitdebug" możliwe jest powstrzymanie poprawek zwiększających
+    wydajność od używania stripped binaries, jednocześnie cały czas mając
+    dostęp do danych z debugowania na dysku. Powinno to być pomocne przy
+    wypełnianiu raportów błędów.
   </li>
   <li>
-    <b>Configuration improvements</b>: Certain config files can now be made into
-    directories, for easier management (for example,
+    <b>Zmiana kolorów</b>: Używająć pliku <path>/etc/portage/color.map</path>,
+    możemy samodzielnie zmienić kolory używane na wyjściu przez Portage.
+    Czy kiedykolwiek chcieliśmy różowy kolor czcionek w wyświetlanych przez
+    Portage komunikatach? Więc, teraz nic nie stoi na przeszkodzie, aby tak
+    się stało bez potrzeby zmian w kodzie źródłowym.
+  </li>
+  <li>
+    <b>Ulepszona konfiguracja</b>: Pewne pliki konfiguracyjne mogą być teraz
+    umieszczane w katalogach dla łatwiejszego zarządzania (na przykład,
     <path>/etc/portage/package.unmask/kde</path>,
-    <path>/etc/portage/package.unmask/xorg</path> will be combined to make the
-    old <path>/etc/portage/package.unmask</path>).
-    <path>/etc/portage</path>itself can also be loaded from different locations,
-    making certain tasks much simpler.
+    <path>/etc/portage/package.unmask/xorg</path> zostaną połączone, aby
+    utworzyć plik starego typu <path>/etc/portage/package.unmask</path>). Plik
+    <path>/etc/portage</path> możemy być pobierany z wielu różnych lokacji,
+    czyniąc pewne zadania znacznie prostszymi.
   </li>
   <li>
-    <b>Various other improvements</b>: Certain types of binary security issues
-    can now be fixed automatically. The initial import of the Portage module
-    should now be faster in certain circumstances, meaning that external scripts
-    which import it should see speed improvements.  Emerge now supports a -q or
-    'really quiet mode' option, reducing its output to a minimum.
+    <b>Mnóstwo innych zmian</b>: Pewne rodzaje błędów bezpieczeństwa w
+    pakietach binarnych mogą zostać naprawione automatycznie. Pierwsze 
+    dostarczenie modułu Portage powinno być teraz szybsze w wielu przypadkach,
+    co oznacza, że zewnętrzne skrypty importujące go powinny działać szybciej.
+    Dodano wsparcie przełącznika -q do emerge, oznaczającego 'really quite
+    mode' przez co Portage redukuje informacje wyświetlane na ekranie do
+    minimum.
   </li>
 </ul>
 
 <p>
-There is a stabilisation <uri
-link="https://bugs.gentoo.org/show_bug.cgi?id=136198"> bug</uri> open, where you
-can track the progress of this new release towards the stable tree. As of this
-writing, stable users on x86, Sparc, HPPA and PPC platforms can use the new
-release; other architecture teams should be following in the near future.
+Otworzony został błąd <uri
+link="https://bugs.gentoo.org/show_bug.cgi?id=136198">stabilizujący</uri>,
+gdzie możemy śledzić drogę wersji 2.1 do stabilnego drzewa. W tej chwili,
+nowej wersji mogą używać użytkownicy architektur x86, Sparc, HPPA oraz PPC.
+Inne architektury otrzymają wsparcie w najbliższym czasie.
 </p>
 
 <p>
-Thanks to <mail link="antarus@gentoo.org">Alec Warner</mail> and <mail
-link="solar@gentoo.org">Ned Ludd</mail> for taking the time to talk to the GWN
-about this release.
-</p>
-
-</body>
-</section>
-<section>
-<title>Status report: Gentoo/Alpha</title>
-<body>
-
-<p>
-The Gentoo/Alpha team is responsible for making sure that Gentoo runs smoothly
-on the Alpha architecture. The team has recently grown to include <mail
-link="tcort@gentoo.org">Thomas Cort</mail> and <mail
-link="christel@gentoo.org">Christel Dahlskjaer</mail>. In the past few months we
-have been very productive.  <mail link="spb@gentoo.org">Stephen Bennett</mail>
-has continued his work with SELinux. hardened-sources is now keyworded for
-alpha. Thanks to the work of <mail link="stefaan@gentoo.org">Stefaan De
-Roeck</mail>and others, modular X has been keyworded and is working well. The
-Gentoo/Alpha team is also pleased to announce that we have stabilized
-gnome-2.12.3 and kde-3.5.2.
-</p>
-
-<p>
-Thomas Cort has produced two documents, the Alpha Porting Guide and the
-Gentoo/Alpha FAQ. A guide to using the SRM console is on the way.  <mail
-link="yoswink@gentoo.org">Jose Luis Rivero</mail>, <mail
-link="ferdy@egntoo.org">Fernando Pereda</mail>, and the rest of the Gentoo/Alpha
-team completely revamped the project page. Fernando Pereda has also been busy
-setting up the Alpha Arch Testers project. If you want to learn more about this
-excellent opportunity to give back to Gentoo, please check out the <uri
-link="http://www.gentoo.org/proj/en/base/alpha/AT/index.xml">Alpha Arch Testers
-Project page</uri>.
+Dziękujemy <mail link="antarus@gentoo.org">Alecowi Warner</mail> i <mail
+link="solar@gentoo.org">Nedowi Ludd</mail>, że zechcieli napisać kilka zdań do
+GWN na temat nowego Portage.
 </p>
 
 </body>
 </section>
 <section>
-<title>Tetex changes</title>
+<title>Raport: Gentoo/Alpha</title>
 <body>
 
 <p>
-Tetex's upstream maintainer Thomas Esser hass announced that he won't make any
-further tetex releases. This will have some mid- to long-term effects on how
-tetex is maintained in Gentoo.  Gentoo developer <mail
-link="ehmsen@gentoo.org">Martin Ehmsen</mail> shows the possible methods for
-handling this – while it seems to be undecided for now how to proceed there will
-be changes in the future.  Stay tuned…
+Zespół Gentoo/Alpha odpowiada za umożliwienie poprawnego funkcjonowania Gentoo
+na architekturze Alpha bez zbędnych problemów. Zespół w ostatnich czasach
+powiększył się o dwie osoby. Dołączyli do nas <mail
+link="tcort@gentoo.org">Thomas Cort</mail> i <mail
+link="christel@gentoo.org">Christel Dahlskjaer</mail>. W ostatnich miesiącach
+bardzo ciężko pracowaliśmy. <mail link="spb@gentoo.org">Stephen Bennett</mail>
+cały czas kontynuje swoją pracę z SELinux, hardened-sources są już dostępne na
+naszej architekturze. Dzięki ciężkiej pracy <mail
+link="stefaan@gentoo.org">Stefaana De Roeck</mail> oraz innych pomagających mu
+osób modularne X-y również zostały przeniesione na naszą architekturę, a ich
+działanie nie sprawia nikomu problemów. Zespół Gentoo/Alpha ma również
+przyjemność ogłosić stabilizację gnome-2.12.3 i kde-3.5.2.
+</p>
+
+<p>
+Thomas Cort napisał dwa dokumenty, Alpha Porting Guide oraz Gentoo/Alpha FAQ.
+Przewodnik, w którym opisane będzie używanie konsoli SRM jest w trakcie
+opracowywania. <mail link="yoswink@gentoo.org">Jose Luis Rivero</mail>, <mail
+link="ferdy@egntoo.org">Fernando Pereda</mail> oraz pozostała część zespołu
+przebudowała stronę projektu na nowo. Fernando Pereda był zajęty
+przygotowywaniem programu testerów architektury Alpha. Jeżeli chcemy poznać
+więcej szczegółów na temat tej świetnej formy pomocy Gentoo, prosimy o
+przejrzenie <uri
+link="http://www.gentoo.org/proj/en/base/alpha/AT/index.xml">strony projektu
+</uri>.
+</p>
+
+</body>
+</section>
+<section>
+<title>Zmiany Tetex</title>
+<body>
+
+<p>
+Opiekun Tetexa, Thomas Esser ogłosił wstrzymanie prac nad dalszym
+rozwojem Tetexa. Decyzja ta pociągnie za sobą pewne średnio i długo terminowe
+efekty nad obecnością tego pakietu w Gentoo. Deweloper Gentoo <mail
+link="ehmsen@gentoo.org">Martin Ehmsen</mail> przedstawił kilka dróg
+postępowania w tym wypadku, jednak nie jest on w tej chwili zdecydowany, którą
+z nich wybrać. Zainsteresowanych prosimy o śledzenie wydarzeń związanych z tym
+pakietem.
 </p>
 
 <ul>
-  <li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/38615"> Tetex
-  change announcement</uri></li>
+  <li>
+    <uri
+    link="http://thread.gmane.org/gmane.linux.gentoo.devel/38615">Ogłoszenie
+    o zmianie statusu Tetexa</uri>
+  </li>
 </ul>
 
 </body>
 </section>
 <section>
-<title>The shadow and pam-login conflict</title>
+<title>Konflikt shadow i pam-login</title>
 <body>
 
 <p>
-Many users may have seen that new versions of pam-login and shadow block each
-other. The reason for that is that the file <path>/bin/login</path> used to be
-provided by pam-login for mostly historical reasons. Now shadow 4.0 started also
-providing this file, to reduce confusion this file is now provided by shadow.
-Also the rest of pam-login has been folded into shadow too, so when you see
-these two packages blocking each other please unmerge pam-login and emerge the
-updated shadow package in its place.
+Wielu użytkowników zapewne zauważyło, że nowe wersje pam-login i shadow blokują
+sie wzajemnie. Powodem takie zachowania jest, że plik <path>/bin/login</path>
+był dostarczany razem z pam-login z wielu historycznych powodów. Od wersji 4.0
+pakietu shadow, plik ten dostarczany jest również z nim. Dodatkowo, cała
+pozostała część pam-login została wciągnięta do shadow, więc jeżeli zobaczymy u
+siebie sytuację, w której oba pakiety się blokują, należy odinstalować
+pam-login i zaaktualizować shadow do najnowszej wersji w jego miejsce.
 </p>
 
 <p>
-Further information can be found in <mail link="flameeyes@gentoo.org">Diego
-Pettenò's</mail> weblog:
+Więcej informacji znaleźć można na blogu internetowym <mail
+link="flameeyes@gentoo.org">Diego Petten?'s</mail>:
 </p>
 
 <ul>
-  <li><uri
-  link="http://farragut.flameeyes.is-a-geek.org/articles/2006/06/01/refreshing-the-pam-login-and-shadow-problem">
-  Shadow and pam-login conflict</uri></li>
+  <li>
+    <uri
+    link="http://farragut.flameeyes.is-a-geek.org/articles/2006/06/01/refreshing-the-pam-login-and-shadow-problem">
+    Shadow and pam-login conflict</uri>
+  </li>
 </ul>
 
 </body>
