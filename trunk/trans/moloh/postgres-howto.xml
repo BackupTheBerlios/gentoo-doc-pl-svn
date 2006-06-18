@@ -240,18 +240,20 @@ kolejnym rozdziale zostanie opisany proces konfiguracji.
 <chapter>
 <title>Konfiguracja PostgreSQL</title>
 <section>
-<title>Setting up the initial database environment</title>
+<title>Stworzenie bazowego środowiska dla bazy danych</title>
 <body>
 
 <p>
-As noted in the earlier <c>emerge</c> output, the initial database environment
-must be setup. However, before this is done, one thing needs to be considered.
-Unlike, say MySQL, PostgreSQL's "root" password is the password of the actual
-user. However, only the user is created by the ebuild <e>not</e> the password.
-So before we can begin, the password must be set for the postgres user:
+Po zakończonej sukcesem instalacji ebuild informuje nas o potrzebie stworzenia
+środowiska bazowego, tak by móc uruchomić usługę. Jednak przed wykonaniem
+podanego polecenia należy jeszcze zająć się jedną sprawą.  W przeciwieństwie do
+MySQL, w przypadku PostgreSQL hasło administratora jest takie samo jak
+użytkownika w systemie. Jest on tworzony przez ebuild, ale jego hasło <e>nie</e>
+zostaje ustawione. Tak więc przed by móc rozpocząć właściwą konfigurację musimy
+ustawić hasło dla użytkownika postgres:
 </p>
 
-<pre caption="Setting the password">
+<pre caption="Ustawienie hasła">
 # <i>passwd postgres</i>
 New UNIX password:
 Retype new UNIX password:
@@ -263,7 +265,7 @@ Po ustawieniu odpowiedniego hasła można przystąpić do stworzenia podstawoweg
 środowiska PostgreSQL:
 </p>
 
-<pre caption="Konfiguracja środowiska bazodanowego z użyciem emerge --config">
+<pre caption="Konfiguracja środowiska bazodanowego poleceniem emerge --config">
 # <i>emerge --config =postgresql-8.0.4</i>
 
 
@@ -325,60 +327,63 @@ użytkowników.
 </body>
 </section>
 <section>
-<title>PostgreSQL database setup</title>
+<title>Konfiguracja PostgreSQL</title>
 <body>
 
 <p>
-Now that PostgreSQL is setup, it's a good idea at this point to verify the
-installation. First, make sure the service starts up ok:
+Po stworzeniu bazowego środowiska dobrze byłoby sprawdzić, czy wszystkie
+czynności zostały prawidłowo wykonanie. Sprawdźmy więc czy usługa poprawnie
+wystartuje:
 </p>
 
-<pre caption="Starting up the PostgreSQL service">
+<pre caption="Uruchomienie usługi PostgreSQL">
 # <i>/etc/init.d/postgresql start</i>
 * Starting PostgreSQL ...                                          [ ok ]
 </pre>
 
 <p>
-Once this is verified working, it's also a good idea to add it to the default
-runlevel so it starts at boot:
+Po poprawnym starcie dobrym pomysłem jest dodanie usługi do domyślnego poziomu
+startowego, co spowoduje uruchomienie bazy danych w czasie startu systemu:
 </p>
 
-<pre caption="Adding to the default runlevel">
+<pre caption="Dodanie demona PostgreSQL do domyślnego poziomu startowego">
 # <i>rc-update add postgresql default</i>
 * postgresql added to runlevel default
 </pre>
 
 <p>
-Now that the service has started, it's time to try setting up a test database.
-To start out, let's create a test database by using the <c>createdb</c>
-command. We'll also pass along the <c>-U</c> option to set the user (it
-defaults to the current user name if you don't), and the <c>-W</c> option to
-request the password we created earlier. Finally we give it the name of the
-database we want to create:
+Kolejnym krokiem po uruchomieniu demona PostgreSQL jest przetestowanie samej
+bazy danych. Na początek skorzystamy z polecenia <c>createdb</c>, by utworzyć
+testową bazę. Użyjemy opcji <c>-U</c> tak by ustawić użytkownika (domyślnie jest
+to ten aktualnie zalogowany) oraz <c>-W</c> by wymusić interaktywne podanie
+stworzonego wcześniej hasła. Ostatnim parametrem jest nazwa bazy danych, którą
+chcemy utworzyć:
 </p>
 
-<pre caption="Creating a database with createdb">
+<pre caption="Stworzenie bazy danych poleceniem createdb">
 $ <i>createdb -U postgres -W test</i>
 Password:
 CREATE DATABASE
 </pre>
 
 <p>
-The database was successfully created, and we can confirm that the database can
-run basic tasks. We'll go ahead and drop this database (remove it) with the
-<c>dropdb</c> command, creating a new one for usage later on:
+Testowa baza danych została utworzona, można teraz zadać kilka podstawowych
+zapytań. Kolejnym krokiem weryfikującym poprawność instalacji, będzie jej
+usunięcie, używamy polecenia <c>dropdb</c>. Nową, właściwą bazę danych utworzymy
+później:
 </p>
 
-<pre caption="Droping a database with dropdb">
+<pre caption="Usunięcie bazy danych poleceniem dropdb">
 $ <i>dropdb -U postgres -W test</i>
 Password:
 DROP DATABASE
 </pre>
 
 <p>
-Right now, only the postgres user can run commands. Obviously this is not the
-sort of setup one would like in a multi-user environment. The next section will
-look at working with user accounts.
+Obecna, po wykonaniu wszystkich powyższych czynności, konfiguracja zezwala
+jedynie użytkownikowi postgres na wydawanie poleceń. Nie jest to jednak zbyt
+wygodne, szczególnie w środowisku wieloużytkowym. W kolejnej sekcji zajmiemy się
+stworzeniem oraz ustawieniami kont użytkowników.
 </p>
 
 </body>
