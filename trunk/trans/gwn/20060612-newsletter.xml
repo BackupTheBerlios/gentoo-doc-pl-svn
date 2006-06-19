@@ -60,99 +60,100 @@
 <body>
 
 <p>
-Po wielu miesiącach prac, zespół Portage opublikował Portage-2.1. Wersja ta
-zawiera wiele nowych funkcji i naprawionych błędów. Dodatkowo poprawiono
-znacznie prędkość działania. Szczegółowy opis zmian można znaleźć w <uri
+Po wielu miesiącach prac, zespół Portage opublikował nową wersję systemu do
+zarządzania pakietami, tym razem oznaczoną numerem 2.1. Znajdziemy w niej wiele
+nowych funkcji i naprawionych błędów, poprawiono także prędkość działania.
+Szczegółowy opis zmian można znaleźć w plikach <uri
 link="http://sources.gentoo.org/viewcvs.py/portage/main/trunk/RELEASE-NOTES?view=markup">
-release notes</uri> i <uri
+RELEASE-NOTES</uri> i <uri
 link="http://sources.gentoo.org/viewcvs.py/portage/main/trunk/NEWS?view=markup">
-pliku wiadomości</uri>. Najważniejsze z nich to:
+NEWS</uri> instalowanych razem z pakietem. Najważniejsze z nich to:
 </p>
 
 <ul>
   <li>
-    <b>Intergracja confcache</b>: W połączeniu z pakietem
-    <path>dev-util/confcache</path>, użytkownicy mogą korzystać z
-    kontroli konfiguracji pamięci podręcznej, przyśpieszając budowanie wielu
-    pakietów.
+    <b>Integracja confcache</b>: W połączeniu z pakietem
+    <path>dev-util/confcache</path>, użytkownicy mogą korzystać z dodatkowej
+    pamięci podręcznej przechowującej konfigurację, przyśpieszając budowanie
+    wielu pakietów używających skryptów configure
   </li>
   <li>
-    <b>Nowa budowa pamięci podręcznej</b>: Pamięć podręczna cache została
-    całkowicie przebudowana, dzięki czemu znacząco poprawiła się prędkość
-    aktualizacji po synchronizacji drzewa.
+    <b>Zmiany w funkcjonowaniu pamięci podręcznej</b>: Pamięć podręczna Portage
+    cache została całkowicie przebudowana, dzięki czemu znacząco poprawiła się
+    prędkość aktualizacji po synchronizacji drzewa. Zmiany te też przyspieszyły
+    działanie innych operacji wykonywanych przez Portage.
   </li>
   <li>
-    <b>Nowa funkcja elog</b>: W przeszłości ważne wiadomości
-    znajdujące się w ebuildzie były wyświetlane przy pomocy funkcji
-    <c>einfo</c>, <c>ewarn</c> i <c>eerror</c>, który wyświetlały daną
-    wiadomość na standardowe wyjście. Jednak w przypadku gdy
-    instalowaliśmy naraz kilka pakietów, bardzo łatwo było przeoczyć ważne
-    informacje dostarczane w ten sposób. Nowa funkcja <c>elog</c> pozwala
-    zebrać te wiadomości w jednym miejscu, tak aby można było w łatwy
-    sposób przeglądać je wszystkie za jednym razem. Powinno to w
-    znaczący sposób uprosicić aktualizację wielu pakietów jednocześnie.
+    <b>Funkcja elog</b>: W przeszłości ważne wiadomości znajdujące się w
+    ebuildzie były wyświetlane przy pomocy funkcji <c>einfo</c>, <c>ewarn</c> i
+    <c>eerror</c>, który wyświetlały daną wiadomość na standardowe wyjście.
+    Jednak w przypadku gdy instalowaliśmy naraz kilka pakietów, bardzo łatwo
+    było przeoczyć ważne informacje dostarczane w ten sposób. Nowa funkcja
+    <c>elog</c> pozwala zebrać te wiadomości w jednym miejscu, tak aby można
+    było w łatwy sposób przeglądać je wszystkie za jednym razem. Powinno to w
+    znaczący sposób uprościć aktualizację wielu pakietów jednocześnie.
   </li>
   <li>
-    <b>Nowa budowa hooks</b>: Używając pliku <path>/etc/portage/bashrc</path>,
-    użytkownicy mogą zdefiniować polecenia w bashu wykonywane przed lub po
-    każdej operacji zawartej w ebuildzie. Funkcja ta może być używana do
+    <b>Haki w ebuildach</b>: Używając pliku <path>/etc/portage/bashrc</path>,
+    użytkownicy mogą zdefiniować polecenia, które wykonywane przez bash przed
+    lub po każdej operacji zawartej w ebuildzie. Funkcja ta może być używana do
     wprowadzania udoskonaleń w środowisku, w którym budowany jest pakiet.
     Dodatkowo jest znakomitym narzędziem, dla tych, którzy potrzebują
     funkcjonalności lub zachowań jakich nie zaimplementowano w Portage.
   </li>
   <li>
-    <b>Poprawki plików sum kontrolnych</b>: Portage może już używać algorytmów
-    SHA256 oraz RMD160 obok obecnego już MD5, służącego do sprawdzania 
-    poprawności ściągnietych plików. Wersja ta wspiera również nowy format
-    plików Manifest2, który pozwoli zintegrować w jeden format akutualne pliki
-    Manifest i digest-*.
+    <b>Poprawki w plikach sum kontrolnych</b>: Portage może już korzystać z sum
+    kontrolnych SHA256 oraz RMD160 obok obecnego już MD5, służącego do
+    sprawdzania poprawności pobranych plików. Zapewniono także wsparcie dla
+    nowego formatu Manifest2, integrującego informacje zawarte w dotychczasowych
+    plikach Manifest i digest-*.
   </li>
   <li>
-    <b>Poprawione wsparcie debugowania</b>: Używając zmiennej
-    FEATURES="splitdebug" możliwe jest powstrzymanie poprawek zwiększających
-    wydajność od używania stripped binaries, jednocześnie cały czas mając
-    dostęp do danych z debugowania na dysku. Powinno to być pomocne przy
-    wypełnianiu raportów błędów.
+    <b>Nowe możliwości debugowania</b>: Używając zmiennej FEATURES="splitdebug"
+    możliwe jest połączenie wydajności i posiadania informacji dla debugera w
+    pakietach instalowanych przez portage. Dzięki tej funkcjonalności wszelkie
+    dane ułatwiające proces programowania będą znajdować sie w osobnych plikach,
+    nie wpływając na wydajność bibliotek i aplikacji. Pomoże to z pewnością przy
+    raportowaniu usterek i tworzeniu poprawek.
   </li>
   <li>
-    <b>Zmiana kolorów</b>: Używająć pliku <path>/etc/portage/color.map</path>,
-    możemy samodzielnie zmienić kolory używane na wyjściu przez Portage.
-    Czy kiedykolwiek chcieliśmy różowy kolor czcionek w wyświetlanych przez
-    Portage komunikatach? Więc, teraz nic nie stoi na przeszkodzie, aby tak
-    się stało bez potrzeby zmian w kodzie źródłowym.
+    <b>Zmiana kolorów</b>: Używając pliku <path>/etc/portage/color.map</path>,
+    możemy samodzielnie zmienić kolory używane przez Portage na generowanych
+    wydrukach. Każdego zainteresowanego posiadaniem różowego Portage z pewnością
+    zainteresuje ta zmiana, gdyż teraz nic nie stoi na przeszkodzie do właśnie
+    takiego dostosowania jego działania, bez zmian w kodzie źródłowym.
   </li>
   <li>
-    <b>Ulepszona konfiguracja</b>: Pewne pliki konfiguracyjne mogą być teraz
-    umieszczane w katalogach dla łatwiejszego zarządzania (na przykład,
-    <path>/etc/portage/package.unmask/kde</path>,
+    <b>Zmiany w konfiguracji</b>: Niektóre pliki konfiguracyjne mogą być teraz
+    podzielone i umieszczone w osobnych katalogach tak by ułatwić zarządzanie
+    nimi (na przykład, katalogi <path>/etc/portage/package.unmask/kde</path>,
     <path>/etc/portage/package.unmask/xorg</path> zostaną połączone, aby
-    utworzyć plik starego typu <path>/etc/portage/package.unmask</path>). Plik
-    <path>/etc/portage</path> możemy być pobierany z wielu różnych lokacji,
-    czyniąc pewne zadania znacznie prostszymi.
+    utworzyć dotychczasowy plik <path>/etc/portage/package.unmask</path>).
+    Zawartość katalogu <path>/etc/portage</path> może być także pobierana z
+    różnych lokacji
   </li>
   <li>
-    <b>Mnóstwo innych zmian</b>: Pewne rodzaje błędów bezpieczeństwa w
-    pakietach binarnych mogą zostać naprawione automatycznie. Pierwsze 
-    dostarczenie modułu Portage powinno być teraz szybsze w wielu przypadkach,
-    co oznacza, że zewnętrzne skrypty importujące go powinny działać szybciej.
-    Dodano wsparcie przełącznika -q do emerge, oznaczającego 'really quite
-    mode' przez co Portage redukuje informacje wyświetlane na ekranie do
-    minimum.
+    <b>Mnóstwo innych zmian</b>: Niektóre błędy bezpieczeństwa znajdujące się w
+    pakietach binarnych mogą teraz zostać naprawione automatycznie. Wstępny
+    import Portage powinien odbywać sie teraz znaczenie szybciej, co przyspieszy
+    działanie zewnętrznych skryptów importujących. Dodano opcję -q do emerge,
+    wymuszającą cichy tryb pracy przez redukcję liczby komunikatów wyświetlanych
+    przez Portage na ekranie.
   </li>
 </ul>
 
 <p>
-Otworzony został błąd <uri
-link="https://bugs.gentoo.org/show_bug.cgi?id=136198">stabilizujący</uri>,
-gdzie możemy śledzić drogę wersji 2.1 do stabilnego drzewa. W tej chwili,
-nowej wersji mogą używać użytkownicy architektur x86, Sparc, HPPA oraz PPC.
-Inne architektury otrzymają wsparcie w najbliższym czasie.
+Stworzono odpowiedni raport o <uri
+link="https://bugs.gentoo.org/show_bug.cgi?id=136198">stabilizacji</uri>, gdzie
+można śledzić drogę wersji 2.1 do stabilnej części drzewa Portage. W tej chwili,
+nowej wersji mogą używać użytkownicy architektur x86, Sparc, HPPA oraz PPC. Z
+pewnością inne architektury wkrótce dołączą do tego grona.
 </p>
 
 <p>
 Dziękujemy <mail link="antarus@gentoo.org">Alecowi Warner</mail> i <mail
-link="solar@gentoo.org">Nedowi Ludd</mail>, że zechcieli napisać kilka zdań do
-GWN na temat nowego Portage.
+link="solar@gentoo.org">Nedowi Ludd</mail>, że zechcieli napisać kilka zdań na
+temat nowego wydania Portage dla Tygodnika Gentoo.
 </p>
 
 </body>
@@ -162,47 +163,47 @@ GWN na temat nowego Portage.
 <body>
 
 <p>
-Zespół Gentoo/Alpha odpowiada za umożliwienie poprawnego funkcjonowania Gentoo
-na architekturze Alpha bez zbędnych problemów. Zespół w ostatnich czasach
-powiększył się o dwie osoby. Dołączyli do nas <mail
-link="tcort@gentoo.org">Thomas Cort</mail> i <mail
-link="christel@gentoo.org">Christel Dahlskjaer</mail>. W ostatnich miesiącach
-bardzo ciężko pracowaliśmy. <mail link="spb@gentoo.org">Stephen Bennett</mail>
-cały czas kontynuje swoją pracę z SELinux, hardened-sources są już dostępne na
-naszej architekturze. Dzięki ciężkiej pracy <mail
-link="stefaan@gentoo.org">Stefaana De Roeck</mail> oraz innych pomagających mu
-osób modularne X-y również zostały przeniesione na naszą architekturę, a ich
-działanie nie sprawia nikomu problemów. Zespół Gentoo/Alpha ma również
+Zespół Gentoo/Alpha odpowiada za wsparcie przez Gentoo architektury Alpha. W
+ostatnim czasie powiększył się on o dwie osoby. Dołączyli <mail
+link="tcort@gentoo.org">Thomas Cort</mail> oraz <mail
+link="christel@gentoo.org">Christel Dahlskjaer</mail>. Przez kilka minionych
+miesięcy wypełnionych ciężką pracą dokonano wielu usprawnień i poprawek. <mail
+link="spb@gentoo.org">Stephen Bennett</mail> ciągle kontynuuje swoją pracę nad
+SELinux, dzięki czemu hardened-sources są już dostępne na tej architekturze.
+<mail link="stefaan@gentoo.org">Stefaana De Roeck</mail> oraz osoby mu
+pomagające zapewniły wsparcie dla modularnych X, obecnie wiadomo że środowisko
+graficzne sprawuje się całkiem nieźle. Zespół Gentoo/Alpha ma również
 przyjemność ogłosić stabilizację gnome-2.12.3 i kde-3.5.2.
 </p>
 
 <p>
 Thomas Cort napisał dwa dokumenty, Alpha Porting Guide oraz Gentoo/Alpha FAQ.
-Przewodnik, w którym opisane będzie używanie konsoli SRM jest w trakcie
-opracowywania. <mail link="yoswink@gentoo.org">Jose Luis Rivero</mail>, <mail
+Aktualnie tworzony jest przewodnik w którym opisane będzie używanie konsoli SRM.
+<mail link="yoswink@gentoo.org">Jose Luis Rivero</mail>, <mail
 link="ferdy@egntoo.org">Fernando Pereda</mail> oraz pozostała część zespołu
-przebudowała stronę projektu na nowo. Fernando Pereda był zajęty
-przygotowywaniem programu testerów architektury Alpha. Jeżeli chcemy poznać
-więcej szczegółów na temat tej świetnej formy pomocy Gentoo, prosimy o
-przejrzenie <uri
-link="http://www.gentoo.org/proj/en/base/alpha/AT/index.xml">strony projektu
-</uri>.
+zajęła się odświeżeniem głównej strony projektu. Fernando Pereda opracowywał
+projekt testerów architektury Alpha. Każdego zainteresowanego odwdzięczeniem
+się Gentoo i pomocą w tworzeniu systemu, prosimy o przyjrzenie się stronie
+projektu <uri
+link="http://www.gentoo.org/proj/en/base/alpha/AT/index.xml">testerów
+architektury Alpha</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Zmiany Tetex</title>
+<title>Zmiany w tetex</title>
 <body>
 
 <p>
-Opiekun Tetexa, Thomas Esser ogłosił wstrzymanie prac nad dalszym
-rozwojem Tetexa. Decyzja ta pociągnie za sobą pewne średnio i długo terminowe
-efekty nad obecnością tego pakietu w Gentoo. Deweloper Gentoo <mail
-link="ehmsen@gentoo.org">Martin Ehmsen</mail> przedstawił kilka dróg
-postępowania w tym wypadku, jednak nie jest on w tej chwili zdecydowany, którą
-z nich wybrać. Zainsteresowanych prosimy o śledzenie wydarzeń związanych z tym
-pakietem.
+Deweloper zajmujący się rozwojem tetexa, Thomas Esser ogłosił wstrzymanie prac
+nad dalszym jego rozwojem i aktualizacjami. Decyzja ta z pewnością będzie miała
+średnio i długo terminowy wpływ na pakiet znajdujący się w oficjalnym drzewie
+Portage. Deweloper Gentoo <mail link="ehmsen@gentoo.org">Martin Ehmsen</mail>
+przedstawił kilka pomysłów jak poradzić sobie z zaistniałą sytuacją - ciągle nie
+podjął on ostatecznej decyzji, z pewnością należy spodziewać się zmian.
+Wszystkich zainteresowanych rozwojem sytuacji zachęcamy do śledzenia zmian
+związanych z pakietem tetex.
 </p>
 
 <ul>
@@ -221,12 +222,14 @@ pakietem.
 
 <p>
 Wielu użytkowników zapewne zauważyło, że nowe wersje pam-login i shadow blokują
-sie wzajemnie. Powodem takie zachowania jest, że plik <path>/bin/login</path>
-był dostarczany razem z pam-login z wielu historycznych powodów. Od wersji 4.0
-pakietu shadow, plik ten dostarczany jest również z nim. Dodatkowo, cała
-pozostała część pam-login została wciągnięta do shadow, więc jeżeli zobaczymy u
-siebie sytuację, w której oba pakiety się blokują, należy odinstalować
-pam-login i zaaktualizować shadow do najnowszej wersji w jego miejsce.
+sie wzajemnie. Powodem tego zachowania jest to, że plik <path>/bin/login</path>
+będący częścią pam-login (co wynika z wielu historycznych powodów), od wersji
+4.0 został także dodany przez deweloperów do shadow. By nie wprowadzać
+nadmiernego zamieszania stał się on także częścią pakietu shadow dostępnego w
+drzewie Portage. Dodatkowo włączono do niego także pozostałe pliki, do tej pory
+instalowane wraz z pam-login. W przypadku zobaczenia komunikatu o wspomnianej
+blokadzie należy odinstalować pam-login, a następnie zainstalować shadow w jego
+miejsce.
 </p>
 
 <p>
@@ -251,11 +254,11 @@ link="flameeyes@gentoo.org">Diego Petten?'s</mail>:
 <p>
 Stosunkowo nowa i wciąż nieliczna ukraińska społeczność Gentoo utworzyła
 oficjalny kanał IRC: <c>#gentoo-ua</c> na serwerach irc.freenode.net. Można tam
-porozmawiać o Gentoo w języku ukraińskim lub dołączyć do zespołu tłumaczy
-prowadzonego przez <mail link="george@gentoo.org">George'a Shapovalova</mail>.
-Obecnie nie istnieje ukraińskie podforum, ale gdy tylko społeczność się rozwinie
-to z pewnością powstanie - póki co sekcja „Other languages” jest najlepszym
-miejscem do zadawania pytań.
+porozmawiać o Gentoo w języku ukraińskim lub dołączyć do zespołu tłumaczy,
+obecnie prowadzonego przez <mail link="george@gentoo.org">George'a
+Shapovalova</mail>. Niestety nie istnieje jeszcze dedykowanie ukraińskie
+podforum, ale gdy tylko społeczność się rozwinie to z pewnością ono powstanie -
+póki co sekcja „Other languages” jest najlepszym miejscem do zadawania pytań.
 </p>
 
 </body>
@@ -273,25 +276,25 @@ Linuksowej.
 <p>
 Ale czemu ma to o wszystkim przesądzać? Powód może być równie złudny jak same
 kobiety używające Linuksa - dla każdego badania lub przeglądu twierdzącego, że
-płeć piękna jest gorzej traktowana istnieje jego odpowiednik stawiający odmienną
-tezę. Wśród tych wszystkich kontrowersji łatwo jednak przeoczyć fakt, że bardzo
-mało, jeśli w ogóle coś, zostało zrobione by zainteresować kobiety światem
-komputerowym, Linuksem, czy Gentoo.
+płeć piękna jest gorzej traktowana, istnieje jego odpowiednik stawiający
+odmienną tezę. Wśród tych wszystkich kontrowersji łatwo jednak przeoczyć fakt,
+że bardzo mało, jeśli w ogóle coś, zostało zrobione by zainteresować kobiety
+światem komputerów, Linuksem, czy Gentoo.
 </p>
 
 <p>
 Grupy takie jak Debian Women starają się zmienić tą sytuację. Założony w 2004
 roku projekt powstał by namawiać kobiety do większego zaangażowania w
 społeczność Linuksa. Grupa posiada własny kanał IRC i listę dyskusyjną, gdzie
-można omawiać sprawy techniczne, oraz prezentowanego wizerunku na licznych
-konferencjach lub wydarzeniach związanych z Linuksem. Stworzony został również
-obszerny program patronacki, w ramach którego przydzielano kobietom mentora,
-którego zadaniem jest pomoc w napotkanych problemach, odpowiedzi na pojawiające
-się pytania oraz przedstawienie dystrybucji, Linuksa i zgromadzonej wokół nich
-społeczności. Ów program dodaje element osobisty do całego procesu i pomaga w
-poprawieniu efektywności pracy z Linuksem. Niestety, jak sama nazwa wskazuje,
-całe przedsięwzięcie skupione jest wokół Debiana i dlatego namawia do używania
-właśnie tej dystrybucji.
+można omawiać sprawy techniczne, oraz te dotyczące wizerunku prezentowanego na
+licznych konferencjach lub wydarzeniach związanych z Linuksem. Stworzony został
+również obszerny program patronacki, w ramach którego przydziela się kobietom
+mentora, którego zadaniem jest pomoc w napotkanych problemach, odpowiadanie na
+pojawiające się pytania oraz przedstawienie dystrybucji, Linuksa i zgromadzonej
+wokół nich społeczności. Ów program dodaje element osobisty do całego procesu i
+pomaga w poprawieniu efektywności pracy z Linuksem. Niestety, jak sama nazwa
+wskazuje, całe przedsięwzięcie skupione jest wokół Debiana i dlatego namawia do
+używania właśnie tej dystrybucji.
 </p>
 
 <p>
@@ -302,7 +305,6 @@ funkcjonowania? Czy znajdą się chętni do podjęcia wyzwania i przyłączenia 
 niego tak by namawiać innych - nie tylko kobiety - do korzystania z Gentoo, oraz
 by zostać mentorem i pomagać innym użytkownikom?
 </p>
-
 
 <p>
 Wszystkie grupy, bez względu na ich pochodzenie, potrzebują „świeżej krwi” by
@@ -325,117 +327,119 @@ a nie skupiać się na krytyce i przeciwdziałaniu zmianom.
 <chapter>
 <title>Summer of Code - Najnowsze wieści</title>
 <section>
-<title>Summer of Code -- Po jednym miesiącu</title>
+<title>Summer of Code -- Po miesiącu</title>
 <body>
 
 <p>
-Upłynął już miesiąc od rozpoczęcia imprezy Summer of Code i tempo rozwoju
-projektów Gentoo cały czas wzrasta. Nasi studenci ciężko pracują nad swoimi
-zadaniami i dokonali znacznych postępów. Wspomnieliśmy już wcześniej o tym
-konkursie w <uri
-link="http://www.gentoo.org/news/en/gwn/20060501-newsletter.xml#doc_chap1">
-numerze Tygodnika z 1. maja</uri>. W niniejszym tekście postanowiliśmy
-rozwinąć temat.
+Upłynął już miesiąc od rozpoczęcia Summer of Code i tempo rozwoju projektów
+Gentoo cały czas rośnie. Nasi studenci ciężko pracują nad swoimi zadaniami i
+dokonali już znacznych postępów. Wspominaliśmy już wcześniej o tym programie w
+jednym z poprzednich numerów <uri
+link="http://www.gentoo.org/news/pl/gwn/20060501-newsletter.xml#doc_chap1">
+Tygodnika Gentoo</uri>. W niniejszym tekście postanowiliśmy rozwinąć temat.
 </p>
 
 <p>
-To już druga edycja <uri link="http://code.google.com/soc">Summer of
-Code</uri>, corocznej imprezy organizowanej przez Google, mającej na celu
-sponsorowanie studentów pracujących nad projektami open source w czasie
-letnich wakacji. W zeszłym roku program odniósł wielki sukces, co
-dokumentuje <uri link="http://code.google.com/soc-results.html">długa lista
-efektów prac</uri>, na której możemy znaleźć wiele wspaniałych pomysłów. W
-tym roku impreza jest jeszcze bardziej imponująca, ponad dwukrotnie
-zwiększyła się liczba organizacji patronujących uczestnikom, podobnie jest
-też z ilością projektów.
+To już druga edycja <uri link="http://code.google.com/soc">Summer of Code</uri>,
+corocznej programu organizowanego przez Google, mającego na celu sponsorowanie
+studentów pracujących nad rozwojem projektów Open Source w czasie letnich
+wakacji. W zeszłym roku odniósł on spektakularny sukces, co dokumentuje <uri
+link="http://code.google.com/soc-results.html">długa lista efektów prac</uri>,
+na której możemy znaleźć wiele wspaniałych pomysłów. W tym roku program jest
+jeszcze bardziej rozbudowany, ponad dwukrotnie zwiększyła się liczba organizacji
+patronujących uczestnikom, podobnie jest także z ilością realizowanych
+projektów.
 </p>
 
 <p>
-W tym roku Gentoo uczestniczy jako patron i szczęśliwie przydzielono nam aż
-14 projektów, w tym najbardziej rozchwytywanego aktualnie studenta, Ananta
-Narayanana, którego projekt zaakceptowały w sumie 4 organizacje. Spośród
-nich on sam jednak wybrał właśnie nas. Przez pewien czas nie było pewne czy
-zostaniemy przyjęci, biorąc pod uwagę to, ile innych dystrybucji Linuksa
-oraz innych systemów operacyjnych już się zgłosiło, ale w końcu udało się,
-co więcej, przydzielono nam więcej niż standardową liczbę projektów.
+W tym roku Gentoo uczestniczy jako organizacja patronacka z przydzielonymi 14
+projektami. Jeden z nich realizuje najbardziej rozchwytywany studenta, Anant
+Narayanan, który został zaakceptowany w sumie przez 4 organizacje. Spośród nich
+on sam jednak wybrał właśnie Gentoo Linux. Przez pewien czas nie było pewne czy
+Gentoo zostanie przyjęte do programu, biorąc pod uwagę to, ile innych
+dystrybucji Linuksa oraz innych systemów operacyjnych już się zgłosiło. Na
+szczęście w końcu udało się, co więcej, liczba przydzielonych Gentoo projektów
+przekracza średnią w tegorocznej edycji programu SoC.
 </p>
 
 <p>
 „Podoba mi się to, jak w bardzo krótkim czasie Gentoo udało się zbudować
-społeczność wokół projektu. Moim zdaniem dobrze świadczy to o tej
-społeczności, a to właśnie potrzebne jest w SoC, aby patronować znakomitym
-deweloperom OSS", powiedział Greg Stein z Google, uzasadniając dlaczego
-postanowił zaakceptować akurat Gentoo spośród długiej listy innych
-projektów.  „Przykładowo, włączyliśmy Gentoo do programu, ponieważ podobał
-mi się fakt, że przychodząc praktycznie znikąd stali się jedną z
-największych dystrybucji Linuksa. Spośród tysięcy innych dystrybucji trafili
-do pierwszej dziesiątki w bardzo krótkim czasie. Myślę, że stało się tak ze
-względu na ich duże oddanie dla społeczności, a to jest dokładnie to, czego
-szukamy u organizacji współpracujących z nami przy SoC".
+społeczność wokół projektu. Moim zdaniem dobrze świadczy to o tej społeczności,
+a to właśnie potrzebne jest w SoC, aby patronować znakomitym deweloperom OSS”,
+powiedział Greg Stein z Google, uzasadniając dlaczego postanowił zaakceptować
+akurat Gentoo spośród długiej listy innych projektów. „Przykładowo, włączyliśmy
+Gentoo do programu, ponieważ podobał mi się fakt, że przychodząc praktycznie
+znikąd stali się jedną z największych dystrybucji Linuksa. Spośród tysięcy
+innych dystrybucji trafili do pierwszej dziesiątki w bardzo krótkim czasie.
+Myślę, że stało się tak ze względu na ich duże oddanie dla społeczności, a to
+jest dokładnie to, czego szukamy u organizacji współpracujących z nami przy
+SoC”.
 </p>
 
 <p>
-Pełną listę zaakceptowanych zadań Gentoo wraz z krótkimi podsumowaniami
-możemy znaleźć na <uri
-link="http://code.google.com/soc/gentoo/about.html">stronie Gentoo w
-Google</uri>, natomiast więcej informacji na temat znacznej części projektów
-można uzyskać na blogach studentów, które są agregowane w ramach <uri
-link="http://planet.gentoo.org">Planety Gentoo</uri>, oraz tworzą własną
-<uri link="http://planet.gentoo.org/soc/">Planetę Gentoo SoC</uri>.
-Chcielibyśmy jednakże przedstawić kilka projektów na naszych łamach,
-przybliżając ich tematykę i dotychczasowe postępy.
+Pełną listę zaakceptowanych projektów wraz z krótkimi podsumowaniami można
+znaleźć na stronie <uri
+link="http://code.google.com/soc/gentoo/about.html">Gentoo w SoC</uri>,
+natomiast więcej informacji na temat znacznej części projektów można uzyskać w
+blogach studentów, które są agregowane w ramach serwisu <uri
+link="http://planet.gentoo.org">Planet Gentoo</uri>, oraz dodatkowym, stworzonym
+z myślą o programie Summer of Code <uri
+link="http://planet.gentoo.org/soc/">Planet Gentoo SoC</uri>. Na łamach
+Tygodnika Gentoo chcieliśmy jednak przybliżyć kilka projektów, ich tematykę oraz
+dotychczasowe postępy.
 </p>
 
 <p>
-<uri link="http://www.pioto.org/~pioto/gentoo/soc2006/blog/">Michael
-Kelly</uri> pracuje nad zunifikowanym szkieletem zarządzania użytkownikami i
-grupami, mając na celu zintegrowanie go z menadżerami pakietów i drzewem
-Gentoo, implementując w ten sposób <uri
-link="http://www.gentoo.org/proj/en/glep/glep-0027.html">propozycję GLEP
-27</uri>, która została już dawno zaakceptowana, ale nikt do tej pory jej
-nie wdrożył. Kod Michaela można przejrzeć w jego własnym, publicznym
-repozytorium Subversion za pomocą przeglądarki internetowej, dzięki
-narzędziu <uri link="http://svn.pioto.org/viewvc">ViewVC</uri>. Jak wynika z
-jego początkowej <uri
+<uri link="http://www.pioto.org/~pioto/gentoo/soc2006/blog/">Michael Kelly</uri>
+pracuje nad zunifikowanym systemem pozwalającym zarządzać użytkownikami i
+grupami, który będzie dodatkowo zintegrowany z menadżerami pakietów i drzewem
+Gentoo, implementując w ten sposób propozycję zawartą w <uri
+link="http://www.gentoo.org/proj/en/glep/glep-0027.html">GLEP 27</uri>. Została
+ona już dawno zaakceptowana, ale do tej pory nikt jej nie zajął się jej
+wdrożeniem. Kod Michaela można przejrzeć w jego własnym, publicznie dostępnym
+repozytorium Subversion. Można w tym celu użyć zwykłej przeglądarki
+internetowej, dzięki narzędziu <uri
+link="http://svn.pioto.org/viewvc">ViewVC</uri>. Jak wynika z jego początkowej
+<uri
 link="http://svn.pioto.org/viewvc/glep27-proposal.txt?view=co">propozycji</uri>,
 implementacja ta powinna znacznie ulepszyć obsługę grup i kont użytkowników
-przez ebuildy - aktualny system, mimo iż działa w większości przypadków,
-jest nieco ograniczony pod względem możliwości i skalowalności. Projekt
-stopniowo nabiera rumieńców, zaś gdy zostanie ukończony, zapewni proste,
-elastyczne i przenośne rozwiązanie problemu zarządzania użytkownikami i
-grupami w menadżerach pakietów i nie tylko.
+przez ebuildy - aktualny system, mimo iż działa w większości przypadków, jest
+nieco ograniczony pod względem możliwości i skalowalności. Projekt stopniowo
+nabiera rumieńców, zaś gdy zostanie ukończony, zapewni proste, elastyczne i
+przenośne rozwiązanie problemu zarządzania użytkownikami i grupami w menadżerach
+pakietów i nie tylko.
 </p>
 
 <p>
 <uri link="http://unleashed.amule.org/soc/">Alex Martinez</uri> pracuje nad
-przeportowaniem narzędzia „sandbox" w Gentoo na systemy FreeBSD. Aktywność
-<uri link="http://www.gentoo.org/proj/en/gentoo-alt/bsd/index.xml">projektu
-Gentoo/*BSD</uri> ciągle wzrastała przez ostatnie miesiące i stał się on
-atrakcyjną platformą do poważnych zastosowań. Jednakże ze względu na różnice
-w bibliotekach C FreeBSD i GNU, narzędzie sandbox, którego używa się głównie
-do kontroli pracy skryptów ebuild, nadal nie działa poprawnie w systemach
-FreeBSD. Projekt Aleksa ma na celu poprawienie tej sytuacji, co będzie
-polegało na przyjrzeniu się najbardziej podstawowym bibliotekom w systemie,
-aby znaleźć przyczynę problemów. Projekt jest wprawdzie chwilowo nieaktywny
-z powodu sesji egzaminacyjnej, ale postępy do tej pory były bardzo
-obiecujące. Gdy zostanie ukończony, funkcjonalność zarządzania pakietami w
-portach Gentoo/*BSD będzie znacznie bliższa poziomowi reprezentowanemu przez
-Gentoo Linux, co jest aktualnie jednym z najważniejszych celów ich
-deweloperów.
+przeportowaniem narzędzia „sandbox” użyawanego przez Gentoo na systemy FreeBSD.
+Aktywność <uri
+link="http://www.gentoo.org/proj/en/gentoo-alt/bsd/index.xml">projektu
+Gentoo/*BSD</uri> stale wzrastała przez ostatnie miesiące i stał się on
+atrakcyjną platformą do poważnych zastosowań. Jednakże ze względu na różnice w
+bibliotekach C FreeBSD i GNU, narzędzie sandbox, którego używa się głównie do
+kontroli pracy skryptów ebuild, nadal nie działa poprawnie w systemach FreeBSD.
+Projekt Aleksa ma na celu poprawienie tej sytuacji, co będzie polegało na
+przyjrzeniu się najbardziej podstawowym bibliotekom w systemie, aby znaleźć
+przyczynę problemów. Projekt jest wprawdzie chwilowo nieaktywny z powodu sesji
+egzaminacyjnej, ale postępy do tej pory były bardzo obiecujące. Gdy zostanie on
+ukończony, funkcjonalność systemu do zarządzania pakietami w portach Gentoo/*BSD
+będzie znacznie bliższa poziomowi reprezentowanemu przez Gentoo Linux, co jest
+aktualnie jednym z najważniejszych celów deweloperów.
 </p>
 
 <p>
-Podsumowując, Summer of Code to dla studentów świetna okazja do wzięcia
-udział w rozwijaniu ich ulubionych projektów open source, pozwalając im bez
-przeszkód zająć się tym, co lubią przez lato. Oczywiście jednocześnie w ten
-sposób do projektów trafia wiele wysokiej jakości kodu, który być może
-inaczej w ogóle by nie powstał, a także potencjalni nowi współtwórcy. O tym
-ostatnim wspomniała Christel Dahlskjaer, która pełni rolę kontaktu
-administracyjnego Gentoo dla Summer of Code, udzielając wywiadu Tygodnikowi
-na początku miesiąca: „Staram się udzielić studentom tyle wsparcia, ile to
-tylko możliwe, chcemy także, żeby dobrze się bawili przez te letnie miesiące
-i mamy nadzieję, że pod koniec ich 'praktyki' nie tylko zasilą Gentoo kodem,
-który dla nas piszą, ale zechcą także zostać z nami jako deweloperzy".
+Podsumowując, Summer of Code to dla studentów świetna okazja do pomocy w rozwoju
+ich ulubionych projektów Open Source, pozwalając im bez przeszkód zająć się tym,
+co lubią przez całe lato. Oczywiście jednocześnie w ten sposób do projektów
+trafia wiele wysokiej jakości kodu, który być może inaczej w ogóle by nie
+powstał, a także potencjalni przyszli deweloperzy. O tym ostatnim wspomniała
+Christel Dahlskjaer, która pełni rolę kontaktu administracyjnego Gentoo dla
+Summer of Code, udzielając wywiadu Tygodnikowi na początku miesiąca: „Staram się
+udzielić studentom tyle wsparcia, ile to tylko możliwe, chcemy także, żeby
+dobrze się bawili przez te letnie miesiące i mamy nadzieję, że pod koniec ich
+'praktyki' nie tylko zasilą Gentoo kodem, który dla nas piszą, ale zechcą także
+zostać z nami jako deweloperzy".
 </p>
 
 </body>
@@ -452,8 +456,8 @@ który dla nas piszą, ale zechcą także zostać z nami jako deweloperzy".
 <p>
 W ciągu ostatnich dwóch tygodni na Forum można było śledzić dyskusję dotyczącą
 nowego frontendu Portage używającego bibliotek ncurses oraz wxWidgets. Jak na
-razie jest w fazie planowania i poszukuje chętnych do pomocy deweloperów
-mających doświadczenie z XML-em, ncurses lub pythonem.
+razie jest on w fazie planowania i projekt poszukuje chętnych do pomocy
+deweloperów mających doświadczenie z XML-em, ncurses lub pythonem.
 </p>
 
 <ul>
@@ -471,7 +475,7 @@ ułatwienie zarządzania siecią komputerów działających pod kontrolą system
 Gentoo Linux. Obecnie oferuje m.in. zarządzanie zainstalowanym oprogramowaniem,
 prosty dostęp do raportów GLSA z nim związanych, monitoring oraz wiele, wiele
 innych. GEMS opublikowany jest na zasadach licencji GPL i jest dostępny do
-pobrania ze strony domowej.
+pobrania ze strony domowej projektu.
 </p>
 
 <ul>
@@ -486,7 +490,7 @@ pobrania ze strony domowej.
 <p>
 Użytkownik forum new_to_non_X86 przedstawił jak łatwo w czasie instalacji Gentoo
 o proste pomyłki polegając na Podręczniku Gentoo. Czekamy na sugestie jak
-poprawić jakość dokumentacji lub samego procesu instalacji tak by zmniejszyć
+poprawić jakość dokumentacji lub samego procesu instalacji, tak by zmniejszyć
 ilość możliwych błędów.
 </p>
 
@@ -611,7 +615,7 @@ do pomocy w stworzeniu logo dla tej inicjatywy i kontakt za pośrednictwem kana�
 <p>
 KDE 3.5.3 zostało już odmaskowane. W nowej wersji skrócono czas uruchomienia
 środowiska oraz poprawiono ponad 800 błędów, dodając także kilka nowych
-funkcjonalności aplikacjim Akregator, KMail i KAlarm.</p>
+funkcjonalności w aplikacjach Akregator, KMail i KAlarm.</p>
 
 <ul>
   <li><uri
@@ -641,28 +645,31 @@ dołączone do kolejnej wersji pakietu <c>livecd-tools</c>.
 
 <!-- Gentoo in the press -->
 <chapter>
-<title>Gentoo International</title>
+<title>Międzynarodowe Gentoo</title>
 <section>
 <title>Gentoo UK 2006</title>
 <body>
 
 <p>
-A little later than anticipated, organisation of the Gentoo UK 2006
-users-and-developers conference is nearing completion. The conference will take
-place on Saturday July 8th in Central London, and will feature a few talks from
-Gentoo developers plus possibly some guest speakers. There will also be some
-social activities taking place around the event.
+Z małym opóźnieniem, proces organizacji konferencji użytkowników i deweloperów
+Gentoo UK 2006 dobiega końca. Odbędzie się ona w sobotę, 8 lipca w Londynie. W
+programie znalazło się kilka prezentacji, które zostaną przedstawione przez
+deweloperów Gentoo oraz innych „zewnętrznych” uczestników. Planowane są także
+mniej oficjalne spotkania i imprezy, które będą odbywały się wokół konferencji.
 </p>
 
 <p>
-Numbers are limited, so we do require people to pre-register (no cost) by
-leaving a name and email address. Registration is open now.
+Liczba miejsc jest ograniczona, dlatego każdy chętny do wzięcia udziału musi
+dokonać wstępnej rejestracji (nie wymaga ona wniesienia żadnych opłat) i
+zostawienia danych kontaktowych, imienia, nazwiska oraz adresu e-mail. Procedury
+rejestracji już się rozpoczęły, zachęcamy do jak najwcześniejszego skorzystania
+z przygotowanych formularzy.
 </p>
 
 <p>
-For more info, see the <uri
-link="http://dev.gentoo.org/~dsd/gentoo-uk-2006/">conference website</uri>. We
-look forward to seeing you there!
+Więcej informacji można znaleźć na oficjalnej stronie <uri
+link="http://dev.gentoo.org/~dsd/gentoo-uk-2006/">konferencji</uri>. Zachęcamy
+wszystkich do wzięcia udziału. Do zobaczenia w Londynie!
 </p>
 
 </body>
@@ -677,13 +684,13 @@ look forward to seeing you there!
 <body>
 
 <p>
-<c>eix</c> to przydatne narzędzie, które indeksuje i błyskawicznie
-przeszukuje nasze drzewo Portage. Ostatnia stabilna wersja (0.55) jest już
-kompatybilna z nowym backendem metadanych w Portage 2.1.
+<c>eix</c> to przydatne narzędzie, które indeksuje i błyskawicznie przeszukuje
+nasze drzewo Portage. Ostatnia stabilna wersja (0.55) jest już kompatybilna z
+nową implementacją metadanych znajdującą się w Portage 2.1.
 </p>
 
 <p>
-Na początek zainstalujmy program i zbudujmy indeks:
+Na początek by zainstalować aplikację oraz zindeksować aktualne drzewo Portage:
 </p>
 
 <pre caption="Instalacja eix">
@@ -692,22 +699,23 @@ Na początek zainstalujmy program i zbudujmy indeks:
 </pre>
 
 <p>
-Polecenie <c>update-eix</c> zaindeksuje oprócz głównego drzewa także ebuildy
-z katalogu <c>PORTDIR_OVERLAY</c>.
+Polecenie <c>update-eix</c> zindeksuje oprócz głównego drzewa także ebuildy
+znajdujące się w katalogach znajdujących się w zmiennej <c>PORTDIR_OVERLAY</c>.
 </p>
 
 <p>
-Po zakończeniu tej operacji możemy zacząć wyszukiwanie. Wyszukujemy pakiety
-używając składni <c>eix coś</c>, możemy też wyszukiwać wśród opisów pakietów
-wydając polecenie <c>eix -S opis</c>. Aby znaleźć konkretny pakiet,
-powinniśmy napisać <c>eix -e nazwapakietu</c>. Domyślnie możemy także
-wyszukiwać przy pomocy wyrażeń regularnych.
+Po zakończeniu tej operacji czas zacząć wyszukiwanie. By skorzystać z domyślnych
+opcji przeszukiwania wystarczy skorzystać z polecenia <c>eix coś</c>, natomiast
+dzięki <c>eix -S opis</c> proces poszukiwań będzie dotyczył tylko opisów
+poszczególnych pakietów. Dzięki poleceniu <c>eix -e nazwapakietu</c> narzędzie
+będzie wyświetli tylko te pakiety o podanej nazwie. W przypadku każdego z
+podanych przykładów można także skorzystać z pomocy wyrażeń regularnych.
 </p>
 
 <p>
-Program <c>eix</c> wyświetla wszystkie dostępne wersje danego pakietu.
-Numery wersji poprzedzone znakiem <c>~</c> oznaczają wersje testowe, zaś
-znak <c>!</c> informuje nas, że wersja jest zamaskowana.
+Program <c>eix</c> wyświetla wszystkie dostępne wersje danego pakietu. Numery
+wersji poprzedzone znakiem <c>~</c> oznaczają wersje testowe, zaś znak <c>!</c>
+informuje, że dana wersja jest zamaskowana.
 </p>
 
 <pre caption="eix firefox">
@@ -730,14 +738,15 @@ Found 2 matches
 </pre>
 
 <p>
-Na koniec ostatnia porada. Jeśli chcielibyśmy uruchomić polecenia <c>emerge
---sync</c> i <c>update-eix</c> zaraz po sobie, lepiej zamiast tego wykonać
-tylko <c>eix-sync</c>. Efekt będzie ten sam.
+Na koniec ostatnia porada, zamiast wykonywać <c>emerge --sync</c> i
+<c>update-eix</c> zaraz po sobie można skorzystać z polecenia <c>eix-sync</c>.
+Efekt będzie ten sam, dodatkowo jednak wyświetlone zostaną zmiany w drzewie
+Portage.
 </p>
 
 <note>
-Zachęcamy do dzielenia się własnymi propozycjami porad ze społecznością
-Gentoo, wysyłając je na adres <mail
+Zachęcamy wszystkich chętnych do nadsyłania własnych propozycji porad, tak by
+podzielić się nimi ze społecznością Gentoo, na adres <mail
 link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail>.
 </note>
 
