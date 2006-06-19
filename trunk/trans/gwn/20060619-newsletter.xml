@@ -434,89 +434,88 @@
           </section>
         </chapter>
         
-            <!-- Tips and Tricks -->
-            <chapter>
-              <title>Tips and tricks</title>
-              <section>
-                <title>Exploring portage features</title>
-                <body>
-                  
-                  <p>
-                    The new release of Portage 2.1 brings many features and
-                    improvements.
-                    While most of them are documented in the example make.conf and the portage man page they may not be obvious to most users, so we will show how to use some of these features.
-                  </p>
-                  
-                  <p>
-                    All the features have to be set in
-                    <c>/etc/make.conf</c>.
-                  </p>
-                  
-                  <p>
-                    Portage is now able to download some package's source
-                    code while compiling another. This can considerably reduce installation time
-                    when emerging many packages. There's no need to run <c>emerge
-                      --fetchonly</c> while doing a normal emerge anymore. You just have to add the
-                    following option:
-                  </p>
-                  
-                  <pre caption="Setting parallel-fetch in /etc/make.conf">
+<!-- Tips and Tricks -->
+<chapter>
+<title>Sztuczki i kruczki</title>
+<section>
+<title>Nowe możliwości Portage</title>
+<body>
+
+<p>
+Wersja 2.1 narzędzia Portage przyniosła ze sobą nowe funkcje i liczne
+usprawnienia. Większość z nich jest udokumentowana w przykładowym pliku
+make.conf i na stronach dokumentacji man do Portage, jednak być może nie
+wszyscy je przeanalizowali, dlatego postanowiliśmy tutaj nieco je
+przybliżyć.
+</p>
+
+<p>
+Wszystkie funkcje powinniśmy włączać w pliku <path>/etc/make.conf</path>.
+</p>
+
+<p>
+Portage potrafi teraz pobierać źródła pakietów, jednocześnie kompilując inne
+pakiety. Jeśli instalujemy wiele programów jednocześnie, może to znacznie
+zredukować czas instalacji. Nie trzeba już uruchamiać dodatkowo <c>emerge
+--fetchonly</c> oprócz zwykłej instalacji. Wystarczy dodać następującą
+opcję:
+</p>
+
+<pre caption="Włączanie równoległego ściągania w /etc/make.conf">
 FEATURES="parallel-fetch"
-                  </pre>
-                  
-                  <p>This feature appears to be non-functional in some of the
-                    Portage 2.1 releases, but is expected to be fixed soon.</p>
-                  
-                  <p>
-                    Another new option to reduce installation time yet a bit
-                    more is confcache.
-                    With this new feature portage caches many of the
-                    tests configuration scripts do, thus making execution
-                    faster. This comes with the small risk of caching wrong values, so be warned       that this feature is known to have a few bugs.
-                    Since this package is currently keyworded on most
-                    architectures, the required steps to enable it are:
-                  </p>
-                  
-<pre caption="Enabling confcache">
-<comment>Add this in /etc/make.conf</comment>
+</pre>
+
+<p>
+Wygląda na to, że w niektórych wersjach Portage 2.1 funkcja ta nie działa,
+ale zostanie to wkrótce poprawione.
+</p>
+
+<p>
+Kolejną z opcji, które redukują czas instalacji jest confcache. Dzięki niej
+Portage przechowuje wyniki sprawdzeń dokonywanych przez skrypty configure,
+co później przyspiesza ich działanie. Istnieje jednak ryzyko zapisania
+nieprawidłowych wartości, więc póki co od czasu do czasu należy spodziewać
+się błędów. Pakiet ten na razie jest zamaskowany, dlatego włączenie opcji
+confcache wiąże się z wykonaniem kilku dodatkowych kroków:
+</p>
+
+<pre caption="Włączenie confcache">
+<comment>Najpierw dodajemy opcję w pliku /etc/make.conf</comment>
 FEATURES="confcache"
-<comment>We need to unmask the package before emerging it</comment>
+<comment>Musimy odmaskować pakiet przed instalacją</comment>
 echo "=dev-utils/confcache-0.4.2-r1 ~arch" >>
 /etc/portage/package.keywords
-<comment>Installing confcache</comment>
+<comment>Instalacja confcache</comment>
 emerge -av confcache
-<comment>On further installations. you'll see stuff like:</comment>
+<comment>Przy kolejnych instalacjach zobaczymy linijki podobne do tych:</comment>
 checking for i686-pc-linux-gnu-gcc... (cached) i686-pc-linux-gnu-gcc
 checking whether we are using the GNU C compiler...(cached) yes
 checking whether i686-pc-linux-gnu-gcc accepts -g... (cached) yes
 </pre>
-                
-                <p>
-                  Another important new feature is the ability to log all
-                  the messages
-                  ebuilds print. Which messages to log and how to do it is
-                  configurable.
-                  For example, to save just the warnings and errors in a
-                  separate file for each
-                  package we emerge, you have to add:
-                </p>
-                
-                <pre caption="Configuring logging features in /etc/make.conf">
-<comment>This sets what to log</comment>
+
+<p>
+Kolejną ważną opcją jest możliwość logowania wszystkich wypisywancyh przez
+skrypty ebuild komunikatów. Oczywiście można skonfigurować co chcemy logować
+i w jaki sposób należy to robić. Przykładowo, aby zapisać tylko ostrzeżenia
+i komunikaty błędów w osobnym pliku dla każdego pakietu, wystarczy dodać
+poniższe linijki w pliku <path>/etc/make.conf</path>:
+</p>
+
+<pre caption="Konfiguracja logowania w /etc/make.conf">
+<comment>Tutaj ustawiamy co należy logować</comment>
 PORTAGE_ELOG_CLASSES="warn error log"
-<comment>And this is how to do it</comment>
+<comment>A tutaj jak to robić</comment>
 PORTAGE_ELOG_SYSTEM="save"
-                </pre>
-                
-                <p>
-                  There are many more options like sending log messages
-                  via email.
-                  Please check out make.conf.example for further
-                  information.
-                </p>
-              </body>
-              </section>
-            </chapter>
+</pre>
+
+<p>
+Możliwości jest więcej, możemy na przykład wysyłać logi pocztą. Więcej
+informacji na ten temat można znaleźć w pliku
+<path>make.conf.example</path>.
+</p>
+</body>
+</section>
+</chapter>
             <!-- Gentoo developer moves -->
             <chapter>
               <title>Gentoo developer moves</title>
