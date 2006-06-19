@@ -17,9 +17,6 @@
 <mail link="halcy0n@gentoo.org">Mark Loeser</mail>
 </author>
 <author title="Tłumacz">
-<mail link="shadoww@gentoo.org">Damian Kuras</mail>
-</author>
-<author title="Tłumacz">
 <mail link="moloh@gentoo.org">Michał Kurgan</mail>
 </author>
 <abstract>Wydanie Tygodnika Gentoo z 1 maja 2006.</abstract>
@@ -33,60 +30,70 @@
 <section>
 <title>Udział Gentoo w Google "Summer of Code"</title>
 <body>
+
 <p>
-Gentoo zostało zaakceptowane jako organizacja przedodząca w programie <uri
-link="http://code.google.com/soc">"Summer of Code"</uri>, który jest
-sponsorowany przez Google. , program 
-sponsored by Google has accepted Gentoo as a mentoring organization. From 
-today until early September, around 90 open-source projects will be working 
-with students to implement project-specific features. Participants are 
-offered a financial reward for their work.  All interested students should 
-refer to <uri link="http://code.google.com/soc/studentfaq.html">Google's 
-Student FAQ</uri> to check whether they are eligible to participate in the 
-Summer of Code with Gentoo.
+Gentoo zostało zaakceptowane jako organizacja patronacka w programie <uri
+link="http://code.google.com/soc">„Summer of Code”</uri>, który jest
+sponsorowany przez Google. Od dzisiaj do do pierwszych dni września, około 90
+projektów Open Source, będzie współpracowało ze studentami, których zadaniem
+będzie implementacja funkcjonalności opisanych w poszczególnych propozycjach
+projektów. Uczestnicy za udział w programie otrzymują wynagrodzenie. Wszyscy
+zainteresowani studenci powinni zaglądnąć na odpowiednią stronę <uri
+link="http://code.google.com/soc/studentfaq.html">FAQ</uri> programu SoC, by
+sprawdzić czy mogą wziąć w nim udział i pomóc deweloperom w pracy nad Gentoo.
 </p>
+
 <p>
-If you wish to contribute feel free to contact us, either <mail 
-link="gentoo-soc@gentoo.org">through email</mail> or IRC (<path>#gentoo-soc</path> 
-on Freenode). Some project ideas can be found <uri 
-link="http://www.gentoo.org/proj/en/devrel/user-relations/summerofcode/index.xml">on 
-our website</uri>, but we are also open for student proposals -- if in doubt just ask us! 
+Każdego zainteresowanego w uczestnictwie w programie zachęcamy do kontaktu za
+pośrednictwem <mail link="gentoo-soc@gentoo.org">emaila</mail> lub kanału IRC
+(<path>#gentoo-soc</path> w sieci Freenode). Przykładowe propozycje projektów
+można znaleźć na <uri
+link="http://www.gentoo.org/proj/en/devrel/user-relations/summerofcode/index.xml">stronie</uri>.
+Zachęcamy także do przedstawienia własnych pomysłów -- w przypadku jakichkolwiek
+wątpliwości prosimy o kontakt.
 </p>
+
 </body>
 </section>
 <section>
-<title>How to obtain meaningful backtraces</title>
+<title>Jak uzyskać sensowny backtrace</title>
 <body>
+
 <p>
-<mail link="flameeyes@gentoo.org">Diego Pettenò</mail> has released a new
-<uri link="http://www.gentoo.org/proj/en/qa/backtraces.xml">Howto</uri> 
-that explains in great detail how to generate useful 
-debugging info with backtraces. The Howto describes the needed steps with changing
-compiler flags and stripping with the new splitdebug feature. A short
-intro to gdb, the GNU Debugger, and coredumps as a post-mortem debugging
-tool give the interested reader all tools to start their own work to
-either debug themselves or report meaningful backtraces to developers.
+<mail link="flameeyes@gentoo.org">Diego Pettenò</mail> opublikował nowy <uri
+link="http://www.gentoo.org/proj/en/qa/backtraces.xml">poradnik</uri> w którym
+dokładnie opisał w jaki sposób można uzyskać prawidłowy i użyteczny dla
+deweloperów backtrace. Znaleźć tam można wszystkie kroki jakie należy wykonać,
+od odpowiedniej konfiguracji flag kompilatora, użycia funkcjonalności
+splitdebug, po krótki wgląd w działanie debugera GNU gdb oraz zrzut pamięci
+(ang. coredump) jako metody umożliwiającej debugowanie aplikacji po jej
+„śmierci”. Lektura poradnika z pewnością zapozna każdego czytelnika z podstawami
+jakie są potrzebne do dalszych eksperymentów na własną rękę oraz umożliwi
+uzyskanie sensownego backtrace'a.
 </p>
+
 </body>
 </section>
 <section>
 <title>User feedback helps brushing up ebuilds</title>
 <body>
+
 <p>
-<uri link="/news/en/gwn/20060220-newsletter.xml">Two months ago</uri>, the <mail 
-link="qmail-bugs@gentoo.org">qmail herd</mail> asked for comments on the current 
-state of their ebuilds and usage.  While they
-have not yet taken advantage of all of the suggestions that came from
-the discussions, the <c>qmail</c> herd has already made some progress.  They
-started by creating a new, cleaner ebuild for <uri
-link="http://www.qmail.org/netqmail/">netqmail</uri>, a version
-of <uri link="http://cr.yp.to/qmail.html">qmail</uri>.  <c>netqmail</c> has
-additional bug fixes and patches to help with compilation on modern
-systems.  The ebuild removes extraneous patches.  The remaining patches
-can be controlled by the user via USE flags.  This change addresses
-the main criticism of the old ebuild.  The <c>qmail</c> herd looks forward to
-any of your comments, ideas, or suggestions on their new <c>netqmail</c> ebuild.
+Dwa miesiące temu w <uri
+link="/news/pl/gwn/20060220-newsletter.xml">Tygodniku</uri> zespół <mail
+link="qmail-bugs@gentoo.org">qmail</mail> prosił o komentarze na temat
+aktualnego stanu pakietu. Do tej pory nie wykorzystano jeszcze ze wszystkich
+propozycji i porad jakie pojawiły się w dyskusji, ale zespół <c>qmail</c>
+poczynił już pewne postępy. Stworzono nowy, poprawiony ebuild dla pakietu <uri
+link="http://www.qmail.org/netqmail/">netqmail</uri> (modyfikacja <uri
+link="http://cr.yp.to/qmail.html">qmail</uri>). Zawiera on dodatkowe poprawki
+umożliwiające kompilacje na nowoczesnych systemach. Usunięto także wiele
+zbędnych patchy, a te które pozostały są kontrolowane za pomocą dodanych flag
+USE. Ta zmiana jest podyktowana najczęściej pojawiającą się sugestią dotyczącą
+starych wersji pakietu. Zespół <c>qmail</c> czeka na kolejne komentarze, pomysły
+i sugestie dotyczące nowego ebuildu <c>netqmail</c>.
 </p>
+
 </body>
 </section>
 </chapter>
@@ -111,8 +118,8 @@ rekrutacji, obowiązujących procedur, czemu cvs jest zły, a także kilka innyc
 </p>
 
 <ul>
-<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/37638">Gentoo:
-State of the union </uri></li>
+  <li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/37638">Gentoo:
+  State of the union </uri></li>
 </ul>
 
 <p><b>Problemy z sumami kontrolnymi</b></p>
@@ -126,10 +133,10 @@ wersji 2.0.1-r5.
 </p>
 
 <ul>
-<li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/37612">SHA256
-digest issues </uri></li>
-<li><uri link="http://bugs.gentoo.org/131396">Packages with bad SHA256
-hash</uri></li>
+  <li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/37612">SHA256
+  digest issues </uri></li>
+  <li><uri link="http://bugs.gentoo.org/131396">Packages with bad SHA256
+  hash</uri></li>
 </ul>
 
 </body>
@@ -170,7 +177,7 @@ Następujący deweloperzy opuścili projekt Gentoo Linux w minionym tygodniu:
 </p>
 
 <ul>
-<li><e>Nikt w tym tygodniu</e></li>
+  <li><e>Nikt w tym tygodniu</e></li>
 </ul>
 
 </body>
@@ -185,7 +192,7 @@ tygodniu:
 </p>
 
 <ul>
-<li><e>Nikt w tym tygodniu</e></li>
+  <li><e>Nikt w tym tygodniu</e></li>
 </ul>
 
 </body>
@@ -200,7 +207,7 @@ Linux funkcję:
 </p>
 
 <ul>
-<li><e>Nikt w tym tygodniu</e></li>
+  <li><e>Nikt w tym tygodniu</e></li>
 </ul>
 
 </body>
@@ -294,9 +301,9 @@ następująco:
 </p>
 
 <ul>
-<li>zgłoszono 819 nowych bugów</li>
-<li>zamknięto lub rozwiązano 338 bugów</li>
-<li>38 uprzednio zamkniętych bugów zostało ponownie otwartych</li>
+  <li>zgłoszono 819 nowych bugów</li>
+  <li>zamknięto lub rozwiązano 338 bugów</li>
+  <li>38 uprzednio zamkniętych bugów zostało ponownie otwartych</li>
 </ul>
 
 <p>
@@ -317,31 +324,31 @@ Deweloperzy oraz zespoły, które zamknęły najwięcej bugów w minionym tygodn
 </p>
 
 <ul>
-<li><mail link="kde@gentoo.org">Gentoo KDE team</mail>, 16 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=kde@gentoo.org">zamkniętych
-bugów</uri></li>
-<li><mail link="dev-portage@gentoo.org">Portage team</mail>, 16 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=dev-portage@gentoo.org">zamkniętych
-bugów</uri></li>
-<li><mail link="mips@gentoo.org">mips team</mail>, 14 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=mips@gentoo.org">zamkniętych
-bugów</uri></li>
-<li><mail link="security@gentoo.org">Gentoo Security</mail>, 12 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">zamkniętych
-bugów</uri></li>
-<li><mail link="games@gentoo.org">Gentoo Games</mail>, 12 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=games@gentoo.org">zamkniętych
-bugów</uri></li>
-<li><mail link="toolchain@gentoo.org">Gentoo Toolchain Maintainers</mail>, 9
-<uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=toolchain@gentoo.org">zamkniętych
-bugów</uri></li>
-<li><mail link="printing@gentoo.org">Printing Team</mail>, 9 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=printing@gentoo.org">zamkniętych
-bugów</uri></li>
-<li><mail link="mozilla@gentoo.org">Mozilla Gentoo Team</mail>, 9 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=mozilla@gentoo.org">zamkniętych
-bugów</uri></li>
+  <li><mail link="kde@gentoo.org">Gentoo KDE team</mail>, 16 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=kde@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="dev-portage@gentoo.org">Portage team</mail>, 16 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=dev-portage@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="mips@gentoo.org">mips team</mail>, 14 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=mips@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="security@gentoo.org">Gentoo Security</mail>, 12 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="games@gentoo.org">Gentoo Games</mail>, 12 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=games@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="toolchain@gentoo.org">Gentoo Toolchain Maintainers</mail>, 9
+  <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=toolchain@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="printing@gentoo.org">Printing Team</mail>, 9 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=printing@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="mozilla@gentoo.org">Mozilla Gentoo Team</mail>, 9 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;resolution=FIXED&amp;assigned_to=mozilla@gentoo.org">zamkniętych
+  bugów</uri></li>
 </ul>
 
 </body>
@@ -357,32 +364,33 @@ to:
 </p>
 
 <ul>
-<li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New
-Packages</mail>, 31 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=maintainer-wanted@gentoo.org">nowych
-bugów</uri></li>
-<li><mail link="games@gentoo.org">Gentoo Games</mail>, 11 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=games@gentoo.org">nowych
-bugów</uri></li>
-<li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, 10 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=sound@gentoo.org">nowych
-bugów</uri></li>
-<li><mail link="media-video@gentoo.org">media-video herd</mail>, 9 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=media-video@gentoo.org">nowych
-bugów</uri></li>
-<li><mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, 8 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=gnome@gentoo.org">nowych
-bugów</uri></li>
-<li><mail link="amd64@gentoo.org">AMD64 Project</mail>, 8 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=amd64@gentoo.org">nowych
-bugów</uri></li>
-<li><mail link="kernel@gentoo.org">Gentoo Kernel Bug Wranglers and Kernel
-Maintainers</mail>, 7 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=kernel@gentoo.org">nowych
-bugów</uri></li>
-<li><mail link="x11@gentoo.org">Gentoo X-windows packagers</mail>, 6 <uri
-link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=x11@gentoo.org">nowych
-bugów</uri></li>
+  <li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New
+  Packages</mail>, 31 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=maintainer-wanted@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="games@gentoo.org">Gentoo Games</mail>, 11 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=games@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, 10 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=sound@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="media-video@gentoo.org">media-video herd</mail>, 9 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=media-video@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, 8
+  <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=gnome@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="amd64@gentoo.org">AMD64 Project</mail>, 8 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=amd64@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="kernel@gentoo.org">Gentoo Kernel Bug Wranglers and Kernel
+  Maintainers</mail>, 7 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=kernel@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="x11@gentoo.org">Gentoo X-windows packagers</mail>, 6 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-04-23&amp;chfieldto=2006-04-30&amp;assigned_to=x11@gentoo.org">nowych
+  bugów</uri></li>
 </ul>
 
 </body>
@@ -440,20 +448,20 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 </p>
 
 <ul>
-<li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
-<li><uri link="/news/da/gwn/gwn.xml">duńskim</uri></li>
-<li><uri link="/news/fr/gwn/gwn.xml">francuskim</uri></li>
-<li><uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri></li>
-<li><uri link="/news/nl/gwn/gwn.xml">holenderskim</uri></li>
-<li><uri link="/news/ja/gwn/gwn.xml">japońskim</uri></li>
-<li><uri link="/news/ko/gwn/gwn.xml">koreańskim</uri></li>
-<li><uri link="/news/de/gwn/gwn.xml">niemieckim</uri></li>
-<li><uri link="/news/pl/gwn/gwn.xml">polskim</uri></li>
-<li><uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
-<li><uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
-<li><uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
-<li><uri link="/news/tr/gwn/gwn.xml">tureckim</uri></li>
-<li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>
+  <li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
+  <li><uri link="/news/da/gwn/gwn.xml">duńskim</uri></li>
+  <li><uri link="/news/fr/gwn/gwn.xml">francuskim</uri></li>
+  <li><uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri></li>
+  <li><uri link="/news/nl/gwn/gwn.xml">holenderskim</uri></li>
+  <li><uri link="/news/ja/gwn/gwn.xml">japońskim</uri></li>
+  <li><uri link="/news/ko/gwn/gwn.xml">koreańskim</uri></li>
+  <li><uri link="/news/de/gwn/gwn.xml">niemieckim</uri></li>
+  <li><uri link="/news/pl/gwn/gwn.xml">polskim</uri></li>
+  <li><uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
+  <li><uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
+  <li><uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
+  <li><uri link="/news/tr/gwn/gwn.xml">tureckim</uri></li>
+  <li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>
 </ul>
 
 </body>
