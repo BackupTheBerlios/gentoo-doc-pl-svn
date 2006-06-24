@@ -1,0 +1,634 @@
+--- stary_1.27.xml	2006-06-23 19:27:58.000000000 +0200
++++ nowy_1.28.xml	2006-06-24 11:16:12.000000000 +0200
+@@ -31,8 +31,8 @@
+ <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
+ <license/>
+ 
+-<version>1.27</version>
+-<date>2006-04-30</date>
++<version>1.28</version>
++<date>2006-06-12</date>
+ 
+ <chapter>
+ <title>Pytania</title>
+@@ -53,13 +53,22 @@
+ <body>
+ 
+ <ul>
+-  <li>
+-    <uri link="#osxverify">Jak pod OSX sprawdzić, że pobrany plik nie jest
+-     uszkodzony?</uri>
++   <li>
++    <uri link="#powerpc">
++     Jak mogę się dowiedzieć, jaki rodzaj PPC posiadam, oraz gdzie mogę znaleźć
++     więcej informacji na ten temat?
++    </uri>
++   </li>
++   <li>
++    <uri link="#osxverify">
++      Jak pod OSX sprawdzić, że pobrany plik nie jest uszkodzony?
++    </uri>
+   </li>
+   <li>
+-    <uri link="#dualboot">Czy można mieć jednocześnie zainstalowane Mac OS X i
+-    Gentoo?</uri>
++    <uri link="#dualboot">
++     Czy można mieć jednocześnie zainstalowane Mac OS X i
++     Gentoo?
++    </uri>
+   </li>
+   <li>
+     <uri link="#bwof">
+@@ -82,7 +91,7 @@
+     </uri>
+   </li>
+   <li>
+-    <uri link="#8gblimit">
++    <uri link="#gblimit">
+       Po wymianie dysku twardego w iMacu serii A lub B na większy nie można
+       załadować jakiegokolwiek systemu!
+     </uri>
+@@ -98,6 +107,18 @@
+       Po ponownym uruchomieniu systemu yaboot nie zadziałał! Jak to naprawić?
+     </uri>
+   </li>
++  <li>
++    <uri link="#xfs">
++     Przy próbie uruchomienia yaboot pokazuje tylko "read error"! Dlaczego nie
++     mogę go uruchomić?
++    </uri>
++  </li>
++  <li>
++    <uri link="#applebrokeit">
++     Po zainstalowaniu aktualizacji OSX komputer pozwala tylko na uruchomienie
++     tego systemu. W jaki sposób można to naprawić?
++    </uri>
++  </li>
+ </ul>
+ 
+ </body>
+@@ -151,6 +172,12 @@
+       Jak sprawić, aby karta sieciowa uruchamiała się po zaniknięciu zasilania?
+     </uri>
+   </li>
++  <li>
++    <uri link="#informbadport">
++      W pliku dmesg znajduje się dużo błędów typu "IN from bad port". Jak się
++      ich pozbyć?
++    </uri>
++  </li>
+ </ul>
+ 
+ </body>
+@@ -173,14 +200,25 @@
+     <uri link="#java">Czy Gentoo na architekturze PPC ma wtyczkę z Javą?</uri>
+   </li>
+   <li>
+-    <uri link="#xconf">Czy istnieje prosty sposób konfiguracji środowiska X?</uri>
++    <uri link="#xorg">Czy istnieje prosty sposób konfiguracji środowiska X?</uri>
+   </li>
+   <li>
+     <uri link="#drm">
+-      Jak załączyć Direct Rendering (DRM) na kartach radeon lub rage128?
++      Jak załączyć Direct Rendering (DRM) oraz wsparcie OpenGL?
++    </uri>
++  </li>
++  <li>
++    <uri link="#xorgerror">
++     W pliku xorg.log pojawia się błąd VBIOS lub "Invalid I/O allocation". Czy
++     to poważny problem?
+     </uri>
+   </li>
+   <li>
++    <uri link="#glfreeze">
++    Co mogę zrobić, jeżeli podczas używania OpenGL DRI, lub oglądania filmów
++    system niespodziewanie blokuje się?</uri>
++  </li>
++  <li>
+     <uri link="#keymap">
+       Międzynarodowy układ klawiatury nie działa poprawnie na zainstalowanym
+       Xorgu. Główne klawisze działają dobrze, ale nie da się złożyć żadnego
+@@ -190,17 +228,12 @@
+     </uri>
+   </li>
+   <li>
+-    <uri link="#glfreeze">
+-      Używając OpenGL DRI lub oglądając filmy, czasami system nieoczekiwanie
+-      blokuje się. Co należy zrobić?
+-    </uri>
+-  </li>
+-  <li>
+     <uri link="#audiocd">Jak odtwarzać płyty audio?</uri>
+   </li>
+   <li>
+-    <uri link="#mol">Czy można uruchomić Mac OS 9 lub Mac OS X pod
+-    Gentoo?</uri>
++    <uri link="#mol">
++     Czy można uruchomić Mac OS 9 lub Mac OS X w czasie działania Linuksa?
++    </uri>
+   </li>
+   <li>
+     <uri link="#ext">Czy mamy dostęp do partycji ext2 lub ext3 spod OSX?</uri>
+@@ -245,6 +278,47 @@
+ 
+ <chapter>
+ <title>Instalacja</title>
++<section id="powerpc">
++<title>
++Jak mogę się dowiedzieć jaki rodzaj PPC posiadam, oraz gdzie mogę znaleźc więcej
++informacji na ten temat? 
++</title>
++<body>
++
++<p>
++Witamy w Gentoo PPC!. Procesory PowerPC zostały użyte w wielu komputerach.
++Poniżej znajduje się kilka odnośników, ktore pomogą nam dowiedzieć się jaki
++rodzaj PPC posiadamy.
++</p>
++
++<ul>
++ <li>
++   <uri link="http://www.info.apple.com/support/applespec.html">Strony produktów
++   Apple</uri>
++ </li>
++ <li>
++   <uri link="http://lowendmac.com/profiles.htm">Sczegóły oraz historia
++   produktów Apple</uri>
++ </li>
++ <li>
++   <uri link="http://www.pegasosppc.com/products.php">Informacje na temat modelu
++   Genesi</uri>
++ </li>
++ <li>
++   <uri
++   link="http://publib.boulder.ibm.com/infocenter/pseries/v5r3/index.jsp?topic=/com.ibm.pseries.doc/hardware_docs/selectbysystem.htm">dokumentacja dotyczącą systemów pSeries POWER4 i RS/6000</uri>
++ </li>
++ <li>
++   <uri link="http://kurobox.com/">KuroBox</uri>
++ </li>
++ <li>
++   <uri link="http://penguinppc.org/">PenguinPPC - Informacje dotyczące Linuksa na
++   PowerPC</uri>
++ </li>
++</ul>
++
++</body>
++</section>
+ <section id="osxverify">
+ <title>Jak pod OSX sprawdzić, że pobrany plik nie jest uszkodzony?</title>
+ <body>
+@@ -382,7 +456,7 @@
+ 
+ </body>
+ </section>
+-<section id="8gblimit">
++<section id="gblimit">
+ <title>
+ Po wymianie dysku twardego w iMacu serii A lub B na większy nie można załadować
+ jakiegokolwiek systemu!
+@@ -401,17 +475,17 @@
+ <section id="fstabboot">
+ <title>
+ Plik /etc/fstab zawiera linię /dev/BOOT. Czy należy ustawić tę linię na
+-partycję bootstrap?
++partycję Apple bootstrap?
+ </title>
+ <body>
+ 
+ <p>
+ Nie. Jeśli nie używamy osobnej partycji rozruchowej (<path>/boot</path>),
+ wtedy nie należy się przejmować tą linią i można ją bez żadnych obaw usunąć.
+-Partycja bootstrap <e>nie</e> jest partycją <path>/boot</path>, obie partycje
+-nie są w żaden sposób powiązane. Ogólnie rzecz biorąc maszyny PowerPC nie
+-potrzebują osobnej partycji rozruchowej <path>/boot</path>, a partycja
+-bootstrap nie powinna być zamontowana.
++Partycja Apple bootstrap <e>nie</e> jest partycją <path>/boot</path>, obie
++partycje nie są w żaden sposób powiązane. Ogólnie rzecz biorąc maszyny Apple
++PowerPC nie potrzebują osobnej partycji rozruchowej <path>/boot</path>, a
++partycja bootstrap nie powinna być zamontowana ani wpisana do pliku fstab.
+ </p>
+ 
+ </body>
+@@ -440,6 +514,44 @@
+ 
+ </body>
+ </section>
++<section id="xfs">
++<title>
++Przy probie uruchomienia, yaboot pokazuje tylko "read error"! Dlaczego nie mogę
++go uruchomić?
++</title>
++<body>
++
++<p>
++Najprawdopodobniej powyższy błąd został spowodowany użyciem XFS na partycji
++root. Mimo, iż jest to dopuszczalne, yaboot może mieć problemy z dostępem do
++"dziurawych plików". Aby upewnić się, że nasz kernel się uruchomi, należy
++zamiast zwykłego kopiowania pliku vmlinux do /boot, użyć na nim programu
++<c>cat</c> tak jak zostało to pokazane:
++</p>
++
++<pre caption="Naprawianie błędów yaboot spowodowanych XFS">
++# <i>cat /usr/src/linux/vmlinux &gt;/boot/vmlinux</i>
++</pre>
++
++</body>
++</section>
++<section id="applebrokeit">
++<title>
++Po zainstalowaniu aktualizacji OSX uruchamia się tylko ten system! W jaki sposób
++to naprawić?
++</title>
++<body>
++
++<p>
++Podczas uruchamiania należy wcisnąć klawisz opcji. W ten sposób przywołamy
++graficzny program do wyboru urządzenia, z którego ma zostać uruchomiony system.
++Po chwili powinien pojawić się dysk oznaczony pingwinem, w który trzeba kliknąć.
++W ten sposób uruchomimy nasz system linux. Po zakończeniu procesu uruchomienia
++dobrze jest wpisać <c>ybin -v</c> w celu naprawienia programu ładującego.
++</p>
++
++</body>
++</section>
+ </chapter>
+ 
+ <chapter>
+@@ -457,27 +569,26 @@
+ 
+ <ul>
+   <li>
+-    <e>pbbuttonsd</e> jest narzędziem, które załącza klawisze jasności oraz
+-    głośności na większości laptopów ppc.  Obecne wersje pracują także jako
+-    menedżery zasilania.
++    <e>pbbuttonsd</e> jest narzędziem, które załącza klawisze do regulacji
++    jasności oraz głośności na większości laptopów ppc.  Obecne wersje pracują
++    także jako menedżery zasilania zastępując <e>pmud</c>
+   </li>
+   <li>
+     <e>gtkpbbuttons</e> jest interfejsem gtk dla pbbuttonsd (wizualizacja
+-    naciśnięć klawiszy w środowisku X). <e>gtkpbbuttons</e>  wymaga gtk. Aby
+-    otrzymać jak najlepsze rezultaty należy <e>gtkpbbuttons</e> dodać do pliku
+-    sesji X (<path>~/.Xsession</path>) (po to, aby było zawsze uruchomione
+-    podczas pracy w środowisku X).
++    naciśnięć klawiszy w środowisku X). <e>gtkpbbuttons</e>  wymaga gtk i
++    powinno być uruchamiane razem z środowiskiem X.
+   </li>
+   <li>
+-    <e>powerprefs</e> łączy w sobie funkcjonalność pbbuttonsd, daje możliwość
+-    edycji ustawień zarządzania zasilaniem, opcji gładzika i różnych innych
+-    właściwości.
++    <e>powerprefs</e> daje możliwość graficznej konfiguracji oraz edycji
++    ustawień pbbuttonsd takich jak zarządzanie zasilanie, opcje gładzika i inne
+   </li>
+   <li>
+-    <e>cpudyn</e> pozwala na zmianę częstotliwości procesora, co przynosi
+-    dłuższą żywotność baterii. Innymi pakietami posiadającymi podobny zespół
+-    funkcji są <e>powernowd</e>, <e>cpufreqd</e> i <e>speedfreq</e>.
+-  </li>
++    <e>powernowd</e> pozwala na zmianę częstotliwości procesora, co przynosi
++    dłuższą żywotnośc baterii. Innym pakietami posiadającym podobny zespół
++    funkcji są <e>cpudyn</e>, <e>cpufreqd</e> i <e>speedfreq</e>. Nie ważne,
++    który z nich wybierzemy, musimy się upewnić, iż mamy w naszym jądrze
++    odblokowaną opcję <e>userspace</e> cpu frequency scalling governor.
++ </li>
+ </ul>
+ 
+ <p>
+@@ -493,7 +604,8 @@
+ </pre>
+ 
+ <note>
+-Edytujemy <path>/etc/pbbuttonsd.conf</path> dostosowując go do naszych potrzeb.
++Aby ustawić pbbuttonsd do naszych potrzeb powinniśmy przeedytować plik
++<path>/etc/pbbuttonsd.conf</path> lub użyć <e>powerprefs</e>.
+ Zachowanie klawiszy Fx może być tu kontrolowane tak samo jak wiele opcji
+ uśpienia. Aby klawisze Fx zachowywały się tak jak pod OSX, należy ustawić
+ KBDMode na fkeyslast. Możemy wyłączyć podsłuchiwanie tabliczki dotykowej poprzez
+@@ -568,8 +680,9 @@
+ <body>
+ 
+ <p>
+-Karty Airport oparte są na chipsecie Lucent Orinoco. Aby skorzystać z takiej
+-karty pod Linuksem, należy włączyć następujące opcje w jądrze:
++Karta Airport jest urządzeniem 802.11b opartym na chipsecie Lucent Orinoco. Aby
++skorzystać z takiej karty pod Linuksem, należy włączyć następujące opcje w
++jądrze:
+ </p>
+ 
+ <pre caption="Bezprzewodowy LAN">
+@@ -593,7 +706,9 @@
+ </pre>
+ 
+ <p>
+-Więcej szczegółów dotyczących iwconfig znajduje się na jego stronie man.
++Więcej szczegółów dotyczących iwconfig znajduje się w opisie <uri
++link="http://www.gentoo.org/doc/pl/handbook/handbook-ppc.xml?part=4">konfiguracji
++sieci w Gentoo</uri>
+ </p>
+ 
+ </body>
+@@ -605,16 +720,37 @@
+ <p>
+ Od kiedy pojawił się natywny sterownik <uri
+ link="http://bcm43xx.berlios.de">bcm43xx</uri>, z obsługą tych kart nie ma
+-problemu. Dopóki nie zostanie on jednak dodany do jądra, trzeba zainstalować
+-go w sposób opisany w <uri
+-link="http://forums.gentoo.org/viewtopic-t-409194.html">tym wątku na
++problemu. Sterownik ów wchodzi w skład jądra 2.6.17_rc2.  W celu jego aktywacji
++należy wybrać poniższe opcje (pamiętajmy aby aktywować najpierw SoftMAC!): 
++</p>
++
++<pre catpion="Dodawanie wsparcia dla bcm43xx do kernela">
++Networking --&gt;
++      &lt;M&gt;   Generic IEEE 802.11 Networking Stack
++      [*]     Enable full debugging output
++      &lt;M&gt;     IEEE 802.11 WEP encryption (802.1x)
++      &lt;M&gt;     IEEE 802.11i CCMP support
++      &lt;M&gt;     IEEE 802.11i TKIP encryption
++      &lt;M&gt;     Software MAC add-on to the IEEE 802.11 networking stack
++      [*]       Enable full debugging output
++  
++   Device Drivers --&gt; Network device support --&gt; Wireless LAN drivers (non-hamradio) &amp; Wireless Extensions
++      &lt;M&gt;   Broadcom BCM43xx wireless support
++      [*]     Broadcom BCM43xx debugging (RECOMMENDED)
++</pre>
++
++<p>
++Po skompilowaniu jądra konieczne jest zainstalowanie <c>bcm43xx-fwcutter</c> aby
++zainstalować firmware. Dodatkoe informacje na ten temat możemy znaleźć w
++<uri link="http://forums.gentoo.org/viewtopic-t-409194.html">tym wątku na
+ forum</uri>.
+ </p>
+ 
+ <p>
+-Można skorzystać z MOL i OSX, aby zapewnić Linuksowi dostęp do karty Airport
+-Extreme. Szczegóły znajdują się w <uri
+-link="http://forums.gentoo.org/viewtopic-t-365647.html">w tym wątku</uri>.
++Więcej informacji na temat ustawiania łącz bezprzewodowych z Gentoo, można
++znaleźć w opisie <uri
++link="http://www.gentoo.org/doc/pl/handbook/handbook-ppc.xml?part=4">konfiguracji
++sieci w Getnoo</uri>
+ </p>
+ 
+ </body>
+@@ -698,11 +834,20 @@
+ </p>
+ 
+ <note>
+-Użytkownicy G5 lub mac-mini powinni posłużyć się przewodnikiem konfiguracji
+-ALSA pod Gentoo, aby zainstalować najnowszą wersję sterowników ALSA zamiast
+-tych, które są dołączone do jądra.
++Karty dzwiękowe w Mac'ach są podłączone poprzez szynę i2c Keywest/PowerMac, a
++nie poprzez PCI. Nie zobaczymy jej zatem w momencie listowania urządzeń PCI lub
++przy użyciu alsaconf. Wbrew pozorom nie jest to poważny problem, ponieważ
++wszystkie Mac'i używają tego samego sterownika do dźwięku. Będziemy musieć się
++tylko upewnić czy mam zaznaczone wsparcie dla i2c Keywest/PowerMac w naszym
++jądrze.
+ </note>
+ 
++<impo>
++Jeżeli wkompilujemy w jądro obsługe ALSA, musimy dodatkowo wkompilować wsparcie
++dla i2c Keywest/PowerMac. Brak zaznaczenia przy tej opcji spowoduje bowiem błąd
++Kernel panic podczas startu systemu.
++</impo>
++
+ </body>
+ </section>
+ <section id="alsa">
+@@ -732,6 +877,11 @@
+ 
+ <p>
+ (lub ustawiamy jako moduły, które będą ładowane podczas startu systemu).
++Jeżeli mamy późniejsze modele Powerbooka powinniśmy zaglądnąć do snd-aoa. Jeżeli
++używamy snd-aoa, powinniśmy się upewnić, iż opcja PowerMac (AWACS, DACA,
++Burgundy, Tumbler, Keywest) driver, powyżej jest zablokowana, natomiast resztę
++opcji należy pozostawić bez zmian. Po skompilowaniu jądra należy wykonać emerge
++snd-aoa.
+ </p>
+ 
+ <note>
+@@ -779,6 +929,11 @@
+ <c>i2c-core</c> jako moduł.
+ </p>
+ 
++<note>
++Jeżeli dalej używamy OSS, powinniśmy chociaż przetestować sterowniki ALSA.
++Wszelkie sugestie oraz uwagi wysłane na bugzille ALSA, będą mile widziane.
++</note> 
++
+ </body>
+ </section>
+ <section id="wakeon">
+@@ -826,18 +981,26 @@
+ pakiet był testowany jednakże nie został on jeszcze oznaczony jako stabilny.
+ </p>
+ 
++<pre caption="Pakiet nie został przetestowny na PPC">
++!!! All ebuilds that could satisfy "bar" have been masked.
++!!! One of the following masked packages is required to complete your request:
++ - app-foo/bar-1.0 (masked by: missing keyword)
++</pre>
++
+ <p>
+ Jeśli pakiet nie został przetestowany na architekturze PPC, należy dodać słowo
+ kluczowe ppc do ebuildu. Wykonamy to za pomocą narzędzia ekeyword, które jest
+-częścią pakietu gentoolkit-dev. Dodawanie słowa kluczowego do ebuildu:
++częścią pakietu gentoolkit-dev. Dodawanie słowa kluczowego do ebuildu oraz
++sprawdzenie jego sum md5 w celu uwzględenienia przez portage zmian:
+ </p>
+ 
+-<pre caption="Dodawanie słowa kluczowego ppc do app-tratata/bla">
+-$ <i>ekeyword ppc /usr/portage/app-foo/bar/bar-1.0.ebuild</i>
+++<pre caption="Dodawanie słowa kluczowego ppc do app-foo/bar">
+++# <i>ekeyword ppc /usr/portage/app-foo/bar/bar-1.0.ebuild</i>
+++# <i>ebuild /usr/portage/app-foo/bar/bar-1.0.ebuild digest</i>
+ </pre>
+ 
+ <p>
+-Po czym możemy zemergować pakiet. Testujemy aplikację, jeśli działa, wtedy
++Po czym możemy zainstalować pakiet. Testujemy aplikację, jeśli działa, wtedy
+ <b>proszę</b> wysłać błąd na Bugzillę (wymagana bezpłatna rejestracja), aby
+ jeden z deweloperów mógł dodać słowo kluczowe do ebuildu.
+ </p>
+@@ -851,11 +1014,13 @@
+ <p>
+ Jeśli pakiet posiada już słowo kluczowe ~ppc, to mamy dwa wyjścia. Można
+ zastąpić słowo kluczowe ~ppc przez ppc, lub można użyć
+-<path>/etc/portage</path>, aby odmaskować dany pakiet.
++<path>/etc/portage</path>, aby odmaskować dany pakiet. Drugie rozwiązanie jest
++bardziej polecane z prostego powodu - Przy najbliższym <c>emerge sync</c> zmiany
++nie zostaną nadpisane.
+ </p>
+ 
+-<pre caption="Używanie /etc/portage do odmaskowania app-tratata/bla">
+-$ <i>echo "=app-tratata/bla-1.0 ~ppc" > /etc/portage/package.keywords</i>
++<pre caption="Używanie /etc/portage do odmaskowania app-foo/bar">
++$ <i>echo "=app-foo/bar-1.0 ~ppc" > /etc/portage/package.keywords</i>
+ </pre>
+ 
+ <note>
+@@ -878,11 +1043,24 @@
+ <p>
+ Raczej nie. Macromedia nie dostarczyła Linuksom na architekturze PPC plików
+ binarnych, natomiast rozwiązania open source są niekompletne i pełne błędów.
+-Dwa projekty, które pracują nad tym problemem nazywają się <uri
+-link="http://gplflash.sf.net">gplflash2</uri> i <uri
+-link="http://swfdec.sf.net">swfdec</uri>, aby uzyskać więcej informacji należy
+-zaglądnąć na ich strony domowe. Możliwym obejściem tego problemu jest użycie
+-qemu (emulator na architekturę x86) w celu uruchomienia niezależnego Macromedia
++Nad problemem pracują trzy projekty:
++</p>
++
++<ul>
++ <li>
++  <uri link="http://www.gnu.org/software/gnash/">gnash</uri>
++ </li>
++ <li>
++   <uri link="http://gplflash.sf.net">gplflash2</uri> 
++ </li>
++ <li>
++   <uri link="http://swfdec.sf.net">swfdec</uri>
++ </li>
++</ul>
++
++<p>
++Następnym możliwym obejściem tego problemu jest użycie qemu (emulator na
++architekturę x86) w celu uruchomienia niezależnego Macromedia
+ Flash Player 6. Ten proces był opisany na forum:
+ <uri>http://forums.gentoo.org/viewtopic.php?t=117774</uri>
+ </p>
+@@ -894,12 +1072,13 @@
+ <body>
+ 
+ <p>
+-Tak, można skorzystać z pluginu Java autorstwa IBM w wersji 1.5 beta.
++Tak, można skorzystać z pluginu Java autorstwa IBM w wersji 1.5 beta. Trzeba
++jednak wiedzieć, że nie wszystkie Javowe aplikacje współpracują z Java 1.5
+ </p>
+ 
+ </body>
+ </section>
+-<section id="xconf">
++<section id="xorg">
+ <title>Czy istnieje prosty sposób konfiguracji środowiska X?</title>
+ <body>
+ 
+@@ -915,7 +1094,7 @@
+ </section>
+ <section id="drm">
+ <title>
+-Jak załączyć Direct Rendering (DRM) na kartach radeon lub rage128?
++Jak załączyć Direct Rendering (DRM) lub OpenGL?
+ </title>
+ <body>
+ 
+@@ -923,22 +1102,39 @@
+ Jądro należy mieć skompilowane z następującymi opcjami:
+ </p>
+ 
+-<pre caption="Konfiguracja jądra">
++<pre caption="Konfiguracja jądra z DRM dla Rage 128">
++ Device Drivers - Character devices ---&gt;
++   &lt;*&gt; /dev/agpgart (AGP Support)
++   [*] Apple UniNorth support
++   [*] Direct Rendering Manager (DRI support)
++   &lt;*&gt;   ATI Rage 128
++ Device Drivers - Graphics Support ---&gt;
++   &lt;*&gt;   ATI Rage 128 display support
++</pre>
++<pre caption="Konfiguracja jądra z DRM dla Radeonów">
+ Device Drivers - Character devices ---&gt;
+   &lt;*&gt; /dev/agpgart (AGP Support)
+   [*] Apple UniNorth support
+   [*] Direct Rendering Manager (DRI support)
+-  &lt;*&gt;   ATI Rage 128
+   &lt;*&gt;   ATI Radeon
+ Device Drivers - Graphics Support ---&gt;
+-  &lt;*&gt;   ATI Rage 128 display support
+-  &lt;*&gt;   ATI Radeon display support
++   &lt;*&gt;   ATI Radeon display support
++ </pre>
++<pre caption="Konfiguracja jądra z DRM dla kart nVidia">
++Device Drivers - Graphics Support ---&gt;
++   &lt;*&gt;   nVidia Framebuffer Support
+ </pre>
+ 
++<note>
++Aktualnie nie ma wsparcia dla DRM na kartach nVidia, gdyż nVidia nie wydała
++jeszcze sterowników dla PPC a w przypadku tych kart nie ma żadnych otwartych
++sterowników ze wsparciem dla akceleracji 3D
++</note>
++
+ <p>
+ Jeśli zachodzi taka potrzeba, kompilujemy ponownie i instalujemy jądro.  Potem
+ należy się upewnić, że załadowaliśmy system używając rodzimego bufora ramki
+-(np.  radeonfb lub atyfb, ale <e>nie</e> za pomocą offb lub ofonly video), a
++(np.  radeonfb lub atyfb128, ale <e>nie</e> za pomocą offb lub ofonly video), a
+ następnie wykonujemy <c>Xorgautoconfig</c>.
+ </p>
+ 
+@@ -961,25 +1157,6 @@
+ 
+ </body>
+ </section>
+-<section id="keymap">
+-<title>
+-Międzynarodowy układ klawiatury nie działa poprawnie na zainstalowanym Xorgu.
+-Główne klawisze działają dobrze, ale nie da się złożyć żadnego znaku
+-specjalnego, chociażby znaku "@". Wyjście startx wyświetla coś w rodzaju "could
+-not load keymap, falling back to default keymap". Co jest źle?
+-</title>
+-<body>
+-
+-<p>
+-Należy sprawdzić czy uprawnienia do katalogu <path>/var/tmp</path> są ustawione
+-na <path>drwxrwxrwx</path>. Jeśli nie, należy je zmienić poprzez wpisanie
+-<c>chmod a+rwx /var/tmp</c>. To pozwoli Xorgowi ponownie ładować poprawne
+-układy
+-klawiszy.
+-</p>
+-
+-</body>
+-</section>
+ <section id="glfreeze">
+ <title>
+ Używając OpenGL DRI lub oglądając filmy, czasami system nieoczekiwanie blokuje
+@@ -1004,6 +1181,26 @@
+ 
+ </body>
+ </section>
++
++<section id="keymap">
++<title>
++Międzynarodowy układ klawiatury nie działa poprawnie na zainstalowanym Xorgu.
++Główne klawisze działają dobrze, ale nie da się złożyć żadnego znaku
++specjalnego, chociażby znaku "@". Wyjście startx wyświetla coś w rodzaju "could
++not load keymap, falling back to default keymap". Co jest źle?
++</title>
++<body>
++
++<p>
++Należy sprawdzić czy uprawnienia do katalogu <path>/var/tmp</path> są ustawione
++na <path>drwxrwxrwx</path>. Jeśli nie, należy je zmienić poprzez wpisanie
++<c>chmod a+rwx /var/tmp</c>. To pozwoli Xorgowi ponownie ładować poprawne
++układy
++klawiszy.
++</p>
++
++</body>
++</section>
+ <section id="audiocd">
+ <title>Jak odtwarzać płyty audio?</title>
+ <body>
+@@ -1047,6 +1244,10 @@
+ </p>
+ 
+ <note>
++Aktualnie nie ma wsparcia dla MOL na 64 bitowych procesorach PPC
++</note>
++
++<note>
+ Aby uruchomić MOL w trybie pełnoekranowym, należy go skompilować z załączoną
+ flagą USE 'fbcon' i uruchomić w spod bufora ramki konsoli.
+ </note>
