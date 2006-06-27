@@ -30,43 +30,50 @@
 <section>
 <title>Improved Ada support in Portage - split ebuilds for gnat</title>
 <body>
+
 <p>
 "New generation" <path>dev-ada/gnat-xxx</path> compilers are now in Portage.
-They follow the upstream more closely (now you get <c>gnat-gcc</c> to follow 
-FSF's <c>in-gcc</c> sources, and <path>gnat-gpl</path> to represent "official" 
-AdaCore's code). <path>toolchain.eclass</path> procedures are also more
-closely observed, allowing for better integration with system <c>gcc</c> and 
-better multilib support, and the new compilers are properly SLOTted and can be 
-installed in parallel (so that you can have gnat-gcc-3.4.6, gnat-gcc-4.1.0 and 
-gnat-gpl-3.4.5.1 installed all at once). The selection of the active gnat is 
-performed via an eselect-gnat module in the usual manner. Work is under way 
-to enhance support for Ada libraries, so that they are built for each installed 
-gnat and can be switched on the fly. Anybody interested in helping is cordially 
-invited to visit the <uri link="https://bugs.gentoo.org/show_bug.cgi?id=111340">corresponding 
-bug</uri>. This includes a call for a long-term Ada maintainer, too. Actual support 
-work should be relatively easy now that the transition itself is over, but 
-candidates should be able to make sense of the <path>gnatbuild.eclass</path>, 
-<path>gnat.eclass</path> and <path>toolchain.eclass</path> (and related), in 
-addition, of course, to generally know your way around ebuilds. Contact <mail 
+They follow the upstream more closely (now you get <c>gnat-gcc</c> to follow
+FSF's <c>in-gcc</c> sources, and <path>gnat-gpl</path> to represent "official"
+AdaCore's code). <path>toolchain.eclass</path> procedures are also more closely
+observed, allowing for better integration with system <c>gcc</c> and better
+multilib support, and the new compilers are properly SLOTted and can be
+installed in parallel (so that you can have gnat-gcc-3.4.6, gnat-gcc-4.1.0 and
+gnat-gpl-3.4.5.1 installed all at once). The selection of the active gnat is
+performed via an eselect-gnat module in the usual manner. Work is under way to
+enhance support for Ada libraries, so that they are built for each installed
+gnat and can be switched on the fly. Anybody interested in helping is cordially
+invited to visit the <uri
+link="https://bugs.gentoo.org/show_bug.cgi?id=111340">corresponding bug</uri>.
+This includes a call for a long-term Ada maintainer, too. Actual support work
+should be relatively easy now that the transition itself is over, but candidates
+should be able to make sense of the <path>gnatbuild.eclass</path>,
+<path>gnat.eclass</path> and <path>toolchain.eclass</path> (and related), in
+addition, of course, to generally know your way around ebuilds. Contact <mail
 link="george@gentoo.org">George Shapovalov</mail> if you're interested.
 </p>
+
 </body>
 </section>
 <section>
 <title>Gnome 2.14 in Portage</title>
 <body>
+
 <p>
-GNOME 2.14 came out of <path>package.mask</path> this weekend.  The tracker 
-bug is located at <uri link="http://bugs.gentoo.org/119872">bug #119872</uri>. 
-Highlights of the release include performance boosts and improvements to
-various applications and routines, and can be found at <uri 
-link="http://www.gnome.org/start/2.14/">the Gnome website</uri>.  If you have 
-any problems upgrading, please search <uri link="https://bugs.gentoo.org">bugzilla</uri> 
-or wander into <path>#gentoo-desktop</path> on irc.freenode.net.
+GNOME 2.14 came out of <path>package.mask</path> this weekend.  The tracker bug
+is located at <uri link="http://bugs.gentoo.org/119872">bug #119872</uri>.
+Highlights of the release include performance boosts and improvements to various
+applications and routines, and can be found at <uri
+link="http://www.gnome.org/start/2.14/">the Gnome website</uri>.  If you have
+any problems upgrading, please search <uri
+link="https://bugs.gentoo.org">bugzilla</uri> or wander into
+<path>#gentoo-desktop</path> on irc.freenode.net.
 </p>
+
 </body>
 </section>
 </chapter>
+
 <!-- Future zone -->
 <!-- User Stories -->
 <!-- Gentoo Stories -->
@@ -77,22 +84,23 @@ or wander into <path>#gentoo-desktop</path> on irc.freenode.net.
 <section>
 <title>gentoo-dev</title>
 <body>
+
 <p>
 <b>Dziedzictwo</b>
 </p>
 
 <p>
 <mail link="tsunam@gentoo.org">Joshua Jackson</mail> rozpoczął dyskusję o
-historycznych "symbolach" Gentoo -- Krowie o imieniu Larry, lewitującym
-kosmicie i tym podobnych. Gdy zmienił się wystrój oficjalnej strony,
-niektóre z symboli zostały usunięte. Czy powinniśmy zatrzymać te
-pozostałości z dawnych czasów, czy raczej patrzeć w przyszłość?
+historycznych "symbolach" Gentoo -- Krowie o imieniu Larry, lewitującym kosmicie
+i tym podobnych. Gdy zmienił się wystrój oficjalnej strony, niektóre z symboli
+zostały usunięte. Czy powinniśmy zatrzymać te pozostałości z dawnych czasów, czy
+raczej patrzeć w przyszłość?
 </p>
 
 <ul>
-<li><uri
-link="http://thread.gmane.org/gmane.linux.gentoo.devel/37877">Heritage
-</uri></li>
+  <li><uri
+  link="http://thread.gmane.org/gmane.linux.gentoo.devel/37877">Heritage
+  </uri></li>
 </ul>
 
 <p>
@@ -101,19 +109,19 @@ link="http://thread.gmane.org/gmane.linux.gentoo.devel/37877">Heritage
 
 <p>
 Nasz specjalista od baselayout, <mail link="uberlord@gentoo.org">Roy
-Marples</mail>, rozpoczął dyskusję na temat działania usług hotplug i
-coldplug - zdarzenia coldplug można ograniczać za pomocą zmiennej
-RC_COLDPLUG, natomiast w przypadku hotplug nie jest to możliwe. Roy
-zaproponował kilka zmian, aby ujednolicić zachowanie obu usług, wówczas
-jednak dyskusja zeszła na temat problemów z udev i coldplugiem: Niektórzy
-użytkownicy zauważyli, że nowsze wersje udev automatycznie ładują sterowniki
-i chcieliby całkowicie wyłączyć tę funkcjonalność.
+Marples</mail>, rozpoczął dyskusję na temat działania usług hotplug i coldplug -
+zdarzenia coldplug można ograniczać za pomocą zmiennej RC_COLDPLUG, natomiast w
+przypadku hotplug nie jest to możliwe. Roy zaproponował kilka zmian, aby
+ujednolicić zachowanie obu usług, wówczas jednak dyskusja zeszła na temat
+problemów z udev i coldplugiem: Niektórzy użytkownicy zauważyli, że nowsze
+wersje udev automatycznie ładują sterowniki i chcieliby całkowicie wyłączyć tę
+funkcjonalność.
 </p>
 
 <ul>
-<li><uri
-link="http://thread.gmane.org/gmane.linux.gentoo.devel/37795">Coldplug
-and hotplug </uri></li>
+  <li><uri
+  link="http://thread.gmane.org/gmane.linux.gentoo.devel/37795">Coldplug and
+  hotplug </uri></li>
 </ul>
 
 <p>
@@ -123,18 +131,17 @@ and hotplug </uri></li>
 <p>
 W ramach eksperymentu, który miałby pokazać czy można zmniejszyć objętość
 przesyłanych plików distfile, <mail link="patrick@gentoo.org">Patrick
-Lauer</mail> na próbę dokonał ich konwersji z formatu gzip na bzip2 i 7zip.
-W sumie skonwertował ponad 15GB plików .tar.gz, średnio uzyskując około 15%
+Lauer</mail> na próbę dokonał ich konwersji z formatu gzip na bzip2 i 7zip.  W
+sumie skonwertował ponad 15GB plików .tar.gz, średnio uzyskując około 15%
 redukcję zajmowanego przez nie miejsca. Pomimo niewielkiej praktyczności
-"zwykłej konwersji" wszystkich plików, oraz braku porównania użycia
-procesora, jest to interesująca perspektywa dla użytkowników ze słabszymi
-łączami internetowymi.
+"zwykłej konwersji" wszystkich plików, oraz braku porównania użycia procesora,
+jest to interesująca perspektywa dla użytkowników ze słabszymi łączami
+internetowymi.
 </p>
 
 <ul>
-<li><uri
-link="http://thread.gmane.org/gmane.linux.gentoo.devel/37747">Having fun
-with compression </uri></li>
+  <li><uri link="http://thread.gmane.org/gmane.linux.gentoo.devel/37747">Having
+  fun with compression </uri></li>
 </ul>
 
 </body>
@@ -147,19 +154,20 @@ with compression </uri></li>
 <section>
 <title>Germany: gentoo.de asks 'Are you Gentoo?'</title>
 <body>
+
 <p>
-Inspired by a code-snippet posted by Forums moderator
-<uri
-link="http://forums.gentoo.org/profile.php?mode=viewprofile&amp;u=18822">slick</uri>, 
-the German not-for-profit association created a quiz on their community-site, 
+Inspired by a code-snippet posted by Forums moderator <uri
+link="http://forums.gentoo.org/profile.php?mode=viewprofile&amp;u=18822">slick</uri>,
+the German not-for-profit association created a quiz on their community-site,
 asking "<uri link="http://www.gentoo.de/quiz">Are you Gentoo?</uri>" The survey
-contains 20 questions, some of them easy to answer, some tricky ones
-and some questions which need a solid understanding of Gentoo's
-basics. Everyone who answers all 20 questions correctly can take part
-in a raffle where the 'Friends of Gentoo e.V.' offer three prizes,
-including a Gentoo shirt and mousepad. If your German is up to the task,
-take the challenge and solve the <uri link="http://www.gentoo.de/quiz">quiz</uri>.
+contains 20 questions, some of them easy to answer, some tricky ones and some
+questions which need a solid understanding of Gentoo's basics. Everyone who
+answers all 20 questions correctly can take part in a raffle where the 'Friends
+of Gentoo e.V.' offer three prizes, including a Gentoo shirt and mousepad. If
+your German is up to the task, take the challenge and solve the <uri
+link="http://www.gentoo.de/quiz">quiz</uri>.
 </p>
+
 </body>
 </section>
 </chapter>
@@ -170,48 +178,55 @@ take the challenge and solve the <uri link="http://www.gentoo.de/quiz">quiz</uri
 <section>
 <title>Desktop Linux (2 Maj 2006)</title>
 <body>
+
 <p>
-Desktop Linux odkrywa dwa artykuły z innych magazynów internetowych
-napisanych dla "zainteresowanych", odczytuje je i cytuje kilka
-podkreśleń (?uwydatnień). Istnieje możliwość przeczytania oryginalnych artykułów
-na <uri link="http://www.eweek.com/article2/0,1895,1954310,00.asp">eWeek.com</uri>
-(entuzjastyczna recenzja po wydaniu 2006.0) i <uri 
-link="http://www.linux-watch.com/news/NS4906178155.html">Linux Watch</uri> 
+Desktop Linux odkrywa dwa artykuły z innych magazynów internetowych napisanych
+dla "zainteresowanych", odczytuje je i cytuje kilka podkreśleń (?uwydatnień).
+Istnieje możliwość przeczytania oryginalnych artykułów na <uri
+link="http://www.eweek.com/article2/0,1895,1954310,00.asp">eWeek.com</uri>
+(entuzjastyczna recenzja po wydaniu 2006.0) i <uri
+link="http://www.linux-watch.com/news/NS4906178155.html">Linux Watch</uri>
 (Steven Vaughn-Nichols' (?odrobinę bardziej zbija politykę) slightly more
 downbeat assessment, że 'Gentoo nie jest dla każdego'), albo zadowolenia się
-tym, co znaleźliśmy na Desktop Linux. 
-Każde z wyjść jest dobre -- tak czy inaczej wszystko zostanie w zasięgu panujących publikacji Ziff'a Davies'a,
+tym, co znaleźliśmy na Desktop Linux.  Każde z wyjść jest dobre -- tak czy
+inaczej wszystko zostanie w zasięgu panujących publikacji Ziff'a Davies'a,
 (?mimo wszystko).
 </p>
+
 </body>
 </section>
 <section>
 <title>Desktop Linux (2 Maj 2006)</title>
 <body>
+
 <p>
 Informacja o nowej, wydanej w ubiegłym tygodniu, wersji SystemRescueCD została
-opublikowana na <uri link="http://www.desktoplinux.com/news/NS7770591797.html">Desktop Linux</uri>
-tego samego dnia co wspomniane wyżej recenzje dla Gentoo Linux 2006.0.
-<uri link="http://www.sysresccd.org">Francuski projekt</uri> zapewnia 
-"? save-and-rescue" -- oparte na Gentoo -- środowisko Linuksa ze wszystkimi 
+opublikowana na <uri
+link="http://www.desktoplinux.com/news/NS7770591797.html">Desktop Linux</uri>
+tego samego dnia co wspomniane wyżej recenzje dla Gentoo Linux 2006.0.  <uri
+link="http://www.sysresccd.org">Francuski projekt</uri> zapewnia "?
+save-and-rescue" -- oparte na Gentoo -- środowisko Linuksa ze wszystkimi
 potrzebnymi narzędziami do odzysku systemu na pokładzie, jak również do zadań
 administracyjnych takich jak partycjonowanie dysków, np. QtParted.
 </p>
+
 </body>
 </section>
 <section>
 <title>Distrowatch (3 Maj 2006)</title>
 <body>
+
 <p>
-Kolejna dystrybucja oparta na Gentoo, ta specjalizuje się w systemach 64bitowych:
-<uri link="http://distrowatch.com/?newsid=03412">Distrowatch 
-donosi</uri> o ostatnim wydaniu RR64, prawdopodobnie dlatego, że jest to pełne 
+Kolejna dystrybucja oparta na Gentoo, ta specjalizuje się w systemach
+64bitowych: <uri link="http://distrowatch.com/?newsid=03412">Distrowatch
+donosi</uri> o ostatnim wydaniu RR64, prawdopodobnie dlatego, że jest to pełne
 LiveDVD, oparte na środowisku Gnome, Xgl i zawierające mnóstwo innych rzeczy,
 wśród których każdy znajdzie coś dla siebie. Przysmak włoskiego Gentoo z rąk
-Fabio Erculiani'ego - <uri link="http://www.lxnaydesign.net/">seria RR</uri> - była 
-<uri link="/news/en/gwn/20060109-newsletter.xml#doc_chap4">przedstawiana
-na łamach Tygodnika</uri> już wcześniej.
+Fabio Erculiani'ego - <uri link="http://www.lxnaydesign.net/">seria RR</uri> -
+była <uri link="/news/en/gwn/20060109-newsletter.xml#doc_chap4">przedstawiana na
+łamach Tygodnika</uri> już wcześniej.
 </p>
+
 </body>
 </section>
 </chapter>

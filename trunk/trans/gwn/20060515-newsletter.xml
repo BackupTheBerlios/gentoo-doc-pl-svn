@@ -24,44 +24,50 @@
 <section>
 <title>Gentoo rsync mirror spring cleaning</title>
 <body>
+
 <p>
-A legacy module that is still being supported for backward compatibility
-for the settings in a few people's <path>/etc/make.conf</path> is a strong
-candidate for removal. A few of those users who have been synchronizing their
-Portage tree since 2001 or so may still have a line in their config file
-that points to the old <path>gentoo-x86-portage</path> module. As removing
-this option would make mirror configuration much easier, a simple replacement
-of <path>gentoo-x86-portage</path> with <path>gentoo-portage</path> is all
-that's needed:
+A legacy module that is still being supported for backward compatibility for the
+settings in a few people's <path>/etc/make.conf</path> is a strong candidate for
+removal. A few of those users who have been synchronizing their Portage tree
+since 2001 or so may still have a line in their config file that points to the
+old <path>gentoo-x86-portage</path> module. As removing this option would make
+mirror configuration much easier, a simple replacement of
+<path>gentoo-x86-portage</path> with <path>gentoo-portage</path> is all that's
+needed:
 </p>
+
 <pre caption="/etc/make.conf">
 SYNC="rsync://192.168.0.75/gentoo-x86-portage" <comment>| Change this line</comment>
 SYNC="rsync://192.168.0.75/gentoo-portage"     <comment>| to this</comment>
 </pre>
+
 </body>
 </section>
 <section>
 <title>GWN translation forces need support</title>
 <body>
+
 <p>
-Park Jin Kyu, the lead translator for the GWN's excellent Korean version,
-has been chipping away at the newsletter translations mostly by himself 
-for the last few issues. To help him assure a steady service for our readers
-in Korea, please <mail link="jinkyupark@gmail.com">contact him directly</mail> 
-or send an e-mail to <mail link="gwn-feedback@gentoo.org">our own feedback
-address</mail>.
+Park Jin Kyu, the lead translator for the GWN's excellent Korean version, has
+been chipping away at the newsletter translations mostly by himself for the last
+few issues. To help him assure a steady service for our readers in Korea, please
+<mail link="jinkyupark@gmail.com">contact him directly</mail> or send an e-mail
+to <mail link="gwn-feedback@gentoo.org">our own feedback address</mail>.
 </p>
+
 <p>
-Meanwhile, a new simplified Chinese version of the GWN is just about ready
-for official publication. Robert Zhang Le already has a few collaborators
-but could equally use additional help. The first issue of the simplified Chinese
-GWN will be posted shortly, please contact <mail 
-link="robert.zhangle@gmail.com">Robert</mail> or, again, <mail 
+Meanwhile, a new simplified Chinese version of the GWN is just about ready for
+official publication. Robert Zhang Le already has a few collaborators but could
+equally use additional help. The first issue of the simplified Chinese GWN will
+be posted shortly, please contact <mail
+link="robert.zhangle@gmail.com">Robert</mail> or, again, <mail
 link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail>.
 </p>
+
 </body>
 </section>
 </chapter>
+
 <!-- Future zone -->
 <!-- User Stories -->
 <!-- Gentoo Stories -->
@@ -76,20 +82,19 @@ link="gwn-feedback@gentoo.org">gwn-feedback@gentoo.org</mail>.
 
 <p>
 20 maja w FH Joanneumw w Graz odbędzie się poświęcona społeczności część
-dorocznej imprezy <uri link="http://linuxtage.at/">Grazer Linuxtage</uri>.
-Tak jak w ubiegłym roku, kilku deweloperów Gentoo, a także przyjaciół i
-entuzjastów będzie reprezentować system Gentoo Linux na stoisku w sali
-wystawowej. Będą rozdawać nalepki, sprzedawać <uri
+dorocznej imprezy <uri link="http://linuxtage.at/">Grazer Linuxtage</uri>.  Tak
+jak w ubiegłym roku, kilku deweloperów Gentoo, a także przyjaciół i entuzjastów
+będzie reprezentować system Gentoo Linux na stoisku w sali wystawowej. Będą
+rozdawać nalepki, sprzedawać <uri
 link="http://www.gentoo.de/pub/pics/gum/ob/20040604/data/Sm_dsc00036.jpg.html">plakietki
-przyklejane na obudowę komputera</uri> i wypalać płyty LiveCD. Będzie można
-z nimi także porozmawiać o Gentoo, wszechświecie i wszystkim innym. W ciągu
-dnia odbędzie się wiele <uri
-link="http://linuxtage.at/vortraege/">interesujących wykładów</uri>. Stoisko
-Gentoo będzie się mieściło tuż obok stoisk <uri
+przyklejane na obudowę komputera</uri> i wypalać płyty LiveCD. Będzie można z
+nimi także porozmawiać o Gentoo, wszechświecie i wszystkim innym. W ciągu dnia
+odbędzie się wiele <uri link="http://linuxtage.at/vortraege/">interesujących
+wykładów</uri>. Stoisko Gentoo będzie się mieściło tuż obok stoisk <uri
 link="http://grml.org/">grml</uri> i różnych projektów Debiana, również
-kontynuując w ten sposób tradycję z ubiegłego roku. Krążą plotki, że między
-tymi trzema stoiskami będzie nadzwyczaj silne połącznie, ale aby zorientować
-się o co chodzi, będziemy musieli odwiedzić imprezę Grazer Linuxtag.
+kontynuując w ten sposób tradycję z ubiegłego roku. Krążą plotki, że między tymi
+trzema stoiskami będzie nadzwyczaj silne połącznie, ale aby zorientować się o co
+chodzi, będziemy musieli odwiedzić imprezę Grazer Linuxtag.
 </p>
 
 </body>
@@ -101,18 +106,17 @@ się o co chodzi, będziemy musieli odwiedzić imprezę Grazer Linuxtag.
 <p>
 Impreza znana wcześniej we Włoszech pod nazwą "Linux World Expo" zmieniła
 obecnie zarówno nazwę, jak i organizatorów i nosi obecnie miano <uri
-link="http://www.linuxworldsummit.it">Linux World Summit</uri>. Ta
-skierowana głównie do przedsiębiorców impreza rozpoczyna się 15 i 16 maja w
-Mediolanie. Członkowie <uri link="http://www.gechi.it/">Gechi (Gentoo
-Channel Italia)</uri> będą na niej obecni, posiadając własne stoisko.
-Będziemy mogli znaleźć na nim najświeższe płyty CD Gentoo, zarówno
-instalacyjne, jak i z prekompilowanymi paczkami, przygotowane z myślą o
-wielu spośród obsługiwanych architektur, oraz specjalną płytę <uri
-link="http://www.lxnaydesign.net/">lxnay RR4/RR64 LiveDVD</uri>. Jej twórca
-będzie obecny w poniedziałek po południu, demonstrując nowy produkt z
-rodziny RR. Będziemy mogli także zaopatrzyć się w koszulki Gechi. Na stoisku
-zobaczymy również klaster, zbudowany na bazie czterech płyt głównych Via
-Epia oraz maszynę Sun Fire V120. Więcej informacji (w języku włoskim)
+link="http://www.linuxworldsummit.it">Linux World Summit</uri>. Ta skierowana
+głównie do przedsiębiorców impreza rozpoczyna się 15 i 16 maja w Mediolanie.
+Członkowie <uri link="http://www.gechi.it/">Gechi (Gentoo Channel Italia)</uri>
+będą na niej obecni, posiadając własne stoisko.  Będziemy mogli znaleźć na nim
+najświeższe płyty CD Gentoo, zarówno instalacyjne, jak i z prekompilowanymi
+paczkami, przygotowane z myślą o wielu spośród obsługiwanych architektur, oraz
+specjalną płytę <uri link="http://www.lxnaydesign.net/">lxnay RR4/RR64
+LiveDVD</uri>. Jej twórca będzie obecny w poniedziałek po południu, demonstrując
+nowy produkt z rodziny RR. Będziemy mogli także zaopatrzyć się w koszulki Gechi.
+Na stoisku zobaczymy również klaster, zbudowany na bazie czterech płyt głównych
+Via Epia oraz maszynę Sun Fire V120. Więcej informacji (w języku włoskim)
 znajdziemy na <uri
 link="http://www.gechi.it/component/option,com_smf/Itemid,14/board,3.0">forum
 Gechi</uri>. Do zobaczenia na miejscu!
@@ -121,20 +125,23 @@ Gechi</uri>. Do zobaczenia na miejscu!
 </body>
 </section>
 <section>
-<title>Norwegia: konferencja deweloperów PHP z uczestnictwem deweloperów Gentoo</title>
+<title>Norwegia: konferencja deweloperów PHP z uczestnictwem deweloperów
+Gentoo</title>
 <body>
+
 <p>
-<mail link="sebastian@gentoo.org">Sebastian Bergmann</mail> i <mail 
+<mail link="sebastian@gentoo.org">Sebastian Bergmann</mail> i <mail
 link="stuart@gentoo.org">Stuart Herbert</mail> są zaproszeni do uczestnictwa w
-konferencji <uri link="http://phpvikinger.org">PHP Vikinger</uri> -- lub raczej 
+konferencji <uri link="http://phpvikinger.org">PHP Vikinger</uri> -- lub raczej
 "niekonferencji", jak zwykł mówić organizator Zak Greant -- w przyszłym miesiącu
 w Skien, w dniach 24 i 25 czerwca 2006. Mało prawdopodobnym jest, by ojczyste
-miasto Henrika Ibsena w norweskiej prowincji Telemark zaoferowało ogrom atrakcji dla
-uczestników konferencji, dlatego też mogą oni w pełni skoncentrować się na tym
-co ogłoszono jako "naprawdę niesamowite wydarzenie", i skupić się na
+miasto Henrika Ibsena w norweskiej prowincji Telemark zaoferowało ogrom atrakcji
+dla uczestników konferencji, dlatego też mogą oni w pełni skoncentrować się na
+tym co ogłoszono jako "naprawdę niesamowite wydarzenie", i skupić się na
 rozwijaniu PHP, wspólnie z każdym z zaproszonych gości i indywidualnie
 rejestrować się (?attendees /zgłaszać swoje uczestnictwo) z całego świata.
 </p>
+
 </body>
 </section>
 </chapter>
@@ -144,15 +151,18 @@ rejestrować się (?attendees /zgłaszać swoje uczestnictwo) z całego świata.
 <section>
 <title>Linuxdevices (9 Maj 2006)</title>
 <body>
+
 <p>
-Magazyn specjalizujący się w wiadomościach z rynku osadzonych (?wbudowanych) Linuksów,
-Linuxdevices, donosi o nowym osadzonym module procesora, który zawiera
-preinstalację Linuksa Gentoo. <uri link="http://linuxdevices.com/news/NS9007050548.html">
-Artykuł</uri> recenzuje ostatni produkt izraelskiej firmy CompuLab, jako
-tzw. jednopłytowy komputer namierzający aplikacje telekomunikacyjne czasu
-rzeczywistego, <uri link="http://www.compulab.co.il/f82/html/f82-cm-datasheet.htm"> 
-CM-F82</uri> z wbudowanym obrazem Gentoo o objętości 70MB.
+Magazyn specjalizujący się w wiadomościach z rynku osadzonych (?wbudowanych)
+Linuksów, Linuxdevices, donosi o nowym osadzonym module procesora, który zawiera
+preinstalację Linuksa Gentoo. <uri
+link="http://linuxdevices.com/news/NS9007050548.html"> Artykuł</uri> recenzuje
+ostatni produkt izraelskiej firmy CompuLab, jako tzw. jednopłytowy komputer
+namierzający aplikacje telekomunikacyjne czasu rzeczywistego, <uri
+link="http://www.compulab.co.il/f82/html/f82-cm-datasheet.htm"> CM-F82</uri> z
+wbudowanym obrazem Gentoo o objętości 70MB.
 </p>
+
 </body>
 </section>
 </chapter>
