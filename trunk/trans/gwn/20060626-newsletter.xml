@@ -301,65 +301,68 @@ to see how the new Sun CPU fares against Intel's Wood crest and AMD's Opteron.
 
 <!-- Tips and Tricks -->
 <chapter>
-<title>Tips and Tricks</title>
+<title>Sztuczki i kruczki</title>
 <section>
-<title>Play some games: ScummVM</title>
+<title>Zagrajmy w grę: ScummVM</title>
 <body>
 
 <p>
-While most of today's games won't run on Linux systems easily, there is still a
-wealth of options in yesterday's catalog that work great with an emulator. If
-you can hunt down an original copy of the games, <uri
-link="http://scummvm.sourceforge.net/">ScummVM</uri> will run some classic
-point-and-click adventure games such as "Full Throttle", "Day of the Tentacle"
-and "The Secret of Monkey Island."
+Pomimo iż większość współczesnych gier trudno jest zmusić do działania pod
+Linuksem, wciąż mamy do wyboru wiele starszych tytułów, które można
+uruchomić za pomocą emulatora. Jeśli tylko uda się znaleźć oryginalne edycje
+gier, <uri link="http://scummvm.sourceforge.net/">ScummVM</uri> pomoże nam
+uruchomić klasycze przygodówki, takie jak "Full Throttle", "Day of the
+Tentacle", czy "The Secret of Monkey Island".
 </p>
 
 <p>
-The project first started out as a way to run old games that used LucasArt's
-SCUMM game engine, but now supports other games as well. See the <uri
-link="http://scummvm.sourceforge.net/compatibility.php"> compatibility
-list</uri> for all the games it can run.
+Pierwotnie celem, który przyświecał projektowi było uruchomienie starych
+gier, które korzystały z silnika SCUMM firmy LucasArts. Teraz jednak ScummVM
+obsługuje również wiele innych tytułów. Warto przejrzeć pełną <uri
+link="http://scummvm.sourceforge.net/compatibility.php">listę
+kompatybilności</uri> obsługiwanych gier.
 </p>
 
 <p>
-If you're not up to the task of hunting down computer games from the 1980s
-though, you're still in luck. One such game has been released for free
-distribution -- Flight of the Amazon Queen, and it's available in portage.
+W razie jednak gdyby nie udało nam się znaleźć żadnych gier z lat 80-tych,
+wciąż możemy liczyć na nieco rozrywki. Jedna z gier -- Flight of the Amazon
+Queen -- została dopuszczona do darmowej dystrybucji i jest dostępna w
+drzewie Portage.
 </p>
 
 <p>
-To get up and running, first emerge scummvm on your system, which is already
-been marked stable on four architectures -- amd64, ppc, sparc, and x86. ScummVM
-itself runs on many other platforms: Microsoft Windows, Mac OS X, PocketPC,
-PalmOS, OS/2 and more.  Depending on your architecture, Flight of the Amazon
-Queen might be marked testing, so adjust your package.keywords file as
-necessary.
+Zacznijmy od zainstalowania pakietu scummvm. Został on już oznaczony jako
+stabilny na czterech architekturach: amd64, ppc, sparc i x86. ScummVM działa
+jednak także na wielu innych platformach, między innymi: Microsoft Windows,
+Mac OS X, PocketPC, PalmOS i OS/2. W zależności od naszej architektury być
+może będzie konieczne dodanie odpowiedniego wpisu do pliku package.keywords.
 </p>
 
-<pre caption="Installing queen">
+<pre caption="Instalacja queen">
 # <i>emerge scummvm -va</i>
 # <i>echo "games-rpg/queen" >> /etc/portage/package.keywords"</i>
 # <i>emerge queen</i>
 </pre>
 
 <p>
-After that, add your user to the 'games' group if you haven't already.
+Następnie należy dodać naszego użytkownika do grupy 'games', o ile jeszcze
+do niej nie należy.
 </p>
 
-<pre caption="Adding user to games group">
+<pre caption="Dodanie użytkownika do grupy games">
 # <i>groups larry</i>
 # <i>gpasswd -a larry games</i>
 </pre>
 
 <p>
-If you are adding your user to the group, remember that you must log out and
-back in before the changes will take effect. Fire up scummvm, and it will open a
-graphical window where you can add your games. By default, FOTAQ won't be
-displayed in the list, but you can add it by clicking 'Add Game'. The directory
-with game data is <c>/usr/share/games/queen</c>. Once you navigate to that
-directory, simply click the 'Choose' button. After that, you should be good to
-go!  You can also simply run 'queen' to start the game directly.
+W przypadku dodania użytkownika do grupy należy pamiętać o konieczności
+wylogowania się i zalogowania ponownie zanim zmiany odniosą skutek.
+Następnie można już uruchomić program scummvm. Ukaże się okno, za pomocą
+którego możemy dodać gry. Z początku FOTAQ nie znajdzie się na liście, ale
+możemy dodać tę grę klikając 'Add Game'. Znajduje się ona w katalogu
+<c>/usr/share/games/queen</c>. Po przejściu do niego wystarczy kliknąć
+przycisk 'Choose' i można już rozpocząć zabawę. Możliwe jest także
+włączenie gry bezpośrednio, poprzez wydanie polecenia 'queen'.
 </p>
 
 </body>
