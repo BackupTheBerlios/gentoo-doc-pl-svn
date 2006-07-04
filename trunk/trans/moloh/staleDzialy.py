@@ -49,10 +49,10 @@ tygodniu:'''),
  r'''Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie Gentoo
  Linux funkcję:'''),
 
-(r'<li><e>None this week</e></li>',
+(r'<li><e>none this week</e></li>',
  r'<li><e>Nikt w tym tygodniu</e></li>'),
 
-(r'<title>Gentoo Security</title>',
+(r'<title>Gentoo security</title>',
  r'<title>Bezpieczeństwo Gentoo</title>'),
 
 (r'For more information, please see the',
@@ -131,21 +131,22 @@ link="moloh@gentoo.org">koordynatora</mail>.
 (r'<title>GWN subscription information</title>',
  r'<title>Subskrypcja Tygodnika Gentoo</title>'),
 
-(r'''<p>To subscribe to the Gentoo Weekly Newsletter, send a blank e-mail to
-<mail
+(r'''<p>
+To subscribe to the Gentoo Weekly Newsletter, send a blank e-mail to <mail
 link="gentoo-gwn+subscribe@gentoo.org">gentoo-gwn+subscribe@gentoo.org</mail>.
-</p> ''',
+</p>''',
  r'''<p>
-Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego e-maila na adres <mail
+Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego emaila na adres <mail
 link="gentoo-gwn-pl+subscribe@gentoo.org">gentoo-gwn-pl+subscribe@gentoo.org</mail>.
 </p>'''),
 
-(r'''<p> To unsubscribe to the Gentoo Weekly Newsletter, send a blank e-mail to
-<mail
+(r'''<p>
+To unsubscribe to the Gentoo Weekly Newsletter, send a blank email to <mail
 link="gentoo-gwn+unsubscribe@gentoo.org">gentoo-gwn+unsubscribe@gentoo.org</mail>
-from the e-mail address you are subscribed under.</p>''',
+from the e-mail address you are subscribed under.
+</p>''',
  r'''<p>
-Aby zrezygnować z subskrypcji, należy wysłać pustego e-maila na adres <mail
+Aby zrezygnować z subskrypcji, należy wysłać pustego emaila na adres <mail
 link="gentoo-gwn-pl+unsubscribe@gentoo.org">
 gentoo-gwn-pl+unsubscribe@gentoo.org</mail> z konta, na które jest
 zarejestrowana.
@@ -154,7 +155,9 @@ zarejestrowana.
 (r'<title>Other languages</title>',
  r'<title>Inne języki</title>'),
 
-(r'<p>The Gentoo Weekly Newsletter is also available in the.*following languages:</p>',
+(r'''<p>
+The Gentoo Weekly Newsletter is also available in the following languages:
+</p>''',
  r'''<p>
 Tygodnik Gentoo jest dostępny w następujących językach:
 </p>
@@ -177,20 +180,20 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 <li> <uri link="/news/tr/gwn/gwn.xml">Turkish</uri> </li>
 </ul>''',
  r'''<ul>
-<li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
-<li><uri link="/news/da/gwn/gwn.xml">duńskim</uri></li>
-<li><uri link="/news/fr/gwn/gwn.xml">francuskim</uri></li>
-<li><uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri></li>
-<li><uri link="/news/nl/gwn/gwn.xml">holenderskim</uri></li>
-<li><uri link="/news/ja/gwn/gwn.xml">japońskim</uri></li>
-<li><uri link="/news/ko/gwn/gwn.xml">koreańskim</uri></li>
-<li><uri link="/news/de/gwn/gwn.xml">niemieckim</uri></li>
-<li><uri link="/news/pl/gwn/gwn.xml">polskim</uri></li>
-<li><uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
-<li><uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
-<li><uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
-<li><uri link="/news/tr/gwn/gwn.xml">tureckim</uri></li>
-<li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>
+  <li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
+  <li><uri link="/news/da/gwn/gwn.xml">duńskim</uri></li>
+  <li><uri link="/news/fr/gwn/gwn.xml">francuskim</uri></li>
+  <li><uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri></li>
+  <li><uri link="/news/nl/gwn/gwn.xml">holenderskim</uri></li>
+  <li><uri link="/news/ja/gwn/gwn.xml">japońskim</uri></li>
+  <li><uri link="/news/ko/gwn/gwn.xml">koreańskim</uri></li>
+  <li><uri link="/news/de/gwn/gwn.xml">niemieckim</uri></li>
+  <li><uri link="/news/pl/gwn/gwn.xml">polskim</uri></li>
+  <li><uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
+  <li><uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
+  <li><uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
+  <li><uri link="/news/tr/gwn/gwn.xml">tureckim</uri></li>
+  <li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>
 </ul>''')
 
 )
