@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE guide SYSTEM "/home/mike/gentoo-cvs/gentoo-projects/www-redesign/htdocs/dtd/guide.dtd">
+<!-- $Header$ -->
+
+<guide link="/doc/en/kernel-config.xml" lang="en">
+<title>Gentoo Linux Kernel Configuration Guide</title>
+<author title="Author">
+  <mail link="curtis119@gentoo.org">Curtis Napier</mail>
+</author>
+<author title="Author">
+  <mail link="jdr@xemoka.net">Justin Robinson</mail>
+</author>
+<author title="Contributor">
+  <mail link="dsd@gentoo.org">Daniel Drake</mail>
+</author>
+<author title="Editor">
+  <mail link="smithj@gentoo.org">Jonathan Smith</mail>
+</author>
+
+<abstract>
+Guide to the fundamentals of configuring a kernel including Gentoo specific
+requirements.
+</abstract>
+
+<!-- The content of this document is licensed under the CC-BY-SA license -->
+<!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
+<license/>
+
+<version>1.0</version>
+<date>2005-12-30</date>
+
+<chapter>
+<title>Introduction</title>
+<section>
+<body>
+
+<p>
+If your configuring your kernel 100% manually or using the --menuconfig option of
+Genkernel, this guide is for you. Configuring your own kernel will give you
+control over what goes into your kernel making it slimmer, taking less time to
+compile and will help you understand the kernel structure and build system. This
+is not a step by step guide to configuring a kernel. Instead, this guide will
+cover the most important options and the most commonly made mistakes.
+</p>
+
+<p>
+The guide assumes you already have a kernel source installed in <path>/usr/src</path>
+and that you understand how to use menuconfig in the kernel.
+</p>
+
+</body>
+</section>
+</chapter>
+
+<chapter>
+<title>Identify Your Hardware</title>
+<section>
+<body>
+
+<p>
+Before you can configure your kernel, you need to know what hardware you have
+so you can choose the proper drivers. Compile a list of your computers built-in
+hardware as well as any removable hardware you may have such as scanners,
+cameras, printers, USB pen drives, external SCSI devices, USB hard drives,
+etc...
+</p>
+
+<p>
+The driver used for a certain device is based on the chipset, not on the name
+used in marketing materials. Many devices are marketed under the name of one
+vendor but actually use chipsets from another vendor. Sound cards and wireless
+cards are good examples of such hardware.
+</p>
+
+<p>
+There are several ways to discover your hardware chipsets such as <c>lspci</c>,
+<c>lsusb</c> and <c>pnpdump</c>. You can also boot from an installation CD and
+run <c>lsmod</c> and <c>dmesg</c>. To check your cpu use the command:
+<c>cat /proc/cpuinfo</c>.
+</p>
+
+<p>
+There are several online databases that may help you to identify your hardware.
+<uri link="http://www.linuxpowered.com/html/links/hardware.html">Linux Powered</uri>
+has a list of several of these databases. Many vendors also maintain databases;
+if you are unable to identify your hardware with any of the above methods check
+at the website of your hardwares vendor or manufacturerer.
+</p>
+
+</body>
+</section>
+</chapter>
+
+<chapter>
+<title>Modular vs Monolithic</title>
+<section>
+<body>
+
+<p>
+Many kernel features and hardware drivers can be compiled as modules. Modules are
+separate files that can be loaded or unloaded into the kernel at any time. We
+call this type of kernel a <e>Modular</e> kernel. If you build all drivers into
+the kernel it is called a <e>Monolithic</e> kernel. 
+</p>
+
+<note>
+You should build everything into the kernel if possible. This will help minimize
+errors.
+</note>
+
+</body>
+</section>
+</chapter>
+
+<chapter>
+<title>Configure the kernel</title>
+<section>
+<title>Before you begin</title>
+<body>
+
+<p>
+Now that you have your hardware list it is time to begin the actual
+configuration. Since menuconfig is the preferred method, this section will
+present the information in that format. Each section below will present the
+options that are necessary for Gentoo. Other important options will be discussed
+and examples given. Not all options will be covered, only the most important and
+most used ones. Go through each option and read the help to see if it applies to
+you. If an option is selected by default and you are unsure what it is or if you
+need it you should leave it on.
+</p>
+
+<p>
+Make sure that every driver that is vital to the booting of your system (such
+as root filesystem, SCSI and IDE controllers, ...) is compiled in the kernel and
+not as a module, otherwise your system will not be able to boot completely.
+Remember, at any time you can press <c>?</c> on each page or select HELP from 
+the lower menu for more information on an option.
+</p>
+
+</body>
+</section>
+<section>
+<title>Processor</title>
+<body>
+
+<p>
+Select your processor type and features. Only Subarchitecture Type and Processor
+family are required. The other options can be disabled but some are required
+by other modules (such as MTRR for the nvidia module) or add functionality that
+you may want.
+</p>
+
+<p>
+Symmetric multi-processing support is for dual processors. If you do not enable
+this option only CPU0 will be used. If you only have one CPU do not enable this
+option. Intel CPU's that have HyperThreading (tm) also need this option
+enabled.
+</p>
+
+<p>
+High Memory Support is necessary if you have more than 1 Gigabyte of RAM. If
+your computer has less RAM than this do not enable this option.
+</p>
+
+<pre caption="Processor type and features">
+Subarchitecture Type ()  ---&gt;
+  (X) PC-compatible
+
+<comment>(Change according to your system)</comment>
+Processor family ()   ---&gt;
+  (X) Pentium-4/Celeron(P4-based)/Pentium-4 M/Xeon
+
+[ ] Symmetric multi-processing support
+[*] Preemptible Kernel
+[*] Local APIC support on uniprocessors
+[ ]   IO-APIC support on uniprocessors
+    High Memory Support (off)  ---&gt;
+      (X) off
+      ( ) 4GB
+      ( ) 64GB 
+[*] MTRR (Memory Type Range Register) support
+</pre>
+
+</body>
+</section>
+<section>
+<title>Power management options (ACPI, APM)</title>
+<body>
+
+<p>
+There are two standards for power management, APM and ACPI. ACPI (Advanced
+Configuration and Power Interface) is the new standard and should be used if your
+system supports it. APM (Advanced Power Management) is the older standard that
+is slowly being phased out. Unlike APM, ACPI allows the Operating System
+(instead of the BIOS) to control Power Management.
+</p>
+
+<p>
+There is a seperate document,
+<uri link="/doc/en/power-management-guide.xml#doc_chap2">Power Management
+Guide</uri>, that has in depth details on how to configure ACPI. If you want to
+enable advanced features such as suspend, sleep or CPU frequency modulation
+refer to the kernel configuration section of that document and then come back to
+this guide.
+</p>
+
+<p>
+If you have a desktop system then you should enable the base ACPI support along
+with the fan, video, processor and (optionally) thermal zone. Remember, ACPI
+relies on an up to date BIOS. If you experience problems with ACPI you can use
+APM or simply disable power management. 
+</p>
+
+<pre caption="Power management options (ACPI, APM)  ---&gt;">
+[*] Power Management support
+[ ]   Power Management Debug Support
+[ ]   Software Suspend (EXPERIMENTAL)
+    ACPI (Advanced Configuration and Power Interface) Support  ---&gt;
+      [*] ACPI Support
+      &lt;*&gt;   Video
+      &lt;*&gt;   Fan
+      &lt;*&gt;   Processor
+      &lt;*&gt;     Thermal Zone
+</pre>
+
+<warn>
+If you disable Power Management make sure to set these features in your BIOS.
+Failure to do so may result in overheating which could destroy your CPU.
+</warn>
+
+</body>
+</section>
+<section>
+<title>Hard Drives</title>
+<body>
+
+<p>
+ATA/ATAPI/MFM/RLL support is very important. Make sure to enable the driver for
+your chipset and for DMA. If you fail to enable the driver for your IDE chipset
+your system will experience serious slow downs, disk transfers will be
+unbearably slow and the whole system will majorly decrease in responsiveness
+when I/O operations are performed (mouse will jump over the screen etc.).
+Do not build these options as modules if your root filesystem is on an
+ATA/ATAPI drive. If you have a SATA hard drive enable it in the SCSI section,
+the SATA driver listed here will conflict if you enable it.
+</p>
+
+<pre caption="ATA/ATAPI/MFM/RLL support">
+ATA/ATAPI/MFM/RLL support  ---&gt;
+  &lt;*&gt;   ATA/ATAPI/MFM/RLL support
+  &lt;*&gt;   Enhanced IDE/MFM/RLL disk/cdrom/tape/floppy support
+  [ ]     Support for SATA (deprecated; conflicts with libata SATA driver)
+<comment>(only disable the follwing option if you have a SCSI only system)</comment>
+  &lt;*&gt;     Include IDE/ATA-2 DISK support
+<comment>(If jumpered your harddrive to report a limited size you have to enable
+  the following option to gain access to your whole harddrive)</comment>
+  [*]     Auto-Geometry Resizing support
+  &lt;*&gt;     Include IDE/ATAPI CDROM support
+<comment>(emulation is no longer needed for CD writing to an ATA CD-Recorder)</comment>
+  &lt; &gt;     SCSI emulation support 
+  &lt;*&gt;     generic/default IDE chipset support 
+  [*]     PCI IDE chipset support
+<comment>(The following option is usually safe to enable. If you experience problems disable it)</comment>
+  [*]       Sharing PCI IDE interrupts support
+  &lt;*&gt;       Generic PCI IDE Chipset Support
+<comment>(Only disable DMA if you know what you are doing)</comment>
+  [*]       Generic PCI bus-master DMA support
+<comment>(If you disable the following you will have to use the hdparm package to manually turn on DMA)</comment>
+  [*]         Use PCI DMA by default when available
+</pre>
+
+<p>
+Enable any SCSI devices you may have. You also need to enable SCSI disk support
+if you have USB Mass Storage devices (cameras and hard drives). If you have a
+SATA drive make sure to enable it here. You may need to change options in your
+BIOS to fully support SATA drives under linux.
+</p>
+
+<pre caption="SCSI disk support">
+SCSI disk support ---&gt;
+  [*]   legacy /proc/scsi/ support 
+  &lt;*&gt;   SCSI device support
+  &lt;*&gt;   SCSI disk support
+  &lt;*&gt;   SCSI generic support
+<comment>(enable the specific driver for your SATA drive here)</comment>
+        SCSI low-level drivers  ---&gt;
+         [*] Serial ATA (SATA) support
+         &lt;*&gt;  Intel PIIX/ICH SATA support
+</pre>
+
+</body>
+</section>
+<section>
+<title>Networking</title>
+<body>
+
+<p>
+Select the drivers for your network card. There are many options in this section,
+we will only cover the basic ones. Use the Help system for explanations. It is
+safe to build these options as modules.
+</p>
+
+<pre caption="Networking support">
+Networking support  ---&gt;
+  [*] Networking support
+  [*] Network device support 
+<comment>(enable the option for your network card)</comment>
+
+<comment>(if you use PPPoE or a dial-up modem you will need to enable the following options)</comment>
+   &lt;*&gt;  PPP (point-to-point protocol) support
+   &lt;*&gt;    PPP support for async serial ports
+   &lt;*&gt;    PPP support for sync tty ports
+<comment>(the deflate options aren't necessary but will help)</comment>
+   &lt;*&gt;    PPP Deflate compression
+   &lt;*&gt;    PPP BSD-Compress compression
+<comment>(the following option is only necessary when using rp-pppoe in kernel mode)</comment>
+   &lt;*&gt;    PPP over Ethernet (EXPERIMENTAL)
+</pre>
+
+</body>
+</section>
+<section>
+<title>Sound</title>
+<body>
+
+<p>
+There are two sound systems available in Linux, OSS (Open Sound System) and 
+ALSA (Advanced Linux Sound Architecture). OSS will soon be dropped from the 2.6
+kernel. With ALSA you have the option of installing it internally with the
+kernel or by using the driver provided by <c>media-sound/alsa-driver</c>. The
+Gentoo documentation suggests using the built in kernel modules, refer to the
+<uri link="http://www.gentoo.org/doc/en/alsa-guide.xml">ALSA Guide</uri> for the
+reasons why, and how to properly configure alsa in your kernel. 
+</p>
+
+</body>
+</section>
+<section>
+<title>USB</title>
+<body>
+
+<p>
+There are three USB drivers. EHCI (USB 2.0), OHCI and UHCI (USB 1.1). Everyone
+with USB 2.0 uses the same EHCI driver. To determine which USB 1.1 driver you
+for the following line. If you don't turn appropriate options on here, none of
+your USB devices will work.
+</p>
+
+<pre caption="lspci -v">
+# <i>lspci -v</i>
+0000:00:1d.0 USB Controller: Intel Corporation 82801CA/CAM USB (Hub #1) (rev 02) (prog-if 00 [UHCI])
+</pre>
+
+<p>
+If you have a USB camera or hard drive you will need to enable USB Mass Storage
+support as well as the SCSI options selected above. Now enable the options
+relevant to your system.
+</p>
+
+<pre caption="USB support">
+USB support  ---&gt;
+  &lt;*&gt;Support for Host-side USB  
+  [*]   USB device filesystem
+<comment>(If you enable this option refer to the Power Management Guide for further information)</comment>
+  [ ]   USB suspend/resume (EXPERIMENTAL)
+  &lt; &gt;   EHCI HCD (USB 2.0) support
+  [ ]   Full speed ISO transactions (EXPERIMENTAL)
+  [ ]   Root Hub Transaction Translators (EXPERIMENTAL)
+  &lt; &gt; OHCI HCD support
+  &lt;*&gt; UHCI HCD (most Intel and VIA) support
+<comment>(if you have a USB printer enable this option)</comment>
+  &lt;*&gt; USB Printer support
+  &lt;*&gt; USB Mass Storage support
+<comment>(enable any specific drivers as well)</comment>
+
+  &lt;*&gt; USB Human Interface Device (full HID) support
+<comment>(enable this option if you have a USB keyboard and mouse)</comment>
+  [*]   HID input layer support
+</pre>
+
+</body>
+</section>
+<section>
+<title>File Systems</title>
+<body>
+
+<p>
+File systems are very important, without the correct file systems enabled your
+machine will not boot. In addition to this, do not build your root file system 
+as a module or your system will fail to boot. In this section also enable any
+File systems you intend to use, for non-crucial file systems module format is
+fine.
+</p>
+
+<p>
+In this section you will also need to enable Native Language Support for File
+Systems, these are called Codepages.
+</p>
+
+<pre caption="File systems">
+File systems  ---&gt;
+  &lt;*&gt;  Second extended fs support 
+  &lt;*&gt;  Ext3 journalling file system support
+  &lt;*&gt;  Reiserfs support
+  &lt;*&gt;  JFS filesystem support
+<comment>(Inotify is used by Nautilus and Konqueror among others)</comment>
+  [*] Inotify file change notification support
+<comment>(if you don't have a CD-ROM disable the following options)</comment>
+    CD-ROM/DVD Filesystems  ---&gt;
+      &lt;*&gt;  ISO 9660 CDROM file system support 
+      [*]   Microsoft Joliet CDROM extensions
+      [*]   Transparent decompression extension
+      &lt;*&gt;UDF file system support
+<comment>(FAT is required for most USB cameras and keychain drives)</comment>
+    DOS/FAT/NT Filesystems  ---&gt;
+         &lt;M&gt;MSDOS fs support
+         &lt;*&gt;VFAT (Windows-95) fs support
+<comment>(Change this to your language codepage. 437 = iso8859-1 which is the default for US/CA English.
+  Don't forget to enable this codepage below)</comment>
+         (437) Default codepage for FAT
+         (iso8859-1) Default iocharset for FAT
+    Pseudo filesystems  ---&gt;
+         [*] /proc file system support
+<comment>(Only enable this option if your system does not support udev)</comment>
+         [ ] /dev file system support (OBSOLETE)
+         [*] Virtual memory file system support (former shm fs)
+    Native Language Support  ---&gt;
+         (iso8859-1) Default NLS Option
+         &lt;*&gt;   Codepage 437 (United States, Canada)
+         &lt;*&gt;   ASCII (United States)
+         &lt;*&gt;   NLS UTF8 
+</pre>
+
+<note>
+UDEV requires /proc and virtual memory file systems. 
+</note>
+
+</body>
+</section>
+</chapter>
+
+<chapter>
+<title>Compile and Install the New Kernel</title>
+<section>
+<body>
+
+<p>
+Now that you have enabled all the options relevant to your system it is time to
+compile and install your new kernel.
+</p>
+
+<pre caption="compile">
+# <i>make</i>
+# <i>make modules_install</i>
+<comment>(make sure /boot is mounted)</comment>
+# <i>make install</i>
+
+<comment>(It is a good idea to copy your configuration file for future use)</comment>
+# <i>cp .config /boot/config-2.6.11-gentoo-r10</i>
+</pre>
+
+<p>
+The <path>System.map</path> file is used by programs in the procps package
+(top, ps, etc) by klogd and by depmod. This file is created by the kernel
+during the compilation process and is located at
+<path>/usr/src/linux/System.map</path>. This file is traditionally located in
+<path>/boot</path> and will be installed to that location. Gentoo requires a
+configured kernel source to be located at <path>/usr/src/linux</path> for
+certain packages to build. Applications that require System.map will look here
+as well as <path>/boot</path> so you do not have to always have /boot mounted.
+</p>
+
+<p>
+Make sure to update GRUB or LILO more information is
+available in the <uri
+link="/doc/en/handbook/handbook-x86.xml?part=1&amp;chap=10">Boot Loader</uri>
+section of the Gentoo Handbook.
+</p>
+
+<p>
+Congratulations, your Kernel is now configured, compiled, and installed. Make
+sure that <uri link="/doc/en/handbook/handbook-x86.xml?part=1&amp;chap=10">
+GRUB or LILO</uri> point to your new kernel and reboot your system.
+</p>
+
+</body>
+</section>
+</chapter>
+</guide>
