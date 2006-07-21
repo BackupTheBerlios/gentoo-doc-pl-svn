@@ -268,66 +268,70 @@ x86.
 <!-- Gentoo in the press -->
 <!-- Tips and Tricks -->
 <chapter>
-<title>Tips and Tricks</title>
+<title>Sztuczki i kruczki</title>
 <section>
-<title>Changing virtual terminals</title>
+<title>Zmiana wirtualnych terminali</title>
 <body>
 
 <p>
-Changing virtual terminals is already a fairly easy combination of
-keypresses in a standard Linux installation.If are you are in X,
-you would use Ctrl+Alt plus the function key of the terminal number to
-change to. Switching back is easy, just select Ctl+Alt+F7. Outside of
-X it's one less keypress - Alt+F2.
+Zmiana wirtualnych terminali w standardowej instalacji Linuksa polega na
+prostym wciśnięciu kombinacji klawiszy na klawiaturze. Jeżeli pracujemy w
+środowisku X, powinniśmy użyć kombinacji Ctrl+Alt oraz klawisza funkcyjnego z
+numerem przyporządkowanym do terminalu. Przełączanie się z powrotem jest bardzo
+proste, wystarczy wcisnąć Ctrl+Alt+F7. Poza środowiskiem X mamy do wciśnięcia
+jeden klawisz mniej - Alt+F2.
 </p>
 
 <p>
-Like most things in a Unix-like environment, there is more than one way to
-accomplish your goal.This one is no different. The <c>sys-apps/kbd</c>
-ebuild installs a <c>chvt</c> binary which lets you change terminals
-with one command. The only argument it takes is an integer value of
-which one you want to switch to.
+Jak w większości przypadków w systemach Uniksowych, tak i tutaj mamy więcej niż
+jedną możliwości osiągnięcia celu. Pakiet <c>sys-apps/kbd</c> instaluje plik
+binarny <c>chvt</c>, który pozwala na zmianę terminala przy pomocy jednego
+polecenia. Jedynym argumentem, który należy podać jest liczbowa wartość
+terminala, na jaki chcemy się przełączyć.
 </p>
 
-<pre caption="Changing terminals with chvt">
+<pre caption="Zmiana terminali z pomocą chvt">
 <i># chvt 1</i>
 </pre>
 
 <p>
-If you are in X, you can only execute the command as root, otherwise
-it will not work. It will work as any user outside of X, though.
-If you're interested in a workaround, you can use <c>app-admin/sudo</c>
-to allow your user(s) to run <c>chvt</c> from inside an X11 session.
+Jeżeli pracujemy w środowisku X, polecenie to możemy jedynie wykonać jako
+superużytkownik, w przeciwnym razie nie zadziała. Poza środowiskiem X,
+polecenie będzie działało bez względu na użytkownika. Aby zmusić program do
+działania w X-ach, możemy użyć <c>app-admin/sudo</c>, przy pomocy którego nasi
+użytkownicy będą mogli uruchamiać <c>chvt</c> wewnątrz środowiska X.
 </p>
 
-<pre caption="Adding sudo access to chvt">
+<pre caption="Dodawanie dostępu dla chvt do sudo">
 <i>$ echo "%users $HOSTNAME=/usr/bin/chvt" >> /etc/sudoers</i>
 </pre>
 
 <warn>
-Be sure you know what you are doing when modifying sudo permissions,
-since you are giving root access to run certain commands.
+Należy mieć pewność podczas modyfikowania ustawień sudo, ponieważ zezwalamy na
+uruchamianie pewnych poleceń jako użytkownik root.
 </warn>
 
 </body>
 </section>
 <section>
-<title>More ScummVM games</title>
+<title>Więcej gier ScummVM</title>
 <body>
 
 <p>
-In a <uri link="/news/en/gwn/20060625-newsletter.xml">previous GWN article</uri>
-we covered <uri link="http://scummvm.org/">ScummVM</uri> a little bit,
-and mentioned Flight of Amazon Queen as a freely downloable game.
-A user wrote in to tell us that we forgot to mention another one,
-<uri link="http://www.revolution.co.uk/_display.php?id=16">Beneath a
-Steel Sky</uri>, also available in portage.
+W poprzednim <uri link="/news/en/gwn/20060625-newsletter.xml">artykule w
+Tygodniku Gentoo</uri> przedstawiliśmy w skrócie program <uri
+link="http://scummvm.org/">ScummVM</uri> oraz wspomnieliśmy o darmowej grze
+dostępnej do ściągnięcia, a mianowicie Flight of Amazon Queen. Dostaliśmy
+wiadomość od użytkownika, że zapomnieliśmy wspomnieć o grze <uri
+link="http://www.revolution.co.uk/_display.php?id=16">Beneath a Steel
+Sky</uri>, która również znajduje się w Portage.
 </p>
 
 <p>
-So if you're looking for another classic point-and-click adventure game,
-emerge <c>games-rpg/bass</c>, make sure your user is in the games group,
-and run <c>/usr/games/bin/bass</c>.
+Jeżeli poszukujemy kolejnej klasycznej gry przygodowej, zainstalujmy
+<c>games-rpg/bass</c>. Należy upewnić się, że użytkownik znajduje się w grupie
+games. Po ty możemy bez przeszkód uruchomić grę poleceniem
+<c>/usr/games/bin/bass</c>.
 </p>
 
 </body>
