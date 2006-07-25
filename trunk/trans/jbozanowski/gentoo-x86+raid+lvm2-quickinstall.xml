@@ -6,13 +6,13 @@
 <guide link="/doc/en/gentoo-x86+raid+lvm2-quickinstall.xml" lang="pl">
 <title>Szybka instalacja Gentoo z obsługą programowego Raid i LVM2</title>
 
-<author title="Author">
+<author title="Autor">
   <mail link="neysx@gentoo.org">Xavier Neys</mail>
 </author>
-<author title="Author">
+<author title="Autor">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
 </author>
-<author title="Author">Steven Wagner</author>
+<author title="Autor">Steven Wagner</author>
 <author title="Tłumaczenie">
   <mail link="rane@gentoo.org">Łukasz Damentko</mail>
 </author>
@@ -22,9 +22,8 @@
 
 <abstract>
 Skrócony opis instalacji Gentoo z obsługą programowych macierzy dyskowych
-raid oraz LVM2. Pozwala na szybką instalację systemu ze
-stage3 i jest przeznaczony dla użytkowników z dużym doświadczeniem w
-instalowaniu Gentoo.
+RAID oraz LVM2. Pozwala na szybką instalację systemu ze stage3 i jest
+przeznaczony dla użytkowników z dużym doświadczeniem w instalowaniu Gentoo.
 </abstract>
 
 <!-- The content of this document is licensed under the CC-BY-SA license -->
@@ -48,16 +47,17 @@ drzewa Portage konieczne będzie działające połączenie z Internetem.
 </p>
 
 <p>
-Czas podany w opisie został zmierzony na komputerze PC z procesorem AMD 2000
-1.66 Ghz, 512 Mb of RAM i dwoma dyskami SATA podłączonymi do sprzętowego
-kontrolera, skonfigurowanego jako JBOD (system widzi dwa osobne dyski
-twarde). Jeśli płyta główna naszego komputera posiada „sprzętowy” kontroler
-RAID, to najprawdopodobniej jednak wcale <b>nie</b> jest on sprzętowy.
+Czas podany w opisie został zmierzony na komputerze PC z procesorem AMD
+2000+ 1.66 GHz, 512 MB pamięci RAM i dwoma dyskami SATA podłączonymi do
+sprzętowego kontrolera, skonfigurowanego jako JBOD (system widzi dwa osobne
+dyski twarde). Jeśli płyta główna naszego komputera posiada „sprzętowy”
+kontroler RAID, to najprawdopodobniej jednak wcale <b>nie</b> jest on
+sprzętowy.
 </p>
 
 <pre caption="Sprawdzanie komputera">
-<comment>(Poniższe polecenia umożliwią obliczenie czasu jaki zajmie instalacja
-Gentoo na komputerze o innych parametrach technicznych)</comment>
+<comment>(Poniższe polecenia umożliwią obliczenie czasu jaki zajmie
+instalacja Gentoo na komputerze o innych parametrach technicznych)</comment>
 
 # <i>grep bogo /proc/cpuinfo</i>
 bogomips       : 3337.81
@@ -88,11 +88,12 @@ MemTotal:       509248 kB
 <p>
 Pobieramy płytę z jednego z <uri link="/main/en/mirrors.xml">serwerów
 lustrzanych</uri>. Minimalne pliki ISO są w katalogu
-<path>releases/x86/&lt;release&gt;/installcd</path>, pełne płyty instalacyjne w
-<path>releases/x86/&lt;release&gt;/livecd</path>. Płyta minimalna przydaje się
-tylko wtedy, gdy komputer jest podłączony do Internetu. Płyta pełna służy do
-instalowania Gentoo bez dostępu do sieci, w takim przypadku należy skorzystać z
-<uri link="/doc/pl/handbook/2006.0/handbook-x86.xml">Podręcznika Gentoo
+<path>releases/x86/&lt;release&gt;/installcd</path>, pełne płyty
+instalacyjne w <path>releases/x86/&lt;release&gt;/livecd</path>. Płyta
+minimalna przydaje się tylko wtedy, gdy komputer jest podłączony do
+Internetu. Płyta pełna służy do instalowania Gentoo bez dostępu do sieci, w
+takim przypadku należy skorzystać z <uri
+link="/doc/pl/handbook/2006.0/handbook-x86.xml">Podręcznika Gentoo
 2006.0</uri>. Jeśli chodzi o ten opis, należy pobrać płytę minimalną.
 </p>
 
@@ -161,7 +162,7 @@ Jeśli połączenie sieciowe jeszcze nie działa, należy skorzystać z programu
 przystąpieniem do konfiguracji konieczne będzie załadowanie dodatkowych
 modułów za pomocą polecenia <c>modprobe</c>. Posiadacze ADSL powinni
 skorzystać z <c>adsl-setup</c> i <c>adsl-start</c>. Jeśli jednak mamy router
-ADSL, nie ma potrzeby uruchamiać tych skryptów, gdyż urządzenie to samo
+ADSL, nie ma potrzeby, aby uruchamiać te skrypty, gdyż urządzenie to samo
 nawiąże połączenie. Aby zadziałało PPTP, należy edytować
 <path>/etc/ppp/chap-secrets</path> i <path>/etc/ppp/options.pptp</path>, a
 następnie użyć <c>pptp &lt;numer&nbsp;ip&nbsp;serwera&gt;</c>.
@@ -276,7 +277,7 @@ Dzielimy dysk na partycje za pomocą programu <c>fdisk</c> lub <c>cfdisk</c>.
 Prawdopodobne nazwy urządzeń twardego dysku to <path>/dev/sda</path> i
 <path>/dev/sdb</path> dla dysków SATA i SCSI lub <path>/dev/hda</path> i
 <path>/dev/hdb</path>dla dysków IDE. W niniejszym dokumencie zostanie użyty
-następujący układ: FIXME (mirroring, striped)
+następujący układ:
 </p>
 
 <table>
@@ -394,12 +395,12 @@ jest jedynie <b>przykładowy</b>:
 <tr>
   <ti>/usr/portage</ti>
   <ti>2 GB</ti>
-  <ti>ext2, FIXME small block size, many inodes</ti>
+  <ti>ext2, niewielki rozmiar bloków, wiele i-węzłów</ti>
 </tr>
 <tr>
   <ti>/usr/portage/distfiles</ti>
   <ti>4 GB</ti>
-  <ti>ext2, large bock size, less inodes</ti>
+  <ti>ext2, duży rozmiar bloków, mniej i-węzłów</ti>
 </tr>
 <tr>
   <ti>/home</ti>
@@ -645,17 +646,17 @@ Wed Mar  8 00:46:05 CET 2006
 <body>
 
 <p>
-Set your host name in <path>/etc/conf.d/hostname</path> and
-<path>/etc/hosts</path>. In the following example, we use
-<c>mybox</c> as host name and <c>at.myplace</c> as domain name.  You can either
-edit the config files with <c>nano</c> or use the following commands:
+Ustawiamy nazwę hosta w plikach <path>/etc/conf.d/hostname</path> i
+<path>/etc/hosts</path>. W poniższym przykładzie skorzystamy z <c>mybox</c>
+jako nazwy hosta oraz z <c>at.myplace</c> jako domeny. Można edytować pliki
+w edytorze <c>nano</c> lub skorzystać z poniższych poleceń:
 </p>
 
-<pre caption="Set host and domain name">
+<pre caption="Ustawianie nazwy hosta i domeny">
 livecd / # <i>cd /etc</i>
 livecd etc # <i>echo "127.0.0.1 mybox.at.myplace mybox localhost" > hosts</i>
 livecd etc # <i>sed -i -e 's/HOSTNAME.*/HOSTNAME="mybox"/' conf.d/hostname</i>
-<comment>(Use defined host name and check)</comment>
+<comment>(Korzystamy ze zdefiniowanej nazwy hosta i sprawdzamy)</comment>
 livecd etc # <i>hostname mybox</i>
 livecd etc # <i>hostname -f</i>
 mybox.at.myplace
@@ -664,16 +665,16 @@ mybox.at.myplace
 </body>
 </section>
 <section>
-<title>Kernel Configuration</title>
+<title>Konfiguracja jądra</title>
 <body>
 
 <p>
-Install a kernel source (usually <c>gentoo-sources</c> or
-<c>vanilla-sources</c>), configure it, compile it and copy the
-<path>arch/i386/boot/bzImage</path> file to <path>/boot</path>.
+Instalujemy źródła jądra (zwykle <c>gentoo-sources</c> lub
+<c>vanilla-sources</c>), kompilujemy i kopiujemy plik
+<path>arch/i386/boot/bzImage</path> do katalogu <path>/boot</path>.
 </p>
 
-<pre caption="Install a kernel source, compile it and install the kernel">
+<pre caption="Instalacja jądra">
 livecd etc # <i>time emerge gentoo-sources</i>
 
 real  3m3.110s
@@ -682,8 +683,9 @@ sys   0m34.990s
 livecd etc # <i>cd /usr/src/linux</i>
 livecd linux # <i>make menuconfig</i>
 
-<comment>(Configure your kernel as usual and make sure the raid and lvm modules you need are
-compiled in, i.e. <b>not</b> as modules. The same applies to the disk drivers and filesystems.)</comment>
+<comment>(Teraz należy skonfigurować jądro, upewniając się przy tym, że
+obsługa RAID i LVM jest wkompilowana na stałe (<b>nie</b> jako moduły). To
+samo dotyczy obsługi dysków i systemów plików)</comment>
 Multi-device support (RAID and LVM)  --->
 [*] Multiple devices driver support (RAID and LVM)
   &lt;*&gt;   RAID support
@@ -705,7 +707,7 @@ Multi-device support (RAID and LVM)  --->
 
 livecd linux # <i>time make -j2</i>
 
-<comment>(Elapsed time depends highly on the options you selected)</comment>
+<comment>(Czas trwania zależy od wybranych opcji)</comment>
 real  5m5.869s
 user  4m32.320s
 sys   0m32.930s
@@ -717,16 +719,17 @@ livecd linux # <i>cp arch/i386/boot/bzImage /boot/kernel</i>
 </body>
 </section>
 <section>
-<title>Configure the system</title>
+<title>Konfiguracja systemu</title>
 <body>
 
 <p>
-Edit your <path>/etc/fstab</path> and replace <c>BOOT</c>, <c>ROOT</c> and
-<c>SWAP</c> with the actual partition names and add your logical volumes. Don't
-forget to check that the file systems match your installation.
+Edytujemy plik <path>/etc/fstab</path> i zamieniamy wpisy <c>BOOT</c>,
+<c>ROOT</c> i <c>SWAP</c> nazwami konkretnych partycji, nie zapominając o
+dodaniu woluminów logicznych. Należy dwa razy sprawdzić czy wpisy
+odpowiadają założonym przed chwilą partycjom i systemom plików.
 </p>
 
-<pre caption="Example fstab">
+<pre caption="Przykładowy plik fstab">
 livecd linux # <i>cd /etc</i>
 livecd etc # <i>nano -w fstab</i>
 /dev/<i>md1</i>          /boot                   ext2  noauto,noatime  1 2
@@ -744,47 +747,49 @@ livecd etc # <i>nano -w fstab</i>
 </pre>
 
 <p>
-Configure your network in <path>/etc/conf.d/net</path>. Add the <c>net.eth0</c>
-init script to the default run level. If you have multiple NICs, symlink them
-to the <c>net.eth0</c> init script and add them to the default run level as
-well. Either edit <path>/etc/conf.d/net</path> with <c>nano</c> or use the
-following commands:
+Następnie konfigurujemy połączenie sieciowe w pliku
+<path>/etc/conf.d/net</path>. Dodajemy skrypt startowy <c>net.eth0</c> na
+domyślny (default) poziom uruchomieniowy. Jeśli mamy kilka kart sieciowych,
+podlinkowujemy je do skryptu <c>net.eth0</c> i dodajemy na domyślny poziom
+uruchomieniowy. Następnie edytujemy plik <path>/etc/conf.d/net</path> za pomocą
+<c>nano</c> lub wpisujemy następujące polecenia:
 </p>
 
-<pre caption="Configure networking">
+<pre caption="Konfiguracja sieci">
 livecd etc # <i>cd conf.d</i>
 livecd conf.d # <i>echo 'config_eth0=( "192.168.1.10/24" )' >> net</i>
 livecd conf.d # <i>echo 'routes_eth0=( "default via 192.168.1.1" )' >> net</i>
 livecd conf.d # <i>rc-update add net.eth0 default</i>
-<comment>(If you compiled your network card driver as a module,
-add it to /etc/modules.autoload.d/kernel-2.6)</comment>
+<comment>(Jeśli sterownik do karty sieciowej został zbudowany jako moduł, należy dopisać go do pliku /etc/modules.autoload.d/kernel-2.6)</comment>
 livecd conf.d # <i>echo r8169 >> /etc/modules.autoload.d/kernel-2.6</i>
-<comment>(If you want to reconnect via ssh after you have rebooted your new box)</comment>
+<comment>(Aby umożliwić łączenie się przez SSH do komputera po jego ponownym uruchomieniu)</comment>
 livecd conf.d # <i>rc-update add sshd default</i>
 </pre>
 
 <note>
-Emerge <c>pcmcia-cs</c> and add it to the default run level if you need it.
+Jeśli to konieczne, instalujemy <c>pcmcia-cs</c> i dodajemy je na poziom
+uruchomieniowy.
 </note>
 
 <p>
-Set the root password using <c>passwd</c>.
+Ustawiamy hasło roota za pomocą polecenia <c>passwd</c>.
 </p>
 
-<pre caption="Set the root password">
+<pre caption="Ustawianie hasła roota">
 livecd conf.d # <i>passwd</i>
-New UNIX password: <comment>type_the_password</comment>
-Retype new UNIX password: <comment>type_the_password_again</comment>
+New UNIX password: <comment>wpisz_hasło</comment>
+Retype new UNIX password: <comment>wpisz_hasło</comment>
 passwd: password updated successfully
 </pre>
 
 <p>
-Check the system configuration in <path>/etc/rc.conf</path>,
-<path>/etc/conf.d/rc</path>, <path>/etc/conf.d/keymaps</path>,
-<path>/etc/conf.d/clock</path> and edit any of those files if required.
+Sprawdzamy konfigurację systemu w <path>/etc/rc.conf</path>,
+<path>/etc/conf.d/rc</path>, <path>/etc/conf.d/keymaps</path> i
+<path>/etc/conf.d/clock</path> oraz zmieniamy wpisy tak, aby odpowiadały
+żądanym ustawieniom.
 </p>
 
-<pre caption="Optional: edit some config files">
+<pre caption="Opcjonalnie: konfiguracja systemu">
 livecd conf.d # <i>nano -w /etc/rc.conf</i>
 livecd conf.d # <i>nano -w /etc/conf.d/rc</i>
 livecd conf.d # <i>nano -w /etc/conf.d/keymaps</i>
@@ -794,30 +799,30 @@ livecd conf.d # <i>nano -w /etc/conf.d/clock</i>
 </body>
 </section>
 <section>
-<title>Installing System Tools</title>
+<title>Instalowanie narzędzi systemowych</title>
 <body>
 
 <p>
-Install RAID and LVM2 utilities.
+Instalujemy narzędzia pomocnicze RAID i LVM2.
 </p>
 
-<pre caption="Install RAID &amp; LVM2 tools">
+<pre caption="Instalowanie narzędzi RAID &amp; LVM2">
 livecd conf.d # <i>emerge mdadm lvm2</i>
 </pre>
 
 <p>
-Install a system logger like <c>syslog-ng</c> and a cron daemon like
-<c>vixie-cron</c>, and add them to the default run level.
+Zaczynamy od instalacji programu logującego, np. <c>syslog-ng</c> oraz demona
+cron, np. <c>vixie-cron</c>. Oba dodajemy do poziomu uruchomieniowego.
 </p>
 
 <note>
-Cron daemons depend on an MTA. <c>mail-mta/ssmtp</c> will be pulled in as a
-dependency. If you want to use a more advanced MTA, you might want to install
-it now. If you are in a hurry, let ssmtp be installed and remove it later when
-you install the MTA of your choice.
+Demony cron są zależne od MTA. W związku z tym jako zależność zostanie
+zainstalowane <c>mail-mta/ssmtp</c>. Można użyć bardziej zaawansowanego MTA
+instalując go przed instalacją demona cron. Jeśli nie jest potrzebny, zostajemy
+przy domyślnym wyborze.
 </note>
 
-<pre caption="Install a syslogger and a cron daemon">
+<pre caption="Instalacja loggera i demona cron">
 livecd conf.d # <i>time emerge syslog-ng vixie-cron</i>
 
 real  1m54.099s
@@ -828,30 +833,30 @@ livecd conf.d # <i>rc-update add vixie-cron default</i>
 </pre>
 
 <p>
-Install the necessary file system tools (<c>xfsprogs</c>, <c>reiserfsprogs</c>
-or <c>jfsutils</c>) and networking tools (<c>dhcpcd</c> or <c>rp-pppoe</c>) if
-you need any.
+Następnie instalujemy niezbędne narzędzia systemowe (<c>xfsprogs</c>,
+<c>reiserfsprogs</c> lub <c>jfsutils</c>) oraz programy do obsługi sieci
+(<c>dhcpcd</c> lub <c>rp-pppoe</c>).
 </p>
 
-<pre caption="Install extra tools if required">
-livecd conf.d # <i>emerge xfsprogs</i>           <comment>(If you use the XFS file system)</comment>
-livecd conf.d # <i>emerge jfsutils</i>           <comment>(If you use the JFS file system)</comment>
-livecd conf.d # <i>emerge reiserfsprogs</i>      <comment>(If you use the Reiser file system)</comment>
-livecd conf.d # <i>emerge dhcpcd</i>             <comment>(If you need a DHCP client)</comment>
-livecd conf.d # <i>USE="-X" emerge rp-pppoe</i>  <comment>(If you need PPPoE ADSL connectivity)</comment>
+<pre caption="Instalowanie dodatkowych narzędzi systemowych">
+livecd conf.d # <i>emerge xfsprogs</i>           <comment>(Jeśli używamy systemu plików XFS)</comment>
+livecd conf.d # <i>emerge jfsutils</i>           <comment>(Jeśli używamy systemu plików JFS)</comment>
+livecd conf.d # <i>emerge reiserfsprogs</i>      <comment>(Jeśli używamy systemu plików Reiser)</comment>
+livecd conf.d # <i>emerge dhcpcd</i>             <comment>(Jeśli potrzebny jest klient DHCP)</comment>
+livecd conf.d # <i>USE="-X" emerge rp-pppoe</i>  <comment>(Dla połączeń PPPoE ADSL)</comment>
 </pre>
 
 </body>
 </section>
 <section>
-<title>Configuring the Bootloader</title>
+<title>Konfiguracja programu ładującego</title>
 <body>
 
 <p>
-Emerge <c>grub</c> and configure it.
+Instalujemy program <c>grub</c> i konfigurujemy go.
 </p>
 
-<pre caption="Emerge grub and edit its configuration file">
+<pre caption="Instalacja i konfiguracja GRUB">
 livecd conf.d # <i>time emerge grub</i>
 
 real  1m4.634s
@@ -860,7 +865,7 @@ sys   0m15.280s
 livecd conf.d # <i>nano -w /boot/grub/grub.conf</i>
 </pre>
 
-<pre caption="Example grub.conf">
+<pre caption="Przykładowy plik grub.conf">
 default 0
 timeout 10
 
@@ -869,7 +874,7 @@ root (hd0,0)
 kernel /boot/kernel root=/dev/md3
 </pre>
 
-<pre caption="Install grub on both disks">
+<pre caption="Instalacja GRUB-a na obu dyskach">
 livecd conf.d # <i>grub</i>
 Probing devices to guess BIOS drives. This may take a long time.
 
@@ -904,20 +909,20 @@ grub> <i>quit</i>
 Exit the chrooted environment, unmount all file systems and reboot:
 </p>
 
-<pre caption="Reboot">
+<pre caption="Ponowne uruchomienie komputera">
 livecd conf.d # <i>exit</i>
 livecd / # <i>umount /mnt/gentoo/usr/portage/distfiles /mnt/gentoo/usr/portage /mnt/gentoo/usr</i>
 livecd / # <i>umount /mnt/gentoo/var/tmp /mnt/gentoo/tmp /mnt/gentoo/var /mnt/gentoo/opt</i>
 livecd / # <i>umount /mnt/gentoo/proc /mnt/gentoo/home /mnt/gentoo/boot /mnt/gentoo</i>
 livecd / # <i>reboot</i>
-<comment>(Don't forget to remove the CD)</comment>
+<comment>(Wyjmujemy płytę instalacyjną z napędu)</comment>
 </pre>
 
 <p>
-Please follow the <uri
-link="gentoo-x86-quickinstall.xml#after-reboot">Finalizing the
-Installation</uri> part of the regular x86 quick setup guide to complete your
-installation.
+Dalszą część instrukcji jest identyczna jak w standardowym skróconym opisie
+instalacji x86. Należy skorzystać z niego, zaczynając od rozdziału <uri
+link="/doc/pl/gentoo-x86-quickinstall.xml#after-reboot">Finalizowanie
+instalacji</uri>, aby dokończyć proces instalowania systemu.
 </p>
 
 </body>
