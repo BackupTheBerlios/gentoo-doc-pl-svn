@@ -389,21 +389,23 @@ stworzeniem oraz ustawieniami kont użytkowników.
 </body>
 </section>
 <section>
-<title>Setting up database user accounts</title>
+<title>Tworzenie kont użytkowników</title>
 <body>
 
 <p>
-As mentioned earlier, having to login as the postgres user is somewhat
-undesirable in a mult-user environment. In most cases there will be various
-users and services accessing the server, and each have different permission
-requirements. So, to handle this, the <c>createuser</c> command can be used.
-This command is an alternative to running a few SQL queries, and is a lot more
-flexible from an admin standpoint. We'll go ahead and create two users, a
-'superuser' that can add other users and administer the db, and a standard user:
+Jak wcześniej wspomniano, konieczność używania użytkownika postgres by połączyć
+się z bazą danych jest trochę uciążliwa, szczególnie w środowisku
+wieloużytkowym. W większości przypadków skorzystać z serwera będzie chciało co
+najmniej kilku użytkowników, dodatkowo posiadających różne uprawnienia. By
+zaradzić temu problemowi można skorzystać z polecenia <c>createuser</c> lub
+wydać serię zapytań SQL. Warto jednak skorzystać z tej pierwszej możliwości jako
+że jest o wiele bardziej elastyczna z punktu widzenia administratora. Zaczniemy
+od stworzenia dwóch użytkowników, administratora mogącego dodawać kolejnych
+użytkowników i zarządzać bazą danych oraz zwykłego użytkownika:
 </p>
 
-<pre caption="Setting up the superuser">
-<comment>(replace chris with the username you'd like to use)</comment>
+<pre caption="Tworzenie konta administratora">
+<comment>(nazwę chris można zamienić dowolnym innym identyfikatorem)</comment>
 $ <i>createuser -a -d -P -E -U postgres -W chris</i>
 Enter password for new user:
 Enter it again:
@@ -412,16 +414,19 @@ CREATE USER
 </pre>
 
 <p>
-There, we've created the superuser. The command line option <c>-a</c> specifies
-that this user can add other users. <c>-d</c> means that this user can create
-databases. <c>-P</c> let's you enter a password for the user and <c>-E</c> will
-encrypt it for security purposes. Now then, we'll test this new user's
-permissions out by setting up our standard user:
+Po wykonaniu powyższych poleceń stworzony został użytkownik posiadający
+uprawnienia administratora. Flaga <c>-a</c> oznacza, że może on dodawać
+kolejnych użytkowników, <c>-d</c> nadaje mu natomiast uprawnienia do tworzenia
+nowych baz danych. Korzystając z opcji <c>-P</c> można interaktywnie wprowadzić
+hasło dla tworzonego konta, natomiast dzięki fladze <c>-E</c> hasło zostanie
+zaszyfrowane, aby zwiększyć bezpieczeństwo. Po utworzeniu konta administratora
+nadszedł czas by je przetestować i stworzyć nowe konto dla zwykłego
+użytkownika:
 </p>
 
-<pre caption="Setting up the standard user">
+<pre caption="Tworzenie zwykłego konta o nazwie testowy">
 <comment>(replace chris with the username you've just created)</comment>
-$ <i>createuser -A -D -P -E -U chris -W testuser</i>
+$ <i>createuser -A -D -P -E -U chris -W testowy</i>
 Enter password for new user:
 Enter it again:
 Password:
@@ -429,50 +434,53 @@ CREATE USER
 </pre>
 
 <p>
-Success! Our new user was created using the previously created superuser. The
-<c>-A</c> and <c>-D</c> options do the opposite of <c>-a</c> and <c>-d</c>, and
-instead deny the user the ability to create other users and databases. Now that
-there are users to work with, and a new database created, the next chapter will
-look at using the new database.
+Sukces! Po wykonaniu powyższego polecenia został stworzony zwykły użytkownik, co
+ważne przetestowaliśmy także uprawnienia superużytkownika. Flagi <c>-A</c> i
+<c>-D</c> mają odwrotne znaczenie niż odpowiednio <c>-a</c> oraz <c>-d</c>, w
+zamian uniemożliwiając tworzenie kolejnych użytkowników i baz danych. Skoro
+dostęp od serwera bazodanowego ma już większe grono, czas na stworzenie bazy
+danych. Właśnie temu zagadnieniu będzie poświęcony kolejny rozdział.
 </p>
 
 </body>
 </section>
 </chapter>
 <chapter>
-<title>Using PostgreSQL</title>
+<title>Używanie PostgreSQL</title>
 <section>
-<title>Setting up permissions</title>
+<title>Konfiguracja praw dostępu</title>
 <body>
 
 <p>
-With the new database created, there is a user that can create databases and
-add other users, and the main postgres user that can do anything. The user
-created earlier can currently login to the server, and that's about it. In
-general, users need to be able to insert data and retrieve data, and sometimes
-any other number of tasks. So, for this new user to be able to do anything,
-they must be setup with the proper permissions. This can easily be done by
-passing the <c>-O</c> parameter to <c>createdb</c>. We'll start by making a
-new database, <b>MyDB</b> with our superuser that will be owned by the previous
-testuser:
+Po wykonaniu wszystkich czynności opisanych do tej pory, system zawiera
+użytkownika z uprawnieniami do tworzenia nowych użytkowników i baz danych,
+domyślnego superużytkownika, który nie posiada żadnych ograniczeń oraz jednego
+zwykłego użytkownika mogącego tylko połączyć się z serwerem bazodanowym.
+Normalnie użytkownicy powinni mieć nie tylko dostęp do samego serwera, ale także
+do poszczególnych baz danych, gdzie mogę modyfikować ich zawartość dodając i
+usuwając dane. By użytkownik testowy miał takie możliwości, należy wpierw odpowiednio
+skonfigurować odpowiednie prawa. Jest to bardzo proste dzięki poleceniu
+<c>createdb</c> oraz fladze <c>-O</c>. Rozpoczniemy od stworzenia nowej bazy
+danych <b>MojaBD</b>, której właścicielem będzie użytkownik testowy:
 </p>
 
-<pre caption="Creating the MyDB database">
-$ <i>createdb -O testuser -U chris -W MyDB</i>
+<pre caption="Tworzenie bazy danych MojaBD">
+$ <i>createdb -O testowy -U chris -W MojaBD</i>
 Password:
 CREATE DATABASE
 </pre>
 
 <p>
-Alright, now we have a new MyDB database, and a testuser that can access it.
-To test this out, we'll login as the testuser to the new MyDB database. We'll
-do this with the <c>psql</c> program. This program is what's used to connect to
-the PostgreSQL database from command line. So connect to the new database like
-so:
+Skoro stworzyliśmy już nową bazę danych o nazwie MojaBD, umożliwiając
+użytkownikowi testowy swobodny dostęp do niej to nadeszła najwyższa pora, aby
+sprawdzić czy wszystko zostało poprawnie wykonanie. By zalogować się do bazy
+danych wystarczy użyć programu <c>psql</c>, który umożliwia dostęp z poziomu
+linii poleceń. Można to zrobić postępując zgodnie z instrukcjami znajdującymi
+się na poniższym listingu:
 </p>
 
-<pre caption="Logging into the MyDB database as the testuser">
-$ <i>psql -U testuser -W MyDB</i>
+<pre caption="Logowanie do bazy danych MojaBD jako użytkownik testowy">
+$ <i>psql -U testowy -W MojaBD</i>
 Password:
 Welcome to psql 8.0.4, the PostgreSQL interactive terminal.
 
@@ -482,124 +490,127 @@ Type:  \copyright for distribution terms
        \g or terminate with semicolon to execute query
        \q to quit
 
-MyDB=&gt;
+MojaBD=&gt;
 </pre>
 
 <p>
-So, the testuser is now logged into the database, and can begin to initiate
-some commands. To get a feel for using PostgreSQL, the next section will take a
-look at some of the basic commands in navigating the <c>psql</c> client.
+Teraz, testowy jest zalogowany do bazy danych i może rozpocząć wydawanie
+kolejnych poleceń. By zapoznać się z podstawowymi funkcjonalnościami
+udostępnianymi przez PostgreSQL w kolejnym rozdziale przyjrzymy się kilku
+podstawowym poleceniom klienta <c>psql</c> oraz SQL.
 </p>
 
 </body>
 </section>
 <section>
-<title>Basic PostgreSQL commands and creating a table</title>
+<title>Podstawowe polecenia PostgreSQL i zapytania SQL</title>
 <body>
 
 <p>
-For those who are used to MySQL, this is somewhat of a definite read. This is
-where PostgreSQL may get somewhat unique with regards to running commands. To
-start, here is a list of some commands that will be discussed:
+Dla tych wszystkich, którzy poznali już MySQL jest to z pewnością bardzo ważna
+część poradnika. Znajdują się tutaj nie tylko wyjaśnienia poszczególnych
+poleceń, ale także i ich odpowiedniki dla MySQL oraz różnice i unikalne
+właściwości charakterystyczne tylko dla PostgreSQL. Zacznijmy od podstawowych
+poleceń oferowanych przez klienta <c>psql</c>:
 </p>
 
 <table>
 <tr>
-  <th>Command</th>
-  <th>Usage</th>
-  <th>MySQL Equivalent</th>
+  <th>Polecenie</th>
+  <th>Zastosowanie</th>
+  <th>Odpowiednik MySQL</th>
 </tr>
 <tr>
   <ti>\c[onnect] [DBNAME|- [USER]]</ti>
-  <ti>Connects to another database</ti>
+  <ti>Połączenie się z inną bazą danych</ti>
   <ti>USE DATABASE</ti>
 </tr>
 <tr>
   <ti>\q</ti>
-  <ti>Quit the <c>psql</c> client</ti>
+  <ti>Zamknięcie klienta <c>psql</c></ti>
   <ti>quit</ti>
 </tr>
 <tr>
   <ti>\i FILE</ti>
-  <ti>Run commands from <c>FILE</c></ti>
+  <ti>Uruchom polecenia znajdujące sie w pliku <c>FILE</c></ti>
   <ti>source FILE</ti>
 </tr>
 <tr>
   <ti>\o [FILE]</ti>
-  <ti>Send query results to <c>FILE</c></ti>
-  <ti>INTO OUTFILE, but outputs everything (not just SELECTS)</ti>
+  <ti>Zapisz wynik zapytania w pliku <c>FILE</c></ti>
+  <ti>INTO OUTFILE, (zapisuje wszystko, nie tylko wynik zapytania SELECT)</ti>
 </tr>
 <tr>
   <ti>\d [NAME]</ti>
-  <ti>Describe a database or table (as well as other items)</ti>
+  <ti>Tworzy opis danej bezy danych, tabeli (także innych elementów)</ti>
   <ti>DESC(RIBE)</ti>
 </tr>
 <tr>
   <ti>\db [PATTERN]</ti>
-  <ti>
-    List available tables that match <c>PATTERN</c> (all if no pattern
-    is given)
-  </ti>
+  <ti>Lista dostępnych baz danych pasujących do wzorca <c>PATTERN</c> (lub
+  wszystkie gdy go nie podano)</ti>
   <ti>SHOW TABLES</ti>
 </tr>
 </table>
 
 <p>
-With the exception of <c>\c[onnect]</c>, all the commands shown will be used
-later on in the section. So right now the database is empty. That said, we need
-to insert some data. The first step to inserting data, however, is to put it in
-a table. Right now there are no tables in the database, so we need to create
-one. This is done with the <c>CREATE TABLE</c> command.  We'll make a table of
-items. They will contain a Product ID, Description, and price:
+Z wyjątkiem polecenia <c>\c[onnect]</c>, wszystkie inne zostaną lepiej opisane w
+kolejnych sekcjach tego rozdziału poradnika. Jak na razie stworzona baza danych
+MojaBD jest pusta, jednak by móc zacząć dodawać do niej dane należy wpierw
+stworzyć tabelę. W tym celu można użyć jednego z zapytań języka SQL - <c>CREATE
+TABLE</c>. Tabela będzie zawierać informacje na temat poszczególnych produktów
+i zawierać pola produkt_id, opis oraz cena:
 </p>
 
-<pre caption="Creating the products table">
-MyDB=> CREATE TABLE products (
-MyDB(&gt;   product_id SERIAL,
-MyDB(&gt;   description TEXT,
-MyDB(&gt;   price DECIMAL
-MyDB(&gt; );
-NOTICE:  CREATE TABLE will create implicit sequence "products_product_id_seq"
-for serial column "products.product_id"
+<pre caption="Tworzenie tabeli produktów">
+MojaBD=> CREATE TABLE produkty (
+MojaBD(&gt;   produkt_id SERIAL,
+MojaBD(&gt;   opis TEXT,
+MojaBD(&gt;   cena DECIMAL
+MojaBD(&gt; );
+NOTICE:  CREATE TABLE will create implicit sequence "produkty_produkt_id_seq"
+for serial column "produkty.produkt_id"
 CREATE TABLE
 </pre>
 
 <p>
-You can ignore the NOTICE, it's perfectly harmless. Looking at the last line of
-the function, <c>CREATE TABLE</c> seems to indicate that the command has
-succeeded. However, let's go ahead and verify that the table was indeed
-successfully created with the <c>\d</c> command:
+Uwaga NOTICE jest nieszkodliwa, więc nie trzeba się szczególnie nią przejmować.
+Patrząc na wynik polecenia, szczególnie wpis <c>CREATE TABLE</c> sugeruje, że
+operacja zakończyła się sukcesem. Dla pewności jednak najlepiej sprawdzić, czy
+tabela została stworzona poprawnie używając polecenia <c>\d</c>:
 </p>
 
-<pre caption="Looking at the newly created table">
-MyDB=&gt; <i>\d products</i>
-                                 Table "public.products"
+<pre caption="Rzut okiem na nową tabele, aby upewnić się że została ona
+stworzona poprawnie">
+MojaBD=&gt; <i>\d produkty</i>
+                                 Table "public.produkty"
    Column    |  Type   |                            Modifiers
 -------------+---------+------------------------------------------------------------------
- product_id  | integer | not null default nextval('public.products_product_id_seq'::text)
- description | text    |
- price       | numeric |
+ produkt_id  | integer | not null default nextval('public.produkty_produkt_id_seq'::text)
+ opis        | text    |
+ cena        | numeric |
 </pre>
 
 <p>
-Indeed the table was successfully created. Now that the table is created, it
-needs to be populated with data. The next section will look at populating the
-database with data.
+Po oglądnięciu powyższego listingu można łatwo stwierdzić, czy wszystko zostało
+poprawnie wykonanie. Teraz skoro baza danych zawiera tabelę, należy zapełnić ją
+danymi. Kolejnej sekcja poradnika będzie właśnie tego dotyczyła.
 </p>
 
 </body>
 </section>
 <section>
-<title>Inserting data into the database</title>
+<title>Wprowadzanie danych do bazy danych</title>
 <body>
 
 <p>
-This section will look at the two ways of populating the newly created table
-with data. First let's look at the most basic command, <c>INSERT</c>:
+W tej części poradnika przyjrzymy się dwóm sposobom wprowadzania danych do nowo
+stworzonej tabeli. Najbardziej powszechną metodą jest użycie jednego z
+podstawowych poleceń SQL, <c>INSERT</c>:
 </p>
 
-<pre caption="INSERT syntax">
-INSERT INTO [tablename] (column1,column2,column3) VALUES(value1,value2,value3)
+<pre caption="Składnia INSERT">
+INSERT INTO [nazwatabeli] (kolumna1,kolumna2,kolumna3) VALUES(wartość1,wartość2,wartość3)
 </pre>
 
 <p>
