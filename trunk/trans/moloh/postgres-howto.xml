@@ -614,156 +614,171 @@ INSERT INTO [nazwatabeli] (kolumna1,kolumna2,kolumna3) VALUES(wartość1,wartoś
 </pre>
 
 <p>
-<c>tablename</c> contains the name of the table to insert the data into.
-(column1,column2,column3) lets you specify the specific columns to insert the
-values into. VALUES(value1,value2,value3) is the listing of values. The values
-are inserted into the same order as the columns (column1 gets value1, column2
-gets value2, column3 gets value3). These counts <e>must</e> be the same. So
-let's go ahead and insert an item into the table:
+<c>nazwatabeli</c> jest nazwą tabeli do której dane mają zostać dopisane dane,
+(kolumna1,kolumna2,kolumna3) pozwala na określenie poszczególnych kolumn, które
+mają zawierać wartości określone przez VALUES(wartość1,wartość2,wartość3). Kolejność
+jest tu istotna i tak wartość1 zostanie przypisana kolumnie kolumna1, wartość2
+kolumnie kolumna2 itd. Ilość kolumn i wartości <e>musi</e> się zgadzać, w przeciwnym
+przypadku zostanie zgłoszony błąd. Przykładowe wywołanie może wyglądać w
+następujący sposób.
 </p>
 
 <impo>
-From working with databases for a long time, I personally recommend specifying
-<c>INSERT</c> statements exactly as above. Developers often make the mistake of
-using <c>INSERT INTO</c> without specifying columns. This is unproductive, as
-if a new column gets added to the database, it will cause in error if the value
-to column count is not the same. You should <e>always</e> specify the columns
-unless you're 300% sure you'll never add a column.
+Z długiego doświadczenia jako użytkownika baz danych, polecam używanie tylko
+wyrażeń <c>INSERT</c> zgodnie ze składnią podaną powyżej. Deweloperzy bardzo
+często korzystają z <c>INSERT INTO</c> nie podając identyfikatorów kolumn. Może
+to prowadzić do problemów i błędów w przypadku, gdy dana tabela zostanie
+zmodyfikowana i zostaną dodane do niej nowe kolumny. Skutkiem będzie błąd
+spowodowany różną ilością kolumn w tabeli i określonych wartości w zapytaniu SQL.
+Należy <e>zawsze</e> podać nazwy kolumn, chyba że mamy 300% pewność, że
+struktura tabeli nigdy nie zostanie zmieniona.
 </impo>
 
-<pre caption="Inserting data into the table">
-MyDB=&gt; <i>INSERT INTO products (description,price) VALUES('A test product', 12.00);</i>
+<pre caption="Dodawanie danych do tabeli">
+MojaBD=&gt; <i>INSERT INTO produkty (opis,cena) VALUES('produkt testowy', 12.00);</i>
 INSERT 17273 1
 </pre>
 
 <p>
-The last line needs a bit of explaining. The return of an insert command is an
-OID (Object Identifier) and the number of rows inserted. OID's are a bit beyond
-the scope of this guide, and the <uri
-link="http://www.postgresql.org/docs/8.1/static/datatype-oid.html">PostgreSQL
-manual</uri> has some good information on it. Now, for a situation where you
-have 20,000 products, these insert statements can be a little tedious. However,
-not all is lost. The <c>COPY</c> command can be used to insert data into a
-table from a file or stdin. In this example, let's assume that you have a csv
-(comma separated values) file, which contains the product id, description, and
-price. The file looks like this:
+Ostatnia linia wymaga odrobiny wyjaśnień. W rezultacie wykonania zapytania
+insert zwrócony zostanie numer OID (Object Identifier) oraz numer wiersza do,
+którego dane zostały dopisane. OID nie będzie omówiony w ramach tego poradnika,
+szczegółowe informacje na ten temat zawiera <uri
+link="http://www.postgresql.org/docs/8.1/static/datatype-oid.html">podręcznik
+PostgreSQL (w języku angielskim)</uri>. Teraz postawmy się w sytuacji gdy musimy
+wprowadzić do tabeli dużą ilość produktów, wprowadzanie poszczególnych wierszy
+ręcznie może być bardzo czasochłonne. Na szczęście w takich przypadkach można
+posłużyć się poleceniem <c>COPY</c>, które umożliwia wprowadzenia danych z pliku
+lub standardowego wejścia. Załóżmy, że dane są zawarte w pliku tekstowym csv
+(comma separated values), który zawiera wszystkie potrzebne informacje:
+produkt_id, opis, cena. Przykładowy plik może wyglądać następująco:
 </p>
 
-<pre caption="products.csv">
-2,meat,6.79
-3,soup,0.69
-4,soda,1.79
+<pre caption="produkty.csv">
+2,ser,6.79
+3,zupa,0.69
+4,woda,1.79
 </pre>
 
 <p>
-Now we'll use the <c>COPY</c> command to populate our data:
+Skorzystamy w tym przypadku z polecenia <c>COPY</c>, by przepisać dane z pliku
+do tabeli w bazie danych:
 </p>
 
 <impo>
-The <c>COPY FROM STDIN</c> command is used because only the postgres user can
-insert data from a file (for obvious security reasons).
+Polecenie <c>COPY FROM STDIN</c> zostało użyte tylko z tego względu, że tylko
+użytkownik postgres może wczytać dane z pliku (z przyczyn bezpieczeństwa).
 </impo>
 
-<pre caption="Using COPY to populate the products table">
-MyDB=&gt; <i>COPY products FROM STDIN WITH DELIMITER AS ',';</i>
+<pre caption="Użycie COPY by zapełnić tabele produktów danymi">
+MojaBD=&gt; <i>COPY produkty FROM STDIN WITH DELIMITER AS ',';</i>
 Enter data to be copied followed by a newline.
 End with a backslash and a period on a line by itself.
->> <i>2,meat,6.79</i>
->> <i>3,soup,0.69</i>
->> <i>4,soda,1.79</i>
+>> <i>2,ser,6.79</i>
+>> <i>3,zupa,0.69</i>
+>> <i>4,woda,1.79</i>
 >> <i>\.</i>
 </pre>
 
 <p>
-Unfortunately, this line doesn't return the same status information as the
-<c>INSERT INTO</c> statement. How do we know the data was inserted? The next
-section will look at running queries to check our data.
+Niestety w tym przypadku po wykonaniu powyższego polecenia na wydruku nie
+zobaczymy podobnych informacji jak to miało miejsce w przypadku <c>INSERT
+INTO</c>. Więc w jaki sposób można się przekonać, że dane zostały rzeczywiście
+wprowadzone do tabeli? W kolejnej części poradnika można znaleźć odpowiedź na
+to pytanie.
 </p>
 
 </body>
 </section>
 <section>
-<title>Using PostgreSQL queries</title>
+<title>Zapytania SQL w PostgreSQL</title>
 <body>
 
 <p>
-This section will look at using the <c>SELECT</c> statement to view data in our
-tables. The basic <c>SELECT</c> format looks like this:
+W tej części poradnika, będzie można znaleźć opis oraz przykłady użycia
+zapytania SQL <c>SELECT</c>. Podstawowa składnia wygląda następująco:
 </p>
 
-<pre caption="SELECT syntax">
-SELECT (column1,column2|*) FROM (table) [WHERE (conditionals)]
+<pre caption="Składnia SELECT">
+SELECT (kolumna1,kolumna2|*) FROM (tabela) [WHERE (warunki)]
 </pre>
 
 <p>
-There are two ways to select columns. The first is using <c>*</c> to select all
-columns, and the second is to specify a list of specific columns you wish to
-see. The second is quite handy when you want to find a specific column in a
-rather large list of them. Let's start out with using <c>SELECT</c> with
-<c>*</c> to specify all columns:
+Istnieją dwa sposoby na wybranie interesujących nas kolumn. Można albo użyć
+znaku <c>*</c> by wybrać wszystkie kolumny jakie zawiera dana tabela, lub podać
+listę nazw poszczególnych kolumn. Szczególnie ta druga metoda jest bardzo
+interesująca, gdyż pozwala zawęzić ilość zwracanych danych, co jest szczególnie
+ważne w przypadku gdy mamy do czynienia z rozbudowaną strukturą tabeli.
+Pierwszym krokiem będzie wykorzystania polecenia <c>SELECT</c> razem z
+<c>*</c>:
 </p>
 
-<pre caption="Viewing the products table">
-MyDB=&gt; <i>SELECT * FROM products;</i>
- product_id |  description   | price
-------------+----------------+-------
-          1 | A test product | 12.00
-          2 | meat           |  6.79
-          3 | soup           |  0.69
-          4 | soda           |  1.79
+<pre caption="Odczyt danych z tabeli produkty">
+MojaBD=&gt; <i>SELECT * FROM produkty;</i>
+ produkt_id |  opis           | cena
+------------+---------------- +-------
+          1 | produkt testowy | 12.00
+          2 | ser             |  6.79
+          3 | zupa            |  0.69
+          4 | woda            |  1.79
 (4 rows)
 </pre>
 
 <p>
-As shown here, all the data we inserted earlier is indeed in the table. Now
-let's say we only want to see the description and the price, and don't care
-about the product id. In this case we'll use the column specific SELECT form:
+Listing zawiera wszystkie wcześniej wprowadzone do tabeli dane. By zwiększyć
+czytelność najlepiej określić interesujące nas kolumny. Powiedzmy, że interesują
+nas jedynie cena i opis danego produktu, jego identyfikator w tym przypadku może
+zostać pominięty:
 </p>
 
-<pre caption="Viewing specific columns from the products table">
-MyDB=&gt; <i>SELECT description,price FROM products;</i>
-  description   | price
-----------------+-------
- A test product | 12.00
- meat           |  6.79
- soup           |  0.69
- soda           |  1.79
+<pre caption="Odczyt wybranych wierszy z tabeli produkty">
+MojaBD=&gt; <i>SELECT opis,cena FROM produkty;</i>
+  opis           | cena
+-----------------+-------
+ produkt testowy | 12.00
+ ser             |  6.79
+ zupa            |  0.69
+ woda            |  1.79
 (4 rows)
 </pre>
 
 <p>
-Now only the product and price is shown, letting us focus on only the important
-data. Now let's say that we want to see only the items that are greater than
-$2.00. Here's where the <c>WHERE</c> clause comes in handy:
+Po dokonaniu powyższych poprawek na wydruku widzimy jedynie cenę i nazwę
+produktów, co pozwala skupić się jedynie na ważnych informacjach. Kolejnym
+krokiem będzie zawężenie informacji tylko do tych produktów, których cena jest
+wyższa niż 2 złote. By tego dokonać bardzo pomocne jest słowo kluczowe
+<c>WHERE</c>.
 </p>
 
-<pre caption="Viewing specific rows from the products table">
-MyDB=&gt; <i>SELECT description,price FROM products WHERE price > 2.00;</i>
-  description   | price
-----------------+-------
- A test product | 12.00
- meat           |  6.79
+<pre caption="Odczyt wybranych wierszy z tabeli produkty">
+MojaBD=&gt; <i>SELECT opis,cena FROM produkty WHERE cena > 2.00;</i>
+  opis           | cena
+-----------------+-------
+ produkt testowy | 12.00
+ ser             |  6.79
 (2 rows)
 </pre>
 
 <p>
-Now a listing of products over $2.00 is displayed, focusing the data even more.
-These forms of querying for information are very powerful, and can help create
-extremely useful reports.
+Wydruk zawiera teraz tylko listę produktów o cenie większej 2 złotych,
+zmniejszając jeszcze bardziej ilość wyświetlonych informacji. Takie metody
+odpytywania stanowią potężne narzędzie i mogą pomóc w stworzeniu przydatnych
+raportów.
 </p>
 
 </body>
 </section>
 <section>
-<title>Conclusion</title>
+<title>Podsumowanie</title>
 <body>
 
 <p>
-This concludes the PostgreSQL Guide. A big thanks goes to Masatomo Nakano, the
-Gentoo PostgreSQL maintainer for his help in answering my questions. Any
-suggestions on this guide should be sent to <mail>chriswhite@gentoo.org</mail>.
-For more extensive documentation, see the <uri
-link="http://www.postgresql.org">PostgreSQL website</uri>.
+Wielkie podziękowania należą sie Masatomo Nakano, opiekunowi pakietu postgresql
+w Gentoo, który służył poradą i odpowiedziami na wiele pytań. Wszelkie sugestie
+na temat zawartych informacji merytorycznych prosimy kierować na adres
+<mail>chriswhite@gentoo.org</mail>. Bardziej szczegółową dokumentację można
+znaleźć się na <uri link="http://www.postgresql.org">oficjalnej stronie
+PostgreSQL</uri>.
 </p>
 
 </body>
