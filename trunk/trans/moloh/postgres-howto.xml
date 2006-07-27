@@ -16,8 +16,8 @@
 </author>
 
 <abstract>
-W poradniku tym znajduje się opis podstawowej konfiguracji PostgreSQL. Powinien
-być on wystarczający dla prostych aplikacji webowych oraz innego oprogramowania
+W poradniku znajduje się opis podstawowej konfiguracji PostgreSQL. Powinien być
+on wystarczający dla prostych aplikacji webowych oraz innego oprogramowania
 wspierającego PostgreSQL.
 </abstract>
 
@@ -39,15 +39,16 @@ Większość deweloperów zapytana o różne rozwiązania bazodanowe najprawdopo
 wymieni dwa najpopularniejsze i najbardziej efektywne. Będą to <c>MySQL</c> oraz
 <c>PostgreSQL</c>, dokładniej opisany w tym dokumencie. Różnice i zalety obu
 systemów bazodanowych mogą zamienić się w długą debatę, jednak należy zwrócić
-uwagę że PostgreSQL jest bardziej związany z relacyjnym modelem przechowywania i
-dostępu do danych. Wydawało by się że standardowa funkcjonalność jak <b>FOREIGN
-KEY</b> powinna być zapewniona w każdym systemie SQL, i tak jest ale MySQL
-doczekał się go dopiero w wersji 5.0. Niezależnie od zapewnianej funkcjonalności
-i zalet obu rozwiązań dokument ten zawiera jedynie porady dotyczące PostgreSQL i
-z pewnością będzie cennym źródłem informacji dla każdego posługującego się tym
-systemem bazodanowym. Pierwszym krokiem jest oczywiście instalacja, w przypadku
-Gentoo sprowadza się to do wykonania polecenia <c>emerge</c>. W kolejnych
-rozdziałach zostanie opisany proces instalacji oraz podstawowej konfiguracji.
+uwagę że PostgreSQL jest bardziej związany z relacyjnym modelem przechowywania
+i dostępu do danych. Wydawało by się że standardowa funkcjonalność jak
+<b>FOREIGN KEY</b> powinna być zapewniona w każdym systemie SQL, i tak jest ale
+MySQL doczekał się go dopiero w wersji 5.0. Niezależnie od zapewnianej
+funkcjonalności i zalet obu rozwiązań w poradniku znajdują się jedynie porady
+dotyczące PostgreSQL, będą one z pewnością cennym źródłem informacji dla każdego
+posługującego się tym systemem bazodanowym. Pierwszym krokiem jest oczywiście
+instalacja, w przypadku Gentoo sprowadza się to do wykonania polecenia
+<c>emerge</c>. W kolejnych rozdziałach zostanie opisany proces instalacji oraz
+podstawowej konfiguracji.
 </p>
 
 </body>
@@ -57,9 +58,9 @@ rozdziałach zostanie opisany proces instalacji oraz podstawowej konfiguracji.
 <body>
 
 <p>
-Pierwszym krokiem jaki należy wykonać to instalacja pakietu PostgreSQL, należy
-wykonać następujące polecenie, by przekonać się że wszystkie opcje są właściwie
-ustawione:
+Pierwszym krokiem jaki należy wykonać to instalacja pakietu PostgreSQL. Wpierw
+najlepiej jednak wykonać następujące polecenie, by przekonać się że wszystkie
+opcje są właściwie ustawione:
 </p>
 
 <pre caption="Sprawdzenie dostępnych flag USE w pakiecie PostgreSQL">
@@ -111,7 +112,7 @@ Poniżej znajduje się lista opcji wraz z krótkimi opisami:
   <ti>nls</ti>
   <ti>
     W przypadku używania tej opcji, PostgreSQL będzie używał tłumaczeń
-    komunikatów co może być pomocne dla użytkowników nie posługujących się
+    komunikatów, co może być pomocne dla użytkowników nie posługujących się
     językiem angielskim.
   </ti>
 </tr>
@@ -139,7 +140,7 @@ Poniżej znajduje się lista opcji wraz z krótkimi opisami:
     serwerów bazodanowych <c>Oracle</c>. Więcej informacji na temat tego typu
     zapytań można znaleźć w <uri
     link="http://www.lc.leidenuniv.nl/awcourse/oracle/server.920/a96540/
-    queries4a.htm">dokumentacji Oracle</uri>.
+    queries4a.htm">dokumentacji Oracle</uri> (język angielski).
   </ti>
 </tr>
 <tr>
@@ -188,9 +189,9 @@ Poniżej znajduje się lista opcji wraz z krótkimi opisami:
 <tr>
   <ti>xml2</ti>
   <ti>
-    Włączenie tej opcji zapewni wsparcie dla <c>XPATH</c> w xmls. Więcej
+    Włączenie tej opcji zapewni wsparcie dla <c>XPATH</c> w xml. Więcej
     informacji na temat języka xml w PostgreSQL można znaleźć w dokumencie <uri
-    link="http://www.throwingbeans.org/tech/postgresql_and_xml.html"> PostgreSQL
+    link="http://www.throwingbeans.org/tech/postgresql_and_xml.html">PostgreSQL
     and XML</uri> (język angielski).
   </ti>
 </tr>
@@ -209,8 +210,8 @@ najprawdopodobniej usunięta w kolejnych wersjach.
 </note>
 
 <p>
-Po włączeniu odpowiednich flag, tak by odpowiednio dostosować instalację bazy
-danych, czas na kolejny krok - instalację:
+Po włączeniu odpowiednich flag, tak by odpowiednio dostosować konfigurację
+kompilacji PostgreSQL, czas na kolejny krok - instalację:
 </p>
 
 <pre caption="Instalacja PostgreSQL">
@@ -246,7 +247,7 @@ kolejnym rozdziale zostanie opisany proces konfiguracji.
 <p>
 Po zakończonej sukcesem instalacji ebuild informuje nas o potrzebie stworzenia
 środowiska bazowego, tak by móc uruchomić usługę. Jednak przed wykonaniem
-podanego polecenia należy jeszcze zająć się jedną sprawą.  W przeciwieństwie do
+podanego polecenia należy jeszcze zająć się jedną sprawą. W przeciwieństwie do
 MySQL, w przypadku PostgreSQL hasło administratora jest takie samo jak
 użytkownika w systemie. Jest on tworzony przez ebuild, ale jego hasło <e>nie</e>
 zostaje ustawione. Tak więc przed by móc rozpocząć właściwą konfigurację musimy
@@ -320,7 +321,7 @@ or
 <p>
 Po wykonaniu polecenia, podstawowe środowisko, tabele i pliki konfiguracyjne
 zostały utworzone. W kolejnej sekcji dowiemy się w jak sprawdzić poprawność
-instalacji oraz poznamy sposoby kontroli dostęp do bazy danych przez
+instalacji oraz poznamy sposoby kontroli dostępu do bazy danych przez
 użytkowników.
 </p>
 
@@ -331,9 +332,9 @@ użytkowników.
 <body>
 
 <p>
-Po stworzeniu bazowego środowiska dobrze byłoby sprawdzić, czy wszystkie
-czynności zostały prawidłowo wykonanie. Sprawdźmy więc czy usługa poprawnie
-wystartuje:
+Po stworzeniu bazowego środowiska najlepiej sprawdzić, czy wszystkie czynności
+zostały prawidłowo wykonanie. Sprawdźmy więc czy start usługi zakończy się
+sukcesem:
 </p>
 
 <pre caption="Uruchomienie usługi PostgreSQL">
@@ -342,8 +343,9 @@ wystartuje:
 </pre>
 
 <p>
-Po poprawnym starcie dobrym pomysłem jest dodanie usługi do domyślnego poziomu
-startowego, co spowoduje uruchomienie bazy danych w czasie startu systemu:
+Po poprawnym starcie dobrym pomysłem jest jej dodanie do domyślnego poziomu
+startowego, co spowoduje uruchomienie systemu bazodanowego w czasie startu
+systemu:
 </p>
 
 <pre caption="Dodanie demona PostgreSQL do domyślnego poziomu startowego">
@@ -352,12 +354,12 @@ startowego, co spowoduje uruchomienie bazy danych w czasie startu systemu:
 </pre>
 
 <p>
-Kolejnym krokiem po uruchomieniu demona PostgreSQL jest przetestowanie samej
-bazy danych. Na początek skorzystamy z polecenia <c>createdb</c>, by utworzyć
-testową bazę. Użyjemy opcji <c>-U</c> tak by ustawić użytkownika (domyślnie jest
-to ten aktualnie zalogowany) oraz <c>-W</c> by wymusić interaktywne podanie
-stworzonego wcześniej hasła. Ostatnim parametrem jest nazwa bazy danych, którą
-chcemy utworzyć:
+Kolejnym krokiem po uruchomieniu demona PostgreSQL jest przetestowanie samego
+systemu bazodanowego. Na początek skorzystamy z polecenia <c>createdb</c>, by
+utworzyć testową bazę danych. Użyjemy opcji <c>-U</c> tak by ustawić użytkownika
+(domyślnie jest to ten aktualnie zalogowany) oraz <c>-W</c> by wymusić
+interaktywne podanie stworzonego wcześniej hasła. Ostatnim parametrem jest nazwa
+bazy danych, którą chcemy utworzyć:
 </p>
 
 <pre caption="Stworzenie bazy danych poleceniem createdb">
@@ -380,7 +382,7 @@ DROP DATABASE
 </pre>
 
 <p>
-Obecna, po wykonaniu wszystkich powyższych czynności, konfiguracja zezwala
+Domyślna, po wykonaniu wszystkich powyższych czynności, konfiguracja zezwala
 jedynie użytkownikowi postgres na wydawanie poleceń. Nie jest to jednak zbyt
 wygodne, szczególnie w środowisku wieloużytkowym. W kolejnej sekcji zajmiemy się
 stworzeniem oraz ustawieniami kont użytkowników.
@@ -425,7 +427,7 @@ użytkownika:
 </p>
 
 <pre caption="Tworzenie zwykłego konta o nazwie testowy">
-<comment>(replace chris with the username you've just created)</comment>
+<comment>(Zamień chris wcześniej użytym identyfikatorem)</comment>
 $ <i>createuser -A -D -P -E -U chris -W testowy</i>
 Enter password for new user:
 Enter it again:
@@ -522,12 +524,12 @@ poleceń oferowanych przez klienta <c>psql</c>:
 </tr>
 <tr>
   <ti>\c[onnect] [DBNAME|- [USER]]</ti>
-  <ti>Połączenie się z inną bazą danych</ti>
+  <ti>Połącz się z inną bazą danych</ti>
   <ti>USE DATABASE</ti>
 </tr>
 <tr>
   <ti>\q</ti>
-  <ti>Zamknięcie klienta <c>psql</c></ti>
+  <ti>Zamknij klienta <c>psql</c></ti>
   <ti>quit</ti>
 </tr>
 <tr>
@@ -554,12 +556,12 @@ poleceń oferowanych przez klienta <c>psql</c>:
 </table>
 
 <p>
-Z wyjątkiem polecenia <c>\c[onnect]</c>, wszystkie inne zostaną lepiej opisane w
-kolejnych sekcjach tego rozdziału poradnika. Jak na razie stworzona baza danych
-MojaBD jest pusta, jednak by móc zacząć dodawać do niej dane należy wpierw
-stworzyć tabelę. W tym celu można użyć jednego z zapytań języka SQL - <c>CREATE
-TABLE</c>. Tabela będzie zawierać informacje na temat poszczególnych produktów
-i zawierać pola produkt_id, opis oraz cena:
+Z wyjątkiem polecenia <c>\c[onnect]</c>, pozostałe zostaną lepiej opisane w
+kolejnych sekcjach tego dokumentu. Jak na razie stworzona baza danych MojaBD
+jest pusta, jednak by móc zacząć dodawać do niej dane należy wpierw stworzyć
+tabelę. W tym celu można użyć jednego z zapytań języka SQL - <c>CREATE
+TABLE</c>. Tabela będzie zawierać informacje na temat poszczególnych produktów i
+zawierać pola produkt_id, opis oraz cena:
 </p>
 
 <pre caption="Tworzenie tabeli produktów">
@@ -624,14 +626,14 @@ następujący sposób.
 </p>
 
 <impo>
-Z długiego doświadczenia jako użytkownika baz danych, polecam używanie tylko
-wyrażeń <c>INSERT</c> zgodnie ze składnią podaną powyżej. Deweloperzy bardzo
-często korzystają z <c>INSERT INTO</c> nie podając identyfikatorów kolumn. Może
-to prowadzić do problemów i błędów w przypadku, gdy dana tabela zostanie
-zmodyfikowana i zostaną dodane do niej nowe kolumny. Skutkiem będzie błąd
-spowodowany różną ilością kolumn w tabeli i określonych wartości w zapytaniu SQL.
-Należy <e>zawsze</e> podać nazwy kolumn, chyba że mamy 300% pewność, że
-struktura tabeli nigdy nie zostanie zmieniona.
+Z długiego doświadczenia jako użytkownika różnych systemów bazodanowych, polecam
+używanie tylko wyrażeń <c>INSERT</c> zgodnie ze składnią podaną powyżej.
+Deweloperzy bardzo często korzystają z <c>INSERT INTO</c> nie podając
+identyfikatorów kolumn. Może to prowadzić do problemów i błędów w przypadku, gdy
+dana tabela zostanie zmodyfikowana i zostaną dodane do niej nowe kolumny.
+Skutkiem będzie błąd spowodowany różną ilością kolumn w tabeli i określonych
+wartości w zapytaniu SQL. Należy <e>zawsze</e> podać nazwy kolumn, chyba że
+mamy 300% pewność, że struktura tabeli nigdy nie zostanie zmieniona.
 </impo>
 
 <pre caption="Dodawanie danych do tabeli">
@@ -645,7 +647,7 @@ insert zwrócony zostanie numer OID (Object Identifier) oraz numer wiersza do,
 którego dane zostały dopisane. OID nie będzie omówiony w ramach tego poradnika,
 szczegółowe informacje na ten temat zawiera <uri
 link="http://www.postgresql.org/docs/8.1/static/datatype-oid.html">podręcznik
-PostgreSQL (w języku angielskim)</uri>. Teraz postawmy się w sytuacji gdy musimy
+PostgreSQL</uri> (język angielski). Teraz postawmy się w sytuacji gdy musimy
 wprowadzić do tabeli dużą ilość produktów, wprowadzanie poszczególnych wierszy
 ręcznie może być bardzo czasochłonne. Na szczęście w takich przypadkach można
 posłużyć się poleceniem <c>COPY</c>, które umożliwia wprowadzenia danych z pliku
@@ -743,11 +745,10 @@ MojaBD=&gt; <i>SELECT opis,cena FROM produkty;</i>
 </pre>
 
 <p>
-Po dokonaniu powyższych poprawek na wydruku widzimy jedynie cenę i nazwę
-produktów, co pozwala skupić się jedynie na ważnych informacjach. Kolejnym
-krokiem będzie zawężenie informacji tylko do tych produktów, których cena jest
-wyższa niż 2 złote. By tego dokonać bardzo pomocne jest słowo kluczowe
-<c>WHERE</c>.
+Po zmodyfikowaniu zapytania na wydruku widzimy jedynie cenę i nazwę produktów,
+co pozwala skupić się jedynie na ważnych informacjach. Kolejnym krokiem będzie
+zawężenie informacji tylko do tych produktów, których cena jest wyższa niż 2
+złote. By tego dokonać bardzo pomocne jest słowo kluczowe <c>WHERE</c>.
 </p>
 
 <pre caption="Odczyt wybranych wierszy z tabeli produkty">
