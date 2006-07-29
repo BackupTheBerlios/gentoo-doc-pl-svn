@@ -68,54 +68,45 @@ dysku.
 </body>
 </section>
 <section>
-<title>CPU abstraction</title>
+<title>Dostęp do CPU</title>
 <body>
 
 <p>
-Jądro Linuksa udostępnia warstwę 
-
-abstrakcyjną warstwę tworzącą prosty i spójny system
-dostępu do funkcjonalności procesora
-
-
-
-Sytuacja taka jest możliwa dzięki temu że wiele <e>procesów</e> jest
-uruchomionych jednocześnie -- jądro odpowiada za odpowiedni przydział czasu
-dostępu do procesora lub procesorów.
-
-
-The Linux kernel also provides a level of abstraction on top of the
-processor(s) in your system -- allowing for multiple programs to appear to run
-simultaneously. Linux does this by allowing several UNIX <e>processes</e> to
-run at once -- and the kernel takes care of giving each one a fair share of the
-processor(s).
+Jądro Linuksa udostępnia abstrakcyjną warstwę otaczającą procesor(y) w systemie
+-- pozwalając na funkcjonowanie wielu programów, sprawiając wrażenie że działają
+one jednocześnie. Sytuacja taka jest możliwa dzięki temu że wiele
+<e>procesów</e> jest uruchomionych naraz -- jądro odpowiada za odpowiedni
+przydział czasu dostępu do procesora lub procesorów.
 </p>
 
 <p>
-A Linux kernel can support either a single or multiple CPUs -- and the kernel
-that you are using now is either uniprocessor-aware (UP-aware) or symmetric
-multiprocessor-aware (SMP-aware). If you happen to have an SMP motherboard, but
-you're using a UP kernel, Linux won't "see" your extra processors! To fix this,
-you'll want to compile a special SMP kernel for your hardware. Currently, SMP
-kernels will also work on uniprocessor systems, but at a slight performance
-hit.
+Jądro Linuksa wspiera zarówno komputery wyposażone w jeden lub wiele procesorów
+-- w zależności od konfiguracji może być albo świadome istnienia jednego
+procesora (UP, ang. uniprocessor) lub wielu (SMP, ang. symmetric
+multiprocessor). Dla posiadaczy płyt głównych SMP, a używających jądra UP jest
+to bardzo ważne, gdyż system będzie w stanie korzystać tylko i wyłącznie z
+jednego procesora! By temu zaradzić należy odpowiednio skonfigurować i
+dopasować jądro do sprzętu. Możliwe jest także działanie jądra SMP w systemie
+posiadającym wyłącznie jeden procesor, odbywa się to jednak kosztem małego
+spadku wydajności.
 </p>
 
 </body>
 </section>
 <section>
-<title>Abstracting I/O</title>
+<title>Dostęp do urządzeń wejścia/wyjścia</title>
 <body>
 
 <p>
-The kernel also handles the much-needed task of abstracting all forms of file
-I/O. Imagine what would happen if every program had to interface with your
-particular hardware directly -- if you changed disk controllers, all your
-programs would stop working!  Fortunately, the Linux kernel follows the UNIX
-model of providing a simple abstraction of disk I/O that all programs can use.
-That way, your favorite database doesn't need to be concerned whether it is
-storing data on an IDE disk, a SCSI RAID array, or a network-mounted file
-system.
+Kolejną bardzo ważną rolą jądra Linuksa jest zapewnienie spójnego i
+wysokopoziomowego dostępu do plików. Łatwo wyobrazić sobie do czego by
+doprowadziła zmiana kontrolera dysku twardego, gdy poszczególne programy
+musiałyby bezpośrednio korzystać ze sprzętu -- wszystkie aplikacje przestały by
+działać! Na szczęście jądro Linuksa wspiera Uniksowy model dostępu do urządzeń
+wejścia/wyjścia (I/O, ang.  input/output) z którego mogą z łatwością korzystać
+wszystkie programy. Dzięki temu choćby system bazodanowy nie musi się martwić
+tym czy dane są przechowywane na dysku IDE, czy też może macierz dyskową RAID
+SCSCI, albo zamontowanym, zdalnym dysku.
 </p>
 
 </body>
