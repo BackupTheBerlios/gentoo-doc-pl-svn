@@ -47,48 +47,53 @@
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
+
 <section>
-<title>Catalyst 2.0 released</title>
+<title>Publikacja Catalyst 2.0</title>
 <body>
 
 <p>
-The Gentoo <uri link="/proj/en/releng/index.xml">Release Engineering</uri>
-project is pleased to announce that catalyst 2.0 has been released. The new
-catalyst version is a complete re-write from the aging 1.x code base, and
-includes several new features and updates, including:
+Projekt Gentoo <uri link="/proj/en/releng/index.xml">Release
+Engineering</uri> ma zaszczyt poinformować o publikacji wersji 2.0 narzędzia
+catalyst. Wersja ta jest napisana całkowicie od nowa i zawiera wiele nowych
+opcji oraz aktualizacji, włączając w to:
 </p>
 
 <ul>
-<li>autoresume - attempts to resume a failed build</li>
-<li>kerncache - caches the build of the kernels to speed up livecd-stage2</li>
-<li>seedcache - use the build output of a previous target if it exists to speed
-up the copy</li>
-<li>snapcache - cache the snapshot so that it can be bind-mounted into the
-chroot</li>
-<li>DIGESTS - creates digests in any format supported by <c>shash</c></li>
+<li>autoresume - próba ponownego przywrócenia procesu budowania po błędzie</li>
+<li>kerncache - budowa jądra odbywa się w pamięci podręcznej co przyśpiesza
+livecd-stage2</li>
+<li>seedcache - używa wyjścia z poprzedniego procesu budowy, jeśli istnieje, do
+podniesienia prędkości kopiowania</li>
+<li>snapcache - umieszcza snapshota w pamięci podręcznej tak, aby można było go
+zamontować w środowisku chroot</li>
+<li>DIGESTS - tworzy pliki digest w każdym formacie posiadającym wsparcie w
+<c>shash</c></li>
 </ul>
 
 <p>
-This version is currently masked in portage under <c>package.mask</c> and will
-be unmasked this week for ~arch users. Users of the 2.0_pre series of catalyst
-builds will need to perform some steps to ensure a clean upgrade, especially
-if you wish to keep your package caches.
+Wersja ta akutalnie jest zamaskowana przez plik <path>package.mask</apth> i
+zostanie odmaskowana w tym tygodniu. Użytkownicy, którzy używali do budowania
+serii 2.0_pre będą musieli przedwsięziąć pewne kroki, aby zapewnić sobie
+bezproblemową aktualizację, szczególnie jeśli będziemy chcieli zachować pamięć
+podręczną pakietów.
 </p>
 
-<pre caption="Renaming catalyst directories">
-<comment>(Rename the cache directory)</comment>
+<pre caption="Zmiana nazwa katalogów catalyst">
+<comment>(Zmiana nazwy katalogu z pamięcią podręczną)</comment>
 # <i>mv -i /var/tmp/catalyst2 /var/tmp/catalyst</i>
-<comment>(Rename the configuration directory)</comment>
+<comment>(Zmiana nazwy katalogu konfiguracyjnego)</comment>
 # <i>mv -i /etc/catalyst2 /etc/catalyst</i>
 # <i>cd /etc/catalyst</i>
 # <i>sed -i -e 's/catalyst2/catalyst/' *.conf</i>
 </pre>
 
 <p>
-The online documentation is being written for catalyst 2.0 and will be in place
-before 2.0 is marked stable. For now, the example spec templates installed to
-<path>/usr/share/doc/catalyst-2.0/examples</path> are the best documentation.
+Dokumentacja internetowa jest w tej chwili pisana dla wersji 2.0 i zostanie
+przedstawiona przed oznaczeniem nowego catalyst jako stabilnego. W tej chwili,
+przykłady dostępne w <path>/usr/share/doc/catalyst-2.0/examples</path> są
+najlepszą formą dokumentacji.
 </p>
 
 </body>
@@ -141,16 +146,16 @@ years -- you've truly helped make Bugday the big success it is today.
 </body>
 </section>
 <section>
-<title>Gentoo/Java staffing needs</title>
+<title>Potrzebni chętni do zespołu Gentoo/Java</title>
 <body>
 
 <p>
-As has been the case for some time, the Java team is still atrociously
-understaffed. Below, they'll outline a few 'positions' that they would like see
-filled. The term 'filled' is used really loosely, and it is meant more as in
-the sense of 'these are things we would like people to be working on'. If
-current developers are interested, that would be great, but they are also
-willing to mentor some fresh blood for the team.
+Od pewnego czas zespół Java posiada zbyt małą liczbę osób pracujących przy tym
+projekcie. Poniżej wypisano kilka "stanowisk", na których chętnie widziano by
+nowe osoby do pomocy. Termin "chętni" użyty jest w dość luźnym znaczeniu, a
+znaczy tyle, że "to są rzeczy, przy których chcemy, abyście pomagali". Każdy
+aktualnie aktywny deweloper, będzie mile widziany, jednak również nowe osoby,
+chcącę wstąpić do projektu, będą równie mile widziane.
 </p>
 
 <ul>
@@ -158,40 +163,40 @@ willing to mentor some fresh blood for the team.
 </ul>
 
 <p>
-The Gentoo/Java team has tons of Java packages. At last count, it was around
-400 or so packages. As one can imagine, this kind of number generates a pretty
-constant stream of bug reports and version bump requests.
+Zespół Gentoo/Java posiada pod swoją opieką olbrzymią liczbę pakietów Java.
+Podczas ich ostatniego liczenia była to liczba większa od 400. Jak każdy może
+sobie wyobrazić, taka liczba pakietów potrafi spowodować zalew raportów z
+błędami oraz z prośbami o zmianę wersji.
 </p>
 
 <p>
-So, basically, the Java team is looking for some people to help out with general
-maintenance of their packages. They would expect them to be familiar with Gentoo
-and Java (surprise!). If they are not already, they will need to become
-familiar with the ins and outs of how Java is handled on Gentoo.
-Familiarity with ant, which is used for a large majority of their
-packages, would also be very useful.
-</p>
-
-<ul>
-<li>JBoss maintainer</li>
-</ul>
-
-<p>
-JBoss is a pretty important app in the enterprise world of Java. It has
-been pretty unmaintained for some time now, and could use some love.
-Because of the nature of this beast, the Java team would want someone that uses
-JBoss on a daily basis, preferably in an enterprise setting, to be the
-type of person to maintain this.
+Zasadniczo, zespół Java poszukuje osób chcących pomóc przy opiece nad
+pakietami. Oczekujemy od kandydatów znajomości Gentoo i Javy (niespodzianka!).
+Jeżeli tak nie jest, będą się oni musieli nauczyć w jaki sposób zachowują się
+pakiety Java w Gentoo. Znajomość ant, który używany jest w większości pakietów,
+będzie również mile widziana.
 </p>
 
 <ul>
-<li>Jetty maintainer</li>
+<li>Opiekun JBoss</li>
 </ul>
 
 <p>
-Jetty is a web container, like tomcat and resin. It also has been pretty
-unmaintained in recent times. Preferably, the person who picks this
-fella up uses jetty on a daily basis in an enterprise type setting.
+JBoss jest jedną z ważniejszych aplikacji w świecie Java. Od pewnego czasu nie
+posiada on opiekuna i przydałoby się mu trochę miłości. Z racji wielkości tej
+bestii, zespół Java, chciałbym, aby tym pakietem zajęła się osoba używająca
+aplikacji na codzień, najlepiej w zastosowaniach komercyjnych.
+</p>
+
+<ul>
+<li>Opiekun Jetty</li>
+</ul>
+
+<p>
+Jetty jest internetowym zbiornikiem, takim jak tomcat czy resin. Również ten
+pakiet w ostatnim czasie został mocno zaniedbany. Najlepiej, gdyby osoba
+zajmująca się tą aplikacją używała jej na codzień w komercyjnych
+zastosowaniach.
 </p>
 
 <ul>
@@ -199,44 +204,46 @@ fella up uses jetty on a daily basis in an enterprise type setting.
 </ul>
 
 <p>
-One of illustrious users has been working on working away at getting GCJ
-usable as a JDK, in the sense that it can be used to build our packages.  The
-Java team does have a handful of other free Java VMs in portage, like kaffe,
-sablevm, jamvm, etc. If people were interested, it would be great if
-they could get their packages building using these other VMs.
+Jeden z wybitnych użytkowników pracował nad możliwością użycia GCJ jako JDK,
+czyli jako narzędzia do budowania naszych pakietów. Zespół Java posiada kilka
+innych maszyn wirtualnych w Portage, takich jak kaffe, sablevm, jamvm itd.
+Jeżeli użytkownicy byliby zainteresowani, byłoby świetnie, aby budowali oni
+swoje pakiety przy użyciu tych maszyn.
 </p>
 
 <ul>
-<li>Eclipse / Netbeans maintainers</li>
+<li>Opiekuni Eclipse / Netbeans</li>
 </ul>
 
 <p>
-Eclipse and Netbeans are the primary IDEs for Java. Eclipse is well kept
-for the moment, but the plugins haven't been. Netbeans needs a bit of
-love though, as it hasn't been updated in awhile.
+Eclipse i Netbeans są głównymi zintegrowanymi środowiskami deweloperskimi (IDE)
+dla Javy. Eclipse jest w tej chwili pod dobrą opieką jednak wtyczki do niego
+już nie. Netbeans potrzebuje trochę więcej miłości, dodatkowo przydałaby się
+aktualizacja pakietu.
 </p>
 
 <p>
-So, if one or more of these sounds interesting and like something you'd
-want to do? For starters, you should take a gander over at the <uri
-link="/proj/en/java/">project page</uri>, and check out
-various documentation they have. If you are still interested, then contact
-<mail link="nichoj@gentoo.org">Josh Nichols</mail>.
+Więc, czy którakolwiek z tych propozycji zabrzmiała interesującą i chciałbyś
+przy niej pomóc? Na początek powinniśmy przyjrzeć się <uri
+link="/proj/en/java/">stronie projektu</uri> i przeczytać dostępne tam
+dokumenty. Jeżeli nadal nasz entuzjazm nie opadnie, należy skontaktować się z
+<mail link="nichoj@gentoo.org">Joshem Nicholsem</mail>.
 </p>
 
 <p>
-Other things you can do:
+Inne rzeczy, które należy wykonać przed przystąpieniem do zespołu:
 </p>
 
 <ul>
-<li>Join the mailing list, <c>gentoo-java</c>. It is pretty low-traffic.</li>
-<li>Lurk in the IRC channel, <c>#gentoo-java</c> on irc.freenode.net. It is
-also fairly low-traffic, so don't expect immediate responses.</li>
+<li>Zapisać się do listy dyskusyjnej, <c>gentoo-java</c>. Generuje ona dość
+małą ilość listów.</li>
+<li>Zajrzeć na kanał IRC, <c>#gentoo-java</c> na serwerze irc.freenode.net.
+Jest on również mało oblegany, więć nie denerwujmy się gdy nie otrzymamy
+natychmiastowej odpowiedzi.</li>
 </ul>
 
 </body>
 </section>
-
 <section>
 <title>Czeskie tłumaczenie dokumentacji Gentoo oficjalnie wydane!</title>
 <body>
