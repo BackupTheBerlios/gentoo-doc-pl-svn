@@ -54,93 +54,99 @@
 <body>
 
 <p>
-Projekt Gentoo <uri link="/proj/en/releng/index.xml">Release
-Engineering</uri> ma zaszczyt poinformować o publikacji wersji 2.0 narzędzia
-catalyst. Wersja ta jest napisana całkowicie od nowa i zawiera wiele nowych
-opcji oraz aktualizacji, włączając w to:
+Projekt Gentoo <uri link="/proj/en/releng/index.xml">Release Engineering</uri>
+ma zaszczyt poinformować o publikacji narzędzia catalyst oznaczonej numerem 2.0.
+Wersja ta jest napisana całkowicie od nowa i zawiera wiele nowych
+funkcjonalności i aktualizacji. Do najważniejszych z nich można zaliczyć:
 </p>
 
 <ul>
-<li>autoresume - próba ponownego przywrócenia procesu budowania po błędzie</li>
-<li>kerncache - budowa jądra odbywa się w pamięci podręcznej co przyśpiesza
-livecd-stage2</li>
-<li>seedcache - używa wyjścia z poprzedniego procesu budowy, jeśli istnieje, do
-podniesienia prędkości kopiowania</li>
-<li>snapcache - umieszcza snapshota w pamięci podręcznej tak, aby można było go
-zamontować w środowisku chroot</li>
-<li>DIGESTS - tworzy pliki digest w każdym formacie posiadającym wsparcie w
-<c>shash</c></li>
+  <li>autoresume - próba kontynuacji procesu budowania po błędzie</li>
+  <li>kerncache - budowanie jądra odbywa się teraz w pamięci podręcznej co
+  przyśpiesza etap livecd-stage2</li>
+  <li>seedcache - użycie rezultatu poprzedniego procesu budowy, jeśli istnieje,
+  by przyspieszyć prędkość kopiowania</li>
+  <li>snapcache - umieszczenie obrazu w pamięci podręcznej tak, aby można było
+  go zamontować w środowisku chroot</li>
+  <li>DIGESTS - tworzy pliki digest w każdym formacie wspieranym przez
+  <c>shash</c></li>
 </ul>
 
 <p>
-Wersja ta akutalnie jest zamaskowana przez plik <path>package.mask</apth> i
-zostanie odmaskowana w tym tygodniu. Użytkownicy, którzy używali do budowania
-serii 2.0_pre będą musieli przedwsięziąć pewne kroki, aby zapewnić sobie
-bezproblemową aktualizację, szczególnie jeśli będziemy chcieli zachować pamięć
-podręczną pakietów.
+Jak na razie jest ona jeszcze zamaskowana, ale w ciągu tygodnia powinna zostać
+odmaskowana. Użytkownicy, którzy korzystali z serii 2.0_pre będą musieli
+przedsięwziąć kilka kroków, by zapewnić bezproblemową aktualizację, w
+szczególności gdy celem jest zachowanie wszystkich tymczasowych pakietów, które
+są przechowywane w pamięci podręcznej.
 </p>
 
-<pre caption="Zmiana nazwa katalogów catalyst">
+<pre caption="Zmiana nazw katalogów catalyst">
 <comment>(Zmiana nazwy katalogu z pamięcią podręczną)</comment>
 # <i>mv -i /var/tmp/catalyst2 /var/tmp/catalyst</i>
-<comment>(Zmiana nazwy katalogu konfiguracyjnego)</comment>
+<comment>(Zmiana nazwy katalogu zawierającego konfiguracje)</comment>
 # <i>mv -i /etc/catalyst2 /etc/catalyst</i>
 # <i>cd /etc/catalyst</i>
 # <i>sed -i -e 's/catalyst2/catalyst/' *.conf</i>
 </pre>
 
 <p>
-Dokumentacja internetowa jest w tej chwili pisana dla wersji 2.0 i zostanie
-przedstawiona przed oznaczeniem nowego catalyst jako stabilnego. W tej chwili,
-przykłady dostępne w <path>/usr/share/doc/catalyst-2.0/examples</path> są
-najlepszą formą dokumentacji.
+Dokumentacja dla catalyst 2.0 jest obecnie tworzona i z chwilą stabilizacji
+pakietu zostanie oficjalnie opublikowana. Obecnie przykładowe szablony
+zainstalowane w katalogu <path>/usr/share/doc/catalyst-2.0/examples</path>
+stanowią jedyną dostępną dokumentacje.
 </p>
 
 </body>
 </section>
 <section>
-<title>Trzecia rocznica Gentoo's Bugday</title>
+<title>Trzecia rocznica Gentoo Bugday</title>
 <body>
+
 <p>
-Sobota, 5 sierpnia dniem trzeciej rocznicy projektu Gentoo/Bugday.
-Jest on uwaany za jeden z ważniejszych kamieni milowych, a co za tym idzie - 
-będzie należycie obchodzony, włączając w to również konkursy i nagrody!
+W sobotę, 5 sierpnia będziemy obchodzić trzecią rocznicę istnienia projektu
+Gentoo/Bugday. Jest on uważany za jeden z ważniejszych kamieni milowych na
+drodze rozwoju Gentoo. W związku z tym będzie on należycie obchodzony,
+włączając w to również konkursy i nagrody!
 </p>
 
 <p>
-Po raz pierwszy Bugday zaistniał jako <uri link="/proj/en/glep/glep-0006.html">GLEP
-6</uri>. Od samego początku projekt ten miał ogromny wpływ na Gentoo. Z
-pewnością dowiódł on swój wpływ w przeciągu pierwszych trzech lat swojego istnienia.
-Mnóstwo nowych deweloperów zostało zrekrutowanych bezpośrednio podczas uczestnictwa
-w Bugday jako zwykli użytkownicy, czy inni mający pierwsze doświadczenia z
-poprzednich odsłon Bugday, którzy wkrótce dołączyli do pozostałych projektów
-Gentoo - zupełnie niezwiązanych z Bugday.
+Po rozpoczął swoje istnienie jako propozycja <uri
+link="/proj/en/glep/glep-0006.html">GLEP 6</uri>. Od samego początku projekt ten
+miał ogromny wpływ na Gentoo. Z pewnością w ciągu trzech lat istnienia dowiódł
+on swojej przydatności dla dystrybucji. Mnóstwo nowych deweloperów rozpoczęło
+przygodę z Gentoo właśnie od uczestnictwa w Bugday jako zwykli użytkownicy, czy
+inni mający pierwsze doświadczenia z poprzednich odsłon Bugday. Dla innych z
+kolei było to pierwsze doświadczenie związane z ebuildami, które pomogło im
+dołączyć do projektów nie związanych z Bugday.
 </p>
 
 <p>
-W trakcie trwania projektu, pomimo tego, że jest ogromnym narzędziem rekrutacyjnym, 
-użytkownicy i deweloperzy współpracują przy naprawianiu zaskakującej liczby błędów. 
-Bugday jest jedną z ważniejszych podstaw całej społeczności Gentoo. Projekt z pewnością
-pomógł załatać luki pomiędzy deweloperami i użytkownikami, a jego oficjalny kanał
-IRC w minionym czasie przerodził się w miejsce gdzie problemy związane z
-ebuildami i poprawkami są omawiane codziennie.
+Oprócz faktu, że projekt jest świetnym narzędziem pomagającym w rekrutacji
+nowych deweloperów, w czasie dotychczasowych edycji Bugday użytkownicy i
+deweloperzy współpracując ze sobą naprawili imponującą listę błędów i usterek.
+Bugday jest z pewnością bardzo ważnym wydarzeniem stanowiącym jeden z
+fundamentów dla społeczności zgromadzonej wokół Gentoo. Projekt pomógł i ciągle
+pomaga w rozwijaniu kontaktów pomiędzy użytkownikami i deweloperami, a jego
+oficjalny kanał IRC w minionym czasie przerodził się w miejsce gdzie problemy
+związane z pakietami oraz poprawkami są codziennie omawiane.
 </p>
 
 <p>
-Aby świętować trzecią rocznicę, odbędzie się szereg konkursów. Użytkownicy
-zmierzą się w walce na najlepiej poprawione błędy, największą wiedzę na temat
-Gentoo etc.
+Aby uświetnić trzecią rocznicę, odbędzie się szereg konkursów. Użytkownicy
+zmierzą się w walce o najlepiej poprawione błędy, największą wiedzę na temat
+Gentoo, etc.
 </p>
 
 <p>
-Wciąż trwają prace nad przygotowaniem konkursów i nagród, a wszystkie
-szczegóły powinny ukazać się na <uri link="http://bugday.gentoo.org">stronie Bugday</uri>
+Wciąż trwają prace nad przygotowaniem konkursów i nagród, a wszystkie szczegóły
+powinny ukazać się na <uri link="http://bugday.gentoo.org">stronie Bugday</uri>
 pod koniec tego tygodnia.
 </p>
 
 <p>
-Życzymy powodzenia. Projekt Bugday ma nadzieję, że będzie to najlepszy Bugday
-z odbywających się jak do tej pory. Wielkie podziękowania należą się każdemu kto
+Życzymy wszystkim powodzenie powodzenia. Członkowie projektu Bugday nie
+ukrywają, że mają nadzieję, że będzie to najlepszy Bugday z wszystkich
+odbywających się do tej pory. Wielkie podziękowania należą się każdemu kto
 uczestniczył w projekcie przez ostatnie trzy lata -- to właśnie ta pomoc
 sprawiła, że projekt odniósł tak wielki sukces.
 </p>
@@ -148,100 +154,107 @@ sprawiła, że projekt odniósł tak wielki sukces.
 </body>
 </section>
 <section>
-<title>Potrzebni chętni do zespołu Gentoo/Java</title>
+<title>Zespół Gentoo/Java potrzebuje pomocy</title>
 <body>
 
 <p>
-Od pewnego czas zespół Java posiada zbyt małą liczbę osób pracujących przy tym
-projekcie. Poniżej wypisano kilka "stanowisk", na których chętnie widziano by
-nowe osoby do pomocy. Termin "chętni" użyty jest w dość luźnym znaczeniu, a
-znaczy tyle, że "to są rzeczy, przy których chcemy, abyście pomagali". Każdy
-aktualnie aktywny deweloper, będzie mile widziany, jednak również nowe osoby,
-chcącę wstąpić do projektu, będą równie mile widziane.
+Od dłuższego już czasu zespół Java ma problemy z powodu zbyt niskiej liczby
+członków jak na potrzeby tak rozbudowanego projektu. Poniżej można znaleźć kilka
+wolnych do wypełnienia „stanowisk” na które poszukiwane są osoby chętne do
+pomocy. Termin „do wypełnienia” użyty jest w dość luźnym znaczeniu, a znaczy
+tyle, że „to są rzeczy, przy których chcemy, abyście nam pomogli”. Zachęcamy
+wszystkich aktywnych deweloperów do spróbowania własnych sił, „nowe twarze” są
+oczywiście także mile widziane i mogą liczyć na aklimatyzację i pomoc ze strony
+aktualnych członków zespołu Gentoo/Java.
 </p>
 
 <ul>
-<li>Java generalists</li>
+  <li>Generalnie Java</li>
 </ul>
 
 <p>
-Zespół Gentoo/Java posiada pod swoją opieką olbrzymią liczbę pakietów Java.
-Podczas ich ostatniego liczenia była to liczba większa od 400. Jak każdy może
-sobie wyobrazić, taka liczba pakietów potrafi spowodować zalew raportów z
-błędami oraz z prośbami o zmianę wersji.
+Zespół Gentoo/Java opiekuje się olbrzymią ilością pakietów Java.  Podczas
+ostatniej próby ich podliczenia doliczono się ponad 400 aplikacji, bibliotek i
+innych. Jak łatwo można sobie to wyobrazić, taka liczba pakietów potrafi być
+stałym źródłem wielu raportów o aktualizację dostępnej w drzewie Portage wersji
+oraz zwykłych, dotyczących normalnych usterek.
 </p>
 
 <p>
-Zasadniczo, zespół Java poszukuje osób chcących pomóc przy opiece nad
-pakietami. Oczekujemy od kandydatów znajomości Gentoo i Javy (niespodzianka!).
-Jeżeli tak nie jest, będą się oni musieli nauczyć w jaki sposób zachowują się
-pakiety Java w Gentoo. Znajomość ant, który używany jest w większości pakietów,
-będzie również mile widziana.
-</p>
-
-<ul>
-<li>Opiekun JBoss</li>
-</ul>
-
-<p>
-JBoss jest jedną z ważniejszych aplikacji w świecie Java. Od pewnego czasu nie
-posiada on opiekuna i przydałoby się mu trochę miłości. Z racji wielkości tej
-bestii, zespół Java, chciałbym, aby tym pakietem zajęła się osoba używająca
-aplikacji na codzień, najlepiej w zastosowaniach komercyjnych.
+Zasadniczo, zespół Java poszukuje osób chcących pomóc przy opiece nad tymi
+pakietami. Od kandydatów oczekuje się znajomości Gentoo i Javy (niespodzianka!).
+Można jednak spróbować własnych sił pomimo braku tej wiedzy, wymagane jednak
+będzie oczywiście chęć do szybkiego uzupełnienia, tak by wiedzieć jak zachowują
+się pakiety Java w Gentoo. Znajomość ant, który używany jest w większości
+pakietów, jest również mile widziana.
 </p>
 
 <ul>
-<li>Opiekun Jetty</li>
+  <li>Opiekun JBoss</li>
 </ul>
 
 <p>
-Jetty jest internetowym zbiornikiem, takim jak tomcat czy resin. Również ten
-pakiet w ostatnim czasie został mocno zaniedbany. Najlepiej, gdyby osoba
-zajmująca się tą aplikacją używała jej na codzień w komercyjnych
+JBoss to jedna z ważniejszych aplikacji w świecie Java. Od pewnego czasu pakiet
+nie posiada własnego opiekuna i z pewnością przydałoby się mu trochę czułości.
+Z racji wielkości tej bestii, zespół Java liczy w szczególności na oferty osób
+mających do czynienia z aplikacją na co dzień, najlepiej w zastosowaniach
+komercyjnych.
+</p>
+
+<ul>
+  <li>Opiekun Jetty</li>
+</ul>
+
+<p>
+Jetty jest kontenerem dla serwletów, takim jak tomcat czy resin. Również ten
+pakiet w ostatnim czasie został mocno zaniedbany. Najlepiej, gdyby osoba chętna
+do pomocy przy tej aplikacji używała jej na co dzień w komercyjnych
 zastosowaniach.
 </p>
 
 <ul>
-<li>Free Java Hackers</li>
+  <li>Hakerzy Java</li>
 </ul>
 
 <p>
-Jeden z wybitnych użytkowników pracował nad możliwością użycia GCJ jako JDK,
-czyli jako narzędzia do budowania naszych pakietów. Zespół Java posiada kilka
-innych maszyn wirtualnych w Portage, takich jak kaffe, sablevm, jamvm itd.
-Jeżeli użytkownicy byliby zainteresowani, byłoby świetnie, aby budowali oni
-swoje pakiety przy użyciu tych maszyn.
+Jeden z naszych doświadczonych i znamienitych użytkowników pracował nad
+możliwością użycia GCJ jako JDK, czyli jako narzędzia do budowania pakietów.
+Zespół Java ma pod swoją opieką także kilka innych maszyn wirtualnych
+znajdujących się w Portage, w tym kaffe, sablevm, jamvm itd. Poszukiwane są
+osoby chętne do testowania i budowania pakietów z użyciem innych maszyn
+wirtualnych.
 </p>
 
 <ul>
-<li>Opiekuni Eclipse / Netbeans</li>
+  <li>Opiekun Eclipse/Netbeans</li>
 </ul>
 
 <p>
-Eclipse i Netbeans są głównymi zintegrowanymi środowiskami deweloperskimi (IDE)
-dla Javy. Eclipse jest w tej chwili pod dobrą opieką jednak wtyczki do niego
-już nie. Netbeans potrzebuje trochę więcej miłości, dodatkowo przydałaby się
-aktualizacja pakietu.
+Eclipse i Netbeans to zintegrowane środowiska deweloperskie (IDE) dla Javy.
+Samo Eclipse jest w tej chwili pod dobrą opieką, niestety jednak wtyczki do
+niego już nie. Netbeans potrzebuje trochę więcej miłości, jako że pakiet nie był
+aktualizowany już od jakiegoś czasu.
 </p>
 
 <p>
-Więc, czy którakolwiek z tych propozycji zabrzmiała interesującą i chciałbyś
-przy niej pomóc? Na początek powinniśmy przyjrzeć się <uri
-link="/proj/en/java/">stronie projektu</uri> i przeczytać dostępne tam
-dokumenty. Jeżeli nadal nasz entuzjazm nie opadnie, należy skontaktować się z
-<mail link="nichoj@gentoo.org">Joshem Nicholsem</mail>.
+Jeżeli którakolwiek z powyższych propozycji zabrzmiała interesującą to gorąco
+zachęcamy do zgłoszenia się i rozpoczęcia współpracy. Na początek najlepiej
+przyjrzeć się <uri link="/proj/en/java/">głównej stronie projektu</uri> i
+przeglądnąć dostępne na niej dokumenty. Jeżeli po ich przeczytaniu, decyzja o
+dołączeniu do zespołu nie zmieni się to ostatnim krokiem jest kontakt z <mail
+link="nichoj@gentoo.org">Joshem Nicholsem</mail>.
 </p>
 
 <p>
-Inne rzeczy, które należy wykonać przed przystąpieniem do zespołu:
+Inne rzeczy, które warto wykonać przed przystąpieniem do zespołu:
 </p>
 
 <ul>
-<li>Zapisać się do listy dyskusyjnej, <c>gentoo-java</c>. Generuje ona dość
-małą ilość listów.</li>
-<li>Zajrzeć na kanał IRC, <c>#gentoo-java</c> na serwerze irc.freenode.net.
-Jest on również mało oblegany, więć nie denerwujmy się gdy nie otrzymamy
-natychmiastowej odpowiedzi.</li>
+  <li>Subskrypcja listy dyskusyjnej, <c>gentoo-java</c>. Charakteryzuje się mało
+  ilością wiadomości.</li>
+  <li>Dołączenie do kanału IRC <c>#gentoo-java</c> na serwerze irc.freenode.net.
+  Nie jest on zbytnio oblegany, więc nie należy spodziewać się zalewu
+  wiadomości, ani natychmiastowych odpowiedzi.</li>
 </ul>
 
 </body>
@@ -261,9 +274,9 @@ serwerach Gentoo.
 <p>
 Zachęcamy wszystkich posługujących się językiem czeskim, a potrafiących także
 czytać w języku angielskim do pomocy w tłumaczeniu kolejnych dokumentów. Wszyscy
-zainteresowani i gotowi proszeni są o kontakt z <mail link="jkt@gentoo.org">Janem
-Kundrátem</mail>, dzięki współpracy można uzyskać swój własny adres email
-z końcówką gentoo.org.
+zainteresowani proszeni są o kontakt z <mail link="jkt@gentoo.org">Janem
+Kundrátem</mail>. Dzięki współpracy można uzyskać swój własny adres email z
+końcówką gentoo.org.
 </p>
 
 </body>
