@@ -103,7 +103,7 @@ wysokopoziomowego dostępu do plików. Łatwo wyobrazić sobie do czego by
 doprowadziła zmiana kontrolera dysku twardego, gdy poszczególne programy
 musiałyby bezpośrednio korzystać ze sprzętu -- wszystkie aplikacje przestały by
 działać! Na szczęście jądro Linuksa wspiera Uniksowy model dostępu do urządzeń
-wejścia/wyjścia (I/O, ang.  input/output) z którego mogą z łatwością korzystać
+wejścia/wyjścia (I/O, ang. input/output) z którego mogą z łatwością korzystać
 wszystkie programy. Dzięki temu choćby system bazodanowy nie musi się martwić
 tym czy dane są przechowywane na dysku IDE, czy też może macierz dyskową RAID
 SCSCI, albo zamontowanym, zdalnym dysku.
@@ -112,16 +112,17 @@ SCSCI, albo zamontowanym, zdalnym dysku.
 </body>
 </section>
 <section>
-<title>Networking Central</title>
+<title>Zarządzanie siecią</title>
 <body>
 
 <p>
-One of Linux's main claims to fame is its robust networking, especially TCP/IP
-support. And, if you guessed that the TCP/IP stack is in the Linux kernel,
-you're right! The kernel provides a nice, high-level interface for programs
-that want to send data over the network. Behind the scenes, the Linux kernel
-interfaces directly with your particular ethernet card or modem, and handles
-the low-level Internet communication details.
+Jedną z ważniejszych funkcjonalności z jakich słynie Linux jest obsługa sieci, w
+szczególności protokołu TCP/IP. Jak można się łatwo domyślić, stos TCP/IP został
+umieszczony właśnie w jądrze. Udostępniono także czytelny, wysoko poziomowy
+interfejs tak by programy mogły z łatwością przesyłać dane poprzez sieć. Za
+kulisami, jądro komunikuje się bezpośrednio z poszczególnymi interfejsami
+sieciowymi, niezależnie czy to jest karta ethernet lub modem, obsługując
+wszystkie nisko poziomowe aspekty komunikacji.
 </p>
 
 </body>
