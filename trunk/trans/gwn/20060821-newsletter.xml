@@ -105,66 +105,70 @@ link="gwn-feedback@gentoo.org">GWN staff</mail> for more information.
 </section>
 
 <section>
-<title>GCC 4.1.1 and glibc 2.4 going stable</title>
+<title>GCC 4.1.1 i glibc 2.4 dążą do stabilizacji</title>
 <body>
 
 <p>
-As you can guess by the title, the Gentoo <uri link="/proj/en/base">base</uri>
-project has announced that <c>sys-devel/gcc-4.1.1</c> and
-<c>sys-libs/glibc-2.4-r3</c> will be going stable on both <c>amd64</c> and
-<c>x86</c> this week because of their use in the upcoming 2006.1 release.
-The <c>ppc</c> architecture has already switched, when using the 2006.1
-profile. Other architectures are working on support and will switch over at a
-later date. This is a major milestone for Gentoo as it marks a transition from
-the previously deprecated <uri
-link="http://pauillac.inria.fr/~xleroy/linuxthreads">LinuxThreads</uri> to
-<uri link="http://en.wikipedia.org/wiki/Native_POSIX_Thread_Library">Native
-POSIX Thread Library</uri> (NPTL) for glibc. Support for the older versions of
-glibc with LinuxThreads will remain for x86 in a limited fashion. However,
-upstream glibc will no longer support LinuxThreads, so bug and security fixes
-are unlikely. The <uri
-link="http://people.redhat.com/drepper/nptl-design.pdf">white paper</uri> (PDF)
-has more information on the design of NPTL. There is a well-written comparison
-of LinuxThreads and NPTL on <uri
+Jak łatwo się domyśleć po tytule, projekt <uri link="/proj/en/base">Gentoo base</uri>
+ogłosił, że w związku ze zbliżającym się wydaniem 2006.1 - <c>sys-devel/gcc-4.1.1</c> i
+<c>sys-libs/glibc-2.4-r3</c> zmierzają wielkimi krokami ku stabilizacji na platformach
+<c>amd64</c> i <c>x86</c>. Na chwilę obecną architektura <c>ppc</c> już z nich
+korzysta, jeśli używa się profilu 2006.1. Na zmianę na pozostałych architekturach, w 
+związku z wciąż trwającymi pracami nad dokumentacją, trzeba będzie jeszcze trochę poczekać. 
+Dla Gentoo jest to jeden z ważniejszych kamieni milowych, który wyraźnie odznacza przejście 
+z dotychczasowych, już niewspieranych <uri
+link="http://pauillac.inria.fr/~xleroy/linuxthreads">LinuxThreads</uri> na
+<uri link="http://pl.wikipedia.org/wiki/NPTL">Native
+POSIX Thread Library</uri> (NPTL) dla pakietu glibc. Wsparcie dla starszych
+wersji glibc z LinuxThreads dla platformy x86 pozostanie, ale w bardzo ubogiej
+formie. Nie mniej jednak, następne wydania glibc odsuną się od LinuxThreads,
+stąd... nie warto spodziewać się jakichkolwiek poprawek zarówno błędów czy
+bezpieczeństwa. Wydano również <uri
+link="http://people.redhat.com/drepper/nptl-design.pdf">dokument</uri> (PDF)
+zawierający więcej informacji o konstrukcji NPTL. Poza tym na stronach <uri
 link="http://www-128.ibm.com/developerworks/linux/library/l-threading.html?ca=dgr-lnxw06LinuxThreadsAndNPTL">IBM DeveloperWorks</uri>.
+dostępny jest też artykuł, w którym bardzo przejrzyście porównuje się
+LinuxThreads i NPTL.
 </p>
 
 <p>
-Users on x86 wishing to continue using LinuxThreads are asked to switch to
-using the "no-nptl" profile for default-linux, or to switch to using a hardened
-profile.
+Użytkownicy x86 chcący zostać przy LinuxThreads proszeni są o przełączenie się
+na profil "no-nptl" jako default-linux, lub - jako alternatywa - na profil
+hardened.
 </p>
 
 <warn>
-The hardened profiles are much more minimalistic than the default-linux
-profiles that you may be accustomed to using. Switching to a hardened profile
-will likely require enabling many more USE flags in <c>make.conf</c> to retain
-the same functionality.
+Profile hardened są zdecydowanie bardziej ograniczone od profili default-linux,
+do których większość użytkowników jest przyzwyczajona. Przełączenie na profil hardened
+najprawdopodobniej wymagać będzie, w celu uzyskania tej samej funkcjonalności, 
+dopisania wielu nowych flag USE do pliku <c>make.conf</c>.
 </warn>
 
-<pre caption="Switching to the no-nptl profile">
+<pre caption="Przełączanie na profil no-nptl">
 # cd /etc
 # rm -f make.profile
 # ln -sf ../usr/portage/profiles/default-linux/x86/no-nptl
 </pre>
 
 <note>
-There is also a 2.4 sub-profile, which uses the 2.4 kernel and headers.
+Dostępny jest również podprofil 2.4, korzystający z kernela i nagłówków serii 2.4.
 </note>
 
 <p>
-This also marks a major upgrade of the GNU Compiler Collection (GCC) to version
-4.1.1 on Gentoo. This upgrade requires the user to perform certain tasks outlined in the <uri
-link="http://www.gentoo.org/doc/en/gcc-upgrading.xml">GCC Upgrading Guide</uri>,
-which has recently been updated with information on GCC 4.1.1 for Gentoo users.
+Aktualizacja tyczy się również pakietu GNU Compiler Collection (GCC) do wersji 
+4.1.1. To uaktualnienie wymaga od użytkownika przeprowadzenia pewnych zadań,
+wymienionych w dokumencie pod nazwą <uri
+link="http://www.gentoo.org/doc/en/gcc-upgrading.xml">Aktualizacja GCC w Gentoo
+Linux</uri>, który został ostatnio poprawiony i wzbogacony o informacje na temat 
+GCC 4.1.1.
 </p>
 
 <p>
-Users who do not wish to upgrade to GCC 4.1.1 will require a few more steps to
-ensure their systems are not upgraded.
+Użytkownicy, którzy nie chcą uaktualniać GCC do wersji 4.1.1, będą zmuszeni
+wykonać kilka dodatkowych kroków by zagwarantować sobie pewność, że tego unikną.
 </p>
 
-<pre caption="Masking GCC 4.1.1">
+<pre caption="Maskowanie GCC 4.1.1">
 # mkdir -p /etc/portage
 # echo ">=sys-devel/gcc-4.0" >> /etc/portage/package.mask
 </pre>
