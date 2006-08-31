@@ -4,12 +4,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.0/hb-install-sparc-bootloader.xml,v 1.2 2006/02/27 00:37:17 fox2mike Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.1/hb-install-sparc-bootloader.xml,v 1.1 2006/08/30 20:17:31 nightmorph Exp $ -->
 
 <sections>
 
-<version>6.0</version>
-<date>2006-02-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Making your Choice</title>
@@ -75,23 +75,28 @@ If the physical disk on which you want to install SILO (as bootloader) differs
 from the physical disk on which <path>/etc/silo.conf</path> resides, you must
 copy over <path>/etc/silo.conf</path> to a partition on that disk. Assuming that
 <path>/boot</path> is a separate partition on that disk, copy over the
-configuration file to <path>/boot</path> and run <c>/sbin/silo</c>:
+configuration file to <path>/boot</path> and run <c>/sbin/silo -f</c>:
 </p>
 
 <pre caption = "Only if /boot and the SILO destination are not on the same disk">
 # <i>cp /etc/silo.conf /boot</i>
-# <i>/sbin/silo -C /boot/silo.conf</i>
+# <i>/sbin/silo -f -C /boot/silo.conf</i>
 /boot/silo.conf appears to be valid
 </pre>
 
 <p>
-Otherwise just run <c>/sbin/silo</c>:
+Otherwise just run <c>/sbin/silo -f</c>:
 </p>
 
 <pre caption = "Run silo">
-# <i>/sbin/silo</i>
+# <i>/sbin/silo -f</i>
 /etc/silo.conf appears to be valid
 </pre>
+
+<note>
+You have to run <c>silo</c> (with parameters) again each time you update or
+reinstall the <c>sys-boot/silo</c> package.
+</note>
 
 <p>
 Now continue with <uri link="#reboot">Rebooting the System</uri>.

@@ -4,12 +4,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.0/hb-install-hppa-kernel.xml,v 1.2 2006/02/27 00:37:17 fox2mike Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.1/hb-install-hppa-kernel.xml,v 1.1 2006/08/30 20:17:31 nightmorph Exp $ -->
 
 <sections>
 
-<version>6.0</version>
-<date>2006-02-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Timezone</title>
@@ -63,13 +63,13 @@ symlink.
 <p>
 When you take a look in <path>/usr/src</path> you should see a symlink called
 <path>linux</path> pointing to your kernel source. In this case, the installed
-kernel source points to <c>hppa-sources-2.6.15.1-pa4</c>. Your version may be
+kernel source points to <c>hppa-sources-2.6.16.18-pa11</c>. Your version may be
 different, so keep this in mind. 
 </p>
 
 <pre caption="Viewing the kernel source symlink">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.6.15.1-pa4
+lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; hppa-sources-2.6.16.18-pa11
 </pre>
 
 <p>
@@ -140,11 +140,9 @@ First of all, activate the use of development and experimental code/drivers.
 You need this, otherwise some very important code/drivers won't show up:
 </p>
 
-<pre caption="Selecting experimental code/drivers, General setup">
+<pre caption="Selecting experimental code/drivers">
 Code maturity level options ---&gt;
   [*] Prompt for development and/or incomplete code/drivers
-General setup --->
-  [*] Support for hot-pluggable devices
 </pre>
 
 <p>
