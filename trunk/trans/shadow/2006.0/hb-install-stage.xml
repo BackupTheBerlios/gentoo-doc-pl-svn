@@ -4,12 +4,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.0/hb-install-stage.xml,v 1.3 2006/05/27 12:48:38 neysx Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.1/hb-install-stage.xml,v 1.1 2006/08/30 20:17:31 nightmorph Exp $ -->
 
 <sections>
 
-<version>6.1</version>
-<date>2006-05-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Installing a Stage Tarball</title>
@@ -101,12 +101,12 @@ happens during the extraction process (this one is optional), the <c>j</c> for
 <e>Decompress with bzip2</e>, the <c>p</c> for <e>Preserve permissions</e> and
 the <c>f</c> to denote that we want to extract a file, not standard input. In
 the next example, we extract the stage tarball
-<path>stage3-&lt;subarch&gt;-2006.0.tar.bz2</path>. Be sure to substitute
+<path>stage3-&lt;subarch&gt;-2006.1.tar.bz2</path>. Be sure to substitute
 the tarball filename with your stage.
 </p>
 
 <pre caption="Extracting the stage tarball">
-# <i>tar xvjpf /mnt/cdrom/stages/stage3-&lt;subarch&gt;-2006.0.tar.bz2</i>
+# <i>tar xvjpf /mnt/cdrom/stages/stage3-&lt;subarch&gt;-2006.1.tar.bz2</i>
 </pre>
 
 <p>
@@ -156,7 +156,7 @@ We will now assume that you have <c>links</c> at your disposal.
 
 <p>
 Pick the <path>releases/</path> directory, followed by your architecture (for
-instance <path>x86/</path>) and the Gentoo version (<path>2006.0/</path>) to
+instance <path>x86/</path>) and the Gentoo version (<path>2006.1/</path>) to
 finish up with the <path>stages/</path> directory. There you should see all
 available stage files for your architecture (they might be stored within
 subdirectories named to the individual subarchitectures). Select one and press
@@ -182,8 +182,8 @@ mirror. For instance, to check the validity of the x86 stage tarball:
 </p>
 
 <pre caption="Example checking integrity of a stage tarball">
-# <i>md5sum -c stage3-x86-2006.0.tar.bz2.DIGESTS</i>
-stage3-x86-2006.0.tar.bz2: OK
+# <i>md5sum -c stage3-x86-2006.1.tar.bz2.DIGESTS</i>
+stage3-x86-2006.1.tar.bz2: OK
 </pre>
 
 </body>
@@ -351,19 +351,18 @@ programs behave bad (crash, or even worse, malfunction).
 </p>
 
 <p>
-We will not explain all possible optimization options. If you want to know
-them all, read the <uri link="http://gcc.gnu.org/onlinedocs/">GNU
+We cannot explain all possible optimization options here, but if you want to 
+investigate them all, read the <uri link="http://gcc.gnu.org/onlinedocs/">GNU 
 Online Manual(s)</uri> or the <c>gcc</c> info page (<c>info gcc</c> -- only
-works on a working Linux system). The <path>make.conf.example</path> file 
-itself also contains lots of examples and information; don't forget to read it 
-too. 
+works on a working Linux system). For common optimizations and architecture
+specific settings, please read <path>/etc/make.conf.example</path>.  This
+file also contains lots of examples and information; don't forget to read it
+too.
 </p>
 
 <p>
-A first setting is the <c>-march=</c> flag, which specifies the name of the
-target architecture. Possible options are described in the
-<path>make.conf.example</path> file (as comments). For instance, for the x86 
-Athlon XP architecture:
+As an example, on the x86 architecture, you will want to set the -march= flag
+as shown below (for an Athlon XP machine): 
 </p>
 
 <pre caption="The GCC march setting">

@@ -4,12 +4,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.0/hb-install-sparc-medium.xml,v 1.2 2006/02/27 00:37:17 fox2mike Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.1/hb-install-sparc-medium.xml,v 1.1 2006/08/30 20:17:31 nightmorph Exp $ -->
 
 <sections>
 
-<version>6.0</version>
-<date>2006-02-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Hardware Requirements</title>
@@ -148,9 +148,9 @@ The use of the Package CD is covered later in this document.
 You can download the Universal Installation CD (and, if you want to, the 
 Packages CD as well) from one of our <uri 
 link="/main/en/mirrors.xml">mirrors</uri>. The Installation CDs are located in 
-the <path>releases/sparc/2006.0/sparc64/installcd</path> 
+the <path>releases/sparc/2006.1/sparc64/installcd</path> 
 directory; the Package CDs are located in the 
-<path>releases/sparc/2006.0/sparc64/packagecd</path> directory.
+<path>releases/sparc/2006.1/sparc64/packagecd</path> directory.
 </p>
 
 <p>
@@ -229,12 +229,15 @@ ok <i>boot cdrom</i>
 
 <p>
 You will be greeted by the SILO boot manager (on the Installation CD). Type in
-<c>gentoo</c> and press enter to continue booting the
-system:
+<c>2616</c> to use 2.6.16 kernel or <c>2617</c> to use 2.6.17 kernel and press
+enter to continue booting the system. <c>2616</c> was tested more extensively
+so it's the option you should choose if default <c>2617</c> doesn't work for
+you. If you want to have support for the newer Sun boxes (Niagara, UltraSPARC,
+T1), you should choose default <c>2617</c>.
 </p>
 
 <pre caption="Continue booting from the Installation CD">
-boot: <i>gentoo</i>
+boot: <i>2617</i>
 </pre>
 
 <p>

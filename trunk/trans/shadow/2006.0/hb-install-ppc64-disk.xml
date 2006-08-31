@@ -4,12 +4,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.0/hb-install-ppc64-disk.xml,v 1.2 2006/02/27 00:37:17 fox2mike Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.1/hb-install-ppc64-disk.xml,v 1.1 2006/08/30 20:17:31 nightmorph Exp $ -->
 
 <sections>
 
-<version>6.0</version>
-<date>2006-02-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Introduction to Block Devices</title>
@@ -587,10 +587,7 @@ happens to be in an inconsistent state.
 <b>ext3</b> is the journaled version of the ext2 filesystem, providing metadata
 journaling for fast recovery in addition to other enhanced journaling modes like
 full data and ordered data journaling. ext3 is a very good and reliable
-filesystem. It has an additional hashed b-tree indexing option that enables 
-high performance in almost all situations. You can enable this indexing by
-adding <c>-O dir_index</c> to the <c>mke2fs</c> command. In short, ext3 is an 
-excellent filesystem.
+filesystem.
 </p>
 
 <p>
@@ -706,13 +703,11 @@ Create and activate the swap with the commands mentioned above.
 
 <p>
 Now that your partitions are initialized and are housing a filesystem, it is
-time to mount those partitions. Use the <c>mount</c> command. Don't forget to
-create the necessary mount directories for every partition you created. As an
-example we create a mount-point and mount the root and boot partition:
+time to mount those partitions. Use the <c>mount</c> command. As an example we
+mount the root partition:
 </p>
 
 <pre caption="Mounting partitions">
-# <i>mkdir /mnt/gentoo</i>
 # <i>mount /dev/sda4 /mnt/gentoo</i> 
 </pre>
 
