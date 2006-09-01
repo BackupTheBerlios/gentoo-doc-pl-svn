@@ -83,61 +83,61 @@ BitTorrent.
 </section>
 
 <section>
-<title>GCC 4.1.1 and glibc 2.4 stable</title>
+<title>GCC 4.1.1 i glibc 2.4 stabilne</title>
 <body>
 
 <p>
-Initially reported <uri link="20060821-newsletter.xml">last week</uri>, the x86
-and AMD64 architectures have marked <c>sys-devel/gcc-4.1.1</c> and
-<c>sys-libs/glibc-2.4-r3</c> stable to coincide with the 2006.1 release. The
-new GCC and GNU C library (glibc) versions mark a transition in Gentoo's
-supported configurations. Starting with glibc 2.4, the <uri
+Jak donosiliśmy w <uri link="20060821-newsletter.xml">ubiegłym tygodniu</uri>, 
+na architekturach x86 i AMD64, <c>sys-devel/gcc-4.1.1</c> oraz
+<c>sys-libs/glibc-2.4-r3</c> oznaczono jako stabilne i dołączono do wydania 2006.1.
+Nowe wersje GCC i GNU C library (glibc) oznaczają migrację wspieranych przez Gentoo
+konfiguracji. Zaczynając od glibc 2.4, utrzymywanie biblioteki <uri
 link="http://pauillac.inria.fr/~xleroy/linuxthreads">LinuxThreads</uri>
-threading library is no longer supported in the default configuration.
-LinuxThreads is replaced with NPTL, or the <uri
-link="http://en.wikipedia.org/wiki/Native_POSIX_Thread_Library">Native POSIX
-Thread Library</uri>. Support for the older versions of glibc with LinuxThreads
-will remain for x86 in a limited fashion for an undetermined time. This is
-primarily due to a shift in support from the upstream glibc developers.
+zostanie w domyślnych ustawieniach porzucone. Będzie ona zastąpiona przez
+NPTL, lub inaczej <uri
+link="http://pl.wikipedia.org/wiki/NPTL">Native POSIX
+Thread Library</uri>. Wsparcie dla starszych wersji glibc z obsługą LinuxThreads
+dla platformy x86 pozostanie, ale w znacznie uboższej postaci. O zmianie
+priorytetów wsparcia dla bibliotek w głównej mierze zadecydowali deweloperzy glibc.
 </p>
 
 <p>
-Users on x86 wishing to continue using LinuxThreads are asked to switch to
-using the "no-nptl" profile for default-linux, or to switch to using a hardened
-profile.
+Użytkownicy x86 chcący zostać przy LinuxThreads proszeni są o przełączenie się
+na profil "no-nptl", lub - jako alternatywa - na profil hardened.
 </p>
 
 <warn>
-The hardened profiles are much more minimalistic than the default-linux
-profiles that you may be accustomed to using. Switching to a hardened profile
-will likely require enabling many more USE flags in <c>make.conf</c> to retain
-the same functionality.
+Profile hardened są zdecydowanie bardziej ograniczone od profili default-linux,
+do których większość użytkowników jest przyzwyczajona. Przełączenie na profil
+hardened najprawdopodobniej wymagać będzie, w celu uzyskania tej samej
+funkcjonalności, dopisania wielu dodatkowych flag USE w pliku <c>make.conf</c>.
 </warn>
 
-<pre caption="Switching to the no-nptl profile">
+<pre caption="Przełączenie na profil no-nptl">
 # cd /etc
 # rm -f make.profile
 # ln -sf ../usr/portage/profiles/default-linux/x86/no-nptl make.profile
 </pre>
 
 <note>
-There is also a 2.4 sub-profile, which uses the 2.4 kernel and headers.
+Dostępny jest również podprofil 2.4, korzystający z jąra i nagłówków serii 2.4.
 </note>
 
 <p>
-This also marks a major upgrade of the GNU Compiler Collection (GCC) to version
-4.1.1 on Gentoo. This upgrade requires the user to perform certain tasks
-outlined in the <uri link="http://www.gentoo.org/doc/en/gcc-upgrading.xml">GCC
-Upgrading Guide</uri>, which has recently been updated with information on GCC
-4.1.1 for Gentoo users.
+Aktualizacja dotyczy również pakietu GNU Compiler Collection (GCC) do wersji 
+4.1.1. To uaktualnienie wymaga od użytkownika przeprowadzenia procedury opisanej
+w dokumencie <uri link="http://www.gentoo.org/doc/en/gcc-upgrading.xml">Aktualizacja 
+GCC w Gentoo Linux</uri>, który został odpowiednio poprawiony i wzbogacony o
+informacje na temat GCC 4.1.1.
 </p>
 
 <p>
-Users who do not wish to upgrade to GCC 4.1.1 will require a few more steps to
-ensure their systems are not upgraded.
+Użytkownicy, którzy nie chcą aktualizować GCC do wersji 4.1.1, będą musieli
+wykonać kilka dodatkowych kroków tak, by zagwarantować wstrzymanie
+uaktualnienia.
 </p>
 
-<pre caption="Masking GCC 4.1.1">
+<pre caption="Maskowanie GCC 4.1.1">
 # mkdir -p /etc/portage
 # echo ">=sys-devel/gcc-4.0" >> /etc/portage/package.mask
 </pre>
@@ -187,33 +187,34 @@ prawdopodobnie odbędzie na południu Niemiec.
 </section>
 
 <section>
-<title>Gentoo overlays project provides social workspaces</title>
+<title>Projekt Gentoo Overlays zapewnia społeczne obszary działania</title>
 <body>
 
 <p>
-The Gentoo <uri link="/proj/en/overlays">Overlays</uri> project, together with
-other projects including Infrastructure and User Relations, has officially
-announced the overlays service to provide a single source for development
-overlays for Gentoo. <mail link="stuart@gentoo.org">Stuart Herbert</mail>, the
-founder of the project, hopes to see the Overlays project used to create
-a more intimate and positive collaboration between developers and other members
-of the Gentoo community.
+Projekt Gentoo <uri link="/proj/en/overlays">Overlays</uri>, wraz z innymi
+projektami, włączając w to Infrastrukturę i Relacje Użytkowników, zgłosiły
+oficjalny serwis nakładek na Portage by dostarczyć pojedyncze źródło dla
+rozwoju nakładek dla Gentoo. <mail link="stuart@gentoo.org">Stuart Herbert</mail>, 
+założyciel projektu, ma nadzieję zobaczyć, że Overlays przyczynił się do
+umocnienia więzi i pozytywnej współpracy pomiędzy deweloperami a innymi
+użytkownikami społeczności Gentoo.
 </p>
 
 <p>
-These overlays are individual collections of additional packages for Gentoo
-that are maintained and distributed separately from the main package tree.
-This allows for non-developers to be given commit access and builds a stronger
-relationship between the developers and members of the community by encouraging
-them to work closer together. Users interested in joining the volunteer-driven
-Gentoo project gain experience working in an open source project and doing
-development in a real-world setting.
+Owe nakładki są indywidualną kolekcją dodatkowych pakietów dla Gentoo, które nie są
+utrzymywane i rozprowadzane w głównym drzewie Portage.
+Pozwala to każdemu nie-deweloperowi na zaangażowanie się i budowanie mocniejszej
+więzi pomiędzy członkami społeczności a deweloperami przez wzajemne zachęcanie
+się i napędzanie do wspólnej pracy. Zainteresowani uczestnictwem w tej
+wolontarialnej inicjatywie zyskują doświadczenie pracy w projekcie Open Source i
+jego rozwojem w otoczeniu całego świata.
 </p>
 
 <p>
-For more information on the Gentoo Overlays project, visit the <uri
-link="/proj/en/overlays">project page</uri>, and also the Overlay project
-<uri link="http://overlays.gentoo.org">home page</uri>.
+W celu uzyskania większej ilości informacji na temat projektu Gentoo Overlays,
+prosimy odwiedzić <uri
+link="/proj/en/overlays">stronę projektu</uri>, jak również i jego
+<uri link="http://overlays.gentoo.org">stronę główną</uri>.
 </p>
 
 </body>
