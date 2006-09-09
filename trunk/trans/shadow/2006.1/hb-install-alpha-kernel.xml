@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>6.0</version>
-<date>2006-02-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Strefa czasowa</title>
@@ -69,14 +69,14 @@ inny kernel odpowiednio zmień wszystkie polecenia.
 
 <p>
 W katalogu <path>/usr/src</path> powinieneś mieć mniej więcej taki symlink, o
-W tym wypadku wskazuje na źródła <c>vanilla-sources-2.6.11.2</c>. W komputerze
+W tym wypadku wskazuje na źródła <c>vanilla-sources-2.6.16.9</c>. W komputerze
 +użytkownika może być to inna wersja, dlatego należy mieć to na uwadze. nazwie
 <path>linux</path>, wskazujący na źródła Twojego aktualnego kernela.
 </p>
 
 <pre caption="Podgląd symlinka do źródeł kernela">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux-&gt; linux-2.6.11.2
+lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.6.16.9
 </pre>
 
 <p>
@@ -145,11 +145,9 @@ fragmentów kodu jądra. Jeśli tego nie zrobisz to nawet nie zobaczysz kilku
 bardzo ważnych opcji.
 </p>
 
-<pre caption="Wybieranie opcji experimental code/drivers i główna konfiguracja">
+<pre caption="Wybieranie opcji experimental code/drivers">
 Code maturity level options ---&gt;
   [*] Prompt for development and/or incomplete code/drivers
-General setup ---&gt;
-  [*] Support for hot-pluggable devices
 </pre>
 
 <p>
@@ -365,28 +363,32 @@ jako moduły).
 </p>
 
 <pre caption="Uruchamianie genkernela">
+* Gentoo Linux Genkernel; Version 3.4.0
+* Running with options: all
+
+* Linux Kernel 2.6.16.19 for alpha...
+* kernel: >> Running mrproper...
 # <i>genkernel all</i>
-GenKernel v3.0.1_beta10
-* ARCH: Alpha
-* KERNEL VER: 2.6.11.2
-* kernel: configuring source
-* kernel: running mrproper
-<comment>(Output removed to increase readability)</comment>
+<comment>(Wynik polecenia został usunięty, aby zwiększyć czytelność poleceń)</comment>
 * Kernel compiled successfully!
-* Required Kernel Params:
-*   : root=/dev/ram0 init=/linuxrc real_root=/dev/$ROOT
-*     where $ROOT is the devicenode for your root partition as
-*     you should have specified in /etc/fstab
 *
-* You MUST tell your bootloader to use the generated initrd
+* Required Kernel Parameters:
+*     real_root=/dev/$ROOT
 *
-* Recommended Kernel Params:
-*   : vga=0x317 splash=verbose
+*     Where $ROOT is the device node for your root partition as the
+*     one specified in /etc/fstab
 *
-* Do NOT report kernel bugs (configs included) as genkernel bugs.
-* Make sure you have the latest genkernel before reporting bugs
+* If you require Genkernel's hardware detection features; you MUST
+* tell your bootloader to use the provided INITRAMFS file. Otherwise;
+* substitute the root argument for the real_root argument if you are
+* not planning to use the initrd...
+
+* WARNING... WARNING... WARNING...
+* Additional kernel cmdline arguments that *may* be required to boot properly...
+* Do NOT report kernel bugs as genkernel bugs unless your bug
+* is about the default genkernel configuration...
 *
-* For more info see /usr/share/genkernel/README
+* Make sure you have the latest genkernel before reporting bugs.
 </pre>
 
 <p>
