@@ -7,8 +7,8 @@
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <sections>
 
-<version>6.0</version>
-<date>2006-02-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Wymagania sprzętowe</title>
@@ -154,8 +154,8 @@ Gentoo</title>
 Wszystkie obrazy płyt instalacji uniwersalnej (również płyt Package CD)
 znajdują się na naszych <uri link="/main/en/mirrors.xml">serwerach
 lustrzanych</uri> w katalogu
-<path>releases/sparc/2006.0/sparc64/installcd</path>; obraz płyt Package CD
-znajduje się w katalogu <path>releases/sparc/2006.0/sparc64/packagecd</path>.
+<path>releases/sparc/2006.1/sparc64/installcd</path>; obraz płyt Package CD
+znajduje się w katalogu <path>releases/sparc/2006.1/sparc64/packagecd</path>.
 </p>
 
 <p>
@@ -237,11 +237,16 @@ ok <i>boot cdrom</i>
 
 <p>
 Następną rzeczą jaka ukaże się na ekranie będzie menedżer uruchamiania - SILO.
-Po wpisaniu <c>gentoo</c> zostanie uruchomiony system.
+Aby używać jądra 2.6.16 wpisujemy <c>2616</c>, jeśli chcemy jądro 2.6.17
+wpisujemy <c>2617</c>, a następnie naciskamy enter. Opcja <c>2616</c> jest
+przetestowana bardziej skrupulatnie przez co w przypadku błędnego działania
+domyślnej <c>2617</c> należy jej użyć. Jeżeli chcemy mieć wsparcie dla nowszych
+komputerów Sun (Niagara, UltraSPARC, T1), powinniśmy wybrać domyślną opcję
+<c>2617</c>.
 </p>
 
 <pre caption="Uruchamianie systemu płyty instalacyjnej">
-boot: <i>gentoo</i>
+boot: <i>2617</i>
 </pre>
 
 <p>

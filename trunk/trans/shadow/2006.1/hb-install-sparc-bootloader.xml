@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>6.0</version>
-<date>2006-02-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Podejmowanie decyzji</title>
@@ -73,23 +73,28 @@ Jeśli fizyczny dysk na którym chcesz zainstalować SILO jako bootloader jest i
 od tego na którym znajduje się plik <path>/etc/silo.conf</path> będziesz musiał
 skopiować <path>/etc/silo.conf</path> na tę samą partycję na tym dysku.
 Załóżmym, że partycja <path>/boot</path> jest osobną częścią dysku i skopiujemy
-plik konfiguracyjny do <path>/boot</path> i uruchomimy <c>/sbin/silo</c>:
+plik konfiguracyjny do <path>/boot</path> i uruchomimy <c>/sbin/silo -f</c>:
 </p>
 
 <pre caption = "Jeśli /boot i docelowa lokalizacja SILO nie znajdują się na tym samym dysku">
 # <i>cp /etc/silo.conf /boot</i>
-# <i>/sbin/silo -C /boot/silo.conf</i>
+# <i>/sbin/silo -f -C /boot/silo.conf</i>
 /boot/silo.conf appears to be valid
 </pre>
 
 <p>
-Następnie uruchom <c>/sbin/silo</c>:
+Następnie uruchom <c>/sbin/silo -f</c>:
 </p>
 
 <pre caption = "Uruchamianie silo">
-# <i>/sbin/silo</i>
+# <i>/sbin/silo -f</i>
 /etc/silo.conf appears to be valid
 </pre>
+
+<note>
+Komende <c>silo</c> (z parametrami) musimy uruchamiać za każdym razem, gdy
+przeinstalujemy pakiet <c>sys-boot/silo</c>.
+</note>
 
 <p>
 Kiedy skończysz przejdź do paragrafu <uri link="#reboot">Ponowne uruchamianie

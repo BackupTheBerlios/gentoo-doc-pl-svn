@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>6.0</version>
-<date>2006-02-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Strefa czasowa</title>
@@ -45,9 +45,9 @@ różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
 
 <p>
 Dla systemów opartych na architekturze sparc udostępniamy źródła
-<c>sparc-sources</c> (zoptymalizowane dla użytkowników sparc) oraz
-<c>vanilla-sources</c> (zwykłe źródła, rozwijane przez develeperów jądra
-Linux),
+<c>sparc-sources</c> (jądro 2.4 zoptymalizowane dla użytkowników sparc),
+<c>gentoo-sources</c> (polecane źródła jądra 2.6) oraz <c>vanilla-sources</c>
+(zwykłe źródła, rozwijane przez develeperów jądra Linux).
 </p>
 
 <p>
@@ -59,19 +59,19 @@ tworzenie prawidłowych dowiązań symbolicznych <path>/usr/src/linux</path>.
 </p>
 
 <pre caption="Instalowanie źródeł jądra">
-# <i>USE="-doc symlink" emerge sparc-sources</i>
+# <i>USE="-doc symlink" emerge gentoo-sources</i>
 </pre>
 
 <p>
 W katalogu <path>/usr/src</path> powinieneś mieć mniej więcej taki symlink, o
 nazwie <path>linux</path>, wskazujący na źródła Twojego aktualnego kernela. W
-tym wypadku wskazuje na źródła <c>sparc-sources-2.4.31</c>. W komputerze
+tym wypadku wskazuje na źródła <c>linux-2.6.17-gentoo-r5</c>. W komputerze
 użytkownika może być to inna wersja, dlatego należy mieć to na uwadze.
 </p>
 
 <pre caption="Podgląd symlinka do źródeł kernela">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root       12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.4.31-sparc
+lrwxrwxrwx    1 root     root       12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.6.17-gentoo-r5
 </pre>
 
 <p>
@@ -332,14 +332,14 @@ kernela.
 
 <p>
 Na przykład, aby automatycznie ładować do pamięci moduł <c>3c59x.o</c> edytujemy
-plik <path>kernel-2.4</path> i wprowadzamy do niego nazwę tego modułu.
+plik <path>kernel-2.6</path> i wprowadzamy do niego nazwę tego modułu.
 </p>
 
-<pre caption="Edycja /etc/modules.autoload.d/kernel-2.4">
-# <i>nano -w /etc/modules.autoload.d/kernel-2.4</i>
+<pre caption="Edycja /etc/modules.autoload.d/kernel-2.6">
+# <i>nano -w /etc/modules.autoload.d/kernel-2.6</i>
 </pre>
 
-<pre caption="/etc/modules.autoload.d/kernel-2.4">
+<pre caption="/etc/modules.autoload.d/kernel-2.6">
 3c59x
 </pre>
 

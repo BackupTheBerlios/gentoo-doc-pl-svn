@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>6.0</version>
-<date>2006-02-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Wprowadzenie do urządzeń blokowych</title>
@@ -518,7 +518,8 @@ ordered, dzięki czemu w razie awarii dane odzyskiwane są błyskawicznie. Jest 
 bardzo dobrym i niezawodnym rozwiązaniem.  Posiada ukrytą opcję korzystania z
 drzewa b, co znacznie poprawia wydajność niemal we wszystkich sytuacjach.
 Księgowanie można włączyć dodając parametr <c>-O dir_index</c> dla polecenia
-<c>mke2fs</c>. Krótko mówiąc, ext3 jest świetny.
+<c>mke2fs</c>, jednak możemy dodać ten parametr tylko w przypadku posiadania
+jądra 2.6. Krótko mówiąc, ext3 jest świetny.
 </p>
 
 </body>
@@ -544,10 +545,6 @@ odpowiedniego narzędzia:
 <tr>
   <ti>ext3</ti>
   <ti><c>mke2fs -j</c></ti>
-</tr>
-<tr>
-  <ti>ext3 z indeksowaniem b-tree (dla kerneli 2.6)</ti>
-  <ti><c>mke2fs -j -O dir_index</c></ti>
 </tr>
 </table>
 
