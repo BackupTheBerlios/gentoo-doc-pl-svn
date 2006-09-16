@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>1.0</version>
-<date>2006-02-27</date>
+<version>2.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Witamy</title>
@@ -26,6 +26,17 @@ przed dokonywaniem dalszych wyborów. Godnym uwagi szczegółem jest również
 możliwość zapisania aktualnych postępów konfiguracji, a następnie odtworzenie
 procesu instalacji w późniejszym czasie.
 </p>
+
+<p>
+Do wyboru mamy dwie możliwości instalacji. Wybieramy <c>Networkless</c>, aby
+zainstalować Gentoo Linux.
+</p>
+
+<note>
+Wybierając opcję <c>Networkless</c> sprawimy, że w późniejszym czasie część
+opcji będzie niedostępna. W takim przypadku przechodzimy po prostu do
+następnego kroku.
+</note>
 
 </body>
 </subsection>
@@ -123,44 +134,6 @@ momencie wspierany jest tylko NFS.
 </section>
 
 <section>
-<title>Wybór stage</title>
-<subsection>
-<title>Dynamiczne tworzenie pliku stage</title>
-<body>
-
-<p>
-Jeżeli instalujemy Gentoo <e>bez</e> dostępu do internetu, <e>musimy</e> wybrać
-<c>GRP</c> z opcji stage. Następnie, na kolejnym "ekranie", należy wybrać
-<c>Create from CD</c>. Wszystko co tylko potrzebne do budowy systemu, będzie
-wygenerowane przy użyciu plików z LiveCD.
-</p>
-
-<warn>
-Jeżeli nie mamy połączenia z internetem <e>nie</e> należy wybierać żadnych
-innych opcji, niż te podane powyżej.
-</warn>
-
-</body>
-</subsection>
-</section>
-
-<section>
-<title>Drzewo Portage</title>
-<subsection>
-<title>Rozpakowywanie drzewa Portage</title>
-<body>
-
-<p>
-W tej zakładce jedynym możliwym wyborem jest opcja <c>Snapshot</c>. Kiedy
-zostanie ona wybrana instalator automatycznie rozpakuje obraz drzewa Portage na
-dysk. Nie musimy precyzować parametru URI.
-</p>
-
-</body>
-</subsection>
-</section>
-
-<section>
 <title>make.conf</title>
 <subsection>
 <title>Flagi USE</title>
@@ -192,14 +165,13 @@ flagami optymalizacyjnymi, takimi jak <c>-O2</c> czy <c>-pipe</c>.
 <body>
 
 <p>
-Wszystkie inne opcje, których chcemy używać powinny zostać zaznaczone już
-teraz. <e>Use unstable (~arch)</e> pozwoli nam na instalacje niestabilnych
-pakietów z drzewa Portage. <e>Build binary packages</e> tworzy pakiety
-prekompilowane podczas kompilacji. Wybierając opcję <e>DistCC</e> będziemy
-mogli dzielić obciążenie wywołane kompilacją na inne komputery przy pomocy
-sieci lokalnej. <e>ccache</e> zachowuje skompilowany kod do jego późniejszego
-wykorzystania, przez co skraca się czas ponownej kompilacji tego samego
-pakietu.
+Wszsytkie opcje, których chcemy używać w przyszłości powinni zostać wybrane w
+tym momencie. Opcja <e>Build binary packages</e> tworzy gotowe do instalacji
+pakiety binarne, ze wszystkich programów, które skompilujemy w naszym systemie.
+Opcja <e>DistCC</e> pozwala dzielić obicążenie wywołane przez kompilację na
+inne komputery znajdujące się w sieci lokalnej. <c>ccache</c> zachowuje
+kompilowany kod, do późniejszego wykorzystania, przez co może przyśpieszy
+późniejszą ponowną kompilację, tego samego pakietu.
 </p>
 
 <p>
@@ -347,11 +319,6 @@ operacyjnego Linux. Należy wybrać jeden z dostępnych w Portage.
 LiveCD zawiera kilka prekompilowanych pakietów. Jeżeli chcemy je zainstalować,
 należy zaznaczyć odpowiednie pola.
 </p>
-
-<impo>
-Jeżeli instalujemy Gentoo bez dostępu do internetu, nie możemy dodać żadnych
-dodatkowych pakietów poza tymi, które znajdują się na płycie instalacyjnej.
-</impo>
 
 </body>
 </subsection>
