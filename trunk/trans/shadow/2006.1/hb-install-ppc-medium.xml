@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>6.1</version>
-<date>2006-07-25</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Wymagania sprzętowe</title>
@@ -165,8 +165,8 @@ Gentoo</title>
 <p>
 Wszystkie obrazy płyt instalacji uniwersalnej (również płyt Package CD) znajdują
 się na naszych <uri link="/main/en/mirrors.xml">serwerach lustrzanych</uri> w
-katalogu <path>releases/ppc/2006.0/installcd</path>; obraz płyt Package CD
-znajduje się w katalogu <path>releases/ppc/2006.0/packagecd</path>.
+katalogu <path>releases/ppc/2006.1/installcd</path>; obraz płyt Package CD
+znajduje się w katalogu <path>releases/ppc/2006.1/packagecd</path>.
 </p>
 
 <p>
@@ -250,7 +250,7 @@ Po załadowaniu płyty CD na ekranie pojawi się znak zachęty w postaci
 </p>
 
 <p>
-System dostarczany jest z jednym jądrem, <e>ppc32</e>, dla wszystkich
+System dostarczany jest z jednym jądrem, <e>apple</e>, dla wszystkich
 podarchitektur. Zawiera on wkompilowane wsparcie dla wielu procesorów, jednak
 bez przeszkód można go używać w komputerach jednoprocesorowych.
 </p>
@@ -301,13 +301,13 @@ wybrane jądro. Są to:
 
 <p>
 Aby czerpać pożytek z powyższych opcji, w linii <e>boot:</e>, powinniśmy
-wpisać <e>ppc32</e>, a następnie porządaną przez nas opcję. W poniższym
+wpisać <e>apple</e>, a następnie porządaną przez nas opcję. W poniższym
 przykładzie, zmusimy jądro do używania sterownika framebuffer OpenFirmware w
 miejsce sterownika specyficznego dla danego urządzenia.
 </p>
 
 <pre caption="Przymusowe użycie sterownika framebuffer OpenFirmware">
-boot: <i>ppc32 video=ofonly</i>
+boot: <i>apple video=ofonly</i>
 </pre>
 
 <p>
@@ -357,8 +357,8 @@ Następnie należy skopiować  <c>BootX Extension</c> do katalogu <c>Extensions
 Folder</c> i panel sterowania BootX do katalogu <c>Control Panels</c>. Oba te
 katalogi znajdują się w katalogu systemowym MacOS. Następnie należy utworzyć
 katalog "Linux Kernels" w tymże folderze systemowym i skopiować do niego jądro
-<c>ppc32</c> z płyty instalacyjnej. Na koniec należy jeszcze przekopiować
-plik <c>ppc32.igz</c> z płyty instalacyjnej również do folderu systemowego
+<c>apple</c> z płyty instalacyjnej. Na koniec należy jeszcze przekopiować
+plik <c>apple.igz</c> z płyty instalacyjnej również do folderu systemowego
 MacOS.
 </p>
 
@@ -366,7 +366,7 @@ MacOS.
 Aby przygotować BootX należy uruchomić jego panel sterowania i wybrać menu o
 nazwie "Options", w którym należy zaznaczyć opcję <c>Use Specified RAM
 Disk</c>
-i wybrać plik <c>ppc32.igz</c> z folderu systemowego. Następnie trzeba wrócić
+i wybrać plik <c>apple.igz</c> z folderu systemowego. Następnie trzeba wrócić
 na
 początkowy ekran i upewnić się, że wybrany rozmiar ramdysku ma co najmniej
 <c>32000</c>. Na koniec można dodać jądru kilka parametrów argumentów, tak jak

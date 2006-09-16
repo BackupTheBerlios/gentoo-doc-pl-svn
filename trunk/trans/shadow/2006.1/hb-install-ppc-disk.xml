@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>6.1</version>
-<date>2006-07-25</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Wprowadzenie do urządzeń blokowych</title>
@@ -410,10 +410,6 @@ podczas uruchamiania systemu oraz ewentualnym błędom spójności danych.
 <b>Ext3</b> to odpowiednik ext2 posiadający księgowanie w trybach
 full oraz ordered, dzięki czemu w razie awarii dane odzyskiwane są
 błyskawicznie. Jest on bardzo dobrym i niezawodnym rozwiązaniem.
-Posiada ukrytą opcję korzystania z drzewa b, co znacznie poprawia
-wydajność niemal we wszystkich sytuacjach. W celu włączenia księgowania należy
-dodać parametr <c>-O dir_index</c> do linii poleceń programu
-<c>mke2fs</c>.Krótko mówiąc ext3 jest świetny.
 </p>
 
 <p>
@@ -486,8 +482,8 @@ Na przykład, aby założyć ext3 na partycji boot (w naszym przypadku
 </pre>
 
 <note>
-Na maszynach Pegasos II kernel musi znajdować się na systemach plików ext2 lub
-ext3. Maszyny NewWorld można uruchomić z  ext2, ext3, ReiserFS, a nawet z
+Na maszynach Pegasos II kernel musi znajdować się na systemach plików ext2/ext3
+lub affs1. Maszyny NewWorld można uruchomić z  ext2, ext3, ReiserFS, a nawet z
 HFS/HFS+.
 </note>
 
@@ -522,13 +518,11 @@ Aby ją aktywować skorzystamy z polecenia <c>swapon</c>:
 
 <p>
 Po założeniu partycji i utworzeniu systemów plików nadszedł czas na ich
-zamontowanie. Służy do tego program <c>mount</c>. Nie zapominamy również
-utworzyć odpowiednich katalogów dla każdego z nich. Pokażemy to na przykładzie
-partycji boot oraz root:
+zamontowanie. Służy do tego program <c>mount</c>. Pokażemy to na przykładzie
+partycji root:
 </p>
 
 <pre caption="Montowanie partycji">
-# <i>mkdir /mnt/gentoo</i>
 # <i>mount /dev/hda4 /mnt/gentoo</i>
 </pre>
 
