@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>6.1</version>
-<date>2006-05-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Instalowanie tarballa stage</title>
@@ -107,7 +107,7 @@ W dalszej części zakładamy, że do swojej dyspozycji mamy przeglądarkę
 
 <p>
 Przechodzimy do <path>releases/</path>, a następnie do katalogu odpowiedniej
-architektury (np. <path>x86/</path>) oraz wersji Gentoo (<path>2006.0/</path>)
+architektury (np. <path>x86/</path>) oraz wersji Gentoo (<path>2006.1/</path>)
 i na koniec do <path>stages/</path>. Znajdują się tam pliki stage dla wybranej
 architektury (czasem mogą być umieszczone w podkatalogach dla różnych
 podarchitektur). Wybieramy jeden i naciskamy <c>D</c>, aby go ściągnąć. Kiedy
@@ -133,8 +133,8 @@ aby sprawdzić poprawność tarballa stage dla architektury x86:
 </p>
 
 <pre caption="Sprawdzanie integralności tarballa stage">
-# <i>md5sum -c stage1-x86-2006.0.tar.bz2.md5</i>
-stage1-x86-2006.0.tar.bz2: OK
+# <i>md5sum -c stage1-x86-2006.1.tar.bz2.md5</i>
+stage1-x86-2006.1.tar.bz2: OK
 </pre>
 
 </body>
@@ -148,7 +148,7 @@ Wypakowujemy pobrany plik stage przy pomocy <c>tar</c>:
 </p>
 
 <pre caption="Wypakowanie stage">
-# <i>tar xvjpf /mnt/cdrom/stages/stage3-&lt;subarch&gt;-2006.0.tar.bz2</i>
+# <i>tar xvjpf /mnt/cdrom/stages/stage3-&lt;subarch&gt;-2006.1.tar.bz2</i>
 </pre>
 
 <p>
@@ -214,12 +214,12 @@ Następnie wypakowujemy wybrany tarball. Użyjemy do tego celu <c>tar</c>.
 Przełączniki (<c>-xvjpf</c>) muszą być takie same! Należy pamiętać, że
 argument <c>v</c> jest opcjonalny i nie jest obsługiwany przez pewne wersje
 programu <c>tar</c>. W kolejnym przykładzie wykorzystujemy plik
-<path>stage3-&lt;podarchitektura&gt;-2006.0.tar.bz2</path>. Oczywiście jego
+<path>stage3-&lt;podarchitektura&gt;-2006.1.tar.bz2</path>. Oczywiście jego
 nazwę należy odpowiednio zmodyfikować.
 </p>
 
 <pre caption="Wypakowanie tarballa stage">
-# <i>tar -xvjpf /mnt/cdrom/stages/stage3-&lt;subarch&gt;-2006.0.tar.bz2</i>
+# <i>tar -xvjpf /mnt/cdrom/stages/stage3-&lt;subarch&gt;-2006.1.tar.bz2</i>
 </pre>
 
 <p>
@@ -455,15 +455,16 @@ w optymalizacji może spowodować, że programy zaczną źle funkcjonować
 Nie będziemy tłumaczyć znaczenia wszystkich możliwych opcji optymalizacji.
 Wszystkie są wymienione w <uri link="http://gcc.gnu.org/onlinedocs/">Podręczniku
 Online GNU </uri> lub stronę info <c>gcc</c> (<c>info gcc</c> -- działa tylko na
-systemach linuksowych). Plik <path>make.conf.example</path> sam zawiera dużo
-informacji i przykładów  - należy go uważnie przeczytać.
+systemach linuksowych). Dla najczęsciej spotykanych flag optymalizacji należy
+zajrzeć do pliku <path>/etc/make.conf.example</path>. Znajduje się tam również
+wiele innych przykładów dotyczących prawiłowego ustawienia procesu instalacji i
+kompilacji pakietów.
 </p>
 
 <p>
-Pierwszym ustawieniem jakim się tu zajmiemy jest flaga <c>-march=</c>, która
-określa docelową architekturę. Możliwe jej wartości są opisane jako komentarze w
-<path>make.conf.example</path>. Na przykład dla architektury x86 Athlon XP
-będzie to:
+Tak samo jak w przykładzie, na architekturze x86, będziemy chcieli ustawić
+flagę -march= tak jak pokazano to poniżej (w tym wypadku dla procesora Athlon
+XP):
 </p>
 
 <pre caption="Ustawienie GCC march">
