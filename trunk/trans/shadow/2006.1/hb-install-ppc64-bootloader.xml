@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>6.0</version>
-<date>2006-02-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Podejmowanie decyzji</title>
@@ -65,7 +65,7 @@ zainstalować ręcznie.
 
 <pre caption="(WYŁĄCZNIE UŻYTKOWNICY G5 Z DOSTĘPEM DO INTERNETU) Zmiana profilu">
 # <i>rm /etc/make.profile</i>
-# <i>ln -sf /usr/portage/profiles/default-linux/ppc/2006.0/ppc64/(userland)/970/pmac /etc/make.profile</i>
+# <i>ln -sf /usr/portage/profiles/default-linux/ppc/2006.1/ppc64/(userland)/970/pmac /etc/make.profile</i>
 </pre>
 
 <pre caption="(WYŁĄCZNIE UŻYTKOWNICY G5 BEZ DOSTĘPU DO INTERNETU) Instalacja wymaganych narzędzi systemu plików">
@@ -187,9 +187,10 @@ magicboot=/usr/lib/yaboot/ofboot
 
 <comment>#################
 ## Ta część może być powielona, jeśli mamy więcej niż jeden kernel lub zestaw
-## parametrów startowych - należy podmienić 2.6.9 na wersję jądra w systemie
+## parametrów startowych - należy podmienić 2.6.17-gentoo-r5 na wersję jądra w
+## systemie
 #################</comment>
-image=/boot/kernel-2.6.12-gentoo-r4
+image=/boot/kernel-2.6.17-gentoo-r5
   label=Linux
   root=/dev/sda3
   read-only
@@ -255,11 +256,11 @@ następujących czynności:
 device=disk:
 partition=2
 root=/dev/sda2
-default=2.6.12-gentoo-r4
+default=2.6.17-gentoo-r5
 timeout=50
 
-image=/boot/vmlinux-2.6.12-gentoo-r4
-       label=2.6.12-gentoo-r4
+image=/boot/vmlinux-2.6.17-gentoo-r5
+       label=2.6.17-gentoo-r5
           append="console=ttyS0,9600"
           read-only
 </pre>
@@ -268,12 +269,12 @@ image=/boot/vmlinux-2.6.12-gentoo-r4
 Na systemach POWER4, POWER5 i sprzęcie opartym na blade, gdzie partycje PReP
 znajdują się na tym samym dysku można znacznie uprościć plik yaboot.conf.
 Powinien wtedy wystarczyć taki plik:
- </p>
+</p>
 
 <pre caption="yaboot.conf dla sprzętu PReP">
 default = linux
 timeout = 100
-image=/boot/kernel-2.6.12-gentoo-r4
+image=/boot/kernel-2.6.17-gentoo-r5
 label=linux
 read-only
 root = /dev/sda2

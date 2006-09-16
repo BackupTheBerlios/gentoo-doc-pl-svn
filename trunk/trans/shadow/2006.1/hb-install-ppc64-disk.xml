@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>6.0</version>
-<date>2006-02-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Wprowadzenie do urządzeń blokowych</title>
@@ -586,10 +586,7 @@ podczas uruchamiania systemu oraz ewentualnym błędom spójności danych.
 <p>
 <b>Ext3</b> to odpowiednik ext2 posiadający księgowanie w trybach full oraz
 ordered, dzięki czemu w razie awarii dane odzyskiwane są błyskawicznie. Jest on
-bardzo dobrym i niezawodnym rozwiązaniem.  Posiada ukrytą opcję korzystania z
-drzewa b, co znacznie poprawia wydajność niemal we wszystkich sytuacjach.
-Księgowanie można włączyć dodając opcję <c>-O dir_index</c> do polecenia
-<c>mke2fs</c>. Krótko mówiąc ext3 jest świetny.
+bardzo dobrym i niezawodnym rozwiązaniem.  
 </p>
 
 <p>
@@ -705,13 +702,11 @@ wymiany.
 
 <p>
 Po założeniu partycji i utworzeniu systemów plików nadszedł czas na ich
-zamontowanie. Służy do tego program <c>mount</c>. Nie należy zapomnieć o
-utworzeniu odpowiednich katalogów dla każdego z nich. Pokażemy to na przykładzie
-partycji boot oraz root:
+zamontowanie. Służy do tego program <c>mount</c>. Pokażemy to na przykładzie
+partycji root:
 </p>
 
 <pre caption="Montowanie partycji">
-# <i>mkdir /mnt/gentoo</i>
 # <i>mount /dev/sda4 /mnt/gentoo</i>
 </pre>
 
