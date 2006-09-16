@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>1.0</version>
-<date>2006-02-27</date>
+<version>2.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Witamy</title>
@@ -36,6 +36,51 @@ instalacji. Ważne jest, iż możemy w dowolnym momencie zapisać stan instalacj
 powrócić do tego samego momentu w późniejszym czasie. Do poruszania się po
 opcjach wewnątrz kolejnych zakładek należy skorzystać z klawisza <c>Tab</c> (na
 klawiaturze) oraz klawisza <c>Enter</c> aby zatwierdzić jakąś akcję.
+</p>
+
+<p>
+Do wyboru mamy dwie możliwości instalacji. Wybieramy <c>Networkless</c>, aby
+zainstalować Gentoo Linux.
+</p>
+
+<note>
+Wybierając opcję <c>Networkless</c> sprawimy, że w późniejszym czasie część
+opcji będzie niedostępna. W takim przypadku przechodzimy po prostu do
+następnego kroku.
+</note>
+
+</body>
+</subsection>
+</section>
+
+<section>
+<title>Przygotowania do instalacji</title>
+<subsection>
+<title>Opcjonalnie: Ręczna konfiguracja sieci</title>
+<body>
+
+<p>
+Pomimo tego, że będziemy instalować system bez połączenia z internetem, możemy
+skonfigurować połączenie z naszą siecią lokalną (LAN), na wypadek gdy
+zechcielibyśmy zainstalować Gentoo z innego komputera znajdującego się w tej
+sieci.
+</p>
+
+<p>
+Jeżeli chciemy umożliwić dostęp do naszego komputera za pomocą SSH, w celu
+zdalnej instalacji, należy uruchomić demona <c>sshd</c> i ustawić hasło dla
+użytkownika root.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Opcjonalnie: Ładowanie dodatkowych modułów jądra</title>
+<body>
+
+<p>
+W przypadku chęci załadowania dodatkowych modułów do obsługi naszego sprzętu,
+powinniśmy wymienić ich nazwy, każdą oddzielona spacją od drugiej.
 </p>
 
 </body>
@@ -79,8 +124,7 @@ skonfiguruje nasze partycje bez niszczenia istniejących partycji oraz danych.
 <p>
 Na tej zakładce użytkownik może ustawić gdzie oraz jak powinny być montowane
 sieciowe systemy plików, które można wykorzystać zarówno w trakcie, jak i po
-instalacji. Aby rozpocząć konfigurację należy wybrać opcję <c>New</c>. W tym
-momencie wspierany jest tylko NFS.
+instalacji. W tym momencie wspierany jest tylko NFS.
 </p>
 
 </body>
@@ -95,7 +139,7 @@ momencie wspierany jest tylko NFS.
 
 <p>
 Jeżeli instalujemy Gentoo <e>bez</e> dostępu do internetu, <e>musimy</e> wybrać
-<c>GRP</c> z opcji stage. Następnie, na kolejnym "ekranie", należy wybrać
+<c>3+GRP</c> z opcji stage. Następnie, na kolejnym "ekranie", należy wybrać
 <c>Create from CD</c>. Wszystko co tylko potrzebne do budowy systemu, będzie
 wygenerowane przy użyciu plików z LiveCD.
 </p>
@@ -110,6 +154,60 @@ innych opcji, niż te podane powyżej.
 </section>
 
 <section>
+<title>Drzewo Portage</title>
+<subsection>
+<title>Pobieranie drzewa Portage</title>
+<body>
+
+<p>
+W tym miejscu musimy wybrać opcję <c>Snapshot</c>. Instalator automatycznie
+zainstaluje drzewo Portage z LiveCD po wyborze tej opcji. Nie musimy precyzować
+zmiennej URI.
+</p>
+
+</body>
+</subsection>
+</section>
+
+-->
+
+<section>
+<title>make.conf</title>
+<subsection>
+<title>Flagi USE</title>
+<body>
+
+<p>
+Ponieważ instalujemy nasz system bez dostępu do sieci, nie będziemy w stanie
+wybrać flag USE przed samą instalacją. Jednak, bez problemu będziemy mogli
+zmienić te flagi w pliku <path>/etc/make.conf</path> już po zakończonej
+instalacji i uruchomieniu naszego systemu.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>CFLAGS</title>
+<body>
+
+<p>
+Na pozycji CFLAGS wybieramy rodzaj naszego procesora oraz dodatkowe flagi
+optymalizacji, takie jak na przykład <c>-O2</c> czy <c>-pipe</c>.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Feature</title>
+<body>
+
+<p>
+Wszystkie pozostałe opcje, których chcemy używać w przyszłości powinny zostać
+wybrane w tym momencie. Po przeczytaniu jakie opcje są dostępne, decydujemy się
+na te potrzebne nam.
+</p>
+
+<section>
 <title>Źródła jądra</title>
 <subsection>
 <title>Użycie jądra z LiveCD</title>
@@ -120,10 +218,6 @@ Jeżeli instalacja odbywa się bez dostępu do internetu lub z pakietów
 prekompilowanych, musimy użyć jądra znajdującego się na LiveCD. Jest to jądro
 <c>gentoo-sources</c> skompilowane przy użyciu <c>genkernela</c>, przez co
 będzie ono automatycznie wykrywało i konfigurowało sprzęt podczas uruchamiania.
-</p>
-
-<p>
-Wybieramy <c>LiveCD kernel</c> i przechodzimy do następnej zakładki.
 </p>
 
 </body>
@@ -137,12 +231,11 @@ Wybieramy <c>LiveCD kernel</c> i przechodzimy do następnej zakładki.
 <body>
 
 <p>
-Ta zakładka daje nam możliwość wyboru programu ładującego, który zostanie
-automatycznie skonfigurowany przez instalator.
+Ta zakładka daje nam możliwość wyboru programu ładującego. Następnie wybieramy
+urządzenie, z którego uruchamiany będzie program oraz (opcjonalnie) dodajemy
+dodatkowe opcję uruchamiania.
 </p>
 
-<!-- do we need to cover all the stuff about lilo/grub and kernel parameter
-lines and/or block devices here? -->
 </body>
 </subsection>
 </section>
@@ -194,10 +287,38 @@ LiveCD zawiera kilka prekompilowanych pakietów. Jeżeli chcemy je zainstalować
 należy zaznaczyć odpowiednie pola.
 </p>
 
-<impo>
-Jeżeli instalujemy Gentoo bez dostępu do internetu, nie możemy dodać, żadnych
-dodatkowych pakietów poza tymi, które znajdują się na płycie instalacyjnej.
-</impo>
+</body>
+</subsection>
+</section>
+
+<section>
+<title>Usługi startowe</title>
+<subsection>
+<body>
+
+<p>
+Zakładka ta pozwala na wybranie serwisów, które mają być uruchamiane podczas
+startu systemu. Należy przeczytać dostępne opcję wraz z ich opisem, a następnie
+wybrać odpowiednie serwisy. Dla przykładu, jeżeli wybraliśmy instalację pakietu
+<c>xorg-x11</c> i podczas uruchamiania systemu, chcemy bezpośrednio uruchamiać
+graficzne środowisko, powinniśmy wybrać z listy opcję "xdm".
+</p>
+
+</body>
+</subsection>
+</section>
+
+<section>
+<title>Pozostałe ustawienia</title>
+<subsection>
+<title>Różne opcje</title>
+<body>
+
+<p>
+Na tym ekranie możemy wybrać pozostałe potrzebne opcję, takie jak mapę
+klawiatury, środowisko graficzne, domyślny edytor oraz czy nasz zegar sprzętowy
+ma pracować w czasie UTC czy lokalnym.
+</p>
 
 </body>
 </subsection>
