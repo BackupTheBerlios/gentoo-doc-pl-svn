@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>6.2</version>
-<date>2006-05-27</date>
+<version>7.0</version>
+<date>2006-08-30</date>
 
 <section>
 <title>Informacje o systemach plików</title>
@@ -77,9 +77,11 @@ tworzymy własny plik <path>/etc/fstab</path>:
 </pre>
 
 <p>
-Spójrzmy jak zapisać opcje partycji <path>/boot</path>. To tylko przykład, nie
-trzeba go przepisywać, jeśli architektura nie wymaga takiej partycji (np.
-Apple <b>PPC</b>).
+Spójrzmy jak zapisać opcje partycji <path>/boot</path>. Jeżeli architektura
+naszego komputera nie wymaga oddzielnej partycji <path>/boot</path> (np.
+komputery Apple PowerPC) lub nie zdecydowaliśmy się na tworzenie takowej,
+powinniśmy pominąć wpis dotyczący takiej partcji w naszym pliku fstab. Partycja
+Apple Bootstrap nie jest rodzajem partcji <path>/boot</path>.
 </p>
 
 <p>
@@ -187,9 +189,9 @@ Teraz skonfigurujmy domenę:
 </p>
 
 <pre caption="Konfiguracja nazwy domeny">
-# <i>nano -w /etc/conf.d/domainname</i>
-<comment>(Ustawienie zmiennej DNSDOMAIN)</comment>
-DNSDOMAIN="<i>homenetwork</i>"
+# <i>nano -w /etc/conf.d/net</i>
+<comment>(Ustawienie zmiennej dns_domain)</comment>
+dns_domain_lo="<i>homenetwork</i>"
 </pre>
 
 <p>
@@ -198,9 +200,9 @@ to zapewne jej nie posiadasz.
 </p>
 
 <pre caption="Konfiguracja nazwy domeny NIS">
-# <i>nano -w /etc/conf.d/domainname</i>
-<comment>(Ustawienie zmiennej NISDOMAIN)</comment>
-NISDOMAIN="<i>my-nisdomain</i>"
+# <i>nano -w /etc/conf.d/net</i>
+<comment>(Ustawienie zmiennej nis_domain)</comment>
+nis_domain_lo="<i>my-nisdomain</i>"
 </pre>
 
 </body>
@@ -315,7 +317,7 @@ celu skorzystać z <c>ln</c>:
 
 <pre caption="Tworzenie dodatkowych skryptów startowych">
 # <i>cd /etc/init.d</i>
-# <i>ln -s net.eth0 net.eth1</i>
+# <i>ln -s net.lo net.eth1</i>
 # <i>rc-update add net.eth1 default</i>
 </pre>
 
@@ -454,11 +456,13 @@ wartość to mogą pojawić się dziwne rezultaty podczas pisania na klawiaturze
 </p>
 
 <note>
-Użytkownicy <b>SPARC-ów</b> oraz ich klonów korzystający z USB powinni wybrać
-mapę klawiszy i386 (na przykład "us") zamiast "sunkeymap". PPC w większości
-przypadków korzysta z map x86. Użytkownicy chcący korzystać z mapowania ADB
-powinni zaznaczyć odpowiednią opcję w kernelu oraz ustawić mapowanie mac/ppc w
-pliku <path>/etc/conf.d/keymaps</path>.
+Użytkownicy <b>SPARC-ów</b> oraz ich klonów powinni wybrać stare, specyficzne
+dla nich mapy klawiatur jeżeli posiadają jądro 2.4. Jeżeli jednak mamy jądro
+2.6 (której jest domyślne), powinniśmy wybrać mapy klawiatur w stylu pc i386
+(np. "us"). <b>PPC</c> używa map na większości komputerów. Użytkownicy, którzy
+chcą mieć możliwości korzystania z map klawiatur ADB podczas uruchamiania
+komputera powinni uaktywnić wysyłanie kodów klawiszy w jądrze oraz powinni mieć
+ustawione mapy klawiatur mac/ppc w pliku <path>/etc/conf.d/keymaps</path>.
 </note>
 
 <p>
