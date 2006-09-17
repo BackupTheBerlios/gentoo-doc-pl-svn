@@ -37,10 +37,10 @@
 
 <p>
 <mail link="dsd@gentoo.org">Daniel Drake</mail>, jeden z deweloperów, oznajmił,
-że pakiet <c>net-misc/bcm4400</c> przestał być wspierany i zostanie wkrótce usunięty
-z drzewa Portage. Pakiet ten został zastąpiony przez sterownik z jądra.
-Użytkownicy korzystający z tego pakietu powinni przejść na sterowniki zawarte w
-kernelu tak szybko jak to możliwe.
+że pakiet <c>net-misc/bcm4400</c> przestał być wspierany i zostanie wkrótce
+usunięty z drzewa Portage. Pakiet ten został zastąpiony przez sterownik, który
+jest obecny w jądrze. Użytkownicy korzystający z tego pakietu powinni dokonać
+migracji i zacząć używać sterowniki zawarte w jądrze tak szybko jak to możliwe.
 </p>
 
 </body>
@@ -50,13 +50,14 @@ kernelu tak szybko jak to możliwe.
 <body>
 
 <p>
-<mail link="carlo@gentoo.org">Carsten Lohrke</mail>  z zespołu Gentoo KDE
-pragnie zakomunikować użytkownikomm, że wersje KDE 3.4 zostaną w przeciągu kilku
-następnych dni usunięte z drzewa Portage. Już od jakiegoś czasu, KDE 3.5 ze 
-wsparciem dla KDE jest oznaczone jako stabilne na każdej architekturze, dlatego
-też zespół KDE chce usunąć wersje 3.4 by móc skupić się na o wiele bogatszych
-wersjach 3.5 i wyższych. KDE 3.4 nie jest wspierane i zawiera kilka błędów,
-włączając w to brak kompatybilności z ostatnimi implementacjami X.Org.
+<mail link="carlo@gentoo.org">Carsten Lohrke</mail> z zespołu Gentoo KDE
+pragnie zakomunikować wszystkim użytkownikom, że KDE 3.4 zostanie usunięte z
+drzewa Portage w przeciągu kilku następnych dni. Już od jakiegoś czasu, KDE 3.5
+jest oznaczone jako stabilne na każdej, wspieranej przez samo KDE,
+architekturze, dlatego też podjęto decyzję o usunięciu wersji 3.4, by móc skupić
+się na bardziej rozbudowanych wersjach z serii 3.5 i wyższych. KDE 3.4 nie jest
+wspierane, dodatkowo zawiera także kilka znanych błędów, włączając w to brak
+kompatybilności z ostatnimi implementacjami X.Org.
 </p>
 
 </body>
@@ -66,22 +67,23 @@ włączając w to brak kompatybilności z ostatnimi implementacjami X.Org.
 <body>
 
 <p>
-Wszyscy korzystający z binarnych sterowników kart nVidia: wsparcie pakietów 
-<c>media-video/nvidia-glx</c> i <c>media-video/nvidia-kernel</c> zostało
-porzucone na rzecz <c>x11-drivers/nvidia-drivers</c> i 
+Większość użytkowników korzystających z binarnych sterowników kart nVidia zdaje
+sobie sprawę, że od jakiegoś już czasu pakiety <c>media-video/nvidia-glx</c> i
+<c>media-video/nvidia-kernel</c> oznaczono jako przestarzałe, a ich
+funkcjonalność można uzyskać instalując <c>x11-drivers/nvidia-drivers</c> i
 <c>x11-drivers/nvidia-legacy-drivers</c>. Pakiet nvidia-legacy-drivers wspiera
-karty nVidia od serii TNT, linię GeForce 5 i niektóre z serii GeForce 6. 
-Pakiet nvidia-drivers wspiera karty od serii GeForce 3 w górę. Starsze
-sterowniki zostaną usunięte 29 września. Podczas gdy wcześniejszym wersjom
-brakuje jakichkolwiek uaktualnień, nowsze wspierają nowszy sprzęt i
+karty nVidia począwszy od serii TNT po linię GeForce 5 i niektóre modele z serii
+GeForce 6. Pakiet nvidia-drivers wspiera karty od serii GeForce 3 w górę.
+Stare sterowniki zostaną usunięte 29 września. Podczas gdy wcześniejszym wersjom
+brakuje jakichkolwiek uaktualnień, nowsze wspierają nowszy sprzęt, a także
 xorg-x11-7.1.
 </p>
 
 <p>
-By przełączyć się na nowsze sterowniki, prosimy wykonać następujące instrukcje:
+By skorzystać z nowych sterowniki należy wykonać następujące operacje:
 </p>
 
-<pre caption="Przełączanie na x11-drivers/nvidia-drivers">
+<pre caption="Migracja na x11-drivers/nvidia-drivers">
 (Poniższe polecenia powinny być wykonane z linii komend, przy wyłączonych X)
 # emerge --unmerge media-video/nvidia-glx media-video/nvidia-kernel
 # rmmod nvidia
@@ -91,7 +93,7 @@ By przełączyć się na nowsze sterowniki, prosimy wykonać następujące instr
 </pre>
 
 <p>
-Nowe sterowniki będą wykorzystane przy kolejnym uruchomieniu X. 
+Nowe sterowniki będą wykorzystane przy kolejnym uruchomieniu X.
 </p>
 
 </body>
@@ -101,50 +103,53 @@ Nowe sterowniki będą wykorzystane przy kolejnym uruchomieniu X.
 <body>
 
 <p>
-<uri link="http://www.linuxuser.co.uk">LinuxUser and Developer Magazine</uri>
-rozpoczął nominacje do czwartego już z kolei, corocznego UK Linux Awards.
-Nominować, głosować i "?book tables" można na <uri
-link="http://www.linuxawards.co.uk">stronie</uri> tegorocznych odznaczeń. Gentoo
-ze zniecierpliwieniem nasłuchuje kto wygra w tym roku i każdemu z nominujących
-życzy jak najwięcej szczęścia.
+Magazyn <uri link="http://www.linuxuser.co.uk">LinuxUser and Developer</uri>
+rozpoczął zbieranie nominacji do czwartego już z kolei, corocznego UK Linux
+Awards. Nominować, głosować i rezerwować miejsca można na specjalnej <uri
+link="http://www.linuxawards.co.uk">stronie</uri>. Niecierpliwie czekamy na
+ostateczne rozstrzygnięcia i życzymy każdemu z kandydatów jak najwięcej
+szczęścia.
 </p>
 
 </body>
 </section>
 <section>
-<title>Sponsor projektu Free Linux Disk</title>
+<title>Zbiórka na projekt Free Linux Disk</title>
 <body>
 
 <p>
-Projekt Free Linux Disk posiada <uri
-link="http://www.freelinuxdisk.org/news.php?id=19">sponsora</uri> na zakup
-sprzętu by usprawnić swoją zdolność do produkcji mediów Linuksa w odpowiednim
-czasie. Projekt dostarcza dyski z kilku opartych o społeczeństwo je tworzących
-dystrybucji, tak jak wiele innych, dobrowolnie wspieranych finansowo. Celem jest
-zebranie $4500 CDN na powielacz dysków -<uri
+Projekt Free Linux Disk rozpoczęło <uri
+link="http://www.freelinuxdisk.org/news.php?id=19">zbiórkę pieniędzy</uri> na
+zakup sprzętu pozwalającego poprawić zdolności produkcyjne, tak by składane
+zamówienia były realizowane w jak najkrótszym czasie. Projekt dostarcza płyt
+instalacyjnych dla dystrybucji opartych o społeczności oraz tych mających
+wsparcie komercyjne jednak dostępnych nieodpłatnie. Celem zbiórki jest zebranie
+$4500 CDN na urządzenie kopiujące płyty <uri
 link="http://www.rimage.com/support_products_detail_objectname_Rimage2000i.html">
-rImage 2000i</uri> by móc sprostać aktualnym wymaganiom.
+rImage 2000i</uri>, które umożliwi sprostanie aktualnym potrzebom.
 </p>
 
 </body>
 </section>
 <section>
-<title>Tygodnik Gentoo szuka pisarzy</title>
+<title>Tygodnik Gentoo szuka autorów</title>
 <body>
 
 <p>
-Tygodnik Gentoo szuka chętnych do pomocy przy pisaniu niektórych sekcji Tygodnika,
-który od jakiegoś czasu jest zaniedbywany. Mówiąc dokładniej, szukamy chętnych
-do pisania cotygodniowych streszczeń list dyskusyjnych <c>gentoo-user</c> i 
-<c>gentoo-dev</c>. Wymagane jest dobre rozumienie pisanej angielszczyzny. Dobrze
-widziane będzie oddanie się w większym stopniu sekcji "Sztuczki i kruczki", dlatego
-każdego, kto korzysta z czegoś, co mogłoby znaleźć się w tym dziale, prosimy o
-wysłanie tego do nas, a my opublikujemy to w kolejnym wydaniu Tygodnika.
+Tygodnik Gentoo szuka chętnych do pomocy przy pisaniu niektórych sekcji
+Tygodnika, które od już jakiegoś czasu są zaniedbywany. Mówiąc dokładniej,
+szukamy zainteresowanych tworzeniem cotygodniowych podsumowań wydarzeń na
+listach dyskusyjnych <c>gentoo-user</c> i <c>gentoo-dev</c>. Wymagana jest
+dobra znajomość pisanej angielszczyzny. Poszukujemy także wszystkich chcących do
+publikacji artykułów w sekcji „Sztuczki i kruczki”, dlatego każdego kto zna
+jakieś nietypowe bądź interesujące narzędzia lub sztuczki związane z
+administracją systemem prosimy o nadesłanie swojej propozycji do nas. Nadesłane
+materiały zostaną opublikowane w kolejnym wydaniu Tygodnika.
 </p>
 
 <p>
-Każdego, kto byłby zainteresowany i chętny do pomocy, prosimy o kontakt z
-zespołem Tygodnika na email <mail>gwn-feedback@gentoo.org</mail>.
+Każdego zainteresowanego i chętnego do pomocy, prosimy o kontakt z zespołem
+Tygodnika na email <mail>gwn-feedback@gentoo.org</mail>.
 </p>
 
 </body>
@@ -186,9 +191,9 @@ znaleźć pomoc i wsparcie.
 
 <!-- Gentoo in the press -->
 <chapter>
-<title>Gentoo in the press</title>
+<title>Gentoo w prasie</title>
 <section>
-<title>DesktopLinux.com (29 Aug 2006)</title>
+<title>DesktopLinux.com (29 sierpnia 2006)</title>
 <body>
 
 <p>
@@ -206,7 +211,7 @@ distributions on their desktops.
 </body>
 </section>
 <section>
-<title>Techgage (30 Aug 2006)</title>
+<title>Techgage (30 sierpnia 2006)</title>
 <body>
 
 <p>
@@ -224,7 +229,7 @@ media over 2006.0's release.
 </body>
 </section>
 <section>
-<title>Software in Review (1 Sep 2006)</title>
+<title>Software in Review (1 września 2006)</title>
 <body>
 
 <p>
@@ -239,23 +244,24 @@ made to the installation media.
 </p>
 
 <ul>
-<li><uri>http://www.softwareinreview.com/cms/content/view/50/1/</uri></li>
+  <li><uri>http://www.softwareinreview.com/cms/content/view/50/1/</uri></li>
 </ul>
 
 </body>
 </section>
 <section>
-<title>Internetnews.com (1 Sep 2006)</title>
+<title>Internetnews.com (1 września 2006)</title>
 <body>
 
 <p>
-Sean Michael Kerner's article for Internetnews.com lists many changes in the
-new release, as well as a few words from Gentoo's own <mail
-link="christel@gentoo.org">Christel Dahlskjaer</mail> about the release.
+W serwisie Internetnews.com ukazał się artykuł autorstwa Seana Michaela Kernera
+w którym można znaleźć listę zmian w nowym wydaniu Gentoo Linux, a także kilka
+słów samej <mail link="christel@gentoo.org">Christel Dahlskjaer</mail>
+opisujących wersję 2006.1.
 </p>
 
 <ul>
-<li><uri>http://www.internetnews.com/dev-news/article.php/3629816</uri></li>
+  <li><uri>http://www.internetnews.com/dev-news/article.php/3629816</uri></li>
 </ul>
 
 </body>
