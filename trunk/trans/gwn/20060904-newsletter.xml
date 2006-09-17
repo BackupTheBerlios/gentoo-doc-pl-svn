@@ -30,121 +30,121 @@
 <!-- Gentoo News -->
 
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>net-misc/bcm4400 removal</title>
+<title>Usunięcie net-misc/bcm4400</title>
 <body>
 
 <p>
-Developer <mail link="dsd@gentoo.org">Daniel Drake</mail> wrote in to mention
-that the <c>net-misc/bcm4400</c> package in portage has been deprecated and
-will be removed from the tree soon. The package has been superceded by the
-maintained in-kernel drivers. Users using this package should migrate to using
-the in-kernel drivers as soon as possible on any affected machines.
+<mail link="dsd@gentoo.org">Daniel Drake</mail>, jeden z deweloperów, oznajmił,
+że pakiet <c>net-misc/bcm4400</c> przestał być wspierany i zostanie wkrótce usunięty
+z drzewa Portage. Pakiet ten został zastąpiony przez sterownik z jądra.
+Użytkownicy korzystający z tego pakietu powinni przejść na sterowniki zawarte w
+kernelu tak szybko jak to możliwe.
 </p>
 
 </body>
 </section>
 <section>
-<title>KDE 3.4 removal</title>
+<title>Usunięcie KDE 3.4</title>
 <body>
 
 <p>
-<mail link="carlo@gentoo.org">Carsten Lohrke</mail> of the Gentoo KDE team
-wishes to inform users that the versions of KDE 3.4 will be removed from the
-tree in a couple days. The KDE 3.5 release has been marked stable on every
-architecture with KDE support for some time, and the KDE team would like to
-remove 3.4 to allow them to better focus on the much-improved 3.5 versions and
-beyond. KDE 3.4 lacks upstream support and includes several problems, including
-incompatibility with recent X.Org implementations.
+<mail link="carlo@gentoo.org">Carsten Lohrke</mail>  z zespołu Gentoo KDE
+pragnie zakomunikować użytkownikomm, że wersje KDE 3.4 zostaną w przeciągu kilku
+następnych dni usunięte z drzewa Portage. Już od jakiegoś czasu, KDE 3.5 ze 
+wsparciem dla KDE jest oznaczone jako stabilne na każdej architekturze, dlatego
+też zespół KDE chce usunąć wersje 3.4 by móc skupić się na o wiele bogatszych
+wersjach 3.5 i wyższych. KDE 3.4 nie jest wspierane i zawiera kilka błędów,
+włączając w to brak kompatybilności z ostatnimi implementacjami X.Org.
 </p>
 
 </body>
 </section>
 <section>
-<title>media-video/nvidia-glx and media-video/nvidia-kernel removal</title>
+<title>Usunięcie media-video/nvidia-glx i media-video/nvidia-kernel</title>
 <body>
 
 <p>
-As most people using the binary nVidia drivers are aware, the
-<c>media-video/nvidia-glx</c> and <c>media-video/nvidia-kernel</c> packages
-have been deprecated for some time in favor of <c>x11-drivers/nvidia-drivers</c>
-and <c>x11-drivers/nvidia-legacy-drivers</c>. The nvidia-legacy-drivers package
-supports nVidia cards from the TNT through the GeForce 5 line, and some
-GeForce 6 series cards. The nvidia-drivers package supports cards from the
-GeForce 3 series and up. The older drivers are scheduled for removal on
-September 29. The newer drivers support newer hardware, and the current drivers
-in testing support xorg-x11-7.1, while the older drivers have gotten no new
-updates.
+Wszyscy korzystający z binarnych sterowników kart nVidia: wsparcie pakietów 
+<c>media-video/nvidia-glx</c> i <c>media-video/nvidia-kernel</c> zostało
+porzucone na rzecz <c>x11-drivers/nvidia-drivers</c> i 
+<c>x11-drivers/nvidia-legacy-drivers</c>. Pakiet nvidia-legacy-drivers wspiera
+karty nVidia od serii TNT, linię GeForce 5 i niektóre z serii GeForce 6. 
+Pakiet nvidia-drivers wspiera karty od serii GeForce 3 w górę. Starsze
+sterowniki zostaną usunięte 29 września. Podczas gdy wcześniejszym wersjom
+brakuje jakichkolwiek uaktualnień, nowsze wspierają nowszy sprzęt i
+xorg-x11-7.1.
 </p>
 
 <p>
-To switch to the newer drivers, do the following:
+By przełączyć się na nowsze sterowniki, prosimy wykonać następujące instrukcje:
 </p>
 
-<pre caption="Switching to x11-drivers/nvidia-drivers">
-(This should be done from a command prompt and outside of X)
+<pre caption="Przełączanie na x11-drivers/nvidia-drivers">
+(Poniższe polecenia powinny być wykonane z linii komend, przy wyłączonych X)
 # emerge --unmerge media-video/nvidia-glx media-video/nvidia-kernel
 # rmmod nvidia
-(To install the legacy drivers, replace nvidia-drivers)
+(By zainstalować starsze sterowniki, wystarczy zastąpić nazwę nvidia-drivers)
 # emerge x11-drivers/nvidia-drivers
 # modprobe nvidia
 </pre>
 
 <p>
-Once you start/restart X, you will be using the new drivers.
+Nowe sterowniki będą wykorzystane przy kolejnym uruchomieniu X. 
 </p>
 
 </body>
 </section>
 <section>
-<title>UK Linux Awards 2006 nominations open</title>
+<title>Nominacje do UK Linux Awards 2006 rozpoczęte</title>
 <body>
 
 <p>
 <uri link="http://www.linuxuser.co.uk">LinuxUser and Developer Magazine</uri>
-has opened their nominations for their fourth annual UK Linux Awards. You can
-nominate, vote, and book tables at the <uri link="http://www.linuxawards.co.uk">
-site</uri> for this year's awards. Gentoo looks forward to hearing the winners
-of this year's awards and wishes all nominees the best of luck.
+rozpoczął nominacje do czwartego już z kolei, corocznego UK Linux Awards.
+Nominować, głosować i "?book tables" można na <uri
+link="http://www.linuxawards.co.uk">stronie</uri> tegorocznych odznaczeń. Gentoo
+ze zniecierpliwieniem nasłuchuje kto wygra w tym roku i każdemu z nominujących
+życzy jak najwięcej szczęścia.
 </p>
 
 </body>
 </section>
 <section>
-<title>Free Linux Disk project fundraiser</title>
+<title>Sponsor projektu Free Linux Disk</title>
 <body>
 
 <p>
-The Free Linux Disk project is having a <uri
-link="http://www.freelinuxdisk.org/news.php?id=19">fundraiser</uri> to purchase
-equipment to improve their ability to produce Linux media in a timely manner.
-The project ships disks from several community-based distributions, as well as
-many free commercially-backed distributions. Their goal is to raise $4500 CDN
-to purchase a <uri
+Projekt Free Linux Disk posiada <uri
+link="http://www.freelinuxdisk.org/news.php?id=19">sponsora</uri> na zakup
+sprzętu by usprawnić swoją zdolność do produkcji mediów Linuksa w odpowiednim
+czasie. Projekt dostarcza dyski z kilku opartych o społeczeństwo je tworzących
+dystrybucji, tak jak wiele innych, dobrowolnie wspieranych finansowo. Celem jest
+zebranie $4500 CDN na powielacz dysków -<uri
 link="http://www.rimage.com/support_products_detail_objectname_Rimage2000i.html">
-rImage 2000i</uri> disk duplicator to meet the current demands.
+rImage 2000i</uri> by móc sprostać aktualnym wymaganiom.
 </p>
 
 </body>
 </section>
 <section>
-<title>GWN seeking writers</title>
+<title>Tygodnik Gentoo szuka pisarzy</title>
 <body>
 
 <p>
-The Gentoo Weekly Newsletter is seeking writers to assist with some sections of
-the newsletter which have been neglected for some time. Specifically, we are
-looking to find individuals who are willing to write summaries of the
-<c>gentoo-user</c> and <c>gentoo-dev</c> mailing lists on a weekly basis.  A
-strong grasp of written English is required. We would also like to see more
-submissions for the "Tips and Tricks" section, so if you have an amazing tip or
-trick you use on Gentoo, send it in and we will publish it in an upcoming GWN.
+Tygodnik Gentoo szuka chętnych do pomocy przy pisaniu niektórych sekcji Tygodnika,
+który od jakiegoś czasu jest zaniedbywany. Mówiąc dokładniej, szukamy chętnych
+do pisania cotygodniowych streszczeń list dyskusyjnych <c>gentoo-user</c> i 
+<c>gentoo-dev</c>. Wymagane jest dobre rozumienie pisanej angielszczyzny. Dobrze
+widziane będzie oddanie się w większym stopniu sekcji "Sztuczki i kruczki", dlatego
+każdego, kto korzysta z czegoś, co mogłoby znaleźć się w tym dziale, prosimy o
+wysłanie tego do nas, a my opublikujemy to w kolejnym wydaniu Tygodnika.
 </p>
 
 <p>
-If you think that you might be interested in helping out, please email the
-GWN staff at <mail>gwn-feedback@gentoo.org</mail>.
+Każdego, kto byłby zainteresowany i chętny do pomocy, prosimy o kontakt z
+zespołem Tygodnika na email <mail>gwn-feedback@gentoo.org</mail>.
 </p>
 
 </body>
@@ -157,7 +157,7 @@ GWN staff at <mail>gwn-feedback@gentoo.org</mail>.
 <!-- planet.gentoo.org -->
 <!-- gentoo-user -->
 <!-- gentoo-dev -->
-<!-- Gentoo International-->
+<!-- Gentoo Internationawql-->
 <chapter>
 <title>Międzynarodowe Gentoo</title>
 <section>
