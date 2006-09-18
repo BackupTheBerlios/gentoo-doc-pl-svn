@@ -5,9 +5,12 @@
 # Distributed under the terms of the GNU General Public License v2
 #
 #
-# Current release: 1.0
+# Current release: 1.1
 #
 # Changelog:
+#  * 1.1
+#   - fixed handling of <uri>s without "link" attribute
+#
 #  * 1.0
 #   - fixed text wrapping in <author>s
 #   - fixed handling of <author>s without <mail>s inside
@@ -386,6 +389,11 @@ class Parser(object):
 
         Link will be inserted in a list after current section.
         """
+
+
+        if not "link" in node.attrib:
+            return node.text
+
 
         link = node.attrib["link"]
 
