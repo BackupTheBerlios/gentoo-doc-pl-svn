@@ -95,7 +95,7 @@ błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomię
  r'<li>\1 bugów oznaczono jako NEEDINFO/WONTFIX/CANTFIX/INVALID/UPSTREAM</li>'),
 
 (r'<li>(\d*) bugs marked as duplicates during this period</li>',
- r'<li>\1 raporty o błędach oznaczono jako duplikaty</li>'),
+ r'<li>\1 bugów oznaczono jako duplikaty</li>'),
 
 (r'Of the (\d*) currently open bugs: (\d*) are labeled \'blocker\', (\d*) are labeled \'critical\', and (\d*) are labeled \'major\'.',
  r"""Spośród \1 obecnie otwartych bugów: \2 oznaczono jako 'blocker', \3 jako
