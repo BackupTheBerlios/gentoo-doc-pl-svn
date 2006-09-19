@@ -47,7 +47,7 @@ tygodniu:'''),
 
 (r'The following developers recently changed roles within the Gentoo project:',
  r'''Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie Gentoo
- Linux funkcję:'''),
+Linux funkcję:'''),
 
 (r'<li><e>none this week</e></li>',
  r'<li><e>Nikt w tym tygodniu</e></li>'),
@@ -91,6 +91,12 @@ błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomię
 (r'<li>(\d*) previously closed bugs were reopened this period</li>',
  r'<li>\1 uprzednio zamkniętych bugów zostało ponownie otwartych</li>'),
 
+(r'<li>(\d*) closed as NEEDINFO/WONTFIX/CANTFIX/INVALID/UPSTREAM during this period</li>',
+ r'<li>\1 bugów oznaczono jako NEEDINFO/WONTFIX/CANTFIX/INVALID/UPSTREAM</li>'),
+
+(r'<li>(\d*) bugs marked as duplicates during this period</li>',
+ r'<li>\1 raporty o błędach oznaczono jako duplikaty</li>'),
+
 (r'Of the (\d*) currently open bugs: (\d*) are labeled \'blocker\', (\d*) are labeled \'critical\', and (\d*) are labeled \'major\'.',
  r"""Spośród \1 obecnie otwartych bugów: \2 oznaczono jako 'blocker', \3 jako
 'critical', a \4 jako 'major'."""),
@@ -99,7 +105,7 @@ błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomię
 
 (r'The developers and teams who have closed the most bugs during this period are:',
  r'''Deweloperzy oraz zespoły, które zamknęły najwięcej bugów w minionym tygodniu,
- to:'''),
+to:'''),
 
 (r' with (\d*)([^>]*>)closed bugs',
  r' \1 \2zamkniętych bugów'),
@@ -132,17 +138,19 @@ link="moloh@gentoo.org">koordynatora</mail>.
  r'<title>Subskrypcja Tygodnika Gentoo</title>'),
 
 (r'''<p>
-To subscribe to the Gentoo Weekly Newsletter, send a blank e-mail to <mail
-link="gentoo-gwn+subscribe@gentoo.org">gentoo-gwn+subscribe@gentoo.org</mail>.
-</p>''',
+To subscribe to the Gentoo Weekly Newsletter, send a blank e-mail to
+<mail
+link="gentoo-gwn\+subscribe@gentoo.org">gentoo-gwn\+subscribe@gentoo.org</mail>.
+</p>[ ]''',
  r'''<p>
 Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego emaila na adres <mail
 link="gentoo-gwn-pl+subscribe@gentoo.org">gentoo-gwn-pl+subscribe@gentoo.org</mail>.
 </p>'''),
 
 (r'''<p>
-To unsubscribe to the Gentoo Weekly Newsletter, send a blank email to <mail
-link="gentoo-gwn+unsubscribe@gentoo.org">gentoo-gwn+unsubscribe@gentoo.org</mail>
+To unsubscribe to the Gentoo Weekly Newsletter, send a blank e-mail to
+<mail
+link="gentoo-gwn\+unsubscribe@gentoo.org">gentoo-gwn\+unsubscribe@gentoo.org</mail>
 from the e-mail address you are subscribed under.
 </p>''',
  r'''<p>
@@ -160,14 +168,14 @@ The Gentoo Weekly Newsletter is also available in the following languages:
 </p>''',
  r'''<p>
 Tygodnik Gentoo jest dostępny w następujących językach:
-</p>
-'''),
+</p>'''),
 
-(r'''<ul>
+(r'''<li> <uri link="/news/zh_cn/gwn/gwn.xml">Chinese \(Simplified\)</uri> </li>
 <li> <uri link="/news/da/gwn/gwn.xml">Danish</uri> </li>
 <li> <uri link="/news/nl/gwn/gwn.xml">Dutch</uri> </li>
 <li> <uri link="/news/en/gwn/gwn.xml">English</uri> </li>
 <li> <uri link="/news/de/gwn/gwn.xml">German</uri> </li>
+<li> <uri link="/news/el/gwn/gwn.xml">Greek</uri> </li>
 <li> <uri link="/news/fr/gwn/gwn.xml">French</uri> </li>
 <li> <uri link="/news/ko/gwn/gwn.xml">Korean</uri> </li>
 <li> <uri link="/news/ja/gwn/gwn.xml">Japanese</uri> </li>
@@ -177,12 +185,12 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 <li> <uri link="/news/pt/gwn/gwn.xml">Portuguese \(Portugal\)</uri> </li>
 <li> <uri link="/news/ru/gwn/gwn.xml">Russian</uri> </li>
 <li> <uri link="/news/es/gwn/gwn.xml">Spanish</uri> </li>
-<li> <uri link="/news/tr/gwn/gwn.xml">Turkish</uri> </li>
-</ul>''',
- r'''<ul>
-  <li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
+<!-- <li> <uri link="/news/tr/gwn/gwn.xml">Turkish</uri> </li> -->''',
+ r'''  <li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
+  <li><uri link="/news/zh_cn/gwn/gwn.xml">chińskim (uproszczony)</uri></li>
   <li><uri link="/news/da/gwn/gwn.xml">duńskim</uri></li>
   <li><uri link="/news/fr/gwn/gwn.xml">francuskim</uri></li>
+  <li><uri link="/news/el/gwn/gwn.xml">greckim</uri></li>
   <li><uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri></li>
   <li><uri link="/news/nl/gwn/gwn.xml">holenderskim</uri></li>
   <li><uri link="/news/ja/gwn/gwn.xml">japońskim</uri></li>
@@ -192,9 +200,7 @@ Tygodnik Gentoo jest dostępny w następujących językach:
   <li><uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
   <li><uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
   <li><uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
-  <li><uri link="/news/tr/gwn/gwn.xml">tureckim</uri></li>
-  <li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>
-</ul>''')
+  <li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>''')
 
 )
 
