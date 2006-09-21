@@ -45,33 +45,35 @@
 <body>
 
 <p>
-W pakiecie <c>dev-libs/openssl</c> wersji 0.9.8c-r2 wykryto ostatnio kilka
+W wersji 0.9.8c-r2 pakietu <c>dev-libs/openssl</c> wykryto ostatnio kilka
 błędów. Użytkownicy x86 po aktualizacji z poprzednich wersji 0.9.8 powinni
-przeinstalować openssh i inne aplikacje wykorzystujące ssl. Ci, którzy
-napotkali problemy z zawieszeniami ssh, powinni te pakiety ponownie 
-zainstalować.
+przeinstalować openssh i inne aplikacje wykorzystujące z niego korzystające. Ci,
+którzy napotkali problemy z związane z użytkowaniem ssh, powinni te pakiety
+ponownie przeinstalować.
 </p>
 
 </body>
 </section>
 <section>
-<title>Portage 2.1.1 wydany</title>
+<title>Wydano Portage 2.1.1</title>
 <body>
 
 <p>
-Podczas, gdy zazwyczaj nie praktykuje się wspominania o drobnych poprawkach
-pakietów, ta jedna zasługuje na chwilę uwagi. Portage w wersji 2.1.1 został na
-większości architektur oznaczony jako stabilny. To wydanie posiada nową
-implementację <c>--depclean</c> - teraz depclean jest bardziej ostrożny w
-sprawie usuwania pakietów. Jeśli nie jest pewny co do jakiegoś pakietu, pomija
-go. Wskaże również braki zależności pakietów w ?world. Powinno to znacznie 
-zmniejszyć ilość 'haczyków' podczas używania tej funkcji w zaktualizowanym systemie.
-Nowością jest też większa funkcjonalność <c>--newuse</c>, które jest teraz
-wyczulone na zmiany w IUSE. Zaraz po migracji z 2.1, użytkownicy mogą
-zaobserwować znacznie większą ilość pakietów wylistowanych z parametrem
---newuse, ale wynik jest jak najbardziej prawidłowy. By uzyskać więcej
-informacji dotyczących tych zmian, prosimy odwiedzić strony bugów o numerach
-<uri link="http://bugs.gentoo.org/116955">#116995</uri>, <uri
+Zazwyczaj nie praktykuje się informowania o drobnych poprawkach pakietów, ta
+jedna zasługuje na chwilę uwagi. Portage w wersji 2.1.1 został na większości
+architektur oznaczony jako stabilny. To wydanie posiada nową implementację
+<c>--depclean</c>. Jest on zdecydowanie bardziej ostrożna w oznaczaniu pakietów
+do usunięcia. W przypadku niepewności co do jakiegoś pakietu, zostaje on
+pominięty. Wskazane zostaną również braki w zależnościach pakietów należących
+do specjalnej klasy - world. Dzięki tym zmianom używanie tej funkcji w
+zaktualizowanym systemie powinno być zdecydowanie bardziej stabilne i
+bezpieczne. Nowością jest też zwiększenie funkcjonalności <c>--newuse</c>,
+które jest teraz bardziej wyczulone na zmiany w IUSE. Zaraz po migracji z
+Portage 2.1, użytkownicy mogą zaobserwować znacznie większą ilość wskazanych
+pakietów, gdy zostanie użyty parametr --newuse. Wynik jest jak najbardziej
+prawidłowy. By uzyskać więcej informacji dotyczących tych zmian, prosimy
+odwiedzić strony bugów o numerach <uri
+link="http://bugs.gentoo.org/116955">#116995</uri>, <uri
 link="http://bugs.gentoo.org/144333">#144333</uri>, <uri
 link="http://bugs.gentoo.org/144661">#144661</uri> i <uri
 link="http://bugs.gentoo.org/146060">#146060</uri>.
@@ -80,17 +82,18 @@ link="http://bugs.gentoo.org/146060">#146060</uri>.
 </body>
 </section>
 <section>
-<title>Porządki w interfejsie autotools</title>
+<title>Porządki w pakietach autotools</title>
 <body>
 
 <p>
-<mail link="vapier@gentoo.org">Mike Frysinger</mail> zmodyfikował ebuildy
-interfejsu autotools, tak żeby nie potrzebowały już wszystkich poszczególnych 
-wersji autotools. Użytkownicy powinni uważać na pakiety z prawdopodobnymi
-brakami w zależnościach spowodowanymi tą zmianą. Pakiety powinny być zależne
-bardziej od wersji autotools, którego potrtzebują, niż od interfejsu. Osoby,
-które napotkały jakieś błędy związane z ?brakującą wersją autotools, proszone
-są o zgłoszenie tego na <uri link="http://bugs.gentoo.org">stronie raportów</uri>.
+<mail link="vapier@gentoo.org">Mike Frysinger</mail> zmodyfikował ebuildy będące
+nakładkami dla poszczególnych wersji autotools, tak żeby nie potrzebowały już
+wszystkich istniejących wersji. Użytkownicy powinni uważać na pakiety, które
+mogą mieć problemy z zależnościami spowodowanymi tą zmianą. Jeśli aplikacja
+wymaga specyficznej wersji autotools, to powinna ona teraz wymagać właśnie jej,
+a nie ogólnego interfejsu. Prosimy osoby, które napotkały jakiekolwiek problemy
+związane z brakiem odpowiedniej wersji autotools o stworzenie odpowiedniego <uri
+link="http://bugs.gentoo.org">raportu o błędzie</uri>.
 </p>
 
 </body>
