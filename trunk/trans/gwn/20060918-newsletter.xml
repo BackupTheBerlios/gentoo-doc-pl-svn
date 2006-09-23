@@ -47,9 +47,9 @@
 <p>
 W wersji 0.9.8c-r2 pakietu <c>dev-libs/openssl</c> wykryto ostatnio kilka
 błędów. Użytkownicy x86 po aktualizacji z poprzednich wersji 0.9.8 powinni
-przeinstalować openssh i inne aplikacje wykorzystujące z niego korzystające. Ci,
-którzy napotkali problemy z związane z użytkowaniem ssh, powinni te pakiety
-ponownie przeinstalować.
+przeinstalować openssh i inne aplikacje go wykorzystujące. W przypadku
+napotkania problemów z zawieszania się ssh, należy przeinstalować wszystkie
+zależne od niego pakiety, gdyż tym właśnie mogą objawić się wykryte usterki.
 </p>
 
 </body>
@@ -60,19 +60,19 @@ ponownie przeinstalować.
 
 <p>
 Zazwyczaj nie praktykuje się informowania o drobnych poprawkach pakietów, ta
-jedna zasługuje na chwilę uwagi. Portage w wersji 2.1.1 został na większości
-architektur oznaczony jako stabilny. To wydanie posiada nową implementację
-<c>--depclean</c>. Jest on zdecydowanie bardziej ostrożna w oznaczaniu pakietów
-do usunięcia. W przypadku niepewności co do jakiegoś pakietu, zostaje on
-pominięty. Wskazane zostaną również braki w zależnościach pakietów należących
-do specjalnej klasy - world. Dzięki tym zmianom używanie tej funkcji w
-zaktualizowanym systemie powinno być zdecydowanie bardziej stabilne i
-bezpieczne. Nowością jest też zwiększenie funkcjonalności <c>--newuse</c>,
-które jest teraz bardziej wyczulone na zmiany w IUSE. Zaraz po migracji z
-Portage 2.1, użytkownicy mogą zaobserwować znacznie większą ilość wskazanych
-pakietów, gdy zostanie użyty parametr --newuse. Wynik jest jak najbardziej
-prawidłowy. By uzyskać więcej informacji dotyczących tych zmian, prosimy
-odwiedzić strony bugów o numerach <uri
+jednak zasługuje na chwilę uwagi. Portage w wersji 2.1.1 został na większości
+architektur oznaczony jako stabilny. To kolejne wydanie posiada zupełnie nową
+implementację dla opcji <c>--depclean</c>. Jest ona teraz zdecydowanie bardziej
+ostrożna w oznaczaniu pakietów do usunięcia. W przypadku niepewności co do
+jakiegoś pakietu, zostaje on pominięty. Wskazane zostaną również braki w
+zależnościach pakietów należących do specjalnej klasy world. Dzięki tym zmianom
+używanie tej funkcji w zaktualizowanym systemie powinno być zdecydowanie
+bardziej stabilne i bezpieczne. Nowością jest też zwiększenie funkcjonalności
+<c>--newuse</c>, które jest teraz bardziej wyczulone na zmiany w IUSE. Zaraz po
+migracji z Portage 2.1, użytkownicy mogą zaobserwować znacznie większą ilość
+wskazanych pakietów, gdy zostanie użyty parametr --newuse. Wynik jest jak
+najbardziej prawidłowy. By uzyskać więcej informacji dotyczących tych zmian,
+prosimy odwiedzić strony bugów o numerach <uri
 link="http://bugs.gentoo.org/116955">#116995</uri>, <uri
 link="http://bugs.gentoo.org/144333">#144333</uri>, <uri
 link="http://bugs.gentoo.org/144661">#144661</uri> i <uri
@@ -91,9 +91,9 @@ nakładkami dla poszczególnych wersji autotools, tak żeby nie potrzebowały ju
 wszystkich istniejących wersji. Użytkownicy powinni uważać na pakiety, które
 mogą mieć problemy z zależnościami spowodowanymi tą zmianą. Jeśli aplikacja
 wymaga specyficznej wersji autotools, to powinna ona teraz wymagać właśnie jej,
-a nie ogólnego interfejsu. Prosimy osoby, które napotkały jakiekolwiek problemy
-związane z brakiem odpowiedniej wersji autotools o stworzenie odpowiedniego <uri
-link="http://bugs.gentoo.org">raportu o błędzie</uri>.
+a nie ogólnego interfejsu. Prosimy osoby, które napotkały na jakiekolwiek
+problemy związane z brakiem odpowiedniej wersji autotools o stworzenie
+odpowiedniego <uri link="http://bugs.gentoo.org">raportu o błędzie</uri>.
 </p>
 
 </body>
@@ -143,7 +143,7 @@ opcjonalne wsparcie dla odtwarzaczy mp3 Rio Karma, liczy na uzyskanie opinii
 użytkowników w sprawie tej funkcjonalności. Prosimy wszystkich posiadaczy tego
 modelu odtwarzacza, którzy chcą by Amarok z nim współpracował lub
 zainteresowanych podstawowym wsparciem dla Rio Karma w Gentoo o przeczytanie
-wpisu.
+opublikowanego wpisu.
 </p>
 
 <ul>
@@ -158,14 +158,14 @@ wpisu.
 <body>
 
 <p>
-<b>Purging Gnome from the system</b>
+<b>Usuwanie środowiska Gnome z systemu</b>
 </p>
 
 <p>
-Etaoin Shrdlu asked for help removing Gnome from his system; Bo
-Ørsted Andresen suggsted that he "just edit /var/lib/portage/world manually
-and remove the gnome etc. apps that you are no longer interested in and let
-emerge --depclean -va do it's [sic] job."
+Użytkownik Etaoin Shrdlu poprosił o pomoc przy usunięciu Gnome z systemu. Bo
+Ørsted Andresen zasugerował: „usuń ręcznie z pliku /var/lib/portage/world te
+aplikacje należące do środowiska Gnome, które nie są już Ci potrzebne i pozwól
+poleceniu emerge --depclean -va zająć się resztą”.
 </p>
 
 <ul>
@@ -173,14 +173,14 @@ emerge --depclean -va do it's [sic] job."
 </ul>
 
 <p>
-<b>Flashing the BIOS</b>
+<b>Aktualizacja BIOS-u</b>
 </p>
 
 <p>
-Grant asked for ideas in BIOS flashing. Users suggested everything
-from the standard floppy solution to converting the swap partition to
-DOS and flashing from there. Grant ended up using the Motherboard
-Flash Boot CD from the Linux Mini HOWTO.
+Grant spytał o porady dotyczące aktualizacji BIOS-u. Użytkownicy sugerowali
+różne rozwiązania, począwszy od standardowego, z użyciem dyskietki, aż po
+konwersję partycji wymiany do formatu DOS-a i wykorzystanie jej do tego procesu.
+Ostatecznie jednak Grant użył płyty LiveCD, zalecanej w Linux Mini HOWTO.
 </p>
 
 <ul>
@@ -189,13 +189,15 @@ Flash Boot CD from the Linux Mini HOWTO.
 </ul>
 
 <p>
-<b>What is up with the new "domainname" situation?</b>
+<b>Co jest z nową konfiguracją nazwy domeny?</b>
 </p>
 
 <p>
-Users continue to have trouble adapting their domainname configurations to the
-new baselayout. A reminder: Set up your domainname in /etc/conf.d/net; see
-/etc/conf.d/net.example for more information.
+Użytkownicy wciąż mają problemy z użyciem nowego sposobu konfiguracji nazwy
+domeny jaki jest stosowany w nowszych wersjach pakietu baselayout. W ramach
+przypomnienia: odpowiednim miejscem na te ustawienia jest plik /etc/conf.d/net.
+Więcej informacji na ten temat można znaleźć standardowo dołączanym przykładzie
+/etc/conf.d/net.example.
 </p>
 
 <ul>
@@ -211,17 +213,17 @@ new baselayout. A reminder: Set up your domainname in /etc/conf.d/net; see
 <!-- Gentoo in the press -->
 <!-- Tips and Tricks -->
 <chapter>
-<title>Tips and Tricks</title>
+<title>Sztuczki i kruczki</title>
 <section>
-<title>Changing default portage colors</title>
+<title>Zmiana domyślnych kolorów Portage</title>
 <body>
 
 <p>
-When using a white background for a terminal emulator and portage displays some
-text in yellow (e.g. new useflags with the "%") it can be very hard to read. To
-change the yellow color of emerge output to something more readable
-(consistently and system-wide) one can just create the file
-<path>/etc/portage/color.map</path> with the following information:
+Jeśli używamy białego tła w emulatorze terminala i Portage wyświetla jakiś tekst
+w kolorze żółtym (na przykład nowe flagi USE z symbolem "%"), może być on trudny
+do przeczytania. Aby zmienić globalnie w całym systemie domyślny żółty na jakiś
+bardziej czytelny kolor, można na przykład dodać następujące parametry do pliku
+<path>/etc/portage/color.map</path>:
 </p>
 
 <pre caption="/etc/portage/color.map">
@@ -231,13 +233,14 @@ MERGE_LIST_PROGRESS=0xAA00AA
 </pre>
 
 <p>
-Example of colours visible on both black and white backgrounds are:
-purple: 0xAA00AA
-darkyellow: 0xAA5500 (looks brown/orange)
+Przykłady kolorów, które są widoczne jednakowo dobrze zarówno na czarnym, jak i
+białym tle to:
+purpurowy: 0xAA00AA
+ciemnożółty: 0xAA5500 (wygląda brązowo/pomarańczowo)
 </p>
 
 <p>
-More information can be found on the following threads on the forums.
+Więcej informacji na ten temat można znaleźć w następujących wątkach.
 </p>
 
 <ul>
