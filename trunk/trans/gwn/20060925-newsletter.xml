@@ -36,20 +36,21 @@
 <!-- Gentoo News -->
 
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomości Gentoo</title>
 
 <section>
-<title>2006.1 LiveCD/LiveDVD media refresh</title>
+<title>Nowe wersje nośników 2006.1 LiveCD/LiveDVD</title>
 <body>
 
 <p>
-Because of several problems with the Installer-based media, a media refresh was
-done on these pieces of the release. No package versions have changed from the
-2006.1 release. The media was rebuilt to work around a couple problems with the
-media, specifically an issue which would cause network-less installations using
-the Gentoo Linux Installer to fail. Also, the SPARC Universal InstallCD was
-rebuilt to resolve a PAM issue with the CD, and the x86 Minimal InstallCD was
-rebuilt to work for machines &lt;i686. The refreshed media is as follows:
+Z nośnikami instalacyjnymi wystąpiło kilka problemów, dlatego postanowiono
+zastąpić je nowymi, poprawionymi wersjami. W porównaniu do oryginalnego
+wydania 2006.1 nie zmieniły się jednak wersje pakietów. Poprawione problemy
+to między innymi błąd przy instalacji bez połączenia z internetem, przez
+który mogła się ona zakończyć niepowodzeniem. Oprócz tego przebudowano płytę
+Universal InstallCD dla architektury SPARC, aby poprawić błąd PAM, oraz
+płytę Minimal InstallCD dla x86, gdyż nie działała z procesorami starszymi
+niż i686. Oto wszystkie poprawione nośniki:
 </p>
 
 <ul>
@@ -60,14 +61,15 @@ rebuilt to work for machines &lt;i686. The refreshed media is as follows:
 </ul>
 
 <p>
-The updated media is already on the mirrors, in the 2006.1 directories, and has
-replaced the broken media. If you are not concerned about network-less installs,
-then there is no need for you to download anything new.
+Uaktualnione obrazy płyt już znajdują się na serwerach lustrzanych w
+katalogach wydania 2006.1. Stare obrazy zostały nadpisane. Jeśli jednak nie
+interesuje nas instalacja bez dostępu do sieci, nie ma potrzeby ściągać
+niczego od nowa.
 </p>
 
 <note>
-We will be updating the media on the Bittorrent tracker, also. Another note will
-be sent out once this is done.
+Obrazy rozpowszechniane przez sieć Bittorrent także zostaną uaktualnione.
+Gdy to się stanie, zostanie wydany osobny komunikat.
 </note>
 
 </body>
@@ -169,49 +171,52 @@ można spodziewać się problemów z kompilacją.
 
 <!-- Tips and Tricks -->
 <chapter>
-<title>Tips and Tricks</title>
+<title>Sztuczki i kruczki</title>
 <section>
-<title>Using GNU screen</title>
+<title>GNU screen w praktyce</title>
 <body>
 
 <p>
 <uri link="http://en.wikipedia.org/wiki/GNU_Screen">GNU screen</uri>
-is a very useful program, especially if you are a coder or administrator.
-It has a lot of options, and it's not easy to find your way in its huge man
-page. Below is a small list of some useful options that you should put in your
-<path>~/.screenrc</path>.
+to bardzo przydatne narzędzie, szczególnie dla administratorów i
+programistów, jednak niełatwo jest przebrnąć przez jego ogromną dokumentację
+man. Poniżej można znaleźć listę kilku przydatnych opcji, które należy
+umieścić w pliku <path>~/.screenrc</path>.
 </p>
 
 <p>
-One of the rather useful options aims to replace the main screen
-key. Instead of 'ctrl-A', it changes it to 'ctrl-O'. This is because
-'ctrl-A' is binded for use in many applications, such as emacs, bash, and links,
-which clashes with the default screen key 'ctrl-A'.
+Jedną z najbardziej przydatnych modyfikacji jest zastąpienie głównego
+klawisza funkcyjnego programu screen. Kombinacja 'ctrl-A' zostanie zmieniona
+na 'ctrl-O', gdyż tej pierwszej używa wiele innych aplikacji, na przykład
+emacs, bash i links. 
 </p>
 
 <p>
-Another nifty option sets a caption on the bottom line. It displays the open
-windows with their number and title, the current one being highlighted in white
-on blue. Some status information is padded to the right of the screen.
+Kolejnym dodatkiem, bez którego trudno się obejść to status w ostatniej
+linijce. Wyświetla listę otwartych okien wraz z ich numerami i tytułami,
+przy czym aktualnie aktywne okno jest wyświetlone jako biały tekst na
+niebieskim tle. Oprócz tego po prawej stronie wyświetlanych jest kilka
+dodatkowych informacji.
 </p>
 
-<pre caption="~/.screenrc settings">
-# use visual bell
+<pre caption="Ustawienia w pliku ~/.screenrc">
+# wizualny alarm
 vbell on
-# replace ctrl-A by ctrl-O
+# zamiana ctrl-A na ctrl-O
 escape ^Oo
-# set a big scrolling buffer
+# duży bufor przewijania
 defscrollback 5000
-# Set the caption on the bottom line
+# status w ostatniej linijce
 caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %LD %d %LM - %c"
 </pre>
 
 <p>
-Here is a small screenshot of the caption line in action.
+Oto zrzut ekranu, na którym można zaobserować jak wygląda linijka ze
+statusem.
 </p>
 
 <figure link="/images/gwn/20060925_screen.png"
-        caption="GNU screen with the caption line enabled"
+        caption="GNU screen z włączonym statusem"
         short="screen" />
 
 </body>
