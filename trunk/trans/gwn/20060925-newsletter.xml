@@ -39,18 +39,18 @@
 <title>Wiadomości Gentoo</title>
 
 <section>
-<title>Nowe wersje nośników 2006.1 LiveCD/LiveDVD</title>
+<title>Aktualizacja nośników 2006.1 LiveCD/LiveDVD</title>
 <body>
 
 <p>
-Z nośnikami instalacyjnymi wystąpiło kilka problemów, dlatego postanowiono
-zastąpić je nowymi, poprawionymi wersjami. W porównaniu do oryginalnego
-wydania 2006.1 nie zmieniły się jednak wersje pakietów. Poprawione problemy
-to między innymi błąd przy instalacji bez połączenia z internetem, przez
-który mogła się ona zakończyć niepowodzeniem. Oprócz tego przebudowano płytę
-Universal InstallCD dla architektury SPARC, aby poprawić błąd PAM, oraz
-płytę Minimal InstallCD dla x86, gdyż nie działała z procesorami starszymi
-niż i686. Oto wszystkie poprawione nośniki:
+Z powodu wystąpienia kilka problemów z nośnikami instalacyjnymi, postanowiono
+zastąpić je nowymi, poprawionymi wersjami. W porównaniu do oryginalnego wydania
+2006.1 nie zmieniły się jednak wersje pakietów. Poprawione problemy to między
+innymi błąd przy instalacji bez połączenia z internetem, który mógł doprowadzić
+do jej błędnego zakończenia. Dodatkowo przebudowano także płytę Universal
+InstallCD dla architektury SPARC, aby poprawić znaleziony błąd w PAM, oraz płytę
+Minimal InstallCD dla x86, gdyż nie współpracowała ona z procesorami starszymi
+niż i686. Oto lista wszystkich poprawionych nośników:
 </p>
 
 <ul>
@@ -61,15 +61,15 @@ niż i686. Oto wszystkie poprawione nośniki:
 </ul>
 
 <p>
-Uaktualnione obrazy płyt już znajdują się na serwerach lustrzanych w
-katalogach wydania 2006.1. Stare obrazy zostały nadpisane. Jeśli jednak nie
-interesuje nas instalacja bez dostępu do sieci, nie ma potrzeby ściągać
-niczego od nowa.
+Uaktualnione obrazy płyt znajdują się już na serwerach lustrzanych w katalogach
+wydania 2006.1. Stare obrazy zostały nadpisane. Jeśli jednak problemy z
+instalacją bez dostępu do sieci nie stanowią nas problemu to nie ma potrzeby
+ściągać niczego od nowa.
 </p>
 
 <note>
-Obrazy rozpowszechniane przez sieć Bittorrent także zostaną uaktualnione.
-Gdy to się stanie, zostanie wydany osobny komunikat.
+Obrazy rozpowszechniane przez sieć Bittorrent także zostaną uaktualnione. Po
+ich opublikowaniu zostanie wydany osobny komunikat.
 </note>
 
 </body>
@@ -152,7 +152,7 @@ blogu Marka</uri>.
 
 <p>
 Ashton Mills napisał artykuł o dystrybucjach opartych na kodzie źródłowym, w
-szczególności Gentoo. Opatrony tytułem „Use the source, Luke?” zawiera opis
+szczególności Gentoo. Opatrzony tytułem „Use the source, Luke?” zawiera opis
 ulubionych/znienawidzonych związków autora z Gentoo. Przedstawia pozytywne
 doświadczenia pracy z Portage, i doskonałych możliwościach przystosowania
 środowiska do własnych potrzeb. Wymienia również parę niedogodności związanych
@@ -177,25 +177,25 @@ można spodziewać się problemów z kompilacją.
 <body>
 
 <p>
-<uri link="http://en.wikipedia.org/wiki/GNU_Screen">GNU screen</uri>
-to bardzo przydatne narzędzie, szczególnie dla administratorów i
-programistów, jednak niełatwo jest przebrnąć przez jego ogromną dokumentację
-man. Poniżej można znaleźć listę kilku przydatnych opcji, które należy
-umieścić w pliku <path>~/.screenrc</path>.
+<uri link="http://en.wikipedia.org/wiki/GNU_Screen">GNU screen</uri> to bardzo
+przydatne narzędzie, szczególnie dla administratorów i programistów, jednak nie
+jest łatwo przebrnąć przez jego ogromną dokumentację man. Poniżej można znaleźć
+listę kilku przydatnych opcji, które powinny znaleźć się w pliku
+<path>~/.screenrc</path>.
 </p>
 
 <p>
-Jedną z najbardziej przydatnych modyfikacji jest zastąpienie głównego
-klawisza funkcyjnego programu screen. Kombinacja 'ctrl-A' zostanie zmieniona
-na 'ctrl-O', gdyż tej pierwszej używa wiele innych aplikacji, na przykład
-emacs, bash i links. 
+Jedną z najbardziej przydatnych modyfikacji jest zastąpienie głównego klawisza
+funkcyjnego programu screen. Kombinacja 'ctrl-A' zostanie zmieniona na 'ctrl-O',
+gdyż tej pierwszej używa wiele innych aplikacji, na przykład emacs, bash i
+links.
 </p>
 
 <p>
-Kolejnym dodatkiem, bez którego trudno się obejść to status w ostatniej
-linijce. Wyświetla listę otwartych okien wraz z ich numerami i tytułami,
-przy czym aktualnie aktywne okno jest wyświetlone jako biały tekst na
-niebieskim tle. Oprócz tego po prawej stronie wyświetlanych jest kilka
+Kolejnym dodatkiem, bez którego trudno się obejść to pasek statusu znajdujący
+się w ostatniej linijce. Wyświetla on listę otwartych okien wraz z ich numerami
+i tytułami, przy czym aktualnie aktywne okno jest wyświetlone jako biały tekst
+na niebieskim tle. Oprócz tego po prawej stronie znajduje się także kilka
 dodatkowych informacji.
 </p>
 
@@ -206,13 +206,13 @@ vbell on
 escape ^Oo
 # duży bufor przewijania
 defscrollback 5000
-# status w ostatniej linijce
+# pasek statusu w ostatniej linijce
 caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %LD %d %LM - %c"
 </pre>
 
 <p>
-Oto zrzut ekranu, na którym można zaobserować jak wygląda linijka ze
-statusem.
+Oto zrzut ekranu, na którym można na własne oczy przekonać się jak wygląda
+linijka z opisywanym statusem sesji.
 </p>
 
 <figure link="/images/gwn/20060925_screen.png"
