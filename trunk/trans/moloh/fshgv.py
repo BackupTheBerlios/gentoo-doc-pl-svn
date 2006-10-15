@@ -5,9 +5,13 @@
 # Distributed under the terms of the GNU General Public License v2
 #
 #
-# Current release: 1.1
+# Current release: 1.2
 #
 # Changelog:
+#  * 1.2
+#   - new text-wrapping function
+#   - added handling of <table>s
+#
 #  * 1.1
 #   - fixed handling of <uri>s without "link" attribute
 #
@@ -33,11 +37,11 @@ GuideXML to text converter
 """
 
 import locale
+import math
 import os
 import re
 import sys
 import tempfile
-import textwrap
 
 from elementtree import ElementTree
 
@@ -50,7 +54,7 @@ class Parser(object):
         """Wrap title to specified length and add optional underline."""
 
         title = title.strip()
-        wrapped = textwrap.wrap(title, self.width)
+        wrapped = self.textwrap(title, self.width)
         text = "\n".join(wrapped)
 
         if underline:
@@ -86,7 +90,7 @@ class Parser(object):
             name = node.text
             text = "%s - %s" % (name, title)
 
-        wrapped = textwrap.wrap(text, self.width)
+        wrapped = self.textwrap(text, self.width)
         text = "\n".join(wrapped)
 
         return text
@@ -190,6 +194,60 @@ class Parser(object):
         return text
 
 
+
+    def handle_table(self, node):
+        """Transform 'table' tags into:
+
+        .-----------------------------.
+        | hdr1 | hdr2          | hdr3 |
+        |-----------------------------|
+        | foo  | bar           | oni  |
+        | blah | blaaaaaaaaaah | blah |
+        `-----------------------------'
+        """
+
+        rawrows = [[self.default_handler(field) for field in row] for row in node]
+        rawcols = zip(*rawrows)
+
+        maxwidths = [max([len(str(item)) for item in col]) for col in rawcols]
+        colcount = len(maxwidths)
+        colsep = " | "
+        prefix = "| "
+        postfix = " |"
+
+        decowidth = len(prefix + postfix) + len(colsep) * (colcount - 1)
+        while (sum(maxwidths) > (self.width - decowidth)):
+            m = max(maxwidths)
+            maxwidths[maxwidths.index(m)] -= 1
+        maxwidth = sum(maxwidths)
+
+        rows = []
+        for row in rawrows:
+            myrows = map(lambda (i, x): self.textwrap(x, maxwidths[i]), enumerate(row))
+            myrows = map(None, *myrows)
+            myrows = [[x or '' for x in item] for item in myrows]
+            rows.append(myrows)
+
+        columns = map(None, *reduce(lambda a,b:a+b, rows))
+        maxwidth = sum(maxwidths)
+        mywidth = (maxwidth + len(colsep) * (colcount - 1) + len(prefix + postfix) - 2)
+        rowsep = "|" + "-" * mywidth + "|"
+        firstrow = "." + "-" * mywidth + "."
+        lastrow = "`" + "-" * mywidth + "'"
+
+        myrows = []
+        for logirows in rows:
+            myrows.append(rowsep)
+            for row in logirows:
+                fields = (field.ljust(width) for (field, width) in zip(row, maxwidths))
+                myrows.append(prefix + colsep.join(fields) + postfix)
+        myrows = myrows[1:]
+
+        result = "%s\n%s\n%s" % (firstrow, "\n".join(myrows), lastrow)
+
+        return result
+
+
     def handle_section(self, node):
         """Transform 'section' tags into:
 
@@ -217,7 +275,7 @@ class Parser(object):
             number = i + self.link_count + 1
             prefix = " %d. " % number
             indent = len(prefix)
-            wrapped = textwrap.wrap(link, self.width - indent)
+            wrapped = self.textwrap(link, self.width - indent)
             mylink = prefix + ("\n%s" % (" " * indent)).join(wrapped)
             links.append(mylink)
 
@@ -251,7 +309,7 @@ class Parser(object):
             if tag in notwrapped:
                 text = "%s\n\n%s" % (text, value)
             else:
-                wrapped = textwrap.wrap(value, self.width)
+                wrapped = self.textwrap(value, self.width)
                 text = "%s\n\n%s" % (text, "\n".join(wrapped))
 
         text = text[2:]
@@ -302,8 +360,9 @@ class Parser(object):
 
         if "link" in node.attrib:
             link = node.attrib["link"]
-            self.links.append(link)
-            number = self.link_count + len(self.links)
+            if not link in self.links:
+                self.links.append(link)
+            number = self.link_count + self.links.index(link) + 1
             text = "%s[%d]" % (node.text, number)
         else:
             text = node.text
@@ -344,7 +403,7 @@ class Parser(object):
         for tag, value in self.iter_children(node):
             if tag != "li":
                 continue
-            wrapped = textwrap.wrap(value.strip(), self.width-3)
+            wrapped = self.textwrap(value.strip(), self.width-3)
             item = "\n   ".join(wrapped)
             items.append(item)
 
@@ -367,7 +426,7 @@ class Parser(object):
                 continue
             i = i + 1
             prefix = " %d. " % i
-            wrapped = textwrap.wrap(value.strip(), self.width - len(prefix))
+            wrapped = self.textwrap(value.strip(), self.width - len(prefix))
             item = ("\n%s" % (" "*len(prefix))).join(wrapped)
             text += "\n%s%s" % (prefix, item)
 
@@ -403,8 +462,9 @@ class Parser(object):
 
         # if link refers to the same document, we just ignore it
         if link[0] != "#":
-            self.links.append(link)
-            number = self.link_count + len(self.links)
+            if not link in self.links:
+                self.links.append(link)
+            number = self.link_count + self.links.index(link) + 1
             text = "%s[%d]" % (node.text, number)
 
         else:
@@ -412,7 +472,7 @@ class Parser(object):
 
         return text
 
-
+    
     def iter_children(self, node):
         """Iterate over node's children and run appropriate handlers."""
 
@@ -429,6 +489,7 @@ class Parser(object):
             "p": self.handle_p,
             "pre": self.handle_pre,
             "section": self.handle_section,
+            "table": self.handle_table,
             "ul": self.handle_ul,
             "uri": self.handle_uri,
             "warn": self.handle_warn,
@@ -465,6 +526,35 @@ class Parser(object):
         text = self.handle_guide(root)
 
         return text
+
+
+    def textwrap(self, text, width):
+        """Wrap text to specified width."""
+
+        # FIXME: refactor this
+
+        text = re.sub(
+            r'\S{'+str(width)+r',}',
+            lambda m: '\n'.join(
+                m.group()[width * i : width * (i+1)] for i in \
+                xrange(int(math.ceil(len(m.group())/float(width))))),
+            text \
+        )
+
+        result = reduce( \
+            lambda line, word, width = width: '%s%s%s' % (
+                line,
+                len(line[line.rfind('\n')+1:]) + len(word.split('\n', 1)[0]) >= width \
+                    and "\n" \
+                    or " ",
+                word
+            ),
+            text.split(' ')
+        )
+
+        result = result.split("\n")
+
+        return result
 
 
     def __init__(self, width):
