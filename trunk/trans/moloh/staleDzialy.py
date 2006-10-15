@@ -124,8 +124,9 @@ to:'''),
  r'<title>Opinie czytelników</title>'),
 
 (r'''<p>
-Please send us your <mail link="gwn-feedback@gentoo.org">feedback</mail> and
-help make the GWN better.
+Please send us your <mail
+link="gwn-feedback@gentoo.org">feedback</mail> and help make the GWN
+better.
 </p>''',
  r'''<p>
 Jeśli chcesz, aby Tygodnik Gentoo był jeszcze lepszy, podziel się z <mail
@@ -184,6 +185,7 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 <li> <uri link="/news/pt_br/gwn/gwn.xml">Portuguese \(Brazil\)</uri> </li>
 <li> <uri link="/news/pt/gwn/gwn.xml">Portuguese \(Portugal\)</uri> </li>
 <li> <uri link="/news/ru/gwn/gwn.xml">Russian</uri> </li>
+<li> <uri link="/news/sk/gwn/gwn.xml">Slovak</uri> </li>
 <li> <uri link="/news/es/gwn/gwn.xml">Spanish</uri> </li>
 <!-- <li> <uri link="/news/tr/gwn/gwn.xml">Turkish</uri> </li> -->''',
  r'''  <li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
@@ -200,6 +202,7 @@ Tygodnik Gentoo jest dostępny w następujących językach:
   <li><uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
   <li><uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
   <li><uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
+  <li><uri link="/news/sk/gwn/gwn.xml">słowackim</uri></li>
   <li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>''')
 
 )
