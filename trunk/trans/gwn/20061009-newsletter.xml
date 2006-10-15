@@ -40,118 +40,131 @@
 <date>2006-10-09</date>
 
 <!-- Gentoo News -->
+
 <chapter>
-<title>Gentoo news</title>
+<title>Wiadomość Gentoo</title>
+
 <section>
-<title>X.Org 7.1 to enter stable for amd64 and x86</title>
+<title>Przesunięcie X.Org 7.1 do stabilnego drzewa na amd64 i x86</title>
 <body>
 
 <p>
-The <uri link="/proj/en/desktop/x/x11">Gentoo X11 team</uri> plans to stabilize
-X.Org 7.1 for x86 and amd64 on or after Thursday, 12 October. The lack of binary
-driver support previously held up this release, but Nvidia and ATI released
-compatible versions that are now marked stable on both architectures.
+<uri link="/proj/en/desktop/x/x11">Zespół Gentoo X11</uri> planuje
+ustabilizować pakiet X.Org 7.1 na architekturach x86 i amd64 w lub po czwartku,
+12 października. Brak wsparcia w binarnych sterownikach sprawił, że poprzednim
+razem nie mogliśmy tego uczynić razem z innymi architekturami, jednak Nvidia i
+ATI wypuściły sterowniki kompatybilne z nowym X.Org, które zostały oznaczone
+jako stabilne na obydwu architekturach.
 </p>
 
 <p>
-This release features the addition of accelerated indirect GLX (AIGLX),
-which allows for eye candy such as the Compiz window/compositing manager, as
-well as running 3D accelerated display walls with Xdmx. X.Org 7.1 also
-integrates the kdrive (TinyX) servers for embedded systems into the
-xorg-server package with the kdrive USE flag. The kdrive integration
-additionally provides Xephyr, an enhanced Xnest-like client. Numerous
-video drivers also received significant updates.
+This releass features the addition of accelerated indirect GLX (AIGLX),
+which for eye candy such as the Compiz window/compositing manager, as
+well as running 3D accelerated display walls with Xdmx. X.Org 7.1 posiada
+również zintegrowane serwery kdrive (TinyX) dla systemów wbudowanych w pakiety
+xorg-server z flagą USE kdrive. Dodatkowo przy integracji kdrive otrzymujemy
+narzędzie Xephyr, zaawansowany klient na wzór Xnest. Ponadto duża część
+sterowników video została w znaczący sposób zaktualizowana.
 </p>
 
 </body>
 </section>
+
 <section>
-<title>Safe CFLAGS</title>
+<title>Bezpieczne CFLAGS</title>
 <body>
 
 <p>
-Being able to tune CFLAGS is part of the user control and extreme
-configurability that are hallmarks of the <uri link="/main/en/about.xml">Gentoo
-experience</uri>. Being in control brings both benefits and problems. CFLAGS
-tuning is not an exception.
+Możliwość dobierania zmiennej CFLAGS jest jedną ze składowych kontroli przez
+użytkownika i niezwykłej konfiguralności, jaką cechuje praca z <uri
+link="/main/en/about.xml">Gentoo</uri>. Jednak posiadanie kontroli przynosi
+zarówno zyski jak i problemy. Zabawa z CFLAGS nie jest w tym wypadku
+wyjątkiem.
 </p>
 
 <warn>
-Using anything beyond <c>-O2 -fomit-frame-pointer -march/-mcpu/-mtune</c> in
-CFLAGS or CXXFLAGS (and <c>-mieee, -mabi</c> etc. on selected archs that tell
-you to do this), and using anything at all in LDFLAGS or ASFLAGS, is usually
-not worth the trouble for most users. There's usually very little benefit, if
-any, high risks, and large amounts of time spent on frustrating tuning that
-could be enjoyed doing far more interesting things.
+Używanie innych flag niż <c>-O2 -fomit-frame-pointer -march/-mcpu/-mtune</c> w
+zmiennech CFLAGS lub CXXFLAGS (oraz <c>-mieee, -mabi</c> itd na wybranych
+architekturach, kiedy jest to wymagane) oraz używanie jakichkolwiek wartości w
+zmiennych LDFLAGS lub ASFLAGS w większości przypadków nie jest warte zachodu. Z
+reguły przynosi zbyt małe korzyści, jeśli w ogóle, natomiast istnieje wysokie
+ryzyko błędów. Dodatkowo musimy przeznaczyć ogromną ilość czasu na dostrajanie
+tych zmiennych.
 </warn>
 
 <p>
-The recent upgrade to GCC 4.1 for stable x86 and amd64 users changed the CFLAGS
-landscape. Users that spent some time tuning their CFLAGS with GCC 3.4 might
-find that an upgrade to GCC 4.1 leaves them with an unstable system.
+Poprzednia aktualizacja GCC do wersji 4.1.1 do stabilnej części drzewa na
+architekturach amd64 oraz x86, zmieniła zakres wartości dla zmiennej CFLAGS.
+Użytkownicy, którzy spędzili dużo czasu na dostrajaniu swoich flag do GCC 3.4
+mogą po aktualizacji do wersji 4.1 odkryć, że ich system zachowuje się w sposób
+niestabilny.
 </p>
 
 <p>
-Examples of this are:
+Przykłady takich flag:
 </p>
 
 <ul>
-  <li>nss_ldap stopped working with <c>-ffast-math</c> (<c>-ffast-math</c>
-  is often misused and must be considered a dangerous flag)</li>
-  <li><c>-fvisibility-inlines-hidden</c> still breaks some code</li>
-  <li><c>-ftree-loop-linear</c> now breaks in GCC 4.1 (at least with
-  mesa)</li>
-  <li><c>-ftree-vectorize</c> is known to be broken in GCC 4.1 (at least
-  for x86 and ppc, there are fewer problems reported by amd64 users, but no
-  guarantees)</li>
-  <li><c>-fforce-addr</c> and <c>-fweb</c> break regularly on x86 with
-  video libraries or graphic processing apps which use hand-optimized assembly
-  (<c>-fweb</c> may be safe on amd64 but like above no guarantees)</li>
+<li>nss_ldap przestaje pracować poprawnie po kompilacji z flagą
+<c>-ffast-math</c> (flaga <c>-ffast-math</c> jest często nadużywana i została
+uznana za niebezpieczną)</li>
+<li><c>-fvisibility-inlines-hidden</c> ciągle może powodować tworzenie błędnego
+kodu</li>
+<li><c>-ftree-loop-linear</c> w wersji GCC 4.1.1 powoduje błędy (przynajmniej w
+przypadku kompilacji pakietu mesa)</li>
+<li><c>-ftree-vectorize</c> uznano za błędną flagę w GCC 4.1 (przynajmniej na
+architekturach x86 i ppc, użytkownicy amd64 zgłaszają mniej problemów, jednak
+również nie ma gwarancji co do popranego działania na tej architekturze)</li>
+<li><c>-fforce-addr</c> oraz <c>-fweb</c> powodują nieregularne działanie
+bibliotek video oraz aplikacji do przetwarzania grafiki na architekturze x86
+(może się zdarzyć, że flaga <c>-fweb</c> będzie działała poprawnie na
+architekturze amd64 jednak jak wyżej, nie ma na to gwarancji)</li>
 </ul>
 
 <p>
-There are known-to-be-broken flags for all GCC versions that you want
-to check for too:
+Znane są również flagi uznane za zepsute na wszystkich wersjach GCC:
 </p>
 
 <ul>
-  <li><c>-fvisibility=hidden</c></li>
-  <li><c>-frename-registers</c> (may be safe on amd64, at your own risks)</li>
-  <li><c>-ftracer</c></li>
-  <li><c>-D_FILE_OFFSET_BITS=64</c></li>
-  <li><c>-msse</c>, <c>-mmmx</c>, and <c>-m3dnow</c> (no need for them on amd64,
-  they are wrapped up by -march=k8/nocona/... and safely used there)</li>
-  <li><c>-W</c></li>
-  <li><c>-mfpmath=sse,387</c></li>
-  <li><c>-malign-double</c></li>
+<li><c>-fvisibility=hidden</c></li>
+<li><c>-frename-registers</c> (może działać poprawnie na amd64, jednak używamy
+tej flagi na własne ryzyko)</li>
+<li><c>-ftracer</c></li>
+<li><c>-D_FILE_OFFSET_BITS=64</c></li>
+<li><c>-msse</c>, <c>-mmmx</c>, i <c>-m3dnow</c> (niepotrzebne w przypadku
+architektury amd64, gdyż są domyślnie ustawione w przypadku użycia
+-march=k8/nocona/... i bezpiecznie używane są wewnątrz tej flagi)</li>
+<li><c>-W</c></li>
+<li><c>-mfpmath=sse,387</c></li>
+<li><c>-malign-double</c></li>
 </ul>
 
 <p>
-Users with unsupported CFLAGS might want to return to safe CFLAGS (see
-warning above) if recent updates caused them stability problems. On the
-other hand, more adventurous users might want to experiment with CFLAGS
-that didn't work properly with GCC 3.4.6... As always, the user is in
-control (and the gun pointed to their feet is in his/her hand).
+Użytkownicy, którzy używają niewspieranych wartości w zmiennych CFLAGS mogą
+wrócić do bezpiecznych ustawień, jeśli pakiety skompilowane nowym GCC będa
+powodować problemy. Z drugiej strony, bardziej zaawansowani użytkownicy mogą
+zechcieć eksperymentować z flagami, które nie działały poprawnie z GCC 3.4.6.
+Jak zwykle to użytkownik decyduje co chce zrobić (a pistolet skierowany w jego
+stopę jest w jego rękach).
 </p>
 
 <p>
-Final notes:
+Końcowe uwagi:
 </p>
 
 <ul>
-  <li>The GCC man page contains warnings for some unsafe optimization
-  options. You should read it carefully when you experiment with CFLAGS or
-  upgrade GCC on a CFLAGS-customized Gentoo.</li>
-  <li>Some options that are unsafe in the system-wide CFLAGS might be
-  added automatically in some ebuilds if the developer deems them safe
-  (by redefining CFLAGS or using append-flags from the flag-o-matic eclass).
-  For example <c>-ffast-math</c> is added by the xmame/xmess ebuilds on
-  most architectures even though you <b>should not</b> put it in your CFLAGS.</li>
-  <li>You might get an idea of the stability issues of a specific
-  optimization option by running: <c>find /usr/portage -name '*.ebuild' |
-  xargs grep -- '-your-risky-optimization-option'</c>. It takes quite
-  some time, but might be enlightening: look for the
-  '<c>filter-flags</c>'.</li>
+<li>Manual GCC zawiera ostrzeżenia dla części niebezpiecznych opcji. Powinniśmy
+go przeczytać jeśli planujemy eksperymentować z flagami CFLAGS lub gdy
+aktualizujemy Gentoo z już zoptymalizowanymi przez nas tymi flagami.</li>
+<li>Niektóre z opcji, które uznane są za niebezpieczne, mogą zostać dodane
+automatycznie przez ebuildy jeśli deweloper uzna je za bezpieczne (poprzez
+ponowne zdefiniowanie zmiennej CFLAGS lub poprzez użycie append-flags z
+flag-o-matic eclass).</li>
+<li>Pewne problemy ze stabilnością z użyciem określonej flagi można sprawdzić
+uruchamiając polecenie: <c>find /usr/portage -name '*.ebuild' |
+xargs grep -- '-your-risky-optimization-option'</c>. Jego wykonanie może chwile
+zająć jednak jego wynik może nam znacznie pomóc: należy szukać wyrażenia z
+'<c>filter-flags</c>'.</li>
 </ul>
 
 </body>
