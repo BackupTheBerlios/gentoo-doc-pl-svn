@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="/xsl/guide.xsl" type="text/xsl"?>
 <!DOCTYPE guide SYSTEM "/dtd/guide.dtd">
-<guide type="newsletter" link="20061009-newsletter.xml" lang="en">
-<title>Gentoo Weekly Newsletter</title>
-<subtitle>9 October 2006</subtitle>
+<guide type="newsletter" link="20061009-newsletter.xml" lang="pl">
+<title>Tygodnik Gentoo</title>
+<subtitle>9 października 2006</subtitle>
 
-<author title="Editor">
-<mail link="plate@gentoo.org">Ulrich Plate</mail>
+<author title="Redaktor naczelny">
+  <mail link="plate@gentoo.org">Ulrich Plate</mail>
+</author>
+<author title="Redaktor">
+  <mail link="dberkholz@gentoo.org">Donnie Berkholz</mail>
+</author>
+<author title="Redaktor">
+  <mail link="thirtyyearswar@mindspring.com">Chris Atkinson</mail>
+</author>
+<author title="Redaktor">
+  <mail link="lionel-dev@bouton.name">Lionel Bouton</mail>
+</author>
+<author title="Redaktor">
+  <mail link="wolf31o2@gentoo.org">Chris Gianelloni</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="jbozanowski@gmail.com">Jakub Bożanowski</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="karol.kania@gmail.com">Karol Kania</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="shadoww@gentoo.org">Damian Kuras</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="moloh@gentoo.org">Michał Kurgan</mail>
 </author>
 
-<author title="Author">
-<mail link="dberkholz@gentoo.org">Donnie Berkholz</mail>
-</author>
-
-<author title="Author">
-<mail link="thirtyyearswar@mindspring.com">Chris Atkinson</mail>
-</author>
-
-<author title="Author">
-<mail link="lionel-dev@bouton.name">Lionel Bouton</mail>
-</author>
-
-<author title="Author">
-<mail link="wolf31o2@gentoo.org">Chris Gianelloni</mail>
-</author>
-
-<abstract>This is the Gentoo Weekly Newsletter for the week of 9 October
-2006.</abstract>
+<abstract>Wydanie Tygodnika Gentoo z 9 października 2006.</abstract>
 <summary/>
 
-<version>Volume 5, Issue 41</version>
+<version>Wolumin 5, numer 41</version>
 <date>2006-10-09</date>
 
 <!-- Gentoo News -->
-
 <chapter>
 <title>Gentoo news</title>
-
 <section>
 <title>X.Org 7.1 to enter stable for amd64 and x86</title>
 <body>
@@ -60,7 +65,6 @@ video drivers also received significant updates.
 
 </body>
 </section>
-
 <section>
 <title>Safe CFLAGS</title>
 <body>
@@ -92,17 +96,17 @@ Examples of this are:
 </p>
 
 <ul>
-<li>nss_ldap stopped working with <c>-ffast-math</c> (<c>-ffast-math</c>
-is often misused and must be considered a dangerous flag)</li>
-<li><c>-fvisibility-inlines-hidden</c> still breaks some code</li>
-<li><c>-ftree-loop-linear</c> now breaks in GCC 4.1 (at least with
-mesa)</li>
-<li><c>-ftree-vectorize</c> is known to be broken in GCC 4.1 (at least
-for x86 and ppc, there are fewer problems reported by amd64 users, but no
-guarantees)</li>
-<li><c>-fforce-addr</c> and <c>-fweb</c> break regularly on x86 with
-video libraries or graphic processing apps which use hand-optimized assembly
-(<c>-fweb</c> may be safe on amd64 but like above no guarantees)</li>
+  <li>nss_ldap stopped working with <c>-ffast-math</c> (<c>-ffast-math</c>
+  is often misused and must be considered a dangerous flag)</li>
+  <li><c>-fvisibility-inlines-hidden</c> still breaks some code</li>
+  <li><c>-ftree-loop-linear</c> now breaks in GCC 4.1 (at least with
+  mesa)</li>
+  <li><c>-ftree-vectorize</c> is known to be broken in GCC 4.1 (at least
+  for x86 and ppc, there are fewer problems reported by amd64 users, but no
+  guarantees)</li>
+  <li><c>-fforce-addr</c> and <c>-fweb</c> break regularly on x86 with
+  video libraries or graphic processing apps which use hand-optimized assembly
+  (<c>-fweb</c> may be safe on amd64 but like above no guarantees)</li>
 </ul>
 
 <p>
@@ -111,15 +115,15 @@ to check for too:
 </p>
 
 <ul>
-<li><c>-fvisibility=hidden</c></li>
-<li><c>-frename-registers</c> (may be safe on amd64, at your own risks)</li>
-<li><c>-ftracer</c></li>
-<li><c>-D_FILE_OFFSET_BITS=64</c></li>
-<li><c>-msse</c>, <c>-mmmx</c>, and <c>-m3dnow</c> (no need for them on amd64,
-they are wrapped up by -march=k8/nocona/... and safely used there)</li>
-<li><c>-W</c></li>
-<li><c>-mfpmath=sse,387</c></li>
-<li><c>-malign-double</c></li>
+  <li><c>-fvisibility=hidden</c></li>
+  <li><c>-frename-registers</c> (may be safe on amd64, at your own risks)</li>
+  <li><c>-ftracer</c></li>
+  <li><c>-D_FILE_OFFSET_BITS=64</c></li>
+  <li><c>-msse</c>, <c>-mmmx</c>, and <c>-m3dnow</c> (no need for them on amd64,
+  they are wrapped up by -march=k8/nocona/... and safely used there)</li>
+  <li><c>-W</c></li>
+  <li><c>-mfpmath=sse,387</c></li>
+  <li><c>-malign-double</c></li>
 </ul>
 
 <p>
@@ -135,38 +139,36 @@ Final notes:
 </p>
 
 <ul>
-<li>The GCC man page contains warnings for some unsafe optimization
-options. You should read it carefully when you experiment with CFLAGS or
-upgrade GCC on a CFLAGS-customized Gentoo.</li>
-<li>Some options that are unsafe in the system-wide CFLAGS might be
-added automatically in some ebuilds if the developer deems them safe
-(by redefining CFLAGS or using append-flags from the flag-o-matic eclass).
-For example <c>-ffast-math</c> is added by the xmame/xmess ebuilds on
-most architectures even though you <b>should not</b> put it in your CFLAGS.</li>
-<li>You might get an idea of the stability issues of a specific
-optimization option by running: <c>find /usr/portage -name '*.ebuild' |
-xargs grep -- '-your-risky-optimization-option'</c>. It takes quite
-some time, but might be enlightening: look for the
-'<c>filter-flags</c>'.</li>
+  <li>The GCC man page contains warnings for some unsafe optimization
+  options. You should read it carefully when you experiment with CFLAGS or
+  upgrade GCC on a CFLAGS-customized Gentoo.</li>
+  <li>Some options that are unsafe in the system-wide CFLAGS might be
+  added automatically in some ebuilds if the developer deems them safe
+  (by redefining CFLAGS or using append-flags from the flag-o-matic eclass).
+  For example <c>-ffast-math</c> is added by the xmame/xmess ebuilds on
+  most architectures even though you <b>should not</b> put it in your CFLAGS.</li>
+  <li>You might get an idea of the stability issues of a specific
+  optimization option by running: <c>find /usr/portage -name '*.ebuild' |
+  xargs grep -- '-your-risky-optimization-option'</c>. It takes quite
+  some time, but might be enlightening: look for the
+  '<c>filter-flags</c>'.</li>
 </ul>
 
 </body>
 </section>
-
 </chapter>
 
 <!-- Developer of the Week -->
-
 <chapter>
 <title>Deweloper tygodnia</title>
-
 <section>
-<title>"Cześć. Nazywam się Inigo Montoya. Zabiłeś mi ojca. Przygotuj się na
-śmierć". - Daniel Ostrow, dostrow</title>
+<title>„Cześć. Nazywam się Inigo Montoya. Zabiłeś mi ojca. Przygotuj się na
+śmierć.” - Daniel Ostrow, dostrow</title>
 <body>
 
 <figure link="/images/gwn/20061009_dostrow.jpg"
-  short="dostrow" caption="Daniel Ostrow" />
+        short="dostrow" 
+        caption="Daniel Ostrow" />
 
 <p>
 Deweloper Daniel Ostrow, znany także jako dostrow, urodził się i wychował w
@@ -180,703 +182,624 @@ trzymetrowego węża.
 
 <p>
 Dostrow szybko stwierdził, że studia nie są dla niego, mimo iż jednak przez
-krótki czas rozważał międzywydziałowe studia morskie z psychologii/biologii
-(FIXME Interdisciplinary Marine Psych/Bio), specjalizując się w ssakach
-morskich, co niezbyt pasuje do jego obrazu maniaka komputerów. Twierdzi
-jednak, że w swoim czasie w końcu postara się o tytuł naukowy, w takiej czy
-innej dziedzinie.
+krótki czas rozważał interdyscyplinarne studia morskie o specjalizacji ssaki
+morskie, co niezbyt pasuje do jego obrazu maniaka komputerów. Twierdzi jednak,
+że w swoim czasie w końcu postara się o tytuł naukowy, w takiej czy innej
+dziedzinie.
 </p>
 
 <p>
-Daniel pracuje w dziale Human Resources firmy Workstream, która zajmuje się
-usługami sieciowymi i dostarcza aplikacje dla całego cyklu życia HR,
-począwszy od rekrutacji, aż po zwolnienia, zarówno hostowane, jak i u
-klienta. Mimo iż znalazł zatrudnienie dzięki powiązaniom z Gentoo, niestety
+Daniel pracuje w dziale zasobów ludzkich (HR, z ang. Human Resources) firmy
+Workstream, która zajmuje się dostarczaniem usług sieciowych oraz klienckich dla
+aplikacji zajmujących się całym cyklem życia HR, począwszy od rekrutacji, aż po
+zwolnienia. Mimo iż znalazł zatrudnienie dzięki powiązaniom z Gentoo, niestety
 nie płacą mu za pracę nad dystrybucją. Pracuje na stanowisku głównego
-administratora systemów. Daniel podsumowuje swoją pracę jako bycie
-wynajmowanym do różnych wydziałów firmy, aby uczynić niemożliwe możliwym.
-Mimo iż brzmi to dość nieciekawie, to jemu podoba się praca pod napięciem
-oraz to, że nigdy nie pracuje przy tym samym na tyle długo, aby mogło go to
-znudzić. Firma Workstream używa systemów CentOS/Solaris/Windows, ale
-Danielowi udało się zainstalować Gentoo na serwerze, który wymagał
-własnoręcznie poprawianego jądra, oraz na swojej lokalnej stacji roboczej.
+administratora systemów. Daniel podsumowuje swoją pracę jako bycie wynajmowanym
+do różnych wydziałów firmy, aby uczynić niemożliwe możliwym. Mimo iż brzmi to
+dość nieciekawie, to jemu podoba się praca pod napięciem oraz to, że nigdy nie
+pracuje przy tym samym na tyle długo, aby mogło go to znudzić. Firma Workstream
+używa systemów CentOS/Solaris/Windows, ale Danielowi udało się zainstalować
+Gentoo na serwerze, który wymagał własnoręcznie poprawianego jądra, oraz na
+swojej lokalnej stacji roboczej.
 </p>
 
 <p>
-Bycie aktywnym deweloperem Gentoo wymaga umiejętności, które Daniel opisuje
-jako nieocenione w pracy. Potrafi zastosować umiejętności wymagane od
-dobrego dewelopera (bycie efektywnym administratorem, umiejętność logicznego
-myślenia i pasję do grzebania "pod maską") do jakiejkolwiek pracy w branży
-informatycznej.
+Bycie aktywnym deweloperem Gentoo wymaga umiejętności, które Daniel opisuje jako
+nieocenione w pracy. Potrafi zastosować zdobyte w pracy nad dystrybucją
+doświadczenie (efektywna administracja, umiejętność logicznego myślenia i pasja
+do grzebania „pod maską”) do jakiejkolwiek pracy w branży informatycznej.
 </p>
 
 <p>
-Gdy nie pracuje, dostrow karmi swoją obsesję animacją, zwykle siedząc przed
-telewizorem. Oprócz tego spędza wolny czas w dość standardowy sposób,
-chodząc do klubów i barów albo do kina. Uwielbia Gwiezdne Wojny (mógłby
-oglądać bez końca) i muzykę taneczną. Jego ulubiony DJ to aktualnie Armin
-Van Buuren, aczkolwiek niezmiennie slucha też Tiësto, Paula Van Dyka i
-Ferry'ego Corstena. Ceni sobie muzykę techno tak bardzo, że co roku bywa na
-Ultra Music Festival, który odbywa się na Florydzie. Czy już wspomnieliśmy,
-że Daniel uwielbia Gwiezdne Wojny? Jakby tego było mało, posiada jeszcze
-jedno hobby, łucznictwo. Najciekawsze miejsce, które odwiedził? Zdecydowanie
-najlepiej wspomina miesięczną wycieczkę do wschodniej Azji, gdzie miał
-okazję odwiedzić Singapur, Hong Kong, Tokyo i Taiwan.
+Gdy nie pracuje, dostrow karmi swoją obsesję, animację, zwykle siedząc przed
+telewizorem. Oprócz tego spędza wolny czas w dość standardowy sposób, chodząc do
+klubów i barów albo do kina. Uwielbia Gwiezdne Wojny (mógłby oglądać je bez
+końca) i muzykę taneczną. Jego ulubiony DJ to aktualnie Armin Van Buuren,
+aczkolwiek niezmiennie słucha też Tiësto, Paula Van Dyka i Ferry'ego Corstena.
+Ceni sobie muzykę techno tak bardzo, że co roku bywa na Ultra Music Festival
+odbywającym się na Florydzie. Czy już wspomnieliśmy, że Daniel uwielbia Gwiezdne
+Wojny? Jakby tego było mało, posiada jeszcze jedno hobby, łucznictwo.
+Najciekawsze miejsce, które odwiedził? Zdecydowanie najlepiej wspomina
+miesięczną wycieczkę do wschodniej Azji, gdzie miał okazję odwiedzić Singapur,
+Hong Kong, Tokyo i Taiwan.
 </p>
 
 <p>
-Jego doświadczenia z systemami klasy Unix zaczęły się od NetBSD, następnie
+Jego doświadczenia z systemami Uniksowymi zaczęły się od NetBSD, następnie
 przechodząc fazę testowania wielu dystrybucji Linuksa. Do Gentoo dotarł w
 czasie, gdy ostatnią wersją była 1.4_rc1, jednak irytowało go wiele
-"linuksizmów", więc przeniósł się na następne dystrybucje. Wrócił jednak do
-Gentoo kiedy lepiej poznał Linuksa. Twierdzi, że początkowe sukcesy
-zawdzięcza pomocy społeczności Gentoo (w szczególności chce podziękować
-Pylonowi i pvdabeel za pomoc w zmuszeniu do działania jego pierwszej maszyny
-PPC). Dostrow stał się bywalcem kanału <c>#gentoo-ppc</c>, pisząc poprawki i
-nowe ebuildy dla przestarzałych pakietów. Wkrótce został zrekrutowany przez
-pvdabeel w maju 2004 roku. Jego główny zakres obowiązków dotyczy
-architektury PPC64 i środowiska XFCE. Uwielbia XFCE, ostatnio nabywając
-sprzęt, dzięki któremu może opiekować się tym środowiskiem na każdej
-wspieranej przez Gentoo architekturze.
+„linuksizmów”, więc dalej przenosił się na kolejne dystrybucje. Wrócił jednak
+do Gentoo kiedy lepiej poznał Linuksa. Twierdzi, że początkowe sukcesy
+zawdzięcza pomocy społeczności Gentoo (w szczególności chce podziękować Pylonowi
+i pvdabeel za pomoc w zmuszeniu do działania jego pierwszej maszyny PPC).
+Dostrow stał się bywalcem kanału <c>#gentoo-ppc</c>, pisząc poprawki i nowe
+ebuildy dla przestarzałych pakietów. W maju 2004 roku stał się deweloperem
+dzięki pomocy pvdabeel. Jego główny zakres obowiązków dotyczy architektury PPC64
+i środowiska XFCE. Uwielbia XFCE, ostatnio nabywając sprzęt, dzięki któremu może
+opiekować się tym środowiskiem na każdej wspieranej przez Gentoo architekturze.
 </p>
 
 <p>
-Daniel posiada nie lada kolekcję komputerów w domu, na którą składa się
-laptop i desktop x86 firmy Dell, dwa systemy AMD64 i laptop Acer Ferrari na
-tej samej architekturze, po jednym komputerze Alpha, HPPA i ARM, dwa PPC,
-dwa PPC64, kilka Sparców, jeden system MIPS i IA64. Nie dziwi też fakt, że
-pierwszą aplikacją, jaką uruchamia jest XFCE, a zaraz potem urxvt, gaim,
-xchat i evolution.
+Daniel posiada nie lada kolekcję komputerów w domu, na którą składa się laptop i
+desktop x86 firmy Dell, dwa systemy AMD64 i laptop Acer Ferrari na tej samej
+architekturze, po jednym komputerze Alpha, HPPA i ARM, dwa PPC, dwa PPC64, kilka
+Sparców, jeden system MIPS i IA64. Nie dziwi też fakt, że pierwszą aplikacją,
+jaką uruchamia jest XFCE, a zaraz potem urxvt, gaim, xchat i evolution.
 </p>
 
 </body>
 </section>
-
 </chapter>
-
 <!-- Heard in the community -->
 
 <chapter>
-<title>Heard in the community</title>
-
+<title>Społeczność Gentoo</title>
 <!-- forums.gentoo.org -->
-
 <section>
-<title>forums.gentoo.org</title>
+<title>Forum</title>
 <body>
 
-<p><b>Goodbye my Gentoo servers, I hardly knew you</b></p>
+<p>
+<b>Żegnajcie moje serwery Gentoo, ledwie was znałem</b>
+</p>
 
 <p>
-Forums user kashani writes about his experiences with using Gentoo Linux as a
-replacement for CentOS at <uri>http://jumpcut.com/</uri> prior to being bought
-by Yahoo! two weeks ago. The post starts with talking about how the conversion
-was begun with the support servers, then the development servers, followed soon
-by staging and production.
+Jeden z użytkowników Forum, kashani, opisał swoje doświadczenia z Gentoo Linux
+jako zamiennika systemu CentOS używanego w serwisie
+<uri>http://jumpcut.com/</uri> do czasu jego wykupienia przez Yahoo!, dwa
+tygodnie temu. Historia zaczęła się od migracji serwerów zapasowych, następnie
+deweloperskich, a na zakończenie Gentoo znalazło się oczywiście na serwerach
+produkcyjnych.
 </p>
 
 <ul>
-<li><uri>http://forums.gentoo.org/viewtopic-t-504541.html</uri></li>
+  <li><uri>http://forums.gentoo.org/viewtopic-t-504541.html</uri></li>
 </ul>
 
 </body>
 </section>
-
 <!-- planet.gentoo.org -->
-
 <!-- gentoo-user -->
-
 <section>
-<title>gentoo-user</title>
+<title>Lista dyskusyjna gentoo-user</title>
 <body>
 
-<p><b>OT: Sansa e260 MicroSD</b></p>
+<p>
+<b>OT: Sansa e260 MicroSD</b>
+</p>
 
 <p>
-Devon Miller owns a SanDisk Sans E260, a flash-based MP3 player with a
-slot for additional SD card storage. Devon was able to mount the flash
-drive but not the SD card. Steve McGrath (who'd had a similar problem
-with a 5-in-1 card reader) advised Devon to recompile his kernel with
-the option "Probe all LUNs on each SCSI device" selected under Device
-Drivers->SCSI device support. Devon reported problem solved.
+Devon Miller jest posiadaczem odtwarzacza MP3 SanDisk Sans E260 wyposażonego w
+dodatkowy czytnik kart SD pozwalający powiększyć dostępną pamięć. Devon był w
+stanie zamontować odtwarzacz, ale karta była niedostępna. Steve McGrath (miał
+on podobny problem z czytnikiem kart 5-in-1) poradził, aby poprawić konfigurację
+jądra i dodać opcję „Probe all LUNs on each SCSI device” znajdującą się w sekcji
+Device Drivers->SCSI device support. Po rekompilacji jądra Devon stwierdził, że
+odtwarzacz pracuje już poprawnie.
 </p>
 
 <ul>
-<li><uri>http://thread.gmane.org/gmane.linux.gentoo.user/171570</uri></li>
+  <li><uri>http://thread.gmane.org/gmane.linux.gentoo.user/171570</uri></li>
 </ul>
 
-<p><b>Allow a user to restart net.wlan0</b></p>
-
 <p>
-In order to deal with intermittent NIC failures on his son's machine,
-Mark Knecht needed to allow a non-root user to run the command
-<c>/etc/init.d/wlan0 restart</c>. Mark Shields and Devon Miller advised him
-to use visudo to add "username ALL=(ALL)
-NOPASSWD: /etc/init.d/net.wlan0" to the <c>/etc/sudoers</c> file. Ian
-Buchanan's suggested alternative was "username ALL=(ALL)
-NOPASSWD: /etc/init.d/net.wlan0 restart" which would allow only the
-restarting of the service.
+<b>Allow a user to restart net.wlan0</b>
 </p>
 
 <p>
-Nick Rout and Alexander Skwar pointed out that the Atheros card might
-work better with the madwifi-ng driver in lieu of the ndiswrapper-ed
-Windows driver which Knecht had been using.
+Aby poradzić sobie z problemami z problemami i przerwami w działaniu karty
+wireless zainstalowanej na komputerze syna Mark Knecht chciał umożliwić zwykłemu
+użytkownikowi na użycie polecenia <c>/etc/init.d/wlan0 restart</c>. Mark Shields
+i Devon Miller poradzili, aby w tej sytuacji skorzystać z visudo oraz dodać wpis
+„username ALL=(ALL) NOPASSWD: /etc/init.d/net.wlan0” do pliku
+<c>/etc/sudoers</c>. Ian Buchanan zasugerował, że lepszym rozwiązaniem może być
+użycie „username ALL=(ALL) NOPASSWD: /etc/init.d/net.wlan0 restart” tak, by
+umożliwić tylko restart usługi.
+</p>
+
+<p>
+Nick Rout oraz Alexander Skwar wskazali, że karty Atheros i sterownik madwifi-ng
+mogą być lepszym rozwiązaniem w zamian używanego ndiswrappera.
 </p>
 
 <ul>
-<li><uri>http://thread.gmane.org/gmane.linux.gentoo.user/171551</uri></li>
+  <li><uri>http://thread.gmane.org/gmane.linux.gentoo.user/171551</uri></li>
 </ul>
 
 </body>
 </section>
-
 <!-- gentoo-dev -->
-
 </chapter>
 
 <!-- Gentoo International-->
-
 <!-- Gentoo in the press -->
-
 <chapter>
 <title>Gentoo w prasie</title>
-
 <section>
-<title>NewsForge (6 październik 2006)</title>
+<title>NewsForge (6 października 2006)</title>
 <body>
 
 <p>
-Benetech CTO, Dr. Patrick Ball pisze o oprogramowaniu Open Source a zwłaszcza
-Gentoo.
+<uri link="http://en.wikipedia.org/wiki/Chief_technical_officer">CTO</uri> w
+firmie Benetech, Dr. Patrick Ball pisze o oprogramowaniu Open Source, a
+zwłaszcza Gentoo.
 </p>
 
 <p>
-Osobistym desktopem Ball'a jest Linuks Gentoo. "Używam Gentoo od lat, ponieważ
-jest z nim mnóstwo zabawy i pozwolił mi on zrozumieć jak administrować
-maszyną", mówi, podkreślając przy tym jego unikalną filozofię:
+Komputer Balla pracuje pod kontrolą Gentoo Linux. „Używam Gentoo od lat,
+ponieważ jest z nim mnóstwo zabawy i pozwoliło mi ono zrozumieć jak należy
+administrować komputerem”, mówi, podkreślając przy tym jego unikalną filozofię:
 wybierz-i-skompiluj-co-chcesz. Wspomina też, że nikt nie będzie miał specjalnych
 problemów korzystania z Gentoo -- ludzie, którzy go używają, wspierają i
 rozwijają są zawsze chętni do pomocy.
 </p>
 
 <p>
-"Społeczeństwo jest naprawdę mocne a jego członkowie wyćwiczeni/?wprawieni w
-różnych kategoriach. Pozostałe [społeczeństwa darmowego oprogramowania] są
-wyspecjalizowane może na poziomie początkujących lub z drugiej strony na
-poziomie ekspertów, podczas gdy Gentoo obejmuje wszystkie stopnie -- nikt nikomu
-nie odmówi pomocy. 
+„Społeczność jest naprawdę silna, a jej członkowie potrafią pomóc w problemach o
+różnych stopniach trudności. Pozostałe [społeczności wolnego oprogramowania]
+potrafią pomóc początkującym użytkownikom lub w bardzo specyficznych i
+skomplikowanych sprawach. W Gentoo natomiast można znaleźć porady na problemy o
+różnych stopniach trudności -- nikt nikomu nie odmówi pomocy cytując odnośniki
+do poradników Erica Raymonda.”
 </p>
 
 <p>
-Do niedawna, jako desktop Benetech używał takich dystrybucji jak Red Hat i
-Gentoo, na chwilę obecną jest to Ubuntu. Powodem zmiany na tę ostatnią, jak 
-powiedział Ball, była jej łatwość instalacji i konfiguracji. "Kiedy trzeba zająć
-się 10 lub 15 maszynami, Gentoo jest [odrobinę uciążliwe]. Na większości maszyn
-zainstalowane jest Kubuntu, ale jest też w naszej organizacji i kilku pasjonatów 
-środowiska GNOME."
+Do niedawna w Benetech używano takich dystrybucji jak Red Hat oraz Gentoo lecz
+ostatnimi czasy znaleźć tam można wyłącznie Ubuntu. Powodem tej zmiany, jak
+twierdzi Ball, jest prostota jej instalacji i konfiguracji. „Kiedy trzeba zająć
+się 10 lub 15 komputerami, Gentoo jest [odrobinę uciążliwe]. W większości
+przypadków zainstalowane jest Kubuntu, ale można znaleźć też kilku pasjonatów
+środowiska GNOME.”
 </p>
 
 <ul>
-<li><uri>http://business.newsforge.com/business/06/09/29/1827208.shtml?tid=39&amp;tid=150&amp;tid=132</uri></li>
+  <li><uri>http://business.newsforge.com/business/06/09/29/1827208.shtml?tid=39&amp;tid=150&amp;tid=132</uri></li>
 </ul>
 
 </body>
 </section>
-
 <section>
 <title>Linux Magazin (listopad 2006)</title>
 <body>
 
 <p>
-W listopadowym wydaniu, niemiecki Linux Magazin opublikował artykuł o nakładkach  
-<uri>http://overlays.gentoo.org</uri> i skrypcie <c>layman</c>. Artykuł
-zatytułowany "Community-basiertes Qualitätsmanagement" (Oparte o społeczeństwo
-Zarządzanie Jakością), mówi o tym jak Gentoo demonstruje jak silna interakcja ze
-społeczeństwem odchodzi od tradycyjnych procedur zapewniających jakość i wciąż
-wydaje stabilne rezultaty. 
+W listopadowym wydaniu, niemiecki magazyn Linux Magazin opublikował artykuł o
+opisujący <uri>http://overlays.gentoo.org</uri> oraz skrypt <c>layman</c>.
+Opatrzony tytułem „Community-basiertes Qualitätsmanagement” (Oparte o
+społeczność zarządzanie jakością) przedstawia jak Gentoo demonstrując silne
+więzi ze społecznością odchodzi od tradycyjnych procedur zapewniających jakość
+utrzymując w rezultacie stabilny finalny produkt.
 </p>
 
 <p>
-Niemieckojęzyczni członkowie społeczeństwa, by zapoznać się z treścią artykułu,
-powinni zaopatrzyć się w drukowaną wersję listopadowego wydania magazynu,
-ponieważ nie jest ona dostępna online. 
+Aby przeczytać artykuł należy zakupić listopadowe wydanie magazynu (w języku
+niemieckim), gdyż artykuł nie jest dostępny online.
 </p>
 
 <ul>
-<li><uri>http://www.linux-magazin.de/Artikel/ausgabe/2006/11</uri></li>
-<li><uri>http://gunnarwrobel.de/blog/english/technical/gentoo/german_linux_magazine_publishes_article_on_overlays.gentoo.org_and_layman.html</uri></li>
+  <li><uri>http://www.linux-magazin.de/Artikel/ausgabe/2006/11</uri></li>
+  <li><uri>http://gunnarwrobel.de/blog/english/technical/gentoo/german_linux_magazine_publishes_article_on_overlays.gentoo.org_and_layman.html</uri></li>
 </ul>
 
 </body>
 </section>
-
 </chapter>
 
 <!-- Tips and Tricks -->
-
 <!-- Gentoo developer moves -->
-
 <chapter>
-<title>Gentoo developer moves</title>
+<title>Zmiana statusu deweloperów Gentoo</title>
 
 <section>
-<title>Moves</title>
+<title>Odeszli</title>
 <body>
 
 <p>
-The following developers recently left the Gentoo project:
+Następujący deweloperzy opuścili projekt Gentoo Linux w minionym tygodniu:
 </p>
 
 <ul>
-<li>Tim Yamin (plasmaroo)</li>
-<li>Gregorio Guidi (greg_g)</li>
+  <li>Tim Yamin (plasmaroo)</li>
+  <li>Gregorio Guidi (greg_g)</li>
 </ul>
 
 </body>
-
 </section>
-
 <section>
-<title>Adds</title>
+<title>Przybyli</title>
 <body>
 
 <p>
-The following developers recently joined the Gentoo project:
+Następujący deweloperzy przyłączyli się do projektu Gentoo Linux w minionym
+tygodniu:
 </p>
 
 <ul>
-<li>Alon Bar-Lev (alonbl) crypto team</li>
-<li>Jeffrey Gardner (je_fro) sci-* team</li>
-<li>Timothy Redaelli (drizzt) Gentoo/FreeBSD</li>
+  <li>Alon Bar-Lev (alonbl) zespół crypto</li>
+  <li>Jeffrey Gardner (je_fro) zespół zajmujący się pakietami sci-*</li>
+  <li>Timothy Redaelli (drizzt) Gentoo/FreeBSD</li>
 </ul>
 
 </body>
-
 </section>
-
 <section>
-<title>Changes</title>
+<title>Zmienili status</title>
 <body>
 
 <p>
-The following developers recently changed roles within the
-Gentoo project:
+Następujący deweloperzy zmienili w minionym tygodniu pełnioną w projekcie Gentoo
+Linux funkcję:
 </p>
 
 <ul>
-<li><e>none this week</e></li>
+  <li><e>Nikt w tym tygodniu</e></li>
 </ul>
 
 </body>
-
 </section>
-
 </chapter>
 
 <!-- Gentoo security -->
-
 <chapter>
-<title>Gentoo security</title>
-
+<title>Bezpieczeństwo Gentoo</title>
 <!-- paste from the script -->
-
 <section>
-<title>Mozilla Thunderbird: Multiple vulnerabilities</title>
+<title>Mozilla Thunderbird: Wiele usterek</title>
 <body>
 
 <p>
-The Mozilla Foundation has reported multiple security vulnerabilities
-related to Mozilla Thunderbird.
+Mozilla Foundation opublikowała raport opisujący szereg usterek w Mozilla
+Thunderbird
 </p>
 
 <p>
-For more information, please see the
-<uri link="http://www.gentoo.org/security/en/glsa/glsa-200610-01.xml">
-GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200610-01.xml"> komunikacie
+GLSA</uri>
 </p>
 
 </body>
 </section>
-
 <section>
-<title>Adobe Flash Player: Arbitrary code execution</title>
+<title>Adobe Flash Player: Wykonanie niepożądanego kodu</title>
 <body>
 
 <p>
-Multiple input validation errors have been identified that allow arbitrary
-code execution on a user's system via the handling of malicious Flash
-files.
+Odkryto wiele błędów w walidacji danych wprowadzanych przez użytkownika, które
+mogą zostać wykorzystane do wykonani niepożądanego kodu w systemie użytkownika w
+przypadku użycia spreparowanych plików Flash.
 </p>
 
 <p>
-For more information, please see the
-<uri link="http://www.gentoo.org/security/en/glsa/glsa-200610-02.xml">
-GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200610-02.xml"> komunikacie
+GLSA</uri>
 </p>
 
 </body>
 </section>
-
 <section>
-<title>ncompress: Buffer Underflow</title>
+<title>ncompress: Przepełnienie bufora</title>
 <body>
 
 <p>
-A buffer underflow vulnerability has been reported in ncompress allowing
-for the execution of arbitrary code.
+ncompress zawiera usterkę przepełnienia bufora, która może zostać wykorzystana
+do wykonania niepożądanego kodu.
 </p>
 
 <p>
-For more information, please see the
-<uri link="http://www.gentoo.org/security/en/glsa/glsa-200610-03.xml">
-GLSA Announcement</uri>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200610-03.xml"> komunikacie
+GLSA</uri>
 </p>
 
 </body>
 </section>
-
 </chapter>
 
 <!-- Bugzilla -->
-
 <!-- paste from the script -->
-
 <chapter>
 <title>Bugzilla</title>
-
 <section>
-<title>Summary</title>
+<title>Podsumowanie</title>
 <body>
 
 <ul>
-<li><uri link="#doc_chap1_sect2">Statistics</uri></li>
-<li><uri link="#doc_chap1_sect3">Closed bug ranking</uri></li>
-<li><uri link="#doc_chap1_sect4">New bug rankings</uri></li>
+  <li><uri link="#doc_chap1_sect2">Statystyki</uri></li>
+  <li><uri link="#doc_chap1_sect3">Zamknięte bugi</uri></li>
+  <li><uri link="#doc_chap1_sect4">Nowe bugi</uri></li>
 </ul>
 
 </body>
 </section>
 
 <section>
-<title>Statistics</title>
+<title>Statystyki</title>
 <body>
 
 <p>
-The Gentoo community uses Bugzilla (<uri
-link="http://bugs.gentoo.org">bugs.gentoo.org</uri>) to record and track
-bugs, notifications, suggestions and other interactions with the
-development team.  Between 01 October 2006
-and 08 October 2006, activity on the site has resulted in:
+Społeczność Gentoo używa Bugzilli (<uri
+link="http://bugs.gentoo.org/">bugs.gentoo.org</uri>) do zgłaszania i śledzenia
+błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomiędzy 1
+października 2006, a 8 października 2006 aktywność w serwisie przedstawiała się
+następująco:
 </p>
 
 <ul>
-<li>748 new bugs during this period</li>
-<li>584 bugs closed or resolved during this period</li>
-<li>34 previously closed bugs were reopened this period</li>
-<li>213 closed as NEEDINFO/WONTFIX/CANTFIX/INVALID/UPSTREAM during this period</li>
-<li>166 bugs marked as duplicates during this period</li>
+  <li>zgłoszono 748 nowych bugów</li>
+  <li>zamknięto lub rozwiązano 584 bugi</li>
+  <li>34 uprzednio zamknięte bugi zostały ponownie otwarte</li>
+  <li>213 bugów oznaczono jako NEEDINFO/WONTFIX/CANTFIX/INVALID/UPSTREAM</li>
+  <li>166 bugów oznaczono jako duplikaty</li>
 </ul>
 
 <p>
-Of the 11080 currently open bugs: 33 are labeled 'blocker', 121 are labeled
-'critical', and 505 are labeled 'major'.
+Spośród 11080 obecnie otwartych bugów: 33 oznaczono jako 'blocker', 121 jako
+'critical', a 505 jako 'major'.
 </p>
 
 </body>
 </section>
 
 <section>
-<title>Closed bug rankings</title>
+<title>Zamknięte Bugi</title>
 <body>
 
 <p>
-The developers and teams who have closed the most bugs during this period are:
+Deweloperzy oraz zespoły, które zamknęły najwięcej bugów w minionym tygodniu,
+to:
 </p>
 
 <ul>
-<li><mail link="games@gentoo.org">Gentoo Games</mail>, with 43
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=games@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, with 42
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=sound@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="amd64@gentoo.org">AMD64 Project</mail>, with 28
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=amd64@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="base-system@gentoo.org">Gentoo's Team for Core System packages</mail>, with 24
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=base-system@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="dev-portage@gentoo.org">Portage team</mail>, with 21
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=dev-portage@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="neysx@gentoo.org">Xavier Neys</mail>, with 19
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=neysx@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="maintainer-needed@gentoo.org">Default Assignee for Orphaned Packages</mail>, with 14
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=maintainer-needed@gentoo.org">closed bugs</uri>
-</li>
-<li><mail link="ruby@gentoo.org">Gentoo Ruby Team</mail>, with 11
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=ruby@gentoo.org">closed bugs</uri>
-</li>
+  <li><mail link="games@gentoo.org">Gentoo Games</mail>, 43 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=games@gentoo.org">zamknięte
+  bugi</uri></li>
+  <li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, 42 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=sound@gentoo.org">zamknięte
+  bugi</uri></li>
+  <li><mail link="amd64@gentoo.org">AMD64 Project</mail>, 28 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=amd64@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="base-system@gentoo.org">Gentoo's Team for Core System
+  packages</mail>, 24 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=base-system@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="dev-portage@gentoo.org">Portage team</mail>, 21 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=dev-portage@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="neysx@gentoo.org">Xavier Neys</mail>, 19 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=neysx@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="maintainer-needed@gentoo.org">Default Assignee for Orphaned
+  Packages</mail>, 14 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=maintainer-needed@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="ruby@gentoo.org">Gentoo Ruby Team</mail>, 11 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;resolution=FIXED&amp;assigned_to=ruby@gentoo.org">zamkniętych
+  bugów</uri></li>
 </ul>
 
 </body>
 </section>
-
 <section>
-<title>New bug rankings</title>
+<title>Nowe Bugi</title>
 <body>
 
 <p>
-The developers and teams who have been assigned the most new bugs during this
-period are:
+Deweloperzy oraz zespoły, którym przydzielono najwięcej bugów w minionym tygodniu,
+to:
 </p>
 
 <ul>
-<li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New Packages</mail>, with 29
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=maintainer-wanted@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="pclouds@gentoo.org">Nguyen Thai Ngoc Duy</mail>, with 20
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=pclouds@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="maintainer-needed@gentoo.org">Default Assignee for Orphaned Packages</mail>, with 13
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=maintainer-needed@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="mozilla@gentoo.org">Mozilla Gentoo Team</mail>, with 10
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=mozilla@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, with 9
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=sound@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="games@gentoo.org">Gentoo Games</mail>, with 8
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=games@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="amd64@gentoo.org">AMD64 Project</mail>, with 8
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=amd64@gentoo.org">new bugs</uri>
-</li>
-<li><mail link="java@gentoo.org">Java team</mail>, with 7
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=java@gentoo.org">new bugs</uri>
-</li>
+  <li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New
+  Packages</mail>, 29 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=maintainer-wanted@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="pclouds@gentoo.org">Nguyen Thai Ngoc Duy</mail>, 20 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=pclouds@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="maintainer-needed@gentoo.org">Default Assignee for Orphaned
+  Packages</mail>, 13 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=maintainer-needed@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="mozilla@gentoo.org">Mozilla Gentoo Team</mail>, 10 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=mozilla@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, 9 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=sound@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="games@gentoo.org">Gentoo Games</mail>, 8 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=games@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="amd64@gentoo.org">AMD64 Project</mail>, 8 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=amd64@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="java@gentoo.org">Java team</mail>, 7 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-10-01&amp;chfieldto=2006-10-08&amp;assigned_to=java@gentoo.org">nowych
+  bugów</uri></li>
 </ul>
 
 </body>
 </section>
-
 </chapter>
 
 <!-- Upcomfing package removals -->
-
 <chapter>
-<title>Upcoming package removals</title>
-
+<title>Pakiety przewidziane do usunięcia</title>
 <section>
 <body>
 
 <p>
-Starting this week, the GWN is debuting a section listing the packages that have
-been announced for removal from the tree. This list is compiled manually, at
-present, and may not be entirely inclusive. The goal of this section is to help
-inform the community on packages that will be removed from the tree, allowing
-them to migrate to new packages, or even volunteer to help with the package and
-keep it alive. The GWN staff hopes to make this a recurring section in the GWN
-and wishes to make this an automated report in the future. The package removals
-come from many locations, including the <uri
-link="/proj/en/qa/treecleaners">Treecleaners</uri> and various developers.
+Począwszy od tego numeru, Tygodnik Gentoo został wzbogacony o nowy rozdział,
+„Pakiety przewidziane do usunięcia”. Będzie w nim można znaleźć informacje i
+ogłoszenia na temat pakietów, które w najbliższym czasie zostaną usunięte z
+drzewa Portage. Na razie lista jest tworzona ręcznie i dlatego może nie zawierać
+wszystkich pozycji. Głównym celem stojącym za powstaniem tego rozdziału jest
+udostępnienie społeczności Gentoo źródła informacji na temat pakietów, które w
+najbliższej przyszłości będą usunięte z drzewa Portage i umożliwienie migracji
+na inne oprogramowanie lub pomoc w jego utrzymaniu, tak by jednak pakiet nie
+został usunięty. Zespół Tygodnika Gentoo ma nadzieję, że ten nowy rozdział na
+stale zagości w kolejnych numerach i będzie automatycznie tworzony tak by
+zapobiec niepotrzebnym pomyłkom. Informacje o planowanych usunięciach pakietów
+pochodzą z różnych źródeł, włączając projekt <uri
+link="/proj/en/qa/treecleaners">Treecleaners</uri> oraz zgłoszenia od
+poszczególnych deweloperów.
 </p>
 
 </body>
 </section>
-
 <section>
-<title>Last Rites:</title>
+<title>Ostatnie Namaszczenie:</title>
 <body>
 
 <table>
-
 <tr>
-<th>Package:</th>
-<th>Removal date:</th>
-<th>Contact:</th>
+  <th>Pakiet:</th>
+  <th>Data usunięcia:</th>
+  <th>Kontakt:</th>
 </tr>
-
 <tr>
-<ti>app-emulation/vmware-workstation-3.2.1</ti>
-<ti>27 Oct 06</ti>
-<ti><mail link="wolf31o2@gentoo.org">Chris Gianelloni</mail></ti>
+  <ti>app-emulation/vmware-workstation-3.2.1</ti>
+  <ti>27 października 2006</ti>
+  <ti><mail link="wolf31o2@gentoo.org">Chris Gianelloni</mail></ti>
 </tr>
-
 <tr>
-<ti>games-fps/quake3-truecombat</ti>
-<ti>27 Oct 06</ti>
-<ti><mail link="wolf31o2@gentoo.org">Chris Gianelloni</mail></ti>
+  <ti>games-fps/quake3-truecombat</ti>
+  <ti>27 października 2006</ti>
+  <ti><mail link="wolf31o2@gentoo.org">Chris Gianelloni</mail></ti>
 </tr>
-
 <tr>
-<ti>net-mail/quotient</ti>
-<ti>28 Oct 06</ti>
-<ti><mail link="phreak@gentoo.org">Christian Heim</mail></ti>
+  <ti>net-mail/quotient</ti>
+  <ti>28 października 2006</ti>
+  <ti><mail link="phreak@gentoo.org">Christian Heim</mail></ti>
 </tr>
-
 <tr>
-<ti>media-radio/ax25-tools</ti>
-<ti>29 Oct 06</ti>
-<ti><mail link="phreak@gentoo.org">Christian Heim</mail></ti>
+  <ti>media-radio/ax25-tools</ti>
+  <ti>29 października 06</ti>
+  <ti><mail link="phreak@gentoo.org">Christian Heim</mail></ti>
 </tr>
-
 <tr>
-<ti>x11-libs/buffy</ti>
-<ti>29 Oct 06</ti>
-<ti><mail link="phreak@gentoo.org">Christian Heim</mail></ti>
+  <ti>x11-libs/buffy</ti>
+  <ti>29 października 2006</ti>
+  <ti><mail link="phreak@gentoo.org">Christian Heim</mail></ti>
 </tr>
-
 <tr>
-<ti>net-im/gabber</ti>
-<ti>01 Nov 06</ti>
-<ti><mail link="tester@gentoo.org">Olivier Crête</mail></ti>
+  <ti>net-im/gabber</ti>
+  <ti>1 listopada 2006</ti>
+  <ti><mail link="tester@gentoo.org">Olivier Crête</mail></ti>
 </tr>
-
 <tr>
-<ti>net-im/jabbero</ti>
-<ti>01 Nov 06</ti>
-<ti><mail link="tester@gentoo.org">Olivier Crête</mail></ti>
+  <ti>net-im/jabbero</ti>
+  <ti>1 listopada 2006</ti>
+  <ti><mail link="tester@gentoo.org">Olivier Crête</mail></ti>
 </tr>
-
 <tr>
-<ti>media-sound/fobbit</ti>
-<ti>03 Nov 06</ti>
-<ti><mail link="flameeyes@gentoo.org">Diego Pettenò</mail></ti>
+  <ti>media-sound/fobbit</ti>
+  <ti>3 listopada 2006</ti>
+  <ti><mail link="flameeyes@gentoo.org">Diego Pettenò</mail></ti>
 </tr>
-
 <tr>
-<ti>sys-apps/sal-client</ti>
-<ti>05 Nov 06</ti>
-<ti><mail link="phreak@gentoo.org">Christian Heim</mail></ti>
+  <ti>sys-apps/sal-client</ti>
+  <ti>5 listopada 2006</ti>
+  <ti><mail link="phreak@gentoo.org">Christian Heim</mail></ti>
 </tr>
-
 </table>
 
 </body>
 </section>
-
 </chapter>
 
 <!-- GWN feedback information -->
-
 <chapter>
-
-<title>GWN feedback</title>
+<title>Opinie czytelników</title>
 <section>
 <body>
 
 <p>
-Please send us your <mail
-link="gwn-feedback@gentoo.org">feedback</mail> and help make the GWN
-better.
+Jeśli chcesz, aby Tygodnik Gentoo był jeszcze lepszy, podziel się z <mail
+link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat. Uwagi
+dotyczące tłumaczenia można zgłaszać na adres <mail
+link="moloh@gentoo.org">koordynatora</mail>.
 </p>
 
 </body>
 </section>
-
 </chapter>
 
 <!-- GWN subscription information -->
-
 <chapter>
-
-<title>GWN subscription information</title>
+<title>Subskrypcja Tygodnika Gentoo</title>
 <section>
 <body>
 
 <p>
-To subscribe to the Gentoo Weekly Newsletter, send a blank e-mail to
-<mail
-link="gentoo-gwn+subscribe@gentoo.org">gentoo-gwn+subscribe@gentoo.org</mail>.
-</p> 
+Aby zaprenumerować Tygodnik Gentoo, należy wysłać pustego emaila na adres <mail
+link="gentoo-gwn-pl+subscribe@gentoo.org">gentoo-gwn-pl+subscribe@gentoo.org</mail>.
+</p>
 
 <p>
-To unsubscribe to the Gentoo Weekly Newsletter, send a blank e-mail to
-<mail
-link="gentoo-gwn+unsubscribe@gentoo.org">gentoo-gwn+unsubscribe@gentoo.org</mail>
-from the e-mail address you are subscribed under.
+Aby zrezygnować z subskrypcji, należy wysłać pustego emaila na adres <mail
+link="gentoo-gwn-pl+unsubscribe@gentoo.org">
+gentoo-gwn-pl+unsubscribe@gentoo.org</mail> z konta, na które jest
+zarejestrowana.
 </p>
 
 </body>
 </section>
-
 </chapter>
 
 <!-- Other Languages -->
-
 <chapter>
-
-<title>Other languages</title>
+<title>Inne języki</title>
 <section>
 <body>
 
 <p>
-The Gentoo Weekly Newsletter is also available in the following
-languages:
+Tygodnik Gentoo jest dostępny w następujących językach:
 </p>
 
 <ul>
-<li>
-<uri link="/news/zh_cn/gwn/gwn.xml">Chinese (Simplified)</uri>
-</li>
-<li>
-<uri link="/news/da/gwn/gwn.xml">Danish</uri>
-</li>
-<li>
-<uri link="/news/nl/gwn/gwn.xml">Dutch</uri>
-</li>
-<li>
-<uri link="/news/en/gwn/gwn.xml">English</uri>
-</li>
-<li>
-<uri link="/news/de/gwn/gwn.xml">German</uri>
-</li>
-<li>
-<uri link="/news/el/gwn/gwn.xml">Greek</uri>
-</li>
-<li>
-<uri link="/news/fr/gwn/gwn.xml">French</uri>
-</li>
-<li>
-<uri link="/news/ko/gwn/gwn.xml">Korean</uri>
-</li>
-<li>
-<uri link="/news/ja/gwn/gwn.xml">Japanese</uri>
-</li>
-<li>
-<uri link="/news/it/gwn/gwn.xml">Italian</uri>
-</li>
-<li>
-<uri link="/news/pl/gwn/gwn.xml">Polish</uri>
-</li>
-<li>
-<uri link="/news/pt_br/gwn/gwn.xml">Portuguese (Brazil)</uri>
-</li>
-<li>
-<uri link="/news/pt/gwn/gwn.xml">Portuguese (Portugal)</uri>
-</li>
-<li>
-<uri link="/news/ru/gwn/gwn.xml">Russian</uri>
-</li>
-<li>
-<uri link="/news/sk/gwn/gwn.xml">Slovak</uri>
-</li>
-<li>
-<uri link="/news/es/gwn/gwn.xml">Spanish</uri>
-</li>
-<!-- <li>
-<uri link="/news/tr/gwn/gwn.xml">Turkish</uri>
-</li> -->
+  <li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
+  <li><uri link="/news/zh_cn/gwn/gwn.xml">chińskim (uproszczony)</uri></li>
+  <li><uri link="/news/da/gwn/gwn.xml">duńskim</uri></li>
+  <li><uri link="/news/fr/gwn/gwn.xml">francuskim</uri></li>
+  <li><uri link="/news/el/gwn/gwn.xml">greckim</uri></li>
+  <li><uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri></li>
+  <li><uri link="/news/nl/gwn/gwn.xml">holenderskim</uri></li>
+  <li><uri link="/news/ja/gwn/gwn.xml">japońskim</uri></li>
+  <li><uri link="/news/ko/gwn/gwn.xml">koreańskim</uri></li>
+  <li><uri link="/news/de/gwn/gwn.xml">niemieckim</uri></li>
+  <li><uri link="/news/pl/gwn/gwn.xml">polskim</uri></li>
+  <li><uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
+  <li><uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
+  <li><uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
+  <li><uri link="/news/sk/gwn/gwn.xml">słowackim</uri></li>
+  <li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>
 </ul>
 
 </body>
-
 </section>
-
 </chapter>
-
 </guide>
+
