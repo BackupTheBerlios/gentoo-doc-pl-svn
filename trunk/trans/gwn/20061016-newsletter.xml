@@ -37,70 +37,79 @@
 <date>2006-10-16</date>
 
 <!-- Gentoo News -->
+
 <chapter>
 <title>Wiadomości Gentoo</title>
+
 <section>
-<title>New Java system marked stable</title>
+<title>Nowy system Javy oznaczony jako stabilny</title>
 <body>
 
 <p>
-With great pleasure, the <uri link="/proj/en/java">Gentoo/Java team</uri> wishes
-to announce that the new Java system has been marked stable on all architectures
-with a supported Java implementation (amd64, ia64, ppc, ppc64, and x86). This
-represents the culmination of over a year of development and is a giant step
-forward for Java on Gentoo.
+Z ogromną przyjemnością zespół <uri link="/proj/en/java">Gentoo/Java</uri>
+ogłasza, że nowy system Java został oznaczony jako stabilny na wszystkich
+architekturach ze wsparciem dla Javy (amd64, ia64, ppc, ppc64 i x86). Jest to
+efekt ponad rocznej pracy nad rozwojem tego systemu i stanowi ogromny krok
+naprzód dla Javy w Gentoo.
 </p>
 
 <p>
-In case you have missed the previous announcements, here is a brief summary of
-the new Java system:
+Jeżeli nie czytałeś poprzednich wiadomości na ten temat, poniżej znajduje się
+krótkie podsumowanie nowego systemu Java:
 </p>
 
 <ul>
-  <li>Ability to switch the current VM on the fly</li>
-  <li>Changes to the user and system VM take effect immediately and are not tied
-  to the shell environment, which means you no longer have to run
-  <c>env-update</c> followed by <c>source /etc/profile</c> when you switch the
-  system VM</li>
-  <li>New concept of a "build VM", which is used to emerge packages, and is
-  configured independently of the system VM</li>
-  <li>For each version of Java, ie 1.4, 1.5, etc, the build VM can be configured
-  as to which vendor and version of a VM to use</li>
-  <li>The VM at emerge time will be switched on the fly according to its
-  configuration, as well as the dependency of the package. For example, some
-  packages won't compile with 1.5. In these cases, a 1.4 VM will be used at
-  build time</li>
-  <li>Java 1.5 has now been marked stable.</li>
-  <li>Configuration of VM and browser plugin using eselect</li>
-  <li>We will be prepared for Java 1.6 when it is released this December</li>
+  <li>Możliwość przełączania aktualnej wirtualnej maszyny w locie</li>
+  <li>Zmiany wirtualnej maszyny dokonane przez użytkownika zostają
+  natychmiast aktywowane i nie są powiązane ze środowiskiem powłoki, co oznacza,
+  że nie musimy wykonywać poleceń <c>source /etc/profile</c>, a następnie
+  <c>env-update</c> po przełączeniu wirtualnej maszyny</li>
+  <li>Nowa koncepcja budującej wirtualnej maszyny (and. build VM), która używana
+  jest do instalowania pakietów i konfigurowany jest niezależnie od wirtualnej
+  maszyny zainstalowanej w systemie</li>
+  <li>Dla każdej wersji pakietu Java, np. 1.4, 1.5 itd., budująca maszyna
+  wirtualna może być skonfigurowana do korzystania z danej wirtualnej maszyny
+  każdej wersji i producenta</li>
+  <li>Wirtualna maszyna zostaje włączona podczas instalacji zgodnie z jej
+  konfiguracją, tak samo jak zależności danego pakietu. Dla przykładu, niektóre
+  pakiety nie kompilują się z wersją 1.5. W tym wypadku do budowy zostanie użyta
+  wersja 1.4</li>
+  <li>Java 1.5 została oznaczona jako stabilna</li>
+  <li>Konfiguracja wirtualnej maszyny i wtyczki do przeglądarki przy pomocy
+  eselect</li>
+  <li>Gotowość na wydanie nowej wersji Javy 1.6, które ma się pojawić w grudniu
+  tego roku</li>
 </ul>
 
 <p>
-Updated user documentation can be found at
-<uri>http://www.gentoo.org/doc/en/java.xml</uri>
+Zaktualizowana dokumentacja znajduje się pod adresem
+<uri>http://www.gentoo.org/doc/pl/java.xml</uri>.
 </p>
 
 <p>
-Documentation about upgrading to the new system can be found at
-<uri>http://www.gentoo.org/proj/en/java/java-upgrade.xml</uri>
+Dokumentacja opisująca proces aktualizacji do nowego systemu Javy znajduje sięp
+od adresem <uri>http://www.gentoo.org/proj/en/java/java-upgrade.xml</uri>.
 </p>
 
 </body>
 </section>
+
 <section>
-<title>KDE 3.5.5 released</title>
+<title>Wydanie KDE 3.5.5</title>
 <body>
 
 <p>
-The Gentoo <uri link="/proj/en/desktop/kde">KDE team</uri> would like to
-announce the release and unmasking of KDE 3.5.5 in the tree. The biggest change
-for Gentoo's KDE users will be the deprecation of <c>net-im/kopete</c> in favor
-of <c>kde-base/kopete</c>, which is now only released with mainline KDE.
+Zespół <uri link="/proj/en/desktop/kde">Gentoo KDE</uri> ogłosił właśnie
+wydanie i odmaskowanie KDE 3.5.5 w drzewie. Największą zmianą dla użytkowników
+KDE będzie usunięcie pakietu <c>net-im/kopete</c> na rzecz
+<c>kde-base/kopete</c>, który będzie wydawany razem z głównymi pakietami KDE.
 </p>
 
 </body>
 </section>
+
 </chapter>
+
 
 <!-- Developer of the Week -->
 <!-- Heard in the community -->
