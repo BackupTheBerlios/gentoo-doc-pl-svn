@@ -42,74 +42,77 @@
 <title>Wiadomości Gentoo</title>
 
 <section>
-<title>Nowy system Javy oznaczony jako stabilny</title>
+<title>Nowy system zarządzania Javą oznaczony jako stabilny</title>
 <body>
 
 <p>
 Z ogromną przyjemnością zespół <uri link="/proj/en/java">Gentoo/Java</uri>
-ogłasza, że nowy system Java został oznaczony jako stabilny na wszystkich
-architekturach ze wsparciem dla Javy (amd64, ia64, ppc, ppc64 i x86). Jest to
-efekt ponad rocznej pracy nad rozwojem tego systemu i stanowi ogromny krok
-naprzód dla Javy w Gentoo.
+ogłasza, że nowy system zarządzanie Javą został oznaczony jako stabilny na
+wszystkich architekturach posiadających wsparcie dla Javy (amd64, ia64, ppc,
+ppc64 i x86). Jest to efekt ponad rocznej pracy nad rozwojem tego systemu i
+stanowi ogromny krok naprzód dla Javy w Gentoo.
 </p>
 
 <p>
-Jeżeli nie czytałeś poprzednich wiadomości na ten temat, poniżej znajduje się
-krótkie podsumowanie nowego systemu Java:
+Pomimo, że już wielokrotnie informowaliśmy o możliwościach nowego systemu, z
+myślą o mniej regularnych czytelnikach Tygodnika, kolejny raz prezentujemy krótkie
+podsumowanie jego możliwości:
 </p>
 
 <ul>
   <li>Możliwość przełączania aktualnej wirtualnej maszyny w locie</li>
-  <li>Zmiany wirtualnej maszyny dokonane przez użytkownika zostają
-  natychmiast aktywowane i nie są powiązane ze środowiskiem powłoki, co oznacza,
-  że nie musimy wykonywać poleceń <c>source /etc/profile</c>, a następnie
-  <c>env-update</c> po przełączeniu wirtualnej maszyny</li>
-  <li>Nowa koncepcja budującej wirtualnej maszyny (and. build VM), która używana
-  jest do instalowania pakietów i konfigurowany jest niezależnie od wirtualnej
-  maszyny zainstalowanej w systemie</li>
-  <li>Dla każdej wersji pakietu Java, np. 1.4, 1.5 itd., budująca maszyna
-  wirtualna może być skonfigurowana do korzystania z danej wirtualnej maszyny
-  każdej wersji i producenta</li>
-  <li>Wirtualna maszyna zostaje włączona podczas instalacji zgodnie z jej
-  konfiguracją, tak samo jak zależności danego pakietu. Dla przykładu, niektóre
-  pakiety nie kompilują się z wersją 1.5. W tym wypadku do budowy zostanie użyta
-  wersja 1.4</li>
+  <li>Efekt zmiany maszyny wirtualnej jest widoczny natychmiast w całym
+  systemie, jest niezależny od środowiska powłoki (nie potrzeba już wykonywać
+  env-update && source /etc/profile po zmianie systemowej maszyny
+  wirtualnej)</li>
+  <li>Stworzono pojęcie „build VM” oznaczające maszynę wirtualną używaną w
+  trakcie procesu budowania pakietu, niezależną od głównej, używanej w
+  system</li>
+  <li>Na potrzeby procesu budowania pakietu może zostać użyta konkretna wersja
+  oraz producent maszyny wirtualnej.</li>
+  <li>Maszyna wirtualna może być zmieniona na bieżąco w razie potrzeby w trakcie
+  instalacji pakietu, dotyczy to także wszystkich zależności. Przykładowo jeśli
+  dany pakiet jest niekompatybilny z wersją 1.5 to w jego przypadku zostanie
+  użyta wersja 1.4 maszyny wirtualnej Javy.</li>
   <li>Java 1.5 została oznaczona jako stabilna</li>
-  <li>Konfiguracja wirtualnej maszyny i wtyczki do przeglądarki przy pomocy
+  <li>Konfiguracja wirtualnej maszyny oraz wtyczki do przeglądarki przy pomocy
   eselect</li>
-  <li>Gotowość na wydanie nowej wersji Javy 1.6, które ma się pojawić w grudniu
-  tego roku</li>
+  <li>Gotowość na kolejne wydanie Javy 1.6, które ma się pojawić w grudniu tego
+  roku</li>
 </ul>
 
 <p>
-Zaktualizowana dokumentacja znajduje się pod adresem
+Zaktualizowana dokumentacja (w języku angielskim) znajduje się pod adresem
+<uri>http://www.gentoo.org/doc/en/java.xml</uri>. Tłumaczenie na język polski
+jest już przygotowywane, aktualną wersję można znaleźć pod adresem
 <uri>http://www.gentoo.org/doc/pl/java.xml</uri>.
 </p>
 
 <p>
-Dokumentacja opisująca proces aktualizacji do nowego systemu Javy znajduje sięp
-od adresem <uri>http://www.gentoo.org/proj/en/java/java-upgrade.xml</uri>.
+Dokumentacja opisująca proces aktualizacji (w języku angielskim) do nowego
+systemu Javy znajduje się pod adresem
+<uri>http://www.gentoo.org/proj/en/java/java-upgrade.xml</uri>. Tłumaczenie na
+język polski jest już przygotowywane, aktualną wersję można znaleźć pod adresem
+<uri>http://www.gentoo.org/proj/pl/java/java-upgrade.xml</uri>.
 </p>
 
 </body>
 </section>
 
 <section>
-<title>Wydanie KDE 3.5.5</title>
+<title>Wydano KDE 3.5.5</title>
 <body>
 
 <p>
-Zespół <uri link="/proj/en/desktop/kde">Gentoo KDE</uri> ogłosił właśnie
-wydanie i odmaskowanie KDE 3.5.5 w drzewie. Największą zmianą dla użytkowników
+Zespół <uri link="/proj/en/desktop/kde">Gentoo KDE</uri> ogłosił właśnie wydanie
+i odmaskowanie KDE 3.5.5 w drzewie Portage. Największą zmianą dla użytkowników
 KDE będzie usunięcie pakietu <c>net-im/kopete</c> na rzecz
 <c>kde-base/kopete</c>, który będzie wydawany razem z głównymi pakietami KDE.
 </p>
 
 </body>
 </section>
-
 </chapter>
-
 
 <!-- Developer of the Week -->
 <!-- Heard in the community -->
@@ -223,17 +226,19 @@ the simple change to the base profile was preferable.
 <body>
 
 <p>
-<b>NSLU2 as a DNS server</b>
+<b>NSLU2 jako serwer DNS</b>
 </p>
 
 <p>
-wireless writes in to gentoo-embedded wondering if it would be possible to 
-turn a <uri link="http://www.nslu2-linux.org">Linksys NSLU2</uri> into a
-lightweight DNS server. He worries that only having 32MB of RAM may make this
-goal impossible and wonders if there are ways to increase its RAM capacity or
-if there was another embedded device with more capability. However, many on 
-gentoo-embedded, unhampered by so called "limitations," suggested trying 
-dnsmasq as a lightweight alternative to other larger DNS solutions.
+wireless zapytał na liście gentoo-embedded czy możliwe jest skonfigurowanie <uri
+link="http://www.nslu2-linux.org">Linksys NSLU2</uri> jako prostego serwera DNS.
+Posiada tylko 32MB pamięci RAM i może to być powód uniemożliwiający realizację
+jego planów. Wobec tego zainteresowany jest czy istnieje możliwość zwiększenia
+ilości dostępnej pamięci RAM, czy też powinien skorzystać z innego urządzenia
+posiadającego bardziej rozbudowane możlwości. Pomimo wątpliwości autora wątku,
+wielu stałych bywalców listy gentoo-embedded, nie zrażonych tzw.
+„ograniczeniami” zasugerowało użycie dnsmasq jako lekkiego serwera DNS, zamiast
+innych, większych, a przez to bardziej wymagających rozwiązań.
 </p>
 
 <ul>
@@ -248,15 +253,16 @@ dnsmasq as a lightweight alternative to other larger DNS solutions.
 <body>
 
 <p>
-<b>Securing dhcpcd (client)</b>
+<b>Zabezpieczenie dhcpcd (klient)</b>
 </p>
 
 <p>
-7v5w7go9ub0o writes into gentoo-security with worries about the security of 
-running dhcpcd as root on his laptop at hotspots. There was talk about 
-patching dhcpcd (similar to a patch that already exists in other 
-distributions for dhcpd) to be able to drop privileges, and about using 
-alternatives to dhcpcd that already have this functionality.
+7v5w7go9ub0o napisał na liście gentoo-security o potencjalnych problemach z
+bezpieczeństwem związanych z używaniem dhcpcd jako root, gdy używane są
+hotspoty. Jednym rozwiązaniem jest aplikacja poprawki powodującej porzucenie
+uprawnień administratora po uruchomieniu usługi (podobne rozwiązanie jest
+używane w innych dystrybucjach), można także użyć innego demona dhcp, który już
+posiada już tą funkcjonalność.
 </p>
 
 <ul>
