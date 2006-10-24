@@ -126,18 +126,19 @@ KDE będzie usunięcie pakietu <c>net-im/kopete</c> na rzecz
 <body>
 
 <p>
-<b>Where is aislerot?</b>
+<b>Gdzie jest aislerot?</b>
 </p>
 
 <p>
-Darren Kirby had misplaced his favorite GNOME time waster, the
-solitaire application <c>aislerot</c>. He had installed the <c>gnome-games</c>
-package, but the aislerot binary was absent.
+Darren Kirby nie mógł znaleźć swojej ulubionej gry z GNOME,
+pasjansopodobnego <c>aislerot</c>. Zainstalował pakiet <c>gnome-games</c>,
+ale tej gry w nim nie było.
 </p>
 
 <p>
-Michael Sullivan to the rescue. Sullivan pointed out that the guile USE
-flag needed to be enabled. kirby recompiled and reported problem solved.
+Michael Sullivan znalazł przyczynę problemu. Okazało się, że musi być
+włączona flaga USE guile. Darren poinformował nas, że po rekompilacji
+wszystko wróciło do normy.
 </p>
 
 <ul>
@@ -156,29 +157,29 @@ flag needed to be enabled. kirby recompiled and reported problem solved.
 </p>
 
 <p>
-In theory, ebuilds should not require interactions from users during
-the compilation process. In the real world, interaction may be needed
-as is the case of a game where the CD may need to be inserted.
+Teoretycznie, ebuildy nie powinny wymagać interakcji z użytkownikiem podczas
+procesu kompilacji. W rzeczywistości jednak jest to czasem potrzebne, na
+przykład w przypadku gier, gdy należy włożyć płytę CD.
 </p>
 
 <p>
-Marius Mauch intends to submit a GLEP adding a RESTRICT="interactive"
-option to portage to indicate interaction-required ebuilds. Users would be
-warned that interaction may be needed during compilation so they would
-not include the offending package in unattended overnight compilation
-sessions.
+Marius Mauch zamierza zgłosić propozycję GLEP, aby dodać do Portage opcję
+RESTRICT="interactive", aby oznaczyć ebuildy wymagające obecności
+użytkownika. W ten sposób użytkownicy byliby ostrzegani o konieczności
+pozostania przy komputerze i mogliby uniknąć kompilowania takich pakietów,
+jeśli zamierzają pozostawić system sam sobie podczas nocnej sesji
+instalacyjnej.
 </p>
 
 <p>
-The draft GLEP can be found at
+Projekt GLEP-a można znaleźć pod adresem
 <uri>http://dev.gentoo.org/~genone/docs/interactive-restrict-glep.html</uri>
 </p>
 
 <p>
-Commenters noted that all other restricted flags were in the form
-"RESTRICT=Thing_You_Don't_Want". Sentiment seemed to be running in
-favor of a "RESTRICT=unattended" syntax which would parallel the other
-RESTRICT flags.
+Komentujący zauważyli, że pozostałe flagi RESTRICT miały postać
+„RESTRICS=Coś_czego_nie_chcemy”. Z tego powodu skłaniano się raczej ku
+składni „RESTRICT=unattended”, która byłaby analogiczna do pozostałych flag.
 </p>
 
 <ul>
@@ -186,32 +187,33 @@ RESTRICT flags.
 </ul>
 
 <p>
-<b>Is it time for bash 3?</b>
+<b>Czy nadeszła pora na bash 3?</b>
 </p>
 
 <p>
-Donnie Berkholz had received a patch to the mesa ebuild which used some
-of the new features in bash3. Instead of having dependencies at the
-ebuild level, Berkholz thought that a minimum version of bash should be
-added to the list of applications required by the base gentoo profile.
-Since bash 3 had been required by baselayout for over two years, it was
-likely most users had it and the change would be a non-issue for almost
-all. The change would make the better bash 3 feature set available for
-all ebuilds.
+Donnie Berkholz otrzymał łatkę na ebuild mesa, w którym użyto kilka spośród
+nowych funkcji powłoki bash3. Zamiast dodawać zależności do ebuilda,
+Berkholz stwierdził, że główny profil Gentoo powinien zacząć wymagać pewnej
+minimalnej wersji basha. Skoro zaś bash 3 był wymagany przez baselayout przez
+ponad dwa lata, najprawdopodobniej większość użytkowników już go posiada i
+ta zmiana nie byłaby problemem, natomiast ebuildy mogłyby swobodnie
+korzystać z najnowszych możliwości.
 </p>
 
 <p>
-Marius Mauch and Vlastimil Babka noted that for users who had not made
-the change, the inclusion of bash 3 in system would not help. Mauch
-proposed a number of either bruteforce or complex solutions to the
-issue. Further, Babka noted that the Mac OS X may still use bash 2.59.
+Marius Mauch i Vlastimil Babka zauważyli, że użytkownikom, którzy jeszcze
+nie zmienili powłoki systemowej, niewiele pomogłoby dodanie basha 3 do
+profilu system. Mauch zaproponował kilka rozwiązań, głównie skomplikowanych,
+lub używających metody bruteforce. Oprócz tego Babka zwrócił uwagę na fakt,
+że Mac OS X wciąż może używać basha w wersji 2.59.
 </p>
 
 <p>
-Berkholz stated he was implementation agnostic and just wanted the
-change made. Mike Frysinger stated that the last time he tried to use a
-bash 2 system portage fell apart entirely anyway, and that therefore
-the simple change to the base profile was preferable.
+Berkholz oznajmił, że sposób implementacji jest mu obojętny i chce jedynie,
+aby dokonać zmiany. Mike Frysinger dodał, że gdy ostatnio próbował użyć
+systemu z bashem w wersji 2, Portage całkowicie odmówiło posłuszeństwa,
+dlatego najlepiej będzie dokonać tej prostej zmiany w podstawowym profilu
+systemowym.
 </p>
 
 <ul>
