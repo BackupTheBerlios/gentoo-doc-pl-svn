@@ -179,10 +179,10 @@ błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomię
 </ul>''',
  r'''<ul>
   <li>zgłoszono \1 nowych bugów</li>
-  <li>zamknięto lub rozwiązano \1 bugów</li>
-  <li>otwarto ponownie \1 uprzednio zamkniętych bugów</li>
-  <li>\1 bugów oznaczono jako NEEDINFO/WONTFIX/CANTFIX/INVALID/UPSTREAM</li>
-  <li>\1 bugów oznaczono jako duplikaty</li>
+  <li>zamknięto lub rozwiązano \2 bugów</li>
+  <li>otwarto ponownie \3 uprzednio zamkniętych bugów</li>
+  <li>\4 bugów oznaczono jako NEEDINFO/WONTFIX/CANTFIX/INVALID/UPSTREAM</li>
+  <li>\5 bugów oznaczono jako duplikaty</li>
 </ul>'''),
 (r'''<p>
 Of the (\d*) currently open bugs: (\d*) are labeled \'blocker\', (\d*) are labeled
