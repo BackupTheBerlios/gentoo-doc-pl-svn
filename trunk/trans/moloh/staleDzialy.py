@@ -148,20 +148,21 @@ od poszczególnych deweloperów.
 
 ## Bugzilla
 (r'''<ul>
-<uri link=([^>]*>)Statistics</uri>
-<uri link=([^>]*>)Closed bug ranking</uri>
-<uri link=([^>]*>)New bug rankings</uri>
+<li><uri link=([^>]*>)Statistics</uri></li>
+<li><uri link=([^>]*>)Closed bug ranking</uri></li>
+<li><uri link=([^>]*>)New bug rankings</uri></li>
 </ul>''',
  r'''<ul>
-  <uri link=\1Statystyki</uri>
-  <uri link=\2Zamknięte bugi</uri>
-  <uri link=\3Nowe bugi</uri>
+  <li><uri link=\1Statystyki</uri></li>
+  <li><uri link=\2Zamknięte bugi</uri></li>
+  <li><uri link=\3Nowe bugi</uri></li>
 </ul>'''),
 (r'''<p>
-The Gentoo community uses Bugzilla \(<uri link="http://bugs.gentoo.org"
->bugs.gentoo.org</uri>\) to record and track bugs, notifications, suggestions
-and other interactions with the development team.  Between (.*) and (.*),
-activity on the site has resulted in:
+The Gentoo community uses Bugzilla \(<uri
+link="http://bugs.gentoo.org">bugs.gentoo.org</uri>\) to record and track
+bugs, notifications, suggestions and other interactions with the
+development team.  Between (.*) 
+and (.*), activity on the site has resulted in:
 </p>''',
  r'''<p>
 Społeczność Gentoo używa Bugzilli (<uri
@@ -184,13 +185,13 @@ błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomię
   <li>\1 bugów oznaczono jako duplikaty</li>
 </ul>'''),
 (r'''<p>
-Of the (\d*) currently open bugs: (\d*) are labeled \'blocker\', (\d*) are
-labeled \'critical\', and (\d*) are labeled \'major\'.
+Of the (\d*) currently open bugs: (\d*) are labeled \'blocker\', (\d*) are labeled
+\'critical\', and (\d*) are labeled \'major\'.
 </p>''',
- r"""<p>
+ r'''<p>
 Spośród \1 obecnie otwartych bugów: \2 oznaczono jako 'blocker', \3 jako
 'critical', a \4 jako 'major'.
-</p>"""),
+</p>'''),
 (r'''<p>
 The developers and teams who have closed the most bugs during this period are:
 </p>''',
