@@ -56,14 +56,14 @@ stanowi ogromny krok naprzód dla Javy w Gentoo.
 <p>
 Pomimo, że już wielokrotnie informowaliśmy o możliwościach nowego systemu, z
 myślą o mniej regularnych czytelnikach Tygodnika, kolejny raz prezentujemy krótkie
-podsumowanie jego możliwości:
+podsumowanie jego funkcjonalności:
 </p>
 
 <ul>
   <li>Możliwość przełączania aktualnej wirtualnej maszyny w locie</li>
   <li>Efekt zmiany maszyny wirtualnej jest widoczny natychmiast w całym
   systemie, jest niezależny od środowiska powłoki (nie potrzeba już wykonywać
-  env-update && source /etc/profile po zmianie systemowej maszyny
+  env-update &amp;&amp; source /etc/profile po zmianie systemowej maszyny
   wirtualnej)</li>
   <li>Stworzono pojęcie „build VM” oznaczające maszynę wirtualną używaną w
   trakcie procesu budowania pakietu, niezależną od głównej, używanej w
@@ -130,15 +130,15 @@ KDE będzie usunięcie pakietu <c>net-im/kopete</c> na rzecz
 </p>
 
 <p>
-Darren Kirby nie mógł znaleźć swojej ulubionej gry z GNOME,
-pasjansopodobnego <c>aislerot</c>. Zainstalował pakiet <c>gnome-games</c>,
-ale tej gry w nim nie było.
+Darren Kirby nie mógł znaleźć swojej ulubionej gry ze środowiska GNOME,
+przypominającego słynnego pasjansa, <c>aislerot</c>. Zainstalował pakiet
+<c>gnome-games</c>, ale tej gry w nim nie było.
 </p>
 
 <p>
-Michael Sullivan znalazł przyczynę problemu. Okazało się, że musi być
-włączona flaga USE guile. Darren poinformował nas, że po rekompilacji
-wszystko wróciło do normy.
+Michael Sullivan znalazł przyczynę problemu. Okazało się, że musi być włączona
+flaga USE guile. Darren poinformował nas, że po przeinstalowaniu pakietu po
+aktywowaniu tej flagi wszystko wróciło do normy.
 </p>
 
 <ul>
@@ -157,18 +157,17 @@ wszystko wróciło do normy.
 </p>
 
 <p>
-Teoretycznie, ebuildy nie powinny wymagać interakcji z użytkownikiem podczas
-procesu kompilacji. W rzeczywistości jednak jest to czasem potrzebne, na
-przykład w przypadku gier, gdy należy włożyć płytę CD.
+Teoretycznie, ebuildy podczas procesu kompilacji nie powinny wymagać interakcji
+z użytkownikiem. W rzeczywistości jednak jest to czasem potrzebne, na przykład w
+przypadku gier, gdy należy włożyć płytę CD.
 </p>
 
 <p>
 Marius Mauch zamierza zgłosić propozycję GLEP, aby dodać do Portage opcję
-RESTRICT="interactive", aby oznaczyć ebuildy wymagające obecności
-użytkownika. W ten sposób użytkownicy byliby ostrzegani o konieczności
-pozostania przy komputerze i mogliby uniknąć kompilowania takich pakietów,
-jeśli zamierzają pozostawić system sam sobie podczas nocnej sesji
-instalacyjnej.
+RESTRICT="interactive", aby oznaczyć ebuildy wymagające obecności użytkownika. W
+ten sposób użytkownicy byliby ostrzegani o konieczności pozostania przy
+komputerze i mogliby uniknąć kompilowania takich pakietów, jeśli zamierzają
+pozostawić system sam sobie podczas nocnej sesji instalacyjnej.
 </p>
 
 <p>
@@ -177,9 +176,9 @@ Projekt GLEP-a można znaleźć pod adresem
 </p>
 
 <p>
-Komentujący zauważyli, że pozostałe flagi RESTRICT miały postać
-„RESTRICS=Coś_czego_nie_chcemy”. Z tego powodu skłaniano się raczej ku
-składni „RESTRICT=unattended”, która byłaby analogiczna do pozostałych flag.
+Komentujący zauważyli, że pozostałe flagi RESTRICT mają postać
+„RESTRICS=Coś_czego_nie_chcemy”. Z tego powodu skłaniano się raczej ku składni
+„RESTRICT=unattended”, która byłaby bardziej w duchu dotychczasowej konwencji.
 </p>
 
 <ul>
@@ -192,28 +191,27 @@ składni „RESTRICT=unattended”, która byłaby analogiczna do pozostałych f
 
 <p>
 Donnie Berkholz otrzymał łatkę na ebuild mesa, w którym użyto kilka spośród
-nowych funkcji powłoki bash3. Zamiast dodawać zależności do ebuilda,
-Berkholz stwierdził, że główny profil Gentoo powinien zacząć wymagać pewnej
-minimalnej wersji basha. Skoro zaś bash 3 był wymagany przez baselayout przez
-ponad dwa lata, najprawdopodobniej większość użytkowników już go posiada i
-ta zmiana nie byłaby problemem, natomiast ebuildy mogłyby swobodnie
-korzystać z najnowszych możliwości.
+nowych funkcji powłoki bash3. Zamiast dodawać zależności do ebuilda, Berkholz
+stwierdził, że główny profil Gentoo powinien zacząć wymagać pewnej minimalnej
+wersji basha. Skoro zaś bash 3 jest wymagany przez baselayout już od ponad dwóch
+lat to najprawdopodobniej większość użytkowników jest wyposażona w tą wersję
+powłoki i sama zmiana nie byłaby problemem, natomiast ebuildy mogłyby swobodnie
+korzystać z najnowszych możliwości powłoki.
 </p>
 
 <p>
-Marius Mauch i Vlastimil Babka zauważyli, że użytkownikom, którzy jeszcze
-nie zmienili powłoki systemowej, niewiele pomogłoby dodanie basha 3 do
-profilu system. Mauch zaproponował kilka rozwiązań, głównie skomplikowanych,
-lub używających metody bruteforce. Oprócz tego Babka zwrócił uwagę na fakt,
-że Mac OS X wciąż może używać basha w wersji 2.59.
+Marius Mauch i Vlastimil Babka zauważyli, że użytkownikom, którzy jeszcze nie
+zmienili powłoki systemowej, niewiele pomogłoby dodanie basha 3 do profilu
+system. Mauch zaproponował kilka rozwiązań, głównie skomplikowanych, lub
+używających metod siłowych. Oprócz tego Babka zwrócił uwagę na fakt, że Mac OS X
+wciąż może używać basha w wersji 2.59.
 </p>
 
 <p>
-Berkholz oznajmił, że sposób implementacji jest mu obojętny i chce jedynie,
-aby dokonać zmiany. Mike Frysinger dodał, że gdy ostatnio próbował użyć
-systemu z bashem w wersji 2, Portage całkowicie odmówiło posłuszeństwa,
-dlatego najlepiej będzie dokonać tej prostej zmiany w podstawowym profilu
-systemowym.
+Berkholz oznajmił, że sposób implementacji jest mu obojętny i chce jedynie, aby
+dokonać tej zmiany. Mike Frysinger dodał, że gdy ostatnio próbował użyć systemu
+z bashem w wersji 2, Portage całkowicie odmówiło posłuszeństwa, dlatego
+najlepiej będzie dokonać tej prostej zmiany w podstawowym profilu systemowym.
 </p>
 
 <ul>
@@ -237,7 +235,7 @@ link="http://www.nslu2-linux.org">Linksys NSLU2</uri> jako prostego serwera DNS.
 Posiada tylko 32MB pamięci RAM i może to być powód uniemożliwiający realizację
 jego planów. Wobec tego zainteresowany jest czy istnieje możliwość zwiększenia
 ilości dostępnej pamięci RAM, czy też powinien skorzystać z innego urządzenia
-posiadającego bardziej rozbudowane możlwości. Pomimo wątpliwości autora wątku,
+posiadającego bardziej rozbudowane możliwości. Pomimo wątpliwości autora wątku,
 wielu stałych bywalców listy gentoo-embedded, nie zrażonych tzw.
 „ograniczeniami” zasugerowało użycie dnsmasq jako lekkiego serwera DNS, zamiast
 innych, większych, a przez to bardziej wymagających rozwiązań.
