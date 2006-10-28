@@ -68,15 +68,18 @@ Fundacji, której celem jest pomoc w dalszym rozwoju projektu Gentoo/SPARC.
 <body>
 
 <p>
+<b>Pomysł na Klienta Automatycznego Raportowania Błędów Gentoo(?)</b>
+
 <b>Idea: Gentoo Automated Error Reporting/Resolution Client</b>
 </p>
 
 <p>
-ThinkingInBinary posted an idea for an automated error reporting system to help
-out developers and users. The client would collect information after a crash and
-submit it to the developers. Besides automatically collecting data for the
-developers, the client could also give step-by-step instructions to the user if
-the problem has already been resolved.
+Użytkownik ThinkingInBinary napisał na forum pomysł stworzenia systemu
+automatycznego raportowania błędów by ułatwić życie i deweloperom i
+użytkownikom. Klient zbierałby informacje po błędzie i wysyłał je do
+deweloperów. Poza automatycznym zbieraniem danych, aplikacja pokazywałaby
+użytkownikowi instrukcje jak krok po kroku rozwiązać problem jeśli byłby on 
+wcześniej rozwiązany. 
 </p>
 
 <ul>
@@ -92,25 +95,27 @@ the problem has already been resolved.
 <body>
 
 <p>
-<b>want to ditch kopete</b>
+<b>jak pozbyć się kopete</b>
 </p>
 
 <p>
-Roy Wright couldn't get rid of kopete-3.5.5-r1. When he tried to delete
-it, portage insisted on bringing it back and it prevented him from
-updating world. As a workaround, Neil Bothwick proposed:
+Roy Wright nie mógł pozbyć się kopete-3.5.5-r1. Kiedy próbował je usunąć,
+Portage upierał się by przywrócić je z powrotem i uniemożliwiał mu
+zaktualizowanie całego systemu, gdy odwoływał się do klasy world. Jako
+prowizoryczne rozwiązanie, Neil Bothwick zaproponował:
 </p>
 
-<pre caption="Adding kopete to package.provided">
+<pre caption="Dodawanie pakietu kopete do package.provided">
 # mkdir -p /etc/portage/profile
-# echo "kde-base/kopete-3.5.5-r1" >>/etc/portage/profile/package.provided
+# echo "kde-base/kopete-3.5.5-r1" >> /etc/portage/profile/package.provided
 </pre>
 
 <p>
-Roy reported the problem solved, but wondered what he'd done. User bn explained
-that he'd convinced portage that kopete was installed even though it
-wasn't. Haarm Geerts pointed out that this was a workaround rather than a
-solution and that it might come back to haunt Roy someday in the future.
+Roy zgłosił rozwiązanie problemu, ale zastanawiał się co zrobił. Użytkownik bn
+wyjaśnił, że przekonał Portage, że kopete było zainstalowane w systemie, nawet
+jeśli nie było. Haarm Geerts zwrócił jednak uwagę, że było to raczej
+prowizoryczne a nie ostateczne rozwiązanie i istnieje możliwość, że Roy będzie
+musiał ów problem prędzej czy później rozwiązać. 
 </p>
 
 <ul>
@@ -118,19 +123,19 @@ solution and that it might come back to haunt Roy someday in the future.
 </ul>
 
 <p>
-<b>xorg-server update problem</b>
+<b>problem z aktualizacją pakietu xorg-server</b>
 </p>
 
 <p>
-james was trying to emerge xorg-server-1.1.1-r1. Compiling failed with
-"Cannot write to '/usr/share/X11/xkb/compiled'". /usr/share/X11/xkb/compiled
-was a symlink to /var/lib/xkb, a non-existent file.
+james próbując instalować xorg-server-1.1.1-r1, natrafił na błąd kompilacji o
+treści "Cannot write to '/usr/share/X11/xkb/compiled'". Plik /usr/share/X11/xkb/compiled 
+był dowiązaniem symbolicznym do nieistniejącego /var/lib/xkb.
 </p>
 
 <p>
-Alan McKinnon noted that running "equery belongs /var/lib/xkb" on his
-system showed the file to have been installed by xkbcomp and suggested
-recompiling it. James reported problem solved.
+Alan McKinnon napisał, że uruchamiając polecenie "equery belongs /var/lib/xkb" w
+jego systemie, wynik pokazał że plik był zainstalowany przez pakiet xkbcomp i
+zasugerował jego ponowną instalację. James zgłosił rozwiązanie problemu. 
 </p>
 
 <ul>
@@ -145,17 +150,17 @@ recompiling it. James reported problem solved.
 <body>
 
 <p>
-<b>vim syntax global use flag</b>
+<b>vim syntax globalną flagą USE</b>
 </p>
 
 <p>
-Caleb Cushing has suggested adding a vim-syntax global use flag to allow users 
-to more easily manage vim syntax ebuilds. For example, such a use flag when 
-set would make it so that when one installed <c>x11-wm/fluxbox</c> it would 
-also install <c>app-vim/fluxbox-syntax</c> as a dependency. The idea met with
-positive reactions and Mike Kelly has opened a <uri
-link="http://bugs.gentoo.org/152275">bug report</uri> to track the progress of 
-implementing this on the about 12 affected packages.
+Caleb Cushing zasugerował dodanie globalnej flagi USE vim-syntax, by umożliwić
+użytkownikom większą wygodę zarządzania pakietami vim syntax. Dla przykładu, gdy
+flaga byłaby aktywna, instalując <c>x11-wm/fluxbox</c>, pakiet
+<c>app-vim/fluxbox-syntax</c> również byłby zainstalowany - jako zależność.
+Pomysł spotkał się z pozytywnymi reakcjami i Mike Kelly utworzył <uri
+link="http://bugs.gentoo.org/152275">raport błędów</c> by śledzić postęp w jego 
+implementacji w około 12 pakietach, których mógłby on dotyczyć.
 </p>
 
 <ul>
@@ -163,18 +168,17 @@ implementing this on the about 12 affected packages.
 </ul>
 
 <p>
-<b>support for i386</b>
+<b>wsparcie dla i386</b>
 </p>
 
 <p>
-Mike Frysinger has brought to the attention of Gentoo developers that the i386 
-sub-architecture is facing a difficult future. Starting with glibc-2.6,
-upstream plans to require TLS and the i386 lacks the atomic instructions 
-required to support it. Debate is being had as to what support, if any, 
-Gentoo will be able to offer when this change occurs. While glibc-2.5 can 
-continue to be used (which has relevance to Release Engineering which makes 
-use of CHOST="i386-*" for its builds), once an exploit of glibc-2.5 comes 
-along, it could spell the end of i386.
+Mike Frysinger zwrócił uwagę deweloperom Gentoo, że podarchitekturze i386 wróży
+się trudną przyszłość. Zaczynając od glibc-2.6 i późniejszych planów wymagających
+TLS, i386 brakuje wymaganych instrukcji by móc to wspierać. Trwają dyskusje nad
+tym czym się zająć, kiedy zapadną jakieś decyzje, Gentoo będzie dostępne przy
+każdej zmianie. Podczas, gdy glibc-2.5 może dalej być wykorzystywane (co ma związek
+z Release Engineering, które pozwala na użycie CHOST="i386-*" do budowy pakietów), 
+a jako, że glibc-2.5 odchodzi w zapomnienie, może to oznaczać koniec i386.
 </p>
 
 <ul>
