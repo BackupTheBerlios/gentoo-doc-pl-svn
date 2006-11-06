@@ -179,52 +179,54 @@ mówiących po turecku i przy ich pomocy omawiać wydania Tygodnika Gentoo.
 <body>
 
 <p>
-<b>date in emerge logs</b>
+<b>Data w logach emerge</b>
 </p>
 
 <p>
-Jorge Almeida wanted to know if the cryptic numbers (e.g.,
-"1161911504") at the beginning of each line in his emerge log were
-dates, and if so, how to render them human readable. Harm Geerts confirmed that
-the figure was Unix time ("the number of seconds elapsed since midnight UTC on
-the morning of January 1, 1970, not counting leap seconds") and suggested
-translating it using Python.
+Jorge Almeida chciał wiedzieć, czy tajemnicze liczby (na przykład
+„1161911504”) na początku każdej linii pliku z logiem emerge to daty, a
+jeśli tak, to w jaki sposób przedstawić je w postaci zrozumiałej dla
+człowieka. Harm Geerts potwierdził, że liczba ta jest czasem uniksowym
+(„ilość sekund, które minęły od północy wg czasu UTC, 1 stycznia 1970 roku,
+nie wliczając sekund przestępnych”) i zasugerował konwersję za pomocą
+Pythona.
 </p>
 
-<pre caption="Converting from UNIX time with python">
+<pre caption="Konwersja czasu UNIX za pomocą Pythona">
 $ python -c "import time; print time.ctime(1161911504)"
 </pre>
 
 <p>
-Bo Ørsted Andresen suggested using awk, instead.
+Bo Ørsted Andresen zasugerował zastąpienie Pythona narzędziem awk.
 </p>
 
-<pre caption="Converting from UNIX time with awk #1">
+<pre caption="Konwersja czasu UNIX za pomocą awk, podejście pierwsze">
 $ tail /var/log/emerge.log | awk -F: '{print strftime("%D %X %Z", $1),$2}'
 </pre>
 
 <p>
-Peter Ruskin amended this to be shorter and less internationally ambiguous
-in its output.
+Peter Ruskin skrócił komendę, modyfikując ją tak, aby użytkownicy z różnych
+krajów nie mieli wątpliwości co do daty, którą ona wypisuje.
 </p>
 
-<pre caption="Converting from UNIX time with awk #2">
+<pre caption="Konwersja czasu UNIX za pomocą awk, podejście drugie">
 $ tail /var/log/emerge.log | awk -F: '{print strftime("%c", $1),$2}'
 </pre>
 
 <p>
-The last (and to Jorge most suitable) solution was Richard Fish's.
+Ostatnie (i najbardziej według Jorge odpowiednie) rozwiązanie należało do
+Richarda Fisha.
 </p>
 
-<pre caption="Converting from UNIX time using date">
+<pre caption="Konwersja czasu UNIX za pomocą programu date">
 $ date -d @1161911504
 </pre>
 
 <p>
-There were also suggestions for more portage-specific solutions: Neil
-Bothwick suggested emerging <c>app-portage/genlop</c>, an emerge log parsing
-application. Harm Geerts suggested <c>qlop</c>, which is part of the
-<c>app-portage/portage-utils</c> package.
+Pojawiło się także kilka sugestii użycia narzędzi bliższych Portage: Neil
+Bothwick przypomniał o <c>app-portage/genlop</c>, programie do przetwarzania
+logów emerge. Harm Geers zasugerował użycie narzędzia <c>qlop</c>, które jest
+częścią pakietu <c>app-portage/portage-utils</c>.
 </p>
 
 <ul>
@@ -232,28 +234,30 @@ application. Harm Geerts suggested <c>qlop</c>, which is part of the
 </ul>
 
 <p>
-<b>resolv.conf question/Editing /etc/init.d/net.eth0 to pass options to dhcpcd</b>
+<b>Pytanie o resolv.conf/Przekazywanie parametrów do dhcpcd poprzez edycję
+pliku /etc/init.d/net.eth0</b>
 </p>
 
 <p>
-Two different users were having similar problems with dhcpcd and
-resolv.conf. When he booted, Matthew Lee's resolv.conf file was being
-overwritten by a version with no DNS nameservers in it. Michael Sullivan wanted
-dhcpcd not to overwrite his resolv.conf.
+Dwóch różnych użytkowników miało podobny problem z dhcpcd i plikiem
+resolv.conf. Matthew Lee zauważył, że zaraz po uruchomieniu komputera plik
+resolv.conf jest nadpisywany wersją, w której nie ma informacji o serwerach
+DNS. Michael Sullivan również nie chciał, aby program dhcpcd nadpisywał mu
+ten plik.
 </p>
 
 <p>
-Richard Fish suggested that Michael read /etc/conf.d/net.example. He
-pointed out that if Michael really wanted full control of his dhcp
-options, he could use something like dhcpcd_INTERFACE="DHCP
-PARAMETERS". However, an easier way to accomplish the goal would be
-generic dhcp parameters in the form dhcp_INTERFACE="nodns".
+Richard Fish zasugerował Michaelowi zapoznanie się z zawartością pliku
+/etc/conf.d/net.example. Zauważył też, że jeśli Michael chce uzyskać pełną
+kontrolę nad opcjami dhcp, może zrobić to w ten sposób:
+dhcpcd_INTERFEJS="PARAMETRY DLA DHCP". Jednakże swój cel łatwiej osiągnie
+podając jedynie dhcp_INTERFEJS="nodns".
 </p>
 
 <p>
-Novensiles divi Flamen had the same suggestion for Matthew, while Vikas
-Kumar suggested dns_servers_INTERFACE=( "DNS SERVER 1 IP" "DNS SERVER
-2 IP" ).
+Novensiles divi Flamen zasugerował Matthew to samo, natomiast Vikas Kumar
+zasugerował konfigurację o postaci dns_servers_INTERFEJS=( "1. IP SERWERA
+DNS" "2. IP SERWERA DNS" ).
 </p>
 
 <ul>
