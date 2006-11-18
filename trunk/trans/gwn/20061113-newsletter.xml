@@ -39,99 +39,97 @@
 <!-- Gentoo News -->
 
 <chapter>
-<title>Gentoo News</title>
-
+<title>Wiadomości Gentoo</title>
 <section>
-<title>Anonymous CVS and SVN now available</title>
+<title>Anonimowe repozytoria CVS i SVN już dostępne</title>
 <body>
 
 <p>
-The Gentoo <uri link="/proj/en/infrastructure">Infrastructure team</uri> is
-pleased to announce that they have completed the configuration and testing of
-the anonymous read-only CVS and SVN services for Gentoo repositories, and that
-these services are now available for public use.
+<uri link="/proj/en/infrastructure">Zespół Gentoo Infrastructure</uri> 
+czuje się zaszczycony mogąc ogłosić, że zakończyły się konfiguracje i testy
+anonimowych, tylko do odczytu serwisów CVS i SVN dla repozytoriów Gentoo, i że
+owe serwisy są do użytku publicznego. 
 </p>
 
 <p>
-The anonymous services are primarily intended to help our non-developer
-contributors easily produce patches and modifications (cvs diff/svn diff), and
-provide easier access to the source for gentoo-hosted projects.
+Głównym zamierzeniem anonimowych usług jest pomoc współpracującym z nami 
+nie-deweloperami w łatwym pisaniu poprawek i modyfikacji (cvs diff/svn diff),
+i dostarczenie łatwego dostępu do źródeł prowadzonych przez Gentoo projektów. 
 </p>
 
 <p>
-For our more enthusiastic of users out there, please note that the CVS and SVN
-services are <b>not</b> any more up-to-date than what is available via rsync,
-and may be an additional 30 minutes behind, based on load on various machines.
-Please do not switch to using the CVS simply because you think that it will get
-you the tree faster, or make you cooler. Compared to our rsync distribution
-method, the anonymous services have considerably less resources (both
-processing and bandwidth) behind them. Infrastructure will not hesitate to 
-block IP addresses that abuse this service.
+Dla naszych bardziej zapalonych użytkowników, prośba by pamiętali że serwisy CVS
+i SVN <b>nie</b> są już tak aktualne jak w przypadku rsync i mogą mieć nawet 30
+minutowe opóźnienie, zależnie od obciążenia maszyn. Prosimy by nie przełączać
+się na używanie CVS tylko dlatego żeby przyśpieszyć swoje drzewo, czy żeby być
+po prostu lepszym od innych. Porównując do naszych metod dystrybucji via rsync,
+anonimowe usługi mają przewidziane mniejsze zasoby (i procesory i
+przepustowość). Infrastruktura nie zawaha się blokować adresów IP które będą
+zakłócać pracę serwisów.
 </p>
 
 <p><b>CVS</b></p>
 
 <p>
-CVS is limited to 5 concurrent users. It currently offers the following
-repositories: gentoo, gentoo-projects, gentoo-src, and gentoo-x86
+CVS jest ograniczone do 5 równolegle podłączonych użytkowników. Aktualnie
+dostępne repozytoria:  gentoo, gentoo-projects, gentoo-src i gentoo-x86
 </p>
 
-<pre caption="Checking out from CVS">
-$ cvs -d :pserver:anonymous@anoncvs.gentoo.org/var/cvsroot co &lt;repo&gt;
+<pre caption="Sprawdzenie zmian w CVS">
+$ cvs -d :pserver:anonymous@anoncvs.gentoo.org/var/cvsroot co &lt;repozytorium&gt;
 </pre>
 
 <p><b>SVN</b></p>
 
 <p>
-SVN has the following repositories: apache, baselayout, catalyst, devmanual,
+Repozytoria SVN: apache, baselayout, catalyst, devmanual,
 eselect, genkernel, gentoo-alt, gentoo-python, gentoo-syntax, gentoo-vdr,
 gentoolkit, gli, glsr, hardened, hwdata, keychain, linux-patches, livecd-tools,
 portage, sandbox
 </p>
 
-<pre caption="Checking out from SVN">
-$ svn co http://anonsvn.gentoo.org/repositories/&lt;repo&gt;
+<pre caption="Sprawdzenie zmian w SVN">
+$ svn co http://anonsvn.gentoo.org/repositories/&lt;repozytorium&gt;
 </pre>
 
 <p>
-The front page of the service, <uri>http://anoncvs.gentoo.org/</uri>,
-maintains an accurate list of the repositories available, as well as holding
-complete instructions and caveats.
+Strona główna serwisu, <uri>http://anoncvs.gentoo.org/</uri>, utrzymuje dokładną
+listę dostępnych repozytoriów, jak i również dokładne instrukcje i ostrzeżenia.
 </p>
 
 <p>
-Please file an Infrastructure <uri
-link="http://bugs.gentoo.org/enter_bug.cgi?product=Gentoo%20Infrastructure">
-bug</uri> for any problems that might come up.
+Prosimy o <uri
+link="http://bugs.gentoo.org/enter_bug.cgi?product=Gentoo%20Infrastructure">zgłaszanie</uri>  
+wszelkich pojawiających się w Infrastrukturze problemów.
 </p>
 
 <p>
-The gzip blocking previously discussed has been removed, due to bandwidth
-constraints on the part of the server. The concurrent user limit has been
-lowered correspondingly.
+Ostatnio omawiana blokada gzip została usunięta w związku z wymuszaniem
+przepustowości na części serwerów. Równocześnie został też odpowiednio obniżony
+limit użytkowników. 
 </p>
 
 <p>
-Thanks go to: kengland, robbat2, kingtaco, ramereth, and several others for
-helping make this happen.
+Podziękowania dla: kengland, robbat2, kingtaco, ramereth, i pozostałych, dzięki
+którym udało się zrealizować ten projekt.
 </p>
 
 </body>
 </section>
 
 <section>
-<title>Engine Yard uses Gentoo clusters for Ruby on Rails service</title>
+<title>Engine Yard wykorzystuje klastry Gentoo dla serwisu Ruby on Rails</title>
 <body>
 
 <p>
-Engine Yard uses Gentoo-based clusters for its Ruby on Rails deployment
-service. There's a video about its use of Gentoo at
-<uri>http://qualityhumans.com/images/tom_ezra_gentoo.mov</uri>. In it, they talk
-about how Gentoo has helped them in the design of their service and praise
-Gentoo's customization capabilities. They also make several humorous comments
-about Gentoo, such as "I'm pretty convinced that all the other distros are
-built on Gentoo." They then go on to describe their upcoming Xen domU image,
-which will be a Ruby on Rails development environment based on Gentoo.
+Engine Yard wykorzystuje oparte o Gentoo klastry do wdrożenia serwisu Ruby on
+Rails. W sieci dostępny jest film na ten temat -
+<uri>http://qualityhumans.com/images/tom_ezra_gentoo.mov</uri>. Pokazano w nim
+rozmowy o tym jak Gentoo pomógł im w stworzeniu ich serwisu i wychwalano
+możliwości jego dostosowywania. Padło też parę humorystycznych komentarzy,
+jak na przykład: "Jestem przekonany, że wszystkie inne dystrybucje oparte są na 
+Gentoo." Następnie przeszli do opisywania ich nachodzącego projektu Xen
+domU, który będzie rozwojowym środowiskiem Ruby on Rails opartym na Gentoo. 
 </p>
 
 </body>
