@@ -83,58 +83,61 @@ this summary of what to do when you're back in the Live CD:
 <body>
 
 <p>
-<b>Monthly Gentoo Council Reminder for November</b>
+<b>Przypomnienie o listopadowym zebraniu Rady Gentoo</b>
 </p>
 
 <p>
-A gentle reminder about an upcoming IRC meeting led to an interesting
-debate about the nature of Gentoo and a lesson on how to deploy it in
-an enterprise environment.
+Przypomnienie o nadchodzącym zebraniu na IRC-u rozpoczęło interesującą
+dyskusję o istocie Gentoo i lekcję na temat jak najlepiej użyć Gentoo w
+środowisku enterprise.
 </p>
 
 <p>
-Steve Long proposed that Gentoo create a binary-only repository in a
-limited series of flavors (SOHO, medium size and large business),
-using the binaries that the devs compile in the course of their
-maintenance work. He felt this was the best way to demonstrate Gentoo
-was serious about enterprise adoption.
+Steve Long zaproponował utworzenie oficjalnego, binarnego repozytorium o
+kilku odmianach (dla małych, średnich i dużych firm). Miałoby zostać
+utworzone z paczek binarnych kompilowanych przez deweloperów przy okazji ich
+codziennej pracy. Stwierdził, że to najlepszy sposób na zademonstrowanie, że
+Gentoo poważnie podchodzi do kwestii zastosowania go jako system klasy
+enterprise.
 </p>
 
 <p>
-Grant Goodyear countered that Steve underestimated the difficulties of,
-and overestimated the devs' interest in maintaining, a binary repo. Instead,
-Gentoo should build on its strengths as a meta-distribution to allow users to
-build and deploy their own custom distributions using Catalyst.
+Grant Goodyear odparł, że Steve nie docenił trudności, jakie występują przy
+tworzeniu binarnego repozytorium oraz przecenia zainteresowanie deweloperów
+całą sprawą. Dodał, że Gentoo powinno skupić się na swoich mocnych stronach,
+czyli byciu metadystrybucją, która pozwala użytkownikom tworzyć i wdrażać
+dostosowane do własnych potrzeb dystrybucje za pomocą narzędzia Catalyst.
 </p>
 
 <p>
-Stuart Herbert pointed out that he and others would be happy to ease the way
-for "flavored" enterprise adoption by providing binaries to the "Seeds" effort
-and that a binary-only distribution was as prone to breakage as a source-based
-one.
+Stuart Herbert zauważył, że on i inni chętnie pomogliby przy dostosowaniu
+Gentoo do wymogów środowiska enterprise poprzez dostarczanie plików
+binarnych inicjatywie "Seeds". Stwierdził też, że dystrybucje binarne są
+podobnie narażone na awarie jak oparte na źródłach.
 </p>
 
 <p>
-Robin Johnson pointed out that his compiles as a dev were of little use to
-others, as there were too many aspects that were peculiar to his systems. He
-also provided insights gleaned from his experiences using Gentoo in a corporate
-environment. He noted that enterprises need customization at an enterprise
-level, in that they may use LDAP or Kerberos or whatever enterprise-wide. They
-also need standardized binaries to deploy within the enterprise. His solution
-was to have one "tinderbox" machine to take care of compilation and then push
-out the resulting binaries throughout the enterprise. He accomplishes this
-using Catalyst and custom specfiles. The largest deployment he's done using
-this plan consists of an impressive array of machines.
+Robin Johnson napisał, że kompilowane przez niego jako dewelopera pakiety
+nie przydały by się innym, ponieważ uwzględniają zbyt wiele detali
+charakterystycznych dla jego komputera. Podzielił się także doświadczeniami
+z wdrażania Gentoo w środowisku enterprise. Zwrócił uwagę na fakt, że duże
+firmy wymagają dostosowywania szczegółów na dużą skalę, na przykład używając
+technologii LDAP lub Kerberos lub innych na skalę całej firmy. Wymagają
+także ustandaryzowanych pakietów binarnych. Rozwiązanie, które zastosował
+polegało na użyciu jednego systemu do kompilacji, a następnie wykorzystaniu
+pakietów na pozostałych komputerach. Osiągał to za pomocą narzędzia Catalyst
+i własnych skryptów. Największe wdrożenie, w jakim brał udział, stosując się
+do tego planu obejmowało pokaźny zbiór komputerów.
 </p>
 
 <ul>
-  <li>cluster nodes [128 machines]</li>
-  <li>cluster master [1 machine]</li>
-  <li>web servers [~60 machines]</li>
-  <li>ldap servers [2 machines]</li>
-  <li>dedicated file serving (network homedirs) [4 machines]</li>
-  <li>infrastructure management [3 machines]</li>
-  <li>desktops [~60 machines]</li>
+  <li>węzły klastra [128 komputerów]</li>
+  <li>główny węzeł klastra [1 komputer]</li>
+  <li>serwery sieciowe [~60 komputerów]</li>
+  <li>serwery ldap [2 komputery]</li>
+  <li>dedykowane serwery plików (sieciowe katalogi domowe) [4 komputery]</li>
+  <li>zarządzanie infrastruktują [3 komputery]</li>
+  <li>stacje robocze [~60 komputerów]</li>
 </ul>
 
 <ul>
@@ -142,13 +145,13 @@ this plan consists of an impressive array of machines.
 </ul>
 
 <p>
-<b>Removal Request for Gnome 1.4</b>
+<b>Usunięcie Gnome 1.4</b>
 </p>
 
 <p>
-Doug Goldstein has proposed removal of the ancientand obselete Gnome 1.4, and
-has started to list packages to be removed in <uri
-link="http://bugs.gentoo.org/154102">bug 154102</uri>.
+Doug Goldstein zaproponował usunięcie starożytnego i zmurszałego Gnome'a 1.4
+i sporządził listę pakietów, które należałoby usunąć w <uri
+link="http://bugs.gentoo.org/154102">bugu 154102</uri>.
 </p>
 
 <ul>
@@ -156,27 +159,29 @@ link="http://bugs.gentoo.org/154102">bug 154102</uri>.
 </ul>
 
 <p>
-<b>FEATURES to cut the excess in portage</b>
+<b>Opcje FEATURES do usuwania zbędnej funkcjonalności</b>
 </p>
 
 <p>
-John Jawed had been using Gentoo to create an initrd to be used in PXE boots
-across the network. The size of the initrd was critical, since a large file
-caused kernel panics. He slimmed down the initrd by removing all man and doc
-pages. He then prepared a patch to portage to implement this.
+John Jawed korzystał z Gentoo przy tworzeniu obrazu initrd, który był mu
+potrzebny do uruchamiania PXE przez sieć. Najważniejszy był rozmiar pliku
+initrd, ponieważ zbyt duże pliki powodowały krytyczne błędy jądra.
+Zmniejszył więc rozmiar initrd poprzez usunięcie wszystkich plików man i
+doc. Następnie przygotował łatkę na Portage z dokonanymi w nim zmianami.
 </p>
 
 <p>
-Responders noted that the functionality was already present
-in /etc/make.conf.
+Okazało się jednak, że taką funkcjonalność można uzyskać edytując jedynie
+plik /etc/make.conf.
 </p>
 
 <p>
-Christian Heim referred John to the "noman" and "nodoc" FEATURES flags, Tobias
-Scherbaum to the "noinfo" FEATURE flag. Brian Jackson pointed out the
-INSTALL_MASK flag which allows one prevent any of a space delimited list of
-files to be copied into the filesystem, allowing one to filter out files like
-HACKING.gz and TODO.gz
+Christian Heim polecił Johnowi zapoznanie się z flagami FEATURES "noman" i
+"nodoc", a Tobias Scherbaum przypomniał o fladze "noinfo". Brian Jackson
+dodał jeszcze informacje o fladze INSTALL_MASK, dzięki której możemy podać
+rozdzieloną spacjami listę plików, które nie zostaną dopuszczone do
+zainstalowania w systemie. W ten sposób możemy odfiltrować pliki takie jak
+HACKING.gz i TODO.gz.
 </p>
 
 <ul>
