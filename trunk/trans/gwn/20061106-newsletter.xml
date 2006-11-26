@@ -247,48 +247,50 @@ best single desktop CPU that money can buy, this one is the current champion.
 
 <!-- Tips and Tricks -->
 <chapter>
-<title>Tips and Tricks</title>
+<title>Sztuczki i kruczki</title>
 <section>
-<title>searching for ebuilds in overlays that are not locally available</title>
+<!-- przetłumaczyłem overlay jako nakładka bo niczego innego sensownego nie
+wymyśliłem, a nie chciałem zostawiać angielskiego overlay //shadow -->
+<title>Szukanie ebulidów w nakładkach, które nie są lokalnie dostępne</title>
 <body>
 
 <p>
-With the diverse array of overlays now available to the community, one of
-the issues a person might have is finding that overlay that is just right
-for the package they are looking to install. Unfortunately, the default search
-capabilities of portage are only able to search though overlays that have
-already been installed on your system. Stefan Schweizer has written an
-excellent article at his Planet Gentoo blog this week detailing the workings
-of a tool that makes searching through remote overlays a much easier task than
-ever before.
+Z ogromną ilością nakładek jakie są dostępne dla społeczności, jedną z
+przeszkód na jakie możemy napotkać przy korzystaniu z nich jest znalezienie
+odpowiedniej nakładkie, w który znajduje się poszukiwany przez nas pakiet. 
+Niestety, domyślne możliwości portage pozwalają jedynie na przeszukiwanie
+nakładek, które zostały już zainstalowane w naszym systemie. Stefan Schweizer
+napisał doskonały artykuł na blogu Planet Gentoo o narzędziu zdecydowanie 
+ułatwiającym przeszukiwanie nakładek dostepnych zdalnie.
 </p>
 
 <p>
-The package for this task is <c>app-portage/eix</c>. You will need to unmask it
-to get all the latest and greatest features:
+Tym narzędziem jest <c>app-portage/eix</c>. Będziemy musieli go odmaskować, aby
+uzyskać dostęp do najnowszych funkcji:
 </p>
 
-<pre caption="Installing app-portage/eix">
+<pre caption="Instalacja app-portage/eix">
 # <i>echo app-portage/eix >> /etc/portage/package.keywords</i>
 # <i>emerge eix</i>
 </pre>
 
 <p>
-Then, to make sure that eix has all the information it needs about all the
-available overlays, you can issue the following commands to update it:
+Aby upewnić się, że eix posiada wszystkie potrzebne informacje na temat
+dostępnych nakładek, należy wykonać poniższe polecenia:
 </p>
 
-<pre caption="Updating eix's global overlay list">
+<pre caption="Aktualiazacja listy nakładek">
 # <i>update-eix</i>
 # <i>update-eix-remote update</i>
 </pre>
 
 <p>
-eix is now able to search for packages in all of the available overlays in
-the global layman list as well the official portage tree.
+Od tego momentu eix zyskuje możliwość wyszukiwania pakietów we wszystkich
+dostępnych nakładkach znajdujących się na liście laymana. Oczywiście nie traci
+możliwości przeszukiwania oficjalnego drzewa portage.
 </p>
 
-<pre caption="Searching for packages">
+<pre caption="Wyszukiwanie pakietów">
 # <i>eix -e xmms</i>
 
 [D] media-sound/xmms
@@ -307,8 +309,8 @@ Description:         X Multimedia System
 </pre>
 
 <p>
-For more information, refer to the eix man page and the original blog post
-linked below.
+Aby uzyskać więcej informacji należy przeczytać stronę manuala eix oraz
+wiadomość z bloga, której link umieszczony został poniżej.
 </p>
 
 <ul>
@@ -318,26 +320,29 @@ linked below.
 </body>
 </section>
 <section>
-<title>Using a 32-bit mplayer with 64-bit kmplayer</title>
+<title>Używanie 32-bitowego mplayera z 64-bitowym kmplayerem</title>
 <body>
 
 <p>
-On amd64 systems, you can use <c>media-video/mplayer-bin</c> to play multimedia
-files that require 32-bit only codecs (win32codecs), but mplayer doesn't look
-as good as the 64-bit native version and it doesn't integrate very well with
-the system. KDE users can emerge kmplayer – a KDE based "front end". If
-you use konqueror, kmplayer adds a plugin to the browser.  For this tip to
-work, you will need to unmerge your native mplayer, if you have it. When you
-install kmplayer it will not work as there is no <path>/usr/bin/mplayer</path>.
+Na komputerach bazujących na architekturze amd64, możemy używać pakietu
+<c>media-vide/mplayer-bin</c>, aby odtwarzać multimedia, które wymagają kodeków
+pracujących tylko w środowisku 31-bitowym (win32codecs). Jednak mplayer nie
+wygląda tak dobrze, jak jego natywna 64-bitowa wersja. Dodatkowo nie integruje
+się z systemem w zadowalający sposób. Użytkownicy KDE mogą zainstalować 
+kmplayera, nakładkę graficzną bazującą na KDE. Jeżeli używam konquerora, 
+kmplayer dodaje wtyczkę dla przeglądarki. Aby ta rada poskutkowała, będziemy 
+musieli odinstalować natywnego mplayer jeśli mamy go w systemie. Jeżeli 
+zainstalujemy kmplayera nie będzie on poprawnie działał ponieważ nie znajdzie
+w systemie pliku <path>/usr/bin/mplayer</path>.
 </p>
 
-<pre caption="Creating the mplayer link">
+<pre caption="Tworzenie dowiązania symbolicznego">
 ln -sf /usr/bin/mplayer-bin /usr/local/bin/mplayer
 </pre>
 
 <p>
-Now, the native kmplayer will play wmv files and you can "preview" them in
-konqueror.
+Po tej komendzie, natywny kmplayer będzie odtwarzał pliki wmv, a w konquerorze
+będziemy mieli możliwość oglądania podglądu takich plików.
 </p>
 
 </body>
