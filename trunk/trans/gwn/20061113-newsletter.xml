@@ -123,112 +123,100 @@ którym udało się zrealizować ten projekt.
 </body>
 </section>
 <section>
-<title>Engine Yard wykorzystuje klastry Gentoo dla serwisu Ruby on Rails</title>
+<title>Engine Yard wykorzystuje klastry Gentoo dla usług Ruby on Rails</title>
 <body>
 
 <p>
-Engine Yard wykorzystuje oparte o Gentoo klastry do wdrożenia serwisu Ruby on
-Rails. W sieci dostępny jest film na ten temat -
-<uri>http://qualityhumans.com/images/tom_ezra_gentoo.mov</uri>. Pokazano w nim
-rozmowy o tym jak Gentoo pomógł im w stworzeniu ich serwisu i wychwalano
-możliwości jego dostosowywania. Padło też parę humorystycznych komentarzy,
-jak na przykład: "Jestem przekonany, że wszystkie inne dystrybucje oparte są na 
-Gentoo." Następnie przeszli do opisywania ich nachodzącego projektu Xen
-domU, który będzie rozwojowym środowiskiem Ruby on Rails opartym na Gentoo. 
+Engine Yard wykorzystuje oparte o Gentoo klastry udostępniające usługi Ruby on
+Rails. W sieci, pod adresem
+<uri>http://qualityhumans.com/images/tom_ezra_gentoo.mov</uri>, dostępny jest
+film opisujący ten temat. Można w nim usłyszeć wypowiedzi w jaki sposób Gentoo
+pomogło w stworzeniu serwisu, uznanie znalazły szerokie możliwości dostosowania
+systemu do własnych potrzeb. Padło też parę humorystycznych komentarzy, wśród
+nich: „Jestem przekonany, że wszystkie inne dystrybucje oparte są na Gentoo”.
+Omówiono także projekt Xen domU, który będzie środowiskiem deweloperskim Ruby on
+Rails opartym na Gentoo.
 </p>
 
 </body>
 </section>
-
 </chapter>
 
 <!-- Developer of the Week -->
-
 <!-- Heard in the community -->
-
 <chapter>
 <title>Społeczność Gentoo</title>
-
 <!-- forums.gentoo.org -->
-
 <!-- planet.gentoo.org -->
-
 <!-- gentoo-user -->
-
 <section>
 <title>Lista dyskusyjna gentoo-user</title>
 <body>
 
-<p><b>Symlinking out of a chroot</b></p>
-
 <p>
-Brian Davis was planning on running his Apache server in a chroot. However, he
-did not want to have to copy the pictures and other content to be served into
-the chroot. He wanted to know if he could symlink out of the chroot to the
-content.
+<b>Symlinking out of a chroot</b>
 </p>
 
 <p>
-Responding Gentooers pointed out that the symlinks wouldn't work and suggested
-using <c>mount --bind</c> instead.
+Brian Davis planuje uruchomienie serwera Apache w środowisku chroot. Nie chce
+jednak kopiować obrazków i innej zawartości serwowanych stron do chroota. W
+związku z tym chciał się dowiedzieć, czy możliwe jest stworzenie dowiązań
+symbolicznych dających dostęp dostęp do tych plików.
 </p>
 
-<pre caption="Using --bind with mount">
+<p>
+Odpowiadający wskazali, że nie jest to możliwe, jednak w zastępstwie można
+skorzystać z polecenia <c>mount --bind</c>.
+</p>
+
+<pre caption="Użycie flagi --bind dla polecenia mount">
 # mount --bind /source /chroot/target
 </pre>
 
 <ul>
-<li><uri>http://archives.gentoo.org/gentoo-user/msg_103623.xml</uri></li>
+  <li><uri>http://archives.gentoo.org/gentoo-user/msg_103623.xml</uri></li>
 </ul>
 
-<p><b>New to Gentoo.  Having trouble getting it started for the first time</b></p>
-
 <p>
-Jon M had set up his root partition on <c>/dev/hda3</c> using ReiserFS. When he
-tried to boot, however, he received error messages including "VFS: Cannot open
-root device "hda3" or unknown-block(0,0)".
+<b>Problemy z pierwszą instalacją Gentoo</b>
 </p>
 
 <p>
-Richard Fish responded that the "unknown-block(0,0)" showed that the kernel
-could not find a device for hda3. This would be a symptom of failure to compile
-in the necessary IDE device driver's for Jon's chipset or a failure to compile
-int IDE support entirely.
+Jon M skonfigurował główną partycję jako <c>/dev/hda3</c>, używając systemu
+plików ReiserFS. Jednak po restarcie i próbie uruchomienia systemu zobaczył
+komunikat „VFS: Cannot open root device "hda3" or unknown-block(0,0)”.
 </p>
 
 <p>
-Jon M had a look at the .config file for his kernel and indicated he'd missed
-the device driver for his chipset.
+Richard Fish wskazał że „unknown-block(0,0)” oznacza, iż kernel nie znalazł
+odpowiedniego urządzenia dla hda3. Jest to spowodowane brakiem odpowiednich
+sterowników IDE, czyli złą konfiguracją jądra. Potrzebne są sterowniki do
+chipsetu oraz samo podstawowe wsparcie dla IDE.
+</p>
+
+<p>
+Jon M przyglądnął się swojej konfiguracji jądra i wskazał, że w jego przypadku
+brakuje sterowników do chipsetu na płycie głównej.
 </p>
 
 <ul>
-<li><uri>http://archives.gentoo.org/gentoo-user/msg_103578.xml</uri></li>
+  <li><uri>http://archives.gentoo.org/gentoo-user/msg_103578.xml</uri></li>
 </ul>
 
 </body>
 </section>
-
 <!-- gentoo-dev -->
-
 <!-- gentoo-catalyst -->
-
 <!-- gentoo-embedded -->
-
 <!-- gentoo-security -->
-
 </chapter>
 
 <!-- Gentoo International-->
-
 <!-- Gentoo in the press -->
-
 <!-- Tips and Tricks -->
-
 <!-- Gentoo developer moves -->
-
 <chapter>
 <title>Zmiana statusu deweloperów Gentoo</title>
-
 <section>
 <title>Odeszli</title>
 <body>
@@ -238,13 +226,11 @@ Następujący deweloperzy opuścili projekt Gentoo Linux w minionym tygodniu:
 </p>
 
 <ul>
-<li><e>Nikt w tym tygodniu</e></li>
+  <li><e>Nikt w tym tygodniu</e></li>
 </ul>
 
 </body>
-
 </section>
-
 <section>
 <title>Przybyli</title>
 <body>
@@ -255,14 +241,12 @@ tygodniu:
 </p>
 
 <ul>
-<li>Alexander Færøy (eroyf) User Relations/Alpha/MIPS</li>
-<li>Cédric Krier (cedk) netmon team</li>
+  <li>Alexander Færøy (eroyf) User Relations/Alpha/MIPS</li>
+  <li>Cédric Krier (cedk) zespół netmon</li>
 </ul>
 
 </body>
-
 </section>
-
 <section>
 <title>Zmienili status</title>
 <body>
@@ -273,83 +257,74 @@ Linux funkcję:
 </p>
 
 <ul>
-<li><e>Nikt w tym tygodniu</e></li>
+  <li><e>Nikt w tym tygodniu</e></li>
 </ul>
 
 </body>
-
 </section>
-
 </chapter>
 
 <!-- Gentoo security -->
-
 <chapter>
 <title>Bezpieczeństwo Gentoo</title>
-
 <!-- paste from the script -->
-
 <section>
-<title>NVIDIA binary graphics driver: Privilege escalation vulnerability</title>
+<title>Binarny sterownik dla kart graficznych NVIDIA: Przekroczenie uprawnień</title>
 <body>
 
 <p>
-The NVIDIA binary graphics driver is vulnerable to a local privilege
-escalation through an X session.
+Binarny sterownik dla kart graficznych NVIDIA zawiera usterkę przekroczenia
+uprawnień za pośrednictwem sesji Xów.
 </p>
 
 <p>
-Więcej informacji można znaleźć w
-<uri link="http://www.gentoo.org/security/en/glsa/glsa-200611-03.xml">
-komunikacie GLSA</uri>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200611-03.xml"> komunikacie
+GLSA</uri>
 </p>
 
 </body>
 </section>
-
 <section>
-<title>Bugzilla: Multiple Vulnerabilities</title>
+<title>Bugzilla: Wiele usterek</title>
 <body>
 
 <p>
-Bugzilla is vulnerable to cross-site scripting, script injection, and
-request forgery.
+Bugzilla zawiera wiele usterek XSS (cross-site scripting), wstrzyknięcie skryptu
+oraz podrobienie zapytania.
 </p>
 
 <p>
-Więcej informacji można znaleźć w
-<uri link="http://www.gentoo.org/security/en/glsa/glsa-200611-04.xml">
-komunikacie GLSA</uri>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200611-04.xml"> komunikacie
+GLSA</uri>
 </p>
 
 </body>
 </section>
-
 <section>
-<title>Netkit FTP Server: Privilege escalation</title>
+<title>Netkit FTP Server: Przekroczenie uprawnień</title>
 <body>
 
 <p>
-An incorrect seteuid() call could allow an FTP user to access some files or
-directories that would normally be inaccessible.
+Nieprawidłowe wywołanie funkcji seteuid() może w pewnych okolicznościach dać
+użytkownikowi FTP dostęp do plików i katalogów, które powinny być dla niego
+niedostępne.
 </p>
 
 <p>
-Więcej informacji można znaleźć w
-<uri link="http://www.gentoo.org/security/en/glsa/glsa-200611-05.xml">
-komunikacie GLSA</uri>
+Więcej informacji można znaleźć w <uri
+link="http://www.gentoo.org/security/en/glsa/glsa-200611-05.xml"> komunikacie
+GLSA</uri>
 </p>
 
 </body>
 </section>
-
 </chapter>
 
 <!-- Upcoming package removals -->
-
 <chapter>
 <title>Pakiety przewidziane do usunięcia</title>
-
 <section>
 <body>
 
@@ -362,9 +337,8 @@ od poszczególnych deweloperów.
 
 </body>
 </section>
-
 <section>
-<title>Last-Rites:</title>
+<title>Ostatnie namaszczenie:</title>
 <body>
 
 <table>
@@ -374,33 +348,26 @@ od poszczególnych deweloperów.
   <th>Data usunięcia:</th>
   <th>Kontakt:</th>
 </tr>
-
 <tr>
-<ti>games-fps/ut2004-domain2049</ti>
-<ti>10 Dec 06</ti>
-<ti><mail link="wolf31o2@gentoo.org">Chris Gianelloni</mail></ti>
+  <ti>games-fps/ut2004-domain2049</ti>
+  <ti>10 grudnia 06</ti>
+  <ti><mail link="wolf31o2@gentoo.org">Chris Gianelloni</mail></ti>
 </tr>
-
 <tr>
-<ti>dev-db/dbbalancer</ti>
-<ti>10 Dec 06</ti>
-<ti><mail link="dev-zero@gentoo.org">Tiziano Mueller</mail></ti>
+  <ti>dev-db/dbbalancer</ti>
+  <ti>10 grudnia 06</ti>
+  <ti><mail link="dev-zero@gentoo.org">Tiziano Mueller</mail></ti>
 </tr>
-
 </table>
 
 </body>
 </section>
-
 </chapter>
 
 <!-- Bugzilla -->
-
 <!-- paste from the script -->
-
 <chapter>
 <title>Bugzilla</title>
-
 <section>
 <title>Podsumowanie</title>
 <body>
@@ -413,7 +380,6 @@ od poszczególnych deweloperów.
 
 </body>
 </section>
-
 <section id="bug-stats">
 <title>Statystyki</title>
 <body>
@@ -421,15 +387,16 @@ od poszczególnych deweloperów.
 <p>
 Społeczność Gentoo używa Bugzilli (<uri
 link="http://bugs.gentoo.org/">bugs.gentoo.org</uri>) do zgłaszania i śledzenia
-błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomiędzy
-05 November 2006, a 12 November 2006 aktywność w serwisie przedstawiała się następująco:
+błędów, ogłoszeń, sugestii oraz innych form kontaktu z deweloperami. Pomiędzy 5
+listopada 2006, a 12 listopada 2006 aktywność w serwisie przedstawiała się
+następująco:
 </p>
 
 <ul>
-  <li>zgłoszono 753 nowych bugów</li>
-  <li>zamknięto lub rozwiązano 484 bugów</li>
+  <li>zgłoszono 753 nowe bugi</li>
+  <li>zamknięto lub rozwiązano 484 bugi</li>
   <li>otwarto ponownie 15 uprzednio zamkniętych bugów</li>
-  <li>183 bugów oznaczono jako NEEDINFO/WONTFIX/CANTFIX/INVALID/UPSTREAM</li>
+  <li>183 bugi oznaczono jako NEEDINFO/WONTFIX/CANTFIX/INVALID/UPSTREAM</li>
   <li>181 bugów oznaczono jako duplikaty</li>
 </ul>
 
@@ -440,7 +407,6 @@ Spośród 10914 obecnie otwartych bugów: 29 oznaczono jako 'blocker', 103 jako
 
 </body>
 </section>
-
 <section id="bugs-closed">
 <title>Zamknięte Bugi</title>
 <body>
@@ -451,30 +417,33 @@ to:
 </p>
 
 <ul>
-<li><mail link="base-system@gentoo.org">Gentoo's Team for Core System packages</mail>, 34 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=base-system@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, 30 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=gnome@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="pgsql-bugs@gentoo.org">PgSQL Bugs</mail>, 22 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=pgsql-bugs@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="amd64@gentoo.org">AMD64 Project</mail>, 21 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=amd64@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="x11-drivers@gentoo.org">X11 External Driver Maintainers</mail>, 17 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=x11-drivers@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="games@gentoo.org">Gentoo Games</mail>, 15 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=games@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="security@gentoo.org">Gentoo Security</mail>, 12 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">zamkniętych bugów</uri>
-</li>
-<li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, 10 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=sound@gentoo.org">zamkniętych bugów</uri>
-</li>
+  <li><mail link="base-system@gentoo.org">Gentoo's Team for Core System
+  packages</mail>, 34 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=base-system@gentoo.org">zamknięte
+  bugi</uri></li>
+  <li><mail link="gnome@gentoo.org">Gentoo Linux Gnome Desktop Team</mail>, 30
+  <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=gnome@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="pgsql-bugs@gentoo.org">PgSQL Bugs</mail>, 22 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=pgsql-bugs@gentoo.org">zamknięte
+  bugi</uri></li>
+  <li><mail link="amd64@gentoo.org">AMD64 Project</mail>, 21 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=amd64@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="x11-drivers@gentoo.org">X11 External Driver
+  Maintainers</mail>, 17 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=x11-drivers@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="games@gentoo.org">Gentoo Games</mail>, 15 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=games@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="security@gentoo.org">Gentoo Security</mail>, 12 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=security@gentoo.org">zamkniętych
+  bugów</uri></li>
+  <li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, 10 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=RESOLVED&amp;bug_status=CLOSED&amp;chfield=bug_status&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;resolution=FIXED&amp;assigned_to=sound@gentoo.org">zamkniętych
+  bugów</uri></li>
 </ul>
 </body>
 </section>
@@ -489,62 +458,61 @@ to:
 </p>
 
 <ul>
-<li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New Packages</mail>, 26 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=maintainer-wanted@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="amd64@gentoo.org">AMD64 Project</mail>, 9 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=amd64@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="x11-drivers@gentoo.org">X11 External Driver Maintainers</mail>, 8 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=x11-drivers@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="sanchan@gentoo.org">Sandro</mail>, 8 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=sanchan@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, 7 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=sound@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="java@gentoo.org">Java team</mail>, 7 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=java@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="x11@gentoo.org">Gentoo X-windows packagers</mail>, 6 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=x11@gentoo.org">nowych bugów</uri>
-</li>
-<li><mail link="nerdboy@gentoo.org">Steve Arnold</mail>, 6 
-<uri link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=nerdboy@gentoo.org">nowych bugów</uri>
-</li>
+  <li><mail link="maintainer-wanted@gentoo.org">Default Assignee for New
+  Packages</mail>, 26 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=maintainer-wanted@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="amd64@gentoo.org">AMD64 Project</mail>, 9 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=amd64@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="x11-drivers@gentoo.org">X11 External Driver
+  Maintainers</mail>, 8 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=x11-drivers@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="sanchan@gentoo.org">Sandro</mail>, 8 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=sanchan@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="sound@gentoo.org">Gentoo Sound Team</mail>, 7 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=sound@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="java@gentoo.org">Java team</mail>, 7 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=java@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="x11@gentoo.org">Gentoo X-windows packagers</mail>, 6 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=x11@gentoo.org">nowych
+  bugów</uri></li>
+  <li><mail link="nerdboy@gentoo.org">Steve Arnold</mail>, 6 <uri
+  link="http://bugs.gentoo.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;chfield=assigned_to&amp;chfieldfrom=2006-11-05&amp;chfieldto=2006-11-12&amp;assigned_to=nerdboy@gentoo.org">nowych
+  bugów</uri></li>
 </ul>
 </body>
 </section>
-
 </chapter>
 
 <!-- GWN feedback information -->
-
 <chapter>
-
 <title>Opinie czytelników</title>
 <section>
 <body>
 
 <p>
-The GWN is staffed by volunteers and members of the community who submit ideas
-and articles.  If you are interested in writing for the GWN, have feedback on an
-article that we have posted, or just have an idea or article that you would
-like to submit to the GWN, please send us your <mail
-link="gwn-feedback@gentoo.org">feedback</mail> and help make the GWN
-better.
+Tygodnik Gentoo jest tworzony i tłumaczony przez ochotników i członków
+społeczności, którzy nadsyłają swoje pomysły i gotowe artykuły. Zachęcamy
+wszystkich do pomocy i współpracy przy tworzeniu kolejnych numerów Tygodnika
+Gentoo. Oczekujemy na wasze propozycje artykułów, interesują nas także opinie na
+temat tych już opublikowanych. Wszelkie komentarze prosimy kierować na <mail
+link="gwn-feedback@gentoo.org">adres Tygodnika Gentoo</mail>. Uwagi dotyczące
+tłumaczenia należy zgłaszać na adres <mail
+link="moloh@gentoo.org">koordynatora</mail>. Pomóżcie sprawić, by Tygodnik
+Gentoo był jeszcze lepszy.
 </p>
 
 </body>
 </section>
-
 </chapter>
 
 <!-- GWN subscription information -->
-
 <chapter>
-
 <title>Subskrypcja Tygodnika Gentoo</title>
 <section>
 <body>
@@ -563,13 +531,10 @@ zarejestrowana.
 
 </body>
 </section>
-
 </chapter>
 
 <!-- Other Languages -->
-
 <chapter>
-
 <title>Inne języki</title>
 <section>
 <body>
@@ -579,63 +544,27 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 </p>
 
 <ul>
-<li>
-<uri link="/news/zh_cn/gwn/gwn.xml">Chinese (Simplified)</uri>
-</li>
-<li>
-<uri link="/news/da/gwn/gwn.xml">Danish</uri>
-</li>
-<li>
-<uri link="/news/nl/gwn/gwn.xml">Dutch</uri>
-</li>
-<li>
-<uri link="/news/en/gwn/gwn.xml">English</uri>
-</li>
-<li>
-<uri link="/news/de/gwn/gwn.xml">German</uri>
-</li>
-<li>
-<uri link="/news/el/gwn/gwn.xml">Greek</uri>
-</li>
-<li>
-<uri link="/news/fr/gwn/gwn.xml">French</uri>
-</li>
-<li>
-<uri link="/news/ko/gwn/gwn.xml">Korean</uri>
-</li>
-<li>
-<uri link="/news/ja/gwn/gwn.xml">Japanese</uri>
-</li>
-<li>
-<uri link="/news/it/gwn/gwn.xml">Italian</uri>
-</li>
-<li>
-<uri link="/news/pl/gwn/gwn.xml">Polish</uri>
-</li>
-<li>
-<uri link="/news/pt_br/gwn/gwn.xml">Portuguese (Brazil)</uri>
-</li>
-<li>
-<uri link="/news/pt/gwn/gwn.xml">Portuguese (Portugal)</uri>
-</li>
-<li>
-<uri link="/news/ru/gwn/gwn.xml">Russian</uri>
-</li>
-<li>
-<uri link="/news/sk/gwn/gwn.xml">Slovak</uri>
-</li>
-<li>
-<uri link="/news/es/gwn/gwn.xml">Spanish</uri>
-</li>
-<li>
-<uri link="/news/tr/gwn/gwn.xml">Turkish</uri>
-</li>
+  <li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
+  <li><uri link="/news/zh_cn/gwn/gwn.xml">chińskim (uproszczony)</uri></li>
+  <li><uri link="/news/da/gwn/gwn.xml">duńskim</uri></li>
+  <li><uri link="/news/fr/gwn/gwn.xml">francuskim</uri></li>
+  <li><uri link="/news/el/gwn/gwn.xml">greckim</uri></li>
+  <li><uri link="/news/es/gwn/gwn.xml">hiszpańskim</uri></li>
+  <li><uri link="/news/nl/gwn/gwn.xml">holenderskim</uri></li>
+  <li><uri link="/news/ja/gwn/gwn.xml">japońskim</uri></li>
+  <li><uri link="/news/ko/gwn/gwn.xml">koreańskim</uri></li>
+  <li><uri link="/news/de/gwn/gwn.xml">niemieckim</uri></li>
+  <li><uri link="/news/pl/gwn/gwn.xml">polskim</uri></li>
+  <li><uri link="/news/pt_br/gwn/gwn.xml">portugalskim (Brazylia)</uri></li>
+  <li><uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
+  <li><uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
+  <li><uri link="/news/sk/gwn/gwn.xml">słowackim</uri></li>
+  <li><uri link="/news/tr/gwn/gwn.xml">tureckim</uri></li>
+  <li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>
 </ul>
-
 </body>
 
 </section>
-
 </chapter>
 
 </guide>
