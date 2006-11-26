@@ -26,6 +26,12 @@
 <author title="Redaktor">
   <mail link="wolf31o2@gentoo.org">Chris Gianelloni</mail>
 </author>
+<author title="Tłumacz">
+  <mail link="jbozanowski@gmail.com">Jakub Bożanowski</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="moloh@gentoo.org">Michał Kurgan</mail>
+</author>
 
 <abstract>Wydanie Tygodnika Gentoo z 6 listopada 2006.</abstract>
 <summary/>
@@ -46,20 +52,22 @@
 <body>
 
 <p>
-<b>dual-boot with XP installed last</b>
+<b>Instalacja Windows XP po Gentoo Linux</b>
 </p>
 
 <p>
-James writes to gentoo-user asking about the possibility of making his Gentoo
-machine dual boot with Windows XP while having installed Gentoo first. He was
-worried that, having installed Windows, it would overwrite the MBR and thus
-render his Gentoo installation inaccessible. Gentoo users responded by saying
-that doing it this way would be as simple as first installing Windows, then
-booting into a Live CD, and reinstalling GRUB from there. Mark Shields posted
-this summary of what to do when you're back in the Live CD:
+James zapytał na liście gentoo-user o możliwość posiadania na jednym komputerze
+dwóch systemów, Gentoo Linux i Windows XP instalując system firmy Microsoft jako
+drugi. Martwił się, że po instalacji Windowsów, MBR zostanie nadpisany co
+spowoduje niemożność skorzystania z Gentoo w czasie uruchamiania komputera. W
+odpowiedzi dowiedział się, że procedura jest identyczna jak w przypadku
+odwrotnej kolejności instalacji systemów. Teraz także musi skorzystać z płyty
+LiveCD, aby ponownie zainstalować gruba w sektorze rozruchowym. Mark Shields
+przedstawił krótkie podsumowanie poleceń z jakich należy skorzystać w trakcie
+tej procedury:
 </p>
 
-<pre caption="Reinstalling GRUB from a LiveCD">
+<pre caption="Reinstalacja GRUB-a z użyciem płyty LiveCD">
 # <i>mount /dev/rootpart /mnt/gentoo</i>
 # <i>mount /dev/bootpart /mnt/gentoo/boot</i>
 # <i>mount -t proc none /mnt/gentoo/proc</i>
@@ -67,7 +75,7 @@ this summary of what to do when you're back in the Live CD:
 # <i>chroot /mnt/gentoo /bin/bash</i>
 # <i>env-update &amp;&amp; source /etc/profile</i>
 # <i>grep -v rootfs /proc/mounts > /etc/mtab</i>
-<comment>(Assuming your hard drive is /dev/hda)</comment>
+<comment>(Zakładając że główny dysk twardy to /dev/hda)</comment>
 # <i>grub-install /dev/hda</i>
 </pre>
 
@@ -89,7 +97,7 @@ this summary of what to do when you're back in the Live CD:
 <p>
 Przypomnienie o nadchodzącym zebraniu na IRC-u rozpoczęło interesującą
 dyskusję o istocie Gentoo i lekcję na temat jak najlepiej użyć Gentoo w
-środowisku enterprise.
+środowisku Enterprise.
 </p>
 
 <p>
@@ -98,36 +106,36 @@ kilku odmianach (dla małych, średnich i dużych firm). Miałoby zostać
 utworzone z paczek binarnych kompilowanych przez deweloperów przy okazji ich
 codziennej pracy. Stwierdził, że to najlepszy sposób na zademonstrowanie, że
 Gentoo poważnie podchodzi do kwestii zastosowania go jako system klasy
-enterprise.
+Enterprise.
 </p>
 
 <p>
-Grant Goodyear odparł, że Steve nie docenił trudności, jakie występują przy
-tworzeniu binarnego repozytorium oraz przecenia zainteresowanie deweloperów
-całą sprawą. Dodał, że Gentoo powinno skupić się na swoich mocnych stronach,
-czyli byciu metadystrybucją, która pozwala użytkownikom tworzyć i wdrażać
-dostosowane do własnych potrzeb dystrybucje za pomocą narzędzia Catalyst.
+Grant Goodyear odparł, że Steve nie docenia trudności, jakie występują przy
+tworzeniu binarnego repozytorium oraz przecenia zainteresowanie deweloperów całą
+sprawą. Dodał, że Gentoo powinno skupić się na swoich mocnych stronach, czyli
+byciu metadystrybucją, która pozwala użytkownikom tworzyć i wdrażać dostosowane
+do własnych potrzeb dystrybucje za pomocą narzędzia Catalyst.
 </p>
 
 <p>
 Stuart Herbert zauważył, że on i inni chętnie pomogliby przy dostosowaniu
-Gentoo do wymogów środowiska enterprise poprzez dostarczanie plików
-binarnych inicjatywie "Seeds". Stwierdził też, że dystrybucje binarne są
-podobnie narażone na awarie jak oparte na źródłach.
+Gentoo do wymogów środowiska Enterprise poprzez dostarczanie plików
+binarnych inicjatywie „Seeds”. Stwierdził też, że dystrybucje binarne są
+podobnie narażone na awarie jak te oparte na źródłach.
 </p>
 
 <p>
-Robin Johnson napisał, że kompilowane przez niego jako dewelopera pakiety
-nie przydały by się innym, ponieważ uwzględniają zbyt wiele detali
-charakterystycznych dla jego komputera. Podzielił się także doświadczeniami
-z wdrażania Gentoo w środowisku enterprise. Zwrócił uwagę na fakt, że duże
-firmy wymagają dostosowywania szczegółów na dużą skalę, na przykład używając
-technologii LDAP lub Kerberos lub innych na skalę całej firmy. Wymagają
-także ustandaryzowanych pakietów binarnych. Rozwiązanie, które zastosował
-polegało na użyciu jednego systemu do kompilacji, a następnie wykorzystaniu
-pakietów na pozostałych komputerach. Osiągał to za pomocą narzędzia Catalyst
-i własnych skryptów. Największe wdrożenie, w jakim brał udział, stosując się
-do tego planu obejmowało pokaźny zbiór komputerów.
+Robin Johnson napisał, że kompilowane przez niego, jako dewelopera pakiety nie
+przydały by się innym, ponieważ uwzględniają zbyt wiele detali
+charakterystycznych dla jego komputera. Podzielił się także doświadczeniami z
+wdrażania Gentoo w środowisku Enterprise. Zwrócił uwagę na fakt, że duże firmy
+wymagają dostosowywania szczegółów na dużą skalę, na przykład używając
+technologii LDAP lub Kerberos lub innych na skalę całej firmy. Wymagają także
+standardowych pakietów binarnych. Rozwiązanie, które zastosował polegało na
+użyciu jednego systemu do kompilacji, a następnie wykorzystaniu pakietów na
+pozostałych komputerach. Osiągał to za pomocą narzędzia Catalyst i własnych
+skryptów. Największe wdrożenie, w jakim brał udział, stosując się do tego planu
+obejmowało pokaźny zbiór komputerów.
 </p>
 
 <ul>
@@ -136,7 +144,7 @@ do tego planu obejmowało pokaźny zbiór komputerów.
   <li>serwery sieciowe [~60 komputerów]</li>
   <li>serwery ldap [2 komputery]</li>
   <li>dedykowane serwery plików (sieciowe katalogi domowe) [4 komputery]</li>
-  <li>zarządzanie infrastruktują [3 komputery]</li>
+  <li>zarządzanie infrastrukturą [3 komputery]</li>
   <li>stacje robocze [~60 komputerów]</li>
 </ul>
 
@@ -149,8 +157,8 @@ do tego planu obejmowało pokaźny zbiór komputerów.
 </p>
 
 <p>
-Doug Goldstein zaproponował usunięcie starożytnego i zmurszałego Gnome'a 1.4
-i sporządził listę pakietów, które należałoby usunąć w <uri
+Doug Goldstein zaproponował usunięcie starożytnego i zmurszałego Gnome'a 1.4.
+Sporządził listę pakietów, które należałoby usunąć w <uri
 link="http://bugs.gentoo.org/154102">bugu 154102</uri>.
 </p>
 
@@ -199,27 +207,28 @@ HACKING.gz i TODO.gz.
 <chapter>
 <title>Międzynarodowe Gentoo</title>
 <section>
-<title>Italy: Linux Day, Genova</title>
+<title>Włochy: Linux Day, Genova</title>
 <body>
 
 <p>
-Italy's open-source movement organized a national <uri
-link="http://www.linux.it/LinuxDay">Linux Day</uri> on the 28th of October. This
-was also the 4th time that the ever-growing Italian Gentoo users community were
-able to prepare for some evangelism of their own. This year, the national
-meeting called <uri link="http://www.gechi.it/node/32">Gentoo Day</uri> was
-organized in collaboration with the <uri link="http://genova.linux.it">GLUG
-(Genuense Linux Users Group)</uri>. Thanks to the help of local authorities, the
-event was held at Palazzo Ducale, Piazza De Ferrari, in the city of Genova.
+Włoski ruch Open Source zorganizował 28 października ogólnokrajowy <uri
+link="http://www.linux.it/LinuxDay">Linux Day</uri>. Był to czwarty raz, kiedy
+ciągle rozwijające się środowisko użytkowników Gentoo mogło przeprowadzić
+„ewangelizację” i kampanię reklamową. W tym roku <uri
+link="http://www.gechi.it/node/32">Gentoo Day</uri> został zorganizowany we
+współpracy z <uri link="http://genova.linux.it">GLUG-iem (Genuense Linux Users
+Group)</uri>. Dzięki pomocy ze strony lokalnych władz impreza została
+zorganizowana w Palazzo Ducale, Piazza De Ferrari, w Genui.
 </p>
 
 <p>
-The brave evangelists, all members of the association <uri
-link="http://www.gechi.it">Gentoo Channel Italia (GeCHI)</uri>, presented many
-<uri link="http://genova.linux.it/Linux_Day_2006">talks</uri> targetted at both
-home and professional audiences. Some of the talks included: "Photo Manipulation
-with OSS", "Free your Ipod: use RockBox", "XGL for fun and profit", and
-"Practical uses of Gentoo in business environments".
+Dzielni krzewiciele wiary, członkowie stowarzyszenia <uri
+link="http://www.gechi.it">Gentoo Channel Italia (GeCHI)</uri> przeprowadzili
+wiele <uri link="http://genova.linux.it/Linux_Day_2006">prezentacji</uri>
+skierowanych zarówno dla zwykłych użytkowników jak i bardziej profesjonalnych
+odbiorców. Wśród poruszonych tematów można było znaleźć m.in.: „Obróbka zdjęć z
+OSS”, „Uwolnij swojego Ipoda: RockBox”, „XGL dla zabawy i pieniędzy” oraz
+„Praktyczne zastosowania Gentoo w środowiskach biznesowych”.
 </p>
 
 </body>
@@ -230,15 +239,16 @@ with OSS", "Free your Ipod: use RockBox", "XGL for fun and profit", and
 <chapter>
 <title>Gentoo w prasie</title>
 <section>
-<title>LinuxHardware.com (2 Nov 2006)</title>
+<title>LinuxHardware.com (2 listopada 2006)</title>
 <body>
 
 <p>
-Author (and Gentoo developer) Kris Kersey reviews Intel's first quad-core
-processor, the Core 2 Extreme QX6700. The review uses 64-bit Gentoo Linux for
-all benchmarks. The new CPU scored impressively: <c>emerge mozilla-firefox</c>
-took less than 8 minutes with MAKEOPTS="-j5". If you're in the market for the
-best single desktop CPU that money can buy, this one is the current champion.
+Kris Kersey (także deweloper Gentoo) recenzuje pierwszy cztero-rdzeniowy
+procesor Intela, Core 2 Extreme QX6700. Do testowania używa on 64-bitowej wersji
+Gentoo Linux. Nowy procesor jest naprawdę demonem szybkości: <c>emerge
+mozilla-firefox</c> zajęło „całe” 8 minut, gdy użyto opcji MAKEOPTS="-j5".
+Każdego zainteresowanego najszybszym dostępnym komputerem biurkowym ten procesor
+powinien z pewnością zainteresować.
 </p>
 
 </body>
@@ -249,24 +259,22 @@ best single desktop CPU that money can buy, this one is the current champion.
 <chapter>
 <title>Sztuczki i kruczki</title>
 <section>
-<!-- przetłumaczyłem overlay jako nakładka bo niczego innego sensownego nie
-wymyśliłem, a nie chciałem zostawiać angielskiego overlay //shadow -->
 <title>Szukanie ebulidów w nakładkach, które nie są lokalnie dostępne</title>
 <body>
 
 <p>
-Z ogromną ilością nakładek jakie są dostępne dla społeczności, jedną z
-przeszkód na jakie możemy napotkać przy korzystaniu z nich jest znalezienie
-odpowiedniej nakładkie, w który znajduje się poszukiwany przez nas pakiet. 
-Niestety, domyślne możliwości portage pozwalają jedynie na przeszukiwanie
-nakładek, które zostały już zainstalowane w naszym systemie. Stefan Schweizer
-napisał doskonały artykuł na blogu Planet Gentoo o narzędziu zdecydowanie 
-ułatwiającym przeszukiwanie nakładek dostepnych zdalnie.
+Z ogromną ilością nakładek jakie są dostępne dla społeczności, jedną z przeszkód
+na jakie można napotkać przy korzystaniu z ich zawartości jest znalezienie
+interesującego nas pakietu. Niestety, domyślne możliwości Portage pozwalają
+jedynie na przeszukiwanie nakładek, które zostały już zainstalowane w naszym
+systemie. Stefan Schweizer napisał doskonały artykuł znajdujący się w blogu
+Planet Gentoo o narzędziu które umożliwia zdalne przeszukiwanie nakładek, bez
+konieczności ich instalacji.
 </p>
 
 <p>
-Tym narzędziem jest <c>app-portage/eix</c>. Będziemy musieli go odmaskować, aby
-uzyskać dostęp do najnowszych funkcji:
+To narzędzie to <c>app-portage/eix</c>. By uzyskać dostęp do nowych
+funkcjonalności musimy najpierw odmaskować jego najnowszą wersję:
 </p>
 
 <pre caption="Instalacja app-portage/eix">
@@ -286,8 +294,8 @@ dostępnych nakładek, należy wykonać poniższe polecenia:
 
 <p>
 Od tego momentu eix zyskuje możliwość wyszukiwania pakietów we wszystkich
-dostępnych nakładkach znajdujących się na liście laymana. Oczywiście nie traci
-możliwości przeszukiwania oficjalnego drzewa portage.
+dostępnych nakładkach znajdujących się na liście laymana. Oczywiście można także
+przeszukiwać oficjalne drzewo Portage.
 </p>
 
 <pre caption="Wyszukiwanie pakietów">
@@ -309,8 +317,9 @@ Description:         X Multimedia System
 </pre>
 
 <p>
-Aby uzyskać więcej informacji należy przeczytać stronę manuala eix oraz
-wiadomość z bloga, której link umieszczony został poniżej.
+Więcej informacji można uzyskać z lektury strony podręcznika man dla polecenia
+eix oraz w opublikowanym wpisie w blogu. Link do niego został umieszczony
+poniżej.
 </p>
 
 <ul>
@@ -326,14 +335,15 @@ wiadomość z bloga, której link umieszczony został poniżej.
 <p>
 Na komputerach bazujących na architekturze amd64, możemy używać pakietu
 <c>media-vide/mplayer-bin</c>, aby odtwarzać multimedia, które wymagają kodeków
-pracujących tylko w środowisku 31-bitowym (win32codecs). Jednak mplayer nie
-wygląda tak dobrze, jak jego natywna 64-bitowa wersja. Dodatkowo nie integruje
-się z systemem w zadowalający sposób. Użytkownicy KDE mogą zainstalować 
-kmplayera, nakładkę graficzną bazującą na KDE. Jeżeli używam konquerora, 
-kmplayer dodaje wtyczkę dla przeglądarki. Aby ta rada poskutkowała, będziemy 
-musieli odinstalować natywnego mplayer jeśli mamy go w systemie. Jeżeli 
-zainstalujemy kmplayera nie będzie on poprawnie działał ponieważ nie znajdzie
-w systemie pliku <path>/usr/bin/mplayer</path>.
+pracujących tylko w środowisku 32-bitowym (win32codecs). Jednak ta wersja
+mplayera nie wygląda tak dobrze, jak jego natywna 64-bitowa wersja. Dodatkowo
+nie integruje się ona z systemem w zadowalający sposób. Użytkownicy KDE mogą
+zainstalować kmplayera, nakładkę graficzną bazującą na KDE. Instaluje on także
+wtyczkę do przeglądarki konqueror. Aby skorzystać z binarnej wersji mplayera
+należy odinstalować jego natywną, kompilowaną wersję. W domyślnej konfiguracji
+kmplayer odmówi współpracy ze względu na brak pliku
+<path>/usr/bin/mplayer</path>. Na szczęście możemy w łatwy sposób temu
+zaradzić.
 </p>
 
 <pre caption="Tworzenie dowiązania symbolicznego">
@@ -341,8 +351,8 @@ ln -sf /usr/bin/mplayer-bin /usr/local/bin/mplayer
 </pre>
 
 <p>
-Po tej komendzie, natywny kmplayer będzie odtwarzał pliki wmv, a w konquerorze
-będziemy mieli możliwość oglądania podglądu takich plików.
+Po wykonaniu tego polecenia, natywny kmplayer będzie odtwarzał pliki wmv, a w
+konquerorze będziemy mieli możliwość oglądania podglądu takich plików.
 </p>
 
 </body>
