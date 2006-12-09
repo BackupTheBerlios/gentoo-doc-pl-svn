@@ -74,6 +74,12 @@ regexps = (
  r'<title>Lista dyskusyjna gentoo-user</title>'),
 (r'<title>gentoo-dev</title>',
  r'<title>Lista dyskusyjna gentoo-dev</title>'),
+(r'<title>gentoo-amd64</title>',
+ r'<title>Lista dyskusyjna gentoo-amd64</title>'),
+(r'<title>gentoo-catalyst</title>',
+ r'<title>Lista dyskusyjna gentoo-catalyst</title>'),
+(r'<title>gentoo-cluster</title>',
+ r'<title>Lista dyskusyjna gentoo-cluster</title>'),
 (r'<title>gentoo-embedded</title>',
  r'<title>Lista dyskusyjna gentoo-embedded</title>'),
 (r'<title>gentoo-security</title>',
@@ -213,15 +219,23 @@ to:
 
 ## GWN feedback information
 (r'''<p>
-Please send us your <mail
+The GWN is staffed by volunteers and members of the community who submit ideas
+and articles.  If you are interested in writing for the GWN, have feedback on an
+article that we have posted, or just have an idea or article that you would
+like to submit to the GWN, please send us your <mail
 link="gwn-feedback@gentoo.org">feedback</mail> and help make the GWN
 better.
 </p>''',
  r'''<p>
-Jeśli chcesz, aby Tygodnik Gentoo był jeszcze lepszy, podziel się z <mail
-link="gwn-feedback@gentoo.org">nami</mail> swoją opinią na jego temat. Uwagi
-dotyczące tłumaczenia można zgłaszać na adres <mail
-link="moloh@gentoo.org">koordynatora</mail>.
+Tygodnik Gentoo jest tworzony i tłumaczony przez ochotników i członków
+społeczności, którzy nadsyłają swoje pomysły i gotowe artykuły. Zachęcamy
+wszystkich do pomocy i współpracy przy tworzeniu kolejnych numerów Tygodnika
+Gentoo. Oczekujemy na wasze propozycje artykułów, interesują nas także opinie na
+temat tych już opublikowanych. Wszelkie komentarze prosimy kierować na <mail
+link="gwn-feedback@gentoo.org">adres Tygodnika Gentoo</mail>. Uwagi dotyczące
+tłumaczenia należy zgłaszać na adres <mail
+link="moloh@gentoo.org">koordynatora</mail>. Pomóżcie sprawić, by Tygodnik
+Gentoo był jeszcze lepszy.
 </p>'''),
 
 ## GWN subscription information
@@ -254,7 +268,8 @@ The Gentoo Weekly Newsletter is also available in the following languages:
  r'''<p>
 Tygodnik Gentoo jest dostępny w następujących językach:
 </p>'''),
-(r'''<li> <uri link="/news/zh_cn/gwn/gwn.xml">Chinese \(Simplified\)</uri> </li>
+(r'''<ul>
+<li> <uri link="/news/zh_cn/gwn/gwn.xml">Chinese \(Simplified\)</uri> </li>
 <li> <uri link="/news/da/gwn/gwn.xml">Danish</uri> </li>
 <li> <uri link="/news/nl/gwn/gwn.xml">Dutch</uri> </li>
 <li> <uri link="/news/en/gwn/gwn.xml">English</uri> </li>
@@ -270,8 +285,10 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 <li> <uri link="/news/ru/gwn/gwn.xml">Russian</uri> </li>
 <li> <uri link="/news/sk/gwn/gwn.xml">Slovak</uri> </li>
 <li> <uri link="/news/es/gwn/gwn.xml">Spanish</uri> </li>
-<!-- <li> <uri link="/news/tr/gwn/gwn.xml">Turkish</uri> </li> -->''',
- r'''  <li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
+<li> <uri link="/news/tr/gwn/gwn.xml">Turkish</uri> </li>
+</ul>''',
+ r'''<ul>
+  <li><uri link="/news/en/gwn/gwn.xml">angielskim</uri></li>
   <li><uri link="/news/zh_cn/gwn/gwn.xml">chińskim (uproszczony)</uri></li>
   <li><uri link="/news/da/gwn/gwn.xml">duńskim</uri></li>
   <li><uri link="/news/fr/gwn/gwn.xml">francuskim</uri></li>
@@ -286,7 +303,9 @@ Tygodnik Gentoo jest dostępny w następujących językach:
   <li><uri link="/news/pt/gwn/gwn.xml">portugalskim (Portugalia)</uri></li>
   <li><uri link="/news/ru/gwn/gwn.xml">rosyjskim</uri></li>
   <li><uri link="/news/sk/gwn/gwn.xml">słowackim</uri></li>
-  <li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>''')
+  <li><uri link="/news/tr/gwn/gwn.xml">tureckim</uri></li>
+  <li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>
+</ul>''')
 
 )
 
