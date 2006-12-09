@@ -17,6 +17,15 @@
 <author title="Redaktor">
   <mail link="wolf31o2@gentoo.org">Chris Gianelloni</mail>
 </author>
+<author title="Tłumacz">
+  <mail link="karol.kania@gmail.com">Karol Kania</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="shadoww@gentoo.org">Damian Kuras</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="moloh@gentoo.org">Michał Kurgan</mail>
+</author>
 
 <abstract>Wydanie Tygodnika Gentoo z 27 listopada 2006.</abstract>
 <summary/>
@@ -26,126 +35,133 @@
 
 <!-- Gentoo News -->
 <chapter>
-<title>Gentoo News</title>
+<title>Wiadomości Gentoo</title>
 <section>
-<title>x86/i586 stages available</title>
+<title>Pliki stage dla x86/i586 dostępne</title>
 <body>
 
 <p>
-The Gentoo <uri link="/proj/en/releng">Release Engineering</uri> project is
-proud to announce that new stages for x86 have been released. These stages are
-currently only available via the Gentoo <uri
-link="/main/en/mirrors.xml">mirrors</uri>, but plans are underway to add them
-to the torrent tracker, also. These new stages include stages 2 and 3 for both
-the x86 (i386) and i586 subarchitectures built against the
-<path>default-linux/x86/no-nptl</path> profile, as well as stages 2 and 3 for
-i586 built against the <path>default-linux/x86/2006.1</path> profile.
+Projekt Gentoo <uri link="/proj/en/releng">Release Engineering</uri> ma zaszczyt
+ogłosić opublikowanie nowych plików stage dla architektury x86. Obecnie, pliki
+dostępne są jedynie poprzez system <uri link="/main/en/mirrors.xml">serwerów
+lustrzanych</uri> Gentoo, jednak w planie jest także dodanie ich do trackera
+Gentoo. Opublikowano zarówno pliki stage2 jak i stage3 dla obydwu podarchitektur
+x86, i386 oraz i586, zbudowane z myślą o profilu
+<path>default-linux/x86/no-nptl</path> oraz pliki stage2 i stage3 dla i586
+dostosowane do profilu <path>default-linux/x86/2006.1</path>.
 </p>
 
 <p>
-You can find these new stages under <path>/releases/x86/2006.1/stages</path> on
-your local Gentoo mirror.
+Powyższe pliki można znaleźć w katalogu <path>/releases/x86/2006.1/stages</path>
+na jednym z dostępnych serwerów lustrzanych  Gentoo.
 </p>
 
 </body>
 </section>
 <section>
-<title>Experimental LiveCD images for Alpha/PPC</title>
+<title>Eksperymentalne obrazy LiveCD dla Alpha/PPC</title>
 <body>
 
 <p>
-Along with the new stages for x86, Release Engineering has also released two
-experimental ISO images. These images are built in the same manner as the x86
-and amd64 LiveCD for 2006.1, using the same snapshot. The images should be
-fully-functional LiveCDs for both platforms. If you're wanting to try these
-out, please grab them from your local mirror under <path>/experimental</path>
-and file bugs, as always, to the Gentoo <uri
-link="http://bugs.gentoo.org/enter_bug.cgi?product=Gentoo%20Release%20Media">bug
-tracker</uri>.
+Razem z nowymi plikami stage dla architektury x86 zespół Release Engineering
+stworzył również dwa eksperymentalne obrazy ISO. Obrazy te zostały zbudowane w
+ten sam sposób jak LiveCD 2006.1 dla x86 i amd64, więc powinny być one w pełni
+używalnymi płytami LiveCD. Każdego zainteresowanego ich przetestowaniem
+zachęcamy do skorzystania, obrazy znajdują się w katalogu
+<path>/experimental</path> na serwerach lustrzanych Gentoo. Dodatkowo prosimy o
+wysyłanie raportów dotyczących napotkanych błędów. Należy je kierować, jak zawsze
+na  <uri
+link="http://bugs.gentoo.org/enter_bug.cgi?product=Gentoo%20Release%20Media">Bugzille
+</uri> Gentoo.
 </p>
 
 <note>
-We are aware that the Gentoo Linux Installer is not functional on these LiveCD
-images, as the Installer had not yet been ported to them. The main purpose of
-these images is as a testing ground and development platform for the Installer,
-as well as testing for the LiveCD process on new architectures.
+Wiemy o tym, że Instalator Gentoo Linux umieszczony na tych płytach LiveCD nie
+działa poprawnie. Jest to spowodowane brakiem odpowiedniego portu tej aplikacja
+na architekturę Alpha. Właśnie brak portu Instalatora Gentoo jest jednym z
+powodów upublicznienia obrazów, tak by udostępnić platformę testową dla
+deweloperów. Ważnym czynnikiem jest także test procesu budowania LiveCD na
+innych architekturach.
 </note>
 
 </body>
 </section>
 <section>
-<title>GNOME 2.16 stable</title>
+<title>Stabilizacja GNOME 2.16</title>
 <body>
 
 <p>
-The <uri link="/proj/en/desktop/gnome">Gentoo GNOME team</uri> is working to
-stabilize GNOME-2.16.2. This is an upgrade from the current 2.14 stable version
-of GNOME. Please consult the <uri
+Zespół <uri link="/proj/en/desktop/gnome">Gentoo GNOME</uri> pracuje nad
+stabilizacją GNOME-2.16.2 z obecnie stabilnej wersji 2.14. Przed aktualizacją
+należy przeczytać dokument <uri
 link="/proj/en/desktop/gnome/howtos/gnome-2.16-upgrade.xml">GNOME 2.16 Upgrade
-Guide</uri> before upgrading. If you wish to track the stabilization efforts,
-you can follow <uri link="http://bugs.gentoo.org/show_bug.cgi?id=156572">bug
-156572</uri> for gtk+-2.10 stabilization and <uri
-link="http://bugs.gentoo.org/show_bug.cgi?id=156662">bug 156662</uri> for
-GNOME-2.16 stabilization.
+Guide</uri>. Zainteresowanym śledzeniem postępów prac nad stabilizacją polecamy
+przyglądnięcie się <uri
+link="http://bugs.gentoo.org/show_bug.cgi?id=156572">bugowi 156572</uri> w
+przypadku pakietu gtk+-2.10 oraz <uri
+link="http://bugs.gentoo.org/show_bug.cgi?id=156662">bugowi 156662</uri>
+opisującego postępy dla GNOME-2.16.
 </p>
 
 <p>
-There are several major improvements in this upgrade:
+W nowej wersji środowiska znajdziemy wiele udogodnień:
 </p>
 
 <ul>
-  <li>powerful new note-taking application</li>
-  <li>enhanced menu editing</li>
-  <li>tool to get a better overview of your hard disk space</li>
-  <li>improved integrated power management support</li>
-  <li>improved media web browsing</li>
-  <li>improved themes</li>
-  <li>improved memory usage</li>
+  <li>potężna aplikacja do notatek</li>
+  <li>usprawniona edycja menu</li>
+  <li>narzędzie pozwalające śledzić zajęte miejsce na dyskach twardych</li>
+  <li>usprawnione wsparcie zarządzania energią</li>
+  <li>usprawnione przeglądanie multimediów</li>
+  <li>poprawione tematy</li>
+  <li>zoptymalizowane zużycie pamięci</li>
 </ul>
 
 <p>
-To find out in detail what coolness you can expect from this major upgrade,
-head over to the <uri link="http://www.gnome.org/start/2.16/">GNOME
-2.16 page</uri> and read the Release Notes.
+Dokładną listę zmian i poprawek można znaleźć na oficjalnej stronie zawierającej
+dokładny opis nowych funkcjonalności <uri
+link="http://www.gnome.org/start/2.16/">GNOME 2.16</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>virtual/mysql Introduced</title>
+<title>Wprowadzenie virtual/mysql</title>
 <body>
 
 <p>
-In order to adjust to changes in upstream release policies, the former
-<c>dev-db/mysql</c> has been split into <c>dev-db/mysql-community</c> and 
-<c>dev-db/mysql</c>. The new <c>virtual/mysql</c> depends on the presence of
-either <c>dev-db/mysql-community</c> or <c>dev-db/mysql</c>.
-</p> 
+W związku ze zmianami w polityce wydań twórców bazy danych MySQL, pakiet
+<c>dev-db/mysql</c> został podzielony na <c>dev-db/mysql-community</c> i
+<c>dev-db/mysql</c>. Nowy pakiet wirtualny <c>virtual/mysql</c> jest
+uzależniony od jednego z nich.
+</p>
 
 <p>
-If emerge complains about needing <c>virtual/mysql</c>, just install it.
-Assuming you already have mysql or mysql-community installed, there's no
-compiling required.
-</p> 
+Jeżeli emerge będzie informowało o braku <c>virtual/mysql</c> to należy go po
+prostu zainstalować. W przypadku posiadania mysql lub mysql-community nie będzie
+potrzebna żadna kompilacja.
+</p>
 
 <p>
-If you don't want the greatest stable version, but want to stay at mysql
-4.<e>x</e>, for example, be sure to mask <c>>=virtual/mysql-4.1</c>,
-<c>>=dev-db/mysql-4.1</c> and <c>>=dev-db/mysql-community-4.1</c> in
+Każdy, kto nie jest zainteresowany posiadaniem najnowszej i najlepszej wersji
+MySQL, a pragnie pozostać przykładowo przy linii 4.<e>x</e> powinien zamaskować
+kolejne wersje używając wpisów <c>>=virtual/mysql-4.1</c>,
+<c>>=dev-db/mysql-4.1</c> oraz <c>>=dev-db/mysql-community-4.1</c> w pliku
 <path>/etc/portage/package.mask</path>.
 </p>
 
 <p>
-If you want to compile mysql client-only, you need to use the <c>minimal</c>
-USE flag.
+Istnieje możliwość zainstalowania tylko klienta MySQL. Aby skorzystać z tej
+możliwości i nie kompilować serwera bazodanowego należy skorzystać z flagi USE
+<c>minimal</c>.
 </p>
 
 </body>
 </section>
 </chapter>
-
 <!-- Developer of the Week -->
 <!-- Heard in the community -->
+
 <chapter>
 <title>Społeczność Gentoo</title>
 <!-- forums.gentoo.org -->
@@ -156,34 +172,36 @@ USE flag.
 <body>
 
 <p>
-<b>Coldplug porzucony na rzecz udev-103? / udev i coldplug wzajemnie się blokują!</b>
+<b>udev-103 i coldplug wzajemnie się blokują!</b>
 </p>
 
 <p>
-Dwóch różnych użytkowników przekonało się, iż ostatnio porzucony pakiet coldplug 
-wcześniej zajął podłączone urządzenia podczas startu systemu. Peter K był 
-przekonany, że właściwie przeczytał wynik polecenia <c>emerge --sync</c> i że coldplug 
-poszedł w zapomnienie na rzecz pakietu udev-103.
+Dwóch różnych użytkowników napotkało ostatnio na problemy z pakietem coldplug,
+którego zadaniem było obsługa urządzeń podłączonych do komputera podczas startu
+systemu. Peter K był przekonany, że właściwie przeczytał wynik polecenia
+<c>emerge --sync</c> i że coldplug poszedł w zapomnienie na rzecz pakietu
+udev-103.
 </p>
 
 <p>
 Hans de Hertog przekonał się, że wzajemne blokowanie się pakietów udev i
-coldplug ma następującą postać:
+coldplug skutkuje następującymi komunikatami:
 </p>
 
-<pre caption="wyjście blokowania">
+<pre caption="Wzajemne blokowanie udev i coldplug">
 [blocks B ] >=sys-fs/udev-089 (is blocking sys-apps/coldplug-20040920-r1)
 [blocks B ] sys-apps/coldplug (is blocking sys-fs/udev-103)
 [ebuild U ] sys-fs/udev-103 [087-r1] USE="(-selinux)" 195 kB
 </pre>
 
 <p>
-Hans przekonał się, że ostatnio ustabilizowany udev 103 całkowicie zastępuje
-pakiet coldplug. Zebrał się na odwagę, usunął coldplug, zainstalował udev 103 
-i zrobił w systemie porządek usuwając <path>/etc/init.d/coldplug</path> i
-uruchamiając <c>rc-update del coldplug</c>. Jako dodatek, odkrył, że nie jest
-już więcej wymagana edycja pliku <path>/lib/rcscripts/addons/udev-start.sh</path>
-by udev współgrał z pakietem coldplug.
+Hans przekonał się, że ostatnio ustabilizowany udev-103 całkowicie zastępuje
+pakiet coldplug. Zebrał się na odwagę, usunął coldplug i zaktualizował swoją
+wersję pakietu udev. Następnie zrobił porządek w systemie usuwając plik
+<path>/etc/init.d/coldplug</path> oraz wyłączając automatyczny start tej usługi
+(polecenie <c>rc-update del coldplug</c>). Odkrył także, że nie jest już
+wymagana edycja pliku <path>/lib/rcscripts/addons/udev-start.sh</path>, tak by
+udev współgrał z pakietem coldplug.
 </p>
 
 <ul>
@@ -192,24 +210,25 @@ by udev współgrał z pakietem coldplug.
 </ul>
 
 <p>
-<b>Gdzie teraz deklaruje się DISPLAYMANAGER="gdm"?</b>
+<b>Gdzie został przeniesiony DISPLAYMANAGER="gdm"?</b>
 </p>
 
 <p>
 Mark Knecht właśnie skończył aktualizację swojego GCC 4 i odkrył, że deklaracja
-zmiennej DISPLAYMANAGER="gdm" nie znajduje się już w <path>/etc/rc.conf</path>.
-Do jakiego pliku została ona przeniesiona?
+zmiennej DISPLAYMANAGER="gdm" nie znajduje się już w pliku
+<path>/etc/rc.conf</path>. Gdzie zatem należy jej teraz szukać?
 </p>
 
 <p>
-Do <path>/etc/conf.d/xdm</path>, aczkolwiek (jak napisano w 
-<path>/etc/conf.d/xdm</path>) ustawienie DISPLAYMANAGER w
-<path>/etc/rc.conf</path> nadpisuje to z <path>/etc/conf.d/xdm</path>.
+Teraz jest ona deklarowana w pliku <path>/etc/conf.d/xdm</path>, aczkolwiek (jak
+napisano zawartych w tym pliku komentarzach) ustawienie DISPLAYMANAGER w
+<path>/etc/rc.conf</path> powoduje nadpisanie wartości tej zmiennej.
 </p>
 
 <p>
-Mark podziękował wszystkim, którzy mu pomogli i zadeklarował się że będzie
-używał <path>/etc/conf.d/xdm</path> by być zgodnym z ideologią Gentoo.
+Mark podziękował wszystkim, którzy mu pomogli i stwierdził że będzie używał
+<path>/etc/conf.d/xdm</path> tak by być bardziej zgodnym z konwencjami
+istniejącymi w Gentoo.
 </p>
 
 <ul>
@@ -221,32 +240,34 @@ używał <path>/etc/conf.d/xdm</path> by być zgodnym z ideologią Gentoo.
 <!-- gentoo-dev -->
 <!-- gentoo-amd64 -->
 <section>
-<title>gentoo-amd64</title>
+<title>Lista dyskusyjna gentoo-amd64</title>
 <body>
 
 <p>
-<b>Interrupting portage gracefully</b>
+<b>Przerwanie pracy Portage</b>
 </p>
 
 <p>
-Peter Humphreys wanted to know if there was a command to make portage stop
-compiling at the end of the current package. He'd been running compiles
-overnight, but was bothered by the fan noise.
+Peter Humphreys chciał się dowiedzieć czy istnieje polecenie umożliwiające
+przerwanie kompilacji przez Portage, ale po skończeniu aktualnie instalowanego
+pakietu. Aktualizował on swój system w ciągu nocy, ale przeszkadzał mu odgłos
+pracujących wentylatorów.
 </p>
 
 <p>
-Christoph Mende suggested terminating the compile with Control-C and running
-<c>emerge --resume</c> the next day. Various readers proposed using suspend to
-disk or suspend to RAM and picking up right where you left off the next morning.
+Christoph Mende zasugerował skorzystanie z kombinacji klawiszy Control-C i
+następnego dnia użycie polecenia <c>emerge --resume</c>. Inni czytelnicy
+radzili, by uśpić komputer i obudzić go później co umożliwi kontynuację procesu
+aktualizacji.
 </p>
 
 <p>
-Peter Davoust uses <c>emerge [package] &amp;&amp; init 0</c>, although
-conceding it leaves the machine running if the package fails to compile. Others
-suggested <c>emerge [package] ; shutdown -h now</c>. This has the opposite
-problem to Peter's solution, since the machine will shutdown even if the
-package fails to compile. It thus requires review of logs in the morning to
-know whether the package was built or not.
+Peter Davoust używa polecenia <c>emerge [package] &amp;&amp; init 0</c>, jednak
+wskazuje że komputer pozostanie włączony w przypadku błędu kompilacji. Inni
+sugerowali możliwość skorzystania z <c>emerge [package] ; shutdown -h now</c>,
+jednak w tym przepadku mamy inny problem. Aby przekonać się że kompilacja
+została wykonania poprawnie należy po uruchomieniu komputera przeglądnąć
+odpowiednie logi.
 </p>
 
 <ul>
