@@ -133,7 +133,6 @@ współprace w zbliżającym się nowym roku.
 </section>
 </chapter>
 
-<!-- Developer of the Week -->
 <!-- Heard in the community -->
 <chapter>
 <title>Społeczność Gentoo</title>
@@ -146,16 +145,16 @@ współprace w zbliżającym się nowym roku.
 <body>
 
 <p>
-<b>[RFC] Add ALSA_CARDS to USE_EXPAND</b>
+<b>[RFC] Dodanie ALSA_CARDS do USE_EXPAND</b>
 </p>
 
 <p>
-Diego "Flameeyes" Pettenò noticed that the alsa-drivers package didn't have
-ALSA_CARDS as an USE-expanded variable. He tried it out and thought it looked
-fine.
+Diego "Flameeyes" Pettenò˛ zauważył, że pakiet alsa-drivers nie korzysta z
+funkcjonalności USE_EXPAND. Postanowił zmienić ten stan rzeczy i sądzi, że
+rezultat jest całkiem niezły.
 </p>
 
-<pre caption="Diego's Output">
+<pre caption="Wynik modyfikacji Diega">
 Calculating dependencies... done!
 [ebuild   R   ] media-sound/alsa-driver-1.0.14_pre20061130  USE="-debug -doc 
 oss" 
@@ -182,30 +181,34 @@ ALSA_CARDS="-ad1816a% -ad1848% -ad1848-lib% -ad1889% -adlib% -ali5451% -als100%
 </pre>
 
 <p>
-Diego asked if there was any reason he shouldn't implement this. Marius Mauch
-had no objection, so long as the default settings were sane. He indicated that
-he doubted the sanity of the above list of potential drivers.
+Diego zapytał, czy cokolwiek stoi na przeszkodzie przez zaimplementowaniem tej
+funkcjonalności w drzewie Portage. Marius Mauch stwierdził, że nie ma nic
+przeciwko temu, dopóki domyślne wartości zapewnią bezpieczne korzystanie z
+pakietu. Zauważył, że zaproponowane lista sterowników nie wydaje się zbyt
+rozsądna.
 </p>
 
 <p>
-Diego responded that by default, all drivers were built. To objections from
-Petteri Räty that it should, like other IUSE items, work in the opposite way
-(enabling nothing unless selected), Diego noted that there were some IUSE which
-enabled all by default (e.g., LINGUAS in small packages). In any event, after
-some back and forth, per-arch defaults were proposed:
+Diego odpowiedział, że w domyślnie wszystkie sterowniki będą budowane.  Petteri
+Räty zauważył, że będzie to niezgodne z obecną konwencją ustawiania tylko
+wskazanych przez użytkownika flag USE lub niczego, gdy żadna nie została
+wybrana. Diego stwierdził, że istnieją pakiety, które domyślnie włączają
+wszystkie flagi USE (np. zmienna LINGUAS w małych pakietach). Po
+przedyskutowaniu problemu, zaproponowano ustawienia domyślne zależne od
+architektury:
 </p>
 
-<pre caption="x86/amd64 defaults">
+<pre caption="Domyślne ustawienia dla x86/amd64">
 ali5451 atiixp atiixp-modem cmipci emu10k1 emu10k1x ens1370 ens1371 fm801 
 hda-intel intel8x0 intel8x0m maestro3 mpu401 usb-audio via82xx via82xx-modem
 </pre>
 
-<pre caption="ppc defaults">
+<pre caption="Domyślne ustawienia dla ppc">
 aoa aoa-fabric-layout aoa-onyx aoa-soundbus aoa-soundbus-i2s aoa-tas 
 aoa-toonie powermac usb-audio
 </pre>
 
-<pre caption="sparc defaults">
+<pre caption="Domyślne ustawienia dla sparc">
 sun-amd7930 sun-cs4231 sun-dbri
 </pre>
 
@@ -214,32 +217,33 @@ sun-amd7930 sun-cs4231 sun-dbri
 </ul>
 
 <p>
-<b>udev coldplugging and /etc/init.d/modules</b>
+<b>Podłączanie urządzeń przez udev, a plik /etc/init.d/modules</b>
 </p>
 
 <p>
-Sven Köhler was aggravated by the coldplugging functionality of udev-103. For
-years he had guaranteed the order of his interfaces by specifying the order of
-loading of the relevant modules in
-<path>/etc/modules.autoload.d/kernel-2.?</path>.
+Svena Köhlera zdenerwował mechanizm podłączania urządzeń w czasie uruchamiania
+systemu przez udev-103. Przez lata miał on zagwarantowaną kolejność pojawiania
+się w jego systemie urządzeń poprzez ustawianie odpowiedniej kolejności
+ładowania modułów w pliku <path>/etc/modules.autoload.d/kernel-2.?</path>.
 </p>
 
 <p>
-Stephen Bennet suggested that Sven use the MAC address of his network cards to
-create a udev rule to reliably name his interfaces. Sven wanted to learn more
-about using udev with network cards and Jean-François Gagnon Laporte directed
-him to <uri
-link="http://www.reactivated.net/writing_udev_rules.html#example-netif">the
-relevant portion of Daniel Drake's udev rules page</uri>.
+Stephen Bennet zasugerował, żeby Sven użył adresu MAC kart sieciowych do
+stworzenia reguł dla udev, które zapewnią odpowiednie nazwy dla urządzeń. Sven
+chciał dowiedzieć się więcej na temat używania udev z kartami sieciowymi, na co
+Jean-FranĂ§ois Gagnon Laporte skierował go do <uri
+link="http://www.reactivated.net/writing_udev_rules.html#example-netif">
+rozdziału dokumentu Daniela Drake'a dotyczącego tworzenia reguł w udev</uri>.
 </p>
 
 <p>
-Kernel hacker and father of udev Greg Kroah-Hartman also sprang to the defense
-of his brainchild. Sven would be best off using udev to specify the name of the
-interfaces. If he really wanted to remove udev from the equation, he could put
-the modules on udev's blacklist and load them by hand as he'd always done. If
-he were to adopt the latter course, he'd have to wait a bit as the blacklisting
-functionality was under repair.
+Zajmujący się od dawna pracami nad jądrem systemu, ojciec mechanizmu udev, Greg
+Kroah-Hartman, także włączył się w obronę swojego dzieła. Sven mógłby bez
+problemu używać udev do nazywania urządzeń w swoim systemie. Jeśli naprawdę
+zależy mu na pominięciu udeva w tym konkretnym przypadku, to zawsze może
+umieścić odpowiednie moduły na czarnej liście i ładować je ręcznie, jak to robił
+do tej pory. Jeśli jednak chciałby skorzystać z tej drugiej możliwości to musi
+zaczekać, jako że mechanizm czarnych list jest właśnie naprawiany.
 </p>
 
 <ul>
