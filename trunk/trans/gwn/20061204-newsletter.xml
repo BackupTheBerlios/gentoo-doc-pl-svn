@@ -262,78 +262,84 @@ zaczekać, jako że mechanizm czarnych list jest właśnie naprawiany.
 <!-- Gentoo in the press -->
 <!-- Tips and Tricks -->
 <chapter>
-<title>Tips and Tricks</title>
+<title>Sztuczki i kruczki</title>
 <section>
-<title>An easier way to update your world</title>
+<title>Łatwiejszy sposób na uaktualnianie systemu</title>
 <body>
 
 <p>
-Without doubt, one of Gentoo's best features is its package management system,
-Portage. Portage makes it very easy to update your entire system with one
-simple command.  Sadly, things don't always go as smooth as they should.
-Almost every Gentoo user has typed <c>emerge -uD world</c> and gone to bed
-with the hope of waking up in the morning to a completely up to date system.
-Unfortunately, it's more likely that you.ll wake up to a failed emerge on
-package 3 of 220.  And so the troubleshoot and <c>emerge --resume</c> process
-begins.
+Bez wątpienia jedną z największych zalet Gentoo jest jego system zarządzania
+pakietami, Portage. Dzięki niemu możemy uaktualnić w prosty sposób wszystkie
+pakiety wydając tylko jedno polecenie. Niestety, w praktyce nie zawsze
+wszystko idzie gładko. Większość z nas przynajmniej raz spotkała się z
+sytuacją, gdy idąc spać wpisywaliśmy <c>emerge -uD world</c> spodziewając
+się, że po przebudzeniu nasz system będzie już uaktualniony, lecz rano
+widzieliśmy błąd kompilacji przy 3. paczce z 220. I tak oto zaczynał się
+proces szukania błędów za pomocą polecenia <c>emerge --resume</c>.
 </p>
 
 <p>
-Enter update-world to save the day. Update-world is a bash script that was
-recently created by count_zero and <uri
-link="http://forums.gentoo.org/viewtopic-t-497125.html">posted</uri> in the
-forums. The script controls the update process and forces portage to skip past
-failed builds and continue compiling packages until the update list is
-finished. Failed builds are added to a list for review once the update is
-finished.
+Możemy sobie jednak ułatwić życie dzięki update-world. Update-world to
+skrypt napisany w bashu przez count_zero i <uri
+link="http://forums.gentoo.org/viewtopic-t-497125.html">udostępniony</uri>
+na forum Gentoo. Skrypt ten kontroluje proces uaktualnienia i zmusza Portage
+do pominięcia pakietów, które się nie kompilują, kontynuując proces
+uaktualniania aż do końca. Pakiety, które się nie skompilowały są dodawane
+do listy, którą można obejrzeć gdy tylko proces się zakończy.
 </p>
 
 <note>
-The script does depend on the 'equery' command, part of app-portage/gentoolkit.
+Skrypt wymaga obocności programu 'equery', który jest częścią pakietu
+app-portage/gentoolkit.
 </note>
 
 <p>
-Obviously before you can start using the script, you'll need to download it, 
-put it somewhere in your path, and make it executable.
+Oczywiście zanim zaczniemy używać skryptu, musimy go ściągnąć, umieścić w
+ścieżce systemowej i ustawić mu uprawnienia wykonywania się.
 </p>
 
-<pre caption="getting the script">
+<pre caption="pobieranie skryptu">
 # <i>wget -O /usr/bin/update-world http://countzero.amidal.com/files/update-world</i>
 # <i>chmod +x /usr/bin/update-world</i>
 </pre>
 
 <p>
-Now we're ready to start using the script.
+Teraz jesteśmy gotowi do działania.
 </p>
 
-<pre caption="running update-world">
+<pre caption="uruchamianie update-world">
 # <i>update-world --prepare</i>
 </pre>
 
 <p>
-This begins the update process by creating a list of packages to be emerged, 
-as produced by <c>emerge -uD --newuse world</c>. (Alternatively, you can use 
-<c>update-world --empty</c> to create a list of all packages on the system, 
-akin to <c>emerge -e world</c>). This command creates a list called 'emergelist'
-in ~/.update-world/. Now, you can use your favorite editor to modify this list 
-how you like--remove packages, change versions, etc. When you have the 
-emergelist how you like it, you're ready to move onto the next step:
+Powyższym poleceniem rozpoczynamy proces uaktualniania, generując listę
+pakietów, które mają zostać skompilowane. Lista ta będzie identyczna jak
+wynik polecenia <c>emerge -uD --newuse world</c>. (Zamiast tego możemy wydać
+polecenie <c>update-world --empty</c>, aby stworzyć listę wszystkich
+pakietów obecnych w systemie, podobnie do tego co wypisze <c>emerge -e
+world</c>. To polecenie tworzy listę o nazwie 'emergelist' w katalogu
+~/.update-world/. Możemy następnie dowolnie zmodyfikować tę listę używając
+ulubionego edytora -- usunąć pakiety, zmienić wersje, itd. Gdy lista wygląda
+już tak, jakbyśmy sobie tego życzyli, możemy przystąpić do kolejnej
+czynności:
 </p>
 
-<pre caption="running update-world (cont)">
+<pre caption="uruchamianie update-world (ciąg dalszy)">
 # <i>update-world --install</i>
 </pre>
 
 <p>
-This command actually starts the build process, just as if you had typed 
-emerge -uD world. The difference is, if a package fails for some reason or 
-another, that package is added to a list 'failedlist' in ~/.update-world/. 
-Also, a link to the portage log file for that package (usually located in 
-/var/log/portage) is created in ~/.update-world/[date]/log/. Once the process 
-is done, you'll be presented with a list of failed packages to take care of 
-all at once, saving much time.  If you ever need to stop the process, just hit 'Control-C' to abort the 
-process. The update can then be restarted at any time, just where it left off, 
-by retyping <c>update-world --install</c>.
+To polecenie rozpoczyna właściwy proces kompilacji, zupełnie jakbyśmy
+wpisali emerge -uD world. Różnica polega na tym, że jeśli kompilacja jednego
+pakietu zakończy się niepowodzeniem, pakiet ten zostanie dodany do listy
+'failedlist' w katalogu ~/.update-world/. Dodatkowo link do pliku z logiem
+Portage (zwykle znajdującego się w katalogu /var/log/portage) zostanie
+utworzony w katalogu ~/.update-world/[data]/log/. Gdy zakończy się cały
+proces kompilacji, naszym oczom ukaże się lista pakietów, które się nie
+skompilowały, dzięki czemu zaoszczędzimy czas. Zaś jeśli konieczne okazałoby
+się przerwanie kompilacji, wystarczy nacisnąć 'Control-C'. Możemy wówczas w
+każdej chwili wznowić uaktualnianie systemu od miejsca, w którym on się
+skończył, pisząc ponownie <c>update-world --install</c>.
 </p>
 
 </body>
