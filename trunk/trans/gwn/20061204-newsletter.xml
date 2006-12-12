@@ -48,21 +48,22 @@
 <body>
 
 <p>
-Czekałeś w długiej kolejce, tylko 36 godzin, unikając latających wkoło kul i
-uzbrojonych rzezimieszków by dostać nową i lśniącą Playstation 3. Tylko co teraz
-z nią zrobić? Oczywiście zainstalować na niej Gentoo Linux!
+Więc czekałeś tylko 36 godzin w długiej kolejce, unikając latających wkoło kul i
+panoszących się rzezimieszków by dostać nową i lśniącą konsolę Playstation 3.
+Tylko co teraz z nią zrobić? Oczywiście zainstalować na niej Gentoo Linux!
 </p>
 
 <p>
 Wiele osób pracowało nad uruchomianiem Gentoo na ich własnych egzemplarzach PS3.
-Każdego zainteresowanego jak można samemu tego dokonać zachęcamy do
+Każdego zainteresowanego, w jaki sposób można samemu tego dokonać, zachęcamy do
 przeglądnięcia opublikowanych <uri
 link="http://whitesanjuro.googlepages.com/">instrukcji</uri>. Autor opisuje co
 jest potrzebne jeszcze przed samym rozpoczęciem procesu instalacji i przedstawia
-samą procedurę. Można zobaczyć przykładowe obrazki przedstawiające rozruch <uri
+samą procedurę. Można również zobaczyć przykładowe obrazki przedstawiające
+rozruch <uri
 link="http://picasaweb.google.com/whitesanjuro/Ps3DayOne/photo#4998546376786706450">
 Gentoo Linux PPC64 InstallCD</uri> oraz samego <uri
-link="http://picasaweb.google.com/whitesanjuro/Ps3DayTwo/photo#4998878606740422674">systemu</uri>
+link="http://picasaweb.google.com/whitesanjuro/Ps3DayTwo/photo#4998878606740422674">systemu</uri>,
 już po instalacji.
 </p>
 
@@ -92,7 +93,7 @@ zapisać się już dziś!
 <p>
 Lista uczestników i projektów które będzie można zobaczyć znajduje się pod
 adresem <uri>http://socallinuxexpo.com/scale5x/exhibitions.php</uri>. Oczywiście
-Gentoo Linux będzie jednym z nich. Zachęcamy do zapisów i wsparcia dla naszych
+Gentoo Linux będzie jednym z nich. Zachęcamy do zapisów i wsparcia naszych
 deweloperów w czasie trwania imprezy!
 </p>
 
@@ -113,11 +114,11 @@ na ten temat dostępne są na stronie
 <p>
 W piętek, 17 listopada, George Prowse, bardziej znany jako cokehabit, opuścił
 projekt Gentoo User Relations i dotychczas piastowane stanowisko Reprezentanta
-Użytkowników. Niestety pomimo nadziei wielu osób okazało się, że niezbyt pasował
-do objętej przez niego roli i zdecydowano rozpoczęciu poszukiwania nowego
-kandydata na to stanowisko. Chcemy podziękować George'owi za jego ciężko pracę i
-poświęcony czas na rzecz Gentoo, życzymy mu jak najlepiej w jego przyszłych
-przedsięwzięciach.
+Użytkowników. Niestety pomimo pokładanych przez wiele osób nadziei okazało się,
+że niezbyt pasował on do objętej przez niego roli i zdecydowano się na
+rozpoczęciu poszukiwania nowego kandydata na to stanowisko. Chcemy podziękować
+George'owi za jego ciężko pracę i poświęcony czas na rzecz Gentoo, życzymy mu
+jak najlepiej w jego przyszłych przedsięwzięciach.
 </p>
 
 <p>
@@ -189,13 +190,13 @@ rozsądna.
 </p>
 
 <p>
-Diego odpowiedział, że w domyślnie wszystkie sterowniki będą budowane.  Petteri
+Diego odpowiedział, że w domyślnie wszystkie sterowniki będą budowane. Petteri
 Räty zauważył, że będzie to niezgodne z obecną konwencją ustawiania tylko
 wskazanych przez użytkownika flag USE lub niczego, gdy żadna nie została
 wybrana. Diego stwierdził, że istnieją pakiety, które domyślnie włączają
-wszystkie flagi USE (np. zmienna LINGUAS w małych pakietach). Po
-przedyskutowaniu problemu, zaproponowano ustawienia domyślne zależne od
-architektury:
+wszystkie flagi USE (np. zmienna LINGUAS w przypadku niektórych małych
+aplikacji). Po przedyskutowaniu problemu, zaproponowano ustawienia domyślne
+zależne od architektury:
 </p>
 
 <pre caption="Domyślne ustawienia dla x86/amd64">
@@ -231,7 +232,7 @@ się w jego systemie urządzeń poprzez ustawianie odpowiedniej kolejności
 Stephen Bennet zasugerował, żeby Sven użył adresu MAC kart sieciowych do
 stworzenia reguł dla udev, które zapewnią odpowiednie nazwy dla urządzeń. Sven
 chciał dowiedzieć się więcej na temat używania udev z kartami sieciowymi, na co
-Jean-FranĂ§ois Gagnon Laporte skierował go do <uri
+Jean-François Gagnon Laporte skierował go do <uri
 link="http://www.reactivated.net/writing_udev_rules.html#example-netif">
 rozdziału dokumentu Daniela Drake'a dotyczącego tworzenia reguł w udev</uri>.
 </p>
@@ -270,76 +271,77 @@ zaczekać, jako że mechanizm czarnych list jest właśnie naprawiany.
 <p>
 Bez wątpienia jedną z największych zalet Gentoo jest jego system zarządzania
 pakietami, Portage. Dzięki niemu możemy uaktualnić w prosty sposób wszystkie
-pakiety wydając tylko jedno polecenie. Niestety, w praktyce nie zawsze
-wszystko idzie gładko. Większość z nas przynajmniej raz spotkała się z
-sytuacją, gdy idąc spać wpisywaliśmy <c>emerge -uD world</c> spodziewając
-się, że po przebudzeniu nasz system będzie już uaktualniony, lecz rano
-widzieliśmy błąd kompilacji przy 3. paczce z 220. I tak oto zaczynał się
-proces szukania błędów za pomocą polecenia <c>emerge --resume</c>.
+pakiety wydając tylko jedno polecenie. Niestety, w praktyce nie zawsze wszystko
+idzie gładko. Większość z nas przynajmniej raz spotkała się z sytuacją, gdy idąc
+spać wpisywaliśmy <c>emerge -uD world</c> spodziewając się, że po przebudzeniu
+nasz system będzie już uaktualniony, lecz rano widzieliśmy błąd kompilacji przy
+trzecim pakiecie z 220. I tak oto zaczynał się proces szukania błędów za pomocą
+polecenia <c>emerge --resume</c>.
 </p>
 
 <p>
-Możemy sobie jednak ułatwić życie dzięki update-world. Update-world to
-skrypt napisany w bashu przez count_zero i <uri
-link="http://forums.gentoo.org/viewtopic-t-497125.html">udostępniony</uri>
-na forum Gentoo. Skrypt ten kontroluje proces uaktualnienia i zmusza Portage
-do pominięcia pakietów, które się nie kompilują, kontynuując proces
-uaktualniania aż do końca. Pakiety, które się nie skompilowały są dodawane
-do listy, którą można obejrzeć gdy tylko proces się zakończy.
+Możemy sobie jednak ułatwić życie dzięki update-world. Jest to skrypt napisany w
+bashu przez count_zero i <uri
+link="http://forums.gentoo.org/viewtopic-t-497125.html">udostępniony</uri> na
+forum Gentoo. Skrypt ten kontroluje proces uaktualnienia i zmusza Portage do
+pominięcia pakietów, które się nie kompilują, kontynuując proces uaktualniania
+aż do samego końca. Pakiety, które się nie skompilowały są dodawane do listy,
+którą można obejrzeć gdy tylko proces się zakończy.
 </p>
 
 <note>
-Skrypt wymaga obocności programu 'equery', który jest częścią pakietu
-app-portage/gentoolkit.
+Do poprawnego działania skrypt wymaga programu 'equery', który jest częścią
+pakietu app-portage/gentoolkit.
 </note>
 
 <p>
 Oczywiście zanim zaczniemy używać skryptu, musimy go ściągnąć, umieścić w
-ścieżce systemowej i ustawić mu uprawnienia wykonywania się.
+ścieżce systemowej i ustawić odpowiednie uprawnienia.
 </p>
 
-<pre caption="pobieranie skryptu">
+<pre caption="Pobieranie skryptu">
 # <i>wget -O /usr/bin/update-world http://countzero.amidal.com/files/update-world</i>
 # <i>chmod +x /usr/bin/update-world</i>
 </pre>
 
 <p>
-Teraz jesteśmy gotowi do działania.
+Teraz jesteśmy już gotowi do działania.
 </p>
 
-<pre caption="uruchamianie update-world">
+<pre caption="Przygotowanie aktualizacji systemu">
 # <i>update-world --prepare</i>
 </pre>
 
 <p>
-Powyższym poleceniem rozpoczynamy proces uaktualniania, generując listę
-pakietów, które mają zostać skompilowane. Lista ta będzie identyczna jak
-wynik polecenia <c>emerge -uD --newuse world</c>. (Zamiast tego możemy wydać
-polecenie <c>update-world --empty</c>, aby stworzyć listę wszystkich
-pakietów obecnych w systemie, podobnie do tego co wypisze <c>emerge -e
-world</c>. To polecenie tworzy listę o nazwie 'emergelist' w katalogu
-~/.update-world/. Możemy następnie dowolnie zmodyfikować tę listę używając
-ulubionego edytora -- usunąć pakiety, zmienić wersje, itd. Gdy lista wygląda
-już tak, jakbyśmy sobie tego życzyli, możemy przystąpić do kolejnej
-czynności:
+Powyższym poleceniem rozpoczynamy proces aktualizacji systemu, wygenerowana
+zostanie lista pakietów, które zostaną skompilowane.  Będzie ona identyczna z
+rezultatem otrzymanym dzięki <c>emerge -uD --newuse world</c>. (Można także
+skorzystać z polecenia <c>update-world --empty</c>, aby stworzyć listę
+wszystkich pakietów obecnych w systemie. Wynik będzie analogiczny jak w
+przypadku <c>emerge -e world</c>). W rezultacie, w katalogu ~/.update-world/,
+zostanie stworzony plik 'emergelist' zawierający listę pakietów, które mają
+zostać zaktualizowane. Używając ulubionego edytora możemy zmodyfikować tą listę
+-- usuwając pakiety, zmieniając wersje, itd. Po wprowadzeniu wszystkich zmian
+czas na rozpoczęcie procesu aktualizacji:
 </p>
 
-<pre caption="uruchamianie update-world (ciąg dalszy)">
+<pre caption="Aktualizacja systemu">
 # <i>update-world --install</i>
 </pre>
 
 <p>
-To polecenie rozpoczyna właściwy proces kompilacji, zupełnie jakbyśmy
-wpisali emerge -uD world. Różnica polega na tym, że jeśli kompilacja jednego
-pakietu zakończy się niepowodzeniem, pakiet ten zostanie dodany do listy
-'failedlist' w katalogu ~/.update-world/. Dodatkowo link do pliku z logiem
-Portage (zwykle znajdującego się w katalogu /var/log/portage) zostanie
-utworzony w katalogu ~/.update-world/[data]/log/. Gdy zakończy się cały
-proces kompilacji, naszym oczom ukaże się lista pakietów, które się nie
-skompilowały, dzięki czemu zaoszczędzimy czas. Zaś jeśli konieczne okazałoby
-się przerwanie kompilacji, wystarczy nacisnąć 'Control-C'. Możemy wówczas w
-każdej chwili wznowić uaktualnianie systemu od miejsca, w którym on się
-skończył, pisząc ponownie <c>update-world --install</c>.
+Wydając powyższe polecenie rozpoczynamy właściwy proces kompilacji, analogicznie
+jak w przypadku użycia emerge -uD world. Różnica polega na tym, że jeśli
+kompilacja jednego pakietu zakończy się niepowodzeniem, to zostanie on dodany
+do pliku 'failedlist' znajdującego się w katalogu ~/.update-world/. Dodatkowo
+dowiązanie symboliczne do pliku z logiem Portage (zwykle znajdującego się w
+katalogu /var/log/portage) zostanie utworzony w katalogu
+~/.update-world/[data]/log/. Gdy zakończy się cały proces kompilacji na ekranie
+zostanie przedstawiona lista pakietów, które nie zostały skompilowane. Z
+pewnością pozwoli to zaoszczędzić sporo czasu. Jeśli konieczne okazałoby się
+przerwanie kompilacji, wystarczy nacisnąć 'Control-C'. Aby wznowić aktualizację
+systemu od miejsca, w którym została on przerwana wystarczy skorzystać ponownie
+z polecenia <c>update-world --install</c>.
 </p>
 
 </body>
