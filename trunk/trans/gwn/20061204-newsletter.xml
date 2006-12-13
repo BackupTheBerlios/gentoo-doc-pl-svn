@@ -270,13 +270,13 @@ zaczekać, jako że mechanizm czarnych list jest właśnie naprawiany.
 
 <p>
 Bez wątpienia jedną z największych zalet Gentoo jest jego system zarządzania
-pakietami, Portage. Dzięki niemu możemy uaktualnić w prosty sposób wszystkie
+pakietami, Portage. Dzięki niemu możemy w prosty sposób uaktualnić wszystkie
 pakiety wydając tylko jedno polecenie. Niestety, w praktyce nie zawsze wszystko
 idzie gładko. Większość z nas przynajmniej raz spotkała się z sytuacją, gdy idąc
 spać wpisywaliśmy <c>emerge -uD world</c> spodziewając się, że po przebudzeniu
-nasz system będzie już uaktualniony, lecz rano widzieliśmy błąd kompilacji przy
-trzecim pakiecie z 220. I tak oto zaczynał się proces szukania błędów za pomocą
-polecenia <c>emerge --resume</c>.
+nasz system będzie już uaktualniony, lecz rano naszym oczom ukazał się błąd
+kompilacji przy trzecim pakiecie z 220. I tak oto zaczynał się proces szukania
+błędów za pomocą polecenia <c>emerge --resume</c>.
 </p>
 
 <p>
@@ -284,18 +284,18 @@ Możemy sobie jednak ułatwić życie dzięki update-world. Jest to skrypt napis
 bashu przez count_zero i <uri
 link="http://forums.gentoo.org/viewtopic-t-497125.html">udostępniony</uri> na
 forum Gentoo. Skrypt ten kontroluje proces uaktualnienia i zmusza Portage do
-pominięcia pakietów, które się nie kompilują, kontynuując proces uaktualniania
-aż do samego końca. Pakiety, które się nie skompilowały są dodawane do listy,
-którą można obejrzeć gdy tylko proces się zakończy.
+pominięcia pakietów, które się nie kompilują, kontynuując proces aktualizacji
+systemu aż do samego końca. Pakiety, które się nie skompilowały są dodawane do
+listy, którą można obejrzeć gdy tylko proces się zakończy.
 </p>
 
 <note>
-Do poprawnego działania skrypt wymaga programu 'equery', który jest częścią
+Do poprawnego działania skrypt wymaga programu 'equery', będącego częścią
 pakietu app-portage/gentoolkit.
 </note>
 
 <p>
-Oczywiście zanim zaczniemy używać skryptu, musimy go ściągnąć, umieścić w
+Oczywiście zanim zaczniemy używać skryptu, musimy go wpierw ściągnąć, umieścić w
 ścieżce systemowej i ustawić odpowiednie uprawnienia.
 </p>
 
@@ -313,8 +313,8 @@ Teraz jesteśmy już gotowi do działania.
 </pre>
 
 <p>
-Powyższym poleceniem rozpoczynamy proces aktualizacji systemu, wygenerowana
-zostanie lista pakietów, które zostaną skompilowane.  Będzie ona identyczna z
+Powyższym poleceniem rozpoczynamy proces aktualizacji systemu. Wygenerowana
+zostanie lista pakietów, które zostaną skompilowane. Będzie ona identyczna z
 rezultatem otrzymanym dzięki <c>emerge -uD --newuse world</c>. (Można także
 skorzystać z polecenia <c>update-world --empty</c>, aby stworzyć listę
 wszystkich pakietów obecnych w systemie. Wynik będzie analogiczny jak w
@@ -332,16 +332,17 @@ czas na rozpoczęcie procesu aktualizacji:
 <p>
 Wydając powyższe polecenie rozpoczynamy właściwy proces kompilacji, analogicznie
 jak w przypadku użycia emerge -uD world. Różnica polega na tym, że jeśli
-kompilacja jednego pakietu zakończy się niepowodzeniem, to zostanie on dodany
-do pliku 'failedlist' znajdującego się w katalogu ~/.update-world/. Dodatkowo
-dowiązanie symboliczne do pliku z logiem Portage (zwykle znajdującego się w
-katalogu /var/log/portage) zostanie utworzony w katalogu
-~/.update-world/[data]/log/. Gdy zakończy się cały proces kompilacji na ekranie
-zostanie przedstawiona lista pakietów, które nie zostały skompilowane. Z
-pewnością pozwoli to zaoszczędzić sporo czasu. Jeśli konieczne okazałoby się
-przerwanie kompilacji, wystarczy nacisnąć 'Control-C'. Aby wznowić aktualizację
-systemu od miejsca, w którym została on przerwana wystarczy skorzystać ponownie
-z polecenia <c>update-world --install</c>.
+kompilacja jednego pakietu zakończy się niepowodzeniem, to zostanie on dodany do
+pliku 'failedlist' znajdującego się w katalogu ~/.update-world/. Dodatkowo
+zostanie także stworzone dowiązanie symboliczne do pliku z logiem Portage
+(zwykle znajdującego się w katalogu /var/log/portage) i będzie ono znajdować się
+w katalogu ~/.update-world/[data]/log/. Gdy cały proces kompilacji zostanie
+zakończony na ekranie zostanie przedstawiona lista pakietów, które nie zostały
+skompilowane. Z pewnością pozwoli to na zaoszczędzenie sporej ilości czasu.
+Jeśli konieczne okazałoby się przerwanie kompilacji, wystarczy nacisnąć
+'Control-C'. Aby wznowić aktualizację systemu od miejsca, w którym została on
+przerwana wystarczy skorzystać ponownie z polecenia <c>update-world
+--install</c>.
 </p>
 
 </body>
