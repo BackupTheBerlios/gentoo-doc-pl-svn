@@ -12,54 +12,43 @@ regexps = (
 
 (r'<guide type="newsletter" link="([^"]*)" lang="en">',
  r'<guide type="newsletter" link="\1" lang="pl">'),
-
 (r'<title>Gentoo Weekly Newsletter</title>',
  r'<title>Tygodnik Gentoo</title>'),
-
 (r'<author title="Editor">',
  r'<author title="Redaktor naczelny">'),
-
 (r'<author title="Author">',
  r'<author title="Redaktor">'),
-
 (r'<version>Volume (\d*), Issue (\d*)</version>',
  r'<version>Wolumin \1, numer \2</version>'),
-
 (r'<abstract>This is the Gentoo Weekly Newsletter for the week of ([^.]*).</abstract>',
  r'<abstract>Wydanie Tygodnika Gentoo z \1.</abstract>'),
 
 # chapters
 
-(r'<title>Gentoo news</title>',
+(r'<title>Gentoo [Nn]ews</title>',
  r'<title>Wiadomości Gentoo</title>'),
-
 (r'<title>Heard in the community</title>',
  r'<title>Społeczność Gentoo</title>'),
-
 (r'<title>Gentoo International</title>',
  r'<title>Międzynarodowe Gentoo</title>'),
-
 (r'<title>Gentoo in the press</title>',
  r'<title>Gentoo w prasie</title>'),
-
+(r'<title>Tips and Tricks</title>',
+ r'<title>Sztuczki i kruczki</title>'),
 (r'<title>Gentoo developer moves</title>',
  r'<title>Zmiana statusu deweloperów Gentoo</title>'),
-
 (r'<title>Gentoo security</title>',
  r'<title>Bezpieczeństwo Gentoo</title>'),
-
+(r'<title>Gentoo package moves</title>',
+ r'<title>Zmiany w drzewie Portage</title>'),
 (r'<title>Upcoming package removals</title>',
  r'<title>Pakiety przewidziane do usunięcia</title>'),
-
 (r'<title>Bugzilla</title>',
  r'<title>Bugzilla</title>'),
-
 (r'<title>GWN feedback</title>',
  r'<title>Opinie czytelników</title>'),
-
 (r'<title>GWN subscription information</title>',
  r'<title>Subskrypcja Tygodnika Gentoo</title>'),
-
 (r'<title>Other languages</title>',
  r'<title>Inne języki</title>'),
 
@@ -88,14 +77,16 @@ regexps = (
 ## Gentoo developer moves
 (r'<title>Moves</title>',
  r'<title>Odeszli</title>'),
-
 (r'<title>Adds</title>',
  r'<title>Przybyli</title>'),
-
 (r'<title>Changes</title>',
  r'<title>Zmienili status</title>'),
 
-## Upcoming package removals
+## Gentoo package moves
+(r'<title>Additions:</title>',
+ r'<title>Nowe pakiety:</title>'),
+(r'<title>Removals:</title>',
+ r'<title>Usunięte pakiety:</title>'),
 (r'<title>Last Rites:</title>',
  r'<title>Ostatnie namaszczenie:</title>'),
 
@@ -129,18 +120,35 @@ Linux funkcję:'''),
 (r'<li><e>none this week</e></li>',
  r'<li><e>Nikt w tym tygodniu</e></li>'),
 
-## Upcoming package removals
+## Gentoo package moves
 (r'''<p>
-This is a list of packages that have been announced to be removed in the
-future. The package removals come from many locations, including the <uri
-link="/proj/en/qa/treecleaners">Treecleaners</uri> and various developers.
+This section lists packages that have either been moved or added to the tree
+and packages that have had their "last rites" announcement given to be removed
+in the future. The package removals come from many locations, including the <uri
+link="/proj/en/qa/treecleaners">Treecleaners</uri> and various developers. Most
+packages which are listed under the Last Rites section are in need of some love
+and care and can remain in the tree if proper maintainership is established.
 </p>''',
  r'''<p>
-Poniżej można znaleźć listę pakietów, które zostaną w najbliższym czasie
-usunięte z drzewa Portage. Informacje te pochodzą z różnych źródeł, włączając
-projekt <uri link="/proj/en/qa/treecleaners">Treecleaners</uri> oraz zgłoszenia
-od poszczególnych deweloperów.
+Poniżej znajduje się lista pakietów, które zostały usunięte lub dodane do drzewa
+Portage w ostatnim czasie oraz lista przedstawiająca plany dotyczące usunięcia
+kolejnych pakietów w przyszłości. Informacje te pochodzą z różnych źródeł,
+włączając projekt <uri link="/proj/en/qa/treecleaners">Treecleaners</uri> oraz
+zgłoszenia od poszczególnych deweloperów. Większość pakietów, które można
+znaleźć w części Ostatnie Namaszczenie wymaga jedynie miłości i opieki ze strony
+deweloperów. W przypadku znalezienia nowego opiekuna ich los z pewnością ulegnie
+poprawie i pozostaną one w oficjalnym drzewie Portage.
 </p>'''),
+(r'''<tr>
+<th>Package:</th>
+<th>Addition date:</th>
+<th>Contact:</th>
+</tr>''',
+ r'''<tr>
+  <th>Pakiet:</th>
+  <th>Data dodania:</th>
+  <th>Kontakt:</th>
+</tr>'''),
 (r'''<tr>
 <th>Package:</th>
 <th>Removal date:</th>
@@ -150,6 +158,28 @@ od poszczególnych deweloperów.
   <th>Pakiet:</th>
   <th>Data usunięcia:</th>
   <th>Kontakt:</th>
+</tr>'''),
+(r'''
+<tr>
+<ti><uri link=([^>]*)>([^<]*)</uri></ti>
+<ti>([^<]*)</ti>
+<ti><mail link=([^>]*)>([^<]*)</mail></ti>
+</tr>''',
+ r'''<tr>
+  <ti><uri link=\1>\2</uri></ti>
+  <ti>\3</ti>
+  <ti><mail link=\4>\5</mail></ti>
+</tr>'''),
+(r'''
+<tr>
+<ti>([^<]*)</ti>
+<ti>([^<]*)</ti>
+<ti><mail link=([^>]*)>([^<]*)</mail></ti>
+</tr>''',
+ r'''<tr>
+  <ti>\1</ti>
+  <ti>\2</ti>
+  <ti><mail link=\3>\4</mail></ti>
 </tr>'''),
 
 ## Bugzilla
@@ -305,7 +335,20 @@ Tygodnik Gentoo jest dostępny w następujących językach:
   <li><uri link="/news/sk/gwn/gwn.xml">słowackim</uri></li>
   <li><uri link="/news/tr/gwn/gwn.xml">tureckim</uri></li>
   <li><uri link="/news/it/gwn/gwn.xml">włoskim</uri></li>
-</ul>''')
+</ul>'''),
+
+# other
+
+# dates
+# process days
+(r'0?(\d) (Jan|January|Feb|February) (\d{2}|\d{4})',r'\1 \2 \3'),
+(r'([12]\d|3[01]) (Jan|January|Feb|February) (\d{2}|\d{4})',r'\1 \2 \3'),
+# process years
+(r'(\d|[12]\d|3[01]) (Jan|January|Feb|February) ([89]\d)',r'\1 \2 19\3'),
+(r'(\d|[12]\d|3[01]) (Jan|January|Feb|February) ([01]\d)',r'\1 \2 20\3'),
+# process months
+(r'(\d|[12]\d|3[01]) (Jan|January) (\d{4})',r'\1 stycznia \3'),
+(r'(\d|[12]\d|3[01]) (Feb|February) (\d{4})',r'\1 lutego \3'),
 
 )
 
