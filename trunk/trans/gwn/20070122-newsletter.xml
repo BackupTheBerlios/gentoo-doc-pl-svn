@@ -190,21 +190,21 @@ komputera to fluxbox, rxvt, irssi, gajim, audacious, vim, azureus i gaim.
 <p>
 <mail link="eroyf@gentoo.org">Alexander Færøy</mail>, jeden z współpracowników
 projektu <uri link="http://www.paludis.org">Paludis</uri> opisał w kolejnym
-wpisie ze swojego bloga nową inicjatywę, <uri>http://planetpaludis.org</uri>.
-Dla wszystkich osób żyjących w innym świecie przypomnimy, Paludis jest
-nadchodzącą alternatywą dla Portage napisaną w całości w języku C++, stworzoną z
-myślą o wydajności, uelastycznieniu możliwości konfiguracji, oraz zapewniającą
-wiele funkcjonalności o które już wielokrotnie proszono deweloperów
-<c>Portage</c>. Planeta Paludis będzie odświeżana co 30 minut, tak by zapewnić
-społeczności jak najświeższe i szybkie źródło informacji.
+wpisie w swoim blogu nową inicjatywę, <uri>http://planetpaludis.org</uri>.  Dla
+wszystkich osób żyjących w innym świecie przypomnimy, Paludis jest nadchodzącą
+alternatywą dla Portage, napisaną w całości w języku C++, stworzoną z myślą o
+wydajności, uelastycznieniu konfiguracji oraz zapewniającą wiele funkcjonalności
+o które już wielokrotnie proszono deweloperów <c>Portage</c>. Planeta Paludis
+będzie odświeżana co 30 minut, tak by zapewnić społeczności jak najświeższe i
+szybkie źródło informacji o postępach deweloperów.
 </p>
 
 <p>
 Większość deweloperów menadżera pakietów Paludis jest także deweloperami Gentoo,
 z tego powodu <mail link="kugelfang@gentoo.org">Danny Van Dyk</mail> na
 zbliżającej się imprezie <uri link="http://www.fosdem.org">FOSDEM 2007</uri>
-przedstawi cele projektu. W trakcie prezentacji będzie można usłyszeć w jaki
-sposób można uprościć opiekę nad pakietami wchodzącymi w skład podstawowej
+przedstawi cele projektu. W trakcie prezentacji będzie można także usłyszeć w
+jaki sposób można uprościć opiekę nad pakietami wchodzącymi w skład podstawowej
 instalacji Gentoo Linux.
 </p>
 
@@ -220,38 +220,45 @@ instalacji Gentoo Linux.
 <body>
 
 <p>
-<b>Suggestions for a minimalistic system</b>
+<b>Sugestie na minimalny system</b>
 </p>
 
 <p>
-Vlad Dogaru was trying to create a minimalistic system to run on an older
-computer with 384MB of RAM. He was considering switching to Ratpoison as a
-window manager. Also, he was looking for a replacement for Firefox, but his
-experiments with <c>Conkeror</c> and <c>links</c> had proved unsatisfactory, as
-the former was too <c>emacs</c>-oriented and the latter lacked tabs.
+Vlad Dogaru próbował stworzyć minimalny system tak, by móc go uruchomić na
+starszym komputerze wyposażonym w 384MB RAM-u. Zastanawiał się na zastosowaniem
+menadżera okien Ratpoison oraz poszukiwał jakiegoś zamiennika dla Firefoxa.
+Niestety eksperymenty z <c>Conkerorem</c> i <c>linksem</c> nie powiodły się,
+jako że ten pierwszy był zbyt podobny do <c>emacsa</c>, natomiast drugi nie
+posiadał kart.
 </p>
 
 <p>
-Readers were unfamiliar with <uri
-link="http://conkeror.mozdev.org/">Conkeror</uri>, an offshoot of Firefox with
-keyboard-only navigation modelled after <c>emacs</c>. Some confused it with KDE's
-Konqueror. Others, while interested in the project, noted that, with or without
-a minimalistic interface, Conkeror was still Firefox under the hood, and as big
-of a memory hog as Firefox.
+Większość osób nie słyszała nigdy o <uri
+link="http://conkeror.mozdev.org/">Conkerorze</uri>, przeglądarce bazującej na
+Firefoxie, której główną cechą jest możliwość nawigacji z użyciem wyłącznie
+klawiatury i skrótów wzorowanych na tych z <c>emacsa</c>. Niektórzy byli trochę
+zdezorientowali i myśleli, że chodzi o przeglądarkę ze środowiska KDE,
+Konqueror. Inni, słysząc o tym projekcie wykazali zainteresowanie i chęć jego
+przetestowaniem, jednak wskazali, że pomimo minimalistycznego interfejsu pod
+maską dalej znajduje się Firefox, który ma dość duże wymagania sprzętowe.
 </p>
 
 <p>
-Readers suggested using Dillo, which is both lightweight and has tabs. Dillo has
-the disadvantage (if it is one) of not running Flash and having primitive
-Javascript capabilities. Others suggested Opera, which, while not free/libre
-software, was fast and tabbed.
+Autorowi wątku zasugerowano przetestowanie Dillo, lekkiej przeglądarki
+wyposażonej w karty. Nie jest ona oczywiście pozbawiona wad, wśród nich można
+wymienić (jeśli to wada) niemożność uruchomienia animacji Flash oraz ubogą
+obsługę języka Javascript. Inni próbowali przekonać to Opery, pomimo tego że ta
+przeglądarka nie jest wolnym oprogramowaniem, to z pewnością jest szybka i
+udostępnia użytkownikowi możliwość skorzystania z kart.
 </p>
 
 <p>
-Window manager suggestions included evilwm, pekwm, XFCE and, oddly, KDE. The
-point was made that use of an integrated environment, be it KDE or Gnome, can
-be more efficient since the apps share libraries. Issues arise only when one
-tries to mix and match KDE and Gnome and wind up loading both sets of libraries.
+Wśród propozycji na menadżera plików przewinęło się wiele propozycji włączając
+evilwm, pewm, XFCE oraz co ciekawe KDE. Jako główny argument za tym ostatnim
+podano integrację całego środowiska, czy to KDE, czy Gnome, które w bardziej
+wydajny sposób korzysta z wspólnych bibliotek. Problemy pojawiają się wtedy, gdy
+użytkownik chce skorzystać jednocześnie z obu tych środowisk, co wymusza
+załadowanie dwóch różnych zestawów bibliotek.
 </p>
 
 <ul>
@@ -275,14 +282,17 @@ tries to mix and match KDE and Gnome and wind up loading both sets of libraries.
 <body>
 
 <p>
-Last week, a few Gentoo developers attended the Linux Conference in Sydney,
-Australia.  Attending devs were: <mail link="dostrow@gentoo.org">Daniel
-Ostrow</mail>, <mail link="mark_alec@gentoo.org">Mark Kowarsky</mail>, <mail
-link="pingu@gentoo.org">Christian Marie</mail> and <mail
-link="dragonheart@gentoo.org">Daniel Black</mail>. Though they didn't have a
-booth, they did have a great time. The most fascinating talks were: Keith
-Packard's talk on <b>RandR</b>, Andrew Cowie's and Madely's talk on <b>GTK+
-programming</b> and Chris Blizzard's talk on <b>OLPC</b>.
+W ostatnim tygodniu kilku deweloperów Gentoo uczestniczyło w konferencji Linux
+Conference w Sydney. Wśród nich znaleźli się <mail
+link="dostrow@gentoo.org">Daniel Ostrow</mail>, <mail
+link="mark_alec@gentoo.org">Mark Kowarsky</mail>, <mail
+link="pingu@gentoo.org">Christian Marie</mail> oraz <mail
+link="dragonheart@gentoo.org">Daniel Black</mail>. Pomimo tego, że nie stworzono
+dla Gentoo żadnego stoiska to przyjemnie spędzili czas. Wśród najciekawszych
+prezentacji wymienić można tę poprowadzone przez Keitha Packarda dotyczącą
+rozszerzenia <b>RandR</b>, wprowadzenie do <b>programowania w GTK+</b>
+wygłoszone przez Andrew Cowie'a i Madely'a oraz wykład Chrisa Blizzarda
+opisujący <b>OLPC</b>.
 </p>
 
 <ul>
@@ -290,9 +300,10 @@ programming</b> and Chris Blizzard's talk on <b>OLPC</b>.
 </ul>
 
 <p>
-Besides the talks, there were many interesting things going on for attendees.
-Gentoo users, unlike the other distributions, weren't given chairs, but instead
-got a box full of chair parts and got to build their own!
+Oprócz samych prezentacji w czasie imprezy działo się także wiele innych rzeczy.
+Na użytkowników Gentoo czekała niespodzianka, zamiast gotowych krzesełek
+otrzymali oni pudła z samymi częściami tak, by mogli zbudować siedzenia
+własnoręcznie, oczywiście dostosowując je do własnych potrzeb!
 </p>
 
 <ul>
