@@ -39,41 +39,43 @@
 <chapter>
 <title>Wiadomości Gentoo</title>
 <section>
-<title>KDE team needs your help</title>
+<title>Zespół KDE potrzebuje pomocy</title>
 <body>
 
 <p>
-Due to inactivity and other responsibilities within Gentoo's <uri
-link="/proj/en/desktop/kde">KDE team</uri>, they are currently seeking out new
-recruits from the community. Interested parties who are currently developers
-can add themselves to the herd and start squashing bugs. Interested members of
-the community can also help. If you want to help out, contact the <mail
-link="kde@gentoo.org">KDE team</mail> for more information.
+W związku z pewnym okresem nieaktywności oraz natłokiem innych zadań w obrębie
+Gentoo, <uri link="/proj/en/desktop/kde">zespół KDE</uri> poszukuje obecnie
+nowych osób chętnych do pracy w zespole. Zainteresowni, którzy są już
+deweloperami mogą się dodać sami do herdu i rozpocząć prace przy rozwiązywaniu
+błędów. Użytkownicy spoza grona deweloperów również mogą pomóc. Aby dowiedzieć
+się więcej należy napisać maila do <mail link="kde@gentoo.org">zespołu
+KDE</mail>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Upcoming removal of mail-mta/qmail</title>
+<title>Planowane usunięcie pakietu mail-mta/qmail</title>
 <body>
 
 <p>
-The Gentoo <mail link="qmail-bugs@gentoo.org">qmail team</mail> would like to
-announce the removal of <c>mail-mta/qmail</c>. It has been superseded by
-<c>mail-mta/netqmail</c> which is stable on the same architectures as
-the older <c>mail-mta/qmail</c>. The new ebuild, <c>mail-mta/netqmail</c>,
-consists of only <uri link="http://www.qmail.org/netqmail/">upstream provided
-patches</uri>. One of the reasons for the switch is the massive cleanup efforts
-that have made the newer ebuild. Users wanting custom patches can use the
-<c>QMAIL_PATCH_DIR</c> variable in <c>make.conf</c>, specifying a directory
-containing patches to be applied before compilation. Be aware that the qmail
-team will not support installations using custom patches.
+Zespół Gentoo <mail link="qmail-bugs@gentoo.org">qmail</mail> ogłosił zamiar
+usunięcia z drzewa pakietu <c>mail-mta/qmail</c>. Został on wyparty przez
+<c>mail-mta/netqmail</c>, który posiada status stabilnego na tych samych
+architekturach co <c>mail-mta/qmail</c>. Nowy pakiet, składa się jedynie z <uri
+link="http://www.qmail.org/netqmail/">poprawek dostarczanych przez jego
+deweloperów</uri>. Jedyn z powodów migracji jest ogromny wkład w usprawnienia,
+jakie zostały poczynione w nowym ebuildzie. Użytkownicy chcący używać innych
+poprawek, mogą użyć zmiennej <c>QMAIL_PATCH_DIR</c> w plik <c>make.conf</c>,
+która odpowiada za określenie katalogu, w którym znajdują się poprawki, jakie
+chcemy dodać przy kompilacji pakietu. Należy jednak mieć na uwadzę, że zespół
+qmail nie bierze za takie działania odpowiedzialności i nie będzie ich wspierał.
 </p>
 
 <p>
-The <c>mail-mta/qmail</c> package will be removed on or around April 15, 2007,
-after being masked on or around March 15, 2007. Please migrate to the new
-package before this date.
+Pakiet <c>mail-mta/qmail</c> zostanie usunięty z drzewa w okolica 15 kwietnia
+2007 roku, po porzednim zamaskowaniu, które nastąpi miesiąc wcześniej. Prosimy
+o przejście na nowy pakiety do czasu usunięcia starego.
 </p>
 
 </body>
