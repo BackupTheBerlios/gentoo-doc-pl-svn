@@ -1,0 +1,68 @@
+--- conky-howto-old.xml	2007-02-20 16:13:06.000000000 +0100
++++ conky-howto.xml	2007-02-20 16:22:11.000000000 +0100
+@@ -14,6 +14,9 @@
+ <author title="Tłumaczenie">
+   <mail link="rane@gentoo.org">Łukasz Damentko</mail>
+ </author>
++<author title="Tłumaczenie">
++  <mail link="stawrul@gmail.com">Waldemar Korłub</mail>
++</author>
+ 
+ <abstract>
+ Opis instalacji i konfiguracji programu Conky, służącego do monitorowania
+@@ -24,8 +27,8 @@
+ <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
+ <license/>
+ 
+-<version>1.1</version>
+-<date>2006-07-07</date>
++<version>1.2</version>
++<date>2006-11-02</date>
+ 
+ <chapter>
+ <title>Wprowadzenie</title>
+@@ -54,7 +57,7 @@
+ pomocą tekstu, pasków postępu i wykresów. W przeciwieństwie do programu top,
+ można tu w pełni skonfigurować wygląd raportu. Dodatkowo conky potrafi udzielać
+ informacji na temat różnych programów służących do odtwarzania muzyki (takich
+-jak XMMS, BMPx, Music Player Deamon, Audacious Media Player), informuje ile
++jak BMPx, Music Player Deamon, Audacious Media Player), informuje ile
+ maili oczekuje w kolejce do przeczytania itd. Jeśli conky nie posiada
+ możliwości wyświetlenia żądanej informacji, zwykle wystarczy dopisanie
+ krótkiego skryptu. Przykładami takiego postępowania są strumienie RSS,
+@@ -75,12 +78,11 @@
+ <p>
+ W Gentoo dostępny jest ebuild umożliwiający szybką i bezproblemową instalację
+ Conky. Warto zwrócić uwagę na dostępne flagi USE. Większość osób zapewne
+-wybierze tu współpracę ze środowiskiem graficznym (<c>X</c>) oraz flagi
+-związane z programami służącymi do odtwarzania muzyki jakich używa (poza mpd).
+-Współpraca z XMMS (<c>xmms</c>) i Audacious (<c>audacious</c>) jest realizowana
+-za pomocą dodatku xmms-infopipe (<c>infopipe</c>). Aby używać opcji
+-kontrolowania portów TCP, należy WYŁĄCZYĆ flagę USE <c>ipv6</c>, ponieważ
+-monitorowanie działa jedynie z ipv4.
++wybierze tu współpracę ze środowiskiem graficznym (<c>X</c>) oraz flagi związane
++z programami służącymi do odtwarzania muzyki jakich używa (poza mpd),
++np. programem Audacious (<c>audacious</c>). Aby używać opcji kontrolowania portów TCP,
++należy WYŁĄCZYĆ flagę USE <c>ipv6</c>, ponieważ monitorowanie działa jedynie z
++ipv4.
+ </p>
+ 
+ <p>
+@@ -90,7 +92,7 @@
+ 
+ <pre caption="/etc/portage/package.use">
+ <comment>(Przykładowe ustawienia USE)</comment>
+-# <i>echo app-admin/conky truetype audacious -xmms -infopipe -ipv6 >> /etc/portage/package.use</i>
++# <i>echo app-admin/conky truetype audacious -ipv6 >> /etc/portage/package.use</i>
+ </pre>
+ 
+ <p>
+@@ -135,7 +137,7 @@
+ <path>~/.conkyrc</path>. Plik ten może zawierać wszystkie opcje konfiguracyjne,
+ tekst, kolory i zmienne, służące do kontrolowania wyglądu programu. Przykładowy
+ plik konfiguracyjny znajduje się w
+-<path>/usr/share/doc/&lt;conky-version&gt;/Conkyrc.sample.gz</path>. Oczywiście
++<path>/usr/share/doc/&lt;conky-version&gt;/conkyrc.sample.gz</path>. Oczywiście
+ &lt;conky-version&gt; to numer używanej wersji Conky.
+ </p>
+ 
