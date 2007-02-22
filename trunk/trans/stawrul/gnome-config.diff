@@ -1,0 +1,97 @@
+--- gnome-config-old.xml	2007-02-22 16:50:24.000000000 +0100
++++ gnome-config.xml	2007-02-22 17:09:43.000000000 +0100
+@@ -14,6 +14,9 @@
+ <author title="Tłumaczenie">
+   <mail link="rane@gentoo.org">Łukasz Damentko</mail>
+ </author>
++<author title="Tłumaczenie">
++  <mail link="stawrul@gmail.com">Waldemar Korłub</mail>
++</author>
+ 
+ <abstract>
+ Opis wszystkich aspektów GNOME, włączając w to opis instalacji, konfiguracji i
+@@ -24,8 +27,8 @@
+ <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
+ <license/>
+ 
+-<version>1.7</version>
+-<date>2006-08-01</date>
++<version>1.14</version>
++<date>2007-01-08</date>
+ 
+ <chapter>
+ <title>Czym jest GNOME?</title>
+@@ -78,7 +81,7 @@
+ 
+ <p>
+ Przed rozpoczęciem instalacji GNOME należy odpowiednio zmienić flagi USE w pliku
+-<path>/etc/make.conf</path> tak, aby były włączone <c>gtk*</c> i <c>gnome</c>.
++<path>/etc/make.conf</path> tak, aby były włączone <c>gtk</c> i <c>gnome</c>.
+ Jeśli potrzebna jest obsługa <c>hald</c>, warstwy abstrakcji sprzętowej, należy
+ dodać do listy flagę <c>hal</c>. Zmienna <c>avahi</c> doda GNOME obsługę
+ wykrywania DNS (podobną do Rendevouz z Mac OS X). Jeśli nie jest potrzebna
+@@ -87,16 +90,25 @@
+ </p>
+ 
+ <pre caption="Przykładowa lista flag USE w /etc/make.conf">
+-USE="-qt -qt3 -qt4 -arts -kde gtk gtk2 gnome hal avahi"
++USE="-qt3 -qt4 -arts -kde gtk gnome hal avahi"
++</pre>
++  
++<p>
++Korzystając z flagi USE <c>branding</c> uzyskamy ładny splashscreen z logo
++Gentoo zamiast standardowego Gnome:
++</p>
++
++<pre caption="Dodanie elementów graficznych z marką Gentoo">
++# <i>echo "gnome-base/gnome-session branding" &gt;&gt; /etc/portage/package.use</i>
+ </pre>
+ 
+ <p>
+ Potem można zainstalować GNOME poprzez zemergowanie pakietów <c>gnome</c> i
+-<c>xscreensaver</c>:
++<c>gnome-screensaver</c>:
+ </p>
+ 
+ <pre caption="Instalowanie GNOME">
+-# <i>emerge gnome xscreensaver</i>
++# <i>emerge gnome gnome-screensaver</i>
+ </pre>
+ 
+ <p>
+@@ -132,9 +144,9 @@
+ uruchomieniowych, a następnie całkowicie odinstalować:
+ </impo>
+ 
+-<pre caption="Zmiana na gamin">
++<pre caption="Opcjonalnie: zamiana programu fam na gamin">
+ # <i>rc-update del famd default</i>
+-# <i>emerge --unmerge fam</i>
++# <i>emerge --unmerge app-admin/fam</i>
+ </pre>
+ 
+ <p>
+@@ -202,11 +214,11 @@
+ </pre>
+ 
+ <p>
+-Następnie należy otworzyć plik <path>/etc/rc.conf</path> i odpowiednio zmienić
++Następnie należy otworzyć plik <path>/etc/conf.d/xdm</path> i odpowiednio zmienić
+ zawartość zmiennej DISPLAYMANAGER.
+ </p>
+ 
+-<pre caption="Edytowanie /etc/rc.conf">
++<pre caption="Edytowanie /etc/conf.d/xdm">
+ DISPLAYMANAGER="gdm"
+ </pre>
+ 
+@@ -220,7 +232,8 @@
+ 
+ <p>
+ W celu uruchomienia <c>hald</c> należy uruchomić <c>gnome-volume-manager</c> i
+-wyedytować ustawienia.
++dokonać edycji ustawień. Ponadto należy dodać użytkowników do grupy
++<c>plugdev</c>
+ </p>
+ 
+ </body>
