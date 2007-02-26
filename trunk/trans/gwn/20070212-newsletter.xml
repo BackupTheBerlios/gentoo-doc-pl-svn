@@ -36,97 +36,101 @@
 <chapter>
 <title>Wiadomości Gentoo</title>
 <section>
-<title>Time Zone update coming</title>
+<title>Nadchodząca aktualizacja strefy czasowej</title>
 <body>
 
-<p>
-The United States passed a bill to extend Daylight Savings Time. Due to this
-change, some users need to ensure they have the new time zone information to
-keep their computer's clocks accurate. For our users in the United States,
-please make sure you have updated to at least version 2006p of
-<c>sys-libs/timezone-data</c> on or before 11 March.
+<p> <!-- nie jestem pewny tłumaczenia pierwszego zdania-->
+Stany Zjednoczone przeforsowały zmiany mające na celu rozszerzenie czasu
+letniego. Zgodnie z tą zmianą, niektórzy z użytkowników muszą się upewnić, że
+posiadają nowe informacje odnośnie stref czasowych, aby czas na ich komputerach
+był pokazywany w prawidłowy sposób. Użytkownicy mieszkający w Stanach
+Zjednoczonych, muszą zaktualizować pakiet <c>sys-libs/timezone-data</c> do
+wersji 2006p przed 11 marca.
 </p>
 
 </body>
 </section>
 <section>
-<title>Testing for media-libs/freetype-2.3.1</title>
+<title>Testowanie pakietu media-libs/freetype-2.3.1</title>
 <body>
 
 <p>
-On Thursday, 8 February, versions 2.2.1 and 2.3.1 of the FreeType library were
-unmasked in the tree for ~arch (testing) users. These versions were masked for
-about eight months to make for an easier transition. Some older software relied
-on the presence of some internal headers, functions, and variables that are no
-longer exported to external programs in these two versions. Although most of
-the packages in the tree should be now corrected, with the main problems being
-older Qt and KDE versions that are no longer in the tree, more testing is
-certainly helpful and appreciated.
+W czwartek, 8 lutego, odmaskowane zostały wersję 2.2.1 oraz 2.3.1 biblioteki
+FreeType. Pakiety te były zamaskowane przez około osiem miesięcy, aby ułatwić
+użytkownikom bezproblemowe przejście na nowe wersje. Część ze starego
+oprogramowania jest zależna od wewnętrznych nagłówków, funkcji oraz zmiennych,
+które nie są już eksportowane do zewnętrznych programów w tych dwóch wersjach.
+Mimo że większość pakietów w drzewie powinna działać już poprawnie, razem ze
+starszymi wersjami biblioteki Qt oraz KDE, które nie są już obecne w
+Portage, prosimy o dalszą pomoc w testowaniu.
 </p>
 
 <p>
-Please file bugs if you find any software in either the stable or testing
-branches of the tree that does not compile against these newer versions of
-FreeType and assign the bug to <mail link="flameeyes@gentoo.org">Diego
+Prosimy o wypełnianie raportów jeśli znajdziemy program, zarówno w testowej jak
+i stabilnej gałęzi, który nie kompiluje się z powodu nowej wersji FreeType.
+Raport należy przypisać do <mail link="flameeyes@gentoo.org">Diego
 Pettenò</mail>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Problems with NSS/NSPR</title>
+<title>Problemy z NSS/NSPR</title>
 <body>
 
 <p>
-Some users have noticed troubles in some applications, such as
-<c>www-client/mozilla-firefox</c> or <c>mail-client/mozilla-thunderbird</c>
-when accessing encrypted resources, such as SSL-enabled pages. This is caused
-by an upgrade problem affecting users of the testing branch, where
-<c>dev-libs/nspr</c> was upgraded, then an application such as
-<c>www-client/mozilla-firefox</c> was upgraded, without prior updating
-<c>dev-libs/nss</c>. This can be solved rather easily, by emerging the packages
-in the correct order.
+Niektórzy z użytkowników zauważyli problemy w niektórych aplikacjach takich
+jak <c>www-client/mozilla-firefox</c> czy
+<c>mail-client/mozilla-thunderbird</c>, w trakcie używania szyfrowanych
+zasobów, takich jak na przykład strony z aktywnym szyfrowanie SSL. Powodem tego
+była aktualizacja pakietu <c>dev-libs/nspr</c> w testowej gałęzi drzewa,
+wskutek tego aplikacje takie jak <c>www-client/mozilla-firefox</c> zostały
+zaktualizowane, bez wcześniejszej aktualizacji pakietu <c>dev-libs/nss</c>.
+Rozwiązanie jest bardzo proste i polega na zainstalowaniu pakietów w
+odpowiedniej kolejności.
 </p>
 
-<pre caption="Fixing NSS/NSPR with Mozilla Firefox">
+<pre caption="Poprawna instalacja NSS/NSPR z Mozilla Firefox">
 # emerge --oneshot dev-libs/nspr dev-libs/nss www-client/mozilla-firefox
 </pre>
 
 </body>
 </section>
 <section>
-<title>Thanks from the KDE team</title>
+<title>Podziękowania od zespołu KDE</title>
 <body>
 
 <p>
-Thanks to all of the people who offered their help to the KDE team. There have
-been lots of responses, which the team has tried to follow up. If anyone else
-wants to help out it is not too late! Please take a look at
-<uri>http://dev.gentoo.org/~masterdriverz/kde-help.txt</uri> and drop into
-<c>#gentoo-kde</c> on <c>irc.freenode.net</c> some time.
+Zespół KDE chciałby podziękować wszystkim użytkownikom, którzy złożyli oferty
+swojej pomocy. Prośba spotkała się z ogromnym zainteresowaniem. Jeżeli jednak
+istnieją jeszcze osoby chcące pomóc, nie jest za późno! Najpierw należy
+przeczytać dokument dostępny pod adresem 
+<uri>http://dev.gentoo.org/~masterdriverz/kde-help.txt</uri>, a następnie
+odwiedzić kanał <c>#gentoo-kde</c> na serwerze <c>irc.freenode.net</c>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Adopt-a-Dev update</title>
+<title>Aktualizacja Adopt-a-Dev</title>
 <body>
 
 <p>
-After some time of inactivity after the previous lead project lead retired from
-Gentoo, the <uri link="/proj/en/userrel/adopt-a-dev/">Adopt-a-dev</uri> Project
-is back in operation under its new leader, <mail link="diox@gentoo.org">Dimitry
-Bradt</mail>. Dimitry has contacted everyone who had emailed the project during
-the inactivity and would like to thank all previous donors for their trust and
-contribution to this project.
+Po okresie braku aktywności spowodowanym odejściem z Gentoo jego poprzedniego
+koordynatora, projekt ponownie rusza wraz przejęciem go przez nowego
+koordynatora, którym został, <mail link="diox@gentoo.org">Dimitry
+Bradt</mail>. Dimitry skontaktował się ze wszystkimi, którzy wysłali wiadomość
+na adres projektu podczas braku aktywności. Chce on również podziękować
+wszystkim dotychczasowym osobom, które zaoferowały darowiznę, za ich zaufanie i
+wsparcie projektu.
 </p>
 
 <p>
-If you have something in your attic or closet that you want to get rid of and
-you think that Gentoo developers could use it, or you wish to fill one of the
-requests put up by developers, visit the <uri
-link="/proj/en/userrel/adopt-a-dev/">project page</uri> and/or mail
-<mail>adopt-a-dev@gentoo.org</mail>.
+Jeżeli posiadamy jakąś rzecz, której chcemy się pozbyć, a mamy podejrzenia, że
+może ona się przydać deweloperom Gentoo lub jeśli jesteśmy deweloperem i
+chcemy dodać jakąś prośbę, należy odwiedzić <uri
+link="/proj/en/userrel/adopt-a-dev/">stronę projektu</uri> i/lub napisać
+wiadomość na adres <mail>adopt-a-dev@gentoo.org</mail>.
 </p>
 
 </body>
