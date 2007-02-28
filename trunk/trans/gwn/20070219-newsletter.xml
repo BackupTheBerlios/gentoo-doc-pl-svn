@@ -45,29 +45,30 @@
 <!-- Gentoo News -->
 
 <chapter>
-<title>Gentoo News</title>
+<title>Wiadomości Gentoo</title>
 
 <section>
-<title>A warning about upcoming changes to ALSA</title>
+<title>Ostrzeżenie o nadchodzących zmianach w pakietach ALSA</title>
 <body>
 
 <p>
-In the past days there were a few changes to two ALSA packages, 
-<c>media-sound/alsa-firmware-1.0.14_rc2-r1</c> and 
-<c>media-sound/alsa-tools-1.0.14_rc1-r1</c>. These two ebuilds now make use of
-the ALSA_CARDS variable to decide which firmwares to install and which tools to 
-build. The ALSA_CARDS was already being used by <c>media-sound/alsa-driver</c>
-package, so users of that package should be already done, as they most likely
-have that already set; for users using the in-kernel drivers, they should now
-properly set that variable, also. Please see
-<path>/usr/portage/profiles/desc/alsa_cards.desc</path> for a list of available
-ALSA_CARDS values.
+W przeszłości zaszło kilka zmian w dwóch pakietach ALSA,
+<c>media-sound/alsa-firmware-1.0.14_rc2-r1</c> i
+<c>media-sound/alsa-tools-1.0.14_rc1-r1</c>. Te dwa ebuildy korzystają teraz ze
+zmiennej ALSA_CARDS w celu zdecydowania co do instalacji plików z firmwarem oraz
+kompilacji narzędzi. Z tej samej zmiennej korzysta również pakiet
+<c>media-sound/alsa-driver</c>, więc użytkownicy, którzy już z niego korzystają
+nie muszą nic robić; jednakże jeśli używaliśmy do tej pory sterowników z jądra,
+powinniśmy teraz skonfigurować odpowiednio tę zmienną. Listę wszystkich
+możliwych wartości zmiennej ALSA_CARDS można uzyskać z pliku
+<path>/usr/portage/profiles/desc/alsa_cards.desc</path>.
 </p>
 
 <note>
-With ALSA_CARDS unset (or if you're not using any of the drivers that are
-listed for alsa-firmware or alsa-tools), the two packages will still install a
-minimal set of tools or firmwares, but you might not be needing them at all.
+Jeśli zmienna ALSA_CARDS nie zostanie ustawiona (lub jeśli nie używamy żadnego
+ze sterowników, które są wymienione dla pakietów alsa-firmware lub alsa-tools),
+oba te pakiety nadal zainstalują minimalny zestaw narzędzi i firmware'ów, jednak
+możliwe, że nawet i to nie jest nam potrzebne.
 </note>
 
 </body>
@@ -80,7 +81,7 @@ minimal set of tools or firmwares, but you might not be needing them at all.
 <!-- Heard in the community -->
 
 <chapter>
-<title>Heard in the community</title>
+<title>Społeczność Gentoo</title>
 
 <!-- forums.gentoo.org -->
 
@@ -88,15 +89,17 @@ minimal set of tools or firmwares, but you might not be needing them at all.
 <title>forums.gentoo.org</title>
 <body>
 
-<p><b>Why I don't care if you are dropping recommend of Gentoo</b></p>
+<p><b>Dlaczego nie obchodzi mnie, że przestałeś polecać Gentoo innym</b></p>
 
 <p>
-In a long forum post, chrisfeet tells the story of how Gentoo became his
-favorite.  Written as a rebuttal of sorts to the negative comments in
-<uri link="http://forums.gentoo.org/viewtopic-t-313315.html">Why I'm
-dropping recommendation of Gentoo</uri> he states that the elegance and
-power of a Gentoo system is what draws him to it, even after
-experiencing the user-friendliness of Ubuntu.
+Chrisfeet napisał długi post na forum, w którym opowiada jak Gentoo zostało jego
+ulubioną dystrybucją. Przy pisaniu przyświecał mu cel napisania odpowiedzi na
+niepochlebny artykuł <uri
+link="http://forums.gentoo.org/viewtopic-t-313315.html">Why I'm dropping
+recommendation of Gentoo</uri> ("Dlaczego przestaję polecać Gentoo innym").
+Twierdzi, że to, co najbardziej podoba mu się w Gentoo to elegancja i
+funkcjonalność, pomimo iż dystrybucja Ubuntu jest bardziej przyjazna dla
+użytkownika.
 </p>
 
 <ul>
@@ -127,19 +130,19 @@ experiencing the user-friendliness of Ubuntu.
 <!-- Gentoo in the press -->
 
 <chapter>
-<title>Gentoo in the press</title>
+<title>Gentoo w prasie</title>
 
 <section>
 <title>iWon News (16 Feb 2007)</title>
 <body>
 
 <p>
-Cuba's Cabinet also has urged a shift from proprietary software. The customs 
-service has gone to Linux and the ministries of culture, higher education and 
-communications are planning to do so, Rodriguez said. Students in his own
-department are cooking up a version of Linux called Nova, based on the Gentoo
-distribution of the operating system. The ministry of higher education is
-developing its own distribution.
+Rząd Kuby zdecydował o porzuceniu własnościowego oprogramowania. Urząd celny
+przerzucił się na Linuksa, zaś ministerstwa kultury, wyższej edukacji i
+komunikacji planują już to posunięcie, jak powiedział Rodriguez. Na jego własnym
+wydziale studenci przygotowują dystrybucję Linuksa, którą nazwali Nova, a która
+oparta jest na dystrybucji Gentoo. Ministerstwo wyższej edukacji przygotowuje
+swoją własną dystrybucję.
 </p>
 
 <ul>
