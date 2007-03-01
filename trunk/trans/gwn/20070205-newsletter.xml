@@ -45,11 +45,11 @@
 <p>
 W związku z pewnym okresem nieaktywności oraz natłokiem innych zadań w obrębie
 Gentoo, <uri link="/proj/en/desktop/kde">zespół KDE</uri> poszukuje obecnie
-nowych osób chętnych do pracy w zespole. Zainteresowni, którzy są już
-deweloperami mogą się dodać sami do herdu i rozpocząć prace przy rozwiązywaniu
-błędów. Użytkownicy spoza grona deweloperów również mogą pomóc. Aby dowiedzieć
-się więcej należy napisać maila do <mail link="kde@gentoo.org">zespołu
-KDE</mail>.
+nowych osób, chętnych do pomocy w pracy nad rozwojem KDE w Gentoo.
+Zainteresowani, którzy są już deweloperami mogą się sami dopisać do zespołu i
+rozpocząć opracowywanie poprawek do zgłoszonych już błędów. Pozostali
+użytkownicy również mogą pomóc. Aby dowiedzieć się więcej na ten temat należy
+napisać do <mail link="kde@gentoo.org">zespołu KDE</mail>.
 </p>
 
 </body>
@@ -60,22 +60,24 @@ KDE</mail>.
 
 <p>
 Zespół Gentoo <mail link="qmail-bugs@gentoo.org">qmail</mail> ogłosił zamiar
-usunięcia z drzewa pakietu <c>mail-mta/qmail</c>. Został on wyparty przez
-<c>mail-mta/netqmail</c>, który posiada status stabilnego na tych samych
-architekturach co <c>mail-mta/qmail</c>. Nowy pakiet, składa się jedynie z <uri
-link="http://www.qmail.org/netqmail/">poprawek dostarczanych przez jego
-deweloperów</uri>. Jedyn z powodów migracji jest ogromny wkład w usprawnienia,
-jakie zostały poczynione w nowym ebuildzie. Użytkownicy chcący używać innych
-poprawek, mogą użyć zmiennej <c>QMAIL_PATCH_DIR</c> w plik <c>make.conf</c>,
-która odpowiada za określenie katalogu, w którym znajdują się poprawki, jakie
-chcemy dodać przy kompilacji pakietu. Należy jednak mieć na uwadzę, że zespół
-qmail nie bierze za takie działania odpowiedzialności i nie będzie ich wspierał.
+usunięcia z drzewa Portage pakietu <c>mail-mta/qmail</c>. Został on już wyparty
+przez <c>mail-mta/netqmail</c>, który jest oznaczony jako stabilny na
+wszystkich architekturach wspieranych przez <c>mail-mta/qmail</c>. Na nowy
+pakiet składają się jedynie <uri link="http://www.qmail.org/netqmail/">poprawki
+dostarczone przez jego deweloperów</uri>. Jednym z powodów migracji jest ogromny
+wkład pracy w oczyszczenie z niepotrzebnych poprawek i poprawienie ebuilda.
+Użytkownicy którzy chcą używać dodatkowych poprawek, mogą użyć skorzystać ze
+zmiennej <c>QMAIL_PATCH_DIR</c> i dodać ją do pliku <c>make.conf</c>. Wskazuje
+ona katalog, w którym znajdują się poprawki, które powinny zostać zaaplikowane w
+czasie kompilacji pakietu. Należy jednak mieć na uwadze, że zespół qmail nie
+bierze za takie działania odpowiedzialności i nie będzie udzielał żadnej pomocy
+w przypadku korzystania z własnych poprawek.
 </p>
 
 <p>
-Pakiet <c>mail-mta/qmail</c> zostanie usunięty z drzewa w okolica 15 kwietnia
-2007 roku, po porzednim zamaskowaniu, które nastąpi miesiąc wcześniej. Prosimy
-o przejście na nowy pakiety do czasu usunięcia starego.
+Pakiet <c>mail-mta/qmail</c> zostanie usunięty z drzewa koło 15 kwietnia 2007
+roku, zostanie on zamaskowany miesiąc wcześniej. Prosimy o dokonanie migracji na
+<c>mail-mta/netqmail</c> do tego czasu.
 </p>
 
 </body>
@@ -90,7 +92,7 @@ o przejście na nowy pakiety do czasu usunięcia starego.
 <body>
 
 <figure link="/images/gwn/20070205_zzam.jpg"
-        short="zzam" 
+        short="zzam"
         caption="Matthias Schwarzott, aka zzam" />
 
 <p>
@@ -113,22 +115,22 @@ Pomimo iż jest dość zajęty szkołą, pracą i Gentoo, znajduje jednak czas n
 zainteresowania. Pasjonuje się klasycznymi tańcami (cha-cha, walc, itd),
 gotowaniem i ćwiczeniami fizycznymi. Matthias zainteresował się tańczeniem w
 szkole, gdzie chodził na kurs tańca, a później powrócił do tej pasji, gdy zaczął
-uczęszczać na zajęcia wraz ze swoją dziewczyną. Jego ulubione recepty kucharskie
-to ciasto z kruszonką i pizza. 
+uczęszczać na zajęcia wraz ze swoją dziewczyną. Jego ulubione recepty
+kucharskie to ciasto z kruszonką i pizza.
 </p>
 
 <p>
 Matthias zaczął używać Linuksa latem 1997 roku, mając dość Windowsa 3.11.
 Przeczytał o SUSE 5.0 i zainstalował tę dystrybucję, później przerzucając się na
-Debiana, a w końcu na Gentoo, w najnowszej wówczas wersji 1.4. Po tym, jak kupił
-kartę DVB z myślą o zbudowaniu komputera do VDR, zaczął poważnie zastanawiać się
-nad zostaniem deweloperem Gentoo. Najpierw kompilował programy ręcznie,
+Debiana, a w końcu na Gentoo, w najnowszej wówczas wersji 1.4. Po tym, jak
+kupił kartę DVB z myślą o zbudowaniu komputera VDR, zaczął poważnie zastanawiać
+się nad zostaniem deweloperem Gentoo. Najpierw kompilował programy ręcznie,
 następnie nauczył się używać ebuildów i zaczął je wysyłać do <mail
 link="genstef@gentoo.org">Stefana Schweizera</mail>. Po tym, jak został przyjęty
-w poczet deweloperów, stał się koordynatorem projektu VDR. Cieszy się z tego, co
-udało mu się od tamtego czasu zrobić dla projektu i nie może się doczekać co
+w poczet deweloperów, stał się koordynatorem projektu VDR. Cieszy się z tego,
+co udało mu się od tamtego czasu zrobić dla projektu i nie może się doczekać co
 jeszcze przyniesie przyszłość. Aktualnie poszukuje aktywnych uczestników do
-implementacji łatek i do pomocy przy opiece nad istniejącymi poprawkami. Swoją
+implementacji łatek i pomocy przy opiece nad istniejącymi poprawkami. Swoją
 motywację jako dewelopera przypisuje chęci pomocy użytkownikom.
 </p>
 
@@ -146,7 +148,7 @@ motywację jako dewelopera przypisuje chęci pomocy użytkownikom.
 <body>
 
 <p>
-<b>More fancy desktops: Metisse</b>
+<b>Więcej efektownych pulpitów: Metisse</b>
 </p>
 
 <figure link="/images/gwn/20070205_metisse.jpg"
@@ -154,21 +156,23 @@ motywację jako dewelopera przypisuje chęci pomocy użytkownikom.
         caption="Metisse X-Server screenshot" />
 
 <p>
-<mail link="hanno@gentoo.org">Hanno Boeck</mail> recently added <uri
-link="http://insitu.lri.fr/metisse/">Metisse</uri> to his subversion overlay.
-Metisse is the answer from <uri link="http://www.mandriva.com">Mandriva</uri>
-to compiz and the whole 3D-desktop craze. Metisse has some features that give it
-the ability to transform the shape of windows, including rotating, scaling, and
-zooming. It is even possible to make a parallelogram from a window! Mettisse
-runs on its own X server, which is luminocity/Xgl-like and a modified variant
-of fvwm.
+<mail link="hanno@gentoo.org">Hanno Boeck</mail> w ostatnim czasie dodał
+link="http://insitu.lri.fr/metisse/">Metisse</uri> do swojej nakładki Portage.
+Mettisse jest odpowiedzią dystrybucji <uri
+link="http://www.mandriva.com">Mandriva</uri> na całe szaleństwo pulpitów 3D
+zapoczątkowane przez compiz. Metisse zawiera wiele ciekawych funkcjonalności
+umożliwiających zabawę z oknami, włączając ich obracanie, skalowanie,
+powiększanie i pomniejszanie. Możliwe jest także ukształtowanie okna w
+równoległobok! Metisse do działania wymaga własnego serwera X, podobnego do
+luminocity/Xgl oraz zmodyfikowanego menadżera okien fvwm.
 </p>
 
 <p>
-Currently, Metisse only works on x86, but upstream is working on support for
-amd64 and other architectures. A new version should be released soon to resolve
-some of the known bugs. For more information on where to get the sources,
-and how to start the environment, please read Hanno's original blog post.
+Obecnie, Mettisse działa jedynie na architekturze x86, ale jego deweloperzy już
+pracują nad wsparciem dla amd64 i innych platform. Najprawdopodobniej wkrótce
+zostanie wydana nowa wersja, która będzie zawierała poprawki kilku znanych
+błędów. Więcej informacji dotyczących dostępu do źródeł, czy konfiguracji można
+znaleźć we wpisie Hanno.
 </p>
 
 <ul>
@@ -379,7 +383,7 @@ GLSA</uri>
 </body>
 </section>
 <section>
-<title>thttpd: Zdalny dostęp do plików bez uwierzytelnenia</title>
+<title>thttpd: Zdalny dostęp do plików bez uwierzytelnienia</title>
 <body>
 
 <p>
