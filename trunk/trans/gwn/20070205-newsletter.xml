@@ -156,7 +156,7 @@ motywację jako dewelopera przypisuje chęci pomocy użytkownikom.
         caption="Metisse X-Server screenshot" />
 
 <p>
-<mail link="hanno@gentoo.org">Hanno Boeck</mail> w ostatnim czasie dodał
+<mail link="hanno@gentoo.org">Hanno Boeck</mail> w ostatnim czasie dodał <uri
 link="http://insitu.lri.fr/metisse/">Metisse</uri> do swojej nakładki Portage.
 Mettisse jest odpowiedzią dystrybucji <uri
 link="http://www.mandriva.com">Mandriva</uri> na całe szaleństwo pulpitów 3D
@@ -188,15 +188,17 @@ znaleźć we wpisie Hanno.
 <body>
 
 <p>
-<b>deleted ._cfg files</b>
+<b>Usunięte pliki ._cfg</b>
 </p>
 
 <p>
-Kamen TOMOV was worried because he had deleted his ._cfg files from a recent
-update. The answer was the use of the <c>--noconfmem</c> option to emerge. With
-<c>--noconfmem</c>, portage will &quot;forget&quot; that it has already made 
-a ._cfg file for a CONFIG_PROTECT file, thus causing portage to reinstall 
-the ._cfg file needed for updating.
+Kamen TOMOV był zmartwiony, gdyż usunął pliki ._cfg, które były dołączone do
+jednej z najnowszych aktualizacji i nie wiedział w jaki sposób może je odzyskać.
+Odpowiedzią na jego problem jest opcja <c>--noconfmem</c> dostępna w emerge.
+Gdy zostanie ona użyta to Portage „zapomni”, że został już stworzony odpowiedni
+plik ._cfg dla jednego z plików chronionych zmienną CONFIG_PROTECT. Dzięki
+temu zostanie on ponownie zainstalowany i będzie można już bez problemu dokonać
+aktualizacji konfiguracji.
 </p>
 
 <ul>
@@ -204,29 +206,27 @@ the ._cfg file needed for updating.
 </ul>
 
 <p>
-<b>Migrating gentoo to a new machine</b>
+<b>Migracja Gentoo na nowy komputer</b>
 </p>
 
 <p>
-Seo Boon had happily used Gentoo on his old notebook for some time and over 
-time had developed a set of packages installed that he very much liked. 
-However, he recently got a shiny new notebook and on that notebook he wanted 
-the exact same package set he had on the old notebook since it had served him 
-so well. He soon figured out though that a simple copy of
-<path>/var/lib/portage/world</path> from the old machine to the new one did not
-work. The list eventually settled on taking the old world file and running the 
-following on the new machine.
+Seo Boon przez dłuższy czas używał na swoim starym laptopie Gentoo, dorabiając
+się pokaźnego zestawu ulubionych pakietów u aplikacji. Ostatnio udało mu się
+zdobyć nowy sprzęt i chciał, aby znalazły się na nim te same programy do których
+zdążył się już przyzwyczaić. Dość szybko zdał sobie sprawę że przekopiowanie
+samego pliku <path>/var/lib/portage/world</path> nie wystarczy. Poradzono mu by
+używając starego pliku world, skorzystać z następującego polecenia:
 </p>
 
-<pre caption="Duplicating world">
-# emerge -va --noreplace $(cat old_world_file)
+<pre caption="Duplikacja zainstalowanych aplikacji">
+# emerge -va --noreplace $(cat stary_plik_world)
 </pre>
 
 <p>
-This command will install all of the files in the old_world_file while also 
-adding them to the world of the new machine. The <c>--noreplace</c> was added
-in case some packages had already been installed, in order to avoid repeating 
-one's self.
+Po wydaniu powyższego polecenia zostaną zainstalowane wszystkie pakiety, których
+wpisy znajdują się w pliku stary_plik_world. Dzięki fladze <c>--noreplace</c>
+pakiety, które są już zainstalowane na nowym komputerze nie będą ponownie
+kompilowane, co z pewnością pomoże zaoszczędzić sporo czasu.
 </p>
 
 <ul>
@@ -241,19 +241,20 @@ one's self.
 <body>
 
 <p>
-<b>[RFC] Maintainer Timeout</b>
+<b>[RFC] Czasu reakcji opiekuna</b>
 </p>
 
 <p>
-Timothy Redaelli opened a discussion about perhaps adding some official
-"Maintainer Timeout" in which there would be an official amount of time that a
-maintainer of a package would have to respond to a bug report before any
-developer would be able to jump in and fix the bug themselves. While an
-interesting idea, consensus seemed to center around a post by Grant Goodyear
-describing the proper application of common sense. Many devs agreed that they
-have mixed feeling on the ownership of ebuilds, and that if a developer can fix
-a problem and know they can do so within the realm of using their common sense
-to not make a problem worse, that they should go ahead and fix the problem.
+Timothy Redaelli rozpoczął dyskusję w której zaproponował wprowadzenie tzw.
+czasu reakcji opiekuna. Byłby to oficjalny okres czasu, który musi upłynąć od
+momentu zgłoszenia raportu o błędzie, by inni deweloperzy mogli sami się zająć
+jego poprawieniem tak, by sam opiekun miał zapewnioną możliwość reakcji na
+odkryty problem. Sam pomysł jest dość ciekawy, jednak większość uczestników
+wątku skupiło się wokół opinii Granta Goodyeara, który stwierdził że lepiej
+poprzestać na zdrowym rozsądku. Wielu deweloperów zgodziło się, że mają mieszane
+uczucia na temat pojęcia własności pakietu i jeśli ktoś inny ma rozsądny pomysł
+w jaki sposób poprawić zgłoszony błąd, jednocześnie nie wprowadzając innych
+problemów, to powinien on się nim zając i go poprawić.
 </p>
 
 <ul>
@@ -277,11 +278,14 @@ to not make a problem worse, that they should go ahead and fix the problem.
 <body>
 
 <p>
-Martyn Honeyford writes about how to accurately measure the amount of memory in
-use on a Linux system, as well as giving practical advice on how to reduce
-your memory requirements. In the article, Gentoo is recommended for the ability
-to recompile applications with user-specified CFLAGS to reduce memory usage,
-and for USE flags that can greatly reduce the size of needed libraries.
+Martyn Honeyford napisał artykuł opisujący w jaki sposób można dokładnie
+zmierzyć ilość dostępnej pamięci w systemach linuksowych. Dodatkowo można w nim
+znaleźć praktyczne porady w jaki sposób można zmniejszyć ilość używanej
+pamięci. Autor zaleca skorzystanie z Gentoo ze względu na możliwość kompilacji
+i dostosowania, dzięki flagom CFLAGS i USE, każdej aplikacji do własnych
+potrzeb. Umożliwiają one zarówno zmniejszenie ilości wymaganej pomięci
+przez poszczególne programy jak i ograniczenie zależności, a przez to liczby
+potrzebnych bibliotek.
 </p>
 
 <ul>
