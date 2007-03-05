@@ -39,13 +39,13 @@
 <title>Nadchodząca aktualizacja strefy czasowej</title>
 <body>
 
-<p> <!-- nie jestem pewny tłumaczenia pierwszego zdania-->
-Stany Zjednoczone przeforsowały zmiany mające na celu rozszerzenie czasu
-letniego. Zgodnie z tą zmianą, niektórzy z użytkowników muszą się upewnić, że
-posiadają nowe informacje odnośnie stref czasowych, aby czas na ich komputerach
-był pokazywany w prawidłowy sposób. Użytkownicy mieszkający w Stanach
-Zjednoczonych, muszą zaktualizować pakiet <c>sys-libs/timezone-data</c> do
-wersji 2006p przed 11 marca.
+<p>
+Stany Zjednoczone przeforsowały zmiany mające na celu zmienienie terminu w
+którym dokonywana jest zmiana czasu z zimowego na letni. Z tego powodu niektórzy
+użytkownicy powinni się upewnić, że posiadają aktualne informacje odnoście
+stref czasowych, tak aby czas wskazywany przez ich komputery był poprawny.
+Wszyscy mieszkający w Stanach Zjednoczonych powinni dokonać aktualizacji pakietu
+<c>sys-libs/timezone-data</c> do wersji 2006p przed dniem 11 marca 2007.
 </p>
 
 </body>
@@ -56,20 +56,20 @@ wersji 2006p przed 11 marca.
 
 <p>
 W czwartek, 8 lutego, odmaskowane zostały wersję 2.2.1 oraz 2.3.1 biblioteki
-FreeType. Pakiety te były zamaskowane przez około osiem miesięcy, aby ułatwić
-użytkownikom bezproblemowe przejście na nowe wersje. Część ze starego
+FreeType. Pakiety te były zamaskowane już przez około osiem miesięcy, aby
+ułatwić użytkownikom bezproblemowe przejście na nowe wersje. Część ze starego
 oprogramowania jest zależna od wewnętrznych nagłówków, funkcji oraz zmiennych,
 które nie są już eksportowane do zewnętrznych programów w tych dwóch wersjach.
-Mimo że większość pakietów w drzewie powinna działać już poprawnie, razem ze
-starszymi wersjami biblioteki Qt oraz KDE, które nie są już obecne w
-Portage, prosimy o dalszą pomoc w testowaniu.
+Mimo że większość pakietów w drzewie powinna działać już poprawnie, włączając w
+to starsze wersje bibliotek Qt oraz KDE, które nie są już obecne w Portage,
+prosimy o pomoc w testowaniu innych pakietów.
 </p>
 
 <p>
-Prosimy o wypełnianie raportów jeśli znajdziemy program, zarówno w testowej jak
-i stabilnej gałęzi, który nie kompiluje się z powodu nowej wersji FreeType.
-Raport należy przypisać do <mail link="flameeyes@gentoo.org">Diego
-Pettenò</mail>.
+Prosimy o zgłaszanie raportów w przypadku znalezienia jakiegokolwiek programu ze
+stabilnej bądź testowej gałęzi drzewa Portage, który ma problemy z kompilacją
+spowodowane użyciem nowej wersji FreeType. Prosimy o bezpośrednie kierowanie
+raportów do <mail link="flameeyes@gentoo.org">Diego Pettenò</mail>.
 </p>
 
 </body>
@@ -79,18 +79,17 @@ Pettenò</mail>.
 <body>
 
 <p>
-Niektórzy z użytkowników zauważyli problemy w niektórych aplikacjach takich
-jak <c>www-client/mozilla-firefox</c> czy
-<c>mail-client/mozilla-thunderbird</c>, w trakcie używania szyfrowanych
-zasobów, takich jak na przykład strony z aktywnym szyfrowanie SSL. Powodem tego
-była aktualizacja pakietu <c>dev-libs/nspr</c> w testowej gałęzi drzewa,
-wskutek tego aplikacje takie jak <c>www-client/mozilla-firefox</c> zostały
-zaktualizowane, bez wcześniejszej aktualizacji pakietu <c>dev-libs/nss</c>.
-Rozwiązanie jest bardzo proste i polega na zainstalowaniu pakietów w
-odpowiedniej kolejności.
+Niektórzy z użytkowników doświadczyli problemów w niektórych aplikacjach,
+włączając <c>www-client/mozilla-firefox</c>, czy
+<c>mail-client/mozilla-thunderbird</c>, w trakcie korzystania z szyfrowanych
+zasobów, takich jak z strony używające SSL. Było to spowodowane aktualizacją
+pakietu <c>dev-libs/nspr</c> w testowej gałęzi drzewa, a następnie innych
+aplikacji jak <c>www-client/mozilla-firefox</c> przed przeinstalowaniem
+<c>dev-libs/nss</c>. Rozwiązanie problemu jest bardzo proste i polega na
+instalacji pakietów w odpowiedniej kolejności:
 </p>
 
-<pre caption="Poprawna instalacja NSS/NSPR z Mozilla Firefox">
+<pre caption="Poprawna aktualizacja NSS/NSPR i Mozilla Firefox">
 # emerge --oneshot dev-libs/nspr dev-libs/nss www-client/mozilla-firefox
 </pre>
 
@@ -112,22 +111,22 @@ odwiedzić kanał <c>#gentoo-kde</c> na serwerze <c>irc.freenode.net</c>.
 </body>
 </section>
 <section>
-<title>Aktualizacja Adopt-a-Dev</title>
+<title>Aktualizacja projektu Adopt a Developer</title>
 <body>
 
 <p>
 Po okresie braku aktywności spowodowanym odejściem z Gentoo jego poprzedniego
 koordynatora, projekt ponownie rusza pełną parą wraz z wyborem jego następcy,
 którym został, <mail link="diox@gentoo.org">Dimitry Bradt</mail>. Dimitry
-skontaktował się ze już wszystkimi, którzy wysyłali wiadomości na adres
-projektu w czasie jego nieaktywności. Chce on również podziękować wszystkim
-dotychczasowym osobom, które zaoferowały swoją pomoc, za ich zaufanie i wsparcie
-dla projektu.
+skontaktował się ze już wszystkimi osobami, które wysyłały wiadomości na adres
+projektu w czasie jego nieaktywności. Chce on również podziękować wszystkim,
+którzy do tej pory zaoferowali swoją pomoc, za ich zaufanie i wsparcie dla
+projektu.
 </p>
 
 <p>
-Zachęcamy wszystkich, w tym samych deweloperów, skłonnych do pozbycie się
-pozornie niepotrzebnych rzeczy, a które mogą przydać się deweloperom Gentoo o
+Zachęcamy wszystkich, w tym samych deweloperów, skłonnych do pozbycia się
+pozornie niepotrzebnych rzeczy, które mogą przydać się deweloperom Gentoo o
 darowizny. Z pewnością zostaną one wykorzystane w pracy nad udoskonaleniem
 dystrybucji. Prosimy o odwiedzenie <uri
 link="/proj/en/userrel/adopt-a-dev/">strony projektu</uri> i/lub napisanie
