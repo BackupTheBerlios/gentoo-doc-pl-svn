@@ -18,6 +18,8 @@ regexps = (
  r'<author title="Redaktor naczelny">'),
 (r'<author title="Author">',
  r'<author title="Redaktor">'),
+(r'<author title="Contributor">',
+ r'<author title="Współpracownik">'),
 (r'<version>Volume (\d*), Issue (\d*)</version>',
  r'<version>Wolumin \1, numer \2</version>'),
 (r'<abstract>This is the Gentoo Weekly Newsletter for the week of ([^.]*).</abstract>',
@@ -37,7 +39,7 @@ regexps = (
  r'<title>Sztuczki i kruczki</title>'),
 (r'<title>Gentoo developer moves</title>',
  r'<title>Zmiana statusu deweloperów Gentoo</title>'),
-(r'<title>Gentoo security</title>',
+(r'<title>Gentoo [Ss]ecurity</title>',
  r'<title>Bezpieczeństwo Gentoo</title>'),
 (r'<title>Gentoo package moves</title>',
  r'<title>Zmiany w drzewie Portage</title>'),
@@ -349,6 +351,7 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 # process months
 (r'(\d|[12]\d|3[01]) (Jan|January) (\d{4})',r'\1 stycznia \3'),
 (r'(\d|[12]\d|3[01]) (Feb|February) (\d{4})',r'\1 lutego \3'),
+(r'(\d|[12]\d|3[01]) (Mar|March) (\d{4})',r'\1 marca \3'),
 
 )
 
