@@ -14,6 +14,12 @@
 <author title="Redaktor">
   <mail link="dberkholz@gentoo.org">Donnie Berkholz</mail>
 </author>
+<author title="Tłumacz">
+  <mail link="kmadejski@gmail.com">Krzysztof Madejski</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="moloh@gentoo.org">Michał Kurgan</mail>
+</author>
 
 <abstract>Wydanie Tygodnika Gentoo z 26 lutego 2007.</abstract>
 <summary/>
@@ -21,38 +27,38 @@
 <version>Wolumin 6, numer 9</version>
 <date>2007-02-26</date>
 
-<!-- Gentoo News -->
 <chapter>
 <title>Wiadomości Gentoo</title>
 <section>
-<title>GWN seeking help</title>
+<title>Tygodnik Gentoo poszukuje chętnych do pomocy</title>
 <body>
 
 <p>
-The GWN staff is seeking writers to help us collect stories from the Gentoo
-community and also from outside sources. There is a current need for people to
-write summaries of topics from the various Gentoo mailing lists, the forums,
-and the planet aggregator. These summaries should be between about 50 and 250
-words and should give the general idea of the thread or post. Besides the
-community summaries, the GWN staff is seeking articles about local events,
-Gentoo being mentioned in other on-line and print media, and also tips and tricks
-that can be passed on to other Gentoo users.
+Zespół Tygodnika Gentoo poszukuje autorów tekstów, których zadaniem byłoby
+śledzenie wydarzeń w społeczności Gentoo oraz także poszukiwanie informacji ze
+źródeł zewnętrznych. Aktualnie potrzebujemy chętnych do tworzenia podsumowań
+wątków z list dyskusyjnych, wydarzeń na forum oraz wpisów z serwisu
+planet.gentoo.org. Każdy taki artykuł powinien przedstawiać podsumowanie
+informacji znajdujących się w danym źródle i zawierać od 50 do 250 słów.
+Poszukujemy także osób skłonnych do komentowania lokalnych wydarzeń,
+przedstawienia wzmianek o Gentoo znajdujących się w prasie i innych mediach,
+oraz opisów ciekawych sztuczek, które mogą się przydać każdemu użytkownikowi
+Gentoo.
 </p>
 
 <p>
-If you are interested in becoming a regular writer for the GWN, or just want to
-give a one time contribution, contact the GWN staff at
-<mail>gwn-feedback@gentoo.org</mail>.
+Wszystkich zainteresowanych regularną pomocą w tworzeniu kolejnych wydań
+Tygodnika Gentoo lub tylko jednorazowym wsparciem zachęcamy prosimy o kontakt za
+pośrednictwem emaila na adres <mail>gwn-feedback@gentoo.org</mail>.
 </p>
 
 </body>
 </section>
 </chapter>
-
 <!-- Developer of the Week -->
 <!-- Heard in the community -->
 <chapter>
-<title>Społeczność Gentoo</title>
+<title>Społeczność gentoo</title>
 <!-- forums.gentoo.org -->
 <!-- planet.gentoo.org -->
 <!-- gentoo-user -->
@@ -62,21 +68,22 @@ give a one time contribution, contact the GWN staff at
 <body>
 
 <p>
-<b>Install locations for doc packages</b>
+<b>Gdzie instalować pakiety z dokumentacją</b>
 </p>
 
 <p>
-Gentoo developer Ryan Hill asks the correct way in which to manage the
-installation of documentation with packages, as there is an inconsistency as to
-how it is currently treated within the tree. The problem being that if they are
-installed according the the package version, then bookmarks will be broken on a
-version bump. Zac Medico, a portage developer, replies by saying that since
-portage 2.1.2 a new variable, <c>DOC_SYMLINKS_DIR</c>, is designed to solve
-this problem.
+Deweloper Gentoo Ryan Hill chciał dowiedzieć się w jaki sposób powinny być
+instalowane pakiety zawierające wyłącznie dokumentacje, gdyż sprawdzając
+aktualny stan odkrył że jest to robione niespójnie. Problem pojawia się, gdy
+miejsce docelowe instalacji dokumentacji określane jest na podstawie wersji
+pakietu, w takiej sytuacji po aktualizacji zakładki zostaną popsute. Zac
+Medico, deweloper Portage, napisał, że od wersji 2.1.2 Portage wspiera nową
+zmienną, <c>DOC_SYMLINKS_DIR</c>, która właśnie została wprowadzona po to by
+zarazić temu problemowi.
 </p>
 
 <ul>
-  <li><uri>http://archives.gentoo.org/gentoo-dev/msg_142902.xml</uri></li>
+  <li><uri>http://article.gmane.org/gmane.linux.gentoo.devel/46214</uri></li>
 </ul>
 
 </body>
@@ -96,19 +103,20 @@ this problem.
 <body>
 
 <p>
-VIA Technologies Inc. announced that Ainkaboot, a London-based company 
-designing cluster servers for high performance computing (HPC) and high 
-availability computing, is shipping the first ultra compact Octimod 
-MPC7-1500 cluster modules powered by VIA EPIA EN15000 mainboards.
+VIA Technologies Inc. powiadomiło, że Ainkaboot, Londyńska spółka projektująca
+serwery klastrowe przeznaczone do HPC (High Performance Computing) oraz HA (High
+Availability Computing) właśnie wysyła pierwsze ultra kompaktowe moduły
+klastrowe Octimod MPC7-1500, które są napędzane przez płyty główne VIA EPIA
+EN15000.
 </p>
 
 <p>
-KlustOS, the Ainkaboot dedicated clustering operating system, provides 
-the backbone of the Octimod, with a host of clustering utilities, 
-management software and parallel processing environments. Based on 
-Gentoo Linux, KlustOS consists almost exclusively of open source 
-software and is able to take advantage of hardware features such as VIA 
-PadLock Security Engine tools.
+KlustOS, klastrowy system operacyjny dedykowany dla Ainkaboot, stanowi podstawę
+platformy Octimod, zapewnia usługi klastrowe, oprogramowanie zarządzające oraz
+środowisko przetwarzania równoległego. Oparty na Gentoo Linux, KlustOS opiera
+się prawie wyłącznie tylko na oprogramowaniu open source i umożliwia
+wykorzystanie wszystkich dostępnych funkcjonalności sprzętu, takich jak
+narzędzia VIA PadLock Security Engine.
 </p>
 
 <ul>
@@ -122,23 +130,23 @@ PadLock Security Engine tools.
 <body>
 
 <p>
-BitLeap's LeapServ® backup and recovery network appliances and remote 
-backup service are Linux-based and rely on a range of open source 
-applications.
+LeapServ® stworzony przez BitLeap jest usługą zapewniającą zestaw narzędzi
+umożliwiających zdalną archiwizację i odzyskiwanie danych bazującą na Linuksie
+oraz całym zestawie aplikacji open source.
 </p>
 
 <p>
-The Gentoo Linux distribution lies at the heart of the LeapServ, remotely 
-managing thousands of servers on remote networks, while modified RDBMS's 
-MySQL and PostgreSQL are used for storing and retrieving hundreds of 
-millions of records of customer's data. See BitLeap's open source page 
-for more details on how BitLeap integrates open source software in 
-development.
+Gentoo Linux jest sercem LeapServ, który zdalnie zarządza tysiącami serwerów
+rozmieszczonych w różnych sieciach, podczas gdy systemy bazodanowe MySQL oraz
+PostgresSQL są wykorzystywane do składowania milionami rekordów danych
+klientów.  Zapraszamy do odwiedzenia strony przedstawiającej w jaki sposób
+BitLeap stosuje open source w pracach deweloperskich.
 </p>
 
 <ul>
-<li><uri>http://www.prweb.com/releases/2007/2/prweb505676.htm</uri></li>
+  <li><uri>http://www.prweb.com/releases/2007/2/prweb505676.htm</uri></li>
 </ul>
+
 </body>
 </section>
 </chapter>
