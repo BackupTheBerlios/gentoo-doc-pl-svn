@@ -343,16 +343,17 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 
 # dates
 # process days
-(r'0?(\d) (Jan|January|Feb|February|Mar|March|Apr|April) (\d{2}|\d{4})',r'\1 \2 \3'),
-(r'([12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April) (\d{2}|\d{4})',r'\1 \2 \3'),
+(r'0?(\d) (Jan|January|Feb|February|Mar|March|Apr|April|May) (\d{2}|\d{4})',r'\1 \2 \3'),
+(r'([12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April|May) (\d{2}|\d{4})',r'\1 \2 \3'),
 # process years
-(r'(\d|[12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April) ([89]\d)',r'\1 \2 19\3'),
-(r'(\d|[12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April) ([01]\d)',r'\1 \2 20\3'),
+(r'(\d|[12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April|May) ([89]\d)',r'\1 \2 19\3'),
+(r'(\d|[12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April|May) ([01]\d)',r'\1 \2 20\3'),
 # process months
 (r'(\d|[12]\d|3[01]) (Jan|January) (\d{4})',r'\1 stycznia \3'),
 (r'(\d|[12]\d|3[01]) (Feb|February) (\d{4})',r'\1 lutego \3'),
 (r'(\d|[12]\d|3[01]) (Mar|March) (\d{4})',r'\1 marca \3'),
 (r'(\d|[12]\d|3[01]) (Apr|April) (\d{4})',r'\1 kwietnia \3'),
+(r'(\d|[12]\d|3[01]) (May) (\d{4})',r'\1 maja \3'),
 
 )
 
