@@ -9,8 +9,8 @@
 
 <sections>
 
-<version>7.0</version>
-<date>2006-08-30</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Wprowadzenie</title>
@@ -45,7 +45,23 @@ link="http://bugs.gentoo.org">powiadom nas</uri> o tym.
 
 </body>
 </subsection>
-<subsection>
+<!-- for all arches that DO have an installer liveCD -->
+<subsection test="contains('AMD64 x86', func:keyval('arch'))">
+<title>W jaki sposób zainstalować Gentoo?</title>
+<body>
+
+<p>
+Gentoo Linux dostarczany jest z dwiem prostymi w użyciu wersjami instalatora.
+Bazująca na bibliotece GTK+ używana w środowisku X oraz Dialog używana w
+konsoli tekstowej. W rozdziale 3 podręcznika napisano o instalacji za pomocą
+wersji GTK+, natomiast w rozdziale 4 o instalacji za pomocą wersji bazującej na
+bibliotece Dialog.
+</p>
+
+</body>
+</subsection>
+<!-- for all arches that do NOT have an installer liveCD -->
+<subsection test="not(contains('AMD64 x86', func:keyval('arch')))">
 <title>Jak przebiega instalacja?</title>
 <body>
 
@@ -258,6 +274,8 @@ Obecnie GRP są dostępne dla następujących architektur:
 </p>
 
 <ul>
+  <li>
+    Architektura <b>alpha</b> (alpha)
   <li>
     Architektura <b>amd64</b> (amd64). Uwaga: Pakiety dostępne są na LiveCD z
     instalatorem.
