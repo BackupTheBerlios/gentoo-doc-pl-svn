@@ -4,12 +4,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.1/hb-install-sparc-medium.xml,v 1.1 2006/08/30 20:17:31 nightmorph Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2007.0/hb-install-sparc-medium.xml,v 1.5 2007/04/13 15:34:14 nightmorph Exp $ -->
 
 <sections>
 
-<version>7.0</version>
-<date>2006-08-30</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Hardware Requirements</title>
@@ -40,8 +40,7 @@ successfully install Gentoo on your box.
 <tr>
   <th>CPU</th>
   <ti>
-    Although sparc64 is the only officially supported platform, experimental
-    support for sparc32 is available as well
+    We currently only support sparc64 CPUs
   </ti>
 </tr>
 <tr>
@@ -57,14 +56,6 @@ successfully install Gentoo on your box.
   <ti>At least 256 MB</ti>
 </tr>
 </table>
-
-<p>
-We currently only provide Installation CDs for the sparc64 architecture. Users 
-of sparc32 can use the experimental netboot images to install Gentoo from. 
-More information about netbooting can be found in our <uri 
-link="/doc/en/gentoo-sparc-netboot-howto.xml">Gentoo Linux based Netboot
-HOWTO</uri>.
-</p>
 
 </body>
 </subsection>
@@ -145,12 +136,11 @@ The use of the Package CD is covered later in this document.
 <body>
 
 <p>
-You can download the Universal Installation CD (and, if you want to, the 
-Packages CD as well) from one of our <uri 
-link="/main/en/mirrors.xml">mirrors</uri>. The Installation CDs are located in 
-the <path>releases/sparc/2006.1/sparc64/installcd</path> 
-directory; the Package CDs are located in the 
-<path>releases/sparc/2006.1/sparc64/packagecd</path> directory.
+You can download the Universal Installation CD (and, if you want to, the
+Packages CD as well) from one of our <uri
+link="/main/en/mirrors.xml">mirrors</uri>. The Installation CDs are located in
+the <path><keyval id="release-dir"/>installcd</path> directory; the Package CDs
+are located in the <path><keyval id="release-dir"/>packagecd</path> directory.
 </p>
 
 <p>
@@ -159,24 +149,17 @@ you can write on a CD-R.
 </p>
 
 <p>
-After downloading the file, you can verify its integrity to see if it is
-corrupted or not:
+In case you wonder if your downloaded file is corrupted or not, you can check its
+MD5 checksum and compare it with the MD5 checksum we provide (such as
+<path>install-sparc64-minimal-2007.0.iso.DIGESTS</path>). You can check the MD5 
+checksum with the <c>md5sum</c> tool under Linux/Unix or <uri
+link="http://www.etree.org/md5com.html">md5sum</uri> for Windows.
 </p>
 
-<ul>
-  <li>
-    You can check its MD5 checksum and compare it with the MD5 checksum we
-    provide (for instance with the <c>md5sum</c> tool under Linux/Unix or 
-    <uri link="http://www.etree.org/md5com.html">md5sum</uri> for Windows)
-  </li>
-  <li>
-    You can verify the cryptographic signature that we provide. You need to
-    obtain the public key we use (17072058) before you proceed though.
-  </li>
-</ul>
-
 <p>
-To fetch our public key using the GnuPG application, run the following command:
+Another way to check the validity of the downloaded file is to use GnuPG to
+verify the cryptographic signature that we provide (the file ending with
+<path>.asc</path>). Download the signature file and obtain the public key:
 </p>
 
 <pre caption="Obtaining the public key">
@@ -228,16 +211,16 @@ ok <i>boot cdrom</i>
 </pre>
 
 <p>
-You will be greeted by the SILO boot manager (on the Installation CD). Type in
-<c>2616</c> to use 2.6.16 kernel or <c>2617</c> to use 2.6.17 kernel and press
-enter to continue booting the system. <c>2616</c> was tested more extensively
-so it's the option you should choose if default <c>2617</c> doesn't work for
-you. If you want to have support for the newer Sun boxes (Niagara, UltraSPARC,
-T1), you should choose default <c>2617</c>.
+You will be greeted by the SILO boot manager (on the Installation CD). You can
+hit Enter for more help if you want. Type in <c>2617</c> (if you have an FC-AL
+machine; check the <uri
+link="http://www.gentoo.org/proj/en/base/sparc/sunhw.xml">Hardware Compatibility
+List</uri>) or <c>2620</c> (for everyone else) and press enter to continue
+booting the system:
 </p>
 
 <pre caption="Continue booting from the Installation CD">
-boot: <i>2617</i>
+boot: <i>2620</i>
 </pre>
 
 <p>
@@ -246,10 +229,8 @@ system.
 </p>
 
 <p>
-You should have a root ("#") prompt on the current console and can also switch
-to other consoles by pressing Alt-F2, Alt-F3 and Alt-F4. Get back to the one you
-started on by pressing Alt-F1. You will also find a root prompt on the serial
-console (<path>ttyS0</path>).
+You should have a root ("#") prompt on the current console. You will also find a
+root prompt on the serial console (<path>ttyS0</path>).
 </p>
 
 <p>
@@ -352,7 +333,7 @@ document):
 </p>
 
 <pre caption="Viewing the Online Documentation">
-# <i>links http://www.gentoo.org/doc/en/handbook/handbook-sparc.xml</i>
+# <i>links http://www.gentoo.org/doc/en/handbook/<keyval id="online-book"/></i>
 </pre>
 
 <p>

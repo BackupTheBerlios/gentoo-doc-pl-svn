@@ -4,12 +4,12 @@
 <!-- The content of this document is licensed under the CC-BY-SA license -->
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.1/hb-install-gli-medium.xml,v 1.4 2007/02/27 04:28:44 nightmorph Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2007.0/hb-install-gli-medium.xml,v 1.4 2007/04/13 15:34:14 nightmorph Exp $ -->
 
 <sections>
 
-<version>7.3</version>
-<date>2007-02-26</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Hardware Requirements</title>
@@ -191,7 +191,7 @@ a kernel followed by boot options and then hitting Enter.
 </p>
 
 <p>
-Specifying a kernel? Yes, we provide several kernels on our LiveCD. The default
+Specifying a kernel? Yes, we provide a few kernels on our LiveCD. The default
 one is <c>gentoo</c>. Other kernels are for specific hardware needs and the
 <c>-nofb</c> variants which disable framebuffer.
 </p>
@@ -437,14 +437,6 @@ certain kinds of network interfaces):
 # <i>modprobe 8139too</i>
 </pre>
 
-<p>
-If you need PCMCIA support, you should start the <c>pcmcia</c> init script:
-</p>
-
-<pre caption="Starting the PCMCIA init script">
-# <i>/etc/init.d/pcmcia start</i>
-</pre>
-
 </body>
 </subsection>
 <subsection>
@@ -471,7 +463,6 @@ disk):
 <pre caption="Tweaking hard disk performance">
 <comment>(Activate DMA:)</comment>
 # <i>hdparm -d 1 /dev/hda</i>
-
 <comment>(Or with Safe Performance Options:)</comment>
 # <i>hdparm -d 1 -A 1 -m 16 -u 1 -a 64 /dev/hda</i>
 </pre>

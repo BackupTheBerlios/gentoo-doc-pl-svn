@@ -1,10 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE book SYSTEM "/dtd/book.dtd">
 
-<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2006.1/handbook-sparc.xml,v 1.4 2006/11/29 15:28:54 nightmorph Exp $ -->
+<!-- $Header: /var/cvsroot/gentoo/xml/htdocs/doc/en/handbook/2007.0/handbook-sparc.xml,v 1.9 2007/04/19 21:05:58 neysx Exp $ -->
 
-<book link="/doc/en/handbook/2006.1/handbook-sparc.xml">
-<title>Gentoo Linux 2006.1 SPARC Handbook</title>
+<book link="/doc/en/handbook/2007.0/handbook-sparc.xml">
+<title>Gentoo Linux 2007.0 SPARC Handbook</title>
+
+<values>
+ <key id="arch">SPARC</key>
+ <key id="kernel-name">kernel-2.6.20-gentoo-r4</key>
+ <key id="kernel-version">2.6.20-r4</key>
+ <key id="online-book">2007.0/handbook-sparc.xml</key>
+ <key id="release-dir">releases/sparc/2007.0/sparc64/</key>
+ <key id="stage3">stage3-sparc64-2007.0.tar.bz2</key>
+ <key id="CFLAGS">-O2 -mcpu=ultrasparc -pipe</key>
+</values>
 
 <author title="Author">
   <mail link="swift@gentoo.org">Sven Vermeulen</mail>
@@ -98,6 +108,9 @@
 <author title="Editor">
   <mail link="neysx@gentoo.org">Xavier Neys</mail>
 </author>
+<author title="Editor">
+  <mail link="nightmorph@gentoo.org">Joshua Saddler</mail>
+</author>
 <author title="Reviewer">
     <mail link="gerrynjr@gentoo.org">Gerald J. Normandin Jr.</mail>
 </author>
@@ -121,8 +134,8 @@ installation on Sparc systems and parts about working with Gentoo and Portage.
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <license/>
 
-<version>7.1</version>
-<date>2006-08-30</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <part>
 <title>Installing Gentoo</title>
@@ -259,8 +272,8 @@ maintain the software on his system.
 <chapter>
 <title>USE flags</title>
 <abstract>
-USE-flags are a very important aspect of Gentoo. In this chapter, you learn to
-work with USE-flags and understand how USE-flags interact with your system.
+USE flags are a very important aspect of Gentoo. In this chapter, you learn to
+work with USE flags and understand how USE flags interact with your system.
 </abstract>
   <include href="../hb-working-use.xml"/>
 </chapter>
