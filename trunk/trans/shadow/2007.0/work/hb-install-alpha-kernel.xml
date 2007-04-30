@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>7.2</version>
-<date>2007-03-12</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Strefa czasowa</title>
@@ -17,17 +17,18 @@
 
 <p>
 Aby system wiedział gdzie się znajduje powinieneś najpierw wybrać swoją
-strefę czasową. Odszukaj ją w <path>/usr/share/zoneinfo</path>, a następnie
-za pomocą <c>ln</c> skopiuj do <path>/etc/localtime</path>. Należy unikać stref
-czasowych o nazwie <path>/usr/share/zoneinfo/Etc/GMT*</path>, ponieważ ich
-nazwy mogą być mylące, na przykład <path>GMT-8</path> jest w
+strefę czasową. Odszukaj ją w <path>/usr/share/zoneinfo</path>. Następnie
+ustawiamy strefę czasową w pliku <path>/etc/conf.d/clock</path>. Należy unikać
+stref czasowych o nazwie <path>/usr/share/zoneinfo/Etc/GMT*</path>, ponieważ
+ich nazwy mogą być mylące, na przykład <path>GMT-8</path> jest w
 rzeczywistości GMT+8.
 </p>
 
 <pre caption="Konfiguracja strefy czasowej">
 # <i>ls /usr/share/zoneinfo</i>
-<comment>(Jeśli chcesz wybrać Poland)</comment>
-# <i>cp /usr/share/zoneinfo/Poland /etc/localtime</i>
+<comment>(Przypuśćmy, że chcemy ustawić strefę GMT)</comment>
+# <i>nano -w /etc/conf.d/clock</i>
+TIMEZONE="GMT"
 </pre>
 
 </body>
@@ -46,24 +47,25 @@ różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
 </p>
 
 <p>
-Dla systemów Alpha udostępniamy następujące źródła: <c>vanilla-sources</c>
+Dla systemów Alpha udostępniamy następujące źródła: <c>gentoo-sources</c>
 (domyślne jądro serii 2.6)
 </p>
 
 <pre caption="Instalacja źródeł kernela">
-# <i>emerge vanilla-sources</i>
+# <i>emerge gentoo-sources</i>
 </pre>
 
 <p>
 W katalogu <path>/usr/src</path> powinieneś mieć mniej więcej taki symlink, o
-W tym wypadku wskazuje na źródła <c>vanilla-sources-2.6.16.9</c>. W komputerze
-+użytkownika może być to inna wersja, dlatego należy mieć to na uwadze. nazwie
-<path>linux</path>, wskazujący na źródła Twojego aktualnego kernela.
+nazwie <path>linux</path>, wskazujący na źródła Twojego aktualnego kernela.
+W tym wypadku wskazuje na źródła <c>gentoo-sources-<keyval
+id="kernel-version"/></c>. W komputerze użytkownika może być to inna wersja, 
+dlatego należy mieć to na uwadze.
 </p>
 
 <pre caption="Podgląd symlinka do źródeł kernela">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.6.16.9
+lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-<keyval id="kernel-version"/>
 </pre>
 
 <p>
@@ -135,28 +137,18 @@ bardzo ważnych opcji.
 <pre caption="Wybieranie opcji experimental code/drivers">
 Code maturity level options ---&gt;
   [*] Prompt for development and/or incomplete code/drivers
+General setup ---&gt;
+  [*] Support for hot-pluggable devices
 </pre>
 
 <p>
 Następnie przejdź do <c>File Systems</c> i wybierz wsparcie dla systemów plików,
-których zamierzasz używać. Jeśli tego zaniedbasz Gentoo nie będzie w stanie
-zamontować partycji, a czasem nawet się nie uruchomi. Pamiętaj również, aby
-włączać te sterowniki na stałe do jądra, broń Boże nie kompiluj ich jako
-modułów. Przy okazji zaznacz też <c>Virtual memory</c> i <c>/proc file
-system</c>. Użytkownicy jąder 2.4 muszą skorzystać z opcji <c>/dev file
-system</c> oraz wybrać <c>Automatically mount at boot</c>.
+których zamierzasz używać. <e>Nie</e> należy ich kompilować jako moduły
+ponieważ system nie będzie w stanie zamontować naszych partycji. Należy również
+wybrać opcję <c>Virtual memory</c> oraz <c>/proc file system</c>.
 </p>
 
 <pre caption="Wybór potrzebnych systemów plików">
-<comment>(dla kernela 2.4.x)</comment>
-File systems ---&gt;
-  [*] Virtual memory file system support (former shm fs)
-  [*] /proc file system support
-  [*]   Automatically mount at boot
-  [*] /dev file system support (EXPERIMENTAL)
-  [ ] /dev/pts file system for Unix98 PTYs
-
-<comment>(dla kernela 2.6.x)</comment>
 File systems ---&gt;
   Pseudo Filesystems ---&gt;
     [*] /proc file system support
@@ -177,13 +169,6 @@ będziesz musiał włączyć następujące opcje:
 </p>
 
 <pre caption="Sterowniki niezbędne dla użytkowników PPPoE">
-<comment>(dla kerneli 2.4.x)</comment>
-Network device support ---&gt;
-  &lt;*&gt; PPP (point-to-point protocol) support
-  &lt;*&gt;   PPP support for async serial ports
-  &lt;*&gt;   PPP support for sync tty ports
-
-<comment>(dla kerneli 2.6.x)</comment>
 Device Drivers ---&gt;
   Networking support ---&gt;
     &lt;*&gt; PPP (point-to-point protocol) support
@@ -194,7 +179,7 @@ Device Drivers ---&gt;
 <p>
 Obie opcje dotyczące kompresji nie są wprawdzie wymagane, ale również nie
 zaszkodzą naszemu systemowi, podobnie zresztą jak opcja <c>PPP over
-Ethernet</c>, która jest przydatna tylko gdy skonfigurujesz <c>rp-pppoe</c> do
+Ethernet</c>, która jest przydatna tylko gdy skonfigurujesz <c>ppp</c> do
 pracy w trybie jądra PPPoE.
 </p>
 
@@ -277,13 +262,7 @@ instalację. Opuść program konfiguracyjny i rozpocznij proces kompilacji:
 </p>
 
 <pre caption="Kompilowanie kernela">
-<comment>(dla kerneli 2.4.x)</comment>
-# <i>make dep &amp;&amp; make vmlinux modules modules_install</i>
-
-<comment>(dla kerneli 2.6.x)</comment>
 # <i>make &amp;&amp; make modules_install</i>
-
-<comment>(dla wszystkich kerneli)</comment>
 # <i>make boot</i>
 </pre>
 
@@ -350,32 +329,7 @@ jako moduły).
 </p>
 
 <pre caption="Uruchamianie genkernela">
-* Gentoo Linux Genkernel; Version 3.4.0
-* Running with options: all
-
-* Linux Kernel 2.6.16.19 for alpha...
-* kernel: >> Running mrproper...
 # <i>genkernel all</i>
-<comment>(Wynik polecenia został usunięty, aby zwiększyć czytelność poleceń)</comment>
-* Kernel compiled successfully!
-*
-* Required Kernel Parameters:
-*     real_root=/dev/$ROOT
-*
-*     Where $ROOT is the device node for your root partition as the
-*     one specified in /etc/fstab
-*
-* If you require Genkernel's hardware detection features; you MUST
-* tell your bootloader to use the provided INITRAMFS file. Otherwise;
-* substitute the root argument for the real_root argument if you are
-* not planning to use the initrd...
-
-* WARNING... WARNING... WARNING...
-* Additional kernel cmdline arguments that *may* be required to boot properly...
-* Do NOT report kernel bugs as genkernel bugs unless your bug
-* is about the default genkernel configuration...
-*
-* Make sure you have the latest genkernel before reporting bugs.
 </pre>
 
 <p>
@@ -396,58 +350,13 @@ sprzęt i wczyta odpowiednie moduły, a następnie uruchomi się właściwy syst
 <section id="kernel_modules">
 <title>Instalacja osobnych modułów jądra</title>
 <subsection>
-<title>Dodatkowe moduły</title>
-<body>
-
-<p>
-Ponadto powinieneś zemergować również wszystkie związane ze swoim sprzętem
-ebuildy. Oto lista wszystkich dostępnych modułów:
-</p>
-
-<table>
-<tcolumn width="1in"/>
-<tcolumn width="4in"/>
-<tcolumn width="2in"/>
-<tr>
-  <th>Ebuild</th>
-  <th>Powód</th>
-  <th>Polecenie</th>
-</tr>
-<tr>
-  <ti>x11-drm</ti>
-  <ti>
-    Zestaw sterowników dla kart ATI Radeon 9200, Rage128, Matrox, Voodoo i
-    wielu innych dla xorg-x11. Sprawdzamy zmienną <c>IUSE_VIDEO_CARDS</c> w
-    ebuildach znajdujących się w katalogu
-    <path>/usr/portage/x11-base/x11-drm</path>, aby dowiedzieć się jaką wartość
-    w pisać w pole <c>moja_karta</c>.
-  </ti>
-  <ti><c>VIDEO_CARDS="moja_karta" emerge x11-drm</c></ti>
-</tr>
-</table>
-
-<p>
-Zainstalowanie któregoś z tych pakietów może wiązać się z potrzebą wgrania
-sporej ilości jego zależności. Aby dowiedzieć się jakie pakiety zostaną
-zainstalowane jako zależności wybranego ebuildu użyj <c>emerge --pretend</c>. Na
-przykład dla pakietu <c>x11-drm</c> będzie to:
-</p>
-
-<pre caption="Pełna lista pakietów do zainstalowania">
-# <i>emerge --pretend x11-drm</i>
-</pre>
-
-</body>
-</subsection>
-<subsection>
 <title>Konfigurowanie modułów</title>
 <body>
 
 <p>
 Lista modułów, które chcesz aby były automatycznie ładowane przy starcie systemu
-powinna znajdować się w pliku <path>/etc/modules.autoload.d/kernel-2.4</path>
-(lub <path>kernel-2.6</path>). Czasem jeśli chcesz możesz dodać kilka opcji dla
-modułów.
+powinna znajdować się w pliku <path>/etc/modules.autoload.d/kernel-2.6</path>.
+Czasem jeśli chcesz możesz dodać kilka opcji dla modułów.
 </p>
 
 <p>
@@ -462,16 +371,14 @@ kernela.
 
 <p>
 Na przykład aby automatycznie ładować do pamięci moduł <c>3c59x.o</c> wyedytuj
-plik <path>kernel-2.4</path> lub <path>kernel-2.6</path> i wprowadź do niego
-nazwę tego modułu.
+plik <path>kernel-2.6</path> i wprowadź do niego nazwę tego modułu.
 </p>
 
-<pre caption="Edycja /etc/modules.autoload.d/kernel-2.4">
-<comment>(przykład dla kerneli 2.4)</comment>
-# <i>nano -w /etc/modules.autoload.d/kernel-2.4</i>
+<pre caption="Edycja /etc/modules.autoload.d/kernel-2.6">
+# <i>nano -w /etc/modules.autoload.d/kernel-2.6</i>
 </pre>
 
-<pre caption="/etc/modules.autoload.d/kernel-2.4 lub kernel-2.6">
+<pre caption="/etc/modules.autoload.d/kernel-2.6">
 3c59x
 </pre>
 
