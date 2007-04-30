@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>7.5</version>
-<date>2007-03-12</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Informacje o systemach plików</title>
@@ -66,32 +66,41 @@ określoną funkcję:
 </li>
 </ul>
 
-<p>
+<impo>
 Domyślny <path>/etc/fstab</path> dostarczany przez Gentoo <e> nie jest poprawnym
-plikiem fstab</e>, uruchamiamy więc <c>nano</c> (lub inny ulubiony edytor) i
-tworzymy własny plik <path>/etc/fstab</path>:
-</p>
+plikiem fstab</e>. <b>Musimy stworzyć</b> własny plik <path>/etc/fstab</path>.
+</impo>
 
 <pre caption="Tworzenie /etc/fstab">
 # <i>nano -w /etc/fstab</i>
 </pre>
 
-<p>
-Spójrzmy jak zapisać opcje partycji <path>/boot</path>. Jeżeli architektura
-naszego komputera nie wymaga oddzielnej partycji <path>/boot</path> (np.
-komputery Apple PowerPC) lub nie zdecydowaliśmy się na tworzenie takowej,
-powinniśmy pominąć wpis dotyczący takiej partcji w naszym pliku fstab. Partycja
-Apple Bootstrap nie jest rodzajem partcji <path>/boot</path>.
-</p>
+</body>
+<body test="func:keyval('/boot')">
 
 <p>
-W naszym przykładowym schemacie (dla x86) <path>/boot</path> będzie partycją
-<path>/dev/hda1</path> i będzie używał systemu plików <c>ext2</c> oraz będzie
-sprawdzany podczas rozruchu.
+Spójrzmy jak zapisać opcje partycji <path>/boot</path>. Jesto to tylko
+przykład, więc jeśli nie stworzyliśmy lub nie mogliśmy stworzyć partycji
+<path>/boot</path>, nie należy go kopiować.
+</p>
+
+<p test="contains(func:keyval('/boot'), '/dev/hd')">
+W naszym przykładowym schemacie, dla architektury <keyval id="arch"/>,
+<path>/boot</path> jest z reguły partycją <path><keyval id="/boot"/></path> (lub
+<path>/dev/sda*</path> gdy używamy dysków SCSI lub SATA) z systemem plików
+ext2. Partycja ta powinna być sprawdzana podczas uruchamiania komputera, więc
+należy wpisać: 
+</p>
+
+<p test="contains(func:keyval('/boot'), '/dev/sd')">
+W naszym przykładowym schemacie, dla architektury <keyval id="arch"/>,
+<path>/boot</path> jest z reguły partycją <path><keyval id="/boot"/></path>
+z systemem plików ext2. Partycja ta powinna być sprawdzana podczas uruchamiania
+komputera, więc należy wpisać:
 </p>
 
 <pre caption="Przykładowy wpis do /etc/fstab dla /boot">
-/dev/hda1   /boot     ext2    defaults        1 2
+<keyval id="/boot"/>   /boot     ext2    defaults        1 2
 </pre>
 
 <p>
@@ -101,41 +110,83 @@ Niektórzy użytkownicy ze względów bezpieczeństwa nie chcą, aby partycja
 partycję przed każdym jej użyciem.
 </p>
 
-<p>
-Aby poprawić wydajność, większość użytkowników zapewne zechce dodać opcję
-<c>noatime</c>. Dzięki niej nie są rejestrowane czasy dostępów (które zazwyczaj
-nie są potrzebne):
+<p test="not(func:keyval('arch')='SPARC')">
+Należy dodać reguły, które są dopasowane do naszego schematu partycjonowania.
+Dodatkowo musimy dołączyć reguły dla <path>/proc</path>, <c>tmpfs</c>,
+napędu CDROM i oczywiście dla innych partcyji lub napędów, które posiadamy.
 </p>
 
-<pre caption="Poprawiony wpis /boot do /etc/fstab">
-/dev/hda1   /boot     ext2    defaults,noatime    1 2
+<p test="func:keyval('arch')='SPARC'">
+Należy dodać reguły, które są dopasowane do naszego schematu partycjonowania.
+Dodatkowo musimy dołączyć reguły dla <path>/proc/openprom</path>,
+<path>/proc</path>, <c>tmpfs</c> napędu CDROM i oczywiście dla innych
+partcyji lub napędów, które posiadamy.
+</p>
+
+<p>
+Następnie należy użyć poniższego <e>przykładu</e>, aby stworzyć własny plik
+<path>/etc/fstab</path>:
+</p>
+
+<pre caption="Przykład pliku /etc/fstab" test="func:keyval('arch')='HPPA'">
+<keyval id="/boot"/>   /boot        ext2    defaults,noatime     1 2
+/dev/sda3   none         swap    sw                   0 0
+/dev/sda4   /            ext3    noatime              0 1
+
+proc        /proc        proc    nodev,nosuid,noexec  0 0
+shm         /dev/shm     tmpfs   nodev,nosuid,noexec  0 0
+
+/dev/cdrom  /mnt/cdrom   auto    noauto,user          0 0
 </pre>
 
-<p>
-W podobny sposób dodajemy kolejne partycje. Rezultatem będą następujące trzy
-wiersze (dla partycji <path>/boot</path>, <path>/</path> oraz swap):
-</p>
+<pre caption="Przykład pliku /etc/fstab" test="func:keyval('arch')='Alpha' or func:keyval('arch')='MIPS'">
+<keyval id="/boot"/>   /boot        ext2    defaults,noatime     1 2
+/dev/sda2   none         swap    sw                   0 0
+/dev/sda3   /            ext3    noatime              0 1
 
-<pre caption="Trzy wpisy do /etc/fstab">
-/dev/hda1   /boot     ext2    defaults,noatime  1 2
-/dev/hda2   none      swap    sw                0 0
-/dev/hda3   /         ext3    noatime           0 1
+proc        /proc        proc    nodev,nosuid,noexec  0 0
+shm         /dev/shm     tmpfs   nodev,nosuid,noexec  0 0
+
+/dev/cdrom  /mnt/cdrom   auto    noauto,user          0 0
 </pre>
 
-<p>
-Na koniec powinniśmy jeszcze dodać linijki dla <path>/proc</path>, <c>tmpfs</c>
-oraz CD-ROM-u (no i oczywiście pozostałych posiadanych partycji i napędów).
-</p>
+<pre caption="Przykład pliku /etc/fstab" test="func:keyval('arch')='SPARC'">
+/dev/sda1   /               ext3        noatime              0 1
+/dev/sda2   none            swap        sw                   0 0
+/dev/sda4   /usr            ext3        noatime              0 2
+/dev/sda5   /var            ext3        noatime              0 2
+/dev/sda6   /home           ext3        noatime              0 2
 
-<pre caption="Przykład kompletnego /etc/fstab">
-/dev/hda1   /boot     ext2    defaults,noatime  1 2
-/dev/hda2   none      swap    sw                0 0
-/dev/hda3   /         ext3    noatime           0 1
+openprom    /proc/openprom  openpromfs  defaults             0 0
+proc        /proc           proc        nodev,nosuid,noexec  0 0
+shm         /dev/shm        tmpfs       nodev,nosuid,noexec  0 0
 
-proc        /proc     proc    defaults          0 0
-shm         /dev/shm  tmpfs   nodev,nosuid,noexec  0 0
+/dev/cdrom  /mnt/cdrom      auto        noauto,user          0 0
+</pre>
 
-/dev/cdroms/cdrom0    /mnt/cdrom    auto      noauto,user    0 0
+<note test="func:keyval('arch')='PPC'">
+Istnieje wiele różnych wariacji, w zależności od posiadanego przez nas
+komputera PPC. Należy się upewnić, że używamy właściwego przykładu.
+</note>
+
+<pre caption="Przykład pliku /etc/fstab" test="func:keyval('arch')='PPC'">
+/dev/hda4   /            ext3    noatime              0 1
+/dev/hda3   none         swap    sw                   0 0
+
+proc        /proc        proc    nodev,nosuid,noexec  0 0
+shm         /dev/shm     tmpfs   nodev,nosuid,noexec  0 0
+
+/dev/cdrom  /mnt/cdrom   auto    noauto,user          0 0
+</pre>
+
+<pre caption="Przykład pliku /etc/fstab" test="func:keyval('arch')='PPC64'">
+/dev/sda4   /            ext3    noatime              0 1
+/dev/sda3   none         swap    sw                   0 0
+
+proc        /proc        proc    nodev,nosuid,noexec  0 0
+shm         /dev/shm     tmpfs   nodev,nosuid,noexec  0 0
+
+/dev/cdrom  /mnt/cdrom   auto    noauto,user          0 0
 </pre>
 
 <p>
@@ -145,14 +196,10 @@ Opcja <c>auto</c> powoduje, że <c>mount</c> sam próbuje wykryć system plików
 </p>
 
 <p>
-Należy skorzystać z powyższego przykładu do utworzenia własnego
-<path>/etc/fstab</path>. Użytkownicy architektury <b>SPARC</b> powinni
-jeszcze dodać do niego następujące linie:
+Aby poprawić wydajność, większość użytkowników zapewne zechce dodać opcję
+<c>noatime</c>. Dzięki niej nie są rejestrowane czasy dostępów (które zazwyczaj
+nie są potrzebne):
 </p>
-
-<pre caption="Dodawanie do /etc/fstab systemu plików openprom">
-openprom    /proc/openprom  openpromfs    defaults      0 0
-</pre>
 
 <p>
 Podwójnie sprawdzamy <path>/etc/fstab</path>, zapisujemy zmiany i zamykamy plik.
@@ -199,6 +246,12 @@ DHCP.
 <comment>(Ustawienie zmiennej dns_domain)</comment>
 dns_domain_lo="<i>homenetwork</i>"
 </pre>
+
+<note>
+Jeżeli nie ustawiamy nazwy domeny, a chcemy pozbyć się komunikatu "This is
+hostname.(none)" na ekranie logowania, musimy wyedytować plik
+<path>/etc/issue</path>. Wystarczy usunąć ciąg <c>.\O</c> z tego pliku.
+</note>
 
 <p>
 Posiadacze domeny NIS powinni ją ustawić. Jeśli nie wiesz czym jest domena NIS
@@ -279,7 +332,7 @@ zmienne, <c>config_eth</c> i <c>routes_eth0</c>:
 
 <pre caption="Ręczne ustawianie informacji o IP dla eth0">
 config_eth0=( "192.168.0.2 netmask 255.255.255.0 brd 192.168.0.255" )
-routes_eth0=( "default gw 192.168.0.1" )
+routes_eth0=( "default via 192.168.0.1" )
 </pre>
 
 <p>
@@ -314,8 +367,7 @@ Następnie należy zapisać konfigurację i zamknąć edytor.
 
 <p>
 Aby urządzenia sieciowe były aktywowane podczas startu, musimy je dodać do
-domyślnego poziomu uruchamiania. Posiadacze urządzeń PCMCIA mogą pominąć te
-czynności, gdyż są one inicjowane przez osobny skrypt startowy.
+domyślnego poziomu uruchamiania.
 </p>
 
 <pre caption="Dodawanie net.eth0 do domyślnego poziomu uruchamiania">
@@ -366,39 +418,24 @@ przypisane na stałe, aby skorzystać z tego sposobu).</comment>
 Zapisujemy zmiany i zamykamy edytor.
 </p>
 
-<p>
+<p test="func:keyval('arch')='AMD64' or func:keyval('arch')='x86' or substring(func:keyval('arch'),1,3)='PPC'">
 Osoby nie posiadające PCMCIA mogą od razu przejść do sekcji <uri
-link="#doc_chap4">Konfiguracja systemu</uri>. W przeciwnym wypadku należy czytać
+link="#sysinfo">Konfiguracja systemu</uri>. W przeciwnym wypadku należy czytać
 dalej.
 </p>
 
 </body>
 </subsection>
-<subsection>
+<subsection test="func:keyval('arch')='AMD64' or func:keyval('arch')='x86' or substring(func:keyval('arch'),1,3)='PPC'">
 <title>Opcjonalnie: Konfiguracja PCMCIA</title>
 <body>
 
-<note>
-pcmcia-cs jest dostępne wyłącznie na platformach x86, amd64 oraz ppc.
-</note>
-
 <p>
-Posiadacze PCMCIA muszą zainstalować pakiet <c>pcmcia-cs</c>. Dotyczy to także
-użytkowników jąder z serii 2.6 (nawet jeżeli nie będą używali sterowników PCMCIA
-z tego pakietu). Aby pominąć opcjonalną zależność xorg-x11, wpisujemy dodatkowo
-<c>USE="-X"</c>:
+Użytkownicy PCMCIA powinni najpierw zainstalować pakiet <c>pcmciautils</c>.
 </p>
 
-<pre caption="Instalacja pcmcia-cs">
-# <i>USE="-X" emerge pcmcia-cs</i>
-</pre>
-
-<p>
-Następnie dodajemy do domyślnego poziomu uruchamiania skrypt <c>pcmcia</c>:
-</p>
-
-<pre caption="Dodawanie do domyślnego poziomu uruchamiania skryptu pcmcia">
-# <i>rc-update add pcmcia default</i>
+<pre caption="Instalacja pcmciautils">
+# <i>emerge pcmciautils</i>
 </pre>
 
 </body>
@@ -468,14 +505,11 @@ Zmienna <c>KEYMAP</c> wymaga specjalnego traktowania. Jeśli zostanie wybrana z�
 wartość to mogą pojawić się dziwne rezultaty podczas pisania na klawiaturze.
 </p>
 
-<note>
-Użytkownicy <b>SPARC-ów</b> oraz ich klonów powinni wybrać stare, specyficzne
-dla nich mapy klawiatur jeżeli posiadają jądro 2.4. Jeżeli jednak mamy jądro
-2.6 (której jest domyślne), powinniśmy wybrać mapy klawiatur w stylu pc i386
-(np. "us"). <b>PPC</b> używa map na większości komputerów. Użytkownicy, którzy
-chcą mieć możliwości korzystania z map klawiatur ADB podczas uruchamiania
-komputera powinni uaktywnić wysyłanie kodów klawiszy w jądrze oraz powinni mieć
-ustawione mapy klawiatur mac/ppc w pliku <path>/etc/conf.d/keymaps</path>.
+<note test="substring(func:keyval('arch'),1,3)='PPC'">
+PPC używa map klawiatury z x86 na większości komputerów. Użytkownicy, którzy
+będą chcieli używać map ADB, będą musieli uaktywnić wysyłanie kodów klawiszy
+ADB w jądrze. Dodatkowo należy ustawić mapę klawiatury mac/ppc w pliku
+<path>/etc/conf.d/keymaps</path>.
 </note>
 
 <p>
@@ -500,25 +534,20 @@ Jeśli zegar sprzętu jest inny niż UTC należy dodać do pliku opcję
 Po ukończeniu edycji zapisujemy zmiany i zamykamy edytor.
 </p>
 
-<p>
-Jeżeli nie jest to instalacja IBM PPC64 należy przejść do <uri
+<p test="not(func:keyval('arch')='PPC64')">
+Należy kontynuować instalację przechodząc do rozdziału <uri
 link="?part=1&amp;chap=9">instalacji narzędzi systemowych</uri>.
 </p>
 
 </body>
 </subsection>
-<subsection>
+<subsection test="func:keyval('arch')='PPC64'">
 <title>Konfiguracja konsoli</title>
 <body>
 
-<note>
-Ta część przeznaczona jest dla użytkowników platform sprzętowych IBM PPC64.
-</note>
-
 <p>
-Jeżeli Gentoo pracuje na sprzęcie IBM PPC64, należy odkomentować linie hvc w
-pliku <path>/etc/inittab</path> dla konsoli wirtualnej, aby umożliwić
-zalogowanie się użytkownikom.
+Należy odkomentować odpowiednie linie w pliku <path>/etc/inittab</path>
+dla konsoli wirtualnej, aby umożliwić zalogowanie się użytkownikom.
 </p>
 
 <pre caption="Włączenie obsługi hvc lub hvsi w pliku /etc/inittab">
