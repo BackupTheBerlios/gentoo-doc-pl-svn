@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>7.1</version>
-<date>2006-11-10</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Czy potrzebujemy dostępu do sieci?</title>
@@ -198,8 +198,8 @@ link="#doc_chap3">Ręczna konfiguracja sieci</uri>.
     link="#net-setup">Domyślnie: Używanie net-setup</uri>.
   </li>
   <li>
-    Użytkownicy ASDL powinni przejść do paragrafu <uri
-    link="#rp-pppoe">Alternatywnie: Używanie RP-PPPoE</uri>.
+    Użytkownicy ADSL powinni przejść do paragrafu <uri
+    link="#ppp">Alternatywnie: Używanie PPP</uri>.
   </li>
   <li>
     A użytkownicy PPTP powinni przejść do części <uri
@@ -238,19 +238,19 @@ konfiguracji sieci</uri>.
 
 </body>
 </subsection>
-<subsection id="rp-pppoe">
-<title>Alternatywnie: Używanie RP-PPPoE</title>
+<subsection id="ppp">
+<title>Alternatywnie: Używanie PPP</title>
 <body>
 
 <p>
 Jeśli do połączenia z Internetem potrzebne jest PPPoE, należy skorzystać z
-programu <c>rp-ppoe</c> nagranego na naszej płycie instalacyjnej.  Skrypt
+programu <c>ppp</c> nagranego na naszej płycie instalacyjnej.  Skrypt
 <c>pppoe-setup</c> służy do konfiguracji połączenia. Zostaniemy zapytani o
 urządzenie sieciowe podłączone do modemu asdl, nazwę użytkownika i hasło, oraz o
 IP serwerów DNS i o to czy potrzebujemy podstawowego firewalla.
 </p>
 
-<pre caption="Używanie rp-pppoe">
+<pre caption="Używanie ppp">
 # <i>pppoe-setup</i>
 # <i>pppoe-start</i>
 </pre>
