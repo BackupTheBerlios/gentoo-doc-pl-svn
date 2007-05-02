@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>2.1</version>
-<date>2006-11-01</date>
+<version>3.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Witamy</title>
@@ -20,69 +20,22 @@
 Po uruchomieniu instalatora Gentoo Linux wyświetlony zostanie ekran powitalny.
 Razem z instalatorem dostarczana jest przejrzysta instrukcja opisująca proces
 instalacji. Należy pamiętać o przeczytaniu każdej opcji z należytą uwagą. Dla
-każdego z etapów instalacji przewidziana jest pomoc. Wystarczy kliknąć
-<c>Help</c> w dolnym lewym rogu instalatora. Zalecamy przeczytanie tej pomocy
-przed dokonywaniem dalszych wyborów. Godnym uwagi szczegółem jest również
-możliwość zapisania aktualnych postępów konfiguracji, a następnie odtworzenie
-procesu instalacji w późniejszym czasie.
+każdego z etapów instalacji przewidziana jest pomoc, wystarczy spojrzeć na lewą
+stronę każdej z zakładek. Zalecamy przeczytanie tej pomocy przed dokonywaniem
+dalszych wyborów. Godnym uwagi szczegółem jest również możliwość zapisania
+aktualnych postępów konfiguracji, a następnie odtworzenie procesu instalacji
+w późniejszym czasie.
 </p>
 
 <p>
-Do wyboru mamy dwie możliwości instalacji. Wybieramy <c>Networkless</c>, aby
+Do wyboru mamy trzy możliwości instalacji. Wybieramy <c>Networkless</c>, aby
 zainstalować Gentoo Linux.
 </p>
 
 <note>
 Wybierając opcję <c>Networkless</c> sprawimy, że w późniejszym czasie część
-opcji będzie niedostępna. W takim przypadku przechodzimy po prostu do
-następnego kroku.
+opcji będzie niedostępna.
 </note>
-
-</body>
-</subsection>
-</section>
-
-<section>
-<title>Konfiguracja przed instalacją</title>
-<subsection>
-<title>Opcjonalnie: Ręczna konfiguracja sieci</title>
-<body>
-
-<p>
-W następnej zakładce, mamy możliwość skonfigurowania naszej sieci. Instalator
-powinien automatycznie wykryć i skonfigurować naszą sieć, jednak jeżeli tego
-nie zrobił, pozostaje nam jej ręczna konfiguracja. W zakładce <e>Misc.</e>,
-możemy wybrać gdzie instalator powinien gromadzić pliki log. Możemy również
-zostawić domyślną (<path>/var/log/installer.org</path>) wartość.
-</p>
-
-</body>
-</subsection>
-<subsection>
-<title>Opcjonalnie: Zdalna instalacja</title>
-<body>
-
-<p>
-Jeżeli chcemy możemy zezwolić na dostęp do naszego komputera poprzez ssh,
-uruchamiając demona <c>sshd</c> oraz ustawiając hasło superużytkownika.
-</p>
-
-</body>
-</subsection>
-<subsection>
-<title>Opcjonalnie: Ładowanie dodatkowych modułów</title>
-<body>
-
-<p>
-Kiedy chcemy załadować dodatkowe moduły do obsługi naszego sprzętu, powinniśmy
-umieścić ich nazwy w odpowiedniej linii, każdy oddzielony spacją.
-</p>
-
-<warn>
-Nie należy zmieniać opcji <e>Install mode</e> na jakąkolwiek inną wartość niż
-<b>Normal</b>. Opcja ta cały czas jest w fazie eksperymentalnej i jej zmiana
-spowoduje, że nasz system nie będzie mógł się uruchomić.
-</warn>
 
 </body>
 </subsection>
@@ -175,9 +128,7 @@ Wszsytkie opcje, których chcemy używać w przyszłości powinni zostać wybran
 tym momencie. Opcja <e>Build binary packages</e> tworzy gotowe do instalacji
 pakiety binarne, ze wszystkich programów, które skompilujemy w naszym systemie.
 Opcja <e>DistCC</e> pozwala dzielić obicążenie wywołane przez kompilację na
-inne komputery znajdujące się w sieci lokalnej. <c>ccache</c> zachowuje
-kompilowany kod, do późniejszego wykorzystania, przez co może przyśpieszy
-późniejszą ponowną kompilację, tego samego pakietu.
+inne komputery znajdujące się w sieci lokalnej.
 </p>
 
 <p>
@@ -187,6 +138,22 @@ maksymalną liczbę możliwych równoległych kompilacji podczas instalacji paki
 Przyjęto zasadę, że wpisujemy tutaj ilość procesorów powiększona o jeden,
 jednak ten wzór nie zawsze jest dobrym rozwiązaniem. W systemie
 jednoprocesorowym, można używać ustawienia <c>-j2</c>.
+</p>
+
+</body>
+</subsection>
+</section>
+
+<section>
+<title>Strefa czasowa</title>
+<subsection>
+<title>Wybór sterfy czasowej</title>
+<body>
+
+<p>
+Należy przyjrzeć się mapie i wybrać region najbliższy naszej aktualnej
+lokalizacji. W kolejnym kroku zostaniemy zapytani czy ustawić nasz zegar
+zgodnie z czasem UTC czy z czasem lokalnym.
 </p>
 
 </body>
@@ -206,9 +173,55 @@ prekompilowanych, musimy użyć jądra znajdującego się na LiveCD. Jest to ją
 będzie ono automatycznie wykrywało i konfigurowało sprzęt podczas uruchamiania.
 </p>
 
+</body>
+</subsection>
+</section>
+
+<section>
+<title>Sieć</title>
+<subsection>
+<title>Informacje o urządzeniu</title>
+<body>
+
 <p>
-Aby posiadać ładne tło podczas uruchamiania systemu należy zaznaczyć opcję
-<c>Enable bootsplash</c>.
+Na tej zakładce można skonfigurować interfejsy sieciowe, które zostały wykryte
+na naszym komputerze. Każdą opcję należy przeczytać bardzo uważnie.
+</p>
+
+<p>
+Zakładka <e>Hostname/Proxy Information/Other</e> pozwala nam ustalić nazwę dla
+naszego komputera. Możemy również wprowadzić tutaj ustawienia serwera proxy
+oraz DNS, jeśli ich potrzebujemy.
+</p>
+
+</body>
+</subsection>
+</section>
+
+<section>
+<title>Demony</title>
+<subsection>
+<title>Demon cron</title>
+<body>
+
+<p>
+Demony cron są użytecznymi programami, które uruchamiają zadania w określonym
+przez nas czasie. Byc może nie <e>potrzebujemy</e> ich instalować jednak mogą
+one okazać się dosyć przydatne. Ponieważ przeprowadzamy instalację bez dostępu
+do internetu, jedynym wyborem jaki w tym momencie mamy jest <c>vixie-cron</c>
+lub całkowity brak demona cron.
+</p>
+
+</body>
+</subsection>
+<subsection>
+<title>Aplikacja logująca</title>
+<body>
+
+<p>
+Aplikacja logująca jest bezwzględnie potrzebna w systemie operacyjnym Linux.
+Ponieważ jest to instalacja bez dostępu do sieci internet, jesteśmy ograniczeni
+do aplikacji <c>syslog-ng</c> lub do całkowitego jej braku.
 </p>
 
 </body>
@@ -218,7 +231,6 @@ Aby posiadać ładne tło podczas uruchamiania systemu należy zaznaczyć opcję
 <section>
 <title>Program ładujący</title>
 <subsection>
-<title>Wybór</title>
 <body>
 
 <p>
@@ -254,61 +266,22 @@ lines and/or block devices here? -->
 </section>
 
 <section>
-<title>Strefa czasow</title>
+<title>Użytkownicy</title>
 <subsection>
-<title>Wybór odpowiedniej strefy czasowej</title>
+<title>Dodawanie użytkowników i grup</title>
 <body>
 
 <p>
-Powinniśmy zaznaczyć na liście miejsce znajdujące się najbliżej nas.
-</p>
-
-</body>
-</subsection>
-</section>
-
-<section>
-<title>Sieć</title>
-<subsection>
-<title>Dodawanie urządzenia sieciowego</title>
-<body>
-
-<p>
-Na tej zakładce można skonfigurować różne urządzenia i interfejsy sieciowe,
-wykryte na naszym komputerze. Każdą z opcji należy przeczytać bardzo uważnie.
+Na samym początku należy ustawić hasło użytkownika root (administratora
+systemu).
 </p>
 
 <p>
-Zakładka <e>Hostname/Proxy Information/Other</e> pozwoli nam ustawić nazwę
-naszego hosta. Jeżeli będzie taka potrzeba możemy tutaj również sprecyzować
-serwer proxy lub ustawienia DNS-ów.
-</p>
-
-</body>
-</subsection>
-</section>
-
-<section>
-<title>Demony</title>
-<subsection>
-<title>Demon cron</title>
-<body>
-
-<p>
-Demony cron są bardzo pożytecznymi aplikacjami, uruchamiającymi procesy o
-określonej porze. Jeżeli nie <e>potrzebujemy</e> instalować tego typu demona,
-powinniśmy się zastanowić nad tym wyborem.
-</p>
-
-</body>
-</subsection>
-<subsection>
-<title>Aplikacja logująca</title>
-<body>
-
-<p>
-Program logujący (ang. logger) jest niezbędnym składnikiem każdego systemu
-operacyjnego Linux. Należy wybrać jeden z dostępnych w Portage.
+Wykonywanie zadań z przywilejami roota jest <e>niebezpieczne</e> i należy tego
+unikać. Do codziennej pracy <e>należy</e> utworzyć konto zwykłego użytkownika,
+któremu możemy zmienić hasło oraz dodać go do wybranych grup. Dodatkowo można
+zmienić domyślne ustawienia katalogu domowego, powłoki, której będzie używał,
+oraz ustawić pomocne komentarze.
 </p>
 
 </body>
@@ -365,47 +338,13 @@ czas lokalny.
 </section>
 
 <section>
-<title>Użytkownicy</title>
-<subsection>
-<title>Dodawanie użytkowników i grup</title>
-<body>
-
-<p>
-Na samym początku należy ustawić hasło użytkownika root (administratora
-systemu).
-</p>
-
-<p>
-Wykonywanie zadań z przywilejami roota jest <e>niebezpieczne</e> i należy tego
-unikać. Do codziennej pracy <e>należy</e> utworzyć konto zwykłego użytkownika,
-któremu możemy zmienić hasło oraz dodać go do wybranych grup. Dodatkowo można
-zmienić domyślne ustawienia katalogu domowego, powłoki, której będzie używał,
-oraz ustawić pomocne komentarze.
-</p>
-
-</body>
-</subsection>
-</section>
-
-<section>
 <title>Kończenie instalacji</title>
 <subsection>
-<title>Zakończenie procesu instalacji</title>
 <body>
 
 <p>
-Najlepiej upewnić się jeszcze raz czy system został poprawnie skonfigurowany,
-przed rozpoczęciem procesu instalacji. Aby tego dokonać należy wybrać opcję
-<c>Install</c>, która rozpocznie instalację. Możemy również zapisać naszą
-konfigurację, w celu późniejszego wykorzystania.
-</p>
-
-<p>
-W czasie instalacji nic nie stoi na przeszkodzie w przeglądaniu LiveCD. Okno
-instalatora powiadomi nas o zakończonym procesie instalacji. Możemy je zamknąć
-poprzez kliknięcie <c>x</c> w prawym górnym rogu. Gdy będziemy gotowi, możemy
-się wylogować i uruchomić ponownie system. Należy pamiętać o usunięciu LiveCD z
-napędu.
+Na tym kończy się instalacja. Teraz możemy ponownie uruchomić komputera i
+zalogować się do naszego nowego systemu Gentoo.
 </p>
 
 <p>
