@@ -8,25 +8,27 @@
 
 <sections>
 
-<version>7.3</version>
-<date>2007-03-12</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Strefa czasowa</title>
 <body>
 
 <p>
-Aby system wiedział gdzie się znajduje powinieneś najpierw wybrać swoją strefę
-czasową. Odszukaj ją w <path>/usr/share/zoneinfo</path>, a następnie skopiować
-do <path>/etc/localtime</path>. Należy unikać stref czasowych o nazwie
-<path>/usr/share/zoneinfo/Etc/GMT*</path>, ponieważ ich nazwy mogą być mylące,
-na przykład <path>GMT-8</path> jest w rzeczywistości GMT+8.
+Aby system wiedział gdzie się znajduje powinieneś najpierw wybrać swoją
+strefę czasową. Odszukaj ją w <path>/usr/share/zoneinfo</path>. Następnie
+ustawiamy strefę czasową w pliku <path>/etc/conf.d/clock</path>. Należy unikać
+stref czasowych o nazwie <path>/usr/share/zoneinfo/Etc/GMT*</path>, ponieważ
+ich nazwy mogą być mylące, na przykład <path>GMT-8</path> jest w
+rzeczywistości GMT+8.
 </p>
 
 <pre caption="Konfiguracja strefy czasowej">
 # <i>ls /usr/share/zoneinfo</i>
-<comment>(Zakładając, że chcesz Poland)</comment>
-# <i>cp /usr/share/zoneinfo/Poland /etc/localtime</i>
+<comment>(Przypuśćmy, że chcemy ustawić strefę GMT)</comment>
+# <i>nano -w /etc/conf.d/clock</i>
+TIMEZONE="GMT"
 </pre>
 
 </body>
@@ -46,10 +48,7 @@ różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
 
 <p>
 Dla architektury HPPA w portage znajduje się <c>hppa-sources</c>. Domyślnie
-bazują one na kernelu serii 2.6. Jeżeli będziemy chcieli zainstalować kernel
-serii 2.4, będziemy musieli zainstalować Gentoo z działającym połączeniem
-internetowym, gdyż wyżej wymienionych źródeł nie znajdziemy na płycie
-instalacyjnej. 
+bazują one na kernelu serii 2.6.
 </p>
 
 <pre caption="Instalowanie źródeł jądra">
@@ -59,13 +58,14 @@ instalacyjnej.
 <p>
 W katalogu <path>/usr/src</path> powinieneś mieć mniej więcej taki symlink, o
 nazwie <path>linux</path>, wskazujący na źródła Twojego aktualnego kernela.
-tym wypadku wskazuje na źródła <c>hppa-sources-2.6.16.18-pa11</c>. W komputerze
-użytkownika może być to inna wersja, dlatego należy mieć to na uwadze.
+tym wypadku wskazuje na źródła <c>hppa-sources-<keyval
+id="kernel-version"/></c>. W komputerze użytkownika może być to inna wersja,
+dlatego należy mieć to na uwadze.
 </p>
 
 <pre caption="Podgląd symlinka do źródeł kernela">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.6.16.18-pa11
+lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-<keyval id="kernel-version"/>
 </pre>
 
 <p>
@@ -138,6 +138,8 @@ bardzo ważnych opcji.
 <pre caption="Wybieranie opcji experimental code/drivers">
 Code maturity level options ---&gt;
   [*] Prompt for development and/or incomplete code/drivers
+General setup --->
+  [*] Support for hot-pluggable devices
 </pre>
 
 <p>
@@ -180,7 +182,7 @@ Device Drivers ---&gt;
 <p>
 Obie opcje dotyczące kompresji nie są wprawdzie wymagane, ale również nie
 zaszkodzą naszemu systemowi, podobnie zresztą jak opcja <c>PPP over
-Ethernet</c>, która jest przydatna tylko gdy skonfigurujesz <c>rp-pppoe</c> do
+Ethernet</c>, która jest przydatna tylko gdy skonfigurujesz <c>ppp</c> do
 pracy w trybie jądra PPPoE.
 </p>
 
@@ -323,22 +325,7 @@ jako moduły).
 </p>
 
 <pre caption="Uruchamianie genkernela">
-<comment>(Output removed to increase readability)</comment>
-* Kernel compiled successfully!
-* Required Kernel Params:
-*   : root=/dev/ram0 init=/linuxrc real_root=/dev/$ROOT
-*     where $ROOT is the devicenode for your root partition as
-*     you should have specified in /etc/fstab
-*
-* You MUST tell your bootloader to use the generated initrd
-*
-* Recommended Kernel Params:
-*   : vga=0x317 splash=verbose
-*
-* Do NOT report kernel bugs (configs included) as genkernel bugs.
-* Make sure you have the latest genkernel before reporting bugs
-*
-* For more info see /usr/share/genkernel/README
+# <i>genkernel all</i>
 </pre>
 
 <p>
