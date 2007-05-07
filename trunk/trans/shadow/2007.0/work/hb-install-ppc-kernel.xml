@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>7.5</version>
-<date>2007-03-12</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Strefa czasowa</title>
@@ -17,23 +17,24 @@
 
 <p>
 Aby system wiedział gdzie się znajduje należy najpierw wybrać strefę czasową.
-Odszukujemy ją w <path>/usr/share/zoneinfo</path>, a następnie za pomocą
-<c>ln</c> tworzymy do niej symlinka <path>/etc/localtime</path>. Należy unikać
-stref czasowych o nazwie <path>/usr/share/zoneinfo/Etc/GMT*</path>, ponieważ ich
+Odszukujemy ją w <path>/usr/share/zoneinfo</path>. Następnie ustawiamy wybraną
+przez nas strefę w pliku <path>/etc/conf.d/clock</path>. Należy unikać stref
+czasowych o nazwie <path>/usr/share/zoneinfo/Etc/GMT*</path>, ponieważ ich
 nazwy mogą być mylące, na przykład <path>GMT-8</path> jest w rzeczywistości
 GMT+8.
 </p>
 
 <pre caption="Konfiguracja strefy czasowej">
 # <i>ls /usr/share/zoneinfo</i>
-<comment>(Zakładając, że chcemy Poland)</comment>
-# <i>ln -sf /usr/share/zoneinfo/Poland /etc/localtime</i>
+<comment>Zakładając, że chcemy używać czasu GMT)</comment>
+# <i>nano -w /etc/conf.d/clock</i>
+TIMEZONE="GMT"
 </pre>
 
 </body>
 </section>
 <section>
-<title>Instalacja źródeł</title>
+<title>Instalacja źródeł kernela</title>
 <subsection>
 <title>Wybór jądra</title>
 <body>
@@ -46,24 +47,24 @@ link="/doc/pl/gentoo-kernel.xml">Przewodniku jąder Gentoo</uri>.
 </p>
 
 <p>
-Dla architektury PPC polecamy jądro <c>gentoo-sources</c> (serii 2.6). 
+Dla architektury PPC polecamy jądro <c>gentoo-sources</c> (seria 2.6). 
 </p>
 
 <pre caption="Instalowanie źródeł jądra">
-# <i>emerge gentoo-sources</i>
+# <i>emerge --usepkg gentoo-sources</i>
 </pre>
 
 <p>
 W katalogu <path>/usr/src</path> powinien być mniej więcej taki jak poniższy
 symlink, o nazwie <path>linux</path>, wskazujący na źródła jądra. W przykładzie
-zakładamy, że źródła jądra zostały zainstalowane jako
-<c>gentoo-sources-2.6.15</c>. W komputerze użytkownika może być to inna
-wersja, dlatego należy mieć to na uwadze.
+zakładamy, że źródła jądra zostały zainstalowane jako <c>gentoo-sources-<keyval
+id="kernel-version"/></c>. W komputerze użytkownika może być to inna wersja,
+dlatego należy mieć to na uwadze.
 </p>
 
 <pre caption="Podgląd symlinka do źródeł kernela">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           22  Mar 18 16:23 /usr/src/linux -&gt; linux-2.6.15
+lrwxrwxrwx    1 root     root           22  Mar 18 16:23 /usr/src/linux -&gt; linux-<keyval id="kernel-gentoo"/>
 </pre>
 
 <p>
@@ -100,8 +101,8 @@ zadanie.
 <p>
 Nie sposób jednak zaprzeczyć, że należy dobrze znać swój komputer, aby móc
 prawidłowo skonfigurować jądro. Większość informacji można zdobyć poprzez
-zemergowanie pakietu pciutils (<c>emerge pciutils</c>) zawierającego program
-<c>lspci</c>. Dzięki temu będzie możliwe używanie <c>lspci</c> wewnątrz
+zemergowanie pakietu pciutils (<c>emerge --usepkg pciutils</c>) zawierającego
+program <c>lspci</c>. Dzięki temu będzie możliwe używanie <c>lspci</c> wewnątrz
 chrootowanego środowiska. Podczas pracy z tym programem można bezpiecznie
 zignorować wszelkie ostrzeżenia związane z <e>pcilib</e> (jak np.
 "pcilib: cannot open /sys/bus/pci/devices). Ponadto można również uruchomić
@@ -115,10 +116,11 @@ okazać się cennym źródłem informacji. Do ich wyświetlania służy poleceni
 
 <p>
 Teraz pora na przeniesienie się do katalogu ze źródłami kernel, a następnie
-jego konfiguracja. Aby dodać domyślne ustawienia do konfiguracji, zaleca się
-uruchomienie najpierw polecenia <c>make pmac32_defconfig</c>. Po wygenerowaniu
-domyślnej konfiguracji pora na wydanie polecenia <c>make menuconfig</c>, po
-którym uruchomi się menu konfiguracyjne oparte na ncurses.
+jego konfiguracja. Zaczynamy od konfiguracji kernela, który uruchomi się na
+większości 32-bitowych komputerów PowerPC poprzez wydanie polecenia <c>make
+pmac32_defconfig</c>. Po wygenerowaniu domyślnej konfiguracji pora na wydanie
+polecenia <c>make menuconfig</c>, po którym uruchomi się menu konfiguracyjne
+oparte na ncurses.
 </p>
 
 <pre caption="Uruchamianie menuconfig">
@@ -160,6 +162,7 @@ zaznaczamy też <c>Virtual memory</c> i <c>/proc file system</c>.
 <pre caption="Wybór potrzebnych systemów plików">
 File systems ---&gt;
   Pseudo Filesystems ---&gt;
+<comment>(System plików /proc może być już wymuszony przez konfigurację naszego komputera. Jeżeli tak jest zobaczymy znaki -- zamiast poniższego widoku).</comment>
     [*] /proc file system support
     [*] Virtual memory file system support (former shm fs)
   Partition Types ---&gt;
@@ -174,13 +177,27 @@ File systems ---&gt;
 </pre>
 
 <p>
+Użytkownicy komputerów NewWorld i OldWorld będą potrzebowali wsparcia dla
+systemu plików HFS. Na komputera OldWorld potrzebne jest do kompiowania
+skompilowanego kernela na partycję MacOS, natomiast na komputerach NewWorld
+umożliwia konfigurację partycji Apple_Bootstrap:
+</p>
+
+<pre caption="Aktywowanie wsparcia dla HFS">
+File Systems ---&gt;
+  File Systems ---&gt;
+    &lt;*&gt; Apple Macintosh file system support
+    &lt;*&gt; Apple Extended HFS file system support
+</pre>
+
+<p>
 Jeśli używany jest PPPoE do łączenia się z Internetem, lub gdy używamy modemu
 dial-up będzie trzeba włączyć następujące opcje:
 </p>
 
 <pre caption="Sterowniki niezbędne dla użytkowników PPPoE">
 Device Drivers ---&gt;
-  Networking support ---&gt;
+  Network device support ---&gt;
     &lt;*&gt; PPP (point-to-point protocol) support
     &lt;*&gt;   PPP support for async serial ports
     &lt;*&gt;   PPP support for sync tty ports
@@ -188,26 +205,15 @@ Device Drivers ---&gt;
 
 <p>
 Obie opcje dotyczące kompresji nie są wprawdzie wymagane, ale również nie
-zaszkodzą naszemu systemowi, podobnie zresztą jak opcja <c>PPP over
-Ethernet</c>, która jest przydatna tylko gdy skonfigurujemy <c>rp-pppoe</c> do
-pracy w trybie jądra PPPoE.
+zaszkodzą naszemu systemowi. Opcja <c>PPP over Ethernet</c>, może okazać się
+przydatna tylko gdy skonfigurujemy jądro do trybu PPPoE.
 </p>
 
 <p>
-Nie należy zapomnieć wkompilować sterownika dla karty sieciowej.
+Nie należy zapomnieć o wkompilowaniu wsparcie dla naszej karty sieciowej do
+jądra! Większość nowych komputerów Apple używa sterownika SunGEM. Starsze
+wersje używają sterownika BMAC.
 </p>
-
-<p>
-Użytkownicy zarówno komputerów OldWorld jak i NewWorld będą potrzebowali
-wsparcia dla HFS, aby skopiować skompilowane jądro na partycję MacOS.
-Użytkownicy NewWorld muszą także dodatkowo skonfigurować partycję
-Apple_Bootstrap:
-</p>
-
-<pre caption="Aktywowanie wsparcia dla HFS">
-File Systems ---&gt;
-  [*] HFS Support
-</pre>
 
 <p>
 Wywłaszczanie w jądrze wciąż działa niestabilnie na platformie PPC i może
@@ -215,9 +221,30 @@ spowodować błędy przy kompilacji, czy naruszenia ochrony pamięci. <e>Nie
 radzimy</e> korzystać z tej opcji.
 </p>
 
+<pre caption="Wybieranie sterownika karty sieciowej">
+Device Drivers ---&gt;
+  Network device support ---&gt;
+    Ethernet (10 or 100Mbit) ---&gt;
+      [*] Ethernet (10 or 100Mbit)
+      &lt;*&gt;   Generic Media Independent Interface device support
+      &lt;*&gt;   Generic Media Independent Interface device support
+      &lt;*&gt;   BMAC (G3 ethernet) support
+      &lt;*&gt; Sun GEM support
+</pre>
+
+<p>
+Wywłaszczanie w jądrze wciąż działa niestabilnie na platformie PPC i może
+spowodować błędy przy kompilacji, czy naruszenia ochrony pamięci. <e>Nie
+radzimy</e> korzystać z tej opcji. Obie opcję, <e>Voluntary Preemption</e> oraz
+<e>No Forced Preemption</e> nie powinny stwarzać problemów.
+</p>
+
 <pre caption="Upewnianie się, że wyłączono wywłaszczanie">
 Kernel options ---&gt;
-  Preemption Model (No Forced Preemption (Server))
+<comment>(Wybieramy jeden)</comment>
+  Preemption Model
+    (X) No Forced Preemption (Server)
+    (X) Voluntary Kernel Preemption (Desktop)
 </pre>
 
 <p>
@@ -269,14 +296,14 @@ posiadanego chipsetu karty (Mach64, Rage128 or Radeon).
 Jeśli włączy się więcej niż jeden sterownik to przy uruchamianiu może zostać
 wybrany niewłaściwy z nich. Należy zatem powstrzymać się od wybierania większej
 ilości urządzeń bufora ramki lub wybrać to najbardziej pożądane za pomocą opcji
-<c>video=radeonfb</c> podczas rozruchu systemu.
+video <c>video=radeonfb</c> podczas rozruchu systemu.
 </note>
 
 <p>
 Po ukończeniu konfigurowania jądra należy przejść do paragrafu
 <uri link="#compiling">Kompilacja i instalacja</uri>.
 </p>
-
+a
 </body>
 </subsection>
 <subsection id="compiling">
@@ -294,9 +321,10 @@ instalację. Opuszczamy program konfiguracyjny i wpisujemy następujące polecen
 
 <p>
 Kiedy jądro skończy się kompilować kopiujemy jego obraz do katalogu
-<path>/boot</path> (należy upewnić się, że jest to poprawnie montowane,
-zwłaszcza na komputerach Pegasos). Jeżeli do uruchamiania komputera używamy
-BootX, jądro skopiujemy w późniejszym czasie.
+<path>/boot</path> w opisany poniżej sposób. Jeżeli posiadamy oddzielną
+partycję boot, tak jak komputery Pegasos należy się upewnić, że jest ona
+prawidłowo zamontowana. W przypadku używania BootX do uruchamiania systemu,
+skopiujemy jądro w późniejszym czasie.
 </p>
 
 <p>
@@ -304,17 +332,17 @@ Yaboot i BootX używają nieskompresowanych jąder w odróżnieniu do innych teg
 typu programów. Nieskompresowane jądra posiada nazwę vmlinux, a jego obraz po
 skompilowaniu znajduje się w katalogu <path>/usr/src/linux</path>. Jeżeli
 używamy komputera Pegasos jego oprogramowania wewnętrzne wymaga jądra
-skompresowanego, które po skompilowaniu posiada nazwę zImage.chrp i znajduje się
+skompresowanego, które po skompilowaniu posiada nazwę zImage i znajduje się
 w katalogu <path>/usr/src/linux/arch/ppc/boot/images</path>.
 </p>
 
 <pre caption="Instalowanie kernela">
 # <i>cd /usr/src/linux</i>
-<comment>replace &lt;kernel-version&gt; with your kernel version</comment>
+<comment>Należy mieć na uwadzę, że wersja naszego jądra może być inna</comment>
 <comment>(Apple/IBM)</comment>
-# <i>cp vmlinux /boot/&lt;kernel-version&gt;</i>
+# <i>cp vmlinux /boot/<keyval id="kernel-name"/></i>
 <comment>(Pegasos)</comment>
-# <i>cp arch/ppc/boot/images/zImage.chrp /boot/&lt;kernel-version&gt;</i>
+# <i>cp arch/powerpc/boot/images/zImage /boot/<keyval id="kernel-name"/></i>
 </pre>
 
 <p>
@@ -373,11 +401,6 @@ systemu</uri>.
 <body>
 
 <p>
-W tym paragrafie omawiamy proces konfiguracji jądra przy pomocy programu
-<c>genkernel</c>.
-</p>
-
-<p>
 Po zainstalowaniu źródeł należy je skonfigurować. Zrobimy to automatycznie przy
 pomocy programu <c>genkernel</c>, który wykonuje cały proces dokładnie w ten sam
 sposób w jaki jest konfigurowane jądro na płycie instalacyjnej. Konsekwencją
@@ -394,7 +417,7 @@ zainstalować:
 </p>
 
 <pre caption="Emergowanie genkernela">
-# <i>emerge genkernel</i>
+# <i>emerge --usepkg genkernel</i>
 </pre>
 
 <p>
@@ -417,9 +440,9 @@ i dodajemy <c>MODULES_FIREWIRE="ieee1394 ohci1394 sbp2"</c> dla Firewire lub
 Przed kompilacją źródeł, musimy dokonać paru poprawek w fstab. Pozostała część
 tego pliku zostanie uzupełniona później więc nie należy się teraz tym
 przejmować. Jeżeli nie stworzyliśmy oddzielnej partycji boot (NIE bootstrap,
-jest to zupełnie co innego), należy usunąć wpis odnoszący się do /boot z
-<path>/etc/fstab</path>. Krok ten będziemy musieli wykonać na większości
-komputerów.
+jest to zupełnie co innego), należy usunąć wpis odnoszący się do
+<path>/boot</path> z <path>/etc/fstab</path>. Krok ten będziemy musieli wykonać
+na większości komputerów.
 </p>
 
 <pre caption="Usuwanie wpisu /boot z /etc/fstab na komputerach bez partycji boot">
@@ -465,17 +488,8 @@ systemu, bez nich system się nie uruchomi.
 </p>
 
 <pre caption="Sprawdzanie nazw utworzonych plików jądra">
-# <i>ls /boot/kernel* /boot/initramfs*</i>
-</pre>
-
-<p>
-Jeśli chcemy, aby system reagował na zdarzenia hotplug, wtedy powinniśmy
-zainstalować i ustawić <c>hotplug</c>:
-</p>
-
-<pre caption="Emergowanie i uruchamianie hotplug">
-# <i>emerge hotplug</i>
-# <i>rc-update add hotplug default</i>
+<comment>(Należy mieć na uwadzę, że nasza wersją jądra może być inna)</comment>
+# <i>ls /boot/kernel-genkernel-ppc-<keyval id="kernel-gentoo"/> /boot/initramfs-genkernel-ppc-<keyval id="kernel-gentoo"/></i>
 </pre>
 
 <p>
