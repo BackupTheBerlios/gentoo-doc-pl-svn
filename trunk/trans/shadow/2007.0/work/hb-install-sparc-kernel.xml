@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>7.2</version>
-<date>2007-03-06</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Strefa czasowa</title>
@@ -16,16 +16,17 @@
 
 <p>
 Aby system wiedział gdzie się znajduje powinieneś najpierw wybrać swoją strefę
-czasową. Odszukaj ją w <path>/usr/share/zoneinfo</path>, a następnie skopiuj ją
-do <path>/etc/localtime</path>. Należy unikać stref czasowych o nazwie
-<path>/usr/share/zoneinfo/Etc/GMT*</path>, ponieważ ich nazwy mogą być mylące,
-na przykład <path>GMT-8</path> jest w rzeczywistości GMT+8.
+czasową. Odszukaj ją w <path>/usr/share/zoneinfo</path>, a następnie ustawiamy
+ją w pliku <path>/etc/conf.d/clock</path>. Należy unikać stref czasowych o
+nazwie <path>/usr/share/zoneinfo/Etc/GMT*</path>, ponieważ ich nazwy mogą być
+mylące, na przykład <path>GMT-8</path> jest w rzeczywistości GMT+8.
 </p>
 
 <pre caption="Konfiguracja strefy czasowej">
 # <i>ls /usr/share/zoneinfo</i>
-<comment>(Zakładając, że chcesz Poland)</comment>
-# <i>cp /usr/share/zoneinfo/Poland /etc/localtime</i>
+<comment>(Zakładając, że chcemy ustawić GMT)</comment>
+# <i>nano -w /etc/conf.d/clock</i>
+TIMEZONE="GMT"
 </pre>
 
 </body>
@@ -45,13 +46,11 @@ różne źródła kerneli. Pełna lista wraz z opisami znajduje się w
 
 <p>
 Dla systemów opartych na architekturze sparc udostępniamy źródła
-<c>sparc-sources</c> (jądro 2.4 zoptymalizowane dla użytkowników sparc) i
-<c>gentoo-sources</c> (polecane źródła jądra 2.6).
+<c>gentoo-sources</c> (zalecane źródła serii 2.6).
 </p>
 
 <p>
-Wybierzmy któreś z dostępnych źródeł i zainstalujmy je przy pomocy
-<c>emerge</c>. 
+W przykładzie posługujemy się źródłami <c>gentoo-sources</c>.
 </p>
 
 <pre caption="Instalowanie źródeł jądra">
@@ -61,13 +60,14 @@ Wybierzmy któreś z dostępnych źródeł i zainstalujmy je przy pomocy
 <p>
 W katalogu <path>/usr/src</path> powinieneś mieć mniej więcej taki symlink, o
 nazwie <path>linux</path>, wskazujący na źródła Twojego aktualnego kernela. W
-tym wypadku wskazuje na źródła <c>linux-2.6.17-gentoo-r5</c>. W komputerze
-użytkownika może być to inna wersja, dlatego należy mieć to na uwadze.
+tym wypadku wskazuje na źródła <c>linux-<keyval id="kernel-version"/></c>. W
+komputerze użytkownika może być to inna wersja, dlatego należy mieć to na
+uwadze.
 </p>
 
 <pre caption="Podgląd symlinka do źródeł kernela">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root       12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.6.17-gentoo-r5
+lrwxrwxrwx    1 root     root       12 Oct 13 11:04 /usr/src/linux -&gt; linux-<keyval id="kernel-version"/>
 </pre>
 
 <p>
@@ -143,15 +143,14 @@ których zamierzasz używać. Jeśli tego zaniedbasz Gentoo nie będzie w stanie
 zamontować partycji, a czasem nawet się nie uruchomi. Pamiętaj również, aby
 włączać te sterowniki na stałe do jądra, broń Boże nie kompiluj ich jako
 modułów. Przy okazji zaznacz też <c>Virtual memory</c> i
-<c>/proc file system</c>. Gdy używamy jądra serii 2.4 powinniśmy dodatkowo
-wybrać <c>/dev file system</c> + <c>Automatically mount at boot</c>:
+<c>/proc file system</c>. 
 </p>
 
 <pre caption="Wybór potrzebnych systemów plików">
 File systems ---&gt;
-  [*] Virtual memory file system support (former shm fs)
+  Pseudo Filesystems ---&gt;
   [*] /proc file system support
-  [ ] /dev/pts file system for Unix98 PTYs
+    [*] Virtual memory file system support (former shm fs)
 
 <comment>(Wybierz jedną lub kilka z tych opcji zależnie od używanych systemów plików)</comment>
   &lt;*&gt; Ext3 journalling file system support
@@ -164,7 +163,8 @@ będziesz musiał włączyć następujące opcje:
 </p>
 
 <pre caption="Sterowniki niezbędne dla użytkowników PPPoE">
-Network device support ---&gt;
+Device Drivers ---&gt;
+  Networking support ---&gt;
   &lt;*&gt; PPP (point-to-point protocol) support
   &lt;*&gt;   PPP support for async serial ports
   &lt;*&gt;   PPP support for sync tty ports
@@ -173,7 +173,7 @@ Network device support ---&gt;
 <p>
 Obie opcje dotyczące kompresji nie są wprawdzie wymagane, ale również nie
 zaszkodzą naszemu systemowi, podobnie zresztą jak opcja <c>PPP over
-Ethernet</c>, która jest przydatna tylko gdy skonfigurujesz <c>rp-pppoe</c> do
+Ethernet</c>, która jest przydatna tylko gdy skonfigurujesz <c>ppp</c> do
 pracy w trybie jądra PPPoE.
 </p>
 
@@ -245,11 +245,10 @@ pamiętać o sprawdzeniu rozmiaru obrazu jądra:
 </pre>
 
 <p>
-Jeśli rozpakowane jądro jest większe niż 2.5 MB (dla Sparc 32) lub 3.5 MB (dla
-Sparc64), należy usuwać z niego zbędne sterowniki, dopóki nie będzie spełniało
-tych limitów. Jedną z metod, aby osiągnąć to w miarę bezboleśnie jest
-zbudowanie większości potrzebnych funkcji w postaci modułów. Jeśli zignorujemy
-ten krok, jądro może się nie uruchomić.
+Jeśli rozpakowane jądro jest większe niż 7.5 MB należy usuwać z niego zbędne
+sterowniki, dopóki nie będzie spełniało tych limitów. Jedną z metod, aby
+osiągnąć to w miarę bezboleśnie jest zbudowanie większości potrzebnych funkcji
+w postaci modułów. Jeśli zignorujemy ten krok, jądro może się nie uruchomić.
 </p>
 
 <p>
@@ -274,11 +273,7 @@ sposób:
 </p>
 
 <pre caption="Kompilowanie jądra">
-<comment>(sparc32)</comment>
-# <i>make dep &amp;&amp; make clean vmlinux modules modules_install</i>
-
-<comment>(sparc64)</comment>
-# <i>make dep &amp;&amp; make clean vmlinux image modules modules_install</i>
+# <i>make &amp;&amp; make image modules_install</i>
 </pre>
 
 <p>
@@ -288,10 +283,6 @@ swoją nazwą i wersją kernela.
 </p>
 
 <pre caption="Instalowanie kernela">
-<comment>(sparc32)</comment>
-# <i>cp vmlinux /boot/&lt;kernel-version&gt;</i>
-
-<comment>(sparc64)</comment>
 # <i>cp arch/sparc64/boot/image /boot/&lt;kernel-version&gt;</i>
 </pre>
 
