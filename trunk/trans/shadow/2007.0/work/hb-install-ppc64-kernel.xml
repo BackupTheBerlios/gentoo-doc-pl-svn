@@ -7,8 +7,8 @@
 
 <sections>
 
-<version>7.1</version>
-<date>2007-02-26</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Strefa czasowa</title>
@@ -16,17 +16,17 @@
 
 <p>
 Aby system wiedział gdzie się znajduje należy najpierw wybrać swoją strefę
-czasową. Odszukujemy ją w <path>/usr/share/zoneinfo</path>, a następnie za
-pomocą <c>ln</c> tworzymy do niej symlinka <path>/etc/localtime</path>. Należy
-unikać stref czasowych o nazwie <path>/usr/share/zoneinfo/Etc/GMT*</path>,
-ponieważ ich nazwy mogą być mylące, na przykład <path>GMT-8</path> jest w
-rzeczywistości GMT+8.
+czasową. Odszukujemy ją w <path>/usr/share/zoneinfo</path>, a następnie
+ustawiamy w pliku <path>/etc/conf.d/clock</path>. Należy unikać stref czasowych
+o nazwie <path>/usr/share/zoneinfo/Etc/GMT*</path>, ponieważ ich nazwy mogą być
+mylące, na przykład <path>GMT-8</path> jest w rzeczywistości GMT+8.
 </p>
 
 <pre caption="Konfiguracja strefy czasowej">
 # <i>ls /usr/share/zoneinfo</i>
-<comment>(Zakładając, że chcemy Poland)</comment>
-# <i>ln -sf /usr/share/zoneinfo/Poland /etc/localtime</i>
+<comment>(Zakładając, że chcemy ustawić czas GMT)</comment>
+# <i>nano -w /etc/conf.d/clock</i>
+TIMEZONE="GMT"
 </pre>
 
 </body>
@@ -54,12 +54,15 @@ Dla architektury PPC64 należy użyć <c>gentoo-sources</c>.
 
 <p>
 W katalogu <path>/usr/src</path> powinieneś mieć mniej więcej taki symlink, o
-nazwie <path>linux</path>, wskazujący na źródła Twojego aktualnego kernela:
+nazwie <path>linux</path>, wskazujący na źródła Twojego aktualnego kernela. W
+tym wypadku, zainstalowane źródła jądra prowadzą do <c>gentoo-sources-<keyval
+id="kernel-version"/></c>. Należy mieć na uwadzę, że możemy posiadać na naszym
+komputerze inną wersję jądra.
 </p>
 
 <pre caption="Podgląd dowiązania symbolicznego do źródeł jądra">
 # <i>ls -l /usr/src/linux</i>
-lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-2.6.17-gentoo-r5
+lrwxrwxrwx    1 root     root           12 Oct 13 11:04 /usr/src/linux -&gt; linux-<keyval id="kernel-version"/>
 </pre>
 
 <p>
@@ -179,7 +182,7 @@ Network device support ---&gt;
 <p>
 Obie opcje dotyczące kompresji nie są wprawdzie wymagane, ale również nie
 zaszkodzą naszemu systemowi, podobnie zresztą jak opcja <c>PPP over
-Ethernet</c>, która jest przydatna tylko gdy skonfigurujemy <c>rp-pppoe</c> do
+Ethernet</c>, która jest przydatna tylko gdy skonfigurujemy <c>ppp</c> do
 pracy w trybie jądra PPPoE.
 </p>
 
