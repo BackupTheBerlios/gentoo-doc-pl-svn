@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>7.0</version>
-<date>2006-08-30</date>
+<version>8.0</version>
+<date>2007-04-20</date>
 
 <section>
 <title>Wymagania sprzętowe</title>
@@ -130,6 +130,57 @@ Jak użyć płytę Package CD zostanie wyjaśnione później w tym dokumencie.
 
 </body>
 </subsection>
+<subsection>
+<title>Wybór środowiska</title>
+<body>
+
+<p>
+Na architekturze PPC64, jądro jest w wersji 64-bitowej natomiast
+<e>środowisko</e> może być w wersji 32 lub 64-bitowej. Środowiskiem nazywam po
+prostu aplikacje uruchamiane przez użytkownika, jak na przykład <c>bash</c> czy
+<c>mozilla-firefox</c>. Programy takie mogą zostać skompilowane i uruchomione
+zarówno w trybie 32 jak i 64-bitowym. Zespół Gentoo/PPC64 dostarcza zarówno
+środowiska 32 i 64-bitowego, więc pojawia się pytanie, którego użyć?
+</p>
+
+<p>
+W wielu miejscach można było usłyszeć, że aplikacje 64-bitowe są lepsze. Jednak
+w rzeczywistości, ich 32-bitowe odpowiedniki, zużywają mniej pamięci systemowej
+i z reguły działają nieco szybciej.
+</p>
+
+<p>
+W rzeczywistości, aplikacji 64-bitowych będziemy potrzebować jedynie w
+przypadku, gdy potrzeba nam będzie więcej pamięci niż środowisko 32-bitowe
+pozwala użyć oraz w przypadku operowania na 64-bitowych liczbach. Jeżeli
+uruchomimy aplikacje wymagające więcej niż 4GB pamięci lub w przypadku używania
+przez nas naukowych programów, powinniśmy używać 64-bitowego środowiska. W
+przeciwnym wypadku, należy wybrać wariant 32-bitowy, który jest zalecany przez
+deweloperów Gentoo/PPC64.
+</p>
+
+<p>
+Dodatkowo, środowisko 32-bitowe jest dostępne w Portage od znacznie dłuższego
+czasu niż 64-bitowe. Oznacza to przetestowanie znacznie większej ilości
+oprogramowania, które działa bez przeszkód. Wiele z tych aplikacji,
+skompilowane jako 64-bitowe może być równie stabilna jak ich 32-bitowy
+odpowiednik, jednak nie zostały one jeszcze przetestowne. Choć testowanie nie
+jest trudnym zadaniem, może być denerwujące oraz zabierać dużo czasu jeśli
+chcemy używać dużo nieprzetestowanych aplikacji 64-bitowych. Warto wiedzieć, że
+część programów nie będzie działała poprawnie w środowisku 64-bitowym, dopóki
+nie zostanie poprawiony ich kod źródłowy. Takim programem jest na przykład
+OpenOffice.
+</p>
+
+<p>
+Zespół Gentoo/PPC64 dostarcza pliki stage oraz płytę z pakietami
+prekompilowanym zarówno dla środowiska 32 i 64-bitowego. Nie ważne, którą z
+nich wybierzemy, zawsze będziemy mogli bez przeszkód zainstalować Gentoo i
+uruchomić w pełni sprawny system.
+</p>
+
+</body>
+</subsection>
 </section>
 <!-- STOP -->
 
@@ -142,9 +193,9 @@ Jak użyć płytę Package CD zostanie wyjaśnione później w tym dokumencie.
 <p>
 Wszystkie obrazy płyt instalacji uniwersalnej (również płyt Package CD)
 znajdują się na naszych <uri link="/main/en/mirrors.xml">serwerach
-lustrzanych</uri> w katalogu <path>releases/ppc64/2006.1/installcd</path>;
+lustrzanych</uri> w katalogu <path><keyval id="release-dir"/>installcd</path>;
 obraz płyt Package CD znajduje się w katalogu
-<path>releases/ppc64/2006.1/packagecd</path>.
+<path><keyval id="release-dir"/>packagecd</path>.
 </p>
 
 <p>
@@ -411,8 +462,7 @@ eksperymentować samodzielnie). Oczywiście musimy zastąpić
 <pre caption="Poprawianie wydajności dysku">
 <comment>Aktywowanie DMA:</comment>
 # <i>hdparm -d 1 /dev/hda</i>
-<comment>Aktywowanie DMA oraz zestawu bezpiecznych opcji poprawiających
-wydajność:</comment>
+<comment>Aktywowanie DMA oraz zestawu bezpiecznych opcji poprawiających wydajność:</comment>
 # <i>hdparm -d 1 -A 1 -m 16 -u 1 -a 64 /dev/hda</i>
 </pre>
 
@@ -495,7 +545,7 @@ na naszej stronie internetowej. Polecamy korzystanie właśnie z tej wersji.
 </p>
 
 <pre caption="Przeglądanie dokumentacji w Internecie">
-# <i>links http://www.gentoo.org/doc/pl/handbook/handbook-ppc64.xml</i>
+# <i>links http://www.gentoo.org/doc/pl/handbook/<keyval id="online-book"/></i>
 </pre>
 
 <p>
