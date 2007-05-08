@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>7.1</version>
-<date>2006-12-30</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Program logujący</title>
@@ -188,7 +188,7 @@ mikrokodu.
 
 <p>
 Jeżeli nie potrzebujemy żadnych dodatkowych narzędzi związanych z siecią
-(takich jak na przykład rp-pppoe czy klient dhcp) należy przejść do rozdziału
+(takich jak na przykład ppp czy klient dhcp) należy przejść do rozdziału
 <uri link="?part=1&amp;chap=10">Konfiguracja Bootloadera</uri>
 </p>
 
@@ -216,20 +216,13 @@ zakończeniu instalacji!
 <body>
 
 <p>
-Jeżeli potrzebujemy pakietu <c>rp-pppoe</c> do łączenia z internetem, należy go
+Jeżeli potrzebujemy pakietu <c>ppp</c> do łączenia z internetem, należy go
 zainstalować.
 </p>
 
 <pre caption="Instalacja klienta PPPoE">
-# <i>USE="-X" emerge rp-pppoe</i>
+# <i>USE="-X" emerge ppp</i>
 </pre>
-
-<p>
-Ustawienie <c>USE="-X"</c> zapobiegnie instalacji pakietu xorg-x11 poprzez
-zależności (<c>rp-pppoe</c> posiada narzędzia graficzne, aby z nich korzystać,
-możesz przekompilować <c>rp-pppoe</c> po instalacji serwera xorg-x11 lub
-zainstalować go teraz, jednak jego kompilacja zajmie dużo czasu).
-</p>
 
 <p>
 Teraz jesteśmy już gotowi do przejścia do <uri
