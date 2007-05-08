@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>7.1</version>
-<date>2006-10-31</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Instalowanie tarballa stage</title>
@@ -43,20 +43,6 @@ datę 29 marca 2005 roku, 16:21:
 <pre caption="Ustawienie daty/czasu UTC">
 # <i>date 032916212005</i>
 </pre>
-
-</body>
-</subsection>
-<subsection>
-<title>Lokalizowanie pliku Stage3</title>
-<body>
-
-<p>
-Jeżeli skonfigurowaliśmy sieć, potrzebną do ściągnięcia pliku stage3 na naszą
-architekturę, przechodzimy do działu <uri link="#download">Alternatywnie:
-Użycie Stage3 z Internetu</uri>. W przeciwnym wypadku należy zapoznać się z
-działem <uri link="#available">Domyślnie: Użycie Stage3 z płyty
-instalacyjnej</uri>.
-</p>
 
 </body>
 </subsection>
@@ -108,92 +94,18 @@ Opcja <c>x</c> opowiada za <e>rozpakowanie</e>, <c>v</c> jest skrótem od
 bzip2</e>, <c>p</c> <e>zachowuje zezwolenia</e> natomiast opcja <c>f</c>
 informuje o tym, że chcemy rozpakować plik, a nie standardowe wyjście. W
 przykładzie posłużymy się plikiem stage
-<path>stage3-&lt;subarch&gt;-2006.1.tar.bz2</path>. Należy pamiętać o tym, aby
+<path><keyval id="stage3"/></path>. Należy pamiętać o tym, aby
 zastąpić nazwę archiwum, wpisem odpowiednim do posiadanego przez nas stage.
 </p>
 
 <pre caption="Rozpakowywanie archiwum stage">
-# <i>tar xvjpf /mnt/cdrom/stages/stage3-&lt;subarch&gt;-2006.1.tar.bz2</i>
+# <i>tar xvjpf /mnt/cdrom/stages/<keyval id="stage3"/></i>
 </pre>
 
 <p>
 Kiedy już zainstalujemy stage, przechodzimy do <uri
 link="#installing_portage">Instalacji drzewa Portage</uri>.
 </p>
-
-</body>
-</subsection>
-</section>
-
-<section id="download">
-<title>Alternatywnie: Użycie stage z Internetu</title>
-<subsection>
-<title>Pobieranie tarballa stage</title>
-<body>
-
-<p>
-Na początku przechodzimy do punktu montowania systemu plików Gentoo
-(zwykle jest to <path>/mnt/gentoo</path>):
-</p>
-
-<pre caption="Przechodzenie do punktu montowania systemu plików Gentoo">
-# <i>cd /mnt/gentoo</i>
-</pre>
-
-<p>
-W zależności od medium instalacyjnego mamy do dyspozycji kilka narzędzi, za
-pomocą których możemy pobrać plik stage. Jeżeli mamy program <c>links</c>
-możemy wejść bezpośrednio na <uri link="/main/en/mirrors.xml">listę serwerów
-lustrzanych Gentoo</uri> i wybrać serwer, który znajduje się najbliżej.
-</p>
-
-<p>
-Jeżeli nie mamy programu <c>links</c>, musimy skorzystać z przeglądarki
-<c>lynx</c> do tego celu. Aby używać serwera proxy musimy również
-wyeksportować zmienne <c>http_proxy</c> i <c>ftp_proxy</c>:
-</p>
-
-<pre caption="Ustawienie informacji o proxy dla lynxa">
-# <i>export http_proxy="http://proxy.server.com:port"</i>
-# <i>export ftp_proxy="http://proxy.server.com:port"</i>
-</pre>
-
-<p>
-W dalszej części zakładamy, że do swojej dyspozycji mamy przeglądarkę
-<c>links</c>.
-</p>
-
-<p>
-Przechodzimy do <path>releases/</path>, a następnie do katalogu odpowiedniej
-architektury (np. <path>x86/</path>) oraz wersji Gentoo (<path>2006.1/</path>)
-i na koniec do <path>stages/</path>. Znajdują się tam pliki stage dla wybranej
-architektury (czasem mogą być umieszczone w podkatalogach dla różnych
-podarchitektur). Wybieramy jeden i naciskamy <c>D</c>, aby go ściągnąć. Kiedy
-pobieranie dobiegnie końca wciskamy <c>Q</c>, aby wyjść z przeglądarki.
-</p>
-
-<pre caption="Przeglądanie listy serwerów lustrzanych za pomocą links">
-# <i>links http://www.gentoo.org/main/en/mirrors.xml</i>
-
-<comment>(Jeżeli potrzebne jest proxy w links:)</comment>
-# <i>links -http-proxy serwer.proxy.com:8080 http://www.gentoo.org/main/en/mirrors.xml</i>
-</pre>
-
-<p>
-Należy się upewnić, że posiadamy archiwum ze stage 3. Instalacje z użyciem
-stage 1 lub stage 2 nie są już wspierane.
-</p>
-
-<p>
-Jeśli chcemy zweryfikować poprawność pobranych archiwów stage, musimy porównać
-wynik polecenia <c>md5sum</c> z sumami MD5 udostępnianymi na serwerze. Np.
-aby sprawdzić poprawność tarballa stage dla architektury x86:
-</p>
-
-<pre caption="Sprawdzanie integralności tarballa stage">
-# <i>md5sum -c stage1-x86-2006.1.tar.bz2.md5</i>
-stage1-x86-2006.1.tar.bz2: OK
-</pre>
 
 </body>
 </subsection>
@@ -375,31 +287,24 @@ kompilacji pakietów.
 </p>
 
 <p>
-Tak samo jak w przykładzie, na architekturze x86, będziemy chcieli ustawić
-flagę -march= tak jak pokazano to poniżej (w tym wypadku dla procesora Athlon
-XP):
+Pierwszą opcją są flagi <c>-march=</c> lub <c>-mcpu=</c>, które określają nazwę
+docelowej architektury. Dostępne opcje opisane są w pliku
+<path>make.conf.example</path> (jako komentarze).
 </p>
-
-<pre caption="Ustawienie GCC march">
--march=athlon-xp
-</pre>
 
 <p>
 Drugim jest flaga <c>-O</c> (to jest duże O, nie zero), która określa
 klasę optymalizacji <c>gcc</c>. Dostępne klasy to <c>s</c> (optymalizacja
 rozmiaru), <c>0</c> (brak optymalizacji), <c>1</c>, <c>2</c> lub <c>3</c> -
 coraz silniej optymalizujące (każda z nich używa tych samych flag, co
-poprzednia oraz dodaje własne). Jako przykład posłuży nam klasa optymalizacji
-2:
+poprzednia oraz dodaje własne). Ustawienie <c>-O2</c> jest zalecaną domyślną
+opcją.
 </p>
-
-<pre caption="Ustawienia optymalizacji poprzez GCC">
--O2
-</pre>
 
 <p>
 Inną popularną flagą optymalizacyjną jest <c>-pipe</c> (gcc używa potoków
 zamiast plików tymczasowych w komunikacji między różnymi etapami kompilacji).
+Flaga ta nie ma wpływu na generowany kod.
 </p>
 
 <p>
@@ -410,13 +315,15 @@ używanie jej może powodować poważne problemy podczas debugowania kodu!
 
 <p>
 Podczas definiowania <c>CFLAGS</c> i <c>CXXFLAGS</c> można łączyć kilka
-flag optymalizacji, na przykład w ten sposób:
+flag optymalizacji. Domyślne wartości, które znajdują się w archiwum stage3
+powinny być wystarczające. Poniższy przykład jest podany jedynie w celach
+informacyjnych:
 </p>
 
 <pre caption="Definiowanie zmiennych CFLAGS i CXXFLAGS">
-CFLAGS="-march=athlon-xp -pipe -O2"   
-
-CXXFLAGS="${CFLAGS}"                  <comment># Użycie tych samych ustawień dla obu zmiennych</comment>
+CFLAGS="<keyval id="CFLAGS"/>"   
+<comment># Użycie tych samych ustawień dla obu zmiennych</comment>
+CXXFLAGS="${CFLAGS}"
 </pre>
 
 </body>
