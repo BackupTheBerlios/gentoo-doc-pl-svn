@@ -7,8 +7,8 @@
 <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
 <sections>
 
-<version>7.0</version>
-<date>2006-08-30</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Wymagania sprzętowe</title>
@@ -40,8 +40,7 @@ od docelowej architektury.
 <tr>
   <th>CPU</th>
   <ti>
-    Obecnie Gentoo współpracuje jedynie z procesorami sparc64, jednakże dostępne
-    jest również eksperymentalne wsparcie dla sparc32.
+    Obecnie Gentoo współpracuje jedynie z procesorami sparc64.
   </ti>
 </tr>
 <tr>
@@ -57,14 +56,6 @@ od docelowej architektury.
   <ti>Co najmniej 256 MB</ti>
 </tr>
 </table>
-
-<p>
-Obecnie dostępne są płyty instalacyjne dla architektury sparc64.  Użytkownicy
-sparc32 powinni użyć eksperymentalnych obrazów netboot, z których można
-zainstalować Gentoo. Więcej informacji o netbooting można znaleźć w dokumencie
-<uri link="/doc/pl/gentoo-sparc-netboot-howto.xml">Uruchamianie systemów przez
-sieć</uri>.
-</p>
 
 </body>
 </subsection>
@@ -149,8 +140,8 @@ Gentoo</title>
 Wszystkie obrazy płyt instalacji uniwersalnej (również płyt Package CD)
 znajdują się na naszych <uri link="/main/en/mirrors.xml">serwerach
 lustrzanych</uri> w katalogu
-<path>releases/sparc/2006.1/sparc64/installcd</path>; obraz płyt Package CD
-znajduje się w katalogu <path>releases/sparc/2006.1/sparc64/packagecd</path>.
+<path><keyval id="release-dir"/>installcd</path>; obraz płyt Package CD
+znajduje się w katalogu <path><keyval id="release-dir"/>packagecd</path>.
 </p>
 
 <p>
@@ -159,26 +150,19 @@ nagrania obrazy płyt CD.
 </p>
 
 <p>
-Po ściągnięciu pliku należy sprawdzić czy nie zawiera żadnych błędów:
+W przypadku gdy zastanawiamy się czy ściągnięty plik nie jest uszkodzony,
+możemy sprawdzić sumę kontrolną MD5 i sprawdzić ją przez wzór dostarczany przez
+nas (taki jak na przykład
+<path>install-sparc64-minimal-2007.0.iso.DIGESTS</path>). Sumę możemy sprawdzić
+przy pomocy polecenia <c>md5sum</c> pod systeme Linux/Unix lub za pomocą <uri
+link="http://www.etree.org/md5com.html">md5sum</uri> dla Windows.
 </p>
 
-<ul>
-  <li>
-    Weryfikujemy poprawność pobranych plików ISO za pomocą porównania ich sum
-    MD5 z tymi znajdującymi się na naszym serwerze lustrzanym. Sumy MD5 dla
-    pobranych plików można wygenerować przy pomocy narzędzia <c>md5sum</c> dla
-    Linuksa, lub jego <uri
-    link="http://www.etree.org/md5com.html">odpowiednika</uri> dla Windows.
-  </li>
-  <li>
-    Innym sposobem sprawdzania poprawności pobranych plików jest weryfikacja
-    ich kryptograficznych sygnatur przy pomocy GnuPG. Nalezy otrzymać klucz
-    publiczny, którego my używamy (17072058) przed przejściem dalej.
-  </li>
-</ul>
-
 <p>
-Pozyskujemy klucz publiczny za pomocą GnuPG:
+Kolejnym sposobem na sprawdzanie poprawności ściągniętego pliku jest użycie
+GnuPG do zweryfikowania podpisu cyfrowego dostarczanego przez nas (pliki
+zakończone rozszerzeniem <path>.asc</path>). Należy ściągnąć plik podpisu oraz
+uzyskać publiczny klucz.
 </p>
 
 <pre caption="Pozyskiwanie klucza publicznego">
@@ -231,16 +215,15 @@ ok <i>boot cdrom</i>
 
 <p>
 Następną rzeczą jaka ukaże się na ekranie będzie menedżer uruchamiania - SILO.
-Aby używać jądra 2.6.16 wpisujemy <c>2616</c>, jeśli chcemy jądro 2.6.17
-wpisujemy <c>2617</c>, a następnie naciskamy enter. Opcja <c>2616</c> jest
-przetestowana bardziej skrupulatnie przez co w przypadku błędnego działania
-domyślnej <c>2617</c> należy jej użyć. Jeżeli chcemy mieć wsparcie dla nowszych
-komputerów Sun (Niagara, UltraSPARC, T1), powinniśmy wybrać domyślną opcję
-<c>2617</c>.
+Aby uzyskać obszerniejszą pomoc możemy nacisnąć klawisz Enter. Należy wpisać
+<c>2617</c> (jeśli posiadamy komputer FC-AL; powinniśmy sprawdzić dokument <uri
+link="http://www.gentoo.org/proj/en/base/sparc/sunhw.xml">Hardware
+Compatibility List</uri>) lub <c>2620</c> (w każdym innym przypadku), a
+następnie wcisnąc Enter, aby kontynuować uruchamianie systemu.
 </p>
 
 <pre caption="Uruchamianie systemu płyty instalacyjnej">
-boot: <i>2617</i>
+boot: <i>2620</i>
 </pre>
 
 <p>
@@ -248,9 +231,7 @@ Po załadowaniu systemu automatycznie zostanie zalogowany użytkownik root.
 </p>
 
 <p>
-Powinniśmy zobaczyć znak zachęty ("#") na aktualnej konsoli. Możemy się również
-przełącząć na inne konsole przy pomocy kombinacji klawiszy Alt-F2, Alt-F3 lub
-Alt-F4. Do pierwszej konsoli wracamy przez naciśnięcie kombinacji Alt-F1. Znak
+Powinniśmy zobaczyć znak zachęty ("#") na aktualnej konsoli. Znak
 zachęty znajdziemy również na konsoli szeregowej (<path>ttyS0</path>).
 </p>
 
@@ -355,7 +336,7 @@ połączenie z Internetem.
 </p>
 
 <pre caption="Przeglądanie dokumentacji w Internecie">
-# <i>links http://www.gentoo.org/doc/pl/handbook/handbook-sparc.xml</i>
+# <i>links http://www.gentoo.org/doc/pl/handbook/<keyval id="online-book"/></i>
 </pre>
 
 <p>
