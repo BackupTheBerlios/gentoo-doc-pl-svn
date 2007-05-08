@@ -8,8 +8,8 @@
 
 <sections>
 
-<version>7.1</version>
-<date>2006-10-08</date>
+<version>8.0</version>
+<date>2007-04-13</date>
 
 <section>
 <title>Praca w chroot</title>
@@ -27,24 +27,6 @@ montujemy system plików <path>/dev</path> w innym miejscu.
 <pre caption="Montowanie /proc i /dev">
 # <i>mount -t proc none /mnt/gentoo/proc</i>
 # <i>mount -o bind /dev /mnt/gentoo/dev</i>
-</pre>
-
-</body>
-</subsection>
-<subsection>
-<title>Opcjonalnie: Kopiowanie informacji o DNS</title>
-<body>
-
-<p>
-Jeśli zamierzamy korzystać z połączenia z internetem podczas instalacji, aby
-pobrać właściwy plik stage, konieczne jest przekopiowanie informacji o DNS z
-pliku <path>/etc/resolv.conf</path> do
-<path>/mnt/gentoo/etc/resolv.conf</path>. Plik ten zawiera informacje, jakich
-będzie potrzebował system do połączenia z siecią.
-</p>
-
-<pre caption="Kopiowanie informacji o DNS">
-# <i>cp -L /etc/resolv.conf /mnt/gentoo/etc/resolv.conf</i>
 </pre>
 
 </body>
