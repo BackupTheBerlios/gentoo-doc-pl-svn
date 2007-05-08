@@ -82,11 +82,11 @@ mały (800KB) system plików HFS, którego zadaniem jest przechowywanie kopii
 zapasowej programu ładującego Yaboot oraz plików konfiguracyjnych tego
 programu. Partycja ta nie pełni takiej samej roli jak partycja
 <path>/boot</path> na innych architekturach. Po takiej partycji zazwyczaj
-znajdują się standardowe systemy plików Linux, zgzodnie z przedstawionym
+znajdują się standardowe systemy plików Linux, zgodnie z przedstawionym
 poniżej schematem. Główna partycja posiada system plików, na którym
 zainstalowany jest system Gentoo. Jeżeli chcemy mieć dwa systemy, musimy się
 upewnić, że partycja OSX znajduje się za partycją bootstrap, tak aby program
-yaboot uruchamiał się wpierwszej kolejności.
+yaboot uruchamiał się w pierwszej kolejności.
 </p>
 
 <note>
@@ -94,14 +94,14 @@ Na dysku mogą znajdować się partycje "Disk Driver" takie jak
 <path>Apple_Driver63, Apple_Driver_ATA, Apple_FWDriver, Apple_Driver_IOKit,
 Apple_Patches</path>. Używa się ich do uruchamiania systemu MacOS, więc jeśli
 nie posiadamy tego systemu, można je bezpiecznie usunąć poprzez uruchomienie
-programu mac-fdisk z opcją <c>i</c>. Spowoduje to całkowite wyczyszyczenie
+programu mac-fdisk z opcją <c>i</c>. Spowoduje to całkowite wyczyszczenie
 dysku! Jeśli mamy wątpliwości zostawmy te partycje w spokoju.
 </note>
 
 <note>
 Jeżeli do podzielenia dysku użyliśmy programu Apple Disk Utility, między
 partycjami może znajdować się wolna 128MB przestrzeń, którą Apple rezerwuje dla
-"użycia w przyszłości". Można bezpiecznie usunąć tę wolną przestrzeń.
+"przyszłych zastosowań". Można bezpiecznie usunąć tę wolną przestrzeń.
 </note>
 
 <table>
@@ -154,15 +154,15 @@ znajdowała będzie się dodatkowa partycja dla "Apple Disk Drivers" zawierając
 Apple_Patches</path> oraz instalacja MacOS. Jeżeli używamy Quik, będziemy
 musieli stworzyć partycję boot, aby mieć gdzie przetrzymywać jądro. Po partycji
 boot, należy stworzyć standardowe systemy plików Linux, zgodnie ze schematem
-przedstawionym poniżej. Partycja swap jest miejscem, wykorzystywanym w sytuacji
-gdy system wykorzystał już całą dostępną fizyczną pamięć. Główna partycja
-zawiera system plików, na którym zainstalowany jest system Gentoo.
+przedstawionym poniżej. Partycja wymiany jest miejscem, wykorzystywanym w
+sytuacji gdy system wykorzystał już całą dostępną fizyczną pamięć. Główna
+partycja zawiera system plików, na którym zainstalowany jest system Gentoo.
 </p>
 
 <note>
 Jeżeli używamy komputera OldWorld, będziemy cały czas potrzebowali MacOS. W
-poniższym schemacie, założyliśmy, że MacOS zainstalowant jest na oddzielnej
-pratycji.
+poniższym schemacie, założyliśmy, że MacOS zainstalowany jest na oddzielnej
+partycji.
 </note>
 
 <table>
@@ -202,13 +202,14 @@ pratycji.
 </subsection>
 <subsection>
 <title>Pegasos</title>
+<body>
 
 <p>
 Układ partycji Pegasos jest podobno do układu Apple. Pierwsza partycją jest
 partycją boot, zawierającą jądra, które chcemy uruchomić. Dodatkowo znajduje
 się tutaj skrypt OpenFirmware, który wyświetla menu podczas uruchamiania
 komputera. Po partycji boot, znajdują się standardowe systemy plików Linux,
-umieszczone zgodnie ze schematem znajdującym się poniżej. Partycja swap jest
+umieszczone zgodnie ze schematem znajdującym się poniżej. Partycja wymiany jest
 miejscem, wykorzystywanym w sytuacji gdy system wykorzystał już całą dostępną
 fizyczną pamięć. Główna partycja zawiera system plików, na którym
 zainstalowany jest system Gentoo.
@@ -222,7 +223,7 @@ zainstalowany jest system Gentoo.
   <th>Opis</th>
 </tr>
 <tr>
-  <th><path>/dev/hda1</path></ti>
+  <ti><path>/dev/hda1</path></ti>
   <ti>32Mb</ti>
   <ti>affs1 lub ext2</ti>
   <ti>Partycja boot</ti>
@@ -252,7 +253,7 @@ Układ partycji Pegasos jest podobno do układu Apple. Pierwsza partycją jest
 partycją boot, zawierającą jądra, które chcemy uruchomić. Dodatkowo znajduje
 się tutaj skrypt OpenFirmware, który wyświetla menu podczas uruchamiania
 komputera. Po partycji boot, znajdują się standardowe systemy plików Linux,
-umieszczone zgodnie ze schematem znajdującym się poniżej. Partycja swap jest
+umieszczone zgodnie ze schematem znajdującym się poniżej. Partycja wymiany jest
 miejscem, wykorzystywanym w sytuacji gdy system wykorzystał już całą dostępną
 fizyczną pamięć. Główna partycja zawiera system plików, na którym
 zainstalowany jest system Gentoo.
@@ -307,13 +308,11 @@ proces tworzenia kopii zapasowych. Jeżeli docelowym zastosowaniem
 instalowanego
 systemu jest serwer pocztowy to na osobnej partycji należy umieścić
 <path>/var</path> gdzie przechowywane są listy. Dobry wybór systemu plików
-może
-tu znacznie zwiększyć wydajność. Za to oddzielenie <path>/opt</path> jest
-dobrym
-rozwiązaniem na serwerach gier, gdyż większość używanego oprogramowania będzie
-instalowana właśnie tam. Powodami przyjęcia takiego rozwiązania są również
-bezpieczeństwo i łatwość tworzenia kopii zapasowych. Warto upewnić się, że
-partycja <path>/usr</path> będzie wystarczająco duża ponieważ będą tam
+może tu znacznie zwiększyć wydajność. Za to oddzielenie <path>/opt</path> jest
+dobrym rozwiązaniem na serwerach gier, gdyż większość używanego oprogramowania
+będzie instalowana właśnie tam. Powodami przyjęcia takiego rozwiązania są
+również bezpieczeństwo i łatwość tworzenia kopii zapasowych. Warto upewnić
+się, że partycja <path>/usr</path> będzie wystarczająco duża ponieważ będą tam
 znajdowały się nie tylko dane wszystkich aplikacji, ale również ważące 500 MB
 drzewo Portage.
 </p>
@@ -384,7 +383,7 @@ trzecią partycję, wpiszemy <c>3p</c>.
 
 <note>
 To <e>nie</e> jest partycja "boot". Nie jest nawet używana przez Linuksa; nie
-potrzeba na niej miejsca do założenia systemu plików, nie powinieno jej nawet
+potrzeba na niej miejsca do założenia systemu plików, nie powinien jej nawet
 montować. Użytkownicy Apple nie potrzebują osobnej partycji rozruchowej.
 </note>
 
@@ -480,10 +479,10 @@ wymaganymi przez nas wielkościami.
 </p>
 
 <p>
-Zalecaną wielkością dla partycji swap jest podwójna wielkośc posiadanej przez
+Zalecaną wielkością dla partycji swap jest podwójny rozmiar posiadanej przez
 nas pamięci RAM, jednak minimalną wartością jest 512MB. Aby utworzyć partycję
 swap należy wykonać polecenie <c>mkpart primary linux-swap START END</c>, a w
-miejsce START i END wpisać porządane przez nas wartości.
+miejsce START i END wpisać pożądane przez nas wartości.
 </p>
 
 <p>
@@ -514,7 +513,7 @@ temat.
 <body>
 
 <p>
-Mamy do dyspozycji kilka systemu plików dostępnych dla kompyterów PowerPC
+Mamy do dyspozycji kilka systemu plików dostępnych dla komputerów PowerPC
 włączając w to: ext2, ext3, XFS i ReiserFS.
 </p>
 
@@ -574,7 +573,7 @@ Aby uruchomić partycję wymiany, używamy polecenia <c>swapon</c>:
 
 <pre caption="Uruchamianie partycji wymiany">
 # <i>swapon /dev/hda3</i>
-</p>
+</pre>
 
 <p>
 Partycję wymiany tworzymy i uaktywniamy przed stworzeniem pozostałych systemów
@@ -630,9 +629,9 @@ Teraz należy stworzyć systemy plików na naszych nowo utworzonych partycjach
 </p>
 
 <note>
-Na maszynach Pegasos II kernel musi znajdować się na systemach plików ext2, 
+Na maszynach Pegasos II kernel musi znajdować się na systemach plików ext2,
 ext3 lub affs1. Maszyny NewWorld można uruchomić z ext2, ext3, ReiserFS, a
-nawet z HFS/HFS+. Na maszynach OldWorld uruchamiająć komputer przy pomocy
+nawet z HFS/HFS+. Na maszynach OldWorld uruchamiając komputer przy pomocy
 BootX, jądro musi znajdować się na partycji HFS, jednak zostanie to wykonane
 po konfiguracji programu ładującego.
 </note>
@@ -656,7 +655,7 @@ partycji root:
 
 <note>
 Jeżeli chcemy przenieść <path>/tmp</path> na oddzielną partycję,
-nie można zapomnieć po zamontowaniu i rozpoakowaniu odpowiednio poprawić praw
+nie można zapomnieć po zamontowaniu i rozpakowaniu odpowiednio poprawić praw
 dostępu: <c>chmod 1777 /mnt/gentoo/tmp</c>. Dotyczy to również
 <path>/var/tmp</path>.
 </note>

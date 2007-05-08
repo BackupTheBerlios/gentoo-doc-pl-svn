@@ -85,7 +85,7 @@ programem genkernel do yaboot.conf">
 ## kernel or set of boot options - the image and initrd
 ## with the exact filename of your kernel and initrd image.
 ###########################################################</comment>
-image=/boot/kernel-genkernel-ppc-<keyval id="kernel-gentoo"/>  
+image=/boot/kernel-genkernel-ppc-<keyval id="kernel-gentoo"/>
   label=Linux
   root=/dev/ram0
   partition=3
@@ -118,7 +118,7 @@ Linux, Mac OS i Mac OS X.
 </p>
 
 <p>
-Aby móć używać <c>yabootconfig</c> konieczne jest posiadanie na dysku partycji
+Aby móc używać <c>yabootconfig</c> konieczne jest posiadanie na dysku partycji
 Apple_Bootstrap oraz odpowiednich wpisów dotyczących istniejących partycji
 Linuksa w pliku <path>/etc/fstab</path> (należy mieć na uwadze, że partycja
 Bootstrap <e>nie</e> powinna znajdować się w naszym fstab). Obydwa warunki
@@ -154,8 +154,8 @@ Być może wystąpi potrzeba modyfikacji zawartości pliku
 <path>/etc/yaboot.conf</path>. Jeśli zostaną wprowadzone do niego jakieś
 zmiany (jak na przykład zmiana domyślnie uruchamianego systemy), konieczne
 będzie uruchomienie <c>ybin -v</c>, aby zmiany odniosły skutek na partycji
-Apple_Bootstrap. Za każdy razmy gdy zmieniamy zawartość yaboot.conf, musimy
-pamiętać o wykonaniu polecenia <c>ybin -v</c>, aby zaaktualizować partycję
+Apple_Bootstrap. Za każdy razem gdy zmieniamy zawartość yaboot.conf, musimy
+pamiętać o wykonaniu polecenia <c>ybin -v</c>, aby zaktualizować partycję
 bootstrap.
 </p>
 
@@ -238,7 +238,7 @@ magicboot=/usr/lib/yaboot/ofboot
 
 <comment>#################
 ## Ta sekcja może zostać powielona w przypadku posiadania więcej niż
-## jednegn jądra, lub zestawu parametrów startowych. Należy zastąpić
+## jednego jądra, lub zestawu parametrów startowych. Należy zastąpić
 ## nazwę obrazu dokładną nazwą pliku z naszym jądrem.
 #################</comment>
 image=/boot/<keyval id="kernel-name"/>
@@ -444,7 +444,7 @@ Możliwa jest także modyfikacja zmiennych związanych z bootowaniem z poziomu
 MacOS-a.  W zależności od posiadanego modelu należy użyć <uri
 link="http://penguinppc.org/bootloaders/quik/BootVars.sit.hqx">bootvars</uri>
 lub <uri
-link="ftp://ftp.apple.com/developer/macosxserver/utilities/SystemDisk2.3.1.smi.bin">.
+link="ftp://ftp.apple.com/developer/macosxserver/utilities/SystemDisk2.3.1.smi.bin">
 Apple System Disk</uri>. Warto odwiedzić powyższą stronę quirks w celu
 uzyskania szerszych informacji na ten temat.
 </note>

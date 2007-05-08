@@ -9,7 +9,7 @@
 <sections>
 
 <version>8.0</version>
-<date>2007-04-13</date>
+<date>2007-05-08</date>
 
 <section>
 <title>Informacje o systemach plików</title>
@@ -79,7 +79,7 @@ plikiem fstab</e>. <b>Musimy stworzyć</b> własny plik <path>/etc/fstab</path>.
 <body test="func:keyval('/boot')">
 
 <p>
-Spójrzmy jak zapisać opcje partycji <path>/boot</path>. Jesto to tylko
+Spójrzmy jak zapisać opcje partycji <path>/boot</path>. Jest to tylko
 przykład, więc jeśli nie stworzyliśmy lub nie mogliśmy stworzyć partycji
 <path>/boot</path>, nie należy go kopiować.
 </p>
@@ -89,7 +89,7 @@ W naszym przykładowym schemacie, dla architektury <keyval id="arch"/>,
 <path>/boot</path> jest z reguły partycją <path><keyval id="/boot"/></path> (lub
 <path>/dev/sda*</path> gdy używamy dysków SCSI lub SATA) z systemem plików
 ext2. Partycja ta powinna być sprawdzana podczas uruchamiania komputera, więc
-należy wpisać: 
+należy wpisać:
 </p>
 
 <p test="contains(func:keyval('/boot'), '/dev/sd')">
@@ -113,7 +113,7 @@ partycję przed każdym jej użyciem.
 <p test="not(func:keyval('arch')='SPARC')">
 Należy dodać reguły, które są dopasowane do naszego schematu partycjonowania.
 Dodatkowo musimy dołączyć reguły dla <path>/proc</path>, <c>tmpfs</c>,
-napędu CDROM i oczywiście dla innych partcyji lub napędów, które posiadamy.
+napędu CDROM i oczywiście dla innych partycji lub napędów, które posiadamy.
 </p>
 
 <p test="func:keyval('arch')='SPARC'">
@@ -234,7 +234,7 @@ HOSTNAME="<i>tux</i>"
 <p>
 Następnie, <e>jeśli</e> potrzebujemy ustawić nazwę domeny, dokonujemy tego w
 pliku <path>/etc/conf.d/net</path>. Ustawienie to jest nam potrzebne jedynie w
-przypadku gdy nasz dostawca internetu lub adminstrator sieci zaleci nam takie
+przypadku gdy nasz dostawca internetu lub administrator sieci zaleci nam takie
 działanie. Również w przypadku gdy posiadamy serwer DNS, a nie posiadamy
 serwera DHCP, ustawienie nazwy domeny będzie wymagane. Nie musimy sie martwić o
 ustawienia DNS lub nazw domen, jeśli nasza sieć korzysta z ustawień za pomocą
@@ -346,7 +346,7 @@ dhcp_eth0="nodns nontp nonis"
  </pre>
 
 <p>
-Powtarzamy powyższe instrukcje dla pozostałych interfesów sieciowych
+Powtarzamy powyższe instrukcje dla pozostałych interfejsów sieciowych
 (odpowiednio <c>config_eth1</c>, <c>config_eth2</c>).
 </p>
 

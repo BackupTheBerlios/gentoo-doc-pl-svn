@@ -77,7 +77,7 @@ ls: /mnt/cdrom/stages: No such file or directory
 </pre>
 
 <p>
-Następnie należy przejść do punktu montowania Gentoo (najcześciej
+Następnie należy przejść do punktu montowania Gentoo (najczęściej
 <path>/mnt/gentoo</path>):
 </p>
 
@@ -90,7 +90,7 @@ Należy wypakować wybrany przez nas plik stage. Służy do tego narzędzie
 <c>tar</c>. Należy upewnić się, ze podajemy takie same opcje (<c>xvjpf</c>)!
 Opcja <c>x</c> opowiada za <e>rozpakowanie</e>, <c>v</c> jest skrótem od
 <e>Verbose</e>, aby zobaczyć co się dzieje podczas procesu rozpakowywania
-(opcja ta jest opcjonalna), <c>j</c> odpowiada za <e>dekopresję przy pomocy
+(opcja ta jest opcjonalna), <c>j</c> odpowiada za <e>dekompresję przy pomocy
 bzip2</e>, <c>p</c> <e>zachowuje zezwolenia</e> natomiast opcja <c>f</c>
 informuje o tym, że chcemy rozpakować plik, a nie standardowe wyjście. W
 przykładzie posłużymy się plikiem stage
@@ -171,7 +171,7 @@ musimy się upewnić, że używamy poprawnych opcji dla narzędzia <c>tar</c>.
 Należy zwrócić uwagę, że opcja <c>-C</c> jest pisana z dużej litery <c>C</c>, a
 nie z małej <c>c</c>. W przykładzie używamy pliku
 <path>portage-&lt;date&gt;.tar.bz2</path>. Oczywiście nazwę modyfikujemy do
-porządanej przez nas wartości.
+pożądanej przez nas wartości.
 </p>
 
 <pre caption="Rozpakowywanie snapshota Portage">
@@ -236,7 +236,7 @@ poniżej.
 </p>
 
 <warn>
-Nie należy zmieniać flag USE jeśli używame pliku stage3 wraz z instalacją GRP.
+Nie należy zmieniać flag USE jeśli używamy pliku stage3 wraz z instalacją GRP.
 Zmienne USE możemy dostosować do naszych potrzeb po zakończeniu instalacji
 pakietów. Gremliny zaatakują twój komputer jeśli zignorujesz to ostrzeżenie!
 </warn>
@@ -280,7 +280,7 @@ w optymalizacji może spowodować, że programy zaczną źle funkcjonować
 Nie będziemy tłumaczyć znaczenia wszystkich możliwych opcji optymalizacji.
 Wszystkie są wymienione w <uri link="http://gcc.gnu.org/onlinedocs/">Podręczniku
 Online GNU </uri> lub stronę info <c>gcc</c> (<c>info gcc</c> -- działa tylko na
-systemach linuksowych). Dla najczęsciej spotykanych flag optymalizacji należy
+systemach linuksowych). Dla najczęściej spotykanych flag optymalizacji należy
 zajrzeć do pliku <path>/etc/make.conf.example</path>. Znajduje się tam również
 wiele innych przykładów dotyczących prawiłowego ustawienia procesu instalacji i
 kompilacji pakietów.
@@ -321,7 +321,7 @@ informacyjnych:
 </p>
 
 <pre caption="Definiowanie zmiennych CFLAGS i CXXFLAGS">
-CFLAGS="<keyval id="CFLAGS"/>"   
+CFLAGS="<keyval id="CFLAGS"/>"
 <comment># Użycie tych samych ustawień dla obu zmiennych</comment>
 CXXFLAGS="${CFLAGS}"
 </pre>
