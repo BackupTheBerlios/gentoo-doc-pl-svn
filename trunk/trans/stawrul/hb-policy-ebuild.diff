@@ -1,0 +1,38 @@
+--- hb-policy-ebuild.xml~~	2007-05-09 14:23:36.000000000 +0200
++++ hb-policy-ebuild.xml	2007-05-09 14:35:03.000000000 +0200
+@@ -7,8 +7,8 @@
+ <!-- See http://creativecommons.org/licenses/by-sa/2.5 -->
+ 
+ <sections>
+-<version>1.0.2</version>
+-<date>2006-09-05</date>
++<version>1.0.3</version>
++<date>2007-01-21</date>
+ 
+ <section>
+ <title>Ogólne wytyczne</title>
+@@ -32,7 +32,7 @@
+     <li><uri link="http://www.debian.org/distrib/packages">Debian</uri></li>
+     <li>
+       <uri
+-      link="http://cvs.mandriva.com/cgi-bin/cvsweb.cgi/SPECS/">Mandriva</uri>
++      link="http://cvs.mandriva.com/cgi-bin/viewvc.cgi/SPECS/">Mandriva</uri>
+     </li>
+     <li><uri link="http://cvs.fedora.redhat.com/">Fedora</uri></li>
+   </ul>
+@@ -629,6 +629,15 @@
+ stabilny również posiadają oznaczenie ARCH (i są stabilne).
+ </p>
+ 
++<impo>
++Należy pamiętać, że tylko członkowie zespołów odpowiedzialnych za obsługę
++poszczególnych architektur mogą oznaczyć dany pakiet jako stabilny dla
++określonej architektury. Opiekunowie pakietów powinni zgłaszać raporty błędów z
++prośbą o oznaczenie danej wersji jako stabilnej. Niemniej opiekun pakietu może
++samodzielnie oznaczyć go jako stabilny dla pewnej architektury sprzętowej, jeśli
++jest on członkiem zespołu zarządzającego tą architekturą.
++</impo>
++
+ <warn>
+ Etap oznaczenia nowej wersji pakietu wartością ~ARCH może zostać pominięty
+ wtedy <e>i tylko wtedy</e>, gdy wersja ta zawiera poprawki luk bezpieczeństwa
