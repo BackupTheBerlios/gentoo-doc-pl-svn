@@ -32,6 +32,12 @@
 <author title="Redaktor">
   <mail link="dberkholz@gentoo.org">Donnie Berkholz</mail>
 </author>
+<author title="Tłumacz">
+  <mail link="karol.kania@gmail.com">Karol Kania</mail>
+</author>
+<author title="Tłumacz">
+  <mail link="moloh@gentoo.org">Michał Kurgan</mail>
+</author>
 
 <!-- Be sure to add yourself if you write an article -->
 <abstract>Wydanie Tygodnika Gentoo z 30 kwietnia 2007.</abstract>
@@ -50,32 +56,33 @@
 <body>
 
 <p>
-Po miesiącach rozwoju i testów, Ant 1.7.0 będzie ustabilizowany, zaczynając od
-tego weekendu. Wraz z tą wersją nadchodzi znaczna zmiana w sposobie
-pakowania i wykorzystania w Gentoo. Wszystkie opcjonalne zadania są oddzielnymi
-paczkami. Pozwoli to na udoskonalenia w paczkowaniu pozostałych pakietów Java,
-dla których Ant jest najczęściej wykorzystywanym systemem. Użytkownicy niekorzystający 
-z oprogramowania Ant, praktycznie nie muszą interesować się tymi
-zmianami. Jedynie w przypadku aktualizacji poprzednich wersji, pakiety <c>dev-java/ant-tasks</c>
- i <c>dev-java/ant</c> wymagają ręcznego usunięcia zanim zostanie zainstalowany 
-<c>dev-java/ant-core-1.7.0</c>. Więcej informacji dla użytkowników
-oprogramowania Ant, autorów ebuildów oraz wszystkie nowe ustawienia dostępne są
-w nowym przewodniku <uri link="/proj/en/java/ant-guide.xml">Ant Guide</uri>.
+Po miesiącach pracy i testów, Ant 1.7.0 zostanie ustabilizowany w najbliższy
+weekend. Wraz z tą wersją nadchodzi istotna zmiana w sposobie instalacji i
+użycia w Gentoo. Wszystkie opcjonalne „mrówki” będą oddzielnymi pakietami.
+Ułatwi to zarządzanie pozostałymi pakietami Java, dla których Ant jest
+najczęściej wykorzystywanym systemem budowania. Użytkownicy niewykorzystujący na
+co dzień Ant, praktycznie nie odczują żadnych zmian. Ingerencji ze strony
+użytkownika wymaga jedynie aktualizacja z poprzednich wersji, pakiety
+<c>dev-java/ant-tasks</c> oraz <c>dev-java/ant</c> muszą zostać ręcznie usunięte
+przed instalacją <c>dev-java/ant-core-1.7.0</c>. Więcej informacji dla
+użytkowników, autorów ebuildów oraz zainteresowanych nową metodą konfiguracji
+można znaleźć w stworzonym przewodniku <uri
+link="/proj/en/java/ant-guide.xml">Ant Guide</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Apache 1.x usuwany z drzewa</title>
+<title>Usunięcie Apache 1.x z drzewa Portage</title>
 <body>
 
 <p>
-Apache 2.x jest stabilnym i solidnym następcą Apache 1.x i chwali się
-dodatkowymi cechami, poza tym ulepszono aktywne podtrzymywanie aplikacji. Dlatego też
-wsparcie dla Apache 1.x w Gentoo zostanie porzucone z dniem 12 maja 2007.
-Wszystkie ebuildy Apache 1.x jak i również same moduły Apache 1.x, zostaną dodane do 
-pliku <c>package.mask</c> na czas około miesiąca, po czym usunięte całkowicie z
-drzewa.
+Apache 2.x jest stabilnym i solidnym następcą Apache 1.x i posiada wiele
+dodatkowych funkcjonalności, poprawiono także cykl konserwacji aplikacji.
+Dlatego też wsparcie dla Apache 1.x w Gentoo zostanie wstrzymane z dniem 12 maja
+2007. Wszystkie ebuildy Apache 1.x jak i również same moduły Apache 1.x, zostaną
+dodane do pliku <c>package.mask</c> na czas około miesiąca, po czym usunięte
+całkowicie z drzewa.
 </p>
 
 </body>
@@ -85,17 +92,17 @@ drzewa.
 <body>
 
 <p>
-Nadszedł czas by zespół włoskiego tłumaczenia zaczął rekrutować więcej tłumaczy.
-Dokumentacja jest zbędna do używania Gentoo, ponieważ zapotrzebowanie na nią
-jest tylko wśród użytkowników nie mających doświadczenia z Gentoo, bądź dla tych
-nie znających języka angielskiego. Wszyscy znający zasady pisania w języku
-angielskim i korzystający z Gentoo mogą pomóc zespołowi włoskich tłumaczy w
-tłumaczeniu kilku dokumentów.
+Nadszedł czas by zespół włoskiego tłumaczenia zaczął rekrutować kolejnych
+tłumaczy. Przetłumaczona dokumentacja jest niezwykle istotna w czasie używania
+Gentoo, szczególnie dla niedoświadczonych użytkowników, bądź tych nie znających
+języka angielskiego. Zachęcamy osoby potrafiące posługiwać się językiem
+angielskim i korzystające z Gentoo do pomocy zespołowi włoskich tłumaczy w
+tłumaczeniu dokumentów.
 </p>
 
 <p>
-Zainteresowanych prosimy o wysłanie maila na adresy <mail link="m.mascherpa@gentoo.org">Marco
-Mascherpa</mail> lub <mail link="scan@gentoo.org">Davide Cendron</mail>.
+<mail link="m.mascherpa@gentoo.org">Marco Mascherpa</mail> i <mail
+link="scan@gentoo.org">Davide Cendron</mail> czekają na wasze emaile.
 </p>
 
 </body>
@@ -251,12 +258,13 @@ Linux funkcję:
 <title>Bezpieczeństwo Gentoo</title>
 
 <section>
-<title>Blender: User-assisted remote execution of arbitrary code</title>
+<title>Blender: Zdalne wykonanie niepożądanego kodu wymagające asysty ze strony
+użytkownika</title>
 <body>
 
 <p>
-A vulnerability has been discovered in Blender allowing for user-assisted
-arbitrary code execution.
+Blender zawiera usterkę umożliwiającą zdalne wykonanie niepożądanego kodu
+wymagające asysty ze strony użytkownika.
 </p>
 
 <p>
@@ -268,12 +276,12 @@ GLSA</uri>
 </body>
 </section>
 <section>
-<title>NAS: Multiple vulnerabilities</title>
+<title>NAS: Wiele usterek</title>
 <body>
 
 <p>
-The Network Audio System is vulnerable to a buffer overflow that could
-result in the execution of arbitrary code with root privileges.
+Network Audio System zawiera usterkę przepełnienia bufora, które może zostać
+wykorzystana do wykonania niepożądanego kodu z uprawnieniami superużytkownika.
 </p>
 
 <p>
@@ -285,12 +293,12 @@ GLSA</uri>
 </body>
 </section>
 <section>
-<title>ClamAV: Multiple vulnerabilities</title>
+<title>ClamAV: Wiele usterek</title>
 <body>
 
 <p>
-Multiple vulnerabilities have been discovered in ClamAV allowing for the
-remote execution of arbitrary code.
+ClamAV zawiera wiele usterek umożliwiających zdalne wykonanie niepożądanego
+kodu.
 </p>
 
 <p>
@@ -306,8 +314,7 @@ GLSA</uri>
 <body>
 
 <p>
-A vulnerability has been discovered in BEAST allowing for a Denial of
-Service.
+BEAST zawiera usterkę umożliwiającą przeprowadzenie ataku Denial of Service.
 </p>
 
 <p>
@@ -319,11 +326,11 @@ GLSA</uri>
 </body>
 </section>
 <section>
-<title>capi4k-utils: Buffer overflow</title>
+<title>capi4k-utils: Przepełnienie bufora</title>
 <body>
 
 <p>
-capi4k-utils is vulnerable to a buffer overflow in the bufprint() function.
+Pakiet capi4k-utils zawiera usterkę przepełnienia bufora w funkcji bufprint().
 </p>
 
 <p>
