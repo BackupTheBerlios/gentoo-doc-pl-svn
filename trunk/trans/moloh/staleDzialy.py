@@ -29,6 +29,8 @@ regexps = (
 
 (r'<title>Gentoo [Nn]ews</title>',
  r'<title>Wiadomości Gentoo</title>'),
+(r'<title>Developer of the Week</title>',
+ r'<title>Deweloper tygodnia</title>'),
 (r'<title>Heard in the community</title>',
  r'<title>Społeczność Gentoo</title>'),
 (r'<title>Gentoo International</title>',
@@ -343,17 +345,18 @@ Tygodnik Gentoo jest dostępny w następujących językach:
 
 # dates
 # process days
-(r'0?(\d) (Jan|January|Feb|February|Mar|March|Apr|April|May) (\d{2}|\d{4})',r'\1 \2 \3'),
-(r'([12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April|May) (\d{2}|\d{4})',r'\1 \2 \3'),
+(r'0?(\d) (Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June) (\d{2}|\d{4})',r'\1 \2 \3'),
+(r'([12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June) (\d{2}|\d{4})',r'\1 \2 \3'),
 # process years
-(r'(\d|[12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April|May) ([89]\d)',r'\1 \2 19\3'),
-(r'(\d|[12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April|May) ([01]\d)',r'\1 \2 20\3'),
+(r'(\d|[12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June) ([89]\d)',r'\1 \2 19\3'),
+(r'(\d|[12]\d|3[01]) (Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June) ([01]\d)',r'\1 \2 20\3'),
 # process months
 (r'(\d|[12]\d|3[01]) (Jan|January) (\d{4})',r'\1 stycznia \3'),
 (r'(\d|[12]\d|3[01]) (Feb|February) (\d{4})',r'\1 lutego \3'),
 (r'(\d|[12]\d|3[01]) (Mar|March) (\d{4})',r'\1 marca \3'),
 (r'(\d|[12]\d|3[01]) (Apr|April) (\d{4})',r'\1 kwietnia \3'),
 (r'(\d|[12]\d|3[01]) (May) (\d{4})',r'\1 maja \3'),
+(r'(\d|[12]\d|3[01]) (Jun|June) (\d{4})',r'\1 czerwca \3'),
 
 )
 
