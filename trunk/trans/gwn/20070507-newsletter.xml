@@ -203,18 +203,20 @@ link="http://www.movidis.com">Movidis</uri>.
 </p>
 
 <p>
-Jesse Adelman wrote into <c>gentoo-user</c> to ask how to be able to do 
-an <c>emerge -uDN world</c>, but have portage not update one package. Jesse had
-a version of MythTV that had been removed from the tree that he wished to keep.
-However, the version in the tree was between a newer and older version, thus
-causing portage to want to downgrade if he simply put the newer version in
-<c>package.mask</c>. Vikas Kumar suggested the often forgotten
-<c>/etc/portage/profile/package.provided</c>. A package placed in this file
-will not be updated unless another package necessarily depends on a newer
-version. More information about <c>package.provided</c> is available in the
-portage man page. Developer Zac Medico suggested to instead simply mask the
-package versions that are both higher and lower than the version Jesse wanted
-to keep, which is the best solution.
+Jesse Adelman zapytał na liści dyskusyjnej <c>gentoo-user</c> w jaki sposób
+można wykonać polecenie <c>emerge -uDN world</c> tak, by został pominięty jeden
+pakiet. Wszystko z powodu pakietu MythTV, który został już usunięty z drzewa
+Portage, a autor wątku chciałby pozostawić w systemie. Problem jest spowodowany
+tym, że dostępne są zarówno nowsze, jak i starsze wersje MythTV, więc po dodaniu
+odpowiedniego wpisu dla nowego wydania w <c>package.mask</c> Portage chce
+zainstalować starszą wersję. Vikas Kumar zasugerował, aby w tym przypadku
+skorzystać z często pomijanego pliku
+<c>/etc/portage/profile/package.provided</c>. Pakiet, który zostanie tam dodany
+nie będzie pomijany w czasie dokonywania aktualizacji, chyba że wymagana będzie
+jego nowsza wersja. Więcej informacji na temat <c>package.provided</c> można
+znaleźć na stronie man portage. Deweloper Zac Medico poradził, by zamaskować
+zarówno nowsze jak i starsze wersje pakietu, który chcemy zachować w systemie.
+To będzie najlepsze rozwiązanie problemu Jesse'a.
 </p>
 
 <ul>
@@ -229,13 +231,14 @@ to keep, which is the best solution.
 <body>
 
 <p>
-<mail link="dsd@gentoo.org">Daniel Drake</mail> is looking for one or more
-people to help out with <c>gentoo-sources-2.6</c> maintenance. Knowledge of
-kernel internals and kernel hacking is not required, but motivation to learn is
-the main qualification. Being a Gentoo developer is not required to offer
-assistance and could be a good way for an interested person to get a foot in
-the door towards becoming a developer. Interested parties should contact Daniel
-privately, or on IRC.
+<mail link="dsd@gentoo.org">Daniel Drake</mail> poszukuje osób zainteresowanych
+pomocą w opiece nad pakietem <c>gentoo-sources-2.6</c>. Nie potrzeba jest żadna
+specjalistyczna wiedza, ani doświadczenie w kodowaniu dotyczące jądra. Wymagana
+jest natomiast chęć do nauczenia się wszystkich potrzebnych rzeczy. Aby
+spróbować własnych sił nie trzeba być deweloperem Gentoo, a pomoc może być
+doskonałą okazją do stania się jednym z nich. Wszystkie zainteresowane osoby
+prosimy o kontakt z Danielem, można wysłać do niego emaila lub poszukać go na
+IRC-u.
 </p>
 
 <ul>
