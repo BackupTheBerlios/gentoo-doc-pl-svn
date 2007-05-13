@@ -44,75 +44,73 @@
 <chapter>
 <title>Wiadomości Gentoo</title>
 <section>
-<title>Gentoo 2007.0, code named "Secret Sauce", is released</title>
+<title>Gentoo 2007.0, nazwa kodowa "Secret Sauce", wydany</title>
 <body>
 
 <p>
-The Gentoo <uri link="/proj/en/releng">Release Engineering</uri> project is
-pleased to announce the much-delayed release of Gentoo Linux 2007.0, code named
-"Secret Sauce". This release met with several delays due to an abnormally high
-number of security vulnerabilities in large packages which had to be rebuilt
-using the newer, secure versions of the packages. There was also a complete
-re-snapshot done about half-way through the release period due to the release
-taking so long and the packages becoming stale.
+Projekt <uri link="/proj/en/releng">Release Engineering</uri> z przyjemnością
+informuje o opóźnionym wydaniu Gentoo Linux 2007.0, oznaczonego nazwą kodową
+"Secret Sauce". To wydanie napotkało sporo opóźnień związanych z ogromną ilością
+usterek umożliwiających zdalne wykonanie niepożądanego kodu w dużych pakietach,
+które wymagały przebudowania i zastąpienia nowszymi, bezpieczniejszymi wersjami.
+Poza tym, mniej więcej w połowie wydania, przeprowadzono pełną reakutalizację,
+dlatego też cały proces trwał tak długo.
 </p>
 
 <p>
-You can find out more information about the release in the <uri
-link="/proj/en/releng/release/2007.0/2007.0-press-release.txt">official press
-release</uri>. To get the new release, grab it from
-<uri>http://www.gentoo.org/main/en/where.xml</uri>.
+Więcej informacji na można uzyskać w  <uri
+link="/proj/en/releng/release/2007.0/2007.0-press-release.txt">oficjalnej notce
+wydania</uri>. Pliki do ściągnięcia dostępne na stronie <uri>http://www.gentoo.org/main/en/where.xml</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Recent Coreutils update and shell script issues</title>
+<title>Ostatnia aktualizacja Coreutils i kwestie skryptów</title>
 <body>
 
 <p>
-If you recently updated coreutils, or are planning your next <c>emerge -avNDu
-world</c> while reading this, you might want to take note of some important
-changes.  The recent update to <c>sys-apps/coreutils</c> moved some utilities 
-around a bit. Some moved from <path>/bin</path> to <path>/usr/bin</path>,
-others, maybe because they felt the inodes were greener in the other directory,
-flipped from <path>/usr/bin</path> to <path>/bin</path>. While there are many
-important reasons these files moved, including to provide access to the tools
-while in single user mode, for instance, what is more important for those
-affected is knowing what this means for your shell scripts. How to look for
-problems, and, if necessary, how to fix your scripts.
+Wszyscy, którzy niedawno zaktualizowali pakiet coreutils, lub planują w
+najbliższym czasie wykonać komendę <c>emerge -avNDu world</c>, podczas czytania
+tego tekstu mogą zanotować kilka istotnych rzeczy. Ostatnia aktualizacja
+<c>sys-apps/coreutils</c> zmienia lokalizację kilku narzędzi. Niektóre
+przeniesiono z <path>/bin</path> do <path>/usr/bin</path>, inne, może dlatego,
+że ich i-węzły wydają się być lepsze w innych katalogach, przerzucono z
+<path>/usr/bin</path> do <path>/bin</path>. Istnieje kilka istotnych powodów,
+dla których pliki te zmieniły swoje miejsca, włączając w to dostęp do
+narzędzi podczas trybu pojedynczego użytkownika (single user mode). Dla
+użytkowników przejmujących się tą sytuacją przypominamy o znaczeniu tych zmian
+dla skryptów powłoki - jak szukać błędów i, jeśli wymagane, jak owe skrypty
+naprawić.
 </p>
 
 <p>
-For many people, most scripts are run as root through cron, and might have
-taken the precaution of hard coding the path of each and every binary in the
-script (it is generally considered a more secure method of scripting, you can
-get more detail at <uri>http://forums.gentoo.org/viewtopic-t-548833.html</uri>).
-Hopefully, those paths to the location of the binaries in a variable at the
-beginning of the script, such as:
+Wiele osób, większość swoich skryptów uruchamia jako root z poziomu aplikacji cron 
+- powinni oni zwrócić uwagę na wpisywanie "na sztywno" ścieżek plików binarnych w
+skryptach (jest to generalnie bezpieczniejsza metoda pisania skryptów - więcej
+informacji na <uri>http://forums.gentoo.org/viewtopic-t-548833.html</uri>).
+Spodziewanie, owe ścieżki i lokalizacje umieszczane są na początku skryptu:  
 </p>
 
-<pre caption="Example script">
+<pre caption="Przykładowy skrypt">
 #!/bin/bash
 MYNOHUP=/usr/bin/nohup
-MYCOMMAND=/usr/local/bin/somecommand
-$MYNOHUP $MYCOMMAND
+MOJAKOMENDA=/usr/local/bin/jakaskomenda
+$MYNOHUP $MOJAKOMENDA
 </pre>
 
 <p>
-This way, there is only one edit to make in the script. Of course, this isn't
-the only solution.  In a recent discussion on the <c>gentoo-dev</c> mailing
-list, many potential solutions were offered.  You can read the thread at
-<uri>http://archives.gentoo.org/gentoo-dev/msg_144236.xml</uri>. One potential
-solution is to completely forgo the full path to binaries in your shell
-scripts.  By ensuring that the PATH variable is properly set at the beginning
-of your scripts, this entire issue is completely avoidable. In fact, for those
-that currently subscribe to this method of shell scripting, the coreutils
-update may have gone completely unnoticed. A good default for the PATH variable
-in your scripts would be:
+W tym przypadku wymagana jest tylko jedna ingerencja w treść skryptu. Oczywiście 
+nie jest to jedyne rozwiązanie. W ostatniej dyskusji na liście mailingowej
+<c>gentoo-dev</c>, zaoferowano kilka potencjalnych solucji. Wątek dostępny pod
+adresem <uri>http://archives.gentoo.org/gentoo-dev/msg_144236.xml</uri>. Jednym
+ze sposobów jest zapomnieć o pełnych ścieżkach do plików binarnych w treści
+skryptu. Jednakże wymaga to dobrze zdefiniowanej zmiennej PATH. Faktem jest, że
+żaden z użytkowników trzymających się tej metody, aktualizacji coreutils nie 
+dostrzeże w żaden sposób. Dobrą domyślną wartością zmiennej PATH w skryptach będzie: 
 </p>
 
-<pre caption="Default PATH example">
+<pre caption="Domyślny przykład zmiennej PATH">
 PATH=${PATH}:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 </pre>
 
