@@ -115,51 +115,54 @@ PATH=${PATH}:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 </pre>
 
 <p>
-Obviously, one might want to check the path of the binaries for more 
-esoteric paths, for example <path>/opt/vmware/server/bin</path> is the location
-for VMWare Server utilities. Another option mentioned was the <c>command -p
-program</c> method. From the man page, command -p will "perform the command
-search using a default value for PATH that is guaranteed to find all of the
-standard utilities". This appears to be a fairly safe method of executing a
-command, albeit at the cost of a few extra keystrokes. Also, since command is a
-built in bash utility, it doesn't actually exist on the file system and is
-therefore immune to the changes made by coreutils. This of course assumes one
-is using the bash shell by default, which is a safe bet for most Linux users.
+Oczywiście, być może zechcemy sprawdzać ścieżki dostępu do plików binarnych w
+bardziej egzotycznych katalogach. Dla przykładu VMWare Server instaluje swoje
+pliki w katalogu <path>/opt/vmware/server/bin</path>. Kolejnym rozwiązaniem
+jakie zaproponowano, jest użycie metody <c>polecenie -p program</c>. Zgodnie ze
+stroną manuala użycie takiej składni spowoduje "przeszukanie polecenia używając
+domyślnej wartości dla zmiennej PATH, która gwarantuje znalezienie wszystkich
+standardowych narzędzi". Jest to jedna z bezpieczniejszych metod, okupiona
+jednak wysiłkiem jaki ponosimy poprzez wciśnięcie kilku dodatkowych klawiszy.
+Dodatkowo, ponieważ polecenie takie zbudowane jest w bash, generalnie nie
+istnieje w systemie plików i przez to jest odporne na zmiany wywołane przez
+coreutils. Zakładamy tutaj oczywiście, że użytkownik używa powłoki bash, jako
+najbardziej bezpiecznego wyboru dla większości.
 </p>
 
 <p>
-Similar to command, env runs a program in a modified environment. Simply
-calling <c>env program</c> will run your utility with a drastically
-stripped-down path; <c>/bin:/usr/bin</c> according to the email thread.  
-Contrary to the command utility, env is a file on the local file system and
-exists, via symbolic links, in both <path>/bin</path> and <path>/usr/bin</path>.
+Podobnie do polecenia opisanego powyżej, polecenie env uruchamia program w
+zmodyfikowanym środowisku. Proste wywołanie polecenia <c>env program</c>
+uruchomi nasze narzędzie z drastycznie rozłożoną ścieżką. Zgodnie z wątkiem na
+liście mailingowej będzie to <c>/bin:/usr/bin</c>. W przeciwieństwie do
+poprzedniej metody, env jest plikiem, który znajduje się na lokalnym systemie
+plików i istnieje, jako dowiązanie symboliczne, zarówno w katalogu
+<path>/bin</path> jak i <path>/usr/bin</path>.
 </p>
 
 <p>
-Ultimately, the solution you choose is largely a matter of preference and
-personal experience. Your best bet is to experiment with the solutions listed
-above to find the one with which you are most comfortable. With your new-found
-knowledge, there is one last thing to do. You will need to make sure that you
-find the scripts running on your system and test them for problems. You can
-manually ran each of them in debug mode to look for issues.
+Ostatecznie, rozwiązanie, które wybierzemy jest jedynie sprawą doświadczenia
+i osobistych preferencji. Najlepszym wyjściem, będzie poeksperymentowanie z
+pokazanymi powyżej przykładami rozwiązania tego problemu, tak aby znaleźć to
+najbardziej komfortowe dla nas samych. Z wiedzą, którą pozyskamy dzięki takim
+eksperymentom, musimy zrobić jeszcze jedną rzecz. Należy upewnić się, że nasze
+skrypty chodzą poprawnie w naszym systemie oraz dobrze jest przetestować je pod
+względem występowania problemów. Każdy z nich możemy ręcznie uruchomić w trybie
+debug, aby ułatwić sobie znalezienie jakichkolwiek problemów.
 </p>
 
-<pre caption="Running a bash command in debug mode">
+<pre caption="Uruchamianie polecenia bash w trybie debug">
 $ bash -x sample_cron_job
 + /bin/echo 'Hello World!'
 Hello World!
 </pre>
 
 <p>
-You will also want to look in <path>/usr/local/bin</path> for scripts (if that
-is where you keep them) and also <path>/etc/conf.d/local.start</path> and 
-<path>/etc/conf.d/local.stop</path>. If everything works, then you are in great
-shape!
+Dodatkowo, dobrze jest przejrzeć do katalog <path>/usr/local/bin</path> w
+poszukiwaniu skryptów (jeżeli jest to miejsce, w którym je przetrzymujemy).
+Powinniśmy również sprawdzić zawartość plików
+<path>/etc/conf.d/local.start</path> oraz <path>/etc/conf.d/local.stop</path>.
+Jeżeli wszystko będzie działało dobrze, potwierdzi to tylko naszą dobrą formę!
 </p>
-
-</body>
-</section>
-</chapter>
 
 <!-- Developer of the Week -->
 <!-- Heard in the community -->
