@@ -44,110 +44,113 @@
 <chapter>
 <title>Wiadomości Gentoo</title>
 <section>
-<title>Gentoo 2007.0, nazwa kodowa "Secret Sauce", wydany</title>
+<title>Wydano Gentoo 2007.0 „Secret Sauce”</title>
 <body>
 
 <p>
 Projekt <uri link="/proj/en/releng">Release Engineering</uri> z przyjemnością
-informuje o opóźnionym wydaniu Gentoo Linux 2007.0, oznaczonego nazwą kodową
-"Secret Sauce". To wydanie napotkało sporo opóźnień związanych z ogromną ilością
-usterek umożliwiających zdalne wykonanie niepożądanego kodu w dużych pakietach,
-które wymagały przebudowania i zastąpienia nowszymi, bezpieczniejszymi wersjami.
-Poza tym, mniej więcej w połowie wydania, przeprowadzono pełną reakutalizację,
-dlatego też cały proces trwał tak długo.
+informuje o znacznie opóźnionym wydaniu Gentoo Linux 2007.0, nazwanym „Secret
+Sauce”. Opóźnienia wynikają z powodu znacznej ilości usterek i błędów
+bezpieczeństwa występujących w dużych pakietach, które wymagały przebudowania i
+zastąpienia nowszymi, poprawionymi wersjami. Poza tym, mniej więcej w połowie
+całego procesu tworzenia wydania, postanowiono o ponownym stworzeniu bazowego
+obrazu, dlatego też wszystko trwało tak długo.
 </p>
 
 <p>
-Więcej informacji na można uzyskać w  <uri
-link="/proj/en/releng/release/2007.0/2007.0-press-release.txt">oficjalnej notce
-wydania</uri>. Pliki do ściągnięcia dostępne na stronie <uri>http://www.gentoo.org/main/en/where.xml</uri>.
+Więcej informacji na temat nowego wydania można uzyskać w <uri
+link="/proj/en/releng/release/2007.0/2007.0-press-release.txt">oficjalnym
+ogłoszeniu</uri>. Pliki do ściągnięcia dostępne są na stronie
+<uri>http://www.gentoo.org/main/en/where.xml</uri>.
 </p>
 
 </body>
 </section>
 <section>
-<title>Ostatnia aktualizacja Coreutils i kwestie skryptów</title>
+<title>Ostatnia aktualizacja coreutils i kwestie skryptów</title>
 <body>
 
 <p>
-Wszyscy, którzy niedawno zaktualizowali pakiet coreutils, lub planują w
-najbliższym czasie wykonać komendę <c>emerge -avNDu world</c>, podczas czytania
-tego tekstu mogą zanotować kilka istotnych rzeczy. Ostatnia aktualizacja
-<c>sys-apps/coreutils</c> zmienia lokalizację kilku narzędzi. Niektóre
-przeniesiono z <path>/bin</path> do <path>/usr/bin</path>, inne, może dlatego,
-że ich i-węzły wydają się być lepsze w innych katalogach, przerzucono z
-<path>/usr/bin</path> do <path>/bin</path>. Istnieje kilka istotnych powodów,
-dla których pliki te zmieniły swoje miejsca, włączając w to dostęp do
-narzędzi podczas trybu pojedynczego użytkownika (single user mode). Dla
-użytkowników przejmujących się tą sytuacją przypominamy o znaczeniu tych zmian
-dla skryptów powłoki - jak szukać błędów i, jeśli wymagane, jak owe skrypty
-naprawić.
+Wszyscy, którzy niedawno zaktualizowali pakiet coreutils lub planują w
+najbliższym czasie wykonać polecenie <c>emerge -avNDu world</c>, powinni
+zapamiętać kilka istotnych rzeczy po przeczytaniu tego tekstu. Ostatnia
+aktualizacja <c>sys-apps/coreutils</c> zmienia lokalizację kilku narzędzi.
+Niektóre przeniesiono z <path>/bin</path> do <path>/usr/bin</path>, inne, może
+dlatego, że ich i-węzły źle się czuły, znalazły się w innych katalogach. Kilka
+przerzucono także z <path>/usr/bin</path> do <path>/bin</path>, by umożliwić
+dostęp do nich podczas trybu jednoużytkownikowego. Co ważne, te zmiany mają
+istotny wpływ na działanie skryptów powłoki, należy więc wiedzieć jak szukać
+błędów i, jeśli wymagane, jak owe skrypty naprawić.
 </p>
 
 <p>
-Wiele osób, większość swoich skryptów uruchamia jako root z poziomu aplikacji cron 
-- powinni oni zwrócić uwagę na wpisywanie "na sztywno" ścieżek plików binarnych w
+Wiele osób, większość swoich skryptów uruchamia jako root z poziomu aplikacji
+cron - należy zwrócić uwagę na wpisywane „na sztywno” ścieżki plików binarnych w
 skryptach (jest to generalnie bezpieczniejsza metoda pisania skryptów - więcej
-informacji na <uri>http://forums.gentoo.org/viewtopic-t-548833.html</uri>).
-Spodziewanie, owe ścieżki i lokalizacje umieszczane są na początku skryptu:  
+informacji można znaleźć pod adresem
+<uri>http://forums.gentoo.org/viewtopic-t-548833.html</uri>). Najlepiej
+umieszczać ścieżki na samym początku skryptu:
 </p>
 
 <pre caption="Przykładowy skrypt">
 #!/bin/bash
 MYNOHUP=/usr/bin/nohup
-MOJAKOMENDA=/usr/local/bin/jakaskomenda
-$MYNOHUP $MOJAKOMENDA
+MOJPROGRAM=/usr/local/bin/jakisprogram
+$MYNOHUP $MOJPROGRAM
 </pre>
 
 <p>
-W tym przypadku wymagana jest tylko jedna ingerencja w treść skryptu. Oczywiście 
-nie jest to jedyne rozwiązanie. W ostatniej dyskusji na liście mailingowej
-<c>gentoo-dev</c>, zaoferowano kilka potencjalnych solucji. Wątek dostępny pod
-adresem <uri>http://archives.gentoo.org/gentoo-dev/msg_144236.xml</uri>. Jednym
-ze sposobów jest zapomnieć o pełnych ścieżkach do plików binarnych w treści
-skryptu. Jednakże wymaga to dobrze zdefiniowanej zmiennej PATH. Faktem jest, że
-żaden z użytkowników trzymających się tej metody, aktualizacji coreutils nie 
-dostrzeże w żaden sposób. Dobrą domyślną wartością zmiennej PATH w skryptach będzie: 
+W tym przypadku wymagana jest tylko prosta ingerencja w treść skryptu.
+Oczywiście nie jest to jedyna możliwość poradzenia sobie z zaistniałym
+problemem. W jednej z ostatnich dyskusji na liście dyskusyjnej
+<c>gentoo-dev</c>, przedstawiono kilka potencjalnych rozwiązań. Wątek dostępny
+jest pod adresem
+<uri>http://archives.gentoo.org/gentoo-dev/msg_144236.xml</uri>. Jednym ze
+sposobów jest zapomnienie o pełnych ścieżkach do plików binarnych w skryptach.
+Wymagana jest jednak wtedy dobrze zdefiniowana zmienna PATH. Faktem jest, że
+żaden z użytkowników trzymających się tej metody, aktualizacji coreutils nie
+dostrzeże w żaden sposób. Dobrą domyślną wartością zmiennej PATH w skryptach
+będzie:
 </p>
 
-<pre caption="Domyślny przykład zmiennej PATH">
+<pre caption="Przykładowa domyślna zmienna PATH">
 PATH=${PATH}:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 </pre>
 
 <p>
-Oczywiście, być może zechcemy sprawdzać ścieżki dostępu do plików binarnych w
+Oczywiście, być może potrzebne będą także ścieżki dostępu do plików binarnych w
 bardziej egzotycznych katalogach. Dla przykładu VMWare Server instaluje swoje
 pliki w katalogu <path>/opt/vmware/server/bin</path>. Kolejnym rozwiązaniem
-jakie zaproponowano, jest użycie metody <c>polecenie -p program</c>. Zgodnie ze
-stroną manuala użycie takiej składni spowoduje "przeszukanie polecenia używając
-domyślnej wartości dla zmiennej PATH, która gwarantuje znalezienie wszystkich
-standardowych narzędzi". Jest to jedna z bezpieczniejszych metod, okupiona
-jednak wysiłkiem jaki ponosimy poprzez wciśnięcie kilku dodatkowych klawiszy.
-Dodatkowo, ponieważ polecenie takie zbudowane jest w bash, generalnie nie
-istnieje w systemie plików i przez to jest odporne na zmiany wywołane przez
-coreutils. Zakładamy tutaj oczywiście, że użytkownik używa powłoki bash, jako
-najbardziej bezpiecznego wyboru dla większości.
+jakie zaproponowano, jest użycie metody <c>command -p program</c>. Zgodnie ze
+stroną man command, użycie takiej składni spowoduje „wykonanie polecenia z
+użyciem domyślnej wartości dla zmiennej PATH, która zagwarantuje dostęp do
+wszystkich standardowych narzędzi”. Jest to jedna z bezpieczniejszych metod,
+okupiona jednak wysiłkiem ponoszonym na wciśnięcie kilku dodatkowych klawiszy.
+Dodatkowo, ponieważ to polecenie jest wbudowane w bash, nie istnieje w systemie
+plików, to jest odporne na zmiany wywołane przez coreutils. Zakładamy tutaj
+oczywiście użycie powłoki bash, jako bezpiecznego rozwiązania dla większości
+użytkowników Linuksa.
 </p>
 
 <p>
 Podobnie do polecenia opisanego powyżej, polecenie env uruchamia program w
 zmodyfikowanym środowisku. Proste wywołanie polecenia <c>env program</c>
-uruchomi nasze narzędzie z drastycznie rozłożoną ścieżką. Zgodnie z wątkiem na
-liście mailingowej będzie to <c>/bin:/usr/bin</c>. W przeciwieństwie do
-poprzedniej metody, env jest plikiem, który znajduje się na lokalnym systemie
-plików i istnieje, jako dowiązanie symboliczne, zarówno w katalogu
-<path>/bin</path> jak i <path>/usr/bin</path>.
+uruchomi nasze narzędzie używając znacznie uproszczonego PATH. Zgodnie z
+wymienionym wątkiem, będzie to <c>/bin:/usr/bin</c>. W przeciwieństwie do
+poprzedniej metody, env jest narzędziem, które znajduje się w lokalnym systemie
+plików jako dowiązanie symboliczne, zarówno w katalogu <path>/bin</path> jak i
+<path>/usr/bin</path>.
 </p>
 
 <p>
-Ostatecznie, rozwiązanie, które wybierzemy jest jedynie sprawą doświadczenia
-i osobistych preferencji. Najlepszym wyjściem, będzie poeksperymentowanie z
-pokazanymi powyżej przykładami rozwiązania tego problemu, tak aby znaleźć to
-najbardziej komfortowe dla nas samych. Z wiedzą, którą pozyskamy dzięki takim
-eksperymentom, musimy zrobić jeszcze jedną rzecz. Należy upewnić się, że nasze
-skrypty chodzą poprawnie w naszym systemie oraz dobrze jest przetestować je pod
-względem występowania problemów. Każdy z nich możemy ręcznie uruchomić w trybie
-debug, aby ułatwić sobie znalezienie jakichkolwiek problemów.
+Ostatecznie, wybór sposobu poradzenia sobie z tym problemem jest uzależniony od
+własnego doświadczenia i osobistych preferencji. Najlepszym wyjściem, będzie
+spróbowanie różnych rozwiązań, aby samemu znaleźć to najlepsze, czy najbardziej
+komfortowe. Z wiedzą, którą uzyskamy dzięki takim eksperymentom, należy zrobić
+jeszcze jedną rzecz. Musimy upewnić się, że nasze skrypty działają poprawnie w
+naszym systemie, dobrze jest też je przetestować pod kątem możliwych problemów.
+Każdy skrypt można uruchomić w trybie debug, co z pewnością ułatwi znalezienie
+wszelkich usterek.
 </p>
 
 <pre caption="Uruchamianie polecenia bash w trybie debug">
@@ -157,11 +160,11 @@ Hello World!
 </pre>
 
 <p>
-Dodatkowo, dobrze jest przejrzeć do katalog <path>/usr/local/bin</path> w
-poszukiwaniu skryptów (jeżeli jest to miejsce, w którym je przetrzymujemy).
-Powinniśmy również sprawdzić zawartość plików
-<path>/etc/conf.d/local.start</path> oraz <path>/etc/conf.d/local.stop</path>.
-Jeżeli wszystko będzie działało dobrze, potwierdzi to tylko naszą dobrą formę!
+Dodatkowo, w poszukiwaniu skryptów dobrze jest zaglądnąć do katalogu
+<path>/usr/local/bin</path> (jeżeli jest to miejsce, w którym je przechowujemy)
+oraz sprawdzić zawartość plików <path>/etc/conf.d/local.start</path> oraz
+<path>/etc/conf.d/local.stop</path>. Jeżeli wszystko będzie wyglądało dobrze i
+działało poprawnie, potwierdzi to tylko nasze umiejętności!
 </p>
 
 <!-- Developer of the Week -->
